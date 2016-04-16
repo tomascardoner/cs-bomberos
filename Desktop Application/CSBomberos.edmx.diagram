@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="3" PointY="2.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="0.75" PointY="14.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="5.25" PointY="18.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.Parametro" Width="1.5" PointX="7.75" PointY="5.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Provincia" Width="1.5" PointX="1.5" PointY="18.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Reporte" Width="1.5" PointX="10" PointY="1.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteGrupo" Width="1.5" PointX="7.75" PointY="1.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="1.5" PointX="12.25" PointY="1" />
+        <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="1.5" PointX="3" PointY="6.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="0.625" PointY="11.75" />
+        <AssociationConnector Association="CSBomberosModel.FK__Provincia__Localidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Log" />
+        <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteParametro" />
+        <AssociationConnector Association="CSBomberosModel.FK__ReporteGrupo__Reporte" />
+        <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__Usuario" />
+        <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" />
+        <EntityTypeShape EntityType="CSBomberosModel.Cuartel" Width="1.5" PointX="3" PointY="13.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.Parentesco" Width="1.5" PointX="5.25" PointY="15.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Persona" Width="1.5" PointX="5.25" PointY="4.375" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Persona" />
+        <AssociationConnector Association="CSBomberosModel.FK__Localidad__Cuartel" />
+        <AssociationConnector Association="CSBomberosModel.FK__DocumentoTipo__Persona" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__Localidad__Laboral" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__Localidad__Particular" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Persona__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Persona__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaFamiliar" Width="1.5" PointX="10.5" PointY="9.875" />
+        <AssociationConnector Association="CSBomberosModel.FK__Parentesco__PersonaParentesco1" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaParentesco1" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Parentesco__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

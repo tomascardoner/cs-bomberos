@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("CS-Colegio 2015")> 
-<Assembly: AssemblyDescription("Sistema de Gestión para Colegios")> 
+<Assembly: AssemblyTitle("CS-Bomberos 2016")> 
+<Assembly: AssemblyDescription("Sistema de Gestión para Cuarteles de Bomberos")> 
 <Assembly: AssemblyCompany("Cardoner Sistemas")> 
-<Assembly: AssemblyProduct("CS-Colegio")> 
-<Assembly: AssemblyCopyright("© 2015-2016 Cardoner Sistemas. Reservados todos los derechos.")> 
-<Assembly: AssemblyTrademark("CS-Colegio 2015")> 
+<Assembly: AssemblyProduct("CS-Bomberos")> 
+<Assembly: AssemblyCopyright("© 2016 Cardoner Sistemas. Reservados todos los derechos.")> 
+<Assembly: AssemblyTrademark("® CS-Bomberos 2016")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("bc77ee75-353a-47a4-9824-ce9ff58f7ae2")> 
+<Assembly: Guid("73F12740-24EF-415a-B9A2-87F87D4D83F8")> 
 
 ' Version information for an assembly consists of the following four values:
 '

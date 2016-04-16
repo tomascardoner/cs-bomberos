@@ -27,8 +27,8 @@ Partial Class formReportesParametro
         Me.buttonAceptar = New System.Windows.Forms.ToolStripButton()
         Me.labelValor = New System.Windows.Forms.Label()
         Me.datetimepickerValor = New System.Windows.Forms.DateTimePicker()
-        Me.textboxMoney = New CSColegio.DesktopApplication.CS_Control_TextBox_Currency()
-        Me.textboxNumber = New CSColegio.DesktopApplication.CS_Control_TextBox_Number()
+        Me.textboxMoney = New CSBomberos.DesktopApplication.CS_Control_TextBox_Currency()
+        Me.textboxNumber = New CSBomberos.DesktopApplication.CS_Control_TextBox_Number()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -44,7 +44,7 @@ Partial Class formReportesParametro
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSColegio.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -54,7 +54,7 @@ Partial Class formReportesParametro
         'buttonAceptar
         '
         Me.buttonAceptar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonAceptar.Image = Global.CSColegio.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonAceptar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
         Me.buttonAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAceptar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAceptar.Name = "buttonAceptar"
@@ -121,6 +121,6 @@ Partial Class formReportesParametro
     Friend WithEvents buttonAceptar As System.Windows.Forms.ToolStripButton
     Friend WithEvents labelValor As System.Windows.Forms.Label
     Friend WithEvents datetimepickerValor As System.Windows.Forms.DateTimePicker
-    Friend WithEvents textboxMoney As CSColegio.DesktopApplication.CS_Control_TextBox_Currency
-    Friend WithEvents textboxNumber As CSColegio.DesktopApplication.CS_Control_TextBox_Number
+    Friend WithEvents textboxMoney As CSBomberos.DesktopApplication.CS_Control_TextBox_Currency
+    Friend WithEvents textboxNumber As CSBomberos.DesktopApplication.CS_Control_TextBox_Number
 End Class

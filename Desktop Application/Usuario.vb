@@ -23,12 +23,15 @@ Partial Public Class Usuario
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property UsuarioGrupo As UsuarioGrupo
-    Public Overridable Property EntidadesCreadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
-    Public Overridable Property EntidadesModificadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
-    Public Overridable Property ComprobantesCreados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
-    Public Overridable Property ComprobantesModificados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
     Public Overridable Property Log As ICollection(Of Log) = New HashSet(Of Log)
-    Public Overridable Property Comprobante1 As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property UsuarioGrupo As UsuarioGrupo
+    Public Overridable Property PersonasCreadas As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property PersonasModificadas As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property PersonaFamiliaresCreados As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
+    Public Overridable Property PersonaFamiliaresModificados As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
+    Public Overridable Property ParentescosCreados As ICollection(Of Parentesco) = New HashSet(Of Parentesco)
+    Public Overridable Property ParentescosModificados As ICollection(Of Parentesco) = New HashSet(Of Parentesco)
+    Public Overridable Property CuartelesCreados As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
+    Public Overridable Property CuartelesModificados As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
 
 End Class

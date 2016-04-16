@@ -149,72 +149,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Colegio Horizonte\CS-Colegio\Certificados\administracion_h"& _ 
-            "omologacion.crt")>  _
-        Public ReadOnly Property AFIP_WS_Certificado_Homologacion() As String
-            Get
-                Return CType(Me("AFIP_WS_Certificado_Homologacion"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Colegio Horizonte\CS-Colegio\Certificados\cardonersistemas"& _ 
-            ".key")>  _
-        Public ReadOnly Property AFIP_WS_ClavePrivada() As String
-            Get
-                Return CType(Me("AFIP_WS_ClavePrivada"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
-        Public ReadOnly Property IDPuntoVenta() As Byte
-            Get
-                Return CType(Me("IDPuntoVenta"),Byte)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2400")>  _
-        Public ReadOnly Property AFIP_WS_TTLTicketRequerimientoAcceso() As Short
-            Get
-                Return CType(Me("AFIP_WS_TTLTicketRequerimientoAcceso"),Short)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("%ApplicationFolder%\Log\AFIP")>  _
-        Public ReadOnly Property AFIP_WS_LogFolder() As String
-            Get
-                Return CType(Me("AFIP_WS_LogFolder"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("%DateTimeUniversalNoSlashes%.log")>  _
-        Public ReadOnly Property AFIP_WS_LogFileName() As String
-            Get
-                Return CType(Me("AFIP_WS_LogFileName"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property AFIP_WS_ModoHomologacion() As Boolean
-            Get
-                Return CType(Me("AFIP_WS_ModoHomologacion"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Colegio\Reportes")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Bomberos\Reportes")>  _
         Public ReadOnly Property ReportsPath() As String
             Get
                 Return CType(Me("ReportsPath"),String)
@@ -241,7 +176,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("CSColegio")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("CSBomberos")>  _
         Public ReadOnly Property DBConnection_Database() As String
             Get
                 Return CType(Me("DBConnection_Database"),String)
@@ -286,7 +221,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Colegio Horizonte de Lobos - Administracion")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Bomberos Voluntarios de Lobos")>  _
         Public ReadOnly Property Email_DisplayName() As String
             Get
                 Return CType(Me("Email_DisplayName"),String)
@@ -376,22 +311,12 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("{0}{0}Colegio Horizonte de Lobos{0}Administración{0}Castelli 193 - Lobos{0}Tel.: "& _ 
-            "+54 2227 42-4656{0}administracion@horizontedelobos.com.ar{0}www.horizontedelobos"& _ 
-            ".com.ar")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("{0}{0}Bomberos Voluntarios de Lobos{0}Cuartel Principal{0}Ameghino 142 - Lobos{0}"& _ 
+            "Tel.: +54 2227 42-2222{0}info@bomberosdelobos.com.ar{0}www.bomberosdelobos.com.a"& _ 
+            "r")>  _
         Public ReadOnly Property Email_Signature() As String
             Get
                 Return CType(Me("Email_Signature"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Colegio Horizonte\CS-Colegio\Certificados\administracion_p"& _ 
-            "roduccion.crt")>  _
-        Public ReadOnly Property AFIP_WS_Certificado_Produccion() As String
-            Get
-                Return CType(Me("AFIP_WS_Certificado_Produccion"),String)
             End Get
         End Property
         
@@ -406,15 +331,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property AFIP_WS_LogEnabled() As Boolean
-            Get
-                Return CType(Me("AFIP_WS_LogEnabled"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("200")>  _
         Public ReadOnly Property Email_MaxPerHour() As Short
             Get
@@ -422,12 +338,12 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(), _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.Configuration.DefaultSettingValueAttribute("%ApplicationFolder%\Exchange\Outbound")> _
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("%ApplicationFolder%\Exchange\Outbound")>  _
         Public ReadOnly Property Exchange_Outbound_Folder() As String
             Get
-                Return CType(Me("Exchange_Outbound_Folder"), String)
+                Return CType(Me("Exchange_Outbound_Folder"),String)
             End Get
         End Property
     End Class
@@ -441,9 +357,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.CSColegio.DesktopApplication.My.MySettings
+        Friend ReadOnly Property Settings() As Global.CSBomberos.DesktopApplication.My.MySettings
             Get
-                Return Global.CSColegio.DesktopApplication.My.MySettings.Default
+                Return Global.CSBomberos.DesktopApplication.My.MySettings.Default
             End Get
         End Property
     End Module

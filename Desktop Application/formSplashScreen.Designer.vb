@@ -26,10 +26,8 @@ Partial Class formSplashScreen
         Me.labelAppTitle = New System.Windows.Forms.Label()
         Me.labelCompanyName = New System.Windows.Forms.Label()
         Me.labelCopyright = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.labelLicensedTo = New System.Windows.Forms.Label()
         Me.labelStatus = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelAppTitle
@@ -37,11 +35,11 @@ Partial Class formSplashScreen
         Me.labelAppTitle.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.labelAppTitle.BackColor = System.Drawing.Color.Transparent
-        Me.labelAppTitle.Font = New System.Drawing.Font("Tahoma", 39.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelAppTitle.Font = New System.Drawing.Font("Tahoma", 38.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.labelAppTitle.ForeColor = System.Drawing.Color.White
-        Me.labelAppTitle.Location = New System.Drawing.Point(52, 72)
+        Me.labelAppTitle.Location = New System.Drawing.Point(17, 72)
         Me.labelAppTitle.Name = "labelAppTitle"
-        Me.labelAppTitle.Size = New System.Drawing.Size(434, 71)
+        Me.labelAppTitle.Size = New System.Drawing.Size(469, 71)
         Me.labelAppTitle.TabIndex = 0
         Me.labelAppTitle.Text = "Title"
         '
@@ -68,22 +66,11 @@ Partial Class formSplashScreen
         Me.labelCopyright.Text = "Copyright"
         Me.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox1.Image = Global.CSColegio.DesktopApplication.My.Resources.Resources.IMAGE_SENAL_ESCUELA_152
-        Me.PictureBox1.Location = New System.Drawing.Point(396, 141)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(90, 96)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 3
-        Me.PictureBox1.TabStop = False
-        '
         'labelLicensedTo
         '
         Me.labelLicensedTo.BackColor = System.Drawing.Color.Transparent
         Me.labelLicensedTo.Font = New System.Drawing.Font("Tahoma", 15.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.labelLicensedTo.ForeColor = System.Drawing.Color.Gold
+        Me.labelLicensedTo.ForeColor = System.Drawing.Color.White
         Me.labelLicensedTo.Location = New System.Drawing.Point(12, 239)
         Me.labelLicensedTo.Name = "labelLicensedTo"
         Me.labelLicensedTo.Size = New System.Drawing.Size(474, 31)
@@ -108,12 +95,11 @@ Partial Class formSplashScreen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkOliveGreen
-        Me.BackgroundImage = Global.CSColegio.DesktopApplication.My.Resources.Resources.IMAGE_SPLASH_SCREEN_BACKGROUND
+        Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
         Me.ClientSize = New System.Drawing.Size(498, 329)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelStatus)
         Me.Controls.Add(Me.labelLicensedTo)
-        Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.labelCopyright)
         Me.Controls.Add(Me.labelCompanyName)
         Me.Controls.Add(Me.labelAppTitle)
@@ -123,14 +109,12 @@ Partial Class formSplashScreen
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "App.Title"
         Me.TopMost = True
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents labelAppTitle As System.Windows.Forms.Label
     Friend WithEvents labelCompanyName As System.Windows.Forms.Label
     Friend WithEvents labelCopyright As System.Windows.Forms.Label
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents labelLicensedTo As System.Windows.Forms.Label
     Friend WithEvents labelStatus As System.Windows.Forms.Label
 

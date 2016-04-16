@@ -39,7 +39,7 @@ Namespace My.Resources
         Friend ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
-                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("CSColegio.DesktopApplication.Resources", GetType(Resources).Assembly)
+                    Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("CSBomberos.DesktopApplication.Resources", GetType(Resources).Assembly)
                     resourceMan = temp
                 End If
                 Return resourceMan
@@ -67,6 +67,16 @@ Namespace My.Resources
             Get
                 Dim obj As Object = ResourceManager.GetObject("ICON_SCHOOL_48_32_16", resourceCulture)
                 Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property IMAGE_APPLICATION_ICON_300() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("IMAGE_APPLICATION_ICON_300", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
         
@@ -216,26 +226,6 @@ Namespace My.Resources
         Friend ReadOnly Property IMAGE_ITEM_EDIT_32() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("IMAGE_ITEM_EDIT_32", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property IMAGE_LOGO_AFIP() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("IMAGE_LOGO_AFIP", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Drawing.Bitmap.
-        '''</summary>
-        Friend ReadOnly Property IMAGE_LOGO_PAGOMISCUENTAS() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("IMAGE_LOGO_PAGOMISCUENTAS", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -496,60 +486,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Alumno.
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_ALUMNO() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_ALUMNO", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Ambos padres (50% c/u).
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_AMBOSPADRES() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_AMBOSPADRES", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Madre.
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_MADRE() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_MADRE", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Padre.
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_PADRE() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_PADRE", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Tercero.
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_TERCERO() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_TERCERO", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Padres y Tercero (33% c/u).
-        '''</summary>
-        Friend ReadOnly Property STRING_ENTIDAD_EMITIRFACTURAA_TODOS() As String
-            Get
-                Return ResourceManager.GetString("STRING_ENTIDAD_EMITIRFACTURAA_TODOS", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Looks up a localized string similar to Error al guardar los cambios en la Base de Datos..
         '''</summary>
         Friend ReadOnly Property STRING_ERROR_SAVING_CHANGES() As String
@@ -656,7 +592,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_CHARS10", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to --.
         '''</summary>
@@ -665,7 +601,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_CHARS2", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to --------------------.
         '''</summary>
@@ -674,7 +610,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_CHARS20", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to -----.
         '''</summary>
@@ -683,7 +619,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_CHARS5", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to «Ninguno».
         '''</summary>
@@ -692,7 +628,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_FEMALE", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to «Ninguna».
         '''</summary>
@@ -701,7 +637,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NONE_MALE", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to «No especifica».
         '''</summary>
@@ -710,7 +646,7 @@ Namespace My.Resources
                 Return ResourceManager.GetString("STRING_ITEM_NOT_SPECIFIED", resourceCulture)
             End Get
         End Property
-
+        
         '''<summary>
         '''  Looks up a localized string similar to «.
         '''</summary>
@@ -744,6 +680,42 @@ Namespace My.Resources
         Friend ReadOnly Property STRING_OPERACIONTIPO_VENTA() As String
             Get
                 Return ResourceManager.GetString("STRING_OPERACIONTIPO_VENTA", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Activo.
+        '''</summary>
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_ACTIVO() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_ACTIVO", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Baja.
+        '''</summary>
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_BAJA() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_BAJA", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Cuerpo Auxiliar.
+        '''</summary>
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_CUERPOAUXILIAR() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_CUERPOAUXILIAR", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Reserva.
+        '''</summary>
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_RESERVA() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_RESERVA", resourceCulture)
             End Get
         End Property
         

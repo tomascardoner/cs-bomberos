@@ -1,9 +1,9 @@
 ﻿Public Class formLogin
     Private mIntentos As Integer = 0
-    Private mdbContext As CSColegioContext
+    Private mdbContext As CSBomberosContext
 
     Private Sub formLogin_Load() Handles Me.Load
-        mdbContext = New CSColegioContext(True)
+        mdbContext = New CSBomberosContext(True)
 
         If My.Settings.ShowLastUserLoggedIn Then
             If My.Settings.LastUserLoggedIn <> "" Then

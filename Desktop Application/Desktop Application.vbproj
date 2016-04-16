@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72E9AAB5-68F1-42AA-BA6B-2EDCEA9961CB}</ProjectGuid>
+    <ProjectGuid>{743A95AF-6D3E-4E42-AA27-2D1BE2AF7846}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>Sub Main</StartupObject>
-    <RootNamespace>CSColegio.DesktopApplication</RootNamespace>
-    <AssemblyName>CSColegio</AssemblyName>
+    <RootNamespace>CSBomberos.DesktopApplication</RootNamespace>
+    <AssemblyName>CSBomberos</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
@@ -36,7 +36,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>CSColegio.xml</DocumentationFile>
+    <DocumentationFile>CSBomberos.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -51,7 +51,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>CSColegio.xml</DocumentationFile>
+    <DocumentationFile>CSBomberos.xml</DocumentationFile>
     <NoWarn>
     </NoWarn>
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
@@ -70,7 +70,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>school_48_32_16.ico</ApplicationIcon>
+    <ApplicationIcon>Application.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -120,24 +120,6 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Anio.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AnioLectivoCurso.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AnioLectivoCursoImporte.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Articulo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ArticuloGrupo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Banco.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
       <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
@@ -173,9 +155,6 @@
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_AFIP.vb">
       <Link>CS_AFIP.vb</Link>
     </Compile>
-    <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_AFIP_WS.vb">
-      <Link>CS_AFIP_WS.vb</Link>
-    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_DataGridView.vb">
       <Link>CS_DataGridView.vb</Link>
     </Compile>
@@ -209,233 +188,65 @@
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ValueTranslation.vb">
       <Link>CS_ValueTranslation.vb</Link>
     </Compile>
-    <Compile Include="Caja.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CategoriaIVA.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Cheque.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ChequeMotivoRechazo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Chequera.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Comprobante.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteAplicacion.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteAplicacionMotivo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteDetalle.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteImpuesto.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteLote.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteMedioPago.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteTipo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ComprobanteTipoPuntoVenta.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Concepto.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CondicionIVA.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="Constantes.vb" />
-    <Compile Include="CSColegio.Context.vb">
+    <Compile Include="CSBomberos.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CSColegio.Context.tt</DependentUpon>
+      <DependentUpon>CSBomberos.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CSColegio.vb">
+    <Compile Include="CSBomberos.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Curso.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Descuento.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+    <Compile Include="Cuartel.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentoTipo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entidad.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntidadEntidad.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFrameworkExtension.vb" />
-    <Compile Include="Feriado.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="FillAndRefreshLists.vb" />
-    <Compile Include="formAnioLectivoCursoImporteGenerar.Designer.vb">
-      <DependentUpon>formAnioLectivoCursoImporteGenerar.vb</DependentUpon>
+    <Compile Include="formAboutBox.designer.vb">
+      <DependentUpon>formAboutBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAnioLectivoCursoImporteGenerar.vb">
+    <Compile Include="formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAnioLectivoCursoImporte.Designer.vb">
-      <DependentUpon>formAnioLectivoCursoImporte.vb</DependentUpon>
+    <Compile Include="formParentesco.Designer.vb">
+      <DependentUpon>formParentesco.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAnioLectivoCursoImporte.vb">
+    <Compile Include="formParentesco.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAnioLectivoCursoCopiar.Designer.vb">
-      <DependentUpon>formAnioLectivoCursoCopiar.vb</DependentUpon>
+    <Compile Include="formParentescos.Designer.vb">
+      <DependentUpon>formParentescos.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAnioLectivoCursoCopiar.vb">
+    <Compile Include="formParentescos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAnioLectivoCurso.Designer.vb">
-      <DependentUpon>formAnioLectivoCurso.vb</DependentUpon>
+    <Compile Include="formPersonaFamiliar.designer.vb">
+      <DependentUpon>formPersonaFamiliar.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAnioLectivoCurso.vb">
+    <Compile Include="formPersonaFamiliar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAniosLectivosCursosImportes.Designer.vb">
-      <DependentUpon>formAniosLectivosCursosImportes.vb</DependentUpon>
+    <Compile Include="formPersona.Designer.vb">
+      <DependentUpon>formPersona.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAniosLectivosCursosImportes.vb">
+    <Compile Include="formPersona.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formCurso.Designer.vb">
-      <DependentUpon>formCurso.vb</DependentUpon>
+    <Compile Include="formPersonas.Designer.vb">
+      <DependentUpon>formPersonas.vb</DependentUpon>
     </Compile>
-    <Compile Include="formCurso.vb">
+    <Compile Include="formPersonas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAniosLectivosCursos.Designer.vb">
-      <DependentUpon>formAniosLectivosCursos.vb</DependentUpon>
+    <Compile Include="formPersonasSeleccionar.Designer.vb">
+      <DependentUpon>formPersonasSeleccionar.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAniosLectivosCursos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formCursos.Designer.vb">
-      <DependentUpon>formCursos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formCursos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formCABGenerico.Designer.vb">
-      <DependentUpon>formCABGenerico.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formCABGenerico.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formAnio.Designer.vb">
-      <DependentUpon>formAnio.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formAnio.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formCheque.Designer.vb">
-      <DependentUpon>formCheque.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formCheque.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobante.Designer.vb">
-      <DependentUpon>formComprobante.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobante.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobanteAplicacion.Designer.vb">
-      <DependentUpon>formComprobanteAplicacion.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobanteAplicacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobanteDetalle.Designer.vb">
-      <DependentUpon>formComprobanteDetalle.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobanteDetalle.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobanteMedioPago.Designer.vb">
-      <DependentUpon>formComprobanteMedioPago.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobanteMedioPago.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formAnios.Designer.vb">
-      <DependentUpon>formAnios.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formAnios.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobantes.Designer.vb">
-      <DependentUpon>formComprobantes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobantes.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobantesEnviarMail.Designer.vb">
-      <DependentUpon>formComprobantesEnviarMail.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobantesEnviarMail.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobantesTransmitirPagomiscuentas.Designer.vb">
-      <DependentUpon>formComprobantesTransmitirPagomiscuentas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobantesTransmitirPagomiscuentas.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formEntidad.Designer.vb">
-      <DependentUpon>formEntidad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formEntidad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formEntidades.Designer.vb">
-      <DependentUpon>formEntidades.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formEntidades.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formEntidadesAnioLectivoCurso.Designer.vb">
-      <DependentUpon>formEntidadesAnioLectivoCurso.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formEntidadesAnioLectivoCurso.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formEntidadesSeleccionar.Designer.vb">
-      <DependentUpon>formEntidadesSeleccionar.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formEntidadesSeleccionar.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formComprobantesGenerarLote.Designer.vb">
-      <DependentUpon>formComprobantesGenerarLote.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobantesGenerarLote.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formForTest.Designer.vb">
-      <DependentUpon>formForTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formForTest.vb">
+    <Compile Include="formPersonasSeleccionar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formLogin.Designer.vb">
@@ -475,40 +286,13 @@
       <DependentUpon>formSplashScreen.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formComprobantesTransmitirAFIP.Designer.vb">
-      <DependentUpon>formComprobantesTransmitirAFIP.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formComprobantesTransmitirAFIP.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Impuesto.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ImpuestoOtro.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="Localidad.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Log.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MedioPago.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="MiscFunctions.vb" />
-    <Compile Include="Moneda.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MonedaCotizacion.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Movimiento.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MovimientoGrupo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -524,47 +308,41 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Nivel.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="Parametro.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Parametros.vb" />
+    <Compile Include="Parentesco.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permisos.vb" />
+    <Compile Include="Persona.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaFamiliar.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Provincia.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PuntoVenta.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RelacionTipo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Reporte.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteGrupo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="ReporteParametro.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="StartUp.vb" />
-    <Compile Include="Turno.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UnidadMedida.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuario.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioGrupo.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioGrupoPermiso.vb">
-      <DependentUpon>CSColegio.tt</DependentUpon>
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -572,80 +350,26 @@
       <Link>CS_ErrorMessageBox.resx</Link>
       <DependentUpon>CS_ErrorMessageBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAnioLectivoCursoImporteGenerar.resx">
-      <DependentUpon>formAnioLectivoCursoImporteGenerar.vb</DependentUpon>
+    <EmbeddedResource Include="formAboutBox.resx">
+      <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAnioLectivoCursoImporte.resx">
-      <DependentUpon>formAnioLectivoCursoImporte.vb</DependentUpon>
+    <EmbeddedResource Include="formParentesco.resx">
+      <DependentUpon>formParentesco.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAnioLectivoCursoCopiar.resx">
-      <DependentUpon>formAnioLectivoCursoCopiar.vb</DependentUpon>
+    <EmbeddedResource Include="formParentescos.resx">
+      <DependentUpon>formParentescos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAnioLectivoCurso.resx">
-      <DependentUpon>formAnioLectivoCurso.vb</DependentUpon>
+    <EmbeddedResource Include="formPersonaFamiliar.resx">
+      <DependentUpon>formPersonaFamiliar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAniosLectivosCursosImportes.resx">
-      <DependentUpon>formAniosLectivosCursosImportes.vb</DependentUpon>
+    <EmbeddedResource Include="formPersona.resx">
+      <DependentUpon>formPersona.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formCurso.resx">
-      <DependentUpon>formCurso.vb</DependentUpon>
+    <EmbeddedResource Include="formPersonas.resx">
+      <DependentUpon>formPersonas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAniosLectivosCursos.resx">
-      <DependentUpon>formAniosLectivosCursos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formCursos.resx">
-      <DependentUpon>formCursos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formCABGenerico.resx">
-      <DependentUpon>formCABGenerico.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formAnio.resx">
-      <DependentUpon>formAnio.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formCheque.resx">
-      <DependentUpon>formCheque.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobante.resx">
-      <DependentUpon>formComprobante.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobanteAplicacion.resx">
-      <DependentUpon>formComprobanteAplicacion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobanteDetalle.resx">
-      <DependentUpon>formComprobanteDetalle.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobanteMedioPago.resx">
-      <DependentUpon>formComprobanteMedioPago.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formAnios.resx">
-      <DependentUpon>formAnios.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobantes.resx">
-      <DependentUpon>formComprobantes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobantesEnviarMail.resx">
-      <DependentUpon>formComprobantesEnviarMail.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobantesTransmitirPagomiscuentas.resx">
-      <DependentUpon>formComprobantesTransmitirPagomiscuentas.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formEntidad.resx">
-      <DependentUpon>formEntidad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formEntidades.resx">
-      <DependentUpon>formEntidades.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formEntidadesAnioLectivoCurso.resx">
-      <DependentUpon>formEntidadesAnioLectivoCurso.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formEntidadesSeleccionar.resx">
-      <DependentUpon>formEntidadesSeleccionar.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formComprobantesGenerarLote.resx">
-      <DependentUpon>formComprobantesGenerarLote.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formForTest.resx">
-      <DependentUpon>formForTest.vb</DependentUpon>
+    <EmbeddedResource Include="formPersonasSeleccionar.resx">
+      <DependentUpon>formPersonasSeleccionar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.vb</DependentUpon>
@@ -662,9 +386,6 @@
     <EmbeddedResource Include="formReportesVisor.resx">
       <DependentUpon>formReportesVisor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formComprobantesTransmitirAFIP.resx">
-      <DependentUpon>formComprobantesTransmitirAFIP.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
@@ -679,19 +400,19 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="CSColegio.edmx" />
-    <None Include="CSColegio.Context.tt">
+    <EntityDeploy Include="CSBomberos.edmx" />
+    <None Include="CSBomberos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CSColegio.edmx</DependentUpon>
-      <LastGenOutput>CSColegio.Context.vb</LastGenOutput>
+      <DependentUpon>CSBomberos.edmx</DependentUpon>
+      <LastGenOutput>CSBomberos.Context.vb</LastGenOutput>
     </None>
-    <None Include="CSColegio.edmx.diagram">
-      <DependentUpon>CSColegio.edmx</DependentUpon>
+    <None Include="CSBomberos.edmx.diagram">
+      <DependentUpon>CSBomberos.edmx</DependentUpon>
     </None>
-    <None Include="CSColegio.tt">
+    <None Include="CSBomberos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CSColegio.edmx</DependentUpon>
-      <LastGenOutput>CSColegio.vb</LastGenOutput>
+      <DependentUpon>CSBomberos.edmx</DependentUpon>
+      <LastGenOutput>CSBomberos.vb</LastGenOutput>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
@@ -723,7 +444,9 @@
     <None Include="Resources\export-icon_16.png" />
     <None Include="Resources\export-icon_32.png" />
     <None Include="Resources\Actions-edit-copy-icon_32.png" />
-    <Content Include="school_48_32_16.ico" />
+    <None Include="Resources\KMHYSEO Crossfit Bomberos.jpg" />
+    <None Include="Resources\BOMBEROS %2841%29.png" />
+    <Content Include="Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />
     <None Include="Resources\invoice-icon %2812%29.png" />

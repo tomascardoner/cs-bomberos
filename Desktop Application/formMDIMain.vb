@@ -61,27 +61,6 @@
 #End Region
 
 #Region "Menu Debug"
-    Private Sub TestFormToolStripMenuItem_Click() Handles TestFormToolStripMenuItem.Click
-        formForTest.MdiParent = Me
-        formForTest.Show()
-    End Sub
-
-    Private Sub Debug_AFIPWSHomologacionLogin() Handles menuitemDebugAFIPWSHomologacionLogin.Click
-        AFIP_TicketAcceso_Homo = CS_AFIP_WS.Login(CS_Parameter.GetString(Parametros.AFIP_WS_AA_HOMOLOGACION), "", CS_AFIP_WS.SERVICIO_FACTURACION_ELECTRONICA, My.Settings.AFIP_WS_Certificado_Homologacion, My.Settings.AFIP_WS_ClavePrivada)
-    End Sub
-
-    Private Sub Debug_AFIPWSHomologacionObtenerUltimoComprobante(sender As Object, e As EventArgs) Handles menuitemDebugAFIPWSHomologacionCompConsultar.Click
-        Dim TipoComprobante As Short
-        Dim PuntoVenta As Short
-
-        If AFIP_TicketAcceso_Homo = "" Then
-            MsgBox("No hay un Ticket de Acceso válido." & vbCrLf & "¿Ya inició sesión en AFIP?", vbExclamation, My.Application.Info.Title)
-        Else
-            TipoComprobante = CShort(InputBox("Ingrese el Código de Comprobante:", Me.menuitemDebugAFIPWSHomologacionCompConsultar.Text))
-            PuntoVenta = CShort(InputBox("Ingrese el Punto de Venta:", Me.menuitemDebugAFIPWSHomologacionCompConsultar.Text))
-            MsgBox("El Último Número de comprobante autorizado es: " & CS_AFIP_WS.FacturaElectronica_ConectarYObtenerUltimoNumeroComprobante(AFIP_TicketAcceso_Homo, CS_Parameter.GetString(Parametros.AFIP_WS_FE_HOMOLOGACION), "", CS_Parameter.GetString(Parametros.EMPRESA_CUIT), TipoComprobante, PuntoVenta))
-        End If
-    End Sub
 #End Region
 
 #Region "Menu Ventana"
@@ -114,246 +93,47 @@
     End Sub
 #End Region
 
+#Region "Menu Ayuda"
+    Private Sub menuitemAyuda_AcercaDe_Click(sender As Object, e As EventArgs) Handles menuitemAyuda_AcercaDe.Click
+        formAboutBox.ShowDialog(Me)
+    End Sub
+
+#End Region
+
 #Region "Left Toolbar - Tablas"
-    Private Function FormCABGenerico_CrearOMostrar(ByVal EntityNameSingular As String, ByVal EntityNamePlural As String) As formCABGenerico
-        Dim FormCurrent As formCABGenerico
-
-        FormCurrent = CType(CS_Form.MDIChild_GetInstance(Me, "formCABGenerico", EntityNamePlural), formCABGenerico)
-        If FormCurrent Is Nothing Then
+    Private Sub Parentescos() Handles menuitemTablas_Parentescos.Click
+        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            FormCurrent = New formCABGenerico()
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(FormCurrent, Form), Form_ClientSize)
-            FormCurrent.EntityNameSingular = EntityNameSingular
-            FormCurrent.EntityNamePlural = EntityNamePlural
-            Return FormCurrent
-
-        Else
-            If FormCurrent.WindowState = FormWindowState.Minimized Then
-                FormCurrent.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formParentescos, Form), Form_ClientSize)
+            formParentescos.Show()
+            If formParentescos.WindowState = FormWindowState.Minimized Then
+                formParentescos.WindowState = FormWindowState.Normal
             End If
-            FormCurrent.Focus()
-
-            Return Nothing
-        End If
-    End Function
-
-    Private Sub menuitemAnios_Click() Handles menuitemAnios.Click
-        If Permisos.VerificarPermiso(Permisos.ANIO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAnios, Form), Form_ClientSize)
-            formAnios.Show()
-            If formAnios.WindowState = FormWindowState.Minimized Then
-                formAnios.WindowState = FormWindowState.Normal
-            End If
-            formAnios.Focus()
+            formParentescos.Focus()
 
             Me.Cursor = Cursors.Default
         End If
-    End Sub
 
-    Private Sub menuitemCursos_Click() Handles menuitemCursos.Click
-        If Permisos.VerificarPermiso(Permisos.CURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCursos, Form), Form_ClientSize)
-            formCursos.Show()
-            If formCursos.WindowState = FormWindowState.Minimized Then
-                formCursos.WindowState = FormWindowState.Normal
-            End If
-            formCursos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub menuitemAniosLectivosCursos_Click() Handles menuitemAniosLectivosCursos.Click
-        If Permisos.VerificarPermiso(Permisos.ANIOLECTIVOCURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAniosLectivosCursos, Form), Form_ClientSize)
-            formAniosLectivosCursos.Show()
-            If formAniosLectivosCursos.WindowState = FormWindowState.Minimized Then
-                formAniosLectivosCursos.WindowState = FormWindowState.Normal
-            End If
-            formAniosLectivosCursos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub menuitemAniosLectivosCursosImportes_Click() Handles menuitemAniosLectivosCursosImportes.Click
-        If Permisos.VerificarPermiso(Permisos.ANIOLECTIVOCURSOIMPORTE) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAniosLectivosCursosImportes, Form), Form_ClientSize)
-            formAniosLectivosCursosImportes.Show()
-            If formAniosLectivosCursosImportes.WindowState = FormWindowState.Minimized Then
-                formAniosLectivosCursosImportes.WindowState = FormWindowState.Normal
-            End If
-            formAniosLectivosCursosImportes.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub menuitemBancos_Click() Handles menuitemBancos.Click
-        Dim formBancos As formCABGenerico
-
-        If Permisos.VerificarPermiso(Permisos.BANCO) Then
-            formBancos = FormCABGenerico_CrearOMostrar("Banco", "Bancos")
-            If Not formBancos Is Nothing Then
-                With formBancos
-                    'AGREGO LAS COLUMNAS
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_TextBox("IDBanco", "ID", "IDBanco", DataGridViewContentAlignment.MiddleCenter))
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_TextBox("Nombre", "Nombre", "Nombre", DataGridViewContentAlignment.MiddleLeft))
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_CheckBox("Activo", "Activo", "Activo", DataGridViewContentAlignment.MiddleCenter, False, True, False, False))
-
-                    .bindingsourceMain.DataSource = .dbContext.Banco.ToList
-                    .Show()
-                End With
-
-                Me.Cursor = Cursors.Default
-            End If
-        End If
-    End Sub
-
-    Private Sub menuitemRelacionTipos_Click() Handles menuitemRelacionTipos.Click
-        Dim formRelacionTipo As formCABGenerico
-
-        If Permisos.VerificarPermiso(Permisos.RELACIONTIPO) Then
-            formRelacionTipo = FormCABGenerico_CrearOMostrar("Tipo de Relación", "Tipos de Relación")
-            If Not formRelacionTipo Is Nothing Then
-                With formRelacionTipo
-                    'AGREGO LAS COLUMNAS
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_TextBox("IDRelacionTipo", "ID", "IDRelacionTipo", DataGridViewContentAlignment.MiddleCenter))
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_TextBox("Nombre", "Nombre", "Nombre", DataGridViewContentAlignment.MiddleLeft))
-                    .datagridviewMain.Columns.Add(CS_DataGridView.CreateColumn_CheckBox("Activo", "Activo", "Activo", DataGridViewContentAlignment.MiddleCenter, False, True, False, False))
-
-                    .bindingsourceMain.DataSource = .dbContext.RelacionTipo.ToList
-                    .Show()
-                End With
-
-                Me.Cursor = Cursors.Default
-            End If
-        End If
     End Sub
 #End Region
 
-#Region "Left Toolbar - Entidades"
-    Private Sub Entidades() Handles buttonEntidades.ButtonClick
-        If Permisos.VerificarPermiso(Permisos.ENTIDAD) Then
+#Region "Left Toolbar - Personas"
+    Private Sub Personas() Handles buttonPersonas.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEntidades, Form), Form_ClientSize)
-            formEntidades.Show()
-            If formEntidades.WindowState = FormWindowState.Minimized Then
-                formEntidades.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPersonas, Form), Form_ClientSize)
+            formPersonas.Show()
+            If formPersonas.WindowState = FormWindowState.Minimized Then
+                formPersonas.WindowState = FormWindowState.Normal
             End If
-            formEntidades.Focus()
+            formPersonas.Focus()
 
             Me.Cursor = Cursors.Default
         End If
     End Sub
 
-    Private Sub EntidadesAñosLectivosYCursos(sender As Object, e As EventArgs) Handles menuitemEntidadesAniosLectivosYCursos.Click
-        If Permisos.VerificarPermiso(Permisos.ENTIDADANIOLECTIVOCURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEntidadesAnioLectivoCurso, Form), Form_ClientSize)
-            formEntidadesAnioLectivoCurso.Show()
-            If formEntidadesAnioLectivoCurso.WindowState = FormWindowState.Minimized Then
-                formEntidadesAnioLectivoCurso.WindowState = FormWindowState.Normal
-            End If
-            formEntidadesAnioLectivoCurso.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-#End Region
-
-#Region "Left Toolbar - Comprobantes"
-    Private Sub Comprobantes() Handles buttonComprobantes.ButtonClick
-        If Permisos.VerificarPermiso(Permisos.COMPROBANTE) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formComprobantes, Form), Form_ClientSize)
-            formComprobantes.Show()
-            If formComprobantes.WindowState = FormWindowState.Minimized Then
-                formComprobantes.WindowState = FormWindowState.Normal
-            End If
-            formComprobantes.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub ComprobantesGenerarLoteFacturas() Handles menuitemComprobantesGenerarLoteFacturas.Click
-        If Permisos.VerificarPermiso(Permisos.COMPROBANTE_GENERARLOTE) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            formComprobantesGenerarLote.MdiParent = Me
-            CS_Form.CenterToParent(Me, CType(formComprobantesGenerarLote, Form))
-            formComprobantesGenerarLote.Show()
-            If formComprobantesGenerarLote.WindowState = FormWindowState.Minimized Then
-                formComprobantesGenerarLote.WindowState = FormWindowState.Normal
-            End If
-            formComprobantesGenerarLote.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub ComprobantesTransmitirAFIP(sender As Object, e As EventArgs) Handles menuitemComprobantesTransmitirAFIP.Click
-        If Permisos.VerificarPermiso(Permisos.COMPROBANTE_TRANSMITIR_AFIP) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            formComprobantesTransmitirAFIP.MdiParent = Me
-            CS_Form.CenterToParent(Me, CType(formComprobantesTransmitirAFIP, Form))
-            formComprobantesTransmitirAFIP.Show()
-            If formComprobantesTransmitirAFIP.WindowState = FormWindowState.Minimized Then
-                formComprobantesTransmitirAFIP.WindowState = FormWindowState.Normal
-            End If
-            formComprobantesTransmitirAFIP.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub ComprobantesEnviarMail(sender As Object, e As EventArgs) Handles menuitemComprobantesEnviarMail.Click
-        If Permisos.VerificarPermiso(Permisos.COMPROBANTE_ENVIAREMAIL) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            formComprobantesEnviarMail.MdiParent = Me
-            CS_Form.CenterToParent(Me, CType(formComprobantesEnviarMail, Form))
-            formComprobantesEnviarMail.Show()
-            If formComprobantesEnviarMail.WindowState = FormWindowState.Minimized Then
-                formComprobantesEnviarMail.WindowState = FormWindowState.Normal
-            End If
-            formComprobantesEnviarMail.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-
-    End Sub
-
-    Private Sub ComprobantesExportarPagomiscuentas() Handles menuitemComprobantesExportarPagomiscuentas.Click
-        If Permisos.VerificarPermiso(Permisos.COMPROBANTE_EXPORTAR_PAGOMISCUENTAS) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            formComprobantesTransmitirPagomiscuentas.MdiParent = Me
-            CS_Form.CenterToParent(Me, CType(formComprobantesTransmitirPagomiscuentas, Form))
-            formComprobantesTransmitirPagomiscuentas.Show()
-            If formComprobantesTransmitirPagomiscuentas.WindowState = FormWindowState.Minimized Then
-                formComprobantesTransmitirPagomiscuentas.WindowState = FormWindowState.Normal
-            End If
-            formComprobantesTransmitirPagomiscuentas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
 #End Region
 
 #Region "Left Toolbar - Reportes"

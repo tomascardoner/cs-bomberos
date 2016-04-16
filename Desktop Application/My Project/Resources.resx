@@ -142,9 +142,6 @@
   <data name="STRING_ITEM_NONE_CHARS2" xml:space="preserve">
     <value>--</value>
   </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_MADRE" xml:space="preserve">
-    <value>Madre</value>
-  </data>
   <data name="IMAGE_OK_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-ok-apply-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,9 +184,6 @@
   <data name="IMAGE_USUARIO_HOMBRE_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\User-Coat-Red-icon (8).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_PADRE" xml:space="preserve">
-    <value>Padre</value>
-  </data>
   <data name="IMAGE_CANCEL_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-cancel-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -216,9 +210,6 @@
   </data>
   <data name="IMAGE_MENU_WINDOW_TILE_HORIZONTALLY" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Window - Tile Horizontally.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_LOGO_AFIP" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AFIP.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IMAGE_ITEM_ADD_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-document-new-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -268,20 +259,8 @@
   <data name="STRING_OPERACIONTIPO_COMPRA" xml:space="preserve">
     <value>Compra</value>
   </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_TODOS" xml:space="preserve">
-    <value>Padres y Tercero (33% c/u)</value>
-  </data>
   <data name="STRING_ITEM_NEW_MALE" xml:space="preserve">
     <value>«Nuevo»</value>
-  </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_TERCERO" xml:space="preserve">
-    <value>Tercero</value>
-  </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_ALUMNO" xml:space="preserve">
-    <value>Alumno</value>
-  </data>
-  <data name="IMAGE_SPLASH_SCREEN_BACKGROUND" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\5_Resized.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IMAGE_CLOSE_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-dialog-close-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -325,16 +304,28 @@
   <data name="IMAGE_ENTIDAD_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-view-pim-contacts-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="STRING_ENTIDAD_EMITIRFACTURAA_AMBOSPADRES" xml:space="preserve">
-    <value>Ambos padres (50% c/u)</value>
-  </data>
-  <data name="IMAGE_LOGO_PAGOMISCUENTAS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\PagoMisCuentas.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="IMAGE_EXPORT_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="IMAGE_ITEM_COPY_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Actions-edit-copy-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IMAGE_APPLICATION_ICON_300" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BOMBEROS (41).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IMAGE_SPLASH_SCREEN_BACKGROUND" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\KMHYSEO Crossfit Bomberos.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="STRING_PERSONA_ESTADO_ACTIVO" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="STRING_PERSONA_ESTADO_BAJA" xml:space="preserve">
+    <value>Baja</value>
+  </data>
+  <data name="STRING_PERSONA_ESTADO_CUERPOAUXILIAR" xml:space="preserve">
+    <value>Cuerpo Auxiliar</value>
+  </data>
+  <data name="STRING_PERSONA_ESTADO_RESERVA" xml:space="preserve">
+    <value>Reserva</value>
   </data>
 </root>

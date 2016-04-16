@@ -3,7 +3,7 @@ Imports System.Data.Entity.Core.EntityClient
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
-Partial Public Class CSColegioContext
+Partial Public Class CSBomberosContext
     Inherits DbContext
 
     Public Shared Property ConnectionString As String
@@ -15,7 +15,7 @@ Partial Public Class CSColegioContext
     Public Shared Sub CreateConnectionString(ByVal Provider As String, ByVal ProviderConnectionString As String)
         Dim ecb As EntityConnectionStringBuilder = New EntityConnectionStringBuilder()
 
-        ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSColegio")
+        ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSBomberos")
         ecb.Provider = Provider
         ecb.ProviderConnectionString = ProviderConnectionString
 
@@ -23,40 +23,40 @@ Partial Public Class CSColegioContext
     End Sub
 End Class
 
-Partial Public Class Entidad
-    Public ReadOnly Property DomicilioCalleCompleto() As String
+Partial Public Class Persona
+    Public ReadOnly Property DomicilioParticularCalleCompleto() As String
         Get
             Dim DomicilioCompleto As String
 
-            DomicilioCompleto = DomicilioCalle1
-            If Not DomicilioCalle1 Is Nothing Then
-                If Not DomicilioNumero Is Nothing Then
-                    If DomicilioNumero.TrimStart.ToUpper.StartsWith("RUTA ") Then
-                        DomicilioCompleto &= " Km. " & DomicilioNumero
-                    ElseIf DomicilioNumero.TrimStart.ToUpper.StartsWith("CALLE ") Then
-                        DomicilioCompleto &= " N° " & DomicilioNumero
+            DomicilioCompleto = DomicilioParticularCalle1
+            If Not DomicilioParticularCalle1 Is Nothing Then
+                If Not DomicilioParticularNumero Is Nothing Then
+                    If DomicilioParticularNumero.TrimStart.ToUpper.StartsWith("RUTA ") Then
+                        DomicilioCompleto &= " Km. " & DomicilioParticularNumero
+                    ElseIf DomicilioParticularNumero.TrimStart.ToUpper.StartsWith("CALLE ") Then
+                        DomicilioCompleto &= " N° " & DomicilioParticularNumero
                     Else
-                        DomicilioCompleto &= " " & DomicilioNumero
+                        DomicilioCompleto &= " " & DomicilioParticularNumero
                     End If
                 End If
 
-                If Not DomicilioPiso Is Nothing Then
-                    If IsNumeric(DomicilioPiso) Then
-                        DomicilioCompleto &= " P." & DomicilioPiso & "°"
+                If Not DomicilioParticularPiso Is Nothing Then
+                    If IsNumeric(DomicilioParticularPiso) Then
+                        DomicilioCompleto &= " P." & DomicilioParticularPiso & "°"
                     Else
-                        DomicilioCompleto &= " " & DomicilioPiso
+                        DomicilioCompleto &= " " & DomicilioParticularPiso
                     End If
                 End If
 
-                If Not DomicilioDepartamento Is Nothing Then
-                    DomicilioCompleto &= " Dto. """ & DomicilioDepartamento & """"
+                If Not DomicilioParticularDepartamento Is Nothing Then
+                    DomicilioCompleto &= " Dto. """ & DomicilioParticularDepartamento & """"
                 End If
 
-                If Not DomicilioCalle2 Is Nothing Then
-                    If Not DomicilioCalle3 Is Nothing Then
-                        DomicilioCompleto &= " entre " & DomicilioCalle2 & " y " & DomicilioCalle3
+                If Not DomicilioParticularCalle2 Is Nothing Then
+                    If Not DomicilioParticularCalle3 Is Nothing Then
+                        DomicilioCompleto &= " entre " & DomicilioParticularCalle2 & " y " & DomicilioParticularCalle3
                     Else
-                        DomicilioCompleto &= " esq. " & DomicilioCalle2
+                        DomicilioCompleto &= " esq. " & DomicilioParticularCalle2
                     End If
                 End If
             End If
@@ -197,7 +197,7 @@ Partial Public Class ReporteParametro
             If mValor Is Nothing Then
                 ' El valor no está inicializado, sí que verifico que no haya un valor predeterminado
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_ENTIDAD, Constantes.REPORTE_PARAMETRO_ENTIDAD_PERSONALCOLEGIO, Constantes.REPORTE_PARAMETRO_ENTIDAD_DOCENTE, Constantes.REPORTE_PARAMETRO_ENTIDAD_ALUMNO, Constantes.REPORTE_PARAMETRO_ENTIDAD_FAMILIAR, Constantes.REPORTE_PARAMETRO_ENTIDAD_PROVEEDOR
+                    Case Constantes.REPORTE_PARAMETRO_PERSONA
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
@@ -235,7 +235,7 @@ Partial Public Class ReporteParametro
                 Return ""
             Else
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_ENTIDAD, Constantes.REPORTE_PARAMETRO_ENTIDAD_PERSONALCOLEGIO, Constantes.REPORTE_PARAMETRO_ENTIDAD_DOCENTE, Constantes.REPORTE_PARAMETRO_ENTIDAD_ALUMNO, Constantes.REPORTE_PARAMETRO_ENTIDAD_FAMILIAR, Constantes.REPORTE_PARAMETRO_ENTIDAD_PROVEEDOR
+                    Case Constantes.REPORTE_PARAMETRO_PERSONA
                         Return mValorParaMostrar
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)

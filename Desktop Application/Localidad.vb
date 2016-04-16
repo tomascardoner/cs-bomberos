@@ -16,8 +16,9 @@ Partial Public Class Localidad
     Public Property Nombre As String
     Public Property CodigoPostal As String
 
-    Public Overridable Property Entidad As ICollection(Of Entidad) = New HashSet(Of Entidad)
     Public Overridable Property Provincia As Provincia
-    Public Overridable Property Comprobante As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property Cuartel As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
+    Public Overridable Property PersonasLaboral As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property PersonasParticular As ICollection(Of Persona) = New HashSet(Of Persona)
 
 End Class

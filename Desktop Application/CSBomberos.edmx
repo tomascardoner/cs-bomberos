@@ -1,0 +1,1538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CSBomberosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cuartel">
+          <Key>
+            <PropertyRef Name="IDCuartel" />
+          </Key>
+          <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="Codigo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
+          <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioPiso" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioDepartamento" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioCalle2" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioCalle3" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioCodigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="DomicilioIDProvincia" Type="tinyint" />
+          <Property Name="DomicilioIDLocalidad" Type="smallint" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Celular" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DocumentoTipo">
+          <Key>
+            <PropertyRef Name="IDDocumentoTipo" />
+          </Key>
+          <Property Name="IDDocumentoTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="VerificaModulo11" Type="bit" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
+          <Property Name="IDLocalidad" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="char" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="IDLog" />
+          </Key>
+          <Property Name="IDLog" Type="int" Nullable="false" />
+          <Property Name="IDUsuario" Type="smallint" Nullable="false" />
+          <Property Name="Accion" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDParametro" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Texto" Type="varchar" MaxLength="1000" />
+          <Property Name="NumeroEntero" Type="int" />
+          <Property Name="NumeroDecimal" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="money" />
+          <Property Name="FechaHora" Type="smalldatetime" />
+          <Property Name="SiNo" Type="bit" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Parentesco">
+          <Key>
+            <PropertyRef Name="IDParentesco" />
+          </Key>
+          <Property Name="IDParentesco" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="MatriculaNumero" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoNombre" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IDDocumentoTipo" Type="tinyint" />
+          <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Profesion" Type="varchar" MaxLength="50" />
+          <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
+          <Property Name="IDCuartel" Type="tinyint" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DomicilioParticularCalle1" Type="varchar" MaxLength="100" />
+          <Property Name="DomicilioParticularNumero" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioParticularPiso" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioParticularDepartamento" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioParticularCalle2" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioParticularCalle3" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioParticularCodigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="DomicilioParticularIDProvincia" Type="tinyint" />
+          <Property Name="DomicilioParticularIDLocalidad" Type="smallint" />
+          <Property Name="TelefonoParticular" Type="varchar" MaxLength="50" />
+          <Property Name="CelularParticular" Type="varchar" MaxLength="50" />
+          <Property Name="EmailParticular" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioLaboralCalle1" Type="varchar" MaxLength="100" />
+          <Property Name="DomicilioLaboralNumero" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioLaboralPiso" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioLaboralDepartamento" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioLaboralCalle2" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioLaboralCalle3" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioLaboralCodigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="DomicilioLaboralIDProvincia" Type="tinyint" />
+          <Property Name="DomicilioLaboralIDLocalidad" Type="smallint" />
+          <Property Name="TelefonoLaboral" Type="varchar" MaxLength="50" />
+          <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
+          <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaFamiliar">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDFamiliar" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDFamiliar" Type="tinyint" Nullable="false" />
+          <Property Name="IDParentesco" Type="tinyint" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ApellidoNombre" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IDDocumentoTipo" Type="tinyint" />
+          <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
+          <Property Name="FechaNacimiento" Type="date" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Vive" Type="bit" Nullable="false" />
+          <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
+          <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioPiso" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioDepartamento" Type="varchar" MaxLength="10" />
+          <Property Name="DomicilioCalle2" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioCalle3" Type="varchar" MaxLength="50" />
+          <Property Name="DomicilioCodigoPostal" Type="varchar" MaxLength="8" />
+          <Property Name="DomicilioIDProvincia" Type="tinyint" />
+          <Property Name="DomicilioIDLocalidad" Type="smallint" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Celular" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteGrupo">
+          <Key>
+            <PropertyRef Name="IDReporteGrupo" />
+          </Key>
+          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReporteParametro">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDParametro" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Requerido" Type="bit" Nullable="false" />
+          <Property Name="RequeridoLeyenda" Type="varchar" MaxLength="200" />
+          <Property Name="ValorPredeterminadoNumeroEntero" Type="int" />
+          <Property Name="ValorPredeterminadoNumeroDecimal" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="ValorPredeterminadoMoneda" Type="money" />
+          <Property Name="ValorPredeterminadoFechaHora" Type="smalldatetime" />
+          <Property Name="ValorPredeterminadoSiNo" Type="bit" />
+          <Property Name="Orden" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupo">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupoPermiso">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+            <PropertyRef Name="IDPermiso" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="IDPermiso" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Cuartel__Persona">
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentoTipo__Persona">
+          <End Role="DocumentoTipo" Type="Self.DocumentoTipo" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__Cuartel">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="DomicilioIDProvincia" />
+              <PropertyRef Name="DomicilioIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Parentesco__PersonaParentesco">
+          <End Role="Parentesco" Type="Self.Parentesco" Multiplicity="1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentesco">
+              <PropertyRef Name="IDParentesco" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDParentesco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__Localidad__Laboral">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="DomicilioLaboralIDProvincia" />
+              <PropertyRef Name="DomicilioLaboralIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__Localidad__Particular">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="DomicilioParticularIDProvincia" />
+              <PropertyRef Name="DomicilioParticularIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaParentesco">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provincia__Localidad">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__ReporteParametro">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteParametro">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteGrupo__Reporte">
+          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cuartel__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cuartel__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Log">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Log" Type="Self.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Parentesco__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Parentesco" Type="Self.Parentesco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Parentesco">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Parentesco__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Parentesco" Type="Self.Parentesco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Parentesco">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Persona__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Persona__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaFamiliar__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaFamiliar__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__Usuario">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermiso">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermiso" Type="Self.UsuarioGrupoPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermiso">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CSBomberosModelStoreContainer">
+          <EntitySet Name="Cuartel" EntityType="Self.Cuartel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentoTipo" EntityType="Self.DocumentoTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaFamiliar" EntityType="Self.PersonaFamiliar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cuartel__Persona" Association="Self.FK__Cuartel__Persona">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentoTipo__Persona" Association="Self.FK__DocumentoTipo__Persona">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__Cuartel" Association="Self.FK__Localidad__Cuartel">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Parentesco__PersonaParentesco" Association="Self.FK__Parentesco__PersonaParentesco">
+            <End Role="Parentesco" EntitySet="Parentesco" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__Localidad__Laboral" Association="Self.FK__Persona__Localidad__Laboral">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__Localidad__Particular" Association="Self.FK__Persona__Localidad__Particular">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaParentesco" Association="Self.FK__Persona__PersonaParentesco">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cuartel__Creacion" Association="Self.FK__Usuario__Cuartel__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cuartel__Modificacion" Association="Self.FK__Usuario__Cuartel__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Log" Association="Self.FK__Usuario__Log">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Parentesco__Creacion" Association="Self.FK__Usuario__Parentesco__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Parentesco" EntitySet="Parentesco" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Parentesco__Modificacion" Association="Self.FK__Usuario__Parentesco__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Parentesco" EntitySet="Parentesco" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Persona__Creacion" Association="Self.FK__Usuario__Persona__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Persona__Modificacion" Association="Self.FK__Usuario__Persona__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaFamiliar__Creacion" Association="Self.FK__Usuario__PersonaFamiliar__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaFamiliar__Modificacion" Association="Self.FK__Usuario__PersonaFamiliar__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CSBomberosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CSBomberosContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DocumentoTipo" EntityType="CSBomberosModel.DocumentoTipo" />
+          <EntitySet Name="Localidad" EntityType="CSBomberosModel.Localidad" />
+          <EntitySet Name="Log" EntityType="CSBomberosModel.Log" />
+          <EntitySet Name="Parametro" EntityType="CSBomberosModel.Parametro" />
+          <EntitySet Name="Provincia" EntityType="CSBomberosModel.Provincia" />
+          <EntitySet Name="Reporte" EntityType="CSBomberosModel.Reporte" />
+          <EntitySet Name="ReporteGrupo" EntityType="CSBomberosModel.ReporteGrupo" />
+          <EntitySet Name="ReporteParametro" EntityType="CSBomberosModel.ReporteParametro" />
+          <EntitySet Name="Usuario" EntityType="CSBomberosModel.Usuario" />
+          <EntitySet Name="UsuarioGrupo" EntityType="CSBomberosModel.UsuarioGrupo" />
+          <EntitySet Name="UsuarioGrupoPermiso" EntityType="CSBomberosModel.UsuarioGrupoPermiso" />
+          <AssociationSet Name="FK__Provincia__Localidad" Association="CSBomberosModel.FK__Provincia__Localidad">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Log" Association="CSBomberosModel.FK__Usuario__Log">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteParametro" Association="CSBomberosModel.FK__Reporte__ReporteParametro">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteParametro" EntitySet="ReporteParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="CSBomberosModel.FK__ReporteGrupo__Reporte">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="CSBomberosModel.FK__UsuarioGrupo__Usuario">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+          <EntitySet Name="Cuartel" EntityType="CSBomberosModel.Cuartel" />
+          <EntitySet Name="Parentesco" EntityType="CSBomberosModel.Parentesco" />
+          <EntitySet Name="Persona" EntityType="CSBomberosModel.Persona" />
+          <AssociationSet Name="FK__Cuartel__Persona" Association="CSBomberosModel.FK__Cuartel__Persona">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__Cuartel" Association="CSBomberosModel.FK__Localidad__Cuartel">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentoTipo__Persona" Association="CSBomberosModel.FK__DocumentoTipo__Persona">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__Localidad__Laboral" Association="CSBomberosModel.FK__Persona__Localidad__Laboral">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__Localidad__Particular" Association="CSBomberosModel.FK__Persona__Localidad__Particular">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Persona__Creacion" Association="CSBomberosModel.FK__Usuario__Persona__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Persona__Modificacion" Association="CSBomberosModel.FK__Usuario__Persona__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <EntitySet Name="PersonaFamiliar" EntityType="CSBomberosModel.PersonaFamiliar" />
+          <AssociationSet Name="FK__Parentesco__PersonaParentesco1" Association="CSBomberosModel.FK__Parentesco__PersonaParentesco1">
+            <End Role="Parentesco" EntitySet="Parentesco" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaParentesco1" Association="CSBomberosModel.FK__Persona__PersonaParentesco1">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaFamiliar__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaFamiliar__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Parentesco__Creacion" Association="CSBomberosModel.FK__Usuario__Parentesco__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Parentesco" EntitySet="Parentesco" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Parentesco__Modificacion" Association="CSBomberosModel.FK__Usuario__Parentesco__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Parentesco" EntitySet="Parentesco" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cuartel__Creacion" Association="CSBomberosModel.FK__Usuario__Cuartel__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Cuartel__Modificacion" Association="CSBomberosModel.FK__Usuario__Cuartel__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DocumentoTipo">
+          <Key>
+            <PropertyRef Name="IDDocumentoTipo" />
+          </Key>
+          <Property Name="IDDocumentoTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VerificaModulo11" Type="Boolean" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__DocumentoTipo__Persona" FromRole="DocumentoTipo" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Localidad">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+            <PropertyRef Name="IDLocalidad" />
+          </Key>
+          <Property Name="IDProvincia" Type="Byte" Nullable="false" />
+          <Property Name="IDLocalidad" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Provincia" Relationship="CSBomberosModel.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
+          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Localidad__Cuartel" FromRole="Localidad" ToRole="Cuartel" />
+          <NavigationProperty Name="PersonasLaboral" Relationship="CSBomberosModel.FK__Persona__Localidad__Laboral" FromRole="Localidad" ToRole="Persona" />
+          <NavigationProperty Name="PersonasParticular" Relationship="CSBomberosModel.FK__Persona__Localidad__Particular" FromRole="Localidad" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="IDLog" />
+          </Key>
+          <Property Name="IDLog" Type="Int32" Nullable="false" />
+          <Property Name="IDUsuario" Type="Int16" Nullable="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Log" FromRole="Log" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Parametro">
+          <Key>
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDParametro" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Texto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroEntero" Type="Int32" />
+          <Property Name="NumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FechaHora" Type="DateTime" Precision="0" />
+          <Property Name="SiNo" Type="Boolean" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Provincia">
+          <Key>
+            <PropertyRef Name="IDProvincia" />
+          </Key>
+          <Property Name="IDProvincia" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Provincia__Localidad" FromRole="Provincia" ToRole="Localidad" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+          </Key>
+          <Property Name="IDReporte" Type="Int16" Nullable="false" />
+          <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ReporteParametro" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
+          <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
+        </EntityType>
+        <EntityType Name="ReporteGrupo">
+          <Key>
+            <PropertyRef Name="IDReporteGrupo" />
+          </Key>
+          <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="ReporteParametro">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDReporte" Type="Int16" Nullable="false" />
+          <Property Name="IDParametro" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Requerido" Type="Boolean" Nullable="false" />
+          <Property Name="RequeridoLeyenda" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValorPredeterminadoNumeroEntero" Type="Int32" />
+          <Property Name="ValorPredeterminadoNumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="ValorPredeterminadoMoneda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ValorPredeterminadoFechaHora" Type="DateTime" Precision="0" />
+          <Property Name="ValorPredeterminadoSiNo" Type="Boolean" />
+          <Property Name="Orden" Type="Byte" />
+          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="ReporteParametro" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Log" Relationship="CSBomberosModel.FK__Usuario__Log" FromRole="Usuario" ToRole="Log" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="CSBomberosModel.FK__UsuarioGrupo__Usuario" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="PersonasCreadas" Relationship="CSBomberosModel.FK__Usuario__Persona__Creacion" FromRole="Usuario" ToRole="Persona" />
+          <NavigationProperty Name="PersonasModificadas" Relationship="CSBomberosModel.FK__Usuario__Persona__Modificacion" FromRole="Usuario" ToRole="Persona" />
+          <NavigationProperty Name="PersonaFamiliaresCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion" FromRole="Usuario" ToRole="PersonaFamiliar" />
+          <NavigationProperty Name="PersonaFamiliaresModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion" FromRole="Usuario" ToRole="PersonaFamiliar" />
+          <NavigationProperty Name="ParentescosCreados" Relationship="CSBomberosModel.FK__Usuario__Parentesco__Creacion" FromRole="Usuario" ToRole="Parentesco" />
+          <NavigationProperty Name="ParentescosModificados" Relationship="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" FromRole="Usuario" ToRole="Parentesco" />
+          <NavigationProperty Name="CuartelesCreados" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Creacion" FromRole="Usuario" ToRole="Cuartel" />
+          <NavigationProperty Name="CuartelesModificados" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" FromRole="Usuario" ToRole="Cuartel" />
+          </EntityType>
+        <EntityType Name="UsuarioGrupo">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioGrupoPermiso" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
+        </EntityType>
+        <EntityType Name="UsuarioGrupoPermiso">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+            <PropertyRef Name="IDPermiso" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
+          <Property Name="IDPermiso" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupoPermiso" ToRole="UsuarioGrupo" />
+        </EntityType>
+        <Association Name="FK__Provincia__Localidad">
+          <End Type="CSBomberosModel.Provincia" Role="Provincia" Multiplicity="1" />
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Log">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporte__ReporteParametro">
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="1" />
+          <End Type="CSBomberosModel.ReporteParametro" Role="ReporteParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteParametro">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteGrupo__Reporte">
+          <End Type="CSBomberosModel.ReporteGrupo" Role="ReporteGrupo" Multiplicity="1" />
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__Usuario">
+          <End Type="CSBomberosModel.UsuarioGrupo" Role="UsuarioGrupo" Multiplicity="1" />
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermiso">
+          <End Type="CSBomberosModel.UsuarioGrupo" Role="UsuarioGrupo" Multiplicity="1" />
+          <End Type="CSBomberosModel.UsuarioGrupoPermiso" Role="UsuarioGrupoPermiso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermiso">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cuartel">
+          <Key>
+            <PropertyRef Name="IDCuartel" />
+          </Key>
+          <Property Name="IDCuartel" Type="Byte" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioDepartamento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCalle2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCalle3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioIDProvincia" Type="Byte" />
+          <Property Name="DomicilioIDLocalidad" Type="Int16" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Cuartel__Persona" FromRole="Cuartel" ToRole="Persona" />
+          <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__Cuartel" FromRole="Cuartel" ToRole="Localidad" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Creacion" FromRole="Cuartel" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" FromRole="Cuartel" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Parentesco">
+          <Key>
+            <PropertyRef Name="IDParentesco" />
+          </Key>
+          <Property Name="IDParentesco" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__Parentesco__PersonaParentesco1" FromRole="Parentesco" ToRole="PersonaFamiliar" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Parentesco__Creacion" FromRole="Parentesco" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" FromRole="Parentesco" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Persona">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="MatriculaNumero" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoNombre" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IDDocumentoTipo" Type="Byte" />
+          <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCuartel" Type="Byte" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DomicilioParticularCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularDepartamento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularCalle2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularCalle3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularCodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioParticularIDProvincia" Type="Byte" />
+          <Property Name="DomicilioParticularIDLocalidad" Type="Int16" />
+          <Property Name="TelefonoParticular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CelularParticular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailParticular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralDepartamento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralCalle2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralCalle3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralCodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioLaboralIDProvincia" Type="Byte" />
+          <Property Name="DomicilioLaboralIDLocalidad" Type="Int16" />
+          <Property Name="TelefonoLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CelularLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Persona" FromRole="Persona" ToRole="Cuartel" />
+          <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK__DocumentoTipo__Persona" FromRole="Persona" ToRole="DocumentoTipo" />
+          <NavigationProperty Name="LocalidadLaboral" Relationship="CSBomberosModel.FK__Persona__Localidad__Laboral" FromRole="Persona" ToRole="Localidad" />
+          <NavigationProperty Name="LocalidadParticular" Relationship="CSBomberosModel.FK__Persona__Localidad__Particular" FromRole="Persona" ToRole="Localidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Persona__Creacion" FromRole="Persona" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Persona__Modificacion" FromRole="Persona" ToRole="Usuario" />
+          <NavigationProperty Name="PersonaFamiliares" Relationship="CSBomberosModel.FK__Persona__PersonaParentesco1" FromRole="Persona" ToRole="PersonaFamiliar" />
+        </EntityType>
+        <Association Name="FK__Cuartel__Persona">
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__Cuartel">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="DomicilioIDProvincia" />
+              <PropertyRef Name="DomicilioIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentoTipo__Persona">
+          <End Type="CSBomberosModel.DocumentoTipo" Role="DocumentoTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__Localidad__Laboral">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="DomicilioLaboralIDProvincia" />
+              <PropertyRef Name="DomicilioLaboralIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__Localidad__Particular">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="DomicilioParticularIDProvincia" />
+              <PropertyRef Name="DomicilioParticularIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Persona__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Persona__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonaFamiliar">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDFamiliar" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDFamiliar" Type="Byte" Nullable="false" />
+          <Property Name="IDParentesco" Type="Byte" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ApellidoNombre" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IDDocumentoTipo" Type="Byte" />
+          <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Vive" Type="Boolean" Nullable="false" />
+          <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioDepartamento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCalle2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCalle3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioCodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="DomicilioIDProvincia" Type="Byte" />
+          <Property Name="DomicilioIDLocalidad" Type="Int16" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Parentesco" Relationship="CSBomberosModel.FK__Parentesco__PersonaParentesco1" FromRole="PersonaFamiliar" ToRole="Parentesco" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaParentesco1" FromRole="PersonaFamiliar" ToRole="Persona" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion" FromRole="PersonaFamiliar" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion" FromRole="PersonaFamiliar" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Parentesco__PersonaParentesco1">
+          <End Type="CSBomberosModel.Parentesco" Role="Parentesco" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parentesco">
+              <PropertyRef Name="IDParentesco" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDParentesco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaParentesco1">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaFamiliar__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaFamiliar__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Parentesco__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Parentesco" Role="Parentesco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Parentesco">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Parentesco__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Parentesco" Role="Parentesco" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Parentesco">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cuartel__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Cuartel__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CSBomberosModelStoreContainer" CdmEntityContainer="CSBomberosContext">
+          <EntitySetMapping Name="DocumentoTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.DocumentoTipo">
+              <MappingFragment StoreEntitySet="DocumentoTipo">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="VerificaModulo11" ColumnName="VerificaModulo11" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDDocumentoTipo" ColumnName="IDDocumentoTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Localidad">
+            <EntityTypeMapping TypeName="CSBomberosModel.Localidad">
+              <MappingFragment StoreEntitySet="Localidad">
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log">
+            <EntityTypeMapping TypeName="CSBomberosModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+                <ScalarProperty Name="IDLog" ColumnName="IDLog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parametro">
+            <EntityTypeMapping TypeName="CSBomberosModel.Parametro">
+              <MappingFragment StoreEntitySet="Parametro">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="SiNo" ColumnName="SiNo" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="NumeroDecimal" ColumnName="NumeroDecimal" />
+                <ScalarProperty Name="NumeroEntero" ColumnName="NumeroEntero" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="IDParametro" ColumnName="IDParametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincia">
+            <EntityTypeMapping TypeName="CSBomberosModel.Provincia">
+              <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="CSBomberosModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
+                <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteGrupo">
+            <EntityTypeMapping TypeName="CSBomberosModel.ReporteGrupo">
+              <MappingFragment StoreEntitySet="ReporteGrupo">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteParametro">
+            <EntityTypeMapping TypeName="CSBomberosModel.ReporteParametro">
+              <MappingFragment StoreEntitySet="ReporteParametro">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="ValorPredeterminadoSiNo" ColumnName="ValorPredeterminadoSiNo" />
+                <ScalarProperty Name="ValorPredeterminadoFechaHora" ColumnName="ValorPredeterminadoFechaHora" />
+                <ScalarProperty Name="ValorPredeterminadoMoneda" ColumnName="ValorPredeterminadoMoneda" />
+                <ScalarProperty Name="ValorPredeterminadoNumeroDecimal" ColumnName="ValorPredeterminadoNumeroDecimal" />
+                <ScalarProperty Name="ValorPredeterminadoNumeroEntero" ColumnName="ValorPredeterminadoNumeroEntero" />
+                <ScalarProperty Name="RequeridoLeyenda" ColumnName="RequeridoLeyenda" />
+                <ScalarProperty Name="Requerido" ColumnName="Requerido" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDParametro" ColumnName="IDParametro" />
+                <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="CSBomberosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioGrupo">
+            <EntityTypeMapping TypeName="CSBomberosModel.UsuarioGrupo">
+              <MappingFragment StoreEntitySet="UsuarioGrupo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioGrupoPermiso">
+            <EntityTypeMapping TypeName="CSBomberosModel.UsuarioGrupoPermiso">
+              <MappingFragment StoreEntitySet="UsuarioGrupoPermiso">
+                <ScalarProperty Name="IDPermiso" ColumnName="IDPermiso" />
+                <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuartel">
+            <EntityTypeMapping TypeName="CSBomberosModel.Cuartel">
+              <MappingFragment StoreEntitySet="Cuartel">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="DomicilioIDLocalidad" ColumnName="DomicilioIDLocalidad" />
+                <ScalarProperty Name="DomicilioIDProvincia" ColumnName="DomicilioIDProvincia" />
+                <ScalarProperty Name="DomicilioCodigoPostal" ColumnName="DomicilioCodigoPostal" />
+                <ScalarProperty Name="DomicilioCalle3" ColumnName="DomicilioCalle3" />
+                <ScalarProperty Name="DomicilioCalle2" ColumnName="DomicilioCalle2" />
+                <ScalarProperty Name="DomicilioDepartamento" ColumnName="DomicilioDepartamento" />
+                <ScalarProperty Name="DomicilioPiso" ColumnName="DomicilioPiso" />
+                <ScalarProperty Name="DomicilioNumero" ColumnName="DomicilioNumero" />
+                <ScalarProperty Name="DomicilioCalle1" ColumnName="DomicilioCalle1" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parentesco">
+            <EntityTypeMapping TypeName="CSBomberosModel.Parentesco">
+              <MappingFragment StoreEntitySet="Parentesco">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDParentesco" ColumnName="IDParentesco" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persona">
+            <EntityTypeMapping TypeName="CSBomberosModel.Persona">
+              <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="EmailLaboral" ColumnName="EmailLaboral" />
+                <ScalarProperty Name="CelularLaboral" ColumnName="CelularLaboral" />
+                <ScalarProperty Name="TelefonoLaboral" ColumnName="TelefonoLaboral" />
+                <ScalarProperty Name="DomicilioLaboralIDLocalidad" ColumnName="DomicilioLaboralIDLocalidad" />
+                <ScalarProperty Name="DomicilioLaboralIDProvincia" ColumnName="DomicilioLaboralIDProvincia" />
+                <ScalarProperty Name="DomicilioLaboralCodigoPostal" ColumnName="DomicilioLaboralCodigoPostal" />
+                <ScalarProperty Name="DomicilioLaboralCalle3" ColumnName="DomicilioLaboralCalle3" />
+                <ScalarProperty Name="DomicilioLaboralCalle2" ColumnName="DomicilioLaboralCalle2" />
+                <ScalarProperty Name="DomicilioLaboralDepartamento" ColumnName="DomicilioLaboralDepartamento" />
+                <ScalarProperty Name="DomicilioLaboralPiso" ColumnName="DomicilioLaboralPiso" />
+                <ScalarProperty Name="DomicilioLaboralNumero" ColumnName="DomicilioLaboralNumero" />
+                <ScalarProperty Name="DomicilioLaboralCalle1" ColumnName="DomicilioLaboralCalle1" />
+                <ScalarProperty Name="EmailParticular" ColumnName="EmailParticular" />
+                <ScalarProperty Name="CelularParticular" ColumnName="CelularParticular" />
+                <ScalarProperty Name="TelefonoParticular" ColumnName="TelefonoParticular" />
+                <ScalarProperty Name="DomicilioParticularIDLocalidad" ColumnName="DomicilioParticularIDLocalidad" />
+                <ScalarProperty Name="DomicilioParticularIDProvincia" ColumnName="DomicilioParticularIDProvincia" />
+                <ScalarProperty Name="DomicilioParticularCodigoPostal" ColumnName="DomicilioParticularCodigoPostal" />
+                <ScalarProperty Name="DomicilioParticularCalle3" ColumnName="DomicilioParticularCalle3" />
+                <ScalarProperty Name="DomicilioParticularCalle2" ColumnName="DomicilioParticularCalle2" />
+                <ScalarProperty Name="DomicilioParticularDepartamento" ColumnName="DomicilioParticularDepartamento" />
+                <ScalarProperty Name="DomicilioParticularPiso" ColumnName="DomicilioParticularPiso" />
+                <ScalarProperty Name="DomicilioParticularNumero" ColumnName="DomicilioParticularNumero" />
+                <ScalarProperty Name="DomicilioParticularCalle1" ColumnName="DomicilioParticularCalle1" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+                <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+                <ScalarProperty Name="Profesion" ColumnName="Profesion" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="DocumentoNumero" ColumnName="DocumentoNumero" />
+                <ScalarProperty Name="IDDocumentoTipo" ColumnName="IDDocumentoTipo" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="MatriculaNumero" ColumnName="MatriculaNumero" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaFamiliar">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
+              <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="DomicilioIDLocalidad" ColumnName="DomicilioIDLocalidad" />
+                <ScalarProperty Name="DomicilioIDProvincia" ColumnName="DomicilioIDProvincia" />
+                <ScalarProperty Name="DomicilioCodigoPostal" ColumnName="DomicilioCodigoPostal" />
+                <ScalarProperty Name="DomicilioCalle3" ColumnName="DomicilioCalle3" />
+                <ScalarProperty Name="DomicilioCalle2" ColumnName="DomicilioCalle2" />
+                <ScalarProperty Name="DomicilioDepartamento" ColumnName="DomicilioDepartamento" />
+                <ScalarProperty Name="DomicilioPiso" ColumnName="DomicilioPiso" />
+                <ScalarProperty Name="DomicilioNumero" ColumnName="DomicilioNumero" />
+                <ScalarProperty Name="DomicilioCalle1" ColumnName="DomicilioCalle1" />
+                <ScalarProperty Name="Vive" ColumnName="Vive" />
+                <ScalarProperty Name="Genero" ColumnName="Genero" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="DocumentoNumero" ColumnName="DocumentoNumero" />
+                <ScalarProperty Name="IDDocumentoTipo" ColumnName="IDDocumentoTipo" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="IDParentesco" ColumnName="IDParentesco" />
+                <ScalarProperty Name="IDFamiliar" ColumnName="IDFamiliar" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,7 +1,7 @@
 ﻿Public Class formReportes
 
 #Region "Declarations"
-    Private mdbContext As New CSColegioContext(True)
+    Private mdbContext As New CSBomberosContext(True)
 #End Region
 
 #Region "Form stuff"
@@ -112,24 +112,19 @@
             ListViewItemActual = listviewParametros.SelectedItems(0)
 
             Select Case ParametroActual.Tipo
-                ' Entidades
-                Case Constantes.REPORTE_PARAMETRO_ENTIDAD, Constantes.REPORTE_PARAMETRO_ENTIDAD_PERSONALCOLEGIO, Constantes.REPORTE_PARAMETRO_ENTIDAD_DOCENTE, Constantes.REPORTE_PARAMETRO_ENTIDAD_ALUMNO, Constantes.REPORTE_PARAMETRO_ENTIDAD_FAMILIAR, Constantes.REPORTE_PARAMETRO_ENTIDAD_PROVEEDOR
-                    formEntidadesSeleccionar.menuitemEntidadTipo_PersonalColegio.Checked = (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD_PERSONALCOLEGIO)
-                    formEntidadesSeleccionar.menuitemEntidadTipo_Docente.Checked = (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD_DOCENTE)
-                    formEntidadesSeleccionar.menuitemEntidadTipo_Alumno.Checked = (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD_ALUMNO)
-                    formEntidadesSeleccionar.menuitemEntidadTipo_Familiar.Checked = (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD_FAMILIAR)
-                    formEntidadesSeleccionar.menuitemEntidadTipo_Proveedor.Checked = (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_ENTIDAD_PROVEEDOR)
-                    If formEntidadesSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                        Dim EntidadSeleccionada As Entidad
+                ' Personaes
+                Case Constantes.REPORTE_PARAMETRO_PERSONA
+                    If formPersonasSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        Dim PersonaSeleccionada As Persona
 
-                        EntidadSeleccionada = CType(formEntidadesSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Entidad)
-                        ParametroActual.Valor = EntidadSeleccionada.IDEntidad
-                        ParametroActual.ValorParaMostrar = EntidadSeleccionada.ApellidoNombre
+                        PersonaSeleccionada = CType(formPersonasSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
+                        ParametroActual.Valor = PersonaSeleccionada.IDPersona
+                        ParametroActual.ValorParaMostrar = PersonaSeleccionada.ApellidoNombre
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
 
-                        EntidadSeleccionada = Nothing
+                        PersonaSeleccionada = Nothing
                     End If
-                    formEntidadesSeleccionar.Dispose()
+                    formPersonasSeleccionar.Dispose()
 
                 Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_SINO
                     formReportesParametro.SetAppearance(ParametroActual, ListViewItemActual.Text)
