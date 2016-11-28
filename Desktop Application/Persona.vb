@@ -54,6 +54,10 @@ Partial Public Class Persona
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property GrupoSanguineo As String
+    Public Property FactorRH As String
+    Public Property IDNivelEstudio As Nullable(Of Byte)
+    Public Property CantidadHijos As Nullable(Of Byte)
 
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property DocumentoTipo As DocumentoTipo
@@ -62,5 +66,9 @@ Partial Public Class Persona
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property PersonaFamiliares As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
+    Public Overridable Property PersonaAccidentes As ICollection(Of PersonaAccidente) = New HashSet(Of PersonaAccidente)
+    Public Overridable Property PersonaAltasBajas As ICollection(Of PersonaAltaBaja) = New HashSet(Of PersonaAltaBaja)
+    Public Overridable Property NivelEstudio As NivelEstudio
+    Public Overridable Property PersonaAscenso As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
 
 End Class

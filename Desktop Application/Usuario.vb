@@ -33,5 +33,13 @@ Partial Public Class Usuario
     Public Overridable Property ParentescosModificados As ICollection(Of Parentesco) = New HashSet(Of Parentesco)
     Public Overridable Property CuartelesCreados As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
     Public Overridable Property CuartelesModificados As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
+    Public Overridable Property PersonaAccidentesCreados As ICollection(Of PersonaAccidente) = New HashSet(Of PersonaAccidente)
+    Public Overridable Property PersonaAccidentesModificados As ICollection(Of PersonaAccidente) = New HashSet(Of PersonaAccidente)
+    Public Overridable Property PersonaAltasBajasCreadas As ICollection(Of PersonaAltaBaja) = New HashSet(Of PersonaAltaBaja)
+    Public Overridable Property PersonaAltasBajasModificadas As ICollection(Of PersonaAltaBaja) = New HashSet(Of PersonaAltaBaja)
+    Public Overridable Property ElementosCreados As ICollection(Of Elemento) = New HashSet(Of Elemento)
+    Public Overridable Property ElementosModificados As ICollection(Of Elemento) = New HashSet(Of Elemento)
+    Public Overridable Property PersonaAscenso As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
+    Public Overridable Property PersonaAscenso1 As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
 
 End Class

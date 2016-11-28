@@ -120,6 +120,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_String.vb">
+      <Link>CS_String.vb</Link>
+    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
       <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
@@ -213,6 +216,12 @@
     <Compile Include="formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formPersonaAccidente.Designer.vb">
+      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaAccidente.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formParentesco.Designer.vb">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </Compile>
@@ -223,6 +232,12 @@
       <DependentUpon>formParentescos.vb</DependentUpon>
     </Compile>
     <Compile Include="formParentescos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaAccidentes.Designer.vb">
+      <DependentUpon>formPersonaAccidentes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaAccidentes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaFamiliar.designer.vb">
@@ -319,6 +334,12 @@
     <Compile Include="Persona.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaAccidente.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaAltaBaja.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaFamiliar.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -353,11 +374,17 @@
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaAccidente.resx">
+      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formParentesco.resx">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formParentescos.resx">
       <DependentUpon>formParentescos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaAccidentes.resx">
+      <DependentUpon>formPersonaAccidentes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaFamiliar.resx">
       <DependentUpon>formPersonaFamiliar.vb</DependentUpon>

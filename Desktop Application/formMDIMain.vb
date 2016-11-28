@@ -30,7 +30,7 @@
                     If FormCurrent.Name = "formComprobante" Then
                         CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
                     Else
-                        CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent, Form_ClientSize)
+                        CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent)
                     End If
                 Else
                     CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
@@ -105,7 +105,7 @@
         If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formParentescos, Form), Form_ClientSize)
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formParentescos, Form))
             formParentescos.Show()
             If formParentescos.WindowState = FormWindowState.Minimized Then
                 formParentescos.WindowState = FormWindowState.Normal
@@ -123,7 +123,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPersonas, Form), Form_ClientSize)
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPersonas, Form))
             formPersonas.Show()
             If formPersonas.WindowState = FormWindowState.Minimized Then
                 formPersonas.WindowState = FormWindowState.Normal
@@ -141,7 +141,7 @@
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form), Form_ClientSize)
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form))
             formReportes.Show()
             If formReportes.WindowState = FormWindowState.Minimized Then
                 formReportes.WindowState = FormWindowState.Normal

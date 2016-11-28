@@ -21,7 +21,7 @@ Partial Public Class PersonaFamiliar
     Public Property DocumentoNumero As String
     Public Property FechaNacimiento As Nullable(Of Date)
     Public Property Genero As String
-    Public Property Vive As Boolean
+    Public Property Vive As Nullable(Of Boolean)
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
     Public Property DomicilioPiso As String

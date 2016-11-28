@@ -136,7 +136,7 @@
             Exit Sub
         End If
 
-        ' Generar el ID del Año nuevo
+        ' Generar el ID nuevo
         If mParentescoActual.IDParentesco = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
                 If dbcMaxID.Parentesco.Count = 0 Then
@@ -162,7 +162,7 @@
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
-                ' Refresco la lista de Entidades para mostrar los cambios
+                ' Refresco la lista para mostrar los cambios
                 If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formParentescos") Then
                     Dim formParentescos As formParentescos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formParentescos"), formParentescos)
                     formParentescos.RefreshData(mParentescoActual.IDParentesco)
@@ -173,7 +173,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Año con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Parentesco con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

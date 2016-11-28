@@ -9,6 +9,13 @@
     Friend Const PERSONA_EDITAR As String = "PERSONA_EDITAR"
     Friend Const PERSONA_ELIMINAR As String = "PERSONA_ELIMINAR"
 
+    Friend Const PERSONA_ACCIDENTE As String = "PERSONA_ACCIDENTE"
+    Friend Const PERSONA_ACCIDENTE_AGREGAR As String = "PERSONA_ACCIDENTE_AGREGAR"
+    Friend Const PERSONA_ACCIDENTE_EDITAR As String = "PERSONA_ACCIDENTE_EDITAR"
+    Friend Const PERSONA_ACCIDENTE_ELIMINAR As String = "PERSONA_ACCIDENTE_ELIMINAR"
+
+    Friend Const PERMISO As String = "USUARIO_GRUPO_PERMISO"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean

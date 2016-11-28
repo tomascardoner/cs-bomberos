@@ -17,7 +17,7 @@
         datagridviewMain.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
     End Sub
 
-    Private Sub formPersonaes_Load() Handles Me.Load
+    Private Sub Me_Load() Handles Me.Load
         SetAppearance()
 
         SkipFilterData = True
@@ -33,8 +33,9 @@
         RefreshData()
     End Sub
 
-    Private Sub formPersonaes_FormClosed() Handles Me.FormClosed
+    Private Sub Me_FormClosed() Handles Me.FormClosed
         listPersonaBase = Nothing
+        listPersonaFiltradaYOrdenada = Nothing
     End Sub
 #End Region
 
@@ -86,11 +87,11 @@
 
             Select Case listPersonaFiltradaYOrdenada.Count
                 Case 0
-                    statuslabelMain.Text = String.Format("No hay Personaes para mostrar.")
+                    statuslabelMain.Text = String.Format("No hay Personas para mostrar.")
                 Case 1
                     statuslabelMain.Text = String.Format("Se muestra 1 Persona.")
                 Case Else
-                    statuslabelMain.Text = String.Format("Se muestran {0} Personaes.", listPersonaFiltradaYOrdenada.Count)
+                    statuslabelMain.Text = String.Format("Se muestran {0} Personas.", listPersonaFiltradaYOrdenada.Count)
             End Select
 
             OrderData()
@@ -107,6 +108,12 @@
                     listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderBy(Function(col) col.IDPersona).ToList
                 Else
                     listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.IDPersona).ToList
+                End If
+            Case columnMatriculaNumero.Name
+                If OrdenTipo = SortOrder.Ascending Then
+                    listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderBy(Function(col) col.MatriculaNumero).ToList
+                Else
+                    listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.MatriculaNumero).ToList
                 End If
             Case columnApellido.Name
                 If OrdenTipo = SortOrder.Ascending Then
@@ -177,7 +184,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnIDPersona.Name Or ClickedColumn.Name = columnApellido.Name Or ClickedColumn.Name = columnNombre.Name Then
+        If ClickedColumn.Name = columnIDPersona.Name Or ClickedColumn.Name = columnMatriculaNumero.Name Or ClickedColumn.Name = columnApellido.Name Or ClickedColumn.Name = columnNombre.Name Then
             If ClickedColumn Is OrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If OrdenTipo = SortOrder.Ascending Then
@@ -237,11 +244,11 @@
         End If
     End Sub
 
-    Private Sub buttonEliminar_Click() Handles buttonEliminar.Click
+    Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.Persona_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ELIMINAR) Then
 
                 Dim PersonaActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
 
@@ -289,6 +296,25 @@
             datagridviewMain.Enabled = True
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Accidentes_Click(sender As Object, e As EventArgs) Handles menuitemAccidentes.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Persona seleccionada.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Dim PersonaActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
+                formPersonaAccidentes.LoadAndShow(Me, PersonaActual.IDPersona)
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
