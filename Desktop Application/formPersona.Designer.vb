@@ -62,6 +62,9 @@ Partial Class formPersona
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim labelGrupoSanguineo As System.Windows.Forms.Label
+        Dim labelFactorRH As System.Windows.Forms.Label
+        Dim labelNivelEstudio As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
@@ -128,6 +131,9 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.comboboxGrupoSanguineo = New System.Windows.Forms.ComboBox()
+        Me.comboboxFactorRH = New System.Windows.Forms.ComboBox()
+        Me.comboboxNivelEstudio = New System.Windows.Forms.ComboBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -166,6 +172,9 @@ Partial Class formPersona
         labelNotas = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelGrupoSanguineo = New System.Windows.Forms.Label()
+        labelFactorRH = New System.Windows.Forms.Label()
+        labelNivelEstudio = New System.Windows.Forms.Label()
         CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
@@ -208,10 +217,10 @@ Partial Class formPersona
         'labelEstado
         '
         labelEstado.AutoSize = True
-        labelEstado.Location = New System.Drawing.Point(6, 202)
+        labelEstado.Location = New System.Drawing.Point(6, 226)
         labelEstado.Name = "labelEstado"
         labelEstado.Size = New System.Drawing.Size(43, 13)
-        labelEstado.TabIndex = 18
+        labelEstado.TabIndex = 19
         labelEstado.Text = "Estado:"
         '
         'labelFechaNacimiento
@@ -219,9 +228,9 @@ Partial Class formPersona
         labelFechaNacimiento.AutoSize = True
         labelFechaNacimiento.Location = New System.Drawing.Point(6, 40)
         labelFechaNacimiento.Name = "labelFechaNacimiento"
-        labelFechaNacimiento.Size = New System.Drawing.Size(111, 13)
-        labelFechaNacimiento.TabIndex = 4
-        labelFechaNacimiento.Text = "Fecha de Nacimiento:"
+        labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
+        labelFechaNacimiento.TabIndex = 3
+        labelFechaNacimiento.Text = "Fecha de nacimiento:"
         '
         'labelGenero
         '
@@ -229,7 +238,7 @@ Partial Class formPersona
         labelGenero.Location = New System.Drawing.Point(6, 66)
         labelGenero.Name = "labelGenero"
         labelGenero.Size = New System.Drawing.Size(45, 13)
-        labelGenero.TabIndex = 6
+        labelGenero.TabIndex = 5
         labelGenero.Text = "Género:"
         '
         'labelDocumento
@@ -245,28 +254,28 @@ Partial Class formPersona
         'labelNacionalidad
         '
         labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 134)
+        labelNacionalidad.Location = New System.Drawing.Point(6, 173)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 14
+        labelNacionalidad.TabIndex = 15
         labelNacionalidad.Text = "Nacionalidad:"
         '
         'labelProfesion
         '
         labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 108)
+        labelProfesion.Location = New System.Drawing.Point(6, 147)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 12
+        labelProfesion.TabIndex = 13
         labelProfesion.Text = "Profesión:"
         '
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 160)
+        labelCuartel.Location = New System.Drawing.Point(6, 199)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 16
+        labelCuartel.TabIndex = 17
         labelCuartel.Text = "Cuartel:"
         '
         'labelTelefonoParticular
@@ -645,11 +654,17 @@ Partial Class formPersona
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 138)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 277)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 285)
         Me.tabcontrolMain.TabIndex = 9
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.comboboxNivelEstudio)
+        Me.tabpageGeneral.Controls.Add(labelNivelEstudio)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxFactorRH)
+        Me.tabpageGeneral.Controls.Add(labelFactorRH)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxGrupoSanguineo)
+        Me.tabpageGeneral.Controls.Add(labelGrupoSanguineo)
         Me.tabpageGeneral.Controls.Add(Me.comboboxEstado)
         Me.tabpageGeneral.Controls.Add(labelEstado)
         Me.tabpageGeneral.Controls.Add(labelFechaNacimiento)
@@ -669,7 +684,7 @@ Partial Class formPersona
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 248)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 256)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -678,10 +693,10 @@ Partial Class formPersona
         '
         Me.comboboxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxEstado.FormattingEnabled = True
-        Me.comboboxEstado.Location = New System.Drawing.Point(142, 199)
+        Me.comboboxEstado.Location = New System.Drawing.Point(142, 223)
         Me.comboboxEstado.Name = "comboboxEstado"
         Me.comboboxEstado.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxEstado.TabIndex = 19
+        Me.comboboxEstado.TabIndex = 20
         '
         'datetimepickerFechaNacimiento
         '
@@ -692,7 +707,7 @@ Partial Class formPersona
         Me.datetimepickerFechaNacimiento.Name = "datetimepickerFechaNacimiento"
         Me.datetimepickerFechaNacimiento.ShowCheckBox = True
         Me.datetimepickerFechaNacimiento.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaNacimiento.TabIndex = 5
+        Me.datetimepickerFechaNacimiento.TabIndex = 4
         '
         'comboboxGenero
         '
@@ -701,7 +716,7 @@ Partial Class formPersona
         Me.comboboxGenero.Location = New System.Drawing.Point(142, 63)
         Me.comboboxGenero.Name = "comboboxGenero"
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGenero.TabIndex = 7
+        Me.comboboxGenero.TabIndex = 6
         '
         'comboboxDocumentoTipo
         '
@@ -727,28 +742,28 @@ Partial Class formPersona
         '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 131)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 170)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(358, 20)
-        Me.textboxNacionalidad.TabIndex = 15
+        Me.textboxNacionalidad.TabIndex = 16
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 105)
+        Me.textboxProfesion.Location = New System.Drawing.Point(142, 144)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(358, 20)
-        Me.textboxProfesion.TabIndex = 13
+        Me.textboxProfesion.TabIndex = 14
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 157)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 196)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(358, 21)
-        Me.comboboxCuartel.TabIndex = 17
+        Me.comboboxCuartel.TabIndex = 21
         '
         'tabpageParticular
         '
@@ -1192,11 +1207,65 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
+        'comboboxGrupoSanguineo
+        '
+        Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxGrupoSanguineo.FormattingEnabled = True
+        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 90)
+        Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
+        Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
+        Me.comboboxGrupoSanguineo.TabIndex = 8
+        '
+        'labelGrupoSanguineo
+        '
+        labelGrupoSanguineo.AutoSize = True
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 93)
+        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
+        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
+        labelGrupoSanguineo.TabIndex = 7
+        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
+        '
+        'comboboxFactorRH
+        '
+        Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxFactorRH.FormattingEnabled = True
+        Me.comboboxFactorRH.Location = New System.Drawing.Point(315, 90)
+        Me.comboboxFactorRH.Name = "comboboxFactorRH"
+        Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
+        Me.comboboxFactorRH.TabIndex = 10
+        '
+        'labelFactorRH
+        '
+        labelFactorRH.AutoSize = True
+        labelFactorRH.Location = New System.Drawing.Point(250, 93)
+        labelFactorRH.Name = "labelFactorRH"
+        labelFactorRH.Size = New System.Drawing.Size(59, 13)
+        labelFactorRH.TabIndex = 9
+        labelFactorRH.Text = "Factor RH:"
+        '
+        'comboboxNivelEstudio
+        '
+        Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxNivelEstudio.FormattingEnabled = True
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 117)
+        Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
+        Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
+        Me.comboboxNivelEstudio.TabIndex = 12
+        '
+        'labelNivelEstudio
+        '
+        labelNivelEstudio.AutoSize = True
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 120)
+        labelNivelEstudio.Name = "labelNivelEstudio"
+        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
+        labelNivelEstudio.TabIndex = 11
+        labelNivelEstudio.Text = "Nivel de estudios:"
+        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(539, 429)
+        Me.ClientSize = New System.Drawing.Size(539, 434)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.pictureboxMain)
@@ -1301,4 +1370,7 @@ Partial Class formPersona
     Friend WithEvents columnFamiliares_Parentesco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFamiliares_Apellido As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFamiliares_Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents comboboxFactorRH As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxGrupoSanguineo As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxNivelEstudio As System.Windows.Forms.ComboBox
 End Class

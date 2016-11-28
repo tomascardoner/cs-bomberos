@@ -60,6 +60,7 @@
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
+        checkboxVive.Enabled = mEditMode
 
         ' Contacto
         textboxDomicilioCalle1.ReadOnly = (mEditMode = False)
@@ -112,7 +113,7 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CS_Control_ComboBox.SetSelectedValue(comboboxParentesco, SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CByte(0))
+            CS_Control_ComboBox.SetSelectedValue(comboboxParentesco, SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CByte(255))
             CS_Control_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CByte(0))
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)

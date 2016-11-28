@@ -124,6 +124,90 @@
         End If
     End Sub
 
+    Friend Sub GrupoSanguineo(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
+        Dim datatableGrupoSanguineos As New DataTable("GrupoSanguineos")
+        Dim datarowRow As DataRow
+
+        ComboBoxControl.ValueMember = "IDGrupoSanguineo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        With datatableGrupoSanguineos
+            .Columns.Add("IDGrupoSanguineo", System.Type.GetType("System.String"))
+            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+
+            If ShowUnspecifiedItem Then
+                datarowRow = .NewRow
+                datarowRow("IDGrupoSanguineo") = ""
+                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
+                .Rows.Add(datarowRow)
+            End If
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupoSanguineo") = "0"
+            datarowRow("Nombre") = "0"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupoSanguineo") = "A"
+            datarowRow("Nombre") = "A"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupoSanguineo") = "B"
+            datarowRow("Nombre") = "B"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupoSanguineo") = "AB"
+            datarowRow("Nombre") = "AB"
+            .Rows.Add(datarowRow)
+        End With
+
+        ComboBoxControl.DataSource = datatableGrupoSanguineos
+        If ShowUnspecifiedItem Then
+            ComboBoxControl.SelectedIndex = 0
+        Else
+            ComboBoxControl.SelectedIndex = -1
+        End If
+    End Sub
+
+    Friend Sub FactorRH(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
+        Dim datatableFactorRHs As New DataTable("FactorRHs")
+        Dim datarowRow As DataRow
+
+        ComboBoxControl.ValueMember = "IDFactorRH"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        With datatableFactorRHs
+            .Columns.Add("IDFactorRH", System.Type.GetType("System.String"))
+            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+
+            If ShowUnspecifiedItem Then
+                datarowRow = .NewRow
+                datarowRow("IDFactorRH") = ""
+                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
+                .Rows.Add(datarowRow)
+            End If
+
+            datarowRow = .NewRow
+            datarowRow("IDFactorRH") = "+"
+            datarowRow("Nombre") = "+ (Positivo)"
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDFactorRH") = "-"
+            datarowRow("Nombre") = "- (Negativo)"
+            .Rows.Add(datarowRow)
+        End With
+
+        ComboBoxControl.DataSource = datatableFactorRHs
+        If ShowUnspecifiedItem Then
+            ComboBoxControl.SelectedIndex = 0
+        Else
+            ComboBoxControl.SelectedIndex = -1
+        End If
+    End Sub
+
     Friend Sub Estado(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim datatableEstados As New DataTable("Estados")
         Dim datarowRow As DataRow
@@ -190,6 +274,30 @@
         If AgregarItem_NoEspecifica Then
             ComboBoxControl.Items.Insert(0, My.Resources.STRING_ITEM_NOT_SPECIFIED)
         End If
+    End Sub
+
+    Friend Sub NivelEstudio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of NivelEstudio)
+
+        ComboBoxControl.ValueMember = "IDNivelEstudio"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.NivelEstudio.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New NivelEstudio
+            Item_Todos.IDNivelEstudio = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New NivelEstudio
+            Item_NoEspecifica.IDNivelEstudio = 0
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
     End Sub
 
     Friend Sub Cuartel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)

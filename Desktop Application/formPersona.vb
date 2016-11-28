@@ -76,6 +76,9 @@
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
+        comboboxGrupoSanguineo.Enabled = mEditMode
+        comboboxFactorRH.Enabled = mEditMode
+        comboboxNivelEstudio.Enabled = mEditMode
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
@@ -123,10 +126,15 @@
         ' Cargo los ComboBox
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
         pFillAndRefreshLists.Genero(comboboxGenero, False)
+        pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
+        pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         pFillAndRefreshLists.Estado(comboboxEstado, False, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
+
+        textboxMatriculaNumero.MaxLength = CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5)
     End Sub
 
     Friend Sub SetAppearance()
@@ -150,7 +158,7 @@
                 textboxIDPersona.Text = String.Format(.IDPersona.ToString, "G")
             End If
 
-            textboxMatriculaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.MatriculaNumero)
+            textboxMatriculaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.MatriculaNumero).TrimEnd
             textboxApellido.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Apellido)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
@@ -163,6 +171,10 @@
             End If
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
+            CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
+
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
@@ -235,6 +247,10 @@
             End If
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
+            .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
+            .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
+            .IDNivelEstudio = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxNivelEstudio.SelectedValue)
+
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue)
@@ -389,8 +405,8 @@
             MsgBox("Debe ingresar la Matrícula.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxMatriculaNumero.Focus()
             Exit Sub
-        ElseIf textboxMatriculaNumero.Text.Trim.Length < 5 Then
-            MsgBox("La Matrícula debe contener 5 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
+        ElseIf textboxMatriculaNumero.Text.Trim.Length <> CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5) Then
+            MsgBox(String.Format("La Matrícula debe contener {0} dígitos.", CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5)), MsgBoxStyle.Information, My.Application.Info.Title)
             textboxMatriculaNumero.Focus()
             Exit Sub
         End If
