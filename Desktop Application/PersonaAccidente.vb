@@ -26,7 +26,7 @@ Partial Public Class PersonaAccidente
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Persona As Persona
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Usuario As Usuario
+    Public Overridable Property Usuario1 As Usuario
 
 End Class

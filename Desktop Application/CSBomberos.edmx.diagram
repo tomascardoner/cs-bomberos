@@ -41,6 +41,32 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.Area" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="3" PointY="26" />
+        <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="5.25" PointY="25.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.ModoAdquicision" Width="1.5" PointX="12.375" PointY="7.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="3" PointY="23" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAltaBaja" Width="1.5" PointX="13.5" PointY="9.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAscenso" Width="1.5" PointX="7.5" PointY="16.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Ubicacion" Width="1.5" PointX="10.375" PointY="7.25" />
+        <AssociationConnector Association="CSBomberosModel.FK__Area__Elemento" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cargo__CargoJerarquia" />
+        <AssociationConnector Association="CSBomberosModel.FK__CargoJerarquia__PersonaAscenso" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Elemento__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Elemento__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__NivelEstudio__Persona" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaAccidente" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaAltaBaja" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaAscenso" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Ubicacion__Ubicacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

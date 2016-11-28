@@ -10,22 +10,19 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class PersonaAltaBaja
+Partial Public Class PersonaAscenso
     Public Property IDPersona As Integer
-    Public Property IDAltaBaja As Byte
-    Public Property FechaAlta As Date
-    Public Property UnidadOrigen As String
-    Public Property FechaBaja As Nullable(Of Date)
-    Public Property UnidadDestino As String
-    Public Property LibroNumero As String
-    Public Property ActaNumero As String
-    Public Property FolioNumero As String
+    Public Property IDAscenso As Byte
+    Public Property Fecha As Date
+    Public Property IDCargo As Byte
+    Public Property IDJerarquia As Byte
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
+    Public Overridable Property CargoJerarquia As CargoJerarquia
     Public Overridable Property Persona As Persona
     Public Overridable Property Usuario As Usuario
     Public Overridable Property Usuario1 As Usuario

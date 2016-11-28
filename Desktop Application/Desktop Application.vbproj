@@ -123,6 +123,9 @@
     <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_String.vb">
       <Link>CS_String.vb</Link>
     </Compile>
+    <Compile Include="Area.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
       <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
@@ -191,6 +194,12 @@
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ValueTranslation.vb">
       <Link>CS_ValueTranslation.vb</Link>
     </Compile>
+    <Compile Include="Cargo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CargoJerarquia.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Constantes.vb" />
     <Compile Include="CSBomberos.Context.vb">
       <AutoGen>True</AutoGen>
@@ -206,6 +215,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="DocumentoTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Elemento.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFrameworkExtension.vb" />
@@ -308,6 +320,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="MiscFunctions.vb" />
+    <Compile Include="ModoAdquicision.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -322,6 +337,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="NivelEstudio.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Parametro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -340,6 +358,9 @@
     <Compile Include="PersonaAltaBaja.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaAscenso.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaFamiliar.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -356,6 +377,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="StartUp.vb" />
+    <Compile Include="Ubicacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
