@@ -16,7 +16,7 @@ Partial Public Class Ubicacion
     Public Property Nombre As String
     Public Property EsActivo As Boolean
 
-    Public Overridable Property Ubicacion1 As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
-    Public Overridable Property Ubicacion2 As Ubicacion
+    Public Overridable Property UbicacionesHijos As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
+    Public Overridable Property UbicacionPadre As Ubicacion
 
 End Class

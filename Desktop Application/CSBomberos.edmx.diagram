@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="68">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="3" PointY="2.625" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="0.75" PointY="14.25" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="5.25" PointY="18.375" />
@@ -24,7 +24,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" />
         <EntityTypeShape EntityType="CSBomberosModel.Cuartel" Width="1.5" PointX="3" PointY="13.5" />
         <EntityTypeShape EntityType="CSBomberosModel.Parentesco" Width="1.5" PointX="5.25" PointY="15.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.Persona" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.Persona" Width="1.875" PointX="5.25" PointY="4.375" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Persona" />
         <AssociationConnector Association="CSBomberosModel.FK__Localidad__Cuartel" />
         <AssociationConnector Association="CSBomberosModel.FK__DocumentoTipo__Persona" />
@@ -44,7 +44,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.Area" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="3" PointY="26" />
         <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="5.25" PointY="25.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.5" PointX="5.375" PointY="0.5" />
         <EntityTypeShape EntityType="CSBomberosModel.ModoAdquicision" Width="1.5" PointX="12.375" PointY="7.25" />
         <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="3" PointY="23" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="7.5" PointY="10.875" />

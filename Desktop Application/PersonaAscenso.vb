@@ -24,7 +24,7 @@ Partial Public Class PersonaAscenso
 
     Public Overridable Property CargoJerarquia As CargoJerarquia
     Public Overridable Property Persona As Persona
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

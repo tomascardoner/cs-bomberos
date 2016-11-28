@@ -1300,14 +1300,14 @@
           <NavigationProperty Name="ParentescosModificados" Relationship="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" FromRole="Usuario" ToRole="Parentesco" />
           <NavigationProperty Name="CuartelesCreados" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Creacion" FromRole="Usuario" ToRole="Cuartel" />
           <NavigationProperty Name="CuartelesModificados" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" FromRole="Usuario" ToRole="Cuartel" />
-          <NavigationProperty Name="Elemento" Relationship="CSBomberosModel.FK__Usuario__Elemento__Creacion" FromRole="Usuario" ToRole="Elemento" />
-          <NavigationProperty Name="Elemento1" Relationship="CSBomberosModel.FK__Usuario__Elemento__Modificacion" FromRole="Usuario" ToRole="Elemento" />
-          <NavigationProperty Name="PersonaAccidente" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="Usuario" ToRole="PersonaAccidente" />
-          <NavigationProperty Name="PersonaAccidente1" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" FromRole="Usuario" ToRole="PersonaAccidente" />
-          <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="Usuario" ToRole="PersonaAltaBaja" />
-          <NavigationProperty Name="PersonaAltaBaja1" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="Usuario" ToRole="PersonaAltaBaja" />
-          <NavigationProperty Name="PersonaAscenso" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" FromRole="Usuario" ToRole="PersonaAscenso" />
-          <NavigationProperty Name="PersonaAscenso1" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" FromRole="Usuario" ToRole="PersonaAscenso" />
+          <NavigationProperty Name="ElementosCreados" Relationship="CSBomberosModel.FK__Usuario__Elemento__Creacion" FromRole="Usuario" ToRole="Elemento" />
+          <NavigationProperty Name="ElementosModificados" Relationship="CSBomberosModel.FK__Usuario__Elemento__Modificacion" FromRole="Usuario" ToRole="Elemento" />
+          <NavigationProperty Name="PersonasAccidentesCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="Usuario" ToRole="PersonaAccidente" />
+          <NavigationProperty Name="PersonasAccidentesModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" FromRole="Usuario" ToRole="PersonaAccidente" />
+          <NavigationProperty Name="PersonasAltasBajasCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="Usuario" ToRole="PersonaAltaBaja" />
+          <NavigationProperty Name="PersonasAltasBajasModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="Usuario" ToRole="PersonaAltaBaja" />
+          <NavigationProperty Name="PersonasAscensosCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" FromRole="Usuario" ToRole="PersonaAscenso" />
+          <NavigationProperty Name="PersonasAscensosModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" FromRole="Usuario" ToRole="PersonaAscenso" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -1508,7 +1508,7 @@
           <Property Name="IDNivelEstudio" Type="Byte" />
           <Property Name="CantidadHijos" Type="Byte" />
           <NavigationProperty Name="NivelEstudio" Relationship="CSBomberosModel.FK__NivelEstudio__Persona" FromRole="Persona" ToRole="NivelEstudio" />
-          <NavigationProperty Name="PersonaAccidente" Relationship="CSBomberosModel.FK__Persona__PersonaAccidente" FromRole="Persona" ToRole="PersonaAccidente" />
+          <NavigationProperty Name="PersonaAccidentes" Relationship="CSBomberosModel.FK__Persona__PersonaAccidente" FromRole="Persona" ToRole="PersonaAccidente" />
           <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
           <NavigationProperty Name="PersonaAscenso" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="Persona" ToRole="PersonaAscenso" />
         </EntityType>
@@ -1822,8 +1822,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaAccidente" FromRole="PersonaAccidente" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="PersonaAccidente" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" FromRole="PersonaAccidente" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCracion" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="PersonaAccidente" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" FromRole="PersonaAccidente" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaAltaBaja">
           <Key>
@@ -1845,8 +1845,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="PersonaAltaBaja" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaAscenso">
           <Key>
@@ -1865,8 +1865,8 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="CargoJerarquia" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaAscenso" FromRole="PersonaAscenso" ToRole="CargoJerarquia" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="PersonaAscenso" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" FromRole="PersonaAscenso" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" FromRole="PersonaAscenso" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" FromRole="PersonaAscenso" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" FromRole="PersonaAscenso" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Ubicacion">
           <Key>
@@ -1876,8 +1876,8 @@
           <Property Name="IDUbicacionPadre" Type="Int16" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Ubicacion1" Relationship="CSBomberosModel.FK__Ubicacion__Ubicacion" FromRole="Ubicacion" ToRole="Ubicacion1" />
-          <NavigationProperty Name="Ubicacion2" Relationship="CSBomberosModel.FK__Ubicacion__Ubicacion" FromRole="Ubicacion1" ToRole="Ubicacion" />
+          <NavigationProperty Name="UbicacionesHijos" Relationship="CSBomberosModel.FK__Ubicacion__Ubicacion" FromRole="Ubicacion" ToRole="Ubicacion1" />
+          <NavigationProperty Name="UbicacionPadre" Relationship="CSBomberosModel.FK__Ubicacion__Ubicacion" FromRole="Ubicacion1" ToRole="Ubicacion" />
         </EntityType>
         <Association Name="FK__Area__Elemento">
           <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
