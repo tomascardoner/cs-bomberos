@@ -126,6 +126,12 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Automotor.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutomotorTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
       <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
@@ -200,6 +206,9 @@
     <Compile Include="CargoJerarquia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="CombustibleTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Constantes.vb" />
     <Compile Include="CSBomberos.Context.vb">
       <AutoGen>True</AutoGen>
@@ -226,6 +235,18 @@
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </Compile>
     <Compile Include="formAboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUbicacion.Designer.vb">
+      <DependentUpon>formUbicacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUbicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUbicaciones.Designer.vb">
+      <DependentUpon>formUbicaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaAccidente.Designer.vb">
@@ -377,6 +398,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="StartUp.vb" />
+    <Compile Include="SubUbicacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Ubicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -397,6 +421,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUbicacion.resx">
+      <DependentUpon>formUbicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUbicaciones.resx">
+      <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAccidente.resx">
       <DependentUpon>formPersonaAccidente.vb</DependentUpon>

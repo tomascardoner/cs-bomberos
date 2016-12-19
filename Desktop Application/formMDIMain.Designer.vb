@@ -50,6 +50,7 @@ Partial Class formMDIMain
         Me.menuitemTablas_Parentescos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPersonas = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
+        Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -209,7 +210,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Parentescos})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Parentescos, Me.menuitemTablas_Ubicaciones})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -243,6 +244,12 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(88, 36)
         Me.buttonReportes.Text = "Reportes"
+        '
+        'menuitemTablas_Ubicaciones
+        '
+        Me.menuitemTablas_Ubicaciones.Name = "menuitemTablas_Ubicaciones"
+        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemTablas_Ubicaciones.Text = "Ubicaciones"
         '
         'formMDIMain
         '
@@ -297,4 +304,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemDebug As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonPersonas As System.Windows.Forms.ToolStripButton
+    Friend WithEvents menuitemTablas_Ubicaciones As System.Windows.Forms.ToolStripMenuItem
 End Class

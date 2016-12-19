@@ -37,5 +37,8 @@ Partial Public Class Cuartel
     Public Overridable Property Localidad As Localidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Automotor As ICollection(Of Automotor) = New HashSet(Of Automotor)
+    Public Overridable Property Area As ICollection(Of Area) = New HashSet(Of Area)
+    Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
 
 End Class

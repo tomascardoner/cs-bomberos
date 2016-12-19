@@ -116,6 +116,22 @@
         End If
 
     End Sub
+
+    Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click
+        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUbicaciones, Form))
+            formUbicaciones.Show()
+            If formUbicaciones.WindowState = FormWindowState.Minimized Then
+                formUbicaciones.WindowState = FormWindowState.Normal
+            End If
+            formUbicaciones.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
 #End Region
 
 #Region "Left Toolbar - Personas"

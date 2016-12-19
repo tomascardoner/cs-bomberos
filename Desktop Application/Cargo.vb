@@ -14,7 +14,13 @@ Partial Public Class Cargo
     Public Property IDCargo As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
+    Public Property IDUsuarioCreacion As Short
+    Public Property FechaHoraCreacion As Date
+    Public Property IDUsuarioModificacion As Short
+    Public Property FechaHoraModificacion As Date
 
     Public Overridable Property CargoJerarquia As ICollection(Of CargoJerarquia) = New HashSet(Of CargoJerarquia)
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

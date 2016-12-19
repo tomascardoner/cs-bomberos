@@ -83,7 +83,7 @@
 
     Friend Sub InitializeFormAndControls()
         ' Cargo los ComboBox
-        pFillAndRefreshLists.Parentesco(comboboxParentesco, False, False)
+        pFillAndRefreshLists.Parentesco(comboboxParentesco, False, True)
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
@@ -113,7 +113,7 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CS_Control_ComboBox.SetSelectedValue(comboboxParentesco, SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CByte(255))
+            CS_Control_ComboBox.SetSelectedValue(comboboxParentesco, SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CByte(0))
             CS_Control_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CByte(0))
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
@@ -163,7 +163,7 @@
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             ' Datos de la pestaña General
-            .IDParentesco = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxParentesco.SelectedValue).Value
+            .IDParentesco = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxParentesco.SelectedValue)
             .IDDocumentoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDocumentoTipo.SelectedValue, 0)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxDocumentoNumero.Text)

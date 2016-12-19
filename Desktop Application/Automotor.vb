@@ -10,22 +10,32 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Ubicacion
-    Public Property IDUbicacion As Short
-    Public Property Nombre As String
+Partial Public Class Automotor
+    Public Property IDAutomotor As Short
+    Public Property Marca As String
+    Public Property Modelo As String
+    Public Property NumeroMarcaModelo As String
+    Public Property MarcaModelo As String
+    Public Property Anio As Short
+    Public Property IDAutomotorTipo As Byte
+    Public Property FechaAdquisicion As Nullable(Of Date)
+    Public Property Dominio As String
+    Public Property IDCombustibleTipo As Nullable(Of Byte)
+    Public Property KilometrajeInicial As Nullable(Of Integer)
+    Public Property CapacidadAguaLitros As Nullable(Of Byte)
     Public Property IDCuartel As Byte
-    Public Property IDAutomotor As Nullable(Of Short)
     Public Property EsActivo As Boolean
+    Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Automotor As Automotor
+    Public Overridable Property AutomotorTipo As AutomotorTipo
+    Public Overridable Property CombustibleTipo As CombustibleTipo
     Public Overridable Property Cuartel As Cuartel
-    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
-    Public Overridable Property SubUbicacion As ICollection(Of SubUbicacion) = New HashSet(Of SubUbicacion)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
 
 End Class

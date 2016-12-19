@@ -191,7 +191,7 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Año para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Parentesco para editar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PARENTESCO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
@@ -209,7 +209,7 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Año para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Parentesco para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PARENTESCO_ELIMINAR) Then
 
@@ -248,7 +248,7 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Año para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Parentesco para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 

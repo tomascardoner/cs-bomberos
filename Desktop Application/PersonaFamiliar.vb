@@ -13,7 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class PersonaFamiliar
     Public Property IDPersona As Integer
     Public Property IDFamiliar As Byte
-    Public Property IDParentesco As Byte
+    Public Property IDParentesco As Nullable(Of Byte)
     Public Property Apellido As String
     Public Property Nombre As String
     Public Property ApellidoNombre As String
@@ -41,9 +41,9 @@ Partial Public Class PersonaFamiliar
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Parentesco As Parentesco
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Parentesco As Parentesco
 
 End Class

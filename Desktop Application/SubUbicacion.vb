@@ -10,27 +10,19 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Elemento
-    Public Property IDElemento As Integer
-    Public Property IDArea As Byte
-    Public Property Codigo As String
+Partial Public Class SubUbicacion
+    Public Property IDSubUbicacion As Short
+    Public Property IDUbicacion As Short
     Public Property Nombre As String
-    Public Property IDModoAdquisicion As Nullable(Of Byte)
-    Public Property IDUbicacion As Nullable(Of Short)
-    Public Property IDSubUbicacion As Nullable(Of Short)
     Public Property EsActivo As Boolean
-    Public Property FechaBaja As Nullable(Of Date)
-    Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Area As Area
+    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
+    Public Overridable Property Ubicacion As Ubicacion
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property SubUbicacion As SubUbicacion
-    Public Overridable Property Ubicacion As Ubicacion
-    Public Overridable Property ModoAdquicision As ModoAdquicision
 
 End Class

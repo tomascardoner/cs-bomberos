@@ -83,6 +83,7 @@
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
         comboboxEstado.Enabled = mEditMode
+        comboboxCantidadHijos.Enabled = mEditMode
 
         ' Contacto Particular
         textboxDomicilioParticularCalle1.ReadOnly = (mEditMode = False)
@@ -130,6 +131,7 @@
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        comboboxCantidadHijos.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
         pFillAndRefreshLists.Estado(comboboxEstado, False, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
@@ -179,6 +181,11 @@
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             CS_Control_ComboBox.SetSelectedValue(comboboxEstado, SelectedItemOptions.Value, .Estado)
+            If .CantidadHijos Is Nothing Then
+                comboboxCantidadHijos.SelectedIndex = 0
+            Else
+                comboboxCantidadHijos.SelectedIndex = .CantidadHijos.Value
+            End If
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)
@@ -253,8 +260,13 @@
 
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
-            .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue)
+            .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .Estado = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxEstado.SelectedValue)
+            If comboboxCantidadHijos.SelectedIndex = 0 Then
+                .CantidadHijos = Nothing
+            Else
+                .CantidadHijos = CByte(comboboxCantidadHijos.SelectedIndex)
+            End If
 
             ' Datos de la pestaña Contacto Particular
             .DomicilioParticularCalle1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle1.Text)
@@ -305,8 +317,9 @@
 
         Try
             listFamiliares = (From pf In mPersonaActual.PersonaFamiliares
-                              Join p In mdbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco
-                              Select New GridRowData_Familiar With {.IDFamiliar = pf.IDFamiliar, .Parentesco = p.Nombre, .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
+                              Group Join p In mdbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco Into Parentescos_Group = Group
+                              From pg In Parentescos_Group.DefaultIfEmpty
+                              Select New GridRowData_Familiar With {.IDFamiliar = pf.IDFamiliar, .Parentesco = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
 
             datagridviewFamiliares.AutoGenerateColumns = False
             datagridviewFamiliares.DataSource = listFamiliares

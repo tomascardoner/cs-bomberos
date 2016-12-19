@@ -3,22 +3,6 @@
 #Region "Declarations..."
     Friend dbContext As CSBomberosContext
 
-    Public Class AnioLectivoCurso_ListItem
-        Public Property IDAnioLectivoCurso As Short
-        Public Property Descripcion As String
-        Public Property AnioLectivo As Short
-    End Class
-
-    Public Class Anio_ListItem
-        Public Property IDAnio As Byte
-        Public Property Descripcion As String
-    End Class
-
-    Public Class Curso_ListItem
-        Public Property IDCurso As Byte
-        Public Property Descripcion As String
-    End Class
-
     Public Sub New()
         dbContext = New CSBomberosContext(True)
     End Sub
@@ -342,6 +326,58 @@
             Dim Item_NoEspecifica As New Parentesco
             Item_NoEspecifica.IDParentesco = 0
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Ubicaciones(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Ubicacion)
+
+        ComboBoxControl.ValueMember = "IDUbicacion"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Ubicacion.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Ubicacion
+            Item_Todos.IDUbicacion = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Ubicacion
+            Item_NoEspecifica.IDUbicacion = 0
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Automotores(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = 0)
+        Dim listItems As List(Of Automotor)
+
+        ComboBoxControl.ValueMember = "IDAutomotor"
+        ComboBoxControl.DisplayMember = "NumeroMarcaModelo"
+
+        If IDCuartel = 0 Then
+            listItems = dbContext.Automotor.OrderBy(Function(aut) aut.NumeroMarcaModelo).ToList
+        Else
+            listItems = dbContext.Automotor.Where(Function(aut) aut.IDCuartel = IDCuartel).OrderBy(Function(aut) aut.NumeroMarcaModelo).ToList
+        End If
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Automotor
+            Item_Todos.IDAutomotor = 0
+            Item_Todos.NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Automotor
+            Item_NoEspecifica.IDAutomotor = 0
+            Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
 

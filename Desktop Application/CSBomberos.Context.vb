@@ -47,5 +47,9 @@ Partial Public Class CSBomberosContext
     Public Overridable Property PersonaAltaBaja() As DbSet(Of PersonaAltaBaja)
     Public Overridable Property PersonaAscenso() As DbSet(Of PersonaAscenso)
     Public Overridable Property Ubicacion() As DbSet(Of Ubicacion)
+    Public Overridable Property Automotor() As DbSet(Of Automotor)
+    Public Overridable Property AutomotorTipo() As DbSet(Of AutomotorTipo)
+    Public Overridable Property CombustibleTipo() As DbSet(Of CombustibleTipo)
+    Public Overridable Property SubUbicacion() As DbSet(Of SubUbicacion)
 
 End Class

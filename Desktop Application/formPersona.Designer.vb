@@ -61,10 +61,11 @@ Partial Class formPersona
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim labelGrupoSanguineo As System.Windows.Forms.Label
         Dim labelFactorRH As System.Windows.Forms.Label
         Dim labelNivelEstudio As System.Windows.Forms.Label
+        Dim labelCantidadHijos As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
@@ -81,6 +82,10 @@ Partial Class formPersona
         Me.textboxDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxCantidadHijos = New System.Windows.Forms.ComboBox()
+        Me.comboboxNivelEstudio = New System.Windows.Forms.ComboBox()
+        Me.comboboxFactorRH = New System.Windows.Forms.ComboBox()
+        Me.comboboxGrupoSanguineo = New System.Windows.Forms.ComboBox()
         Me.comboboxEstado = New System.Windows.Forms.ComboBox()
         Me.datetimepickerFechaNacimiento = New System.Windows.Forms.DateTimePicker()
         Me.comboboxGenero = New System.Windows.Forms.ComboBox()
@@ -131,9 +136,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.comboboxGrupoSanguineo = New System.Windows.Forms.ComboBox()
-        Me.comboboxFactorRH = New System.Windows.Forms.ComboBox()
-        Me.comboboxNivelEstudio = New System.Windows.Forms.ComboBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -175,6 +177,7 @@ Partial Class formPersona
         labelGrupoSanguineo = New System.Windows.Forms.Label()
         labelFactorRH = New System.Windows.Forms.Label()
         labelNivelEstudio = New System.Windows.Forms.Label()
+        labelCantidadHijos = New System.Windows.Forms.Label()
         CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
@@ -530,6 +533,42 @@ Partial Class formPersona
         labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
+        'labelGrupoSanguineo
+        '
+        labelGrupoSanguineo.AutoSize = True
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 93)
+        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
+        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
+        labelGrupoSanguineo.TabIndex = 7
+        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
+        '
+        'labelFactorRH
+        '
+        labelFactorRH.AutoSize = True
+        labelFactorRH.Location = New System.Drawing.Point(250, 93)
+        labelFactorRH.Name = "labelFactorRH"
+        labelFactorRH.Size = New System.Drawing.Size(59, 13)
+        labelFactorRH.TabIndex = 9
+        labelFactorRH.Text = "Factor RH:"
+        '
+        'labelNivelEstudio
+        '
+        labelNivelEstudio.AutoSize = True
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 120)
+        labelNivelEstudio.Name = "labelNivelEstudio"
+        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
+        labelNivelEstudio.TabIndex = 11
+        labelNivelEstudio.Text = "Nivel de estudios:"
+        '
+        'labelCantidadHijos
+        '
+        labelCantidadHijos.AutoSize = True
+        labelCantidadHijos.Location = New System.Drawing.Point(6, 253)
+        labelCantidadHijos.Name = "labelCantidadHijos"
+        labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
+        labelCantidadHijos.TabIndex = 22
+        labelCantidadHijos.Text = "Cantidad de hijos:"
+        '
         'labelIDPersona
         '
         Me.labelIDPersona.AutoSize = True
@@ -628,7 +667,7 @@ Partial Class formPersona
         'textboxMatriculaNumero
         '
         Me.textboxMatriculaNumero.Location = New System.Drawing.Point(328, 49)
-        Me.textboxMatriculaNumero.MaxLength = 5
+        Me.textboxMatriculaNumero.MaxLength = 6
         Me.textboxMatriculaNumero.Name = "textboxMatriculaNumero"
         Me.textboxMatriculaNumero.Size = New System.Drawing.Size(66, 20)
         Me.textboxMatriculaNumero.TabIndex = 4
@@ -654,11 +693,13 @@ Partial Class formPersona
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 138)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 285)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 307)
         Me.tabcontrolMain.TabIndex = 9
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.comboboxCantidadHijos)
+        Me.tabpageGeneral.Controls.Add(labelCantidadHijos)
         Me.tabpageGeneral.Controls.Add(Me.comboboxNivelEstudio)
         Me.tabpageGeneral.Controls.Add(labelNivelEstudio)
         Me.tabpageGeneral.Controls.Add(Me.comboboxFactorRH)
@@ -684,10 +725,46 @@ Partial Class formPersona
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 256)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 278)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'comboboxCantidadHijos
+        '
+        Me.comboboxCantidadHijos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCantidadHijos.FormattingEnabled = True
+        Me.comboboxCantidadHijos.Location = New System.Drawing.Point(142, 250)
+        Me.comboboxCantidadHijos.Name = "comboboxCantidadHijos"
+        Me.comboboxCantidadHijos.Size = New System.Drawing.Size(102, 21)
+        Me.comboboxCantidadHijos.TabIndex = 23
+        '
+        'comboboxNivelEstudio
+        '
+        Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxNivelEstudio.FormattingEnabled = True
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 117)
+        Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
+        Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
+        Me.comboboxNivelEstudio.TabIndex = 12
+        '
+        'comboboxFactorRH
+        '
+        Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxFactorRH.FormattingEnabled = True
+        Me.comboboxFactorRH.Location = New System.Drawing.Point(315, 90)
+        Me.comboboxFactorRH.Name = "comboboxFactorRH"
+        Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
+        Me.comboboxFactorRH.TabIndex = 10
+        '
+        'comboboxGrupoSanguineo
+        '
+        Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxGrupoSanguineo.FormattingEnabled = True
+        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 90)
+        Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
+        Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
+        Me.comboboxGrupoSanguineo.TabIndex = 8
         '
         'comboboxEstado
         '
@@ -794,7 +871,7 @@ Partial Class formPersona
         Me.tabpageParticular.Location = New System.Drawing.Point(4, 25)
         Me.tabpageParticular.Name = "tabpageParticular"
         Me.tabpageParticular.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageParticular.Size = New System.Drawing.Size(506, 248)
+        Me.tabpageParticular.Size = New System.Drawing.Size(506, 278)
         Me.tabpageParticular.TabIndex = 1
         Me.tabpageParticular.Text = "Contacto Particular"
         Me.tabpageParticular.UseVisualStyleBackColor = True
@@ -926,7 +1003,7 @@ Partial Class formPersona
         Me.tabpageLaboral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageLaboral.Name = "tabpageLaboral"
         Me.tabpageLaboral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageLaboral.Size = New System.Drawing.Size(506, 248)
+        Me.tabpageLaboral.Size = New System.Drawing.Size(506, 278)
         Me.tabpageLaboral.TabIndex = 9
         Me.tabpageLaboral.Text = "Contacto Laboral"
         Me.tabpageLaboral.UseVisualStyleBackColor = True
@@ -1036,7 +1113,7 @@ Partial Class formPersona
         Me.tabpageFamiliares.Location = New System.Drawing.Point(4, 25)
         Me.tabpageFamiliares.Name = "tabpageFamiliares"
         Me.tabpageFamiliares.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageFamiliares.Size = New System.Drawing.Size(506, 248)
+        Me.tabpageFamiliares.Size = New System.Drawing.Size(506, 278)
         Me.tabpageFamiliares.TabIndex = 10
         Me.tabpageFamiliares.Text = "Familiares"
         Me.tabpageFamiliares.UseVisualStyleBackColor = True
@@ -1062,7 +1139,7 @@ Partial Class formPersona
         Me.datagridviewFamiliares.RowHeadersVisible = False
         Me.datagridviewFamiliares.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewFamiliares.Size = New System.Drawing.Size(413, 242)
+        Me.datagridviewFamiliares.Size = New System.Drawing.Size(413, 272)
         Me.datagridviewFamiliares.TabIndex = 6
         '
         'columnFamiliares_Parentesco
@@ -1100,7 +1177,7 @@ Partial Class formPersona
         Me.toolstripFamiliares.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripFamiliares.Location = New System.Drawing.Point(3, 3)
         Me.toolstripFamiliares.Name = "toolstripFamiliares"
-        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 242)
+        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 272)
         Me.toolstripFamiliares.TabIndex = 7
         '
         'buttonFamiliares_Agregar
@@ -1148,7 +1225,7 @@ Partial Class formPersona
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 248)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 278)
         Me.tabpageNotasAuditoria.TabIndex = 7
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -1207,65 +1284,11 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'comboboxGrupoSanguineo
-        '
-        Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxGrupoSanguineo.FormattingEnabled = True
-        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 90)
-        Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
-        Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGrupoSanguineo.TabIndex = 8
-        '
-        'labelGrupoSanguineo
-        '
-        labelGrupoSanguineo.AutoSize = True
-        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 93)
-        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
-        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 7
-        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
-        '
-        'comboboxFactorRH
-        '
-        Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxFactorRH.FormattingEnabled = True
-        Me.comboboxFactorRH.Location = New System.Drawing.Point(315, 90)
-        Me.comboboxFactorRH.Name = "comboboxFactorRH"
-        Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxFactorRH.TabIndex = 10
-        '
-        'labelFactorRH
-        '
-        labelFactorRH.AutoSize = True
-        labelFactorRH.Location = New System.Drawing.Point(250, 93)
-        labelFactorRH.Name = "labelFactorRH"
-        labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 9
-        labelFactorRH.Text = "Factor RH:"
-        '
-        'comboboxNivelEstudio
-        '
-        Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 117)
-        Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
-        Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 12
-        '
-        'labelNivelEstudio
-        '
-        labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 120)
-        labelNivelEstudio.Name = "labelNivelEstudio"
-        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 11
-        labelNivelEstudio.Text = "Nivel de estudios:"
-        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(539, 434)
+        Me.ClientSize = New System.Drawing.Size(539, 454)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.pictureboxMain)
@@ -1373,4 +1396,5 @@ Partial Class formPersona
     Friend WithEvents comboboxFactorRH As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxGrupoSanguineo As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxNivelEstudio As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxCantidadHijos As System.Windows.Forms.ComboBox
 End Class
