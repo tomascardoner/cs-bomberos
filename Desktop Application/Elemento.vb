@@ -12,7 +12,7 @@ Imports System.Collections.Generic
 
 Partial Public Class Elemento
     Public Property IDElemento As Integer
-    Public Property IDArea As Byte
+    Public Property IDArea As Short
     Public Property Codigo As String
     Public Property Nombre As String
     Public Property IDModoAdquisicion As Nullable(Of Byte)
@@ -31,6 +31,6 @@ Partial Public Class Elemento
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property SubUbicacion As SubUbicacion
     Public Overridable Property Ubicacion As Ubicacion
-    Public Overridable Property ModoAdquicision As ModoAdquicision
+    Public Overridable Property ModoAdquisicion As ModoAdquisicion
 
 End Class

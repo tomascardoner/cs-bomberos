@@ -9,7 +9,7 @@
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUbicacion As Integer)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUbicacion As Short)
         mIsLoading = True
         mEditMode = EditMode
 
@@ -94,7 +94,7 @@
         With mUbicacionActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
-            .IDAutomotor = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotor.SelectedValue)
+            .IDAutomotor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxAutomotor.SelectedValue)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
@@ -123,7 +123,7 @@
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.Automotores(comboboxAutomotor, False, True, CByte(comboboxCuartel.SelectedValue))
+        pFillAndRefreshLists.Automotor(comboboxAutomotor, False, True, CByte(comboboxCuartel.SelectedValue))
     End Sub
 #End Region
 

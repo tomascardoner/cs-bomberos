@@ -19,10 +19,20 @@
     Friend Const UBICACION_EDITAR As String = "UBICACION_EDITAR"
     Friend Const UBICACION_ELIMINAR As String = "UBICACION_ELIMINAR"
 
+    Friend Const SUBUBICACION As String = "SUBUBICACION"
+    Friend Const SUBUBICACION_AGREGAR As String = "SUBUBICACION_AGREGAR"
+    Friend Const SUBUBICACION_EDITAR As String = "SUBUBICACION_EDITAR"
+    Friend Const SUBUBICACION_ELIMINAR As String = "SUBUBICACION_ELIMINAR"
+
+    Friend Const ELEMENTO As String = "ELEMENTO"
+    Friend Const ELEMENTO_AGREGAR As String = "ELEMENTO_AGREGAR"
+    Friend Const ELEMENTO_EDITAR As String = "ELEMENTO_EDITAR"
+    Friend Const ELEMENTO_ELIMINAR As String = "ELEMENTO_ELIMINAR"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
-        If pUsuario.IDUsuario = 1 Then
+        If pUsuario.IDUsuarioGrupo = 1 Then
             Return True
         Else
             If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
@@ -33,6 +43,6 @@
             Else
                 Return True
             End If
-            End If
+        End If
     End Function
 End Module

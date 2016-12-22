@@ -11,7 +11,7 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class Area
-    Public Property IDArea As Byte
+    Public Property IDArea As Short
     Public Property Codigo As String
     Public Property Nombre As String
     Public Property EsActivo As Boolean

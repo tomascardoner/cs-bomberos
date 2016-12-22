@@ -3,20 +3,6 @@
     '    APLICACIÓN
     '//////////////////
     Friend Const APPLICATION_DATABASE_GUID As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
-    Friend Const FILTER_ACTIVO_LIST_INDEX As Long = 1
-    Friend Const ENCRYPTION_PASSWORD As String = "CmcaTlMdmA,aTmP,am2CyalhdEb"
-    Friend Const ENCRYPTION_VECTOR As String = "DaVsmpca#Tmd1Bv@"
-
-    '//////////////////
-    '    BÁSICAS
-    '//////////////////
-    Friend Const KEY_STRINGER As String = "@"
-    Friend Const KEY_DELIMITER As String = "|@|"
-
-    Friend Const STRING_LIST_SEPARATOR As String = "|"
-    Friend Const STRING_LIST_DELIMITER As String = "¬"
-
-    Friend Const DATE_TIME_FIELD_NULL_VALUE As Date = #12:00:00 AM#
 
     '//////////////////
     '    VARIOS
@@ -45,13 +31,6 @@
     Friend Const COMPROBANTE_CONCEPTO_SERVICIOS As Byte = 2
     Friend Const COMPROBANTE_CONCEPTO_PRODUCTOSYSERVICIOS As Byte = 3
     Friend Const COMPROBANTE_CONCEPTO_OTROS As Byte = 4
-
-    '//////////////////
-    '    E-MAIL
-    '//////////////////
-    Friend Const EMAIL_CLIENT_NETDLL As String = "NETCLIENT"
-    Friend Const EMAIL_CLIENT_MSOUTLOOK As String = "MSOUTLOOK"
-    Friend Const EMAIL_CLIENT_CRYSTALREPORTSMAPI As String = "CRYSTALMAPI"
 
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES

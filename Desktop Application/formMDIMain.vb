@@ -152,6 +152,24 @@
 
 #End Region
 
+#Region "Left Toolbar - Elementos"
+    Private Sub Elementos() Handles buttonElementos.Click
+        If Permisos.VerificarPermiso(Permisos.ELEMENTO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formElementos, Form))
+            formElementos.Show()
+            If formElementos.WindowState = FormWindowState.Minimized Then
+                formElementos.WindowState = FormWindowState.Normal
+            End If
+            formElementos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
 #Region "Left Toolbar - Reportes"
     Private Sub buttonReportes_Click(sender As Object, e As EventArgs) Handles buttonReportes.Click
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then

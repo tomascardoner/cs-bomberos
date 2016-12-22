@@ -25,7 +25,7 @@
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
             Dim UnspecifiedItem As New DocumentoTipo
-            UnspecifiedItem.IDDocumentoTipo = 0
+            UnspecifiedItem.IDDocumentoTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
             UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             UnspecifiedItem.VerificaModulo11 = False
             localList.Insert(0, UnspecifiedItem)
@@ -290,14 +290,22 @@
         ComboBoxControl.ValueMember = "IDCuartel"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Cuartel.OrderBy(Function(cl) cl.Nombre).ToList
+        If pUsuario.IDCuartel.HasValue Then
+            ' Tengo que limitar la lista al cuartel que tiene especificado
+            listItems = New List(Of Cuartel)
 
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New Cuartel
-            Item_Todos.IDCuartel = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            listItems.Insert(0, Item_Todos)
+            listItems.Insert(0, dbContext.Cuartel.Find(pUsuario.IDCuartel))
+        Else
+            listItems = dbContext.Cuartel.OrderBy(Function(cl) cl.Nombre).ToList
+
+            If AgregarItem_Todos Then
+                Dim Item_Todos As New Cuartel
+                Item_Todos.IDCuartel = 0
+                Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+                listItems.Insert(0, Item_Todos)
+            End If
         End If
+
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Cuartel
             Item_NoEspecifica.IDCuartel = 0
@@ -316,69 +324,145 @@
 
         listItems = dbContext.Parentesco.OrderBy(Function(cl) cl.Nombre).ToList
 
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New Parentesco
-            Item_Todos.IDParentesco = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            listItems.Insert(0, Item_Todos)
-        End If
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Parentesco
-            Item_NoEspecifica.IDParentesco = 0
+            Item_NoEspecifica.IDParentesco = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Parentesco
+            Item_Todos.IDParentesco = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
         End If
 
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Ubicaciones(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Area(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal IDCuartel As Byte)
+        Dim listItems As List(Of Area)
+
+        ComboBoxControl.ValueMember = "IDArea"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Area.Where(Function(a) a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Area
+            Item_NoEspecifica.IDArea = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Area
+            Item_Todos.IDArea = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Ubicacion(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = FIELD_VALUE_NOTSPECIFIED_BYTE)
         Dim listItems As List(Of Ubicacion)
 
         ComboBoxControl.ValueMember = "IDUbicacion"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Ubicacion.OrderBy(Function(cl) cl.Nombre).ToList
+        If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = dbContext.Ubicacion.OrderBy(Function(cl) cl.Nombre).ToList
+        Else
+            listItems = dbContext.Ubicacion.Where(Function(a) a.IDCuartel = IDCuartel).OrderBy(Function(cl) cl.Nombre).ToList
+        End If
 
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Ubicacion
+            Item_NoEspecifica.IDUbicacion = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New Ubicacion
             Item_Todos.IDUbicacion = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
             listItems.Insert(0, Item_Todos)
-        End If
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Ubicacion
-            Item_NoEspecifica.IDUbicacion = 0
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            listItems.Insert(0, Item_NoEspecifica)
         End If
 
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Automotores(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = 0)
+    Friend Sub SubUbicacion(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal IDUbicacion As Short)
+        Dim listItems As List(Of SubUbicacion)
+
+        ComboBoxControl.ValueMember = "IDSubUbicacion"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.SubUbicacion.Where(Function(a) a.IDUbicacion = IDUbicacion).OrderBy(Function(a) a.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New SubUbicacion
+            Item_NoEspecifica.IDSubUbicacion = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New SubUbicacion
+            Item_Todos.IDSubUbicacion = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Automotor(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = FIELD_VALUE_NOTSPECIFIED_BYTE)
         Dim listItems As List(Of Automotor)
 
         ComboBoxControl.ValueMember = "IDAutomotor"
         ComboBoxControl.DisplayMember = "NumeroMarcaModelo"
 
-        If IDCuartel = 0 Then
+        If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
             listItems = dbContext.Automotor.OrderBy(Function(aut) aut.NumeroMarcaModelo).ToList
         Else
             listItems = dbContext.Automotor.Where(Function(aut) aut.IDCuartel = IDCuartel).OrderBy(Function(aut) aut.NumeroMarcaModelo).ToList
         End If
 
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Automotor
+            Item_NoEspecifica.IDAutomotor = Short.MinValue
+            Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New Automotor
             Item_Todos.IDAutomotor = 0
             Item_Todos.NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub ModoAdquisicion(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of ModoAdquisicion)
+
+        ComboBoxControl.ValueMember = "IDModoAdquisicion"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.ModoAdquisicion.OrderBy(Function(cl) cl.Nombre).ToList
+
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Automotor
-            Item_NoEspecifica.IDAutomotor = 0
-            Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New ModoAdquisicion
+            Item_NoEspecifica.IDModoAdquisicion = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New ModoAdquisicion
+            Item_Todos.IDModoAdquisicion = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
         End If
 
         ComboBoxControl.DataSource = listItems

@@ -41,7 +41,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property Cargo() As DbSet(Of Cargo)
     Public Overridable Property CargoJerarquia() As DbSet(Of CargoJerarquia)
     Public Overridable Property Elemento() As DbSet(Of Elemento)
-    Public Overridable Property ModoAdquicision() As DbSet(Of ModoAdquicision)
     Public Overridable Property NivelEstudio() As DbSet(Of NivelEstudio)
     Public Overridable Property PersonaAccidente() As DbSet(Of PersonaAccidente)
     Public Overridable Property PersonaAltaBaja() As DbSet(Of PersonaAltaBaja)
@@ -51,5 +50,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property AutomotorTipo() As DbSet(Of AutomotorTipo)
     Public Overridable Property CombustibleTipo() As DbSet(Of CombustibleTipo)
     Public Overridable Property SubUbicacion() As DbSet(Of SubUbicacion)
+    Public Overridable Property ModoAdquisicion() As DbSet(Of ModoAdquisicion)
 
 End Class

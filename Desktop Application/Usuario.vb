@@ -17,6 +17,7 @@ Partial Public Class Usuario
     Public Property Password As String
     Public Property Genero As String
     Public Property IDUsuarioGrupo As Byte
+    Public Property IDCuartel As Nullable(Of Byte)
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
@@ -57,7 +58,8 @@ Partial Public Class Usuario
     Public Overridable Property SubUbicacionesModificadas As ICollection(Of SubUbicacion) = New HashSet(Of SubUbicacion)
     Public Overridable Property UbicacionesCreadas As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
     Public Overridable Property UbicacionesModificadas As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
-    Public Overridable Property ModosAdquicisionCreados As ICollection(Of ModoAdquicision) = New HashSet(Of ModoAdquicision)
-    Public Overridable Property ModosAdquicisionModificados As ICollection(Of ModoAdquicision) = New HashSet(Of ModoAdquicision)
+    Public Overridable Property Cuartel As Cuartel
+    Public Overridable Property ModosAdquisicionCreados As ICollection(Of ModoAdquisicion) = New HashSet(Of ModoAdquisicion)
+    Public Overridable Property ModosAdquisicionModificados As ICollection(Of ModoAdquisicion) = New HashSet(Of ModoAdquisicion)
 
 End Class

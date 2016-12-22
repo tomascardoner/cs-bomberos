@@ -44,7 +44,6 @@
         <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="5.25" PointY="52" />
         <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="7.5" PointY="38.5" />
         <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.5" PointX="16" PointY="30.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.ModoAdquicision" Width="1.5" PointX="2.75" PointY="5.75" />
         <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="5.25" PointY="35" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="10.125" PointY="28.125" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAltaBaja" Width="1.5" PointX="13.125" PointY="28" />
@@ -98,9 +97,11 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SubUbicacion__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Ubicacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Ubicacion__Modificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__ModoAdquicision__Elemento" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquicision__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquicision__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Usuario" />
+        <EntityTypeShape EntityType="CSBomberosModel.ModoAdquisicion" Width="1.5" PointX="5.25" PointY="19.375" />
+        <AssociationConnector Association="CSBomberosModel.FK__ModoAdquisicion__Elemento" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

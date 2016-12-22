@@ -10,8 +10,8 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ModoAdquicision
-    Public Property IDModoAdquicision As Byte
+Partial Public Class ModoAdquisicion
+    Public Property IDModoAdquisicion As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
