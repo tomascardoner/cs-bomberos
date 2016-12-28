@@ -300,7 +300,7 @@
 
             If AgregarItem_Todos Then
                 Dim Item_Todos As New Cuartel
-                Item_Todos.IDCuartel = 0
+                Item_Todos.IDCuartel = FIELD_VALUE_ALL_BYTE
                 Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
                 listItems.Insert(0, Item_Todos)
             End If
@@ -308,7 +308,7 @@
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Cuartel
-            Item_NoEspecifica.IDCuartel = 0
+            Item_NoEspecifica.IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
@@ -468,4 +468,53 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub AutomotorTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of AutomotorTipo)
+
+        ComboBoxControl.ValueMember = "IDAutomotorTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.AutomotorTipo.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New AutomotorTipo
+            Item_Todos.IDAutomotorTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New AutomotorTipo
+            Item_NoEspecifica.IDAutomotorTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub CombustibleTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of CombustibleTipo)
+
+        ComboBoxControl.ValueMember = "IDCombustibleTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.CombustibleTipo.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New CombustibleTipo
+            Item_Todos.IDCombustibleTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New CombustibleTipo
+            Item_NoEspecifica.IDCombustibleTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
 End Class

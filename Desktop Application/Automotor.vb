@@ -12,17 +12,18 @@ Imports System.Collections.Generic
 
 Partial Public Class Automotor
     Public Property IDAutomotor As Short
+    Public Property Numero As Short
     Public Property Marca As String
     Public Property Modelo As String
-    Public Property NumeroMarcaModelo As String
     Public Property MarcaModelo As String
+    Public Property NumeroMarcaModelo As String
     Public Property Anio As Short
     Public Property IDAutomotorTipo As Byte
     Public Property FechaAdquisicion As Nullable(Of Date)
     Public Property Dominio As String
     Public Property IDCombustibleTipo As Nullable(Of Byte)
     Public Property KilometrajeInicial As Nullable(Of Integer)
-    Public Property CapacidadAguaLitros As Nullable(Of Byte)
+    Public Property CapacidadAguaLitros As Nullable(Of Integer)
     Public Property IDCuartel As Byte
     Public Property EsActivo As Boolean
     Public Property Notas As String

@@ -36,6 +36,7 @@
 
         mSkipFilterData = True
 
+        pFillAndRefreshLists.AutomotorTipo(comboboxAutomotorTipo.ComboBox, True, False)
         pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})

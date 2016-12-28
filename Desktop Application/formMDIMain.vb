@@ -152,6 +152,24 @@
 
 #End Region
 
+#Region "Left Toolbar - Automotores"
+    Private Sub Automotores() Handles buttonUnidades.Click
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTOR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotores, Form))
+            formAutomotores.Show()
+            If formAutomotores.WindowState = FormWindowState.Minimized Then
+                formAutomotores.WindowState = FormWindowState.Normal
+            End If
+            formAutomotores.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
 #Region "Left Toolbar - Elementos"
     Private Sub Elementos() Handles buttonElementos.Click
         If Permisos.VerificarPermiso(Permisos.ELEMENTO) Then

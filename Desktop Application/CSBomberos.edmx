@@ -24,17 +24,18 @@
             <PropertyRef Name="IDAutomotor" />
           </Key>
           <Property Name="IDAutomotor" Type="smallint" Nullable="false" />
+          <Property Name="Numero" Type="smallint" Nullable="false" />
           <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="NumeroMarcaModelo" Type="varchar" MaxLength="109" StoreGeneratedPattern="Computed" />
           <Property Name="MarcaModelo" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="NumeroMarcaModelo" Type="varchar" MaxLength="109" StoreGeneratedPattern="Computed" />
           <Property Name="Anio" Type="smallint" Nullable="false" />
           <Property Name="IDAutomotorTipo" Type="tinyint" Nullable="false" />
           <Property Name="FechaAdquisicion" Type="date" />
           <Property Name="Dominio" Type="varchar" MaxLength="7" />
           <Property Name="IDCombustibleTipo" Type="tinyint" />
           <Property Name="KilometrajeInicial" Type="int" />
-          <Property Name="CapacidadAguaLitros" Type="tinyint" />
+          <Property Name="CapacidadAguaLitros" Type="int" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -2762,17 +2763,18 @@
             <PropertyRef Name="IDAutomotor" />
           </Key>
           <Property Name="IDAutomotor" Type="Int16" Nullable="false" />
+          <Property Name="Numero" Type="Int16" Nullable="false" />
           <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroMarcaModelo" Type="String" MaxLength="109" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="MarcaModelo" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="NumeroMarcaModelo" Type="String" MaxLength="109" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Anio" Type="Int16" Nullable="false" />
           <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
           <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
           <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <Property Name="IDCombustibleTipo" Type="Byte" />
           <Property Name="KilometrajeInicial" Type="Int32" />
-          <Property Name="CapacidadAguaLitros" Type="Byte" />
+          <Property Name="CapacidadAguaLitros" Type="Int32" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -3617,6 +3619,7 @@
           <EntitySetMapping Name="Automotor">
             <EntityTypeMapping TypeName="CSBomberosModel.Automotor">
               <MappingFragment StoreEntitySet="Automotor">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="MarcaModelo" ColumnName="MarcaModelo" />
                 <ScalarProperty Name="NumeroMarcaModelo" ColumnName="NumeroMarcaModelo" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />

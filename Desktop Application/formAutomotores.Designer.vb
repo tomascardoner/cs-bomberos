@@ -23,6 +23,7 @@ Partial Class formAutomotores
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotores))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
@@ -216,6 +217,10 @@ Partial Class formAutomotores
         '
         Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnNumero.DataPropertyName = "Numero"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
         Me.columnNumero.HeaderText = "Número"
         Me.columnNumero.Name = "columnNumero"
         Me.columnNumero.ReadOnly = True

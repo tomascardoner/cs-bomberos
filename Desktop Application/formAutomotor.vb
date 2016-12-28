@@ -70,6 +70,8 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        pFillAndRefreshLists.AutomotorTipo(comboboxAutomotorTipo, False, False)
+        pFillAndRefreshLists.CombustibleTipo(comboboxCombustibleTipo, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
     End Sub
 
@@ -110,7 +112,7 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mAutomotorActual
-            .Numero = CS_ValueTranslation.FromControlTextBoxToObjectInteger(textboxNumero.Text)
+            .Numero = CS_ValueTranslation.FromControlTextBoxToObjectShort(textboxNumero.Text).Value
             .Marca = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMarca.Text)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
             .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(textboxAnio.Text).Value
