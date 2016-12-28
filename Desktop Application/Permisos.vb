@@ -29,6 +29,11 @@
     Friend Const ELEMENTO_EDITAR As String = "ELEMENTO_EDITAR"
     Friend Const ELEMENTO_ELIMINAR As String = "ELEMENTO_ELIMINAR"
 
+    Friend Const AUTOMOTOR As String = "AUTOMOTOR"
+    Friend Const AUTOMOTOR_AGREGAR As String = "AUTOMOTOR_AGREGAR"
+    Friend Const AUTOMOTOR_EDITAR As String = "AUTOMOTOR_EDITAR"
+    Friend Const AUTOMOTOR_ELIMINAR As String = "AUTOMOTOR_ELIMINAR"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean

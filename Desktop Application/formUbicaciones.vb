@@ -62,7 +62,6 @@
             End Using
 
         Catch ex As Exception
-
             CS_Error.ProcessError(ex, "Error al leer los Ubicaciones.")
             Me.Cursor = Cursors.Default
             Exit Sub
@@ -98,7 +97,6 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-
                 mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesBase.ToList
 
                 ' Filtro por Cuartel
@@ -176,10 +174,6 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
-        FilterData()
-    End Sub
-
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
         FilterData()
     End Sub

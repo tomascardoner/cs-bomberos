@@ -57,11 +57,18 @@
     Friend Sub RefreshData(Optional ByVal PositionIDPersona As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
-        Using dbContext As New CSBomberosContext(True)
-            mlistPersonaBase = (From p In dbContext.Persona
-                               Join c In dbContext.Cuartel On p.IDCuartel Equals c.IDCuartel
-                               Select New GridRowData With {.IDPersona = p.IDPersona, .MatriculaNumero = p.MatriculaNumero, .Apellido = p.Apellido, .Nombre = p.Nombre, .ApellidoNombre = p.ApellidoNombre, .IDCuartel = p.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = p.EsActivo}).ToList
-        End Using
+        Try
+            Using dbContext As New CSBomberosContext(True)
+                mlistPersonaBase = (From p In dbContext.Persona
+                                   Join c In dbContext.Cuartel On p.IDCuartel Equals c.IDCuartel
+                                   Select New GridRowData With {.IDPersona = p.IDPersona, .MatriculaNumero = p.MatriculaNumero, .Apellido = p.Apellido, .Nombre = p.Nombre, .ApellidoNombre = p.ApellidoNombre, .IDCuartel = p.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = p.EsActivo}).ToList
+            End Using
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Personas.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
 
         Me.Cursor = Cursors.Default
 
@@ -94,22 +101,28 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-
                 mlistPersonaFiltradaYOrdenada = mlistPersonaBase
 
+                ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
+                ' Filtro por Búsqueda en Apellido y Nombre
                 If mBusquedaAplicada Then
-                    mlistPersonaFiltradaYOrdenada = (From ent In mlistPersonaFiltradaYOrdenada
-                                                    Where ent.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim) And (comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo))
-                                                    Select ent).ToList
-                Else
-                    mlistPersonaFiltradaYOrdenada = (From ent In mlistPersonaFiltradaYOrdenada
-                                                    Where comboboxActivo.SelectedIndex = 0 Or (comboboxActivo.SelectedIndex = 1 And ent.EsActivo) Or (comboboxActivo.SelectedIndex = 2 And Not ent.EsActivo)
-                                                    Select ent).ToList
+                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
+
+                ' Filtro por Activo
+                Select Case comboboxActivo.SelectedIndex
+                    Case 0      ' Todos
+                    Case FILTER_ACTIVO_YES_LISTINDEX       ' Sí
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 1"
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                    Case FILTER_ACTIVO_NO_LISTINDEX       ' No
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 0"
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                End Select
 
                 Select Case mlistPersonaFiltradaYOrdenada.Count
                     Case 0
@@ -174,7 +187,7 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub formPersonaes_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub formPersonas_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
                 For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows

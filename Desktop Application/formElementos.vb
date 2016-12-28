@@ -68,7 +68,6 @@
             End Using
 
         Catch ex As Exception
-
             CS_Error.ProcessError(ex, "Error al leer los Elementos.")
             Me.Cursor = Cursors.Default
             Exit Sub
@@ -104,8 +103,12 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-
                 mlistElementosFiltradaYOrdenada = mlistElementosBase.ToList
+
+                ' Filtro por texto de búsqueda en el Nombre
+                If mBusquedaAplicada Then
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                End If
 
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
@@ -217,8 +220,29 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
-        FilterData()
+    Private Sub textboxBuscar_GotFocus() Handles textboxBuscar.GotFocus
+        textboxBuscar.SelectAll()
+    End Sub
+
+    Private Sub textboxBuscar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles textboxBuscar.KeyPress
+        If e.KeyChar = ChrW(Keys.Return) Then
+            If textboxBuscar.Text.Trim.Length < 3 Then
+                MsgBox("Se deben especificar al menos 3 letras para buscar.", MsgBoxStyle.Information, My.Application.Info.Title)
+                textboxBuscar.Focus()
+            Else
+                mBusquedaAplicada = True
+                FilterData()
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub buttonBuscarBorrar_Click() Handles buttonBuscarBorrar.Click
+        If mBusquedaAplicada Then
+            textboxBuscar.Clear()
+            mBusquedaAplicada = False
+            FilterData()
+        End If
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged

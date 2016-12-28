@@ -607,7 +607,7 @@ Partial Class formPersona
         '
         'pictureboxMain
         '
-        Me.pictureboxMain.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ENTIDAD_48
+        Me.pictureboxMain.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PERSONA_48
         Me.pictureboxMain.Location = New System.Drawing.Point(12, 49)
         Me.pictureboxMain.Name = "pictureboxMain"
         Me.pictureboxMain.Size = New System.Drawing.Size(48, 48)

@@ -289,7 +289,7 @@ Partial Class formPersonas
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
         Me.toolstripCuartel.Location = New System.Drawing.Point(505, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
-        Me.toolstripCuartel.Size = New System.Drawing.Size(216, 39)
+        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 4
         '
         'labelCuartel
@@ -309,7 +309,7 @@ Partial Class formPersonas
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(721, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(688, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3

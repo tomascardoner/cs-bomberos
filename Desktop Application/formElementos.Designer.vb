@@ -24,6 +24,7 @@ Partial Class formElementos
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formElementos))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -38,6 +39,10 @@ Partial Class formElementos
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
+        Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
+        Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
+        Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
         Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
@@ -57,6 +62,7 @@ Partial Class formElementos
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
+        Me.toolstripBuscar.SuspendLayout()
         Me.toolstripCuartel.SuspendLayout()
         Me.toolstripArea.SuspendLayout()
         Me.toolstripUbicacion.SuspendLayout()
@@ -166,6 +172,7 @@ Partial Class formElementos
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripBuscar)
         Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
         Me.panelToolbars.Controls.Add(Me.toolstripArea)
         Me.panelToolbars.Controls.Add(Me.toolstripUbicacion)
@@ -214,12 +221,43 @@ Partial Class formElementos
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
+        'toolstripBuscar
+        '
+        Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
+        Me.toolstripBuscar.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripBuscar.Name = "toolstripBuscar"
+        Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
+        Me.toolstripBuscar.TabIndex = 17
+        '
+        'labelBuscar
+        '
+        Me.labelBuscar.Name = "labelBuscar"
+        Me.labelBuscar.Size = New System.Drawing.Size(45, 36)
+        Me.labelBuscar.Text = "Buscar:"
+        '
+        'textboxBuscar
+        '
+        Me.textboxBuscar.MaxLength = 100
+        Me.textboxBuscar.Name = "textboxBuscar"
+        Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
+        '
+        'buttonBuscarBorrar
+        '
+        Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonBuscarBorrar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
+        Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
+        Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
+        '
         'toolstripCuartel
         '
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(440, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
@@ -241,7 +279,7 @@ Partial Class formElementos
         Me.toolstripArea.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
-        Me.toolstripArea.Location = New System.Drawing.Point(430, 0)
+        Me.toolstripArea.Location = New System.Drawing.Point(623, 0)
         Me.toolstripArea.Name = "toolstripArea"
         Me.toolstripArea.Size = New System.Drawing.Size(189, 39)
         Me.toolstripArea.TabIndex = 14
@@ -287,7 +325,7 @@ Partial Class formElementos
         Me.toolstripSubUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSubUbicacion, Me.comboboxSubUbicacion})
         Me.toolstripSubUbicacion.Location = New System.Drawing.Point(268, 39)
         Me.toolstripSubUbicacion.Name = "toolstripSubUbicacion"
-        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(326, 25)
+        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(293, 25)
         Me.toolstripSubUbicacion.TabIndex = 16
         '
         'labelSubUbicacion
@@ -307,7 +345,7 @@ Partial Class formElementos
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(594, 39)
+        Me.toolstripActivo.Location = New System.Drawing.Point(561, 39)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 25)
         Me.toolstripActivo.TabIndex = 12
@@ -332,6 +370,7 @@ Partial Class formElementos
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "formElementos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Elementos"
@@ -342,6 +381,8 @@ Partial Class formElementos
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
+        Me.toolstripBuscar.ResumeLayout(False)
+        Me.toolstripBuscar.PerformLayout()
         Me.toolstripCuartel.ResumeLayout(False)
         Me.toolstripCuartel.PerformLayout()
         Me.toolstripArea.ResumeLayout(False)
@@ -385,4 +426,8 @@ Partial Class formElementos
     Friend WithEvents toolstripSubUbicacion As System.Windows.Forms.ToolStrip
     Friend WithEvents labelSubUbicacion As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxSubUbicacion As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripBuscar As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelBuscar As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents textboxBuscar As System.Windows.Forms.ToolStripTextBox
+    Friend WithEvents buttonBuscarBorrar As System.Windows.Forms.ToolStripButton
 End Class
