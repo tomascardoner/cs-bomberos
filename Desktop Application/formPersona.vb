@@ -135,8 +135,6 @@
         pFillAndRefreshLists.Estado(comboboxEstado, False, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
-
-        textboxMatriculaNumero.MaxLength = CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5)
     End Sub
 
     Friend Sub SetAppearance()
@@ -416,10 +414,6 @@
         ' Verificar que estén todos los campos con datos coherentes
         If textboxMatriculaNumero.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar la Matrícula.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxMatriculaNumero.Focus()
-            Exit Sub
-        ElseIf textboxMatriculaNumero.Text.Trim.Length <> CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5) Then
-            MsgBox(String.Format("La Matrícula debe contener {0} dígitos.", CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CODIGO_DIGITOS, 5)), MsgBoxStyle.Information, My.Application.Info.Title)
             textboxMatriculaNumero.Focus()
             Exit Sub
         End If

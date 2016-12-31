@@ -23,7 +23,7 @@ Partial Class formPersonaAccidentes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim labelApellidoNombre As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.textboxApellidoNombre = New System.Windows.Forms.TextBox()
         Me.panelGrid = New System.Windows.Forms.Panel()
         Me.datagridviewAccidentes = New System.Windows.Forms.DataGridView()
@@ -55,11 +55,13 @@ Partial Class formPersonaAccidentes
         '
         'textboxApellidoNombre
         '
+        Me.textboxApellidoNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxApellidoNombre.Location = New System.Drawing.Point(123, 12)
         Me.textboxApellidoNombre.MaxLength = 50
         Me.textboxApellidoNombre.Name = "textboxApellidoNombre"
         Me.textboxApellidoNombre.ReadOnly = True
-        Me.textboxApellidoNombre.Size = New System.Drawing.Size(491, 20)
+        Me.textboxApellidoNombre.Size = New System.Drawing.Size(764, 20)
         Me.textboxApellidoNombre.TabIndex = 2
         '
         'panelGrid
@@ -71,7 +73,7 @@ Partial Class formPersonaAccidentes
         Me.panelGrid.Controls.Add(Me.toolstripAccidentes)
         Me.panelGrid.Location = New System.Drawing.Point(12, 52)
         Me.panelGrid.Name = "panelGrid"
-        Me.panelGrid.Size = New System.Drawing.Size(602, 254)
+        Me.panelGrid.Size = New System.Drawing.Size(875, 362)
         Me.panelGrid.TabIndex = 0
         '
         'datagridviewAccidentes
@@ -79,11 +81,11 @@ Partial Class formPersonaAccidentes
         Me.datagridviewAccidentes.AllowUserToAddRows = False
         Me.datagridviewAccidentes.AllowUserToDeleteRows = False
         Me.datagridviewAccidentes.AllowUserToResizeRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAccidentes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAccidentes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewAccidentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAccidentes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnDianostico, Me.columnActaNumero, Me.columnFechaAlta})
         Me.datagridviewAccidentes.Dock = System.Windows.Forms.DockStyle.Fill
@@ -95,7 +97,7 @@ Partial Class formPersonaAccidentes
         Me.datagridviewAccidentes.RowHeadersVisible = False
         Me.datagridviewAccidentes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAccidentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAccidentes.Size = New System.Drawing.Size(515, 254)
+        Me.datagridviewAccidentes.Size = New System.Drawing.Size(788, 362)
         Me.datagridviewAccidentes.TabIndex = 0
         '
         'columnFecha
@@ -142,7 +144,7 @@ Partial Class formPersonaAccidentes
         Me.toolstripAccidentes.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAccidentes.Location = New System.Drawing.Point(0, 0)
         Me.toolstripAccidentes.Name = "toolstripAccidentes"
-        Me.toolstripAccidentes.Size = New System.Drawing.Size(87, 254)
+        Me.toolstripAccidentes.Size = New System.Drawing.Size(87, 362)
         Me.toolstripAccidentes.TabIndex = 1
         '
         'buttonAgregar
@@ -178,15 +180,15 @@ Partial Class formPersonaAccidentes
         'statusstripMain
         '
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 317)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 425)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(626, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(899, 22)
         Me.statusstripMain.TabIndex = 3
         '
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(611, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(884, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -194,7 +196,7 @@ Partial Class formPersonaAccidentes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(626, 339)
+        Me.ClientSize = New System.Drawing.Size(899, 447)
         Me.Controls.Add(Me.statusstripMain)
         Me.Controls.Add(Me.panelGrid)
         Me.Controls.Add(labelApellidoNombre)

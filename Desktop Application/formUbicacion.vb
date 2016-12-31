@@ -146,7 +146,7 @@
             Exit Sub
         End If
 
-        If comboboxCuartel.SelectedIndex = 0 Then
+        If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
             Exit Sub

@@ -118,7 +118,7 @@
     End Sub
 
     Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+        If Permisos.VerificarPermiso(Permisos.UBICACION) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUbicaciones, Form))
@@ -130,7 +130,21 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
 
+    Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
+        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))
+            formUsuarioGrupoPermisos.Show()
+            If formUsuarioGrupoPermisos.WindowState = FormWindowState.Minimized Then
+                formUsuarioGrupoPermisos.WindowState = FormWindowState.Normal
+            End If
+            formUsuarioGrupoPermisos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 #End Region
 

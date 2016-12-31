@@ -27,6 +27,7 @@ Partial Class formAutomotor
         Dim labelAutomotorTipo As System.Windows.Forms.Label
         Dim labelCombustibleTipo As System.Windows.Forms.Label
         Dim labelFechaAdquisicion As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotor))
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.labelModelo = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -39,20 +40,21 @@ Partial Class formAutomotor
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
         Me.comboboxAutomotorTipo = New System.Windows.Forms.ComboBox()
-        Me.textboxNumero = New System.Windows.Forms.TextBox()
         Me.labelNumero = New System.Windows.Forms.Label()
         Me.textboxMarca = New System.Windows.Forms.TextBox()
         Me.labelMarca = New System.Windows.Forms.Label()
-        Me.textboxAnio = New System.Windows.Forms.TextBox()
         Me.labelAnio = New System.Windows.Forms.Label()
         Me.textboxDominio = New System.Windows.Forms.TextBox()
         Me.labelDominio = New System.Windows.Forms.Label()
         Me.comboboxCombustibleTipo = New System.Windows.Forms.ComboBox()
-        Me.textboxKilometrajeInicial = New System.Windows.Forms.TextBox()
         Me.labelKilometrajeInicial = New System.Windows.Forms.Label()
-        Me.textboxCapacidadAguaLitros = New System.Windows.Forms.TextBox()
         Me.labelCapacidadAguaLitros = New System.Windows.Forms.Label()
         Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
+        Me.maskedtextboxNumero = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxAnio = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxKilometrajeInicial = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxCapacidadAguaLitros = New System.Windows.Forms.MaskedTextBox()
+        Me.buttonNumeroSiguiente = New System.Windows.Forms.Button()
         labelEsActivo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelAutomotorTipo = New System.Windows.Forms.Label()
@@ -67,7 +69,7 @@ Partial Class formAutomotor
         labelEsActivo.Location = New System.Drawing.Point(12, 367)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 24
+        labelEsActivo.TabIndex = 25
         labelEsActivo.Text = "Activo:"
         '
         'labelCuartel
@@ -76,7 +78,7 @@ Partial Class formAutomotor
         labelCuartel.Location = New System.Drawing.Point(12, 341)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 22
+        labelCuartel.TabIndex = 23
         labelCuartel.Text = "Cuartel:"
         '
         'labelAutomotorTipo
@@ -85,8 +87,26 @@ Partial Class formAutomotor
         labelAutomotorTipo.Location = New System.Drawing.Point(12, 183)
         labelAutomotorTipo.Name = "labelAutomotorTipo"
         labelAutomotorTipo.Size = New System.Drawing.Size(31, 13)
-        labelAutomotorTipo.TabIndex = 10
+        labelAutomotorTipo.TabIndex = 11
         labelAutomotorTipo.Text = "Tipo:"
+        '
+        'labelCombustibleTipo
+        '
+        labelCombustibleTipo.AutoSize = True
+        labelCombustibleTipo.Location = New System.Drawing.Point(12, 262)
+        labelCombustibleTipo.Name = "labelCombustibleTipo"
+        labelCombustibleTipo.Size = New System.Drawing.Size(106, 13)
+        labelCombustibleTipo.TabIndex = 17
+        labelCombustibleTipo.Text = "Tipo de Combustible:"
+        '
+        'labelFechaAdquisicion
+        '
+        labelFechaAdquisicion.AutoSize = True
+        labelFechaAdquisicion.Location = New System.Drawing.Point(12, 209)
+        labelFechaAdquisicion.Name = "labelFechaAdquisicion"
+        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
+        labelFechaAdquisicion.TabIndex = 13
+        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
         '
         'textboxModelo
         '
@@ -94,7 +114,7 @@ Partial Class formAutomotor
         Me.textboxModelo.MaxLength = 50
         Me.textboxModelo.Name = "textboxModelo"
         Me.textboxModelo.Size = New System.Drawing.Size(266, 20)
-        Me.textboxModelo.TabIndex = 7
+        Me.textboxModelo.TabIndex = 8
         '
         'labelModelo
         '
@@ -102,7 +122,7 @@ Partial Class formAutomotor
         Me.labelModelo.Location = New System.Drawing.Point(12, 131)
         Me.labelModelo.Name = "labelModelo"
         Me.labelModelo.Size = New System.Drawing.Size(45, 13)
-        Me.labelModelo.TabIndex = 6
+        Me.labelModelo.TabIndex = 7
         Me.labelModelo.Text = "Modelo:"
         '
         'buttonGuardar
@@ -152,7 +172,7 @@ Partial Class formAutomotor
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(417, 39)
-        Me.toolstripMain.TabIndex = 26
+        Me.toolstripMain.TabIndex = 27
         '
         'textboxIDAutomotor
         '
@@ -180,7 +200,7 @@ Partial Class formAutomotor
         Me.checkboxEsActivo.Location = New System.Drawing.Point(135, 367)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 25
+        Me.checkboxEsActivo.TabIndex = 26
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
         'comboboxCuartel
@@ -190,7 +210,7 @@ Partial Class formAutomotor
         Me.comboboxCuartel.Location = New System.Drawing.Point(135, 338)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxCuartel.TabIndex = 23
+        Me.comboboxCuartel.TabIndex = 24
         '
         'comboboxAutomotorTipo
         '
@@ -199,15 +219,7 @@ Partial Class formAutomotor
         Me.comboboxAutomotorTipo.Location = New System.Drawing.Point(135, 180)
         Me.comboboxAutomotorTipo.Name = "comboboxAutomotorTipo"
         Me.comboboxAutomotorTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxAutomotorTipo.TabIndex = 11
-        '
-        'textboxNumero
-        '
-        Me.textboxNumero.Location = New System.Drawing.Point(135, 76)
-        Me.textboxNumero.MaxLength = 5
-        Me.textboxNumero.Name = "textboxNumero"
-        Me.textboxNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxNumero.TabIndex = 3
+        Me.comboboxAutomotorTipo.TabIndex = 12
         '
         'labelNumero
         '
@@ -224,7 +236,7 @@ Partial Class formAutomotor
         Me.textboxMarca.MaxLength = 50
         Me.textboxMarca.Name = "textboxMarca"
         Me.textboxMarca.Size = New System.Drawing.Size(266, 20)
-        Me.textboxMarca.TabIndex = 5
+        Me.textboxMarca.TabIndex = 6
         '
         'labelMarca
         '
@@ -232,16 +244,8 @@ Partial Class formAutomotor
         Me.labelMarca.Location = New System.Drawing.Point(12, 105)
         Me.labelMarca.Name = "labelMarca"
         Me.labelMarca.Size = New System.Drawing.Size(40, 13)
-        Me.labelMarca.TabIndex = 4
+        Me.labelMarca.TabIndex = 5
         Me.labelMarca.Text = "Marca:"
-        '
-        'textboxAnio
-        '
-        Me.textboxAnio.Location = New System.Drawing.Point(135, 154)
-        Me.textboxAnio.MaxLength = 4
-        Me.textboxAnio.Name = "textboxAnio"
-        Me.textboxAnio.Size = New System.Drawing.Size(47, 20)
-        Me.textboxAnio.TabIndex = 9
         '
         'labelAnio
         '
@@ -249,16 +253,17 @@ Partial Class formAutomotor
         Me.labelAnio.Location = New System.Drawing.Point(12, 157)
         Me.labelAnio.Name = "labelAnio"
         Me.labelAnio.Size = New System.Drawing.Size(29, 13)
-        Me.labelAnio.TabIndex = 8
+        Me.labelAnio.TabIndex = 9
         Me.labelAnio.Text = "Año:"
         '
         'textboxDominio
         '
+        Me.textboxDominio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textboxDominio.Location = New System.Drawing.Point(135, 233)
-        Me.textboxDominio.MaxLength = 50
+        Me.textboxDominio.MaxLength = 7
         Me.textboxDominio.Name = "textboxDominio"
         Me.textboxDominio.Size = New System.Drawing.Size(74, 20)
-        Me.textboxDominio.TabIndex = 15
+        Me.textboxDominio.TabIndex = 16
         '
         'labelDominio
         '
@@ -266,7 +271,7 @@ Partial Class formAutomotor
         Me.labelDominio.Location = New System.Drawing.Point(12, 236)
         Me.labelDominio.Name = "labelDominio"
         Me.labelDominio.Size = New System.Drawing.Size(48, 13)
-        Me.labelDominio.TabIndex = 14
+        Me.labelDominio.TabIndex = 15
         Me.labelDominio.Text = "Dominio:"
         '
         'comboboxCombustibleTipo
@@ -276,24 +281,7 @@ Partial Class formAutomotor
         Me.comboboxCombustibleTipo.Location = New System.Drawing.Point(135, 259)
         Me.comboboxCombustibleTipo.Name = "comboboxCombustibleTipo"
         Me.comboboxCombustibleTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxCombustibleTipo.TabIndex = 17
-        '
-        'labelCombustibleTipo
-        '
-        labelCombustibleTipo.AutoSize = True
-        labelCombustibleTipo.Location = New System.Drawing.Point(12, 262)
-        labelCombustibleTipo.Name = "labelCombustibleTipo"
-        labelCombustibleTipo.Size = New System.Drawing.Size(106, 13)
-        labelCombustibleTipo.TabIndex = 16
-        labelCombustibleTipo.Text = "Tipo de Combustible:"
-        '
-        'textboxKilometrajeInicial
-        '
-        Me.textboxKilometrajeInicial.Location = New System.Drawing.Point(135, 286)
-        Me.textboxKilometrajeInicial.MaxLength = 8
-        Me.textboxKilometrajeInicial.Name = "textboxKilometrajeInicial"
-        Me.textboxKilometrajeInicial.Size = New System.Drawing.Size(74, 20)
-        Me.textboxKilometrajeInicial.TabIndex = 19
+        Me.comboboxCombustibleTipo.TabIndex = 18
         '
         'labelKilometrajeInicial
         '
@@ -301,16 +289,8 @@ Partial Class formAutomotor
         Me.labelKilometrajeInicial.Location = New System.Drawing.Point(12, 289)
         Me.labelKilometrajeInicial.Name = "labelKilometrajeInicial"
         Me.labelKilometrajeInicial.Size = New System.Drawing.Size(91, 13)
-        Me.labelKilometrajeInicial.TabIndex = 18
+        Me.labelKilometrajeInicial.TabIndex = 19
         Me.labelKilometrajeInicial.Text = "Kilometraje Inicial:"
-        '
-        'textboxCapacidadAguaLitros
-        '
-        Me.textboxCapacidadAguaLitros.Location = New System.Drawing.Point(135, 312)
-        Me.textboxCapacidadAguaLitros.MaxLength = 8
-        Me.textboxCapacidadAguaLitros.Name = "textboxCapacidadAguaLitros"
-        Me.textboxCapacidadAguaLitros.Size = New System.Drawing.Size(74, 20)
-        Me.textboxCapacidadAguaLitros.TabIndex = 21
         '
         'labelCapacidadAguaLitros
         '
@@ -318,17 +298,8 @@ Partial Class formAutomotor
         Me.labelCapacidadAguaLitros.Location = New System.Drawing.Point(12, 315)
         Me.labelCapacidadAguaLitros.Name = "labelCapacidadAguaLitros"
         Me.labelCapacidadAguaLitros.Size = New System.Drawing.Size(95, 13)
-        Me.labelCapacidadAguaLitros.TabIndex = 20
+        Me.labelCapacidadAguaLitros.TabIndex = 21
         Me.labelCapacidadAguaLitros.Text = "Capacidad (Litros):"
-        '
-        'labelFechaAdquisicion
-        '
-        labelFechaAdquisicion.AutoSize = True
-        labelFechaAdquisicion.Location = New System.Drawing.Point(12, 209)
-        labelFechaAdquisicion.Name = "labelFechaAdquisicion"
-        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
-        labelFechaAdquisicion.TabIndex = 12
-        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
         '
         'datetimepickerFechaAdquisicion
         '
@@ -339,28 +310,83 @@ Partial Class formAutomotor
         Me.datetimepickerFechaAdquisicion.Name = "datetimepickerFechaAdquisicion"
         Me.datetimepickerFechaAdquisicion.ShowCheckBox = True
         Me.datetimepickerFechaAdquisicion.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaAdquisicion.TabIndex = 13
+        Me.datetimepickerFechaAdquisicion.TabIndex = 14
+        '
+        'maskedtextboxNumero
+        '
+        Me.maskedtextboxNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxNumero.Location = New System.Drawing.Point(135, 76)
+        Me.maskedtextboxNumero.Mask = "99999"
+        Me.maskedtextboxNumero.Name = "maskedtextboxNumero"
+        Me.maskedtextboxNumero.Size = New System.Drawing.Size(74, 20)
+        Me.maskedtextboxNumero.TabIndex = 3
+        Me.maskedtextboxNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.maskedtextboxNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxNumero.ValidatingType = GetType(Integer)
+        '
+        'maskedtextboxAnio
+        '
+        Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxAnio.Location = New System.Drawing.Point(135, 154)
+        Me.maskedtextboxAnio.Mask = "9999"
+        Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
+        Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
+        Me.maskedtextboxAnio.TabIndex = 10
+        Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxKilometrajeInicial
+        '
+        Me.maskedtextboxKilometrajeInicial.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxKilometrajeInicial.Location = New System.Drawing.Point(135, 286)
+        Me.maskedtextboxKilometrajeInicial.Mask = "9999999"
+        Me.maskedtextboxKilometrajeInicial.Name = "maskedtextboxKilometrajeInicial"
+        Me.maskedtextboxKilometrajeInicial.Size = New System.Drawing.Size(74, 20)
+        Me.maskedtextboxKilometrajeInicial.TabIndex = 20
+        Me.maskedtextboxKilometrajeInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.maskedtextboxKilometrajeInicial.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxCapacidadAguaLitros
+        '
+        Me.maskedtextboxCapacidadAguaLitros.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCapacidadAguaLitros.Location = New System.Drawing.Point(135, 312)
+        Me.maskedtextboxCapacidadAguaLitros.Mask = "999999"
+        Me.maskedtextboxCapacidadAguaLitros.Name = "maskedtextboxCapacidadAguaLitros"
+        Me.maskedtextboxCapacidadAguaLitros.Size = New System.Drawing.Size(74, 20)
+        Me.maskedtextboxCapacidadAguaLitros.TabIndex = 22
+        Me.maskedtextboxCapacidadAguaLitros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.maskedtextboxCapacidadAguaLitros.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'buttonNumeroSiguiente
+        '
+        Me.buttonNumeroSiguiente.Location = New System.Drawing.Point(215, 75)
+        Me.buttonNumeroSiguiente.Name = "buttonNumeroSiguiente"
+        Me.buttonNumeroSiguiente.Size = New System.Drawing.Size(103, 20)
+        Me.buttonNumeroSiguiente.TabIndex = 4
+        Me.buttonNumeroSiguiente.Text = "Obtener siguiente"
+        Me.buttonNumeroSiguiente.UseVisualStyleBackColor = True
         '
         'formAutomotor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(417, 393)
+        Me.Controls.Add(Me.buttonNumeroSiguiente)
+        Me.Controls.Add(Me.maskedtextboxCapacidadAguaLitros)
+        Me.Controls.Add(Me.maskedtextboxKilometrajeInicial)
+        Me.Controls.Add(Me.maskedtextboxAnio)
+        Me.Controls.Add(Me.maskedtextboxNumero)
         Me.Controls.Add(Me.datetimepickerFechaAdquisicion)
         Me.Controls.Add(labelFechaAdquisicion)
-        Me.Controls.Add(Me.textboxCapacidadAguaLitros)
         Me.Controls.Add(Me.labelCapacidadAguaLitros)
-        Me.Controls.Add(Me.textboxKilometrajeInicial)
         Me.Controls.Add(Me.labelKilometrajeInicial)
         Me.Controls.Add(Me.comboboxCombustibleTipo)
         Me.Controls.Add(labelCombustibleTipo)
         Me.Controls.Add(Me.textboxDominio)
         Me.Controls.Add(Me.labelDominio)
-        Me.Controls.Add(Me.textboxAnio)
         Me.Controls.Add(Me.labelAnio)
         Me.Controls.Add(Me.textboxMarca)
         Me.Controls.Add(Me.labelMarca)
-        Me.Controls.Add(Me.textboxNumero)
         Me.Controls.Add(Me.labelNumero)
         Me.Controls.Add(Me.comboboxAutomotorTipo)
         Me.Controls.Add(labelAutomotorTipo)
@@ -374,11 +400,12 @@ Partial Class formAutomotor
         Me.Controls.Add(Me.labelModelo)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formAutomotor"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Ubicación"
+        Me.Text = "Automotor"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
@@ -397,18 +424,19 @@ Partial Class formAutomotor
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxAutomotorTipo As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxNumero As System.Windows.Forms.TextBox
     Friend WithEvents labelNumero As System.Windows.Forms.Label
     Friend WithEvents textboxMarca As System.Windows.Forms.TextBox
     Friend WithEvents labelMarca As System.Windows.Forms.Label
-    Friend WithEvents textboxAnio As System.Windows.Forms.TextBox
     Friend WithEvents labelAnio As System.Windows.Forms.Label
     Friend WithEvents textboxDominio As System.Windows.Forms.TextBox
     Friend WithEvents labelDominio As System.Windows.Forms.Label
     Friend WithEvents comboboxCombustibleTipo As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxKilometrajeInicial As System.Windows.Forms.TextBox
     Friend WithEvents labelKilometrajeInicial As System.Windows.Forms.Label
-    Friend WithEvents textboxCapacidadAguaLitros As System.Windows.Forms.TextBox
     Friend WithEvents labelCapacidadAguaLitros As System.Windows.Forms.Label
     Friend WithEvents datetimepickerFechaAdquisicion As System.Windows.Forms.DateTimePicker
+    Friend WithEvents maskedtextboxNumero As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents maskedtextboxAnio As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents maskedtextboxKilometrajeInicial As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents maskedtextboxCapacidadAguaLitros As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents buttonNumeroSiguiente As System.Windows.Forms.Button
 End Class

@@ -1,9 +1,7 @@
 ﻿Public Class formPersonaAccidentes
 
 #Region "Declarations"
-    Private mdbContext As New CSBomberosContext(True)
     Private mPersonaActual As New Persona
-
     Private listPersonaAccidenteFiltradaYOrdenada As List(Of PersonaAccidente)
 
     Private SkipFilterData As Boolean = False
@@ -14,7 +12,9 @@
 
 #Region "Form stuff"
     Friend Sub LoadAndShow(ByRef ParentForm As Form, ByVal IDPersona As Integer)
-        mPersonaActual = mdbContext.Persona.Find(IDPersona)
+        Using dbContext As New CSBomberosContext(True)
+            mPersonaActual = dbContext.Persona.Find(IDPersona)
+        End Using
         Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
@@ -40,8 +40,6 @@
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
         listPersonaAccidenteFiltradaYOrdenada = Nothing
-        mdbContext.Dispose()
-        mdbContext = Nothing
         mPersonaActual = Nothing
         Me.Dispose()
     End Sub
@@ -51,8 +49,11 @@
     Friend Sub RefreshData(Optional ByVal PositionIDAccidente As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
-        textboxApellidoNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(mPersonaActual.ApellidoNombre)
-        listPersonaAccidenteFiltradaYOrdenada = mPersonaActual.PersonaAccidentes.ToList
+        textboxApellidoNombre.Text = mPersonaActual.ApellidoNombre
+
+        Using dbContext As New CSBomberosContext(True)
+            listPersonaAccidenteFiltradaYOrdenada = dbContext.PersonaAccidente.Where(Function(p) p.IDPersona = mPersonaActual.IDPersona).ToList
+        End Using
 
         Me.Cursor = Cursors.Default
 
@@ -106,27 +107,27 @@
         Select Case OrdenColumna.Name
             Case columnFecha.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.Fecha).OrderBy(Function(pa) pa.Diagnostico).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.Fecha).ThenBy(Function(pa) pa.Diagnostico).ToList
                 Else
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.Fecha).OrderByDescending(Function(pa) pa.Diagnostico).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.Fecha).ThenByDescending(Function(pa) pa.Diagnostico).ToList
                 End If
             Case columnDianostico.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.Diagnostico).OrderBy(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.Diagnostico).ThenBy(Function(pa) pa.Fecha).ToList
                 Else
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.Diagnostico).OrderByDescending(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.Diagnostico).ThenByDescending(Function(pa) pa.Fecha).ToList
                 End If
             Case columnActaNumero.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.ActaNumero).OrderBy(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.ActaNumero).ThenBy(Function(pa) pa.Fecha).ToList
                 Else
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.ActaNumero).OrderByDescending(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.ActaNumero).ThenByDescending(Function(pa) pa.Fecha).ToList
                 End If
             Case columnFechaAlta.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.FechaAlta).OrderBy(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderBy(Function(pa) pa.FechaAlta).ThenBy(Function(pa) pa.Fecha).ToList
                 Else
-                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.FechaAlta).OrderByDescending(Function(pa) pa.Fecha).ToList
+                    listPersonaAccidenteFiltradaYOrdenada = listPersonaAccidenteFiltradaYOrdenada.OrderByDescending(Function(pa) pa.FechaAlta).ThenByDescending(Function(pa) pa.Fecha).ToList
                 End If
         End Select
 
@@ -218,8 +219,10 @@
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
-                        mdbContext.PersonaAccidente.Remove(PersonaAccidenteActual)
-                        mdbContext.SaveChanges()
+                        Using dbContext As New CSBomberosContext(True)
+                            dbContext.PersonaAccidente.Remove(PersonaAccidenteActual)
+                            dbContext.SaveChanges()
+                        End Using
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default

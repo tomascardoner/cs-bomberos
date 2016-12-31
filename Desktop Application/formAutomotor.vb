@@ -53,16 +53,17 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        textboxNumero.ReadOnly = Not mEditMode
+        maskedtextboxNumero.ReadOnly = Not mEditMode
+        buttonNumeroSiguiente.Visible = (mEditMode And mAutomotorActual.IDAutomotor = 0)
         textboxMarca.ReadOnly = Not mEditMode
         textboxModelo.ReadOnly = Not mEditMode
-        textboxAnio.ReadOnly = Not mEditMode
+        maskedtextboxAnio.ReadOnly = Not mEditMode
         comboboxAutomotorTipo.Enabled = mEditMode
         datetimepickerFechaAdquisicion.Enabled = mEditMode
         textboxDominio.ReadOnly = Not mEditMode
         comboboxCombustibleTipo.Enabled = mEditMode
-        textboxKilometrajeInicial.ReadOnly = Not mEditMode
-        textboxCapacidadAguaLitros.ReadOnly = Not mEditMode
+        maskedtextboxKilometrajeInicial.ReadOnly = Not mEditMode
+        maskedtextboxCapacidadAguaLitros.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -92,36 +93,38 @@
         With mAutomotorActual
             If .IDAutomotor = 0 Then
                 textboxIDAutomotor.Text = My.Resources.STRING_ITEM_NEW_MALE
+                maskedtextboxNumero.Text = ""
+                maskedtextboxAnio.Text = ""
             Else
                 textboxIDAutomotor.Text = String.Format(.IDAutomotor.ToString, "G")
+                maskedtextboxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero)
+                maskedtextboxAnio.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Anio)
             End If
-            textboxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero)
             textboxMarca.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Marca)
             textboxModelo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Modelo)
-            textboxAnio.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Anio)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirst, .IDAutomotorTipo)
+            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
             datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
             CS_Control_ComboBox.SetSelectedValue(comboboxCombustibleTipo, SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
-            textboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
-            textboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .IDCuartel)
+            maskedtextboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
+            maskedtextboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mAutomotorActual
-            .Numero = CS_ValueTranslation.FromControlTextBoxToObjectShort(textboxNumero.Text).Value
+            .Numero = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxNumero.Text).Value
             .Marca = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMarca.Text)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
-            .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(textboxAnio.Text).Value
+            .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxAnio.Text).Value
             .IDAutomotorTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorTipo.SelectedValue).Value
             .FechaAdquisicion = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAdquisicion.Value, datetimepickerFechaAdquisicion.Checked)
             .Dominio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominio.Text)
-            .IDCombustibleTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCombustibleTipo.SelectedValue).Value
-            .KilometrajeInicial = CS_ValueTranslation.FromControlTextBoxToObjectInteger(textboxKilometrajeInicial.Text)
-            .CapacidadAguaLitros = CS_ValueTranslation.FromControlTextBoxToObjectInteger(textboxCapacidadAguaLitros.Text)
+            .IDCombustibleTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCombustibleTipo.SelectedValue)
+            .KilometrajeInicial = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxKilometrajeInicial.Text)
+            .CapacidadAguaLitros = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxCapacidadAguaLitros.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
@@ -146,9 +149,24 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNumero.GotFocus, textboxMarca.GotFocus, textboxModelo.GotFocus, textboxAnio.GotFocus, textboxDominio.GotFocus, textboxKilometrajeInicial.GotFocus, textboxCapacidadAguaLitros.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMarca.GotFocus, textboxModelo.GotFocus, textboxDominio.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
+    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumero.GotFocus, maskedtextboxAnio.GotFocus, maskedtextboxKilometrajeInicial.GotFocus, maskedtextboxCapacidadAguaLitros.GotFocus
+        CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub buttonNumeroSiguiente_Click() Handles buttonNumeroSiguiente.Click
+        Using dbcMaxNumero As New CSBomberosContext(True)
+            If dbcMaxNumero.Automotor.Count = 0 Then
+                maskedtextboxNumero.Text = CStr(1)
+            Else
+                maskedtextboxNumero.Text = CStr(CInt(dbcMaxNumero.Automotor.Max(Function(a) a.Numero)) + 1)
+            End If
+        End Using
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"
@@ -164,11 +182,24 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxNumero.Text.Trim.Length = 0 Then
+        ' Verifico el Número
+        If maskedtextboxNumero.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Número.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNumero.Focus()
+            maskedtextboxNumero.Focus()
             Exit Sub
         End If
+        If CInt(maskedtextboxNumero.Text) <= 0 Then
+            MsgBox("El Número debe ser mayor a cero.", MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxNumero.Focus()
+            Exit Sub
+        End If
+        If CInt(maskedtextboxNumero.Text) > Short.MaxValue Then
+            MsgBox(String.Format("El Número debe ser menor o igual a {0}.", Short.MaxValue), MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxNumero.Focus()
+            Exit Sub
+        End If
+
+        ' Marca y Modelo
         If textboxMarca.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar la Marca.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxMarca.Focus()
@@ -179,13 +210,38 @@
             textboxModelo.Focus()
             Exit Sub
         End If
-        If textboxAnio.Text.Trim.Length = 0 Then
+
+        ' Año
+        If maskedtextboxAnio.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Año.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxAnio.Focus()
+            maskedtextboxAnio.Focus()
+            Exit Sub
+        End If
+        If CInt(maskedtextboxAnio.Text) < 1900 Or CInt(maskedtextboxAnio.Text) > DateAndTime.Now.Year Then
+            MsgBox(String.Format("El Año debe ser estar entre {0} y {1}.", 1950, DateAndTime.Now.Year), MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxAnio.Focus()
             Exit Sub
         End If
 
-        If comboboxAutomotorTipo.SelectedIndex = 0 Then
+        ' Kilometraje Inicial
+        If maskedtextboxKilometrajeInicial.Text.Trim.Length > 0 Then
+            If CInt(maskedtextboxKilometrajeInicial.Text) < 0 Then
+                MsgBox("El Kilometraje Inicial debe estar vacío o ser mayor o igual a cero.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxKilometrajeInicial.Focus()
+                Exit Sub
+            End If
+        End If
+
+        ' Capacidad Agua Litros
+        If maskedtextboxCapacidadAguaLitros.Text.Trim.Length > 0 Then
+            If CInt(maskedtextboxCapacidadAguaLitros.Text) < 0 Then
+                MsgBox("La Capacidad de Agua debe estar vacío o ser mayor a cero.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCapacidadAguaLitros.Focus()
+                Exit Sub
+            End If
+        End If
+
+        If comboboxAutomotorTipo.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Tipo de Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxAutomotorTipo.Focus()
             Exit Sub
@@ -198,7 +254,7 @@
             Exit Sub
         End If
 
-        If comboboxCuartel.SelectedIndex = 0 Then
+        If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
             Exit Sub

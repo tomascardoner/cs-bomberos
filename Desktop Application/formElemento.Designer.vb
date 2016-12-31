@@ -28,6 +28,7 @@ Partial Class formElemento
         Dim labelArea As System.Windows.Forms.Label
         Dim labelModoAdquisicion As System.Windows.Forms.Label
         Dim labelUbicacion As System.Windows.Forms.Label
+        Dim labelFechaBaja As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -46,22 +47,24 @@ Partial Class formElemento
         Me.comboboxModoAdquisicion = New System.Windows.Forms.ComboBox()
         Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
         Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
+        Me.datetimepickerFechaBaja = New System.Windows.Forms.DateTimePicker()
         labelEsActivo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
         labelModoAdquisicion = New System.Windows.Forms.Label()
         labelUbicacion = New System.Windows.Forms.Label()
+        labelFechaBaja = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(12, 282)
+        labelEsActivo.Location = New System.Drawing.Point(12, 307)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 16
+        labelEsActivo.TabIndex = 17
         labelEsActivo.Text = "Activo:"
         '
         'labelCuartel
@@ -79,7 +82,7 @@ Partial Class formElemento
         labelSubUbicacion.Location = New System.Drawing.Point(12, 255)
         labelSubUbicacion.Name = "labelSubUbicacion"
         labelSubUbicacion.Size = New System.Drawing.Size(80, 13)
-        labelSubUbicacion.TabIndex = 14
+        labelSubUbicacion.TabIndex = 15
         labelSubUbicacion.Text = "Sub-Ubicación:"
         '
         'labelArea
@@ -97,7 +100,7 @@ Partial Class formElemento
         labelModoAdquisicion.Location = New System.Drawing.Point(12, 185)
         labelModoAdquisicion.Name = "labelModoAdquisicion"
         labelModoAdquisicion.Size = New System.Drawing.Size(107, 13)
-        labelModoAdquisicion.TabIndex = 10
+        labelModoAdquisicion.TabIndex = 11
         labelModoAdquisicion.Text = "Modo de Adquisiciín:"
         '
         'labelUbicacion
@@ -106,7 +109,7 @@ Partial Class formElemento
         labelUbicacion.Location = New System.Drawing.Point(12, 228)
         labelUbicacion.Name = "labelUbicacion"
         labelUbicacion.Size = New System.Drawing.Size(58, 13)
-        labelUbicacion.TabIndex = 12
+        labelUbicacion.TabIndex = 13
         labelUbicacion.Text = "Ubicación:"
         '
         'textboxNombre
@@ -115,7 +118,7 @@ Partial Class formElemento
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(359, 20)
-        Me.textboxNombre.TabIndex = 9
+        Me.textboxNombre.TabIndex = 10
         '
         'labelNombre
         '
@@ -123,7 +126,7 @@ Partial Class formElemento
         Me.labelNombre.Location = New System.Drawing.Point(12, 159)
         Me.labelNombre.Name = "labelNombre"
         Me.labelNombre.Size = New System.Drawing.Size(47, 13)
-        Me.labelNombre.TabIndex = 8
+        Me.labelNombre.TabIndex = 9
         Me.labelNombre.Text = "Nombre:"
         '
         'buttonGuardar
@@ -173,7 +176,7 @@ Partial Class formElemento
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(496, 39)
-        Me.toolstripMain.TabIndex = 18
+        Me.toolstripMain.TabIndex = 21
         '
         'textboxIDElemento
         '
@@ -198,10 +201,10 @@ Partial Class formElemento
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(125, 282)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(125, 307)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 17
+        Me.checkboxEsActivo.TabIndex = 18
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
         'comboboxCuartel
@@ -220,7 +223,7 @@ Partial Class formElemento
         Me.comboboxSubUbicacion.Location = New System.Drawing.Point(125, 252)
         Me.comboboxSubUbicacion.Name = "comboboxSubUbicacion"
         Me.comboboxSubUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSubUbicacion.TabIndex = 15
+        Me.comboboxSubUbicacion.TabIndex = 16
         '
         'comboboxArea
         '
@@ -255,7 +258,7 @@ Partial Class formElemento
         Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(125, 182)
         Me.comboboxModoAdquisicion.Name = "comboboxModoAdquisicion"
         Me.comboboxModoAdquisicion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxModoAdquisicion.TabIndex = 11
+        Me.comboboxModoAdquisicion.TabIndex = 12
         '
         'comboboxUbicacion
         '
@@ -264,22 +267,44 @@ Partial Class formElemento
         Me.comboboxUbicacion.Location = New System.Drawing.Point(125, 225)
         Me.comboboxUbicacion.Name = "comboboxUbicacion"
         Me.comboboxUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxUbicacion.TabIndex = 13
+        Me.comboboxUbicacion.TabIndex = 14
         '
         'buttonCodigoSiguiente
         '
         Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(205, 130)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
         Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 20)
-        Me.buttonCodigoSiguiente.TabIndex = 19
+        Me.buttonCodigoSiguiente.TabIndex = 8
         Me.buttonCodigoSiguiente.Text = "Obtener siguiente"
         Me.buttonCodigoSiguiente.UseVisualStyleBackColor = True
+        '
+        'datetimepickerFechaBaja
+        '
+        Me.datetimepickerFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaBaja.Location = New System.Drawing.Point(125, 330)
+        Me.datetimepickerFechaBaja.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaBaja.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaBaja.Name = "datetimepickerFechaBaja"
+        Me.datetimepickerFechaBaja.ShowCheckBox = True
+        Me.datetimepickerFechaBaja.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerFechaBaja.TabIndex = 20
+        '
+        'labelFechaBaja
+        '
+        labelFechaBaja.AutoSize = True
+        labelFechaBaja.Location = New System.Drawing.Point(12, 332)
+        labelFechaBaja.Name = "labelFechaBaja"
+        labelFechaBaja.Size = New System.Drawing.Size(79, 13)
+        labelFechaBaja.TabIndex = 19
+        labelFechaBaja.Text = "Fecha de Baja:"
         '
         'formElemento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(496, 306)
+        Me.ClientSize = New System.Drawing.Size(496, 366)
+        Me.Controls.Add(Me.datetimepickerFechaBaja)
+        Me.Controls.Add(labelFechaBaja)
         Me.Controls.Add(Me.buttonCodigoSiguiente)
         Me.Controls.Add(Me.comboboxUbicacion)
         Me.Controls.Add(labelUbicacion)
@@ -330,4 +355,5 @@ Partial Class formElemento
     Friend WithEvents comboboxModoAdquisicion As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxUbicacion As System.Windows.Forms.ComboBox
     Friend WithEvents buttonCodigoSiguiente As System.Windows.Forms.Button
+    Friend WithEvents datetimepickerFechaBaja As System.Windows.Forms.DateTimePicker
 End Class

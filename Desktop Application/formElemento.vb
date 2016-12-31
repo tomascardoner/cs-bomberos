@@ -79,12 +79,15 @@
         comboboxCuartel.Enabled = mEditMode
         comboboxArea.Enabled = mEditMode
         textboxCodigo.ReadOnly = Not mEditMode
+        buttonCodigoSiguiente.Visible = (mEditMode And mElementoActual.IDElemento = 0)
         textboxNombre.ReadOnly = Not mEditMode
         comboboxModoAdquisicion.Enabled = mEditMode
 
         comboboxUbicacion.Enabled = mEditMode
         comboboxSubUbicacion.Enabled = mEditMode
+
         checkboxEsActivo.Enabled = mEditMode
+        datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -111,19 +114,26 @@
         With mElementoActual
             If .IDElemento = 0 Then
                 textboxIDElemento.Text = My.Resources.STRING_ITEM_NEW_MALE
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, mIDCuartel)
+                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
             Else
                 textboxIDElemento.Text = String.Format(.IDElemento.ToString, "G")
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .Area.IDCuartel)
+                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirst, .IDArea)
+            CS_Control_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             CS_Control_ComboBox.SetSelectedValue(comboboxModoAdquisicion, SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
 
             CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
             CS_Control_ComboBox.SetSelectedValue(comboboxSubUbicacion, SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
+
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If checkboxEsActivo.Checked Then
+                datetimepickerFechaBaja.Value = DateAndTime.Today
+                datetimepickerFechaBaja.Checked = False
+            Else
+                datetimepickerFechaBaja.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaBaja, datetimepickerFechaBaja)
+            End If
         End With
     End Sub
 
@@ -136,7 +146,13 @@
 
             .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, Short.MinValue)
             .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, Short.MinValue)
+
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
+            If checkboxEsActivo.Checked Then
+                .FechaBaja = Nothing
+            Else
+                .FechaBaja = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaBaja.Value, datetimepickerFechaBaja.Checked)
+            End If
         End With
     End Sub
 #End Region
@@ -184,11 +200,11 @@
                 textboxCodigo.Text = CStr(CInt(dbcMaxCodigo.Elemento.Where(Function(e) e.IDArea = IDArea).Max(Function(e) e.Codigo)) + 1).PadLeft(5, "0"c)
             End If
         End Using
-
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
         pFillAndRefreshLists.Area(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue))
+        comboboxArea.SelectedItem = Nothing
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, True, CByte(comboboxCuartel.SelectedValue))
         textboxCodigo.Text = ""
     End Sub
@@ -199,6 +215,10 @@
 
     Private Sub comboboxUbicacion_SelectedIndexChanged() Handles comboboxUbicacion.SelectedIndexChanged
         pFillAndRefreshLists.SubUbicacion(comboboxSubUbicacion, False, True, CShort(comboboxUbicacion.SelectedValue))
+    End Sub
+
+    Private Sub checkboxEsActivo_Checked() Handles checkboxEsActivo.CheckedChanged
+        datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
     End Sub
 #End Region
 

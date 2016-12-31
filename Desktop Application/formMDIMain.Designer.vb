@@ -53,6 +53,7 @@ Partial Class formMDIMain
         Me.buttonUnidades = New System.Windows.Forms.ToolStripButton()
         Me.buttonElementos = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
+        Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -212,7 +213,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Parentescos, Me.menuitemTablas_Ubicaciones})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Parentescos, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_Permisos})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -224,13 +225,13 @@ Partial Class formMDIMain
         'menuitemTablas_Parentescos
         '
         Me.menuitemTablas_Parentescos.Name = "menuitemTablas_Parentescos"
-        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(138, 22)
+        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(152, 22)
         Me.menuitemTablas_Parentescos.Text = "Parentescos"
         '
         'menuitemTablas_Ubicaciones
         '
         Me.menuitemTablas_Ubicaciones.Name = "menuitemTablas_Ubicaciones"
-        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(138, 22)
+        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(152, 22)
         Me.menuitemTablas_Ubicaciones.Text = "Ubicaciones"
         '
         'buttonPersonas
@@ -272,6 +273,12 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(96, 36)
         Me.buttonReportes.Text = "Reportes"
+        '
+        'menuitemTablas_Permisos
+        '
+        Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
+        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemTablas_Permisos.Text = "Permisos"
         '
         'formMDIMain
         '
@@ -329,4 +336,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_Ubicaciones As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonElementos As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonUnidades As System.Windows.Forms.ToolStripButton
+    Friend WithEvents menuitemTablas_Permisos As System.Windows.Forms.ToolStripMenuItem
 End Class

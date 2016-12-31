@@ -517,4 +517,29 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
+    Friend Sub UsuarioGrupo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of UsuarioGrupo)
+
+        ComboBoxControl.ValueMember = "IDUsuarioGrupo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.UsuarioGrupo.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New UsuarioGrupo
+            Item_Todos.IDUsuarioGrupo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New UsuarioGrupo
+            Item_NoEspecifica.IDUsuarioGrupo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
 End Class

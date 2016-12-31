@@ -24,10 +24,10 @@ Partial Class formPersonas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersonas))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -38,6 +38,9 @@ Partial Class formPersonas
         Me.menuitemCalificacionesAnuales = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemCambiosDestino = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemPenasDisciplinarias = New System.Windows.Forms.ToolStripMenuItem()
+        Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
+        Me.menuitemImprimirFichaPersonal = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemImprimirListado = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -72,11 +75,11 @@ Partial Class formPersonas
         '
         Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.dropdownbuttonOtros})
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.dropdownbuttonOtros, Me.buttonImprimir})
         Me.toolstripButtons.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(312, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(444, 39)
         Me.toolstripButtons.TabIndex = 0
         '
         'buttonAgregar
@@ -145,6 +148,29 @@ Partial Class formPersonas
         Me.menuitemPenasDisciplinarias.Size = New System.Drawing.Size(204, 22)
         Me.menuitemPenasDisciplinarias.Text = "Penas Disciplinarias"
         '
+        'buttonImprimir
+        '
+        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirFichaPersonal, Me.menuitemImprimirListado})
+        Me.buttonImprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonImprimir.Name = "buttonImprimir"
+        Me.buttonImprimir.Size = New System.Drawing.Size(101, 36)
+        Me.buttonImprimir.Text = "Imprimir"
+        '
+        'menuitemImprimirFichaPersonal
+        '
+        Me.menuitemImprimirFichaPersonal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.menuitemImprimirFichaPersonal.Name = "menuitemImprimirFichaPersonal"
+        Me.menuitemImprimirFichaPersonal.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimirFichaPersonal.Text = "Ficha Personal"
+        '
+        'menuitemImprimirListado
+        '
+        Me.menuitemImprimirListado.Name = "menuitemImprimirListado"
+        Me.menuitemImprimirListado.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimirListado.Text = "Listado"
+        '
         'statusstripMain
         '
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
@@ -166,11 +192,11 @@ Partial Class formPersonas
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnMatriculaNumero, Me.columnApellido, Me.columnNombre, Me.columnCuartelNombre})
@@ -190,8 +216,8 @@ Partial Class formPersonas
         '
         Me.columnIDPersona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnIDPersona.DataPropertyName = "IDPersona"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnIDPersona.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnIDPersona.DefaultCellStyle = DataGridViewCellStyle6
         Me.columnIDPersona.HeaderText = "N° Persona"
         Me.columnIDPersona.Name = "columnIDPersona"
         Me.columnIDPersona.ReadOnly = True
@@ -210,8 +236,8 @@ Partial Class formPersonas
         '
         Me.columnApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnApellido.DataPropertyName = "Apellido"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle7
         Me.columnApellido.HeaderText = "Apellidos"
         Me.columnApellido.Name = "columnApellido"
         Me.columnApellido.ReadOnly = True
@@ -221,8 +247,8 @@ Partial Class formPersonas
         '
         Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle8
         Me.columnNombre.HeaderText = "Nombres"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
@@ -256,7 +282,7 @@ Partial Class formPersonas
         Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
-        Me.toolstripBuscar.Location = New System.Drawing.Point(312, 0)
+        Me.toolstripBuscar.Location = New System.Drawing.Point(444, 0)
         Me.toolstripBuscar.Name = "toolstripBuscar"
         Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
         Me.toolstripBuscar.TabIndex = 2
@@ -287,7 +313,7 @@ Partial Class formPersonas
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(505, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(637, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 4
@@ -309,7 +335,7 @@ Partial Class formPersonas
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(688, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(820, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -387,4 +413,7 @@ Partial Class formPersonas
     Friend WithEvents columnApellido As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCuartelNombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents buttonImprimir As System.Windows.Forms.ToolStripSplitButton
+    Friend WithEvents menuitemImprimirFichaPersonal As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemImprimirListado As System.Windows.Forms.ToolStripMenuItem
 End Class

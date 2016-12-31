@@ -361,6 +361,12 @@
       <DependentUpon>formSplashScreen.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formUsuarioGrupoPermisos.Designer.vb">
+      <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUsuarioGrupoPermisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Localidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -505,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formReportesVisor.resx">
       <DependentUpon>formReportesVisor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUsuarioGrupoPermisos.resx">
+      <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

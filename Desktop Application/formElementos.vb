@@ -4,6 +4,7 @@
     Friend Class GridRowData
         Public Property IDElemento As Integer
         Public Property IDCuartel As Byte
+        Public Property CuartelNombre As String
         Public Property IDArea As Short
         Public Property AreaNombre As String
         Public Property Codigo As String
@@ -60,11 +61,12 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistElementosBase = (From e In dbContext.Elemento
                                       Join a In dbContext.Area On e.IDArea Equals a.IDArea
+                                      Join c In dbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
                                       Group Join u In dbContext.Ubicacion On e.IDUbicacion Equals u.IDUbicacion Into Ubicaciones_Group = Group
                                       From ug In Ubicaciones_Group.DefaultIfEmpty
                                       Group Join su In dbContext.SubUbicacion On e.IDSubUbicacion Equals su.IDSubUbicacion Into SubUbicaciones_Group = Group
                                       From sug In SubUbicaciones_Group.DefaultIfEmpty
-                                      Select New GridRowData With {.IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .IDArea = e.IDArea, .AreaNombre = a.Nombre, .Codigo = e.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
+                                      Select New GridRowData With {.IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = e.IDArea, .AreaNombre = a.Nombre, .Codigo = e.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -173,6 +175,12 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case mOrdenColumna.Name
+            Case columnCuartel.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                Else
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                End If
             Case columnArea.Name
                 If mOrdenTipo = SortOrder.Ascending Then
                     mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
