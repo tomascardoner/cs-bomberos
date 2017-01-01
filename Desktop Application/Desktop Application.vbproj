@@ -252,6 +252,18 @@
     <Compile Include="formAutomotor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formPersonaAscenso.Designer.vb">
+      <DependentUpon>formPersonaAscenso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaAscenso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaAscensos.Designer.vb">
+      <DependentUpon>formPersonaAscensos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaAscensos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formUbicacion.Designer.vb">
       <DependentUpon>formUbicacion.vb</DependentUpon>
     </Compile>
@@ -460,6 +472,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAutomotor.resx">
       <DependentUpon>formAutomotor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaAscenso.resx">
+      <DependentUpon>formPersonaAscenso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaAscensos.resx">
+      <DependentUpon>formPersonaAscensos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>

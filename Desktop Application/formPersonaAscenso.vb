@@ -1,22 +1,22 @@
-﻿Public Class formPersonaAccidente
+﻿Public Class formPersonaAscenso
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mPersonaAccidenteActual As PersonaAccidente
+    Private mPersonaAscensoActual As PersonaAscenso
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDAccidente As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDAscenso As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDAccidente = 0 Then
+        If IDAscenso = 0 Then
             ' Es Nuevo
-            mPersonaAccidenteActual = New PersonaAccidente
-            With mPersonaAccidenteActual
+            mPersonaAscensoActual = New PersonaAscenso
+            With mPersonaAscensoActual
                 .Fecha = DateTime.Today
                 .IDPersona = IDPersona
                 .IDUsuarioCreacion = pUsuario.IDUsuario
@@ -24,9 +24,9 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.PersonaAccidente.Add(mPersonaAccidenteActual)
+            mdbContext.PersonaAscenso.Add(mPersonaAscensoActual)
         Else
-            mPersonaAccidenteActual = mdbContext.PersonaAccidente.Find(IDPersona, IDAccidente)
+            mPersonaAscensoActual = mdbContext.PersonaAscenso.Find(IDPersona, IDAscenso)
         End If
 
         Me.MdiParent = formMDIMain
@@ -55,16 +55,15 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         datetimepickerFecha.Enabled = mEditMode
-        textboxDiagnostico.ReadOnly = Not mEditMode
-        textboxActaNumero.ReadOnly = Not mEditMode
-        datetimepickerFechaAlta.Enabled = mEditMode
-        textboxCapacidad.ReadOnly = Not mEditMode
-        textboxDisminucionFisica.ReadOnly = Not mEditMode
+        comboboxCargo.Enabled = mEditMode
+        comboboxCargoJerarquia.Enabled = mEditMode
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.Cargo(comboboxCargo, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -74,37 +73,31 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mPersonaAccidenteActual = Nothing
+        mPersonaAscensoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mPersonaAccidenteActual
-            If .IDAccidente = 0 Then
-                textboxIDAccidente.Text = My.Resources.STRING_ITEM_NEW_MALE
+        With mPersonaAscensoActual
+            If .IDAscenso = 0 Then
+                textboxIDAscenso.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDAccidente.Text = String.Format(.IDAccidente.ToString, "G")
+                textboxIDAscenso.Text = String.Format(.IDAscenso.ToString, "G")
             End If
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            textboxDiagnostico.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Diagnostico)
-            textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
-            datetimepickerFechaAlta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAlta, datetimepickerFechaAlta)
-            textboxCapacidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Capacidad)
-            textboxDisminucionFisica.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DisminucionFisica)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCargoJerarquia, SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mPersonaAccidenteActual
+        With mPersonaAscensoActual
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .Diagnostico = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDiagnostico.Text)
-            .ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
-            .FechaAlta = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAlta.Value, datetimepickerFechaAlta.Checked)
-            .Capacidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCapacidad.Text)
-            .DisminucionFisica = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDisminucionFisica.Text)
+            .IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargo.SelectedValue).Value
+            .IDJerarquia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargoJerarquia.SelectedValue).Value
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
@@ -131,11 +124,17 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
+    Private Sub comboboxCargo_SelectedIndexChanged() Handles comboboxCargo.SelectedIndexChanged
+        pFillAndRefreshLists.CargoJerarquia(comboboxCargoJerarquia, False, False, CByte(comboboxCargo.SelectedValue))
+        comboboxCargoJerarquia.SelectedItem = Nothing
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.PERSONA_Ascenso_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -146,21 +145,26 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxDiagnostico.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar el Diagnósitoco.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxDiagnostico.Focus()
+        If comboboxCargo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCargo.Focus()
+            Exit Sub
+        End If
+        If comboboxCargoJerarquia.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar la Jerarquía.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCargoJerarquia.Focus()
             Exit Sub
         End If
 
         ' Generar el ID nuevo
-        If mPersonaAccidenteActual.IDAccidente = 0 Then
+        If mPersonaAscensoActual.IDAscenso = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
-                PersonaActual = dbcMaxID.Persona.Find(mPersonaAccidenteActual.IDPersona)
-                If PersonaActual.PersonaAccidentes.Count = 0 Then
-                    mPersonaAccidenteActual.IDAccidente = 1
+                PersonaActual = dbcMaxID.Persona.Find(mPersonaAscensoActual.IDPersona)
+                If PersonaActual.PersonaAscensos.Count = 0 Then
+                    mPersonaAscensoActual.IDAscenso = 1
                 Else
-                    mPersonaAccidenteActual.IDAccidente = PersonaActual.PersonaAccidentes.Max(Function(pa) pa.IDAccidente) + CByte(1)
+                    mPersonaAscensoActual.IDAscenso = PersonaActual.PersonaAscensos.Max(Function(pa) pa.IDAscenso) + CByte(1)
                 End If
             End Using
         End If
@@ -172,8 +176,8 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mPersonaAccidenteActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mPersonaAccidenteActual.FechaHoraModificacion = Now
+            mPersonaAscensoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mPersonaAscensoActual.FechaHoraModificacion = Now
 
             Try
 
@@ -181,17 +185,17 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonaAccidentes") Then
-                    Dim formPersonaAccidentes As formPersonaAccidentes = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonaAccidentes"), formPersonaAccidentes)
-                    formPersonaAccidentes.RefreshData(mPersonaAccidenteActual.IDAccidente)
-                    formPersonaAccidentes = Nothing
+                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonaAscensos") Then
+                    Dim formPersonaAscensos As formPersonaAscensos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonaAscensos"), formPersonaAscensos)
+                    formPersonaAscensos.RefreshData(mPersonaAscensoActual.IDAscenso)
+                    formPersonaAscensos = Nothing
                 End If
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Accidente con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Ascenso con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

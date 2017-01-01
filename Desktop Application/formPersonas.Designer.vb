@@ -24,17 +24,17 @@ Partial Class formPersonas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersonas))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.dropdownbuttonOtros = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemAccidentes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemAscensosPromociones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemAscensos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemCalificacionesAnuales = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemCambiosDestino = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemPenasDisciplinarias = New System.Windows.Forms.ToolStripMenuItem()
@@ -111,7 +111,7 @@ Partial Class formPersonas
         '
         'dropdownbuttonOtros
         '
-        Me.dropdownbuttonOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemAccidentes, Me.menuitemAscensosPromociones, Me.menuitemCalificacionesAnuales, Me.menuitemCambiosDestino, Me.menuitemPenasDisciplinarias})
+        Me.dropdownbuttonOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemAccidentes, Me.menuitemAscensos, Me.menuitemCalificacionesAnuales, Me.menuitemCambiosDestino, Me.menuitemPenasDisciplinarias})
         Me.dropdownbuttonOtros.Image = CType(resources.GetObject("dropdownbuttonOtros.Image"), System.Drawing.Image)
         Me.dropdownbuttonOtros.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonOtros.Name = "dropdownbuttonOtros"
@@ -124,11 +124,11 @@ Partial Class formPersonas
         Me.menuitemAccidentes.Size = New System.Drawing.Size(204, 22)
         Me.menuitemAccidentes.Text = "Accidentes"
         '
-        'menuitemAscensosPromociones
+        'menuitemAscensos
         '
-        Me.menuitemAscensosPromociones.Name = "menuitemAscensosPromociones"
-        Me.menuitemAscensosPromociones.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemAscensosPromociones.Text = "Ascensos - Promociones"
+        Me.menuitemAscensos.Name = "menuitemAscensos"
+        Me.menuitemAscensos.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemAscensos.Text = "Ascensos - Promociones"
         '
         'menuitemCalificacionesAnuales
         '
@@ -162,13 +162,13 @@ Partial Class formPersonas
         '
         Me.menuitemImprimirFichaPersonal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.menuitemImprimirFichaPersonal.Name = "menuitemImprimirFichaPersonal"
-        Me.menuitemImprimirFichaPersonal.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimirFichaPersonal.Size = New System.Drawing.Size(150, 22)
         Me.menuitemImprimirFichaPersonal.Text = "Ficha Personal"
         '
         'menuitemImprimirListado
         '
         Me.menuitemImprimirListado.Name = "menuitemImprimirListado"
-        Me.menuitemImprimirListado.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemImprimirListado.Size = New System.Drawing.Size(150, 22)
         Me.menuitemImprimirListado.Text = "Listado"
         '
         'statusstripMain
@@ -192,11 +192,11 @@ Partial Class formPersonas
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToOrderColumns = True
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnMatriculaNumero, Me.columnApellido, Me.columnNombre, Me.columnCuartelNombre})
@@ -216,8 +216,8 @@ Partial Class formPersonas
         '
         Me.columnIDPersona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnIDPersona.DataPropertyName = "IDPersona"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnIDPersona.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnIDPersona.DefaultCellStyle = DataGridViewCellStyle2
         Me.columnIDPersona.HeaderText = "N° Persona"
         Me.columnIDPersona.Name = "columnIDPersona"
         Me.columnIDPersona.ReadOnly = True
@@ -236,8 +236,8 @@ Partial Class formPersonas
         '
         Me.columnApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnApellido.DataPropertyName = "Apellido"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnApellido.HeaderText = "Apellidos"
         Me.columnApellido.Name = "columnApellido"
         Me.columnApellido.ReadOnly = True
@@ -247,8 +247,8 @@ Partial Class formPersonas
         '
         Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle4
         Me.columnNombre.HeaderText = "Nombres"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
@@ -401,7 +401,7 @@ Partial Class formPersonas
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents dropdownbuttonOtros As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents menuitemAccidentes As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemAscensosPromociones As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemAscensos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemCalificacionesAnuales As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemCambiosDestino As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemPenasDisciplinarias As System.Windows.Forms.ToolStripMenuItem

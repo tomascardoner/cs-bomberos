@@ -371,6 +371,25 @@
         End If
     End Sub
 
+    Private Sub Ascensos_Click(sender As Object, e As EventArgs) Handles menuitemAscensos.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Persona seleccionada.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Dim PersonaActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                formPersonaAscensos.LoadAndShow(Me, PersonaActual.IDPersona)
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
     Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirFichaPersonal.Click
         Dim CurrentRow As GridRowData
 

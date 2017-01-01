@@ -21,7 +21,7 @@ Partial Public Class CargoJerarquia
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Cargo As Cargo
-    Public Overridable Property PersonaAscenso As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
+    Public Overridable Property PersonasAscensos As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
 
