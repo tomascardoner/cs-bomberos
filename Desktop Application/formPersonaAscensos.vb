@@ -72,7 +72,7 @@
             If datagridviewAscensos.CurrentRow Is Nothing Then
                 PositionIDAscenso = 0
             Else
-                PositionIDAscenso = CType(datagridviewAscensos.CurrentRow.DataBoundItem, PersonaAscenso).IDAscenso
+                PositionIDAscenso = CType(datagridviewAscensos.CurrentRow.DataBoundItem, GridRowData).IDAscenso
             End If
         End If
 
@@ -80,7 +80,7 @@
 
         If PositionIDAscenso <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewAscensos.Rows
-                If CType(CurrentRowChecked.DataBoundItem, PersonaAscenso).IDAscenso = PositionIDAscenso Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDAscenso = PositionIDAscenso Then
                     datagridviewAscensos.CurrentCell = CurrentRowChecked.Cells(columnFecha.Name)
                     Exit For
                 End If

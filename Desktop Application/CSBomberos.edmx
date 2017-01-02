@@ -273,6 +273,8 @@
           <Property Name="IDAccidente" Type="tinyint" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Diagnostico" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
+          <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="FechaAlta" Type="date" />
           <Property Name="Capacidad" Type="varchar" MaxLength="500" />
@@ -295,8 +297,8 @@
           <Property Name="FechaBaja" Type="date" />
           <Property Name="UnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
-          <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
+          <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -313,6 +315,9 @@
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="IDCargo" Type="tinyint" Nullable="false" />
           <Property Name="IDJerarquia" Type="tinyint" Nullable="false" />
+          <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
+          <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
+          <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -2190,7 +2195,7 @@
           <NavigationProperty Name="PersonaFamiliares" Relationship="CSBomberosModel.FK__Persona__PersonaParentesco1" FromRole="Persona" ToRole="PersonaFamiliar" />
           <NavigationProperty Name="NivelEstudio" Relationship="CSBomberosModel.FK__NivelEstudio__Persona" FromRole="Persona" ToRole="NivelEstudio" />
           <NavigationProperty Name="PersonaAccidentes" Relationship="CSBomberosModel.FK__Persona__PersonaAccidente" FromRole="Persona" ToRole="PersonaAccidente" />
-          <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
+          <NavigationProperty Name="PersonaAltasBajas" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
           <NavigationProperty Name="PersonaAscensos" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="Persona" ToRole="PersonaAscenso" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
@@ -2500,6 +2505,8 @@
           <Property Name="IDAccidente" Type="Byte" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Diagnostico" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FechaAlta" Type="DateTime" Precision="0" />
           <Property Name="Capacidad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
@@ -2525,8 +2532,8 @@
           <Property Name="FechaBaja" Type="DateTime" Precision="0" />
           <Property Name="UnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -2546,6 +2553,9 @@
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDCargo" Type="Byte" Nullable="false" />
           <Property Name="IDJerarquia" Type="Byte" Nullable="false" />
+          <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3549,6 +3559,8 @@
           <EntitySetMapping Name="PersonaAccidente">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAccidente">
               <MappingFragment StoreEntitySet="PersonaAccidente">
+                <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
+                <ScalarProperty Name="LibroNumero" ColumnName="LibroNumero" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -3588,6 +3600,9 @@
           <EntitySetMapping Name="PersonaAscenso">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAscenso">
               <MappingFragment StoreEntitySet="PersonaAscenso">
+                <ScalarProperty Name="ActaNumero" ColumnName="ActaNumero" />
+                <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
+                <ScalarProperty Name="LibroNumero" ColumnName="LibroNumero" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

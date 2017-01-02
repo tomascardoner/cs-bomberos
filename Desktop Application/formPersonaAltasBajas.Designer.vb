@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formPersonaAscensos
+Partial Class formPersonaAltasBajas
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -26,19 +26,20 @@ Partial Class formPersonaAscensos
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.textboxApellidoNombre = New System.Windows.Forms.TextBox()
         Me.panelGrid = New System.Windows.Forms.Panel()
-        Me.datagridviewAscensos = New System.Windows.Forms.DataGridView()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnJerarquia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.datagridviewAltasBajas = New System.Windows.Forms.DataGridView()
         Me.toolstripAccidentes = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.columnFechaAlta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUnidadOrigen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaBaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUnidadDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellidoNombre = New System.Windows.Forms.Label()
         Me.panelGrid.SuspendLayout()
-        CType(Me.datagridviewAscensos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datagridviewAltasBajas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripAccidentes.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -68,63 +69,36 @@ Partial Class formPersonaAscensos
         Me.panelGrid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelGrid.Controls.Add(Me.datagridviewAscensos)
+        Me.panelGrid.Controls.Add(Me.datagridviewAltasBajas)
         Me.panelGrid.Controls.Add(Me.toolstripAccidentes)
         Me.panelGrid.Location = New System.Drawing.Point(12, 52)
         Me.panelGrid.Name = "panelGrid"
         Me.panelGrid.Size = New System.Drawing.Size(875, 362)
         Me.panelGrid.TabIndex = 0
         '
-        'datagridviewAscensos
+        'datagridviewAltasBajas
         '
-        Me.datagridviewAscensos.AllowUserToAddRows = False
-        Me.datagridviewAscensos.AllowUserToDeleteRows = False
-        Me.datagridviewAscensos.AllowUserToResizeRows = False
+        Me.datagridviewAltasBajas.AllowUserToAddRows = False
+        Me.datagridviewAltasBajas.AllowUserToDeleteRows = False
+        Me.datagridviewAltasBajas.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAscensos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.datagridviewAscensos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewAscensos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnCargo, Me.columnJerarquia})
-        Me.datagridviewAscensos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewAscensos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAscensos.Location = New System.Drawing.Point(87, 0)
-        Me.datagridviewAscensos.MultiSelect = False
-        Me.datagridviewAscensos.Name = "datagridviewAscensos"
-        Me.datagridviewAscensos.ReadOnly = True
-        Me.datagridviewAscensos.RowHeadersVisible = False
-        Me.datagridviewAscensos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewAscensos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAscensos.Size = New System.Drawing.Size(788, 362)
-        Me.datagridviewAscensos.TabIndex = 0
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnCargo
-        '
-        Me.columnCargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCargo.DataPropertyName = "CargoNombre"
-        Me.columnCargo.HeaderText = "Cargo"
-        Me.columnCargo.Name = "columnCargo"
-        Me.columnCargo.ReadOnly = True
-        Me.columnCargo.Width = 60
-        '
-        'columnJerarquia
-        '
-        Me.columnJerarquia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnJerarquia.DataPropertyName = "CargoJerarquiaNombre"
-        Me.columnJerarquia.HeaderText = "Jerarquía"
-        Me.columnJerarquia.Name = "columnJerarquia"
-        Me.columnJerarquia.ReadOnly = True
-        Me.columnJerarquia.Width = 77
+        Me.datagridviewAltasBajas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewAltasBajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewAltasBajas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaAlta, Me.columnUnidadOrigen, Me.columnFechaBaja, Me.columnUnidadDestino})
+        Me.datagridviewAltasBajas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewAltasBajas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewAltasBajas.Location = New System.Drawing.Point(87, 0)
+        Me.datagridviewAltasBajas.MultiSelect = False
+        Me.datagridviewAltasBajas.Name = "datagridviewAltasBajas"
+        Me.datagridviewAltasBajas.ReadOnly = True
+        Me.datagridviewAltasBajas.RowHeadersVisible = False
+        Me.datagridviewAltasBajas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewAltasBajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(788, 362)
+        Me.datagridviewAltasBajas.TabIndex = 0
         '
         'toolstripAccidentes
         '
@@ -182,7 +156,43 @@ Partial Class formPersonaAscensos
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'formPersonaAscensos
+        'columnFechaAlta
+        '
+        Me.columnFechaAlta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaAlta.DataPropertyName = "FechaAlta"
+        Me.columnFechaAlta.HeaderText = "Fecha de Alta"
+        Me.columnFechaAlta.Name = "columnFechaAlta"
+        Me.columnFechaAlta.ReadOnly = True
+        Me.columnFechaAlta.Width = 98
+        '
+        'columnUnidadOrigen
+        '
+        Me.columnUnidadOrigen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUnidadOrigen.DataPropertyName = "UnidadOrigen"
+        Me.columnUnidadOrigen.HeaderText = "Unidad de Origen"
+        Me.columnUnidadOrigen.Name = "columnUnidadOrigen"
+        Me.columnUnidadOrigen.ReadOnly = True
+        Me.columnUnidadOrigen.Width = 78
+        '
+        'columnFechaBaja
+        '
+        Me.columnFechaBaja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaBaja.DataPropertyName = "FechaBaja"
+        Me.columnFechaBaja.HeaderText = "Fecha de Baja"
+        Me.columnFechaBaja.Name = "columnFechaBaja"
+        Me.columnFechaBaja.ReadOnly = True
+        Me.columnFechaBaja.Width = 74
+        '
+        'columnUnidadDestino
+        '
+        Me.columnUnidadDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUnidadDestino.DataPropertyName = "UnidadDestino"
+        Me.columnUnidadDestino.HeaderText = "Unidad de Destino"
+        Me.columnUnidadDestino.Name = "columnUnidadDestino"
+        Me.columnUnidadDestino.ReadOnly = True
+        Me.columnUnidadDestino.Width = 110
+        '
+        'formPersonaAltasBajas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -193,12 +203,12 @@ Partial Class formPersonaAscensos
         Me.Controls.Add(Me.textboxApellidoNombre)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "formPersonaAscensos"
+        Me.Name = "formPersonaAltasBajas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Ascensos - Promociones de la Persona"
+        Me.Text = "Accidentes de la Persona"
         Me.panelGrid.ResumeLayout(False)
         Me.panelGrid.PerformLayout()
-        CType(Me.datagridviewAscensos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datagridviewAltasBajas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripAccidentes.ResumeLayout(False)
         Me.toolstripAccidentes.PerformLayout()
         Me.statusstripMain.ResumeLayout(False)
@@ -209,14 +219,15 @@ Partial Class formPersonaAscensos
     End Sub
     Friend WithEvents textboxApellidoNombre As System.Windows.Forms.TextBox
     Friend WithEvents panelGrid As System.Windows.Forms.Panel
-    Friend WithEvents datagridviewAscensos As System.Windows.Forms.DataGridView
+    Friend WithEvents datagridviewAltasBajas As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripAccidentes As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents statusstripMain As System.Windows.Forms.StatusStrip
     Friend WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents columnFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCargo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnJerarquia As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaAlta As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUnidadOrigen As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaBaja As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUnidadDestino As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

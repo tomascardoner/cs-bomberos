@@ -18,8 +18,8 @@ Partial Public Class PersonaAltaBaja
     Public Property FechaBaja As Nullable(Of Date)
     Public Property UnidadDestino As String
     Public Property LibroNumero As String
-    Public Property ActaNumero As String
     Public Property FolioNumero As String
+    Public Property ActaNumero As String
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

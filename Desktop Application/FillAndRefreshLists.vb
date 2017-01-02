@@ -549,7 +549,7 @@
         ComboBoxControl.ValueMember = "IDCargo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Cargo.OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = dbContext.Cargo.OrderBy(Function(cl) cl.IDCargo).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Cargo
@@ -574,7 +574,7 @@
         ComboBoxControl.ValueMember = "IDJerarquia"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.IDCargo = IDCargo).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.IDCargo = IDCargo).OrderBy(Function(cl) cl.IDJerarquia).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CargoJerarquia

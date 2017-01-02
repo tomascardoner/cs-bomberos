@@ -16,6 +16,9 @@ Partial Public Class PersonaAscenso
     Public Property Fecha As Date
     Public Property IDCargo As Byte
     Public Property IDJerarquia As Byte
+    Public Property LibroNumero As String
+    Public Property FolioNumero As String
+    Public Property ActaNumero As String
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

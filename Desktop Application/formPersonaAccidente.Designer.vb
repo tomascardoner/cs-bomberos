@@ -22,7 +22,9 @@ Partial Class formPersonaAccidente
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim labelNombre As System.Windows.Forms.Label
+        Dim labelFolioNumero As System.Windows.Forms.Label
+        Dim labelLibroNumero As System.Windows.Forms.Label
+        Dim labelActaNumero As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -40,21 +42,43 @@ Partial Class formPersonaAccidente
         Me.labelCapacidad = New System.Windows.Forms.Label()
         Me.labelFechaAlta = New System.Windows.Forms.Label()
         Me.datetimepickerFechaAlta = New System.Windows.Forms.DateTimePicker()
-        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         Me.textboxDiagnostico = New System.Windows.Forms.TextBox()
         Me.labelDiagnostico = New System.Windows.Forms.Label()
-        labelNombre = New System.Windows.Forms.Label()
+        Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
+        Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
+        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
+        labelFolioNumero = New System.Windows.Forms.Label()
+        labelLibroNumero = New System.Windows.Forms.Label()
+        labelActaNumero = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
-        'labelNombre
+        'labelFolioNumero
         '
-        labelNombre.AutoSize = True
-        labelNombre.Location = New System.Drawing.Point(12, 158)
-        labelNombre.Name = "labelNombre"
-        labelNombre.Size = New System.Drawing.Size(47, 13)
-        labelNombre.TabIndex = 6
-        labelNombre.Text = "Acta N°:"
+        labelFolioNumero.AutoSize = True
+        labelFolioNumero.Location = New System.Drawing.Point(197, 158)
+        labelFolioNumero.Name = "labelFolioNumero"
+        labelFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelFolioNumero.TabIndex = 8
+        labelFolioNumero.Text = "Folio N°:"
+        '
+        'labelLibroNumero
+        '
+        labelLibroNumero.AutoSize = True
+        labelLibroNumero.Location = New System.Drawing.Point(12, 158)
+        labelLibroNumero.Name = "labelLibroNumero"
+        labelLibroNumero.Size = New System.Drawing.Size(48, 13)
+        labelLibroNumero.TabIndex = 6
+        labelLibroNumero.Text = "Libro N°:"
+        '
+        'labelActaNumero
+        '
+        labelActaNumero.AutoSize = True
+        labelActaNumero.Location = New System.Drawing.Point(330, 158)
+        labelActaNumero.Name = "labelActaNumero"
+        labelActaNumero.Size = New System.Drawing.Size(47, 13)
+        labelActaNumero.TabIndex = 10
+        labelActaNumero.Text = "Acta N°:"
         '
         'buttonGuardar
         '
@@ -102,8 +126,8 @@ Partial Class formPersonaAccidente
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(454, 39)
-        Me.toolstripMain.TabIndex = 16
+        Me.toolstripMain.Size = New System.Drawing.Size(473, 39)
+        Me.toolstripMain.TabIndex = 20
         '
         'textboxIDAccidente
         '
@@ -151,8 +175,8 @@ Partial Class formPersonaAccidente
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(317, 47)
-        Me.textboxNotas.TabIndex = 15
+        Me.textboxNotas.Size = New System.Drawing.Size(340, 47)
+        Me.textboxNotas.TabIndex = 19
         '
         'labelNotas
         '
@@ -160,7 +184,7 @@ Partial Class formPersonaAccidente
         Me.labelNotas.Location = New System.Drawing.Point(12, 316)
         Me.labelNotas.Name = "labelNotas"
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 14
+        Me.labelNotas.TabIndex = 18
         Me.labelNotas.Text = "Notas:"
         '
         'textboxDisminucionFisica
@@ -170,8 +194,8 @@ Partial Class formPersonaAccidente
         Me.textboxDisminucionFisica.Multiline = True
         Me.textboxDisminucionFisica.Name = "textboxDisminucionFisica"
         Me.textboxDisminucionFisica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDisminucionFisica.Size = New System.Drawing.Size(317, 47)
-        Me.textboxDisminucionFisica.TabIndex = 13
+        Me.textboxDisminucionFisica.Size = New System.Drawing.Size(340, 47)
+        Me.textboxDisminucionFisica.TabIndex = 17
         '
         'labelDisminucionFisica
         '
@@ -179,7 +203,7 @@ Partial Class formPersonaAccidente
         Me.labelDisminucionFisica.Location = New System.Drawing.Point(12, 263)
         Me.labelDisminucionFisica.Name = "labelDisminucionFisica"
         Me.labelDisminucionFisica.Size = New System.Drawing.Size(99, 13)
-        Me.labelDisminucionFisica.TabIndex = 12
+        Me.labelDisminucionFisica.TabIndex = 16
         Me.labelDisminucionFisica.Text = "Disminución Física:"
         '
         'textboxCapacidad
@@ -189,8 +213,8 @@ Partial Class formPersonaAccidente
         Me.textboxCapacidad.Multiline = True
         Me.textboxCapacidad.Name = "textboxCapacidad"
         Me.textboxCapacidad.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxCapacidad.Size = New System.Drawing.Size(317, 47)
-        Me.textboxCapacidad.TabIndex = 11
+        Me.textboxCapacidad.Size = New System.Drawing.Size(340, 47)
+        Me.textboxCapacidad.TabIndex = 15
         '
         'labelCapacidad
         '
@@ -198,7 +222,7 @@ Partial Class formPersonaAccidente
         Me.labelCapacidad.Location = New System.Drawing.Point(12, 210)
         Me.labelCapacidad.Name = "labelCapacidad"
         Me.labelCapacidad.Size = New System.Drawing.Size(61, 13)
-        Me.labelCapacidad.TabIndex = 10
+        Me.labelCapacidad.TabIndex = 14
         Me.labelCapacidad.Text = "Capacidad:"
         '
         'labelFechaAlta
@@ -207,7 +231,7 @@ Partial Class formPersonaAccidente
         Me.labelFechaAlta.Location = New System.Drawing.Point(12, 187)
         Me.labelFechaAlta.Name = "labelFechaAlta"
         Me.labelFechaAlta.Size = New System.Drawing.Size(61, 13)
-        Me.labelFechaAlta.TabIndex = 8
+        Me.labelFechaAlta.TabIndex = 12
         Me.labelFechaAlta.Text = "Fecha Alta:"
         '
         'datetimepickerFechaAlta
@@ -219,15 +243,7 @@ Partial Class formPersonaAccidente
         Me.datetimepickerFechaAlta.Name = "datetimepickerFechaAlta"
         Me.datetimepickerFechaAlta.ShowCheckBox = True
         Me.datetimepickerFechaAlta.Size = New System.Drawing.Size(139, 20)
-        Me.datetimepickerFechaAlta.TabIndex = 9
-        '
-        'textboxActaNumero
-        '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(117, 155)
-        Me.textboxActaNumero.MaxLength = 10
-        Me.textboxActaNumero.Name = "textboxActaNumero"
-        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxActaNumero.TabIndex = 7
+        Me.datetimepickerFechaAlta.TabIndex = 13
         '
         'textboxDiagnostico
         '
@@ -236,7 +252,7 @@ Partial Class formPersonaAccidente
         Me.textboxDiagnostico.Multiline = True
         Me.textboxDiagnostico.Name = "textboxDiagnostico"
         Me.textboxDiagnostico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDiagnostico.Size = New System.Drawing.Size(317, 47)
+        Me.textboxDiagnostico.Size = New System.Drawing.Size(340, 47)
         Me.textboxDiagnostico.TabIndex = 5
         '
         'labelDiagnostico
@@ -248,19 +264,47 @@ Partial Class formPersonaAccidente
         Me.labelDiagnostico.TabIndex = 4
         Me.labelDiagnostico.Text = "Diagnóstico:"
         '
+        'textboxFolioNumero
+        '
+        Me.textboxFolioNumero.Location = New System.Drawing.Point(250, 155)
+        Me.textboxFolioNumero.MaxLength = 10
+        Me.textboxFolioNumero.Name = "textboxFolioNumero"
+        Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxFolioNumero.TabIndex = 9
+        '
+        'textboxLibroNumero
+        '
+        Me.textboxLibroNumero.Location = New System.Drawing.Point(117, 155)
+        Me.textboxLibroNumero.MaxLength = 10
+        Me.textboxLibroNumero.Name = "textboxLibroNumero"
+        Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxLibroNumero.TabIndex = 7
+        '
+        'textboxActaNumero
+        '
+        Me.textboxActaNumero.Location = New System.Drawing.Point(383, 155)
+        Me.textboxActaNumero.MaxLength = 10
+        Me.textboxActaNumero.Name = "textboxActaNumero"
+        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxActaNumero.TabIndex = 11
+        '
         'formPersonaAccidente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(454, 379)
+        Me.ClientSize = New System.Drawing.Size(473, 379)
+        Me.Controls.Add(Me.textboxFolioNumero)
+        Me.Controls.Add(labelFolioNumero)
+        Me.Controls.Add(labelLibroNumero)
+        Me.Controls.Add(Me.textboxLibroNumero)
+        Me.Controls.Add(labelActaNumero)
+        Me.Controls.Add(Me.textboxActaNumero)
         Me.Controls.Add(Me.textboxDisminucionFisica)
         Me.Controls.Add(Me.labelDisminucionFisica)
         Me.Controls.Add(Me.textboxCapacidad)
         Me.Controls.Add(Me.labelCapacidad)
         Me.Controls.Add(Me.labelFechaAlta)
         Me.Controls.Add(Me.datetimepickerFechaAlta)
-        Me.Controls.Add(labelNombre)
-        Me.Controls.Add(Me.textboxActaNumero)
         Me.Controls.Add(Me.textboxDiagnostico)
         Me.Controls.Add(Me.labelDiagnostico)
         Me.Controls.Add(Me.textboxNotas)
@@ -299,7 +343,9 @@ Partial Class formPersonaAccidente
     Friend WithEvents labelCapacidad As System.Windows.Forms.Label
     Friend WithEvents labelFechaAlta As System.Windows.Forms.Label
     Friend WithEvents datetimepickerFechaAlta As System.Windows.Forms.DateTimePicker
-    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxDiagnostico As System.Windows.Forms.TextBox
     Friend WithEvents labelDiagnostico As System.Windows.Forms.Label
+    Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
 End Class

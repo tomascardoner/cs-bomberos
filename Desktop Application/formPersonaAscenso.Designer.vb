@@ -24,6 +24,9 @@ Partial Class formPersonaAscenso
     Private Sub InitializeComponent()
         Dim labelCargo As System.Windows.Forms.Label
         Dim labelCargoJerarquia As System.Windows.Forms.Label
+        Dim labelFolioNumero As System.Windows.Forms.Label
+        Dim labelLibroNumero As System.Windows.Forms.Label
+        Dim labelActaNumero As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -37,10 +40,34 @@ Partial Class formPersonaAscenso
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.comboboxCargo = New System.Windows.Forms.ComboBox()
         Me.comboboxCargoJerarquia = New System.Windows.Forms.ComboBox()
+        Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
+        Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
+        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         labelCargo = New System.Windows.Forms.Label()
         labelCargoJerarquia = New System.Windows.Forms.Label()
+        labelFolioNumero = New System.Windows.Forms.Label()
+        labelLibroNumero = New System.Windows.Forms.Label()
+        labelActaNumero = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
+        '
+        'labelCargo
+        '
+        labelCargo.AutoSize = True
+        labelCargo.Location = New System.Drawing.Point(12, 105)
+        labelCargo.Name = "labelCargo"
+        labelCargo.Size = New System.Drawing.Size(38, 13)
+        labelCargo.TabIndex = 4
+        labelCargo.Text = "Cargo:"
+        '
+        'labelCargoJerarquia
+        '
+        labelCargoJerarquia.AutoSize = True
+        labelCargoJerarquia.Location = New System.Drawing.Point(12, 132)
+        labelCargoJerarquia.Name = "labelCargoJerarquia"
+        labelCargoJerarquia.Size = New System.Drawing.Size(55, 13)
+        labelCargoJerarquia.TabIndex = 6
+        labelCargoJerarquia.Text = "Jerarquía:"
         '
         'buttonGuardar
         '
@@ -88,8 +115,8 @@ Partial Class formPersonaAscenso
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(454, 39)
-        Me.toolstripMain.TabIndex = 10
+        Me.toolstripMain.Size = New System.Drawing.Size(473, 39)
+        Me.toolstripMain.TabIndex = 16
         '
         'textboxIDAscenso
         '
@@ -132,21 +159,21 @@ Partial Class formPersonaAscenso
         '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(117, 156)
+        Me.textboxNotas.Location = New System.Drawing.Point(117, 182)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(317, 47)
-        Me.textboxNotas.TabIndex = 9
+        Me.textboxNotas.Size = New System.Drawing.Size(340, 47)
+        Me.textboxNotas.TabIndex = 15
         '
         'labelNotas
         '
         Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(12, 159)
+        Me.labelNotas.Location = New System.Drawing.Point(12, 185)
         Me.labelNotas.Name = "labelNotas"
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 8
+        Me.labelNotas.TabIndex = 14
         Me.labelNotas.Text = "Notas:"
         '
         'comboboxCargo
@@ -155,17 +182,8 @@ Partial Class formPersonaAscenso
         Me.comboboxCargo.FormattingEnabled = True
         Me.comboboxCargo.Location = New System.Drawing.Point(117, 102)
         Me.comboboxCargo.Name = "comboboxCargo"
-        Me.comboboxCargo.Size = New System.Drawing.Size(317, 21)
+        Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargo.TabIndex = 5
-        '
-        'labelCargo
-        '
-        labelCargo.AutoSize = True
-        labelCargo.Location = New System.Drawing.Point(12, 105)
-        labelCargo.Name = "labelCargo"
-        labelCargo.Size = New System.Drawing.Size(38, 13)
-        labelCargo.TabIndex = 4
-        labelCargo.Text = "Cargo:"
         '
         'comboboxCargoJerarquia
         '
@@ -173,23 +191,71 @@ Partial Class formPersonaAscenso
         Me.comboboxCargoJerarquia.FormattingEnabled = True
         Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(117, 129)
         Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
-        Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(317, 21)
+        Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargoJerarquia.TabIndex = 7
         '
-        'labelCargoJerarquia
+        'textboxFolioNumero
         '
-        labelCargoJerarquia.AutoSize = True
-        labelCargoJerarquia.Location = New System.Drawing.Point(12, 132)
-        labelCargoJerarquia.Name = "labelCargoJerarquia"
-        labelCargoJerarquia.Size = New System.Drawing.Size(55, 13)
-        labelCargoJerarquia.TabIndex = 6
-        labelCargoJerarquia.Text = "Jerarquía:"
+        Me.textboxFolioNumero.Location = New System.Drawing.Point(250, 156)
+        Me.textboxFolioNumero.MaxLength = 10
+        Me.textboxFolioNumero.Name = "textboxFolioNumero"
+        Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxFolioNumero.TabIndex = 11
+        '
+        'labelFolioNumero
+        '
+        labelFolioNumero.AutoSize = True
+        labelFolioNumero.Location = New System.Drawing.Point(197, 159)
+        labelFolioNumero.Name = "labelFolioNumero"
+        labelFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelFolioNumero.TabIndex = 10
+        labelFolioNumero.Text = "Folio N°:"
+        '
+        'labelLibroNumero
+        '
+        labelLibroNumero.AutoSize = True
+        labelLibroNumero.Location = New System.Drawing.Point(12, 159)
+        labelLibroNumero.Name = "labelLibroNumero"
+        labelLibroNumero.Size = New System.Drawing.Size(48, 13)
+        labelLibroNumero.TabIndex = 8
+        labelLibroNumero.Text = "Libro N°:"
+        '
+        'textboxLibroNumero
+        '
+        Me.textboxLibroNumero.Location = New System.Drawing.Point(117, 156)
+        Me.textboxLibroNumero.MaxLength = 10
+        Me.textboxLibroNumero.Name = "textboxLibroNumero"
+        Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxLibroNumero.TabIndex = 9
+        '
+        'labelActaNumero
+        '
+        labelActaNumero.AutoSize = True
+        labelActaNumero.Location = New System.Drawing.Point(330, 159)
+        labelActaNumero.Name = "labelActaNumero"
+        labelActaNumero.Size = New System.Drawing.Size(47, 13)
+        labelActaNumero.TabIndex = 12
+        labelActaNumero.Text = "Acta N°:"
+        '
+        'textboxActaNumero
+        '
+        Me.textboxActaNumero.Location = New System.Drawing.Point(383, 156)
+        Me.textboxActaNumero.MaxLength = 10
+        Me.textboxActaNumero.Name = "textboxActaNumero"
+        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxActaNumero.TabIndex = 13
         '
         'formPersonaAscenso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(454, 220)
+        Me.ClientSize = New System.Drawing.Size(473, 247)
+        Me.Controls.Add(Me.textboxFolioNumero)
+        Me.Controls.Add(labelFolioNumero)
+        Me.Controls.Add(labelLibroNumero)
+        Me.Controls.Add(Me.textboxLibroNumero)
+        Me.Controls.Add(labelActaNumero)
+        Me.Controls.Add(Me.textboxActaNumero)
         Me.Controls.Add(Me.comboboxCargoJerarquia)
         Me.Controls.Add(labelCargoJerarquia)
         Me.Controls.Add(Me.comboboxCargo)
@@ -206,7 +272,7 @@ Partial Class formPersonaAscenso
         Me.MinimizeBox = False
         Me.Name = "formPersonaAscenso"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Accidente de la Persona"
+        Me.Text = "Ascenso - Promoción de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
@@ -226,4 +292,7 @@ Partial Class formPersonaAscenso
     Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents comboboxCargo As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxCargoJerarquia As System.Windows.Forms.ComboBox
+    Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
 End Class

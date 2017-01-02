@@ -15,6 +15,8 @@ Partial Public Class PersonaAccidente
     Public Property IDAccidente As Byte
     Public Property Fecha As Date
     Public Property Diagnostico As String
+    Public Property LibroNumero As String
+    Public Property FolioNumero As String
     Public Property ActaNumero As String
     Public Property FechaAlta As Nullable(Of Date)
     Public Property Capacidad As String
