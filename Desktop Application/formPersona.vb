@@ -192,8 +192,8 @@
             textboxDomicilioParticularDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularDepartamento)
             textboxDomicilioParticularCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle2)
             textboxDomicilioParticularCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle3)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, SelectedItemOptions.Value, .DomicilioParticularIDProvincia, Constantes.PROVINCIA_NOESPECIFICA)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, 0)
+            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, SelectedItemOptions.Value, .DomicilioParticularIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioParticularCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCodigoPostal)
             textboxTelefonoParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoParticular)
             textboxCelularParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularParticular)
@@ -206,8 +206,8 @@
             textboxDomicilioLaboralDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralDepartamento)
             textboxDomicilioLaboralCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle2)
             textboxDomicilioLaboralCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle3)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, Constantes.PROVINCIA_NOESPECIFICA)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, 0)
+            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioLaboralCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCodigoPostal)
             textboxTelefonoLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoLaboral)
             textboxCelularLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularLaboral)
@@ -273,8 +273,8 @@
             .DomicilioParticularDepartamento = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularDepartamento.Text)
             .DomicilioParticularCalle2 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle2.Text)
             .DomicilioParticularCalle3 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle3.Text)
-            .DomicilioParticularIDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioParticularProvincia.SelectedValue, Constantes.PROVINCIA_NOESPECIFICA)
-            .DomicilioParticularIDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioParticularLocalidad.SelectedValue, 0)
+            .DomicilioParticularIDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioParticularProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .DomicilioParticularIDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioParticularLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
             .DomicilioParticularCodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCodigoPostal.Text)
             .TelefonoParticular = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefonoParticular.Text)
             .CelularParticular = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCelularParticular.Text)
@@ -287,8 +287,8 @@
             .DomicilioLaboralDepartamento = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioLaboralDepartamento.Text)
             .DomicilioLaboralCalle2 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioLaboralCalle2.Text)
             .DomicilioLaboralCalle3 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioLaboralCalle3.Text)
-            .DomicilioLaboralIDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioLaboralProvincia.SelectedValue, Constantes.PROVINCIA_NOESPECIFICA)
-            .DomicilioLaboralIDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLaboralLocalidad.SelectedValue, 0)
+            .DomicilioLaboralIDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDomicilioLaboralProvincia.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .DomicilioLaboralIDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxDomicilioLaboralLocalidad.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
             .DomicilioLaboralCodigoPostal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioLaboralCodigoPostal.Text)
             .TelefonoLaboral = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefonoLaboral.Text)
             .CelularLaboral = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCelularLaboral.Text)
@@ -364,9 +364,10 @@
 
     Private Sub DomicilioParticularProvincia_SelectedValueChanged() Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
         If comboboxDomicilioParticularProvincia.SelectedValue Is Nothing Then
-            comboboxDomicilioParticularLocalidad.DataSource = Nothing
+            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, 0, True)
+            comboboxDomicilioParticularLocalidad.SelectedIndex = 0
         Else
-            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), False)
+            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
                 CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
@@ -381,9 +382,10 @@
 
     Private Sub DomicilioLaboralProvincia_SelectedValueChanged() Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
         If comboboxDomicilioLaboralProvincia.SelectedValue Is Nothing Then
-            comboboxDomicilioLaboralLocalidad.DataSource = Nothing
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, 0, True)
+            comboboxDomicilioLaboralLocalidad.SelectedIndex = 0
         Else
-            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), False)
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
                 CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If

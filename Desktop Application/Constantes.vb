@@ -11,8 +11,6 @@
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
 
-    Friend Const PROVINCIA_NOESPECIFICA As Byte = 255
-
     Friend Const PERSONA_ESTADO_ACTIVO As String = "A"
     Friend Const PERSONA_ESTADO_RESERVA As String = "R"
     Friend Const PERSONA_ESTADO_CUERPOAUXILIAR As String = "C"

@@ -44,7 +44,7 @@
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
             Dim UnspecifiedItem As New Provincia
-            UnspecifiedItem.IDProvincia = Constantes.PROVINCIA_NOESPECIFICA
+            UnspecifiedItem.IDProvincia = FIELD_VALUE_NOTSPECIFIED_BYTE
             UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             localList.Insert(0, UnspecifiedItem)
         End If
@@ -63,7 +63,7 @@
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
             Dim UnspecifiedItem As New Localidad
-            UnspecifiedItem.IDLocalidad = 0
+            UnspecifiedItem.IDLocalidad = FIELD_VALUE_NOTSPECIFIED_SHORT
             UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             localList.Insert(0, UnspecifiedItem)
         End If
