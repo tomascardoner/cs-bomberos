@@ -83,10 +83,6 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            listPersonaAltaBajaFiltradaYOrdenada = (From pab In listPersonaAltaBajaFiltradaYOrdenada
-                                                    Order By pab.FechaAlta Descending
-                                                    Select pab).ToList
-
             Select Case listPersonaAltaBajaFiltradaYOrdenada.Count
                 Case 0
                     statuslabelMain.Text = String.Format("No hay Altas-Bajas para mostrar.")

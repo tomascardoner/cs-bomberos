@@ -61,5 +61,9 @@ Partial Public Class Usuario
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property ModosAdquisicionCreados As ICollection(Of ModoAdquisicion) = New HashSet(Of ModoAdquisicion)
     Public Overridable Property ModosAdquisicionModificados As ICollection(Of ModoAdquisicion) = New HashSet(Of ModoAdquisicion)
+    Public Overridable Property CalificacionConceptosCreados As ICollection(Of CalificacionConcepto) = New HashSet(Of CalificacionConcepto)
+    Public Overridable Property CalificacionConceptosModificados As ICollection(Of CalificacionConcepto) = New HashSet(Of CalificacionConcepto)
+    Public Overridable Property PersonaCalificacionesCreadas As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
+    Public Overridable Property PersonaCalificacionesModificadas As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
 
 End Class

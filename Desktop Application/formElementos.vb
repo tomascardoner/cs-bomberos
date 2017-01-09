@@ -7,7 +7,7 @@
         Public Property CuartelNombre As String
         Public Property IDArea As Short
         Public Property AreaNombre As String
-        Public Property Codigo As String
+        Public Property AreaCodigo As String
         Public Property Nombre As String
         Public Property IDUbicacion As Short
         Public Property UbicacionNombre As String
@@ -66,7 +66,7 @@
                                       From ug In Ubicaciones_Group.DefaultIfEmpty
                                       Group Join su In dbContext.SubUbicacion On e.IDSubUbicacion Equals su.IDSubUbicacion Into SubUbicaciones_Group = Group
                                       From sug In SubUbicaciones_Group.DefaultIfEmpty
-                                      Select New GridRowData With {.IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = e.IDArea, .AreaNombre = a.Nombre, .Codigo = e.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
+                                      Select New GridRowData With {.IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = e.IDArea, .AreaNombre = a.Nombre, .AreaCodigo = a.Codigo & e.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -187,11 +187,11 @@
                 Else
                     mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
-            Case columnCodigo.Name
+            Case columnAreaCodigo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Codigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AreaCodigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
                 Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Codigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AreaCodigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
                 End If
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then

@@ -10,20 +10,20 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class CargoJerarquia
-    Public Property IDCargo As Byte
-    Public Property IDJerarquia As Byte
-    Public Property Nombre As String
-    Public Property Orden As Nullable(Of Byte)
-    Public Property EsActivo As Boolean
+Partial Public Class PersonaCalificacion
+    Public Property IDPersona As Integer
+    Public Property Anio As Short
+    Public Property InstanciaNumero As Byte
+    Public Property IDCalificacionConcepto As Byte
+    Public Property Calificacion As Byte
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Cargo As Cargo
-    Public Overridable Property PersonasAscensos As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property CalificacionConcepto As CalificacionConcepto
+    Public Overridable Property Persona As Persona
 
 End Class

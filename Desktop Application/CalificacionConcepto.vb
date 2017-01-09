@@ -10,10 +10,11 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class CargoJerarquia
-    Public Property IDCargo As Byte
-    Public Property IDJerarquia As Byte
+Partial Public Class CalificacionConcepto
+    Public Property IDCalificacionConcepto As Byte
+    Public Property Abreviatura As String
     Public Property Nombre As String
+    Public Property Descripcion As String
     Public Property Orden As Nullable(Of Byte)
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -21,9 +22,8 @@ Partial Public Class CargoJerarquia
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Cargo As Cargo
-    Public Overridable Property PersonasAscensos As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property PersonaCalificaciones As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
 
 End Class

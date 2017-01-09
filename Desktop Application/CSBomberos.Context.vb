@@ -51,5 +51,7 @@ Partial Public Class CSBomberosContext
     Public Overridable Property CombustibleTipo() As DbSet(Of CombustibleTipo)
     Public Overridable Property SubUbicacion() As DbSet(Of SubUbicacion)
     Public Overridable Property ModoAdquisicion() As DbSet(Of ModoAdquisicion)
+    Public Overridable Property CalificacionConcepto() As DbSet(Of CalificacionConcepto)
+    Public Overridable Property PersonaCalificacion() As DbSet(Of PersonaCalificacion)
 
 End Class

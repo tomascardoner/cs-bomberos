@@ -102,6 +102,19 @@
         <AssociationConnector Association="CSBomberosModel.FK__ModoAdquisicion__Elemento" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.CalificacionConcepto" Width="1.5" PointX="5.25" PointY="10.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaCalificacion" Width="1.5" PointX="5.5" PointY="14.875" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Modificacion" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.5" PointY="25.404999" />
+          <ConnectorPoint PointX="4.90625" PointY="24.998749" />
+          <ConnectorPoint PointX="4.90625" PointY="11.740184360677091" />
+          <ConnectorPoint PointX="5.25" PointY="11.740184360677091" />
+        </AssociationConnector>
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__CalificacionConcepto__PersonaCalificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCalificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

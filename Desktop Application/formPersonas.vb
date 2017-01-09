@@ -390,6 +390,25 @@
         End If
     End Sub
 
+    Private Sub Calificacions_Click(sender As Object, e As EventArgs) Handles menuitemCalificaciones.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Persona seleccionada.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                Dim PersonaActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                formPersonaCalificaciones.LoadAndShow(Me, PersonaActual.IDPersona)
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
     Private Sub AltasBajas_Click(sender As Object, e As EventArgs) Handles menuitemAltasBajas.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona seleccionada.", vbInformation, My.Application.Info.Title)

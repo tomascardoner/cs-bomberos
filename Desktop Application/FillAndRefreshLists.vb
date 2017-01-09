@@ -19,8 +19,8 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         Dim qryList = From tbl In dbContext.DocumentoTipo
-                          Where tbl.EsActivo
-                          Order By tbl.Nombre
+                      Where tbl.EsActivo
+                      Order By tbl.Nombre
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
@@ -322,7 +322,7 @@
         ComboBoxControl.ValueMember = "IDParentesco"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Parentesco.OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = dbContext.Parentesco.OrderBy(Function(pa) pa.Orden).ThenBy(Function(pa) pa.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Parentesco
@@ -549,7 +549,7 @@
         ComboBoxControl.ValueMember = "IDCargo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Cargo.OrderBy(Function(cl) cl.IDCargo).ToList
+        listItems = dbContext.Cargo.OrderBy(Function(ca) ca.Orden).ThenBy(Function(ca) ca.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Cargo
@@ -574,7 +574,7 @@
         ComboBoxControl.ValueMember = "IDJerarquia"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.IDCargo = IDCargo).OrderBy(Function(cl) cl.IDJerarquia).ToList
+        listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.IDCargo = IDCargo).OrderBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CargoJerarquia
@@ -588,6 +588,25 @@
             Item_NoEspecifica.IDCargo = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub PersonaCalificacionAnio(ByRef ComboBoxControl As ComboBox, ByVal IDPersona As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of String)
+
+        listItems = (From pc In dbContext.PersonaCalificacion
+                     Where pc.IDPersona = IDPersona
+                     Order By pc.Anio
+                     Select CStr(pc.Anio)).Distinct.ToList
+
+        If AgregarItem_Todos Then
+            listItems.Insert(0, My.Resources.STRING_ITEM_ALL_MALE)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            listItems.Insert(0, My.Resources.STRING_ITEM_NOT_SPECIFIED)
         End If
 
         ComboBoxControl.DataSource = listItems

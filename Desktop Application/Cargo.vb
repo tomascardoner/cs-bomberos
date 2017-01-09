@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class Cargo
     Public Property IDCargo As Byte
     Public Property Nombre As String
+    Public Property Orden As Nullable(Of Byte)
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

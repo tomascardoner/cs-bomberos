@@ -94,10 +94,6 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            listPersonaAscensoFiltradaYOrdenada = (From pa In listPersonaAscensoFiltradaYOrdenada
-                                                     Order By pa.Fecha Descending
-                                                     Select pa).ToList
-
             Select Case listPersonaAscensoFiltradaYOrdenada.Count
                 Case 0
                     statuslabelMain.Text = String.Format("No hay Ascensos para mostrar.")

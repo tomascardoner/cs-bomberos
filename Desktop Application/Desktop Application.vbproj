@@ -123,6 +123,10 @@
     <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Constants.vb">
       <Link>CS_Constants.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_Textbox_Currency.vb">
+      <Link>CS_Control_Textbox_Currency.vb</Link>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_String.vb">
       <Link>CS_String.vb</Link>
     </Compile>
@@ -140,10 +144,6 @@
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_TabControl.vb">
       <Link>CS_Control_TabControl.vb</Link>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_Textbox_Currency.vb">
-      <Link>CS_Control_Textbox_Currency.vb</Link>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_Textbox_Number.vb">
@@ -202,6 +202,9 @@
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ValueTranslation.vb">
       <Link>CS_ValueTranslation.vb</Link>
+    </Compile>
+    <Compile Include="CalificacionConcepto.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Cargo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -264,10 +267,22 @@
     <Compile Include="formPersonaAltasBajas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formPersonaCalificacion.Designer.vb">
+      <DependentUpon>formPersonaCalificacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaCalificacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaAscenso.Designer.vb">
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaAscenso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaCalificaciones.Designer.vb">
+      <DependentUpon>formPersonaCalificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaCalificaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaAscensos.Designer.vb">
@@ -439,6 +454,9 @@
     <Compile Include="PersonaAscenso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaCalificacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaFamiliar.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -491,8 +509,14 @@
     <EmbeddedResource Include="formPersonaAltasBajas.resx">
       <DependentUpon>formPersonaAltasBajas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaCalificacion.resx">
+      <DependentUpon>formPersonaCalificacion.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAscenso.resx">
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaCalificaciones.resx">
+      <DependentUpon>formPersonaCalificaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAscensos.resx">
       <DependentUpon>formPersonaAscensos.vb</DependentUpon>
