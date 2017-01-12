@@ -72,6 +72,7 @@
         maskedtextboxInstanciaNumero.ReadOnly = Not (mIsNew And mEditMode)
 
         datagridviewCalificaciones.ReadOnly = Not mEditMode
+        columnConcepto.ReadOnly = True
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -155,6 +156,10 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
+    Private Sub datagridviewCalificaciones_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles datagridviewCalificaciones.DataError
+        MsgBox("Ingrese un número del 0 al 10.", vbInformation, My.Application.Info.Title)
+        e.ThrowException = False
+    End Sub
 #End Region
 
 #Region "Main Toolbar"

@@ -47,9 +47,7 @@
         SetAppearance()
 
         OrdenColumna = columnAnioInstancia
-        OrdenTipo = SortOrder.Ascending
-
-        pFillAndRefreshLists.PersonaCalificacionAnio(comboboxAnio.ComboBox, mPersonaActual.IDPersona, True, False)
+        OrdenTipo = SortOrder.Descending
     End Sub
 
     Friend Sub SetAppearance()
@@ -71,6 +69,8 @@
         Dim GridRowDataActual As New GridRowData
 
         Me.Cursor = Cursors.WaitCursor
+
+        pFillAndRefreshLists.PersonaCalificacionAnio(comboboxAnio.ComboBox, mPersonaActual.IDPersona, True, False)
 
         textboxApellidoNombre.Text = mPersonaActual.ApellidoNombre
 
@@ -95,7 +95,7 @@
                     mlistPersonaCalificacionBase.Add(GridRowDataActual)
                 End If
                 ' Si no es el primer item, agrego un salto de línea
-                If Not GridRowDataActual.ConceptosCalificaciones Is Nothing Then
+                If GridRowDataActual.ConceptosCalificaciones.Length > 0 Then
                     GridRowDataActual.ConceptosCalificaciones &= vbCrLf
                 End If
                 If .ConceptoAbreviatura Is Nothing Then
