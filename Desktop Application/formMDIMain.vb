@@ -133,7 +133,7 @@
     End Sub
 
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+        If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))

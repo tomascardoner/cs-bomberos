@@ -73,6 +73,11 @@
 
         datagridviewCalificaciones.ReadOnly = Not mEditMode
         columnConcepto.ReadOnly = True
+        If mEditMode Then
+            datagridviewCalificaciones.SelectionMode = DataGridViewSelectionMode.CellSelect
+        Else
+            datagridviewCalificaciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        End If
     End Sub
 
     Friend Sub InitializeFormAndControls()

@@ -445,7 +445,7 @@
                     Dim ReporteActual As New Reporte
 
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_FICHA))
-                    ReporteActual.ReporteParametro(0).Valor = CurrentRow.IDPersona
+                    ReporteActual.ReporteParametros(0).Valor = CurrentRow.IDPersona
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & CurrentRow.ApellidoNombre)

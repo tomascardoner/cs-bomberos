@@ -1,4 +1,9 @@
 ﻿Module Permisos
+    Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
+    Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
+    Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
+    Friend Const USUARIOGRUPO_ELIMINAR As String = "USUARIOGRUPO_ELIMINAR"
+
     Friend Const PARENTESCO As String = "PARENTESCO"
     Friend Const PARENTESCO_AGREGAR As String = "PARENTESCO_AGREGAR"
     Friend Const PARENTESCO_EDITAR As String = "PARENTESCO_EDITAR"
@@ -78,6 +83,13 @@
         Arbol.SuspendLayout()
 
         Arbol.Nodes.Clear()
+
+        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
+        With RootNode
+            .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
 
         RootNode = Arbol.Nodes.Add(PARENTESCO, "Parentescos")
         With RootNode

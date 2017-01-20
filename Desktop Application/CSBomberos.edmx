@@ -2065,7 +2065,7 @@
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ReporteParametro" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
+          <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
           <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
@@ -2075,7 +2075,7 @@
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+          <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
