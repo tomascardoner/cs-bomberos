@@ -214,7 +214,9 @@
 
                     Try
                         Using dbContext As New CSBomberosContext(True)
-                            dbContext.PersonaAltaBaja.Remove(PersonaAltaBajaActual)
+                            Dim PersonaAltaBajaEliminar As PersonaAltaBaja
+                            PersonaAltaBajaEliminar = dbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
+                            dbContext.PersonaAltaBaja.Remove(PersonaAltaBajaEliminar)
                             dbContext.SaveChanges()
                         End Using
 

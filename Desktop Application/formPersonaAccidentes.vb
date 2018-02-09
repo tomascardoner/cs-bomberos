@@ -220,6 +220,8 @@
 
                     Try
                         Using dbContext As New CSBomberosContext(True)
+                            Dim PersonaAccidenteEliminar As PersonaAccidente
+                            PersonaAccidenteEliminar = dbContext.PersonaAccidente.Find(mPersonaActual.IDPersona, PersonaAccidenteActual.IDAccidente)
                             dbContext.PersonaAccidente.Remove(PersonaAccidenteActual)
                             dbContext.SaveChanges()
                         End Using

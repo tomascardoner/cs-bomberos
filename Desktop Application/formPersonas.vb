@@ -115,11 +115,11 @@
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case 0      ' Todos
-                    Case FILTER_ACTIVO_YES_LISTINDEX       ' Sí
+                    Case CS_Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX      ' Todos
+                    Case CS_Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX      ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 1"
                         mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case FILTER_ACTIVO_NO_LISTINDEX       ' No
+                    Case CS_Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX       ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 0"
                         mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
@@ -462,7 +462,7 @@
 
     Private Sub Imprimir_Listado() Handles menuitemImprimirListado.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Comprobante para imprimir.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Persona para imprimir el Listado.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
                 Me.Cursor = Cursors.WaitCursor
@@ -474,7 +474,7 @@
                     If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                         ReporteActual.RecordSelectionFormula = mReportSelectionFormula
 
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Comprobantes")
+                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Personas")
                     End If
                 End If
 

@@ -142,11 +142,11 @@
 
                 ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
-                    Case 0      ' Todos
-                    Case FILTER_ACTIVO_YES_LISTINDEX       ' Sí
+                    Case CS_Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
+                    Case CS_Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Elemento.EsActivo} = 1"
                         mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case FILTER_ACTIVO_NO_LISTINDEX       ' No
+                    Case CS_Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Elemento.EsActivo} = 0"
                         mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
