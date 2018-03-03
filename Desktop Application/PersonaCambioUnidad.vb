@@ -10,17 +10,23 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ModoAdquisicion
-    Public Property IDModoAdquisicion As Byte
-    Public Property Nombre As String
-    Public Property EsActivo As Boolean
+Partial Public Class PersonaCambioUnidad
+    Public Property IDPersona As Integer
+    Public Property IDCambioUnidad As Byte
+    Public Property FechaAlta As Date
+    Public Property UnidadOrigen As String
+    Public Property FechaBaja As Nullable(Of Date)
+    Public Property UnidadDestino As String
+    Public Property LibroNumero As String
+    Public Property FolioNumero As String
+    Public Property ActaNumero As String
+    Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
+    Public Overridable Property Usuario As Usuario
+    Public Overridable Property Usuario1 As Usuario
 
 End Class

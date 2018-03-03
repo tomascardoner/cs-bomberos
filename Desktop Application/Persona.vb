@@ -22,11 +22,11 @@ Partial Public Class Persona
     Public Property Genero As String
     Public Property GrupoSanguineo As String
     Public Property FactorRH As String
+    Public Property TieneIOMA As String
     Public Property IDNivelEstudio As Nullable(Of Byte)
     Public Property Profesion As String
     Public Property Nacionalidad As String
     Public Property IDCuartel As Byte
-    Public Property Estado As String
     Public Property CantidadHijos As Nullable(Of Byte)
     Public Property DomicilioParticularCalle1 As String
     Public Property DomicilioParticularNumero As String

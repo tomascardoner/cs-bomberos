@@ -3,16 +3,11 @@
 #Region "Declarations"
     Friend Class GridRowData
         Public Property IDElemento As Integer
-        Public Property IDCuartel As Byte
-        Public Property CuartelNombre As String
-        Public Property IDArea As Short
-        Public Property AreaNombre As String
-        Public Property AreaCodigo As String
         Public Property Nombre As String
-        Public Property IDUbicacion As Short
-        Public Property UbicacionNombre As String
-        Public Property IDSubUbicacion As Short
-        Public Property SubUbicacionNombre As String
+        Public Property IDRubro As Byte
+        Public Property RubroNombre As String
+        Public Property IDSubRubro As Short
+        Public Property SubRubroNombre As String
         Public Property EsActivo As Boolean
     End Class
 
@@ -38,7 +33,7 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
+        pFillAndRefreshLists.Rubro(comboboxRubro.ComboBox, True, True)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1
@@ -60,13 +55,11 @@
         Try
             Using dbContext As New CSBomberosContext(True)
                 mlistElementosBase = (From e In dbContext.Elemento
-                                      Join a In dbContext.Area On e.IDArea Equals a.IDArea
-                                      Join c In dbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
-                                      Group Join u In dbContext.Ubicacion On e.IDUbicacion Equals u.IDUbicacion Into Ubicaciones_Group = Group
-                                      From ug In Ubicaciones_Group.DefaultIfEmpty
-                                      Group Join su In dbContext.SubUbicacion On e.IDSubUbicacion Equals su.IDSubUbicacion Into SubUbicaciones_Group = Group
-                                      From sug In SubUbicaciones_Group.DefaultIfEmpty
-                                      Select New GridRowData With {.IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = e.IDArea, .AreaNombre = a.Nombre, .AreaCodigo = a.Codigo & e.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
+                                      Group Join r In dbContext.Rubro On e.IDRubro Equals r.IDRubro Into Rubros_Group = Group
+                                      From rg In Rubros_Group.DefaultIfEmpty
+                                      Group Join sr In dbContext.SubRubro On e.IDSubRubro Equals sr.IDSubRubro Into SubRubro_Group = Group
+                                      From srg In SubRubro_Group.DefaultIfEmpty
+                                      Select New GridRowData With {.IDElemento = e.IDElemento, .Nombre = e.Nombre, .IDRubro = If(rg Is Nothing, FIELD_VALUE_NOTSPECIFIED_BYTE, rg.IDRubro), .RubroNombre = If(rg Is Nothing, "", rg.Nombre), .IDSubRubro = If(srg Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, srg.IDSubRubro), .SubRubroNombre = If(srg Is Nothing, "", srg.Nombre), .EsActivo = e.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -112,31 +105,21 @@
                     mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.Nombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
-                ' Filtro por Cuartel
-                If comboboxCuartel.SelectedIndex > 0 Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
-                End If
-
-                ' Filtro por Area
-                If comboboxArea.SelectedIndex > 0 Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDArea = CShort(comboboxArea.ComboBox.SelectedValue)).ToList
-                End If
-
-                ' Filtro por Ubicación
-                If comboboxUbicacion.SelectedIndex > 0 Then
-                    If CShort(comboboxUbicacion.ComboBox.SelectedValue) = FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDUbicacion = FIELD_VALUE_NOTSPECIFIED_SHORT).ToList
+                ' Filtro por Rubro
+                If comboboxRubro.SelectedIndex > 0 Then
+                    If CShort(comboboxRubro.ComboBox.SelectedValue) = FIELD_VALUE_NOTSPECIFIED_BYTE Then
+                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDRubro = FIELD_VALUE_NOTSPECIFIED_BYTE).ToList
                     Else
-                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDUbicacion = CShort(comboboxUbicacion.ComboBox.SelectedValue)).ToList
+                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDRubro = CByte(comboboxRubro.ComboBox.SelectedValue)).ToList
                     End If
                 End If
 
-                ' Filtro por Sub-Ubicación
-                If comboboxSubUbicacion.SelectedIndex > 0 Then
-                    If CShort(comboboxSubUbicacion.ComboBox.SelectedValue) = FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDSubUbicacion = FIELD_VALUE_NOTSPECIFIED_SHORT).ToList
+                ' Filtro por Sub-Rubro
+                If comboboxSubRubro.SelectedIndex > 0 Then
+                    If CShort(comboboxSubRubro.ComboBox.SelectedValue) = FIELD_VALUE_NOTSPECIFIED_SHORT Then
+                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDSubRubro = FIELD_VALUE_NOTSPECIFIED_SHORT).ToList
                     Else
-                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDSubUbicacion = CShort(comboboxSubUbicacion.ComboBox.SelectedValue)).ToList
+                        mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.Where(Function(e) e.IDSubRubro = CShort(comboboxSubRubro.ComboBox.SelectedValue)).ToList
                     End If
                 End If
 
@@ -175,41 +158,23 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case mOrdenColumna.Name
-            Case columnCuartel.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
-                Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
-                End If
-            Case columnArea.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
-                Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AreaNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
-                End If
-            Case columnAreaCodigo.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AreaCodigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
-                Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AreaCodigo).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
-                End If
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ToList
                 End If
-            Case columnUbicacion.Name
+            Case columnRubro.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.UbicacionNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.RubroNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.UbicacionNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.RubroNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
-            Case columnSubUbicacion.Name
+            Case columnSubRubro.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.SubUbicacionNombre).ThenBy(Function(dgrd) dgrd.UbicacionNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.SubRubroNombre).ThenBy(Function(dgrd) dgrd.RubroNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.SubUbicacionNombre).ThenBy(Function(dgrd) dgrd.UbicacionNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistElementosFiltradaYOrdenada = mlistElementosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.SubRubroNombre).ThenBy(Function(dgrd) dgrd.RubroNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
             Case columnEsActivo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -253,24 +218,13 @@
         End If
     End Sub
 
-    Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.Area(comboboxArea.ComboBox, True, False, CByte(comboboxCuartel.ComboBox.SelectedValue))
-        pFillAndRefreshLists.Ubicacion(comboboxUbicacion.ComboBox, True, True, CByte(comboboxCuartel.ComboBox.SelectedValue))
+    Private Sub comboboxRubro_SelectedIndexChanged() Handles comboboxRubro.SelectedIndexChanged
+        pFillAndRefreshLists.SubRubro(comboboxSubRubro.ComboBox, True, True, CByte(comboboxRubro.ComboBox.SelectedValue))
 
         FilterData()
     End Sub
 
-    Private Sub comboboxArea_SelectedIndexChanged() Handles comboboxArea.SelectedIndexChanged
-        FilterData()
-    End Sub
-
-    Private Sub comboboxUbicacion_SelectedIndexChanged() Handles comboboxUbicacion.SelectedIndexChanged
-        pFillAndRefreshLists.SubUbicacion(comboboxSubUbicacion.ComboBox, True, True, CShort(comboboxUbicacion.ComboBox.SelectedValue))
-
-        FilterData()
-    End Sub
-
-    Private Sub comboboxSubUbicacion_SelectedIndexChanged() Handles comboboxSubUbicacion.SelectedIndexChanged
+    Private Sub comboboxSubRubro_SelectedIndexChanged() Handles comboboxSubRubro.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -308,7 +262,7 @@
 
 #Region "Main Toolbar"
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.Elemento_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.ELEMENTO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
@@ -325,7 +279,7 @@
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningun Elemento para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.Elemento_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ELEMENTO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
@@ -343,7 +297,7 @@
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Elemento para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.Elemento_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.ELEMENTO_ELIMINAR) Then
 
                 Me.Cursor = Cursors.WaitCursor
 
@@ -380,7 +334,7 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Ubicación para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Elemento para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 

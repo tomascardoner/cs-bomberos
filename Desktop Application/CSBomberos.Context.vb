@@ -53,5 +53,10 @@ Partial Public Class CSBomberosContext
     Public Overridable Property ModoAdquisicion() As DbSet(Of ModoAdquisicion)
     Public Overridable Property CalificacionConcepto() As DbSet(Of CalificacionConcepto)
     Public Overridable Property PersonaCalificacion() As DbSet(Of PersonaCalificacion)
+    Public Overridable Property PenaAplicacion() As DbSet(Of PenaAplicacion)
+    Public Overridable Property Rubro() As DbSet(Of Rubro)
+    Public Overridable Property SubRubro() As DbSet(Of SubRubro)
+    Public Overridable Property Inventario() As DbSet(Of Inventario)
+    Public Overridable Property PersonaCambioUnidad() As DbSet(Of PersonaCambioUnidad)
 
 End Class

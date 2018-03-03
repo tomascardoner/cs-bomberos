@@ -23,9 +23,9 @@ Partial Public Class Ubicacion
 
     Public Overridable Property Automotor As Automotor
     Public Overridable Property Cuartel As Cuartel
-    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
     Public Overridable Property SubUbicacion As ICollection(Of SubUbicacion) = New HashSet(Of SubUbicacion)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
 
 End Class

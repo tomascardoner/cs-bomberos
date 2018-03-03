@@ -11,10 +11,15 @@
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
 
-    Friend Const PERSONA_ESTADO_ACTIVO As String = "A"
-    Friend Const PERSONA_ESTADO_RESERVA As String = "R"
-    Friend Const PERSONA_ESTADO_CUERPOAUXILIAR As String = "C"
-    Friend Const PERSONA_ESTADO_BAJA As String = "B"
+    Friend Const PERSONA_TIENEIOMA_PORTRABAJO As String = "T"
+    Friend Const PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE As String = "Trabajo"
+    Friend Const PERSONA_TIENEIOMA_PORBOMBEROS As String = "B"
+    Friend Const PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE As String = "Bomberos"
+
+    'Friend Const PERSONA_ESTADO_ACTIVO As String = "A"
+    'Friend Const PERSONA_ESTADO_RESERVA As String = "R"
+    'Friend Const PERSONA_ESTADO_CUERPOAUXILIAR As String = "C"
+    'Friend Const PERSONA_ESTADO_BAJA As String = "B"
 
     Friend Const OPERACIONTIPO_COMPRA As String = "C"
     Friend Const OPERACIONTIPO_VENTA As String = "V"
@@ -29,6 +34,8 @@
     Friend Const COMPROBANTE_CONCEPTO_SERVICIOS As Byte = 2
     Friend Const COMPROBANTE_CONCEPTO_PRODUCTOSYSERVICIOS As Byte = 3
     Friend Const COMPROBANTE_CONCEPTO_OTROS As Byte = 4
+
+    Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES

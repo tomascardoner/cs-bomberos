@@ -20,9 +20,9 @@ Partial Public Class SubUbicacion
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
     Public Overridable Property Ubicacion As Ubicacion
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
 
 End Class

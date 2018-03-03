@@ -106,6 +106,7 @@
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.IDCuartel} = " & comboboxCuartel.ComboBox.SelectedValue.ToString
                 End If
 
                 ' Filtro por Búsqueda en Apellido y Nombre
@@ -117,10 +118,10 @@
                 Select Case comboboxActivo.SelectedIndex
                     Case CS_Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX      ' Todos
                     Case CS_Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX      ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 1"
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = True"
                         mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case CS_Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX       ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = 0"
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = False"
                         mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 
@@ -469,14 +470,18 @@
 
                 datagridviewMain.Enabled = False
 
-                Dim ReporteActual As New Reporte
-                If ReporteActual.Open(My.Settings.ReportsPath & "\") Then
-                    If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                        ReporteActual.RecordSelectionFormula = mReportSelectionFormula
+                Using dbContext As New CSBomberosContext(True)
+                    Dim ReporteActual As New Reporte
 
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Personas")
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_LISTADO))
+                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            ReporteActual.RecordSelectionFormula = mReportSelectionFormula
+
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Personas")
+                        End If
                     End If
-                End If
+                End Using
 
                 datagridviewMain.Enabled = True
 

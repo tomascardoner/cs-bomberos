@@ -23,12 +23,8 @@ Partial Class formElemento
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim labelEsActivo As System.Windows.Forms.Label
-        Dim labelCuartel As System.Windows.Forms.Label
-        Dim labelSubUbicacion As System.Windows.Forms.Label
-        Dim labelArea As System.Windows.Forms.Label
-        Dim labelModoAdquisicion As System.Windows.Forms.Label
-        Dim labelUbicacion As System.Windows.Forms.Label
-        Dim labelFechaBaja As System.Windows.Forms.Label
+        Dim labelSubRubro As System.Windows.Forms.Label
+        Dim labelRubro As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -39,94 +35,56 @@ Partial Class formElemento
         Me.textboxIDElemento = New System.Windows.Forms.TextBox()
         Me.labelIDElemento = New System.Windows.Forms.Label()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
-        Me.comboboxSubUbicacion = New System.Windows.Forms.ComboBox()
-        Me.comboboxArea = New System.Windows.Forms.ComboBox()
-        Me.textboxCodigo = New System.Windows.Forms.TextBox()
-        Me.labelCodigo = New System.Windows.Forms.Label()
-        Me.comboboxModoAdquisicion = New System.Windows.Forms.ComboBox()
-        Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
-        Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
-        Me.datetimepickerFechaBaja = New System.Windows.Forms.DateTimePicker()
+        Me.comboboxSubRubro = New System.Windows.Forms.ComboBox()
+        Me.comboboxRubro = New System.Windows.Forms.ComboBox()
         labelEsActivo = New System.Windows.Forms.Label()
-        labelCuartel = New System.Windows.Forms.Label()
-        labelSubUbicacion = New System.Windows.Forms.Label()
-        labelArea = New System.Windows.Forms.Label()
-        labelModoAdquisicion = New System.Windows.Forms.Label()
-        labelUbicacion = New System.Windows.Forms.Label()
-        labelFechaBaja = New System.Windows.Forms.Label()
+        labelSubRubro = New System.Windows.Forms.Label()
+        labelRubro = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(12, 307)
+        labelEsActivo.Location = New System.Drawing.Point(12, 182)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 17
+        labelEsActivo.TabIndex = 8
         labelEsActivo.Text = "Activo:"
         '
-        'labelCuartel
+        'labelSubRubro
         '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(12, 79)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 2
-        labelCuartel.Text = "Cuartel:"
+        labelSubRubro.AutoSize = True
+        labelSubRubro.Location = New System.Drawing.Point(12, 143)
+        labelSubRubro.Name = "labelSubRubro"
+        labelSubRubro.Size = New System.Drawing.Size(61, 13)
+        labelSubRubro.TabIndex = 6
+        labelSubRubro.Text = "Sub-Rubro:"
         '
-        'labelSubUbicacion
+        'labelRubro
         '
-        labelSubUbicacion.AutoSize = True
-        labelSubUbicacion.Location = New System.Drawing.Point(12, 255)
-        labelSubUbicacion.Name = "labelSubUbicacion"
-        labelSubUbicacion.Size = New System.Drawing.Size(80, 13)
-        labelSubUbicacion.TabIndex = 15
-        labelSubUbicacion.Text = "Sub-Ubicación:"
-        '
-        'labelArea
-        '
-        labelArea.AutoSize = True
-        labelArea.Location = New System.Drawing.Point(12, 106)
-        labelArea.Name = "labelArea"
-        labelArea.Size = New System.Drawing.Size(32, 13)
-        labelArea.TabIndex = 4
-        labelArea.Text = "Area:"
-        '
-        'labelModoAdquisicion
-        '
-        labelModoAdquisicion.AutoSize = True
-        labelModoAdquisicion.Location = New System.Drawing.Point(12, 185)
-        labelModoAdquisicion.Name = "labelModoAdquisicion"
-        labelModoAdquisicion.Size = New System.Drawing.Size(107, 13)
-        labelModoAdquisicion.TabIndex = 11
-        labelModoAdquisicion.Text = "Modo de Adquisiciín:"
-        '
-        'labelUbicacion
-        '
-        labelUbicacion.AutoSize = True
-        labelUbicacion.Location = New System.Drawing.Point(12, 228)
-        labelUbicacion.Name = "labelUbicacion"
-        labelUbicacion.Size = New System.Drawing.Size(58, 13)
-        labelUbicacion.TabIndex = 13
-        labelUbicacion.Text = "Ubicación:"
+        labelRubro.AutoSize = True
+        labelRubro.Location = New System.Drawing.Point(12, 116)
+        labelRubro.Name = "labelRubro"
+        labelRubro.Size = New System.Drawing.Size(39, 13)
+        labelRubro.TabIndex = 4
+        labelRubro.Text = "Rubro:"
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(125, 156)
+        Me.textboxNombre.Location = New System.Drawing.Point(98, 76)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(359, 20)
-        Me.textboxNombre.TabIndex = 10
+        Me.textboxNombre.TabIndex = 3
         '
         'labelNombre
         '
         Me.labelNombre.AutoSize = True
-        Me.labelNombre.Location = New System.Drawing.Point(12, 159)
+        Me.labelNombre.Location = New System.Drawing.Point(12, 79)
         Me.labelNombre.Name = "labelNombre"
         Me.labelNombre.Size = New System.Drawing.Size(47, 13)
-        Me.labelNombre.TabIndex = 9
+        Me.labelNombre.TabIndex = 2
         Me.labelNombre.Text = "Nombre:"
         '
         'buttonGuardar
@@ -175,12 +133,12 @@ Partial Class formElemento
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(496, 39)
-        Me.toolstripMain.TabIndex = 21
+        Me.toolstripMain.Size = New System.Drawing.Size(473, 39)
+        Me.toolstripMain.TabIndex = 10
         '
         'textboxIDElemento
         '
-        Me.textboxIDElemento.Location = New System.Drawing.Point(125, 50)
+        Me.textboxIDElemento.Location = New System.Drawing.Point(98, 50)
         Me.textboxIDElemento.MaxLength = 10
         Me.textboxIDElemento.Name = "textboxIDElemento"
         Me.textboxIDElemento.ReadOnly = True
@@ -201,123 +159,39 @@ Partial Class formElemento
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(125, 307)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(98, 182)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 18
+        Me.checkboxEsActivo.TabIndex = 9
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
-        'comboboxCuartel
+        'comboboxSubRubro
         '
-        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(125, 76)
-        Me.comboboxCuartel.Name = "comboboxCuartel"
-        Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxCuartel.TabIndex = 3
+        Me.comboboxSubRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxSubRubro.FormattingEnabled = True
+        Me.comboboxSubRubro.Location = New System.Drawing.Point(98, 140)
+        Me.comboboxSubRubro.Name = "comboboxSubRubro"
+        Me.comboboxSubRubro.Size = New System.Drawing.Size(267, 21)
+        Me.comboboxSubRubro.TabIndex = 7
         '
-        'comboboxSubUbicacion
+        'comboboxRubro
         '
-        Me.comboboxSubUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxSubUbicacion.FormattingEnabled = True
-        Me.comboboxSubUbicacion.Location = New System.Drawing.Point(125, 252)
-        Me.comboboxSubUbicacion.Name = "comboboxSubUbicacion"
-        Me.comboboxSubUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSubUbicacion.TabIndex = 16
-        '
-        'comboboxArea
-        '
-        Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxArea.FormattingEnabled = True
-        Me.comboboxArea.Location = New System.Drawing.Point(125, 103)
-        Me.comboboxArea.Name = "comboboxArea"
-        Me.comboboxArea.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxArea.TabIndex = 5
-        '
-        'textboxCodigo
-        '
-        Me.textboxCodigo.Location = New System.Drawing.Point(125, 130)
-        Me.textboxCodigo.MaxLength = 5
-        Me.textboxCodigo.Name = "textboxCodigo"
-        Me.textboxCodigo.Size = New System.Drawing.Size(74, 20)
-        Me.textboxCodigo.TabIndex = 7
-        '
-        'labelCodigo
-        '
-        Me.labelCodigo.AutoSize = True
-        Me.labelCodigo.Location = New System.Drawing.Point(12, 133)
-        Me.labelCodigo.Name = "labelCodigo"
-        Me.labelCodigo.Size = New System.Drawing.Size(43, 13)
-        Me.labelCodigo.TabIndex = 6
-        Me.labelCodigo.Text = "Código:"
-        '
-        'comboboxModoAdquisicion
-        '
-        Me.comboboxModoAdquisicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxModoAdquisicion.FormattingEnabled = True
-        Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(125, 182)
-        Me.comboboxModoAdquisicion.Name = "comboboxModoAdquisicion"
-        Me.comboboxModoAdquisicion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxModoAdquisicion.TabIndex = 12
-        '
-        'comboboxUbicacion
-        '
-        Me.comboboxUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxUbicacion.FormattingEnabled = True
-        Me.comboboxUbicacion.Location = New System.Drawing.Point(125, 225)
-        Me.comboboxUbicacion.Name = "comboboxUbicacion"
-        Me.comboboxUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxUbicacion.TabIndex = 14
-        '
-        'buttonCodigoSiguiente
-        '
-        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(205, 130)
-        Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
-        Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 20)
-        Me.buttonCodigoSiguiente.TabIndex = 8
-        Me.buttonCodigoSiguiente.Text = "Obtener siguiente"
-        Me.buttonCodigoSiguiente.UseVisualStyleBackColor = True
-        '
-        'datetimepickerFechaBaja
-        '
-        Me.datetimepickerFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaBaja.Location = New System.Drawing.Point(125, 330)
-        Me.datetimepickerFechaBaja.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaBaja.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaBaja.Name = "datetimepickerFechaBaja"
-        Me.datetimepickerFechaBaja.ShowCheckBox = True
-        Me.datetimepickerFechaBaja.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaBaja.TabIndex = 20
-        '
-        'labelFechaBaja
-        '
-        labelFechaBaja.AutoSize = True
-        labelFechaBaja.Location = New System.Drawing.Point(12, 332)
-        labelFechaBaja.Name = "labelFechaBaja"
-        labelFechaBaja.Size = New System.Drawing.Size(79, 13)
-        labelFechaBaja.TabIndex = 19
-        labelFechaBaja.Text = "Fecha de Baja:"
+        Me.comboboxRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxRubro.FormattingEnabled = True
+        Me.comboboxRubro.Location = New System.Drawing.Point(98, 113)
+        Me.comboboxRubro.Name = "comboboxRubro"
+        Me.comboboxRubro.Size = New System.Drawing.Size(267, 21)
+        Me.comboboxRubro.TabIndex = 5
         '
         'formElemento
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(496, 366)
-        Me.Controls.Add(Me.datetimepickerFechaBaja)
-        Me.Controls.Add(labelFechaBaja)
-        Me.Controls.Add(Me.buttonCodigoSiguiente)
-        Me.Controls.Add(Me.comboboxUbicacion)
-        Me.Controls.Add(labelUbicacion)
-        Me.Controls.Add(Me.comboboxModoAdquisicion)
-        Me.Controls.Add(labelModoAdquisicion)
-        Me.Controls.Add(Me.textboxCodigo)
-        Me.Controls.Add(Me.labelCodigo)
-        Me.Controls.Add(Me.comboboxArea)
-        Me.Controls.Add(labelArea)
-        Me.Controls.Add(Me.comboboxSubUbicacion)
-        Me.Controls.Add(labelSubUbicacion)
-        Me.Controls.Add(Me.comboboxCuartel)
-        Me.Controls.Add(labelCuartel)
+        Me.ClientSize = New System.Drawing.Size(473, 213)
+        Me.Controls.Add(Me.comboboxRubro)
+        Me.Controls.Add(labelRubro)
+        Me.Controls.Add(Me.comboboxSubRubro)
+        Me.Controls.Add(labelSubRubro)
         Me.Controls.Add(Me.checkboxEsActivo)
         Me.Controls.Add(labelEsActivo)
         Me.Controls.Add(Me.labelIDElemento)
@@ -347,13 +221,6 @@ Partial Class formElemento
     Friend WithEvents textboxIDElemento As System.Windows.Forms.TextBox
     Friend WithEvents labelIDElemento As System.Windows.Forms.Label
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
-    Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxSubUbicacion As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxArea As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxCodigo As System.Windows.Forms.TextBox
-    Friend WithEvents labelCodigo As System.Windows.Forms.Label
-    Friend WithEvents comboboxModoAdquisicion As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxUbicacion As System.Windows.Forms.ComboBox
-    Friend WithEvents buttonCodigoSiguiente As System.Windows.Forms.Button
-    Friend WithEvents datetimepickerFechaBaja As System.Windows.Forms.DateTimePicker
+    Friend WithEvents comboboxSubRubro As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxRubro As System.Windows.Forms.ComboBox
 End Class

@@ -65,5 +65,21 @@ Partial Public Class Usuario
     Public Overridable Property CalificacionConceptosModificados As ICollection(Of CalificacionConcepto) = New HashSet(Of CalificacionConcepto)
     Public Overridable Property PersonaCalificacionesCreadas As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
     Public Overridable Property PersonaCalificacionesModificadas As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
+    Public Overridable Property PenaAplicacion As ICollection(Of PenaAplicacion) = New HashSet(Of PenaAplicacion)
+    Public Overridable Property PenaAplicacion1 As ICollection(Of PenaAplicacion) = New HashSet(Of PenaAplicacion)
+    Public Overridable Property Rubro As ICollection(Of Rubro) = New HashSet(Of Rubro)
+    Public Overridable Property Rubro1 As ICollection(Of Rubro) = New HashSet(Of Rubro)
+    Public Overridable Property SubRubro As ICollection(Of SubRubro) = New HashSet(Of SubRubro)
+    Public Overridable Property SubRubro1 As ICollection(Of SubRubro) = New HashSet(Of SubRubro)
+    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property Usuario2 As Usuario
+    Public Overridable Property Usuario11 As ICollection(Of Usuario) = New HashSet(Of Usuario)
+    Public Overridable Property Usuario3 As Usuario
+    Public Overridable Property Usuario12 As ICollection(Of Usuario) = New HashSet(Of Usuario)
+    Public Overridable Property Usuario4 As Usuario
+    Public Overridable Property UsuarioGrupo1 As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
+    Public Overridable Property UsuarioGrupo11 As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
+    Public Overridable Property PersonaCambioUnidad As ICollection(Of PersonaCambioUnidad) = New HashSet(Of PersonaCambioUnidad)
+    Public Overridable Property PersonaCambioUnidad1 As ICollection(Of PersonaCambioUnidad) = New HashSet(Of PersonaCambioUnidad)
 
 End Class

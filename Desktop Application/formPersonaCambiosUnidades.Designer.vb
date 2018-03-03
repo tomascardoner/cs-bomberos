@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formPersonaAltasBajas
+Partial Class formPersonaCambiosUnidades
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -26,9 +26,11 @@ Partial Class formPersonaAltasBajas
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.textboxApellidoNombre = New System.Windows.Forms.TextBox()
         Me.panelGrid = New System.Windows.Forms.Panel()
-        Me.datagridviewAltasBajas = New System.Windows.Forms.DataGridView()
-        Me.columnAltaFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnBajaFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.datagridviewCambiosUnidades = New System.Windows.Forms.DataGridView()
+        Me.columnFechaAlta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUnidadOrigen = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaBaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUnidadDestino = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAccidentes = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -37,7 +39,7 @@ Partial Class formPersonaAltasBajas
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         labelApellidoNombre = New System.Windows.Forms.Label()
         Me.panelGrid.SuspendLayout()
-        CType(Me.datagridviewAltasBajas, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datagridviewCambiosUnidades, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripAccidentes.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -67,54 +69,72 @@ Partial Class formPersonaAltasBajas
         Me.panelGrid.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.panelGrid.Controls.Add(Me.datagridviewAltasBajas)
+        Me.panelGrid.Controls.Add(Me.datagridviewCambiosUnidades)
         Me.panelGrid.Controls.Add(Me.toolstripAccidentes)
         Me.panelGrid.Location = New System.Drawing.Point(12, 52)
         Me.panelGrid.Name = "panelGrid"
         Me.panelGrid.Size = New System.Drawing.Size(875, 362)
         Me.panelGrid.TabIndex = 0
         '
-        'datagridviewAltasBajas
+        'datagridviewCambiosUnidades
         '
-        Me.datagridviewAltasBajas.AllowUserToAddRows = False
-        Me.datagridviewAltasBajas.AllowUserToDeleteRows = False
-        Me.datagridviewAltasBajas.AllowUserToResizeRows = False
+        Me.datagridviewCambiosUnidades.AllowUserToAddRows = False
+        Me.datagridviewCambiosUnidades.AllowUserToDeleteRows = False
+        Me.datagridviewCambiosUnidades.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAltasBajas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.datagridviewAltasBajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewAltasBajas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAltaFecha, Me.columnBajaFecha})
-        Me.datagridviewAltasBajas.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewAltasBajas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAltasBajas.Location = New System.Drawing.Point(87, 0)
-        Me.datagridviewAltasBajas.MultiSelect = False
-        Me.datagridviewAltasBajas.Name = "datagridviewAltasBajas"
-        Me.datagridviewAltasBajas.ReadOnly = True
-        Me.datagridviewAltasBajas.RowHeadersVisible = False
-        Me.datagridviewAltasBajas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewAltasBajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(788, 362)
-        Me.datagridviewAltasBajas.TabIndex = 0
+        Me.datagridviewCambiosUnidades.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewCambiosUnidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewCambiosUnidades.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaAlta, Me.columnUnidadOrigen, Me.columnFechaBaja, Me.columnUnidadDestino})
+        Me.datagridviewCambiosUnidades.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewCambiosUnidades.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewCambiosUnidades.Location = New System.Drawing.Point(87, 0)
+        Me.datagridviewCambiosUnidades.MultiSelect = False
+        Me.datagridviewCambiosUnidades.Name = "datagridviewCambiosUnidades"
+        Me.datagridviewCambiosUnidades.ReadOnly = True
+        Me.datagridviewCambiosUnidades.RowHeadersVisible = False
+        Me.datagridviewCambiosUnidades.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewCambiosUnidades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewCambiosUnidades.Size = New System.Drawing.Size(788, 362)
+        Me.datagridviewCambiosUnidades.TabIndex = 0
         '
-        'columnAltaFecha
+        'columnFechaAlta
         '
-        Me.columnAltaFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAltaFecha.DataPropertyName = "AltaFecha"
-        Me.columnAltaFecha.HeaderText = "Fecha de Alta"
-        Me.columnAltaFecha.Name = "columnAltaFecha"
-        Me.columnAltaFecha.ReadOnly = True
-        Me.columnAltaFecha.Width = 98
+        Me.columnFechaAlta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaAlta.DataPropertyName = "FechaAlta"
+        Me.columnFechaAlta.HeaderText = "Fecha de Alta"
+        Me.columnFechaAlta.Name = "columnFechaAlta"
+        Me.columnFechaAlta.ReadOnly = True
+        Me.columnFechaAlta.Width = 74
         '
-        'columnBajaFecha
+        'columnUnidadOrigen
         '
-        Me.columnBajaFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnBajaFecha.DataPropertyName = "BajaFecha"
-        Me.columnBajaFecha.HeaderText = "Fecha de Baja"
-        Me.columnBajaFecha.Name = "columnBajaFecha"
-        Me.columnBajaFecha.ReadOnly = True
-        Me.columnBajaFecha.Width = 101
+        Me.columnUnidadOrigen.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUnidadOrigen.DataPropertyName = "UnidadOrigen"
+        Me.columnUnidadOrigen.HeaderText = "Unidad de Origen"
+        Me.columnUnidadOrigen.Name = "columnUnidadOrigen"
+        Me.columnUnidadOrigen.ReadOnly = True
+        Me.columnUnidadOrigen.Width = 78
+        '
+        'columnFechaBaja
+        '
+        Me.columnFechaBaja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaBaja.DataPropertyName = "FechaBaja"
+        Me.columnFechaBaja.HeaderText = "Fecha de Baja"
+        Me.columnFechaBaja.Name = "columnFechaBaja"
+        Me.columnFechaBaja.ReadOnly = True
+        Me.columnFechaBaja.Width = 74
+        '
+        'columnUnidadDestino
+        '
+        Me.columnUnidadDestino.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUnidadDestino.DataPropertyName = "UnidadDestino"
+        Me.columnUnidadDestino.HeaderText = "Unidad de Destino"
+        Me.columnUnidadDestino.Name = "columnUnidadDestino"
+        Me.columnUnidadDestino.ReadOnly = True
+        Me.columnUnidadDestino.Width = 110
         '
         'toolstripAccidentes
         '
@@ -172,7 +192,7 @@ Partial Class formPersonaAltasBajas
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'formPersonaAltasBajas
+        'formPersonaCambiosUnidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -183,12 +203,12 @@ Partial Class formPersonaAltasBajas
         Me.Controls.Add(Me.textboxApellidoNombre)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
-        Me.Name = "formPersonaAltasBajas"
+        Me.Name = "formPersonaCambiosUnidades"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Altas-Bajas de la Persona"
+        Me.Text = "Cambios de Unidades de la Persona"
         Me.panelGrid.ResumeLayout(False)
         Me.panelGrid.PerformLayout()
-        CType(Me.datagridviewAltasBajas, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datagridviewCambiosUnidades, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripAccidentes.ResumeLayout(False)
         Me.toolstripAccidentes.PerformLayout()
         Me.statusstripMain.ResumeLayout(False)
@@ -199,13 +219,15 @@ Partial Class formPersonaAltasBajas
     End Sub
     Friend WithEvents textboxApellidoNombre As System.Windows.Forms.TextBox
     Friend WithEvents panelGrid As System.Windows.Forms.Panel
-    Friend WithEvents datagridviewAltasBajas As System.Windows.Forms.DataGridView
+    Friend WithEvents datagridviewCambiosUnidades As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripAccidentes As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents statusstripMain As System.Windows.Forms.StatusStrip
     Friend WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
-    Friend WithEvents columnAltaFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnBajaFecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaAlta As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUnidadOrigen As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaBaja As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUnidadDestino As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

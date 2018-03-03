@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formElementos
+Partial Class formInventario
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -24,14 +24,10 @@ Partial Class formElementos
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formElementos))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formInventario))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnRubro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSubRubro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -41,20 +37,35 @@ Partial Class formElementos
         Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
         Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
         Me.buttonBuscarBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
+        Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripArea = New System.Windows.Forms.ToolStrip()
+        Me.labelArea = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxArea = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripUbicacion = New System.Windows.Forms.ToolStrip()
-        Me.labelRubro = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxRubro = New System.Windows.Forms.ToolStripComboBox()
+        Me.labelUbicacion = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxUbicacion = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripSubUbicacion = New System.Windows.Forms.ToolStrip()
-        Me.labelSubRubro = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxSubRubro = New System.Windows.Forms.ToolStripComboBox()
+        Me.labelSubUbicacion = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxSubUbicacion = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSubUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
         Me.toolstripBuscar.SuspendLayout()
+        Me.toolstripCuartel.SuspendLayout()
+        Me.toolstripArea.SuspendLayout()
         Me.toolstripUbicacion.SuspendLayout()
         Me.toolstripSubUbicacion.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
@@ -86,7 +97,7 @@ Partial Class formElementos
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnRubro, Me.columnSubRubro, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnArea, Me.columnCodigo, Me.columnNombre, Me.columnUbicacion, Me.columnSubUbicacion, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
@@ -99,52 +110,14 @@ Partial Class formElementos
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
         '
-        'columnNombre
-        '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNombre.HeaderText = "Nombre"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
-        '
-        'columnRubro
-        '
-        Me.columnRubro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnRubro.DataPropertyName = "RubroNombre"
-        Me.columnRubro.HeaderText = "Rubro"
-        Me.columnRubro.Name = "columnRubro"
-        Me.columnRubro.ReadOnly = True
-        Me.columnRubro.Width = 61
-        '
-        'columnSubRubro
-        '
-        Me.columnSubRubro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSubRubro.DataPropertyName = "SubRubroNombre"
-        Me.columnSubRubro.HeaderText = "Sub-Rubro"
-        Me.columnSubRubro.Name = "columnSubRubro"
-        Me.columnSubRubro.ReadOnly = True
-        Me.columnSubRubro.Width = 83
-        '
-        'columnEsActivo
-        '
-        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsActivo.DataPropertyName = "EsActivo"
-        Me.columnEsActivo.HeaderText = "Activo"
-        Me.columnEsActivo.Name = "columnEsActivo"
-        Me.columnEsActivo.ReadOnly = True
-        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 62
-        '
         'panelToolbars
         '
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
         Me.panelToolbars.Controls.Add(Me.toolstripBuscar)
+        Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
+        Me.panelToolbars.Controls.Add(Me.toolstripArea)
         Me.panelToolbars.Controls.Add(Me.toolstripUbicacion)
         Me.panelToolbars.Controls.Add(Me.toolstripSubUbicacion)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
@@ -222,56 +195,100 @@ Partial Class formElementos
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 36)
         Me.buttonBuscarBorrar.ToolTipText = "Limpiar búsqueda"
         '
+        'toolstripCuartel
+        '
+        Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
+        Me.toolstripCuartel.Location = New System.Drawing.Point(440, 0)
+        Me.toolstripCuartel.Name = "toolstripCuartel"
+        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
+        Me.toolstripCuartel.TabIndex = 13
+        '
+        'labelCuartel
+        '
+        Me.labelCuartel.Name = "labelCuartel"
+        Me.labelCuartel.Size = New System.Drawing.Size(48, 36)
+        Me.labelCuartel.Text = "Cuartel:"
+        '
+        'comboboxCuartel
+        '
+        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCuartel.Name = "comboboxCuartel"
+        Me.comboboxCuartel.Size = New System.Drawing.Size(130, 39)
+        '
+        'toolstripArea
+        '
+        Me.toolstripArea.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
+        Me.toolstripArea.Location = New System.Drawing.Point(623, 0)
+        Me.toolstripArea.Name = "toolstripArea"
+        Me.toolstripArea.Size = New System.Drawing.Size(189, 39)
+        Me.toolstripArea.TabIndex = 14
+        '
+        'labelArea
+        '
+        Me.labelArea.Name = "labelArea"
+        Me.labelArea.Size = New System.Drawing.Size(34, 36)
+        Me.labelArea.Text = "Area:"
+        '
+        'comboboxArea
+        '
+        Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxArea.Name = "comboboxArea"
+        Me.comboboxArea.Size = New System.Drawing.Size(150, 39)
+        '
         'toolstripUbicacion
         '
         Me.toolstripUbicacion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripUbicacion.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelRubro, Me.comboboxRubro})
-        Me.toolstripUbicacion.Location = New System.Drawing.Point(440, 0)
+        Me.toolstripUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelUbicacion, Me.comboboxUbicacion})
+        Me.toolstripUbicacion.Location = New System.Drawing.Point(0, 39)
         Me.toolstripUbicacion.Name = "toolstripUbicacion"
-        Me.toolstripUbicacion.Size = New System.Drawing.Size(247, 39)
+        Me.toolstripUbicacion.Size = New System.Drawing.Size(268, 25)
         Me.toolstripUbicacion.TabIndex = 15
         '
-        'labelRubro
+        'labelUbicacion
         '
-        Me.labelRubro.Name = "labelRubro"
-        Me.labelRubro.Size = New System.Drawing.Size(42, 36)
-        Me.labelRubro.Text = "Rubro:"
+        Me.labelUbicacion.Name = "labelUbicacion"
+        Me.labelUbicacion.Size = New System.Drawing.Size(63, 22)
+        Me.labelUbicacion.Text = "Ubicación:"
         '
-        'comboboxRubro
+        'comboboxUbicacion
         '
-        Me.comboboxRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxRubro.Name = "comboboxRubro"
-        Me.comboboxRubro.Size = New System.Drawing.Size(200, 39)
+        Me.comboboxUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUbicacion.Name = "comboboxUbicacion"
+        Me.comboboxUbicacion.Size = New System.Drawing.Size(200, 25)
         '
         'toolstripSubUbicacion
         '
         Me.toolstripSubUbicacion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripSubUbicacion.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripSubUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSubRubro, Me.comboboxSubRubro})
-        Me.toolstripSubUbicacion.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripSubUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSubUbicacion, Me.comboboxSubUbicacion})
+        Me.toolstripSubUbicacion.Location = New System.Drawing.Point(268, 39)
         Me.toolstripSubUbicacion.Name = "toolstripSubUbicacion"
-        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(305, 25)
+        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(293, 25)
         Me.toolstripSubUbicacion.TabIndex = 16
         '
-        'labelSubRubro
+        'labelSubUbicacion
         '
-        Me.labelSubRubro.Name = "labelSubRubro"
-        Me.labelSubRubro.Size = New System.Drawing.Size(67, 22)
-        Me.labelSubRubro.Text = "Sub-Rubro:"
+        Me.labelSubUbicacion.Name = "labelSubUbicacion"
+        Me.labelSubUbicacion.Size = New System.Drawing.Size(88, 22)
+        Me.labelSubUbicacion.Text = "Sub-Ubicación:"
         '
-        'comboboxSubRubro
+        'comboboxSubUbicacion
         '
-        Me.comboboxSubRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxSubRubro.Name = "comboboxSubRubro"
-        Me.comboboxSubRubro.Size = New System.Drawing.Size(200, 25)
+        Me.comboboxSubUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxSubUbicacion.Name = "comboboxSubUbicacion"
+        Me.comboboxSubUbicacion.Size = New System.Drawing.Size(200, 25)
         '
         'toolstripActivo
         '
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(305, 39)
+        Me.toolstripActivo.Location = New System.Drawing.Point(561, 39)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 25)
         Me.toolstripActivo.TabIndex = 12
@@ -288,7 +305,74 @@ Partial Class formElementos
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 25)
         '
-        'formElementos
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnArea
+        '
+        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnArea.DataPropertyName = "AreaNombre"
+        Me.columnArea.HeaderText = "Area"
+        Me.columnArea.Name = "columnArea"
+        Me.columnArea.ReadOnly = True
+        Me.columnArea.Width = 54
+        '
+        'columnCodigo
+        '
+        Me.columnCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCodigo.DataPropertyName = "Codigo"
+        Me.columnCodigo.HeaderText = "Código"
+        Me.columnCodigo.Name = "columnCodigo"
+        Me.columnCodigo.ReadOnly = True
+        Me.columnCodigo.Width = 65
+        '
+        'columnNombre
+        '
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
+        '
+        'columnUbicacion
+        '
+        Me.columnUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUbicacion.DataPropertyName = "UbicacionNombre"
+        Me.columnUbicacion.HeaderText = "Ubicación"
+        Me.columnUbicacion.Name = "columnUbicacion"
+        Me.columnUbicacion.ReadOnly = True
+        Me.columnUbicacion.Width = 80
+        '
+        'columnSubUbicacion
+        '
+        Me.columnSubUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSubUbicacion.DataPropertyName = "SubUbicacionNombre"
+        Me.columnSubUbicacion.HeaderText = "Sub-Ubicación"
+        Me.columnSubUbicacion.Name = "columnSubUbicacion"
+        Me.columnSubUbicacion.ReadOnly = True
+        Me.columnSubUbicacion.Width = 102
+        '
+        'columnEsActivo
+        '
+        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsActivo.DataPropertyName = "EsActivo"
+        Me.columnEsActivo.HeaderText = "Activo"
+        Me.columnEsActivo.Name = "columnEsActivo"
+        Me.columnEsActivo.ReadOnly = True
+        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnEsActivo.Width = 62
+        '
+        'formInventario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -297,7 +381,7 @@ Partial Class formElementos
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "formElementos"
+        Me.Name = "formInventario"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Elementos"
         Me.statusstripMain.ResumeLayout(False)
@@ -309,6 +393,10 @@ Partial Class formElementos
         Me.toolstripButtons.PerformLayout()
         Me.toolstripBuscar.ResumeLayout(False)
         Me.toolstripBuscar.PerformLayout()
+        Me.toolstripCuartel.ResumeLayout(False)
+        Me.toolstripCuartel.PerformLayout()
+        Me.toolstripArea.ResumeLayout(False)
+        Me.toolstripArea.PerformLayout()
         Me.toolstripUbicacion.ResumeLayout(False)
         Me.toolstripUbicacion.PerformLayout()
         Me.toolstripSubUbicacion.ResumeLayout(False)
@@ -330,18 +418,27 @@ Partial Class formElementos
     Friend WithEvents toolstripActivo As System.Windows.Forms.ToolStrip
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripCuartel As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelCuartel As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxCuartel As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripArea As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelArea As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxArea As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripUbicacion As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelRubro As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxRubro As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents labelUbicacion As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxUbicacion As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripSubUbicacion As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelSubRubro As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxSubRubro As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents labelSubUbicacion As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxSubUbicacion As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripBuscar As System.Windows.Forms.ToolStrip
     Friend WithEvents labelBuscar As System.Windows.Forms.ToolStripLabel
     Friend WithEvents textboxBuscar As System.Windows.Forms.ToolStripTextBox
     Friend WithEvents buttonBuscarBorrar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnArea As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCodigo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnRubro As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnSubRubro As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUbicacion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnSubUbicacion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
 End Class

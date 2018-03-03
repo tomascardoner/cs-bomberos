@@ -3,7 +3,6 @@
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
     Private mElementoActual As Elemento
-    Private mIDCuartel As Byte
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
@@ -21,20 +20,14 @@
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
                 If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formElementos") Then
                     Dim formElementos As formElementos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formElementos"), formElementos)
-                    If formElementos.comboboxCuartel.SelectedIndex > 0 Then
-                        mIDCuartel = CByte(formElementos.comboboxCuartel.ComboBox.SelectedValue)
-                    End If
-                    If formElementos.comboboxArea.SelectedIndex > 0 Then
-                        .IDArea = CShort(formElementos.comboboxArea.ComboBox.SelectedValue)
-                    End If
-                    If formElementos.comboboxUbicacion.SelectedIndex > 0 Then
-                        If CShort(formElementos.comboboxUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_BYTE Then
-                            .IDUbicacion = CShort(formElementos.comboboxUbicacion.ComboBox.SelectedValue)
+                    If formElementos.comboboxRubro.SelectedIndex > 0 Then
+                        If CShort(formElementos.comboboxRubro.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_BYTE Then
+                            .IDRubro = CByte(formElementos.comboboxRubro.ComboBox.SelectedValue)
                         End If
                     End If
-                    If formElementos.comboboxSubUbicacion.SelectedIndex > 0 Then
-                        If CShort(formElementos.comboboxSubUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                            .IDSubUbicacion = CShort(formElementos.comboboxSubUbicacion.ComboBox.SelectedValue)
+                    If formElementos.comboboxSubRubro.SelectedIndex > 0 Then
+                        If CShort(formElementos.comboboxSubRubro.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
+                            .IDSubRubro = CShort(formElementos.comboboxSubRubro.ComboBox.SelectedValue)
                         End If
                     End If
                     formElementos = Nothing
@@ -76,25 +69,18 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        comboboxCuartel.Enabled = mEditMode
-        comboboxArea.Enabled = mEditMode
-        textboxCodigo.ReadOnly = Not mEditMode
-        buttonCodigoSiguiente.Visible = (mEditMode And mElementoActual.IDElemento = 0)
         textboxNombre.ReadOnly = Not mEditMode
-        comboboxModoAdquisicion.Enabled = mEditMode
 
-        comboboxUbicacion.Enabled = mEditMode
-        comboboxSubUbicacion.Enabled = mEditMode
+        comboboxRubro.Enabled = mEditMode
+        comboboxSubRubro.Enabled = mEditMode
 
         checkboxEsActivo.Enabled = mEditMode
-        datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        pFillAndRefreshLists.ModoAdquisicion(comboboxModoAdquisicion, False, True)
+        pFillAndRefreshLists.Rubro(comboboxRubro, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -114,45 +100,26 @@
         With mElementoActual
             If .IDElemento = 0 Then
                 textboxIDElemento.Text = My.Resources.STRING_ITEM_NEW_MALE
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
             Else
                 textboxIDElemento.Text = String.Format(.IDElemento.ToString, "G")
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
-            textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CS_Control_ComboBox.SetSelectedValue(comboboxModoAdquisicion, SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
 
-            CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
-            CS_Control_ComboBox.SetSelectedValue(comboboxSubUbicacion, SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
+            CS_Control_ComboBox.SetSelectedValue(comboboxRubro, SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
+            CS_Control_ComboBox.SetSelectedValue(comboboxSubRubro, SelectedItemOptions.ValueOrFirst, .IDSubRubro, 0)
 
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If checkboxEsActivo.Checked Then
-                datetimepickerFechaBaja.Value = DateAndTime.Today
-                datetimepickerFechaBaja.Checked = False
-            Else
-                datetimepickerFechaBaja.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaBaja, datetimepickerFechaBaja)
-            End If
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mElementoActual
-            .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
-            .Codigo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCodigo.Text)
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .IDModoAdquisicion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxModoAdquisicion.SelectedValue)
 
-            .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, Short.MinValue)
-            .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, Short.MinValue)
+            .IDRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .IDSubRubro = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
-            If checkboxEsActivo.Checked Then
-                .FechaBaja = Nothing
-            Else
-                .FechaBaja = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaBaja.Value, datetimepickerFechaBaja.Checked)
-            End If
         End With
     End Sub
 #End Region
@@ -179,52 +146,14 @@
         CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub buttonCodigoSiguiente_Click() Handles buttonCodigoSiguiente.Click
-        If comboboxCuartel.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-        If comboboxArea.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Area.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxArea.Focus()
-            Exit Sub
-        End If
-
-        Using dbcMaxCodigo As New CSBomberosContext(True)
-            Dim IDArea As Short = CShort(comboboxArea.SelectedValue)
-
-            If dbcMaxCodigo.Elemento.Where(Function(e) e.IDArea = IDArea).Count = 0 Then
-                textboxCodigo.Text = CStr(1).PadLeft(5, "0"c)
-            Else
-                textboxCodigo.Text = CStr(CInt(dbcMaxCodigo.Elemento.Where(Function(e) e.IDArea = IDArea).Max(Function(e) e.Codigo)) + 1).PadLeft(5, "0"c)
-            End If
-        End Using
-    End Sub
-
-    Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.Area(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue))
-        comboboxArea.SelectedItem = Nothing
-        pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, True, CByte(comboboxCuartel.SelectedValue))
-        textboxCodigo.Text = ""
-    End Sub
-
-    Private Sub comboboxArea_SelectedIndexChanged() Handles comboboxArea.SelectedIndexChanged
-        textboxCodigo.Text = ""
-    End Sub
-
-    Private Sub comboboxUbicacion_SelectedIndexChanged() Handles comboboxUbicacion.SelectedIndexChanged
-        pFillAndRefreshLists.SubUbicacion(comboboxSubUbicacion, False, True, CShort(comboboxUbicacion.SelectedValue))
-    End Sub
-
-    Private Sub checkboxEsActivo_Checked() Handles checkboxEsActivo.CheckedChanged
-        datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
+    Private Sub comboboxRubro_SelectedIndexChanged() Handles comboboxRubro.SelectedIndexChanged
+        pFillAndRefreshLists.SubRubro(comboboxSubRubro, False, True, CByte(comboboxRubro.SelectedValue))
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.Elemento_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.ELEMENTO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -235,26 +164,6 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxCuartel.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-        If comboboxArea.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Area.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxArea.Focus()
-            Exit Sub
-        End If
-        If textboxCodigo.Text.Trim.Length = 0 Then
-            MsgBox("Debe ingresar el Código.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxCodigo.Focus()
-            Exit Sub
-        End If
-        If textboxCodigo.Text.Trim.Length < 5 Then
-            MsgBox("El Código debe contener 5 dígitos.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxCodigo.Focus()
-            Exit Sub
-        End If
         If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()

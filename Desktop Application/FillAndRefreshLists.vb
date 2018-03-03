@@ -192,58 +192,58 @@
         End If
     End Sub
 
-    Friend Sub Estado(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim datatableEstados As New DataTable("Estados")
-        Dim datarowRow As DataRow
+    'Friend Sub Estado(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    '    Dim datatableEstados As New DataTable("Estados")
+    '    Dim datarowRow As DataRow
 
-        ComboBoxControl.ValueMember = "IDEstado"
-        ComboBoxControl.DisplayMember = "Nombre"
+    '    ComboBoxControl.ValueMember = "IDEstado"
+    '    ComboBoxControl.DisplayMember = "Nombre"
 
-        With datatableEstados
-            .Columns.Add("IDEstado", System.Type.GetType("System.String"))
-            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+    '    With datatableEstados
+    '        .Columns.Add("IDEstado", System.Type.GetType("System.String"))
+    '        .Columns.Add("Nombre", System.Type.GetType("System.String"))
 
-            If AgregarItem_Todos Then
-                datarowRow = .NewRow
-                datarowRow("IDEstado") = "-"
-                datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_MALE
-                .Rows.Add(datarowRow)
-            End If
-            If AgregarItem_NoEspecifica Then
-                datarowRow = .NewRow
-                datarowRow("IDEstado") = "-"
-                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
-                .Rows.Add(datarowRow)
-            End If
+    '        If AgregarItem_Todos Then
+    '            datarowRow = .NewRow
+    '            datarowRow("IDEstado") = "-"
+    '            datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_MALE
+    '            .Rows.Add(datarowRow)
+    '        End If
+    '        If AgregarItem_NoEspecifica Then
+    '            datarowRow = .NewRow
+    '            datarowRow("IDEstado") = "-"
+    '            datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
+    '            .Rows.Add(datarowRow)
+    '        End If
 
-            datarowRow = .NewRow
-            datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_ACTIVO
-            datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
-            .Rows.Add(datarowRow)
+    '        datarowRow = .NewRow
+    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_ACTIVO
+    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
+    '        .Rows.Add(datarowRow)
 
-            datarowRow = .NewRow
-            datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_RESERVA
-            datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_RESERVA
-            .Rows.Add(datarowRow)
+    '        datarowRow = .NewRow
+    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_RESERVA
+    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_RESERVA
+    '        .Rows.Add(datarowRow)
 
-            datarowRow = .NewRow
-            datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_CUERPOAUXILIAR
-            datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_CUERPOAUXILIAR
-            .Rows.Add(datarowRow)
+    '        datarowRow = .NewRow
+    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_CUERPOAUXILIAR
+    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_CUERPOAUXILIAR
+    '        .Rows.Add(datarowRow)
 
-            datarowRow = .NewRow
-            datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_BAJA
-            datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_BAJA
-            .Rows.Add(datarowRow)
-        End With
+    '        datarowRow = .NewRow
+    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_BAJA
+    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_BAJA
+    '        .Rows.Add(datarowRow)
+    '    End With
 
-        ComboBoxControl.DataSource = datatableEstados
-        If AgregarItem_Todos Or AgregarItem_NoEspecifica Then
-            ComboBoxControl.SelectedIndex = -1
-        Else
-            ComboBoxControl.SelectedIndex = 0
-        End If
-    End Sub
+    '    ComboBoxControl.DataSource = datatableEstados
+    '    If AgregarItem_Todos Or AgregarItem_NoEspecifica Then
+    '        ComboBoxControl.SelectedIndex = -1
+    '    Else
+    '        ComboBoxControl.SelectedIndex = 0
+    '    End If
+    'End Sub
 
     Friend Sub Mes(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelMes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         If MostrarNombreDelMes Then
@@ -402,13 +402,61 @@
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New SubUbicacion
-            Item_NoEspecifica.IDSubUbicacion = Short.MinValue
+            Item_NoEspecifica.IDSubUbicacion = FIELD_VALUE_NOTSPECIFIED_SHORT
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New SubUbicacion
-            Item_Todos.IDSubUbicacion = 0
+            Item_Todos.IDSubUbicacion = FIELD_VALUE_ALL_SHORT
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Rubro(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Rubro)
+
+        ComboBoxControl.ValueMember = "IDRubro"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Rubro.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Rubro
+            Item_NoEspecifica.IDRubro = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Rubro
+            Item_Todos.IDRubro = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub SubRubro(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal IDRubro As Byte)
+        Dim listItems As List(Of SubRubro)
+
+        ComboBoxControl.ValueMember = "IDSubRubro"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.SubRubro.Where(Function(a) a.IDRubro = IDRubro).OrderBy(Function(a) a.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New SubRubro
+            Item_NoEspecifica.IDSubRubro = FIELD_VALUE_NOTSPECIFIED_SHORT
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New SubRubro
+            Item_Todos.IDSubRubro = FIELD_VALUE_ALL_SHORT
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
             listItems.Insert(0, Item_Todos)
         End If
@@ -468,6 +516,30 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub Elemento(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Elemento)
+
+        ComboBoxControl.ValueMember = "IDElemento"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Elemento.OrderBy(Function(cl) cl.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Elemento
+            Item_NoEspecifica.IDElemento = FIELD_VALUE_NOTSPECIFIED_INTEGER
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Elemento
+            Item_Todos.IDElemento = FIELD_VALUE_ALL_INTEGER
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
     Friend Sub AutomotorTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of AutomotorTipo)
 
@@ -518,13 +590,17 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub UsuarioGrupo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub UsuarioGrupo(ByRef ComboBoxControl As ComboBox, ByVal MostrarGrupoAdministradores As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of UsuarioGrupo)
 
         ComboBoxControl.ValueMember = "IDUsuarioGrupo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.UsuarioGrupo.OrderBy(Function(cl) cl.Nombre).ToList
+        If MostrarGrupoAdministradores Then
+            listItems = dbContext.UsuarioGrupo.OrderBy(Function(ug) ug.Nombre).ToList
+        Else
+            listItems = dbContext.UsuarioGrupo.Where(Function(ug) ug.IDUsuarioGrupo <> USUARIOGRUPO_ADMINISTRADORES_ID).OrderBy(Function(ug) ug.Nombre).ToList
+        End If
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New UsuarioGrupo

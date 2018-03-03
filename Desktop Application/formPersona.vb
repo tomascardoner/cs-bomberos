@@ -78,11 +78,11 @@
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
         comboboxFactorRH.Enabled = mEditMode
+        comboboxTieneIOMA.Enabled = mEditMode
         comboboxNivelEstudio.Enabled = mEditMode
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
-        comboboxEstado.Enabled = mEditMode
         comboboxCantidadHijos.Enabled = mEditMode
 
         ' Contacto Particular
@@ -129,10 +129,10 @@
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        comboboxTieneIOMA.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         comboboxCantidadHijos.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
-        pFillAndRefreshLists.Estado(comboboxEstado, False, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
     End Sub
@@ -172,13 +172,20 @@
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            Select Case .TieneIOMA
+                Case ""
+                    comboboxTieneIOMA.SelectedIndex = 0
+                Case PERSONA_TIENEIOMA_PORBOMBEROS
+                    comboboxTieneIOMA.SelectedIndex = 1
+                Case PERSONA_TIENEIOMA_PORTRABAJO
+                    comboboxTieneIOMA.SelectedIndex = 2
+            End Select
             CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
 
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            CS_Control_ComboBox.SetSelectedValue(comboboxEstado, SelectedItemOptions.Value, .Estado)
             If .CantidadHijos Is Nothing Then
                 comboboxCantidadHijos.SelectedIndex = 0
             Else
@@ -254,12 +261,19 @@
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
+            Select Case comboboxTieneIOMA.SelectedIndex
+                Case 0
+                    .TieneIOMA = Nothing
+                Case 1
+                    .TieneIOMA = PERSONA_TIENEIOMA_PORBOMBEROS
+                Case 2
+                    .TieneIOMA = PERSONA_TIENEIOMA_PORTRABAJO
+            End Select
             .IDNivelEstudio = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxNivelEstudio.SelectedValue)
 
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
-            .Estado = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxEstado.SelectedValue)
             If comboboxCantidadHijos.SelectedIndex = 0 Then
                 .CantidadHijos = Nothing
             Else
@@ -485,14 +499,6 @@
             Exit Sub
         End If
 
-        ' Estado
-        If comboboxEstado.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Estado de la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxEstado.Focus()
-            Exit Sub
-        End If
-
         ' Direcciones de Email
         If textboxEmailParticular.Text.Trim.Length > 0 Then
             If Not CS_Email.IsValidEmail(textboxEmailParticular.Text.Trim, CS_Parameter.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
@@ -656,4 +662,31 @@
 
 #End Region
 
+    Private Sub Familiares_Eliminar(sender As Object, e As EventArgs) Handles buttonFamiliares_Eliminar.Click
+
+    End Sub
+    Private Sub Familiares_Editar(sender As Object, e As EventArgs) Handles buttonFamiliares_Editar.Click
+
+    End Sub
+    Private Sub Familiares_Agregar(sender As Object, e As EventArgs) Handles buttonFamiliares_Agregar.Click
+
+    End Sub
+    Private Sub Familiares_Ver(sender As Object, e As EventArgs) Handles datagridviewFamiliares.DoubleClick
+
+    End Sub
+    Private Sub DomicilioLaboralProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
+
+    End Sub
+    Private Sub DomicilioLaboralLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
+
+    End Sub
+    Private Sub DomicilioParticularProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
+
+    End Sub
+    Private Sub DomicilioParticularLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
+
+    End Sub
+    Private Sub comboboxDocumentoTipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
+
+    End Sub
 End Class

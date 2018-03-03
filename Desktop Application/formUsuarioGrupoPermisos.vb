@@ -6,7 +6,7 @@
     Private Sub Me_Load() Handles Me.Load
         SetAppearance()
 
-        pFillAndRefreshLists.UsuarioGrupo(comboboxUsuarioGrupo, False, False)
+        pFillAndRefreshLists.UsuarioGrupo(comboboxUsuarioGrupo, False, False, False)
     End Sub
 #End Region
 

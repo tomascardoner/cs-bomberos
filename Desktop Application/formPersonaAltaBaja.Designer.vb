@@ -22,9 +22,12 @@ Partial Class formPersonaAltaBaja
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim labelActaNumero As System.Windows.Forms.Label
-        Dim labelLibroNumero As System.Windows.Forms.Label
-        Dim labelFolioNumero As System.Windows.Forms.Label
+        Dim labelAltaFolioNumero As System.Windows.Forms.Label
+        Dim labelAltaLibroNumero As System.Windows.Forms.Label
+        Dim labelAltaActaNumero As System.Windows.Forms.Label
+        Dim labelBajaFolioNumero As System.Windows.Forms.Label
+        Dim labelBajaLibroNumero As System.Windows.Forms.Label
+        Dim labelBajaActaNumero As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -32,33 +35,84 @@ Partial Class formPersonaAltaBaja
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.textboxIDAltaBaja = New System.Windows.Forms.TextBox()
         Me.labelIDAltaBaja = New System.Windows.Forms.Label()
-        Me.datetimepickerFechaAlta = New System.Windows.Forms.DateTimePicker()
-        Me.labelFechaAlta = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.labelFechaBaja = New System.Windows.Forms.Label()
-        Me.datetimepickerFechaBaja = New System.Windows.Forms.DateTimePicker()
-        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
-        Me.textboxUnidadOrigen = New System.Windows.Forms.TextBox()
-        Me.labelUnidadOrigen = New System.Windows.Forms.Label()
-        Me.textboxUnidadDestino = New System.Windows.Forms.TextBox()
-        Me.labelUnidadDestino = New System.Windows.Forms.Label()
-        Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
-        Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
-        labelActaNumero = New System.Windows.Forms.Label()
-        labelLibroNumero = New System.Windows.Forms.Label()
-        labelFolioNumero = New System.Windows.Forms.Label()
+        Me.groupboxAlta = New System.Windows.Forms.GroupBox()
+        Me.textboxAltaFolioNumero = New System.Windows.Forms.TextBox()
+        Me.textboxAltaLibroNumero = New System.Windows.Forms.TextBox()
+        Me.textboxAltaActaNumero = New System.Windows.Forms.TextBox()
+        Me.labelAltaFecha = New System.Windows.Forms.Label()
+        Me.datetimepickerAltaFecha = New System.Windows.Forms.DateTimePicker()
+        Me.groupboxBaja = New System.Windows.Forms.GroupBox()
+        Me.textboxBajaFolioNumero = New System.Windows.Forms.TextBox()
+        Me.textboxBajaLibroNumero = New System.Windows.Forms.TextBox()
+        Me.textboxBajaActaNumero = New System.Windows.Forms.TextBox()
+        Me.labelBajaFecha = New System.Windows.Forms.Label()
+        Me.datetimepickerBajaFecha = New System.Windows.Forms.DateTimePicker()
+        labelAltaFolioNumero = New System.Windows.Forms.Label()
+        labelAltaLibroNumero = New System.Windows.Forms.Label()
+        labelAltaActaNumero = New System.Windows.Forms.Label()
+        labelBajaFolioNumero = New System.Windows.Forms.Label()
+        labelBajaLibroNumero = New System.Windows.Forms.Label()
+        labelBajaActaNumero = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
+        Me.groupboxAlta.SuspendLayout()
+        Me.groupboxBaja.SuspendLayout()
         Me.SuspendLayout()
         '
-        'labelActaNumero
+        'labelAltaFolioNumero
         '
-        labelActaNumero.AutoSize = True
-        labelActaNumero.Location = New System.Drawing.Point(197, 183)
-        labelActaNumero.Name = "labelActaNumero"
-        labelActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelActaNumero.TabIndex = 12
-        labelActaNumero.Text = "Acta N°:"
+        labelAltaFolioNumero.AutoSize = True
+        labelAltaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelAltaFolioNumero.Name = "labelAltaFolioNumero"
+        labelAltaFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelAltaFolioNumero.TabIndex = 6
+        labelAltaFolioNumero.Text = "Folio N°:"
+        '
+        'labelAltaLibroNumero
+        '
+        labelAltaLibroNumero.AutoSize = True
+        labelAltaLibroNumero.Location = New System.Drawing.Point(8, 48)
+        labelAltaLibroNumero.Name = "labelAltaLibroNumero"
+        labelAltaLibroNumero.Size = New System.Drawing.Size(48, 13)
+        labelAltaLibroNumero.TabIndex = 2
+        labelAltaLibroNumero.Text = "Libro N°:"
+        '
+        'labelAltaActaNumero
+        '
+        labelAltaActaNumero.AutoSize = True
+        labelAltaActaNumero.Location = New System.Drawing.Point(153, 48)
+        labelAltaActaNumero.Name = "labelAltaActaNumero"
+        labelAltaActaNumero.Size = New System.Drawing.Size(47, 13)
+        labelAltaActaNumero.TabIndex = 4
+        labelAltaActaNumero.Text = "Acta N°:"
+        '
+        'labelBajaFolioNumero
+        '
+        labelBajaFolioNumero.AutoSize = True
+        labelBajaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelBajaFolioNumero.Name = "labelBajaFolioNumero"
+        labelBajaFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelBajaFolioNumero.TabIndex = 6
+        labelBajaFolioNumero.Text = "Folio N°:"
+        '
+        'labelBajaLibroNumero
+        '
+        labelBajaLibroNumero.AutoSize = True
+        labelBajaLibroNumero.Location = New System.Drawing.Point(8, 48)
+        labelBajaLibroNumero.Name = "labelBajaLibroNumero"
+        labelBajaLibroNumero.Size = New System.Drawing.Size(48, 13)
+        labelBajaLibroNumero.TabIndex = 2
+        labelBajaLibroNumero.Text = "Libro N°:"
+        '
+        'labelBajaActaNumero
+        '
+        labelBajaActaNumero.AutoSize = True
+        labelBajaActaNumero.Location = New System.Drawing.Point(153, 48)
+        labelBajaActaNumero.Name = "labelBajaActaNumero"
+        labelBajaActaNumero.Size = New System.Drawing.Size(47, 13)
+        labelBajaActaNumero.TabIndex = 4
+        labelBajaActaNumero.Text = "Acta N°:"
         '
         'buttonGuardar
         '
@@ -106,12 +160,12 @@ Partial Class formPersonaAltaBaja
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(473, 39)
-        Me.toolstripMain.TabIndex = 18
+        Me.toolstripMain.Size = New System.Drawing.Size(460, 39)
+        Me.toolstripMain.TabIndex = 6
         '
         'textboxIDAltaBaja
         '
-        Me.textboxIDAltaBaja.Location = New System.Drawing.Point(117, 50)
+        Me.textboxIDAltaBaja.Location = New System.Drawing.Point(75, 50)
         Me.textboxIDAltaBaja.MaxLength = 10
         Me.textboxIDAltaBaja.Name = "textboxIDAltaBaja"
         Me.textboxIDAltaBaja.ReadOnly = True
@@ -123,167 +177,161 @@ Partial Class formPersonaAltaBaja
         'labelIDAltaBaja
         '
         Me.labelIDAltaBaja.AutoSize = True
-        Me.labelIDAltaBaja.Location = New System.Drawing.Point(12, 53)
+        Me.labelIDAltaBaja.Location = New System.Drawing.Point(20, 53)
         Me.labelIDAltaBaja.Name = "labelIDAltaBaja"
         Me.labelIDAltaBaja.Size = New System.Drawing.Size(21, 13)
         Me.labelIDAltaBaja.TabIndex = 0
         Me.labelIDAltaBaja.Text = "ID:"
         '
-        'datetimepickerFechaAlta
-        '
-        Me.datetimepickerFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaAlta.Location = New System.Drawing.Point(117, 76)
-        Me.datetimepickerFechaAlta.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaAlta.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaAlta.Name = "datetimepickerFechaAlta"
-        Me.datetimepickerFechaAlta.Size = New System.Drawing.Size(116, 20)
-        Me.datetimepickerFechaAlta.TabIndex = 3
-        '
-        'labelFechaAlta
-        '
-        Me.labelFechaAlta.AutoSize = True
-        Me.labelFechaAlta.Location = New System.Drawing.Point(12, 82)
-        Me.labelFechaAlta.Name = "labelFechaAlta"
-        Me.labelFechaAlta.Size = New System.Drawing.Size(61, 13)
-        Me.labelFechaAlta.TabIndex = 2
-        Me.labelFechaAlta.Text = "Fecha Alta:"
-        '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(117, 206)
+        Me.textboxNotas.Location = New System.Drawing.Point(75, 243)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.textboxNotas.Size = New System.Drawing.Size(340, 47)
-        Me.textboxNotas.TabIndex = 17
+        Me.textboxNotas.TabIndex = 5
         '
         'labelNotas
         '
         Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(12, 209)
+        Me.labelNotas.Location = New System.Drawing.Point(20, 246)
         Me.labelNotas.Name = "labelNotas"
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 16
+        Me.labelNotas.TabIndex = 4
         Me.labelNotas.Text = "Notas:"
         '
-        'labelFechaBaja
+        'groupboxAlta
         '
-        Me.labelFechaBaja.AutoSize = True
-        Me.labelFechaBaja.Location = New System.Drawing.Point(12, 134)
-        Me.labelFechaBaja.Name = "labelFechaBaja"
-        Me.labelFechaBaja.Size = New System.Drawing.Size(64, 13)
-        Me.labelFechaBaja.TabIndex = 6
-        Me.labelFechaBaja.Text = "Fecha Baja:"
+        Me.groupboxAlta.Controls.Add(Me.textboxAltaFolioNumero)
+        Me.groupboxAlta.Controls.Add(labelAltaFolioNumero)
+        Me.groupboxAlta.Controls.Add(labelAltaLibroNumero)
+        Me.groupboxAlta.Controls.Add(Me.textboxAltaLibroNumero)
+        Me.groupboxAlta.Controls.Add(labelAltaActaNumero)
+        Me.groupboxAlta.Controls.Add(Me.textboxAltaActaNumero)
+        Me.groupboxAlta.Controls.Add(Me.labelAltaFecha)
+        Me.groupboxAlta.Controls.Add(Me.datetimepickerAltaFecha)
+        Me.groupboxAlta.Location = New System.Drawing.Point(12, 76)
+        Me.groupboxAlta.Name = "groupboxAlta"
+        Me.groupboxAlta.Size = New System.Drawing.Size(435, 72)
+        Me.groupboxAlta.TabIndex = 2
+        Me.groupboxAlta.TabStop = False
+        Me.groupboxAlta.Text = "Alta:"
         '
-        'datetimepickerFechaBaja
+        'textboxAltaFolioNumero
         '
-        Me.datetimepickerFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaBaja.Location = New System.Drawing.Point(117, 128)
-        Me.datetimepickerFechaBaja.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaBaja.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaBaja.Name = "datetimepickerFechaBaja"
-        Me.datetimepickerFechaBaja.ShowCheckBox = True
-        Me.datetimepickerFechaBaja.Size = New System.Drawing.Size(139, 20)
-        Me.datetimepickerFechaBaja.TabIndex = 7
+        Me.textboxAltaFolioNumero.Location = New System.Drawing.Point(350, 45)
+        Me.textboxAltaFolioNumero.MaxLength = 10
+        Me.textboxAltaFolioNumero.Name = "textboxAltaFolioNumero"
+        Me.textboxAltaFolioNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxAltaFolioNumero.TabIndex = 7
         '
-        'textboxActaNumero
+        'textboxAltaLibroNumero
         '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(250, 180)
-        Me.textboxActaNumero.MaxLength = 10
-        Me.textboxActaNumero.Name = "textboxActaNumero"
-        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxActaNumero.TabIndex = 13
+        Me.textboxAltaLibroNumero.Location = New System.Drawing.Point(62, 45)
+        Me.textboxAltaLibroNumero.MaxLength = 10
+        Me.textboxAltaLibroNumero.Name = "textboxAltaLibroNumero"
+        Me.textboxAltaLibroNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxAltaLibroNumero.TabIndex = 3
         '
-        'textboxUnidadOrigen
+        'textboxAltaActaNumero
         '
-        Me.textboxUnidadOrigen.Location = New System.Drawing.Point(117, 102)
-        Me.textboxUnidadOrigen.MaxLength = 50
-        Me.textboxUnidadOrigen.Name = "textboxUnidadOrigen"
-        Me.textboxUnidadOrigen.Size = New System.Drawing.Size(340, 20)
-        Me.textboxUnidadOrigen.TabIndex = 5
+        Me.textboxAltaActaNumero.Location = New System.Drawing.Point(206, 45)
+        Me.textboxAltaActaNumero.MaxLength = 10
+        Me.textboxAltaActaNumero.Name = "textboxAltaActaNumero"
+        Me.textboxAltaActaNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxAltaActaNumero.TabIndex = 5
         '
-        'labelUnidadOrigen
+        'labelAltaFecha
         '
-        Me.labelUnidadOrigen.AutoSize = True
-        Me.labelUnidadOrigen.Location = New System.Drawing.Point(12, 105)
-        Me.labelUnidadOrigen.Name = "labelUnidadOrigen"
-        Me.labelUnidadOrigen.Size = New System.Drawing.Size(93, 13)
-        Me.labelUnidadOrigen.TabIndex = 4
-        Me.labelUnidadOrigen.Text = "Unidad de Origen:"
+        Me.labelAltaFecha.AutoSize = True
+        Me.labelAltaFecha.Location = New System.Drawing.Point(8, 22)
+        Me.labelAltaFecha.Name = "labelAltaFecha"
+        Me.labelAltaFecha.Size = New System.Drawing.Size(40, 13)
+        Me.labelAltaFecha.TabIndex = 0
+        Me.labelAltaFecha.Text = "Fecha:"
         '
-        'textboxUnidadDestino
+        'datetimepickerAltaFecha
         '
-        Me.textboxUnidadDestino.Location = New System.Drawing.Point(117, 154)
-        Me.textboxUnidadDestino.MaxLength = 50
-        Me.textboxUnidadDestino.Name = "textboxUnidadDestino"
-        Me.textboxUnidadDestino.Size = New System.Drawing.Size(340, 20)
-        Me.textboxUnidadDestino.TabIndex = 9
+        Me.datetimepickerAltaFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerAltaFecha.Location = New System.Drawing.Point(62, 19)
+        Me.datetimepickerAltaFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerAltaFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerAltaFecha.Name = "datetimepickerAltaFecha"
+        Me.datetimepickerAltaFecha.Size = New System.Drawing.Size(116, 20)
+        Me.datetimepickerAltaFecha.TabIndex = 1
         '
-        'labelUnidadDestino
+        'groupboxBaja
         '
-        Me.labelUnidadDestino.AutoSize = True
-        Me.labelUnidadDestino.Location = New System.Drawing.Point(12, 157)
-        Me.labelUnidadDestino.Name = "labelUnidadDestino"
-        Me.labelUnidadDestino.Size = New System.Drawing.Size(98, 13)
-        Me.labelUnidadDestino.TabIndex = 8
-        Me.labelUnidadDestino.Text = "Unidad de Destino:"
+        Me.groupboxBaja.Controls.Add(Me.textboxBajaFolioNumero)
+        Me.groupboxBaja.Controls.Add(labelBajaFolioNumero)
+        Me.groupboxBaja.Controls.Add(labelBajaLibroNumero)
+        Me.groupboxBaja.Controls.Add(Me.textboxBajaLibroNumero)
+        Me.groupboxBaja.Controls.Add(labelBajaActaNumero)
+        Me.groupboxBaja.Controls.Add(Me.textboxBajaActaNumero)
+        Me.groupboxBaja.Controls.Add(Me.labelBajaFecha)
+        Me.groupboxBaja.Controls.Add(Me.datetimepickerBajaFecha)
+        Me.groupboxBaja.Location = New System.Drawing.Point(12, 154)
+        Me.groupboxBaja.Name = "groupboxBaja"
+        Me.groupboxBaja.Size = New System.Drawing.Size(435, 72)
+        Me.groupboxBaja.TabIndex = 3
+        Me.groupboxBaja.TabStop = False
+        Me.groupboxBaja.Text = "Baja:"
         '
-        'textboxLibroNumero
+        'textboxBajaFolioNumero
         '
-        Me.textboxLibroNumero.Location = New System.Drawing.Point(117, 180)
-        Me.textboxLibroNumero.MaxLength = 10
-        Me.textboxLibroNumero.Name = "textboxLibroNumero"
-        Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxLibroNumero.TabIndex = 11
+        Me.textboxBajaFolioNumero.Location = New System.Drawing.Point(350, 45)
+        Me.textboxBajaFolioNumero.MaxLength = 10
+        Me.textboxBajaFolioNumero.Name = "textboxBajaFolioNumero"
+        Me.textboxBajaFolioNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxBajaFolioNumero.TabIndex = 7
         '
-        'labelLibroNumero
+        'textboxBajaLibroNumero
         '
-        labelLibroNumero.AutoSize = True
-        labelLibroNumero.Location = New System.Drawing.Point(12, 183)
-        labelLibroNumero.Name = "labelLibroNumero"
-        labelLibroNumero.Size = New System.Drawing.Size(48, 13)
-        labelLibroNumero.TabIndex = 10
-        labelLibroNumero.Text = "Libro N°:"
+        Me.textboxBajaLibroNumero.Location = New System.Drawing.Point(62, 45)
+        Me.textboxBajaLibroNumero.MaxLength = 10
+        Me.textboxBajaLibroNumero.Name = "textboxBajaLibroNumero"
+        Me.textboxBajaLibroNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxBajaLibroNumero.TabIndex = 3
         '
-        'labelFolioNumero
+        'textboxBajaActaNumero
         '
-        labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(330, 183)
-        labelFolioNumero.Name = "labelFolioNumero"
-        labelFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelFolioNumero.TabIndex = 14
-        labelFolioNumero.Text = "Folio N°:"
+        Me.textboxBajaActaNumero.Location = New System.Drawing.Point(206, 45)
+        Me.textboxBajaActaNumero.MaxLength = 10
+        Me.textboxBajaActaNumero.Name = "textboxBajaActaNumero"
+        Me.textboxBajaActaNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxBajaActaNumero.TabIndex = 5
         '
-        'textboxFolioNumero
+        'labelBajaFecha
         '
-        Me.textboxFolioNumero.Location = New System.Drawing.Point(383, 180)
-        Me.textboxFolioNumero.MaxLength = 10
-        Me.textboxFolioNumero.Name = "textboxFolioNumero"
-        Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxFolioNumero.TabIndex = 15
+        Me.labelBajaFecha.AutoSize = True
+        Me.labelBajaFecha.Location = New System.Drawing.Point(8, 22)
+        Me.labelBajaFecha.Name = "labelBajaFecha"
+        Me.labelBajaFecha.Size = New System.Drawing.Size(40, 13)
+        Me.labelBajaFecha.TabIndex = 0
+        Me.labelBajaFecha.Text = "Fecha:"
+        '
+        'datetimepickerBajaFecha
+        '
+        Me.datetimepickerBajaFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerBajaFecha.Location = New System.Drawing.Point(62, 19)
+        Me.datetimepickerBajaFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerBajaFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerBajaFecha.Name = "datetimepickerBajaFecha"
+        Me.datetimepickerBajaFecha.ShowCheckBox = True
+        Me.datetimepickerBajaFecha.Size = New System.Drawing.Size(138, 20)
+        Me.datetimepickerBajaFecha.TabIndex = 1
         '
         'formPersonaAltaBaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(473, 268)
-        Me.Controls.Add(Me.textboxFolioNumero)
-        Me.Controls.Add(labelFolioNumero)
-        Me.Controls.Add(labelLibroNumero)
-        Me.Controls.Add(Me.textboxLibroNumero)
-        Me.Controls.Add(Me.textboxUnidadDestino)
-        Me.Controls.Add(Me.labelUnidadDestino)
-        Me.Controls.Add(Me.labelFechaBaja)
-        Me.Controls.Add(Me.datetimepickerFechaBaja)
-        Me.Controls.Add(labelActaNumero)
-        Me.Controls.Add(Me.textboxActaNumero)
-        Me.Controls.Add(Me.textboxUnidadOrigen)
-        Me.Controls.Add(Me.labelUnidadOrigen)
+        Me.ClientSize = New System.Drawing.Size(460, 304)
+        Me.Controls.Add(Me.groupboxBaja)
+        Me.Controls.Add(Me.groupboxAlta)
         Me.Controls.Add(Me.textboxNotas)
         Me.Controls.Add(Me.labelNotas)
-        Me.Controls.Add(Me.labelFechaAlta)
-        Me.Controls.Add(Me.datetimepickerFechaAlta)
         Me.Controls.Add(Me.labelIDAltaBaja)
         Me.Controls.Add(Me.textboxIDAltaBaja)
         Me.Controls.Add(Me.toolstripMain)
@@ -292,9 +340,13 @@ Partial Class formPersonaAltaBaja
         Me.MinimizeBox = False
         Me.Name = "formPersonaAltaBaja"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Accidente de la Persona"
+        Me.Text = "Alta-Baja de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        Me.groupboxAlta.ResumeLayout(False)
+        Me.groupboxAlta.PerformLayout()
+        Me.groupboxBaja.ResumeLayout(False)
+        Me.groupboxBaja.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -306,17 +358,18 @@ Partial Class formPersonaAltaBaja
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents textboxIDAltaBaja As System.Windows.Forms.TextBox
     Friend WithEvents labelIDAltaBaja As System.Windows.Forms.Label
-    Friend WithEvents datetimepickerFechaAlta As System.Windows.Forms.DateTimePicker
-    Friend WithEvents labelFechaAlta As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelFechaBaja As System.Windows.Forms.Label
-    Friend WithEvents datetimepickerFechaBaja As System.Windows.Forms.DateTimePicker
-    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxUnidadOrigen As System.Windows.Forms.TextBox
-    Friend WithEvents labelUnidadOrigen As System.Windows.Forms.Label
-    Friend WithEvents textboxUnidadDestino As System.Windows.Forms.TextBox
-    Friend WithEvents labelUnidadDestino As System.Windows.Forms.Label
-    Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
+    Friend WithEvents groupboxAlta As System.Windows.Forms.GroupBox
+    Friend WithEvents textboxAltaFolioNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxAltaLibroNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxAltaActaNumero As System.Windows.Forms.TextBox
+    Friend WithEvents labelAltaFecha As System.Windows.Forms.Label
+    Friend WithEvents datetimepickerAltaFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents groupboxBaja As System.Windows.Forms.GroupBox
+    Friend WithEvents textboxBajaFolioNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxBajaLibroNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxBajaActaNumero As System.Windows.Forms.TextBox
+    Friend WithEvents labelBajaFecha As System.Windows.Forms.Label
+    Friend WithEvents datetimepickerBajaFecha As System.Windows.Forms.DateTimePicker
 End Class

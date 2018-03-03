@@ -100,7 +100,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -259,6 +258,18 @@
     <Compile Include="formAutomotor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formInventario.designer.vb">
+      <DependentUpon>formInventario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formInventario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formInventarioDetalle.designer.vb">
+      <DependentUpon>formInventarioDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formInventarioDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaAltaBaja.Designer.vb">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </Compile>
@@ -293,6 +304,18 @@
       <DependentUpon>formPersonaAscensos.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaAscensos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaCambiosUnidades.designer.vb">
+      <DependentUpon>formPersonaCambiosUnidades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaCambiosUnidades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaCambioUnidad.designer.vb">
+      <DependentUpon>formPersonaCambioUnidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaCambioUnidad.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formUbicacion.Designer.vb">
@@ -410,6 +433,9 @@
     <Compile Include="formUsuarioGrupoPermisos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inventario.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Localidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -445,6 +471,9 @@
     <Compile Include="Parentesco.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PenaAplicacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Permisos.vb" />
     <Compile Include="Persona.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -459,6 +488,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonaCalificacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaCambioUnidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonaFamiliar.vb">
@@ -476,7 +508,13 @@
     <Compile Include="ReporteParametro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rubro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="StartUp.vb" />
+    <Compile Include="SubRubro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="SubUbicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -507,6 +545,12 @@
     <EmbeddedResource Include="formAutomotor.resx">
       <DependentUpon>formAutomotor.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formInventario.resx">
+      <DependentUpon>formInventario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formInventarioDetalle.resx">
+      <DependentUpon>formInventarioDetalle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAltaBaja.resx">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </EmbeddedResource>
@@ -524,6 +568,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAscensos.resx">
       <DependentUpon>formPersonaAscensos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaCambiosUnidades.resx">
+      <DependentUpon>formPersonaCambiosUnidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaCambioUnidad.resx">
+      <DependentUpon>formPersonaCambioUnidad.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>

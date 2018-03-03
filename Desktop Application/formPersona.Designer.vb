@@ -26,7 +26,11 @@ Partial Class formPersona
         Dim labelApellido As System.Windows.Forms.Label
         Dim labelNombre As System.Windows.Forms.Label
         Dim labelMatriculaNumero As System.Windows.Forms.Label
-        Dim labelEstado As System.Windows.Forms.Label
+        Dim Label1 As System.Windows.Forms.Label
+        Dim labelCantidadHijos As System.Windows.Forms.Label
+        Dim labelNivelEstudio As System.Windows.Forms.Label
+        Dim labelFactorRH As System.Windows.Forms.Label
+        Dim labelGrupoSanguineo As System.Windows.Forms.Label
         Dim labelFechaNacimiento As System.Windows.Forms.Label
         Dim labelGenero As System.Windows.Forms.Label
         Dim labelDocumento As System.Windows.Forms.Label
@@ -57,15 +61,11 @@ Partial Class formPersona
         Dim labelDomicilioLaboralProvincia As System.Windows.Forms.Label
         Dim labelDomicilioLaboralNumero As System.Windows.Forms.Label
         Dim labelDomicilioLaboralPiso As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim labelGrupoSanguineo As System.Windows.Forms.Label
-        Dim labelFactorRH As System.Windows.Forms.Label
-        Dim labelNivelEstudio As System.Windows.Forms.Label
-        Dim labelCantidadHijos As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
@@ -79,17 +79,17 @@ Partial Class formPersona
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.textboxMatriculaNumero = New System.Windows.Forms.TextBox()
-        Me.textboxDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxTieneIOMA = New System.Windows.Forms.ComboBox()
         Me.comboboxCantidadHijos = New System.Windows.Forms.ComboBox()
         Me.comboboxNivelEstudio = New System.Windows.Forms.ComboBox()
         Me.comboboxFactorRH = New System.Windows.Forms.ComboBox()
         Me.comboboxGrupoSanguineo = New System.Windows.Forms.ComboBox()
-        Me.comboboxEstado = New System.Windows.Forms.ComboBox()
         Me.datetimepickerFechaNacimiento = New System.Windows.Forms.DateTimePicker()
         Me.comboboxGenero = New System.Windows.Forms.ComboBox()
         Me.comboboxDocumentoTipo = New System.Windows.Forms.ComboBox()
+        Me.textboxDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.maskedtextboxDocumentoNumero = New System.Windows.Forms.MaskedTextBox()
         Me.textboxNacionalidad = New System.Windows.Forms.TextBox()
         Me.textboxProfesion = New System.Windows.Forms.TextBox()
@@ -139,7 +139,11 @@ Partial Class formPersona
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
-        labelEstado = New System.Windows.Forms.Label()
+        Label1 = New System.Windows.Forms.Label()
+        labelCantidadHijos = New System.Windows.Forms.Label()
+        labelNivelEstudio = New System.Windows.Forms.Label()
+        labelFactorRH = New System.Windows.Forms.Label()
+        labelGrupoSanguineo = New System.Windows.Forms.Label()
         labelFechaNacimiento = New System.Windows.Forms.Label()
         labelGenero = New System.Windows.Forms.Label()
         labelDocumento = New System.Windows.Forms.Label()
@@ -174,10 +178,6 @@ Partial Class formPersona
         labelNotas = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
-        labelGrupoSanguineo = New System.Windows.Forms.Label()
-        labelFactorRH = New System.Windows.Forms.Label()
-        labelNivelEstudio = New System.Windows.Forms.Label()
-        labelCantidadHijos = New System.Windows.Forms.Label()
         CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
@@ -216,358 +216,6 @@ Partial Class formPersona
         labelMatriculaNumero.Size = New System.Drawing.Size(55, 13)
         labelMatriculaNumero.TabIndex = 3
         labelMatriculaNumero.Text = "Matrícula:"
-        '
-        'labelEstado
-        '
-        labelEstado.AutoSize = True
-        labelEstado.Location = New System.Drawing.Point(6, 226)
-        labelEstado.Name = "labelEstado"
-        labelEstado.Size = New System.Drawing.Size(43, 13)
-        labelEstado.TabIndex = 19
-        labelEstado.Text = "Estado:"
-        '
-        'labelFechaNacimiento
-        '
-        labelFechaNacimiento.AutoSize = True
-        labelFechaNacimiento.Location = New System.Drawing.Point(6, 40)
-        labelFechaNacimiento.Name = "labelFechaNacimiento"
-        labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
-        labelFechaNacimiento.TabIndex = 3
-        labelFechaNacimiento.Text = "Fecha de nacimiento:"
-        '
-        'labelGenero
-        '
-        labelGenero.AutoSize = True
-        labelGenero.Location = New System.Drawing.Point(6, 66)
-        labelGenero.Name = "labelGenero"
-        labelGenero.Size = New System.Drawing.Size(45, 13)
-        labelGenero.TabIndex = 5
-        labelGenero.Text = "Género:"
-        '
-        'labelDocumento
-        '
-        labelDocumento.AutoSize = True
-        labelDocumento.Location = New System.Drawing.Point(6, 13)
-        labelDocumento.Name = "labelDocumento"
-        labelDocumento.Size = New System.Drawing.Size(65, 13)
-        labelDocumento.TabIndex = 0
-        labelDocumento.Text = "Documento:"
-        Me.tooltipMain.SetToolTip(labelDocumento, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'labelNacionalidad
-        '
-        labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 173)
-        labelNacionalidad.Name = "labelNacionalidad"
-        labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 15
-        labelNacionalidad.Text = "Nacionalidad:"
-        '
-        'labelProfesion
-        '
-        labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 147)
-        labelProfesion.Name = "labelProfesion"
-        labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 13
-        labelProfesion.Text = "Profesión:"
-        '
-        'labelCuartel
-        '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 199)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 17
-        labelCuartel.Text = "Cuartel:"
-        '
-        'labelTelefonoParticular
-        '
-        labelTelefonoParticular.AutoSize = True
-        labelTelefonoParticular.Location = New System.Drawing.Point(6, 169)
-        labelTelefonoParticular.Name = "labelTelefonoParticular"
-        labelTelefonoParticular.Size = New System.Drawing.Size(52, 13)
-        labelTelefonoParticular.TabIndex = 18
-        labelTelefonoParticular.Text = "Teléfono:"
-        '
-        'labelCelularParticular
-        '
-        labelCelularParticular.AutoSize = True
-        labelCelularParticular.Location = New System.Drawing.Point(6, 195)
-        labelCelularParticular.Name = "labelCelularParticular"
-        labelCelularParticular.Size = New System.Drawing.Size(42, 13)
-        labelCelularParticular.TabIndex = 20
-        labelCelularParticular.Text = "Celular:"
-        '
-        'labelEmailParticular
-        '
-        labelEmailParticular.AutoSize = True
-        labelEmailParticular.Location = New System.Drawing.Point(6, 221)
-        labelEmailParticular.Name = "labelEmailParticular"
-        labelEmailParticular.Size = New System.Drawing.Size(38, 13)
-        labelEmailParticular.TabIndex = 22
-        labelEmailParticular.Text = "E-mail:"
-        '
-        'labelDomicilioParticularCalle3
-        '
-        labelDomicilioParticularCalle3.AutoSize = True
-        labelDomicilioParticularCalle3.Location = New System.Drawing.Point(266, 65)
-        labelDomicilioParticularCalle3.Name = "labelDomicilioParticularCalle3"
-        labelDomicilioParticularCalle3.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioParticularCalle3.TabIndex = 10
-        labelDomicilioParticularCalle3.Text = "Calle 3:"
-        '
-        'labelDomicilioParticularCalle2
-        '
-        labelDomicilioParticularCalle2.AutoSize = True
-        labelDomicilioParticularCalle2.Location = New System.Drawing.Point(6, 65)
-        labelDomicilioParticularCalle2.Name = "labelDomicilioParticularCalle2"
-        labelDomicilioParticularCalle2.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioParticularCalle2.TabIndex = 8
-        labelDomicilioParticularCalle2.Text = "Calle 2:"
-        '
-        'labelDomicilioParticularCalle1
-        '
-        labelDomicilioParticularCalle1.AutoSize = True
-        labelDomicilioParticularCalle1.Location = New System.Drawing.Point(6, 13)
-        labelDomicilioParticularCalle1.Name = "labelDomicilioParticularCalle1"
-        labelDomicilioParticularCalle1.Size = New System.Drawing.Size(33, 13)
-        labelDomicilioParticularCalle1.TabIndex = 0
-        labelDomicilioParticularCalle1.Text = "Calle:"
-        '
-        'labelDomicilioParticularCodigoPostal
-        '
-        labelDomicilioParticularCodigoPostal.AutoSize = True
-        labelDomicilioParticularCodigoPostal.Location = New System.Drawing.Point(384, 118)
-        labelDomicilioParticularCodigoPostal.Name = "labelDomicilioParticularCodigoPostal"
-        labelDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioParticularCodigoPostal.TabIndex = 16
-        labelDomicilioParticularCodigoPostal.Text = "Cód. Post.:"
-        '
-        'labelDomicilioParticularDepartamento
-        '
-        labelDomicilioParticularDepartamento.AutoSize = True
-        labelDomicilioParticularDepartamento.Location = New System.Drawing.Point(220, 39)
-        labelDomicilioParticularDepartamento.Name = "labelDomicilioParticularDepartamento"
-        labelDomicilioParticularDepartamento.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioParticularDepartamento.TabIndex = 6
-        labelDomicilioParticularDepartamento.Text = "Dto/Ofic.:"
-        '
-        'labelDomicilioParticularLocalidad
-        '
-        labelDomicilioParticularLocalidad.AutoSize = True
-        labelDomicilioParticularLocalidad.Location = New System.Drawing.Point(6, 118)
-        labelDomicilioParticularLocalidad.Name = "labelDomicilioParticularLocalidad"
-        labelDomicilioParticularLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioParticularLocalidad.TabIndex = 14
-        labelDomicilioParticularLocalidad.Text = "Localidad:"
-        '
-        'labelDomicilioParticularProvincia
-        '
-        labelDomicilioParticularProvincia.AutoSize = True
-        labelDomicilioParticularProvincia.Location = New System.Drawing.Point(6, 91)
-        labelDomicilioParticularProvincia.Name = "labelDomicilioParticularProvincia"
-        labelDomicilioParticularProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioParticularProvincia.TabIndex = 12
-        labelDomicilioParticularProvincia.Text = "Provincia:"
-        '
-        'labelDomicilioParticularNumero
-        '
-        labelDomicilioParticularNumero.AutoSize = True
-        labelDomicilioParticularNumero.Location = New System.Drawing.Point(6, 39)
-        labelDomicilioParticularNumero.Name = "labelDomicilioParticularNumero"
-        labelDomicilioParticularNumero.Size = New System.Drawing.Size(47, 13)
-        labelDomicilioParticularNumero.TabIndex = 2
-        labelDomicilioParticularNumero.Text = "Número:"
-        '
-        'labelDomicilioParticularPiso
-        '
-        labelDomicilioParticularPiso.AutoSize = True
-        labelDomicilioParticularPiso.Location = New System.Drawing.Point(128, 39)
-        labelDomicilioParticularPiso.Name = "labelDomicilioParticularPiso"
-        labelDomicilioParticularPiso.Size = New System.Drawing.Size(30, 13)
-        labelDomicilioParticularPiso.TabIndex = 4
-        labelDomicilioParticularPiso.Text = "Piso:"
-        '
-        'labelTelefonoLaboral
-        '
-        labelTelefonoLaboral.AutoSize = True
-        labelTelefonoLaboral.Location = New System.Drawing.Point(6, 169)
-        labelTelefonoLaboral.Name = "labelTelefonoLaboral"
-        labelTelefonoLaboral.Size = New System.Drawing.Size(52, 13)
-        labelTelefonoLaboral.TabIndex = 18
-        labelTelefonoLaboral.Text = "Teléfono:"
-        '
-        'labelCelularLaboral
-        '
-        labelCelularLaboral.AutoSize = True
-        labelCelularLaboral.Location = New System.Drawing.Point(6, 195)
-        labelCelularLaboral.Name = "labelCelularLaboral"
-        labelCelularLaboral.Size = New System.Drawing.Size(42, 13)
-        labelCelularLaboral.TabIndex = 20
-        labelCelularLaboral.Text = "Celular:"
-        '
-        'labelEmailLaboral
-        '
-        labelEmailLaboral.AutoSize = True
-        labelEmailLaboral.Location = New System.Drawing.Point(6, 221)
-        labelEmailLaboral.Name = "labelEmailLaboral"
-        labelEmailLaboral.Size = New System.Drawing.Size(38, 13)
-        labelEmailLaboral.TabIndex = 22
-        labelEmailLaboral.Text = "E-mail:"
-        '
-        'labelDomicilioLaboralCalle3
-        '
-        labelDomicilioLaboralCalle3.AutoSize = True
-        labelDomicilioLaboralCalle3.Location = New System.Drawing.Point(266, 65)
-        labelDomicilioLaboralCalle3.Name = "labelDomicilioLaboralCalle3"
-        labelDomicilioLaboralCalle3.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioLaboralCalle3.TabIndex = 10
-        labelDomicilioLaboralCalle3.Text = "Calle 3:"
-        '
-        'labelDomicilioLaboralCalle2
-        '
-        labelDomicilioLaboralCalle2.AutoSize = True
-        labelDomicilioLaboralCalle2.Location = New System.Drawing.Point(6, 65)
-        labelDomicilioLaboralCalle2.Name = "labelDomicilioLaboralCalle2"
-        labelDomicilioLaboralCalle2.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioLaboralCalle2.TabIndex = 8
-        labelDomicilioLaboralCalle2.Text = "Calle 2:"
-        '
-        'labelDomicilioLaboralCalle1
-        '
-        labelDomicilioLaboralCalle1.AutoSize = True
-        labelDomicilioLaboralCalle1.Location = New System.Drawing.Point(6, 13)
-        labelDomicilioLaboralCalle1.Name = "labelDomicilioLaboralCalle1"
-        labelDomicilioLaboralCalle1.Size = New System.Drawing.Size(33, 13)
-        labelDomicilioLaboralCalle1.TabIndex = 0
-        labelDomicilioLaboralCalle1.Text = "Calle:"
-        '
-        'labelDomicilioLaboralCodigoPostal
-        '
-        labelDomicilioLaboralCodigoPostal.AutoSize = True
-        labelDomicilioLaboralCodigoPostal.Location = New System.Drawing.Point(384, 118)
-        labelDomicilioLaboralCodigoPostal.Name = "labelDomicilioLaboralCodigoPostal"
-        labelDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioLaboralCodigoPostal.TabIndex = 16
-        labelDomicilioLaboralCodigoPostal.Text = "Cód. Post.:"
-        '
-        'labelDomicilioLaboralDepartamento
-        '
-        labelDomicilioLaboralDepartamento.AutoSize = True
-        labelDomicilioLaboralDepartamento.Location = New System.Drawing.Point(220, 39)
-        labelDomicilioLaboralDepartamento.Name = "labelDomicilioLaboralDepartamento"
-        labelDomicilioLaboralDepartamento.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioLaboralDepartamento.TabIndex = 6
-        labelDomicilioLaboralDepartamento.Text = "Dto/Ofic.:"
-        '
-        'labelDomicilioLaboralLocalidad
-        '
-        labelDomicilioLaboralLocalidad.AutoSize = True
-        labelDomicilioLaboralLocalidad.Location = New System.Drawing.Point(6, 118)
-        labelDomicilioLaboralLocalidad.Name = "labelDomicilioLaboralLocalidad"
-        labelDomicilioLaboralLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioLaboralLocalidad.TabIndex = 14
-        labelDomicilioLaboralLocalidad.Text = "Localidad:"
-        '
-        'labelDomicilioLaboralProvincia
-        '
-        labelDomicilioLaboralProvincia.AutoSize = True
-        labelDomicilioLaboralProvincia.Location = New System.Drawing.Point(6, 91)
-        labelDomicilioLaboralProvincia.Name = "labelDomicilioLaboralProvincia"
-        labelDomicilioLaboralProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioLaboralProvincia.TabIndex = 12
-        labelDomicilioLaboralProvincia.Text = "Provincia:"
-        '
-        'labelDomicilioLaboralNumero
-        '
-        labelDomicilioLaboralNumero.AutoSize = True
-        labelDomicilioLaboralNumero.Location = New System.Drawing.Point(6, 39)
-        labelDomicilioLaboralNumero.Name = "labelDomicilioLaboralNumero"
-        labelDomicilioLaboralNumero.Size = New System.Drawing.Size(47, 13)
-        labelDomicilioLaboralNumero.TabIndex = 2
-        labelDomicilioLaboralNumero.Text = "Número:"
-        '
-        'labelDomicilioLaboralPiso
-        '
-        labelDomicilioLaboralPiso.AutoSize = True
-        labelDomicilioLaboralPiso.Location = New System.Drawing.Point(128, 39)
-        labelDomicilioLaboralPiso.Name = "labelDomicilioLaboralPiso"
-        labelDomicilioLaboralPiso.Size = New System.Drawing.Size(30, 13)
-        labelDomicilioLaboralPiso.TabIndex = 4
-        labelDomicilioLaboralPiso.Text = "Piso:"
-        '
-        'labelEsActivo
-        '
-        labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 172)
-        labelEsActivo.Name = "labelEsActivo"
-        labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 2
-        labelEsActivo.Text = "Activo:"
-        '
-        'labelNotas
-        '
-        labelNotas.AutoSize = True
-        labelNotas.Location = New System.Drawing.Point(6, 9)
-        labelNotas.Name = "labelNotas"
-        labelNotas.Size = New System.Drawing.Size(38, 13)
-        labelNotas.TabIndex = 0
-        labelNotas.Text = "Notas:"
-        '
-        'labelModificacion
-        '
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 220)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 7
-        labelModificacion.Text = "Ultima Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 198)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 4
-        labelCreacion.Text = "Creación:"
-        '
-        'labelGrupoSanguineo
-        '
-        labelGrupoSanguineo.AutoSize = True
-        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 93)
-        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
-        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 7
-        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
-        '
-        'labelFactorRH
-        '
-        labelFactorRH.AutoSize = True
-        labelFactorRH.Location = New System.Drawing.Point(250, 93)
-        labelFactorRH.Name = "labelFactorRH"
-        labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 9
-        labelFactorRH.Text = "Factor RH:"
-        '
-        'labelNivelEstudio
-        '
-        labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 120)
-        labelNivelEstudio.Name = "labelNivelEstudio"
-        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 11
-        labelNivelEstudio.Text = "Nivel de estudios:"
-        '
-        'labelCantidadHijos
-        '
-        labelCantidadHijos.AutoSize = True
-        labelCantidadHijos.Location = New System.Drawing.Point(6, 253)
-        labelCantidadHijos.Name = "labelCantidadHijos"
-        labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 22
-        labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'labelIDPersona
         '
@@ -673,15 +321,6 @@ Partial Class formPersona
         Me.textboxMatriculaNumero.TabIndex = 4
         Me.tooltipMain.SetToolTip(Me.textboxMatriculaNumero, "Ingrese el Número de Documento sin utilizar puntos.")
         '
-        'textboxDocumentoNumero
-        '
-        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
-        Me.textboxDocumentoNumero.MaxLength = 11
-        Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
-        Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
-        Me.textboxDocumentoNumero.TabIndex = 2
-        Me.tooltipMain.SetToolTip(Me.textboxDocumentoNumero, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
         'tabcontrolMain
         '
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
@@ -698,6 +337,8 @@ Partial Class formPersona
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.comboboxTieneIOMA)
+        Me.tabpageGeneral.Controls.Add(Label1)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCantidadHijos)
         Me.tabpageGeneral.Controls.Add(labelCantidadHijos)
         Me.tabpageGeneral.Controls.Add(Me.comboboxNivelEstudio)
@@ -706,8 +347,6 @@ Partial Class formPersona
         Me.tabpageGeneral.Controls.Add(labelFactorRH)
         Me.tabpageGeneral.Controls.Add(Me.comboboxGrupoSanguineo)
         Me.tabpageGeneral.Controls.Add(labelGrupoSanguineo)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxEstado)
-        Me.tabpageGeneral.Controls.Add(labelEstado)
         Me.tabpageGeneral.Controls.Add(labelFechaNacimiento)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaNacimiento)
         Me.tabpageGeneral.Controls.Add(Me.comboboxGenero)
@@ -730,6 +369,24 @@ Partial Class formPersona
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'comboboxTieneIOMA
+        '
+        Me.comboboxTieneIOMA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxTieneIOMA.FormattingEnabled = True
+        Me.comboboxTieneIOMA.Location = New System.Drawing.Point(142, 117)
+        Me.comboboxTieneIOMA.Name = "comboboxTieneIOMA"
+        Me.comboboxTieneIOMA.Size = New System.Drawing.Size(121, 21)
+        Me.comboboxTieneIOMA.TabIndex = 12
+        '
+        'Label1
+        '
+        Label1.AutoSize = True
+        Label1.Location = New System.Drawing.Point(6, 120)
+        Label1.Name = "Label1"
+        Label1.Size = New System.Drawing.Size(97, 13)
+        Label1.TabIndex = 11
+        Label1.Text = "Tiene I.O.M.A. por:"
+        '
         'comboboxCantidadHijos
         '
         Me.comboboxCantidadHijos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -737,16 +394,34 @@ Partial Class formPersona
         Me.comboboxCantidadHijos.Location = New System.Drawing.Point(142, 250)
         Me.comboboxCantidadHijos.Name = "comboboxCantidadHijos"
         Me.comboboxCantidadHijos.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxCantidadHijos.TabIndex = 23
+        Me.comboboxCantidadHijos.TabIndex = 22
+        '
+        'labelCantidadHijos
+        '
+        labelCantidadHijos.AutoSize = True
+        labelCantidadHijos.Location = New System.Drawing.Point(6, 253)
+        labelCantidadHijos.Name = "labelCantidadHijos"
+        labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
+        labelCantidadHijos.TabIndex = 21
+        labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'comboboxNivelEstudio
         '
         Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 117)
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 144)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 12
+        Me.comboboxNivelEstudio.TabIndex = 14
+        '
+        'labelNivelEstudio
+        '
+        labelNivelEstudio.AutoSize = True
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 147)
+        labelNivelEstudio.Name = "labelNivelEstudio"
+        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
+        labelNivelEstudio.TabIndex = 13
+        labelNivelEstudio.Text = "Nivel de estudios:"
         '
         'comboboxFactorRH
         '
@@ -757,6 +432,15 @@ Partial Class formPersona
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
         Me.comboboxFactorRH.TabIndex = 10
         '
+        'labelFactorRH
+        '
+        labelFactorRH.AutoSize = True
+        labelFactorRH.Location = New System.Drawing.Point(250, 93)
+        labelFactorRH.Name = "labelFactorRH"
+        labelFactorRH.Size = New System.Drawing.Size(59, 13)
+        labelFactorRH.TabIndex = 9
+        labelFactorRH.Text = "Factor RH:"
+        '
         'comboboxGrupoSanguineo
         '
         Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -766,14 +450,23 @@ Partial Class formPersona
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGrupoSanguineo.TabIndex = 8
         '
-        'comboboxEstado
+        'labelGrupoSanguineo
         '
-        Me.comboboxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxEstado.FormattingEnabled = True
-        Me.comboboxEstado.Location = New System.Drawing.Point(142, 223)
-        Me.comboboxEstado.Name = "comboboxEstado"
-        Me.comboboxEstado.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxEstado.TabIndex = 20
+        labelGrupoSanguineo.AutoSize = True
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 93)
+        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
+        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
+        labelGrupoSanguineo.TabIndex = 7
+        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
+        '
+        'labelFechaNacimiento
+        '
+        labelFechaNacimiento.AutoSize = True
+        labelFechaNacimiento.Location = New System.Drawing.Point(6, 40)
+        labelFechaNacimiento.Name = "labelFechaNacimiento"
+        labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
+        labelFechaNacimiento.TabIndex = 3
+        labelFechaNacimiento.Text = "Fecha de nacimiento:"
         '
         'datetimepickerFechaNacimiento
         '
@@ -795,6 +488,15 @@ Partial Class formPersona
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGenero.TabIndex = 6
         '
+        'labelGenero
+        '
+        labelGenero.AutoSize = True
+        labelGenero.Location = New System.Drawing.Point(6, 66)
+        labelGenero.Name = "labelGenero"
+        labelGenero.Size = New System.Drawing.Size(45, 13)
+        labelGenero.TabIndex = 5
+        labelGenero.Text = "Género:"
+        '
         'comboboxDocumentoTipo
         '
         Me.comboboxDocumentoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -803,6 +505,25 @@ Partial Class formPersona
         Me.comboboxDocumentoTipo.Name = "comboboxDocumentoTipo"
         Me.comboboxDocumentoTipo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxDocumentoTipo.TabIndex = 1
+        '
+        'textboxDocumentoNumero
+        '
+        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
+        Me.textboxDocumentoNumero.MaxLength = 11
+        Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
+        Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
+        Me.textboxDocumentoNumero.TabIndex = 2
+        Me.tooltipMain.SetToolTip(Me.textboxDocumentoNumero, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelDocumento
+        '
+        labelDocumento.AutoSize = True
+        labelDocumento.Location = New System.Drawing.Point(6, 13)
+        labelDocumento.Name = "labelDocumento"
+        labelDocumento.Size = New System.Drawing.Size(65, 13)
+        labelDocumento.TabIndex = 0
+        labelDocumento.Text = "Documento:"
+        Me.tooltipMain.SetToolTip(labelDocumento, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'maskedtextboxDocumentoNumero
         '
@@ -817,30 +538,57 @@ Partial Class formPersona
         Me.maskedtextboxDocumentoNumero.TabIndex = 3
         Me.maskedtextboxDocumentoNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
+        'labelNacionalidad
+        '
+        labelNacionalidad.AutoSize = True
+        labelNacionalidad.Location = New System.Drawing.Point(6, 200)
+        labelNacionalidad.Name = "labelNacionalidad"
+        labelNacionalidad.Size = New System.Drawing.Size(72, 13)
+        labelNacionalidad.TabIndex = 17
+        labelNacionalidad.Text = "Nacionalidad:"
+        '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 170)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 197)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(358, 20)
-        Me.textboxNacionalidad.TabIndex = 16
+        Me.textboxNacionalidad.TabIndex = 18
+        '
+        'labelProfesion
+        '
+        labelProfesion.AutoSize = True
+        labelProfesion.Location = New System.Drawing.Point(6, 174)
+        labelProfesion.Name = "labelProfesion"
+        labelProfesion.Size = New System.Drawing.Size(54, 13)
+        labelProfesion.TabIndex = 15
+        labelProfesion.Text = "Profesión:"
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 144)
+        Me.textboxProfesion.Location = New System.Drawing.Point(142, 171)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(358, 20)
-        Me.textboxProfesion.TabIndex = 14
+        Me.textboxProfesion.TabIndex = 16
+        '
+        'labelCuartel
+        '
+        labelCuartel.AutoSize = True
+        labelCuartel.Location = New System.Drawing.Point(6, 226)
+        labelCuartel.Name = "labelCuartel"
+        labelCuartel.Size = New System.Drawing.Size(43, 13)
+        labelCuartel.TabIndex = 19
+        labelCuartel.Text = "Cuartel:"
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 196)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 223)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(358, 21)
-        Me.comboboxCuartel.TabIndex = 21
+        Me.comboboxCuartel.TabIndex = 20
         '
         'tabpageParticular
         '
@@ -876,6 +624,15 @@ Partial Class formPersona
         Me.tabpageParticular.Text = "Contacto Particular"
         Me.tabpageParticular.UseVisualStyleBackColor = True
         '
+        'labelTelefonoParticular
+        '
+        labelTelefonoParticular.AutoSize = True
+        labelTelefonoParticular.Location = New System.Drawing.Point(6, 169)
+        labelTelefonoParticular.Name = "labelTelefonoParticular"
+        labelTelefonoParticular.Size = New System.Drawing.Size(52, 13)
+        labelTelefonoParticular.TabIndex = 18
+        labelTelefonoParticular.Text = "Teléfono:"
+        '
         'textboxTelefonoParticular
         '
         Me.textboxTelefonoParticular.Location = New System.Drawing.Point(72, 166)
@@ -883,6 +640,15 @@ Partial Class formPersona
         Me.textboxTelefonoParticular.Name = "textboxTelefonoParticular"
         Me.textboxTelefonoParticular.Size = New System.Drawing.Size(170, 20)
         Me.textboxTelefonoParticular.TabIndex = 19
+        '
+        'labelCelularParticular
+        '
+        labelCelularParticular.AutoSize = True
+        labelCelularParticular.Location = New System.Drawing.Point(6, 195)
+        labelCelularParticular.Name = "labelCelularParticular"
+        labelCelularParticular.Size = New System.Drawing.Size(42, 13)
+        labelCelularParticular.TabIndex = 20
+        labelCelularParticular.Text = "Celular:"
         '
         'textboxCelularParticular
         '
@@ -892,6 +658,15 @@ Partial Class formPersona
         Me.textboxCelularParticular.Size = New System.Drawing.Size(170, 20)
         Me.textboxCelularParticular.TabIndex = 21
         '
+        'labelEmailParticular
+        '
+        labelEmailParticular.AutoSize = True
+        labelEmailParticular.Location = New System.Drawing.Point(6, 221)
+        labelEmailParticular.Name = "labelEmailParticular"
+        labelEmailParticular.Size = New System.Drawing.Size(38, 13)
+        labelEmailParticular.TabIndex = 22
+        labelEmailParticular.Text = "E-mail:"
+        '
         'textboxEmailParticular
         '
         Me.textboxEmailParticular.Location = New System.Drawing.Point(72, 218)
@@ -899,6 +674,24 @@ Partial Class formPersona
         Me.textboxEmailParticular.Name = "textboxEmailParticular"
         Me.textboxEmailParticular.Size = New System.Drawing.Size(306, 20)
         Me.textboxEmailParticular.TabIndex = 23
+        '
+        'labelDomicilioParticularCalle3
+        '
+        labelDomicilioParticularCalle3.AutoSize = True
+        labelDomicilioParticularCalle3.Location = New System.Drawing.Point(266, 65)
+        labelDomicilioParticularCalle3.Name = "labelDomicilioParticularCalle3"
+        labelDomicilioParticularCalle3.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioParticularCalle3.TabIndex = 10
+        labelDomicilioParticularCalle3.Text = "Calle 3:"
+        '
+        'labelDomicilioParticularCalle2
+        '
+        labelDomicilioParticularCalle2.AutoSize = True
+        labelDomicilioParticularCalle2.Location = New System.Drawing.Point(6, 65)
+        labelDomicilioParticularCalle2.Name = "labelDomicilioParticularCalle2"
+        labelDomicilioParticularCalle2.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioParticularCalle2.TabIndex = 8
+        labelDomicilioParticularCalle2.Text = "Calle 2:"
         '
         'textboxDomicilioParticularCalle3
         '
@@ -934,6 +727,15 @@ Partial Class formPersona
         Me.comboboxDomicilioParticularProvincia.Size = New System.Drawing.Size(258, 21)
         Me.comboboxDomicilioParticularProvincia.TabIndex = 13
         '
+        'labelDomicilioParticularCalle1
+        '
+        labelDomicilioParticularCalle1.AutoSize = True
+        labelDomicilioParticularCalle1.Location = New System.Drawing.Point(6, 13)
+        labelDomicilioParticularCalle1.Name = "labelDomicilioParticularCalle1"
+        labelDomicilioParticularCalle1.Size = New System.Drawing.Size(33, 13)
+        labelDomicilioParticularCalle1.TabIndex = 0
+        labelDomicilioParticularCalle1.Text = "Calle:"
+        '
         'textboxDomicilioParticularCalle1
         '
         Me.textboxDomicilioParticularCalle1.Location = New System.Drawing.Point(72, 10)
@@ -941,6 +743,15 @@ Partial Class formPersona
         Me.textboxDomicilioParticularCalle1.Name = "textboxDomicilioParticularCalle1"
         Me.textboxDomicilioParticularCalle1.Size = New System.Drawing.Size(258, 20)
         Me.textboxDomicilioParticularCalle1.TabIndex = 1
+        '
+        'labelDomicilioParticularCodigoPostal
+        '
+        labelDomicilioParticularCodigoPostal.AutoSize = True
+        labelDomicilioParticularCodigoPostal.Location = New System.Drawing.Point(384, 118)
+        labelDomicilioParticularCodigoPostal.Name = "labelDomicilioParticularCodigoPostal"
+        labelDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(59, 13)
+        labelDomicilioParticularCodigoPostal.TabIndex = 16
+        labelDomicilioParticularCodigoPostal.Text = "Cód. Post.:"
         '
         'textboxDomicilioParticularCodigoPostal
         '
@@ -950,6 +761,15 @@ Partial Class formPersona
         Me.textboxDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularCodigoPostal.TabIndex = 17
         '
+        'labelDomicilioParticularDepartamento
+        '
+        labelDomicilioParticularDepartamento.AutoSize = True
+        labelDomicilioParticularDepartamento.Location = New System.Drawing.Point(220, 39)
+        labelDomicilioParticularDepartamento.Name = "labelDomicilioParticularDepartamento"
+        labelDomicilioParticularDepartamento.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioParticularDepartamento.TabIndex = 6
+        labelDomicilioParticularDepartamento.Text = "Dto/Ofic.:"
+        '
         'textboxDomicilioParticularDepartamento
         '
         Me.textboxDomicilioParticularDepartamento.Location = New System.Drawing.Point(280, 36)
@@ -958,6 +778,33 @@ Partial Class formPersona
         Me.textboxDomicilioParticularDepartamento.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularDepartamento.TabIndex = 7
         '
+        'labelDomicilioParticularLocalidad
+        '
+        labelDomicilioParticularLocalidad.AutoSize = True
+        labelDomicilioParticularLocalidad.Location = New System.Drawing.Point(6, 118)
+        labelDomicilioParticularLocalidad.Name = "labelDomicilioParticularLocalidad"
+        labelDomicilioParticularLocalidad.Size = New System.Drawing.Size(56, 13)
+        labelDomicilioParticularLocalidad.TabIndex = 14
+        labelDomicilioParticularLocalidad.Text = "Localidad:"
+        '
+        'labelDomicilioParticularProvincia
+        '
+        labelDomicilioParticularProvincia.AutoSize = True
+        labelDomicilioParticularProvincia.Location = New System.Drawing.Point(6, 91)
+        labelDomicilioParticularProvincia.Name = "labelDomicilioParticularProvincia"
+        labelDomicilioParticularProvincia.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioParticularProvincia.TabIndex = 12
+        labelDomicilioParticularProvincia.Text = "Provincia:"
+        '
+        'labelDomicilioParticularNumero
+        '
+        labelDomicilioParticularNumero.AutoSize = True
+        labelDomicilioParticularNumero.Location = New System.Drawing.Point(6, 39)
+        labelDomicilioParticularNumero.Name = "labelDomicilioParticularNumero"
+        labelDomicilioParticularNumero.Size = New System.Drawing.Size(47, 13)
+        labelDomicilioParticularNumero.TabIndex = 2
+        labelDomicilioParticularNumero.Text = "Número:"
+        '
         'textboxDomicilioParticularNumero
         '
         Me.textboxDomicilioParticularNumero.Location = New System.Drawing.Point(72, 36)
@@ -965,6 +812,15 @@ Partial Class formPersona
         Me.textboxDomicilioParticularNumero.Name = "textboxDomicilioParticularNumero"
         Me.textboxDomicilioParticularNumero.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularNumero.TabIndex = 3
+        '
+        'labelDomicilioParticularPiso
+        '
+        labelDomicilioParticularPiso.AutoSize = True
+        labelDomicilioParticularPiso.Location = New System.Drawing.Point(128, 39)
+        labelDomicilioParticularPiso.Name = "labelDomicilioParticularPiso"
+        labelDomicilioParticularPiso.Size = New System.Drawing.Size(30, 13)
+        labelDomicilioParticularPiso.TabIndex = 4
+        labelDomicilioParticularPiso.Text = "Piso:"
         '
         'textboxDomicilioParticularPiso
         '
@@ -1008,6 +864,15 @@ Partial Class formPersona
         Me.tabpageLaboral.Text = "Contacto Laboral"
         Me.tabpageLaboral.UseVisualStyleBackColor = True
         '
+        'labelTelefonoLaboral
+        '
+        labelTelefonoLaboral.AutoSize = True
+        labelTelefonoLaboral.Location = New System.Drawing.Point(6, 169)
+        labelTelefonoLaboral.Name = "labelTelefonoLaboral"
+        labelTelefonoLaboral.Size = New System.Drawing.Size(52, 13)
+        labelTelefonoLaboral.TabIndex = 18
+        labelTelefonoLaboral.Text = "Teléfono:"
+        '
         'textboxTelefonoLaboral
         '
         Me.textboxTelefonoLaboral.Location = New System.Drawing.Point(72, 166)
@@ -1015,6 +880,15 @@ Partial Class formPersona
         Me.textboxTelefonoLaboral.Name = "textboxTelefonoLaboral"
         Me.textboxTelefonoLaboral.Size = New System.Drawing.Size(170, 20)
         Me.textboxTelefonoLaboral.TabIndex = 19
+        '
+        'labelCelularLaboral
+        '
+        labelCelularLaboral.AutoSize = True
+        labelCelularLaboral.Location = New System.Drawing.Point(6, 195)
+        labelCelularLaboral.Name = "labelCelularLaboral"
+        labelCelularLaboral.Size = New System.Drawing.Size(42, 13)
+        labelCelularLaboral.TabIndex = 20
+        labelCelularLaboral.Text = "Celular:"
         '
         'textboxCelularLaboral
         '
@@ -1024,6 +898,15 @@ Partial Class formPersona
         Me.textboxCelularLaboral.Size = New System.Drawing.Size(170, 20)
         Me.textboxCelularLaboral.TabIndex = 21
         '
+        'labelEmailLaboral
+        '
+        labelEmailLaboral.AutoSize = True
+        labelEmailLaboral.Location = New System.Drawing.Point(6, 221)
+        labelEmailLaboral.Name = "labelEmailLaboral"
+        labelEmailLaboral.Size = New System.Drawing.Size(38, 13)
+        labelEmailLaboral.TabIndex = 22
+        labelEmailLaboral.Text = "E-mail:"
+        '
         'textboxEmailLaboral
         '
         Me.textboxEmailLaboral.Location = New System.Drawing.Point(72, 218)
@@ -1031,6 +914,24 @@ Partial Class formPersona
         Me.textboxEmailLaboral.Name = "textboxEmailLaboral"
         Me.textboxEmailLaboral.Size = New System.Drawing.Size(306, 20)
         Me.textboxEmailLaboral.TabIndex = 23
+        '
+        'labelDomicilioLaboralCalle3
+        '
+        labelDomicilioLaboralCalle3.AutoSize = True
+        labelDomicilioLaboralCalle3.Location = New System.Drawing.Point(266, 65)
+        labelDomicilioLaboralCalle3.Name = "labelDomicilioLaboralCalle3"
+        labelDomicilioLaboralCalle3.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioLaboralCalle3.TabIndex = 10
+        labelDomicilioLaboralCalle3.Text = "Calle 3:"
+        '
+        'labelDomicilioLaboralCalle2
+        '
+        labelDomicilioLaboralCalle2.AutoSize = True
+        labelDomicilioLaboralCalle2.Location = New System.Drawing.Point(6, 65)
+        labelDomicilioLaboralCalle2.Name = "labelDomicilioLaboralCalle2"
+        labelDomicilioLaboralCalle2.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioLaboralCalle2.TabIndex = 8
+        labelDomicilioLaboralCalle2.Text = "Calle 2:"
         '
         'textboxDomicilioLaboralCalle3
         '
@@ -1066,6 +967,15 @@ Partial Class formPersona
         Me.comboboxDomicilioLaboralProvincia.Size = New System.Drawing.Size(258, 21)
         Me.comboboxDomicilioLaboralProvincia.TabIndex = 13
         '
+        'labelDomicilioLaboralCalle1
+        '
+        labelDomicilioLaboralCalle1.AutoSize = True
+        labelDomicilioLaboralCalle1.Location = New System.Drawing.Point(6, 13)
+        labelDomicilioLaboralCalle1.Name = "labelDomicilioLaboralCalle1"
+        labelDomicilioLaboralCalle1.Size = New System.Drawing.Size(33, 13)
+        labelDomicilioLaboralCalle1.TabIndex = 0
+        labelDomicilioLaboralCalle1.Text = "Calle:"
+        '
         'textboxDomicilioLaboralCalle1
         '
         Me.textboxDomicilioLaboralCalle1.Location = New System.Drawing.Point(72, 10)
@@ -1073,6 +983,15 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralCalle1.Name = "textboxDomicilioLaboralCalle1"
         Me.textboxDomicilioLaboralCalle1.Size = New System.Drawing.Size(258, 20)
         Me.textboxDomicilioLaboralCalle1.TabIndex = 1
+        '
+        'labelDomicilioLaboralCodigoPostal
+        '
+        labelDomicilioLaboralCodigoPostal.AutoSize = True
+        labelDomicilioLaboralCodigoPostal.Location = New System.Drawing.Point(384, 118)
+        labelDomicilioLaboralCodigoPostal.Name = "labelDomicilioLaboralCodigoPostal"
+        labelDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(59, 13)
+        labelDomicilioLaboralCodigoPostal.TabIndex = 16
+        labelDomicilioLaboralCodigoPostal.Text = "Cód. Post.:"
         '
         'textboxDomicilioLaboralCodigoPostal
         '
@@ -1082,6 +1001,15 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralCodigoPostal.TabIndex = 17
         '
+        'labelDomicilioLaboralDepartamento
+        '
+        labelDomicilioLaboralDepartamento.AutoSize = True
+        labelDomicilioLaboralDepartamento.Location = New System.Drawing.Point(220, 39)
+        labelDomicilioLaboralDepartamento.Name = "labelDomicilioLaboralDepartamento"
+        labelDomicilioLaboralDepartamento.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioLaboralDepartamento.TabIndex = 6
+        labelDomicilioLaboralDepartamento.Text = "Dto/Ofic.:"
+        '
         'textboxDomicilioLaboralDepartamento
         '
         Me.textboxDomicilioLaboralDepartamento.Location = New System.Drawing.Point(280, 36)
@@ -1090,6 +1018,33 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralDepartamento.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralDepartamento.TabIndex = 7
         '
+        'labelDomicilioLaboralLocalidad
+        '
+        labelDomicilioLaboralLocalidad.AutoSize = True
+        labelDomicilioLaboralLocalidad.Location = New System.Drawing.Point(6, 118)
+        labelDomicilioLaboralLocalidad.Name = "labelDomicilioLaboralLocalidad"
+        labelDomicilioLaboralLocalidad.Size = New System.Drawing.Size(56, 13)
+        labelDomicilioLaboralLocalidad.TabIndex = 14
+        labelDomicilioLaboralLocalidad.Text = "Localidad:"
+        '
+        'labelDomicilioLaboralProvincia
+        '
+        labelDomicilioLaboralProvincia.AutoSize = True
+        labelDomicilioLaboralProvincia.Location = New System.Drawing.Point(6, 91)
+        labelDomicilioLaboralProvincia.Name = "labelDomicilioLaboralProvincia"
+        labelDomicilioLaboralProvincia.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioLaboralProvincia.TabIndex = 12
+        labelDomicilioLaboralProvincia.Text = "Provincia:"
+        '
+        'labelDomicilioLaboralNumero
+        '
+        labelDomicilioLaboralNumero.AutoSize = True
+        labelDomicilioLaboralNumero.Location = New System.Drawing.Point(6, 39)
+        labelDomicilioLaboralNumero.Name = "labelDomicilioLaboralNumero"
+        labelDomicilioLaboralNumero.Size = New System.Drawing.Size(47, 13)
+        labelDomicilioLaboralNumero.TabIndex = 2
+        labelDomicilioLaboralNumero.Text = "Número:"
+        '
         'textboxDomicilioLaboralNumero
         '
         Me.textboxDomicilioLaboralNumero.Location = New System.Drawing.Point(72, 36)
@@ -1097,6 +1052,15 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralNumero.Name = "textboxDomicilioLaboralNumero"
         Me.textboxDomicilioLaboralNumero.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralNumero.TabIndex = 3
+        '
+        'labelDomicilioLaboralPiso
+        '
+        labelDomicilioLaboralPiso.AutoSize = True
+        labelDomicilioLaboralPiso.Location = New System.Drawing.Point(128, 39)
+        labelDomicilioLaboralPiso.Name = "labelDomicilioLaboralPiso"
+        labelDomicilioLaboralPiso.Size = New System.Drawing.Size(30, 13)
+        labelDomicilioLaboralPiso.TabIndex = 4
+        labelDomicilioLaboralPiso.Text = "Piso:"
         '
         'textboxDomicilioLaboralPiso
         '
@@ -1239,6 +1203,24 @@ Partial Class formPersona
         Me.checkboxEsActivo.TabIndex = 3
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
+        'labelEsActivo
+        '
+        labelEsActivo.AutoSize = True
+        labelEsActivo.Location = New System.Drawing.Point(6, 172)
+        labelEsActivo.Name = "labelEsActivo"
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        labelEsActivo.TabIndex = 2
+        labelEsActivo.Text = "Activo:"
+        '
+        'labelNotas
+        '
+        labelNotas.AutoSize = True
+        labelNotas.Location = New System.Drawing.Point(6, 9)
+        labelNotas.Name = "labelNotas"
+        labelNotas.Size = New System.Drawing.Size(38, 13)
+        labelNotas.TabIndex = 0
+        labelNotas.Text = "Notas:"
+        '
         'textboxNotas
         '
         Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
@@ -1283,6 +1265,24 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(6, 220)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 7
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(6, 198)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 4
+        labelCreacion.Text = "Creación:"
         '
         'formPersona
         '
@@ -1383,7 +1383,6 @@ Partial Class formPersona
     Friend WithEvents textboxDomicilioLaboralNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxDomicilioLaboralPiso As System.Windows.Forms.TextBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxEstado As System.Windows.Forms.ComboBox
     Friend WithEvents tabpageFamiliares As System.Windows.Forms.TabPage
     Friend WithEvents datagridviewFamiliares As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripFamiliares As System.Windows.Forms.ToolStrip
@@ -1397,4 +1396,5 @@ Partial Class formPersona
     Friend WithEvents comboboxGrupoSanguineo As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxNivelEstudio As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxCantidadHijos As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxTieneIOMA As System.Windows.Forms.ComboBox
 End Class

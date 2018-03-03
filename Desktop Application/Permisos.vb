@@ -30,10 +30,30 @@
     Friend Const PERSONA_ALTABAJA_EDITAR As String = "PERSONA_ALTABAJA_EDITAR"
     Friend Const PERSONA_ALTABAJA_ELIMINAR As String = "PERSONA_ALTABAJA_ELIMINAR"
 
+    Friend Const PERSONA_CAMBIODESTINO As String = "PERSONA_CAMBIODESTINO"
+    Friend Const PERSONA_CAMBIODESTINO_AGREGAR As String = "PERSONA_CAMBIODESTINO_AGREGAR"
+    Friend Const PERSONA_CAMBIODESTINO_EDITAR As String = "PERSONA_CAMBIODESTINO_EDITAR"
+    Friend Const PERSONA_CAMBIODESTINO_ELIMINAR As String = "PERSONA_CAMBIODESTINO_ELIMINAR"
+
     Friend Const PERSONA_CALIFICACION As String = "PERSONA_CALIFICACION"
     Friend Const PERSONA_CALIFICACION_AGREGAR As String = "PERSONA_CALIFICACION_AGREGAR"
     Friend Const PERSONA_CALIFICACION_EDITAR As String = "PERSONA_CALIFICACION_EDITAR"
     Friend Const PERSONA_CALIFICACION_ELIMINAR As String = "PERSONA_CALIFICACION_ELIMINAR"
+
+    Friend Const RUBRO As String = "RUBRO"
+    Friend Const RUBRO_AGREGAR As String = "RUBRO_AGREGAR"
+    Friend Const RUBRO_EDITAR As String = "RUBRO_EDITAR"
+    Friend Const RUBRO_ELIMINAR As String = "RUBRO_ELIMINAR"
+
+    Friend Const SUBRUBRO As String = "SUBRUBRO"
+    Friend Const SUBRUBRO_AGREGAR As String = "SUBRUBRO_AGREGAR"
+    Friend Const SUBRUBRO_EDITAR As String = "SUBRUBRO_EDITAR"
+    Friend Const SUBRUBRO_ELIMINAR As String = "SUBRUBRO_ELIMINAR"
+
+    Friend Const ELEMENTO As String = "ELEMENTO"
+    Friend Const ELEMENTO_AGREGAR As String = "ELEMENTO_AGREGAR"
+    Friend Const ELEMENTO_EDITAR As String = "ELEMENTO_EDITAR"
+    Friend Const ELEMENTO_ELIMINAR As String = "ELEMENTO_ELIMINAR"
 
     Friend Const UBICACION As String = "UBICACION"
     Friend Const UBICACION_AGREGAR As String = "UBICACION_AGREGAR"
@@ -45,10 +65,10 @@
     Friend Const SUBUBICACION_EDITAR As String = "SUBUBICACION_EDITAR"
     Friend Const SUBUBICACION_ELIMINAR As String = "SUBUBICACION_ELIMINAR"
 
-    Friend Const ELEMENTO As String = "ELEMENTO"
-    Friend Const ELEMENTO_AGREGAR As String = "ELEMENTO_AGREGAR"
-    Friend Const ELEMENTO_EDITAR As String = "ELEMENTO_EDITAR"
-    Friend Const ELEMENTO_ELIMINAR As String = "ELEMENTO_ELIMINAR"
+    Friend Const INVENTARIO As String = "INVENTARIO"
+    Friend Const INVENTARIO_AGREGAR As String = "INVENTARIO_AGREGAR"
+    Friend Const INVENTARIO_EDITAR As String = "INVENTARIO_EDITAR"
+    Friend Const INVENTARIO_ELIMINAR As String = "INVENTARIO_ELIMINAR"
 
     Friend Const AUTOMOTOR As String = "AUTOMOTOR"
     Friend Const AUTOMOTOR_AGREGAR As String = "AUTOMOTOR_AGREGAR"
@@ -63,7 +83,7 @@
     Friend Const DESCRIPCION_IMPRIMIR As String = "Imprimir"
 
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
-        If pUsuario.IDUsuarioGrupo = 1 Then
+        If pUsuario.IDUsuarioGrupo = USUARIOGRUPO_ADMINISTRADORES_ID Then
             Return True
         Else
             If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
@@ -165,6 +185,7 @@
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
 
         Arbol.ExpandAll()
+        Arbol.TopNode = Arbol.Nodes(0)
 
         Arbol.ResumeLayout()
     End Sub

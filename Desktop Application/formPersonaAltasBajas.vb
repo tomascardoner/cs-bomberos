@@ -29,7 +29,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        OrdenColumna = columnFechaAlta
+        OrdenColumna = columnAltaFecha
         OrdenTipo = SortOrder.Ascending
     End Sub
 
@@ -70,7 +70,7 @@
         If PositionIDAltaBaja <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewAltasBajas.Rows
                 If CType(CurrentRowChecked.DataBoundItem, PersonaAltaBaja).IDAltaBaja = PositionIDAltaBaja Then
-                    datagridviewAltasBajas.CurrentCell = CurrentRowChecked.Cells(columnFechaAlta.Name)
+                    datagridviewAltasBajas.CurrentCell = CurrentRowChecked.Cells(columnAltaFecha.Name)
                     Exit For
                 End If
             Next
@@ -101,29 +101,17 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case OrdenColumna.Name
-            Case columnFechaAlta.Name
+            Case columnAltaFecha.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.FechaAlta).ThenBy(Function(pab) pab.UnidadOrigen).ToList
+                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.AltaFecha).ToList
                 Else
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.FechaAlta).ThenByDescending(Function(pab) pab.UnidadOrigen).ToList
+                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.AltaFecha).ToList
                 End If
-            Case columnUnidadOrigen.Name
+            Case columnBajaFecha.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.UnidadOrigen).ThenBy(Function(pab) pab.FechaAlta).ToList
+                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.BajaFecha).ToList
                 Else
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.UnidadOrigen).ThenByDescending(Function(pab) pab.FechaAlta).ToList
-                End If
-            Case columnFechaBaja.Name
-                If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.FechaBaja).ThenBy(Function(pab) pab.UnidadDestino).ToList
-                Else
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.FechaBaja).ThenByDescending(Function(pab) pab.UnidadDestino).ToList
-                End If
-            Case columnUnidadDestino.Name
-                If OrdenTipo = SortOrder.Ascending Then
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderBy(Function(pab) pab.UnidadDestino).ThenBy(Function(pab) pab.FechaBaja).ToList
-                Else
-                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.UnidadDestino).ThenByDescending(Function(pab) pab.FechaBaja).ToList
+                    listPersonaAltaBajaFiltradaYOrdenada = listPersonaAltaBajaFiltradaYOrdenada.OrderByDescending(Function(pab) pab.BajaFecha).ToList
                 End If
         End Select
 
@@ -167,7 +155,7 @@
 
 #Region "Main Toolbar"
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewAltasBajas.Enabled = False
@@ -182,9 +170,9 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Accidente para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Alta-Baja para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewAltasBajas.Enabled = False
@@ -203,12 +191,12 @@
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_ELIMINAR) Then
 
                 Dim PersonaAltaBajaActual As PersonaAltaBaja = CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, PersonaAltaBaja)
 
                 Dim Mensaje As String
-                Mensaje = String.Format("Se eliminará le Alta-Baja seleccionado.{0}{0}Fecha Alta: {1}{0}Unidad Origen: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, FormatDateTime(PersonaAltaBajaActual.FechaAlta, DateFormat.ShortDate), PersonaAltaBajaActual.UnidadOrigen)
+                Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, FormatDateTime(PersonaAltaBajaActual.AltaFecha, DateFormat.ShortDate))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 

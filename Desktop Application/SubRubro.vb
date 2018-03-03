@@ -10,8 +10,9 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ModoAdquisicion
-    Public Property IDModoAdquisicion As Byte
+Partial Public Class SubRubro
+    Public Property IDSubRubro As Short
+    Public Property IDRubro As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -19,8 +20,9 @@ Partial Public Class ModoAdquisicion
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
+    Public Overridable Property Rubro As Rubro
+    Public Overridable Property Usuario As Usuario
+    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
 
 End Class

@@ -10,22 +10,27 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Elemento
+Partial Public Class Inventario
+    Public Property IDInventario As Integer
+    Public Property IDArea As Short
+    Public Property Codigo As String
+    Public Property Cantidad As Nullable(Of Short)
     Public Property IDElemento As Integer
-    Public Property Nombre As String
-    Public Property IDRubro As Nullable(Of Byte)
-    Public Property IDSubRubro As Nullable(Of Short)
+    Public Property IDModoAdquisicion As Nullable(Of Byte)
+    Public Property IDUbicacion As Nullable(Of Short)
+    Public Property IDSubUbicacion As Nullable(Of Short)
     Public Property EsActivo As Boolean
+    Public Property FechaBaja As Nullable(Of Date)
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
-    Public Overridable Property Rubro As Rubro
-    Public Overridable Property SubRubro As SubRubro
+    Public Overridable Property Area As Area
+    Public Overridable Property Elemento As Elemento
+    Public Overridable Property ModoAdquisicion As ModoAdquisicion
+    Public Overridable Property SubUbicacion As SubUbicacion
+    Public Overridable Property Ubicacion As Ubicacion
 
 End Class

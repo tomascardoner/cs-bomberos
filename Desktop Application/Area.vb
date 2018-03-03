@@ -12,6 +12,7 @@ Imports System.Collections.Generic
 
 Partial Public Class Area
     Public Property IDArea As Short
+    Public Property IDCuartel As Byte
     Public Property Codigo As String
     Public Property Nombre As String
     Public Property EsActivo As Boolean
@@ -19,11 +20,10 @@ Partial Public Class Area
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property IDCuartel As Byte
 
-    Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Cuartel As Cuartel
+    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
 
 End Class
