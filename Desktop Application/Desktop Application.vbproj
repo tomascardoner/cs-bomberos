@@ -286,12 +286,6 @@
     <Compile Include="formPersonaAltaBaja.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formPersonaAltasBajas.Designer.vb">
-      <DependentUpon>formPersonaAltasBajas.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaAltasBajas.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="formPersonaCalificacion.Designer.vb">
       <DependentUpon>formPersonaCalificacion.vb</DependentUpon>
     </Compile>
@@ -302,24 +296,6 @@
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaAscenso.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formPersonaCalificaciones.Designer.vb">
-      <DependentUpon>formPersonaCalificaciones.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaCalificaciones.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formPersonaAscensos.Designer.vb">
-      <DependentUpon>formPersonaAscensos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaAscensos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formPersonaCambiosUnidades.designer.vb">
-      <DependentUpon>formPersonaCambiosUnidades.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaCambiosUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaCambioUnidad.designer.vb">
@@ -352,12 +328,6 @@
     <Compile Include="formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formPersonaAccidente.Designer.vb">
-      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaAccidente.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="formParentesco.Designer.vb">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </Compile>
@@ -368,12 +338,6 @@
       <DependentUpon>formParentescos.vb</DependentUpon>
     </Compile>
     <Compile Include="formParentescos.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formPersonaAccidentes.Designer.vb">
-      <DependentUpon>formPersonaAccidentes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formPersonaAccidentes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaFamiliar.designer.vb">
@@ -591,23 +555,11 @@
     <EmbeddedResource Include="formPersonaAltaBaja.resx">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaAltasBajas.resx">
-      <DependentUpon>formPersonaAltasBajas.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="formPersonaCalificacion.resx">
       <DependentUpon>formPersonaCalificacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAscenso.resx">
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaCalificaciones.resx">
-      <DependentUpon>formPersonaCalificaciones.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaAscensos.resx">
-      <DependentUpon>formPersonaAscensos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaCambiosUnidades.resx">
-      <DependentUpon>formPersonaCambiosUnidades.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaCambioUnidad.resx">
       <DependentUpon>formPersonaCambioUnidad.vb</DependentUpon>
@@ -624,17 +576,11 @@
     <EmbeddedResource Include="formUbicaciones.resx">
       <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaAccidente.resx">
-      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="formParentesco.resx">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formParentescos.resx">
       <DependentUpon>formParentescos.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaAccidentes.resx">
-      <DependentUpon>formPersonaAccidentes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaFamiliar.resx">
       <DependentUpon>formPersonaFamiliar.vb</DependentUpon>

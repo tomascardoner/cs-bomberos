@@ -23,21 +23,15 @@ Partial Class formPersonas
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersonas))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersonas))
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.dropdownbuttonOtros = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menuitemAccidentes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemAscensos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemCalificaciones = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemAltasBajas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemPenasDisciplinarias = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemImprimirFichaPersonal = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemImprimirListado = New System.Windows.Forms.ToolStripMenuItem()
@@ -75,11 +69,11 @@ Partial Class formPersonas
         '
         Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.dropdownbuttonOtros, Me.buttonImprimir})
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.buttonImprimir})
         Me.toolstripButtons.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(444, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(379, 39)
         Me.toolstripButtons.TabIndex = 0
         '
         'buttonAgregar
@@ -109,45 +103,6 @@ Partial Class formPersonas
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'dropdownbuttonOtros
-        '
-        Me.dropdownbuttonOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemAccidentes, Me.menuitemAscensos, Me.menuitemCalificaciones, Me.menuitemAltasBajas, Me.menuitemPenasDisciplinarias})
-        Me.dropdownbuttonOtros.Image = CType(resources.GetObject("dropdownbuttonOtros.Image"), System.Drawing.Image)
-        Me.dropdownbuttonOtros.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.dropdownbuttonOtros.Name = "dropdownbuttonOtros"
-        Me.dropdownbuttonOtros.Size = New System.Drawing.Size(65, 36)
-        Me.dropdownbuttonOtros.Text = "Otros"
-        '
-        'menuitemAccidentes
-        '
-        Me.menuitemAccidentes.Name = "menuitemAccidentes"
-        Me.menuitemAccidentes.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemAccidentes.Text = "Accidentes"
-        '
-        'menuitemAscensos
-        '
-        Me.menuitemAscensos.Name = "menuitemAscensos"
-        Me.menuitemAscensos.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemAscensos.Text = "Ascensos - Promociones"
-        '
-        'menuitemCalificaciones
-        '
-        Me.menuitemCalificaciones.Name = "menuitemCalificaciones"
-        Me.menuitemCalificaciones.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemCalificaciones.Text = "Calificaciones"
-        '
-        'menuitemAltasBajas
-        '
-        Me.menuitemAltasBajas.Name = "menuitemAltasBajas"
-        Me.menuitemAltasBajas.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemAltasBajas.Text = "Altas - Bajas"
-        '
-        'menuitemPenasDisciplinarias
-        '
-        Me.menuitemPenasDisciplinarias.Name = "menuitemPenasDisciplinarias"
-        Me.menuitemPenasDisciplinarias.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemPenasDisciplinarias.Text = "Penas Disciplinarias"
-        '
         'buttonImprimir
         '
         Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirFichaPersonal, Me.menuitemImprimirListado})
@@ -162,13 +117,13 @@ Partial Class formPersonas
         '
         Me.menuitemImprimirFichaPersonal.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.menuitemImprimirFichaPersonal.Name = "menuitemImprimirFichaPersonal"
-        Me.menuitemImprimirFichaPersonal.Size = New System.Drawing.Size(150, 22)
+        Me.menuitemImprimirFichaPersonal.Size = New System.Drawing.Size(152, 22)
         Me.menuitemImprimirFichaPersonal.Text = "Ficha Personal"
         '
         'menuitemImprimirListado
         '
         Me.menuitemImprimirListado.Name = "menuitemImprimirListado"
-        Me.menuitemImprimirListado.Size = New System.Drawing.Size(150, 22)
+        Me.menuitemImprimirListado.Size = New System.Drawing.Size(152, 22)
         Me.menuitemImprimirListado.Text = "Listado"
         '
         'statusstripMain
@@ -282,7 +237,7 @@ Partial Class formPersonas
         Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
-        Me.toolstripBuscar.Location = New System.Drawing.Point(444, 0)
+        Me.toolstripBuscar.Location = New System.Drawing.Point(379, 0)
         Me.toolstripBuscar.Name = "toolstripBuscar"
         Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
         Me.toolstripBuscar.TabIndex = 2
@@ -313,7 +268,7 @@ Partial Class formPersonas
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(637, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(572, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 4
@@ -335,7 +290,7 @@ Partial Class formPersonas
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(820, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(755, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 3
@@ -399,12 +354,6 @@ Partial Class formPersonas
     Friend WithEvents buttonBuscarBorrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents dropdownbuttonOtros As System.Windows.Forms.ToolStripDropDownButton
-    Friend WithEvents menuitemAccidentes As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemAscensos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemCalificaciones As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemAltasBajas As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemPenasDisciplinarias As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents toolstripCuartel As System.Windows.Forms.ToolStrip
     Friend WithEvents labelCuartel As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ToolStripComboBox

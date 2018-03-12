@@ -356,12 +356,40 @@
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()
 
-        ' Refresco la lista para mostrar los cambios
-        If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersona") Then
-            Dim formPersona As formPersona = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersona"), formPersona)
-            formPersona.RefreshData_Familiares(mPersonaFamiliarActual.IDFamiliar)
-            formPersona = Nothing
+        If mdbContext.ChangeTracker.HasChanges Then
+
+            Me.Cursor = Cursors.WaitCursor
+
+            mPersonaFamiliarActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mPersonaFamiliarActual.FechaHoraModificacion = Now
+
+            Try
+
+                ' Guardo los cambios
+                mdbContext.SaveChanges()
+
+                ' Refresco la lista para mostrar los cambios
+                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersona") Then
+                    Dim formPersona As formPersona = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersona"), formPersona)
+                    formPersona.RefreshData_Familiares(mPersonaFamiliarActual.IDFamiliar)
+                    formPersona = Nothing
+                End If
+
+            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                Me.Cursor = Cursors.Default
+                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                    Case Errors.DuplicatedEntity
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Familiar con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                End Select
+                Exit Sub
+
+            Catch ex As Exception
+                Me.Cursor = Cursors.Default
+                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+                Exit Sub
+            End Try
         End If
+
 
         Me.Close()
     End Sub

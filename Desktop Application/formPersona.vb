@@ -378,6 +378,7 @@
             listFamiliares = (From pf In mPersonaActual.PersonaFamiliares
                               Group Join p In mdbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco Into Parentescos_Group = Group
                               From pg In Parentescos_Group.DefaultIfEmpty
+                              Order By pg.Orden, pf.ApellidoNombre
                               Select New GridRowData_Familiares With {.IDFamiliar = pf.IDFamiliar, .Parentesco = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
 
             datagridviewFamiliares.AutoGenerateColumns = False
@@ -416,8 +417,10 @@
 
         Try
             listAltasBajas = (From pab In mPersonaActual.PersonaAltasBajas
-                              Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo
-                              Select New GridRowData_AltasBajas With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = pbm.Nombre}).ToList
+                              Group Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo Into PersonaBajaMotivo_Group = Group
+                              From pbmg In PersonaBajaMotivo_Group.DefaultIfEmpty
+                              Order By pab.AltaFecha
+                              Select New GridRowData_AltasBajas With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = If(pbmg Is Nothing, "", pbmg.Nombre)}).ToList
 
             datagridviewAltasBajas.AutoGenerateColumns = False
             datagridviewAltasBajas.DataSource = listAltasBajas

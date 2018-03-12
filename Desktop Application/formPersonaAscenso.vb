@@ -196,11 +196,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonaAscensos") Then
-                    Dim formPersonaAscensos As formPersonaAscensos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonaAscensos"), formPersonaAscensos)
-                    formPersonaAscensos.RefreshData(mPersonaAscensoActual.IDAscenso)
-                    formPersonaAscensos = Nothing
-                End If
+                'TODO - formPersona.RefreshData_Ascensos(mPersonaAscensoActual.IDAscenso)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

@@ -28,7 +28,7 @@ Partial Class formPersonaAltaBaja
         Dim labelBajaActaNumero As System.Windows.Forms.Label
         Dim labelBajaLibroNumero As System.Windows.Forms.Label
         Dim labelBajaFolioNumero As System.Windows.Forms.Label
-        Dim Label1 As System.Windows.Forms.Label
+        Dim labelBajaMotivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -47,7 +47,7 @@ Partial Class formPersonaAltaBaja
         Me.labelAltaFecha = New System.Windows.Forms.Label()
         Me.datetimepickerAltaFecha = New System.Windows.Forms.DateTimePicker()
         Me.groupboxBaja = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.comboboxBajaMotivo = New System.Windows.Forms.ComboBox()
         Me.textboxBajaFolioNumero = New System.Windows.Forms.TextBox()
         Me.textboxBajaLibroNumero = New System.Windows.Forms.TextBox()
         Me.textboxBajaActaNumero = New System.Windows.Forms.TextBox()
@@ -64,7 +64,7 @@ Partial Class formPersonaAltaBaja
         labelBajaActaNumero = New System.Windows.Forms.Label()
         labelBajaLibroNumero = New System.Windows.Forms.Label()
         labelBajaFolioNumero = New System.Windows.Forms.Label()
-        Label1 = New System.Windows.Forms.Label()
+        labelBajaMotivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -129,14 +129,14 @@ Partial Class formPersonaAltaBaja
         labelBajaFolioNumero.TabIndex = 6
         labelBajaFolioNumero.Text = "Folio N°:"
         '
-        'Label1
+        'labelBajaMotivo
         '
-        Label1.AutoSize = True
-        Label1.Location = New System.Drawing.Point(8, 74)
-        Label1.Name = "Label1"
-        Label1.Size = New System.Drawing.Size(48, 13)
-        Label1.TabIndex = 8
-        Label1.Text = "Libro N°:"
+        labelBajaMotivo.AutoSize = True
+        labelBajaMotivo.Location = New System.Drawing.Point(8, 74)
+        labelBajaMotivo.Name = "labelBajaMotivo"
+        labelBajaMotivo.Size = New System.Drawing.Size(42, 13)
+        labelBajaMotivo.TabIndex = 8
+        labelBajaMotivo.Text = "Motivo:"
         '
         'labelModificacion
         '
@@ -309,8 +309,8 @@ Partial Class formPersonaAltaBaja
         '
         'groupboxBaja
         '
-        Me.groupboxBaja.Controls.Add(Me.ComboBox1)
-        Me.groupboxBaja.Controls.Add(Label1)
+        Me.groupboxBaja.Controls.Add(Me.comboboxBajaMotivo)
+        Me.groupboxBaja.Controls.Add(labelBajaMotivo)
         Me.groupboxBaja.Controls.Add(Me.textboxBajaFolioNumero)
         Me.groupboxBaja.Controls.Add(labelBajaFolioNumero)
         Me.groupboxBaja.Controls.Add(labelBajaLibroNumero)
@@ -326,13 +326,14 @@ Partial Class formPersonaAltaBaja
         Me.groupboxBaja.TabStop = False
         Me.groupboxBaja.Text = "Baja:"
         '
-        'ComboBox1
+        'comboboxBajaMotivo
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(62, 71)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(362, 21)
-        Me.ComboBox1.TabIndex = 9
+        Me.comboboxBajaMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxBajaMotivo.FormattingEnabled = True
+        Me.comboboxBajaMotivo.Location = New System.Drawing.Point(62, 71)
+        Me.comboboxBajaMotivo.Name = "comboboxBajaMotivo"
+        Me.comboboxBajaMotivo.Size = New System.Drawing.Size(362, 21)
+        Me.comboboxBajaMotivo.TabIndex = 9
         '
         'textboxBajaFolioNumero
         '
@@ -476,7 +477,7 @@ Partial Class formPersonaAltaBaja
     Friend WithEvents labelAltaFecha As System.Windows.Forms.Label
     Friend WithEvents datetimepickerAltaFecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents groupboxBaja As System.Windows.Forms.GroupBox
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxBajaMotivo As System.Windows.Forms.ComboBox
     Friend WithEvents textboxBajaFolioNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxBajaLibroNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxBajaActaNumero As System.Windows.Forms.TextBox

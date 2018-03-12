@@ -216,12 +216,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonaCalificaciones") Then
-                    Dim formPersonaCalificaciones As formPersonaCalificaciones = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonaCalificaciones"), formPersonaCalificaciones)
-                    formPersonaCalificaciones.RefreshData(mlistPersonaCalificacion.First.Anio, mlistPersonaCalificacion.First.InstanciaNumero)
-                    formPersonaCalificaciones = Nothing
-                End If
-
+                'TODO - formPersona.RefreshData_Calificaciones(mlistPersonaCalificacion.First.Anio, mlistPersonaCalificacion.First.InstanciaNumero)
+                
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)

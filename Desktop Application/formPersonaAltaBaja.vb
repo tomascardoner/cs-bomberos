@@ -92,7 +92,23 @@
             textboxBajaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaLibroNumero)
             textboxBajaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaFolioNumero)
             textboxBajaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaActaNumero)
+
+            'comboboxBajaMotivo 
+
+            ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
+            If .UsuarioCreacion Is Nothing Then
+                textboxUsuarioCreacion.Text = ""
+            Else
+                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
+            End If
+            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
+            If .UsuarioModificacion Is Nothing Then
+                textboxUsuarioModificacion.Text = ""
+            Else
+                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
+            End If
         End With
     End Sub
 
@@ -106,6 +122,7 @@
             .BajaLibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaLibroNumero.Text)
             .BajaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaFolioNumero.Text)
             .BajaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaActaNumero.Text)
+
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
@@ -176,11 +193,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonaAltasBajas") Then
-                    Dim formPersonaAltasBajas As formPersonaAltasBajas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonaAltasBajas"), formPersonaAltasBajas)
-                    formPersonaAltasBajas.RefreshData(mPersonaAltaBajaActual.IDAltaBaja)
-                    formPersonaAltasBajas = Nothing
-                End If
+                formPersona.RefreshData_AltasBajas(mPersonaAltaBajaActual.IDAltaBaja)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
