@@ -22,21 +22,24 @@ Partial Class formPersonaAltaBaja
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim labelAltaFolioNumero As System.Windows.Forms.Label
-        Dim labelAltaLibroNumero As System.Windows.Forms.Label
         Dim labelAltaActaNumero As System.Windows.Forms.Label
-        Dim labelBajaFolioNumero As System.Windows.Forms.Label
-        Dim labelBajaLibroNumero As System.Windows.Forms.Label
+        Dim labelAltaLibroNumero As System.Windows.Forms.Label
+        Dim labelAltaFolioNumero As System.Windows.Forms.Label
         Dim labelBajaActaNumero As System.Windows.Forms.Label
+        Dim labelBajaLibroNumero As System.Windows.Forms.Label
+        Dim labelBajaFolioNumero As System.Windows.Forms.Label
+        Dim Label1 As System.Windows.Forms.Label
+        Dim labelModificacion As System.Windows.Forms.Label
+        Dim labelCreacion As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.textboxIDAltaBaja = New System.Windows.Forms.TextBox()
-        Me.labelIDAltaBaja = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
+        Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.groupboxAlta = New System.Windows.Forms.GroupBox()
         Me.textboxAltaFolioNumero = New System.Windows.Forms.TextBox()
         Me.textboxAltaLibroNumero = New System.Windows.Forms.TextBox()
@@ -44,39 +47,33 @@ Partial Class formPersonaAltaBaja
         Me.labelAltaFecha = New System.Windows.Forms.Label()
         Me.datetimepickerAltaFecha = New System.Windows.Forms.DateTimePicker()
         Me.groupboxBaja = New System.Windows.Forms.GroupBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.textboxBajaFolioNumero = New System.Windows.Forms.TextBox()
         Me.textboxBajaLibroNumero = New System.Windows.Forms.TextBox()
         Me.textboxBajaActaNumero = New System.Windows.Forms.TextBox()
         Me.labelBajaFecha = New System.Windows.Forms.Label()
         Me.datetimepickerBajaFecha = New System.Windows.Forms.DateTimePicker()
-        labelAltaFolioNumero = New System.Windows.Forms.Label()
-        labelAltaLibroNumero = New System.Windows.Forms.Label()
+        Me.tabpageExtras = New System.Windows.Forms.TabPage()
+        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         labelAltaActaNumero = New System.Windows.Forms.Label()
-        labelBajaFolioNumero = New System.Windows.Forms.Label()
-        labelBajaLibroNumero = New System.Windows.Forms.Label()
+        labelAltaLibroNumero = New System.Windows.Forms.Label()
+        labelAltaFolioNumero = New System.Windows.Forms.Label()
         labelBajaActaNumero = New System.Windows.Forms.Label()
+        labelBajaLibroNumero = New System.Windows.Forms.Label()
+        labelBajaFolioNumero = New System.Windows.Forms.Label()
+        Label1 = New System.Windows.Forms.Label()
+        labelModificacion = New System.Windows.Forms.Label()
+        labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
+        Me.tabcontrolMain.SuspendLayout()
+        Me.tabpageGeneral.SuspendLayout()
         Me.groupboxAlta.SuspendLayout()
         Me.groupboxBaja.SuspendLayout()
+        Me.tabpageExtras.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'labelAltaFolioNumero
-        '
-        labelAltaFolioNumero.AutoSize = True
-        labelAltaFolioNumero.Location = New System.Drawing.Point(297, 48)
-        labelAltaFolioNumero.Name = "labelAltaFolioNumero"
-        labelAltaFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelAltaFolioNumero.TabIndex = 6
-        labelAltaFolioNumero.Text = "Folio N°:"
-        '
-        'labelAltaLibroNumero
-        '
-        labelAltaLibroNumero.AutoSize = True
-        labelAltaLibroNumero.Location = New System.Drawing.Point(8, 48)
-        labelAltaLibroNumero.Name = "labelAltaLibroNumero"
-        labelAltaLibroNumero.Size = New System.Drawing.Size(48, 13)
-        labelAltaLibroNumero.TabIndex = 2
-        labelAltaLibroNumero.Text = "Libro N°:"
         '
         'labelAltaActaNumero
         '
@@ -87,14 +84,32 @@ Partial Class formPersonaAltaBaja
         labelAltaActaNumero.TabIndex = 4
         labelAltaActaNumero.Text = "Acta N°:"
         '
-        'labelBajaFolioNumero
+        'labelAltaLibroNumero
         '
-        labelBajaFolioNumero.AutoSize = True
-        labelBajaFolioNumero.Location = New System.Drawing.Point(297, 48)
-        labelBajaFolioNumero.Name = "labelBajaFolioNumero"
-        labelBajaFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelBajaFolioNumero.TabIndex = 6
-        labelBajaFolioNumero.Text = "Folio N°:"
+        labelAltaLibroNumero.AutoSize = True
+        labelAltaLibroNumero.Location = New System.Drawing.Point(8, 48)
+        labelAltaLibroNumero.Name = "labelAltaLibroNumero"
+        labelAltaLibroNumero.Size = New System.Drawing.Size(48, 13)
+        labelAltaLibroNumero.TabIndex = 2
+        labelAltaLibroNumero.Text = "Libro N°:"
+        '
+        'labelAltaFolioNumero
+        '
+        labelAltaFolioNumero.AutoSize = True
+        labelAltaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelAltaFolioNumero.Name = "labelAltaFolioNumero"
+        labelAltaFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelAltaFolioNumero.TabIndex = 6
+        labelAltaFolioNumero.Text = "Folio N°:"
+        '
+        'labelBajaActaNumero
+        '
+        labelBajaActaNumero.AutoSize = True
+        labelBajaActaNumero.Location = New System.Drawing.Point(153, 48)
+        labelBajaActaNumero.Name = "labelBajaActaNumero"
+        labelBajaActaNumero.Size = New System.Drawing.Size(47, 13)
+        labelBajaActaNumero.TabIndex = 4
+        labelBajaActaNumero.Text = "Acta N°:"
         '
         'labelBajaLibroNumero
         '
@@ -105,14 +120,41 @@ Partial Class formPersonaAltaBaja
         labelBajaLibroNumero.TabIndex = 2
         labelBajaLibroNumero.Text = "Libro N°:"
         '
-        'labelBajaActaNumero
+        'labelBajaFolioNumero
         '
-        labelBajaActaNumero.AutoSize = True
-        labelBajaActaNumero.Location = New System.Drawing.Point(153, 48)
-        labelBajaActaNumero.Name = "labelBajaActaNumero"
-        labelBajaActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelBajaActaNumero.TabIndex = 4
-        labelBajaActaNumero.Text = "Acta N°:"
+        labelBajaFolioNumero.AutoSize = True
+        labelBajaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelBajaFolioNumero.Name = "labelBajaFolioNumero"
+        labelBajaFolioNumero.Size = New System.Drawing.Size(47, 13)
+        labelBajaFolioNumero.TabIndex = 6
+        labelBajaFolioNumero.Text = "Folio N°:"
+        '
+        'Label1
+        '
+        Label1.AutoSize = True
+        Label1.Location = New System.Drawing.Point(8, 74)
+        Label1.Name = "Label1"
+        Label1.Size = New System.Drawing.Size(48, 13)
+        Label1.TabIndex = 8
+        Label1.Text = "Libro N°:"
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(7, 169)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 13
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(7, 147)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 10
+        labelCreacion.Text = "Creación:"
         '
         'buttonGuardar
         '
@@ -160,47 +202,50 @@ Partial Class formPersonaAltaBaja
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(460, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(480, 39)
         Me.toolstripMain.TabIndex = 6
-        '
-        'textboxIDAltaBaja
-        '
-        Me.textboxIDAltaBaja.Location = New System.Drawing.Point(75, 50)
-        Me.textboxIDAltaBaja.MaxLength = 10
-        Me.textboxIDAltaBaja.Name = "textboxIDAltaBaja"
-        Me.textboxIDAltaBaja.ReadOnly = True
-        Me.textboxIDAltaBaja.Size = New System.Drawing.Size(74, 20)
-        Me.textboxIDAltaBaja.TabIndex = 1
-        Me.textboxIDAltaBaja.TabStop = False
-        Me.textboxIDAltaBaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelIDAltaBaja
-        '
-        Me.labelIDAltaBaja.AutoSize = True
-        Me.labelIDAltaBaja.Location = New System.Drawing.Point(20, 53)
-        Me.labelIDAltaBaja.Name = "labelIDAltaBaja"
-        Me.labelIDAltaBaja.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDAltaBaja.TabIndex = 0
-        Me.labelIDAltaBaja.Text = "ID:"
         '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(75, 243)
+        Me.textboxNotas.Location = New System.Drawing.Point(115, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(340, 47)
+        Me.textboxNotas.Size = New System.Drawing.Size(329, 128)
         Me.textboxNotas.TabIndex = 5
         '
         'labelNotas
         '
         Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(20, 246)
+        Me.labelNotas.Location = New System.Drawing.Point(7, 9)
         Me.labelNotas.Name = "labelNotas"
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
         Me.labelNotas.TabIndex = 4
         Me.labelNotas.Text = "Notas:"
+        '
+        'tabcontrolMain
+        '
+        Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+        Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageExtras)
+        Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
+        Me.tabcontrolMain.Name = "tabcontrolMain"
+        Me.tabcontrolMain.SelectedIndex = 0
+        Me.tabcontrolMain.Size = New System.Drawing.Size(458, 221)
+        Me.tabcontrolMain.TabIndex = 7
+        '
+        'tabpageGeneral
+        '
+        Me.tabpageGeneral.Controls.Add(Me.groupboxAlta)
+        Me.tabpageGeneral.Controls.Add(Me.groupboxBaja)
+        Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageGeneral.Name = "tabpageGeneral"
+        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(450, 192)
+        Me.tabpageGeneral.TabIndex = 0
+        Me.tabpageGeneral.Text = "General"
+        Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
         'groupboxAlta
         '
@@ -212,7 +257,7 @@ Partial Class formPersonaAltaBaja
         Me.groupboxAlta.Controls.Add(Me.textboxAltaActaNumero)
         Me.groupboxAlta.Controls.Add(Me.labelAltaFecha)
         Me.groupboxAlta.Controls.Add(Me.datetimepickerAltaFecha)
-        Me.groupboxAlta.Location = New System.Drawing.Point(12, 76)
+        Me.groupboxAlta.Location = New System.Drawing.Point(6, 6)
         Me.groupboxAlta.Name = "groupboxAlta"
         Me.groupboxAlta.Size = New System.Drawing.Size(435, 72)
         Me.groupboxAlta.TabIndex = 2
@@ -264,6 +309,8 @@ Partial Class formPersonaAltaBaja
         '
         'groupboxBaja
         '
+        Me.groupboxBaja.Controls.Add(Me.ComboBox1)
+        Me.groupboxBaja.Controls.Add(Label1)
         Me.groupboxBaja.Controls.Add(Me.textboxBajaFolioNumero)
         Me.groupboxBaja.Controls.Add(labelBajaFolioNumero)
         Me.groupboxBaja.Controls.Add(labelBajaLibroNumero)
@@ -272,12 +319,20 @@ Partial Class formPersonaAltaBaja
         Me.groupboxBaja.Controls.Add(Me.textboxBajaActaNumero)
         Me.groupboxBaja.Controls.Add(Me.labelBajaFecha)
         Me.groupboxBaja.Controls.Add(Me.datetimepickerBajaFecha)
-        Me.groupboxBaja.Location = New System.Drawing.Point(12, 154)
+        Me.groupboxBaja.Location = New System.Drawing.Point(6, 84)
         Me.groupboxBaja.Name = "groupboxBaja"
-        Me.groupboxBaja.Size = New System.Drawing.Size(435, 72)
+        Me.groupboxBaja.Size = New System.Drawing.Size(435, 100)
         Me.groupboxBaja.TabIndex = 3
         Me.groupboxBaja.TabStop = False
         Me.groupboxBaja.Text = "Baja:"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(62, 71)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(362, 21)
+        Me.ComboBox1.TabIndex = 9
         '
         'textboxBajaFolioNumero
         '
@@ -323,19 +378,68 @@ Partial Class formPersonaAltaBaja
         Me.datetimepickerBajaFecha.Size = New System.Drawing.Size(138, 20)
         Me.datetimepickerBajaFecha.TabIndex = 1
         '
+        'tabpageExtras
+        '
+        Me.tabpageExtras.Controls.Add(Me.textboxUsuarioModificacion)
+        Me.tabpageExtras.Controls.Add(Me.textboxUsuarioCreacion)
+        Me.tabpageExtras.Controls.Add(Me.textboxFechaHoraModificacion)
+        Me.tabpageExtras.Controls.Add(Me.textboxFechaHoraCreacion)
+        Me.tabpageExtras.Controls.Add(labelModificacion)
+        Me.tabpageExtras.Controls.Add(labelCreacion)
+        Me.tabpageExtras.Controls.Add(Me.textboxNotas)
+        Me.tabpageExtras.Controls.Add(Me.labelNotas)
+        Me.tabpageExtras.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageExtras.Name = "tabpageExtras"
+        Me.tabpageExtras.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageExtras.Size = New System.Drawing.Size(450, 192)
+        Me.tabpageExtras.TabIndex = 1
+        Me.tabpageExtras.Text = "Notas y auditoría"
+        Me.tabpageExtras.UseVisualStyleBackColor = True
+        '
+        'textboxUsuarioModificacion
+        '
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 166)
+        Me.textboxUsuarioModificacion.MaxLength = 50
+        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
+        Me.textboxUsuarioModificacion.ReadOnly = True
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(202, 20)
+        Me.textboxUsuarioModificacion.TabIndex = 15
+        '
+        'textboxUsuarioCreacion
+        '
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(242, 140)
+        Me.textboxUsuarioCreacion.MaxLength = 50
+        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
+        Me.textboxUsuarioCreacion.ReadOnly = True
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(202, 20)
+        Me.textboxUsuarioCreacion.TabIndex = 12
+        '
+        'textboxFechaHoraModificacion
+        '
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(115, 166)
+        Me.textboxFechaHoraModificacion.MaxLength = 0
+        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
+        Me.textboxFechaHoraModificacion.ReadOnly = True
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraModificacion.TabIndex = 14
+        '
+        'textboxFechaHoraCreacion
+        '
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(115, 140)
+        Me.textboxFechaHoraCreacion.MaxLength = 0
+        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
+        Me.textboxFechaHoraCreacion.ReadOnly = True
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraCreacion.TabIndex = 11
+        '
         'formPersonaAltaBaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 304)
-        Me.Controls.Add(Me.groupboxBaja)
-        Me.Controls.Add(Me.groupboxAlta)
-        Me.Controls.Add(Me.textboxNotas)
-        Me.Controls.Add(Me.labelNotas)
-        Me.Controls.Add(Me.labelIDAltaBaja)
-        Me.Controls.Add(Me.textboxIDAltaBaja)
+        Me.ClientSize = New System.Drawing.Size(480, 274)
+        Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaAltaBaja"
@@ -343,10 +447,14 @@ Partial Class formPersonaAltaBaja
         Me.Text = "Alta-Baja de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        Me.tabcontrolMain.ResumeLayout(False)
+        Me.tabpageGeneral.ResumeLayout(False)
         Me.groupboxAlta.ResumeLayout(False)
         Me.groupboxAlta.PerformLayout()
         Me.groupboxBaja.ResumeLayout(False)
         Me.groupboxBaja.PerformLayout()
+        Me.tabpageExtras.ResumeLayout(False)
+        Me.tabpageExtras.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -356,10 +464,11 @@ Partial Class formPersonaAltaBaja
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents textboxIDAltaBaja As System.Windows.Forms.TextBox
-    Friend WithEvents labelIDAltaBaja As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
+    Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
+    Friend WithEvents tabpageExtras As System.Windows.Forms.TabPage
     Friend WithEvents groupboxAlta As System.Windows.Forms.GroupBox
     Friend WithEvents textboxAltaFolioNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxAltaLibroNumero As System.Windows.Forms.TextBox
@@ -367,9 +476,14 @@ Partial Class formPersonaAltaBaja
     Friend WithEvents labelAltaFecha As System.Windows.Forms.Label
     Friend WithEvents datetimepickerAltaFecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents groupboxBaja As System.Windows.Forms.GroupBox
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents textboxBajaFolioNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxBajaLibroNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxBajaActaNumero As System.Windows.Forms.TextBox
     Friend WithEvents labelBajaFecha As System.Windows.Forms.Label
     Friend WithEvents datetimepickerBajaFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
 End Class

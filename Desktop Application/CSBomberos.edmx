@@ -13,6 +13,7 @@
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="Codigo" Type="char" MaxLength="5" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -37,8 +38,8 @@
           <Property Name="KilometrajeInicial" Type="int" />
           <Property Name="CapacidadAguaLitros" Type="int" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -50,6 +51,7 @@
           </Key>
           <Property Name="IDAutomotorTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -65,6 +67,33 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CapacitacionNivel">
+          <Key>
+            <PropertyRef Name="IDCapacitacionNivel" />
+          </Key>
+          <Property Name="IDCapacitacionNivel" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CapacitacionTipo">
+          <Key>
+            <PropertyRef Name="IDCapacitacionTipo" />
+          </Key>
+          <Property Name="IDCapacitacionTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -78,6 +107,7 @@
           <Property Name="IDCargo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -93,6 +123,7 @@
           <Property Name="IDJerarquia" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -105,6 +136,7 @@
           </Key>
           <Property Name="IDCombustibleTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -130,8 +162,21 @@
           <Property Name="Telefono" Type="varchar" MaxLength="50" />
           <Property Name="Celular" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IDCurso" />
+          </Key>
+          <Property Name="IDCurso" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -154,8 +199,8 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="IDRubro" Type="tinyint" />
           <Property Name="IDSubRubro" Type="smallint" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -173,9 +218,36 @@
           <Property Name="IDModoAdquisicion" Type="tinyint" />
           <Property Name="IDUbicacion" Type="smallint" />
           <Property Name="IDSubUbicacion" Type="smallint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="FechaBaja" Type="date" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenciaCausa">
+          <Key>
+            <PropertyRef Name="IDLicenciaCausa" />
+          </Key>
+          <Property Name="IDLicenciaCausa" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LicenciaConducirCategoria">
+          <Key>
+            <PropertyRef Name="IDLicenciaConducirCategoria" />
+          </Key>
+          <Property Name="IDLicenciaConducirCategoria" Type="tinyint" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -206,6 +278,7 @@
           </Key>
           <Property Name="IDModoAdquisicion" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -218,14 +291,19 @@
           </Key>
           <Property Name="IDNivelEstudio" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
             <PropertyRef Name="IDParametro" />
           </Key>
           <Property Name="IDParametro" Type="char" MaxLength="100" Nullable="false" />
-          <Property Name="Texto" Type="varchar" MaxLength="1000" />
+          <Property Name="Texto" Type="varchar(max)" />
           <Property Name="NumeroEntero" Type="int" />
           <Property Name="NumeroDecimal" Type="decimal" Precision="18" Scale="9" />
           <Property Name="Moneda" Type="money" />
@@ -240,6 +318,7 @@
           <Property Name="IDParentesco" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -252,6 +331,7 @@
           </Key>
           <Property Name="IDPenaAplicacion" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -263,22 +343,25 @@
             <PropertyRef Name="IDPersona" />
           </Key>
           <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="Foto" Type="image" />
           <Property Name="MatriculaNumero" Type="char" MaxLength="6" Nullable="false" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ApellidoNombre" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="IDDocumentoTipo" Type="tinyint" />
           <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
+          <Property Name="LicenciaConducirNumero" Type="varchar" MaxLength="12" />
+          <Property Name="LicenciaConducirVencimiento" Type="date" />
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="GrupoSanguineo" Type="char" MaxLength="2" />
           <Property Name="FactorRH" Type="char" MaxLength="1" />
-          <Property Name="TieneIOMA" Type="char" MaxLength="1" />
+          <Property Name="IOMATiene" Type="char" MaxLength="1" />
+          <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="IDNivelEstudio" Type="tinyint" />
           <Property Name="Profesion" Type="varchar" MaxLength="50" />
           <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
-          <Property Name="CantidadHijos" Type="tinyint" />
           <Property Name="DomicilioParticularCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioParticularNumero" Type="varchar" MaxLength="10" />
           <Property Name="DomicilioParticularPiso" Type="varchar" MaxLength="10" />
@@ -303,8 +386,8 @@
           <Property Name="TelefonoLaboral" Type="varchar" MaxLength="50" />
           <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
           <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -316,7 +399,7 @@
             <PropertyRef Name="IDAccidente" />
           </Key>
           <Property Name="IDPersona" Type="int" Nullable="false" />
-          <Property Name="IDAccidente" Type="tinyint" Nullable="false" />
+          <Property Name="IDAccidente" Type="smallint" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Diagnostico" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
@@ -343,6 +426,7 @@
           <Property Name="AltaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="AltaActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFecha" Type="date" />
+          <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
           <Property Name="BajaLibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaActaNumero" Type="varchar" MaxLength="10" />
@@ -365,7 +449,21 @@
           <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="ResolucionNumero" Type="varchar" MaxLength="15" />
           <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaBajaMotivo">
+          <Key>
+            <PropertyRef Name="IDPersonaBajaMotivo" />
+          </Key>
+          <Property Name="IDPersonaBajaMotivo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -382,7 +480,8 @@
           <Property Name="Anio" Type="smallint" Nullable="false" />
           <Property Name="InstanciaNumero" Type="tinyint" Nullable="false" />
           <Property Name="IDCalificacionConcepto" Type="tinyint" Nullable="false" />
-          <Property Name="Calificacion" Type="tinyint" Nullable="false" />
+          <Property Name="Calificacion" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -408,6 +507,45 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="PersonaCapacitacion">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDCapacitacion" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDCapacitacion" Type="smallint" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IDCurso" Type="smallint" Nullable="false" />
+          <Property Name="IDProvincia" Type="tinyint" />
+          <Property Name="IDLocalidad" Type="smallint" />
+          <Property Name="IDCapacitacionNivel" Type="tinyint" />
+          <Property Name="CapacitacionNivelOtro" Type="varchar" MaxLength="200" />
+          <Property Name="IDCapaciontacionTipo" Type="tinyint" />
+          <Property Name="CapaciontacionTipoOtro" Type="varchar" MaxLength="200" />
+          <Property Name="CantidadHoras" Type="smallint" />
+          <Property Name="CantidadDias" Type="smallint" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaExamen">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="Anio" />
+            <PropertyRef Name="InstanciaNumero" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="Anio" Type="smallint" Nullable="false" />
+          <Property Name="InstanciaNumero" Type="tinyint" Nullable="false" />
+          <Property Name="Calificacion" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="PersonaFamiliar">
           <Key>
             <PropertyRef Name="IDPersona" />
@@ -423,6 +561,10 @@
           <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="GrupoSanguineo" Type="char" MaxLength="2" />
+          <Property Name="FactorRH" Type="char" MaxLength="1" />
+          <Property Name="IOMATiene" Type="char" MaxLength="1" />
+          <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="Vive" Type="bit" />
           <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
@@ -436,7 +578,58 @@
           <Property Name="Telefono" Type="varchar" MaxLength="50" />
           <Property Name="Celular" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaLicencia">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicencia" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDLicencia" Type="smallint" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IDLicenciaCausa" Type="tinyint" Nullable="false" />
+          <Property Name="FechaDesde" Type="date" Nullable="false" />
+          <Property Name="FechaHasta" Type="date" Nullable="false" />
+          <Property Name="FechaInterrupcion" Type="date" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaLicenciaConducirCategoria">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicenciaConducirCategoria" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDLicenciaConducirCategoria" Type="tinyint" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaSancion">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDSancion" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDSancion" Type="smallint" Nullable="false" />
+          <Property Name="SolicitudIDPersona" Type="int" Nullable="false" />
+          <Property Name="SolicitudIDCargo" Type="tinyint" Nullable="false" />
+          <Property Name="SolicitudIDJerarquia" Type="tinyint" Nullable="false" />
+          <Property Name="SolicitudMotivo" Type="varchar(max)" Nullable="false" />
+          <Property Name="SolicitudFecha" Type="date" Nullable="false" />
+          <Property Name="EncuadreTexto" Type="varchar(max)" />
+          <Property Name="EncuadreFecha" Type="date" />
+          <Property Name="ResolucionIDSancionTipo" Type="tinyint" />
+          <Property Name="ResolucionFecha" Type="date" />
+          <Property Name="NotificacionFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -493,6 +686,20 @@
           </Key>
           <Property Name="IDRubro" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SancionTipo">
+          <Key>
+            <PropertyRef Name="IDSancionTipo" />
+          </Key>
+          <Property Name="IDSancionTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -506,6 +713,7 @@
           <Property Name="IDSubRubro" Type="smallint" Nullable="false" />
           <Property Name="IDRubro" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -519,6 +727,7 @@
           <Property Name="IDSubUbicacion" Type="smallint" Nullable="false" />
           <Property Name="IDUbicacion" Type="smallint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -533,6 +742,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="IDAutomotor" Type="smallint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -562,6 +772,7 @@
           </Key>
           <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -624,6 +835,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__CapacitacionNivel__PersonaCapacitacion">
+          <End Role="CapacitacionNivel" Type="Self.CapacitacionNivel" Multiplicity="0..1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapacitacionNivel">
+              <PropertyRef Name="IDCapacitacionNivel" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCapacitacionNivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CapacitacionTipo__PersonaCapacitacion">
+          <End Role="CapacitacionTipo" Type="Self.CapacitacionTipo" Multiplicity="0..1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapacitacionTipo">
+              <PropertyRef Name="IDCapacitacionTipo" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCapaciontacionTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Cargo__CargoJerarquia">
           <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
           <End Role="CargoJerarquia" Type="Self.CargoJerarquia" Multiplicity="*" />
@@ -647,6 +882,20 @@
             <Dependent Role="PersonaAscenso">
               <PropertyRef Name="IDCargo" />
               <PropertyRef Name="IDJerarquia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CargoJerarquia__PersonaSancion">
+          <End Role="CargoJerarquia" Type="Self.CargoJerarquia" Multiplicity="1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CargoJerarquia">
+              <PropertyRef Name="IDCargo" />
+              <PropertyRef Name="IDJerarquia" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDCargo" />
+              <PropertyRef Name="SolicitudIDJerarquia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -722,6 +971,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Curso__PersonaCapacitacion">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IDCurso" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__DocumentoTipo__Persona">
           <End Role="DocumentoTipo" Type="Self.DocumentoTipo" Multiplicity="0..1" />
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -730,6 +991,18 @@
               <PropertyRef Name="IDDocumentoTipo" />
             </Principal>
             <Dependent Role="Persona">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentoTipo__PersonaFamiliar">
+          <End Role="DocumentoTipo" Type="Self.DocumentoTipo" Multiplicity="0..1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
               <PropertyRef Name="IDDocumentoTipo" />
             </Dependent>
           </ReferentialConstraint>
@@ -746,6 +1019,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__LicenciaCausa__PersonaLicencia">
+          <End Role="LicenciaCausa" Type="Self.LicenciaCausa" Multiplicity="1" />
+          <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenciaCausa">
+              <PropertyRef Name="IDLicenciaCausa" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDLicenciaCausa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Localidad__Cuartel">
           <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
           <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="*" />
@@ -755,6 +1040,34 @@
               <PropertyRef Name="IDLocalidad" />
             </Principal>
             <Dependent Role="Cuartel">
+              <PropertyRef Name="DomicilioIDProvincia" />
+              <PropertyRef Name="DomicilioIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__PersonaCapacitacion">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__PersonaFamiliar">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
               <PropertyRef Name="DomicilioIDProvincia" />
               <PropertyRef Name="DomicilioIDLocalidad" />
             </Dependent>
@@ -872,6 +1185,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Persona__PersonaCambioUnidad">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaCambioUnidad" Type="Self.PersonaCambioUnidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaCambioUnidad">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaCapacitacion">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaExamen">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaExamen" Type="Self.PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Persona__PersonaFamiliar">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
           <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
@@ -881,6 +1230,66 @@
             </Principal>
             <Dependent Role="PersonaFamiliar">
               <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaLicencia">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaLicenciaConducirCategoria">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaLicenciaConducirCategoria" Type="Self.PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaSancion">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaSancion__Solicitud">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonaBajaMotivo__PersonaAltaBaja">
+          <End Role="PersonaBajaMotivo" Type="Self.PersonaBajaMotivo" Multiplicity="0..1" />
+          <End Role="PersonaAltaBaja" Type="Self.PersonaAltaBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDPersonaBajaMotivo" />
+            </Principal>
+            <Dependent Role="PersonaAltaBaja">
+              <PropertyRef Name="IDPersonaBajaMotivo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -941,6 +1350,18 @@
             </Principal>
             <Dependent Role="SubRubro">
               <PropertyRef Name="IDRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SancionTipo__PersonaSancion">
+          <End Role="SancionTipo" Type="Self.SancionTipo" Multiplicity="0..1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SancionTipo">
+              <PropertyRef Name="IDSancionTipo" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="ResolucionIDSancionTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1088,6 +1509,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__CapacitacionNivel__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CapacitacionNivel" Type="Self.CapacitacionNivel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionNivel">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionNivel__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CapacitacionNivel" Type="Self.CapacitacionNivel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionNivel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CapacitacionTipo" Type="Self.CapacitacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CapacitacionTipo" Type="Self.CapacitacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Cargo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Cargo" Type="Self.Cargo" Multiplicity="*" />
@@ -1180,6 +1649,126 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Curso__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Curso__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Elemento__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Elemento" Type="Self.Elemento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Elemento">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Elemento__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Elemento" Type="Self.Elemento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Elemento">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Inventario__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Inventario__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaCausa__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="LicenciaCausa" Type="Self.LicenciaCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaCausa">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaCausa__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="LicenciaCausa" Type="Self.LicenciaCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaCausa">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaConducirCategoria__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="LicenciaConducirCategoria" Type="Self.LicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaConducirCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaConducirCategoria__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="LicenciaConducirCategoria" Type="Self.LicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaConducirCategoria">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -1364,6 +1953,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PersonaBajaMotivo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaBajaMotivo" Type="Self.PersonaBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaBajaMotivo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaBajaMotivo" Type="Self.PersonaBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__PersonaCalificacion__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="PersonaCalificacion" Type="Self.PersonaCalificacion" Multiplicity="*" />
@@ -1412,6 +2025,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PersonaCapacitacion__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaCapacitacion__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaExamen__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaExamen" Type="Self.PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaExamen__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaExamen" Type="Self.PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__PersonaFamiliar__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
@@ -1436,6 +2097,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PersonaLicencia__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicencia__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaConducirCategoria__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaLicenciaConducirCategoria" Type="Self.PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaSancion__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaSancion__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Rubro__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Rubro" Type="Self.Rubro" Multiplicity="*" />
@@ -1456,6 +2177,30 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Rubro">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SancionTipo" Type="Self.SancionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SancionTipo" Type="Self.SancionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -1621,13 +2366,18 @@
           <EntitySet Name="Automotor" EntityType="Self.Automotor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutomotorTipo" EntityType="Self.AutomotorTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalificacionConcepto" EntityType="Self.CalificacionConcepto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CapacitacionNivel" EntityType="Self.CapacitacionNivel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CapacitacionTipo" EntityType="Self.CapacitacionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CargoJerarquia" EntityType="Self.CargoJerarquia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CombustibleTipo" EntityType="Self.CombustibleTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuartel" EntityType="Self.Cuartel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentoTipo" EntityType="Self.DocumentoTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elemento" EntityType="Self.Elemento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenciaCausa" EntityType="Self.LicenciaCausa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LicenciaConducirCategoria" EntityType="Self.LicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModoAdquisicion" EntityType="Self.ModoAdquisicion" Schema="dbo" store:Type="Tables" />
@@ -1639,14 +2389,21 @@
           <EntitySet Name="PersonaAccidente" EntityType="Self.PersonaAccidente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaAltaBaja" EntityType="Self.PersonaAltaBaja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaAscenso" EntityType="Self.PersonaAscenso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaBajaMotivo" EntityType="Self.PersonaBajaMotivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaCalificacion" EntityType="Self.PersonaCalificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaCambioUnidad" EntityType="Self.PersonaCambioUnidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaCapacitacion" EntityType="Self.PersonaCapacitacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaExamen" EntityType="Self.PersonaExamen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaFamiliar" EntityType="Self.PersonaFamiliar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaLicencia" EntityType="Self.PersonaLicencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaLicenciaConducirCategoria" EntityType="Self.PersonaLicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaSancion" EntityType="Self.PersonaSancion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SancionTipo" EntityType="Self.SancionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubRubro" EntityType="Self.SubRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubUbicacion" EntityType="Self.SubUbicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
@@ -1669,6 +2426,14 @@
             <End Role="CalificacionConcepto" EntitySet="CalificacionConcepto" />
             <End Role="PersonaCalificacion" EntitySet="PersonaCalificacion" />
           </AssociationSet>
+          <AssociationSet Name="FK__CapacitacionNivel__PersonaCapacitacion" Association="Self.FK__CapacitacionNivel__PersonaCapacitacion">
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CapacitacionTipo__PersonaCapacitacion" Association="Self.FK__CapacitacionTipo__PersonaCapacitacion">
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
           <AssociationSet Name="FK__Cargo__CargoJerarquia" Association="Self.FK__Cargo__CargoJerarquia">
             <End Role="Cargo" EntitySet="Cargo" />
             <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
@@ -1676,6 +2441,10 @@
           <AssociationSet Name="FK__CargoJerarquia__PersonaAscenso" Association="Self.FK__CargoJerarquia__PersonaAscenso">
             <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
             <End Role="PersonaAscenso" EntitySet="PersonaAscenso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CargoJerarquia__PersonaSancion" Association="Self.FK__CargoJerarquia__PersonaSancion">
+            <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
           </AssociationSet>
           <AssociationSet Name="FK__CombustibleTipo__Automotor" Association="Self.FK__CombustibleTipo__Automotor">
             <End Role="CombustibleTipo" EntitySet="CombustibleTipo" />
@@ -1701,17 +2470,37 @@
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK__Curso__PersonaCapacitacion" Association="Self.FK__Curso__PersonaCapacitacion">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
           <AssociationSet Name="FK__DocumentoTipo__Persona" Association="Self.FK__DocumentoTipo__Persona">
             <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
             <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentoTipo__PersonaFamiliar" Association="Self.FK__DocumentoTipo__PersonaFamiliar">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
           <AssociationSet Name="FK__Elemento__Inventario" Association="Self.FK__Elemento__Inventario">
             <End Role="Elemento" EntitySet="Elemento" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
+          <AssociationSet Name="FK__LicenciaCausa__PersonaLicencia" Association="Self.FK__LicenciaCausa__PersonaLicencia">
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
           <AssociationSet Name="FK__Localidad__Cuartel" Association="Self.FK__Localidad__Cuartel">
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__PersonaCapacitacion" Association="Self.FK__Localidad__PersonaCapacitacion">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__PersonaFamiliar" Association="Self.FK__Localidad__PersonaFamiliar">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
           <AssociationSet Name="FK__ModoAdquisicion__Inventario" Association="Self.FK__ModoAdquisicion__Inventario">
             <End Role="ModoAdquisicion" EntitySet="ModoAdquisicion" />
@@ -1749,9 +2538,41 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaCalificacion" EntitySet="PersonaCalificacion" />
           </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaCambioUnidad" Association="Self.FK__Persona__PersonaCambioUnidad">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaCapacitacion" Association="Self.FK__Persona__PersonaCapacitacion">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaExamen" Association="Self.FK__Persona__PersonaExamen">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaFamiliar" Association="Self.FK__Persona__PersonaFamiliar">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaLicencia" Association="Self.FK__Persona__PersonaLicencia">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaLicenciaConducirCategoria" Association="Self.FK__Persona__PersonaLicenciaConducirCategoria">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaSancion" Association="Self.FK__Persona__PersonaSancion">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaSancion__Solicitud" Association="Self.FK__Persona__PersonaSancion__Solicitud">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonaBajaMotivo__PersonaAltaBaja" Association="Self.FK__PersonaBajaMotivo__PersonaAltaBaja">
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+            <End Role="PersonaAltaBaja" EntitySet="PersonaAltaBaja" />
           </AssociationSet>
           <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
             <End Role="Provincia" EntitySet="Provincia" />
@@ -1772,6 +2593,10 @@
           <AssociationSet Name="FK__Rubro__SubRubro" Association="Self.FK__Rubro__SubRubro">
             <End Role="Rubro" EntitySet="Rubro" />
             <End Role="SubRubro" EntitySet="SubRubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SancionTipo__PersonaSancion" Association="Self.FK__SancionTipo__PersonaSancion">
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
           </AssociationSet>
           <AssociationSet Name="FK__SubRubro__Elemento" Association="Self.FK__SubRubro__Elemento">
             <End Role="SubRubro" EntitySet="SubRubro" />
@@ -1821,6 +2646,22 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CalificacionConcepto" EntitySet="CalificacionConcepto" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionNivel__Creacion" Association="Self.FK__Usuario__CapacitacionNivel__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionNivel__Modificacion" Association="Self.FK__Usuario__CapacitacionNivel__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionTipo__Creacion" Association="Self.FK__Usuario__CapacitacionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionTipo__Modificacion" Association="Self.FK__Usuario__CapacitacionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Cargo__Creacion" Association="Self.FK__Usuario__Cargo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Cargo" EntitySet="Cargo" />
@@ -1852,6 +2693,46 @@
           <AssociationSet Name="FK__Usuario__Cuartel__Modificacion" Association="Self.FK__Usuario__Cuartel__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Curso__Creacion" Association="Self.FK__Usuario__Curso__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Curso__Modificacion" Association="Self.FK__Usuario__Curso__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Elemento__Creacion" Association="Self.FK__Usuario__Elemento__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Elemento" EntitySet="Elemento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Elemento__Modificacion" Association="Self.FK__Usuario__Elemento__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Elemento" EntitySet="Elemento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Inventario__Creacion" Association="Self.FK__Usuario__Inventario__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Inventario__Modificacion" Association="Self.FK__Usuario__Inventario__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaCausa__Creacion" Association="Self.FK__Usuario__LicenciaCausa__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaCausa__Modificacion" Association="Self.FK__Usuario__LicenciaCausa__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaConducirCategoria__Creacion" Association="Self.FK__Usuario__LicenciaConducirCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaConducirCategoria__Modificacion" Association="Self.FK__Usuario__LicenciaConducirCategoria__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Log" Association="Self.FK__Usuario__Log">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -1913,6 +2794,14 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaAscenso" EntitySet="PersonaAscenso" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaBajaMotivo__Creacion" Association="Self.FK__Usuario__PersonaBajaMotivo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaBajaMotivo__Modificacion" Association="Self.FK__Usuario__PersonaBajaMotivo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__PersonaCalificacion__Creacion" Association="Self.FK__Usuario__PersonaCalificacion__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaCalificacion" EntitySet="PersonaCalificacion" />
@@ -1929,6 +2818,22 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaCapacitacion__Creacion" Association="Self.FK__Usuario__PersonaCapacitacion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaCapacitacion__Modificacion" Association="Self.FK__Usuario__PersonaCapacitacion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaExamen__Creacion" Association="Self.FK__Usuario__PersonaExamen__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaExamen__Modificacion" Association="Self.FK__Usuario__PersonaExamen__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__PersonaFamiliar__Creacion" Association="Self.FK__Usuario__PersonaFamiliar__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
@@ -1937,6 +2842,26 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicencia__Creacion" Association="Self.FK__Usuario__PersonaLicencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicencia__Modificacion" Association="Self.FK__Usuario__PersonaLicencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" Association="Self.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaSancion__Creacion" Association="Self.FK__Usuario__PersonaSancion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaSancion__Modificacion" Association="Self.FK__Usuario__PersonaSancion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Rubro__Creacion" Association="Self.FK__Usuario__Rubro__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Rubro" EntitySet="Rubro" />
@@ -1944,6 +2869,14 @@
           <AssociationSet Name="FK__Usuario__Rubro__Modificacion" Association="Self.FK__Usuario__Rubro__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Rubro" EntitySet="Rubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionTipo__Creacion" Association="Self.FK__Usuario__SancionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionTipo__Modificacion" Association="Self.FK__Usuario__SancionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__SubRubro__Creacion" Association="Self.FK__Usuario__SubRubro__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -2391,6 +3324,186 @@
             <End Role="SubRubro" EntitySet="SubRubro" />
             <End Role="Elemento" EntitySet="Elemento" />
           </AssociationSet>
+          <EntitySet Name="CapacitacionNivel" EntityType="CSBomberosModel.CapacitacionNivel" />
+          <EntitySet Name="CapacitacionTipo" EntityType="CSBomberosModel.CapacitacionTipo" />
+          <EntitySet Name="Curso" EntityType="CSBomberosModel.Curso" />
+          <EntitySet Name="LicenciaCausa" EntityType="CSBomberosModel.LicenciaCausa" />
+          <EntitySet Name="LicenciaConducirCategoria" EntityType="CSBomberosModel.LicenciaConducirCategoria" />
+          <EntitySet Name="PersonaBajaMotivo" EntityType="CSBomberosModel.PersonaBajaMotivo" />
+          <EntitySet Name="PersonaCapacitacion" EntityType="CSBomberosModel.PersonaCapacitacion" />
+          <EntitySet Name="PersonaExamen" EntityType="CSBomberosModel.PersonaExamen" />
+          <EntitySet Name="PersonaLicencia" EntityType="CSBomberosModel.PersonaLicencia" />
+          <EntitySet Name="PersonaLicenciaConducirCategoria" EntityType="CSBomberosModel.PersonaLicenciaConducirCategoria" />
+          <EntitySet Name="PersonaSancion" EntityType="CSBomberosModel.PersonaSancion" />
+          <EntitySet Name="SancionTipo" EntityType="CSBomberosModel.SancionTipo" />
+          <AssociationSet Name="FK__CapacitacionNivel__PersonaCapacitacion" Association="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion">
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionNivel__Creacion" Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionNivel__Modificacion" Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionNivel" EntitySet="CapacitacionNivel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CapacitacionTipo__PersonaCapacitacion" Association="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion">
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionTipo__Creacion" Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CapacitacionTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CargoJerarquia__PersonaSancion" Association="CSBomberosModel.FK__CargoJerarquia__PersonaSancion">
+            <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Curso__PersonaCapacitacion" Association="CSBomberosModel.FK__Curso__PersonaCapacitacion">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Curso__Creacion" Association="CSBomberosModel.FK__Usuario__Curso__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Curso__Modificacion" Association="CSBomberosModel.FK__Usuario__Curso__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DocumentoTipo__PersonaFamiliar" Association="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Inventario__Creacion" Association="CSBomberosModel.FK__Usuario__Inventario__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Inventario__Modificacion" Association="CSBomberosModel.FK__Usuario__Inventario__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LicenciaCausa__PersonaLicencia" Association="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia">
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaCausa__Creacion" Association="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaCausa__Modificacion" Association="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaConducirCategoria__Creacion" Association="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__LicenciaConducirCategoria__Modificacion" Association="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__PersonaCapacitacion" Association="CSBomberosModel.FK__Localidad__PersonaCapacitacion">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Localidad__PersonaFamiliar" Association="CSBomberosModel.FK__Localidad__PersonaFamiliar">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaCambioUnidad" Association="CSBomberosModel.FK__Persona__PersonaCambioUnidad">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaCapacitacion" Association="CSBomberosModel.FK__Persona__PersonaCapacitacion">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaExamen" Association="CSBomberosModel.FK__Persona__PersonaExamen">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaLicencia" Association="CSBomberosModel.FK__Persona__PersonaLicencia">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaLicenciaConducirCategoria" Association="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaSancion" Association="CSBomberosModel.FK__Persona__PersonaSancion">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaSancion__Solicitud" Association="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaBajaMotivo__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaBajaMotivo__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaCapacitacion__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaCapacitacion__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaExamen__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaExamen__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaExamen" EntitySet="PersonaExamen" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicencia__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicencia__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SancionTipo__PersonaSancion" Association="CSBomberosModel.FK__SancionTipo__PersonaSancion">
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaSancion__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaSancion__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionTipo__Creacion" Association="CSBomberosModel.FK__Usuario__SancionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionTipo" EntitySet="SancionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PersonaBajaMotivo__PersonaAltaBaja" Association="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja">
+            <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
+            <End Role="PersonaAltaBaja" EntitySet="PersonaAltaBaja" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -2401,6 +3514,7 @@
           <Property Name="VerificaModulo11" Type="Boolean" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__DocumentoTipo__Persona" FromRole="DocumentoTipo" ToRole="Persona" />
+          <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="DocumentoTipo" ToRole="PersonaFamiliar" />
         </EntityType>
         <EntityType Name="Localidad">
           <Key>
@@ -2415,6 +3529,8 @@
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Localidad__Cuartel" FromRole="Localidad" ToRole="Cuartel" />
           <NavigationProperty Name="PersonasLaboral" Relationship="CSBomberosModel.FK__Persona__Localidad__Laboral" FromRole="Localidad" ToRole="Persona" />
           <NavigationProperty Name="PersonasParticular" Relationship="CSBomberosModel.FK__Persona__Localidad__Particular" FromRole="Localidad" ToRole="Persona" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Localidad__PersonaCapacitacion" FromRole="Localidad" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="Localidad" ToRole="PersonaFamiliar" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -2431,7 +3547,7 @@
             <PropertyRef Name="IDParametro" />
           </Key>
           <Property Name="IDParametro" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
-          <Property Name="Texto" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NumeroEntero" Type="Int32" />
           <Property Name="NumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="Moneda" Type="Decimal" Precision="19" Scale="4" />
@@ -2561,6 +3677,31 @@
           <NavigationProperty Name="UsuarioGrupo11" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="PersonaCambioUnidad" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
           <NavigationProperty Name="PersonaCambioUnidad1" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
+          <NavigationProperty Name="CapacitacionNivel" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
+          <NavigationProperty Name="CapacitacionNivel1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
+          <NavigationProperty Name="CapacitacionTipo" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
+          <NavigationProperty Name="CapacitacionTipo1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
+          <NavigationProperty Name="Curso" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Usuario" ToRole="Curso" />
+          <NavigationProperty Name="Curso1" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Usuario" ToRole="Curso" />
+          <NavigationProperty Name="Inventario" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Usuario" ToRole="Inventario" />
+          <NavigationProperty Name="Inventario1" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Usuario" ToRole="Inventario" />
+          <NavigationProperty Name="LicenciaCausa" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="Usuario" ToRole="LicenciaCausa" />
+          <NavigationProperty Name="LicenciaCausa1" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="Usuario" ToRole="LicenciaCausa" />
+          <NavigationProperty Name="LicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
+          <NavigationProperty Name="LicenciaConducirCategoria1" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaBajaMotivo" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
+          <NavigationProperty Name="PersonaBajaMotivo1" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaCapacitacion1" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaExamen" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="Usuario" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaExamen1" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="Usuario" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="Usuario" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaLicencia1" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="Usuario" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="Usuario" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
+          <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
+          <NavigationProperty Name="SancionTipo1" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -2568,6 +3709,7 @@
           </Key>
           <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -2700,6 +3842,7 @@
           <Property Name="IDParentesco" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -2714,22 +3857,25 @@
             <PropertyRef Name="IDPersona" />
           </Key>
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="Foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="MatriculaNumero" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
           <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ApellidoNombre" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IDDocumentoTipo" Type="Byte" />
           <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="LicenciaConducirNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="LicenciaConducirVencimiento" Type="DateTime" Precision="0" />
           <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="GrupoSanguineo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="TieneIOMA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IDNivelEstudio" Type="Byte" />
           <Property Name="Profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
-          <Property Name="CantidadHijos" Type="Byte" />
           <Property Name="DomicilioParticularCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioParticularNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioParticularPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -2772,6 +3918,13 @@
           <NavigationProperty Name="PersonaAltasBajas" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
           <NavigationProperty Name="PersonaAscensos" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="Persona" ToRole="PersonaAscenso" />
           <NavigationProperty Name="PersonaCalificaciones" Relationship="CSBomberosModel.FK__Persona__PersonaCalificacion" FromRole="Persona" ToRole="PersonaCalificacion" />
+          <NavigationProperty Name="PersonaCambioUnidad" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="Persona" ToRole="PersonaCambioUnidad" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="Persona" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaExamen" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="Persona" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="Persona" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -2878,6 +4031,10 @@
           <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
           <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="GrupoSanguineo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Vive" Type="Boolean" />
           <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -2901,6 +4058,8 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion" FromRole="PersonaFamiliar" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion" FromRole="PersonaFamiliar" ToRole="Usuario" />
           <NavigationProperty Name="Parentesco" Relationship="CSBomberosModel.FK__Parentesco__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Parentesco" />
+          <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="DocumentoTipo" />
+          <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Localidad" />
         </EntityType>
         <Association Name="FK__Persona__PersonaParentesco1">
           <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
@@ -2994,6 +4153,7 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="Codigo" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3011,6 +4171,7 @@
           <Property Name="IDCargo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="CargoJerarquia" Relationship="CSBomberosModel.FK__Cargo__CargoJerarquia" FromRole="Cargo" ToRole="CargoJerarquia" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -3029,6 +4190,7 @@
           <Property Name="IDJerarquia" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Cargo" Relationship="CSBomberosModel.FK__Cargo__CargoJerarquia" FromRole="CargoJerarquia" ToRole="Cargo" />
           <NavigationProperty Name="PersonasAscensos" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaAscenso" FromRole="CargoJerarquia" ToRole="PersonaAscenso" />
@@ -3038,6 +4200,7 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CargoJerarquia__Creacion" FromRole="CargoJerarquia" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CargoJerarquia__Modificacion" FromRole="CargoJerarquia" ToRole="Usuario" />
+          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" FromRole="CargoJerarquia" ToRole="PersonaSancion" />
         </EntityType>
         <EntityType Name="Elemento">
           <Key>
@@ -3067,6 +4230,11 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__NivelEstudio__Persona" FromRole="NivelEstudio" ToRole="Persona" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="PersonaAccidente">
           <Key>
@@ -3104,6 +4272,7 @@
           <Property Name="AltaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="AltaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFecha" Type="DateTime" Precision="0" />
+          <Property Name="IDPersonaBajaMotivo" Type="Byte" />
           <Property Name="BajaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -3115,6 +4284,7 @@
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="PersonaAltaBaja" ToRole="Persona" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
+          <NavigationProperty Name="PersonaBajaMotivo" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaAltaBaja" ToRole="PersonaBajaMotivo" />
         </EntityType>
         <EntityType Name="PersonaAscenso">
           <Key>
@@ -3129,6 +4299,7 @@
           <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResolucionNumero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3147,6 +4318,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="IDAutomotor" Type="Int16" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3366,6 +4538,7 @@
           </Key>
           <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3381,6 +4554,7 @@
           </Key>
           <Property Name="IDCombustibleTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3589,6 +4763,7 @@
           <Property Name="IDSubUbicacion" Type="Int16" Nullable="false" />
           <Property Name="IDUbicacion" Type="Int16" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3713,6 +4888,7 @@
           </Key>
           <Property Name="IDModoAdquisicion" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3755,6 +4931,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3776,6 +4953,7 @@
           <Property Name="InstanciaNumero" Type="Byte" Nullable="false" />
           <Property Name="IDCalificacionConcepto" Type="Byte" Nullable="false" />
           <Property Name="Calificacion" Type="Byte" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -3863,6 +5041,7 @@
           </Key>
           <Property Name="IDPenaAplicacion" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3877,6 +5056,7 @@
           </Key>
           <Property Name="IDRubro" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -3894,6 +5074,7 @@
           <Property Name="IDSubRubro" Type="Int16" Nullable="false" />
           <Property Name="IDRubro" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -4072,6 +5253,8 @@
           <NavigationProperty Name="ModoAdquisicion" Relationship="CSBomberosModel.FK__ModoAdquisicion__Inventario" FromRole="Inventario" ToRole="ModoAdquisicion" />
           <NavigationProperty Name="SubUbicacion" Relationship="CSBomberosModel.FK__SubUbicacion__Inventario" FromRole="Inventario" ToRole="SubUbicacion" />
           <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Ubicacion__Inventario" FromRole="Inventario" ToRole="Ubicacion" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Inventario" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Inventario" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK__Area__Inventario">
           <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
@@ -4154,6 +5337,7 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
           <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="PersonaCambioUnidad" ToRole="Persona" />
         </EntityType>
         <Association Name="FK__Usuario__PersonaCambioOrigen__Creacion1">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
@@ -4200,6 +5384,740 @@
             </Principal>
             <Dependent Role="Elemento">
               <PropertyRef Name="IDSubRubro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CapacitacionNivel">
+          <Key>
+            <PropertyRef Name="IDCapacitacionNivel" />
+          </Key>
+          <Property Name="IDCapacitacionNivel" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion" FromRole="CapacitacionNivel" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="CapacitacionTipo">
+          <Key>
+            <PropertyRef Name="IDCapacitacionTipo" />
+          </Key>
+          <Property Name="IDCapacitacionTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion" FromRole="CapacitacionTipo" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="IDCurso" />
+          </Key>
+          <Property Name="IDCurso" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Curso__PersonaCapacitacion" FromRole="Curso" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Curso" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Curso" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="LicenciaCausa">
+          <Key>
+            <PropertyRef Name="IDLicenciaCausa" />
+          </Key>
+          <Property Name="IDLicenciaCausa" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia" FromRole="LicenciaCausa" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="LicenciaCausa" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="LicenciaCausa" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="LicenciaConducirCategoria">
+          <Key>
+            <PropertyRef Name="IDLicenciaConducirCategoria" />
+          </Key>
+          <Property Name="IDLicenciaConducirCategoria" Type="Byte" Nullable="false" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaBajaMotivo">
+          <Key>
+            <PropertyRef Name="IDPersonaBajaMotivo" />
+          </Key>
+          <Property Name="IDPersonaBajaMotivo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaBajaMotivo" ToRole="PersonaAltaBaja" />
+        </EntityType>
+        <EntityType Name="PersonaCapacitacion">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDCapacitacion" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDCapacitacion" Type="Int16" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDCurso" Type="Int16" Nullable="false" />
+          <Property Name="IDProvincia" Type="Byte" />
+          <Property Name="IDLocalidad" Type="Int16" />
+          <Property Name="IDCapacitacionNivel" Type="Byte" />
+          <Property Name="CapacitacionNivelOtro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDCapaciontacionTipo" Type="Byte" />
+          <Property Name="CapaciontacionTipoOtro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadHoras" Type="Int16" />
+          <Property Name="CantidadDias" Type="Int16" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CapacitacionNivel" Relationship="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="CapacitacionNivel" />
+          <NavigationProperty Name="CapacitacionTipo" Relationship="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="CapacitacionTipo" />
+          <NavigationProperty Name="Curso" Relationship="CSBomberosModel.FK__Curso__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Curso" />
+          <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Localidad" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaExamen">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="Anio" />
+            <PropertyRef Name="InstanciaNumero" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="Anio" Type="Int16" Nullable="false" />
+          <Property Name="InstanciaNumero" Type="Byte" Nullable="false" />
+          <Property Name="Calificacion" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="PersonaExamen" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="PersonaExamen" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="PersonaExamen" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaLicencia">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicencia" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDLicencia" Type="Int16" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDLicenciaCausa" Type="Byte" Nullable="false" />
+          <Property Name="FechaDesde" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaInterrupcion" Type="DateTime" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="LicenciaCausa" Relationship="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia" FromRole="PersonaLicencia" ToRole="LicenciaCausa" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="PersonaLicencia" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="PersonaLicencia" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="PersonaLicencia" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaLicenciaConducirCategoria">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicenciaConducirCategoria" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDLicenciaConducirCategoria" Type="Byte" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="PersonaLicenciaConducirCategoria" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="PersonaLicenciaConducirCategoria" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="PersonaSancion">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDSancion" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDSancion" Type="Int16" Nullable="false" />
+          <Property Name="SolicitudIDPersona" Type="Int32" Nullable="false" />
+          <Property Name="SolicitudIDCargo" Type="Byte" Nullable="false" />
+          <Property Name="SolicitudIDJerarquia" Type="Byte" Nullable="false" />
+          <Property Name="SolicitudMotivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SolicitudFecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EncuadreTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EncuadreFecha" Type="DateTime" Precision="0" />
+          <Property Name="ResolucionIDSancionTipo" Type="Byte" />
+          <Property Name="ResolucionFecha" Type="DateTime" Precision="0" />
+          <Property Name="NotificacionFecha" Type="DateTime" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CargoJerarquia" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" FromRole="PersonaSancion" ToRole="CargoJerarquia" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="PersonaSancion" ToRole="Persona" />
+          <NavigationProperty Name="Persona1" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="PersonaSancion" ToRole="Persona" />
+          <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="PersonaSancion" ToRole="SancionTipo" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="PersonaSancion" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="PersonaSancion" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="SancionTipo">
+          <Key>
+            <PropertyRef Name="IDSancionTipo" />
+          </Key>
+          <Property Name="IDSancionTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="SancionTipo" ToRole="PersonaSancion" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="SancionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="SancionTipo" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__CapacitacionNivel__PersonaCapacitacion">
+          <End Type="CSBomberosModel.CapacitacionNivel" Role="CapacitacionNivel" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapacitacionNivel">
+              <PropertyRef Name="IDCapacitacionNivel" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCapacitacionNivel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionNivel__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CapacitacionNivel" Role="CapacitacionNivel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionNivel">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionNivel__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CapacitacionNivel" Role="CapacitacionNivel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionNivel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CapacitacionTipo__PersonaCapacitacion">
+          <End Type="CSBomberosModel.CapacitacionTipo" Role="CapacitacionTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CapacitacionTipo">
+              <PropertyRef Name="IDCapacitacionTipo" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCapaciontacionTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CapacitacionTipo" Role="CapacitacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CapacitacionTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CapacitacionTipo" Role="CapacitacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CapacitacionTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CargoJerarquia__PersonaSancion">
+          <End Type="CSBomberosModel.CargoJerarquia" Role="CargoJerarquia" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CargoJerarquia">
+              <PropertyRef Name="IDCargo" />
+              <PropertyRef Name="IDJerarquia" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDCargo" />
+              <PropertyRef Name="SolicitudIDJerarquia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Curso__PersonaCapacitacion">
+          <End Type="CSBomberosModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="IDCurso" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDCurso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Curso__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Curso" Role="Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Curso__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Curso" Role="Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DocumentoTipo__PersonaFamiliar">
+          <End Type="CSBomberosModel.DocumentoTipo" Role="DocumentoTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Inventario__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Inventario" Role="Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Inventario__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Inventario" Role="Inventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Inventario">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LicenciaCausa__PersonaLicencia">
+          <End Type="CSBomberosModel.LicenciaCausa" Role="LicenciaCausa" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicencia" Role="PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenciaCausa">
+              <PropertyRef Name="IDLicenciaCausa" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDLicenciaCausa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaCausa__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.LicenciaCausa" Role="LicenciaCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaCausa">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaCausa__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.LicenciaCausa" Role="LicenciaCausa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaCausa">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaConducirCategoria__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.LicenciaConducirCategoria" Role="LicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaConducirCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__LicenciaConducirCategoria__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.LicenciaConducirCategoria" Role="LicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="LicenciaConducirCategoria">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__PersonaCapacitacion">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Localidad__PersonaFamiliar">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="DomicilioIDProvincia" />
+              <PropertyRef Name="DomicilioIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaCambioUnidad">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaCambioUnidad" Role="PersonaCambioUnidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaCambioUnidad">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaCapacitacion">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaExamen">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaExamen" Role="PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaLicencia">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicencia" Role="PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaLicenciaConducirCategoria">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaConducirCategoria" Role="PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaSancion">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaSancion__Solicitud">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaBajaMotivo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaBajaMotivo" Role="PersonaBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaBajaMotivo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaBajaMotivo" Role="PersonaBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaCapacitacion__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaCapacitacion__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaCapacitacion" Role="PersonaCapacitacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaCapacitacion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaExamen__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaExamen" Role="PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaExamen__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaExamen" Role="PersonaExamen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaExamen">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicencia__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicencia" Role="PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicencia__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicencia" Role="PersonaLicencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicencia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaConducirCategoria__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaConducirCategoria" Role="PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SancionTipo__PersonaSancion">
+          <End Type="CSBomberosModel.SancionTipo" Role="SancionTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SancionTipo">
+              <PropertyRef Name="IDSancionTipo" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="ResolucionIDSancionTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaSancion__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaSancion__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SancionTipo" Role="SancionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SancionTipo" Role="SancionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PersonaBajaMotivo__PersonaAltaBaja">
+          <End Type="CSBomberosModel.PersonaBajaMotivo" Role="PersonaBajaMotivo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaAltaBaja" Role="PersonaAltaBaja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PersonaBajaMotivo">
+              <PropertyRef Name="IDPersonaBajaMotivo" />
+            </Principal>
+            <Dependent Role="PersonaAltaBaja">
+              <PropertyRef Name="IDPersonaBajaMotivo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4321,6 +6239,7 @@
           <EntitySetMapping Name="UsuarioGrupo">
             <EntityTypeMapping TypeName="CSBomberosModel.UsuarioGrupo">
               <MappingFragment StoreEntitySet="UsuarioGrupo">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4369,6 +6288,7 @@
           <EntitySetMapping Name="Parentesco">
             <EntityTypeMapping TypeName="CSBomberosModel.Parentesco">
               <MappingFragment StoreEntitySet="Parentesco">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4383,8 +6303,11 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
-                <ScalarProperty Name="TieneIOMA" ColumnName="TieneIOMA" />
-                <ScalarProperty Name="CantidadHijos" ColumnName="CantidadHijos" />
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
+                <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
+                <ScalarProperty Name="IOMATiene" ColumnName="IOMATiene" />
+                <ScalarProperty Name="LicenciaConducirVencimiento" ColumnName="LicenciaConducirVencimiento" />
+                <ScalarProperty Name="LicenciaConducirNumero" ColumnName="LicenciaConducirNumero" />
                 <ScalarProperty Name="IDNivelEstudio" ColumnName="IDNivelEstudio" />
                 <ScalarProperty Name="FactorRH" ColumnName="FactorRH" />
                 <ScalarProperty Name="GrupoSanguineo" ColumnName="GrupoSanguineo" />
@@ -4436,6 +6359,10 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
+                <ScalarProperty Name="IOMATiene" ColumnName="IOMATiene" />
+                <ScalarProperty Name="FactorRH" ColumnName="FactorRH" />
+                <ScalarProperty Name="GrupoSanguineo" ColumnName="GrupoSanguineo" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Celular" ColumnName="Celular" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
@@ -4471,6 +6398,7 @@
           <EntitySetMapping Name="Area">
             <EntityTypeMapping TypeName="CSBomberosModel.Area">
               <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4486,6 +6414,7 @@
           <EntitySetMapping Name="Cargo">
             <EntityTypeMapping TypeName="CSBomberosModel.Cargo">
               <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4500,6 +6429,7 @@
           <EntitySetMapping Name="CargoJerarquia">
             <EntityTypeMapping TypeName="CSBomberosModel.CargoJerarquia">
               <MappingFragment StoreEntitySet="CargoJerarquia">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4531,6 +6461,11 @@
           <EntitySetMapping Name="NivelEstudio">
             <EntityTypeMapping TypeName="CSBomberosModel.NivelEstudio">
               <MappingFragment StoreEntitySet="NivelEstudio">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDNivelEstudio" ColumnName="IDNivelEstudio" />
@@ -4561,6 +6496,7 @@
           <EntitySetMapping Name="PersonaAltaBaja">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAltaBaja">
               <MappingFragment StoreEntitySet="PersonaAltaBaja">
+                <ScalarProperty Name="IDPersonaBajaMotivo" ColumnName="IDPersonaBajaMotivo" />
                 <ScalarProperty Name="BajaActaNumero" ColumnName="BajaActaNumero" />
                 <ScalarProperty Name="BajaFolioNumero" ColumnName="BajaFolioNumero" />
                 <ScalarProperty Name="BajaLibroNumero" ColumnName="BajaLibroNumero" />
@@ -4582,6 +6518,7 @@
           <EntitySetMapping Name="PersonaAscenso">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAscenso">
               <MappingFragment StoreEntitySet="PersonaAscenso">
+                <ScalarProperty Name="ResolucionNumero" ColumnName="ResolucionNumero" />
                 <ScalarProperty Name="ActaNumero" ColumnName="ActaNumero" />
                 <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
                 <ScalarProperty Name="LibroNumero" ColumnName="LibroNumero" />
@@ -4601,6 +6538,7 @@
           <EntitySetMapping Name="Ubicacion">
             <EntityTypeMapping TypeName="CSBomberosModel.Ubicacion">
               <MappingFragment StoreEntitySet="Ubicacion">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4642,6 +6580,7 @@
           <EntitySetMapping Name="AutomotorTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.AutomotorTipo">
               <MappingFragment StoreEntitySet="AutomotorTipo">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4655,6 +6594,7 @@
           <EntitySetMapping Name="CombustibleTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.CombustibleTipo">
               <MappingFragment StoreEntitySet="CombustibleTipo">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4668,6 +6608,7 @@
           <EntitySetMapping Name="SubUbicacion">
             <EntityTypeMapping TypeName="CSBomberosModel.SubUbicacion">
               <MappingFragment StoreEntitySet="SubUbicacion">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4682,6 +6623,7 @@
           <EntitySetMapping Name="ModoAdquisicion">
             <EntityTypeMapping TypeName="CSBomberosModel.ModoAdquisicion">
               <MappingFragment StoreEntitySet="ModoAdquisicion">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4695,6 +6637,7 @@
           <EntitySetMapping Name="CalificacionConcepto">
             <EntityTypeMapping TypeName="CSBomberosModel.CalificacionConcepto">
               <MappingFragment StoreEntitySet="CalificacionConcepto">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4711,6 +6654,7 @@
           <EntitySetMapping Name="PersonaCalificacion">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaCalificacion">
               <MappingFragment StoreEntitySet="PersonaCalificacion">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="IDCalificacionConcepto" ColumnName="IDCalificacionConcepto" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -4726,6 +6670,7 @@
           <EntitySetMapping Name="PenaAplicacion">
             <EntityTypeMapping TypeName="CSBomberosModel.PenaAplicacion">
               <MappingFragment StoreEntitySet="PenaAplicacion">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4739,6 +6684,7 @@
           <EntitySetMapping Name="Rubro">
             <EntityTypeMapping TypeName="CSBomberosModel.Rubro">
               <MappingFragment StoreEntitySet="Rubro">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4752,6 +6698,7 @@
           <EntitySetMapping Name="SubRubro">
             <EntityTypeMapping TypeName="CSBomberosModel.SubRubro">
               <MappingFragment StoreEntitySet="SubRubro">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -4801,6 +6748,194 @@
                 <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
                 <ScalarProperty Name="IDCambioUnidad" ColumnName="IDCambioUnidad" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CapacitacionNivel">
+            <EntityTypeMapping TypeName="CSBomberosModel.CapacitacionNivel">
+              <MappingFragment StoreEntitySet="CapacitacionNivel">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCapacitacionNivel" ColumnName="IDCapacitacionNivel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CapacitacionTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.CapacitacionTipo">
+              <MappingFragment StoreEntitySet="CapacitacionTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCapacitacionTipo" ColumnName="IDCapacitacionTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="CSBomberosModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCurso" ColumnName="IDCurso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenciaCausa">
+            <EntityTypeMapping TypeName="CSBomberosModel.LicenciaCausa">
+              <MappingFragment StoreEntitySet="LicenciaCausa">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDLicenciaCausa" ColumnName="IDLicenciaCausa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LicenciaConducirCategoria">
+            <EntityTypeMapping TypeName="CSBomberosModel.LicenciaConducirCategoria">
+              <MappingFragment StoreEntitySet="LicenciaConducirCategoria">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IDLicenciaConducirCategoria" ColumnName="IDLicenciaConducirCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaBajaMotivo">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaBajaMotivo">
+              <MappingFragment StoreEntitySet="PersonaBajaMotivo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDPersonaBajaMotivo" ColumnName="IDPersonaBajaMotivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaCapacitacion">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaCapacitacion">
+              <MappingFragment StoreEntitySet="PersonaCapacitacion">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
+                <ScalarProperty Name="CantidadHoras" ColumnName="CantidadHoras" />
+                <ScalarProperty Name="CapaciontacionTipoOtro" ColumnName="CapaciontacionTipoOtro" />
+                <ScalarProperty Name="IDCapaciontacionTipo" ColumnName="IDCapaciontacionTipo" />
+                <ScalarProperty Name="CapacitacionNivelOtro" ColumnName="CapacitacionNivelOtro" />
+                <ScalarProperty Name="IDCapacitacionNivel" ColumnName="IDCapacitacionNivel" />
+                <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="IDCurso" ColumnName="IDCurso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDCapacitacion" ColumnName="IDCapacitacion" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaExamen">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaExamen">
+              <MappingFragment StoreEntitySet="PersonaExamen">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
+                <ScalarProperty Name="InstanciaNumero" ColumnName="InstanciaNumero" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaLicencia">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaLicencia">
+              <MappingFragment StoreEntitySet="PersonaLicencia">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="FechaInterrupcion" ColumnName="FechaInterrupcion" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="IDLicenciaCausa" ColumnName="IDLicenciaCausa" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDLicencia" ColumnName="IDLicencia" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaLicenciaConducirCategoria">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaLicenciaConducirCategoria">
+              <MappingFragment StoreEntitySet="PersonaLicenciaConducirCategoria">
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="IDLicenciaConducirCategoria" ColumnName="IDLicenciaConducirCategoria" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaSancion">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaSancion">
+              <MappingFragment StoreEntitySet="PersonaSancion">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="NotificacionFecha" ColumnName="NotificacionFecha" />
+                <ScalarProperty Name="ResolucionFecha" ColumnName="ResolucionFecha" />
+                <ScalarProperty Name="ResolucionIDSancionTipo" ColumnName="ResolucionIDSancionTipo" />
+                <ScalarProperty Name="EncuadreFecha" ColumnName="EncuadreFecha" />
+                <ScalarProperty Name="EncuadreTexto" ColumnName="EncuadreTexto" />
+                <ScalarProperty Name="SolicitudFecha" ColumnName="SolicitudFecha" />
+                <ScalarProperty Name="SolicitudMotivo" ColumnName="SolicitudMotivo" />
+                <ScalarProperty Name="SolicitudIDJerarquia" ColumnName="SolicitudIDJerarquia" />
+                <ScalarProperty Name="SolicitudIDCargo" ColumnName="SolicitudIDCargo" />
+                <ScalarProperty Name="SolicitudIDPersona" ColumnName="SolicitudIDPersona" />
+                <ScalarProperty Name="IDSancion" ColumnName="IDSancion" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SancionTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.SancionTipo">
+              <MappingFragment StoreEntitySet="SancionTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDSancionTipo" ColumnName="IDSancionTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

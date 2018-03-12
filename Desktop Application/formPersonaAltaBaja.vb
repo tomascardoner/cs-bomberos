@@ -29,19 +29,15 @@
             mPersonaAltaBajaActual = mdbContext.PersonaAltaBaja.Find(IDPersona, IDAltaBaja)
         End If
 
-        Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        Me.Show()
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-        Me.Focus()
 
         mIsLoading = False
 
         ChangeMode()
+
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Private Sub ChangeMode()
@@ -88,11 +84,6 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaAltaBajaActual
-            If .IDAltaBaja = 0 Then
-                textboxIDAltaBaja.Text = My.Resources.STRING_ITEM_NEW_MALE
-            Else
-                textboxIDAltaBaja.Text = String.Format(.IDAltaBaja.ToString, "G")
-            End If
             datetimepickerAltaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.AltaFecha)
             textboxAltaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaLibroNumero)
             textboxAltaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaFolioNumero)

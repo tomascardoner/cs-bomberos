@@ -28,6 +28,13 @@ Partial Class formInventario
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSubUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -52,13 +59,6 @@ Partial Class formInventario
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCodigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSubUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -109,6 +109,73 @@ Partial Class formInventario
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnArea
+        '
+        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnArea.DataPropertyName = "AreaNombre"
+        Me.columnArea.HeaderText = "Area"
+        Me.columnArea.Name = "columnArea"
+        Me.columnArea.ReadOnly = True
+        Me.columnArea.Width = 54
+        '
+        'columnCodigo
+        '
+        Me.columnCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCodigo.DataPropertyName = "Codigo"
+        Me.columnCodigo.HeaderText = "Código"
+        Me.columnCodigo.Name = "columnCodigo"
+        Me.columnCodigo.ReadOnly = True
+        Me.columnCodigo.Width = 65
+        '
+        'columnNombre
+        '
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
+        '
+        'columnUbicacion
+        '
+        Me.columnUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUbicacion.DataPropertyName = "UbicacionNombre"
+        Me.columnUbicacion.HeaderText = "Ubicación"
+        Me.columnUbicacion.Name = "columnUbicacion"
+        Me.columnUbicacion.ReadOnly = True
+        Me.columnUbicacion.Width = 80
+        '
+        'columnSubUbicacion
+        '
+        Me.columnSubUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSubUbicacion.DataPropertyName = "SubUbicacionNombre"
+        Me.columnSubUbicacion.HeaderText = "Sub-Ubicación"
+        Me.columnSubUbicacion.Name = "columnSubUbicacion"
+        Me.columnSubUbicacion.ReadOnly = True
+        Me.columnSubUbicacion.Width = 102
+        '
+        'columnEsActivo
+        '
+        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsActivo.DataPropertyName = "EsActivo"
+        Me.columnEsActivo.HeaderText = "Activo"
+        Me.columnEsActivo.Name = "columnEsActivo"
+        Me.columnEsActivo.ReadOnly = True
+        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnEsActivo.Width = 62
         '
         'panelToolbars
         '
@@ -305,73 +372,6 @@ Partial Class formInventario
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 25)
         '
-        'columnCuartel
-        '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
-        '
-        'columnArea
-        '
-        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnArea.DataPropertyName = "AreaNombre"
-        Me.columnArea.HeaderText = "Area"
-        Me.columnArea.Name = "columnArea"
-        Me.columnArea.ReadOnly = True
-        Me.columnArea.Width = 54
-        '
-        'columnCodigo
-        '
-        Me.columnCodigo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCodigo.DataPropertyName = "Codigo"
-        Me.columnCodigo.HeaderText = "Código"
-        Me.columnCodigo.Name = "columnCodigo"
-        Me.columnCodigo.ReadOnly = True
-        Me.columnCodigo.Width = 65
-        '
-        'columnNombre
-        '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNombre.HeaderText = "Nombre"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
-        '
-        'columnUbicacion
-        '
-        Me.columnUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnUbicacion.DataPropertyName = "UbicacionNombre"
-        Me.columnUbicacion.HeaderText = "Ubicación"
-        Me.columnUbicacion.Name = "columnUbicacion"
-        Me.columnUbicacion.ReadOnly = True
-        Me.columnUbicacion.Width = 80
-        '
-        'columnSubUbicacion
-        '
-        Me.columnSubUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSubUbicacion.DataPropertyName = "SubUbicacionNombre"
-        Me.columnSubUbicacion.HeaderText = "Sub-Ubicación"
-        Me.columnSubUbicacion.Name = "columnSubUbicacion"
-        Me.columnSubUbicacion.ReadOnly = True
-        Me.columnSubUbicacion.Width = 102
-        '
-        'columnEsActivo
-        '
-        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsActivo.DataPropertyName = "EsActivo"
-        Me.columnEsActivo.HeaderText = "Activo"
-        Me.columnEsActivo.Name = "columnEsActivo"
-        Me.columnEsActivo.ReadOnly = True
-        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 62
-        '
         'formInventario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,7 +383,7 @@ Partial Class formInventario
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "formInventario"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Elementos"
+        Me.Text = "Inventario"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()

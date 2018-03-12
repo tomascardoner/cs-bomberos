@@ -1,23 +1,21 @@
 ﻿Public Class formPersonaFamiliar
 
 #Region "Declarations"
-    Private mPersonaActual As Persona
+    Private mdbContext As New CSBomberosContext(True)
     Private mPersonaFamiliarActual As PersonaFamiliar
 
-    Private mParentEditMode As Boolean = False
+    Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal ParentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef PersonaActual As Persona, ByRef PersonaFamiliarActual As PersonaFamiliar)
-        mParentEditMode = ParentEditMode
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDFamiliar As Byte)
+        mIsLoading = True
         mEditMode = EditMode
 
-        mPersonaActual = PersonaActual
-        mPersonaFamiliarActual = PersonaFamiliarActual
-
-        If mPersonaFamiliarActual.IDFamiliar = 0 Then
+        If IDFamiliar = 0 Then
             ' Es Nuevo
+            mPersonaFamiliarActual = New PersonaFamiliar
             With mPersonaFamiliarActual
                 .Vive = True
                 .DomicilioIDProvincia = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
@@ -29,25 +27,26 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
+            mdbContext.PersonaFamiliar.Add(mPersonaFamiliarActual)
+        Else
+            mPersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(IDPersona, IDFamiliar)
         End If
 
-        'Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
+        mIsLoading = False
+
         ChangeMode()
+
         Me.ShowDialog(ParentForm)
-        'If Me.WindowState = FormWindowState.Minimized Then
-        '    Me.WindowState = FormWindowState.Normal
-        'End If
-        'Me.Focus()
     End Sub
 
     Private Sub ChangeMode()
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mParentEditMode And Not mEditMode)
+        buttonEditar.Visible = Not mEditMode
         buttonCerrar.Visible = Not mEditMode
 
         textboxApellido.ReadOnly = (mEditMode = False)
@@ -93,7 +92,8 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mPersonaActual = Nothing
+        mdbContext.Dispose()
+        mdbContext = Nothing
         mPersonaFamiliarActual = Nothing
         Me.Dispose()
     End Sub
@@ -340,14 +340,17 @@
             End If
         End If
 
-        ' Si es un nuevo item, busco el próximo Indice y agrego el objeto nuevo a la colección del parent
+        ' Generar el ID nuevo
         If mPersonaFamiliarActual.IDFamiliar = 0 Then
-            If mPersonaActual.PersonaFamiliares.Count = 0 Then
-                mPersonaFamiliarActual.IDFamiliar = 1
-            Else
-                mPersonaFamiliarActual.IDFamiliar = mPersonaActual.PersonaFamiliares.Max(Function(cmp) cmp.IDFamiliar) + CByte(1)
-            End If
-            mPersonaActual.PersonaFamiliares.Add(mPersonaFamiliarActual)
+            Using dbcMaxID As New CSBomberosContext(True)
+                Dim PersonaActual As Persona
+                PersonaActual = dbcMaxID.Persona.Find(mPersonaFamiliarActual.IDPersona)
+                If PersonaActual.PersonaAltasBajas.Count = 0 Then
+                    mPersonaFamiliarActual.IDFamiliar = 1
+                Else
+                    mPersonaFamiliarActual.IDFamiliar = PersonaActual.PersonaFamiliares.Max(Function(pf) pf.IDFamiliar) + CByte(1)
+                End If
+            End Using
         End If
 
         ' Paso los datos desde los controles al Objecto de EF

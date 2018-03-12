@@ -14,6 +14,11 @@ Partial Public Class NivelEstudio
     Public Property IDNivelEstudio As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
+    Public Property Notas As String
+    Public Property IDUsuarioCreacion As Short
+    Public Property FechaHoraCreacion As Date
+    Public Property IDUsuarioModificacion As Short
+    Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
 

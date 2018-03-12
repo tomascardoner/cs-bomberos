@@ -28,5 +28,6 @@ Partial Public Class PersonaCambioUnidad
 
     Public Overridable Property Usuario As Usuario
     Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property Persona As Persona
 
 End Class

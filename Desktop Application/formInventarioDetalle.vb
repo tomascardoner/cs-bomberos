@@ -94,7 +94,8 @@
         SetAppearance()
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        pFillAndRefreshLists.Elemento(comboboxElemento, False, True)
+        pFillAndRefreshLists.Elemento(comboboxElemento, False, False)
+
         pFillAndRefreshLists.ModoAdquisicion(comboboxModoAdquisicion, False, True)
     End Sub
 

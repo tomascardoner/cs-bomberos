@@ -292,7 +292,8 @@ Partial Class formInventarioDetalle
         '
         'comboboxElemento
         '
-        Me.comboboxElemento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxElemento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxElemento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comboboxElemento.FormattingEnabled = True
         Me.comboboxElemento.Location = New System.Drawing.Point(125, 156)
         Me.comboboxElemento.Name = "comboboxElemento"
@@ -331,7 +332,7 @@ Partial Class formInventarioDetalle
         Me.MinimizeBox = False
         Me.Name = "formInventarioDetalle"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Elemento"
+        Me.Text = "Detalle de Inventario"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)

@@ -7,11 +7,18 @@
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 
-    Public Class GridRowData_Familiar
+    Public Class GridRowData_Familiares
         Public Property IDFamiliar As Byte
         Public Property Parentesco As String
         Public Property Apellido As String
         Public Property Nombre As String
+    End Class
+
+    Public Class GridRowData_AltasBajas
+        Public Property IDAltaBaja As Byte
+        Public Property AltaFecha As Date
+        Public Property BajaFecha As Date?
+        Public Property BajaMotivoNombre As String
     End Class
 #End Region
 
@@ -66,6 +73,11 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
+        If mEditMode Then
+            pictureboxFoto.ContextMenuStrip = menustripFoto
+        Else
+            pictureboxFoto.ContextMenuStrip = Nothing
+        End If
         textboxMatriculaNumero.ReadOnly = (mEditMode = False)
         textboxApellido.ReadOnly = (mEditMode = False)
         textboxNombre.ReadOnly = (mEditMode = False)
@@ -74,16 +86,19 @@
         comboboxDocumentoTipo.Enabled = mEditMode
         textboxDocumentoNumero.ReadOnly = (mEditMode = False)
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
+        textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
+        datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
+
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
         comboboxFactorRH.Enabled = mEditMode
-        comboboxTieneIOMA.Enabled = mEditMode
+        comboboxIOMATiene.Enabled = mEditMode
+        textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
-        comboboxCantidadHijos.Enabled = mEditMode
 
         ' Contacto Particular
         textboxDomicilioParticularCalle1.ReadOnly = (mEditMode = False)
@@ -113,8 +128,15 @@
         textboxCelularLaboral.ReadOnly = (mEditMode = False)
         textboxEmailLaboral.ReadOnly = (mEditMode = False)
 
-        ' Familiares
-        toolstripFamiliares.Enabled = mEditMode
+        ' Solapas grillas
+        toolstripFamiliares.Enabled = Not mEditMode
+        toolstripAltasBajas.Enabled = Not mEditMode
+        toolstripAscensos.Enabled = Not mEditMode
+        toolstripLicencias.Enabled = Not mEditMode
+        toolstripSanciones.Enabled = Not mEditMode
+        toolstripCursos.Enabled = Not mEditMode
+        toolstripCalificaciones.Enabled = Not mEditMode
+        toolstripExamenes.Enabled = Not mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = (mEditMode = False)
@@ -129,10 +151,9 @@
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
-        comboboxTieneIOMA.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
+        comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        comboboxCantidadHijos.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
     End Sub
@@ -151,6 +172,17 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaActual
+            ' Foto
+            If .Foto Is Nothing Then
+                pictureboxFoto.Image = Nothing
+            Else
+                Dim aFoto As Byte()
+                aFoto = .Foto
+                Dim memstr As New System.IO.MemoryStream(aFoto, 0, aFoto.Length)
+                memstr.Write(aFoto, 0, aFoto.Length)
+                pictureboxFoto.Image = Image.FromStream(memstr, True)
+            End If
+
             ' Datos del Encabezado
             If .IDPersona = 0 Then
                 textboxIDPersona.Text = My.Resources.STRING_ITEM_NEW_MALE
@@ -169,28 +201,31 @@
             Else
                 textboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             End If
+            textboxLicenciaConducirNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LicenciaConducirNumero)
+            datetimepickerLicenciaConducirVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.LicenciaConducirVencimiento, datetimepickerLicenciaConducirVencimiento)
+
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
-            Select Case .TieneIOMA
+            Select Case .IOMATiene
                 Case ""
-                    comboboxTieneIOMA.SelectedIndex = 0
+                    comboboxIOMATiene.SelectedIndex = 0
                 Case PERSONA_TIENEIOMA_PORBOMBEROS
-                    comboboxTieneIOMA.SelectedIndex = 1
+                    comboboxIOMATiene.SelectedIndex = 1
                 Case PERSONA_TIENEIOMA_PORTRABAJO
-                    comboboxTieneIOMA.SelectedIndex = 2
+                    comboboxIOMATiene.SelectedIndex = 2
             End Select
+            textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
 
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            If .CantidadHijos Is Nothing Then
-                comboboxCantidadHijos.SelectedIndex = 0
-            Else
-                comboboxCantidadHijos.SelectedIndex = .CantidadHijos.Value
-            End If
+
+            ' Info
+            textboxCantidadHijos.Text = ""
+            textboxCargoJerarquiaActual.Text = ""
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)
@@ -220,9 +255,10 @@
             textboxCelularLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularLaboral)
             textboxEmailLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.EmailLaboral)
 
-            ' Datos de la pestaña Familiares
+            ' Datos de las pestañas
             If .IDPersona > 0 Then
                 RefreshData_Familiares()
+                RefreshData_AltasBajas()
             End If
 
             ' Datos de la pestaña Notas y Auditoría
@@ -245,6 +281,16 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mPersonaActual
+            ' Foto
+            If pictureboxFoto.Image Is Nothing Then
+                .Foto = Nothing
+            Else
+                Dim memstr As New System.IO.MemoryStream()
+                pictureboxFoto.Image.Save(memstr, pictureboxFoto.Image.RawFormat)
+                Dim aFoto As Byte() = memstr.GetBuffer()
+                .Foto = aFoto
+            End If
+
             ' Datos del Encabezado
             .MatriculaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMatriculaNumero.Text)
             .Apellido = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxApellido.Text)
@@ -257,28 +303,27 @@
             Else
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDocumentoNumero.Text)
             End If
+            .LicenciaConducirNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLicenciaConducirNumero.Text)
+            .LicenciaConducirVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerLicenciaConducirVencimiento.Value, datetimepickerLicenciaConducirVencimiento.Checked)
+
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
-            Select Case comboboxTieneIOMA.SelectedIndex
+            Select Case comboboxIOMATiene.SelectedIndex
                 Case 0
-                    .TieneIOMA = Nothing
+                    .IOMATiene = Nothing
                 Case 1
-                    .TieneIOMA = PERSONA_TIENEIOMA_PORBOMBEROS
+                    .IOMATiene = PERSONA_TIENEIOMA_PORBOMBEROS
                 Case 2
-                    .TieneIOMA = PERSONA_TIENEIOMA_PORTRABAJO
+                    .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
             End Select
+            .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
             .IDNivelEstudio = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxNivelEstudio.SelectedValue)
 
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
-            If comboboxCantidadHijos.SelectedIndex = 0 Then
-                .CantidadHijos = Nothing
-            Else
-                .CantidadHijos = CByte(comboboxCantidadHijos.SelectedIndex)
-            End If
 
             ' Datos de la pestaña Contacto Particular
             .DomicilioParticularCalle1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle1.Text)
@@ -313,15 +358,17 @@
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+#End Region
 
+#Region "Refresh Data Grids"
     Friend Sub RefreshData_Familiares(Optional ByVal PositionIDFamiliar As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
-        Dim listFamiliares As List(Of GridRowData_Familiar)
+        Dim listFamiliares As List(Of GridRowData_Familiares)
 
         If RestoreCurrentPosition Then
             If datagridviewFamiliares.CurrentRow Is Nothing Then
                 PositionIDFamiliar = 0
             Else
-                PositionIDFamiliar = CType(datagridviewFamiliares.CurrentRow.DataBoundItem, GridRowData_Familiar).IDFamiliar
+                PositionIDFamiliar = CType(datagridviewFamiliares.CurrentRow.DataBoundItem, GridRowData_Familiares).IDFamiliar
             End If
         End If
 
@@ -331,7 +378,7 @@
             listFamiliares = (From pf In mPersonaActual.PersonaFamiliares
                               Group Join p In mdbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco Into Parentescos_Group = Group
                               From pg In Parentescos_Group.DefaultIfEmpty
-                              Select New GridRowData_Familiar With {.IDFamiliar = pf.IDFamiliar, .Parentesco = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
+                              Select New GridRowData_Familiares With {.IDFamiliar = pf.IDFamiliar, .Parentesco = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
 
             datagridviewFamiliares.AutoGenerateColumns = False
             datagridviewFamiliares.DataSource = listFamiliares
@@ -346,8 +393,47 @@
 
         If PositionIDFamiliar <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewFamiliares.Rows
-                If CType(datagridviewFamiliares.CurrentRow.DataBoundItem, GridRowData_Familiar).IDFamiliar = PositionIDFamiliar Then
+                If CType(datagridviewFamiliares.CurrentRow.DataBoundItem, GridRowData_Familiares).IDFamiliar = PositionIDFamiliar Then
                     datagridviewFamiliares.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Friend Sub RefreshData_AltasBajas(Optional ByVal PositionIDAltaBaja As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listAltasBajas As List(Of GridRowData_AltasBajas)
+
+        If RestoreCurrentPosition Then
+            If datagridviewAltasBajas.CurrentRow Is Nothing Then
+                PositionIDAltaBaja = 0
+            Else
+                PositionIDAltaBaja = CType(datagridviewAltasBajas.CurrentRow.DataBoundItem, GridRowData_AltasBajas).IDAltaBaja
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listAltasBajas = (From pab In mPersonaActual.PersonaAltasBajas
+                              Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo
+                              Select New GridRowData_AltasBajas With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = pbm.Nombre}).ToList
+
+            datagridviewAltasBajas.AutoGenerateColumns = False
+            datagridviewAltasBajas.DataSource = listAltasBajas
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Altas-Bajas.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDAltaBaja <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewAltasBajas.Rows
+                If CType(datagridviewAltasBajas.CurrentRow.DataBoundItem, GridRowData_AltasBajas).IDAltaBaja = PositionIDAltaBaja Then
+                    datagridviewAltasBajas.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
             Next
@@ -357,6 +443,16 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub SeleccionarFoto() Handles menuitemFotoSeleccionarImagen.Click
+        If openfiledialogFoto.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+            pictureboxFoto.ImageLocation = openfiledialogFoto.FileName
+        End If
+    End Sub
+
+    Private Sub EliminarFoto() Handles menuitemFotoEliminarImagen.Click
+        pictureboxFoto.Image = Nothing
+    End Sub
+
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDPersona.GotFocus, textboxMatriculaNumero.GotFocus, textboxApellido.GotFocus, textboxNombre.GotFocus, textboxDocumentoNumero.GotFocus, textboxProfesion.GotFocus, textboxNacionalidad.GotFocus, textboxDomicilioParticularCalle1.GotFocus, textboxDomicilioParticularNumero.GotFocus, textboxDomicilioParticularPiso.GotFocus, textboxDomicilioParticularDepartamento.GotFocus, textboxDomicilioParticularCalle2.GotFocus, textboxDomicilioParticularCalle3.GotFocus, textboxDomicilioParticularCodigoPostal.GotFocus, textboxDomicilioLaboralCalle1.GotFocus, textboxDomicilioLaboralNumero.GotFocus, textboxDomicilioLaboralPiso.GotFocus, textboxDomicilioLaboralDepartamento.GotFocus, textboxDomicilioLaboralCalle2.GotFocus, textboxDomicilioLaboralCalle3.GotFocus, textboxDomicilioLaboralCodigoPostal.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
@@ -374,6 +470,14 @@
 
     Private Sub DocumentoNumero_LimpiarCaracteres(sender As Object, e As EventArgs) Handles textboxDocumentoNumero.LostFocus
         CType(sender, TextBox).Text = CType(sender, TextBox).Text.Replace(".", "")
+    End Sub
+
+    Private Sub LicenciaConducirNumeroCopiarNumeroDocumento() Handles buttonLicenciaConducirNumero.Click
+        If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
+            textboxLicenciaConducirNumero.Text = maskedtextboxDocumentoNumero.Text
+        Else
+            textboxLicenciaConducirNumero.Text = textboxDocumentoNumero.Text
+        End If
     End Sub
 
     Private Sub DomicilioParticularProvincia_SelectedValueChanged() Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
@@ -590,7 +694,7 @@
         SetDataFromControlsToObject()
 
         Dim PersonaFamiliarNuevo As New PersonaFamiliar
-        formPersonaFamiliar.LoadAndShow(True, True, Me, mPersonaActual, PersonaFamiliarNuevo)
+        formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
 
         datagridviewFamiliares.Enabled = True
 
@@ -607,8 +711,8 @@
 
             Dim PersonaFamiliarActual As PersonaFamiliar
 
-            PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiar).IDFamiliar)
-            formPersonaFamiliar.LoadAndShow(True, True, Me, mPersonaActual, PersonaFamiliarActual)
+            PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiares).IDFamiliar)
+            formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaFamiliarActual.IDFamiliar)
 
             datagridviewFamiliares.Enabled = True
 
@@ -621,7 +725,7 @@
             MsgBox("No hay ningún Familiar para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             Dim PersonaFamiliarEliminar As PersonaFamiliar
-            PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiar).IDFamiliar)
+            PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiares).IDFamiliar)
 
             Dim Mensaje As String
             Mensaje = String.Format("Se eliminará el Familiar seleccionado.{0}{0}Parentesco: {1}{0}Apellido y Nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, PersonaFamiliarEliminar.Parentesco.Nombre, PersonaFamiliarEliminar.ApellidoNombre)
@@ -647,10 +751,87 @@
 
             Dim PersonaFamiliarActual As PersonaFamiliar
 
-            PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiar).IDFamiliar)
-            formPersonaFamiliar.LoadAndShow(mEditMode, False, Me, mPersonaActual, PersonaFamiliarActual)
+            PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiares).IDFamiliar)
+            formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaFamiliarActual.IDFamiliar)
 
             datagridviewFamiliares.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Altas-Bajas Toolbar"
+    Private Sub AltasBajas_Agregar() Handles buttonAltasBajas_Agregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        datagridviewAltasBajas.Enabled = False
+
+        SetDataFromControlsToObject()
+
+        Dim PersonaAltaBajaNuevo As New PersonaAltaBaja
+        formPersonaAltaBaja.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+        datagridviewAltasBajas.Enabled = True
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub AltasBajas_Editar() Handles buttonAltasBajas_Editar.Click
+        If datagridviewAltasBajas.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Alta-Baja para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewAltasBajas.Enabled = False
+
+            Dim PersonaAltaBajaActual As PersonaAltaBaja
+
+            PersonaAltaBajaActual = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, GridRowData_AltasBajas).IDAltaBaja)
+            formPersonaAltaBaja.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
+
+            datagridviewAltasBajas.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub AltasBajas_Eliminar() Handles buttonAltasBajas_Eliminar.Click
+        If datagridviewAltasBajas.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Alta-Baja para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim PersonaAltaBajaEliminar As PersonaAltaBaja
+            PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, GridRowData_AltasBajas).IDAltaBaja)
+
+            Dim Mensaje As String
+            Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}Fecha Baja: {2}{0}Motivo de Baja: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, PersonaAltaBajaEliminar.AltaFecha, PersonaAltaBajaEliminar.BajaFecha, PersonaAltaBajaEliminar.PersonaBajaMotivo.Nombre)
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mPersonaActual.PersonaAltasBajas.Remove(PersonaAltaBajaEliminar)
+
+                RefreshData_AltasBajas()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub AltasBajas_Ver() Handles datagridviewAltasBajas.DoubleClick
+        If datagridviewAltasBajas.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewAltasBajas.Enabled = False
+
+            Dim PersonaAltaBajaActual As PersonaAltaBaja
+
+            PersonaAltaBajaActual = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, GridRowData_AltasBajas).IDAltaBaja)
+            formPersonaAltaBaja.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
+
+            datagridviewAltasBajas.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -662,31 +843,4 @@
 
 #End Region
 
-    Private Sub Familiares_Eliminar(sender As Object, e As EventArgs) Handles buttonFamiliares_Eliminar.Click
-
-    End Sub
-    Private Sub Familiares_Editar(sender As Object, e As EventArgs) Handles buttonFamiliares_Editar.Click
-
-    End Sub
-    Private Sub Familiares_Agregar(sender As Object, e As EventArgs) Handles buttonFamiliares_Agregar.Click
-
-    End Sub
-    Private Sub Familiares_Ver(sender As Object, e As EventArgs) Handles datagridviewFamiliares.DoubleClick
-
-    End Sub
-    Private Sub DomicilioLaboralProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
-
-    End Sub
-    Private Sub DomicilioLaboralLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
-
-    End Sub
-    Private Sub DomicilioParticularProvincia_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
-
-    End Sub
-    Private Sub DomicilioParticularLocalidad_SelectedValueChanged(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
-
-    End Sub
-    Private Sub comboboxDocumentoTipo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
-
-    End Sub
 End Class

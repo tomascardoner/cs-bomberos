@@ -20,5 +20,7 @@ Partial Public Class Localidad
     Public Overridable Property Cuartel As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
     Public Overridable Property PersonasLaboral As ICollection(Of Persona) = New HashSet(Of Persona)
     Public Overridable Property PersonasParticular As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property PersonaCapacitacion As ICollection(Of PersonaCapacitacion) = New HashSet(Of PersonaCapacitacion)
+    Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
 
 End Class

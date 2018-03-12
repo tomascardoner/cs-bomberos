@@ -17,5 +17,6 @@ Partial Public Class DocumentoTipo
     Public Property EsActivo As Boolean
 
     Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
 
 End Class

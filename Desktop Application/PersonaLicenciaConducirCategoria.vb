@@ -10,18 +10,13 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class AutomotorTipo
-    Public Property IDAutomotorTipo As Byte
-    Public Property Nombre As String
-    Public Property Notas As String
-    Public Property EsActivo As Boolean
+Partial Public Class PersonaLicenciaConducirCategoria
+    Public Property IDPersona As Integer
+    Public Property IDLicenciaConducirCategoria As Byte
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
-    Public Property IDUsuarioModificacion As Short
-    Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Automotor As ICollection(Of Automotor) = New HashSet(Of Automotor)
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Persona As Persona
+    Public Overridable Property Usuario As Usuario
 
 End Class

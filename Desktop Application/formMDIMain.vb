@@ -184,8 +184,8 @@
 
 #End Region
 
-#Region "Left Toolbar - Elementos"
-    Private Sub Elementos() Handles buttonElementos.Click
+#Region "Left Toolbar - Inventario"
+    Private Sub Elementos() Handles menuitemInventario_Elementos.Click
         If Permisos.VerificarPermiso(Permisos.ELEMENTO) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -195,6 +195,21 @@
                 formElementos.WindowState = FormWindowState.Normal
             End If
             formElementos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Inventario() Handles buttonInventario.ButtonClick
+        If Permisos.VerificarPermiso(Permisos.INVENTARIO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formInventario, Form))
+            formInventario.Show()
+            If formInventario.WindowState = FormWindowState.Minimized Then
+                formInventario.WindowState = FormWindowState.Normal
+            End If
+            formInventario.Focus()
 
             Me.Cursor = Cursors.Default
         End If

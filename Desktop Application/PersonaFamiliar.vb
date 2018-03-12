@@ -21,6 +21,10 @@ Partial Public Class PersonaFamiliar
     Public Property DocumentoNumero As String
     Public Property FechaNacimiento As Nullable(Of Date)
     Public Property Genero As String
+    Public Property GrupoSanguineo As String
+    Public Property FactorRH As String
+    Public Property IOMATiene As String
+    Public Property IOMANumeroAfiliado As String
     Public Property Vive As Nullable(Of Boolean)
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
@@ -45,5 +49,7 @@ Partial Public Class PersonaFamiliar
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Parentesco As Parentesco
+    Public Overridable Property DocumentoTipo As DocumentoTipo
+    Public Overridable Property Localidad As Localidad
 
 End Class

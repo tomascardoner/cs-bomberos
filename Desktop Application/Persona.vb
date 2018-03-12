@@ -12,22 +12,25 @@ Imports System.Collections.Generic
 
 Partial Public Class Persona
     Public Property IDPersona As Integer
+    Public Property Foto As Byte()
     Public Property MatriculaNumero As String
     Public Property Apellido As String
     Public Property Nombre As String
     Public Property ApellidoNombre As String
     Public Property IDDocumentoTipo As Nullable(Of Byte)
     Public Property DocumentoNumero As String
+    Public Property LicenciaConducirNumero As String
+    Public Property LicenciaConducirVencimiento As Nullable(Of Date)
     Public Property FechaNacimiento As Nullable(Of Date)
     Public Property Genero As String
     Public Property GrupoSanguineo As String
     Public Property FactorRH As String
-    Public Property TieneIOMA As String
+    Public Property IOMATiene As String
+    Public Property IOMANumeroAfiliado As String
     Public Property IDNivelEstudio As Nullable(Of Byte)
     Public Property Profesion As String
     Public Property Nacionalidad As String
     Public Property IDCuartel As Byte
-    Public Property CantidadHijos As Nullable(Of Byte)
     Public Property DomicilioParticularCalle1 As String
     Public Property DomicilioParticularNumero As String
     Public Property DomicilioParticularPiso As String
@@ -71,5 +74,12 @@ Partial Public Class Persona
     Public Overridable Property PersonaAltasBajas As ICollection(Of PersonaAltaBaja) = New HashSet(Of PersonaAltaBaja)
     Public Overridable Property PersonaAscensos As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
     Public Overridable Property PersonaCalificaciones As ICollection(Of PersonaCalificacion) = New HashSet(Of PersonaCalificacion)
+    Public Overridable Property PersonaCambioUnidad As ICollection(Of PersonaCambioUnidad) = New HashSet(Of PersonaCambioUnidad)
+    Public Overridable Property PersonaCapacitacion As ICollection(Of PersonaCapacitacion) = New HashSet(Of PersonaCapacitacion)
+    Public Overridable Property PersonaExamen As ICollection(Of PersonaExamen) = New HashSet(Of PersonaExamen)
+    Public Overridable Property PersonaLicencia As ICollection(Of PersonaLicencia) = New HashSet(Of PersonaLicencia)
+    Public Overridable Property PersonaLicenciaConducirCategoria As ICollection(Of PersonaLicenciaConducirCategoria) = New HashSet(Of PersonaLicenciaConducirCategoria)
+    Public Overridable Property PersonaSancion As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
+    Public Overridable Property PersonaSancion1 As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
 
 End Class

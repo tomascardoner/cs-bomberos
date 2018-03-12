@@ -49,11 +49,12 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemTablas_Parentescos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPersonas = New System.Windows.Forms.ToolStripButton()
         Me.buttonUnidades = New System.Windows.Forms.ToolStripButton()
-        Me.buttonElementos = New System.Windows.Forms.ToolStripButton()
+        Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
+        Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -204,10 +205,10 @@ Partial Class formMDIMain
         '
         Me.toolstripMain.AllowMerge = False
         Me.toolstripMain.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPersonas, Me.buttonUnidades, Me.buttonElementos, Me.buttonReportes})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.buttonPersonas, Me.buttonUnidades, Me.buttonInventario, Me.buttonReportes})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 24)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(99, 489)
+        Me.toolstripMain.Size = New System.Drawing.Size(109, 489)
         Me.toolstripMain.TabIndex = 1
         Me.toolstripMain.Text = "Principal"
         '
@@ -219,20 +220,26 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonTablas.Name = "dropdownbuttonTablas"
-        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(96, 36)
+        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(106, 36)
         Me.dropdownbuttonTablas.Text = "Tablas"
         '
         'menuitemTablas_Parentescos
         '
         Me.menuitemTablas_Parentescos.Name = "menuitemTablas_Parentescos"
-        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(138, 22)
         Me.menuitemTablas_Parentescos.Text = "Parentescos"
         '
         'menuitemTablas_Ubicaciones
         '
         Me.menuitemTablas_Ubicaciones.Name = "menuitemTablas_Ubicaciones"
-        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(138, 22)
         Me.menuitemTablas_Ubicaciones.Text = "Ubicaciones"
+        '
+        'menuitemTablas_Permisos
+        '
+        Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
+        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(138, 22)
+        Me.menuitemTablas_Permisos.Text = "Permisos"
         '
         'buttonPersonas
         '
@@ -241,7 +248,7 @@ Partial Class formMDIMain
         Me.buttonPersonas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPersonas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonPersonas.Name = "buttonPersonas"
-        Me.buttonPersonas.Size = New System.Drawing.Size(96, 36)
+        Me.buttonPersonas.Size = New System.Drawing.Size(106, 36)
         Me.buttonPersonas.Text = "Personas"
         '
         'buttonUnidades
@@ -251,18 +258,25 @@ Partial Class formMDIMain
         Me.buttonUnidades.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonUnidades.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonUnidades.Name = "buttonUnidades"
-        Me.buttonUnidades.Size = New System.Drawing.Size(96, 36)
+        Me.buttonUnidades.Size = New System.Drawing.Size(106, 36)
         Me.buttonUnidades.Text = "Unidades"
         '
-        'buttonElementos
+        'buttonInventario
         '
-        Me.buttonElementos.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ELEMENTOS_32
-        Me.buttonElementos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonElementos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonElementos.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonElementos.Name = "buttonElementos"
-        Me.buttonElementos.Size = New System.Drawing.Size(96, 36)
-        Me.buttonElementos.Text = "Elementos"
+        Me.buttonInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemInventario_Elementos})
+        Me.buttonInventario.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ELEMENTOS_32
+        Me.buttonInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonInventario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonInventario.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonInventario.Name = "buttonInventario"
+        Me.buttonInventario.Size = New System.Drawing.Size(106, 36)
+        Me.buttonInventario.Text = "Inventario"
+        '
+        'menuitemInventario_Elementos
+        '
+        Me.menuitemInventario_Elementos.Name = "menuitemInventario_Elementos"
+        Me.menuitemInventario_Elementos.Size = New System.Drawing.Size(152, 22)
+        Me.menuitemInventario_Elementos.Text = "Elementos"
         '
         'buttonReportes
         '
@@ -271,14 +285,8 @@ Partial Class formMDIMain
         Me.buttonReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonReportes.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonReportes.Name = "buttonReportes"
-        Me.buttonReportes.Size = New System.Drawing.Size(96, 36)
+        Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
-        '
-        'menuitemTablas_Permisos
-        '
-        Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
-        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(152, 22)
-        Me.menuitemTablas_Permisos.Text = "Permisos"
         '
         'formMDIMain
         '
@@ -334,7 +342,8 @@ Partial Class formMDIMain
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonPersonas As System.Windows.Forms.ToolStripButton
     Friend WithEvents menuitemTablas_Ubicaciones As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents buttonElementos As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonUnidades As System.Windows.Forms.ToolStripButton
     Friend WithEvents menuitemTablas_Permisos As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents buttonInventario As System.Windows.Forms.ToolStripSplitButton
+    Friend WithEvents menuitemInventario_Elementos As System.Windows.Forms.ToolStripMenuItem
 End Class

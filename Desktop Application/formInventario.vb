@@ -315,7 +315,7 @@
 
             datagridviewMain.Enabled = False
 
-            formElemento.LoadAndShow(True, Me, 0)
+            formInventarioDetalle.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -332,7 +332,7 @@
 
                 datagridviewMain.Enabled = False
 
-                formElemento.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
+                formInventarioDetalle.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
 
                 datagridviewMain.Enabled = True
 
@@ -389,7 +389,7 @@
 
             datagridviewMain.Enabled = False
 
-            formElemento.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
+            formInventarioDetalle.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
 
             datagridviewMain.Enabled = True
 

@@ -14,6 +14,7 @@ Partial Public Class Parentesco
     Public Property IDParentesco As Byte
     Public Property Nombre As String
     Public Property Orden As Nullable(Of Byte)
+    Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

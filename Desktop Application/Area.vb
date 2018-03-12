@@ -15,6 +15,7 @@ Partial Public Class Area
     Public Property IDCuartel As Byte
     Public Property Codigo As String
     Public Property Nombre As String
+    Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

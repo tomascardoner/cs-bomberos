@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="72">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="5.25" PointY="23.25" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="3" PointY="21.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="5.25" PointY="45.625" />
@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="1.625" PointX="2.875" PointY="25.375" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="0.75" PointY="30" />
-        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="3" PointY="39.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="0.75" PointY="38.75" />
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Log" />
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteParametro" />
@@ -102,12 +102,22 @@
         <EntityTypeShape EntityType="CSBomberosModel.PersonaCalificacion" Width="1.5" PointX="5.5" PointY="14.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Modificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.5" PointY="32.71184462436041" />
-          <ConnectorPoint PointX="4.9031931417709362" PointY="21.727751542413639" />
-          <ConnectorPoint PointX="4.9093068582290638" PointY="21.561197046080313" />
-          <ConnectorPoint PointX="4.9344431417709362" PointY="20.876415363174143" />
-          <ConnectorPoint PointX="4.9405568582290638" PointY="20.709860866840817" />
-          <ConnectorPoint PointX="5.25" PointY="12.279776322612541" />
+          <ConnectorPoint PointX="4.5" PointY="34.922971045572467" />
+          <ConnectorPoint PointX="4.8409798510484334" PointY="24.671073320808151" />
+          <ConnectorPoint PointX="4.8465201489515675" PointY="24.504498764296894" />
+          <ConnectorPoint PointX="4.8722298510484334" PointY="23.731511047806325" />
+          <ConnectorPoint PointX="4.8777701489515675" PointY="23.564936491295068" />
+          <ConnectorPoint PointX="4.9034798510484334" PointY="22.791948774804528" />
+          <ConnectorPoint PointX="4.9090201489515675" PointY="22.62537421829327" />
+          <ConnectorPoint PointX="4.9347298510484334" PointY="21.8523865018027" />
+          <ConnectorPoint PointX="4.9402701489515675" PointY="21.685811945291444" />
+          <ConnectorPoint PointX="4.9659798510484334" PointY="20.912824228800904" />
+          <ConnectorPoint PointX="4.9715201489515675" PointY="20.746249672289647" />
+          <ConnectorPoint PointX="5.0909798510484334" PointY="17.154575136793628" />
+          <ConnectorPoint PointX="5.0965201489515675" PointY="16.988000580282371" />
+          <ConnectorPoint PointX="5.1534798510484334" PointY="15.275450590790005" />
+          <ConnectorPoint PointX="5.1590201489515675" PointY="15.108876034278747" />
+          <ConnectorPoint PointX="5.25" PointY="12.373476493528955" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" />
@@ -139,6 +149,60 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" />
         <AssociationConnector Association="CSBomberosModel.FK__Rubro__Elemento" />
         <AssociationConnector Association="CSBomberosModel.FK__SubRubro__Elemento" />
+        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionNivel" Width="1.5" PointX="13.875" PointY="14.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionTipo" Width="1.5" PointX="13.875" PointY="18.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Curso" Width="1.5" PointX="13.875" PointY="10.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.LicenciaCausa" Width="1.5" PointX="16.875" PointY="44.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.LicenciaConducirCategoria" Width="1.5" PointX="5.25" PointY="60.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaBajaMotivo" Width="1.5" PointX="5.25" PointY="71.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaCapacitacion" Width="1.5" PointX="16.125" PointY="21.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaExamen" Width="1.5" PointX="15.125" PointY="40.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicencia" Width="1.5" PointX="19.125" PointY="34.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicenciaConducirCategoria" Width="1.5" PointX="18.125" PointY="40.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaSancion" Width="1.5" PointX="19.125" PointY="21.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.SancionTipo" Width="1.5" PointX="16.875" PointY="16.75" />
+        <AssociationConnector Association="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Curso__PersonaCapacitacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Curso__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Curso__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Inventario__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Inventario__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Localidad__PersonaCapacitacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Localidad__PersonaFamiliar" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCambioUnidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCapacitacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaExamen" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaLicencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaSancion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__SancionTipo__PersonaSancion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

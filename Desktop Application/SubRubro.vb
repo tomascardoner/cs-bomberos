@@ -14,6 +14,7 @@ Partial Public Class SubRubro
     Public Property IDSubRubro As Short
     Public Property IDRubro As Byte
     Public Property Nombre As String
+    Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
