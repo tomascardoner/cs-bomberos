@@ -17,6 +17,8 @@
             ' Es Nuevo
             mPersonaFamiliarActual = New PersonaFamiliar
             With mPersonaFamiliarActual
+                .IDPersona = IDPersona
+
                 .Vive = True
                 .DomicilioIDProvincia = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
                 .DomicilioIDLocalidad = CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
@@ -59,6 +61,8 @@
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
+        comboboxGrupoSanguineo.Enabled = mEditMode
+        comboboxFactorRH.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
 
         ' Contacto
@@ -81,14 +85,19 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        SetAppearance()
+
         ' Cargo los ComboBox
         pFillAndRefreshLists.Parentesco(comboboxParentesco, False, True)
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
         pFillAndRefreshLists.Genero(comboboxGenero, False)
+        pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
+        pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
     End Sub
 
     Friend Sub SetAppearance()
+
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -103,12 +112,6 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaFamiliarActual
             ' Datos del Encabezado
-            If .IDFamiliar = 0 Then
-                textboxIDFamiliar.Text = My.Resources.STRING_ITEM_NEW_MALE
-            Else
-                textboxIDFamiliar.Text = String.Format(.IDFamiliar.ToString, "G")
-            End If
-
             textboxApellido.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Apellido)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
@@ -122,6 +125,8 @@
             End If
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
 
             ' Datos de la pestaña Contacto Particular
@@ -141,6 +146,11 @@
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If .IDFamiliar = 0 Then
+                textboxIDFamiliar.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDFamiliar.Text = String.Format(.IDFamiliar.ToString, "G")
+            End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
                 textboxUsuarioCreacion.Text = ""
@@ -172,6 +182,8 @@
             End If
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
+            .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
+            .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
 
             ' Datos de la pestaña Contacto

@@ -76,7 +76,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CInt(datagridviewMain.CurrentRow.Cells(columnIDPersona.Index).Value)
+                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPersona
             End If
         End If
 
@@ -84,8 +84,8 @@
 
         If PositionIDPersona <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CInt(CurrentRowChecked.Cells(columnIDPersona.Name).Value) = PositionIDPersona Then
-                    datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnIDPersona.Name)
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDPersona = PositionIDPersona Then
+                    datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnMatriculaNumero.Name)
                     Exit For
                 End If
             Next
@@ -149,12 +149,6 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case OrdenColumna.Name
-            Case columnIDPersona.Name
-                If OrdenTipo = SortOrder.Ascending Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.IDPersona).ToList
-                Else
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.IDPersona).ToList
-                End If
             Case columnMatriculaNumero.Name
                 If OrdenTipo = SortOrder.Ascending Then
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.MatriculaNumero).ToList
@@ -193,7 +187,7 @@
             If Char.IsLetter(e.KeyChar) Then
                 For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
                     If RowCurrent.Cells(columnApellido.Name).Value.ToString.StartsWith(e.KeyChar, StringComparison.CurrentCultureIgnoreCase) Then
-                        RowCurrent.Cells(columnIDPersona.Name).Selected = True
+                        RowCurrent.Cells(columnMatriculaNumero.Name).Selected = True
                         datagridviewMain.Focus()
                         Exit For
                     End If
@@ -240,7 +234,7 @@
 
         ClickedColumn = CType(datagridviewMain.Columns(e.ColumnIndex), DataGridViewColumn)
 
-        If ClickedColumn.Name = columnIDPersona.Name Or ClickedColumn.Name = columnMatriculaNumero.Name Or ClickedColumn.Name = columnApellido.Name Or ClickedColumn.Name = columnNombre.Name Then
+        If ClickedColumn.Name = columnMatriculaNumero.Name Or ClickedColumn.Name = columnApellido.Name Or ClickedColumn.Name = columnNombre.Name Then
             If ClickedColumn Is OrdenColumna Then
                 ' La columna clickeada es la misma por la que ya estaba ordenado, así que cambio la dirección del orden
                 If OrdenTipo = SortOrder.Ascending Then

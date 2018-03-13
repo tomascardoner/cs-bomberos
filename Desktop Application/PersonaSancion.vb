@@ -31,9 +31,9 @@ Partial Public Class PersonaSancion
 
     Public Overridable Property CargoJerarquia As CargoJerarquia
     Public Overridable Property Persona As Persona
-    Public Overridable Property Persona1 As Persona
+    Public Overridable Property PersonaSolicita As Persona
     Public Overridable Property SancionTipo As SancionTipo
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

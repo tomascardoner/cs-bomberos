@@ -18,6 +18,7 @@
             mPersonaAltaBajaActual = New PersonaAltaBaja
             With mPersonaAltaBajaActual
                 .IDPersona = IDPersona
+
                 .AltaFecha = DateTime.Today
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -51,21 +52,23 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         datetimepickerAltaFecha.Enabled = mEditMode
-
         textboxAltaLibroNumero.ReadOnly = Not mEditMode
         textboxAltaFolioNumero.ReadOnly = Not mEditMode
         textboxAltaActaNumero.ReadOnly = Not mEditMode
 
         datetimepickerBajaFecha.Enabled = mEditMode
-
         textboxBajaLibroNumero.ReadOnly = Not mEditMode
         textboxBajaFolioNumero.ReadOnly = Not mEditMode
         textboxBajaActaNumero.ReadOnly = Not mEditMode
+        comboboxBajaMotivo.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        ' Cargo los ComboBox
+        pFillAndRefreshLists.PersonaBajaMotivo(comboboxBajaMotivo, False, True)
+
         SetAppearance()
     End Sub
 
@@ -88,15 +91,20 @@
             textboxAltaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaLibroNumero)
             textboxAltaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaFolioNumero)
             textboxAltaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaActaNumero)
+
             datetimepickerBajaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.BajaFecha, datetimepickerBajaFecha)
             textboxBajaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaLibroNumero)
             textboxBajaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaFolioNumero)
             textboxBajaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaActaNumero)
-
-            'comboboxBajaMotivo 
+            CS_Control_ComboBox.SetSelectedValue(comboboxBajaMotivo, SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            If .IDAltaBaja = 0 Then
+                textboxIDAltaBaja.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDAltaBaja.Text = String.Format(.IDAltaBaja.ToString, "G")
+            End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
                 textboxUsuarioCreacion.Text = ""
@@ -118,10 +126,12 @@
             .AltaLibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaLibroNumero.Text)
             .AltaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaFolioNumero.Text)
             .AltaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaActaNumero.Text)
+
             .BajaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerBajaFecha.Value, datetimepickerBajaFecha.Checked)
             .BajaLibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaLibroNumero.Text)
             .BajaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaFolioNumero.Text)
             .BajaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaActaNumero.Text)
+            .IDPersonaBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxBajaMotivo.SelectedValue)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With

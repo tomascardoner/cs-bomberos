@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formPersonaAscenso
+Partial Class formPersonaLicencia
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,11 +22,7 @@ Partial Class formPersonaAscenso
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim labelCargo As System.Windows.Forms.Label
-        Dim labelCargoJerarquia As System.Windows.Forms.Label
-        Dim labelFolioNumero As System.Windows.Forms.Label
-        Dim labelLibroNumero As System.Windows.Forms.Label
-        Dim labelActaNumero As System.Windows.Forms.Label
+        Dim labelCausa As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -38,25 +34,23 @@ Partial Class formPersonaAscenso
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.comboboxCargo = New System.Windows.Forms.ComboBox()
-        Me.comboboxCargoJerarquia = New System.Windows.Forms.ComboBox()
-        Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
-        Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
-        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
+        Me.comboboxCausa = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.datetimepickerFechaInterrupcion = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaInterrupcion = New System.Windows.Forms.Label()
+        Me.datetimepickerFechaHasta = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaHasta = New System.Windows.Forms.Label()
+        Me.datetimepickerFechaDesde = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaDesde = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDAscenso = New System.Windows.Forms.Label()
-        Me.textboxIDAscenso = New System.Windows.Forms.TextBox()
+        Me.labelIDLicencia = New System.Windows.Forms.Label()
+        Me.textboxIDLicencia = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        labelCargo = New System.Windows.Forms.Label()
-        labelCargoJerarquia = New System.Windows.Forms.Label()
-        labelFolioNumero = New System.Windows.Forms.Label()
-        labelLibroNumero = New System.Windows.Forms.Label()
-        labelActaNumero = New System.Windows.Forms.Label()
+        labelCausa = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -65,50 +59,14 @@ Partial Class formPersonaAscenso
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
-        'labelCargo
+        'labelCausa
         '
-        labelCargo.AutoSize = True
-        labelCargo.Location = New System.Drawing.Point(6, 49)
-        labelCargo.Name = "labelCargo"
-        labelCargo.Size = New System.Drawing.Size(38, 13)
-        labelCargo.TabIndex = 4
-        labelCargo.Text = "Cargo:"
-        '
-        'labelCargoJerarquia
-        '
-        labelCargoJerarquia.AutoSize = True
-        labelCargoJerarquia.Location = New System.Drawing.Point(6, 76)
-        labelCargoJerarquia.Name = "labelCargoJerarquia"
-        labelCargoJerarquia.Size = New System.Drawing.Size(55, 13)
-        labelCargoJerarquia.TabIndex = 6
-        labelCargoJerarquia.Text = "Jerarquía:"
-        '
-        'labelFolioNumero
-        '
-        labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(147, 114)
-        labelFolioNumero.Name = "labelFolioNumero"
-        labelFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelFolioNumero.TabIndex = 10
-        labelFolioNumero.Text = "Folio N°:"
-        '
-        'labelLibroNumero
-        '
-        labelLibroNumero.AutoSize = True
-        labelLibroNumero.Location = New System.Drawing.Point(6, 114)
-        labelLibroNumero.Name = "labelLibroNumero"
-        labelLibroNumero.Size = New System.Drawing.Size(48, 13)
-        labelLibroNumero.TabIndex = 8
-        labelLibroNumero.Text = "Libro N°:"
-        '
-        'labelActaNumero
-        '
-        labelActaNumero.AutoSize = True
-        labelActaNumero.Location = New System.Drawing.Point(280, 114)
-        labelActaNumero.Name = "labelActaNumero"
-        labelActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelActaNumero.TabIndex = 12
-        labelActaNumero.Text = "Acta N°:"
+        labelCausa.AutoSize = True
+        labelCausa.Location = New System.Drawing.Point(6, 49)
+        labelCausa.Name = "labelCausa"
+        labelCausa.Size = New System.Drawing.Size(40, 13)
+        labelCausa.TabIndex = 4
+        labelCausa.Text = "Causa:"
         '
         'labelModificacion
         '
@@ -180,7 +138,7 @@ Partial Class formPersonaAscenso
         'datetimepickerFecha
         '
         Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(67, 10)
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(125, 13)
         Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
@@ -215,47 +173,14 @@ Partial Class formPersonaAscenso
         Me.labelNotas.TabIndex = 14
         Me.labelNotas.Text = "Notas:"
         '
-        'comboboxCargo
+        'comboboxCausa
         '
-        Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargo.FormattingEnabled = True
-        Me.comboboxCargo.Location = New System.Drawing.Point(67, 46)
-        Me.comboboxCargo.Name = "comboboxCargo"
-        Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargo.TabIndex = 5
-        '
-        'comboboxCargoJerarquia
-        '
-        Me.comboboxCargoJerarquia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargoJerarquia.FormattingEnabled = True
-        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(67, 73)
-        Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
-        Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargoJerarquia.TabIndex = 7
-        '
-        'textboxFolioNumero
-        '
-        Me.textboxFolioNumero.Location = New System.Drawing.Point(200, 111)
-        Me.textboxFolioNumero.MaxLength = 10
-        Me.textboxFolioNumero.Name = "textboxFolioNumero"
-        Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxFolioNumero.TabIndex = 11
-        '
-        'textboxLibroNumero
-        '
-        Me.textboxLibroNumero.Location = New System.Drawing.Point(67, 111)
-        Me.textboxLibroNumero.MaxLength = 10
-        Me.textboxLibroNumero.Name = "textboxLibroNumero"
-        Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxLibroNumero.TabIndex = 9
-        '
-        'textboxActaNumero
-        '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(333, 111)
-        Me.textboxActaNumero.MaxLength = 10
-        Me.textboxActaNumero.Name = "textboxActaNumero"
-        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxActaNumero.TabIndex = 13
+        Me.comboboxCausa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCausa.FormattingEnabled = True
+        Me.comboboxCausa.Location = New System.Drawing.Point(125, 46)
+        Me.comboboxCausa.Name = "comboboxCausa"
+        Me.comboboxCausa.Size = New System.Drawing.Size(379, 21)
+        Me.comboboxCausa.TabIndex = 5
         '
         'tabcontrolMain
         '
@@ -270,18 +195,16 @@ Partial Class formPersonaAscenso
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaInterrupcion)
+        Me.tabpageGeneral.Controls.Add(Me.labelFechaInterrupcion)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaHasta)
+        Me.tabpageGeneral.Controls.Add(Me.labelFechaHasta)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaDesde)
+        Me.tabpageGeneral.Controls.Add(Me.labelFechaDesde)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
-        Me.tabpageGeneral.Controls.Add(Me.textboxFolioNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
-        Me.tabpageGeneral.Controls.Add(labelFolioNumero)
-        Me.tabpageGeneral.Controls.Add(labelCargo)
-        Me.tabpageGeneral.Controls.Add(labelLibroNumero)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxCargo)
-        Me.tabpageGeneral.Controls.Add(Me.textboxLibroNumero)
-        Me.tabpageGeneral.Controls.Add(labelCargoJerarquia)
-        Me.tabpageGeneral.Controls.Add(labelActaNumero)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxCargoJerarquia)
-        Me.tabpageGeneral.Controls.Add(Me.textboxActaNumero)
+        Me.tabpageGeneral.Controls.Add(labelCausa)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxCausa)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
@@ -290,10 +213,68 @@ Partial Class formPersonaAscenso
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'datetimepickerFechaInterrupcion
+        '
+        Me.datetimepickerFechaInterrupcion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaInterrupcion.Location = New System.Drawing.Point(125, 151)
+        Me.datetimepickerFechaInterrupcion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaInterrupcion.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaInterrupcion.Name = "datetimepickerFechaInterrupcion"
+        Me.datetimepickerFechaInterrupcion.ShowCheckBox = True
+        Me.datetimepickerFechaInterrupcion.Size = New System.Drawing.Size(138, 20)
+        Me.datetimepickerFechaInterrupcion.TabIndex = 11
+        '
+        'labelFechaInterrupcion
+        '
+        Me.labelFechaInterrupcion.AutoSize = True
+        Me.labelFechaInterrupcion.Location = New System.Drawing.Point(6, 154)
+        Me.labelFechaInterrupcion.Name = "labelFechaInterrupcion"
+        Me.labelFechaInterrupcion.Size = New System.Drawing.Size(113, 13)
+        Me.labelFechaInterrupcion.TabIndex = 10
+        Me.labelFechaInterrupcion.Text = "Fecha de interrupción:"
+        '
+        'datetimepickerFechaHasta
+        '
+        Me.datetimepickerFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaHasta.Location = New System.Drawing.Point(125, 112)
+        Me.datetimepickerFechaHasta.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaHasta.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaHasta.Name = "datetimepickerFechaHasta"
+        Me.datetimepickerFechaHasta.Size = New System.Drawing.Size(116, 20)
+        Me.datetimepickerFechaHasta.TabIndex = 9
+        '
+        'labelFechaHasta
+        '
+        Me.labelFechaHasta.AutoSize = True
+        Me.labelFechaHasta.Location = New System.Drawing.Point(6, 115)
+        Me.labelFechaHasta.Name = "labelFechaHasta"
+        Me.labelFechaHasta.Size = New System.Drawing.Size(69, 13)
+        Me.labelFechaHasta.TabIndex = 8
+        Me.labelFechaHasta.Text = "Fecha hasta:"
+        '
+        'datetimepickerFechaDesde
+        '
+        Me.datetimepickerFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaDesde.Location = New System.Drawing.Point(125, 86)
+        Me.datetimepickerFechaDesde.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaDesde.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaDesde.Name = "datetimepickerFechaDesde"
+        Me.datetimepickerFechaDesde.Size = New System.Drawing.Size(116, 20)
+        Me.datetimepickerFechaDesde.TabIndex = 7
+        '
+        'labelFechaDesde
+        '
+        Me.labelFechaDesde.AutoSize = True
+        Me.labelFechaDesde.Location = New System.Drawing.Point(6, 89)
+        Me.labelFechaDesde.Name = "labelFechaDesde"
+        Me.labelFechaDesde.Size = New System.Drawing.Size(72, 13)
+        Me.labelFechaDesde.TabIndex = 6
+        Me.labelFechaDesde.Text = "Fecha desde:"
+        '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAscenso)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAscenso)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDLicencia)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDLicencia)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
@@ -310,25 +291,25 @@ Partial Class formPersonaAscenso
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDAscenso
+        'labelIDLicencia
         '
-        Me.labelIDAscenso.AutoSize = True
-        Me.labelIDAscenso.Location = New System.Drawing.Point(6, 162)
-        Me.labelIDAscenso.Name = "labelIDAscenso"
-        Me.labelIDAscenso.Size = New System.Drawing.Size(80, 13)
-        Me.labelIDAscenso.TabIndex = 16
-        Me.labelIDAscenso.Text = "ID de Ascenso:"
+        Me.labelIDLicencia.AutoSize = True
+        Me.labelIDLicencia.Location = New System.Drawing.Point(6, 162)
+        Me.labelIDLicencia.Name = "labelIDLicencia"
+        Me.labelIDLicencia.Size = New System.Drawing.Size(79, 13)
+        Me.labelIDLicencia.TabIndex = 16
+        Me.labelIDLicencia.Text = "ID de Licencia:"
         '
-        'textboxIDAscenso
+        'textboxIDLicencia
         '
-        Me.textboxIDAscenso.Location = New System.Drawing.Point(114, 159)
-        Me.textboxIDAscenso.MaxLength = 10
-        Me.textboxIDAscenso.Name = "textboxIDAscenso"
-        Me.textboxIDAscenso.ReadOnly = True
-        Me.textboxIDAscenso.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAscenso.TabIndex = 17
-        Me.textboxIDAscenso.TabStop = False
-        Me.textboxIDAscenso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDLicencia.Location = New System.Drawing.Point(114, 159)
+        Me.textboxIDLicencia.MaxLength = 10
+        Me.textboxIDLicencia.Name = "textboxIDLicencia"
+        Me.textboxIDLicencia.ReadOnly = True
+        Me.textboxIDLicencia.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDLicencia.TabIndex = 17
+        Me.textboxIDLicencia.TabStop = False
+        Me.textboxIDLicencia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -366,7 +347,7 @@ Partial Class formPersonaAscenso
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'formPersonaAscenso
+        'formPersonaLicencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -376,9 +357,9 @@ Partial Class formPersonaAscenso
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formPersonaAscenso"
+        Me.Name = "formPersonaLicencia"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Ascenso - Promoción de la Persona"
+        Me.Text = "Licencia de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -399,18 +380,20 @@ Partial Class formPersonaAscenso
     Friend WithEvents labelFecha As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents comboboxCargo As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxCargoJerarquia As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
+    Friend WithEvents comboboxCausa As System.Windows.Forms.ComboBox
     Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
-    Friend WithEvents labelIDAscenso As System.Windows.Forms.Label
-    Friend WithEvents textboxIDAscenso As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDLicencia As System.Windows.Forms.Label
+    Friend WithEvents textboxIDLicencia As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents datetimepickerFechaHasta As System.Windows.Forms.DateTimePicker
+    Friend WithEvents labelFechaHasta As System.Windows.Forms.Label
+    Friend WithEvents datetimepickerFechaDesde As System.Windows.Forms.DateTimePicker
+    Friend WithEvents labelFechaDesde As System.Windows.Forms.Label
+    Friend WithEvents datetimepickerFechaInterrupcion As System.Windows.Forms.DateTimePicker
+    Friend WithEvents labelFechaInterrupcion As System.Windows.Forms.Label
 End Class

@@ -65,20 +65,20 @@ Partial Class formPersona
         Dim labelDomicilioLaboralProvincia As System.Windows.Forms.Label
         Dim labelDomicilioLaboralNumero As System.Windows.Forms.Label
         Dim labelDomicilioLaboralPiso As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
@@ -95,15 +95,16 @@ Partial Class formPersona
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.textboxMatriculaNumero = New System.Windows.Forms.TextBox()
+        Me.textboxIOMANumeroAfiliado = New System.Windows.Forms.TextBox()
+        Me.buttonLicenciaConducirNumero = New System.Windows.Forms.Button()
+        Me.textboxLicenciaConducirNumero = New System.Windows.Forms.TextBox()
+        Me.textboxDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.textboxCargoJerarquiaActual = New System.Windows.Forms.TextBox()
         Me.textboxCantidadHijos = New System.Windows.Forms.TextBox()
-        Me.textboxIOMANumeroAfiliado = New System.Windows.Forms.TextBox()
         Me.datetimepickerLicenciaConducirVencimiento = New System.Windows.Forms.DateTimePicker()
-        Me.buttonLicenciaConducirNumero = New System.Windows.Forms.Button()
-        Me.textboxLicenciaConducirNumero = New System.Windows.Forms.TextBox()
         Me.comboboxIOMATiene = New System.Windows.Forms.ComboBox()
         Me.comboboxNivelEstudio = New System.Windows.Forms.ComboBox()
         Me.comboboxFactorRH = New System.Windows.Forms.ComboBox()
@@ -111,7 +112,6 @@ Partial Class formPersona
         Me.datetimepickerFechaNacimiento = New System.Windows.Forms.DateTimePicker()
         Me.comboboxGenero = New System.Windows.Forms.ComboBox()
         Me.comboboxDocumentoTipo = New System.Windows.Forms.ComboBox()
-        Me.textboxDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.maskedtextboxDocumentoNumero = New System.Windows.Forms.MaskedTextBox()
         Me.textboxNacionalidad = New System.Windows.Forms.TextBox()
         Me.textboxProfesion = New System.Windows.Forms.TextBox()
@@ -162,25 +162,40 @@ Partial Class formPersona
         Me.buttonAltasBajas_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAscensos = New System.Windows.Forms.TabPage()
         Me.datagridviewAscensos = New System.Windows.Forms.DataGridView()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnJerarquia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAscensos = New System.Windows.Forms.ToolStrip()
         Me.buttonAscensos_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAscensos_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAscensos_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageLicencias = New System.Windows.Forms.TabPage()
+        Me.datagridviewLicencias = New System.Windows.Forms.DataGridView()
+        Me.toolstripLicencias = New System.Windows.Forms.ToolStrip()
+        Me.buttonLicencias_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicencias_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicencias_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
+        Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
+        Me.toolstripSanciones = New System.Windows.Forms.ToolStrip()
+        Me.buttonSanciones_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonSanciones_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonSanciones_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCursos = New System.Windows.Forms.TabPage()
+        Me.datagridviewCursos = New System.Windows.Forms.DataGridView()
+        Me.toolstripCursos = New System.Windows.Forms.ToolStrip()
+        Me.buttonCursos_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCursos_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCursos_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCalificaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCalificaciones = New System.Windows.Forms.DataGridView()
-        Me.columnAnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnConceptosCalificaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripCalificaciones = New System.Windows.Forms.ToolStrip()
         Me.buttonCalificacinoes_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificacinoes_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificacinoes_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageExamenes = New System.Windows.Forms.TabPage()
+        Me.datagridviewExamenes = New System.Windows.Forms.DataGridView()
+        Me.toolstripExamenes = New System.Windows.Forms.ToolStrip()
+        Me.buttonExamenes_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonExamenes_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonExamenes_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
@@ -188,38 +203,21 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.datagridviewLicencias = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripLicencias = New System.Windows.Forms.ToolStrip()
-        Me.buttonLicencias_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonLicencias_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonLicencias_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripSanciones = New System.Windows.Forms.ToolStrip()
-        Me.buttonSanciones_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonSanciones_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonSanciones_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.datagridviewCursos = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripCursos = New System.Windows.Forms.ToolStrip()
-        Me.buttonCursos_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCursos_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCursos_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.datagridviewExamenes = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripExamenes = New System.Windows.Forms.ToolStrip()
-        Me.buttonExamenes_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonExamenes_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonExamenes_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCapacitaciones_CursoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAscensos_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAscensos_Cargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAscensos_Jerarquia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_Causa = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_FechaDesde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_FechaHasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCalificaciones_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCalificaciones_ConceptosCalificaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnExamenes_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnExamenes_Calificacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -283,21 +281,21 @@ Partial Class formPersona
         CType(Me.datagridviewAscensos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripAscensos.SuspendLayout()
         Me.tabpageLicencias.SuspendLayout()
+        CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripLicencias.SuspendLayout()
         Me.tabpageSanciones.SuspendLayout()
+        CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripSanciones.SuspendLayout()
         Me.tabpageCursos.SuspendLayout()
+        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripCursos.SuspendLayout()
         Me.tabpageCalificaciones.SuspendLayout()
         CType(Me.datagridviewCalificaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripCalificaciones.SuspendLayout()
         Me.tabpageExamenes.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
-        CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripLicencias.SuspendLayout()
-        CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripSanciones.SuspendLayout()
-        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripCursos.SuspendLayout()
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripExamenes.SuspendLayout()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelApellido
@@ -323,20 +321,412 @@ Partial Class formPersona
         'labelMatriculaNumero
         '
         labelMatriculaNumero.AutoSize = True
-        labelMatriculaNumero.Location = New System.Drawing.Point(312, 49)
+        labelMatriculaNumero.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        labelMatriculaNumero.Location = New System.Drawing.Point(119, 49)
         labelMatriculaNumero.Name = "labelMatriculaNumero"
-        labelMatriculaNumero.Size = New System.Drawing.Size(55, 13)
+        labelMatriculaNumero.Size = New System.Drawing.Size(65, 16)
         labelMatriculaNumero.TabIndex = 0
         labelMatriculaNumero.Text = "Matrícula:"
+        '
+        'labelCargoJerarquiaActual
+        '
+        labelCargoJerarquiaActual.AutoSize = True
+        labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 354)
+        labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
+        labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
+        labelCargoJerarquiaActual.TabIndex = 29
+        labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
+        '
+        'labelIOMANumeroAfiliado
+        '
+        labelIOMANumeroAfiliado.AutoSize = True
+        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 159)
+        labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
+        labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
+        labelIOMANumeroAfiliado.TabIndex = 18
+        labelIOMANumeroAfiliado.Text = "Nº de afiliado:"
+        Me.tooltipMain.SetToolTip(labelIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelLicenciaConducirvencimiento
+        '
+        labelLicenciaConducirvencimiento.AutoSize = True
+        labelLicenciaConducirvencimiento.Location = New System.Drawing.Point(314, 40)
+        labelLicenciaConducirvencimiento.Name = "labelLicenciaConducirvencimiento"
+        labelLicenciaConducirvencimiento.Size = New System.Drawing.Size(68, 13)
+        labelLicenciaConducirvencimiento.TabIndex = 6
+        labelLicenciaConducirvencimiento.Text = "Vencimiento:"
+        Me.tooltipMain.SetToolTip(labelLicenciaConducirvencimiento, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelLicenciaConducirNumero
+        '
+        labelLicenciaConducirNumero.AutoSize = True
+        labelLicenciaConducirNumero.Location = New System.Drawing.Point(6, 40)
+        labelLicenciaConducirNumero.Name = "labelLicenciaConducirNumero"
+        labelLicenciaConducirNumero.Size = New System.Drawing.Size(109, 13)
+        labelLicenciaConducirNumero.TabIndex = 3
+        labelLicenciaConducirNumero.Text = "Licencia de conducir:"
+        Me.tooltipMain.SetToolTip(labelLicenciaConducirNumero, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelIOMATiene
+        '
+        labelIOMATiene.AutoSize = True
+        labelIOMATiene.Location = New System.Drawing.Point(6, 159)
+        labelIOMATiene.Name = "labelIOMATiene"
+        labelIOMATiene.Size = New System.Drawing.Size(97, 13)
+        labelIOMATiene.TabIndex = 16
+        labelIOMATiene.Text = "Tiene I.O.M.A. por:"
+        '
+        'labelCantidadHijos
+        '
+        labelCantidadHijos.AutoSize = True
+        labelCantidadHijos.Location = New System.Drawing.Point(6, 326)
+        labelCantidadHijos.Name = "labelCantidadHijos"
+        labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
+        labelCantidadHijos.TabIndex = 28
+        labelCantidadHijos.Text = "Cantidad de hijos:"
+        '
+        'labelNivelEstudio
+        '
+        labelNivelEstudio.AutoSize = True
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 198)
+        labelNivelEstudio.Name = "labelNivelEstudio"
+        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
+        labelNivelEstudio.TabIndex = 20
+        labelNivelEstudio.Text = "Nivel de estudios:"
+        '
+        'labelFactorRH
+        '
+        labelFactorRH.AutoSize = True
+        labelFactorRH.Location = New System.Drawing.Point(286, 132)
+        labelFactorRH.Name = "labelFactorRH"
+        labelFactorRH.Size = New System.Drawing.Size(59, 13)
+        labelFactorRH.TabIndex = 14
+        labelFactorRH.Text = "Factor RH:"
+        '
+        'labelGrupoSanguineo
+        '
+        labelGrupoSanguineo.AutoSize = True
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 132)
+        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
+        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
+        labelGrupoSanguineo.TabIndex = 12
+        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
+        '
+        'labelFechaNacimiento
+        '
+        labelFechaNacimiento.AutoSize = True
+        labelFechaNacimiento.Location = New System.Drawing.Point(6, 79)
+        labelFechaNacimiento.Name = "labelFechaNacimiento"
+        labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
+        labelFechaNacimiento.TabIndex = 8
+        labelFechaNacimiento.Text = "Fecha de nacimiento:"
+        '
+        'labelGenero
+        '
+        labelGenero.AutoSize = True
+        labelGenero.Location = New System.Drawing.Point(6, 105)
+        labelGenero.Name = "labelGenero"
+        labelGenero.Size = New System.Drawing.Size(45, 13)
+        labelGenero.TabIndex = 10
+        labelGenero.Text = "Género:"
+        '
+        'labelDocumento
+        '
+        labelDocumento.AutoSize = True
+        labelDocumento.Location = New System.Drawing.Point(6, 13)
+        labelDocumento.Name = "labelDocumento"
+        labelDocumento.Size = New System.Drawing.Size(65, 13)
+        labelDocumento.TabIndex = 0
+        labelDocumento.Text = "Documento:"
+        Me.tooltipMain.SetToolTip(labelDocumento, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelNacionalidad
+        '
+        labelNacionalidad.AutoSize = True
+        labelNacionalidad.Location = New System.Drawing.Point(6, 251)
+        labelNacionalidad.Name = "labelNacionalidad"
+        labelNacionalidad.Size = New System.Drawing.Size(72, 13)
+        labelNacionalidad.TabIndex = 24
+        labelNacionalidad.Text = "Nacionalidad:"
+        '
+        'labelProfesion
+        '
+        labelProfesion.AutoSize = True
+        labelProfesion.Location = New System.Drawing.Point(6, 225)
+        labelProfesion.Name = "labelProfesion"
+        labelProfesion.Size = New System.Drawing.Size(54, 13)
+        labelProfesion.TabIndex = 22
+        labelProfesion.Text = "Profesión:"
+        '
+        'labelCuartel
+        '
+        labelCuartel.AutoSize = True
+        labelCuartel.Location = New System.Drawing.Point(6, 277)
+        labelCuartel.Name = "labelCuartel"
+        labelCuartel.Size = New System.Drawing.Size(43, 13)
+        labelCuartel.TabIndex = 26
+        labelCuartel.Text = "Cuartel:"
+        '
+        'labelTelefonoParticular
+        '
+        labelTelefonoParticular.AutoSize = True
+        labelTelefonoParticular.Location = New System.Drawing.Point(6, 229)
+        labelTelefonoParticular.Name = "labelTelefonoParticular"
+        labelTelefonoParticular.Size = New System.Drawing.Size(52, 13)
+        labelTelefonoParticular.TabIndex = 18
+        labelTelefonoParticular.Text = "Teléfono:"
+        '
+        'labelCelularParticular
+        '
+        labelCelularParticular.AutoSize = True
+        labelCelularParticular.Location = New System.Drawing.Point(6, 255)
+        labelCelularParticular.Name = "labelCelularParticular"
+        labelCelularParticular.Size = New System.Drawing.Size(42, 13)
+        labelCelularParticular.TabIndex = 20
+        labelCelularParticular.Text = "Celular:"
+        '
+        'labelEmailParticular
+        '
+        labelEmailParticular.AutoSize = True
+        labelEmailParticular.Location = New System.Drawing.Point(6, 281)
+        labelEmailParticular.Name = "labelEmailParticular"
+        labelEmailParticular.Size = New System.Drawing.Size(38, 13)
+        labelEmailParticular.TabIndex = 22
+        labelEmailParticular.Text = "E-mail:"
+        '
+        'labelDomicilioParticularCalle3
+        '
+        labelDomicilioParticularCalle3.AutoSize = True
+        labelDomicilioParticularCalle3.Location = New System.Drawing.Point(6, 91)
+        labelDomicilioParticularCalle3.Name = "labelDomicilioParticularCalle3"
+        labelDomicilioParticularCalle3.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioParticularCalle3.TabIndex = 10
+        labelDomicilioParticularCalle3.Text = "Calle 3:"
+        '
+        'labelDomicilioParticularCalle2
+        '
+        labelDomicilioParticularCalle2.AutoSize = True
+        labelDomicilioParticularCalle2.Location = New System.Drawing.Point(6, 65)
+        labelDomicilioParticularCalle2.Name = "labelDomicilioParticularCalle2"
+        labelDomicilioParticularCalle2.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioParticularCalle2.TabIndex = 8
+        labelDomicilioParticularCalle2.Text = "Calle 2:"
+        '
+        'labelDomicilioParticularCalle1
+        '
+        labelDomicilioParticularCalle1.AutoSize = True
+        labelDomicilioParticularCalle1.Location = New System.Drawing.Point(6, 13)
+        labelDomicilioParticularCalle1.Name = "labelDomicilioParticularCalle1"
+        labelDomicilioParticularCalle1.Size = New System.Drawing.Size(33, 13)
+        labelDomicilioParticularCalle1.TabIndex = 0
+        labelDomicilioParticularCalle1.Text = "Calle:"
+        '
+        'labelDomicilioParticularCodigoPostal
+        '
+        labelDomicilioParticularCodigoPostal.AutoSize = True
+        labelDomicilioParticularCodigoPostal.Location = New System.Drawing.Point(8, 171)
+        labelDomicilioParticularCodigoPostal.Name = "labelDomicilioParticularCodigoPostal"
+        labelDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(59, 13)
+        labelDomicilioParticularCodigoPostal.TabIndex = 16
+        labelDomicilioParticularCodigoPostal.Text = "Cód. Post.:"
+        '
+        'labelDomicilioParticularDepartamento
+        '
+        labelDomicilioParticularDepartamento.AutoSize = True
+        labelDomicilioParticularDepartamento.Location = New System.Drawing.Point(220, 39)
+        labelDomicilioParticularDepartamento.Name = "labelDomicilioParticularDepartamento"
+        labelDomicilioParticularDepartamento.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioParticularDepartamento.TabIndex = 6
+        labelDomicilioParticularDepartamento.Text = "Dto/Ofic.:"
+        '
+        'labelDomicilioParticularLocalidad
+        '
+        labelDomicilioParticularLocalidad.AutoSize = True
+        labelDomicilioParticularLocalidad.Location = New System.Drawing.Point(6, 144)
+        labelDomicilioParticularLocalidad.Name = "labelDomicilioParticularLocalidad"
+        labelDomicilioParticularLocalidad.Size = New System.Drawing.Size(56, 13)
+        labelDomicilioParticularLocalidad.TabIndex = 14
+        labelDomicilioParticularLocalidad.Text = "Localidad:"
+        '
+        'labelDomicilioParticularProvincia
+        '
+        labelDomicilioParticularProvincia.AutoSize = True
+        labelDomicilioParticularProvincia.Location = New System.Drawing.Point(6, 117)
+        labelDomicilioParticularProvincia.Name = "labelDomicilioParticularProvincia"
+        labelDomicilioParticularProvincia.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioParticularProvincia.TabIndex = 12
+        labelDomicilioParticularProvincia.Text = "Provincia:"
+        '
+        'labelDomicilioParticularNumero
+        '
+        labelDomicilioParticularNumero.AutoSize = True
+        labelDomicilioParticularNumero.Location = New System.Drawing.Point(6, 39)
+        labelDomicilioParticularNumero.Name = "labelDomicilioParticularNumero"
+        labelDomicilioParticularNumero.Size = New System.Drawing.Size(47, 13)
+        labelDomicilioParticularNumero.TabIndex = 2
+        labelDomicilioParticularNumero.Text = "Número:"
+        '
+        'labelDomicilioParticularPiso
+        '
+        labelDomicilioParticularPiso.AutoSize = True
+        labelDomicilioParticularPiso.Location = New System.Drawing.Point(128, 39)
+        labelDomicilioParticularPiso.Name = "labelDomicilioParticularPiso"
+        labelDomicilioParticularPiso.Size = New System.Drawing.Size(30, 13)
+        labelDomicilioParticularPiso.TabIndex = 4
+        labelDomicilioParticularPiso.Text = "Piso:"
+        '
+        'labelTelefonoLaboral
+        '
+        labelTelefonoLaboral.AutoSize = True
+        labelTelefonoLaboral.Location = New System.Drawing.Point(6, 229)
+        labelTelefonoLaboral.Name = "labelTelefonoLaboral"
+        labelTelefonoLaboral.Size = New System.Drawing.Size(52, 13)
+        labelTelefonoLaboral.TabIndex = 18
+        labelTelefonoLaboral.Text = "Teléfono:"
+        '
+        'labelCelularLaboral
+        '
+        labelCelularLaboral.AutoSize = True
+        labelCelularLaboral.Location = New System.Drawing.Point(6, 255)
+        labelCelularLaboral.Name = "labelCelularLaboral"
+        labelCelularLaboral.Size = New System.Drawing.Size(42, 13)
+        labelCelularLaboral.TabIndex = 20
+        labelCelularLaboral.Text = "Celular:"
+        '
+        'labelEmailLaboral
+        '
+        labelEmailLaboral.AutoSize = True
+        labelEmailLaboral.Location = New System.Drawing.Point(6, 281)
+        labelEmailLaboral.Name = "labelEmailLaboral"
+        labelEmailLaboral.Size = New System.Drawing.Size(38, 13)
+        labelEmailLaboral.TabIndex = 22
+        labelEmailLaboral.Text = "E-mail:"
+        '
+        'labelDomicilioLaboralCalle3
+        '
+        labelDomicilioLaboralCalle3.AutoSize = True
+        labelDomicilioLaboralCalle3.Location = New System.Drawing.Point(6, 91)
+        labelDomicilioLaboralCalle3.Name = "labelDomicilioLaboralCalle3"
+        labelDomicilioLaboralCalle3.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioLaboralCalle3.TabIndex = 10
+        labelDomicilioLaboralCalle3.Text = "Calle 3:"
+        '
+        'labelDomicilioLaboralCalle2
+        '
+        labelDomicilioLaboralCalle2.AutoSize = True
+        labelDomicilioLaboralCalle2.Location = New System.Drawing.Point(6, 65)
+        labelDomicilioLaboralCalle2.Name = "labelDomicilioLaboralCalle2"
+        labelDomicilioLaboralCalle2.Size = New System.Drawing.Size(42, 13)
+        labelDomicilioLaboralCalle2.TabIndex = 8
+        labelDomicilioLaboralCalle2.Text = "Calle 2:"
+        '
+        'labelDomicilioLaboralCalle1
+        '
+        labelDomicilioLaboralCalle1.AutoSize = True
+        labelDomicilioLaboralCalle1.Location = New System.Drawing.Point(6, 13)
+        labelDomicilioLaboralCalle1.Name = "labelDomicilioLaboralCalle1"
+        labelDomicilioLaboralCalle1.Size = New System.Drawing.Size(33, 13)
+        labelDomicilioLaboralCalle1.TabIndex = 0
+        labelDomicilioLaboralCalle1.Text = "Calle:"
+        '
+        'labelDomicilioLaboralCodigoPostal
+        '
+        labelDomicilioLaboralCodigoPostal.AutoSize = True
+        labelDomicilioLaboralCodigoPostal.Location = New System.Drawing.Point(8, 171)
+        labelDomicilioLaboralCodigoPostal.Name = "labelDomicilioLaboralCodigoPostal"
+        labelDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(59, 13)
+        labelDomicilioLaboralCodigoPostal.TabIndex = 16
+        labelDomicilioLaboralCodigoPostal.Text = "Cód. Post.:"
+        '
+        'labelDomicilioLaboralDepartamento
+        '
+        labelDomicilioLaboralDepartamento.AutoSize = True
+        labelDomicilioLaboralDepartamento.Location = New System.Drawing.Point(220, 39)
+        labelDomicilioLaboralDepartamento.Name = "labelDomicilioLaboralDepartamento"
+        labelDomicilioLaboralDepartamento.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioLaboralDepartamento.TabIndex = 6
+        labelDomicilioLaboralDepartamento.Text = "Dto/Ofic.:"
+        '
+        'labelDomicilioLaboralLocalidad
+        '
+        labelDomicilioLaboralLocalidad.AutoSize = True
+        labelDomicilioLaboralLocalidad.Location = New System.Drawing.Point(6, 144)
+        labelDomicilioLaboralLocalidad.Name = "labelDomicilioLaboralLocalidad"
+        labelDomicilioLaboralLocalidad.Size = New System.Drawing.Size(56, 13)
+        labelDomicilioLaboralLocalidad.TabIndex = 14
+        labelDomicilioLaboralLocalidad.Text = "Localidad:"
+        '
+        'labelDomicilioLaboralProvincia
+        '
+        labelDomicilioLaboralProvincia.AutoSize = True
+        labelDomicilioLaboralProvincia.Location = New System.Drawing.Point(6, 117)
+        labelDomicilioLaboralProvincia.Name = "labelDomicilioLaboralProvincia"
+        labelDomicilioLaboralProvincia.Size = New System.Drawing.Size(54, 13)
+        labelDomicilioLaboralProvincia.TabIndex = 12
+        labelDomicilioLaboralProvincia.Text = "Provincia:"
+        '
+        'labelDomicilioLaboralNumero
+        '
+        labelDomicilioLaboralNumero.AutoSize = True
+        labelDomicilioLaboralNumero.Location = New System.Drawing.Point(6, 39)
+        labelDomicilioLaboralNumero.Name = "labelDomicilioLaboralNumero"
+        labelDomicilioLaboralNumero.Size = New System.Drawing.Size(47, 13)
+        labelDomicilioLaboralNumero.TabIndex = 2
+        labelDomicilioLaboralNumero.Text = "Número:"
+        '
+        'labelDomicilioLaboralPiso
+        '
+        labelDomicilioLaboralPiso.AutoSize = True
+        labelDomicilioLaboralPiso.Location = New System.Drawing.Point(128, 39)
+        labelDomicilioLaboralPiso.Name = "labelDomicilioLaboralPiso"
+        labelDomicilioLaboralPiso.Size = New System.Drawing.Size(30, 13)
+        labelDomicilioLaboralPiso.TabIndex = 4
+        labelDomicilioLaboralPiso.Text = "Piso:"
+        '
+        'labelEsActivo
+        '
+        labelEsActivo.AutoSize = True
+        labelEsActivo.Location = New System.Drawing.Point(6, 284)
+        labelEsActivo.Name = "labelEsActivo"
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        labelEsActivo.TabIndex = 2
+        labelEsActivo.Text = "Activo:"
+        '
+        'labelNotas
+        '
+        labelNotas.AutoSize = True
+        labelNotas.Location = New System.Drawing.Point(6, 9)
+        labelNotas.Name = "labelNotas"
+        labelNotas.Size = New System.Drawing.Size(38, 13)
+        labelNotas.TabIndex = 0
+        labelNotas.Text = "Notas:"
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(6, 359)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 7
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(7, 333)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 4
+        labelCreacion.Text = "Creación:"
         '
         'labelIDPersona
         '
         Me.labelIDPersona.AutoSize = True
-        Me.labelIDPersona.Location = New System.Drawing.Point(118, 49)
+        Me.labelIDPersona.Location = New System.Drawing.Point(7, 307)
         Me.labelIDPersona.Name = "labelIDPersona"
-        Me.labelIDPersona.Size = New System.Drawing.Size(79, 13)
+        Me.labelIDPersona.Size = New System.Drawing.Size(78, 13)
         Me.labelIDPersona.TabIndex = 7
-        Me.labelIDPersona.Text = "N° de Persona:"
+        Me.labelIDPersona.Text = "ID de Persona:"
         '
         'textboxApellido
         '
@@ -349,7 +739,7 @@ Partial Class formPersona
         '
         'textboxIDPersona
         '
-        Me.textboxIDPersona.Location = New System.Drawing.Point(200, 46)
+        Me.textboxIDPersona.Location = New System.Drawing.Point(114, 304)
         Me.textboxIDPersona.MaxLength = 10
         Me.textboxIDPersona.Name = "textboxIDPersona"
         Me.textboxIDPersona.ReadOnly = True
@@ -447,12 +837,51 @@ Partial Class formPersona
         '
         'textboxMatriculaNumero
         '
-        Me.textboxMatriculaNumero.Location = New System.Drawing.Point(373, 46)
+        Me.textboxMatriculaNumero.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.textboxMatriculaNumero.Location = New System.Drawing.Point(200, 46)
         Me.textboxMatriculaNumero.MaxLength = 6
         Me.textboxMatriculaNumero.Name = "textboxMatriculaNumero"
-        Me.textboxMatriculaNumero.Size = New System.Drawing.Size(66, 20)
+        Me.textboxMatriculaNumero.Size = New System.Drawing.Size(72, 22)
         Me.textboxMatriculaNumero.TabIndex = 1
         Me.tooltipMain.SetToolTip(Me.textboxMatriculaNumero, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'textboxIOMANumeroAfiliado
+        '
+        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 156)
+        Me.textboxIOMANumeroAfiliado.MaxLength = 13
+        Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
+        Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
+        Me.textboxIOMANumeroAfiliado.TabIndex = 19
+        Me.tooltipMain.SetToolTip(Me.textboxIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'buttonLicenciaConducirNumero
+        '
+        Me.buttonLicenciaConducirNumero.Font = New System.Drawing.Font("Wingdings", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+        Me.buttonLicenciaConducirNumero.Location = New System.Drawing.Point(263, 36)
+        Me.buttonLicenciaConducirNumero.Name = "buttonLicenciaConducirNumero"
+        Me.buttonLicenciaConducirNumero.Size = New System.Drawing.Size(27, 21)
+        Me.buttonLicenciaConducirNumero.TabIndex = 5
+        Me.buttonLicenciaConducirNumero.Text = "Ã"
+        Me.tooltipMain.SetToolTip(Me.buttonLicenciaConducirNumero, "Copiar número de documento")
+        Me.buttonLicenciaConducirNumero.UseVisualStyleBackColor = True
+        '
+        'textboxLicenciaConducirNumero
+        '
+        Me.textboxLicenciaConducirNumero.Location = New System.Drawing.Point(142, 37)
+        Me.textboxLicenciaConducirNumero.MaxLength = 11
+        Me.textboxLicenciaConducirNumero.Name = "textboxLicenciaConducirNumero"
+        Me.textboxLicenciaConducirNumero.Size = New System.Drawing.Size(115, 20)
+        Me.textboxLicenciaConducirNumero.TabIndex = 4
+        Me.tooltipMain.SetToolTip(Me.textboxLicenciaConducirNumero, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'textboxDocumentoNumero
+        '
+        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
+        Me.textboxDocumentoNumero.MaxLength = 11
+        Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
+        Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
+        Me.textboxDocumentoNumero.TabIndex = 2
+        Me.tooltipMain.SetToolTip(Me.textboxDocumentoNumero, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'openfiledialogFoto
         '
@@ -544,34 +973,6 @@ Partial Class formPersona
         Me.textboxCantidadHijos.TabStop = False
         Me.textboxCantidadHijos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'labelCargoJerarquiaActual
-        '
-        labelCargoJerarquiaActual.AutoSize = True
-        labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 354)
-        labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
-        labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
-        labelCargoJerarquiaActual.TabIndex = 29
-        labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
-        '
-        'textboxIOMANumeroAfiliado
-        '
-        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 156)
-        Me.textboxIOMANumeroAfiliado.MaxLength = 13
-        Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
-        Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
-        Me.textboxIOMANumeroAfiliado.TabIndex = 19
-        Me.tooltipMain.SetToolTip(Me.textboxIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'labelIOMANumeroAfiliado
-        '
-        labelIOMANumeroAfiliado.AutoSize = True
-        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 159)
-        labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
-        labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
-        labelIOMANumeroAfiliado.TabIndex = 18
-        labelIOMANumeroAfiliado.Text = "Nº de afiliado:"
-        Me.tooltipMain.SetToolTip(labelIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
         'datetimepickerLicenciaConducirVencimiento
         '
         Me.datetimepickerLicenciaConducirVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -583,46 +984,6 @@ Partial Class formPersona
         Me.datetimepickerLicenciaConducirVencimiento.Size = New System.Drawing.Size(148, 20)
         Me.datetimepickerLicenciaConducirVencimiento.TabIndex = 7
         '
-        'labelLicenciaConducirvencimiento
-        '
-        labelLicenciaConducirvencimiento.AutoSize = True
-        labelLicenciaConducirvencimiento.Location = New System.Drawing.Point(314, 40)
-        labelLicenciaConducirvencimiento.Name = "labelLicenciaConducirvencimiento"
-        labelLicenciaConducirvencimiento.Size = New System.Drawing.Size(68, 13)
-        labelLicenciaConducirvencimiento.TabIndex = 6
-        labelLicenciaConducirvencimiento.Text = "Vencimiento:"
-        Me.tooltipMain.SetToolTip(labelLicenciaConducirvencimiento, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'buttonLicenciaConducirNumero
-        '
-        Me.buttonLicenciaConducirNumero.Font = New System.Drawing.Font("Wingdings", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.buttonLicenciaConducirNumero.Location = New System.Drawing.Point(263, 36)
-        Me.buttonLicenciaConducirNumero.Name = "buttonLicenciaConducirNumero"
-        Me.buttonLicenciaConducirNumero.Size = New System.Drawing.Size(27, 21)
-        Me.buttonLicenciaConducirNumero.TabIndex = 5
-        Me.buttonLicenciaConducirNumero.Text = "Ã"
-        Me.tooltipMain.SetToolTip(Me.buttonLicenciaConducirNumero, "Copiar número de documento")
-        Me.buttonLicenciaConducirNumero.UseVisualStyleBackColor = True
-        '
-        'labelLicenciaConducirNumero
-        '
-        labelLicenciaConducirNumero.AutoSize = True
-        labelLicenciaConducirNumero.Location = New System.Drawing.Point(6, 40)
-        labelLicenciaConducirNumero.Name = "labelLicenciaConducirNumero"
-        labelLicenciaConducirNumero.Size = New System.Drawing.Size(109, 13)
-        labelLicenciaConducirNumero.TabIndex = 3
-        labelLicenciaConducirNumero.Text = "Licencia de conducir:"
-        Me.tooltipMain.SetToolTip(labelLicenciaConducirNumero, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'textboxLicenciaConducirNumero
-        '
-        Me.textboxLicenciaConducirNumero.Location = New System.Drawing.Point(142, 37)
-        Me.textboxLicenciaConducirNumero.MaxLength = 11
-        Me.textboxLicenciaConducirNumero.Name = "textboxLicenciaConducirNumero"
-        Me.textboxLicenciaConducirNumero.Size = New System.Drawing.Size(115, 20)
-        Me.textboxLicenciaConducirNumero.TabIndex = 4
-        Me.tooltipMain.SetToolTip(Me.textboxLicenciaConducirNumero, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
         'comboboxIOMATiene
         '
         Me.comboboxIOMATiene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -631,24 +992,6 @@ Partial Class formPersona
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
         Me.comboboxIOMATiene.TabIndex = 17
-        '
-        'labelIOMATiene
-        '
-        labelIOMATiene.AutoSize = True
-        labelIOMATiene.Location = New System.Drawing.Point(6, 159)
-        labelIOMATiene.Name = "labelIOMATiene"
-        labelIOMATiene.Size = New System.Drawing.Size(97, 13)
-        labelIOMATiene.TabIndex = 16
-        labelIOMATiene.Text = "Tiene I.O.M.A. por:"
-        '
-        'labelCantidadHijos
-        '
-        labelCantidadHijos.AutoSize = True
-        labelCantidadHijos.Location = New System.Drawing.Point(6, 326)
-        labelCantidadHijos.Name = "labelCantidadHijos"
-        labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 28
-        labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'comboboxNivelEstudio
         '
@@ -659,32 +1002,14 @@ Partial Class formPersona
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
         Me.comboboxNivelEstudio.TabIndex = 21
         '
-        'labelNivelEstudio
-        '
-        labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 198)
-        labelNivelEstudio.Name = "labelNivelEstudio"
-        labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 20
-        labelNivelEstudio.Text = "Nivel de estudios:"
-        '
         'comboboxFactorRH
         '
         Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxFactorRH.FormattingEnabled = True
-        Me.comboboxFactorRH.Location = New System.Drawing.Point(315, 129)
+        Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 129)
         Me.comboboxFactorRH.Name = "comboboxFactorRH"
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
         Me.comboboxFactorRH.TabIndex = 15
-        '
-        'labelFactorRH
-        '
-        labelFactorRH.AutoSize = True
-        labelFactorRH.Location = New System.Drawing.Point(250, 132)
-        labelFactorRH.Name = "labelFactorRH"
-        labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 14
-        labelFactorRH.Text = "Factor RH:"
         '
         'comboboxGrupoSanguineo
         '
@@ -694,24 +1019,6 @@ Partial Class formPersona
         Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGrupoSanguineo.TabIndex = 13
-        '
-        'labelGrupoSanguineo
-        '
-        labelGrupoSanguineo.AutoSize = True
-        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 132)
-        labelGrupoSanguineo.Name = "labelGrupoSanguineo"
-        labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 12
-        labelGrupoSanguineo.Text = "Grupo sanguíneo:"
-        '
-        'labelFechaNacimiento
-        '
-        labelFechaNacimiento.AutoSize = True
-        labelFechaNacimiento.Location = New System.Drawing.Point(6, 79)
-        labelFechaNacimiento.Name = "labelFechaNacimiento"
-        labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
-        labelFechaNacimiento.TabIndex = 8
-        labelFechaNacimiento.Text = "Fecha de nacimiento:"
         '
         'datetimepickerFechaNacimiento
         '
@@ -733,15 +1040,6 @@ Partial Class formPersona
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGenero.TabIndex = 11
         '
-        'labelGenero
-        '
-        labelGenero.AutoSize = True
-        labelGenero.Location = New System.Drawing.Point(6, 105)
-        labelGenero.Name = "labelGenero"
-        labelGenero.Size = New System.Drawing.Size(45, 13)
-        labelGenero.TabIndex = 10
-        labelGenero.Text = "Género:"
-        '
         'comboboxDocumentoTipo
         '
         Me.comboboxDocumentoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -750,25 +1048,6 @@ Partial Class formPersona
         Me.comboboxDocumentoTipo.Name = "comboboxDocumentoTipo"
         Me.comboboxDocumentoTipo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxDocumentoTipo.TabIndex = 1
-        '
-        'textboxDocumentoNumero
-        '
-        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
-        Me.textboxDocumentoNumero.MaxLength = 11
-        Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
-        Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
-        Me.textboxDocumentoNumero.TabIndex = 2
-        Me.tooltipMain.SetToolTip(Me.textboxDocumentoNumero, "Ingrese el Número de Documento sin utilizar puntos.")
-        '
-        'labelDocumento
-        '
-        labelDocumento.AutoSize = True
-        labelDocumento.Location = New System.Drawing.Point(6, 13)
-        labelDocumento.Name = "labelDocumento"
-        labelDocumento.Size = New System.Drawing.Size(65, 13)
-        labelDocumento.TabIndex = 0
-        labelDocumento.Text = "Documento:"
-        Me.tooltipMain.SetToolTip(labelDocumento, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'maskedtextboxDocumentoNumero
         '
@@ -783,15 +1062,6 @@ Partial Class formPersona
         Me.maskedtextboxDocumentoNumero.TabIndex = 4
         Me.maskedtextboxDocumentoNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
-        'labelNacionalidad
-        '
-        labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 251)
-        labelNacionalidad.Name = "labelNacionalidad"
-        labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 24
-        labelNacionalidad.Text = "Nacionalidad:"
-        '
         'textboxNacionalidad
         '
         Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 248)
@@ -800,15 +1070,6 @@ Partial Class formPersona
         Me.textboxNacionalidad.Size = New System.Drawing.Size(358, 20)
         Me.textboxNacionalidad.TabIndex = 25
         '
-        'labelProfesion
-        '
-        labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 225)
-        labelProfesion.Name = "labelProfesion"
-        labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 22
-        labelProfesion.Text = "Profesión:"
-        '
         'textboxProfesion
         '
         Me.textboxProfesion.Location = New System.Drawing.Point(142, 222)
@@ -816,15 +1077,6 @@ Partial Class formPersona
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(358, 20)
         Me.textboxProfesion.TabIndex = 23
-        '
-        'labelCuartel
-        '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 277)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 26
-        labelCuartel.Text = "Cuartel:"
         '
         'comboboxCuartel
         '
@@ -869,15 +1121,6 @@ Partial Class formPersona
         Me.tabpageParticular.Text = "Contacto Particular"
         Me.tabpageParticular.UseVisualStyleBackColor = True
         '
-        'labelTelefonoParticular
-        '
-        labelTelefonoParticular.AutoSize = True
-        labelTelefonoParticular.Location = New System.Drawing.Point(6, 229)
-        labelTelefonoParticular.Name = "labelTelefonoParticular"
-        labelTelefonoParticular.Size = New System.Drawing.Size(52, 13)
-        labelTelefonoParticular.TabIndex = 18
-        labelTelefonoParticular.Text = "Teléfono:"
-        '
         'textboxTelefonoParticular
         '
         Me.textboxTelefonoParticular.Location = New System.Drawing.Point(72, 226)
@@ -885,15 +1128,6 @@ Partial Class formPersona
         Me.textboxTelefonoParticular.Name = "textboxTelefonoParticular"
         Me.textboxTelefonoParticular.Size = New System.Drawing.Size(170, 20)
         Me.textboxTelefonoParticular.TabIndex = 19
-        '
-        'labelCelularParticular
-        '
-        labelCelularParticular.AutoSize = True
-        labelCelularParticular.Location = New System.Drawing.Point(6, 255)
-        labelCelularParticular.Name = "labelCelularParticular"
-        labelCelularParticular.Size = New System.Drawing.Size(42, 13)
-        labelCelularParticular.TabIndex = 20
-        labelCelularParticular.Text = "Celular:"
         '
         'textboxCelularParticular
         '
@@ -903,15 +1137,6 @@ Partial Class formPersona
         Me.textboxCelularParticular.Size = New System.Drawing.Size(170, 20)
         Me.textboxCelularParticular.TabIndex = 21
         '
-        'labelEmailParticular
-        '
-        labelEmailParticular.AutoSize = True
-        labelEmailParticular.Location = New System.Drawing.Point(6, 281)
-        labelEmailParticular.Name = "labelEmailParticular"
-        labelEmailParticular.Size = New System.Drawing.Size(38, 13)
-        labelEmailParticular.TabIndex = 22
-        labelEmailParticular.Text = "E-mail:"
-        '
         'textboxEmailParticular
         '
         Me.textboxEmailParticular.Location = New System.Drawing.Point(72, 278)
@@ -919,24 +1144,6 @@ Partial Class formPersona
         Me.textboxEmailParticular.Name = "textboxEmailParticular"
         Me.textboxEmailParticular.Size = New System.Drawing.Size(306, 20)
         Me.textboxEmailParticular.TabIndex = 23
-        '
-        'labelDomicilioParticularCalle3
-        '
-        labelDomicilioParticularCalle3.AutoSize = True
-        labelDomicilioParticularCalle3.Location = New System.Drawing.Point(8, 91)
-        labelDomicilioParticularCalle3.Name = "labelDomicilioParticularCalle3"
-        labelDomicilioParticularCalle3.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioParticularCalle3.TabIndex = 10
-        labelDomicilioParticularCalle3.Text = "Calle 3:"
-        '
-        'labelDomicilioParticularCalle2
-        '
-        labelDomicilioParticularCalle2.AutoSize = True
-        labelDomicilioParticularCalle2.Location = New System.Drawing.Point(6, 65)
-        labelDomicilioParticularCalle2.Name = "labelDomicilioParticularCalle2"
-        labelDomicilioParticularCalle2.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioParticularCalle2.TabIndex = 8
-        labelDomicilioParticularCalle2.Text = "Calle 2:"
         '
         'textboxDomicilioParticularCalle3
         '
@@ -972,15 +1179,6 @@ Partial Class formPersona
         Me.comboboxDomicilioParticularProvincia.Size = New System.Drawing.Size(258, 21)
         Me.comboboxDomicilioParticularProvincia.TabIndex = 13
         '
-        'labelDomicilioParticularCalle1
-        '
-        labelDomicilioParticularCalle1.AutoSize = True
-        labelDomicilioParticularCalle1.Location = New System.Drawing.Point(6, 13)
-        labelDomicilioParticularCalle1.Name = "labelDomicilioParticularCalle1"
-        labelDomicilioParticularCalle1.Size = New System.Drawing.Size(33, 13)
-        labelDomicilioParticularCalle1.TabIndex = 0
-        labelDomicilioParticularCalle1.Text = "Calle:"
-        '
         'textboxDomicilioParticularCalle1
         '
         Me.textboxDomicilioParticularCalle1.Location = New System.Drawing.Point(72, 10)
@@ -988,15 +1186,6 @@ Partial Class formPersona
         Me.textboxDomicilioParticularCalle1.Name = "textboxDomicilioParticularCalle1"
         Me.textboxDomicilioParticularCalle1.Size = New System.Drawing.Size(258, 20)
         Me.textboxDomicilioParticularCalle1.TabIndex = 1
-        '
-        'labelDomicilioParticularCodigoPostal
-        '
-        labelDomicilioParticularCodigoPostal.AutoSize = True
-        labelDomicilioParticularCodigoPostal.Location = New System.Drawing.Point(8, 171)
-        labelDomicilioParticularCodigoPostal.Name = "labelDomicilioParticularCodigoPostal"
-        labelDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioParticularCodigoPostal.TabIndex = 16
-        labelDomicilioParticularCodigoPostal.Text = "Cód. Post.:"
         '
         'textboxDomicilioParticularCodigoPostal
         '
@@ -1006,15 +1195,6 @@ Partial Class formPersona
         Me.textboxDomicilioParticularCodigoPostal.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularCodigoPostal.TabIndex = 17
         '
-        'labelDomicilioParticularDepartamento
-        '
-        labelDomicilioParticularDepartamento.AutoSize = True
-        labelDomicilioParticularDepartamento.Location = New System.Drawing.Point(220, 39)
-        labelDomicilioParticularDepartamento.Name = "labelDomicilioParticularDepartamento"
-        labelDomicilioParticularDepartamento.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioParticularDepartamento.TabIndex = 6
-        labelDomicilioParticularDepartamento.Text = "Dto/Ofic.:"
-        '
         'textboxDomicilioParticularDepartamento
         '
         Me.textboxDomicilioParticularDepartamento.Location = New System.Drawing.Point(280, 36)
@@ -1023,33 +1203,6 @@ Partial Class formPersona
         Me.textboxDomicilioParticularDepartamento.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularDepartamento.TabIndex = 7
         '
-        'labelDomicilioParticularLocalidad
-        '
-        labelDomicilioParticularLocalidad.AutoSize = True
-        labelDomicilioParticularLocalidad.Location = New System.Drawing.Point(6, 144)
-        labelDomicilioParticularLocalidad.Name = "labelDomicilioParticularLocalidad"
-        labelDomicilioParticularLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioParticularLocalidad.TabIndex = 14
-        labelDomicilioParticularLocalidad.Text = "Localidad:"
-        '
-        'labelDomicilioParticularProvincia
-        '
-        labelDomicilioParticularProvincia.AutoSize = True
-        labelDomicilioParticularProvincia.Location = New System.Drawing.Point(6, 117)
-        labelDomicilioParticularProvincia.Name = "labelDomicilioParticularProvincia"
-        labelDomicilioParticularProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioParticularProvincia.TabIndex = 12
-        labelDomicilioParticularProvincia.Text = "Provincia:"
-        '
-        'labelDomicilioParticularNumero
-        '
-        labelDomicilioParticularNumero.AutoSize = True
-        labelDomicilioParticularNumero.Location = New System.Drawing.Point(6, 39)
-        labelDomicilioParticularNumero.Name = "labelDomicilioParticularNumero"
-        labelDomicilioParticularNumero.Size = New System.Drawing.Size(47, 13)
-        labelDomicilioParticularNumero.TabIndex = 2
-        labelDomicilioParticularNumero.Text = "Número:"
-        '
         'textboxDomicilioParticularNumero
         '
         Me.textboxDomicilioParticularNumero.Location = New System.Drawing.Point(72, 36)
@@ -1057,15 +1210,6 @@ Partial Class formPersona
         Me.textboxDomicilioParticularNumero.Name = "textboxDomicilioParticularNumero"
         Me.textboxDomicilioParticularNumero.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioParticularNumero.TabIndex = 3
-        '
-        'labelDomicilioParticularPiso
-        '
-        labelDomicilioParticularPiso.AutoSize = True
-        labelDomicilioParticularPiso.Location = New System.Drawing.Point(128, 39)
-        labelDomicilioParticularPiso.Name = "labelDomicilioParticularPiso"
-        labelDomicilioParticularPiso.Size = New System.Drawing.Size(30, 13)
-        labelDomicilioParticularPiso.TabIndex = 4
-        labelDomicilioParticularPiso.Text = "Piso:"
         '
         'textboxDomicilioParticularPiso
         '
@@ -1109,15 +1253,6 @@ Partial Class formPersona
         Me.tabpageLaboral.Text = "Contacto Laboral"
         Me.tabpageLaboral.UseVisualStyleBackColor = True
         '
-        'labelTelefonoLaboral
-        '
-        labelTelefonoLaboral.AutoSize = True
-        labelTelefonoLaboral.Location = New System.Drawing.Point(6, 229)
-        labelTelefonoLaboral.Name = "labelTelefonoLaboral"
-        labelTelefonoLaboral.Size = New System.Drawing.Size(52, 13)
-        labelTelefonoLaboral.TabIndex = 18
-        labelTelefonoLaboral.Text = "Teléfono:"
-        '
         'textboxTelefonoLaboral
         '
         Me.textboxTelefonoLaboral.Location = New System.Drawing.Point(72, 226)
@@ -1125,15 +1260,6 @@ Partial Class formPersona
         Me.textboxTelefonoLaboral.Name = "textboxTelefonoLaboral"
         Me.textboxTelefonoLaboral.Size = New System.Drawing.Size(170, 20)
         Me.textboxTelefonoLaboral.TabIndex = 19
-        '
-        'labelCelularLaboral
-        '
-        labelCelularLaboral.AutoSize = True
-        labelCelularLaboral.Location = New System.Drawing.Point(6, 255)
-        labelCelularLaboral.Name = "labelCelularLaboral"
-        labelCelularLaboral.Size = New System.Drawing.Size(42, 13)
-        labelCelularLaboral.TabIndex = 20
-        labelCelularLaboral.Text = "Celular:"
         '
         'textboxCelularLaboral
         '
@@ -1143,15 +1269,6 @@ Partial Class formPersona
         Me.textboxCelularLaboral.Size = New System.Drawing.Size(170, 20)
         Me.textboxCelularLaboral.TabIndex = 21
         '
-        'labelEmailLaboral
-        '
-        labelEmailLaboral.AutoSize = True
-        labelEmailLaboral.Location = New System.Drawing.Point(6, 281)
-        labelEmailLaboral.Name = "labelEmailLaboral"
-        labelEmailLaboral.Size = New System.Drawing.Size(38, 13)
-        labelEmailLaboral.TabIndex = 22
-        labelEmailLaboral.Text = "E-mail:"
-        '
         'textboxEmailLaboral
         '
         Me.textboxEmailLaboral.Location = New System.Drawing.Point(72, 278)
@@ -1159,24 +1276,6 @@ Partial Class formPersona
         Me.textboxEmailLaboral.Name = "textboxEmailLaboral"
         Me.textboxEmailLaboral.Size = New System.Drawing.Size(306, 20)
         Me.textboxEmailLaboral.TabIndex = 23
-        '
-        'labelDomicilioLaboralCalle3
-        '
-        labelDomicilioLaboralCalle3.AutoSize = True
-        labelDomicilioLaboralCalle3.Location = New System.Drawing.Point(8, 91)
-        labelDomicilioLaboralCalle3.Name = "labelDomicilioLaboralCalle3"
-        labelDomicilioLaboralCalle3.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioLaboralCalle3.TabIndex = 10
-        labelDomicilioLaboralCalle3.Text = "Calle 3:"
-        '
-        'labelDomicilioLaboralCalle2
-        '
-        labelDomicilioLaboralCalle2.AutoSize = True
-        labelDomicilioLaboralCalle2.Location = New System.Drawing.Point(6, 65)
-        labelDomicilioLaboralCalle2.Name = "labelDomicilioLaboralCalle2"
-        labelDomicilioLaboralCalle2.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioLaboralCalle2.TabIndex = 8
-        labelDomicilioLaboralCalle2.Text = "Calle 2:"
         '
         'textboxDomicilioLaboralCalle3
         '
@@ -1212,15 +1311,6 @@ Partial Class formPersona
         Me.comboboxDomicilioLaboralProvincia.Size = New System.Drawing.Size(258, 21)
         Me.comboboxDomicilioLaboralProvincia.TabIndex = 13
         '
-        'labelDomicilioLaboralCalle1
-        '
-        labelDomicilioLaboralCalle1.AutoSize = True
-        labelDomicilioLaboralCalle1.Location = New System.Drawing.Point(6, 13)
-        labelDomicilioLaboralCalle1.Name = "labelDomicilioLaboralCalle1"
-        labelDomicilioLaboralCalle1.Size = New System.Drawing.Size(33, 13)
-        labelDomicilioLaboralCalle1.TabIndex = 0
-        labelDomicilioLaboralCalle1.Text = "Calle:"
-        '
         'textboxDomicilioLaboralCalle1
         '
         Me.textboxDomicilioLaboralCalle1.Location = New System.Drawing.Point(72, 10)
@@ -1228,15 +1318,6 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralCalle1.Name = "textboxDomicilioLaboralCalle1"
         Me.textboxDomicilioLaboralCalle1.Size = New System.Drawing.Size(258, 20)
         Me.textboxDomicilioLaboralCalle1.TabIndex = 1
-        '
-        'labelDomicilioLaboralCodigoPostal
-        '
-        labelDomicilioLaboralCodigoPostal.AutoSize = True
-        labelDomicilioLaboralCodigoPostal.Location = New System.Drawing.Point(8, 171)
-        labelDomicilioLaboralCodigoPostal.Name = "labelDomicilioLaboralCodigoPostal"
-        labelDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioLaboralCodigoPostal.TabIndex = 16
-        labelDomicilioLaboralCodigoPostal.Text = "Cód. Post.:"
         '
         'textboxDomicilioLaboralCodigoPostal
         '
@@ -1246,15 +1327,6 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralCodigoPostal.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralCodigoPostal.TabIndex = 17
         '
-        'labelDomicilioLaboralDepartamento
-        '
-        labelDomicilioLaboralDepartamento.AutoSize = True
-        labelDomicilioLaboralDepartamento.Location = New System.Drawing.Point(220, 39)
-        labelDomicilioLaboralDepartamento.Name = "labelDomicilioLaboralDepartamento"
-        labelDomicilioLaboralDepartamento.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioLaboralDepartamento.TabIndex = 6
-        labelDomicilioLaboralDepartamento.Text = "Dto/Ofic.:"
-        '
         'textboxDomicilioLaboralDepartamento
         '
         Me.textboxDomicilioLaboralDepartamento.Location = New System.Drawing.Point(280, 36)
@@ -1263,33 +1335,6 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralDepartamento.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralDepartamento.TabIndex = 7
         '
-        'labelDomicilioLaboralLocalidad
-        '
-        labelDomicilioLaboralLocalidad.AutoSize = True
-        labelDomicilioLaboralLocalidad.Location = New System.Drawing.Point(6, 144)
-        labelDomicilioLaboralLocalidad.Name = "labelDomicilioLaboralLocalidad"
-        labelDomicilioLaboralLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioLaboralLocalidad.TabIndex = 14
-        labelDomicilioLaboralLocalidad.Text = "Localidad:"
-        '
-        'labelDomicilioLaboralProvincia
-        '
-        labelDomicilioLaboralProvincia.AutoSize = True
-        labelDomicilioLaboralProvincia.Location = New System.Drawing.Point(6, 117)
-        labelDomicilioLaboralProvincia.Name = "labelDomicilioLaboralProvincia"
-        labelDomicilioLaboralProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioLaboralProvincia.TabIndex = 12
-        labelDomicilioLaboralProvincia.Text = "Provincia:"
-        '
-        'labelDomicilioLaboralNumero
-        '
-        labelDomicilioLaboralNumero.AutoSize = True
-        labelDomicilioLaboralNumero.Location = New System.Drawing.Point(6, 39)
-        labelDomicilioLaboralNumero.Name = "labelDomicilioLaboralNumero"
-        labelDomicilioLaboralNumero.Size = New System.Drawing.Size(47, 13)
-        labelDomicilioLaboralNumero.TabIndex = 2
-        labelDomicilioLaboralNumero.Text = "Número:"
-        '
         'textboxDomicilioLaboralNumero
         '
         Me.textboxDomicilioLaboralNumero.Location = New System.Drawing.Point(72, 36)
@@ -1297,15 +1342,6 @@ Partial Class formPersona
         Me.textboxDomicilioLaboralNumero.Name = "textboxDomicilioLaboralNumero"
         Me.textboxDomicilioLaboralNumero.Size = New System.Drawing.Size(50, 20)
         Me.textboxDomicilioLaboralNumero.TabIndex = 3
-        '
-        'labelDomicilioLaboralPiso
-        '
-        labelDomicilioLaboralPiso.AutoSize = True
-        labelDomicilioLaboralPiso.Location = New System.Drawing.Point(128, 39)
-        labelDomicilioLaboralPiso.Name = "labelDomicilioLaboralPiso"
-        labelDomicilioLaboralPiso.Size = New System.Drawing.Size(30, 13)
-        labelDomicilioLaboralPiso.TabIndex = 4
-        labelDomicilioLaboralPiso.Text = "Piso:"
         '
         'textboxDomicilioLaboralPiso
         '
@@ -1545,7 +1581,7 @@ Partial Class formPersona
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewAscensos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
         Me.datagridviewAscensos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewAscensos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnCargo, Me.columnJerarquia})
+        Me.datagridviewAscensos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAscensos_Fecha, Me.columnAscensos_Cargo, Me.columnAscensos_Jerarquia})
         Me.datagridviewAscensos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAscensos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewAscensos.Location = New System.Drawing.Point(90, 3)
@@ -1557,33 +1593,6 @@ Partial Class formPersona
         Me.datagridviewAscensos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewAscensos.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewAscensos.TabIndex = 2
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnCargo
-        '
-        Me.columnCargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCargo.DataPropertyName = "CargoNombre"
-        Me.columnCargo.HeaderText = "Cargo"
-        Me.columnCargo.Name = "columnCargo"
-        Me.columnCargo.ReadOnly = True
-        Me.columnCargo.Width = 60
-        '
-        'columnJerarquia
-        '
-        Me.columnJerarquia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnJerarquia.DataPropertyName = "CargoJerarquiaNombre"
-        Me.columnJerarquia.HeaderText = "Jerarquía"
-        Me.columnJerarquia.Name = "columnJerarquia"
-        Me.columnJerarquia.ReadOnly = True
-        Me.columnJerarquia.Width = 77
         '
         'toolstripAscensos
         '
@@ -1638,6 +1647,71 @@ Partial Class formPersona
         Me.tabpageLicencias.Text = "Licencias"
         Me.tabpageLicencias.UseVisualStyleBackColor = True
         '
+        'datagridviewLicencias
+        '
+        Me.datagridviewLicencias.AllowUserToAddRows = False
+        Me.datagridviewLicencias.AllowUserToDeleteRows = False
+        Me.datagridviewLicencias.AllowUserToResizeRows = False
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewLicencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.datagridviewLicencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewLicencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnLicencias_Fecha, Me.columnLicencias_Causa, Me.columnLicencias_FechaDesde, Me.columnLicencias_FechaHasta})
+        Me.datagridviewLicencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewLicencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewLicencias.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewLicencias.MultiSelect = False
+        Me.datagridviewLicencias.Name = "datagridviewLicencias"
+        Me.datagridviewLicencias.ReadOnly = True
+        Me.datagridviewLicencias.RowHeadersVisible = False
+        Me.datagridviewLicencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewLicencias.Size = New System.Drawing.Size(659, 376)
+        Me.datagridviewLicencias.TabIndex = 4
+        '
+        'toolstripLicencias
+        '
+        Me.toolstripLicencias.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripLicencias.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripLicencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicencias_Agregar, Me.buttonLicencias_Editar, Me.buttonLicencias_Eliminar})
+        Me.toolstripLicencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripLicencias.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripLicencias.Name = "toolstripLicencias"
+        Me.toolstripLicencias.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripLicencias.TabIndex = 5
+        '
+        'buttonLicencias_Agregar
+        '
+        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonLicencias_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicencias_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicencias_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicencias_Agregar.Name = "buttonLicencias_Agregar"
+        Me.buttonLicencias_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Agregar.Text = "Agregar"
+        '
+        'buttonLicencias_Editar
+        '
+        Me.buttonLicencias_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonLicencias_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicencias_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicencias_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicencias_Editar.Name = "buttonLicencias_Editar"
+        Me.buttonLicencias_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Editar.Text = "Editar"
+        '
+        'buttonLicencias_Eliminar
+        '
+        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonLicencias_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicencias_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicencias_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicencias_Eliminar.Name = "buttonLicencias_Eliminar"
+        Me.buttonLicencias_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Eliminar.Text = "Eliminar"
+        '
         'tabpageSanciones
         '
         Me.tabpageSanciones.Controls.Add(Me.datagridviewSanciones)
@@ -1650,6 +1724,71 @@ Partial Class formPersona
         Me.tabpageSanciones.Text = "Sanciones"
         Me.tabpageSanciones.UseVisualStyleBackColor = True
         '
+        'datagridviewSanciones
+        '
+        Me.datagridviewSanciones.AllowUserToAddRows = False
+        Me.datagridviewSanciones.AllowUserToDeleteRows = False
+        Me.datagridviewSanciones.AllowUserToResizeRows = False
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
+        Me.datagridviewSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
+        Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewSanciones.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewSanciones.MultiSelect = False
+        Me.datagridviewSanciones.Name = "datagridviewSanciones"
+        Me.datagridviewSanciones.ReadOnly = True
+        Me.datagridviewSanciones.RowHeadersVisible = False
+        Me.datagridviewSanciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewSanciones.Size = New System.Drawing.Size(659, 376)
+        Me.datagridviewSanciones.TabIndex = 6
+        '
+        'toolstripSanciones
+        '
+        Me.toolstripSanciones.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripSanciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar})
+        Me.toolstripSanciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripSanciones.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripSanciones.Name = "toolstripSanciones"
+        Me.toolstripSanciones.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripSanciones.TabIndex = 7
+        '
+        'buttonSanciones_Agregar
+        '
+        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonSanciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonSanciones_Agregar.Name = "buttonSanciones_Agregar"
+        Me.buttonSanciones_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Agregar.Text = "Agregar"
+        '
+        'buttonSanciones_Editar
+        '
+        Me.buttonSanciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonSanciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonSanciones_Editar.Name = "buttonSanciones_Editar"
+        Me.buttonSanciones_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Editar.Text = "Editar"
+        '
+        'buttonSanciones_Eliminar
+        '
+        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonSanciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonSanciones_Eliminar.Name = "buttonSanciones_Eliminar"
+        Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Eliminar.Text = "Eliminar"
+        '
         'tabpageCursos
         '
         Me.tabpageCursos.Controls.Add(Me.datagridviewCursos)
@@ -1661,6 +1800,71 @@ Partial Class formPersona
         Me.tabpageCursos.TabIndex = 15
         Me.tabpageCursos.Text = "Cursos"
         Me.tabpageCursos.UseVisualStyleBackColor = True
+        '
+        'datagridviewCursos
+        '
+        Me.datagridviewCursos.AllowUserToAddRows = False
+        Me.datagridviewCursos.AllowUserToDeleteRows = False
+        Me.datagridviewCursos.AllowUserToResizeRows = False
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCursos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        Me.datagridviewCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewCursos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCapacitaciones_Fecha, Me.columnCapacitaciones_CursoNombre})
+        Me.datagridviewCursos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewCursos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewCursos.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewCursos.MultiSelect = False
+        Me.datagridviewCursos.Name = "datagridviewCursos"
+        Me.datagridviewCursos.ReadOnly = True
+        Me.datagridviewCursos.RowHeadersVisible = False
+        Me.datagridviewCursos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewCursos.Size = New System.Drawing.Size(659, 376)
+        Me.datagridviewCursos.TabIndex = 6
+        '
+        'toolstripCursos
+        '
+        Me.toolstripCursos.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripCursos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCursos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCursos_Agregar, Me.buttonCursos_Editar, Me.buttonCursos_Eliminar})
+        Me.toolstripCursos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripCursos.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripCursos.Name = "toolstripCursos"
+        Me.toolstripCursos.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripCursos.TabIndex = 7
+        '
+        'buttonCursos_Agregar
+        '
+        Me.buttonCursos_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCursos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCursos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCursos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCursos_Agregar.Name = "buttonCursos_Agregar"
+        Me.buttonCursos_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCursos_Agregar.Text = "Agregar"
+        '
+        'buttonCursos_Editar
+        '
+        Me.buttonCursos_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCursos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCursos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCursos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCursos_Editar.Name = "buttonCursos_Editar"
+        Me.buttonCursos_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCursos_Editar.Text = "Editar"
+        '
+        'buttonCursos_Eliminar
+        '
+        Me.buttonCursos_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCursos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCursos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCursos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCursos_Eliminar.Name = "buttonCursos_Eliminar"
+        Me.buttonCursos_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCursos_Eliminar.Text = "Eliminar"
         '
         'tabpageCalificaciones
         '
@@ -1686,7 +1890,7 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
         Me.datagridviewCalificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.datagridviewCalificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewCalificaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAnioInstancia, Me.columnConceptosCalificaciones})
+        Me.datagridviewCalificaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCalificaciones_AnioInstancia, Me.columnCalificaciones_ConceptosCalificaciones})
         Me.datagridviewCalificaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewCalificaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewCalificaciones.Location = New System.Drawing.Point(90, 3)
@@ -1698,28 +1902,6 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewCalificaciones.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewCalificaciones.TabIndex = 6
-        '
-        'columnAnioInstancia
-        '
-        Me.columnAnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAnioInstancia.DataPropertyName = "AnioInstancia"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnAnioInstancia.DefaultCellStyle = DataGridViewCellStyle8
-        Me.columnAnioInstancia.HeaderText = "Año - Instancia"
-        Me.columnAnioInstancia.Name = "columnAnioInstancia"
-        Me.columnAnioInstancia.ReadOnly = True
-        Me.columnAnioInstancia.Width = 95
-        '
-        'columnConceptosCalificaciones
-        '
-        Me.columnConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle9
-        Me.columnConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
-        Me.columnConceptosCalificaciones.Name = "columnConceptosCalificaciones"
-        Me.columnConceptosCalificaciones.ReadOnly = True
-        Me.columnConceptosCalificaciones.Width = 145
         '
         'toolstripCalificaciones
         '
@@ -1774,392 +1956,6 @@ Partial Class formPersona
         Me.tabpageExamenes.Text = "Exámenes"
         Me.tabpageExamenes.UseVisualStyleBackColor = True
         '
-        'tabpageNotasAuditoria
-        '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(labelNotas)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
-        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
-        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(752, 382)
-        Me.tabpageNotasAuditoria.TabIndex = 7
-        Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
-        Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
-        '
-        'checkboxEsActivo
-        '
-        Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 311)
-        Me.checkboxEsActivo.Name = "checkboxEsActivo"
-        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 3
-        Me.checkboxEsActivo.UseVisualStyleBackColor = True
-        '
-        'labelEsActivo
-        '
-        labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 311)
-        labelEsActivo.Name = "labelEsActivo"
-        labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 2
-        labelEsActivo.Text = "Activo:"
-        '
-        'labelNotas
-        '
-        labelNotas.AutoSize = True
-        labelNotas.Location = New System.Drawing.Point(6, 9)
-        labelNotas.Name = "labelNotas"
-        labelNotas.Size = New System.Drawing.Size(38, 13)
-        labelNotas.TabIndex = 0
-        labelNotas.Text = "Notas:"
-        '
-        'textboxNotas
-        '
-        Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
-        Me.textboxNotas.MaxLength = 0
-        Me.textboxNotas.Multiline = True
-        Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.Size = New System.Drawing.Size(632, 299)
-        Me.textboxNotas.TabIndex = 1
-        '
-        'textboxUsuarioModificacion
-        '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 356)
-        Me.textboxUsuarioModificacion.MaxLength = 50
-        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
-        Me.textboxUsuarioModificacion.ReadOnly = True
-        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioModificacion.TabIndex = 9
-        '
-        'textboxUsuarioCreacion
-        '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 330)
-        Me.textboxUsuarioCreacion.MaxLength = 50
-        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
-        Me.textboxUsuarioCreacion.ReadOnly = True
-        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioCreacion.TabIndex = 6
-        '
-        'textboxFechaHoraModificacion
-        '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 356)
-        Me.textboxFechaHoraModificacion.MaxLength = 0
-        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
-        Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraModificacion.TabIndex = 8
-        '
-        'textboxFechaHoraCreacion
-        '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 330)
-        Me.textboxFechaHoraCreacion.MaxLength = 0
-        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
-        Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'labelModificacion
-        '
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 359)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 7
-        labelModificacion.Text = "Ultima Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 337)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 4
-        labelCreacion.Text = "Creación:"
-        '
-        'datagridviewLicencias
-        '
-        Me.datagridviewLicencias.AllowUserToAddRows = False
-        Me.datagridviewLicencias.AllowUserToDeleteRows = False
-        Me.datagridviewLicencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewLicencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
-        Me.datagridviewLicencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewLicencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3})
-        Me.datagridviewLicencias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewLicencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewLicencias.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewLicencias.MultiSelect = False
-        Me.datagridviewLicencias.Name = "datagridviewLicencias"
-        Me.datagridviewLicencias.ReadOnly = True
-        Me.datagridviewLicencias.RowHeadersVisible = False
-        Me.datagridviewLicencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewLicencias.Size = New System.Drawing.Size(659, 376)
-        Me.datagridviewLicencias.TabIndex = 4
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn1.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.ReadOnly = True
-        Me.DataGridViewTextBoxColumn1.Width = 62
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn2.DataPropertyName = "CargoNombre"
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Cargo"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.ReadOnly = True
-        Me.DataGridViewTextBoxColumn2.Width = 60
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn3.DataPropertyName = "CargoJerarquiaNombre"
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Jerarquía"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.ReadOnly = True
-        Me.DataGridViewTextBoxColumn3.Width = 77
-        '
-        'toolstripLicencias
-        '
-        Me.toolstripLicencias.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripLicencias.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripLicencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicencias_Agregar, Me.buttonLicencias_Editar, Me.buttonLicencias_Eliminar})
-        Me.toolstripLicencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripLicencias.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripLicencias.Name = "toolstripLicencias"
-        Me.toolstripLicencias.Size = New System.Drawing.Size(87, 376)
-        Me.toolstripLicencias.TabIndex = 5
-        '
-        'buttonLicencias_Agregar
-        '
-        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonLicencias_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonLicencias_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonLicencias_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonLicencias_Agregar.Name = "buttonLicencias_Agregar"
-        Me.buttonLicencias_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonLicencias_Agregar.Text = "Agregar"
-        '
-        'buttonLicencias_Editar
-        '
-        Me.buttonLicencias_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonLicencias_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonLicencias_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonLicencias_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonLicencias_Editar.Name = "buttonLicencias_Editar"
-        Me.buttonLicencias_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonLicencias_Editar.Text = "Editar"
-        '
-        'buttonLicencias_Eliminar
-        '
-        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonLicencias_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonLicencias_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonLicencias_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonLicencias_Eliminar.Name = "buttonLicencias_Eliminar"
-        Me.buttonLicencias_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonLicencias_Eliminar.Text = "Eliminar"
-        '
-        'datagridviewSanciones
-        '
-        Me.datagridviewSanciones.AllowUserToAddRows = False
-        Me.datagridviewSanciones.AllowUserToDeleteRows = False
-        Me.datagridviewSanciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.datagridviewSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6})
-        Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewSanciones.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewSanciones.MultiSelect = False
-        Me.datagridviewSanciones.Name = "datagridviewSanciones"
-        Me.datagridviewSanciones.ReadOnly = True
-        Me.datagridviewSanciones.RowHeadersVisible = False
-        Me.datagridviewSanciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewSanciones.Size = New System.Drawing.Size(659, 376)
-        Me.datagridviewSanciones.TabIndex = 6
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn4.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        Me.DataGridViewTextBoxColumn4.ReadOnly = True
-        Me.DataGridViewTextBoxColumn4.Width = 62
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn5.DataPropertyName = "CargoNombre"
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Cargo"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        Me.DataGridViewTextBoxColumn5.Width = 60
-        '
-        'DataGridViewTextBoxColumn6
-        '
-        Me.DataGridViewTextBoxColumn6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn6.DataPropertyName = "CargoJerarquiaNombre"
-        Me.DataGridViewTextBoxColumn6.HeaderText = "Jerarquía"
-        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
-        Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        Me.DataGridViewTextBoxColumn6.Width = 77
-        '
-        'toolstripSanciones
-        '
-        Me.toolstripSanciones.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripSanciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar})
-        Me.toolstripSanciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripSanciones.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripSanciones.Name = "toolstripSanciones"
-        Me.toolstripSanciones.Size = New System.Drawing.Size(87, 376)
-        Me.toolstripSanciones.TabIndex = 7
-        '
-        'buttonSanciones_Agregar
-        '
-        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonSanciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Agregar.Name = "buttonSanciones_Agregar"
-        Me.buttonSanciones_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonSanciones_Agregar.Text = "Agregar"
-        '
-        'buttonSanciones_Editar
-        '
-        Me.buttonSanciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonSanciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Editar.Name = "buttonSanciones_Editar"
-        Me.buttonSanciones_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonSanciones_Editar.Text = "Editar"
-        '
-        'buttonSanciones_Eliminar
-        '
-        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonSanciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Eliminar.Name = "buttonSanciones_Eliminar"
-        Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonSanciones_Eliminar.Text = "Eliminar"
-        '
-        'datagridviewCursos
-        '
-        Me.datagridviewCursos.AllowUserToAddRows = False
-        Me.datagridviewCursos.AllowUserToDeleteRows = False
-        Me.datagridviewCursos.AllowUserToResizeRows = False
-        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCursos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.datagridviewCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewCursos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9})
-        Me.datagridviewCursos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewCursos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewCursos.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewCursos.MultiSelect = False
-        Me.datagridviewCursos.Name = "datagridviewCursos"
-        Me.datagridviewCursos.ReadOnly = True
-        Me.datagridviewCursos.RowHeadersVisible = False
-        Me.datagridviewCursos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCursos.Size = New System.Drawing.Size(659, 376)
-        Me.datagridviewCursos.TabIndex = 6
-        '
-        'DataGridViewTextBoxColumn7
-        '
-        Me.DataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn7.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
-        Me.DataGridViewTextBoxColumn7.ReadOnly = True
-        Me.DataGridViewTextBoxColumn7.Width = 62
-        '
-        'DataGridViewTextBoxColumn8
-        '
-        Me.DataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn8.DataPropertyName = "CargoNombre"
-        Me.DataGridViewTextBoxColumn8.HeaderText = "Cargo"
-        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
-        Me.DataGridViewTextBoxColumn8.ReadOnly = True
-        Me.DataGridViewTextBoxColumn8.Width = 60
-        '
-        'DataGridViewTextBoxColumn9
-        '
-        Me.DataGridViewTextBoxColumn9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn9.DataPropertyName = "CargoJerarquiaNombre"
-        Me.DataGridViewTextBoxColumn9.HeaderText = "Jerarquía"
-        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
-        Me.DataGridViewTextBoxColumn9.ReadOnly = True
-        Me.DataGridViewTextBoxColumn9.Width = 77
-        '
-        'toolstripCursos
-        '
-        Me.toolstripCursos.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripCursos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCursos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCursos_Agregar, Me.buttonCursos_Editar, Me.buttonCursos_Eliminar})
-        Me.toolstripCursos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripCursos.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripCursos.Name = "toolstripCursos"
-        Me.toolstripCursos.Size = New System.Drawing.Size(87, 376)
-        Me.toolstripCursos.TabIndex = 7
-        '
-        'buttonCursos_Agregar
-        '
-        Me.buttonCursos_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonCursos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Agregar.Name = "buttonCursos_Agregar"
-        Me.buttonCursos_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Agregar.Text = "Agregar"
-        '
-        'buttonCursos_Editar
-        '
-        Me.buttonCursos_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonCursos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Editar.Name = "buttonCursos_Editar"
-        Me.buttonCursos_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Editar.Text = "Editar"
-        '
-        'buttonCursos_Eliminar
-        '
-        Me.buttonCursos_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonCursos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Eliminar.Name = "buttonCursos_Eliminar"
-        Me.buttonCursos_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Eliminar.Text = "Eliminar"
-        '
         'datagridviewExamenes
         '
         Me.datagridviewExamenes.AllowUserToAddRows = False
@@ -2171,7 +1967,7 @@ Partial Class formPersona
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewExamenes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.datagridviewExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewExamenes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12})
+        Me.datagridviewExamenes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnExamenes_AnioInstancia, Me.columnExamenes_Calificacion})
         Me.datagridviewExamenes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewExamenes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewExamenes.Location = New System.Drawing.Point(90, 3)
@@ -2183,33 +1979,6 @@ Partial Class formPersona
         Me.datagridviewExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewExamenes.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewExamenes.TabIndex = 6
-        '
-        'DataGridViewTextBoxColumn10
-        '
-        Me.DataGridViewTextBoxColumn10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn10.DataPropertyName = "Fecha"
-        Me.DataGridViewTextBoxColumn10.HeaderText = "Fecha"
-        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
-        Me.DataGridViewTextBoxColumn10.ReadOnly = True
-        Me.DataGridViewTextBoxColumn10.Width = 62
-        '
-        'DataGridViewTextBoxColumn11
-        '
-        Me.DataGridViewTextBoxColumn11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn11.DataPropertyName = "CargoNombre"
-        Me.DataGridViewTextBoxColumn11.HeaderText = "Cargo"
-        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
-        Me.DataGridViewTextBoxColumn11.ReadOnly = True
-        Me.DataGridViewTextBoxColumn11.Width = 60
-        '
-        'DataGridViewTextBoxColumn12
-        '
-        Me.DataGridViewTextBoxColumn12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.DataGridViewTextBoxColumn12.DataPropertyName = "CargoJerarquiaNombre"
-        Me.DataGridViewTextBoxColumn12.HeaderText = "Jerarquía"
-        Me.DataGridViewTextBoxColumn12.Name = "DataGridViewTextBoxColumn12"
-        Me.DataGridViewTextBoxColumn12.ReadOnly = True
-        Me.DataGridViewTextBoxColumn12.Width = 77
         '
         'toolstripExamenes
         '
@@ -2252,6 +2021,221 @@ Partial Class formPersona
         Me.buttonExamenes_Eliminar.Size = New System.Drawing.Size(84, 36)
         Me.buttonExamenes_Eliminar.Text = "Eliminar"
         '
+        'tabpageNotasAuditoria
+        '
+        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(labelNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDPersona)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDPersona)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
+        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
+        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(752, 382)
+        Me.tabpageNotasAuditoria.TabIndex = 7
+        Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
+        Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
+        '
+        'checkboxEsActivo
+        '
+        Me.checkboxEsActivo.AutoSize = True
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 284)
+        Me.checkboxEsActivo.Name = "checkboxEsActivo"
+        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsActivo.TabIndex = 3
+        Me.checkboxEsActivo.UseVisualStyleBackColor = True
+        '
+        'textboxNotas
+        '
+        Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.Size = New System.Drawing.Size(632, 272)
+        Me.textboxNotas.TabIndex = 1
+        '
+        'textboxUsuarioModificacion
+        '
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 356)
+        Me.textboxUsuarioModificacion.MaxLength = 50
+        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
+        Me.textboxUsuarioModificacion.ReadOnly = True
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
+        Me.textboxUsuarioModificacion.TabIndex = 9
+        '
+        'textboxUsuarioCreacion
+        '
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 330)
+        Me.textboxUsuarioCreacion.MaxLength = 50
+        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
+        Me.textboxUsuarioCreacion.ReadOnly = True
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
+        Me.textboxUsuarioCreacion.TabIndex = 6
+        '
+        'textboxFechaHoraModificacion
+        '
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 356)
+        Me.textboxFechaHoraModificacion.MaxLength = 0
+        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
+        Me.textboxFechaHoraModificacion.ReadOnly = True
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraModificacion.TabIndex = 8
+        '
+        'textboxFechaHoraCreacion
+        '
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 330)
+        Me.textboxFechaHoraCreacion.MaxLength = 0
+        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
+        Me.textboxFechaHoraCreacion.ReadOnly = True
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraCreacion.TabIndex = 5
+        '
+        'columnCapacitaciones_Fecha
+        '
+        Me.columnCapacitaciones_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCapacitaciones_Fecha.DataPropertyName = "Fecha"
+        Me.columnCapacitaciones_Fecha.HeaderText = "Fecha"
+        Me.columnCapacitaciones_Fecha.Name = "columnCapacitaciones_Fecha"
+        Me.columnCapacitaciones_Fecha.ReadOnly = True
+        Me.columnCapacitaciones_Fecha.Width = 62
+        '
+        'columnCapacitaciones_CursoNombre
+        '
+        Me.columnCapacitaciones_CursoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCapacitaciones_CursoNombre.DataPropertyName = "CursoNombre"
+        Me.columnCapacitaciones_CursoNombre.HeaderText = "Curso"
+        Me.columnCapacitaciones_CursoNombre.Name = "columnCapacitaciones_CursoNombre"
+        Me.columnCapacitaciones_CursoNombre.ReadOnly = True
+        Me.columnCapacitaciones_CursoNombre.Width = 59
+        '
+        'columnAscensos_Fecha
+        '
+        Me.columnAscensos_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Fecha.DataPropertyName = "Fecha"
+        Me.columnAscensos_Fecha.HeaderText = "Fecha"
+        Me.columnAscensos_Fecha.Name = "columnAscensos_Fecha"
+        Me.columnAscensos_Fecha.ReadOnly = True
+        Me.columnAscensos_Fecha.Width = 62
+        '
+        'columnAscensos_Cargo
+        '
+        Me.columnAscensos_Cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Cargo.DataPropertyName = "CargoNombre"
+        Me.columnAscensos_Cargo.HeaderText = "Cargo"
+        Me.columnAscensos_Cargo.Name = "columnAscensos_Cargo"
+        Me.columnAscensos_Cargo.ReadOnly = True
+        Me.columnAscensos_Cargo.Width = 60
+        '
+        'columnAscensos_Jerarquia
+        '
+        Me.columnAscensos_Jerarquia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Jerarquia.DataPropertyName = "JerarquiaNombre"
+        Me.columnAscensos_Jerarquia.HeaderText = "Jerarquía"
+        Me.columnAscensos_Jerarquia.Name = "columnAscensos_Jerarquia"
+        Me.columnAscensos_Jerarquia.ReadOnly = True
+        Me.columnAscensos_Jerarquia.Width = 77
+        '
+        'columnLicencias_Fecha
+        '
+        Me.columnLicencias_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_Fecha.DataPropertyName = "Fecha"
+        Me.columnLicencias_Fecha.HeaderText = "Fecha"
+        Me.columnLicencias_Fecha.Name = "columnLicencias_Fecha"
+        Me.columnLicencias_Fecha.ReadOnly = True
+        Me.columnLicencias_Fecha.Width = 62
+        '
+        'columnLicencias_Causa
+        '
+        Me.columnLicencias_Causa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_Causa.DataPropertyName = "LicenciaCausaNombre"
+        Me.columnLicencias_Causa.HeaderText = "Causa"
+        Me.columnLicencias_Causa.Name = "columnLicencias_Causa"
+        Me.columnLicencias_Causa.ReadOnly = True
+        Me.columnLicencias_Causa.Width = 62
+        '
+        'columnLicencias_FechaDesde
+        '
+        Me.columnLicencias_FechaDesde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_FechaDesde.DataPropertyName = "FechaDesde"
+        Me.columnLicencias_FechaDesde.HeaderText = "Fecha desde"
+        Me.columnLicencias_FechaDesde.Name = "columnLicencias_FechaDesde"
+        Me.columnLicencias_FechaDesde.ReadOnly = True
+        Me.columnLicencias_FechaDesde.Width = 94
+        '
+        'columnLicencias_FechaHasta
+        '
+        Me.columnLicencias_FechaHasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_FechaHasta.DataPropertyName = "FechaHasta"
+        Me.columnLicencias_FechaHasta.HeaderText = "Fecha hasta"
+        Me.columnLicencias_FechaHasta.Name = "columnLicencias_FechaHasta"
+        Me.columnLicencias_FechaHasta.ReadOnly = True
+        Me.columnLicencias_FechaHasta.Width = 91
+        '
+        'columnSanciones_SolicitudFecha
+        '
+        Me.columnSanciones_SolicitudFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
+        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.ReadOnly = True
+        Me.columnSanciones_SolicitudFecha.Width = 108
+        '
+        'columnSanciones_SancionTipo
+        '
+        Me.columnSanciones_SancionTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
+        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
+        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
+        Me.columnSanciones_SancionTipo.ReadOnly = True
+        Me.columnSanciones_SancionTipo.Width = 99
+        '
+        'columnCalificaciones_AnioInstancia
+        '
+        Me.columnCalificaciones_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCalificaciones_AnioInstancia.DataPropertyName = "AnioInstancia"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
+        Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
+        Me.columnCalificaciones_AnioInstancia.ReadOnly = True
+        Me.columnCalificaciones_AnioInstancia.Width = 95
+        '
+        'columnCalificaciones_ConceptosCalificaciones
+        '
+        Me.columnCalificaciones_ConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCalificaciones_ConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnCalificaciones_ConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
+        Me.columnCalificaciones_ConceptosCalificaciones.Name = "columnCalificaciones_ConceptosCalificaciones"
+        Me.columnCalificaciones_ConceptosCalificaciones.ReadOnly = True
+        Me.columnCalificaciones_ConceptosCalificaciones.Width = 145
+        '
+        'columnExamenes_AnioInstancia
+        '
+        Me.columnExamenes_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnExamenes_AnioInstancia.DataPropertyName = "AnioInstancia"
+        Me.columnExamenes_AnioInstancia.HeaderText = "Año - Instancia"
+        Me.columnExamenes_AnioInstancia.Name = "columnExamenes_AnioInstancia"
+        Me.columnExamenes_AnioInstancia.ReadOnly = True
+        Me.columnExamenes_AnioInstancia.Width = 95
+        '
+        'columnExamenes_Calificacion
+        '
+        Me.columnExamenes_Calificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnExamenes_Calificacion.DataPropertyName = "Calificacion"
+        Me.columnExamenes_Calificacion.HeaderText = "Calificación"
+        Me.columnExamenes_Calificacion.Name = "columnExamenes_Calificacion"
+        Me.columnExamenes_Calificacion.ReadOnly = True
+        Me.columnExamenes_Calificacion.Width = 86
+        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2260,8 +2244,6 @@ Partial Class formPersona
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.pictureboxFoto)
-        Me.Controls.Add(Me.labelIDPersona)
-        Me.Controls.Add(Me.textboxIDPersona)
         Me.Controls.Add(labelApellido)
         Me.Controls.Add(Me.textboxApellido)
         Me.Controls.Add(labelNombre)
@@ -2303,10 +2285,19 @@ Partial Class formPersona
         Me.toolstripAscensos.PerformLayout()
         Me.tabpageLicencias.ResumeLayout(False)
         Me.tabpageLicencias.PerformLayout()
+        CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripLicencias.ResumeLayout(False)
+        Me.toolstripLicencias.PerformLayout()
         Me.tabpageSanciones.ResumeLayout(False)
         Me.tabpageSanciones.PerformLayout()
+        CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripSanciones.ResumeLayout(False)
+        Me.toolstripSanciones.PerformLayout()
         Me.tabpageCursos.ResumeLayout(False)
         Me.tabpageCursos.PerformLayout()
+        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripCursos.ResumeLayout(False)
+        Me.toolstripCursos.PerformLayout()
         Me.tabpageCalificaciones.ResumeLayout(False)
         Me.tabpageCalificaciones.PerformLayout()
         CType(Me.datagridviewCalificaciones, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2314,20 +2305,11 @@ Partial Class formPersona
         Me.toolstripCalificaciones.PerformLayout()
         Me.tabpageExamenes.ResumeLayout(False)
         Me.tabpageExamenes.PerformLayout()
-        Me.tabpageNotasAuditoria.ResumeLayout(False)
-        Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripLicencias.ResumeLayout(False)
-        Me.toolstripLicencias.PerformLayout()
-        CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripSanciones.ResumeLayout(False)
-        Me.toolstripSanciones.PerformLayout()
-        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripCursos.ResumeLayout(False)
-        Me.toolstripCursos.PerformLayout()
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripExamenes.ResumeLayout(False)
         Me.toolstripExamenes.PerformLayout()
+        Me.tabpageNotasAuditoria.ResumeLayout(False)
+        Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2426,50 +2408,48 @@ Partial Class formPersona
     Friend WithEvents tabpageCalificaciones As System.Windows.Forms.TabPage
     Friend WithEvents tabpageExamenes As System.Windows.Forms.TabPage
     Friend WithEvents datagridviewAscensos As System.Windows.Forms.DataGridView
-    Friend WithEvents columnFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCargo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnJerarquia As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripAscensos As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonAscensos_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonAscensos_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonAscensos_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewCalificaciones As System.Windows.Forms.DataGridView
-    Friend WithEvents columnAnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnConceptosCalificaciones As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripCalificaciones As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonCalificacinoes_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCalificacinoes_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCalificacinoes_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewLicencias As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripLicencias As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonLicencias_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonLicencias_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonLicencias_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewSanciones As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripSanciones As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonSanciones_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSanciones_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSanciones_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewCursos As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn9 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripCursos As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonCursos_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCursos_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCursos_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewExamenes As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn10 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn11 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn12 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents toolstripExamenes As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonExamenes_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonExamenes_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonExamenes_Eliminar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents columnAscensos_Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnAscensos_Cargo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnAscensos_Jerarquia As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnLicencias_Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnLicencias_Causa As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnLicencias_FechaDesde As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnLicencias_FechaHasta As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnSanciones_SolicitudFecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnSanciones_SancionTipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCapacitaciones_Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCapacitaciones_CursoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCalificaciones_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCalificaciones_ConceptosCalificaciones As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnExamenes_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnExamenes_Calificacion As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

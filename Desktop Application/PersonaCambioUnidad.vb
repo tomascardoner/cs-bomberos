@@ -26,8 +26,8 @@ Partial Public Class PersonaCambioUnidad
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Persona As Persona
 
 End Class

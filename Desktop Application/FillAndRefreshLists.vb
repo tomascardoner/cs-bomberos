@@ -316,6 +316,58 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub Persona(ByRef ComboBoxControl As ComboBox, ByVal MostrarInactivos As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Persona)
+
+        ComboBoxControl.ValueMember = "IDPersona"
+        ComboBoxControl.DisplayMember = "ApellidoNombre"
+
+        If MostrarInactivos Then
+            listItems = dbContext.Persona.OrderBy(Function(p) p.ApellidoNombre).ToList
+        Else
+            listItems = dbContext.Persona.Where(Function(p) p.EsActivo = True).OrderBy(Function(p) p.ApellidoNombre).ToList
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Persona
+            Item_NoEspecifica.IDPersona = FIELD_VALUE_NOTSPECIFIED_INTEGER
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Persona
+            Item_Todos.IDPersona = FIELD_VALUE_ALL_INTEGER
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub SancionTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of SancionTipo)
+
+        ComboBoxControl.ValueMember = "IDSancionTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.SancionTipo.OrderBy(Function(st) st.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New SancionTipo
+            Item_NoEspecifica.IDSancionTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New SancionTipo
+            Item_Todos.IDSancionTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
     Friend Sub Parentesco(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Parentesco)
 
@@ -333,6 +385,30 @@
         If AgregarItem_Todos Then
             Dim Item_Todos As New Parentesco
             Item_Todos.IDParentesco = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub PersonaBajaMotivo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of PersonaBajaMotivo)
+
+        ComboBoxControl.ValueMember = "IDPersonaBajaMotivo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.PersonaBajaMotivo.OrderBy(Function(pbm) pbm.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New PersonaBajaMotivo
+            Item_NoEspecifica.IDPersonaBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New PersonaBajaMotivo
+            Item_Todos.IDPersonaBajaMotivo = FIELD_VALUE_ALL_BYTE
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
@@ -662,6 +738,31 @@
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New CargoJerarquia
             Item_NoEspecifica.IDCargo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub LicenciaCausa(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of LicenciaCausa)
+
+        ComboBoxControl.ValueMember = "IDLicenciaCausa"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.LicenciaCausa.OrderBy(Function(lc) lc.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New LicenciaCausa
+            Item_Todos.IDLicenciaCausa = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New LicenciaCausa
+            Item_NoEspecifica.IDLicenciaCausa = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If

@@ -9,7 +9,7 @@
 
     Public Class GridRowData_Familiares
         Public Property IDFamiliar As Byte
-        Public Property Parentesco As String
+        Public Property ParentescoNombre As String
         Public Property Apellido As String
         Public Property Nombre As String
     End Class
@@ -20,6 +20,48 @@
         Public Property BajaFecha As Date?
         Public Property BajaMotivoNombre As String
     End Class
+
+    Public Class GridRowData_Ascensos
+        Public Property IDAscenso As Byte
+        Public Property Fecha As Date
+        Public Property CargoNombre As String
+        Public Property JerarquiaNombre As String
+    End Class
+
+    Public Class GridRowData_Licencias
+        Public Property IDLicencia As Short
+        Public Property Fecha As Date
+        Public Property LicenciaCausaNombre As String
+        Public Property FechaDesde As Date
+        Public Property FechaHasta As Date
+    End Class
+
+    Public Class GridRowData_Sanciones
+        Public Property IDSancion As Short
+        Public Property SolicitudFecha As Date
+        Public Property SancionTipoNombre As String
+    End Class
+
+    Public Class GridRowData_Capacitaciones
+        Public Property IDCapacitacion As Short
+        Public Property Fecha As Date
+        Public Property CursoNombre As String
+    End Class
+
+    Public Class GridRowData_Calificaciones
+        Public Property Anio As Short
+        Public Property InstanciaNumero As Byte
+        Public Property AnioInstancia As String
+        Public Property ConceptosCalificaciones As String = ""
+    End Class
+
+    Public Class GridRowData_Examenes
+        Public Property Anio As Short
+        Public Property InstanciaNumero As Byte
+        Public Property AnioInstancia As String
+        Public Property Calificacion As Decimal
+    End Class
+
 #End Region
 
 #Region "Form stuff"
@@ -184,12 +226,6 @@
             End If
 
             ' Datos del Encabezado
-            If .IDPersona = 0 Then
-                textboxIDPersona.Text = My.Resources.STRING_ITEM_NEW_MALE
-            Else
-                textboxIDPersona.Text = String.Format(.IDPersona.ToString, "G")
-            End If
-
             textboxMatriculaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.MatriculaNumero).TrimEnd
             textboxApellido.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Apellido)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
@@ -207,6 +243,7 @@
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -216,7 +253,6 @@
                     comboboxIOMATiene.SelectedIndex = 2
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
-            CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
 
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
@@ -259,11 +295,22 @@
             If .IDPersona > 0 Then
                 RefreshData_Familiares()
                 RefreshData_AltasBajas()
+                RefreshData_Ascensos()
+                RefreshData_Licencias()
+                RefreshData_Sanciones()
+                RefreshData_Cursos()
+                RefreshData_Calificaciones()
+                RefreshData_Examenes()
             End If
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If .IDPersona = 0 Then
+                textboxIDPersona.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDPersona.Text = String.Format(.IDPersona.ToString, "G")
+            End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
                 textboxUsuarioCreacion.Text = ""
@@ -375,11 +422,12 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listFamiliares = (From pf In mPersonaActual.PersonaFamiliares
+            listFamiliares = (From pf In mdbContext.PersonaFamiliar
                               Group Join p In mdbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco Into Parentescos_Group = Group
                               From pg In Parentescos_Group.DefaultIfEmpty
+                              Where pf.IDPersona = mPersonaActual.IDPersona
                               Order By pg.Orden, pf.ApellidoNombre
-                              Select New GridRowData_Familiares With {.IDFamiliar = pf.IDFamiliar, .Parentesco = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
+                              Select New GridRowData_Familiares With {.IDFamiliar = pf.IDFamiliar, .ParentescoNombre = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
 
             datagridviewFamiliares.AutoGenerateColumns = False
             datagridviewFamiliares.DataSource = listFamiliares
@@ -394,7 +442,7 @@
 
         If PositionIDFamiliar <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewFamiliares.Rows
-                If CType(datagridviewFamiliares.CurrentRow.DataBoundItem, GridRowData_Familiares).IDFamiliar = PositionIDFamiliar Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Familiares).IDFamiliar = PositionIDFamiliar Then
                     datagridviewFamiliares.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -416,9 +464,10 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listAltasBajas = (From pab In mPersonaActual.PersonaAltasBajas
+            listAltasBajas = (From pab In mdbContext.PersonaAltaBaja
                               Group Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo Into PersonaBajaMotivo_Group = Group
                               From pbmg In PersonaBajaMotivo_Group.DefaultIfEmpty
+                              Where pab.IDPersona = mPersonaActual.IDPersona
                               Order By pab.AltaFecha
                               Select New GridRowData_AltasBajas With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = If(pbmg Is Nothing, "", pbmg.Nombre)}).ToList
 
@@ -435,7 +484,7 @@
 
         If PositionIDAltaBaja <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewAltasBajas.Rows
-                If CType(datagridviewAltasBajas.CurrentRow.DataBoundItem, GridRowData_AltasBajas).IDAltaBaja = PositionIDAltaBaja Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_AltasBajas).IDAltaBaja = PositionIDAltaBaja Then
                     datagridviewAltasBajas.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -443,6 +492,256 @@
         End If
     End Sub
 
+    Friend Sub RefreshData_Ascensos(Optional ByVal PositionIDAscenso As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listAscensos As List(Of GridRowData_Ascensos)
+
+        If RestoreCurrentPosition Then
+            If datagridviewAscensos.CurrentRow Is Nothing Then
+                PositionIDAscenso = 0
+            Else
+                PositionIDAscenso = CType(datagridviewAscensos.CurrentRow.DataBoundItem, GridRowData_Ascensos).IDAscenso
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listAscensos = (From pa In mdbContext.PersonaAscenso
+                              Join c In mdbContext.Cargo On pa.IDCargo Equals c.IDCargo
+                              Join cj In mdbContext.CargoJerarquia On pa.IDCargo Equals cj.IDCargo And pa.IDJerarquia Equals cj.IDJerarquia
+                              Where pa.IDPersona = mPersonaActual.IDPersona
+                              Order By pa.Fecha
+                              Select New GridRowData_Ascensos With {.IDAscenso = pa.IDAscenso, .Fecha = pa.Fecha, .CargoNombre = c.Nombre, .JerarquiaNombre = cj.Nombre}).ToList
+
+            datagridviewAscensos.AutoGenerateColumns = False
+            datagridviewAscensos.DataSource = listAscensos
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer los Ascensos.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDAscenso <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewAscensos.Rows
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Ascensos).IDAscenso = PositionIDAscenso Then
+                    datagridviewAscensos.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Friend Sub RefreshData_Licencias(Optional ByVal PositionIDLicencia As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listLicencias As List(Of GridRowData_Licencias)
+
+        If RestoreCurrentPosition Then
+            If datagridviewLicencias.CurrentRow Is Nothing Then
+                PositionIDLicencia = 0
+            Else
+                PositionIDLicencia = CType(datagridviewLicencias.CurrentRow.DataBoundItem, GridRowData_Licencias).IDLicencia
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listLicencias = (From pl In mdbContext.PersonaLicencia
+                              Join lc In mdbContext.LicenciaCausa On pl.IDLicenciaCausa Equals lc.IDLicenciaCausa
+                              Where pl.IDPersona = mPersonaActual.IDPersona
+                              Order By pl.Fecha
+                              Select New GridRowData_Licencias With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
+
+            datagridviewLicencias.AutoGenerateColumns = False
+            datagridviewLicencias.DataSource = listLicencias
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Licencias.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDLicencia <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewLicencias.Rows
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Licencias).IDLicencia = PositionIDLicencia Then
+                    datagridviewLicencias.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Friend Sub RefreshData_Sanciones(Optional ByVal PositionIDSancion As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listSancions As List(Of GridRowData_Sanciones)
+
+        If RestoreCurrentPosition Then
+            If datagridviewSanciones.CurrentRow Is Nothing Then
+                PositionIDSancion = 0
+            Else
+                PositionIDSancion = CType(datagridviewSanciones.CurrentRow.DataBoundItem, GridRowData_Sanciones).IDSancion
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listSancions = (From ps In mdbContext.PersonaSancion
+                            Group Join st In mdbContext.SancionTipo On ps.ResolucionIDSancionTipo Equals st.IDSancionTipo Into SancionTipo_Group = Group
+                            From stg In SancionTipo_Group.DefaultIfEmpty
+                            Where ps.IDPersona = mPersonaActual.IDPersona
+                            Order By ps.SolicitudFecha
+                            Select New GridRowData_Sanciones With {.IDSancion = ps.IDSancion, .SolicitudFecha = ps.SolicitudFecha, .SancionTipoNombre = If(stg Is Nothing, "", stg.Nombre)}).ToList
+
+            datagridviewSanciones.AutoGenerateColumns = False
+            datagridviewSanciones.DataSource = listSancions
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Sanciones.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDSancion <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewSanciones.Rows
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Sanciones).IDSancion = PositionIDSancion Then
+                    datagridviewSanciones.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Friend Sub RefreshData_Cursos(Optional ByVal PositionIDCurso As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listCursos As List(Of GridRowData_Capacitaciones)
+
+        If RestoreCurrentPosition Then
+            If datagridviewCursos.CurrentRow Is Nothing Then
+                PositionIDCurso = 0
+            Else
+                PositionIDCurso = CType(datagridviewCursos.CurrentRow.DataBoundItem, GridRowData_Capacitaciones).IDCapacitacion
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listCursos = (From pc In mdbContext.PersonaCapacitacion
+                              Join c In mdbContext.Curso On pc.IDCurso Equals c.IDCurso
+                              Where pc.IDPersona = mPersonaActual.IDPersona
+                              Order By pc.Fecha
+                              Select New GridRowData_Capacitaciones With {.IDCapacitacion = pc.IDCapacitacion, .Fecha = pc.Fecha, .CursoNombre = c.Nombre}).ToList
+
+            datagridviewCursos.AutoGenerateColumns = False
+            datagridviewCursos.DataSource = listCursos
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Capacitacione.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDCurso <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewCursos.Rows
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Capacitaciones).IDCapacitacion = PositionIDCurso Then
+                    datagridviewCursos.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Friend Sub RefreshData_Calificaciones(Optional ByVal PositionAnio As Short = 0, Optional ByVal PositionInstanciaNumero As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listCalificaciones As List(Of GridRowData_Calificaciones)
+
+        If RestoreCurrentPosition Then
+            If datagridviewCalificaciones.CurrentRow Is Nothing Then
+                PositionAnio = 0
+                PositionInstanciaNumero = 0
+            Else
+                PositionAnio = CType(datagridviewCalificaciones.CurrentRow.DataBoundItem, GridRowData_Calificaciones).Anio
+                PositionInstanciaNumero = CType(datagridviewCalificaciones.CurrentRow.DataBoundItem, GridRowData_Calificaciones).InstanciaNumero
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            'listCalificaciones = (From pc In mdbContext.PersonaCalificacion
+            '                      Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
+            '                      Where pc.IDPersona = mPersonaActual.IDPersona
+            '                      Order By pc.Anio, pc.InstanciaNumero
+            '                      Select New GridRowData_Calificaciones With {.anio = pc.anio, .InstanciaNumero = pc.InstanciaNumero , .AnioInstancia  = pc., .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
+
+            datagridviewCalificaciones.AutoGenerateColumns = False
+            datagridviewCalificaciones.DataSource = listCalificaciones
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Calificaciones.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        'If PositionAnio <> 0 Then
+        '    For Each CurrentRowChecked As DataGridViewRow In datagridviewCalificaciones.Rows
+        '        If CType(CurrentRowChecked.DataBoundItem, GridRowData).Anio = PositionAnio And CType(CurrentRowChecked.DataBoundItem, GridRowData).InstanciaNumero = PositionInstanciaNumero Then
+        '            datagridviewCalificaciones.CurrentCell = CurrentRowChecked.Cells(columnAnioInstancia.Name)
+        '            Exit For
+        '        End If
+        '    Next
+        'End If
+    End Sub
+
+    Friend Sub RefreshData_Examenes(Optional ByVal PositionAnio As Short = 0, Optional ByVal PositionInstanciaNumero As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listExamenes As List(Of GridRowData_Examenes)
+
+        If RestoreCurrentPosition Then
+            If datagridviewExamenes.CurrentRow Is Nothing Then
+                PositionAnio = 0
+                PositionInstanciaNumero = 0
+            Else
+                PositionAnio = CType(datagridviewExamenes.CurrentRow.DataBoundItem, GridRowData_Examenes).Anio
+                PositionInstanciaNumero = CType(datagridviewExamenes.CurrentRow.DataBoundItem, GridRowData_Examenes).InstanciaNumero
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listExamenes = (From pe In mdbContext.PersonaExamen
+                            Where pe.IDPersona = mPersonaActual.IDPersona
+                            Order By pe.Anio, pe.InstanciaNumero
+                            Select New GridRowData_Examenes With {.Anio = pe.Anio, .InstanciaNumero = pe.InstanciaNumero, .Calificacion = pe.Calificacion}).ToList
+
+            datagridviewExamenes.AutoGenerateColumns = False
+            datagridviewExamenes.DataSource = listExamenes
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer los Exámenes.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionAnio <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewExamenes.Rows
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData_Examenes).Anio = PositionAnio And CType(CurrentRowChecked.DataBoundItem, GridRowData_Examenes).InstanciaNumero = PositionInstanciaNumero Then
+                    datagridviewExamenes.CurrentCell = CurrentRowChecked.Cells(columnExamenes_AnioInstancia.Name)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
 #End Region
 
 #Region "Controls behavior"
@@ -727,11 +1026,14 @@
         If datagridviewFamiliares.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Familiar para eliminar.", vbInformation, My.Application.Info.Title)
         Else
+            Dim GridRowDataActual As GridRowData_Familiares
             Dim PersonaFamiliarEliminar As PersonaFamiliar
-            PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiares).IDFamiliar)
+
+            GridRowDataActual = CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, GridRowData_Familiares)
+            PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, GridRowDataActual.IDFamiliar)
 
             Dim Mensaje As String
-            Mensaje = String.Format("Se eliminará el Familiar seleccionado.{0}{0}Parentesco: {1}{0}Apellido y Nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, PersonaFamiliarEliminar.Parentesco.Nombre, PersonaFamiliarEliminar.ApellidoNombre)
+            Mensaje = String.Format("Se eliminará el Familiar seleccionado.{0}{0}Parentesco: {1}{0}Apellido y Nombre: {2}, {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.ParentescoNombre, GridRowDataActual.Apellido, GridRowDataActual.Nombre)
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
@@ -804,11 +1106,14 @@
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para eliminar.", vbInformation, My.Application.Info.Title)
         Else
+            Dim GridRowDataActual As GridRowData_AltasBajas
             Dim PersonaAltaBajaEliminar As PersonaAltaBaja
-            PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, GridRowData_AltasBajas).IDAltaBaja)
+
+            GridRowDataActual = CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, GridRowData_AltasBajas)
+            PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAltaBaja)
 
             Dim Mensaje As String
-            Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}Fecha Baja: {2}{0}Motivo de Baja: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, PersonaAltaBajaEliminar.AltaFecha, PersonaAltaBajaEliminar.BajaFecha, PersonaAltaBajaEliminar.PersonaBajaMotivo.Nombre)
+            Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}Fecha Baja: {2}{0}Motivo de Baja: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AltaFecha, GridRowDataActual.BajaFecha, GridRowDataActual.BajaMotivoNombre)
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
@@ -835,6 +1140,246 @@
             formPersonaAltaBaja.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
 
             datagridviewAltasBajas.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Ascensos Toolbar"
+    Private Sub Ascensos_Agregar() Handles buttonAscensos_Agregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        datagridviewAscensos.Enabled = False
+
+        SetDataFromControlsToObject()
+
+        Dim PersonaAscensoNuevo As New PersonaAscenso
+        formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+        datagridviewAscensos.Enabled = True
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Ascensos_Editar() Handles buttonAscensos_Editar.Click
+        If datagridviewAscensos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Ascenso - Promoción para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewAscensos.Enabled = False
+
+            Dim PersonaAscensoActual As PersonaAscenso
+
+            PersonaAscensoActual = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, GridRowData_Ascensos).IDAscenso)
+            formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaAscensoActual.IDAscenso)
+
+            datagridviewAscensos.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Ascensos_Eliminar() Handles buttonAscensos_Eliminar.Click
+        If datagridviewAscensos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Ascenso - Promoción para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim GridRowDataActual As GridRowData_Ascensos
+            Dim PersonaAscensoEliminar As PersonaAscenso
+
+            GridRowDataActual = CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, GridRowData_Ascensos)
+            PersonaAscensoEliminar = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAscenso)
+
+            Dim Mensaje As String
+            Mensaje = String.Format("Se eliminará el Ascenso - Promoción seleccionado.{0}{0}Fecha: {1}{0}Cargo: {2}{0}Jerarquía: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.CargoNombre, GridRowDataActual.JerarquiaNombre)
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mPersonaActual.PersonaAscensos.Remove(PersonaAscensoEliminar)
+
+                RefreshData_Ascensos()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Ascensos_Ver() Handles datagridviewAscensos.DoubleClick
+        If datagridviewAscensos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Ascenso - Promoción para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewAscensos.Enabled = False
+
+            Dim PersonaAscensoActual As PersonaAscenso
+
+            PersonaAscensoActual = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, GridRowData_Ascensos).IDAscenso)
+            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaAscensoActual.IDAscenso)
+
+            datagridviewAscensos.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Licencias Toolbar"
+    Private Sub Licencias_Agregar() Handles buttonLicencias_Agregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        datagridviewLicencias.Enabled = False
+
+        SetDataFromControlsToObject()
+
+        Dim PersonaLicenciaNuevo As New PersonaLicencia
+        formPersonaLicencia.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+        datagridviewLicencias.Enabled = True
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Licencias_Editar() Handles buttonLicencias_Editar.Click
+        If datagridviewLicencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewLicencias.Enabled = False
+
+            Dim PersonaLicenciaActual As PersonaLicencia
+
+            PersonaLicenciaActual = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, GridRowData_Licencias).IDLicencia)
+            formPersonaLicencia.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaLicenciaActual.IDLicencia)
+
+            datagridviewLicencias.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Licencias_Eliminar() Handles buttonLicencias_Eliminar.Click
+        If datagridviewLicencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim GridRowDataActual As GridRowData_Licencias
+            Dim PersonaLicenciaEliminar As PersonaLicencia
+
+            GridRowDataActual = CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, GridRowData_Licencias)
+            PersonaLicenciaEliminar = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, GridRowDataActual.IDLicencia)
+
+            Dim Mensaje As String
+            Mensaje = String.Format("Se eliminará la Licencia seleccionada.{0}{0}Fecha: {1}{0}Causa: {2}{0}Fecha desde: {3}{0}Fecha hasta: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.LicenciaCausaNombre, GridRowDataActual.FechaDesde, GridRowDataActual.FechaHasta)
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mPersonaActual.PersonaLicencia.Remove(PersonaLicenciaEliminar)
+
+                RefreshData_Licencias()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Licencias_Ver() Handles datagridviewLicencias.DoubleClick
+        If datagridviewLicencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewLicencias.Enabled = False
+
+            Dim PersonaLicenciaActual As PersonaLicencia
+
+            PersonaLicenciaActual = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, GridRowData_Licencias).IDLicencia)
+            formPersonaLicencia.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaLicenciaActual.IDLicencia)
+
+            datagridviewLicencias.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Sanciones Toolbar"
+    Private Sub Sanciones_Agregar() Handles buttonSanciones_Agregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        datagridviewSanciones.Enabled = False
+
+        SetDataFromControlsToObject()
+
+        Dim PersonaSancionNuevo As New PersonaSancion
+        formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+        datagridviewSanciones.Enabled = True
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub Sanciones_Editar() Handles buttonSanciones_Editar.Click
+        If datagridviewSanciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Sanción para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewSanciones.Enabled = False
+
+            Dim PersonaSancionActual As PersonaSancion
+
+            PersonaSancionActual = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, GridRowData_Sanciones).IDSancion)
+            formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaSancionActual.IDSancion)
+
+            datagridviewSanciones.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Sanciones_Eliminar() Handles buttonSanciones_Eliminar.Click
+        If datagridviewSanciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Sanción para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim GridRowDataActual As GridRowData_Sanciones
+            Dim PersonaSancionEliminar As PersonaSancion
+
+            GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, GridRowData_Sanciones)
+            PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
+
+            Dim Mensaje As String
+            Mensaje = String.Format("Se eliminará la Sanción seleccionada.{0}{0}Fecha de solicitud: {1}{0}Tipo: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.SolicitudFecha, GridRowDataActual.SancionTipoNombre)
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mPersonaActual.PersonaSancion.Remove(PersonaSancionEliminar)
+
+                RefreshData_Sanciones()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Sanciones_Ver() Handles datagridviewSanciones.DoubleClick
+        If datagridviewSanciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Sancion para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewSanciones.Enabled = False
+
+            Dim PersonaSancionActual As PersonaSancion
+
+            PersonaSancionActual = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, GridRowData_Sanciones).IDSancion)
+            formPersonaSancion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaSancionActual.IDSancion)
+
+            datagridviewSanciones.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If

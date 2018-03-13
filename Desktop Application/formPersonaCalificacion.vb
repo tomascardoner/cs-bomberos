@@ -30,6 +30,7 @@
                 Dim PersonaCalificacionActual As New PersonaCalificacion
                 With PersonaCalificacionActual
                     .IDPersona = IDPersona
+
                     .IDCalificacionConcepto = CalificacionConceptoActual.IDCalificacionConcepto
                     .IDUsuarioCreacion = pUsuario.IDUsuario
                     .FechaHoraCreacion = Now

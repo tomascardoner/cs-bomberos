@@ -26,7 +26,7 @@ Partial Public Class PersonaLicencia
 
     Public Overridable Property LicenciaCausa As LicenciaCausa
     Public Overridable Property Persona As Persona
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

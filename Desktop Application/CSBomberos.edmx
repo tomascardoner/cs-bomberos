@@ -3715,10 +3715,10 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioGrupoPermiso" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario11" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="Usuarios" Relationship="CSBomberosModel.FK__UsuarioGrupo__Usuario" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioGrupoPermisos" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="UsuarioGrupoPermiso">
           <Key>
@@ -5047,8 +5047,8 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" FromRole="PenaAplicacion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" FromRole="PenaAplicacion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" FromRole="PenaAplicacion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" FromRole="PenaAplicacion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Rubro">
           <Key>
@@ -5063,8 +5063,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="SubRubro" Relationship="CSBomberosModel.FK__Rubro__SubRubro" FromRole="Rubro" ToRole="SubRubro" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Rubro__Creacion" FromRole="Rubro" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Rubro__Modificacion" FromRole="Rubro" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Rubro__Creacion" FromRole="Rubro" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Rubro__Modificacion" FromRole="Rubro" ToRole="Usuario" />
           <NavigationProperty Name="Elemento" Relationship="CSBomberosModel.FK__Rubro__Elemento" FromRole="Rubro" ToRole="Elemento" />
         </EntityType>
         <EntityType Name="SubRubro">
@@ -5081,8 +5081,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Rubro" Relationship="CSBomberosModel.FK__Rubro__SubRubro" FromRole="SubRubro" ToRole="Rubro" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Creacion" FromRole="SubRubro" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" FromRole="SubRubro" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Creacion" FromRole="SubRubro" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" FromRole="SubRubro" ToRole="Usuario" />
           <NavigationProperty Name="Elemento" Relationship="CSBomberosModel.FK__SubRubro__Elemento" FromRole="SubRubro" ToRole="Elemento" />
         </EntityType>
         <Association Name="FK__Usuario__PenaAplicacion__Creacion">
@@ -5253,8 +5253,8 @@
           <NavigationProperty Name="ModoAdquisicion" Relationship="CSBomberosModel.FK__ModoAdquisicion__Inventario" FromRole="Inventario" ToRole="ModoAdquisicion" />
           <NavigationProperty Name="SubUbicacion" Relationship="CSBomberosModel.FK__SubUbicacion__Inventario" FromRole="Inventario" ToRole="SubUbicacion" />
           <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Ubicacion__Inventario" FromRole="Inventario" ToRole="Ubicacion" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Inventario" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Inventario" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Inventario" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Inventario" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK__Area__Inventario">
           <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
@@ -5335,8 +5335,8 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="PersonaCambioUnidad" ToRole="Persona" />
         </EntityType>
         <Association Name="FK__Usuario__PersonaCambioOrigen__Creacion1">
@@ -5400,8 +5400,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion" FromRole="CapacitacionNivel" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="CapacitacionNivel" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="CapacitacionTipo">
           <Key>
@@ -5416,8 +5416,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion" FromRole="CapacitacionTipo" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="CapacitacionTipo" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Curso">
           <Key>
@@ -5432,8 +5432,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Curso__PersonaCapacitacion" FromRole="Curso" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Curso" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Curso" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Curso" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Curso" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="LicenciaCausa">
           <Key>
@@ -5448,8 +5448,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia" FromRole="LicenciaCausa" ToRole="PersonaLicencia" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="LicenciaCausa" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="LicenciaCausa" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="LicenciaCausa" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="LicenciaCausa" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="LicenciaConducirCategoria">
           <Key>
@@ -5464,8 +5464,8 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaBajaMotivo">
           <Key>
@@ -5479,8 +5479,8 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
           <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaBajaMotivo" ToRole="PersonaAltaBaja" />
         </EntityType>
         <EntityType Name="PersonaCapacitacion">
@@ -5510,8 +5510,8 @@
           <NavigationProperty Name="Curso" Relationship="CSBomberosModel.FK__Curso__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Curso" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Localidad" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="PersonaCapacitacion" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="PersonaCapacitacion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaExamen">
           <Key>
@@ -5529,8 +5529,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="PersonaExamen" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="PersonaExamen" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="PersonaExamen" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="PersonaExamen" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="PersonaExamen" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaLicencia">
           <Key>
@@ -5551,8 +5551,8 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="LicenciaCausa" Relationship="CSBomberosModel.FK__LicenciaCausa__PersonaLicencia" FromRole="PersonaLicencia" ToRole="LicenciaCausa" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="PersonaLicencia" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="PersonaLicencia" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="PersonaLicencia" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="PersonaLicencia" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="PersonaLicencia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaLicenciaConducirCategoria">
           <Key>
@@ -5564,7 +5564,7 @@
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="PersonaLicenciaConducirCategoria" ToRole="Persona" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="PersonaLicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="PersonaLicenciaConducirCategoria" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaSancion">
           <Key>
@@ -5590,10 +5590,10 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="CargoJerarquia" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" FromRole="PersonaSancion" ToRole="CargoJerarquia" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="PersonaSancion" ToRole="Persona" />
-          <NavigationProperty Name="Persona1" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="PersonaSancion" ToRole="Persona" />
+          <NavigationProperty Name="PersonaSolicita" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="PersonaSancion" ToRole="Persona" />
           <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="PersonaSancion" ToRole="SancionTipo" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="PersonaSancion" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="PersonaSancion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="PersonaSancion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="PersonaSancion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="SancionTipo">
           <Key>
@@ -5608,8 +5608,8 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="SancionTipo" ToRole="PersonaSancion" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="SancionTipo" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="SancionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="SancionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="SancionTipo" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK__CapacitacionNivel__PersonaCapacitacion">
           <End Type="CSBomberosModel.CapacitacionNivel" Role="CapacitacionNivel" Multiplicity="0..1" />

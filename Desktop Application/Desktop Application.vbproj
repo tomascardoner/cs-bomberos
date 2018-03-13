@@ -298,10 +298,16 @@
     <Compile Include="formPersonaAscenso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formPersonaCambioUnidad.designer.vb">
-      <DependentUpon>formPersonaCambioUnidad.vb</DependentUpon>
+    <Compile Include="formPersonaLicencia.designer.vb">
+      <DependentUpon>formPersonaLicencia.vb</DependentUpon>
     </Compile>
-    <Compile Include="formPersonaCambioUnidad.vb">
+    <Compile Include="formPersonaLicencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaSancion.designer.vb">
+      <DependentUpon>formPersonaSancion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaSancion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formUbicacion.Designer.vb">
@@ -561,8 +567,11 @@
     <EmbeddedResource Include="formPersonaAscenso.resx">
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formPersonaCambioUnidad.resx">
-      <DependentUpon>formPersonaCambioUnidad.vb</DependentUpon>
+    <EmbeddedResource Include="formPersonaLicencia.resx">
+      <DependentUpon>formPersonaLicencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaSancion.resx">
+      <DependentUpon>formPersonaSancion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>

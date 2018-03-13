@@ -21,7 +21,7 @@ Partial Public Class SancionTipo
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property PersonaSancion As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

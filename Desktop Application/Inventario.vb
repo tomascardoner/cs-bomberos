@@ -32,7 +32,7 @@ Partial Public Class Inventario
     Public Overridable Property ModoAdquisicion As ModoAdquisicion
     Public Overridable Property SubUbicacion As SubUbicacion
     Public Overridable Property Ubicacion As Ubicacion
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

@@ -22,8 +22,8 @@ Partial Public Class SubRubro
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Rubro As Rubro
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Elemento As ICollection(Of Elemento) = New HashSet(Of Elemento)
 
 End Class

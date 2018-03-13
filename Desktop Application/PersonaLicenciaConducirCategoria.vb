@@ -17,6 +17,6 @@ Partial Public Class PersonaLicenciaConducirCategoria
     Public Property FechaHoraCreacion As Date
 
     Public Overridable Property Persona As Persona
-    Public Overridable Property Usuario As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
 
 End Class

@@ -1,33 +1,35 @@
-﻿Public Class formPersonaAscenso
+﻿Public Class formPersonaLicencia
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mPersonaAscensoActual As PersonaAscenso
+    Private mPersonaLicenciaActual As PersonaLicencia
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDAscenso As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDLicencia As Short)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDAscenso = 0 Then
+        If IDLicencia = 0 Then
             ' Es Nuevo
-            mPersonaAscensoActual = New PersonaAscenso
-            With mPersonaAscensoActual
+            mPersonaLicenciaActual = New PersonaLicencia
+            With mPersonaLicenciaActual
                 .IDPersona = IDPersona
 
                 .Fecha = DateTime.Today
+                .FechaDesde = DateTime.Today
+                .FechaHasta = DateTime.Today
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.PersonaAscenso.Add(mPersonaAscensoActual)
+            mdbContext.PersonaLicencia.Add(mPersonaLicenciaActual)
         Else
-            mPersonaAscensoActual = mdbContext.PersonaAscenso.Find(IDPersona, IDAscenso)
+            mPersonaLicenciaActual = mdbContext.PersonaLicencia.Find(IDPersona, IDLicencia)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -53,11 +55,10 @@
 
         ' General
         datetimepickerFecha.Enabled = mEditMode
-        comboboxCargo.Enabled = mEditMode
-        comboboxCargoJerarquia.Enabled = mEditMode
-        textboxLibroNumero.ReadOnly = Not mEditMode
-        textboxFolioNumero.ReadOnly = Not mEditMode
-        textboxActaNumero.ReadOnly = Not mEditMode
+        comboboxCausa.Enabled = mEditMode
+        datetimepickerFechaDesde.Enabled = mEditMode
+        datetimepickerFechaHasta.Enabled = mEditMode
+        datetimepickerFechaInterrupcion.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -66,7 +67,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cargo(comboboxCargo, False, False)
+        pFillAndRefreshLists.LicenciaCausa(comboboxCausa, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -76,27 +77,26 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mPersonaAscensoActual = Nothing
+        mPersonaLicenciaActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mPersonaAscensoActual
+        With mPersonaLicenciaActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCargoJerarquia, SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
-            textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
-            textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
-            textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCausa, SelectedItemOptions.ValueOrFirstIfUnique, .IDLicenciaCausa)
+            datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde)
+            datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta)
+            datetimepickerFechaInterrupcion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInterrupcion, datetimepickerFechaInterrupcion)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-            If .IDAscenso = 0 Then
-                textboxIDAscenso.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDLicencia = 0 Then
+                textboxIDLicencia.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDAscenso.Text = String.Format(.IDAscenso.ToString, "G")
+                textboxIDLicencia.Text = String.Format(.IDLicencia.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -114,13 +114,12 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mPersonaAscensoActual
+        With mPersonaLicenciaActual
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargo.SelectedValue).Value
-            .IDJerarquia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargoJerarquia.SelectedValue).Value
-            .LibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLibroNumero.Text)
-            .FolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFolioNumero.Text)
-            .ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
+            .IDLicenciaCausa = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCausa.SelectedValue).Value
+            .FechaDesde = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaDesde.Value).Value
+            .FechaHasta = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaHasta.Value).Value
+            .FechaInterrupcion = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInterrupcion.Value, datetimepickerFechaInterrupcion.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
@@ -145,20 +144,15 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLibroNumero.GotFocus, textboxFolioNumero.GotFocus, textboxActaNumero.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
-    End Sub
-
-    Private Sub comboboxCargo_SelectedIndexChanged() Handles comboboxCargo.SelectedIndexChanged
-        pFillAndRefreshLists.CargoJerarquia(comboboxCargoJerarquia, False, False, CByte(comboboxCargo.SelectedValue))
-        comboboxCargoJerarquia.SelectedItem = Nothing
     End Sub
 
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_Ascenso_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -169,26 +163,21 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxCargo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCargo.Focus()
-            Exit Sub
-        End If
-        If comboboxCargoJerarquia.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar la Jerarquía.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCargoJerarquia.Focus()
+        If comboboxCausa.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar la Causa.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCausa.Focus()
             Exit Sub
         End If
 
         ' Generar el ID nuevo
-        If mPersonaAscensoActual.IDAscenso = 0 Then
+        If mPersonaLicenciaActual.IDLicencia = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
-                PersonaActual = dbcMaxID.Persona.Find(mPersonaAscensoActual.IDPersona)
-                If PersonaActual.PersonaAscensos.Count = 0 Then
-                    mPersonaAscensoActual.IDAscenso = 1
+                PersonaActual = dbcMaxID.Persona.Find(mPersonaLicenciaActual.IDPersona)
+                If PersonaActual.PersonaLicencia.Count = 0 Then
+                    mPersonaLicenciaActual.IDLicencia = 1
                 Else
-                    mPersonaAscensoActual.IDAscenso = PersonaActual.PersonaAscensos.Max(Function(pa) pa.IDAscenso) + CByte(1)
+                    mPersonaLicenciaActual.IDLicencia = PersonaActual.PersonaLicencia.Max(Function(pl) pl.IDLicencia) + CByte(1)
                 End If
             End Using
         End If
@@ -200,8 +189,8 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mPersonaAscensoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mPersonaAscensoActual.FechaHoraModificacion = Now
+            mPersonaLicenciaActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mPersonaLicenciaActual.FechaHoraModificacion = Now
 
             Try
 
@@ -209,13 +198,13 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersona.RefreshData_Ascensos(mPersonaAscensoActual.IDAscenso)
+                formPersona.RefreshData_Licencias(mPersonaLicenciaActual.IDLicencia)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Ascenso - Promoción con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Licencia con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

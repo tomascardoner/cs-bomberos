@@ -21,7 +21,7 @@ Partial Public Class LicenciaCausa
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property PersonaLicencia As ICollection(Of PersonaLicencia) = New HashSet(Of PersonaLicencia)
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

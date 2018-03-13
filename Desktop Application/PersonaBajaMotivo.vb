@@ -20,8 +20,8 @@ Partial Public Class PersonaBajaMotivo
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property PersonaAltaBaja As ICollection(Of PersonaAltaBaja) = New HashSet(Of PersonaAltaBaja)
 
 End Class
