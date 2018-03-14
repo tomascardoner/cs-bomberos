@@ -267,8 +267,10 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        mEditMode = True
-        ChangeMode()
+        If Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR_EDITAR) Then
+            mEditMode = True
+            ChangeMode()
+        End If
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
@@ -383,7 +385,7 @@
                 ' Refresco la lista para mostrar los cambios
                 If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersona") Then
                     Dim formPersona As formPersona = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersona"), formPersona)
-                    formPersona.RefreshData_Familiares(mPersonaFamiliarActual.IDFamiliar)
+                    formPersona.Familiares_RefreshData(mPersonaFamiliarActual.IDFamiliar)
                     formPersona = Nothing
                 End If
 

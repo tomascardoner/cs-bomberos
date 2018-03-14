@@ -76,9 +76,9 @@ Partial Class formPersona
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
@@ -162,36 +162,51 @@ Partial Class formPersona
         Me.buttonAltasBajas_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAscensos = New System.Windows.Forms.TabPage()
         Me.datagridviewAscensos = New System.Windows.Forms.DataGridView()
+        Me.columnAscensos_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAscensos_Cargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAscensos_Jerarquia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAscensos = New System.Windows.Forms.ToolStrip()
         Me.buttonAscensos_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAscensos_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAscensos_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageLicencias = New System.Windows.Forms.TabPage()
         Me.datagridviewLicencias = New System.Windows.Forms.DataGridView()
+        Me.columnLicencias_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_Causa = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_FechaDesde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicencias_FechaHasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripLicencias = New System.Windows.Forms.ToolStrip()
         Me.buttonLicencias_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
+        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripSanciones = New System.Windows.Forms.ToolStrip()
         Me.buttonSanciones_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonSanciones_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonSanciones_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.tabpageCursos = New System.Windows.Forms.TabPage()
-        Me.datagridviewCursos = New System.Windows.Forms.DataGridView()
-        Me.toolstripCursos = New System.Windows.Forms.ToolStrip()
-        Me.buttonCursos_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCursos_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCursos_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.tabpageCapacitaciones = New System.Windows.Forms.TabPage()
+        Me.datagridviewCapacitaciones = New System.Windows.Forms.DataGridView()
+        Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCapacitaciones_CursoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.toolstripCapacitaciones = New System.Windows.Forms.ToolStrip()
+        Me.buttonCapacitaciones_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCapacitaciones_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCapacitaciones_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCalificaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCalificaciones = New System.Windows.Forms.DataGridView()
+        Me.columnCalificaciones_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCalificaciones_ConceptosCalificaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripCalificaciones = New System.Windows.Forms.ToolStrip()
         Me.buttonCalificacinoes_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificacinoes_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificacinoes_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageExamenes = New System.Windows.Forms.TabPage()
         Me.datagridviewExamenes = New System.Windows.Forms.DataGridView()
+        Me.columnExamenes_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnExamenes_Calificacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripExamenes = New System.Windows.Forms.ToolStrip()
         Me.buttonExamenes_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonExamenes_Editar = New System.Windows.Forms.ToolStripButton()
@@ -203,21 +218,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCapacitaciones_CursoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAscensos_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAscensos_Cargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAscensos_Jerarquia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnLicencias_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnLicencias_Causa = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnLicencias_FechaDesde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnLicencias_FechaHasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCalificaciones_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCalificaciones_ConceptosCalificaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnExamenes_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnExamenes_Calificacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -286,9 +286,9 @@ Partial Class formPersona
         Me.tabpageSanciones.SuspendLayout()
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripSanciones.SuspendLayout()
-        Me.tabpageCursos.SuspendLayout()
-        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripCursos.SuspendLayout()
+        Me.tabpageCapacitaciones.SuspendLayout()
+        CType(Me.datagridviewCapacitaciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripCapacitaciones.SuspendLayout()
         Me.tabpageCalificaciones.SuspendLayout()
         CType(Me.datagridviewCalificaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripCalificaciones.SuspendLayout()
@@ -898,7 +898,7 @@ Partial Class formPersona
         Me.tabcontrolMain.Controls.Add(Me.tabpageAscensos)
         Me.tabcontrolMain.Controls.Add(Me.tabpageLicencias)
         Me.tabcontrolMain.Controls.Add(Me.tabpageSanciones)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageCursos)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageCapacitaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageCalificaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageExamenes)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
@@ -1390,7 +1390,7 @@ Partial Class formPersona
         'columnFamiliares_Parentesco
         '
         Me.columnFamiliares_Parentesco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFamiliares_Parentesco.DataPropertyName = "Parentesco"
+        Me.columnFamiliares_Parentesco.DataPropertyName = "ParentescoNombre"
         Me.columnFamiliares_Parentesco.HeaderText = "Parentesco"
         Me.columnFamiliares_Parentesco.Name = "columnFamiliares_Parentesco"
         Me.columnFamiliares_Parentesco.ReadOnly = True
@@ -1594,6 +1594,33 @@ Partial Class formPersona
         Me.datagridviewAscensos.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewAscensos.TabIndex = 2
         '
+        'columnAscensos_Fecha
+        '
+        Me.columnAscensos_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Fecha.DataPropertyName = "Fecha"
+        Me.columnAscensos_Fecha.HeaderText = "Fecha"
+        Me.columnAscensos_Fecha.Name = "columnAscensos_Fecha"
+        Me.columnAscensos_Fecha.ReadOnly = True
+        Me.columnAscensos_Fecha.Width = 62
+        '
+        'columnAscensos_Cargo
+        '
+        Me.columnAscensos_Cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Cargo.DataPropertyName = "CargoNombre"
+        Me.columnAscensos_Cargo.HeaderText = "Cargo"
+        Me.columnAscensos_Cargo.Name = "columnAscensos_Cargo"
+        Me.columnAscensos_Cargo.ReadOnly = True
+        Me.columnAscensos_Cargo.Width = 60
+        '
+        'columnAscensos_Jerarquia
+        '
+        Me.columnAscensos_Jerarquia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAscensos_Jerarquia.DataPropertyName = "JerarquiaNombre"
+        Me.columnAscensos_Jerarquia.HeaderText = "Jerarquía"
+        Me.columnAscensos_Jerarquia.Name = "columnAscensos_Jerarquia"
+        Me.columnAscensos_Jerarquia.ReadOnly = True
+        Me.columnAscensos_Jerarquia.Width = 77
+        '
         'toolstripAscensos
         '
         Me.toolstripAscensos.Dock = System.Windows.Forms.DockStyle.Left
@@ -1670,6 +1697,42 @@ Partial Class formPersona
         Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewLicencias.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewLicencias.TabIndex = 4
+        '
+        'columnLicencias_Fecha
+        '
+        Me.columnLicencias_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_Fecha.DataPropertyName = "Fecha"
+        Me.columnLicencias_Fecha.HeaderText = "Fecha"
+        Me.columnLicencias_Fecha.Name = "columnLicencias_Fecha"
+        Me.columnLicencias_Fecha.ReadOnly = True
+        Me.columnLicencias_Fecha.Width = 62
+        '
+        'columnLicencias_Causa
+        '
+        Me.columnLicencias_Causa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_Causa.DataPropertyName = "LicenciaCausaNombre"
+        Me.columnLicencias_Causa.HeaderText = "Causa"
+        Me.columnLicencias_Causa.Name = "columnLicencias_Causa"
+        Me.columnLicencias_Causa.ReadOnly = True
+        Me.columnLicencias_Causa.Width = 62
+        '
+        'columnLicencias_FechaDesde
+        '
+        Me.columnLicencias_FechaDesde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_FechaDesde.DataPropertyName = "FechaDesde"
+        Me.columnLicencias_FechaDesde.HeaderText = "Fecha desde"
+        Me.columnLicencias_FechaDesde.Name = "columnLicencias_FechaDesde"
+        Me.columnLicencias_FechaDesde.ReadOnly = True
+        Me.columnLicencias_FechaDesde.Width = 94
+        '
+        'columnLicencias_FechaHasta
+        '
+        Me.columnLicencias_FechaHasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicencias_FechaHasta.DataPropertyName = "FechaHasta"
+        Me.columnLicencias_FechaHasta.HeaderText = "Fecha hasta"
+        Me.columnLicencias_FechaHasta.Name = "columnLicencias_FechaHasta"
+        Me.columnLicencias_FechaHasta.ReadOnly = True
+        Me.columnLicencias_FechaHasta.Width = 91
         '
         'toolstripLicencias
         '
@@ -1748,6 +1811,24 @@ Partial Class formPersona
         Me.datagridviewSanciones.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewSanciones.TabIndex = 6
         '
+        'columnSanciones_SolicitudFecha
+        '
+        Me.columnSanciones_SolicitudFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
+        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.ReadOnly = True
+        Me.columnSanciones_SolicitudFecha.Width = 108
+        '
+        'columnSanciones_SancionTipo
+        '
+        Me.columnSanciones_SancionTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
+        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
+        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
+        Me.columnSanciones_SancionTipo.ReadOnly = True
+        Me.columnSanciones_SancionTipo.Width = 99
+        '
         'toolstripSanciones
         '
         Me.toolstripSanciones.Dock = System.Windows.Forms.DockStyle.Left
@@ -1789,82 +1870,100 @@ Partial Class formPersona
         Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(84, 36)
         Me.buttonSanciones_Eliminar.Text = "Eliminar"
         '
-        'tabpageCursos
+        'tabpageCapacitaciones
         '
-        Me.tabpageCursos.Controls.Add(Me.datagridviewCursos)
-        Me.tabpageCursos.Controls.Add(Me.toolstripCursos)
-        Me.tabpageCursos.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageCursos.Name = "tabpageCursos"
-        Me.tabpageCursos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageCursos.Size = New System.Drawing.Size(752, 382)
-        Me.tabpageCursos.TabIndex = 15
-        Me.tabpageCursos.Text = "Cursos"
-        Me.tabpageCursos.UseVisualStyleBackColor = True
+        Me.tabpageCapacitaciones.Controls.Add(Me.datagridviewCapacitaciones)
+        Me.tabpageCapacitaciones.Controls.Add(Me.toolstripCapacitaciones)
+        Me.tabpageCapacitaciones.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageCapacitaciones.Name = "tabpageCapacitaciones"
+        Me.tabpageCapacitaciones.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageCapacitaciones.Size = New System.Drawing.Size(752, 382)
+        Me.tabpageCapacitaciones.TabIndex = 15
+        Me.tabpageCapacitaciones.Text = "Cursos"
+        Me.tabpageCapacitaciones.UseVisualStyleBackColor = True
         '
-        'datagridviewCursos
+        'datagridviewCapacitaciones
         '
-        Me.datagridviewCursos.AllowUserToAddRows = False
-        Me.datagridviewCursos.AllowUserToDeleteRows = False
-        Me.datagridviewCursos.AllowUserToResizeRows = False
+        Me.datagridviewCapacitaciones.AllowUserToAddRows = False
+        Me.datagridviewCapacitaciones.AllowUserToDeleteRows = False
+        Me.datagridviewCapacitaciones.AllowUserToResizeRows = False
         DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         DataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText
         DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCursos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
-        Me.datagridviewCursos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewCursos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCapacitaciones_Fecha, Me.columnCapacitaciones_CursoNombre})
-        Me.datagridviewCursos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewCursos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewCursos.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewCursos.MultiSelect = False
-        Me.datagridviewCursos.Name = "datagridviewCursos"
-        Me.datagridviewCursos.ReadOnly = True
-        Me.datagridviewCursos.RowHeadersVisible = False
-        Me.datagridviewCursos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCursos.Size = New System.Drawing.Size(659, 376)
-        Me.datagridviewCursos.TabIndex = 6
+        Me.datagridviewCapacitaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle6
+        Me.datagridviewCapacitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewCapacitaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCapacitaciones_Fecha, Me.columnCapacitaciones_CursoNombre})
+        Me.datagridviewCapacitaciones.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewCapacitaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewCapacitaciones.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewCapacitaciones.MultiSelect = False
+        Me.datagridviewCapacitaciones.Name = "datagridviewCapacitaciones"
+        Me.datagridviewCapacitaciones.ReadOnly = True
+        Me.datagridviewCapacitaciones.RowHeadersVisible = False
+        Me.datagridviewCapacitaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewCapacitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewCapacitaciones.Size = New System.Drawing.Size(659, 376)
+        Me.datagridviewCapacitaciones.TabIndex = 6
         '
-        'toolstripCursos
+        'columnCapacitaciones_Fecha
         '
-        Me.toolstripCursos.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripCursos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCursos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCursos_Agregar, Me.buttonCursos_Editar, Me.buttonCursos_Eliminar})
-        Me.toolstripCursos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripCursos.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripCursos.Name = "toolstripCursos"
-        Me.toolstripCursos.Size = New System.Drawing.Size(87, 376)
-        Me.toolstripCursos.TabIndex = 7
+        Me.columnCapacitaciones_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCapacitaciones_Fecha.DataPropertyName = "Fecha"
+        Me.columnCapacitaciones_Fecha.HeaderText = "Fecha"
+        Me.columnCapacitaciones_Fecha.Name = "columnCapacitaciones_Fecha"
+        Me.columnCapacitaciones_Fecha.ReadOnly = True
+        Me.columnCapacitaciones_Fecha.Width = 62
         '
-        'buttonCursos_Agregar
+        'columnCapacitaciones_CursoNombre
         '
-        Me.buttonCursos_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonCursos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Agregar.Name = "buttonCursos_Agregar"
-        Me.buttonCursos_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Agregar.Text = "Agregar"
+        Me.columnCapacitaciones_CursoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCapacitaciones_CursoNombre.DataPropertyName = "CursoNombre"
+        Me.columnCapacitaciones_CursoNombre.HeaderText = "Curso"
+        Me.columnCapacitaciones_CursoNombre.Name = "columnCapacitaciones_CursoNombre"
+        Me.columnCapacitaciones_CursoNombre.ReadOnly = True
+        Me.columnCapacitaciones_CursoNombre.Width = 59
         '
-        'buttonCursos_Editar
+        'toolstripCapacitaciones
         '
-        Me.buttonCursos_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonCursos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Editar.Name = "buttonCursos_Editar"
-        Me.buttonCursos_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Editar.Text = "Editar"
+        Me.toolstripCapacitaciones.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripCapacitaciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCapacitaciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCapacitaciones_Agregar, Me.buttonCapacitaciones_Editar, Me.buttonCapacitaciones_Eliminar})
+        Me.toolstripCapacitaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripCapacitaciones.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripCapacitaciones.Name = "toolstripCapacitaciones"
+        Me.toolstripCapacitaciones.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripCapacitaciones.TabIndex = 7
         '
-        'buttonCursos_Eliminar
+        'buttonCapacitaciones_Agregar
         '
-        Me.buttonCursos_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonCursos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCursos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCursos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCursos_Eliminar.Name = "buttonCursos_Eliminar"
-        Me.buttonCursos_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCursos_Eliminar.Text = "Eliminar"
+        Me.buttonCapacitaciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCapacitaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCapacitaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCapacitaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCapacitaciones_Agregar.Name = "buttonCapacitaciones_Agregar"
+        Me.buttonCapacitaciones_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCapacitaciones_Agregar.Text = "Agregar"
+        '
+        'buttonCapacitaciones_Editar
+        '
+        Me.buttonCapacitaciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCapacitaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCapacitaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCapacitaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCapacitaciones_Editar.Name = "buttonCapacitaciones_Editar"
+        Me.buttonCapacitaciones_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCapacitaciones_Editar.Text = "Editar"
+        '
+        'buttonCapacitaciones_Eliminar
+        '
+        Me.buttonCapacitaciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCapacitaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCapacitaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCapacitaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCapacitaciones_Eliminar.Name = "buttonCapacitaciones_Eliminar"
+        Me.buttonCapacitaciones_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCapacitaciones_Eliminar.Text = "Eliminar"
         '
         'tabpageCalificaciones
         '
@@ -1902,6 +2001,28 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewCalificaciones.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewCalificaciones.TabIndex = 6
+        '
+        'columnCalificaciones_AnioInstancia
+        '
+        Me.columnCalificaciones_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCalificaciones_AnioInstancia.DataPropertyName = "AnioInstancia"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
+        Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
+        Me.columnCalificaciones_AnioInstancia.ReadOnly = True
+        Me.columnCalificaciones_AnioInstancia.Width = 95
+        '
+        'columnCalificaciones_ConceptosCalificaciones
+        '
+        Me.columnCalificaciones_ConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCalificaciones_ConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnCalificaciones_ConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
+        Me.columnCalificaciones_ConceptosCalificaciones.Name = "columnCalificaciones_ConceptosCalificaciones"
+        Me.columnCalificaciones_ConceptosCalificaciones.ReadOnly = True
+        Me.columnCalificaciones_ConceptosCalificaciones.Width = 145
         '
         'toolstripCalificaciones
         '
@@ -1979,6 +2100,24 @@ Partial Class formPersona
         Me.datagridviewExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewExamenes.Size = New System.Drawing.Size(659, 376)
         Me.datagridviewExamenes.TabIndex = 6
+        '
+        'columnExamenes_AnioInstancia
+        '
+        Me.columnExamenes_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnExamenes_AnioInstancia.DataPropertyName = "AnioInstancia"
+        Me.columnExamenes_AnioInstancia.HeaderText = "Año - Instancia"
+        Me.columnExamenes_AnioInstancia.Name = "columnExamenes_AnioInstancia"
+        Me.columnExamenes_AnioInstancia.ReadOnly = True
+        Me.columnExamenes_AnioInstancia.Width = 95
+        '
+        'columnExamenes_Calificacion
+        '
+        Me.columnExamenes_Calificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnExamenes_Calificacion.DataPropertyName = "Calificacion"
+        Me.columnExamenes_Calificacion.HeaderText = "Calificación"
+        Me.columnExamenes_Calificacion.Name = "columnExamenes_Calificacion"
+        Me.columnExamenes_Calificacion.ReadOnly = True
+        Me.columnExamenes_Calificacion.Width = 86
         '
         'toolstripExamenes
         '
@@ -2097,145 +2236,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'columnCapacitaciones_Fecha
-        '
-        Me.columnCapacitaciones_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCapacitaciones_Fecha.DataPropertyName = "Fecha"
-        Me.columnCapacitaciones_Fecha.HeaderText = "Fecha"
-        Me.columnCapacitaciones_Fecha.Name = "columnCapacitaciones_Fecha"
-        Me.columnCapacitaciones_Fecha.ReadOnly = True
-        Me.columnCapacitaciones_Fecha.Width = 62
-        '
-        'columnCapacitaciones_CursoNombre
-        '
-        Me.columnCapacitaciones_CursoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCapacitaciones_CursoNombre.DataPropertyName = "CursoNombre"
-        Me.columnCapacitaciones_CursoNombre.HeaderText = "Curso"
-        Me.columnCapacitaciones_CursoNombre.Name = "columnCapacitaciones_CursoNombre"
-        Me.columnCapacitaciones_CursoNombre.ReadOnly = True
-        Me.columnCapacitaciones_CursoNombre.Width = 59
-        '
-        'columnAscensos_Fecha
-        '
-        Me.columnAscensos_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAscensos_Fecha.DataPropertyName = "Fecha"
-        Me.columnAscensos_Fecha.HeaderText = "Fecha"
-        Me.columnAscensos_Fecha.Name = "columnAscensos_Fecha"
-        Me.columnAscensos_Fecha.ReadOnly = True
-        Me.columnAscensos_Fecha.Width = 62
-        '
-        'columnAscensos_Cargo
-        '
-        Me.columnAscensos_Cargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAscensos_Cargo.DataPropertyName = "CargoNombre"
-        Me.columnAscensos_Cargo.HeaderText = "Cargo"
-        Me.columnAscensos_Cargo.Name = "columnAscensos_Cargo"
-        Me.columnAscensos_Cargo.ReadOnly = True
-        Me.columnAscensos_Cargo.Width = 60
-        '
-        'columnAscensos_Jerarquia
-        '
-        Me.columnAscensos_Jerarquia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAscensos_Jerarquia.DataPropertyName = "JerarquiaNombre"
-        Me.columnAscensos_Jerarquia.HeaderText = "Jerarquía"
-        Me.columnAscensos_Jerarquia.Name = "columnAscensos_Jerarquia"
-        Me.columnAscensos_Jerarquia.ReadOnly = True
-        Me.columnAscensos_Jerarquia.Width = 77
-        '
-        'columnLicencias_Fecha
-        '
-        Me.columnLicencias_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnLicencias_Fecha.DataPropertyName = "Fecha"
-        Me.columnLicencias_Fecha.HeaderText = "Fecha"
-        Me.columnLicencias_Fecha.Name = "columnLicencias_Fecha"
-        Me.columnLicencias_Fecha.ReadOnly = True
-        Me.columnLicencias_Fecha.Width = 62
-        '
-        'columnLicencias_Causa
-        '
-        Me.columnLicencias_Causa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnLicencias_Causa.DataPropertyName = "LicenciaCausaNombre"
-        Me.columnLicencias_Causa.HeaderText = "Causa"
-        Me.columnLicencias_Causa.Name = "columnLicencias_Causa"
-        Me.columnLicencias_Causa.ReadOnly = True
-        Me.columnLicencias_Causa.Width = 62
-        '
-        'columnLicencias_FechaDesde
-        '
-        Me.columnLicencias_FechaDesde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnLicencias_FechaDesde.DataPropertyName = "FechaDesde"
-        Me.columnLicencias_FechaDesde.HeaderText = "Fecha desde"
-        Me.columnLicencias_FechaDesde.Name = "columnLicencias_FechaDesde"
-        Me.columnLicencias_FechaDesde.ReadOnly = True
-        Me.columnLicencias_FechaDesde.Width = 94
-        '
-        'columnLicencias_FechaHasta
-        '
-        Me.columnLicencias_FechaHasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnLicencias_FechaHasta.DataPropertyName = "FechaHasta"
-        Me.columnLicencias_FechaHasta.HeaderText = "Fecha hasta"
-        Me.columnLicencias_FechaHasta.Name = "columnLicencias_FechaHasta"
-        Me.columnLicencias_FechaHasta.ReadOnly = True
-        Me.columnLicencias_FechaHasta.Width = 91
-        '
-        'columnSanciones_SolicitudFecha
-        '
-        Me.columnSanciones_SolicitudFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
-        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.ReadOnly = True
-        Me.columnSanciones_SolicitudFecha.Width = 108
-        '
-        'columnSanciones_SancionTipo
-        '
-        Me.columnSanciones_SancionTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
-        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
-        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
-        Me.columnSanciones_SancionTipo.ReadOnly = True
-        Me.columnSanciones_SancionTipo.Width = 99
-        '
-        'columnCalificaciones_AnioInstancia
-        '
-        Me.columnCalificaciones_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCalificaciones_AnioInstancia.DataPropertyName = "AnioInstancia"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle8
-        Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
-        Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
-        Me.columnCalificaciones_AnioInstancia.ReadOnly = True
-        Me.columnCalificaciones_AnioInstancia.Width = 95
-        '
-        'columnCalificaciones_ConceptosCalificaciones
-        '
-        Me.columnCalificaciones_ConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCalificaciones_ConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle9
-        Me.columnCalificaciones_ConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
-        Me.columnCalificaciones_ConceptosCalificaciones.Name = "columnCalificaciones_ConceptosCalificaciones"
-        Me.columnCalificaciones_ConceptosCalificaciones.ReadOnly = True
-        Me.columnCalificaciones_ConceptosCalificaciones.Width = 145
-        '
-        'columnExamenes_AnioInstancia
-        '
-        Me.columnExamenes_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnExamenes_AnioInstancia.DataPropertyName = "AnioInstancia"
-        Me.columnExamenes_AnioInstancia.HeaderText = "Año - Instancia"
-        Me.columnExamenes_AnioInstancia.Name = "columnExamenes_AnioInstancia"
-        Me.columnExamenes_AnioInstancia.ReadOnly = True
-        Me.columnExamenes_AnioInstancia.Width = 95
-        '
-        'columnExamenes_Calificacion
-        '
-        Me.columnExamenes_Calificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnExamenes_Calificacion.DataPropertyName = "Calificacion"
-        Me.columnExamenes_Calificacion.HeaderText = "Calificación"
-        Me.columnExamenes_Calificacion.Name = "columnExamenes_Calificacion"
-        Me.columnExamenes_Calificacion.ReadOnly = True
-        Me.columnExamenes_Calificacion.Width = 86
-        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2293,11 +2293,11 @@ Partial Class formPersona
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripSanciones.ResumeLayout(False)
         Me.toolstripSanciones.PerformLayout()
-        Me.tabpageCursos.ResumeLayout(False)
-        Me.tabpageCursos.PerformLayout()
-        CType(Me.datagridviewCursos, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripCursos.ResumeLayout(False)
-        Me.toolstripCursos.PerformLayout()
+        Me.tabpageCapacitaciones.ResumeLayout(False)
+        Me.tabpageCapacitaciones.PerformLayout()
+        CType(Me.datagridviewCapacitaciones, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripCapacitaciones.ResumeLayout(False)
+        Me.toolstripCapacitaciones.PerformLayout()
         Me.tabpageCalificaciones.ResumeLayout(False)
         Me.tabpageCalificaciones.PerformLayout()
         CType(Me.datagridviewCalificaciones, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2375,9 +2375,6 @@ Partial Class formPersona
     Friend WithEvents buttonFamiliares_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonFamiliares_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonFamiliares_Eliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents columnFamiliares_Parentesco As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnFamiliares_Apellido As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnFamiliares_Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents comboboxFactorRH As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxGrupoSanguineo As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxNivelEstudio As System.Windows.Forms.ComboBox
@@ -2404,7 +2401,7 @@ Partial Class formPersona
     Friend WithEvents tabpageAscensos As System.Windows.Forms.TabPage
     Friend WithEvents tabpageLicencias As System.Windows.Forms.TabPage
     Friend WithEvents tabpageSanciones As System.Windows.Forms.TabPage
-    Friend WithEvents tabpageCursos As System.Windows.Forms.TabPage
+    Friend WithEvents tabpageCapacitaciones As System.Windows.Forms.TabPage
     Friend WithEvents tabpageCalificaciones As System.Windows.Forms.TabPage
     Friend WithEvents tabpageExamenes As System.Windows.Forms.TabPage
     Friend WithEvents datagridviewAscensos As System.Windows.Forms.DataGridView
@@ -2427,11 +2424,11 @@ Partial Class formPersona
     Friend WithEvents buttonSanciones_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSanciones_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSanciones_Eliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents datagridviewCursos As System.Windows.Forms.DataGridView
-    Friend WithEvents toolstripCursos As System.Windows.Forms.ToolStrip
-    Friend WithEvents buttonCursos_Agregar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonCursos_Editar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonCursos_Eliminar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents datagridviewCapacitaciones As System.Windows.Forms.DataGridView
+    Friend WithEvents toolstripCapacitaciones As System.Windows.Forms.ToolStrip
+    Friend WithEvents buttonCapacitaciones_Agregar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonCapacitaciones_Editar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonCapacitaciones_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewExamenes As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripExamenes As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonExamenes_Agregar As System.Windows.Forms.ToolStripButton
@@ -2452,4 +2449,7 @@ Partial Class formPersona
     Friend WithEvents columnCalificaciones_ConceptosCalificaciones As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnExamenes_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnExamenes_Calificacion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFamiliares_Parentesco As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFamiliares_Apellido As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnFamiliares_Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

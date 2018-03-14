@@ -198,7 +198,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersona.RefreshData_Licencias(mPersonaLicenciaActual.IDLicencia)
+                formPersona.Licencias_RefreshData(mPersonaLicenciaActual.IDLicencia)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

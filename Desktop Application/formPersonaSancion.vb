@@ -185,6 +185,12 @@
             comboboxSolicitudPersona.Focus()
             Exit Sub
         End If
+        If textboxSolicitudMotivo.Text.Trim.Length = 0 Then
+            MsgBox("Debe especificar el Motivo de la Sanción.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxSolicitudMotivo.Focus()
+            Exit Sub
+        End If
+
 
         ' Generar el ID nuevo
         If mPersonaSancionActual.IDSancion = 0 Then
@@ -226,13 +232,13 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersona.RefreshData_Sanciones(mPersonaSancionActual.IDSancion)
+                formPersona.Sanciones_RefreshData(mPersonaSancionActual.IDSancion)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Sancion con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Sanción con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

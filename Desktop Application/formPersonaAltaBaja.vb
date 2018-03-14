@@ -203,7 +203,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersona.RefreshData_AltasBajas(mPersonaAltaBajaActual.IDAltaBaja)
+                formPersona.AltasBajas_RefreshData(mPersonaAltaBajaActual.IDAltaBaja)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

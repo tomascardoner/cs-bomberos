@@ -209,7 +209,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersona.RefreshData_Ascensos(mPersonaAscensoActual.IDAscenso)
+                formPersona.Ascensos_RefreshData(mPersonaAscensoActual.IDAscenso)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
