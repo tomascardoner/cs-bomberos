@@ -27,6 +27,10 @@ Partial Class formAutomotor
         Dim labelAutomotorTipo As System.Windows.Forms.Label
         Dim labelCombustibleTipo As System.Windows.Forms.Label
         Dim labelFechaAdquisicion As System.Windows.Forms.Label
+        Dim labelModificacion As System.Windows.Forms.Label
+        Dim labelCreacion As System.Windows.Forms.Label
+        Dim lalbelAutomotorUso As System.Windows.Forms.Label
+        Dim labelEsPropio As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotor))
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.labelModelo = New System.Windows.Forms.Label()
@@ -35,8 +39,6 @@ Partial Class formAutomotor
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.textboxIDAutomotor = New System.Windows.Forms.TextBox()
-        Me.labelIDAutomotor = New System.Windows.Forms.Label()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
         Me.comboboxAutomotorTipo = New System.Windows.Forms.ComboBox()
@@ -55,74 +57,134 @@ Partial Class formAutomotor
         Me.maskedtextboxKilometrajeInicial = New System.Windows.Forms.MaskedTextBox()
         Me.maskedtextboxCapacidadAguaLitros = New System.Windows.Forms.MaskedTextBox()
         Me.buttonNumeroSiguiente = New System.Windows.Forms.Button()
+        Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
+        Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.checkboxEsPropio = New System.Windows.Forms.CheckBox()
+        Me.comboboxAutomotorUso = New System.Windows.Forms.ComboBox()
+        Me.labelNumeroChasis = New System.Windows.Forms.Label()
+        Me.textboxNumeroChasis = New System.Windows.Forms.TextBox()
+        Me.labelNumeroMotor = New System.Windows.Forms.Label()
+        Me.textboxNumeroMotor = New System.Windows.Forms.TextBox()
+        Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
+        Me.labelNotas = New System.Windows.Forms.Label()
+        Me.labelIDAutomotor = New System.Windows.Forms.Label()
+        Me.textboxIDAutomotor = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelAutomotorTipo = New System.Windows.Forms.Label()
         labelCombustibleTipo = New System.Windows.Forms.Label()
         labelFechaAdquisicion = New System.Windows.Forms.Label()
+        labelModificacion = New System.Windows.Forms.Label()
+        labelCreacion = New System.Windows.Forms.Label()
+        lalbelAutomotorUso = New System.Windows.Forms.Label()
+        labelEsPropio = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
+        Me.tabcontrolMain.SuspendLayout()
+        Me.tabpageGeneral.SuspendLayout()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(12, 367)
+        labelEsActivo.Location = New System.Drawing.Point(6, 301)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 25
+        labelEsActivo.TabIndex = 2
         labelEsActivo.Text = "Activo:"
         '
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(12, 341)
+        labelCuartel.Location = New System.Drawing.Point(6, 350)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 23
+        labelCuartel.TabIndex = 27
         labelCuartel.Text = "Cuartel:"
         '
         'labelAutomotorTipo
         '
         labelAutomotorTipo.AutoSize = True
-        labelAutomotorTipo.Location = New System.Drawing.Point(12, 183)
+        labelAutomotorTipo.Location = New System.Drawing.Point(7, 191)
         labelAutomotorTipo.Name = "labelAutomotorTipo"
         labelAutomotorTipo.Size = New System.Drawing.Size(31, 13)
-        labelAutomotorTipo.TabIndex = 11
+        labelAutomotorTipo.TabIndex = 15
         labelAutomotorTipo.Text = "Tipo:"
         '
         'labelCombustibleTipo
         '
         labelCombustibleTipo.AutoSize = True
-        labelCombustibleTipo.Location = New System.Drawing.Point(12, 262)
+        labelCombustibleTipo.Location = New System.Drawing.Point(6, 245)
         labelCombustibleTipo.Name = "labelCombustibleTipo"
-        labelCombustibleTipo.Size = New System.Drawing.Size(106, 13)
-        labelCombustibleTipo.TabIndex = 17
-        labelCombustibleTipo.Text = "Tipo de Combustible:"
+        labelCombustibleTipo.Size = New System.Drawing.Size(105, 13)
+        labelCombustibleTipo.TabIndex = 19
+        labelCombustibleTipo.Text = "Tipo de combustible:"
         '
         'labelFechaAdquisicion
         '
         labelFechaAdquisicion.AutoSize = True
-        labelFechaAdquisicion.Location = New System.Drawing.Point(12, 209)
+        labelFechaAdquisicion.Location = New System.Drawing.Point(6, 271)
         labelFechaAdquisicion.Name = "labelFechaAdquisicion"
-        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
-        labelFechaAdquisicion.TabIndex = 13
-        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
+        labelFechaAdquisicion.Size = New System.Drawing.Size(111, 13)
+        labelFechaAdquisicion.TabIndex = 21
+        labelFechaAdquisicion.Text = "Fecha de adquisición:"
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(6, 376)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 9
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(6, 350)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 6
+        labelCreacion.Text = "Creación:"
+        '
+        'lalbelAutomotorUso
+        '
+        lalbelAutomotorUso.AutoSize = True
+        lalbelAutomotorUso.Location = New System.Drawing.Point(7, 218)
+        lalbelAutomotorUso.Name = "lalbelAutomotorUso"
+        lalbelAutomotorUso.Size = New System.Drawing.Size(29, 13)
+        lalbelAutomotorUso.TabIndex = 17
+        lalbelAutomotorUso.Text = "Uso:"
+        '
+        'labelEsPropio
+        '
+        labelEsPropio.AutoSize = True
+        labelEsPropio.Location = New System.Drawing.Point(6, 377)
+        labelEsPropio.Name = "labelEsPropio"
+        labelEsPropio.Size = New System.Drawing.Size(54, 13)
+        labelEsPropio.TabIndex = 29
+        labelEsPropio.Text = "Es propio:"
         '
         'textboxModelo
         '
-        Me.textboxModelo.Location = New System.Drawing.Point(135, 128)
+        Me.textboxModelo.Location = New System.Drawing.Point(138, 58)
         Me.textboxModelo.MaxLength = 50
         Me.textboxModelo.Name = "textboxModelo"
         Me.textboxModelo.Size = New System.Drawing.Size(266, 20)
-        Me.textboxModelo.TabIndex = 8
+        Me.textboxModelo.TabIndex = 6
         '
         'labelModelo
         '
         Me.labelModelo.AutoSize = True
-        Me.labelModelo.Location = New System.Drawing.Point(12, 131)
+        Me.labelModelo.Location = New System.Drawing.Point(7, 61)
         Me.labelModelo.Name = "labelModelo"
         Me.labelModelo.Size = New System.Drawing.Size(45, 13)
-        Me.labelModelo.TabIndex = 7
+        Me.labelModelo.TabIndex = 5
         Me.labelModelo.Text = "Modelo:"
         '
         'buttonGuardar
@@ -171,155 +233,135 @@ Partial Class formAutomotor
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(417, 39)
-        Me.toolstripMain.TabIndex = 27
-        '
-        'textboxIDAutomotor
-        '
-        Me.textboxIDAutomotor.Location = New System.Drawing.Point(135, 50)
-        Me.textboxIDAutomotor.MaxLength = 10
-        Me.textboxIDAutomotor.Name = "textboxIDAutomotor"
-        Me.textboxIDAutomotor.ReadOnly = True
-        Me.textboxIDAutomotor.Size = New System.Drawing.Size(74, 20)
-        Me.textboxIDAutomotor.TabIndex = 1
-        Me.textboxIDAutomotor.TabStop = False
-        Me.textboxIDAutomotor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelIDAutomotor
-        '
-        Me.labelIDAutomotor.AutoSize = True
-        Me.labelIDAutomotor.Location = New System.Drawing.Point(12, 53)
-        Me.labelIDAutomotor.Name = "labelIDAutomotor"
-        Me.labelIDAutomotor.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDAutomotor.TabIndex = 0
-        Me.labelIDAutomotor.Text = "ID:"
+        Me.toolstripMain.Size = New System.Drawing.Size(481, 39)
+        Me.toolstripMain.TabIndex = 0
         '
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(135, 367)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 301)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsActivo.TabIndex = 26
+        Me.checkboxEsActivo.TabIndex = 3
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(135, 338)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(137, 347)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxCuartel.TabIndex = 24
+        Me.comboboxCuartel.TabIndex = 28
         '
         'comboboxAutomotorTipo
         '
         Me.comboboxAutomotorTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxAutomotorTipo.FormattingEnabled = True
-        Me.comboboxAutomotorTipo.Location = New System.Drawing.Point(135, 180)
+        Me.comboboxAutomotorTipo.Location = New System.Drawing.Point(138, 188)
         Me.comboboxAutomotorTipo.Name = "comboboxAutomotorTipo"
         Me.comboboxAutomotorTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxAutomotorTipo.TabIndex = 12
+        Me.comboboxAutomotorTipo.TabIndex = 16
         '
         'labelNumero
         '
         Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(12, 79)
+        Me.labelNumero.Location = New System.Drawing.Point(7, 9)
         Me.labelNumero.Name = "labelNumero"
         Me.labelNumero.Size = New System.Drawing.Size(47, 13)
-        Me.labelNumero.TabIndex = 2
+        Me.labelNumero.TabIndex = 0
         Me.labelNumero.Text = "Número:"
         '
         'textboxMarca
         '
-        Me.textboxMarca.Location = New System.Drawing.Point(135, 102)
+        Me.textboxMarca.Location = New System.Drawing.Point(138, 32)
         Me.textboxMarca.MaxLength = 50
         Me.textboxMarca.Name = "textboxMarca"
         Me.textboxMarca.Size = New System.Drawing.Size(266, 20)
-        Me.textboxMarca.TabIndex = 6
+        Me.textboxMarca.TabIndex = 4
         '
         'labelMarca
         '
         Me.labelMarca.AutoSize = True
-        Me.labelMarca.Location = New System.Drawing.Point(12, 105)
+        Me.labelMarca.Location = New System.Drawing.Point(7, 35)
         Me.labelMarca.Name = "labelMarca"
         Me.labelMarca.Size = New System.Drawing.Size(40, 13)
-        Me.labelMarca.TabIndex = 5
+        Me.labelMarca.TabIndex = 3
         Me.labelMarca.Text = "Marca:"
         '
         'labelAnio
         '
         Me.labelAnio.AutoSize = True
-        Me.labelAnio.Location = New System.Drawing.Point(12, 157)
+        Me.labelAnio.Location = New System.Drawing.Point(7, 87)
         Me.labelAnio.Name = "labelAnio"
         Me.labelAnio.Size = New System.Drawing.Size(29, 13)
-        Me.labelAnio.TabIndex = 9
+        Me.labelAnio.TabIndex = 7
         Me.labelAnio.Text = "Año:"
         '
         'textboxDominio
         '
         Me.textboxDominio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.textboxDominio.Location = New System.Drawing.Point(135, 233)
+        Me.textboxDominio.Location = New System.Drawing.Point(138, 162)
         Me.textboxDominio.MaxLength = 7
         Me.textboxDominio.Name = "textboxDominio"
         Me.textboxDominio.Size = New System.Drawing.Size(74, 20)
-        Me.textboxDominio.TabIndex = 16
+        Me.textboxDominio.TabIndex = 14
         '
         'labelDominio
         '
         Me.labelDominio.AutoSize = True
-        Me.labelDominio.Location = New System.Drawing.Point(12, 236)
+        Me.labelDominio.Location = New System.Drawing.Point(7, 165)
         Me.labelDominio.Name = "labelDominio"
         Me.labelDominio.Size = New System.Drawing.Size(48, 13)
-        Me.labelDominio.TabIndex = 15
+        Me.labelDominio.TabIndex = 13
         Me.labelDominio.Text = "Dominio:"
         '
         'comboboxCombustibleTipo
         '
         Me.comboboxCombustibleTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCombustibleTipo.FormattingEnabled = True
-        Me.comboboxCombustibleTipo.Location = New System.Drawing.Point(135, 259)
+        Me.comboboxCombustibleTipo.Location = New System.Drawing.Point(137, 242)
         Me.comboboxCombustibleTipo.Name = "comboboxCombustibleTipo"
         Me.comboboxCombustibleTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxCombustibleTipo.TabIndex = 18
+        Me.comboboxCombustibleTipo.TabIndex = 20
         '
         'labelKilometrajeInicial
         '
         Me.labelKilometrajeInicial.AutoSize = True
-        Me.labelKilometrajeInicial.Location = New System.Drawing.Point(12, 289)
+        Me.labelKilometrajeInicial.Location = New System.Drawing.Point(6, 298)
         Me.labelKilometrajeInicial.Name = "labelKilometrajeInicial"
-        Me.labelKilometrajeInicial.Size = New System.Drawing.Size(91, 13)
-        Me.labelKilometrajeInicial.TabIndex = 19
-        Me.labelKilometrajeInicial.Text = "Kilometraje Inicial:"
+        Me.labelKilometrajeInicial.Size = New System.Drawing.Size(90, 13)
+        Me.labelKilometrajeInicial.TabIndex = 23
+        Me.labelKilometrajeInicial.Text = "Kilometraje inicial:"
         '
         'labelCapacidadAguaLitros
         '
         Me.labelCapacidadAguaLitros.AutoSize = True
-        Me.labelCapacidadAguaLitros.Location = New System.Drawing.Point(12, 315)
+        Me.labelCapacidadAguaLitros.Location = New System.Drawing.Point(6, 324)
         Me.labelCapacidadAguaLitros.Name = "labelCapacidadAguaLitros"
-        Me.labelCapacidadAguaLitros.Size = New System.Drawing.Size(95, 13)
-        Me.labelCapacidadAguaLitros.TabIndex = 21
-        Me.labelCapacidadAguaLitros.Text = "Capacidad (Litros):"
+        Me.labelCapacidadAguaLitros.Size = New System.Drawing.Size(91, 13)
+        Me.labelCapacidadAguaLitros.TabIndex = 25
+        Me.labelCapacidadAguaLitros.Text = "Capacidad (litros):"
         '
         'datetimepickerFechaAdquisicion
         '
         Me.datetimepickerFechaAdquisicion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaAdquisicion.Location = New System.Drawing.Point(135, 207)
+        Me.datetimepickerFechaAdquisicion.Location = New System.Drawing.Point(137, 269)
         Me.datetimepickerFechaAdquisicion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFechaAdquisicion.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaAdquisicion.Name = "datetimepickerFechaAdquisicion"
         Me.datetimepickerFechaAdquisicion.ShowCheckBox = True
         Me.datetimepickerFechaAdquisicion.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaAdquisicion.TabIndex = 14
+        Me.datetimepickerFechaAdquisicion.TabIndex = 22
         '
         'maskedtextboxNumero
         '
         Me.maskedtextboxNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxNumero.Location = New System.Drawing.Point(135, 76)
+        Me.maskedtextboxNumero.Location = New System.Drawing.Point(138, 6)
         Me.maskedtextboxNumero.Mask = "99999"
         Me.maskedtextboxNumero.Name = "maskedtextboxNumero"
         Me.maskedtextboxNumero.Size = New System.Drawing.Size(74, 20)
-        Me.maskedtextboxNumero.TabIndex = 3
+        Me.maskedtextboxNumero.TabIndex = 1
         Me.maskedtextboxNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.maskedtextboxNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.maskedtextboxNumero.ValidatingType = GetType(Integer)
@@ -327,77 +369,252 @@ Partial Class formAutomotor
         'maskedtextboxAnio
         '
         Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxAnio.Location = New System.Drawing.Point(135, 154)
+        Me.maskedtextboxAnio.Location = New System.Drawing.Point(138, 84)
         Me.maskedtextboxAnio.Mask = "9999"
         Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
         Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
-        Me.maskedtextboxAnio.TabIndex = 10
+        Me.maskedtextboxAnio.TabIndex = 8
         Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'maskedtextboxKilometrajeInicial
         '
         Me.maskedtextboxKilometrajeInicial.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxKilometrajeInicial.Location = New System.Drawing.Point(135, 286)
+        Me.maskedtextboxKilometrajeInicial.Location = New System.Drawing.Point(137, 295)
         Me.maskedtextboxKilometrajeInicial.Mask = "9999999"
         Me.maskedtextboxKilometrajeInicial.Name = "maskedtextboxKilometrajeInicial"
         Me.maskedtextboxKilometrajeInicial.Size = New System.Drawing.Size(74, 20)
-        Me.maskedtextboxKilometrajeInicial.TabIndex = 20
+        Me.maskedtextboxKilometrajeInicial.TabIndex = 24
         Me.maskedtextboxKilometrajeInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.maskedtextboxKilometrajeInicial.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'maskedtextboxCapacidadAguaLitros
         '
         Me.maskedtextboxCapacidadAguaLitros.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxCapacidadAguaLitros.Location = New System.Drawing.Point(135, 312)
+        Me.maskedtextboxCapacidadAguaLitros.Location = New System.Drawing.Point(137, 321)
         Me.maskedtextboxCapacidadAguaLitros.Mask = "999999"
         Me.maskedtextboxCapacidadAguaLitros.Name = "maskedtextboxCapacidadAguaLitros"
         Me.maskedtextboxCapacidadAguaLitros.Size = New System.Drawing.Size(74, 20)
-        Me.maskedtextboxCapacidadAguaLitros.TabIndex = 22
+        Me.maskedtextboxCapacidadAguaLitros.TabIndex = 26
         Me.maskedtextboxCapacidadAguaLitros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.maskedtextboxCapacidadAguaLitros.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         '
         'buttonNumeroSiguiente
         '
-        Me.buttonNumeroSiguiente.Location = New System.Drawing.Point(215, 75)
+        Me.buttonNumeroSiguiente.Location = New System.Drawing.Point(218, 5)
         Me.buttonNumeroSiguiente.Name = "buttonNumeroSiguiente"
         Me.buttonNumeroSiguiente.Size = New System.Drawing.Size(103, 20)
-        Me.buttonNumeroSiguiente.TabIndex = 4
+        Me.buttonNumeroSiguiente.TabIndex = 2
         Me.buttonNumeroSiguiente.Text = "Obtener siguiente"
         Me.buttonNumeroSiguiente.UseVisualStyleBackColor = True
+        '
+        'tabcontrolMain
+        '
+        Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+        Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
+        Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
+        Me.tabcontrolMain.Name = "tabcontrolMain"
+        Me.tabcontrolMain.SelectedIndex = 0
+        Me.tabcontrolMain.Size = New System.Drawing.Size(459, 428)
+        Me.tabcontrolMain.TabIndex = 1
+        '
+        'tabpageGeneral
+        '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxEsPropio)
+        Me.tabpageGeneral.Controls.Add(labelEsPropio)
+        Me.tabpageGeneral.Controls.Add(lalbelAutomotorUso)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxAutomotorUso)
+        Me.tabpageGeneral.Controls.Add(Me.labelNumeroChasis)
+        Me.tabpageGeneral.Controls.Add(Me.textboxNumeroChasis)
+        Me.tabpageGeneral.Controls.Add(Me.labelNumeroMotor)
+        Me.tabpageGeneral.Controls.Add(Me.textboxNumeroMotor)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxNumero)
+        Me.tabpageGeneral.Controls.Add(Me.buttonNumeroSiguiente)
+        Me.tabpageGeneral.Controls.Add(Me.labelModelo)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxCapacidadAguaLitros)
+        Me.tabpageGeneral.Controls.Add(Me.textboxModelo)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxKilometrajeInicial)
+        Me.tabpageGeneral.Controls.Add(labelCuartel)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxAnio)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
+        Me.tabpageGeneral.Controls.Add(labelAutomotorTipo)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaAdquisicion)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxAutomotorTipo)
+        Me.tabpageGeneral.Controls.Add(labelFechaAdquisicion)
+        Me.tabpageGeneral.Controls.Add(Me.labelNumero)
+        Me.tabpageGeneral.Controls.Add(Me.labelCapacidadAguaLitros)
+        Me.tabpageGeneral.Controls.Add(Me.labelMarca)
+        Me.tabpageGeneral.Controls.Add(Me.labelKilometrajeInicial)
+        Me.tabpageGeneral.Controls.Add(Me.textboxMarca)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxCombustibleTipo)
+        Me.tabpageGeneral.Controls.Add(Me.labelAnio)
+        Me.tabpageGeneral.Controls.Add(labelCombustibleTipo)
+        Me.tabpageGeneral.Controls.Add(Me.labelDominio)
+        Me.tabpageGeneral.Controls.Add(Me.textboxDominio)
+        Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageGeneral.Name = "tabpageGeneral"
+        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(451, 399)
+        Me.tabpageGeneral.TabIndex = 0
+        Me.tabpageGeneral.Text = "General"
+        Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'checkboxEsPropio
+        '
+        Me.checkboxEsPropio.AutoSize = True
+        Me.checkboxEsPropio.Location = New System.Drawing.Point(138, 377)
+        Me.checkboxEsPropio.Name = "checkboxEsPropio"
+        Me.checkboxEsPropio.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsPropio.TabIndex = 30
+        Me.checkboxEsPropio.UseVisualStyleBackColor = True
+        '
+        'comboboxAutomotorUso
+        '
+        Me.comboboxAutomotorUso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxAutomotorUso.FormattingEnabled = True
+        Me.comboboxAutomotorUso.Location = New System.Drawing.Point(138, 215)
+        Me.comboboxAutomotorUso.Name = "comboboxAutomotorUso"
+        Me.comboboxAutomotorUso.Size = New System.Drawing.Size(267, 21)
+        Me.comboboxAutomotorUso.TabIndex = 18
+        '
+        'labelNumeroChasis
+        '
+        Me.labelNumeroChasis.AutoSize = True
+        Me.labelNumeroChasis.Location = New System.Drawing.Point(7, 139)
+        Me.labelNumeroChasis.Name = "labelNumeroChasis"
+        Me.labelNumeroChasis.Size = New System.Drawing.Size(70, 13)
+        Me.labelNumeroChasis.TabIndex = 11
+        Me.labelNumeroChasis.Text = "Nº de chasis:"
+        '
+        'textboxNumeroChasis
+        '
+        Me.textboxNumeroChasis.Location = New System.Drawing.Point(138, 136)
+        Me.textboxNumeroChasis.MaxLength = 20
+        Me.textboxNumeroChasis.Name = "textboxNumeroChasis"
+        Me.textboxNumeroChasis.Size = New System.Drawing.Size(183, 20)
+        Me.textboxNumeroChasis.TabIndex = 12
+        '
+        'labelNumeroMotor
+        '
+        Me.labelNumeroMotor.AutoSize = True
+        Me.labelNumeroMotor.Location = New System.Drawing.Point(7, 113)
+        Me.labelNumeroMotor.Name = "labelNumeroMotor"
+        Me.labelNumeroMotor.Size = New System.Drawing.Size(66, 13)
+        Me.labelNumeroMotor.TabIndex = 9
+        Me.labelNumeroMotor.Text = "Nº de motor:"
+        '
+        'textboxNumeroMotor
+        '
+        Me.textboxNumeroMotor.Location = New System.Drawing.Point(138, 110)
+        Me.textboxNumeroMotor.MaxLength = 20
+        Me.textboxNumeroMotor.Name = "textboxNumeroMotor"
+        Me.textboxNumeroMotor.Size = New System.Drawing.Size(183, 20)
+        Me.textboxNumeroMotor.TabIndex = 10
+        '
+        'tabpageNotasAuditoria
+        '
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAutomotor)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAutomotor)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
+        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
+        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
+        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(451, 399)
+        Me.tabpageNotasAuditoria.TabIndex = 1
+        Me.tabpageNotasAuditoria.Text = "Notas y auditoría"
+        Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
+        '
+        'textboxNotas
+        '
+        Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
+        Me.textboxNotas.MaxLength = 0
+        Me.textboxNotas.Multiline = True
+        Me.textboxNotas.Name = "textboxNotas"
+        Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxNotas.Size = New System.Drawing.Size(329, 289)
+        Me.textboxNotas.TabIndex = 1
+        '
+        'labelNotas
+        '
+        Me.labelNotas.AutoSize = True
+        Me.labelNotas.Location = New System.Drawing.Point(6, 9)
+        Me.labelNotas.Name = "labelNotas"
+        Me.labelNotas.Size = New System.Drawing.Size(38, 13)
+        Me.labelNotas.TabIndex = 0
+        Me.labelNotas.Text = "Notas:"
+        '
+        'labelIDAutomotor
+        '
+        Me.labelIDAutomotor.AutoSize = True
+        Me.labelIDAutomotor.Location = New System.Drawing.Point(6, 324)
+        Me.labelIDAutomotor.Name = "labelIDAutomotor"
+        Me.labelIDAutomotor.Size = New System.Drawing.Size(87, 13)
+        Me.labelIDAutomotor.TabIndex = 4
+        Me.labelIDAutomotor.Text = "ID de Automotor:"
+        '
+        'textboxIDAutomotor
+        '
+        Me.textboxIDAutomotor.Location = New System.Drawing.Point(114, 321)
+        Me.textboxIDAutomotor.MaxLength = 10
+        Me.textboxIDAutomotor.Name = "textboxIDAutomotor"
+        Me.textboxIDAutomotor.ReadOnly = True
+        Me.textboxIDAutomotor.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDAutomotor.TabIndex = 5
+        Me.textboxIDAutomotor.TabStop = False
+        Me.textboxIDAutomotor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'textboxUsuarioModificacion
+        '
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 373)
+        Me.textboxUsuarioModificacion.MaxLength = 50
+        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
+        Me.textboxUsuarioModificacion.ReadOnly = True
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(202, 20)
+        Me.textboxUsuarioModificacion.TabIndex = 11
+        '
+        'textboxUsuarioCreacion
+        '
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 347)
+        Me.textboxUsuarioCreacion.MaxLength = 50
+        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
+        Me.textboxUsuarioCreacion.ReadOnly = True
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(202, 20)
+        Me.textboxUsuarioCreacion.TabIndex = 8
+        '
+        'textboxFechaHoraModificacion
+        '
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 373)
+        Me.textboxFechaHoraModificacion.MaxLength = 0
+        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
+        Me.textboxFechaHoraModificacion.ReadOnly = True
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraModificacion.TabIndex = 10
+        '
+        'textboxFechaHoraCreacion
+        '
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 347)
+        Me.textboxFechaHoraCreacion.MaxLength = 0
+        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
+        Me.textboxFechaHoraCreacion.ReadOnly = True
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraCreacion.TabIndex = 7
         '
         'formAutomotor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(417, 393)
-        Me.Controls.Add(Me.buttonNumeroSiguiente)
-        Me.Controls.Add(Me.maskedtextboxCapacidadAguaLitros)
-        Me.Controls.Add(Me.maskedtextboxKilometrajeInicial)
-        Me.Controls.Add(Me.maskedtextboxAnio)
-        Me.Controls.Add(Me.maskedtextboxNumero)
-        Me.Controls.Add(Me.datetimepickerFechaAdquisicion)
-        Me.Controls.Add(labelFechaAdquisicion)
-        Me.Controls.Add(Me.labelCapacidadAguaLitros)
-        Me.Controls.Add(Me.labelKilometrajeInicial)
-        Me.Controls.Add(Me.comboboxCombustibleTipo)
-        Me.Controls.Add(labelCombustibleTipo)
-        Me.Controls.Add(Me.textboxDominio)
-        Me.Controls.Add(Me.labelDominio)
-        Me.Controls.Add(Me.labelAnio)
-        Me.Controls.Add(Me.textboxMarca)
-        Me.Controls.Add(Me.labelMarca)
-        Me.Controls.Add(Me.labelNumero)
-        Me.Controls.Add(Me.comboboxAutomotorTipo)
-        Me.Controls.Add(labelAutomotorTipo)
-        Me.Controls.Add(Me.comboboxCuartel)
-        Me.Controls.Add(labelCuartel)
-        Me.Controls.Add(Me.checkboxEsActivo)
-        Me.Controls.Add(labelEsActivo)
-        Me.Controls.Add(Me.labelIDAutomotor)
-        Me.Controls.Add(Me.textboxIDAutomotor)
-        Me.Controls.Add(Me.textboxModelo)
-        Me.Controls.Add(Me.labelModelo)
+        Me.ClientSize = New System.Drawing.Size(481, 482)
+        Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -408,6 +625,11 @@ Partial Class formAutomotor
         Me.Text = "Automotor"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        Me.tabcontrolMain.ResumeLayout(False)
+        Me.tabpageGeneral.ResumeLayout(False)
+        Me.tabpageGeneral.PerformLayout()
+        Me.tabpageNotasAuditoria.ResumeLayout(False)
+        Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -419,8 +641,6 @@ Partial Class formAutomotor
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents textboxIDAutomotor As System.Windows.Forms.TextBox
-    Friend WithEvents labelIDAutomotor As System.Windows.Forms.Label
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxAutomotorTipo As System.Windows.Forms.ComboBox
@@ -439,4 +659,21 @@ Partial Class formAutomotor
     Friend WithEvents maskedtextboxKilometrajeInicial As System.Windows.Forms.MaskedTextBox
     Friend WithEvents maskedtextboxCapacidadAguaLitros As System.Windows.Forms.MaskedTextBox
     Friend WithEvents buttonNumeroSiguiente As System.Windows.Forms.Button
+    Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
+    Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
+    Friend WithEvents labelIDAutomotor As System.Windows.Forms.Label
+    Friend WithEvents textboxIDAutomotor As System.Windows.Forms.TextBox
+    Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
+    Friend WithEvents labelNotas As System.Windows.Forms.Label
+    Friend WithEvents labelNumeroChasis As System.Windows.Forms.Label
+    Friend WithEvents textboxNumeroChasis As System.Windows.Forms.TextBox
+    Friend WithEvents labelNumeroMotor As System.Windows.Forms.Label
+    Friend WithEvents textboxNumeroMotor As System.Windows.Forms.TextBox
+    Friend WithEvents checkboxEsPropio As System.Windows.Forms.CheckBox
+    Friend WithEvents comboboxAutomotorUso As System.Windows.Forms.ComboBox
 End Class

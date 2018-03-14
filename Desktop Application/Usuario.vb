@@ -106,5 +106,9 @@ Partial Public Class Usuario
     Public Overridable Property PersonaSancion1 As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
     Public Overridable Property SancionTipo As ICollection(Of SancionTipo) = New HashSet(Of SancionTipo)
     Public Overridable Property SancionTipo1 As ICollection(Of SancionTipo) = New HashSet(Of SancionTipo)
+    Public Overridable Property AutomotorUso As ICollection(Of AutomotorUso) = New HashSet(Of AutomotorUso)
+    Public Overridable Property AutomotorUso1 As ICollection(Of AutomotorUso) = New HashSet(Of AutomotorUso)
+    Public Overridable Property NivelEstudio As ICollection(Of NivelEstudio) = New HashSet(Of NivelEstudio)
+    Public Overridable Property NivelEstudio1 As ICollection(Of NivelEstudio) = New HashSet(Of NivelEstudio)
 
 End Class

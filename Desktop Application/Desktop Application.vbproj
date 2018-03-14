@@ -143,6 +143,9 @@
     <Compile Include="AutomotorTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="AutomotorUso.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
       <Link>CS_Control_ComboBox.vb</Link>
     </Compile>

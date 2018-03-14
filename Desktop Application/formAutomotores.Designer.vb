@@ -45,6 +45,7 @@ Partial Class formAutomotores
         Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnModelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDominio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnAutomotorTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
@@ -83,7 +84,7 @@ Partial Class formAutomotores
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNumero, Me.columnMarca, Me.columnModelo, Me.columnAutomotorTipo, Me.columnCuartel, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNumero, Me.columnMarca, Me.columnModelo, Me.columnDominio, Me.columnAutomotorTipo, Me.columnCuartel, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -244,6 +245,15 @@ Partial Class formAutomotores
         Me.columnModelo.ReadOnly = True
         Me.columnModelo.Width = 67
         '
+        'columnDominio
+        '
+        Me.columnDominio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDominio.DataPropertyName = "Dominio"
+        Me.columnDominio.HeaderText = "Dominio"
+        Me.columnDominio.Name = "columnDominio"
+        Me.columnDominio.ReadOnly = True
+        Me.columnDominio.Width = 70
+        '
         'columnAutomotorTipo
         '
         Me.columnAutomotorTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -322,6 +332,7 @@ Partial Class formAutomotores
     Friend WithEvents columnNumero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnMarca As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnModelo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnDominio As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnAutomotorTipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn

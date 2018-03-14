@@ -17,6 +17,7 @@
             ' Es Nuevo
             mAutomotorActual = New Automotor
             With mAutomotorActual
+                .EsPropio = True
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -28,19 +29,15 @@
             mAutomotorActual = mdbContext.Automotor.Find(IDAutomotor)
         End If
 
-        Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        Me.Show()
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-        Me.Focus()
 
         mIsLoading = False
 
         ChangeMode()
+
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Private Sub ChangeMode()
@@ -58,13 +55,17 @@
         textboxMarca.ReadOnly = Not mEditMode
         textboxModelo.ReadOnly = Not mEditMode
         maskedtextboxAnio.ReadOnly = Not mEditMode
-        comboboxAutomotorTipo.Enabled = mEditMode
-        datetimepickerFechaAdquisicion.Enabled = mEditMode
+        textboxNumeroMotor.ReadOnly = Not mEditMode
+        textboxNumeroChasis.ReadOnly = Not mEditMode
         textboxDominio.ReadOnly = Not mEditMode
+        comboboxAutomotorTipo.Enabled = mEditMode
+        comboboxAutomotorUso.Enabled = mEditMode
         comboboxCombustibleTipo.Enabled = mEditMode
+        datetimepickerFechaAdquisicion.Enabled = mEditMode
         maskedtextboxKilometrajeInicial.ReadOnly = Not mEditMode
         maskedtextboxCapacidadAguaLitros.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
+        checkboxEsPropio.Enabled = mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
@@ -72,6 +73,7 @@
         SetAppearance()
 
         pFillAndRefreshLists.AutomotorTipo(comboboxAutomotorTipo, False, False)
+        pFillAndRefreshLists.AutomotorUso(comboboxAutomotorUso, False, False)
         pFillAndRefreshLists.CombustibleTipo(comboboxCombustibleTipo, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
     End Sub
@@ -92,24 +94,46 @@
     Friend Sub SetDataFromObjectToControls()
         With mAutomotorActual
             If .IDAutomotor = 0 Then
-                textboxIDAutomotor.Text = My.Resources.STRING_ITEM_NEW_MALE
                 maskedtextboxNumero.Text = ""
                 maskedtextboxAnio.Text = ""
             Else
-                textboxIDAutomotor.Text = String.Format(.IDAutomotor.ToString, "G")
                 maskedtextboxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero)
                 maskedtextboxAnio.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Anio)
             End If
             textboxMarca.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Marca)
             textboxModelo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Modelo)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
-            datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
+            textboxNumeroMotor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroMotor)
+            textboxNumeroChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroChasis)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
+            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
+            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorUso, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorUso)
             CS_Control_ComboBox.SetSelectedValue(comboboxCombustibleTipo, SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
+            datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
             maskedtextboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
             maskedtextboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
             CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            checkboxEsPropio.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsPropio)
+
+            ' Datos de la pestaña Notas y Auditoría
+            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If .IDAutomotor = 0 Then
+                textboxIDAutomotor.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDAutomotor.Text = String.Format(.IDAutomotor.ToString, "G")
+            End If
+            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
+            If .UsuarioCreacion Is Nothing Then
+                textboxUsuarioCreacion.Text = ""
+            Else
+                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
+            End If
+            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
+            If .UsuarioModificacion Is Nothing Then
+                textboxUsuarioModificacion.Text = ""
+            Else
+                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
+            End If
         End With
     End Sub
 
@@ -119,13 +143,19 @@
             .Marca = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMarca.Text)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
             .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxAnio.Text).Value
-            .IDAutomotorTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorTipo.SelectedValue).Value
-            .FechaAdquisicion = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAdquisicion.Value, datetimepickerFechaAdquisicion.Checked)
+            .NumeroMotor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroMotor.Text)
+            .NumeroChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroChasis.Text)
             .Dominio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominio.Text)
+            .IDAutomotorTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorTipo.SelectedValue).Value
+            .IDAutomotorUso = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorUso.SelectedValue).Value
             .IDCombustibleTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCombustibleTipo.SelectedValue)
+            .FechaAdquisicion = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAdquisicion.Value, datetimepickerFechaAdquisicion.Checked)
             .KilometrajeInicial = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxKilometrajeInicial.Text)
             .CapacidadAguaLitros = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxCapacidadAguaLitros.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
+            .EsPropio = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsPropio.CheckState)
+
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
@@ -171,7 +201,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.Automotor_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTOR_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -218,8 +248,27 @@
             Exit Sub
         End If
         If CInt(maskedtextboxAnio.Text) < 1900 Or CInt(maskedtextboxAnio.Text) > DateAndTime.Now.Year Then
-            MsgBox(String.Format("El Año debe ser estar entre {0} y {1}.", 1950, DateAndTime.Now.Year), MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox(String.Format("El Año debe ser estar entre {0} y {1}.", 1900, DateAndTime.Now.Year), MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxAnio.Focus()
+            Exit Sub
+        End If
+
+        ' Tipo y Uso de Automotor
+        If comboboxAutomotorTipo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Tipo de Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxAutomotorTipo.Focus()
+            Exit Sub
+        End If
+        If comboboxAutomotorUso.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Uso del Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxAutomotorUso.Focus()
+            Exit Sub
+        End If
+
+        ' Fecha de Adquisición
+        If datetimepickerFechaAdquisicion.Checked And datetimepickerFechaAdquisicion.Value > Today Then
+            MsgBox("La Fecha de Adquisición debe ser igual o anterior a la fecha actual.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerFechaAdquisicion.Focus()
             Exit Sub
         End If
 
@@ -241,19 +290,7 @@
             End If
         End If
 
-        If comboboxAutomotorTipo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Tipo de Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAutomotorTipo.Focus()
-            Exit Sub
-        End If
-
-        ' Fecha de Adquisición
-        If datetimepickerFechaAdquisicion.Checked And datetimepickerFechaAdquisicion.Value > Today Then
-            MsgBox("La Fecha de Adquisición debe ser igual o anterior a la fecha actual.", MsgBoxStyle.Information, My.Application.Info.Title)
-            datetimepickerFechaAdquisicion.Focus()
-            Exit Sub
-        End If
-
+        ' Cuartel
         If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
@@ -287,11 +324,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formAutomotores") Then
-                    Dim formAutomotores As formAutomotores = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formAutomotores"), formAutomotores)
-                    formAutomotores.RefreshData(mAutomotorActual.IDAutomotor)
-                    formAutomotores = Nothing
-                End If
+                formAutomotores.RefreshData(mAutomotorActual.IDAutomotor)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

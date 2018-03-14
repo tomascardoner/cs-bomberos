@@ -31,6 +31,10 @@ Partial Public Class Automotor
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property NumeroMotor As String
+    Public Property NumeroChasis As String
+    Public Property IDAutomotorUso As Byte
+    Public Property EsPropio As Boolean
 
     Public Overridable Property AutomotorTipo As AutomotorTipo
     Public Overridable Property CombustibleTipo As CombustibleTipo
@@ -38,5 +42,6 @@ Partial Public Class Automotor
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
+    Public Overridable Property AutomotorUso As AutomotorUso
 
 End Class

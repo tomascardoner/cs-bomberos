@@ -6,7 +6,7 @@
         Public Property Numero As Short
         Public Property Marca As String
         Public Property Modelo As String
-        Public Property Anio As Short
+        Public Property Dominio As String
         Public Property IDAutomotorTipo As Byte
         Public Property AutomotorTipoNombre As String
         Public Property IDCuartel As Byte
@@ -61,7 +61,7 @@
                 mlistAutomotoresBase = (From a In dbContext.Automotor
                                         Join at In dbContext.AutomotorTipo On a.IDAutomotorTipo Equals at.IDAutomotorTipo
                                         Join c In dbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
-                                        Select New GridRowData With {.IDAutomotor = a.IDAutomotor, .Numero = a.Numero, .Marca = a.Marca, .Modelo = a.Modelo, .IDAutomotorTipo = a.IDAutomotorTipo, .AutomotorTipoNombre = at.Nombre, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = a.EsActivo}).ToList
+                                        Select New GridRowData With {.IDAutomotor = a.IDAutomotor, .Numero = a.Numero, .Marca = a.Marca, .Modelo = a.Modelo, .Dominio = a.Dominio, .IDAutomotorTipo = a.IDAutomotorTipo, .AutomotorTipoNombre = at.Nombre, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = a.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
