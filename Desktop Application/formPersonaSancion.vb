@@ -191,6 +191,21 @@
             Exit Sub
         End If
 
+        ' Busco el Cargo y Jerarquía de la Persona que solicita la Sanción
+        Dim SolicitudIDPersonaActual As Integer
+        SolicitudIDPersonaActual = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxSolicitudPersona.SelectedValue).Value
+        If mPersonaSancionActual.IDSancion = 0 Or mPersonaSancionActual.SolicitudIDPersona <> SolicitudIDPersonaActual Then
+            Dim PersonaAscensoUltimo As PersonaAscenso
+            PersonaAscensoUltimo = mdbContext.PersonaAscenso.Where(Function(pa) pa.IDPersona = SolicitudIDPersonaActual).OrderByDescending(Function(pa) pa.Fecha).First
+            If PersonaAscensoUltimo Is Nothing Then
+                Me.Cursor = Cursors.Default
+                MsgBox("La Persona que solicita la Sanción no tiene especificado el Cargo y la Jerarquía.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                Exit Sub
+            End If
+            mPersonaSancionActual.SolicitudIDCargo = PersonaAscensoUltimo.IDCargo
+            mPersonaSancionActual.SolicitudIDJerarquia = PersonaAscensoUltimo.IDJerarquia
+            PersonaAscensoUltimo = Nothing
+        End If
 
         ' Generar el ID nuevo
         If mPersonaSancionActual.IDSancion = 0 Then
@@ -211,17 +226,6 @@
         If mdbContext.ChangeTracker.HasChanges Then
 
             Me.Cursor = Cursors.WaitCursor
-
-            Dim PersonaAscensoUltimo As PersonaAscenso
-            PersonaAscensoUltimo = mdbContext.PersonaAscenso.Where(Function(pa) pa.IDPersona = mPersonaSancionActual.IDPersona).OrderByDescending(Function(pa) pa.Fecha).First
-            If PersonaAscensoUltimo Is Nothing Then
-                Me.Cursor = Cursors.Default
-                MsgBox("La Persona que solicita la Sanción no tiene especificado el Cargo y la Jerarquía.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                Exit Sub
-            End If
-            mPersonaSancionActual.SolicitudIDCargo = PersonaAscensoUltimo.IDCargo
-            mPersonaSancionActual.SolicitudIDJerarquia = PersonaAscensoUltimo.IDJerarquia
-            PersonaAscensoUltimo = Nothing
 
             mPersonaSancionActual.IDUsuarioModificacion = pUsuario.IDUsuario
             mPersonaSancionActual.FechaHoraModificacion = Now
