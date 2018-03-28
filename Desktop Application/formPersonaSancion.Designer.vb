@@ -51,6 +51,7 @@ Partial Class formPersonaSancion
         Me.textboxEncuadreTexto = New System.Windows.Forms.TextBox()
         Me.labelEncuadreFecha = New System.Windows.Forms.Label()
         Me.groupboxSolicitud = New System.Windows.Forms.GroupBox()
+        Me.textboxSolicitudMotivo = New System.Windows.Forms.TextBox()
         Me.comboboxSolicitudPersona = New System.Windows.Forms.ComboBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDSancion = New System.Windows.Forms.Label()
@@ -59,7 +60,6 @@ Partial Class formPersonaSancion
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxSolicitudMotivo = New System.Windows.Forms.TextBox()
         labelSolicitudMotivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -372,6 +372,16 @@ Partial Class formPersonaSancion
         Me.groupboxSolicitud.TabStop = False
         Me.groupboxSolicitud.Text = "Solicitud:"
         '
+        'textboxSolicitudMotivo
+        '
+        Me.textboxSolicitudMotivo.Location = New System.Drawing.Point(62, 46)
+        Me.textboxSolicitudMotivo.MaxLength = 0
+        Me.textboxSolicitudMotivo.Multiline = True
+        Me.textboxSolicitudMotivo.Name = "textboxSolicitudMotivo"
+        Me.textboxSolicitudMotivo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxSolicitudMotivo.Size = New System.Drawing.Size(430, 61)
+        Me.textboxSolicitudMotivo.TabIndex = 3
+        '
         'comboboxSolicitudPersona
         '
         Me.comboboxSolicitudPersona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -457,16 +467,6 @@ Partial Class formPersonaSancion
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'textboxSolicitudMotivo
-        '
-        Me.textboxSolicitudMotivo.Location = New System.Drawing.Point(62, 46)
-        Me.textboxSolicitudMotivo.MaxLength = 0
-        Me.textboxSolicitudMotivo.Multiline = True
-        Me.textboxSolicitudMotivo.Name = "textboxSolicitudMotivo"
-        Me.textboxSolicitudMotivo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxSolicitudMotivo.Size = New System.Drawing.Size(430, 61)
-        Me.textboxSolicitudMotivo.TabIndex = 3
-        '
         'formPersonaSancion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -475,6 +475,7 @@ Partial Class formPersonaSancion
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaSancion"

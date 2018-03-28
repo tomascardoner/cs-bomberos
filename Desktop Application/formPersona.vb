@@ -364,6 +364,23 @@
 #End Region
 
 #Region "Controls behavior"
+    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        Select Case e.KeyChar
+            Case Microsoft.VisualBasic.ChrW(Keys.Return)
+                If mEditMode Then
+                    buttonGuardar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+            Case Microsoft.VisualBasic.ChrW(Keys.Escape)
+                If mEditMode Then
+                    buttonCancelar.PerformClick()
+                Else
+                    buttonCerrar.PerformClick()
+                End If
+        End Select
+    End Sub
+
     Private Sub SeleccionarFoto() Handles menuitemFotoSeleccionarImagen.Click
         If openfiledialogFoto.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
             pictureboxFoto.ImageLocation = openfiledialogFoto.FileName

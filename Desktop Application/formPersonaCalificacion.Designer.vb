@@ -195,6 +195,7 @@ Partial Class formPersonaCalificacion
         Me.Controls.Add(Me.labelAnio)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaCalificacion"

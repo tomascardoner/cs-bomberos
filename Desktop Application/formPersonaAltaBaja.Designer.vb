@@ -54,12 +54,12 @@ Partial Class formPersonaAltaBaja
         Me.labelBajaFecha = New System.Windows.Forms.Label()
         Me.datetimepickerBajaFecha = New System.Windows.Forms.DateTimePicker()
         Me.tabpageExtras = New System.Windows.Forms.TabPage()
+        Me.labelIDAltaBaja = New System.Windows.Forms.Label()
+        Me.textboxIDAltaBaja = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.labelIDAltaBaja = New System.Windows.Forms.Label()
-        Me.textboxIDAltaBaja = New System.Windows.Forms.TextBox()
         labelAltaActaNumero = New System.Windows.Forms.Label()
         labelAltaLibroNumero = New System.Windows.Forms.Label()
         labelAltaFolioNumero = New System.Windows.Forms.Label()
@@ -401,6 +401,26 @@ Partial Class formPersonaAltaBaja
         Me.tabpageExtras.Text = "Notas y auditoría"
         Me.tabpageExtras.UseVisualStyleBackColor = True
         '
+        'labelIDAltaBaja
+        '
+        Me.labelIDAltaBaja.AutoSize = True
+        Me.labelIDAltaBaja.Location = New System.Drawing.Point(7, 117)
+        Me.labelIDAltaBaja.Name = "labelIDAltaBaja"
+        Me.labelIDAltaBaja.Size = New System.Drawing.Size(81, 13)
+        Me.labelIDAltaBaja.TabIndex = 16
+        Me.labelIDAltaBaja.Text = "ID de Alta-Baja:"
+        '
+        'textboxIDAltaBaja
+        '
+        Me.textboxIDAltaBaja.Location = New System.Drawing.Point(115, 114)
+        Me.textboxIDAltaBaja.MaxLength = 10
+        Me.textboxIDAltaBaja.Name = "textboxIDAltaBaja"
+        Me.textboxIDAltaBaja.ReadOnly = True
+        Me.textboxIDAltaBaja.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDAltaBaja.TabIndex = 17
+        Me.textboxIDAltaBaja.TabStop = False
+        Me.textboxIDAltaBaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 166)
@@ -437,26 +457,6 @@ Partial Class formPersonaAltaBaja
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 11
         '
-        'labelIDAltaBaja
-        '
-        Me.labelIDAltaBaja.AutoSize = True
-        Me.labelIDAltaBaja.Location = New System.Drawing.Point(7, 117)
-        Me.labelIDAltaBaja.Name = "labelIDAltaBaja"
-        Me.labelIDAltaBaja.Size = New System.Drawing.Size(81, 13)
-        Me.labelIDAltaBaja.TabIndex = 16
-        Me.labelIDAltaBaja.Text = "ID de Alta-Baja:"
-        '
-        'textboxIDAltaBaja
-        '
-        Me.textboxIDAltaBaja.Location = New System.Drawing.Point(115, 114)
-        Me.textboxIDAltaBaja.MaxLength = 10
-        Me.textboxIDAltaBaja.Name = "textboxIDAltaBaja"
-        Me.textboxIDAltaBaja.ReadOnly = True
-        Me.textboxIDAltaBaja.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAltaBaja.TabIndex = 17
-        Me.textboxIDAltaBaja.TabStop = False
-        Me.textboxIDAltaBaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
         'formPersonaAltaBaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -465,6 +465,7 @@ Partial Class formPersonaAltaBaja
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaAltaBaja"

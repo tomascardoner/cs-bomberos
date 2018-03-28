@@ -52,6 +52,24 @@ Partial Class formUbicacion
         labelEsActivo.TabIndex = 8
         labelEsActivo.Text = "Activo:"
         '
+        'labelCuartel
+        '
+        labelCuartel.AutoSize = True
+        labelCuartel.Location = New System.Drawing.Point(12, 105)
+        labelCuartel.Name = "labelCuartel"
+        labelCuartel.Size = New System.Drawing.Size(43, 13)
+        labelCuartel.TabIndex = 4
+        labelCuartel.Text = "Cuartel:"
+        '
+        'labelAutomotor
+        '
+        labelAutomotor.AutoSize = True
+        labelAutomotor.Location = New System.Drawing.Point(12, 132)
+        labelAutomotor.Name = "labelAutomotor"
+        labelAutomotor.Size = New System.Drawing.Size(58, 13)
+        labelAutomotor.TabIndex = 6
+        labelAutomotor.Text = "Automotor:"
+        '
         'textboxNombre
         '
         Me.textboxNombre.Location = New System.Drawing.Point(92, 76)
@@ -156,15 +174,6 @@ Partial Class formUbicacion
         Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
         Me.comboboxCuartel.TabIndex = 5
         '
-        'labelCuartel
-        '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(12, 105)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 4
-        labelCuartel.Text = "Cuartel:"
-        '
         'comboboxAutomotor
         '
         Me.comboboxAutomotor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -173,15 +182,6 @@ Partial Class formUbicacion
         Me.comboboxAutomotor.Name = "comboboxAutomotor"
         Me.comboboxAutomotor.Size = New System.Drawing.Size(267, 21)
         Me.comboboxAutomotor.TabIndex = 7
-        '
-        'labelAutomotor
-        '
-        labelAutomotor.AutoSize = True
-        labelAutomotor.Location = New System.Drawing.Point(12, 132)
-        labelAutomotor.Name = "labelAutomotor"
-        labelAutomotor.Size = New System.Drawing.Size(58, 13)
-        labelAutomotor.TabIndex = 6
-        labelAutomotor.Text = "Automotor:"
         '
         'formUbicacion
         '
@@ -200,6 +200,7 @@ Partial Class formUbicacion
         Me.Controls.Add(Me.labelNombre)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUbicacion"

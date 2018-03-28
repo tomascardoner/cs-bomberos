@@ -837,6 +837,7 @@ Partial Class formPersona
         '
         'textboxMatriculaNumero
         '
+        Me.textboxMatriculaNumero.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textboxMatriculaNumero.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.textboxMatriculaNumero.Location = New System.Drawing.Point(200, 46)
         Me.textboxMatriculaNumero.MaxLength = 6
@@ -2252,6 +2253,7 @@ Partial Class formPersona
         Me.Controls.Add(Me.textboxMatriculaNumero)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "formPersona"
         Me.ShowIcon = False
