@@ -11,6 +11,8 @@
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
 
+    Friend Const PERSONA_TIENEIOMA_NOTIENE As String = "N"
+    Friend Const PERSONA_TIENEIOMA_NOTIENE_NOMBRE As String = "No tiene"
     Friend Const PERSONA_TIENEIOMA_PORTRABAJO As String = "T"
     Friend Const PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE As String = "Trabajo"
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS As String = "B"

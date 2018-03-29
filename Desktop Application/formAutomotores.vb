@@ -165,11 +165,11 @@
                 Else
                     mlistAutomotoresFiltradaYOrdenada = mlistAutomotoresFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Modelo).ThenBy(Function(dgrd) dgrd.Marca).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 End If
-            Case columnMarca.Name
+            Case columnDominio.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistAutomotoresFiltradaYOrdenada = mlistAutomotoresFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Marca).ThenBy(Function(dgrd) dgrd.Modelo).ThenBy(Function(dgrd) dgrd.Numero).ToList
+                    mlistAutomotoresFiltradaYOrdenada = mlistAutomotoresFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Dominio).ThenBy(Function(dgrd) dgrd.Marca).ThenBy(Function(dgrd) dgrd.Modelo).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistAutomotoresFiltradaYOrdenada = mlistAutomotoresFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Marca).ThenBy(Function(dgrd) dgrd.Modelo).ThenBy(Function(dgrd) dgrd.Numero).ToList
+                    mlistAutomotoresFiltradaYOrdenada = mlistAutomotoresFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Dominio).ThenBy(Function(dgrd) dgrd.Marca).ThenBy(Function(dgrd) dgrd.Modelo).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 End If
             Case columnAutomotorTipo.Name
                 If mOrdenTipo = SortOrder.Ascending Then

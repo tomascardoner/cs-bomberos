@@ -137,7 +137,7 @@
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
-        comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
+        comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
@@ -215,10 +215,12 @@
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
-                Case PERSONA_TIENEIOMA_PORBOMBEROS
+                Case PERSONA_TIENEIOMA_NOTIENE
                     comboboxIOMATiene.SelectedIndex = 1
-                Case PERSONA_TIENEIOMA_PORTRABAJO
+                Case PERSONA_TIENEIOMA_PORBOMBEROS
                     comboboxIOMATiene.SelectedIndex = 2
+                Case PERSONA_TIENEIOMA_PORTRABAJO
+                    comboboxIOMATiene.SelectedIndex = 3
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
@@ -317,8 +319,10 @@
                 Case 0
                     .IOMATiene = Nothing
                 Case 1
-                    .IOMATiene = PERSONA_TIENEIOMA_PORBOMBEROS
+                    .IOMATiene = PERSONA_TIENEIOMA_NOTIENE
                 Case 2
+                    .IOMATiene = PERSONA_TIENEIOMA_PORBOMBEROS
+                Case 3
                     .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
             End Select
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
@@ -643,7 +647,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Persona con el mismo Apellido y Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Persona con la misma Matrícula o Apellido y Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case Errors.Unknown
                         CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
