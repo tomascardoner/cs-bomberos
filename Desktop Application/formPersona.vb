@@ -728,14 +728,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewFamiliares.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaFamiliarNuevo As New PersonaFamiliar
             formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewFamiliares.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -748,14 +741,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewFamiliares.Enabled = False
-
-                Dim PersonaFamiliarActual As PersonaFamiliar
-
-                PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
-                formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaFamiliarActual.IDFamiliar)
-
-                datagridviewFamiliares.Enabled = True
+                formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -768,17 +754,18 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR_ELIMINAR) Then
                 Dim GridRowDataActual As Familiares_GridRowData
-                Dim PersonaFamiliarEliminar As PersonaFamiliar
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData)
-                PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, GridRowDataActual.IDFamiliar)
 
-                Dim Mensaje As String
                 Mensaje = String.Format("Se eliminará el Familiar seleccionado.{0}{0}Parentesco: {1}{0}Apellido y Nombre: {2}, {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.ParentescoNombre, GridRowDataActual.Apellido, GridRowDataActual.Nombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaFamiliarEliminar As PersonaFamiliar
+                    PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, GridRowDataActual.IDFamiliar)
                     mPersonaActual.PersonaFamiliares.Remove(PersonaFamiliarEliminar)
+                    PersonaFamiliarEliminar = Nothing
 
                     Familiares_RefreshData()
 
@@ -794,14 +781,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewFamiliares.Enabled = False
-
-            Dim PersonaFamiliarActual As PersonaFamiliar
-
-            PersonaFamiliarActual = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
-            formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaFamiliarActual.IDFamiliar)
-
-            datagridviewFamiliares.Enabled = True
+            formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
 
             Me.Cursor = Cursors.Default
         End If
@@ -863,14 +843,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewAltasBajas.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaAltaBajaNuevo As New PersonaAltaBaja
             formPersonaAltaBaja.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewAltasBajas.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -883,14 +856,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewAltasBajas.Enabled = False
-
-                Dim PersonaAltaBajaActual As PersonaAltaBaja
-
-                PersonaAltaBajaActual = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
-                formPersonaAltaBaja.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
-
-                datagridviewAltasBajas.Enabled = True
+                formPersonaAltaBaja.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -903,17 +869,19 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_ELIMINAR) Then
                 Dim GridRowDataActual As AltasBajas_GridRowData
-                Dim PersonaAltaBajaEliminar As PersonaAltaBaja
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData)
-                PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAltaBaja)
 
-                Dim Mensaje As String
+
                 Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}Fecha Baja: {2}{0}Motivo de Baja: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AltaFecha, GridRowDataActual.BajaFecha, GridRowDataActual.BajaMotivoNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaAltaBajaEliminar As PersonaAltaBaja
+                    PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAltaBaja)
                     mPersonaActual.PersonaAltasBajas.Remove(PersonaAltaBajaEliminar)
+                    PersonaAltaBajaEliminar = Nothing
 
                     AltasBajas_RefreshData()
 
@@ -925,18 +893,11 @@
 
     Private Sub AltasBajas_Ver() Handles datagridviewAltasBajas.DoubleClick
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewAltasBajas.Enabled = False
-
-            Dim PersonaAltaBajaActual As PersonaAltaBaja
-
-            PersonaAltaBajaActual = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
-            formPersonaAltaBaja.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaAltaBajaActual.IDAltaBaja)
-
-            datagridviewAltasBajas.Enabled = True
+            formPersonaAltaBaja.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
 
             Me.Cursor = Cursors.Default
         End If
@@ -998,14 +959,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewAscensos.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaAscensoNuevo As New PersonaAscenso
             formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewAscensos.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1018,14 +972,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewAscensos.Enabled = False
-
-                Dim PersonaAscensoActual As PersonaAscenso
-
-                PersonaAscensoActual = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
-                formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaAscensoActual.IDAscenso)
-
-                datagridviewAscensos.Enabled = True
+                formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1038,17 +985,18 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_ELIMINAR) Then
                 Dim GridRowDataActual As Ascensos_GridRowData
-                Dim PersonaAscensoEliminar As PersonaAscenso
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData)
-                PersonaAscensoEliminar = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAscenso)
 
-                Dim Mensaje As String
                 Mensaje = String.Format("Se eliminará el Ascenso - Promoción seleccionado.{0}{0}Fecha: {1}{0}Cargo: {2}{0}Jerarquía: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.CargoNombre, GridRowDataActual.JerarquiaNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaAscensoEliminar As PersonaAscenso
+                    PersonaAscensoEliminar = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAscenso)
                     mPersonaActual.PersonaAscensos.Remove(PersonaAscensoEliminar)
+                    PersonaAscensoEliminar = Nothing
 
                     Ascensos_RefreshData()
 
@@ -1064,14 +1012,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewAscensos.Enabled = False
-
-            Dim PersonaAscensoActual As PersonaAscenso
-
-            PersonaAscensoActual = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
-            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaAscensoActual.IDAscenso)
-
-            datagridviewAscensos.Enabled = True
+            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1133,14 +1074,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewLicencias.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaLicenciaNuevo As New PersonaLicencia
             formPersonaLicencia.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewLicencias.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1153,14 +1087,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewLicencias.Enabled = False
-
-                Dim PersonaLicenciaActual As PersonaLicencia
-
-                PersonaLicenciaActual = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
-                formPersonaLicencia.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaLicenciaActual.IDLicencia)
-
-                datagridviewLicencias.Enabled = True
+                formPersonaLicencia.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1173,17 +1100,18 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_ELIMINAR) Then
                 Dim GridRowDataActual As Licencias_GridRowData
-                Dim PersonaLicenciaEliminar As PersonaLicencia
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData)
-                PersonaLicenciaEliminar = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, GridRowDataActual.IDLicencia)
 
-                Dim Mensaje As String
                 Mensaje = String.Format("Se eliminará la Licencia seleccionada.{0}{0}Fecha: {1}{0}Causa: {2}{0}Fecha desde: {3}{0}Fecha hasta: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.LicenciaCausaNombre, GridRowDataActual.FechaDesde, GridRowDataActual.FechaHasta)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaLicenciaEliminar As PersonaLicencia
+                    PersonaLicenciaEliminar = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, GridRowDataActual.IDLicencia)
                     mPersonaActual.PersonaLicencia.Remove(PersonaLicenciaEliminar)
+                    PersonaLicenciaEliminar = Nothing
 
                     Licencias_RefreshData()
 
@@ -1199,14 +1127,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewLicencias.Enabled = False
-
-            Dim PersonaLicenciaActual As PersonaLicencia
-
-            PersonaLicenciaActual = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
-            formPersonaLicencia.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaLicenciaActual.IDLicencia)
-
-            datagridviewLicencias.Enabled = True
+            formPersonaLicencia.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1267,14 +1188,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewSanciones.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaSancionNuevo As New PersonaSancion
             formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewSanciones.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1287,14 +1201,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewSanciones.Enabled = False
-
-                Dim PersonaSancionActual As PersonaSancion
-
-                PersonaSancionActual = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
-                formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaSancionActual.IDSancion)
-
-                datagridviewSanciones.Enabled = True
+                formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1307,17 +1214,18 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_ELIMINAR) Then
                 Dim GridRowDataActual As Sanciones_GridRowData
-                Dim PersonaSancionEliminar As PersonaSancion
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData)
-                PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
 
-                Dim Mensaje As String
                 Mensaje = String.Format("Se eliminará la Sanción seleccionada.{0}{0}Fecha de solicitud: {1}{0}Tipo: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.SolicitudFecha, GridRowDataActual.SancionTipoNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaSancionEliminar As PersonaSancion
+                    PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
                     mPersonaActual.PersonaSancion.Remove(PersonaSancionEliminar)
+                    PersonaSancionEliminar = Nothing
 
                     Sanciones_RefreshData()
 
@@ -1333,14 +1241,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewSanciones.Enabled = False
-
-            Dim PersonaSancionActual As PersonaSancion
-
-            PersonaSancionActual = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
-            formPersonaSancion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaSancionActual.IDSancion)
-
-            datagridviewSanciones.Enabled = True
+            formPersonaSancion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1400,14 +1301,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewCapacitaciones.Enabled = False
-
-            SetDataFromControlsToObject()
-
-            Dim PersonaCapacitacionNuevo As New PersonaCapacitacion
             formPersonaCapacitacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            datagridviewCapacitaciones.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1420,14 +1314,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewCapacitaciones.Enabled = False
-
-                Dim PersonaCapacitacionActual As PersonaCapacitacion
-
-                PersonaCapacitacionActual = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
-                formPersonaCapacitacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaCapacitacionActual.IDCapacitacion)
-
-                datagridviewCapacitaciones.Enabled = True
+                formPersonaCapacitacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1440,17 +1327,18 @@
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_ELIMINAR) Then
                 Dim GridRowDataActual As Capacitaciones_GridRowData
-                Dim PersonaCapacitacionEliminar As PersonaCapacitacion
+                Dim Mensaje As String
 
                 GridRowDataActual = CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData)
-                PersonaCapacitacionEliminar = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDCapacitacion)
 
-                Dim Mensaje As String
                 Mensaje = String.Format("Se eliminará la Capacitación seleccionada.{0}{0}Fecha: {1}{0}Curso: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.CursoNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
+                    Dim PersonaCapacitacionEliminar As PersonaCapacitacion
+                    PersonaCapacitacionEliminar = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDCapacitacion)
                     mPersonaActual.PersonaCapacitacion.Remove(PersonaCapacitacionEliminar)
+                    PersonaCapacitacionEliminar = Nothing
 
                     Capacitaciones_RefreshData()
 
@@ -1466,14 +1354,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewCapacitaciones.Enabled = False
-
-            Dim PersonaCapacitacionActual As PersonaCapacitacion
-
-            PersonaCapacitacionActual = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
-            formPersonaCapacitacion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaCapacitacionActual.IDCapacitacion)
-
-            datagridviewCapacitaciones.Enabled = True
+            formPersonaCapacitacion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1583,11 +1464,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewCalificaciones.Enabled = False
-
             formPersonaCalificacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0, 0)
-
-            datagridviewCalificaciones.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1600,11 +1477,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                datagridviewCalificaciones.Enabled = False
-
                 formPersonaCalificacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).Anio, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).InstanciaNumero)
-
-                datagridviewCalificaciones.Enabled = True
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1616,18 +1489,19 @@
             MsgBox("No hay ninguna Instancia de Calificación para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_ELIMINAR) Then
-
-                Dim GridRowDataActual As Calificaciones_GridRowData = CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData)
-
+                Dim GridRowDataActual As Calificaciones_GridRowData
                 Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData)
+
                 Mensaje = String.Format("Se eliminará la Instancia de Calificación seleccionada.{0}{0}Año: {1}{0}Instancia Número: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Anio, GridRowDataActual.InstanciaNumero)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext As New CSBomberosContext(True)
-                            For Each PersonaCalificacionActual As PersonaCalificacion In dbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = mPersonaActual.IDPersona And pc.Anio = GridRowDataActual.Anio And pc.InstanciaNumero = GridRowDataActual.InstanciaNumero)
-                                dbContext.PersonaCalificacion.Remove(PersonaCalificacionActual)
+                            For Each PersonaCalificacionEliminar As PersonaCalificacion In dbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = mPersonaActual.IDPersona And pc.Anio = GridRowDataActual.Anio And pc.InstanciaNumero = GridRowDataActual.InstanciaNumero)
+                                dbContext.PersonaCalificacion.Remove(PersonaCalificacionEliminar)
                             Next
                             dbContext.SaveChanges()
                         End Using
@@ -1658,11 +1532,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            datagridviewCalificaciones.Enabled = False
-
             formPersonaCalificacion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).Anio, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).InstanciaNumero)
-
-            datagridviewCalificaciones.Enabled = True
 
             Me.Cursor = Cursors.Default
         End If
@@ -1717,6 +1587,70 @@
                     Exit For
                 End If
             Next
+        End If
+    End Sub
+
+    Private Sub Examenes_Agregar() Handles buttonExamenes_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaExamen.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0, 0)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Examenes_Editar() Handles buttonExamenes_Editar.Click
+        If datagridviewExamenes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Examen para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaExamen.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).Anio, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).InstanciaNumero)
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Examenes_Eliminar() Handles buttonExamenes_Eliminar.Click
+        If datagridviewExamenes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Examen para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_Examen_ELIMINAR) Then
+                Dim GridRowDataActual As Examenes_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData)
+
+                Mensaje = String.Format("Se eliminará el Examen seleccionado.{0}{0}Anio: {1}{0}Instancia: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Anio, GridRowDataActual.InstanciaNumero)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaExamenEliminar As PersonaExamen
+                    PersonaExamenEliminar = mdbContext.PersonaExamen.Find(mPersonaActual.IDPersona, GridRowDataActual.Anio, GridRowDataActual.InstanciaNumero)
+                    mPersonaActual.PersonaExamen.Remove(PersonaExamenEliminar)
+                    PersonaExamenEliminar = Nothing
+
+                    Examenes_RefreshData()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Examenes_Ver() Handles datagridviewExamenes.DoubleClick
+        If datagridviewExamenes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Examen para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaExamen.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).Anio, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).InstanciaNumero)
+
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 
