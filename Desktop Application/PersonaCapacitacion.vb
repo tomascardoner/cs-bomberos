@@ -19,8 +19,8 @@ Partial Public Class PersonaCapacitacion
     Public Property IDLocalidad As Nullable(Of Short)
     Public Property IDCapacitacionNivel As Nullable(Of Byte)
     Public Property CapacitacionNivelOtro As String
-    Public Property IDCapaciontacionTipo As Nullable(Of Byte)
-    Public Property CapaciontacionTipoOtro As String
+    Public Property IDCapacitacionTipo As Nullable(Of Byte)
+    Public Property CapacitacionTipoOtro As String
     Public Property CantidadHoras As Nullable(Of Short)
     Public Property CantidadDias As Nullable(Of Short)
     Public Property Notas As String

@@ -97,7 +97,7 @@
             textboxEncuadreTexto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.EncuadreTexto)
             datetimepickerEncuadreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.EncuadreFecha, datetimepickerEncuadreFecha)
 
-            CS_Control_ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, SelectedItemOptions.ValueOrFirstIfUnique, .ResolucionIDSancionTipo)
+            CS_Control_ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
             datetimepickerResolucionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.ResolucionFecha, datetimepickerResolucionFecha)
 
             datetimepickerNotificacionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.NotificacionFecha, datetimepickerNotificacionFecha)

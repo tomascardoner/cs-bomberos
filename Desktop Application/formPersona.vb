@@ -675,7 +675,7 @@
 #End Region
 
 #Region "Familiares"
-    Public Class Familiares_GridRowData
+    Friend Class Familiares_GridRowData
         Public Property IDFamiliar As Byte
         Public Property ParentescoNombre As String
         Public Property Apellido As String
@@ -810,7 +810,7 @@
 #End Region
 
 #Region "Altas-Bajas"
-    Public Class AltasBajas_GridRowData
+    Friend Class AltasBajas_GridRowData
         Public Property IDAltaBaja As Byte
         Public Property AltaFecha As Date
         Public Property BajaFecha As Date?
@@ -945,7 +945,7 @@
 #End Region
 
 #Region "Ascensos"
-    Public Class Ascensos_GridRowData
+    Friend Class Ascensos_GridRowData
         Public Property IDAscenso As Byte
         Public Property Fecha As Date
         Public Property CargoNombre As String
@@ -1080,7 +1080,7 @@
 #End Region
 
 #Region "Licencias"
-    Public Class Licencias_GridRowData
+    Friend Class Licencias_GridRowData
         Public Property IDLicencia As Short
         Public Property Fecha As Date
         Public Property LicenciaCausaNombre As String
@@ -1215,7 +1215,7 @@
 #End Region
 
 #Region "Sanciones"
-    Public Class Sanciones_GridRowData
+    Friend Class Sanciones_GridRowData
         Public Property IDSancion As Short
         Public Property SolicitudFecha As Date
         Public Property SancionTipoNombre As String
@@ -1329,7 +1329,7 @@
 
     Private Sub Sanciones_Ver() Handles datagridviewSanciones.DoubleClick
         If datagridviewSanciones.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Sancion para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Sanción para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
@@ -1349,7 +1349,7 @@
 #End Region
 
 #Region "Capacitaciones"
-    Public Class Capacitaciones_GridRowData
+    Friend Class Capacitaciones_GridRowData
         Public Property IDCapacitacion As Short
         Public Property Fecha As Date
         Public Property CursoNombre As String
@@ -1379,7 +1379,7 @@
             datagridviewCapacitaciones.DataSource = listCapacitaciones
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Capacitacione.")
+            CS_Error.ProcessError(ex, "Error al leer las Capacitaciones.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1396,10 +1396,102 @@
         End If
     End Sub
 
+    Private Sub Capacitaciones_Agregar() Handles buttonCapacitaciones_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewCapacitaciones.Enabled = False
+
+            SetDataFromControlsToObject()
+
+            Dim PersonaCapacitacionNuevo As New PersonaCapacitacion
+            formPersonaCapacitacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+            datagridviewCapacitaciones.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Capacitaciones_Editar() Handles buttonCapacitaciones_Editar.Click
+        If datagridviewCapacitaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Capacitación para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewCapacitaciones.Enabled = False
+
+                Dim PersonaCapacitacionActual As PersonaCapacitacion
+
+                PersonaCapacitacionActual = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
+                formPersonaCapacitacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, PersonaCapacitacionActual.IDCapacitacion)
+
+                datagridviewCapacitaciones.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Capacitaciones_Eliminar() Handles buttonCapacitaciones_Eliminar.Click
+        If datagridviewCapacitaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Capacitación para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_ELIMINAR) Then
+                Dim GridRowDataActual As Capacitaciones_GridRowData
+                Dim PersonaCapacitacionEliminar As PersonaCapacitacion
+
+                GridRowDataActual = CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData)
+                PersonaCapacitacionEliminar = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDCapacitacion)
+
+                Dim Mensaje As String
+                Mensaje = String.Format("Se eliminará la Capacitación seleccionada.{0}{0}Fecha: {1}{0}Curso: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.CursoNombre)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    mPersonaActual.PersonaCapacitacion.Remove(PersonaCapacitacionEliminar)
+
+                    Capacitaciones_RefreshData()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Capacitaciones_Ver() Handles datagridviewCapacitaciones.DoubleClick
+        If datagridviewCapacitaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Capacitación para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewCapacitaciones.Enabled = False
+
+            Dim PersonaCapacitacionActual As PersonaCapacitacion
+
+            PersonaCapacitacionActual = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
+            formPersonaCapacitacion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, PersonaCapacitacionActual.IDCapacitacion)
+
+            datagridviewCapacitaciones.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
 #End Region
 
 #Region "Calificaciones"
-    Public Class Calificaciones_GridRowData
+    Friend Class Calificaciones_ListDataItem
+        Public Property Anio As Short
+        Public Property InstanciaNumero As Byte
+        Public Property IDConcepto As Byte
+        Public Property ConceptoAbreviatura As String
+        Public Property ConceptoNombre As String
+        Public Property Calificacion As Decimal?
+    End Class
+
+    Friend Class Calificaciones_GridRowData
         Public Property Anio As Short
         Public Property InstanciaNumero As Byte
         Public Property AnioInstancia As String
@@ -1407,7 +1499,10 @@
     End Class
 
     Friend Sub Calificaciones_RefreshData(Optional ByVal PositionAnio As Short = 0, Optional ByVal PositionInstanciaNumero As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
-        Dim listCalificaciones As List(Of Calificaciones_GridRowData)
+        Dim listCalificaciones As List(Of Calificaciones_ListDataItem)
+        Dim listCalificaciones_GridRowData = New List(Of Calificaciones_GridRowData)
+        Dim AnioInstanciaActual As String = ""
+        Dim GridRowDataActual As New Calificaciones_GridRowData
 
         If RestoreCurrentPosition Then
             If datagridviewCalificaciones.CurrentRow Is Nothing Then
@@ -1422,14 +1517,39 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            'listCalificaciones = (From pc In mdbContext.PersonaCalificacion
-            '                      Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
-            '                      Where pc.IDPersona = mPersonaActual.IDPersona
-            '                      Order By pc.Anio, pc.InstanciaNumero
-            '                      Select New GridRowData_Calificaciones With {.anio = pc.anio, .InstanciaNumero = pc.InstanciaNumero , .AnioInstancia  = pc., .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
+            listCalificaciones = (From pc In mdbContext.PersonaCalificacion
+                                  Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
+                                  Where pc.IDPersona = mPersonaActual.IDPersona
+                                  Order By pc.Anio, pc.InstanciaNumero
+                                  Select New Calificaciones_ListDataItem With {.Anio = pc.Anio, .InstanciaNumero = pc.InstanciaNumero, .IDConcepto = cc.IDCalificacionConcepto, .ConceptoAbreviatura = cc.Abreviatura, .ConceptoNombre = cc.Nombre, .Calificacion = pc.Calificacion}).ToList
 
+            listCalificaciones_GridRowData = New List(Of Calificaciones_GridRowData)
+
+            For Each ListDataItemActual As Calificaciones_ListDataItem In listCalificaciones
+                With ListDataItemActual
+                    If AnioInstanciaActual <> .Anio & " - " & .InstanciaNumero Then
+                        AnioInstanciaActual = .Anio & " - " & .InstanciaNumero
+                        GridRowDataActual = New Calificaciones_GridRowData
+                        GridRowDataActual.Anio = .Anio
+                        GridRowDataActual.InstanciaNumero = .InstanciaNumero
+                        GridRowDataActual.AnioInstancia = AnioInstanciaActual
+                        listCalificaciones_GridRowData.Add(GridRowDataActual)
+                    End If
+                    ' Si no es el primer item, agrego un salto de línea
+                    If GridRowDataActual.ConceptosCalificaciones.Length > 0 Then
+                        GridRowDataActual.ConceptosCalificaciones &= vbCrLf
+                    End If
+                    If .ConceptoAbreviatura Is Nothing Then
+                        GridRowDataActual.ConceptosCalificaciones &= String.Format("{1}: {2}", .ConceptoAbreviatura, .ConceptoNombre, .Calificacion)
+                    Else
+                        GridRowDataActual.ConceptosCalificaciones &= String.Format("{0} - {1}: {2}", .ConceptoAbreviatura, .ConceptoNombre, .Calificacion)
+                    End If
+                End With
+            Next
+
+            ' Ordeno la lista y la adjunto a la Grilla
             datagridviewCalificaciones.AutoGenerateColumns = False
-            datagridviewCalificaciones.DataSource = listCalificaciones
+            datagridviewCalificaciones.DataSource = listCalificaciones_GridRowData
 
         Catch ex As Exception
             CS_Error.ProcessError(ex, "Error al leer las Calificaciones.")
@@ -1439,20 +1559,119 @@
 
         Me.Cursor = Cursors.Default
 
-        'If PositionAnio <> 0 Then
-        '    For Each CurrentRowChecked As DataGridViewRow In datagridviewCalificaciones.Rows
-        '        If CType(CurrentRowChecked.DataBoundItem, GridRowData).Anio = PositionAnio And CType(CurrentRowChecked.DataBoundItem, GridRowData).InstanciaNumero = PositionInstanciaNumero Then
-        '            datagridviewCalificaciones.CurrentCell = CurrentRowChecked.Cells(columnAnioInstancia.Name)
-        '            Exit For
-        '        End If
-        '    Next
-        'End If
+        If RestoreCurrentPosition Then
+            If datagridviewCalificaciones.CurrentRow Is Nothing Then
+                PositionAnio = 0
+                PositionInstanciaNumero = 0
+            Else
+                PositionAnio = CType(datagridviewCalificaciones.CurrentRow.DataBoundItem, Calificaciones_GridRowData).Anio
+                PositionInstanciaNumero = CType(datagridviewCalificaciones.CurrentRow.DataBoundItem, Calificaciones_GridRowData).InstanciaNumero
+            End If
+        End If
+
+        If PositionAnio <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewCalificaciones.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Calificaciones_GridRowData).Anio = PositionAnio And CType(CurrentRowChecked.DataBoundItem, Calificaciones_GridRowData).InstanciaNumero = PositionInstanciaNumero Then
+                    datagridviewCalificaciones.CurrentCell = CurrentRowChecked.Cells(columnCalificaciones_AnioInstancia.Name)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub Calificaciones_Agregar() Handles buttonCalificaciones_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewCalificaciones.Enabled = False
+
+            formPersonaCalificacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0, 0)
+
+            datagridviewCalificaciones.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Calificaciones_Editar() Handles buttonCalificaciones_Editar.Click
+        If datagridviewCalificaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Instancia de Calificación para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewCalificaciones.Enabled = False
+
+                formPersonaCalificacion.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).Anio, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).InstanciaNumero)
+
+                datagridviewCalificaciones.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Calificaciones_Eliminar() Handles buttonCalificaciones_Eliminar.Click
+        If datagridviewCalificaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Instancia de Calificación para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_ELIMINAR) Then
+
+                Dim GridRowDataActual As Calificaciones_GridRowData = CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData)
+
+                Dim Mensaje As String
+                Mensaje = String.Format("Se eliminará la Instancia de Calificación seleccionada.{0}{0}Año: {1}{0}Instancia Número: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Anio, GridRowDataActual.InstanciaNumero)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Try
+                        Using dbContext As New CSBomberosContext(True)
+                            For Each PersonaCalificacionActual As PersonaCalificacion In dbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = mPersonaActual.IDPersona And pc.Anio = GridRowDataActual.Anio And pc.InstanciaNumero = GridRowDataActual.InstanciaNumero)
+                                dbContext.PersonaCalificacion.Remove(PersonaCalificacionActual)
+                            Next
+                            dbContext.SaveChanges()
+                        End Using
+
+                    Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                        Me.Cursor = Cursors.Default
+                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
+                            Case Errors.RelatedEntity
+                                MsgBox("No se puede eliminar la Instancia de Calificación porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        End Select
+                        Exit Sub
+
+                    Catch ex As Exception
+                        CS_Error.ProcessError(ex, "Error al eliminar la Instancia de Calificación.")
+                    End Try
+
+                    Calificaciones_RefreshData()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Ver() Handles datagridviewCalificaciones.DoubleClick
+        If datagridviewCalificaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Instancia de Calificación para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewCalificaciones.Enabled = False
+
+            formPersonaCalificacion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).Anio, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).InstanciaNumero)
+
+            datagridviewCalificaciones.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 
 #End Region
 
 #Region "Exámenes"
-    Public Class Examenes_GridRowData
+    Friend Class Examenes_GridRowData
         Public Property Anio As Short
         Public Property InstanciaNumero As Byte
         Public Property AnioInstancia As String

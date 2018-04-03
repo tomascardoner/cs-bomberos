@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class SancionTipo
     Public Property IDSancionTipo As Byte
     Public Property Nombre As String
+    Public Property CantidadDias As Nullable(Of Short)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short

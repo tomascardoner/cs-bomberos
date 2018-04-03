@@ -113,7 +113,7 @@ Partial Class formPersonaAscenso
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 214)
+        labelModificacion.Location = New System.Drawing.Point(6, 145)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 21
@@ -122,7 +122,7 @@ Partial Class formPersonaAscenso
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 188)
+        labelCreacion.Location = New System.Drawing.Point(6, 119)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 18
@@ -203,7 +203,7 @@ Partial Class formPersonaAscenso
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 147)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 78)
         Me.textboxNotas.TabIndex = 15
         '
         'labelNotas
@@ -265,7 +265,7 @@ Partial Class formPersonaAscenso
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(518, 270)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(518, 201)
         Me.tabcontrolMain.TabIndex = 17
         '
         'tabpageGeneral
@@ -285,7 +285,7 @@ Partial Class formPersonaAscenso
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(510, 241)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(510, 172)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -305,7 +305,7 @@ Partial Class formPersonaAscenso
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(510, 241)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(510, 172)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -313,7 +313,7 @@ Partial Class formPersonaAscenso
         'labelIDAscenso
         '
         Me.labelIDAscenso.AutoSize = True
-        Me.labelIDAscenso.Location = New System.Drawing.Point(6, 162)
+        Me.labelIDAscenso.Location = New System.Drawing.Point(6, 93)
         Me.labelIDAscenso.Name = "labelIDAscenso"
         Me.labelIDAscenso.Size = New System.Drawing.Size(80, 13)
         Me.labelIDAscenso.TabIndex = 16
@@ -321,7 +321,7 @@ Partial Class formPersonaAscenso
         '
         'textboxIDAscenso
         '
-        Me.textboxIDAscenso.Location = New System.Drawing.Point(114, 159)
+        Me.textboxIDAscenso.Location = New System.Drawing.Point(114, 90)
         Me.textboxIDAscenso.MaxLength = 10
         Me.textboxIDAscenso.Name = "textboxIDAscenso"
         Me.textboxIDAscenso.ReadOnly = True
@@ -332,7 +332,7 @@ Partial Class formPersonaAscenso
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 211)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 142)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -341,7 +341,7 @@ Partial Class formPersonaAscenso
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 185)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 116)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -350,7 +350,7 @@ Partial Class formPersonaAscenso
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 211)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 142)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -359,7 +359,7 @@ Partial Class formPersonaAscenso
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 185)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 116)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -370,7 +370,7 @@ Partial Class formPersonaAscenso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 328)
+        Me.ClientSize = New System.Drawing.Size(542, 253)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

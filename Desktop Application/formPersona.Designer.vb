@@ -80,9 +80,7 @@ Partial Class formPersona
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
-        Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
-        Me.textboxIDPersona = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
         Me.menustripFoto = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -200,9 +198,9 @@ Partial Class formPersona
         Me.columnCalificaciones_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCalificaciones_ConceptosCalificaciones = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripCalificaciones = New System.Windows.Forms.ToolStrip()
-        Me.buttonCalificacinoes_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCalificacinoes_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonCalificacinoes_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCalificaciones_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCalificaciones_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCalificaciones_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageExamenes = New System.Windows.Forms.TabPage()
         Me.datagridviewExamenes = New System.Windows.Forms.DataGridView()
         Me.columnExamenes_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -214,7 +212,9 @@ Partial Class formPersona
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
+        Me.labelIDPersona = New System.Windows.Forms.Label()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxIDPersona = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
@@ -719,15 +719,6 @@ Partial Class formPersona
         labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
-        'labelIDPersona
-        '
-        Me.labelIDPersona.AutoSize = True
-        Me.labelIDPersona.Location = New System.Drawing.Point(7, 307)
-        Me.labelIDPersona.Name = "labelIDPersona"
-        Me.labelIDPersona.Size = New System.Drawing.Size(78, 13)
-        Me.labelIDPersona.TabIndex = 7
-        Me.labelIDPersona.Text = "ID de Persona:"
-        '
         'textboxApellido
         '
         Me.textboxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -736,17 +727,6 @@ Partial Class formPersona
         Me.textboxApellido.Name = "textboxApellido"
         Me.textboxApellido.Size = New System.Drawing.Size(352, 22)
         Me.textboxApellido.TabIndex = 3
-        '
-        'textboxIDPersona
-        '
-        Me.textboxIDPersona.Location = New System.Drawing.Point(114, 304)
-        Me.textboxIDPersona.MaxLength = 10
-        Me.textboxIDPersona.Name = "textboxIDPersona"
-        Me.textboxIDPersona.ReadOnly = True
-        Me.textboxIDPersona.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDPersona.TabIndex = 8
-        Me.textboxIDPersona.TabStop = False
-        Me.textboxIDPersona.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxNombre
         '
@@ -2010,9 +1990,10 @@ Partial Class formPersona
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle8
         Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
+        Me.columnCalificaciones_AnioInstancia.MinimumWidth = 110
         Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
         Me.columnCalificaciones_AnioInstancia.ReadOnly = True
-        Me.columnCalificaciones_AnioInstancia.Width = 95
+        Me.columnCalificaciones_AnioInstancia.Width = 110
         '
         'columnCalificaciones_ConceptosCalificaciones
         '
@@ -2029,42 +2010,42 @@ Partial Class formPersona
         '
         Me.toolstripCalificaciones.Dock = System.Windows.Forms.DockStyle.Left
         Me.toolstripCalificaciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCalificaciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCalificacinoes_Agregar, Me.buttonCalificacinoes_Editar, Me.buttonCalificacinoes_Eliminar})
+        Me.toolstripCalificaciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCalificaciones_Agregar, Me.buttonCalificaciones_Editar, Me.buttonCalificaciones_Eliminar})
         Me.toolstripCalificaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripCalificaciones.Location = New System.Drawing.Point(3, 3)
         Me.toolstripCalificaciones.Name = "toolstripCalificaciones"
         Me.toolstripCalificaciones.Size = New System.Drawing.Size(87, 376)
         Me.toolstripCalificaciones.TabIndex = 7
         '
-        'buttonCalificacinoes_Agregar
+        'buttonCalificaciones_Agregar
         '
-        Me.buttonCalificacinoes_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonCalificacinoes_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCalificacinoes_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCalificacinoes_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCalificacinoes_Agregar.Name = "buttonCalificacinoes_Agregar"
-        Me.buttonCalificacinoes_Agregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCalificacinoes_Agregar.Text = "Agregar"
+        Me.buttonCalificaciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCalificaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCalificaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCalificaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCalificaciones_Agregar.Name = "buttonCalificaciones_Agregar"
+        Me.buttonCalificaciones_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCalificaciones_Agregar.Text = "Agregar"
         '
-        'buttonCalificacinoes_Editar
+        'buttonCalificaciones_Editar
         '
-        Me.buttonCalificacinoes_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonCalificacinoes_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCalificacinoes_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCalificacinoes_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCalificacinoes_Editar.Name = "buttonCalificacinoes_Editar"
-        Me.buttonCalificacinoes_Editar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCalificacinoes_Editar.Text = "Editar"
+        Me.buttonCalificaciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCalificaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCalificaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCalificaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCalificaciones_Editar.Name = "buttonCalificaciones_Editar"
+        Me.buttonCalificaciones_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCalificaciones_Editar.Text = "Editar"
         '
-        'buttonCalificacinoes_Eliminar
+        'buttonCalificaciones_Eliminar
         '
-        Me.buttonCalificacinoes_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonCalificacinoes_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonCalificacinoes_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCalificacinoes_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCalificacinoes_Eliminar.Name = "buttonCalificacinoes_Eliminar"
-        Me.buttonCalificacinoes_Eliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonCalificacinoes_Eliminar.Text = "Eliminar"
+        Me.buttonCalificaciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCalificaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonCalificaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCalificaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCalificaciones_Eliminar.Name = "buttonCalificaciones_Eliminar"
+        Me.buttonCalificaciones_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonCalificaciones_Eliminar.Text = "Eliminar"
         '
         'tabpageExamenes
         '
@@ -2201,6 +2182,15 @@ Partial Class formPersona
         Me.textboxNotas.Size = New System.Drawing.Size(632, 272)
         Me.textboxNotas.TabIndex = 1
         '
+        'labelIDPersona
+        '
+        Me.labelIDPersona.AutoSize = True
+        Me.labelIDPersona.Location = New System.Drawing.Point(7, 307)
+        Me.labelIDPersona.Name = "labelIDPersona"
+        Me.labelIDPersona.Size = New System.Drawing.Size(78, 13)
+        Me.labelIDPersona.TabIndex = 7
+        Me.labelIDPersona.Text = "ID de Persona:"
+        '
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 356)
@@ -2209,6 +2199,17 @@ Partial Class formPersona
         Me.textboxUsuarioModificacion.ReadOnly = True
         Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
         Me.textboxUsuarioModificacion.TabIndex = 9
+        '
+        'textboxIDPersona
+        '
+        Me.textboxIDPersona.Location = New System.Drawing.Point(114, 304)
+        Me.textboxIDPersona.MaxLength = 10
+        Me.textboxIDPersona.Name = "textboxIDPersona"
+        Me.textboxIDPersona.ReadOnly = True
+        Me.textboxIDPersona.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDPersona.TabIndex = 8
+        Me.textboxIDPersona.TabStop = False
+        Me.textboxIDPersona.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioCreacion
         '
@@ -2413,9 +2414,9 @@ Partial Class formPersona
     Friend WithEvents buttonAscensos_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewCalificaciones As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripCalificaciones As System.Windows.Forms.ToolStrip
-    Friend WithEvents buttonCalificacinoes_Agregar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonCalificacinoes_Editar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonCalificacinoes_Eliminar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonCalificaciones_Agregar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonCalificaciones_Editar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonCalificaciones_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewLicencias As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripLicencias As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonLicencias_Agregar As System.Windows.Forms.ToolStripButton
@@ -2447,11 +2448,11 @@ Partial Class formPersona
     Friend WithEvents columnSanciones_SancionTipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCapacitaciones_Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCapacitaciones_CursoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCalificaciones_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCalificaciones_ConceptosCalificaciones As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnExamenes_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnExamenes_Calificacion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFamiliares_Parentesco As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFamiliares_Apellido As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFamiliares_Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCalificaciones_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCalificaciones_ConceptosCalificaciones As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

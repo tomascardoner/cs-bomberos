@@ -795,6 +795,81 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub Curso(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Curso)
+
+        ComboBoxControl.ValueMember = "IDCurso"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.Curso.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Curso
+            Item_Todos.IDCurso = FIELD_VALUE_ALL_SHORT
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Curso
+            Item_NoEspecifica.IDCurso = FIELD_VALUE_NOTSPECIFIED_SHORT
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub CapacitacionNivel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of CapacitacionNivel)
+
+        ComboBoxControl.ValueMember = "IDCapacitacionNivel"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.CapacitacionNivel.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New CapacitacionNivel
+            Item_Todos.IDCapacitacionNivel = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New CapacitacionNivel
+            Item_NoEspecifica.IDCapacitacionNivel = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub CapacitacionTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of CapacitacionTipo)
+
+        ComboBoxControl.ValueMember = "IDCapacitacionTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = dbContext.CapacitacionTipo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New CapacitacionTipo
+            Item_Todos.IDCapacitacionTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New CapacitacionTipo
+            Item_NoEspecifica.IDCapacitacionTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
     Friend Sub PersonaCalificacionAnio(ByRef ComboBoxControl As ComboBox, ByVal IDPersona As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of String)
 

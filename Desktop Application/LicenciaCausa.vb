@@ -13,6 +13,8 @@ Imports System.Collections.Generic
 Partial Public Class LicenciaCausa
     Public Property IDLicenciaCausa As Byte
     Public Property Nombre As String
+    Public Property NombreLegal As String
+    Public Property CantidadDias As Nullable(Of Short)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short

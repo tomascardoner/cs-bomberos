@@ -4,7 +4,7 @@
     Friend Class GridRowData
         Public Property IDCalificacionConcepto As Byte
         Public Property ConceptoAbreviaturaNombre As String
-        Public Property Calificacion As Byte
+        Public Property Calificacion As Decimal
     End Class
 
     Private mdbContext As New CSBomberosContext(True)
@@ -162,8 +162,26 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
-    Private Sub datagridviewCalificaciones_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles datagridviewCalificaciones.DataError
-        MsgBox("Ingrese un número del 0 al 10.", vbInformation, My.Application.Info.Title)
+    Private Sub Calificaciones_CellValidating(ByVal sender As Object, ByVal e As DataGridViewCellValidatingEventArgs) Handles datagridviewCalificaciones.CellValidating
+        datagridviewCalificaciones.Rows(e.RowIndex).ErrorText = ""
+
+        Dim newDecimal As Decimal
+
+        ' Don't try to validate the 'new row' until finished 
+        ' editing since there is not any point in validating its initial value.
+        If datagridviewCalificaciones.Rows(e.RowIndex).IsNewRow Then
+            Return
+        End If
+
+        If e.ColumnIndex = 1 AndAlso Not Decimal.TryParse(e.FormattedValue.ToString(), newDecimal) OrElse newDecimal < 0 OrElse newDecimal > 10 Then
+            e.Cancel = True
+            datagridviewCalificaciones.Rows(e.RowIndex).ErrorText = "La Calificación debe ser un número decimal entre 0 y 10"
+            MsgBox("La Calificación debe ser un número decimal entre 0 y 10.", vbInformation, My.Application.Info.Title)
+        End If
+    End Sub
+
+    Private Sub Calificaciones_DataError(sender As Object, e As DataGridViewDataErrorEventArgs) Handles datagridviewCalificaciones.DataError
+        MsgBox("La Calificación debe ser un número decimal entre 0 y 10.", vbInformation, My.Application.Info.Title)
         e.ThrowException = False
     End Sub
 #End Region
@@ -217,7 +235,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                'TODO - formPersona.RefreshData_Calificaciones(mlistPersonaCalificacion.First.Anio, mlistPersonaCalificacion.First.InstanciaNumero)
+                formPersona.Calificaciones_RefreshData(mlistPersonaCalificacion.First.Anio, mlistPersonaCalificacion.First.InstanciaNumero)
                 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

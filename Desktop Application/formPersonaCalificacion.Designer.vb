@@ -176,7 +176,7 @@ Partial Class formPersonaCalificacion
         'labelConceptosCalificaciones
         '
         Me.labelConceptosCalificaciones.AutoSize = True
-        Me.labelConceptosCalificaciones.Location = New System.Drawing.Point(12, 111)
+        Me.labelConceptosCalificaciones.Location = New System.Drawing.Point(12, 108)
         Me.labelConceptosCalificaciones.Name = "labelConceptosCalificaciones"
         Me.labelConceptosCalificaciones.Size = New System.Drawing.Size(75, 13)
         Me.labelConceptosCalificaciones.TabIndex = 4

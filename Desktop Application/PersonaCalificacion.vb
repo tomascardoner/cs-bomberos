@@ -15,7 +15,7 @@ Partial Public Class PersonaCalificacion
     Public Property Anio As Short
     Public Property InstanciaNumero As Byte
     Public Property IDCalificacionConcepto As Byte
-    Public Property Calificacion As Byte
+    Public Property Calificacion As Decimal
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

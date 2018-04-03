@@ -301,6 +301,12 @@
     <Compile Include="formPersonaAscenso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formPersonaCapacitacion.designer.vb">
+      <DependentUpon>formPersonaCapacitacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaCapacitacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaLicencia.designer.vb">
       <DependentUpon>formPersonaLicencia.vb</DependentUpon>
     </Compile>
@@ -569,6 +575,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAscenso.resx">
       <DependentUpon>formPersonaAscenso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaCapacitacion.resx">
+      <DependentUpon>formPersonaCapacitacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaLicencia.resx">
       <DependentUpon>formPersonaLicencia.vb</DependentUpon>

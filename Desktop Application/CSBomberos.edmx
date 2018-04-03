@@ -249,6 +249,8 @@
           </Key>
           <Property Name="IDLicenciaCausa" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NombreLegal" Type="varchar" MaxLength="200" />
+          <Property Name="CantidadDias" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -403,7 +405,7 @@
           <Property Name="TelefonoLaboral" Type="varchar" MaxLength="50" />
           <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
           <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
-          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="Notas" Type="varchar" MaxLength="50" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -537,8 +539,8 @@
           <Property Name="IDLocalidad" Type="smallint" />
           <Property Name="IDCapacitacionNivel" Type="tinyint" />
           <Property Name="CapacitacionNivelOtro" Type="varchar" MaxLength="200" />
-          <Property Name="IDCapaciontacionTipo" Type="tinyint" />
-          <Property Name="CapaciontacionTipoOtro" Type="varchar" MaxLength="200" />
+          <Property Name="IDCapacitacionTipo" Type="tinyint" />
+          <Property Name="CapacitacionTipoOtro" Type="varchar" MaxLength="200" />
           <Property Name="CantidadHoras" Type="smallint" />
           <Property Name="CantidadDias" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -716,6 +718,7 @@
           </Key>
           <Property Name="IDSancionTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CantidadDias" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -884,7 +887,7 @@
               <PropertyRef Name="IDCapacitacionTipo" />
             </Principal>
             <Dependent Role="PersonaCapacitacion">
-              <PropertyRef Name="IDCapaciontacionTipo" />
+              <PropertyRef Name="IDCapacitacionTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4024,7 +4027,7 @@
           <Property Name="CelularLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -5082,7 +5085,7 @@
           <Property Name="Anio" Type="Int16" Nullable="false" />
           <Property Name="InstanciaNumero" Type="Byte" Nullable="false" />
           <Property Name="IDCalificacionConcepto" Type="Byte" Nullable="false" />
-          <Property Name="Calificacion" Type="Byte" Nullable="false" />
+          <Property Name="Calificacion" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -5571,6 +5574,8 @@
           </Key>
           <Property Name="IDLicenciaCausa" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreLegal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadDias" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -5626,8 +5631,8 @@
           <Property Name="IDLocalidad" Type="Int16" />
           <Property Name="IDCapacitacionNivel" Type="Byte" />
           <Property Name="CapacitacionNivelOtro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="IDCapaciontacionTipo" Type="Byte" />
-          <Property Name="CapaciontacionTipoOtro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IDCapacitacionTipo" Type="Byte" />
+          <Property Name="CapacitacionTipoOtro" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CantidadHoras" Type="Int16" />
           <Property Name="CantidadDias" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -5731,6 +5736,7 @@
           </Key>
           <Property Name="IDSancionTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CantidadDias" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -5785,7 +5791,7 @@
               <PropertyRef Name="IDCapacitacionTipo" />
             </Principal>
             <Dependent Role="PersonaCapacitacion">
-              <PropertyRef Name="IDCapaciontacionTipo" />
+              <PropertyRef Name="IDCapacitacionTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6866,11 +6872,11 @@
               <MappingFragment StoreEntitySet="PersonaCalificacion">
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="IDCalificacionConcepto" ColumnName="IDCalificacionConcepto" />
+                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
-                <ScalarProperty Name="Calificacion" ColumnName="Calificacion" />
                 <ScalarProperty Name="InstanciaNumero" ColumnName="InstanciaNumero" />
                 <ScalarProperty Name="Anio" ColumnName="Anio" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
@@ -7006,6 +7012,8 @@
           <EntitySetMapping Name="LicenciaCausa">
             <EntityTypeMapping TypeName="CSBomberosModel.LicenciaCausa">
               <MappingFragment StoreEntitySet="LicenciaCausa">
+                <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
+                <ScalarProperty Name="NombreLegal" ColumnName="NombreLegal" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -7056,8 +7064,8 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
                 <ScalarProperty Name="CantidadHoras" ColumnName="CantidadHoras" />
-                <ScalarProperty Name="CapaciontacionTipoOtro" ColumnName="CapaciontacionTipoOtro" />
-                <ScalarProperty Name="IDCapaciontacionTipo" ColumnName="IDCapaciontacionTipo" />
+                <ScalarProperty Name="CapacitacionTipoOtro" ColumnName="CapacitacionTipoOtro" />
+                <ScalarProperty Name="IDCapacitacionTipo" ColumnName="IDCapacitacionTipo" />
                 <ScalarProperty Name="CapacitacionNivelOtro" ColumnName="CapacitacionNivelOtro" />
                 <ScalarProperty Name="IDCapacitacionNivel" ColumnName="IDCapacitacionNivel" />
                 <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
@@ -7138,6 +7146,7 @@
           <EntitySetMapping Name="SancionTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.SancionTipo">
               <MappingFragment StoreEntitySet="SancionTipo">
+                <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
