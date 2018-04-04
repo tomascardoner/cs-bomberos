@@ -1,13 +1,68 @@
 ﻿Module Permisos
+    Friend Const NIVELESTUDIO As String = "NIVELESTUDIO"
+    Friend Const NIVELESTUDIO_AGREGAR As String = "NIVELESTUDIO_AGREGAR"
+    Friend Const NIVELESTUDIO_EDITAR As String = "NIVELESTUDIO_EDITAR"
+    Friend Const NIVELESTUDIO_ELIMINAR As String = "NIVELESTUDIO_ELIMINAR"
+
     Friend Const PARENTESCO As String = "PARENTESCO"
     Friend Const PARENTESCO_AGREGAR As String = "PARENTESCO_AGREGAR"
     Friend Const PARENTESCO_EDITAR As String = "PARENTESCO_EDITAR"
     Friend Const PARENTESCO_ELIMINAR As String = "PARENTESCO_ELIMINAR"
 
-    Friend Const NIVELESTUDIO As String = "NIVELESTUDIO"
-    Friend Const NIVELESTUDIO_AGREGAR As String = "NIVELESTUDIO_AGREGAR"
-    Friend Const NIVELESTUDIO_EDITAR As String = "NIVELESTUDIO_EDITAR"
-    Friend Const NIVELESTUDIO_ELIMINAR As String = "NIVELESTUDIO_ELIMINAR"
+    Friend Const PERSONABAJAMOTIVO As String = "PERSONABAJAMOTIVO"
+    Friend Const PERSONABAJAMOTIVO_AGREGAR As String = "PERSONABAJAMOTIVO_AGREGAR"
+    Friend Const PERSONABAJAMOTIVO_EDITAR As String = "PERSONABAJAMOTIVO_EDITAR"
+    Friend Const PERSONABAJAMOTIVO_ELIMINAR As String = "PERSONABAJAMOTIVO_ELIMINAR"
+
+    Friend Const CARGO As String = "CARGO"
+    Friend Const CARGO_AGREGAR As String = "CARGO_AGREGAR"
+    Friend Const CARGO_EDITAR As String = "CARGO_EDITAR"
+    Friend Const CARGO_ELIMINAR As String = "CARGO_ELIMINAR"
+
+    Friend Const JERARQUIA As String = "JERARQUIA"
+    Friend Const JERARQUIA_AGREGAR As String = "JERARQUIA_AGREGAR"
+    Friend Const JERARQUIA_EDITAR As String = "JERARQUIA_EDITAR"
+    Friend Const JERARQUIA_ELIMINAR As String = "JERARQUIA_ELIMINAR"
+
+    Friend Const LICENCIACAUSA As String = "LICENCIACAUSA"
+    Friend Const LICENCIACAUSA_AGREGAR As String = "LICENCIACAUSA_AGREGAR"
+    Friend Const LICENCIACAUSA_EDITAR As String = "LICENCIACAUSA_EDITAR"
+    Friend Const LICENCIACAUSA_ELIMINAR As String = "LICENCIACAUSA_ELIMINAR"
+
+    Friend Const SANCIONTIPO As String = "SANCIONTIPO"
+    Friend Const SANCIONTIPO_AGREGAR As String = "SANCIONTIPO_AGREGAR"
+    Friend Const SANCIONTIPO_EDITAR As String = "SANCIONTIPO_EDITAR"
+    Friend Const SANCIONTIPO_ELIMINAR As String = "SANCIONTIPO_ELIMINAR"
+
+    Friend Const CURSO As String = "CURSO"
+    Friend Const CURSO_AGREGAR As String = "CURSO_AGREGAR"
+    Friend Const CURSO_EDITAR As String = "CURSO_EDITAR"
+    Friend Const CURSO_ELIMINAR As String = "CURSO_ELIMINAR"
+
+    Friend Const CAPACITACIONNIVEL As String = "CAPACITACIONNIVEL"
+    Friend Const CAPACITACIONNIVEL_AGREGAR As String = "CAPACITACIONNIVEL_AGREGAR"
+    Friend Const CAPACITACIONNIVEL_EDITAR As String = "CAPACITACIONNIVEL_EDITAR"
+    Friend Const CAPACITACIONNIVEL_ELIMINAR As String = "CAPACITACIONNIVEL_ELIMINAR"
+
+    Friend Const CAPACITACIONTIPO As String = "CAPACITACIONTIPO"
+    Friend Const CAPACITACIONTIPO_AGREGAR As String = "CAPACITACIONTIPO_AGREGAR"
+    Friend Const CAPACITACIONTIPO_EDITAR As String = "CAPACITACIONTIPO_EDITAR"
+    Friend Const CAPACITACIONTIPO_ELIMINAR As String = "CAPACITACIONTIPO_ELIMINAR"
+
+    Friend Const CALIFICACIONCONCEPTO As String = "CALIFICACIONCONCEPTO"
+    Friend Const CALIFICACIONCONCEPTO_AGREGAR As String = "CALIFICACIONCONCEPTO_AGREGAR"
+    Friend Const CALIFICACIONCONCEPTO_EDITAR As String = "CALIFICACIONCONCEPTO_EDITAR"
+    Friend Const CALIFICACIONCONCEPTO_ELIMINAR As String = "CALIFICACIONCONCEPTO_ELIMINAR"
+
+    Friend Const AUTOMOTORTIPO As String = "AUTOMOTORTIPO"
+    Friend Const AUTOMOTORTIPO_AGREGAR As String = "AUTOMOTORTIPO_AGREGAR"
+    Friend Const AUTOMOTORTIPO_EDITAR As String = "AUTOMOTORTIPO_EDITAR"
+    Friend Const AUTOMOTORTIPO_ELIMINAR As String = "AUTOMOTORTIPO_ELIMINAR"
+
+    Friend Const AUTOMOTORUSO As String = "AUTOMOTORUSO"
+    Friend Const AUTOMOTORUSO_AGREGAR As String = "AUTOMOTORUSO_AGREGAR"
+    Friend Const AUTOMOTORUSO_EDITAR As String = "AUTOMOTORUSO_EDITAR"
+    Friend Const AUTOMOTORUSO_ELIMINAR As String = "AUTOMOTORUSO_ELIMINAR"
 
     Friend Const RUBRO As String = "RUBRO"
     Friend Const RUBRO_AGREGAR As String = "RUBRO_AGREGAR"
@@ -18,6 +73,11 @@
     Friend Const SUBRUBRO_AGREGAR As String = "SUBRUBRO_AGREGAR"
     Friend Const SUBRUBRO_EDITAR As String = "SUBRUBRO_EDITAR"
     Friend Const SUBRUBRO_ELIMINAR As String = "SUBRUBRO_ELIMINAR"
+
+    Friend Const AREA As String = "AREA"
+    Friend Const AREA_AGREGAR As String = "AREA_AGREGAR"
+    Friend Const AREA_EDITAR As String = "AREA_EDITAR"
+    Friend Const AREA_ELIMINAR As String = "AREA_ELIMINAR"
 
     Friend Const UBICACION As String = "UBICACION"
     Friend Const UBICACION_AGREGAR As String = "UBICACION_AGREGAR"
@@ -33,6 +93,16 @@
     Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
     Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
     Friend Const USUARIOGRUPO_ELIMINAR As String = "USUARIOGRUPO_ELIMINAR"
+
+    Friend Const USUARIO As String = "USUARIO"
+    Friend Const USUARIO_AGREGAR As String = "USUARIO_AGREGAR"
+    Friend Const USUARIO_EDITAR As String = "USUARIO_EDITAR"
+    Friend Const USUARIO_ELIMINAR As String = "USUARIO_ELIMINAR"
+
+    Friend Const USUARIOGRUPOPERMISO As String = "USUARIOGRUPOPERMISO"
+    Friend Const USUARIOGRUPOPERMISO_AGREGAR As String = "USUARIOGRUPOPERMISO_AGREGAR"
+    Friend Const USUARIOGRUPOPERMISO_EDITAR As String = "USUARIOGRUPOPERMISO_EDITAR"
+    Friend Const USUARIOGRUPOPERMISO_ELIMINAR As String = "USUARIOGRUPOPERMISO_ELIMINAR"
 
     Friend Const PERSONA As String = "PERSONA"
     Friend Const PERSONA_AGREGAR As String = "PERSONA_AGREGAR"
@@ -138,6 +208,104 @@
             .Nodes.Add(PARENTESCO_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
+        RootNode = Arbol.Nodes.Add(PERSONABAJAMOTIVO, "Motivos de baja de personas")
+        With RootNode
+            .Nodes.Add(PERSONABAJAMOTIVO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(PERSONABAJAMOTIVO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(PERSONABAJAMOTIVO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CARGO, "Cargos")
+        With RootNode
+            .Nodes.Add(CARGO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CARGO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CARGO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(JERARQUIA, "Jerarquías")
+        With RootNode
+            .Nodes.Add(JERARQUIA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(JERARQUIA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(JERARQUIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(LICENCIACAUSA, "Causales de licencia")
+        With RootNode
+            .Nodes.Add(LICENCIACAUSA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(LICENCIACAUSA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(LICENCIACAUSA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(SANCIONTIPO, "Tipos de sanción")
+        With RootNode
+            .Nodes.Add(SANCIONTIPO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(SANCIONTIPO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(SANCIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CURSO, "Cursos")
+        With RootNode
+            .Nodes.Add(CURSO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CURSO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CURSO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CAPACITACIONNIVEL, "Niveles de capacitación")
+        With RootNode
+            .Nodes.Add(CAPACITACIONNIVEL_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CAPACITACIONNIVEL_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CAPACITACIONNIVEL_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CAPACITACIONTIPO, "Tipos de capacitación")
+        With RootNode
+            .Nodes.Add(CAPACITACIONTIPO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CAPACITACIONTIPO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CAPACITACIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(CALIFICACIONCONCEPTO, "Conceptos de calificación")
+        With RootNode
+            .Nodes.Add(CALIFICACIONCONCEPTO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CALIFICACIONCONCEPTO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CALIFICACIONCONCEPTO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(AUTOMOTORTIPO, "Tipos de automotor")
+        With RootNode
+            .Nodes.Add(AUTOMOTORTIPO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(AUTOMOTORTIPO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(AUTOMOTORTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(AUTOMOTORUSO, "Usos de automotor")
+        With RootNode
+            .Nodes.Add(AUTOMOTORUSO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(AUTOMOTORUSO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(AUTOMOTORUSO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(RUBRO, "Rubros de elementos")
+        With RootNode
+            .Nodes.Add(RUBRO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(RUBRO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(RUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(SUBRUBRO, "Sub-rubros de elementos")
+        With RootNode
+            .Nodes.Add(SUBRUBRO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(SUBRUBRO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(SUBRUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(AREA, "Áreas")
+        With RootNode
+            .Nodes.Add(AREA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(AREA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(AREA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
         RootNode = Arbol.Nodes.Add(UBICACION, "Ubicaciones")
         With RootNode
             .Nodes.Add(UBICACION_AGREGAR, DESCRIPCION_AGREGAR)
@@ -145,18 +313,32 @@
             .Nodes.Add(UBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
-        RootNode = Arbol.Nodes.Add(SUBUBICACION, "Sub-Ubicaciones")
+        RootNode = Arbol.Nodes.Add(SUBUBICACION, "Sub-ubicaciones")
         With RootNode
             .Nodes.Add(SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(SUBUBICACION_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
-        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
+        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de usuarios")
         With RootNode
             .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(USUARIO, "Usuarios")
+        With RootNode
+            .Nodes.Add(USUARIO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(USUARIO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(USUARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(USUARIOGRUPOPERMISO, "Permisos")
+        With RootNode
+            .Nodes.Add(USUARIOGRUPOPERMISO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(USUARIOGRUPOPERMISO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(USUARIOGRUPOPERMISO_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(PERSONA, "Personas")
