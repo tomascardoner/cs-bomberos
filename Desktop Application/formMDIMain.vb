@@ -114,7 +114,6 @@
 
             Me.Cursor = Cursors.Default
         End If
-
     End Sub
 
     Private Sub Parentescos() Handles menuitemTablas_Parentescos.Click
@@ -130,7 +129,51 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
 
+    Private Sub PersonaBajaMotivos() Handles menuitemTablas_MotivosBajaPersonas.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONABAJAMOTIVO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPersonaBajaMotivos, Form))
+            formPersonaBajaMotivos.Show()
+            If formPersonaBajaMotivos.WindowState = FormWindowState.Minimized Then
+                formPersonaBajaMotivos.WindowState = FormWindowState.Normal
+            End If
+            formPersonaBajaMotivos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Cargos() Handles menuitemTablas_Cargos.Click
+        If Permisos.VerificarPermiso(Permisos.CARGO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCargos, Form))
+            formCargos.Show()
+            If formCargos.WindowState = FormWindowState.Minimized Then
+                formCargos.WindowState = FormWindowState.Normal
+            End If
+            formCargos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CargosJerarquias() Handles menuitemTablas_CargosJerarquias.Click
+        If Permisos.VerificarPermiso(Permisos.CARGO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCargosJerarquias, Form))
+            formCargosJerarquias.Show()
+            If formCargosJerarquias.WindowState = FormWindowState.Minimized Then
+                formCargosJerarquias.WindowState = FormWindowState.Normal
+            End If
+            formCargosJerarquias.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click

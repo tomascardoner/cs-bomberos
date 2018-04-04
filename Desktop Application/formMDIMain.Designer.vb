@@ -51,7 +51,7 @@ Partial Class formMDIMain
         Me.menuitemTablas_Parentescos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_MotivosBajaPersonas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cargos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_Jerarquias = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_CargosJerarquias = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_CausalesLicenciaPersonas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_TiposSancion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cursos = New System.Windows.Forms.ToolStripMenuItem()
@@ -65,14 +65,14 @@ Partial Class formMDIMain
         Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubUbicaciones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_GruposUsuario = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPersonas = New System.Windows.Forms.ToolStripButton()
         Me.buttonUnidades = New System.Windows.Forms.ToolStripButton()
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuitemTablas_GruposUsuario = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -232,7 +232,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_Jerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -265,11 +265,11 @@ Partial Class formMDIMain
         Me.menuitemTablas_Cargos.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_Cargos.Text = "Cargos"
         '
-        'menuitemTablas_Jerarquias
+        'menuitemTablas_CargosJerarquias
         '
-        Me.menuitemTablas_Jerarquias.Name = "menuitemTablas_Jerarquias"
-        Me.menuitemTablas_Jerarquias.Size = New System.Drawing.Size(224, 22)
-        Me.menuitemTablas_Jerarquias.Text = "Jerarquías"
+        Me.menuitemTablas_CargosJerarquias.Name = "menuitemTablas_CargosJerarquias"
+        Me.menuitemTablas_CargosJerarquias.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_CargosJerarquias.Text = "Jerarquías"
         '
         'menuitemTablas_CausalesLicenciaPersonas
         '
@@ -349,6 +349,18 @@ Partial Class formMDIMain
         Me.menuitemTablas_SubUbicaciones.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_SubUbicaciones.Text = "Sub-ubicaciones"
         '
+        'menuitemTablas_GruposUsuario
+        '
+        Me.menuitemTablas_GruposUsuario.Name = "menuitemTablas_GruposUsuario"
+        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_GruposUsuario.Text = "Grupos de usuario"
+        '
+        'menuitemTablas_Usuarios
+        '
+        Me.menuitemTablas_Usuarios.Name = "menuitemTablas_Usuarios"
+        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Usuarios.Text = "Usuarios"
+        '
         'menuitemTablas_Permisos
         '
         Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
@@ -401,18 +413,6 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
-        '
-        'menuitemTablas_GruposUsuario
-        '
-        Me.menuitemTablas_GruposUsuario.Name = "menuitemTablas_GruposUsuario"
-        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(224, 22)
-        Me.menuitemTablas_GruposUsuario.Text = "Grupos de usuario"
-        '
-        'menuitemTablas_Usuarios
-        '
-        Me.menuitemTablas_Usuarios.Name = "menuitemTablas_Usuarios"
-        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(224, 22)
-        Me.menuitemTablas_Usuarios.Text = "Usuarios"
         '
         'formMDIMain
         '
@@ -475,7 +475,7 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_NivelesEstudio As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_MotivosBajaPersonas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Cargos As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents menuitemTablas_Jerarquias As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_CargosJerarquias As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_CausalesLicenciaPersonas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_TiposSancion As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Cursos As System.Windows.Forms.ToolStripMenuItem

@@ -262,6 +262,30 @@
     <Compile Include="formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formCargo.designer.vb">
+      <DependentUpon>formCargo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCargo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCargoJerarquia.designer.vb">
+      <DependentUpon>formCargoJerarquia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCargoJerarquia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCargos.designer.vb">
+      <DependentUpon>formCargos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCargos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCargosJerarquias.designer.vb">
+      <DependentUpon>formCargosJerarquias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCargosJerarquias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formElemento.Designer.vb">
       <DependentUpon>formElemento.vb</DependentUpon>
     </Compile>
@@ -302,6 +326,18 @@
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaAltaBaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaBajaMotivo.designer.vb">
+      <DependentUpon>formPersonaBajaMotivo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaBajaMotivo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaBajaMotivos.designer.vb">
+      <DependentUpon>formPersonaBajaMotivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaBajaMotivos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaCalificacion.Designer.vb">
@@ -576,6 +612,18 @@
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formCargo.resx">
+      <DependentUpon>formCargo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCargoJerarquia.resx">
+      <DependentUpon>formCargoJerarquia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCargos.resx">
+      <DependentUpon>formCargos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCargosJerarquias.resx">
+      <DependentUpon>formCargosJerarquias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formElemento.resx">
       <DependentUpon>formElemento.vb</DependentUpon>
     </EmbeddedResource>
@@ -596,6 +644,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAltaBaja.resx">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaBajaMotivo.resx">
+      <DependentUpon>formPersonaBajaMotivo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaBajaMotivos.resx">
+      <DependentUpon>formPersonaBajaMotivos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaCalificacion.resx">
       <DependentUpon>formPersonaCalificacion.vb</DependentUpon>

@@ -1,31 +1,31 @@
-﻿Public Class formParentesco
+﻿Public Class formPersonaBajaMotivo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mParentescoActual As Parentesco
+    Private mPersonaBajaMotivoActual As PersonaBajaMotivo
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDParentesco As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersonaBajaMotivo As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDParentesco = 0 Then
+        If IDPersonaBajaMotivo = 0 Then
             ' Es Nuevo
-            mParentescoActual = New Parentesco
-            With mParentescoActual
+            mPersonaBajaMotivoActual = New PersonaBajaMotivo
+            With mPersonaBajaMotivoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Parentesco.Add(mParentescoActual)
+            mdbContext.PersonaBajaMotivo.Add(mPersonaBajaMotivoActual)
         Else
-            mParentescoActual = mdbContext.Parentesco.Find(IDParentesco)
+            mPersonaBajaMotivoActual = mdbContext.PersonaBajaMotivo.Find(IDPersonaBajaMotivo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -66,23 +66,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mParentescoActual = Nothing
+        mPersonaBajaMotivoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mParentescoActual
+        With mPersonaBajaMotivoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDParentesco = 0 Then
-                textboxIDParentesco.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDPersonaBajaMotivo = 0 Then
+                textboxIDPersonaBajaMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDParentesco.Text = String.Format(.IDParentesco.ToString, "G")
+                textboxIDPersonaBajaMotivo.Text = String.Format(.IDPersonaBajaMotivo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -100,7 +100,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mParentescoActual
+        With mPersonaBajaMotivoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -134,7 +134,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.PERSONABAJAMOTIVO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -152,12 +152,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mParentescoActual.IDParentesco = 0 Then
+        If mPersonaBajaMotivoActual.IDPersonaBajaMotivo = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Parentesco.Count = 0 Then
-                    mParentescoActual.IDParentesco = 1
+                If dbcMaxID.PersonaBajaMotivo.Count = 0 Then
+                    mPersonaBajaMotivoActual.IDPersonaBajaMotivo = 1
                 Else
-                    mParentescoActual.IDParentesco = dbcMaxID.Parentesco.Max(Function(a) a.IDParentesco) + CByte(1)
+                    mPersonaBajaMotivoActual.IDPersonaBajaMotivo = dbcMaxID.PersonaBajaMotivo.Max(Function(a) a.IDPersonaBajaMotivo) + CByte(1)
                 End If
             End Using
         End If
@@ -169,21 +169,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mParentescoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mParentescoActual.FechaHoraModificacion = Now
+            mPersonaBajaMotivoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mPersonaBajaMotivoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formParentescos.RefreshData(mParentescoActual.IDParentesco)
+                formPersonaBajaMotivos.RefreshData(mPersonaBajaMotivoActual.IDPersonaBajaMotivo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Parentesco con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Motivo de baja de persona con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

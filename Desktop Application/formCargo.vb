@@ -1,31 +1,31 @@
-﻿Public Class formParentesco
+﻿Public Class formCargo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mParentescoActual As Parentesco
+    Private mCargoActual As Cargo
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDParentesco As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCargo As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDParentesco = 0 Then
+        If IDCargo = 0 Then
             ' Es Nuevo
-            mParentescoActual = New Parentesco
-            With mParentescoActual
+            mCargoActual = New Cargo
+            With mCargoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Parentesco.Add(mParentescoActual)
+            mdbContext.Cargo.Add(mCargoActual)
         Else
-            mParentescoActual = mdbContext.Parentesco.Find(IDParentesco)
+            mCargoActual = mdbContext.Cargo.Find(IDCargo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -50,6 +50,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = Not mEditMode
+        updownOrden.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -66,23 +67,24 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mParentescoActual = Nothing
+        mCargoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mParentescoActual
+        With mCargoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDParentesco = 0 Then
-                textboxIDParentesco.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDCargo = 0 Then
+                textboxIDCargo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDParentesco.Text = String.Format(.IDParentesco.ToString, "G")
+                textboxIDCargo.Text = String.Format(.IDCargo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -100,8 +102,9 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mParentescoActual
+        With mCargoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -134,7 +137,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.CARGO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -152,12 +155,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mParentescoActual.IDParentesco = 0 Then
+        If mCargoActual.IDCargo = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Parentesco.Count = 0 Then
-                    mParentescoActual.IDParentesco = 1
+                If dbcMaxID.Cargo.Count = 0 Then
+                    mCargoActual.IDCargo = 1
                 Else
-                    mParentescoActual.IDParentesco = dbcMaxID.Parentesco.Max(Function(a) a.IDParentesco) + CByte(1)
+                    mCargoActual.IDCargo = dbcMaxID.Cargo.Max(Function(a) a.IDCargo) + CByte(1)
                 End If
             End Using
         End If
@@ -169,21 +172,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mParentescoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mParentescoActual.FechaHoraModificacion = Now
+            mCargoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mCargoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formParentescos.RefreshData(mParentescoActual.IDParentesco)
+                formCargos.RefreshData(mCargoActual.IDCargo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Parentesco con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Cargo con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

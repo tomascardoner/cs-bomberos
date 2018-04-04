@@ -19,10 +19,10 @@
     Friend Const CARGO_EDITAR As String = "CARGO_EDITAR"
     Friend Const CARGO_ELIMINAR As String = "CARGO_ELIMINAR"
 
-    Friend Const JERARQUIA As String = "JERARQUIA"
-    Friend Const JERARQUIA_AGREGAR As String = "JERARQUIA_AGREGAR"
-    Friend Const JERARQUIA_EDITAR As String = "JERARQUIA_EDITAR"
-    Friend Const JERARQUIA_ELIMINAR As String = "JERARQUIA_ELIMINAR"
+    Friend Const CARGOJERARQUIA As String = "CARGOJERARQUIA"
+    Friend Const CARGOJERARQUIA_AGREGAR As String = "CARGOJERARQUIA_AGREGAR"
+    Friend Const CARGOJERARQUIA_EDITAR As String = "CARGOJERARQUIA_EDITAR"
+    Friend Const CARGOJERARQUIA_ELIMINAR As String = "CARGOJERARQUIA_ELIMINAR"
 
     Friend Const LICENCIACAUSA As String = "LICENCIACAUSA"
     Friend Const LICENCIACAUSA_AGREGAR As String = "LICENCIACAUSA_AGREGAR"
@@ -222,11 +222,11 @@
             .Nodes.Add(CARGO_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
-        RootNode = Arbol.Nodes.Add(JERARQUIA, "Jerarquías")
+        RootNode = Arbol.Nodes.Add(CARGOJERARQUIA, "Jerarquías")
         With RootNode
-            .Nodes.Add(JERARQUIA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(JERARQUIA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(JERARQUIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(CARGOJERARQUIA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CARGOJERARQUIA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CARGOJERARQUIA_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(LICENCIACAUSA, "Causales de licencia")
