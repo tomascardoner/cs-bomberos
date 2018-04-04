@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formParentesco
+Partial Class formNivelEstudio
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -36,8 +36,8 @@ Partial Class formParentesco
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDParentesco = New System.Windows.Forms.Label()
-        Me.textboxIDParentesco = New System.Windows.Forms.TextBox()
+        Me.labelIDNivelEstudio = New System.Windows.Forms.Label()
+        Me.textboxIDNivelEstudio = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -180,9 +180,9 @@ Partial Class formParentesco
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDParentesco)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDNivelEstudio)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDParentesco)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDNivelEstudio)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -200,25 +200,25 @@ Partial Class formParentesco
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDParentesco
+        'labelIDNivelEstudio
         '
-        Me.labelIDParentesco.AutoSize = True
-        Me.labelIDParentesco.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDParentesco.Name = "labelIDParentesco"
-        Me.labelIDParentesco.Size = New System.Drawing.Size(98, 13)
-        Me.labelIDParentesco.TabIndex = 4
-        Me.labelIDParentesco.Text = "ID de Parentesco:"
+        Me.labelIDNivelEstudio.AutoSize = True
+        Me.labelIDNivelEstudio.Location = New System.Drawing.Point(7, 111)
+        Me.labelIDNivelEstudio.Name = "labelIDNivelEstudio"
+        Me.labelIDNivelEstudio.Size = New System.Drawing.Size(98, 13)
+        Me.labelIDNivelEstudio.TabIndex = 4
+        Me.labelIDNivelEstudio.Text = "ID de NivelEstudio:"
         '
-        'textboxIDParentesco
+        'textboxIDNivelEstudio
         '
-        Me.textboxIDParentesco.Location = New System.Drawing.Point(115, 108)
-        Me.textboxIDParentesco.MaxLength = 10
-        Me.textboxIDParentesco.Name = "textboxIDParentesco"
-        Me.textboxIDParentesco.ReadOnly = True
-        Me.textboxIDParentesco.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDParentesco.TabIndex = 5
-        Me.textboxIDParentesco.TabStop = False
-        Me.textboxIDParentesco.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDNivelEstudio.Location = New System.Drawing.Point(115, 108)
+        Me.textboxIDNivelEstudio.MaxLength = 10
+        Me.textboxIDNivelEstudio.Name = "textboxIDNivelEstudio"
+        Me.textboxIDNivelEstudio.ReadOnly = True
+        Me.textboxIDNivelEstudio.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDNivelEstudio.TabIndex = 5
+        Me.textboxIDNivelEstudio.TabStop = False
+        Me.textboxIDNivelEstudio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -275,7 +275,7 @@ Partial Class formParentesco
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formParentesco
+        'formNivelEstudio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -286,7 +286,7 @@ Partial Class formParentesco
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formParentesco"
+        Me.Name = "formNivelEstudio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Nivel de Estudio"
         Me.toolstripMain.ResumeLayout(False)
@@ -313,8 +313,8 @@ Partial Class formParentesco
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDParentesco As System.Windows.Forms.Label
-    Friend WithEvents textboxIDParentesco As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDNivelEstudio As System.Windows.Forms.Label
+    Friend WithEvents textboxIDNivelEstudio As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox

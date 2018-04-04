@@ -44,7 +44,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="5.25" PointY="52" />
         <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="7.5" PointY="38.5" />
         <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.75" PointX="16" PointY="30.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="5.25" PointY="35" />
+        <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="5.5" PointY="34.25" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="10.125" PointY="28.125" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAltaBaja" Width="1.5" PointX="13.125" PointY="28" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaAscenso" Width="1.5" PointX="13.125" PointY="33.125" />
@@ -102,18 +102,28 @@
         <EntityTypeShape EntityType="CSBomberosModel.PersonaCalificacion" Width="1.5" PointX="5.5" PointY="14.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Modificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="4.5" PointY="35.307590613779006" />
-          <ConnectorPoint PointX="4.903526251749093" PointY="22.968263460320337" />
-          <ConnectorPoint PointX="4.9089737482509079" PointY="22.801685843097495" />
-          <ConnectorPoint PointX="4.919151251749093" PointY="22.490470538702247" />
-          <ConnectorPoint PointX="4.9245987482509079" PointY="22.323892921479406" />
-          <ConnectorPoint PointX="4.950401251749093" PointY="21.534884695466097" />
-          <ConnectorPoint PointX="4.9558487482509079" PointY="21.368307078243255" />
-          <ConnectorPoint PointX="4.981651251749093" PointY="20.579298852229947" />
-          <ConnectorPoint PointX="4.9870987482509079" PointY="20.412721235007105" />
-          <ConnectorPoint PointX="4.997276251749093" PointY="20.101505930611857" />
-          <ConnectorPoint PointX="5.0027237482509079" PointY="19.934928313389015" />
-          <ConnectorPoint PointX="5.25" PointY="12.373530376111141" />
+          <ConnectorPoint PointX="4.5" PointY="35.307542739934888" />
+          <ConnectorPoint PointX="4.5129012194828988" PointY="34.913044291911959" />
+          <ConnectorPoint PointX="4.5183487805171021" PointY="34.7464666767995" />
+          <ConnectorPoint PointX="4.7310262194829" PointY="28.243134204027132" />
+          <ConnectorPoint PointX="4.7364737805171035" PointY="28.076556588914666" />
+          <ConnectorPoint PointX="4.8879012194828988" PointY="23.446150158012632" />
+          <ConnectorPoint PointX="4.8933487805171021" PointY="23.279572542900166" />
+          <ConnectorPoint PointX="4.9347762194828988" PointY="22.012788391275212" />
+          <ConnectorPoint PointX="4.9402237805171021" PointY="21.846210776162746" />
+          <ConnectorPoint PointX="4.9660262194828988" PointY="21.057213880116922" />
+          <ConnectorPoint PointX="4.9714737805171021" PointY="20.890636265004456" />
+          <ConnectorPoint PointX="4.9972762194828988" PointY="20.101639368958661" />
+          <ConnectorPoint PointX="5.0027237805171021" PointY="19.935061753846195" />
+          <ConnectorPoint PointX="5.0285262194828988" PointY="19.146064857800372" />
+          <ConnectorPoint PointX="5.0339737805171021" PointY="18.979487242687906" />
+          <ConnectorPoint PointX="5.0597762194828988" PointY="18.190490346642111" />
+          <ConnectorPoint PointX="5.0652237805171021" PointY="18.023912731529645" />
+          <ConnectorPoint PointX="5.0910262194828988" PointY="17.234915835483822" />
+          <ConnectorPoint PointX="5.0964737805171021" PointY="17.068338220371356" />
+          <ConnectorPoint PointX="5.1222762194828988" PointY="16.279341324325532" />
+          <ConnectorPoint PointX="5.1277237805171021" PointY="16.112763709213066" />
+          <ConnectorPoint PointX="5.25" PointY="12.373754472136207" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" />
@@ -129,7 +139,6 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Rubro__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SubRubro__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Usuario" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Usuario__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Usuario__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" />

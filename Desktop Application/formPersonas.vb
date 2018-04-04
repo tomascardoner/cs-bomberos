@@ -182,7 +182,7 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub formPersonas_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
                 For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows

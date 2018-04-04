@@ -286,6 +286,18 @@
     <Compile Include="formInventarioDetalle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formNivelesEstudio.Designer.vb">
+      <DependentUpon>formNivelesEstudio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formNivelesEstudio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formNivelEstudio.Designer.vb">
+      <DependentUpon>formNivelEstudio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formNivelEstudio.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaAltaBaja.Designer.vb">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </Compile>
@@ -575,6 +587,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formInventarioDetalle.resx">
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formNivelesEstudio.resx">
+      <DependentUpon>formNivelesEstudio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formNivelEstudio.resx">
+      <DependentUpon>formNivelEstudio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaAltaBaja.resx">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>

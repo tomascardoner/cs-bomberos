@@ -418,7 +418,7 @@ Partial Class formPersonaSancion
         Me.labelIDSancion.Name = "labelIDSancion"
         Me.labelIDSancion.Size = New System.Drawing.Size(78, 13)
         Me.labelIDSancion.TabIndex = 16
-        Me.labelIDSancion.Text = "ID de Sancion:"
+        Me.labelIDSancion.Text = "ID de Sanción:"
         '
         'textboxIDSancion
         '

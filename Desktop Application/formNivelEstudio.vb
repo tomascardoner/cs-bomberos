@@ -1,31 +1,31 @@
-﻿Public Class formParentesco
+﻿Public Class formNivelEstudio
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mParentescoActual As Parentesco
+    Private mNivelEstudioActual As NivelEstudio
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDParentesco As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDNivelEstudio As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDParentesco = 0 Then
+        If IDNivelEstudio = 0 Then
             ' Es Nuevo
-            mParentescoActual = New Parentesco
-            With mParentescoActual
+            mNivelEstudioActual = New NivelEstudio
+            With mNivelEstudioActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Parentesco.Add(mParentescoActual)
+            mdbContext.NivelEstudio.Add(mNivelEstudioActual)
         Else
-            mParentescoActual = mdbContext.Parentesco.Find(IDParentesco)
+            mNivelEstudioActual = mdbContext.NivelEstudio.Find(IDNivelEstudio)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -66,14 +66,14 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mParentescoActual = Nothing
+        mNivelEstudioActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mParentescoActual
+        With mNivelEstudioActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -82,10 +82,10 @@
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDParentesco = 0 Then
-                textboxIDParentesco.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDNivelEstudio = 0 Then
+                textboxIDNivelEstudio.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDParentesco.Text = String.Format(.IDParentesco.ToString, "G")
+                textboxIDNivelEstudio.Text = String.Format(.IDNivelEstudio.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -103,7 +103,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mParentescoActual
+        With mNivelEstudioActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -137,7 +137,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.NIVELESTUDIO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -155,12 +155,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mParentescoActual.IDParentesco = 0 Then
+        If mNivelEstudioActual.IDNivelEstudio = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Parentesco.Count = 0 Then
-                    mParentescoActual.IDParentesco = 1
+                If dbcMaxID.NivelEstudio.Count = 0 Then
+                    mNivelEstudioActual.IDNivelEstudio = 1
                 Else
-                    mParentescoActual.IDParentesco = dbcMaxID.Parentesco.Max(Function(a) a.IDParentesco) + CByte(1)
+                    mNivelEstudioActual.IDNivelEstudio = dbcMaxID.NivelEstudio.Max(Function(a) a.IDNivelEstudio) + CByte(1)
                 End If
             End Using
         End If
@@ -172,21 +172,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mParentescoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mParentescoActual.FechaHoraModificacion = Now
+            mNivelEstudioActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mNivelEstudioActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formParentescos.RefreshData(mParentescoActual.IDParentesco)
+                formNivelesEstudio.RefreshData(mNivelEstudioActual.IDNivelEstudio)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Parentesco con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Nivel de Estudio con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

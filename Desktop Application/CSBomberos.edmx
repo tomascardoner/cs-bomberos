@@ -3367,10 +3367,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="SubRubro" EntitySet="SubRubro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Usuario" Association="CSBomberosModel.FK__Usuario__Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Usuario1" EntitySet="Usuario" />
-          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Usuario__Creacion" Association="CSBomberosModel.FK__Usuario__Usuario__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Usuario1" EntitySet="Usuario" />
@@ -3785,28 +3781,26 @@
           <NavigationProperty Name="PersonaCalificacionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" FromRole="Usuario" ToRole="PersonaCalificacion" />
           <NavigationProperty Name="PenaAplicacion" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" FromRole="Usuario" ToRole="PenaAplicacion" />
           <NavigationProperty Name="PenaAplicacion1" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" FromRole="Usuario" ToRole="PenaAplicacion" />
-          <NavigationProperty Name="Rubro" Relationship="CSBomberosModel.FK__Usuario__Rubro__Creacion" FromRole="Usuario" ToRole="Rubro" />
-          <NavigationProperty Name="Rubro1" Relationship="CSBomberosModel.FK__Usuario__Rubro__Modificacion" FromRole="Usuario" ToRole="Rubro" />
+          <NavigationProperty Name="RubrosCreados" Relationship="CSBomberosModel.FK__Usuario__Rubro__Creacion" FromRole="Usuario" ToRole="Rubro" />
+          <NavigationProperty Name="RubrosModificados" Relationship="CSBomberosModel.FK__Usuario__Rubro__Modificacion" FromRole="Usuario" ToRole="Rubro" />
           <NavigationProperty Name="SubRubro" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Creacion" FromRole="Usuario" ToRole="SubRubro" />
           <NavigationProperty Name="SubRubro1" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" FromRole="Usuario" ToRole="SubRubro" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Usuario" FromRole="Usuario" ToRole="Usuario1" />
-          <NavigationProperty Name="Usuario2" Relationship="CSBomberosModel.FK__Usuario__Usuario" FromRole="Usuario1" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario11" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario" ToRole="Usuario1" />
-          <NavigationProperty Name="Usuario3" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario1" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario12" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario" ToRole="Usuario1" />
-          <NavigationProperty Name="Usuario4" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario1" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioGrupo1" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
-          <NavigationProperty Name="UsuarioGrupo11" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuariosCreados" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario1" ToRole="Usuario" />
+          <NavigationProperty Name="UsuariosModificados" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario1" ToRole="Usuario" />
+          <NavigationProperty Name="UsuariosGruposCreados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuariosGruposModificados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="PersonaCambioUnidad" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
           <NavigationProperty Name="PersonaCambioUnidad1" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
           <NavigationProperty Name="CapacitacionNivel" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
           <NavigationProperty Name="CapacitacionNivel1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
           <NavigationProperty Name="CapacitacionTipo" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
           <NavigationProperty Name="CapacitacionTipo1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
-          <NavigationProperty Name="Curso" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Usuario" ToRole="Curso" />
-          <NavigationProperty Name="Curso1" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Usuario" ToRole="Curso" />
-          <NavigationProperty Name="Inventario" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Usuario" ToRole="Inventario" />
-          <NavigationProperty Name="Inventario1" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Usuario" ToRole="Inventario" />
+          <NavigationProperty Name="CursosCreados" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Usuario" ToRole="Curso" />
+          <NavigationProperty Name="CursosModificados" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Usuario" ToRole="Curso" />
+          <NavigationProperty Name="InventariosCreados" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Usuario" ToRole="Inventario" />
+          <NavigationProperty Name="InventariosModificados" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Usuario" ToRole="Inventario" />
           <NavigationProperty Name="LicenciaCausa" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="Usuario" ToRole="LicenciaCausa" />
           <NavigationProperty Name="LicenciaCausa1" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="Usuario" ToRole="LicenciaCausa" />
           <NavigationProperty Name="LicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
@@ -3822,12 +3816,12 @@
           <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaConducirCategoria" />
           <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="Usuario" ToRole="PersonaSancion" />
           <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
-          <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
-          <NavigationProperty Name="SancionTipo1" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
+          <NavigationProperty Name="SancionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
+          <NavigationProperty Name="SancionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
           <NavigationProperty Name="AutomotorUso" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="Usuario" ToRole="AutomotorUso" />
           <NavigationProperty Name="AutomotorUso1" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="Usuario" ToRole="AutomotorUso" />
-          <NavigationProperty Name="NivelEstudio" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="Usuario" ToRole="NivelEstudio" />
-          <NavigationProperty Name="NivelEstudio1" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
+          <NavigationProperty Name="NivelesEstudioCreados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="Usuario" ToRole="NivelEstudio" />
+          <NavigationProperty Name="NivelesEstudioModificados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -4361,8 +4355,8 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="NivelEstudio" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="NivelEstudio" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="NivelEstudio" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="NivelEstudio" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaAccidente">
           <Key>
@@ -5299,18 +5293,6 @@
             </Principal>
             <Dependent Role="SubRubro">
               <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__Usuario">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.Usuario" Role="Usuario1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="Usuario1">
-              <PropertyRef Name="IDUsuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

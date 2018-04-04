@@ -101,6 +101,22 @@
 #End Region
 
 #Region "Left Toolbar - Tablas"
+    Private Sub NivelesEstudio() Handles menuitemTablas_NivelesEstudio.Click
+        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formNivelesEstudio, Form))
+            formNivelesEstudio.Show()
+            If formNivelesEstudio.WindowState = FormWindowState.Minimized Then
+                formNivelesEstudio.WindowState = FormWindowState.Normal
+            End If
+            formNivelesEstudio.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+
+    End Sub
+
     Private Sub Parentescos() Handles menuitemTablas_Parentescos.Click
         If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
             Me.Cursor = Cursors.WaitCursor

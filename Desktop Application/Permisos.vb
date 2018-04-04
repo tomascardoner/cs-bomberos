@@ -1,13 +1,38 @@
 ﻿Module Permisos
-    Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
-    Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
-    Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
-    Friend Const USUARIOGRUPO_ELIMINAR As String = "USUARIOGRUPO_ELIMINAR"
-
     Friend Const PARENTESCO As String = "PARENTESCO"
     Friend Const PARENTESCO_AGREGAR As String = "PARENTESCO_AGREGAR"
     Friend Const PARENTESCO_EDITAR As String = "PARENTESCO_EDITAR"
     Friend Const PARENTESCO_ELIMINAR As String = "PARENTESCO_ELIMINAR"
+
+    Friend Const NIVELESTUDIO As String = "NIVELESTUDIO"
+    Friend Const NIVELESTUDIO_AGREGAR As String = "NIVELESTUDIO_AGREGAR"
+    Friend Const NIVELESTUDIO_EDITAR As String = "NIVELESTUDIO_EDITAR"
+    Friend Const NIVELESTUDIO_ELIMINAR As String = "NIVELESTUDIO_ELIMINAR"
+
+    Friend Const RUBRO As String = "RUBRO"
+    Friend Const RUBRO_AGREGAR As String = "RUBRO_AGREGAR"
+    Friend Const RUBRO_EDITAR As String = "RUBRO_EDITAR"
+    Friend Const RUBRO_ELIMINAR As String = "RUBRO_ELIMINAR"
+
+    Friend Const SUBRUBRO As String = "SUBRUBRO"
+    Friend Const SUBRUBRO_AGREGAR As String = "SUBRUBRO_AGREGAR"
+    Friend Const SUBRUBRO_EDITAR As String = "SUBRUBRO_EDITAR"
+    Friend Const SUBRUBRO_ELIMINAR As String = "SUBRUBRO_ELIMINAR"
+
+    Friend Const UBICACION As String = "UBICACION"
+    Friend Const UBICACION_AGREGAR As String = "UBICACION_AGREGAR"
+    Friend Const UBICACION_EDITAR As String = "UBICACION_EDITAR"
+    Friend Const UBICACION_ELIMINAR As String = "UBICACION_ELIMINAR"
+
+    Friend Const SUBUBICACION As String = "SUBUBICACION"
+    Friend Const SUBUBICACION_AGREGAR As String = "SUBUBICACION_AGREGAR"
+    Friend Const SUBUBICACION_EDITAR As String = "SUBUBICACION_EDITAR"
+    Friend Const SUBUBICACION_ELIMINAR As String = "SUBUBICACION_ELIMINAR"
+
+    Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
+    Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
+    Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
+    Friend Const USUARIOGRUPO_ELIMINAR As String = "USUARIOGRUPO_ELIMINAR"
 
     Friend Const PERSONA As String = "PERSONA"
     Friend Const PERSONA_AGREGAR As String = "PERSONA_AGREGAR"
@@ -55,30 +80,10 @@
     Friend Const PERSONA_EXAMEN_EDITAR As String = "PERSONA_EXAMEN_EDITAR"
     Friend Const PERSONA_EXAMEN_ELIMINAR As String = "PERSONA_EXAMEN_ELIMINAR"
 
-    Friend Const RUBRO As String = "RUBRO"
-    Friend Const RUBRO_AGREGAR As String = "RUBRO_AGREGAR"
-    Friend Const RUBRO_EDITAR As String = "RUBRO_EDITAR"
-    Friend Const RUBRO_ELIMINAR As String = "RUBRO_ELIMINAR"
-
-    Friend Const SUBRUBRO As String = "SUBRUBRO"
-    Friend Const SUBRUBRO_AGREGAR As String = "SUBRUBRO_AGREGAR"
-    Friend Const SUBRUBRO_EDITAR As String = "SUBRUBRO_EDITAR"
-    Friend Const SUBRUBRO_ELIMINAR As String = "SUBRUBRO_ELIMINAR"
-
     Friend Const ELEMENTO As String = "ELEMENTO"
     Friend Const ELEMENTO_AGREGAR As String = "ELEMENTO_AGREGAR"
     Friend Const ELEMENTO_EDITAR As String = "ELEMENTO_EDITAR"
     Friend Const ELEMENTO_ELIMINAR As String = "ELEMENTO_ELIMINAR"
-
-    Friend Const UBICACION As String = "UBICACION"
-    Friend Const UBICACION_AGREGAR As String = "UBICACION_AGREGAR"
-    Friend Const UBICACION_EDITAR As String = "UBICACION_EDITAR"
-    Friend Const UBICACION_ELIMINAR As String = "UBICACION_ELIMINAR"
-
-    Friend Const SUBUBICACION As String = "SUBUBICACION"
-    Friend Const SUBUBICACION_AGREGAR As String = "SUBUBICACION_AGREGAR"
-    Friend Const SUBUBICACION_EDITAR As String = "SUBUBICACION_EDITAR"
-    Friend Const SUBUBICACION_ELIMINAR As String = "SUBUBICACION_ELIMINAR"
 
     Friend Const INVENTARIO As String = "INVENTARIO"
     Friend Const INVENTARIO_AGREGAR As String = "INVENTARIO_AGREGAR"
@@ -119,11 +124,11 @@
 
         Arbol.Nodes.Clear()
 
-        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
+        RootNode = Arbol.Nodes.Add(NIVELESTUDIO, "Niveles de Estudio")
         With RootNode
-            .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(NIVELESTUDIO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(NIVELESTUDIO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(NIVELESTUDIO_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(PARENTESCO, "Parentescos")
@@ -145,6 +150,13 @@
             .Nodes.Add(SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(SUBUBICACION_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de Usuarios")
+        With RootNode
+            .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(PERSONA, "Personas")

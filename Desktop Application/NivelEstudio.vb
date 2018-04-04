@@ -21,7 +21,7 @@ Partial Public Class NivelEstudio
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class
