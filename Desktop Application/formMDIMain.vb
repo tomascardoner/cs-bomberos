@@ -162,7 +162,7 @@
     End Sub
 
     Private Sub CargosJerarquias() Handles menuitemTablas_CargosJerarquias.Click
-        If Permisos.VerificarPermiso(Permisos.CARGO) Then
+        If Permisos.VerificarPermiso(Permisos.CARGOJERARQUIA) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCargosJerarquias, Form))
@@ -171,6 +171,96 @@
                 formCargosJerarquias.WindowState = FormWindowState.Normal
             End If
             formCargosJerarquias.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LicenciaCausas() Handles menuitemTablas_CausalesLicenciaPersonas.Click
+        If Permisos.VerificarPermiso(Permisos.LICENCIACAUSA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formLicenciaCausas, Form))
+            formLicenciaCausas.Show()
+            If formLicenciaCausas.WindowState = FormWindowState.Minimized Then
+                formLicenciaCausas.WindowState = FormWindowState.Normal
+            End If
+            formLicenciaCausas.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SancionTipos() Handles menuitemTablas_TiposSancion.Click
+        If Permisos.VerificarPermiso(Permisos.SANCIONTIPO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSancionTipos, Form))
+            formSancionTipos.Show()
+            If formSancionTipos.WindowState = FormWindowState.Minimized Then
+                formSancionTipos.WindowState = FormWindowState.Normal
+            End If
+            formSancionTipos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Cursos() Handles menuitemTablas_Cursos.Click
+        If Permisos.VerificarPermiso(Permisos.CURSO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCursos, Form))
+            formCursos.Show()
+            If formCursos.WindowState = FormWindowState.Minimized Then
+                formCursos.WindowState = FormWindowState.Normal
+            End If
+            formCursos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CapacitacionNiveles() Handles menuitemTablas_NivelesCapacitacion.Click
+        If Permisos.VerificarPermiso(Permisos.CURSO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCapacitacionNiveles, Form))
+            formCapacitacionNiveles.Show()
+            If formCapacitacionNiveles.WindowState = FormWindowState.Minimized Then
+                formCapacitacionNiveles.WindowState = FormWindowState.Normal
+            End If
+            formCapacitacionNiveles.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CapacitacionTipos() Handles menuitemTablas_TiposCapacitacion.Click
+        If Permisos.VerificarPermiso(Permisos.CURSO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCapacitacionTipos, Form))
+            formCapacitacionTipos.Show()
+            If formCapacitacionTipos.WindowState = FormWindowState.Minimized Then
+                formCapacitacionTipos.WindowState = FormWindowState.Normal
+            End If
+            formCapacitacionTipos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub CalificacionConceptos() Handles menuitemTablas_ConceptosCalificacion.Click
+        If Permisos.VerificarPermiso(Permisos.CALIFICACIONCONCEPTO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCalificacionConceptos, Form))
+            formCalificacionConceptos.Show()
+            If formCalificacionConceptos.WindowState = FormWindowState.Minimized Then
+                formCalificacionConceptos.WindowState = FormWindowState.Normal
+            End If
+            formCalificacionConceptos.Focus()
 
             Me.Cursor = Cursors.Default
         End If

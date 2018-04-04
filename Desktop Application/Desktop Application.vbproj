@@ -262,6 +262,42 @@
     <Compile Include="formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formCalificacionConcepto.designer.vb">
+      <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCalificacionConcepto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCalificacionConceptos.designer.vb">
+      <DependentUpon>formCalificacionConceptos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCalificacionConceptos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCapacitacionNivel.designer.vb">
+      <DependentUpon>formCapacitacionNivel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCapacitacionNivel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCapacitacionNiveles.designer.vb">
+      <DependentUpon>formCapacitacionNiveles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCapacitacionNiveles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCapacitacionTipo.designer.vb">
+      <DependentUpon>formCapacitacionTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCapacitacionTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCapacitacionTipos.designer.vb">
+      <DependentUpon>formCapacitacionTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCapacitacionTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formCargo.designer.vb">
       <DependentUpon>formCargo.vb</DependentUpon>
     </Compile>
@@ -286,6 +322,18 @@
     <Compile Include="formCargosJerarquias.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formCurso.designer.vb">
+      <DependentUpon>formCurso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCurso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCursos.designer.vb">
+      <DependentUpon>formCursos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCursos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formElemento.Designer.vb">
       <DependentUpon>formElemento.vb</DependentUpon>
     </Compile>
@@ -308,6 +356,18 @@
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
     </Compile>
     <Compile Include="formInventarioDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLicenciaCausa.designer.vb">
+      <DependentUpon>formLicenciaCausa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formLicenciaCausa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formLicenciaCausas.designer.vb">
+      <DependentUpon>formLicenciaCausas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formLicenciaCausas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formNivelesEstudio.Designer.vb">
@@ -374,6 +434,18 @@
       <DependentUpon>formPersonaSancion.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaSancion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSancionTipo.designer.vb">
+      <DependentUpon>formSancionTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSancionTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSancionTipos.designer.vb">
+      <DependentUpon>formSancionTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSancionTipos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formUbicacion.Designer.vb">
@@ -612,6 +684,24 @@
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formCalificacionConcepto.resx">
+      <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCalificacionConceptos.resx">
+      <DependentUpon>formCalificacionConceptos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCapacitacionNivel.resx">
+      <DependentUpon>formCapacitacionNivel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCapacitacionNiveles.resx">
+      <DependentUpon>formCapacitacionNiveles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCapacitacionTipo.resx">
+      <DependentUpon>formCapacitacionTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCapacitacionTipos.resx">
+      <DependentUpon>formCapacitacionTipos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formCargo.resx">
       <DependentUpon>formCargo.vb</DependentUpon>
     </EmbeddedResource>
@@ -624,6 +714,12 @@
     <EmbeddedResource Include="formCargosJerarquias.resx">
       <DependentUpon>formCargosJerarquias.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formCurso.resx">
+      <DependentUpon>formCurso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCursos.resx">
+      <DependentUpon>formCursos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formElemento.resx">
       <DependentUpon>formElemento.vb</DependentUpon>
     </EmbeddedResource>
@@ -635,6 +731,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formInventarioDetalle.resx">
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLicenciaCausa.resx">
+      <DependentUpon>formLicenciaCausa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formLicenciaCausas.resx">
+      <DependentUpon>formLicenciaCausas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formNivelesEstudio.resx">
       <DependentUpon>formNivelesEstudio.vb</DependentUpon>
@@ -668,6 +770,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaSancion.resx">
       <DependentUpon>formPersonaSancion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSancionTipo.resx">
+      <DependentUpon>formSancionTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSancionTipos.resx">
+      <DependentUpon>formSancionTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>

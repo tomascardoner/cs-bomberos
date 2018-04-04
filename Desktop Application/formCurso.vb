@@ -1,31 +1,33 @@
-﻿Public Class formCargo
+﻿Public Class formCurso
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mCargoActual As Cargo
+    Private mCursoActual As Curso
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCargo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCurso As Short)
         mIsLoading = True
         mEditMode = EditMode
+        mIsNew = (IDCurso = 0)
 
-        If IDCargo = 0 Then
+        If mIsNew Then
             ' Es Nuevo
-            mCargoActual = New Cargo
-            With mCargoActual
+            mCursoActual = New Curso
+            With mCursoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Cargo.Add(mCargoActual)
+            mdbContext.Curso.Add(mCursoActual)
         Else
-            mCargoActual = mdbContext.Cargo.Find(IDCargo)
+            mCursoActual = mdbContext.Curso.Find(IDCurso)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -52,8 +54,8 @@
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
-        updownOrden.Enabled = mEditMode
 
+        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -69,24 +71,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCargoActual = Nothing
+        mCursoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mCargoActual
+        With mCursoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDCargo = 0 Then
-                textboxIDCargo.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If mIsNew Then
+                textboxIDCurso.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCargo.Text = String.Format(.IDCargo.ToString, "G")
+                textboxIDCurso.Text = String.Format(.IDCurso.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -104,9 +105,8 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCargoActual
+        With mCursoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -139,7 +139,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CARGO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.CURSO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -157,12 +157,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mCargoActual.IDCargo = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Cargo.Count = 0 Then
-                    mCargoActual.IDCargo = 1
+                If dbcMaxID.Curso.Count = 0 Then
+                    mCursoActual.IDCurso = 1
                 Else
-                    mCargoActual.IDCargo = dbcMaxID.Cargo.Max(Function(a) a.IDCargo) + CByte(1)
+                    mCursoActual.IDCurso = dbcMaxID.Curso.Max(Function(a) a.IDCurso) + CByte(1)
                 End If
             End Using
         End If
@@ -174,21 +174,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCargoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCargoActual.FechaHoraModificacion = Now
+            mCursoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mCursoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formCargos.RefreshData(mCargoActual.IDCargo)
+                formCursos.RefreshData(mCursoActual.IDCurso)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Cargo con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Curso con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

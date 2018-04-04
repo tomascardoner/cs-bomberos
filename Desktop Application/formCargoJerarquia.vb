@@ -1,31 +1,33 @@
-﻿Public Class formCargo
+﻿Public Class formCargoJerarquia
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mCargoActual As Cargo
+    Private mCargoJerarquiaActual As CargoJerarquia
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCargo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCargo As Byte, ByVal IDJerarquia As Byte)
         mIsLoading = True
         mEditMode = EditMode
+        mIsNew = (IDJerarquia = 0)
 
-        If IDCargo = 0 Then
+        If mIsNew Then
             ' Es Nuevo
-            mCargoActual = New Cargo
-            With mCargoActual
+            mCargoJerarquiaActual = New CargoJerarquia
+            With mCargoJerarquiaActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Cargo.Add(mCargoActual)
+            mdbContext.CargoJerarquia.Add(mCargoJerarquiaActual)
         Else
-            mCargoActual = mdbContext.Cargo.Find(IDCargo)
+            mCargoJerarquiaActual = mdbContext.CargoJerarquia.Find(IDCargo, IDJerarquia)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -51,15 +53,19 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
+        comboboxCargo.Enabled = mIsNew
         textboxNombre.ReadOnly = Not mEditMode
         updownOrden.Enabled = mEditMode
 
+        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.Cargo(comboboxCargo, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -69,24 +75,25 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCargoActual = Nothing
+        mCargoJerarquiaActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mCargoActual
+        With mCargoJerarquiaActual
+            CS_Control_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDCargo = 0 Then
-                textboxIDCargo.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If mIsNew Then
+                textboxIDJerarquia.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCargo.Text = String.Format(.IDCargo.ToString, "G")
+                textboxIDJerarquia.Text = String.Format(.IDJerarquia.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -104,7 +111,10 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCargoActual
+        With mCargoJerarquiaActual
+            If mIsNew Then
+                .IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargo.SelectedValue).Value
+            End If
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
@@ -139,7 +149,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CARGO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.CARGOJERARQUIA_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -150,6 +160,12 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+        If comboboxCargo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCargo.Focus()
+            Exit Sub
+        End If
+
         If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
@@ -157,12 +173,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mCargoActual.IDCargo = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Cargo.Count = 0 Then
-                    mCargoActual.IDCargo = 1
+                If dbcMaxID.CargoJerarquia.Count = 0 Then
+                    mCargoJerarquiaActual.IDJerarquia = 1
                 Else
-                    mCargoActual.IDCargo = dbcMaxID.Cargo.Max(Function(a) a.IDCargo) + CByte(1)
+                    mCargoJerarquiaActual.IDJerarquia = dbcMaxID.CargoJerarquia.Max(Function(a) a.IDJerarquia) + CByte(1)
                 End If
             End Using
         End If
@@ -174,21 +190,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCargoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCargoActual.FechaHoraModificacion = Now
+            mCargoJerarquiaActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mCargoJerarquiaActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formCargos.RefreshData(mCargoActual.IDCargo)
+                formCargosJerarquias.RefreshData(mCargoJerarquiaActual.IDCargo, mCargoJerarquiaActual.IDJerarquia)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Cargo con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Jerarquía con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

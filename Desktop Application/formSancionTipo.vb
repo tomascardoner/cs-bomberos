@@ -1,31 +1,33 @@
-﻿Public Class formCargo
+﻿Public Class formSancionTipo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mCargoActual As Cargo
+    Private mSancionTipoActual As SancionTipo
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCargo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSancionTipo As Byte)
         mIsLoading = True
         mEditMode = EditMode
-
-        If IDCargo = 0 Then
+        mIsNew = (IDSancionTipo = 0)
+        
+        If mIsNew Then
             ' Es Nuevo
-            mCargoActual = New Cargo
-            With mCargoActual
+            mSancionTipoActual = New SancionTipo
+            With mSancionTipoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Cargo.Add(mCargoActual)
+            mdbContext.SancionTipo.Add(mSancionTipoActual)
         Else
-            mCargoActual = mdbContext.Cargo.Find(IDCargo)
+            mSancionTipoActual = mdbContext.SancionTipo.Find(IDSancionTipo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -52,8 +54,9 @@
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
-        updownOrden.Enabled = mEditMode
+        updownCantidadDias.Enabled = mEditMode
 
+        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -69,24 +72,24 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCargoActual = Nothing
+        mSancionTipoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mCargoActual
+        With mSancionTipoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
+            updownCantidadDias.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadDias)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDCargo = 0 Then
-                textboxIDCargo.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If mIsNew Then
+                textboxIDSancionTipo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCargo.Text = String.Format(.IDCargo.ToString, "G")
+                textboxIDSancionTipo.Text = String.Format(.IDSancionTipo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -104,9 +107,9 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCargoActual
+        With mSancionTipoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
+            .CantidadDias = CS_ValueTranslation.FromControlUpDownToObjectShort(updownCantidadDias.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -139,7 +142,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CARGO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SANCIONTIPO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -157,12 +160,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mCargoActual.IDCargo = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Cargo.Count = 0 Then
-                    mCargoActual.IDCargo = 1
+                If dbcMaxID.SancionTipo.Count = 0 Then
+                    mSancionTipoActual.IDSancionTipo = 1
                 Else
-                    mCargoActual.IDCargo = dbcMaxID.Cargo.Max(Function(a) a.IDCargo) + CByte(1)
+                    mSancionTipoActual.IDSancionTipo = dbcMaxID.SancionTipo.Max(Function(a) a.IDSancionTipo) + CByte(1)
                 End If
             End Using
         End If
@@ -174,21 +177,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCargoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCargoActual.FechaHoraModificacion = Now
+            mSancionTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mSancionTipoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formCargos.RefreshData(mCargoActual.IDCargo)
+                formSancionTipos.RefreshData(mSancionTipoActual.IDSancionTipo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Cargo con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Sanción con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
