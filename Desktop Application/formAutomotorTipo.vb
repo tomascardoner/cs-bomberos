@@ -1,8 +1,8 @@
-﻿Public Class formCalificacionConcepto
+﻿Public Class formAutomotorTipo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mCalificacionConceptoActual As CalificacionConcepto
+    Private mAutomotorTipoActual As AutomotorTipo
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
@@ -10,24 +10,24 @@
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCalificacionConcepto As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAutomotorTipo As Byte)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDCalificacionConcepto = 0)
+        mIsNew = (IDAutomotorTipo = 0)
         
         If mIsNew Then
             ' Es Nuevo
-            mCalificacionConceptoActual = New CalificacionConcepto
-            With mCalificacionConceptoActual
+            mAutomotorTipoActual = New AutomotorTipo
+            With mAutomotorTipoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.CalificacionConcepto.Add(mCalificacionConceptoActual)
+            mdbContext.AutomotorTipo.Add(mAutomotorTipoActual)
         Else
-            mCalificacionConceptoActual = mdbContext.CalificacionConcepto.Find(IDCalificacionConcepto)
+            mAutomotorTipoActual = mdbContext.AutomotorTipo.Find(IDAutomotorTipo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -53,10 +53,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
-        textboxAbreviatura.ReadOnly = Not mEditMode
         textboxNombre.ReadOnly = Not mEditMode
-        textboxDescripcion.ReadOnly = Not mEditMode
-        updownOrden.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -74,26 +71,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCalificacionConceptoActual = Nothing
+        mAutomotorTipoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mCalificacionConceptoActual
-            textboxAbreviatura.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Abreviatura)
+        With mAutomotorTipoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
-            updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If mIsNew Then
-                textboxIDCalificacionConcepto.Text = My.Resources.STRING_ITEM_NEW_MALE
+                textboxIDAutomotorTipo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCalificacionConcepto.Text = String.Format(.IDCalificacionConcepto.ToString, "G")
+                textboxIDAutomotorTipo.Text = String.Format(.IDAutomotorTipo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -111,11 +105,8 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCalificacionConceptoActual
-            .Abreviatura = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAbreviatura.Text)
+        With mAutomotorTipoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcion.Text)
-            .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -141,14 +132,14 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAbreviatura.GotFocus, textboxNombre.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CALIFICACIONCONCEPTO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTORTIPO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -159,7 +150,7 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxAbreviatura.Text.Trim.Length = 0 Then
+        If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
@@ -168,10 +159,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.CalificacionConcepto.Count = 0 Then
-                    mCalificacionConceptoActual.IDCalificacionConcepto = 1
+                If dbcMaxID.AutomotorTipo.Count = 0 Then
+                    mAutomotorTipoActual.IDAutomotorTipo = 1
                 Else
-                    mCalificacionConceptoActual.IDCalificacionConcepto = dbcMaxID.CalificacionConcepto.Max(Function(a) a.IDCalificacionConcepto) + CByte(1)
+                    mAutomotorTipoActual.IDAutomotorTipo = dbcMaxID.AutomotorTipo.Max(Function(a) a.IDAutomotorTipo) + CByte(1)
                 End If
             End Using
         End If
@@ -183,21 +174,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCalificacionConceptoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCalificacionConceptoActual.FechaHoraModificacion = Now
+            mAutomotorTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mAutomotorTipoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formCalificacionConceptos.RefreshData(mCalificacionConceptoActual.IDCalificacionConcepto)
+                formAutomotorTipos.RefreshData(mAutomotorTipoActual.IDAutomotorTipo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Calificación con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Automotor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

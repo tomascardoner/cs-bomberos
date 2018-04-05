@@ -156,7 +156,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAltaLibroNumero.GotFocus, textboxAltaFolioNumero.GotFocus, textboxAltaActaNumero.GotFocus, textboxBajaLibroNumero.GotFocus, textboxBajaFolioNumero.GotFocus, textboxBajaActaNumero.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formUbicacion
+Partial Class formSubUbicacion
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -25,7 +25,7 @@ Partial Class formUbicacion
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim labelAutomotor As System.Windows.Forms.Label
+        Dim labelUbicacion As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
@@ -37,21 +37,21 @@ Partial Class formUbicacion
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDUbicacion = New System.Windows.Forms.Label()
-        Me.textboxIDUbicacion = New System.Windows.Forms.TextBox()
+        Me.labelIDSubUbicacion = New System.Windows.Forms.Label()
+        Me.textboxIDSubUbicacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.comboboxAutomotor = New System.Windows.Forms.ComboBox()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
-        labelAutomotor = New System.Windows.Forms.Label()
+        labelUbicacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
@@ -85,6 +85,15 @@ Partial Class formUbicacion
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
         labelCreacion.Text = "Creación:"
+        '
+        'labelUbicacion
+        '
+        labelUbicacion.AutoSize = True
+        labelUbicacion.Location = New System.Drawing.Point(6, 95)
+        labelUbicacion.Name = "labelUbicacion"
+        labelUbicacion.Size = New System.Drawing.Size(58, 13)
+        labelUbicacion.TabIndex = 4
+        labelUbicacion.Text = "Ubicación:"
         '
         'textboxNombre
         '
@@ -174,10 +183,10 @@ Partial Class formUbicacion
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.comboboxAutomotor)
-        Me.tabpageGeneral.Controls.Add(labelAutomotor)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
         Me.tabpageGeneral.Controls.Add(labelCuartel)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxUbicacion)
+        Me.tabpageGeneral.Controls.Add(labelUbicacion)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -188,11 +197,20 @@ Partial Class formUbicacion
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'comboboxUbicacion
+        '
+        Me.comboboxUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUbicacion.FormattingEnabled = True
+        Me.comboboxUbicacion.Location = New System.Drawing.Point(70, 92)
+        Me.comboboxUbicacion.Name = "comboboxUbicacion"
+        Me.comboboxUbicacion.Size = New System.Drawing.Size(435, 21)
+        Me.comboboxUbicacion.TabIndex = 5
+        '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDUbicacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDSubUbicacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDUbicacion)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDSubUbicacion)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -210,25 +228,25 @@ Partial Class formUbicacion
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDUbicacion
+        'labelIDSubUbicacion
         '
-        Me.labelIDUbicacion.AutoSize = True
-        Me.labelIDUbicacion.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDUbicacion.Name = "labelIDUbicacion"
-        Me.labelIDUbicacion.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDUbicacion.TabIndex = 4
-        Me.labelIDUbicacion.Text = "ID:"
+        Me.labelIDSubUbicacion.AutoSize = True
+        Me.labelIDSubUbicacion.Location = New System.Drawing.Point(7, 111)
+        Me.labelIDSubUbicacion.Name = "labelIDSubUbicacion"
+        Me.labelIDSubUbicacion.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDSubUbicacion.TabIndex = 4
+        Me.labelIDSubUbicacion.Text = "ID:"
         '
-        'textboxIDUbicacion
+        'textboxIDSubUbicacion
         '
-        Me.textboxIDUbicacion.Location = New System.Drawing.Point(115, 108)
-        Me.textboxIDUbicacion.MaxLength = 10
-        Me.textboxIDUbicacion.Name = "textboxIDUbicacion"
-        Me.textboxIDUbicacion.ReadOnly = True
-        Me.textboxIDUbicacion.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDUbicacion.TabIndex = 5
-        Me.textboxIDUbicacion.TabStop = False
-        Me.textboxIDUbicacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDSubUbicacion.Location = New System.Drawing.Point(115, 108)
+        Me.textboxIDSubUbicacion.MaxLength = 10
+        Me.textboxIDSubUbicacion.Name = "textboxIDSubUbicacion"
+        Me.textboxIDSubUbicacion.ReadOnly = True
+        Me.textboxIDSubUbicacion.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDSubUbicacion.TabIndex = 5
+        Me.textboxIDSubUbicacion.TabStop = False
+        Me.textboxIDSubUbicacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -285,31 +303,13 @@ Partial Class formUbicacion
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'comboboxAutomotor
-        '
-        Me.comboboxAutomotor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAutomotor.FormattingEnabled = True
-        Me.comboboxAutomotor.Location = New System.Drawing.Point(70, 92)
-        Me.comboboxAutomotor.Name = "comboboxAutomotor"
-        Me.comboboxAutomotor.Size = New System.Drawing.Size(435, 21)
-        Me.comboboxAutomotor.TabIndex = 5
-        '
-        'labelAutomotor
-        '
-        labelAutomotor.AutoSize = True
-        labelAutomotor.Location = New System.Drawing.Point(6, 95)
-        labelAutomotor.Name = "labelAutomotor"
-        labelAutomotor.Size = New System.Drawing.Size(58, 13)
-        labelAutomotor.TabIndex = 4
-        labelAutomotor.Text = "Automotor:"
-        '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
         Me.comboboxCuartel.Location = New System.Drawing.Point(70, 55)
         Me.comboboxCuartel.Name = "comboboxCuartel"
-        Me.comboboxCuartel.Size = New System.Drawing.Size(435, 21)
+        Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
         Me.comboboxCuartel.TabIndex = 3
         '
         'labelCuartel
@@ -321,7 +321,7 @@ Partial Class formUbicacion
         labelCuartel.TabIndex = 2
         labelCuartel.Text = "Cuartel:"
         '
-        'formUbicacion
+        'formSubUbicacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -332,9 +332,9 @@ Partial Class formUbicacion
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formUbicacion"
+        Me.Name = "formSubUbicacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Ubicación"
+        Me.Text = "Sub-Ubicación"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -359,12 +359,12 @@ Partial Class formUbicacion
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDUbicacion As System.Windows.Forms.Label
-    Friend WithEvents textboxIDUbicacion As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDSubUbicacion As System.Windows.Forms.Label
+    Friend WithEvents textboxIDSubUbicacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents comboboxAutomotor As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxUbicacion As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
 End Class

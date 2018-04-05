@@ -130,6 +130,14 @@
         End Select
     End Sub
 
+    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxAnio.GotFocus, maskedtextboxInstanciaNumero.GotFocus
+        CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub DoubleTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles doubletextboxCalificacion.GotFocus
+        CType(sender, Syncfusion.Windows.Forms.Tools.DoubleTextBox).SelectAll()
+    End Sub
+
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub

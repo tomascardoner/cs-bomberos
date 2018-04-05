@@ -266,6 +266,81 @@
         End If
     End Sub
 
+    Private Sub AutomotorTipos() Handles menuitemTablas_TiposAutomotor.Click
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTORTIPO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorTipos, Form))
+            formAutomotorTipos.Show()
+            If formAutomotorTipos.WindowState = FormWindowState.Minimized Then
+                formAutomotorTipos.WindowState = FormWindowState.Normal
+            End If
+            formAutomotorTipos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub AutomotorUsos() Handles menuitemTablas_UsosAutomotor.Click
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTORUSO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorUsos, Form))
+            formAutomotorUsos.Show()
+            If formAutomotorUsos.WindowState = FormWindowState.Minimized Then
+                formAutomotorUsos.WindowState = FormWindowState.Normal
+            End If
+            formAutomotorUsos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Rubros() Handles menuitemTablas_Rubros.Click
+        If Permisos.VerificarPermiso(Permisos.RUBRO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formRubros, Form))
+            formRubros.Show()
+            If formRubros.WindowState = FormWindowState.Minimized Then
+                formRubros.WindowState = FormWindowState.Normal
+            End If
+            formRubros.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SubRubros() Handles menuitemTablas_SubRubros.Click
+        If Permisos.VerificarPermiso(Permisos.SUBRUBRO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSubRubros, Form))
+            formSubRubros.Show()
+            If formSubRubros.WindowState = FormWindowState.Minimized Then
+                formSubRubros.WindowState = FormWindowState.Normal
+            End If
+            formSubRubros.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Areas() Handles menuitemTablas_Areas.Click
+        If Permisos.VerificarPermiso(Permisos.AREA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAreas, Form))
+            formAreas.Show()
+            If formAreas.WindowState = FormWindowState.Minimized Then
+                formAreas.WindowState = FormWindowState.Normal
+            End If
+            formAreas.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click
         If Permisos.VerificarPermiso(Permisos.UBICACION) Then
             Me.Cursor = Cursors.WaitCursor
@@ -276,6 +351,21 @@
                 formUbicaciones.WindowState = FormWindowState.Normal
             End If
             formUbicaciones.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub SubUbicaciones() Handles menuitemTablas_SubUbicaciones.Click
+        If Permisos.VerificarPermiso(Permisos.SUBUBICACION) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSubUbicaciones, Form))
+            formSubUbicaciones.Show()
+            If formSubUbicaciones.WindowState = FormWindowState.Minimized Then
+                formSubUbicaciones.WindowState = FormWindowState.Normal
+            End If
+            formSubUbicaciones.Focus()
 
             Me.Cursor = Cursors.Default
         End If

@@ -1,8 +1,9 @@
-﻿Public Class formCalificacionConcepto
+﻿Public Class formSubUbicacion
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mCalificacionConceptoActual As CalificacionConcepto
+    Private mSubUbicacionActual As SubUbicacion
+    Private mIDCuartel As Byte
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
@@ -10,24 +11,31 @@
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCalificacionConcepto As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSubUbicacion As Short)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDCalificacionConcepto = 0)
-        
+        mIsNew = (IDSubUbicacion = 0)
+
         If mIsNew Then
             ' Es Nuevo
-            mCalificacionConceptoActual = New CalificacionConcepto
-            With mCalificacionConceptoActual
+            mSubUbicacionActual = New SubUbicacion
+            With mSubUbicacionActual
+                ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
+                If formSubUbicaciones.comboboxCuartel.SelectedIndex > 0 Then
+                    mIDCuartel = CByte(formSubUbicaciones.comboboxCuartel.ComboBox.SelectedValue)
+                End If
+                If formSubUbicaciones.comboboxUbicacion.SelectedIndex > 0 Then
+                    .IDUbicacion = CByte(formSubUbicaciones.comboboxUbicacion.ComboBox.SelectedValue)
+                End If
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.CalificacionConcepto.Add(mCalificacionConceptoActual)
+            mdbContext.SubUbicacion.Add(mSubUbicacionActual)
         Else
-            mCalificacionConceptoActual = mdbContext.CalificacionConcepto.Find(IDCalificacionConcepto)
+            mSubUbicacionActual = mdbContext.SubUbicacion.Find(IDSubUbicacion)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -53,10 +61,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
-        textboxAbreviatura.ReadOnly = Not mEditMode
         textboxNombre.ReadOnly = Not mEditMode
-        textboxDescripcion.ReadOnly = Not mEditMode
-        updownOrden.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -65,6 +70,8 @@
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -74,26 +81,29 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCalificacionConceptoActual = Nothing
+        mSubUbicacionActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mCalificacionConceptoActual
-            textboxAbreviatura.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Abreviatura)
+        With mSubUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
-            updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
+            If mIsNew Then
+                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, mIDCuartel)
+            Else
+                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .Ubicacion.IDCuartel)
+            End If
+            CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If mIsNew Then
-                textboxIDCalificacionConcepto.Text = My.Resources.STRING_ITEM_NEW_MALE
+                textboxIDSubUbicacion.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCalificacionConcepto.Text = String.Format(.IDCalificacionConcepto.ToString, "G")
+                textboxIDSubUbicacion.Text = String.Format(.IDSubUbicacion.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -111,11 +121,9 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCalificacionConceptoActual
-            .Abreviatura = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAbreviatura.Text)
+        With mSubUbicacionActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcion.Text)
-            .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
+            .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxUbicacion.SelectedValue).Value
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -141,14 +149,18 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAbreviatura.GotFocus, textboxNombre.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
+    End Sub
+
+    Private Sub Cuartel_Changed() Handles comboboxCuartel.SelectedIndexChanged
+        pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, False, CByte(comboboxCuartel.SelectedValue))
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.CALIFICACIONCONCEPTO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SUBUBICACION_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -159,19 +171,29 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxAbreviatura.Text.Trim.Length = 0 Then
+        If textboxNombre.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
+            Exit Sub
+        End If
+        If comboboxCuartel.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Exit Sub
+        End If
+        If comboboxUbicacion.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar la Ubicación.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUbicacion.Focus()
             Exit Sub
         End If
 
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.CalificacionConcepto.Count = 0 Then
-                    mCalificacionConceptoActual.IDCalificacionConcepto = 1
+                If dbcMaxID.SubUbicacion.Count = 0 Then
+                    mSubUbicacionActual.IDSubUbicacion = 1
                 Else
-                    mCalificacionConceptoActual.IDCalificacionConcepto = dbcMaxID.CalificacionConcepto.Max(Function(a) a.IDCalificacionConcepto) + CByte(1)
+                    mSubUbicacionActual.IDSubUbicacion = dbcMaxID.SubUbicacion.Max(Function(a) a.IDSubUbicacion) + CByte(1)
                 End If
             End Using
         End If
@@ -183,21 +205,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCalificacionConceptoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCalificacionConceptoActual.FechaHoraModificacion = Now
+            mSubUbicacionActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mSubUbicacionActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formCalificacionConceptos.RefreshData(mCalificacionConceptoActual.IDCalificacionConcepto)
+                formSubUbicaciones.RefreshData(mSubUbicacionActual.IDSubUbicacion)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Calificación con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Sub-Ubicación con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

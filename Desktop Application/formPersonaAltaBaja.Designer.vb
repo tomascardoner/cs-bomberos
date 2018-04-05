@@ -80,10 +80,10 @@ Partial Class formPersonaAltaBaja
         'labelAltaActaNumero
         '
         labelAltaActaNumero.AutoSize = True
-        labelAltaActaNumero.Location = New System.Drawing.Point(153, 48)
+        labelAltaActaNumero.Location = New System.Drawing.Point(297, 48)
         labelAltaActaNumero.Name = "labelAltaActaNumero"
         labelAltaActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelAltaActaNumero.TabIndex = 4
+        labelAltaActaNumero.TabIndex = 6
         labelAltaActaNumero.Text = "Acta N°:"
         '
         'labelAltaLibroNumero
@@ -98,19 +98,19 @@ Partial Class formPersonaAltaBaja
         'labelAltaFolioNumero
         '
         labelAltaFolioNumero.AutoSize = True
-        labelAltaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelAltaFolioNumero.Location = New System.Drawing.Point(153, 48)
         labelAltaFolioNumero.Name = "labelAltaFolioNumero"
         labelAltaFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelAltaFolioNumero.TabIndex = 6
+        labelAltaFolioNumero.TabIndex = 4
         labelAltaFolioNumero.Text = "Folio N°:"
         '
         'labelBajaActaNumero
         '
         labelBajaActaNumero.AutoSize = True
-        labelBajaActaNumero.Location = New System.Drawing.Point(153, 48)
+        labelBajaActaNumero.Location = New System.Drawing.Point(297, 48)
         labelBajaActaNumero.Name = "labelBajaActaNumero"
         labelBajaActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelBajaActaNumero.TabIndex = 4
+        labelBajaActaNumero.TabIndex = 6
         labelBajaActaNumero.Text = "Acta N°:"
         '
         'labelBajaLibroNumero
@@ -125,10 +125,10 @@ Partial Class formPersonaAltaBaja
         'labelBajaFolioNumero
         '
         labelBajaFolioNumero.AutoSize = True
-        labelBajaFolioNumero.Location = New System.Drawing.Point(297, 48)
+        labelBajaFolioNumero.Location = New System.Drawing.Point(153, 48)
         labelBajaFolioNumero.Name = "labelBajaFolioNumero"
         labelBajaFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelBajaFolioNumero.TabIndex = 6
+        labelBajaFolioNumero.TabIndex = 4
         labelBajaFolioNumero.Text = "Folio N°:"
         '
         'labelBajaMotivo
@@ -146,7 +146,7 @@ Partial Class formPersonaAltaBaja
         labelModificacion.Location = New System.Drawing.Point(7, 169)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 13
+        labelModificacion.TabIndex = 7
         labelModificacion.Text = "Ultima Modificación:"
         '
         'labelCreacion
@@ -155,7 +155,7 @@ Partial Class formPersonaAltaBaja
         labelCreacion.Location = New System.Drawing.Point(7, 143)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 10
+        labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
         'buttonGuardar
@@ -205,7 +205,7 @@ Partial Class formPersonaAltaBaja
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(480, 39)
-        Me.toolstripMain.TabIndex = 6
+        Me.toolstripMain.TabIndex = 1
         '
         'textboxNotas
         '
@@ -215,7 +215,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.textboxNotas.Size = New System.Drawing.Size(329, 102)
-        Me.textboxNotas.TabIndex = 5
+        Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
         '
@@ -223,7 +223,7 @@ Partial Class formPersonaAltaBaja
         Me.labelNotas.Location = New System.Drawing.Point(7, 9)
         Me.labelNotas.Name = "labelNotas"
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
-        Me.labelNotas.TabIndex = 4
+        Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
         'tabcontrolMain
@@ -235,7 +235,7 @@ Partial Class formPersonaAltaBaja
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
         Me.tabcontrolMain.Size = New System.Drawing.Size(458, 221)
-        Me.tabcontrolMain.TabIndex = 7
+        Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
@@ -262,17 +262,17 @@ Partial Class formPersonaAltaBaja
         Me.groupboxAlta.Location = New System.Drawing.Point(6, 6)
         Me.groupboxAlta.Name = "groupboxAlta"
         Me.groupboxAlta.Size = New System.Drawing.Size(435, 72)
-        Me.groupboxAlta.TabIndex = 2
+        Me.groupboxAlta.TabIndex = 0
         Me.groupboxAlta.TabStop = False
         Me.groupboxAlta.Text = "Alta:"
         '
         'textboxAltaFolioNumero
         '
-        Me.textboxAltaFolioNumero.Location = New System.Drawing.Point(350, 45)
+        Me.textboxAltaFolioNumero.Location = New System.Drawing.Point(206, 45)
         Me.textboxAltaFolioNumero.MaxLength = 10
         Me.textboxAltaFolioNumero.Name = "textboxAltaFolioNumero"
         Me.textboxAltaFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxAltaFolioNumero.TabIndex = 7
+        Me.textboxAltaFolioNumero.TabIndex = 5
         '
         'textboxAltaLibroNumero
         '
@@ -284,11 +284,11 @@ Partial Class formPersonaAltaBaja
         '
         'textboxAltaActaNumero
         '
-        Me.textboxAltaActaNumero.Location = New System.Drawing.Point(206, 45)
+        Me.textboxAltaActaNumero.Location = New System.Drawing.Point(350, 45)
         Me.textboxAltaActaNumero.MaxLength = 10
         Me.textboxAltaActaNumero.Name = "textboxAltaActaNumero"
         Me.textboxAltaActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxAltaActaNumero.TabIndex = 5
+        Me.textboxAltaActaNumero.TabIndex = 7
         '
         'labelAltaFecha
         '
@@ -324,7 +324,7 @@ Partial Class formPersonaAltaBaja
         Me.groupboxBaja.Location = New System.Drawing.Point(6, 84)
         Me.groupboxBaja.Name = "groupboxBaja"
         Me.groupboxBaja.Size = New System.Drawing.Size(435, 100)
-        Me.groupboxBaja.TabIndex = 3
+        Me.groupboxBaja.TabIndex = 1
         Me.groupboxBaja.TabStop = False
         Me.groupboxBaja.Text = "Baja:"
         '
@@ -339,11 +339,11 @@ Partial Class formPersonaAltaBaja
         '
         'textboxBajaFolioNumero
         '
-        Me.textboxBajaFolioNumero.Location = New System.Drawing.Point(350, 45)
+        Me.textboxBajaFolioNumero.Location = New System.Drawing.Point(206, 45)
         Me.textboxBajaFolioNumero.MaxLength = 10
         Me.textboxBajaFolioNumero.Name = "textboxBajaFolioNumero"
         Me.textboxBajaFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxBajaFolioNumero.TabIndex = 7
+        Me.textboxBajaFolioNumero.TabIndex = 5
         '
         'textboxBajaLibroNumero
         '
@@ -355,11 +355,11 @@ Partial Class formPersonaAltaBaja
         '
         'textboxBajaActaNumero
         '
-        Me.textboxBajaActaNumero.Location = New System.Drawing.Point(206, 45)
+        Me.textboxBajaActaNumero.Location = New System.Drawing.Point(350, 45)
         Me.textboxBajaActaNumero.MaxLength = 10
         Me.textboxBajaActaNumero.Name = "textboxBajaActaNumero"
         Me.textboxBajaActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxBajaActaNumero.TabIndex = 5
+        Me.textboxBajaActaNumero.TabIndex = 7
         '
         'labelBajaFecha
         '
@@ -407,7 +407,7 @@ Partial Class formPersonaAltaBaja
         Me.labelIDAltaBaja.Location = New System.Drawing.Point(7, 117)
         Me.labelIDAltaBaja.Name = "labelIDAltaBaja"
         Me.labelIDAltaBaja.Size = New System.Drawing.Size(81, 13)
-        Me.labelIDAltaBaja.TabIndex = 16
+        Me.labelIDAltaBaja.TabIndex = 2
         Me.labelIDAltaBaja.Text = "ID de Alta-Baja:"
         '
         'textboxIDAltaBaja
@@ -417,7 +417,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxIDAltaBaja.Name = "textboxIDAltaBaja"
         Me.textboxIDAltaBaja.ReadOnly = True
         Me.textboxIDAltaBaja.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAltaBaja.TabIndex = 17
+        Me.textboxIDAltaBaja.TabIndex = 3
         Me.textboxIDAltaBaja.TabStop = False
         Me.textboxIDAltaBaja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -428,7 +428,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
         Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(202, 20)
-        Me.textboxUsuarioModificacion.TabIndex = 15
+        Me.textboxUsuarioModificacion.TabIndex = 9
         '
         'textboxUsuarioCreacion
         '
@@ -437,7 +437,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
         Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(202, 20)
-        Me.textboxUsuarioCreacion.TabIndex = 12
+        Me.textboxUsuarioCreacion.TabIndex = 6
         '
         'textboxFechaHoraModificacion
         '
@@ -446,7 +446,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
         Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraModificacion.TabIndex = 14
+        Me.textboxFechaHoraModificacion.TabIndex = 8
         '
         'textboxFechaHoraCreacion
         '
@@ -455,7 +455,7 @@ Partial Class formPersonaAltaBaja
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraCreacion.TabIndex = 11
+        Me.textboxFechaHoraCreacion.TabIndex = 5
         '
         'formPersonaAltaBaja
         '

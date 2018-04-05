@@ -5,6 +5,7 @@
     Private mUbicacionActual As Ubicacion
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
@@ -12,11 +13,16 @@
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUbicacion As Short)
         mIsLoading = True
         mEditMode = EditMode
+        mIsNew = (IDUbicacion = 0)
 
-        If IDUbicacion = 0 Then
+        If mIsNew Then
             ' Es Nuevo
             mUbicacionActual = New Ubicacion
             With mUbicacionActual
+                ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
+                If formUbicaciones.comboboxCuartel.SelectedIndex > 0 Then
+                    .IDCuartel = CByte(formUbicaciones.comboboxCuartel.ComboBox.SelectedValue)
+                End If
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -28,19 +34,15 @@
             mUbicacionActual = mdbContext.Ubicacion.Find(IDUbicacion)
         End If
 
-        Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        Me.Show()
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-        Me.Focus()
 
         mIsLoading = False
 
         ChangeMode()
+
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Private Sub ChangeMode()
@@ -48,12 +50,19 @@
             Exit Sub
         End If
 
+        ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
+        ' General
         textboxNombre.ReadOnly = Not mEditMode
+        comboboxCuartel.Enabled = mEditMode
+        comboboxAutomotor.Enabled = mEditMode
+
+        ' Notas y Auditoría
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
@@ -78,15 +87,30 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mUbicacionActual
-            If .IDUbicacion = 0 Then
+            textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotor)
+
+            ' Datos de la pestaña Notas y Auditoría
+            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            If mIsNew Then
                 textboxIDUbicacion.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
                 textboxIDUbicacion.Text = String.Format(.IDUbicacion.ToString, "G")
             End If
-            textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .IDCuartel)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirst, .IDAutomotor)
-            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
+            If .UsuarioCreacion Is Nothing Then
+                textboxUsuarioCreacion.Text = ""
+            Else
+                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
+            End If
+            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
+            If .UsuarioModificacion Is Nothing Then
+                textboxUsuarioModificacion.Text = ""
+            Else
+                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
+            End If
         End With
     End Sub
 
@@ -95,6 +119,8 @@
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .IDAutomotor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxAutomotor.SelectedValue)
+
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
@@ -121,15 +147,14 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
-
-    Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
+    Private Sub Cuartel_Changed() Handles comboboxCuartel.SelectedIndexChanged
         pFillAndRefreshLists.Automotor(comboboxAutomotor, False, True, CByte(comboboxCuartel.SelectedValue))
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.Ubicacion_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.UBICACION_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -145,7 +170,6 @@
             textboxNombre.Focus()
             Exit Sub
         End If
-
         If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
@@ -153,7 +177,7 @@
         End If
 
         ' Generar el ID nuevo
-        If mUbicacionActual.IDUbicacion = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
                 If dbcMaxID.Ubicacion.Count = 0 Then
                     mUbicacionActual.IDUbicacion = 1
@@ -174,22 +198,17 @@
             mUbicacionActual.FechaHoraModificacion = Now
 
             Try
-
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formUbicaciones") Then
-                    Dim formUbicaciones As formUbicaciones = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formUbicaciones"), formUbicaciones)
-                    formUbicaciones.RefreshData(mUbicacionActual.IDUbicacion)
-                    formUbicaciones = Nothing
-                End If
+                formUbicaciones.RefreshData(mUbicacionActual.IDUbicacion)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Ubicación con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Ubicación con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

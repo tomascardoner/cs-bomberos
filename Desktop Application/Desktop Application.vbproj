@@ -262,6 +262,42 @@
     <Compile Include="formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formArea.designer.vb">
+      <DependentUpon>formArea.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formArea.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAreas.designer.vb">
+      <DependentUpon>formAreas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAreas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAutomotorTipo.designer.vb">
+      <DependentUpon>formAutomotorTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAutomotorTipos.designer.vb">
+      <DependentUpon>formAutomotorTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAutomotorUso.designer.vb">
+      <DependentUpon>formAutomotorUso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorUso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAutomotorUsos.designer.vb">
+      <DependentUpon>formAutomotorUsos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorUsos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formCalificacionConcepto.designer.vb">
       <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
     </Compile>
@@ -436,6 +472,18 @@
     <Compile Include="formPersonaSancion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formRubro.designer.vb">
+      <DependentUpon>formRubro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formRubro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formRubros.designer.vb">
+      <DependentUpon>formRubros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formRubros.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formSancionTipo.designer.vb">
       <DependentUpon>formSancionTipo.vb</DependentUpon>
     </Compile>
@@ -448,10 +496,40 @@
     <Compile Include="formSancionTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formUbicacion.Designer.vb">
+    <Compile Include="formSubRubro.designer.vb">
+      <DependentUpon>formSubRubro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSubRubro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSubRubros.designer.vb">
+      <DependentUpon>formSubRubros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSubRubros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSubUbicacion.designer.vb">
+      <DependentUpon>formSubUbicacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSubUbicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formSubUbicaciones.designer.vb">
+      <DependentUpon>formSubUbicaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formSubUbicaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUbicacion.designer.vb">
       <DependentUpon>formUbicacion.vb</DependentUpon>
     </Compile>
     <Compile Include="formUbicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUbicaciones.designer.vb">
+      <DependentUpon>formUbicaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formElementos.Designer.vb">
@@ -464,12 +542,6 @@
       <DependentUpon>formAutomotores.vb</DependentUpon>
     </Compile>
     <Compile Include="formAutomotores.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formUbicaciones.Designer.vb">
-      <DependentUpon>formUbicaciones.vb</DependentUpon>
-    </Compile>
-    <Compile Include="formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formParentesco.Designer.vb">
@@ -684,6 +756,24 @@
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formArea.resx">
+      <DependentUpon>formArea.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAreas.resx">
+      <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorTipo.resx">
+      <DependentUpon>formAutomotorTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorTipos.resx">
+      <DependentUpon>formAutomotorTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorUso.resx">
+      <DependentUpon>formAutomotorUso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorUsos.resx">
+      <DependentUpon>formAutomotorUsos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formCalificacionConcepto.resx">
       <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
     </EmbeddedResource>
@@ -771,23 +861,41 @@
     <EmbeddedResource Include="formPersonaSancion.resx">
       <DependentUpon>formPersonaSancion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formRubro.resx">
+      <DependentUpon>formRubro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formRubros.resx">
+      <DependentUpon>formRubros.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formSancionTipo.resx">
       <DependentUpon>formSancionTipo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formSancionTipos.resx">
       <DependentUpon>formSancionTipos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formSubRubro.resx">
+      <DependentUpon>formSubRubro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSubRubros.resx">
+      <DependentUpon>formSubRubros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSubUbicacion.resx">
+      <DependentUpon>formSubUbicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formSubUbicaciones.resx">
+      <DependentUpon>formSubUbicaciones.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUbicaciones.resx">
+      <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formElementos.resx">
       <DependentUpon>formElementos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formAutomotores.resx">
       <DependentUpon>formAutomotores.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formUbicaciones.resx">
-      <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formParentesco.resx">
       <DependentUpon>formParentesco.vb</DependentUpon>
