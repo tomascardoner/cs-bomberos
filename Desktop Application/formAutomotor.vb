@@ -66,6 +66,8 @@
         maskedtextboxCapacidadAguaLitros.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
         checkboxEsPropio.Enabled = mEditMode
+
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 

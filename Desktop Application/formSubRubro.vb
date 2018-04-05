@@ -1,62 +1,44 @@
-﻿Public Class formElemento
+﻿Public Class formSubRubro
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mElementoActual As Elemento
+    Private mSubRubroActual As SubRubro
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDElemento As Integer)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSubRubro As Short)
         mIsLoading = True
         mEditMode = EditMode
+        mIsNew = (IDSubRubro = 0)
 
-        If IDElemento = 0 Then
+        If mIsNew Then
             ' Es Nuevo
-            mElementoActual = New Elemento
-            With mElementoActual
-                ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formElementos") Then
-                    Dim formElementos As formElementos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formElementos"), formElementos)
-                    If formElementos.comboboxRubro.SelectedIndex > 0 Then
-                        If CShort(formElementos.comboboxRubro.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_BYTE Then
-                            .IDRubro = CByte(formElementos.comboboxRubro.ComboBox.SelectedValue)
-                        End If
-                    End If
-                    If formElementos.comboboxSubRubro.SelectedIndex > 0 Then
-                        If CShort(formElementos.comboboxSubRubro.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                            .IDSubRubro = CShort(formElementos.comboboxSubRubro.ComboBox.SelectedValue)
-                        End If
-                    End If
-                    formElementos = Nothing
-                End If
-
+            mSubRubroActual = New SubRubro
+            With mSubRubroActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Elemento.Add(mElementoActual)
+            mdbContext.SubRubro.Add(mSubRubroActual)
         Else
-            mElementoActual = mdbContext.Elemento.Find(IDElemento)
+            mSubRubroActual = mdbContext.SubRubro.Find(IDSubRubro)
         End If
 
-        Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        Me.Show()
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-        Me.Focus()
 
         mIsLoading = False
 
         ChangeMode()
+
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Private Sub ChangeMode()
@@ -64,16 +46,17 @@
             Exit Sub
         End If
 
+        ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
+        ' General
         textboxNombre.ReadOnly = Not mEditMode
-
         comboboxRubro.Enabled = mEditMode
-        comboboxSubRubro.Enabled = mEditMode
 
+        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -81,7 +64,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Rubro(comboboxRubro, False, True)
+        pFillAndRefreshLists.Rubro(comboboxRubro, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -91,26 +74,24 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mElementoActual = Nothing
+        mSubRubroActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mElementoActual
+        With mSubRubroActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-
             CS_Control_ComboBox.SetSelectedValue(comboboxRubro, SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
-            CS_Control_ComboBox.SetSelectedValue(comboboxSubRubro, SelectedItemOptions.ValueOrFirst, .IDSubRubro, 0)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDElemento = 0 Then
-                textboxIDElemento.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If mIsNew Then
+                textboxIDSubRubro.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDElemento.Text = String.Format(.IDElemento.ToString, "G")
+                textboxIDSubRubro.Text = String.Format(.IDSubRubro.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -128,12 +109,11 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mElementoActual
+        With mSubRubroActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .IDRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue).Value
 
-            .IDRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .IDSubRubro = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
-
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
@@ -160,15 +140,11 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
-
-    Private Sub comboboxRubro_SelectedIndexChanged() Handles comboboxRubro.SelectedIndexChanged
-        pFillAndRefreshLists.SubRubro(comboboxSubRubro, False, True, CByte(comboboxRubro.SelectedValue))
-    End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.ELEMENTO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SUBRUBRO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -185,13 +161,19 @@
             Exit Sub
         End If
 
+        If comboboxRubro.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Rubro.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxRubro.Focus()
+            Exit Sub
+        End If
+
         ' Generar el ID nuevo
-        If mElementoActual.IDElemento = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Elemento.Count = 0 Then
-                    mElementoActual.IDElemento = 1
+                If dbcMaxID.SubRubro.Count = 0 Then
+                    mSubRubroActual.IDSubRubro = 1
                 Else
-                    mElementoActual.IDElemento = dbcMaxID.Elemento.Max(Function(a) a.IDElemento) + CByte(1)
+                    mSubRubroActual.IDSubRubro = dbcMaxID.SubRubro.Max(Function(a) a.IDSubRubro) + CByte(1)
                 End If
             End Using
         End If
@@ -203,26 +185,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mElementoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mElementoActual.FechaHoraModificacion = Now
+            mSubRubroActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mSubRubroActual.FechaHoraModificacion = Now
 
             Try
-
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formElementos") Then
-                    Dim formElementos As formElementos = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formElementos"), formElementos)
-                    formElementos.RefreshData(mElementoActual.IDElemento)
-                    formElementos = Nothing
-                End If
+                formSubRubros.RefreshData(mSubRubroActual.IDSubRubro)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Elemento con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Sub-Rubro con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

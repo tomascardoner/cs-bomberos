@@ -1567,7 +1567,7 @@
             listExamenes = (From pe In mdbContext.PersonaExamen
                             Where pe.IDPersona = mPersonaActual.IDPersona
                             Order By pe.Anio, pe.InstanciaNumero
-                            Select New Examenes_GridRowData With {.Anio = pe.Anio, .InstanciaNumero = pe.InstanciaNumero, .Calificacion = pe.Calificacion}).ToList
+                            Select New Examenes_GridRowData With {.Anio = pe.Anio, .InstanciaNumero = pe.InstanciaNumero, .AnioInstancia = pe.Anio & " - " & pe.InstanciaNumero, .Calificacion = pe.Calificacion}).ToList
 
             datagridviewExamenes.AutoGenerateColumns = False
             datagridviewExamenes.DataSource = listExamenes

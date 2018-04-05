@@ -6,6 +6,7 @@
     Private mIDCuartel As Byte
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
@@ -14,30 +15,27 @@
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDInventario = 0 Then
+        mIsNew = (IDInventario = 0)
+        If mIsNew Then
             ' Es Nuevo
             mInventarioActual = New Inventario
             With mInventarioActual
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formInventarios") Then
-                    Dim formInventario As formInventario = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formInventario"), formInventario)
-                    If formInventario.comboboxCuartel.SelectedIndex > 0 Then
-                        mIDCuartel = CByte(formInventario.comboboxCuartel.ComboBox.SelectedValue)
+                If formInventario.comboboxCuartel.SelectedIndex > 0 Then
+                    mIDCuartel = CByte(formInventario.comboboxCuartel.ComboBox.SelectedValue)
+                End If
+                If formInventario.comboboxArea.SelectedIndex > 0 Then
+                    .IDArea = CShort(formInventario.comboboxArea.ComboBox.SelectedValue)
+                End If
+                If formInventario.comboboxUbicacion.SelectedIndex > 0 Then
+                    If CShort(formInventario.comboboxUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
+                        .IDUbicacion = CShort(formInventario.comboboxUbicacion.ComboBox.SelectedValue)
                     End If
-                    If formInventario.comboboxArea.SelectedIndex > 0 Then
-                        .IDArea = CShort(formInventario.comboboxArea.ComboBox.SelectedValue)
+                End If
+                If formInventario.comboboxSubUbicacion.SelectedIndex > 0 Then
+                    If CShort(formInventario.comboboxSubUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
+                        .IDSubUbicacion = CShort(formInventario.comboboxSubUbicacion.ComboBox.SelectedValue)
                     End If
-                    If formInventario.comboboxUbicacion.SelectedIndex > 0 Then
-                        If CShort(formInventario.comboboxUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                            .IDUbicacion = CShort(formInventario.comboboxUbicacion.ComboBox.SelectedValue)
-                        End If
-                    End If
-                    If formInventario.comboboxSubUbicacion.SelectedIndex > 0 Then
-                        If CShort(formInventario.comboboxSubUbicacion.ComboBox.SelectedValue) <> FIELD_VALUE_NOTSPECIFIED_SHORT Then
-                            .IDSubUbicacion = CShort(formInventario.comboboxSubUbicacion.ComboBox.SelectedValue)
-                        End If
-                    End If
-                    formInventario = Nothing
                 End If
 
                 .EsActivo = True
@@ -51,19 +49,15 @@
             mInventarioActual = mdbContext.Inventario.Find(IDInventario)
         End If
 
-        Me.MdiParent = formMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
-        Me.Show()
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-        Me.Focus()
 
         mIsLoading = False
 
         ChangeMode()
+
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Private Sub ChangeMode()
@@ -71,21 +65,24 @@
             Exit Sub
         End If
 
+        '  Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
+        ' General
         comboboxCuartel.Enabled = mEditMode
         comboboxArea.Enabled = mEditMode
         textboxCodigo.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = (mEditMode And mInventarioActual.IDInventario = 0)
         comboboxElemento.Enabled = mEditMode
         comboboxModoAdquisicion.Enabled = mEditMode
-
         comboboxUbicacion.Enabled = mEditMode
         comboboxSubUbicacion.Enabled = mEditMode
 
+        ' Notas y Auditoría
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
         datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
     End Sub
@@ -114,11 +111,9 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mInventarioActual
-            If .IDInventario = 0 Then
-                textboxIDInventario.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If mIsNew Then
                 CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
             Else
-                textboxIDInventario.Text = String.Format(.IDInventario.ToString, "G")
                 CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
             End If
             CS_Control_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
@@ -129,12 +124,31 @@
             CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
             CS_Control_ComboBox.SetSelectedValue(comboboxSubUbicacion, SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
 
+            ' Datos de la pestaña Notas y Auditoría
+            textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If checkboxEsActivo.Checked Then
                 datetimepickerFechaBaja.Value = DateAndTime.Today
                 datetimepickerFechaBaja.Checked = False
             Else
                 datetimepickerFechaBaja.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaBaja, datetimepickerFechaBaja)
+            End If
+            If .IDElemento = 0 Then
+                textboxIDInventario.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDInventario.Text = String.Format(.IDElemento.ToString, "G")
+            End If
+            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
+            If .UsuarioCreacion Is Nothing Then
+                textboxUsuarioCreacion.Text = ""
+            Else
+                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
+            End If
+            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
+            If .UsuarioModificacion Is Nothing Then
+                textboxUsuarioModificacion.Text = ""
+            Else
+                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
         End With
     End Sub
