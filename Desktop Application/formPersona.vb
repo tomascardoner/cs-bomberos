@@ -5,15 +5,17 @@
     Private mPersonaActual As Persona
 
     Private mIsLoading As Boolean = False
+    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer)
         mIsLoading = True
+        mIsNew = (IDPersona = 0)
         mEditMode = EditMode
 
-        If IDPersona = 0 Then
+        If mIsNew Then
             ' Es Nuevo
             mPersonaActual = New Persona
             With mPersonaActual
@@ -71,6 +73,7 @@
         ' General
         comboboxDocumentoTipo.Enabled = mEditMode
         textboxDocumentoNumero.ReadOnly = (mEditMode = False)
+        mscomboboxLicenciaConducirCategoria.Enabled = mEditMode
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
         textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
         datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
@@ -134,6 +137,8 @@
 
         ' Cargo los ComboBox
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
+        mscomboboxLicenciaConducirCategoria.DisplayMember = "Codigo"
+        mscomboboxLicenciaConducirCategoria.DataSource = mdbContext.LicenciaConducirCategoria.OrderBy(Function(lcc) lcc.Codigo).ToList
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
@@ -264,7 +269,7 @@
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDPersona = 0 Then
+            If mIsNew Then
                 textboxIDPersona.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
                 textboxIDPersona.Text = String.Format(.IDPersona.ToString, "G")
@@ -281,6 +286,14 @@
             Else
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
+
+            ' ===>>> INICIO - Categorías de la Licencia de Conducir
+
+            For Each plcc As PersonaLicenciaConducirCategoria In .PersonaLicenciaConducirCategoria
+                mscomboboxLicenciaConducirCategoria.Text &= plcc.LicenciaConducirCategoria.Codigo & mscomboboxLicenciaConducirCategoria.DelimiterChar
+            Next
+
+            ' ===>>> FIN - Categorías de la Licencia de Conducir
         End With
     End Sub
 
@@ -363,6 +376,49 @@
             ' Datos de la pestaña Notas y Aditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
+
+            ' ===>>> INICIO - Categorías de la Licencia de Conducir
+
+            ' Como el Multiple Selection Combobox sólo devuelve el Código de la Categoría,
+            ' busco cada Categoría y las cargo en una lista
+            Dim listLicenciaConducirCategoriaSeleccionadas As New List(Of LicenciaConducirCategoria)
+            Dim listPersonaLicenciaConducirCategoria As New List(Of PersonaLicenciaConducirCategoria)
+
+            For Each LicenciaConducirCategoriaCodigoSeleccionado As String In mscomboboxLicenciaConducirCategoria.SelectedItems
+                Dim LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria
+                LicenciaConducirCategoriaSeleccionada = mdbContext.LicenciaConducirCategoria.Where(Function(lcc) lcc.Codigo = LicenciaConducirCategoriaCodigoSeleccionado).FirstOrDefault
+                If Not LicenciaConducirCategoriaSeleccionada Is Nothing Then
+                    listLicenciaConducirCategoriaSeleccionadas.Add(LicenciaConducirCategoriaSeleccionada)
+                End If
+            Next
+
+            ' Paso 1: Buscar las que están cargadas en la base de datos y ya no están seleccionadas en el Combobox, para borrarlas
+            listPersonaLicenciaConducirCategoria = .PersonaLicenciaConducirCategoria.ToList
+            If Not mIsNew Then
+                For Each plcc As PersonaLicenciaConducirCategoria In listPersonaLicenciaConducirCategoria
+                    If listLicenciaConducirCategoriaSeleccionadas.Find(Function(lcc) lcc.IDLicenciaConducirCategoria = plcc.IDLicenciaConducirCategoria) Is Nothing Then
+                        ' No está en la lista de Categorías seleccionadas, por lo tanto, la elimino
+                        .PersonaLicenciaConducirCategoria.Remove(plcc)
+                    End If
+                Next
+            End If
+
+            ' Paso 2: Agregar las que están en el Combobox pero no en la base de datos
+            For Each LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria In listLicenciaConducirCategoriaSeleccionadas
+                If .PersonaLicenciaConducirCategoria.Where(Function(plcc) plcc.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria).FirstOrDefault Is Nothing Then
+                    Dim PersonaLicenciaConducirCategoriaAgregar As New PersonaLicenciaConducirCategoria
+                    PersonaLicenciaConducirCategoriaAgregar.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria
+                    PersonaLicenciaConducirCategoriaAgregar.IDUsuarioCreacion = pUsuario.IDUsuario
+                    PersonaLicenciaConducirCategoriaAgregar.FechaHoraCreacion = Now
+                    .PersonaLicenciaConducirCategoria.Add(PersonaLicenciaConducirCategoriaAgregar)
+                    PersonaLicenciaConducirCategoriaAgregar = Nothing
+                End If
+            Next
+
+            listLicenciaConducirCategoriaSeleccionadas = Nothing
+            listPersonaLicenciaConducirCategoria = Nothing
+
+            ' ===>>> FIN - Categorías de la Licencia de Conducir
         End With
     End Sub
 #End Region
@@ -403,7 +459,7 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
-    Private Sub TabControlChanged() Handles tabcontrolMain.SelectedIndexChanged
+    Private Sub TabControlChanged(sender As Object, e As EventArgs) Handles tabcontrolMain.SelectedIndexChanged
         If mPersonaActual.IDPersona > 0 Then
             Select Case tabcontrolMain.SelectedTab.Name
                 Case tabpageFamiliares.Name
@@ -450,7 +506,7 @@
         End If
     End Sub
 
-    Private Sub comboboxDocumentoTipo_SelectedIndexChanged() Handles comboboxDocumentoTipo.SelectedIndexChanged
+    Private Sub DocumentoTipo_Cambiar(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
         If Not comboboxDocumentoTipo.SelectedItem Is Nothing Then
             textboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11)
             maskedtextboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not textboxDocumentoNumero.Visible)
@@ -461,7 +517,7 @@
         CType(sender, TextBox).Text = CType(sender, TextBox).Text.Replace(".", "")
     End Sub
 
-    Private Sub LicenciaConducirNumeroCopiarNumeroDocumento() Handles buttonLicenciaConducirNumero.Click
+    Private Sub LicenciaConducirNumeroCopiarNumeroDocumento(sender As Object, e As EventArgs) Handles buttonLicenciaConducirNumero.Click
         If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
             textboxLicenciaConducirNumero.Text = maskedtextboxDocumentoNumero.Text
         Else
@@ -469,7 +525,7 @@
         End If
     End Sub
 
-    Private Sub DomicilioParticularProvincia_SelectedValueChanged() Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
+    Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
         If comboboxDomicilioParticularProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, 0, True)
             comboboxDomicilioParticularLocalidad.SelectedIndex = 0
@@ -481,13 +537,13 @@
         End If
     End Sub
 
-    Private Sub DomicilioParticularLocalidad_SelectedValueChanged() Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
+    Private Sub DomicilioParticularLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
         If Not comboboxDomicilioParticularLocalidad.SelectedValue Is Nothing Then
             textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal
         End If
     End Sub
 
-    Private Sub DomicilioLaboralProvincia_SelectedValueChanged() Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
+    Private Sub DomicilioLaboralProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
         If comboboxDomicilioLaboralProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, 0, True)
             comboboxDomicilioLaboralLocalidad.SelectedIndex = 0
@@ -499,7 +555,7 @@
         End If
     End Sub
 
-    Private Sub DomicilioLaboralLocalidad_SelectedValueChanged() Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
+    Private Sub DomicilioLaboralLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
         If Not comboboxDomicilioLaboralLocalidad.SelectedValue Is Nothing Then
             textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal
         End If
@@ -611,7 +667,7 @@
         End If
 
         ' Generar el ID de la Persona nueva
-        If mPersonaActual.IDPersona = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
                 If dbcMaxID.Persona.Count = 0 Then
                     mPersonaActual.IDPersona = 1
@@ -724,7 +780,7 @@
         End If
     End Sub
 
-    Private Sub Familiares_Agregar() Handles buttonFamiliares_Agregar.Click
+    Private Sub Familiares_Agregar(sender As Object, e As EventArgs) Handles buttonFamiliares_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -734,7 +790,7 @@
         End If
     End Sub
 
-    Private Sub Familiares_Editar() Handles buttonFamiliares_Editar.Click
+    Private Sub Familiares_Editar(sender As Object, e As EventArgs) Handles buttonFamiliares_Editar.Click
         If datagridviewFamiliares.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Familiar para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -748,7 +804,7 @@
         End If
     End Sub
 
-    Private Sub Familiares_Eliminar() Handles buttonFamiliares_Eliminar.Click
+    Private Sub Familiares_Eliminar(sender As Object, e As EventArgs) Handles buttonFamiliares_Eliminar.Click
         If datagridviewFamiliares.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Familiar para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -775,7 +831,7 @@
         End If
     End Sub
 
-    Private Sub Familiares_Ver() Handles datagridviewFamiliares.DoubleClick
+    Private Sub Familiares_Ver(sender As Object, e As EventArgs) Handles datagridviewFamiliares.DoubleClick
         If datagridviewFamiliares.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Familiar para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -839,7 +895,7 @@
         End If
     End Sub
 
-    Private Sub AltasBajas_Agregar() Handles buttonAltasBajas_Agregar.Click
+    Private Sub AltasBajas_Agregar(sender As Object, e As EventArgs) Handles buttonAltasBajas_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -849,7 +905,7 @@
         End If
     End Sub
 
-    Private Sub AltasBajas_Editar() Handles buttonAltasBajas_Editar.Click
+    Private Sub AltasBajas_Editar(sender As Object, e As EventArgs) Handles buttonAltasBajas_Editar.Click
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -863,7 +919,7 @@
         End If
     End Sub
 
-    Private Sub AltasBajas_Eliminar() Handles buttonAltasBajas_Eliminar.Click
+    Private Sub AltasBajas_Eliminar(sender As Object, e As EventArgs) Handles buttonAltasBajas_Eliminar.Click
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -891,7 +947,7 @@
         End If
     End Sub
 
-    Private Sub AltasBajas_Ver() Handles datagridviewAltasBajas.DoubleClick
+    Private Sub AltasBajas_Ver(sender As Object, e As EventArgs) Handles datagridviewAltasBajas.DoubleClick
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -955,7 +1011,7 @@
         End If
     End Sub
 
-    Private Sub Ascensos_Agregar() Handles buttonAscensos_Agregar.Click
+    Private Sub Ascensos_Agregar(sender As Object, e As EventArgs) Handles buttonAscensos_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -965,7 +1021,7 @@
         End If
     End Sub
 
-    Private Sub Ascensos_Editar() Handles buttonAscensos_Editar.Click
+    Private Sub Ascensos_Editar(sender As Object, e As EventArgs) Handles buttonAscensos_Editar.Click
         If datagridviewAscensos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Ascenso - Promoción para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -979,7 +1035,7 @@
         End If
     End Sub
 
-    Private Sub Ascensos_Eliminar() Handles buttonAscensos_Eliminar.Click
+    Private Sub Ascensos_Eliminar(sender As Object, e As EventArgs) Handles buttonAscensos_Eliminar.Click
         If datagridviewAscensos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Ascenso - Promoción para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1006,7 +1062,7 @@
         End If
     End Sub
 
-    Private Sub Ascensos_Ver() Handles datagridviewAscensos.DoubleClick
+    Private Sub Ascensos_Ver(sender As Object, e As EventArgs) Handles datagridviewAscensos.DoubleClick
         If datagridviewAscensos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Ascenso - Promoción para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -1070,7 +1126,7 @@
         End If
     End Sub
 
-    Private Sub Licencias_Agregar() Handles buttonLicencias_Agregar.Click
+    Private Sub Licencias_Agregar(sender As Object, e As EventArgs) Handles buttonLicencias_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -1080,7 +1136,7 @@
         End If
     End Sub
 
-    Private Sub Licencias_Editar() Handles buttonLicencias_Editar.Click
+    Private Sub Licencias_Editar(sender As Object, e As EventArgs) Handles buttonLicencias_Editar.Click
         If datagridviewLicencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Licencia para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1094,7 +1150,7 @@
         End If
     End Sub
 
-    Private Sub Licencias_Eliminar() Handles buttonLicencias_Eliminar.Click
+    Private Sub Licencias_Eliminar(sender As Object, e As EventArgs) Handles buttonLicencias_Eliminar.Click
         If datagridviewLicencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Licencia para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1121,7 +1177,7 @@
         End If
     End Sub
 
-    Private Sub Licencias_Ver() Handles datagridviewLicencias.DoubleClick
+    Private Sub Licencias_Ver(sender As Object, e As EventArgs) Handles datagridviewLicencias.DoubleClick
         If datagridviewLicencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Licencia para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -1184,7 +1240,7 @@
         End If
     End Sub
 
-    Private Sub Sanciones_Agregar() Handles buttonSanciones_Agregar.Click
+    Private Sub Sanciones_Agregar(sender As Object, e As EventArgs) Handles buttonSanciones_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -1194,7 +1250,7 @@
         End If
     End Sub
 
-    Private Sub Sanciones_Editar() Handles buttonSanciones_Editar.Click
+    Private Sub Sanciones_Editar(sender As Object, e As EventArgs) Handles buttonSanciones_Editar.Click
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1208,7 +1264,7 @@
         End If
     End Sub
 
-    Private Sub Sanciones_Eliminar() Handles buttonSanciones_Eliminar.Click
+    Private Sub Sanciones_Eliminar(sender As Object, e As EventArgs) Handles buttonSanciones_Eliminar.Click
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1235,7 +1291,7 @@
         End If
     End Sub
 
-    Private Sub Sanciones_Ver() Handles datagridviewSanciones.DoubleClick
+    Private Sub Sanciones_Ver(sender As Object, e As EventArgs) Handles datagridviewSanciones.DoubleClick
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -1297,7 +1353,7 @@
         End If
     End Sub
 
-    Private Sub Capacitaciones_Agregar() Handles buttonCapacitaciones_Agregar.Click
+    Private Sub Capacitaciones_Agregar(sender As Object, e As EventArgs) Handles buttonCapacitaciones_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -1307,7 +1363,7 @@
         End If
     End Sub
 
-    Private Sub Capacitaciones_Editar() Handles buttonCapacitaciones_Editar.Click
+    Private Sub Capacitaciones_Editar(sender As Object, e As EventArgs) Handles buttonCapacitaciones_Editar.Click
         If datagridviewCapacitaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Capacitación para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1321,7 +1377,7 @@
         End If
     End Sub
 
-    Private Sub Capacitaciones_Eliminar() Handles buttonCapacitaciones_Eliminar.Click
+    Private Sub Capacitaciones_Eliminar(sender As Object, e As EventArgs) Handles buttonCapacitaciones_Eliminar.Click
         If datagridviewCapacitaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Capacitación para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1348,7 +1404,7 @@
         End If
     End Sub
 
-    Private Sub Capacitaciones_Ver() Handles datagridviewCapacitaciones.DoubleClick
+    Private Sub Capacitaciones_Ver(sender As Object, e As EventArgs) Handles datagridviewCapacitaciones.DoubleClick
         If datagridviewCapacitaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Capacitación para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -1460,7 +1516,7 @@
         End If
     End Sub
 
-    Private Sub Calificaciones_Agregar() Handles buttonCalificaciones_Agregar.Click
+    Private Sub Calificaciones_Agregar(sender As Object, e As EventArgs) Handles buttonCalificaciones_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -1470,7 +1526,7 @@
         End If
     End Sub
 
-    Private Sub Calificaciones_Editar() Handles buttonCalificaciones_Editar.Click
+    Private Sub Calificaciones_Editar(sender As Object, e As EventArgs) Handles buttonCalificaciones_Editar.Click
         If datagridviewCalificaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Instancia de Calificación para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1484,7 +1540,7 @@
         End If
     End Sub
 
-    Private Sub Calificaciones_Eliminar() Handles buttonCalificaciones_Eliminar.Click
+    Private Sub Calificaciones_Eliminar(sender As Object, e As EventArgs) Handles buttonCalificaciones_Eliminar.Click
         If datagridviewCalificaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Instancia de Calificación para eliminar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1526,7 +1582,7 @@
         End If
     End Sub
 
-    Private Sub Ver() Handles datagridviewCalificaciones.DoubleClick
+    Private Sub Calificaciones_Ver(sender As Object, e As EventArgs) Handles datagridviewCalificaciones.DoubleClick
         If datagridviewCalificaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Instancia de Calificación para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -1590,7 +1646,7 @@
         End If
     End Sub
 
-    Private Sub Examenes_Agregar() Handles buttonExamenes_Agregar.Click
+    Private Sub Examenes_Agregar(sender As Object, e As EventArgs) Handles buttonExamenes_Agregar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -1600,7 +1656,7 @@
         End If
     End Sub
 
-    Private Sub Examenes_Editar() Handles buttonExamenes_Editar.Click
+    Private Sub Examenes_Editar(sender As Object, e As EventArgs) Handles buttonExamenes_Editar.Click
         If datagridviewExamenes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Examen para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -1614,11 +1670,11 @@
         End If
     End Sub
 
-    Private Sub Examenes_Eliminar() Handles buttonExamenes_Eliminar.Click
+    Private Sub Examenes_Eliminar(sender As Object, e As EventArgs) Handles buttonExamenes_Eliminar.Click
         If datagridviewExamenes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Examen para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_Examen_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN_ELIMINAR) Then
                 Dim GridRowDataActual As Examenes_GridRowData
                 Dim Mensaje As String
 
@@ -1642,7 +1698,7 @@
         End If
     End Sub
 
-    Private Sub Examenes_Ver() Handles datagridviewExamenes.DoubleClick
+    Private Sub Examenes_Ver(sender As Object, e As EventArgs) Handles datagridviewExamenes.DoubleClick
         If datagridviewExamenes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Examen para ver.", vbInformation, My.Application.Info.Title)
         Else

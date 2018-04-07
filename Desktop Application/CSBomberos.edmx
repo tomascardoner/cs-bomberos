@@ -191,7 +191,7 @@
             <PropertyRef Name="IDCurso" />
           </Key>
           <Property Name="IDCurso" Type="smallint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -1060,6 +1060,18 @@
             </Principal>
             <Dependent Role="PersonaLicencia">
               <PropertyRef Name="IDLicenciaCausa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria">
+          <End Role="LicenciaConducirCategoria" Type="Self.LicenciaConducirCategoria" Multiplicity="1" />
+          <End Role="PersonaLicenciaConducirCategoria" Type="Self.PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenciaConducirCategoria">
+              <PropertyRef Name="IDLicenciaConducirCategoria" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDLicenciaConducirCategoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2357,18 +2369,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Usuario">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="Usuario1">
-              <PropertyRef Name="IDUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Usuario__Usuario__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
@@ -2574,6 +2574,10 @@
           <AssociationSet Name="FK__LicenciaCausa__PersonaLicencia" Association="Self.FK__LicenciaCausa__PersonaLicencia">
             <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
             <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" Association="Self.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria">
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
           </AssociationSet>
           <AssociationSet Name="FK__Localidad__Cuartel" Association="Self.FK__Localidad__Cuartel">
             <End Role="Localidad" EntitySet="Localidad" />
@@ -3002,10 +3006,6 @@
           <AssociationSet Name="FK__Usuario__Ubicacion__Modificacion" Association="Self.FK__Usuario__Ubicacion__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Ubicacion" EntitySet="Ubicacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Usuario" Association="Self.FK__Usuario__Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Usuario1" EntitySet="Usuario" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Usuario__Creacion" Association="Self.FK__Usuario__Usuario__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3622,6 +3622,10 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="NivelEstudio" EntitySet="NivelEstudio" />
           </AssociationSet>
+          <AssociationSet Name="FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" Association="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria">
+            <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
+            <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -3818,8 +3822,8 @@
           <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
           <NavigationProperty Name="SancionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
           <NavigationProperty Name="SancionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
-          <NavigationProperty Name="AutomotorUso" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="Usuario" ToRole="AutomotorUso" />
-          <NavigationProperty Name="AutomotorUso1" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="Usuario" ToRole="AutomotorUso" />
+          <NavigationProperty Name="AutomotorUsosCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="Usuario" ToRole="AutomotorUso" />
+          <NavigationProperty Name="AutomotorUsosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="Usuario" ToRole="AutomotorUso" />
           <NavigationProperty Name="NivelesEstudioCreados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="Usuario" ToRole="NivelEstudio" />
           <NavigationProperty Name="NivelesEstudioModificados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
           </EntityType>
@@ -5583,6 +5587,7 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="LicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" FromRole="LicenciaConducirCategoria" ToRole="PersonaLicenciaConducirCategoria" />
         </EntityType>
         <EntityType Name="PersonaBajaMotivo">
           <Key>
@@ -5682,6 +5687,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="PersonaLicenciaConducirCategoria" ToRole="Persona" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="PersonaLicenciaConducirCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="LicenciaConducirCategoria" Relationship="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" FromRole="PersonaLicenciaConducirCategoria" ToRole="LicenciaConducirCategoria" />
         </EntityType>
         <EntityType Name="PersonaSancion">
           <Key>
@@ -6312,6 +6318,18 @@
             </Principal>
             <Dependent Role="NivelEstudio">
               <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria">
+          <End Type="CSBomberosModel.LicenciaConducirCategoria" Role="LicenciaConducirCategoria" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaConducirCategoria" Role="PersonaLicenciaConducirCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LicenciaConducirCategoria">
+              <PropertyRef Name="IDLicenciaConducirCategoria" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDLicenciaConducirCategoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

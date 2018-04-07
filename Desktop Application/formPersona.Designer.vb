@@ -69,6 +69,8 @@ Partial Class formPersona
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelLicenciaConducirCategoria As System.Windows.Forms.Label
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -79,7 +81,6 @@ Partial Class formPersona
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
@@ -100,6 +101,7 @@ Partial Class formPersona
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.mscomboboxLicenciaConducirCategoria = New Syncfusion.Windows.Forms.Tools.MultiSelectionComboBox()
         Me.textboxCargoJerarquiaActual = New System.Windows.Forms.TextBox()
         Me.textboxCantidadHijos = New System.Windows.Forms.TextBox()
         Me.datetimepickerLicenciaConducirVencimiento = New System.Windows.Forms.DateTimePicker()
@@ -264,11 +266,13 @@ Partial Class formPersona
         labelNotas = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelLicenciaConducirCategoria = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.mscomboboxLicenciaConducirCategoria, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageParticular.SuspendLayout()
         Me.tabpageLaboral.SuspendLayout()
         Me.tabpageFamiliares.SuspendLayout()
@@ -340,7 +344,7 @@ Partial Class formPersona
         'labelIOMANumeroAfiliado
         '
         labelIOMANumeroAfiliado.AutoSize = True
-        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 159)
+        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 181)
         labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
         labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
         labelIOMANumeroAfiliado.TabIndex = 18
@@ -370,7 +374,7 @@ Partial Class formPersona
         'labelIOMATiene
         '
         labelIOMATiene.AutoSize = True
-        labelIOMATiene.Location = New System.Drawing.Point(6, 159)
+        labelIOMATiene.Location = New System.Drawing.Point(6, 181)
         labelIOMATiene.Name = "labelIOMATiene"
         labelIOMATiene.Size = New System.Drawing.Size(97, 13)
         labelIOMATiene.TabIndex = 16
@@ -388,7 +392,7 @@ Partial Class formPersona
         'labelNivelEstudio
         '
         labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 198)
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 220)
         labelNivelEstudio.Name = "labelNivelEstudio"
         labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
         labelNivelEstudio.TabIndex = 20
@@ -397,7 +401,7 @@ Partial Class formPersona
         'labelFactorRH
         '
         labelFactorRH.AutoSize = True
-        labelFactorRH.Location = New System.Drawing.Point(286, 132)
+        labelFactorRH.Location = New System.Drawing.Point(286, 154)
         labelFactorRH.Name = "labelFactorRH"
         labelFactorRH.Size = New System.Drawing.Size(59, 13)
         labelFactorRH.TabIndex = 14
@@ -406,7 +410,7 @@ Partial Class formPersona
         'labelGrupoSanguineo
         '
         labelGrupoSanguineo.AutoSize = True
-        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 132)
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 154)
         labelGrupoSanguineo.Name = "labelGrupoSanguineo"
         labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
         labelGrupoSanguineo.TabIndex = 12
@@ -415,7 +419,7 @@ Partial Class formPersona
         'labelFechaNacimiento
         '
         labelFechaNacimiento.AutoSize = True
-        labelFechaNacimiento.Location = New System.Drawing.Point(6, 79)
+        labelFechaNacimiento.Location = New System.Drawing.Point(6, 101)
         labelFechaNacimiento.Name = "labelFechaNacimiento"
         labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
         labelFechaNacimiento.TabIndex = 8
@@ -424,7 +428,7 @@ Partial Class formPersona
         'labelGenero
         '
         labelGenero.AutoSize = True
-        labelGenero.Location = New System.Drawing.Point(6, 105)
+        labelGenero.Location = New System.Drawing.Point(6, 127)
         labelGenero.Name = "labelGenero"
         labelGenero.Size = New System.Drawing.Size(45, 13)
         labelGenero.TabIndex = 10
@@ -443,7 +447,7 @@ Partial Class formPersona
         'labelNacionalidad
         '
         labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 251)
+        labelNacionalidad.Location = New System.Drawing.Point(6, 273)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
         labelNacionalidad.TabIndex = 24
@@ -452,7 +456,7 @@ Partial Class formPersona
         'labelProfesion
         '
         labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 225)
+        labelProfesion.Location = New System.Drawing.Point(6, 247)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
         labelProfesion.TabIndex = 22
@@ -461,7 +465,7 @@ Partial Class formPersona
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 277)
+        labelCuartel.Location = New System.Drawing.Point(6, 299)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
         labelCuartel.TabIndex = 26
@@ -719,6 +723,16 @@ Partial Class formPersona
         labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
+        'labelLicenciaConducirCategoria
+        '
+        labelLicenciaConducirCategoria.AutoSize = True
+        labelLicenciaConducirCategoria.Location = New System.Drawing.Point(6, 69)
+        labelLicenciaConducirCategoria.Name = "labelLicenciaConducirCategoria"
+        labelLicenciaConducirCategoria.Size = New System.Drawing.Size(62, 13)
+        labelLicenciaConducirCategoria.TabIndex = 33
+        labelLicenciaConducirCategoria.Text = "Categorías:"
+        Me.tooltipMain.SetToolTip(labelLicenciaConducirCategoria, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
         'textboxApellido
         '
         Me.textboxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -828,7 +842,7 @@ Partial Class formPersona
         '
         'textboxIOMANumeroAfiliado
         '
-        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 156)
+        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 178)
         Me.textboxIOMANumeroAfiliado.MaxLength = 13
         Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
         Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
@@ -891,6 +905,8 @@ Partial Class formPersona
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelLicenciaConducirCategoria)
+        Me.tabpageGeneral.Controls.Add(Me.mscomboboxLicenciaConducirCategoria)
         Me.tabpageGeneral.Controls.Add(Me.textboxCargoJerarquiaActual)
         Me.tabpageGeneral.Controls.Add(Me.textboxCantidadHijos)
         Me.tabpageGeneral.Controls.Add(labelCargoJerarquiaActual)
@@ -932,6 +948,23 @@ Partial Class formPersona
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'mscomboboxLicenciaConducirCategoria
+        '
+        Me.mscomboboxLicenciaConducirCategoria.AutoSizeMode = Syncfusion.Windows.Forms.Tools.AutoSizeModes.None
+        Me.mscomboboxLicenciaConducirCategoria.BeforeTouchSize = New System.Drawing.Size(604, 21)
+        Me.mscomboboxLicenciaConducirCategoria.ButtonStyle = Syncfusion.Windows.Forms.ButtonAppearance.Metro
+        Me.mscomboboxLicenciaConducirCategoria.DataSource = CType(resources.GetObject("mscomboboxLicenciaConducirCategoria.DataSource"), Object)
+        Me.mscomboboxLicenciaConducirCategoria.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
+        Me.mscomboboxLicenciaConducirCategoria.Location = New System.Drawing.Point(142, 63)
+        Me.mscomboboxLicenciaConducirCategoria.MetroColor = System.Drawing.Color.FromArgb(CType(CType(22, Byte), Integer), CType(CType(165, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.mscomboboxLicenciaConducirCategoria.Name = "mscomboboxLicenciaConducirCategoria"
+        Me.mscomboboxLicenciaConducirCategoria.ShowCheckBox = True
+        Me.mscomboboxLicenciaConducirCategoria.ShowTextBox = False
+        Me.mscomboboxLicenciaConducirCategoria.Size = New System.Drawing.Size(604, 21)
+        Me.mscomboboxLicenciaConducirCategoria.TabIndex = 32
+        Me.mscomboboxLicenciaConducirCategoria.UseVisualStyle = True
+        Me.mscomboboxLicenciaConducirCategoria.VisualItemBackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer))
+        '
         'textboxCargoJerarquiaActual
         '
         Me.textboxCargoJerarquiaActual.Location = New System.Drawing.Point(142, 351)
@@ -969,7 +1002,7 @@ Partial Class formPersona
         '
         Me.comboboxIOMATiene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxIOMATiene.FormattingEnabled = True
-        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 156)
+        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 178)
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
         Me.comboboxIOMATiene.TabIndex = 17
@@ -978,7 +1011,7 @@ Partial Class formPersona
         '
         Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 195)
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 217)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
         Me.comboboxNivelEstudio.TabIndex = 21
@@ -987,7 +1020,7 @@ Partial Class formPersona
         '
         Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxFactorRH.FormattingEnabled = True
-        Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 129)
+        Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 151)
         Me.comboboxFactorRH.Name = "comboboxFactorRH"
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
         Me.comboboxFactorRH.TabIndex = 15
@@ -996,7 +1029,7 @@ Partial Class formPersona
         '
         Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxGrupoSanguineo.FormattingEnabled = True
-        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 129)
+        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 151)
         Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGrupoSanguineo.TabIndex = 13
@@ -1004,7 +1037,7 @@ Partial Class formPersona
         'datetimepickerFechaNacimiento
         '
         Me.datetimepickerFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaNacimiento.Location = New System.Drawing.Point(142, 76)
+        Me.datetimepickerFechaNacimiento.Location = New System.Drawing.Point(142, 98)
         Me.datetimepickerFechaNacimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFechaNacimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaNacimiento.Name = "datetimepickerFechaNacimiento"
@@ -1016,7 +1049,7 @@ Partial Class formPersona
         '
         Me.comboboxGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxGenero.FormattingEnabled = True
-        Me.comboboxGenero.Location = New System.Drawing.Point(142, 102)
+        Me.comboboxGenero.Location = New System.Drawing.Point(142, 124)
         Me.comboboxGenero.Name = "comboboxGenero"
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGenero.TabIndex = 11
@@ -1045,7 +1078,7 @@ Partial Class formPersona
         '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 248)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 270)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(358, 20)
@@ -1053,7 +1086,7 @@ Partial Class formPersona
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 222)
+        Me.textboxProfesion.Location = New System.Drawing.Point(142, 244)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(358, 20)
@@ -1063,7 +1096,7 @@ Partial Class formPersona
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 274)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 296)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(358, 21)
         Me.comboboxCuartel.TabIndex = 27
@@ -2267,6 +2300,7 @@ Partial Class formPersona
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.mscomboboxLicenciaConducirCategoria, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageParticular.ResumeLayout(False)
         Me.tabpageParticular.PerformLayout()
         Me.tabpageLaboral.ResumeLayout(False)
@@ -2317,6 +2351,8 @@ Partial Class formPersona
         Me.PerformLayout()
 
     End Sub
+    Friend WithEvents menustripFoto As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents mscomboboxLicenciaConducirCategoria As Syncfusion.Windows.Forms.Tools.MultiSelectionComboBox
     Friend WithEvents textboxApellido As System.Windows.Forms.TextBox
     Friend WithEvents textboxIDPersona As System.Windows.Forms.TextBox
     Friend WithEvents textboxNombre As System.Windows.Forms.TextBox
@@ -2385,7 +2421,6 @@ Partial Class formPersona
     Friend WithEvents buttonLicenciaConducirNumero As System.Windows.Forms.Button
     Friend WithEvents textboxLicenciaConducirNumero As System.Windows.Forms.TextBox
     Friend WithEvents datetimepickerLicenciaConducirVencimiento As System.Windows.Forms.DateTimePicker
-    Friend WithEvents menustripFoto As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents menuitemFotoSeleccionarImagen As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemFotoEliminarImagen As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents textboxIOMANumeroAfiliado As System.Windows.Forms.TextBox

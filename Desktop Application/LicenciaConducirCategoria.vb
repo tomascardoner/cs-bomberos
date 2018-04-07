@@ -23,5 +23,6 @@ Partial Public Class LicenciaConducirCategoria
 
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property PersonaLicenciaConducirCategoria As ICollection(Of PersonaLicenciaConducirCategoria) = New HashSet(Of PersonaLicenciaConducirCategoria)
 
 End Class

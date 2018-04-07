@@ -18,5 +18,6 @@ Partial Public Class PersonaLicenciaConducirCategoria
 
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property LicenciaConducirCategoria As LicenciaConducirCategoria
 
 End Class

@@ -214,6 +214,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
