@@ -227,14 +227,11 @@
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             CS_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
-
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-
-            ' Info
-            textboxCantidadHijos.Text = ""
-            textboxCargoJerarquiaActual.Text = ""
+            MostrarCantidadHijos()
+            MostrarUltimoCargoJerarquia()
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)
@@ -775,6 +772,7 @@
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            MostrarCantidadHijos()
 
             Me.Cursor = Cursors.Default
         End If
@@ -788,6 +786,7 @@
                 Me.Cursor = Cursors.WaitCursor
 
                 formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
+                MostrarCantidadHijos()
 
                 Me.Cursor = Cursors.Default
             End If
@@ -810,10 +809,12 @@
 
                     Dim PersonaFamiliarEliminar As PersonaFamiliar
                     PersonaFamiliarEliminar = mdbContext.PersonaFamiliar.Find(mPersonaActual.IDPersona, GridRowDataActual.IDFamiliar)
-                    mPersonaActual.PersonaFamiliares.Remove(PersonaFamiliarEliminar)
+                    mdbContext.PersonaFamiliar.Remove(PersonaFamiliarEliminar)
+                    mdbContext.SaveChanges()
                     PersonaFamiliarEliminar = Nothing
 
                     Familiares_RefreshData()
+                    MostrarCantidadHijos()
 
                     Me.Cursor = Cursors.Default
                 End If
@@ -926,7 +927,8 @@
 
                     Dim PersonaAltaBajaEliminar As PersonaAltaBaja
                     PersonaAltaBajaEliminar = mdbContext.PersonaAltaBaja.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAltaBaja)
-                    mPersonaActual.PersonaAltasBajas.Remove(PersonaAltaBajaEliminar)
+                    mdbContext.PersonaAltaBaja.Remove(PersonaAltaBajaEliminar)
+                    mdbContext.SaveChanges()
                     PersonaAltaBajaEliminar = Nothing
 
                     AltasBajas_RefreshData()
@@ -1006,6 +1008,7 @@
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            MostrarUltimoCargoJerarquia()
 
             Me.Cursor = Cursors.Default
         End If
@@ -1019,6 +1022,7 @@
                 Me.Cursor = Cursors.WaitCursor
 
                 formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+                MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1041,10 +1045,12 @@
 
                     Dim PersonaAscensoEliminar As PersonaAscenso
                     PersonaAscensoEliminar = mdbContext.PersonaAscenso.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAscenso)
-                    mPersonaActual.PersonaAscensos.Remove(PersonaAscensoEliminar)
+                    mdbContext.PersonaAscenso.Remove(PersonaAscensoEliminar)
+                    mdbContext.SaveChanges()
                     PersonaAscensoEliminar = Nothing
 
                     Ascensos_RefreshData()
+                    MostrarUltimoCargoJerarquia()
 
                     Me.Cursor = Cursors.Default
                 End If
@@ -1156,7 +1162,8 @@
 
                     Dim PersonaLicenciaEliminar As PersonaLicencia
                     PersonaLicenciaEliminar = mdbContext.PersonaLicencia.Find(mPersonaActual.IDPersona, GridRowDataActual.IDLicencia)
-                    mPersonaActual.PersonaLicencia.Remove(PersonaLicenciaEliminar)
+                    mdbContext.PersonaLicencia.Remove(PersonaLicenciaEliminar)
+                    mdbContext.SaveChanges()
                     PersonaLicenciaEliminar = Nothing
 
                     Licencias_RefreshData()
@@ -1270,7 +1277,8 @@
 
                     Dim PersonaSancionEliminar As PersonaSancion
                     PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
-                    mPersonaActual.PersonaSanciones.Remove(PersonaSancionEliminar)
+                    mdbContext.PersonaSancion.Remove(PersonaSancionEliminar)
+                    mdbContext.SaveChanges()
                     PersonaSancionEliminar = Nothing
 
                     Sanciones_RefreshData()
@@ -1383,7 +1391,8 @@
 
                     Dim PersonaCapacitacionEliminar As PersonaCapacitacion
                     PersonaCapacitacionEliminar = mdbContext.PersonaCapacitacion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDCapacitacion)
-                    mPersonaActual.PersonaCapacitacion.Remove(PersonaCapacitacionEliminar)
+                    mdbContext.PersonaCapacitacion.Remove(PersonaCapacitacionEliminar)
+                    mdbContext.SaveChanges()
                     PersonaCapacitacionEliminar = Nothing
 
                     Capacitaciones_RefreshData()
@@ -1545,12 +1554,10 @@
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
-                        Using dbContext As New CSBomberosContext(True)
-                            For Each PersonaCalificacionEliminar As PersonaCalificacion In dbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = mPersonaActual.IDPersona And pc.Anio = GridRowDataActual.Anio And pc.InstanciaNumero = GridRowDataActual.InstanciaNumero)
-                                dbContext.PersonaCalificacion.Remove(PersonaCalificacionEliminar)
-                            Next
-                            dbContext.SaveChanges()
-                        End Using
+                        For Each PersonaCalificacionEliminar As PersonaCalificacion In mdbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = mPersonaActual.IDPersona And pc.Anio = GridRowDataActual.Anio And pc.InstanciaNumero = GridRowDataActual.InstanciaNumero)
+                            mdbContext.PersonaCalificacion.Remove(PersonaCalificacionEliminar)
+                        Next
+                        mdbContext.SaveChanges()
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
@@ -1677,7 +1684,8 @@
 
                     Dim PersonaExamenEliminar As PersonaExamen
                     PersonaExamenEliminar = mdbContext.PersonaExamen.Find(mPersonaActual.IDPersona, GridRowDataActual.Anio, GridRowDataActual.InstanciaNumero)
-                    mPersonaActual.PersonaExamen.Remove(PersonaExamenEliminar)
+                    mdbContext.PersonaExamen.Remove(PersonaExamenEliminar)
+                    mdbContext.SaveChanges()
                     PersonaExamenEliminar = Nothing
 
                     Examenes_RefreshData()
@@ -1703,7 +1711,30 @@
 #End Region
 
 #Region "Extra stuff"
+    Private Sub MostrarCantidadHijos()
+        Dim ParentescoIDHijo As Byte
 
+        ParentescoIDHijo = CS_Parameter.GetIntegerAsByte(Parametros.PARENTESCO_ID_HIJO)
+
+        Using dbContext As New CSBomberosContext(True)
+            textboxCantidadHijos.Text = dbContext.PersonaFamiliar.Where(Function(pf) pf.IDPersona = mPersonaActual.IDPersona AndAlso (Not pf.IDParentesco Is Nothing) AndAlso pf.IDParentesco.Value = ParentescoIDHijo).Count().ToString
+        End Using
+    End Sub
+
+    Private Sub MostrarUltimoCargoJerarquia()
+        Using dbContext As New CSBomberosContext(True)
+            Dim PersonaAscensoUltimo As PersonaAscenso
+
+            PersonaAscensoUltimo = dbContext.PersonaAscenso.Where(Function(pf) pf.IDPersona = mPersonaActual.IDPersona).OrderByDescending(Function(pf) pf.Fecha).FirstOrDefault
+            If PersonaAscensoUltimo Is Nothing Then
+                textboxCargoJerarquiaActual.Text = ""
+                textboxFechaUltimoAscenso.Text = ""
+            Else
+                textboxCargoJerarquiaActual.Text = PersonaAscensoUltimo.CargoJerarquia.Cargo.Nombre & " - " & PersonaAscensoUltimo.CargoJerarquia.Nombre
+                textboxFechaUltimoAscenso.Text = PersonaAscensoUltimo.Fecha.ToShortDateString
+            End If
+        End Using
+    End Sub
 #End Region
 
 End Class

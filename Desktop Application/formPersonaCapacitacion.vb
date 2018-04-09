@@ -227,10 +227,10 @@
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
                 PersonaActual = dbcMaxID.Persona.Find(mPersonaCapacitacionActual.IDPersona)
-                If PersonaActual.PersonaCapacitacion.Count = 0 Then
+                If PersonaActual.PersonaCapacitaciones.Count = 0 Then
                     mPersonaCapacitacionActual.IDCapacitacion = 1
                 Else
-                    mPersonaCapacitacionActual.IDCapacitacion = PersonaActual.PersonaCapacitacion.Max(Function(pa) pa.IDCapacitacion) + CByte(1)
+                    mPersonaCapacitacionActual.IDCapacitacion = PersonaActual.PersonaCapacitaciones.Max(Function(pa) pa.IDCapacitacion) + CByte(1)
                 End If
             End Using
         End If

@@ -4042,10 +4042,10 @@
           <NavigationProperty Name="PersonaAltasBajas" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
           <NavigationProperty Name="PersonaAscensos" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="Persona" ToRole="PersonaAscenso" />
           <NavigationProperty Name="PersonaCalificaciones" Relationship="CSBomberosModel.FK__Persona__PersonaCalificacion" FromRole="Persona" ToRole="PersonaCalificacion" />
-          <NavigationProperty Name="PersonaCambioUnidad" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="Persona" ToRole="PersonaCambioUnidad" />
-          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="Persona" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="PersonaExamen" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="Persona" ToRole="PersonaExamen" />
-          <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="Persona" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaCambiosUnidad" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="Persona" ToRole="PersonaCambioUnidad" />
+          <NavigationProperty Name="PersonaCapacitaciones" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="Persona" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaExamenes" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="Persona" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaLicencias" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="Persona" ToRole="PersonaLicencia" />
           <NavigationProperty Name="PersonaLicenciaConducirCategorias" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
           <NavigationProperty Name="PersonaSanciones" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
           <NavigationProperty Name="PersonaSancionesSolicitadas" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />

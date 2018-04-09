@@ -292,8 +292,8 @@
         ' Parentesco
         If comboboxGenero.SelectedValue Is Nothing Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Parentesco del Familiar.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxParentesco.Focus()
+            MsgBox("Debe especificar el Género.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxGenero.Focus()
             Exit Sub
         End If
 
