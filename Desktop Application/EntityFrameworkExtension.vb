@@ -64,6 +64,36 @@ Partial Public Class Persona
             Return DomicilioCompleto
         End Get
     End Property
+
+    Public ReadOnly Property LicenciaConducirCategoriasList As List(of LicenciaConducirCategoria)
+        Get
+            Using dbc As New CSBomberosContext(True)
+                Dim listPersonaLicenciaConducirCategorias As List(Of LicenciaConducirCategoria)
+
+                listPersonaLicenciaConducirCategorias = (From plcc In PersonaLicenciaConducirCategorias
+                                                         Join lcc In dbc.LicenciaConducirCategoria On plcc.IDLicenciaConducirCategoria Equals lcc.IDLicenciaConducirCategoria
+                                                         Order By lcc.Codigo
+                                                         Select lcc).ToList
+
+                Return listPersonaLicenciaConducirCategorias
+            End Using
+        End Get
+    End Property
+
+    Public ReadOnly Property LicenciaConducirCategoriasDisplay As String
+        Get
+            Using dbc As New CSBomberosContext(True)
+                Dim PersonaLicenciaConducirCategoriasCodigos As List(Of String)
+
+                PersonaLicenciaConducirCategoriasCodigos = (From plcc In PersonaLicenciaConducirCategorias
+                                                            Join lcc In dbc.LicenciaConducirCategoria On plcc.IDLicenciaConducirCategoria Equals lcc.IDLicenciaConducirCategoria
+                                                            Order By lcc.Codigo
+                                                            Select lcc.Codigo).ToList
+
+                Return String.Join(", ", PersonaLicenciaConducirCategoriasCodigos)
+            End Using
+        End Get
+    End Property
 End Class
 
 Partial Public Class Reporte

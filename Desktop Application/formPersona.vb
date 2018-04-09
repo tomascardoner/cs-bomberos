@@ -73,11 +73,11 @@
         ' General
         comboboxDocumentoTipo.Enabled = mEditMode
         textboxDocumentoNumero.ReadOnly = (mEditMode = False)
-        mscomboboxLicenciaConducirCategoria.Enabled = mEditMode
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
+        buttonLicenciaConducirNumero.Visible = mEditMode
         textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
         datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
-
+        buttonLicenciaConducirCategoria.Visible = mEditMode
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
@@ -137,8 +137,6 @@
 
         ' Cargo los ComboBox
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
-        mscomboboxLicenciaConducirCategoria.DisplayMember = "Codigo"
-        mscomboboxLicenciaConducirCategoria.DataSource = mdbContext.LicenciaConducirCategoria.OrderBy(Function(lcc) lcc.Codigo).ToList
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
@@ -204,7 +202,7 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CS_Control_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CByte(0))
+            CS_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CByte(0))
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             Else
@@ -212,11 +210,11 @@
             End If
             textboxLicenciaConducirNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LicenciaConducirNumero)
             datetimepickerLicenciaConducirVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.LicenciaConducirVencimiento, datetimepickerLicenciaConducirVencimiento)
-
+            textboxLicenciaConducirCategoria.Text = .LicenciaConducirCategoriasDisplay
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
-            CS_Control_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
-            CS_Control_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
-            CS_Control_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
+            CS_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -228,11 +226,11 @@
                     comboboxIOMATiene.SelectedIndex = 3
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
-            CS_Control_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
+            CS_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
 
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
 
             ' Info
             textboxCantidadHijos.Text = ""
@@ -245,8 +243,8 @@
             textboxDomicilioParticularDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularDepartamento)
             textboxDomicilioParticularCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle2)
             textboxDomicilioParticularCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle3)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, SelectedItemOptions.Value, .DomicilioParticularIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, SelectedItemOptions.Value, .DomicilioParticularIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioParticularCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCodigoPostal)
             textboxTelefonoParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoParticular)
             textboxCelularParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularParticular)
@@ -259,8 +257,8 @@
             textboxDomicilioLaboralDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralDepartamento)
             textboxDomicilioLaboralCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle2)
             textboxDomicilioLaboralCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle3)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioLaboralCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCodigoPostal)
             textboxTelefonoLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoLaboral)
             textboxCelularLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularLaboral)
@@ -286,14 +284,6 @@
             Else
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
-
-            ' ===>>> INICIO - Categorías de la Licencia de Conducir
-
-            For Each plcc As PersonaLicenciaConducirCategoria In .PersonaLicenciaConducirCategoria
-                mscomboboxLicenciaConducirCategoria.Text &= plcc.LicenciaConducirCategoria.Codigo & mscomboboxLicenciaConducirCategoria.DelimiterChar
-            Next
-
-            ' ===>>> FIN - Categorías de la Licencia de Conducir
         End With
     End Sub
 
@@ -376,49 +366,6 @@
             ' Datos de la pestaña Notas y Aditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
-
-            ' ===>>> INICIO - Categorías de la Licencia de Conducir
-
-            ' Como el Multiple Selection Combobox sólo devuelve el Código de la Categoría,
-            ' busco cada Categoría y las cargo en una lista
-            Dim listLicenciaConducirCategoriaSeleccionadas As New List(Of LicenciaConducirCategoria)
-            Dim listPersonaLicenciaConducirCategoria As New List(Of PersonaLicenciaConducirCategoria)
-
-            For Each LicenciaConducirCategoriaCodigoSeleccionado As String In mscomboboxLicenciaConducirCategoria.SelectedItems
-                Dim LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria
-                LicenciaConducirCategoriaSeleccionada = mdbContext.LicenciaConducirCategoria.Where(Function(lcc) lcc.Codigo = LicenciaConducirCategoriaCodigoSeleccionado).FirstOrDefault
-                If Not LicenciaConducirCategoriaSeleccionada Is Nothing Then
-                    listLicenciaConducirCategoriaSeleccionadas.Add(LicenciaConducirCategoriaSeleccionada)
-                End If
-            Next
-
-            ' Paso 1: Buscar las que están cargadas en la base de datos y ya no están seleccionadas en el Combobox, para borrarlas
-            listPersonaLicenciaConducirCategoria = .PersonaLicenciaConducirCategoria.ToList
-            If Not mIsNew Then
-                For Each plcc As PersonaLicenciaConducirCategoria In listPersonaLicenciaConducirCategoria
-                    If listLicenciaConducirCategoriaSeleccionadas.Find(Function(lcc) lcc.IDLicenciaConducirCategoria = plcc.IDLicenciaConducirCategoria) Is Nothing Then
-                        ' No está en la lista de Categorías seleccionadas, por lo tanto, la elimino
-                        .PersonaLicenciaConducirCategoria.Remove(plcc)
-                    End If
-                Next
-            End If
-
-            ' Paso 2: Agregar las que están en el Combobox pero no en la base de datos
-            For Each LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria In listLicenciaConducirCategoriaSeleccionadas
-                If .PersonaLicenciaConducirCategoria.Where(Function(plcc) plcc.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria).FirstOrDefault Is Nothing Then
-                    Dim PersonaLicenciaConducirCategoriaAgregar As New PersonaLicenciaConducirCategoria
-                    PersonaLicenciaConducirCategoriaAgregar.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria
-                    PersonaLicenciaConducirCategoriaAgregar.IDUsuarioCreacion = pUsuario.IDUsuario
-                    PersonaLicenciaConducirCategoriaAgregar.FechaHoraCreacion = Now
-                    .PersonaLicenciaConducirCategoria.Add(PersonaLicenciaConducirCategoriaAgregar)
-                    PersonaLicenciaConducirCategoriaAgregar = Nothing
-                End If
-            Next
-
-            listLicenciaConducirCategoriaSeleccionadas = Nothing
-            listPersonaLicenciaConducirCategoria = Nothing
-
-            ' ===>>> FIN - Categorías de la Licencia de Conducir
         End With
     End Sub
 #End Region
@@ -525,6 +472,49 @@
         End If
     End Sub
 
+    Private Sub LicenciaConducirCategorias(sender As Object, e As EventArgs) Handles buttonLicenciaConducirCategoria.Click
+
+        formPersonaLicenciaConducirCategorias.LoadAndShow(Me, mPersonaActual)
+
+        If CStr(formPersonaLicenciaConducirCategorias.Tag) = "SAVE" Then
+            Dim listLicenciaConducirCategoriaSeleccionadas As New List(Of LicenciaConducirCategoria)
+            Dim listPersonaLicenciaConducirCategoria As New List(Of PersonaLicenciaConducirCategoria)
+
+            For Each LicenciaConducirCategoriaActual As LicenciaConducirCategoria In formPersonaLicenciaConducirCategorias.checkedlistboxLicenciaConducirCategorias.CheckedItems
+                listLicenciaConducirCategoriaSeleccionadas.Add(LicenciaConducirCategoriaActual)
+            Next
+
+            ' Paso 1: Buscar las que están cargadas en la base de datos y ya no están seleccionadas en la lista, para borrarlas
+            listPersonaLicenciaConducirCategoria = mPersonaActual.PersonaLicenciaConducirCategorias.ToList
+            If Not mIsNew Then
+                For Each plcc As PersonaLicenciaConducirCategoria In listPersonaLicenciaConducirCategoria
+                    If listLicenciaConducirCategoriaSeleccionadas.Find(Function(lcc) lcc.IDLicenciaConducirCategoria = plcc.IDLicenciaConducirCategoria) Is Nothing Then
+                        ' No está en la lista de Categorías seleccionadas, por lo tanto, la elimino
+                        mPersonaActual.PersonaLicenciaConducirCategorias.Remove(plcc)
+                    End If
+                Next
+            End If
+
+            ' Paso 2: Agregar las que están en el Combobox pero no en la base de datos
+            For Each LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria In listLicenciaConducirCategoriaSeleccionadas
+                If mPersonaActual.PersonaLicenciaConducirCategorias.Where(Function(plcc) plcc.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria).FirstOrDefault Is Nothing Then
+                    Dim PersonaLicenciaConducirCategoriaAgregar As New PersonaLicenciaConducirCategoria
+                    PersonaLicenciaConducirCategoriaAgregar.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria
+                    PersonaLicenciaConducirCategoriaAgregar.IDUsuarioCreacion = pUsuario.IDUsuario
+                    PersonaLicenciaConducirCategoriaAgregar.FechaHoraCreacion = Now
+                    mPersonaActual.PersonaLicenciaConducirCategorias.Add(PersonaLicenciaConducirCategoriaAgregar)
+                    PersonaLicenciaConducirCategoriaAgregar = Nothing
+                End If
+            Next
+
+            listLicenciaConducirCategoriaSeleccionadas = Nothing
+            listPersonaLicenciaConducirCategoria = Nothing
+
+            textboxLicenciaConducirCategoria.Text = mPersonaActual.LicenciaConducirCategoriasDisplay
+        End If
+        formPersonaLicenciaConducirCategorias.Close()
+    End Sub
+
     Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
         If comboboxDomicilioParticularProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, 0, True)
@@ -532,7 +522,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -550,7 +540,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -1280,7 +1270,7 @@
 
                     Dim PersonaSancionEliminar As PersonaSancion
                     PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
-                    mPersonaActual.PersonaSancion.Remove(PersonaSancionEliminar)
+                    mPersonaActual.PersonaSanciones.Remove(PersonaSancionEliminar)
                     PersonaSancionEliminar = Nothing
 
                     Sanciones_RefreshData()

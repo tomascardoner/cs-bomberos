@@ -91,11 +91,11 @@
         With mSubUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             If mIsNew Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, mIDCuartel)
+                CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, mIDCuartel)
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .Ubicacion.IDCuartel)
+                CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirst, .Ubicacion.IDCuartel)
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion)
+            CS_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

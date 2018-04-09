@@ -85,8 +85,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaAscensoActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCargoJerarquia, SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
+            CS_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
+            CS_ComboBox.SetSelectedValue(comboboxCargoJerarquia, SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
             textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
             textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
             textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)

@@ -92,16 +92,16 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaCapacitacionActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCurso, SelectedItemOptions.ValueOrFirstIfUnique, .IDCurso)
-            CS_Control_ComboBox.SetSelectedValue(comboboxProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CS_Control_ComboBox.SetSelectedValue(comboboxLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCapacitacionNivel, SelectedItemOptions.ValueOrFirst, .IDCapacitacionNivel)
+            CS_ComboBox.SetSelectedValue(comboboxCurso, SelectedItemOptions.ValueOrFirstIfUnique, .IDCurso)
+            CS_ComboBox.SetSelectedValue(comboboxProvincia, SelectedItemOptions.Value, .IDProvincia, FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CS_ComboBox.SetSelectedValue(comboboxLocalidad, SelectedItemOptions.Value, .IDLocalidad, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CS_ComboBox.SetSelectedValue(comboboxCapacitacionNivel, SelectedItemOptions.ValueOrFirst, .IDCapacitacionNivel)
             If .IDCapacitacionNivel = FIELD_VALUE_OTHER_BYTE Then
                 textboxCapacitacionNivelOtro.Text = .CapacitacionNivelOtro
             Else
                 textboxCapacitacionNivelOtro.Text = ""
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxCapacitacionTipo, SelectedItemOptions.ValueOrFirst, .IDCapacitacionTipo)
+            CS_ComboBox.SetSelectedValue(comboboxCapacitacionTipo, SelectedItemOptions.ValueOrFirst, .IDCapacitacionTipo)
             If .IDCapacitacionTipo = FIELD_VALUE_OTHER_BYTE Then
                 textboxCapacitacionTipoOtro.Text = .CapacitacionTipoOtro
             Else
@@ -187,7 +187,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxLocalidad, CByte(comboboxProvincia.SelectedValue), True)
             If CByte(comboboxProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CS_ComboBox.SetSelectedValue(comboboxLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub

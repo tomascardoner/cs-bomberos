@@ -107,13 +107,13 @@
             textboxNumeroMotor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroMotor)
             textboxNumeroChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroChasis)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotorUso, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorUso)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCombustibleTipo, SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
+            CS_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
+            CS_ComboBox.SetSelectedValue(comboboxAutomotorUso, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorUso)
+            CS_ComboBox.SetSelectedValue(comboboxCombustibleTipo, SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
             datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
             maskedtextboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
             maskedtextboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             checkboxEsPropio.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsPropio)
 
             ' Datos de la pestaña Notas y Auditoría

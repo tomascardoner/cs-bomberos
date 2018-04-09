@@ -90,14 +90,14 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaSancionActual
-            CS_Control_ComboBox.SetSelectedValue(comboboxSolicitudPersona, SelectedItemOptions.ValueOrFirstIfUnique, .SolicitudIDPersona)
+            CS_ComboBox.SetSelectedValue(comboboxSolicitudPersona, SelectedItemOptions.ValueOrFirstIfUnique, .SolicitudIDPersona)
             textboxSolicitudMotivo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitudMotivo)
             datetimepickerSolicitudFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.SolicitudFecha)
 
             textboxEncuadreTexto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.EncuadreTexto)
             datetimepickerEncuadreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.EncuadreFecha, datetimepickerEncuadreFecha)
 
-            CS_Control_ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
+            CS_ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
             datetimepickerResolucionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.ResolucionFecha, datetimepickerResolucionFecha)
 
             datetimepickerNotificacionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.NotificacionFecha, datetimepickerNotificacionFecha)
@@ -212,10 +212,10 @@
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
                 PersonaActual = dbcMaxID.Persona.Find(mPersonaSancionActual.IDPersona)
-                If PersonaActual.PersonaSancion.Count = 0 Then
+                If PersonaActual.PersonaSanciones.Count = 0 Then
                     mPersonaSancionActual.IDSancion = 1
                 Else
-                    mPersonaSancionActual.IDSancion = PersonaActual.PersonaSancion.Max(Function(pl) pl.IDSancion) + CByte(1)
+                    mPersonaSancionActual.IDSancion = PersonaActual.PersonaSanciones.Max(Function(pl) pl.IDSancion) + CByte(1)
                 End If
             End Using
         End If

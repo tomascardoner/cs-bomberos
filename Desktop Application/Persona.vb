@@ -78,8 +78,8 @@ Partial Public Class Persona
     Public Overridable Property PersonaCapacitacion As ICollection(Of PersonaCapacitacion) = New HashSet(Of PersonaCapacitacion)
     Public Overridable Property PersonaExamen As ICollection(Of PersonaExamen) = New HashSet(Of PersonaExamen)
     Public Overridable Property PersonaLicencia As ICollection(Of PersonaLicencia) = New HashSet(Of PersonaLicencia)
-    Public Overridable Property PersonaLicenciaConducirCategoria As ICollection(Of PersonaLicenciaConducirCategoria) = New HashSet(Of PersonaLicenciaConducirCategoria)
-    Public Overridable Property PersonaSancion As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
-    Public Overridable Property PersonaSancion1 As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
+    Public Overridable Property PersonaLicenciaConducirCategorias As ICollection(Of PersonaLicenciaConducirCategoria) = New HashSet(Of PersonaLicenciaConducirCategoria)
+    Public Overridable Property PersonaSanciones As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
+    Public Overridable Property PersonaSancionesSolicitadas As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
 
 End Class

@@ -83,7 +83,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mSubRubroActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CS_Control_ComboBox.SetSelectedValue(comboboxRubro, SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
+            CS_ComboBox.SetSelectedValue(comboboxRubro, SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

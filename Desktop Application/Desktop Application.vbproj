@@ -136,6 +136,9 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_ComboBox.vb">
+      <Link>CS_ComboBox.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Constants.vb">
       <Link>CS_Constants.vb</Link>
     </Compile>
@@ -157,9 +160,6 @@
     </Compile>
     <Compile Include="AutomotorUso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_ComboBox.vb">
-      <Link>CS_Control_ComboBox.vb</Link>
     </Compile>
     <Compile Include="C:\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_Control_TabControl.vb">
       <Link>CS_Control_TabControl.vb</Link>
@@ -473,6 +473,12 @@
       <DependentUpon>formPersonaLicencia.vb</DependentUpon>
     </Compile>
     <Compile Include="formPersonaLicencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaLicenciaConducirCategorias.Designer.vb">
+      <DependentUpon>formPersonaLicenciaConducirCategorias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaLicenciaConducirCategorias.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formPersonaSancion.designer.vb">
@@ -866,6 +872,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaLicencia.resx">
       <DependentUpon>formPersonaLicencia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaLicenciaConducirCategorias.resx">
+      <DependentUpon>formPersonaLicenciaConducirCategorias.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaSancion.resx">
       <DependentUpon>formPersonaSancion.vb</DependentUpon>

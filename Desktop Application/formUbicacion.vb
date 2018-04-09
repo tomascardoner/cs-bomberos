@@ -88,8 +88,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            CS_Control_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotor)
+            CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CS_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotor)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

@@ -4046,9 +4046,9 @@
           <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="Persona" ToRole="PersonaCapacitacion" />
           <NavigationProperty Name="PersonaExamen" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="Persona" ToRole="PersonaExamen" />
           <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="Persona" ToRole="PersonaLicencia" />
-          <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
-          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
-          <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaLicenciaConducirCategorias" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaSanciones" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaSancionesSolicitadas" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />

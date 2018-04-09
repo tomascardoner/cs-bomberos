@@ -112,17 +112,17 @@
     Friend Sub SetDataFromObjectToControls()
         With mInventarioActual
             If mIsNew Then
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
+                CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
             Else
-                CS_Control_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
+                CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
             End If
-            CS_Control_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
+            CS_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
-            CS_Control_ComboBox.SetSelectedValue(comboboxElemento, SelectedItemOptions.Value, .IDElemento)
-            CS_Control_ComboBox.SetSelectedValue(comboboxModoAdquisicion, SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
+            CS_ComboBox.SetSelectedValue(comboboxElemento, SelectedItemOptions.Value, .IDElemento)
+            CS_ComboBox.SetSelectedValue(comboboxModoAdquisicion, SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
 
-            CS_Control_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
-            CS_Control_ComboBox.SetSelectedValue(comboboxSubUbicacion, SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
+            CS_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
+            CS_ComboBox.SetSelectedValue(comboboxSubUbicacion, SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
