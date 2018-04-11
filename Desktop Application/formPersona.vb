@@ -172,6 +172,15 @@
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN, False) Then
             tabcontrolMain.HideTabPageByName(tabpageExamenes.Name)
         End If
+
+        DataGridSetAppearance(datagridviewFamiliares)
+        DataGridSetAppearance(datagridviewAltasBajas)
+        DataGridSetAppearance(datagridviewAscensos)
+        DataGridSetAppearance(datagridviewLicencias)
+        DataGridSetAppearance(datagridviewSanciones)
+        DataGridSetAppearance(datagridviewCapacitaciones)
+        DataGridSetAppearance(datagridviewCalificaciones)
+        DataGridSetAppearance(datagridviewExamenes)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -1588,6 +1597,39 @@
             formPersonaCalificacion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).Anio, CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData).InstanciaNumero)
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonCalificaciones_Imprimir.Click
+        Dim GridRowDataActual As Calificaciones_GridRowData
+
+        If datagridviewCalificaciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Caificación para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+                GridRowDataActual = CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData)
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewCalificaciones.Enabled = False
+
+                Using dbContext As New CSBomberosContext(True)
+                    Dim ReporteActual As New Reporte
+
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_PLANILLAANUALCALIFICACIONES))
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "Anio").Single.Valor = GridRowDataActual.Anio
+                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
+                        End If
+                    End If
+                End Using
+
+                datagridviewCalificaciones.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

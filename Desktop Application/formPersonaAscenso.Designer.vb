@@ -29,6 +29,7 @@ Partial Class formPersonaAscenso
         Dim labelActaNumero As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelResolucionNumero As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -52,6 +53,7 @@ Partial Class formPersonaAscenso
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         labelCargo = New System.Windows.Forms.Label()
         labelCargoJerarquia = New System.Windows.Forms.Label()
         labelFolioNumero = New System.Windows.Forms.Label()
@@ -59,6 +61,7 @@ Partial Class formPersonaAscenso
         labelActaNumero = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelResolucionNumero = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -86,7 +89,7 @@ Partial Class formPersonaAscenso
         'labelFolioNumero
         '
         labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(147, 114)
+        labelFolioNumero.Location = New System.Drawing.Point(173, 114)
         labelFolioNumero.Name = "labelFolioNumero"
         labelFolioNumero.Size = New System.Drawing.Size(47, 13)
         labelFolioNumero.TabIndex = 10
@@ -104,7 +107,7 @@ Partial Class formPersonaAscenso
         'labelActaNumero
         '
         labelActaNumero.AutoSize = True
-        labelActaNumero.Location = New System.Drawing.Point(280, 114)
+        labelActaNumero.Location = New System.Drawing.Point(306, 114)
         labelActaNumero.Name = "labelActaNumero"
         labelActaNumero.Size = New System.Drawing.Size(47, 13)
         labelActaNumero.TabIndex = 12
@@ -180,7 +183,7 @@ Partial Class formPersonaAscenso
         'datetimepickerFecha
         '
         Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(67, 10)
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(93, 10)
         Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
@@ -219,7 +222,7 @@ Partial Class formPersonaAscenso
         '
         Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCargo.FormattingEnabled = True
-        Me.comboboxCargo.Location = New System.Drawing.Point(67, 46)
+        Me.comboboxCargo.Location = New System.Drawing.Point(93, 46)
         Me.comboboxCargo.Name = "comboboxCargo"
         Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargo.TabIndex = 5
@@ -228,14 +231,14 @@ Partial Class formPersonaAscenso
         '
         Me.comboboxCargoJerarquia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCargoJerarquia.FormattingEnabled = True
-        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(67, 73)
+        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(93, 73)
         Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
         Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargoJerarquia.TabIndex = 7
         '
         'textboxFolioNumero
         '
-        Me.textboxFolioNumero.Location = New System.Drawing.Point(200, 111)
+        Me.textboxFolioNumero.Location = New System.Drawing.Point(226, 111)
         Me.textboxFolioNumero.MaxLength = 10
         Me.textboxFolioNumero.Name = "textboxFolioNumero"
         Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
@@ -243,7 +246,7 @@ Partial Class formPersonaAscenso
         '
         'textboxLibroNumero
         '
-        Me.textboxLibroNumero.Location = New System.Drawing.Point(67, 111)
+        Me.textboxLibroNumero.Location = New System.Drawing.Point(93, 111)
         Me.textboxLibroNumero.MaxLength = 10
         Me.textboxLibroNumero.Name = "textboxLibroNumero"
         Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
@@ -251,7 +254,7 @@ Partial Class formPersonaAscenso
         '
         'textboxActaNumero
         '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(333, 111)
+        Me.textboxActaNumero.Location = New System.Drawing.Point(359, 111)
         Me.textboxActaNumero.MaxLength = 10
         Me.textboxActaNumero.Name = "textboxActaNumero"
         Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
@@ -270,6 +273,8 @@ Partial Class formPersonaAscenso
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelResolucionNumero)
+        Me.tabpageGeneral.Controls.Add(Me.textboxResolucionNumero)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
         Me.tabpageGeneral.Controls.Add(Me.textboxFolioNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
@@ -366,6 +371,23 @@ Partial Class formPersonaAscenso
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
+        'labelResolucionNumero
+        '
+        labelResolucionNumero.AutoSize = True
+        labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
+        labelResolucionNumero.Name = "labelResolucionNumero"
+        labelResolucionNumero.Size = New System.Drawing.Size(81, 13)
+        labelResolucionNumero.TabIndex = 14
+        labelResolucionNumero.Text = "Resolución: N°:"
+        '
+        'textboxResolucionNumero
+        '
+        Me.textboxResolucionNumero.Location = New System.Drawing.Point(93, 137)
+        Me.textboxResolucionNumero.MaxLength = 15
+        Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
+        Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
+        Me.textboxResolucionNumero.TabIndex = 15
+        '
         'formPersonaAscenso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -414,4 +436,5 @@ Partial Class formPersonaAscenso
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents textboxResolucionNumero As System.Windows.Forms.TextBox
 End Class

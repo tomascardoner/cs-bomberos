@@ -92,8 +92,7 @@
     End Sub
 
     Friend Sub SetAppearance()
-        datagridviewCalificaciones.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
-        datagridviewCalificaciones.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
+        DataGridSetAppearance(datagridviewCalificaciones)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

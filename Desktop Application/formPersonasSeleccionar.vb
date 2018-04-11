@@ -17,8 +17,7 @@
 
 #Region "Form stuff"
     Friend Sub SetAppearance()
-        datagridviewMain.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
-        datagridviewMain.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
+        DataGridSetAppearance(datagridviewMain)
     End Sub
 
     Private Sub formPersonaesSeleccionar_Load() Handles Me.Load

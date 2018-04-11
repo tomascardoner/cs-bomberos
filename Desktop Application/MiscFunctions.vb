@@ -1,6 +1,21 @@
 ﻿Imports System.Net.Mail
 
 Module MiscFunctions
+    Friend Sub DataGridSetAppearance(ByRef DataGridViewObject As DataGridView)
+        DataGridViewObject.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
+        DataGridViewObject.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
+
+        DataGridViewObject.DefaultCellStyle.BackColor = SystemColors.Window
+        DataGridViewObject.DefaultCellStyle.ForeColor = SystemColors.ControlText
+        DataGridViewObject.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight
+        DataGridViewObject.DefaultCellStyle.SelectionForeColor = SystemColors.HighlightText
+
+        DataGridViewObject.AlternatingRowsDefaultCellStyle.BackColor = SystemColors.GradientActiveCaption
+        DataGridViewObject.AlternatingRowsDefaultCellStyle.ForeColor = SystemColors.ControlText
+        DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionBackColor = SystemColors.Highlight
+        DataGridViewObject.AlternatingRowsDefaultCellStyle.SelectionForeColor = SystemColors.HighlightText
+    End Sub
+
     Friend Sub PreviewCrystalReport(ByRef ReporteActual As Reporte, ByVal WindowText As String)
         Dim VisorReporte As New formReportesVisor
 

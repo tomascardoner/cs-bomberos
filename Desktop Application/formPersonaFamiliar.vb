@@ -63,6 +63,8 @@
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
         comboboxFactorRH.Enabled = mEditMode
+        comboboxIOMATiene.Enabled = mEditMode
+        textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         checkboxVive.Enabled = mEditMode
 
         ' Contacto
@@ -93,6 +95,7 @@
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
     End Sub
 
@@ -127,6 +130,17 @@
             CS_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
             CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
+            Select Case .IOMATiene
+                Case ""
+                    comboboxIOMATiene.SelectedIndex = 0
+                Case PERSONA_TIENEIOMA_NOTIENE
+                    comboboxIOMATiene.SelectedIndex = 1
+                Case PERSONA_TIENEIOMA_PORBOMBEROS
+                    comboboxIOMATiene.SelectedIndex = 2
+                Case PERSONA_TIENEIOMA_PORTRABAJO
+                    comboboxIOMATiene.SelectedIndex = 3
+            End Select
+            textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
 
             ' Datos de la pestaña Contacto Particular
@@ -184,6 +198,17 @@
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
+            Select Case comboboxIOMATiene.SelectedIndex
+                Case 0
+                    .IOMATiene = Nothing
+                Case 1
+                    .IOMATiene = PERSONA_TIENEIOMA_NOTIENE
+                Case 2
+                    .IOMATiene = PERSONA_TIENEIOMA_PORBOMBEROS
+                Case 3
+                    .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
+            End Select
+            .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
 
             ' Datos de la pestaña Contacto
@@ -234,7 +259,7 @@
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
-    Private Sub comboboxDocumentoTipo_SelectedIndexChanged() Handles comboboxDocumentoTipo.SelectedIndexChanged
+    Private Sub DocumentoTipo_Cambio(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
         If Not comboboxDocumentoTipo.SelectedItem Is Nothing Then
             textboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11)
             maskedtextboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not textboxDocumentoNumero.Visible)
@@ -245,7 +270,7 @@
         CType(sender, TextBox).Text = CType(sender, TextBox).Text.Replace(".", "")
     End Sub
 
-    Private Sub DomicilioProvincia_SelectedValueChanged() Handles comboboxDomicilioProvincia.SelectedValueChanged
+    Private Sub DomicilioProvincia_Cambio(sender As Object, e As EventArgs) Handles comboboxDomicilioProvincia.SelectedValueChanged
         If comboboxDomicilioProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, 0, True)
             comboboxDomicilioLocalidad.SelectedIndex = 0
@@ -257,7 +282,7 @@
         End If
     End Sub
 
-    Private Sub DomicilioLocalidad_SelectedValueChanged() Handles comboboxDomicilioLocalidad.SelectedValueChanged
+    Private Sub DomicilioLocalidad_Cambio(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
         If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
             textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal
         End If
