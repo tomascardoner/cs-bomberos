@@ -104,6 +104,11 @@
     Friend Const USUARIOGRUPOPERMISO_EDITAR As String = "USUARIOGRUPOPERMISO_EDITAR"
     Friend Const USUARIOGRUPOPERMISO_ELIMINAR As String = "USUARIOGRUPOPERMISO_ELIMINAR"
 
+    Friend Const ALARMA As String = "ALARMA"
+    Friend Const ALARMA_AGREGAR As String = "ALARMA_AGREGAR"
+    Friend Const ALARMA_EDITAR As String = "ALARMA_EDITAR"
+    Friend Const ALARMA_ELIMINAR As String = "ALARMA_ELIMINAR"
+
     Friend Const PERSONA As String = "PERSONA"
     Friend Const PERSONA_AGREGAR As String = "PERSONA_AGREGAR"
     Friend Const PERSONA_EDITAR As String = "PERSONA_EDITAR"
@@ -339,6 +344,13 @@
             .Nodes.Add(USUARIOGRUPOPERMISO_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(USUARIOGRUPOPERMISO_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(USUARIOGRUPOPERMISO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(ALARMA, "Alarmas")
+        With RootNode
+            .Nodes.Add(ALARMA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(ALARMA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(ALARMA_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(PERSONA, "Personas")

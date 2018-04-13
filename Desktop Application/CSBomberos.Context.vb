@@ -71,5 +71,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property PersonaSancion() As DbSet(Of PersonaSancion)
     Public Overridable Property SancionTipo() As DbSet(Of SancionTipo)
     Public Overridable Property AutomotorUso() As DbSet(Of AutomotorUso)
+    Public Overridable Property Alarma() As DbSet(Of Alarma)
 
 End Class

@@ -5,7 +5,26 @@
     Friend Const APPLICATION_DATABASE_GUID As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
 
     '//////////////////
-    '    VARIOS
+    '    ALARMA
+    '//////////////////
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA As String = "PN"
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA_LISTINDEX As Integer = 0
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA_NOMBRE As String = "Fecha de Nacimiento de la Persona"
+
+    Friend Const ALARMA_FECHATIPO_LICENCIACONDUCIRVENCIMIENTO As String = "LC"
+    Friend Const ALARMA_FECHATIPO_LICENCIACONDUCIRVENCIMIENTO_LISTINDEX As Integer = 1
+    Friend Const ALARMA_FECHATIPO_LICENCIACONDUCIRVENCIMIENTO_NOMBRE As String = "Fecha de Vencimiento de la Licencia de Conducir"
+
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOFAMILIAR As String = "FN"
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOFAMILIAR_LISTINDEX As Integer = 2
+    Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOFAMILIAR_NOMBRE As String = "Fecha de Nacimiento del Familiar"
+
+    Friend Const ALARMA_FECHATIPO_FECHAALARMA As String = "FA"
+    Friend Const ALARMA_FECHATIPO_FECHAALARMA_LISTINDEX As Integer = 3
+    Friend Const ALARMA_FECHATIPO_FECHAALARMA_NOMBRE As String = "Fecha de Alarma"
+
+    '//////////////////
+    '    PERSONA
     '//////////////////
     Friend Const PERSONA_GENERO_NOESPECIFICA As String = "-"
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
@@ -17,25 +36,6 @@
     Friend Const PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE As String = "Trabajo"
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS As String = "B"
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE As String = "Bomberos"
-
-    'Friend Const PERSONA_ESTADO_ACTIVO As String = "A"
-    'Friend Const PERSONA_ESTADO_RESERVA As String = "R"
-    'Friend Const PERSONA_ESTADO_CUERPOAUXILIAR As String = "C"
-    'Friend Const PERSONA_ESTADO_BAJA As String = "B"
-
-    Friend Const OPERACIONTIPO_COMPRA As String = "C"
-    Friend Const OPERACIONTIPO_VENTA As String = "V"
-
-    Friend Const MOVIMIENTOTIPO_CREDITO As String = "C"
-    Friend Const MOVIMIENTOTIPO_DEBITO As String = "D"
-
-    Friend Const COMPROBANTE_PUNTOVENTA_CARACTERES As Byte = 4
-    Friend Const COMPROBANTE_NUMERO_CARACTERES As Byte = 8
-
-    Friend Const COMPROBANTE_CONCEPTO_PRODUCTO As Byte = 1
-    Friend Const COMPROBANTE_CONCEPTO_SERVICIOS As Byte = 2
-    Friend Const COMPROBANTE_CONCEPTO_PRODUCTOSYSERVICIOS As Byte = 3
-    Friend Const COMPROBANTE_CONCEPTO_OTROS As Byte = 4
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 

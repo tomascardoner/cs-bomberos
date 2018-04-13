@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formLicenciaCausa
+Partial Class formAlarma
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -35,13 +35,15 @@ Partial Class formLicenciaCausa
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.updownCantidadDias = New System.Windows.Forms.NumericUpDown()
-        Me.labelCantidadDias = New System.Windows.Forms.Label()
-        Me.textboxNombreLegal = New System.Windows.Forms.TextBox()
-        Me.labelNombreLegal = New System.Windows.Forms.Label()
+        Me.updownAvisoDias = New System.Windows.Forms.NumericUpDown()
+        Me.labelAvisoDias = New System.Windows.Forms.Label()
+        Me.labelFecha = New System.Windows.Forms.Label()
+        Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaTipo = New System.Windows.Forms.Label()
+        Me.comboboxFechaTipo = New System.Windows.Forms.ComboBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDLicenciaCausa = New System.Windows.Forms.Label()
-        Me.textboxIDLicenciaCausa = New System.Windows.Forms.TextBox()
+        Me.labelIDAlarma = New System.Windows.Forms.Label()
+        Me.textboxIDAlarma = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -54,7 +56,7 @@ Partial Class formLicenciaCausa
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.updownAvisoDias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -88,9 +90,9 @@ Partial Class formLicenciaCausa
         'textboxNombre
         '
         Me.textboxNombre.Location = New System.Drawing.Point(88, 19)
-        Me.textboxNombre.MaxLength = 100
+        Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(272, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(417, 20)
         Me.textboxNombre.TabIndex = 1
         '
         'labelNombre
@@ -148,13 +150,13 @@ Partial Class formLicenciaCausa
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(565, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(541, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(141, 84)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(116, 84)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -168,65 +170,88 @@ Partial Class formLicenciaCausa
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(543, 218)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(519, 218)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.updownCantidadDias)
-        Me.tabpageGeneral.Controls.Add(Me.labelCantidadDias)
-        Me.tabpageGeneral.Controls.Add(Me.textboxNombreLegal)
-        Me.tabpageGeneral.Controls.Add(Me.labelNombreLegal)
+        Me.tabpageGeneral.Controls.Add(Me.updownAvisoDias)
+        Me.tabpageGeneral.Controls.Add(Me.labelAvisoDias)
+        Me.tabpageGeneral.Controls.Add(Me.labelFecha)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
+        Me.tabpageGeneral.Controls.Add(Me.labelFechaTipo)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxFechaTipo)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(535, 189)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(511, 189)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'updownCantidadDias
+        'updownAvisoDias
         '
-        Me.updownCantidadDias.Location = New System.Drawing.Point(88, 91)
-        Me.updownCantidadDias.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
-        Me.updownCantidadDias.Name = "updownCantidadDias"
-        Me.updownCantidadDias.Size = New System.Drawing.Size(55, 20)
-        Me.updownCantidadDias.TabIndex = 5
-        Me.updownCantidadDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.updownAvisoDias.Location = New System.Drawing.Point(88, 98)
+        Me.updownAvisoDias.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.updownAvisoDias.Name = "updownAvisoDias"
+        Me.updownAvisoDias.Size = New System.Drawing.Size(75, 20)
+        Me.updownAvisoDias.TabIndex = 10
+        Me.updownAvisoDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'labelCantidadDias
+        'labelAvisoDias
         '
-        Me.labelCantidadDias.AutoSize = True
-        Me.labelCantidadDias.Location = New System.Drawing.Point(6, 94)
-        Me.labelCantidadDias.Name = "labelCantidadDias"
-        Me.labelCantidadDias.Size = New System.Drawing.Size(76, 13)
-        Me.labelCantidadDias.TabIndex = 4
-        Me.labelCantidadDias.Text = "Cantidad días:"
+        Me.labelAvisoDias.AutoSize = True
+        Me.labelAvisoDias.Location = New System.Drawing.Point(6, 101)
+        Me.labelAvisoDias.Name = "labelAvisoDias"
+        Me.labelAvisoDias.Size = New System.Drawing.Size(76, 13)
+        Me.labelAvisoDias.TabIndex = 9
+        Me.labelAvisoDias.Text = "Días de aviso:"
         '
-        'textboxNombreLegal
+        'labelFecha
         '
-        Me.textboxNombreLegal.Location = New System.Drawing.Point(88, 55)
-        Me.textboxNombreLegal.MaxLength = 200
-        Me.textboxNombreLegal.Name = "textboxNombreLegal"
-        Me.textboxNombreLegal.Size = New System.Drawing.Size(441, 20)
-        Me.textboxNombreLegal.TabIndex = 3
+        Me.labelFecha.AutoSize = True
+        Me.labelFecha.Location = New System.Drawing.Point(6, 76)
+        Me.labelFecha.Name = "labelFecha"
+        Me.labelFecha.Size = New System.Drawing.Size(40, 13)
+        Me.labelFecha.TabIndex = 8
+        Me.labelFecha.Text = "Fecha;"
         '
-        'labelNombreLegal
+        'datetimepickerFecha
         '
-        Me.labelNombreLegal.AutoSize = True
-        Me.labelNombreLegal.Location = New System.Drawing.Point(6, 58)
-        Me.labelNombreLegal.Name = "labelNombreLegal"
-        Me.labelNombreLegal.Size = New System.Drawing.Size(72, 13)
-        Me.labelNombreLegal.TabIndex = 2
-        Me.labelNombreLegal.Text = "Nombre legal:"
+        Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(88, 72)
+        Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFecha.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFecha.Name = "datetimepickerFecha"
+        Me.datetimepickerFecha.ShowCheckBox = True
+        Me.datetimepickerFecha.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerFecha.TabIndex = 7
+        '
+        'labelFechaTipo
+        '
+        Me.labelFechaTipo.AutoSize = True
+        Me.labelFechaTipo.Location = New System.Drawing.Point(6, 48)
+        Me.labelFechaTipo.Name = "labelFechaTipo"
+        Me.labelFechaTipo.Size = New System.Drawing.Size(76, 13)
+        Me.labelFechaTipo.TabIndex = 3
+        Me.labelFechaTipo.Text = "Tipo de fecha:"
+        '
+        'comboboxFechaTipo
+        '
+        Me.comboboxFechaTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxFechaTipo.FormattingEnabled = True
+        Me.comboboxFechaTipo.Location = New System.Drawing.Point(88, 45)
+        Me.comboboxFechaTipo.Name = "comboboxFechaTipo"
+        Me.comboboxFechaTipo.Size = New System.Drawing.Size(417, 21)
+        Me.comboboxFechaTipo.TabIndex = 2
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDLicenciaCausa)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAlarma)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDLicenciaCausa)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAlarma)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -239,34 +264,34 @@ Partial Class formLicenciaCausa
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(535, 189)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(511, 189)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDLicenciaCausa
+        'labelIDAlarma
         '
-        Me.labelIDLicenciaCausa.AutoSize = True
-        Me.labelIDLicenciaCausa.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDLicenciaCausa.Name = "labelIDLicenciaCausa"
-        Me.labelIDLicenciaCausa.Size = New System.Drawing.Size(127, 13)
-        Me.labelIDLicenciaCausa.TabIndex = 4
-        Me.labelIDLicenciaCausa.Text = "ID de Causa de Licencia:"
+        Me.labelIDAlarma.AutoSize = True
+        Me.labelIDAlarma.Location = New System.Drawing.Point(7, 111)
+        Me.labelIDAlarma.Name = "labelIDAlarma"
+        Me.labelIDAlarma.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDAlarma.TabIndex = 4
+        Me.labelIDAlarma.Text = "ID:"
         '
-        'textboxIDLicenciaCausa
+        'textboxIDAlarma
         '
-        Me.textboxIDLicenciaCausa.Location = New System.Drawing.Point(140, 108)
-        Me.textboxIDLicenciaCausa.MaxLength = 10
-        Me.textboxIDLicenciaCausa.Name = "textboxIDLicenciaCausa"
-        Me.textboxIDLicenciaCausa.ReadOnly = True
-        Me.textboxIDLicenciaCausa.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDLicenciaCausa.TabIndex = 5
-        Me.textboxIDLicenciaCausa.TabStop = False
-        Me.textboxIDLicenciaCausa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDAlarma.Location = New System.Drawing.Point(115, 108)
+        Me.textboxIDAlarma.MaxLength = 10
+        Me.textboxIDAlarma.Name = "textboxIDAlarma"
+        Me.textboxIDAlarma.ReadOnly = True
+        Me.textboxIDAlarma.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDAlarma.TabIndex = 5
+        Me.textboxIDAlarma.TabStop = False
+        Me.textboxIDAlarma.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(267, 160)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 160)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -275,7 +300,7 @@ Partial Class formLicenciaCausa
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(267, 134)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(242, 134)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -284,7 +309,7 @@ Partial Class formLicenciaCausa
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(140, 160)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(115, 160)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -293,7 +318,7 @@ Partial Class formLicenciaCausa
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(140, 134)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(115, 134)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -302,7 +327,7 @@ Partial Class formLicenciaCausa
         '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(141, 6)
+        Me.textboxNotas.Location = New System.Drawing.Point(116, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
@@ -319,26 +344,26 @@ Partial Class formLicenciaCausa
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formLicenciaCausa
+        'formAlarma
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(565, 272)
+        Me.ClientSize = New System.Drawing.Size(541, 272)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formLicenciaCausa"
+        Me.Name = "formAlarma"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Causa de Licencia"
+        Me.Text = "Alarma"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.updownAvisoDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -358,14 +383,16 @@ Partial Class formLicenciaCausa
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDLicenciaCausa As System.Windows.Forms.Label
-    Friend WithEvents textboxIDLicenciaCausa As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDAlarma As System.Windows.Forms.Label
+    Friend WithEvents textboxIDAlarma As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxNombreLegal As System.Windows.Forms.TextBox
-    Friend WithEvents labelNombreLegal As System.Windows.Forms.Label
-    Friend WithEvents updownCantidadDias As System.Windows.Forms.NumericUpDown
-    Friend WithEvents labelCantidadDias As System.Windows.Forms.Label
+    Friend WithEvents labelFechaTipo As System.Windows.Forms.Label
+    Friend WithEvents comboboxFechaTipo As System.Windows.Forms.ComboBox
+    Friend WithEvents datetimepickerFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents labelFecha As System.Windows.Forms.Label
+    Friend WithEvents updownAvisoDias As System.Windows.Forms.NumericUpDown
+    Friend WithEvents labelAvisoDias As System.Windows.Forms.Label
 End Class

@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CSBomberosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alarma">
+          <Key>
+            <PropertyRef Name="IDAlarma" />
+          </Key>
+          <Property Name="IDAlarma" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaTipo" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="AvisoDias" Type="smallint" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Area">
           <Key>
             <PropertyRef Name="IDArea" />
@@ -1457,6 +1473,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__Alarma__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Alarma" Type="Self.Alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Alarma">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Alarma__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Alarma" Type="Self.Alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Alarma">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Area__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Area" Type="Self.Area" Multiplicity="*" />
@@ -2442,6 +2482,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CSBomberosModelStoreContainer">
+          <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Automotor" EntityType="Self.Automotor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AutomotorTipo" EntityType="Self.AutomotorTipo" Schema="dbo" store:Type="Tables" />
@@ -2702,6 +2743,14 @@
           <AssociationSet Name="FK__Ubicacion__SubUbicacion" Association="Self.FK__Ubicacion__SubUbicacion">
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="SubUbicacion" EntitySet="SubUbicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Alarma__Creacion" Association="Self.FK__Usuario__Alarma__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Alarma" EntitySet="Alarma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Alarma__Modificacion" Association="Self.FK__Usuario__Alarma__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Alarma" EntitySet="Alarma" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Area__Creacion" Association="Self.FK__Usuario__Area__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3626,6 +3675,15 @@
             <End Role="LicenciaConducirCategoria" EntitySet="LicenciaConducirCategoria" />
             <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
           </AssociationSet>
+          <EntitySet Name="Alarma" EntityType="CSBomberosModel.Alarma" />
+          <AssociationSet Name="FK__Usuario__Alarma__Creacion" Association="CSBomberosModel.FK__Usuario__Alarma__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Alarma" EntitySet="Alarma" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Alarma__Modificacion" Association="CSBomberosModel.FK__Usuario__Alarma__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Alarma" EntitySet="Alarma" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -3826,6 +3884,8 @@
           <NavigationProperty Name="AutomotorUsosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="Usuario" ToRole="AutomotorUso" />
           <NavigationProperty Name="NivelesEstudioCreados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="Usuario" ToRole="NivelEstudio" />
           <NavigationProperty Name="NivelesEstudioModificados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
+          <NavigationProperty Name="AlarmasCreadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Creacion" FromRole="Usuario" ToRole="Alarma" />
+          <NavigationProperty Name="AlarmasModificadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Modificacion" FromRole="Usuario" ToRole="Alarma" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -6333,6 +6393,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Alarma">
+          <Key>
+            <PropertyRef Name="IDAlarma" />
+          </Key>
+          <Property Name="IDAlarma" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaTipo" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="AvisoDias" Type="Int16" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Alarma__Creacion" FromRole="Alarma" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Alarma__Modificacion" FromRole="Alarma" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Usuario__Alarma__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Alarma" Role="Alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Alarma">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Alarma__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Alarma" Role="Alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Alarma">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7169,6 +7271,23 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDAutomotorUso" ColumnName="IDAutomotorUso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alarma">
+            <EntityTypeMapping TypeName="CSBomberosModel.Alarma">
+              <MappingFragment StoreEntitySet="Alarma">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="AvisoDias" ColumnName="AvisoDias" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaTipo" ColumnName="FechaTipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDAlarma" ColumnName="IDAlarma" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

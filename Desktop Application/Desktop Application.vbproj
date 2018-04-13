@@ -149,6 +149,9 @@
     <Compile Include="..\..\..\..\..\..\Users\Tomas\Dropbox\Cardoner Sistemas\Framework\Visual Basic .NET\CS_String.vb">
       <Link>CS_String.vb</Link>
     </Compile>
+    <Compile Include="Alarma.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -269,6 +272,18 @@
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </Compile>
     <Compile Include="formAboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAlarma.designer.vb">
+      <DependentUpon>formAlarma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAlarma.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAlarmas.designer.vb">
+      <DependentUpon>formAlarmas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAlarmas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formArea.designer.vb">
@@ -770,6 +785,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAlarma.resx">
+      <DependentUpon>formAlarma.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAlarmas.resx">
+      <DependentUpon>formAlarmas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formArea.resx">
       <DependentUpon>formArea.vb</DependentUpon>

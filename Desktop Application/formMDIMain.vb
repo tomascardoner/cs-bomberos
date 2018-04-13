@@ -385,6 +385,21 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub Alarmas() Handles menuitemTablas_Alarmas.Click
+        If Permisos.VerificarPermiso(Permisos.ALARMA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAlarmas, Form))
+            formAlarmas.Show()
+            If formAlarmas.WindowState = FormWindowState.Minimized Then
+                formAlarmas.WindowState = FormWindowState.Normal
+            End If
+            formAlarmas.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
 #End Region
 
 #Region "Left Toolbar - Personas"

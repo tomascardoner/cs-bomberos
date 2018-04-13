@@ -58,13 +58,16 @@ Partial Class formMDIMain
         Me.menuitemTablas_NivelesCapacitacion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_TiposCapacitacion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_ConceptosCalificacion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SeparadorAutomotores = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemTablas_TiposAutomotor = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_UsosAutomotor = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SeparadorInventario = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemTablas_Rubros = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubRubros = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubUbicaciones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SeparadorUsuarios = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemTablas_GruposUsuario = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
@@ -73,9 +76,8 @@ Partial Class formMDIMain
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuitemTablas_SeparadorAutomotores = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemTablas_SeparadorInventario = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemTablas_SeparadorUsuarios = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuitemTablas_SeparadorAlarmas = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -235,7 +237,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_SeparadorAutomotores, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_SeparadorInventario, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_SeparadorUsuarios, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_SeparadorAutomotores, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_SeparadorInventario, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_SeparadorUsuarios, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_SeparadorAlarmas, Me.menuitemTablas_Alarmas})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -310,6 +312,11 @@ Partial Class formMDIMain
         Me.menuitemTablas_ConceptosCalificacion.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_ConceptosCalificacion.Text = "Conceptos de calificación"
         '
+        'menuitemTablas_SeparadorAutomotores
+        '
+        Me.menuitemTablas_SeparadorAutomotores.Name = "menuitemTablas_SeparadorAutomotores"
+        Me.menuitemTablas_SeparadorAutomotores.Size = New System.Drawing.Size(221, 6)
+        '
         'menuitemTablas_TiposAutomotor
         '
         Me.menuitemTablas_TiposAutomotor.Name = "menuitemTablas_TiposAutomotor"
@@ -321,6 +328,11 @@ Partial Class formMDIMain
         Me.menuitemTablas_UsosAutomotor.Name = "menuitemTablas_UsosAutomotor"
         Me.menuitemTablas_UsosAutomotor.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_UsosAutomotor.Text = "Usos de automotor"
+        '
+        'menuitemTablas_SeparadorInventario
+        '
+        Me.menuitemTablas_SeparadorInventario.Name = "menuitemTablas_SeparadorInventario"
+        Me.menuitemTablas_SeparadorInventario.Size = New System.Drawing.Size(221, 6)
         '
         'menuitemTablas_Rubros
         '
@@ -351,6 +363,11 @@ Partial Class formMDIMain
         Me.menuitemTablas_SubUbicaciones.Name = "menuitemTablas_SubUbicaciones"
         Me.menuitemTablas_SubUbicaciones.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_SubUbicaciones.Text = "Sub-ubicaciones"
+        '
+        'menuitemTablas_SeparadorUsuarios
+        '
+        Me.menuitemTablas_SeparadorUsuarios.Name = "menuitemTablas_SeparadorUsuarios"
+        Me.menuitemTablas_SeparadorUsuarios.Size = New System.Drawing.Size(221, 6)
         '
         'menuitemTablas_GruposUsuario
         '
@@ -417,20 +434,16 @@ Partial Class formMDIMain
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
         '
-        'menuitemTablas_SeparadorAutomotores
+        'menuitemTablas_SeparadorAlarmas
         '
-        Me.menuitemTablas_SeparadorAutomotores.Name = "menuitemTablas_SeparadorAutomotores"
-        Me.menuitemTablas_SeparadorAutomotores.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_SeparadorAlarmas.Name = "menuitemTablas_SeparadorAlarmas"
+        Me.menuitemTablas_SeparadorAlarmas.Size = New System.Drawing.Size(221, 6)
         '
-        'menuitemTablas_SeparadorInventario
+        'menuitemTablas_Alarmas
         '
-        Me.menuitemTablas_SeparadorInventario.Name = "menuitemTablas_SeparadorInventario"
-        Me.menuitemTablas_SeparadorInventario.Size = New System.Drawing.Size(221, 6)
-        '
-        'menuitemTablas_SeparadorUsuarios
-        '
-        Me.menuitemTablas_SeparadorUsuarios.Name = "menuitemTablas_SeparadorUsuarios"
-        Me.menuitemTablas_SeparadorUsuarios.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
+        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Alarmas.Text = "Alarmas"
         '
         'formMDIMain
         '
@@ -511,4 +524,6 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_SeparadorAutomotores As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemTablas_SeparadorInventario As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemTablas_SeparadorUsuarios As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuitemTablas_SeparadorAlarmas As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuitemTablas_Alarmas As System.Windows.Forms.ToolStripMenuItem
 End Class
