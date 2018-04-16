@@ -19,12 +19,12 @@
             ' Es Nuevo
             mPersonaActual = New Persona
             With mPersonaActual
-                .DomicilioParticularIDProvincia = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
-                .DomicilioParticularIDLocalidad = CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
-                .DomicilioParticularCodigoPostal = CS_Parameter.GetString(Parametros.DEFAULT_CODIGOPOSTAL)
-                .DomicilioLaboralIDProvincia = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
-                .DomicilioLaboralIDLocalidad = CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
-                .DomicilioLaboralCodigoPostal = CS_Parameter.GetString(Parametros.DEFAULT_CODIGOPOSTAL)
+                .DomicilioParticularIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
+                .DomicilioParticularIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
+                .DomicilioParticularCodigoPostal = CS_Parameter_System.GetString(Parametros.DEFAULT_CODIGOPOSTAL)
+                .DomicilioLaboralIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
+                .DomicilioLaboralIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
+                .DomicilioLaboralCodigoPostal = CS_Parameter_System.GetString(Parametros.DEFAULT_CODIGOPOSTAL)
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -527,8 +527,8 @@
             comboboxDomicilioParticularLocalidad.SelectedIndex = 0
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
-            If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -545,8 +545,8 @@
             comboboxDomicilioLaboralLocalidad.SelectedIndex = 0
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
-            If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -646,7 +646,7 @@
 
         ' Direcciones de Email
         If textboxEmailParticular.Text.Trim.Length > 0 Then
-            If Not CS_Email.IsValidEmail(textboxEmailParticular.Text.Trim, CS_Parameter.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
+            If Not CS_Email.IsValidEmail(textboxEmailParticular.Text.Trim, CS_Parameter_System.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
                 tabcontrolMain.SelectedTab = tabpageParticular
                 MsgBox("La dirección de E-mail Particular es incorrecta.", vbInformation, My.Application.Info.Title)
                 textboxEmailParticular.Focus()
@@ -654,7 +654,7 @@
             End If
         End If
         If textboxEmailLaboral.Text.Trim.Length > 0 Then
-            If Not CS_Email.IsValidEmail(textboxEmailLaboral.Text.Trim, CS_Parameter.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
+            If Not CS_Email.IsValidEmail(textboxEmailLaboral.Text.Trim, CS_Parameter_System.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
                 tabcontrolMain.SelectedTab = tabpageParticular
                 MsgBox("La dirección de E-mail Laboral es incorrecta.", vbInformation, My.Application.Info.Title)
                 textboxEmailLaboral.Focus()
@@ -1616,7 +1616,7 @@
                 Using dbContext As New CSBomberosContext(True)
                     Dim ReporteActual As New Reporte
 
-                    ReporteActual = dbContext.Reporte.Find(CS_Parameter.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_PLANILLAANUALCALIFICACIONES))
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_PLANILLAANUALCALIFICACIONES))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "Anio").Single.Valor = GridRowDataActual.Anio
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
@@ -1756,7 +1756,7 @@
     Private Sub MostrarCantidadHijos()
         Dim ParentescoIDHijo As Byte
 
-        ParentescoIDHijo = CS_Parameter.GetIntegerAsByte(Parametros.PARENTESCO_ID_HIJO)
+        ParentescoIDHijo = CS_Parameter_System.GetIntegerAsByte(Parametros.PARENTESCO_ID_HIJO)
 
         Using dbContext As New CSBomberosContext(True)
             textboxCantidadHijos.Text = dbContext.PersonaFamiliar.Where(Function(pf) pf.IDPersona = mPersonaActual.IDPersona AndAlso (Not pf.IDParentesco Is Nothing) AndAlso pf.IDParentesco.Value = ParentescoIDHijo).Count().ToString

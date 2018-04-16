@@ -176,7 +176,7 @@
             Exit Sub
         End If
         If CByte(maskedtextboxInstanciaNumero.Text) < 1 Or CByte(maskedtextboxInstanciaNumero.Text) > 20 Then
-            MsgBox(String.Format("El Número de Instancia debe ser estar entre 1 y {0}.", CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1)), MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox(String.Format("El Número de Instancia debe ser estar entre 1 y {0}.", CS_Parameter_System.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1)), MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxInstanciaNumero.Focus()
             Exit Sub
         End If

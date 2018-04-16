@@ -36,7 +36,7 @@ Module MiscFunctions
     End Sub
 
     Friend Sub UserLoggedIn()
-        LoadPermisos()
+        LoadUsuarioPermisosAndParametros()
 
         formMDIMain.menuitemDebug.Visible = (pUsuario.IDUsuario = 1)
 
@@ -65,15 +65,18 @@ Module MiscFunctions
         End Try
     End Function
 
-    Friend Function LoadPermisos() As Boolean
+    Friend Function LoadUsuarioPermisosAndParametros() As Boolean
         Try
             Using dbcontext As New CSBomberosContext(True)
                 pPermisos = dbcontext.UsuarioGrupoPermiso.ToList
+                pUsuarioParametros = dbcontext.UsuarioParametro.Where(Function(up) up.IDUsuario = pUsuario.IDUsuario).ToList
             End Using
             Return True
+
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al cargar los Permisos del Usuario.")
+            CS_Error.ProcessError(ex, "Error al cargar los Permisos y los Parámetros del Usuario.")
             Return False
+
         End Try
     End Function
 End Module

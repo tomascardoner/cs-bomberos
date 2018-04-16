@@ -71,13 +71,13 @@ Partial Class formMDIMain
         Me.menuitemTablas_GruposUsuario = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SeparadorAlarmas = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPersonas = New System.Windows.Forms.ToolStripButton()
         Me.buttonUnidades = New System.Windows.Forms.ToolStripButton()
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuitemTablas_SeparadorAlarmas = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -387,6 +387,17 @@ Partial Class formMDIMain
         Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(224, 22)
         Me.menuitemTablas_Permisos.Text = "Permisos"
         '
+        'menuitemTablas_SeparadorAlarmas
+        '
+        Me.menuitemTablas_SeparadorAlarmas.Name = "menuitemTablas_SeparadorAlarmas"
+        Me.menuitemTablas_SeparadorAlarmas.Size = New System.Drawing.Size(221, 6)
+        '
+        'menuitemTablas_Alarmas
+        '
+        Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
+        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Alarmas.Text = "Alarmas"
+        '
         'buttonPersonas
         '
         Me.buttonPersonas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PERSONAS_32
@@ -433,17 +444,6 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
-        '
-        'menuitemTablas_SeparadorAlarmas
-        '
-        Me.menuitemTablas_SeparadorAlarmas.Name = "menuitemTablas_SeparadorAlarmas"
-        Me.menuitemTablas_SeparadorAlarmas.Size = New System.Drawing.Size(221, 6)
-        '
-        'menuitemTablas_Alarmas
-        '
-        Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
-        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(224, 22)
-        Me.menuitemTablas_Alarmas.Text = "Alarmas"
         '
         'formMDIMain
         '

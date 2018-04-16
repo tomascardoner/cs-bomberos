@@ -82,7 +82,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        If CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1) < 10 Then
+        If CS_Parameter_System.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1) < 10 Then
             maskedtextboxInstanciaNumero.Mask = "9"
         Else
             maskedtextboxInstanciaNumero.Mask = "99"
@@ -217,7 +217,7 @@
             Exit Sub
         End If
         If CByte(maskedtextboxInstanciaNumero.Text) < 1 Or CByte(maskedtextboxInstanciaNumero.Text) > 20 Then
-            MsgBox(String.Format("El Número de Instancia debe ser estar entre 1 y {0}.", CS_Parameter.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1)), MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox(String.Format("El Número de Instancia debe ser estar entre 1 y {0}.", CS_Parameter_System.GetIntegerAsByte(Parametros.PERSONA_CALIFICACION_INSTANCIA_CANTIDAD, 1)), MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxInstanciaNumero.Focus()
             Exit Sub
         End If
@@ -235,7 +235,7 @@
 
                 ' Refresco la lista para mostrar los cambios
                 formPersona.Calificaciones_RefreshData(mlistPersonaCalificacion.First.Anio, mlistPersonaCalificacion.First.InstanciaNumero)
-                
+
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)

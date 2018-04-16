@@ -110,5 +110,6 @@ Partial Public Class Usuario
     Public Overridable Property NivelesEstudioModificados As ICollection(Of NivelEstudio) = New HashSet(Of NivelEstudio)
     Public Overridable Property AlarmasCreadas As ICollection(Of Alarma) = New HashSet(Of Alarma)
     Public Overridable Property AlarmasModificadas As ICollection(Of Alarma) = New HashSet(Of Alarma)
+    Public Overridable Property UsuarioParametros As ICollection(Of UsuarioParametro) = New HashSet(Of UsuarioParametro)
 
 End Class

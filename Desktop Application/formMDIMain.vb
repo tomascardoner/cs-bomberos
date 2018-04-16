@@ -51,12 +51,16 @@
 #End Region
 
 #Region "Menu Archivo"
-    Private Sub menuitemArchivo_Salir_Click() Handles menuitemArchivo_Salir.Click
-        Me.Close()
+    Private Sub Opciones() Handles menuitemArchivo_Opciones.Click
+        formOpciones.ShowDialog(Me)
     End Sub
 
     Private Sub UsuarioCerrarSesion() Handles menuitemArchivo_CerrarSesion.Click
         CerrarSesionUsuario()
+    End Sub
+
+    Private Sub ApplicacionSalir() Handles menuitemArchivo_Salir.Click
+        Me.Close()
     End Sub
 #End Region
 

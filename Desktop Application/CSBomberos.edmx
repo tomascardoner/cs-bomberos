@@ -823,6 +823,21 @@
           <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
           <Property Name="IDPermiso" Type="char" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="UsuarioParametro">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDUsuario" Type="smallint" Nullable="false" />
+          <Property Name="IDParametro" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Texto" Type="varchar(max)" />
+          <Property Name="NumeroEntero" Type="int" />
+          <Property Name="NumeroDecimal" Type="decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="money" />
+          <Property Name="FechaHora" Type="smalldatetime" />
+          <Property Name="SiNo" Type="bit" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
         <Association Name="FK__Area__Inventario">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
           <End Role="Inventario" Type="Self.Inventario" Multiplicity="*" />
@@ -2457,6 +2472,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__UsuarioParametro">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioParametro" Type="Self.UsuarioParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioParametro">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UsuarioGrupo__Usuario">
           <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -2532,6 +2559,7 @@
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioParametro" EntityType="Self.UsuarioParametro" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
@@ -3071,6 +3099,10 @@
           <AssociationSet Name="FK__Usuario__UsuarioGrupo__Modificacion" Association="Self.FK__Usuario__UsuarioGrupo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UsuarioParametro" Association="Self.FK__Usuario__UsuarioParametro">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioParametro" EntitySet="UsuarioParametro" />
           </AssociationSet>
           <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
@@ -3684,6 +3716,11 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Alarma" EntitySet="Alarma" />
           </AssociationSet>
+          <EntitySet Name="UsuarioParametro" EntityType="CSBomberosModel.UsuarioParametro" />
+          <AssociationSet Name="FK__Usuario__UsuarioParametro" Association="CSBomberosModel.FK__Usuario__UsuarioParametro">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioParametro" EntitySet="UsuarioParametro" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -3886,6 +3923,7 @@
           <NavigationProperty Name="NivelesEstudioModificados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
           <NavigationProperty Name="AlarmasCreadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Creacion" FromRole="Usuario" ToRole="Alarma" />
           <NavigationProperty Name="AlarmasModificadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Modificacion" FromRole="Usuario" ToRole="Alarma" />
+          <NavigationProperty Name="UsuarioParametros" Relationship="CSBomberosModel.FK__Usuario__UsuarioParametro" FromRole="Usuario" ToRole="UsuarioParametro" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -6435,6 +6473,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UsuarioParametro">
+          <Key>
+            <PropertyRef Name="IDUsuario" />
+            <PropertyRef Name="IDParametro" />
+          </Key>
+          <Property Name="IDUsuario" Type="Int16" Nullable="false" />
+          <Property Name="IDParametro" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Texto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroEntero" Type="Int32" />
+          <Property Name="NumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
+          <Property Name="Moneda" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="FechaHora" Type="DateTime" Precision="0" />
+          <Property Name="SiNo" Type="Boolean" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__UsuarioParametro" FromRole="UsuarioParametro" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Usuario__UsuarioParametro">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.UsuarioParametro" Role="UsuarioParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UsuarioParametro">
+              <PropertyRef Name="IDUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7288,6 +7354,21 @@
                 <ScalarProperty Name="FechaTipo" ColumnName="FechaTipo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDAlarma" ColumnName="IDAlarma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioParametro">
+            <EntityTypeMapping TypeName="CSBomberosModel.UsuarioParametro">
+              <MappingFragment StoreEntitySet="UsuarioParametro">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="SiNo" ColumnName="SiNo" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="NumeroDecimal" ColumnName="NumeroDecimal" />
+                <ScalarProperty Name="NumeroEntero" ColumnName="NumeroEntero" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="IDParametro" ColumnName="IDParametro" />
+                <ScalarProperty Name="IDUsuario" ColumnName="IDUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
