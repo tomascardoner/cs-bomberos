@@ -160,8 +160,8 @@
             .IDElemento = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxElemento.SelectedValue).Value
             .IDModoAdquisicion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxModoAdquisicion.SelectedValue)
 
-            .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, Short.MinValue)
-            .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, Short.MinValue)
+            .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
             If checkboxEsActivo.Checked Then

@@ -33,24 +33,24 @@ Partial Class formPersonaExamen
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.doubletextboxCalificacion = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.labelCalificacion = New System.Windows.Forms.Label()
+        Me.maskedtextboxInstanciaNumero = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxAnio = New System.Windows.Forms.MaskedTextBox()
+        Me.labelFecha = New System.Windows.Forms.Label()
+        Me.labelAnio = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.maskedtextboxInstanciaNumero = New System.Windows.Forms.MaskedTextBox()
-        Me.maskedtextboxAnio = New System.Windows.Forms.MaskedTextBox()
-        Me.labelFecha = New System.Windows.Forms.Label()
-        Me.labelAnio = New System.Windows.Forms.Label()
-        Me.labelCalificacion = New System.Windows.Forms.Label()
-        Me.doubletextboxCalificacion = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         CType(Me.doubletextboxCalificacion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelModificacion
@@ -166,6 +166,76 @@ Partial Class formPersonaExamen
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'doubletextboxCalificacion
+        '
+        Me.doubletextboxCalificacion.AllowNull = True
+        Me.doubletextboxCalificacion.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxCalificacion.BeforeTouchSize = New System.Drawing.Size(38, 20)
+        Me.doubletextboxCalificacion.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxCalificacion.DoubleValue = 0.0R
+        Me.doubletextboxCalificacion.Location = New System.Drawing.Point(128, 83)
+        Me.doubletextboxCalificacion.MaxValue = 10.0R
+        Me.doubletextboxCalificacion.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxCalificacion.MinValue = 0.0R
+        Me.doubletextboxCalificacion.Name = "doubletextboxCalificacion"
+        Me.doubletextboxCalificacion.NullString = ""
+        Me.doubletextboxCalificacion.NumberNegativePattern = 0
+        Me.doubletextboxCalificacion.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxCalificacion.Size = New System.Drawing.Size(38, 20)
+        Me.doubletextboxCalificacion.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxCalificacion.TabIndex = 10
+        Me.doubletextboxCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.doubletextboxCalificacion.WordWrap = False
+        '
+        'labelCalificacion
+        '
+        Me.labelCalificacion.AutoSize = True
+        Me.labelCalificacion.Location = New System.Drawing.Point(14, 88)
+        Me.labelCalificacion.Name = "labelCalificacion"
+        Me.labelCalificacion.Size = New System.Drawing.Size(64, 13)
+        Me.labelCalificacion.TabIndex = 8
+        Me.labelCalificacion.Text = "Calificación:"
+        '
+        'maskedtextboxInstanciaNumero
+        '
+        Me.maskedtextboxInstanciaNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxInstanciaNumero.Location = New System.Drawing.Point(128, 47)
+        Me.maskedtextboxInstanciaNumero.Mask = "99"
+        Me.maskedtextboxInstanciaNumero.Name = "maskedtextboxInstanciaNumero"
+        Me.maskedtextboxInstanciaNumero.Size = New System.Drawing.Size(26, 20)
+        Me.maskedtextboxInstanciaNumero.TabIndex = 7
+        Me.maskedtextboxInstanciaNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.maskedtextboxInstanciaNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxAnio
+        '
+        Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxAnio.Location = New System.Drawing.Point(128, 16)
+        Me.maskedtextboxAnio.Mask = "9999"
+        Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
+        Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
+        Me.maskedtextboxAnio.TabIndex = 5
+        Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'labelFecha
+        '
+        Me.labelFecha.AutoSize = True
+        Me.labelFecha.Location = New System.Drawing.Point(14, 50)
+        Me.labelFecha.Name = "labelFecha"
+        Me.labelFecha.Size = New System.Drawing.Size(108, 13)
+        Me.labelFecha.TabIndex = 6
+        Me.labelFecha.Text = "Número de Instancia:"
+        '
+        'labelAnio
+        '
+        Me.labelAnio.AutoSize = True
+        Me.labelAnio.Location = New System.Drawing.Point(14, 19)
+        Me.labelAnio.Name = "labelAnio"
+        Me.labelAnio.Size = New System.Drawing.Size(29, 13)
+        Me.labelAnio.TabIndex = 4
+        Me.labelAnio.Text = "Año:"
+        '
         'tabpageNotasAuditoria
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
@@ -220,77 +290,6 @@ Partial Class formPersonaExamen
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'maskedtextboxInstanciaNumero
-        '
-        Me.maskedtextboxInstanciaNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxInstanciaNumero.Location = New System.Drawing.Point(128, 47)
-        Me.maskedtextboxInstanciaNumero.Mask = "99"
-        Me.maskedtextboxInstanciaNumero.Name = "maskedtextboxInstanciaNumero"
-        Me.maskedtextboxInstanciaNumero.Size = New System.Drawing.Size(26, 20)
-        Me.maskedtextboxInstanciaNumero.TabIndex = 7
-        Me.maskedtextboxInstanciaNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.maskedtextboxInstanciaNumero.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'maskedtextboxAnio
-        '
-        Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxAnio.Location = New System.Drawing.Point(128, 16)
-        Me.maskedtextboxAnio.Mask = "9999"
-        Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
-        Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
-        Me.maskedtextboxAnio.TabIndex = 5
-        Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'labelFecha
-        '
-        Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(14, 50)
-        Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(108, 13)
-        Me.labelFecha.TabIndex = 6
-        Me.labelFecha.Text = "Número de Instancia:"
-        '
-        'labelAnio
-        '
-        Me.labelAnio.AutoSize = True
-        Me.labelAnio.Location = New System.Drawing.Point(14, 19)
-        Me.labelAnio.Name = "labelAnio"
-        Me.labelAnio.Size = New System.Drawing.Size(29, 13)
-        Me.labelAnio.TabIndex = 4
-        Me.labelAnio.Text = "Año:"
-        '
-        'labelCalificacion
-        '
-        Me.labelCalificacion.AutoSize = True
-        Me.labelCalificacion.Location = New System.Drawing.Point(14, 88)
-        Me.labelCalificacion.Name = "labelCalificacion"
-        Me.labelCalificacion.Size = New System.Drawing.Size(64, 13)
-        Me.labelCalificacion.TabIndex = 8
-        Me.labelCalificacion.Text = "Calificación:"
-        '
-        'doubletextboxCalificacion
-        '
-        Me.doubletextboxCalificacion.AllowNull = True
-        Me.doubletextboxCalificacion.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxCalificacion.BeforeTouchSize = New System.Drawing.Size(38, 20)
-        Me.doubletextboxCalificacion.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxCalificacion.DoubleValue = 0.0R
-        Me.doubletextboxCalificacion.Location = New System.Drawing.Point(128, 83)
-        Me.doubletextboxCalificacion.MaxValue = 10.0R
-        Me.doubletextboxCalificacion.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxCalificacion.MinValue = 0.0R
-        Me.doubletextboxCalificacion.Name = "doubletextboxCalificacion"
-        Me.doubletextboxCalificacion.NullString = ""
-        Me.doubletextboxCalificacion.NumberDecimalDigits = 1
-        Me.doubletextboxCalificacion.NumberNegativePattern = 0
-        Me.doubletextboxCalificacion.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxCalificacion.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxCalificacion.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxCalificacion.TabIndex = 10
-        Me.doubletextboxCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.doubletextboxCalificacion.WordWrap = False
-        '
         'formPersonaExamen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -310,9 +309,9 @@ Partial Class formPersonaExamen
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.doubletextboxCalificacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.doubletextboxCalificacion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

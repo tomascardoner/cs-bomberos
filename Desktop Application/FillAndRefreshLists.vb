@@ -454,7 +454,7 @@
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Ubicacion
-            Item_NoEspecifica.IDUbicacion = Short.MinValue
+            Item_NoEspecifica.IDUbicacion = FIELD_VALUE_NOTSPECIFIED_SHORT
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If

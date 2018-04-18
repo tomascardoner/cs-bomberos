@@ -46,6 +46,7 @@
           <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="MarcaModelo" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="NumeroMarcaModelo" Type="varchar" MaxLength="109" StoreGeneratedPattern="Computed" />
+          <Property Name="EsImportado" Type="bit" />
           <Property Name="Anio" Type="smallint" Nullable="false" />
           <Property Name="NumeroMotor" Type="varchar" MaxLength="20" />
           <Property Name="NumeroChasis" Type="varchar" MaxLength="20" />
@@ -4735,16 +4736,21 @@
           <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MarcaModelo" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="NumeroMarcaModelo" Type="String" MaxLength="109" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="EsImportado" Type="Boolean" />
           <Property Name="Anio" Type="Int16" Nullable="false" />
-          <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
-          <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
+          <Property Name="NumeroMotor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NumeroChasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
+          <Property Name="IDAutomotorUso" Type="Byte" Nullable="false" />
           <Property Name="IDCombustibleTipo" Type="Byte" />
+          <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
           <Property Name="KilometrajeInicial" Type="Int32" />
           <Property Name="CapacidadAguaLitros" Type="Int32" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
-          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="EsPropio" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -4755,10 +4761,6 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Automotor__Creacion" FromRole="Automotor" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Automotor__Modificacion" FromRole="Automotor" ToRole="Usuario" />
           <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Automotor__Ubicacion" FromRole="Automotor" ToRole="Ubicacion" />
-          <Property Name="NumeroMotor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="NumeroChasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="IDAutomotorUso" Type="Byte" Nullable="false" />
-          <Property Name="EsPropio" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AutomotorUso" Relationship="CSBomberosModel.FK__AutomotorUso__Automotor" FromRole="Automotor" ToRole="AutomotorUso" />
         </EntityType>
         <EntityType Name="AutomotorTipo">
@@ -6934,6 +6936,7 @@
           <EntitySetMapping Name="Automotor">
             <EntityTypeMapping TypeName="CSBomberosModel.Automotor">
               <MappingFragment StoreEntitySet="Automotor">
+                <ScalarProperty Name="EsImportado" ColumnName="EsImportado" />
                 <ScalarProperty Name="EsPropio" ColumnName="EsPropio" />
                 <ScalarProperty Name="IDAutomotorUso" ColumnName="IDAutomotorUso" />
                 <ScalarProperty Name="NumeroChasis" ColumnName="NumeroChasis" />

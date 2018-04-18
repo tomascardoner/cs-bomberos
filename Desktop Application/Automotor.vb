@@ -17,24 +17,25 @@ Partial Public Class Automotor
     Public Property Modelo As String
     Public Property MarcaModelo As String
     Public Property NumeroMarcaModelo As String
+    Public Property EsImportado As Nullable(Of Boolean)
     Public Property Anio As Short
-    Public Property IDAutomotorTipo As Byte
-    Public Property FechaAdquisicion As Nullable(Of Date)
+    Public Property NumeroMotor As String
+    Public Property NumeroChasis As String
     Public Property Dominio As String
+    Public Property IDAutomotorTipo As Byte
+    Public Property IDAutomotorUso As Byte
     Public Property IDCombustibleTipo As Nullable(Of Byte)
+    Public Property FechaAdquisicion As Nullable(Of Date)
     Public Property KilometrajeInicial As Nullable(Of Integer)
     Public Property CapacidadAguaLitros As Nullable(Of Integer)
     Public Property IDCuartel As Byte
-    Public Property EsActivo As Boolean
+    Public Property EsPropio As Boolean
     Public Property Notas As String
+    Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property NumeroMotor As String
-    Public Property NumeroChasis As String
-    Public Property IDAutomotorUso As Byte
-    Public Property EsPropio As Boolean
 
     Public Overridable Property AutomotorTipo As AutomotorTipo
     Public Overridable Property CombustibleTipo As CombustibleTipo

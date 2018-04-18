@@ -54,6 +54,7 @@
         buttonNumeroSiguiente.Visible = (mEditMode And mAutomotorActual.IDAutomotor = 0)
         textboxMarca.ReadOnly = Not mEditMode
         textboxModelo.ReadOnly = Not mEditMode
+        checkboxEsImportado.Enabled = mEditMode
         maskedtextboxAnio.ReadOnly = Not mEditMode
         textboxNumeroMotor.ReadOnly = Not mEditMode
         textboxNumeroChasis.ReadOnly = Not mEditMode
@@ -104,6 +105,7 @@
             End If
             textboxMarca.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Marca)
             textboxModelo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Modelo)
+            checkboxEsImportado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsImportado)
             textboxNumeroMotor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroMotor)
             textboxNumeroChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroChasis)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
@@ -144,6 +146,7 @@
             .Numero = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxNumero.Text).Value
             .Marca = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMarca.Text)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
+            .EsImportado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsImportado.CheckState)
             .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxAnio.Text).Value
             .NumeroMotor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroMotor.Text)
             .NumeroChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroChasis.Text)
