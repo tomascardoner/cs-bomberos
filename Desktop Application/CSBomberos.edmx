@@ -6130,7 +6130,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Persona__PersonaLicenciaConducirCategoria">
-          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="CSBomberosModel.PersonaLicenciaConducirCategoria" Role="PersonaLicenciaConducirCategoria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
