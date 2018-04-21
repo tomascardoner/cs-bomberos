@@ -384,7 +384,7 @@
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
                 PersonaActual = dbcMaxID.Persona.Find(mPersonaFamiliarActual.IDPersona)
-                If PersonaActual.PersonaAltasBajas.Count = 0 Then
+                If PersonaActual.PersonaFamiliares.Count = 0 Then
                     mPersonaFamiliarActual.IDFamiliar = 1
                 Else
                     mPersonaFamiliarActual.IDFamiliar = PersonaActual.PersonaFamiliares.Max(Function(pf) pf.IDFamiliar) + CByte(1)
