@@ -127,9 +127,6 @@
         <AssociationConnector Association="CSBomberosModel.FK__ModoAdquisicion__Inventario" />
         <AssociationConnector Association="CSBomberosModel.FK__SubUbicacion__Inventario" />
         <AssociationConnector Association="CSBomberosModel.FK__Ubicacion__Inventario" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaCambioUnidad" Width="1.5" PointX="23.875" PointY="81.125" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" />
         <AssociationConnector Association="CSBomberosModel.FK__Rubro__Elemento" />
         <AssociationConnector Association="CSBomberosModel.FK__SubRubro__Elemento" />
         <EntityTypeShape EntityType="CSBomberosModel.CapacitacionNivel" Width="1.5" PointX="15.875" PointY="59.5" />
@@ -164,7 +161,6 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Localidad__PersonaCapacitacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Localidad__PersonaFamiliar" />
-        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCambioUnidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCapacitacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaExamen" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaLicencia" />

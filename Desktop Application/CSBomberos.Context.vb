@@ -57,7 +57,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property Rubro() As DbSet(Of Rubro)
     Public Overridable Property SubRubro() As DbSet(Of SubRubro)
     Public Overridable Property Inventario() As DbSet(Of Inventario)
-    Public Overridable Property PersonaCambioUnidad() As DbSet(Of PersonaCambioUnidad)
     Public Overridable Property CapacitacionNivel() As DbSet(Of CapacitacionNivel)
     Public Overridable Property CapacitacionTipo() As DbSet(Of CapacitacionTipo)
     Public Overridable Property Curso() As DbSet(Of Curso)

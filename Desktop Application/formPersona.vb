@@ -82,6 +82,8 @@
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
         comboboxFactorRH.Enabled = mEditMode
+        doubletextboxAltura.ReadOnly = (mEditMode = False)
+        integertextboxPeso.ReadOnly = (mEditMode = False)
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
@@ -224,6 +226,8 @@
             CS_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
             CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
+            doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
+            integertextboxPeso.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Peso)
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -324,6 +328,8 @@
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
+            .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
+            .Peso = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxPeso.Text)
             Select Case comboboxIOMATiene.SelectedIndex
                 Case 0
                     .IOMATiene = Nothing
@@ -1623,6 +1629,8 @@
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
                         End If
+                    Else
+                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     End If
                 End Using
 

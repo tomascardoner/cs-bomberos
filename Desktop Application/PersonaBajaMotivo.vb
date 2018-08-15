@@ -19,6 +19,7 @@ Partial Public Class PersonaBajaMotivo
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property EspecificaDestino As Boolean
 
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario

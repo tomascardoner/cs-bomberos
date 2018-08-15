@@ -3,17 +3,20 @@
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaAltaBajaActual As PersonaAltaBaja
+    Private mPersonaBajaMotivo As PersonaBajaMotivo
 
+    Private mIsNew As Boolean
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDAltaBaja As Byte)
+        mIsNew = (IDAltaBaja = 0)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDAltaBaja = 0 Then
+        If mIsNew Then
             ' Es Nuevo
             mPersonaAltaBajaActual = New PersonaAltaBaja
             With mPersonaAltaBajaActual
@@ -61,6 +64,7 @@
         textboxBajaFolioNumero.ReadOnly = Not mEditMode
         textboxBajaActaNumero.ReadOnly = Not mEditMode
         comboboxBajaMotivo.Enabled = mEditMode
+        textboxBajaUnidadDestino.ReadOnly = Not mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
@@ -80,6 +84,7 @@
         mdbContext.Dispose()
         mdbContext = Nothing
         mPersonaAltaBajaActual = Nothing
+        mPersonaBajaMotivo = Nothing
         Me.Dispose()
     End Sub
 #End Region
@@ -97,6 +102,11 @@
             textboxBajaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaFolioNumero)
             textboxBajaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaActaNumero)
             CS_ComboBox.SetSelectedValue(comboboxBajaMotivo, SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
+            If (Not mPersonaBajaMotivo Is Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
+                textboxBajaUnidadDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaUnidadDestino)
+            Else
+                textboxBajaUnidadDestino.Text = ""
+            End If
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -132,6 +142,11 @@
             .BajaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaFolioNumero.Text)
             .BajaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaActaNumero.Text)
             .IDPersonaBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxBajaMotivo.SelectedValue)
+            If (Not mPersonaBajaMotivo Is Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
+                .BajaUnidadDestino = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaUnidadDestino.Text)
+            Else
+                .BajaUnidadDestino = Nothing
+            End If
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
@@ -156,8 +171,17 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAltaLibroNumero.GotFocus, textboxAltaFolioNumero.GotFocus, textboxAltaActaNumero.GotFocus, textboxBajaLibroNumero.GotFocus, textboxBajaFolioNumero.GotFocus, textboxBajaActaNumero.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAltaLibroNumero.GotFocus, textboxAltaFolioNumero.GotFocus, textboxAltaActaNumero.GotFocus, textboxBajaLibroNumero.GotFocus, textboxBajaFolioNumero.GotFocus, textboxBajaActaNumero.GotFocus, textboxBajaUnidadDestino.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
+    End Sub
+
+    Private Sub comboboxBajaMotivo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboboxBajaMotivo.SelectedIndexChanged
+        If Not comboboxBajaMotivo.SelectedItem Is Nothing Then
+            mPersonaBajaMotivo = CType(comboboxBajaMotivo.SelectedItem, PersonaBajaMotivo)
+
+            labelBajaUnidadDestino.Visible = mPersonaBajaMotivo.EspecificaDestino
+            textboxBajaUnidadDestino.Visible = mPersonaBajaMotivo.EspecificaDestino
+        End If
     End Sub
 #End Region
 

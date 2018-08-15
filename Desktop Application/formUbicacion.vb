@@ -89,7 +89,7 @@
         With mUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            CS_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotor)
+            CS_ComboBox.SetSelectedValue(comboboxAutomotor, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotor, FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

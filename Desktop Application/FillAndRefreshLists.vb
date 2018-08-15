@@ -554,13 +554,13 @@
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Automotor
-            Item_NoEspecifica.IDAutomotor = Short.MinValue
+            Item_NoEspecifica.IDAutomotor = FIELD_VALUE_NOTSPECIFIED_SHORT
             Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New Automotor
-            Item_Todos.IDAutomotor = 0
+            Item_Todos.IDAutomotor = FIELD_VALUE_ALL_SHORT
             Item_Todos.NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If

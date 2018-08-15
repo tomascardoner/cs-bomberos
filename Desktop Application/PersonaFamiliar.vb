@@ -44,6 +44,7 @@ Partial Public Class PersonaFamiliar
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property ACargo As Boolean
 
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario

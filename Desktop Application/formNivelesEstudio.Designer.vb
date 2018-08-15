@@ -187,7 +187,7 @@ Partial Class formNivelesEstudio
         Me.KeyPreview = True
         Me.Name = "formNivelesEstudio"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "NivelesEstudio"
+        Me.Text = "Niveles de Estudio"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()

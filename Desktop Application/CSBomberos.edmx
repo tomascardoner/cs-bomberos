@@ -327,6 +327,7 @@
           </Key>
           <Property Name="IDNivelEstudio" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IncluyeSecundario" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -392,6 +393,8 @@
           <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="GrupoSanguineo" Type="char" MaxLength="2" />
           <Property Name="FactorRH" Type="char" MaxLength="1" />
+          <Property Name="Altura" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="Peso" Type="tinyint" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="IDNivelEstudio" Type="tinyint" />
@@ -463,6 +466,7 @@
           <Property Name="AltaActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFecha" Type="date" />
           <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
+          <Property Name="BajaUnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="BajaLibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaActaNumero" Type="varchar" MaxLength="10" />
@@ -498,6 +502,7 @@
           </Key>
           <Property Name="IDPersonaBajaMotivo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="EspecificaDestino" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -517,26 +522,6 @@
           <Property Name="InstanciaNumero" Type="tinyint" Nullable="false" />
           <Property Name="IDCalificacionConcepto" Type="tinyint" Nullable="false" />
           <Property Name="Calificacion" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="PersonaCambioUnidad">
-          <Key>
-            <PropertyRef Name="IDPersona" />
-            <PropertyRef Name="IDCambioUnidad" />
-          </Key>
-          <Property Name="IDPersona" Type="int" Nullable="false" />
-          <Property Name="IDCambioUnidad" Type="tinyint" Nullable="false" />
-          <Property Name="FechaAlta" Type="date" Nullable="false" />
-          <Property Name="UnidadOrigen" Type="varchar" MaxLength="50" />
-          <Property Name="FechaBaja" Type="date" />
-          <Property Name="UnidadDestino" Type="varchar" MaxLength="50" />
-          <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
-          <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
-          <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -601,6 +586,7 @@
           <Property Name="FactorRH" Type="char" MaxLength="1" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
+          <Property Name="ACargo" Type="bit" Nullable="false" />
           <Property Name="Vive" Type="bit" />
           <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
@@ -1261,18 +1247,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Persona__PersonaCambioUnidad">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
-          <End Role="PersonaCambioUnidad" Type="Self.PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="IDPersona" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Persona__PersonaCapacitacion">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
           <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
@@ -1322,7 +1296,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Persona__PersonaLicenciaConducirCategoria">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PersonaLicenciaConducirCategoria" Type="Self.PersonaLicenciaConducirCategoria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -2149,30 +2125,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__PersonaCambioOrigen__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="PersonaCambioUnidad" Type="Self.PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__PersonaCambioOrigen__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="PersonaCambioUnidad" Type="Self.PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Usuario__PersonaCapacitacion__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
@@ -2541,7 +2493,6 @@
           <EntitySet Name="PersonaAscenso" EntityType="Self.PersonaAscenso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaBajaMotivo" EntityType="Self.PersonaBajaMotivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaCalificacion" EntityType="Self.PersonaCalificacion" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PersonaCambioUnidad" EntityType="Self.PersonaCambioUnidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaCapacitacion" EntityType="Self.PersonaCapacitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaExamen" EntityType="Self.PersonaExamen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaFamiliar" EntityType="Self.PersonaFamiliar" Schema="dbo" store:Type="Tables" />
@@ -2696,10 +2647,6 @@
           <AssociationSet Name="FK__Persona__PersonaCalificacion" Association="Self.FK__Persona__PersonaCalificacion">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaCalificacion" EntitySet="PersonaCalificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Persona__PersonaCambioUnidad" Association="Self.FK__Persona__PersonaCambioUnidad">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaCapacitacion" Association="Self.FK__Persona__PersonaCapacitacion">
             <End Role="Persona" EntitySet="Persona" />
@@ -2992,14 +2939,6 @@
           <AssociationSet Name="FK__Usuario__PersonaCalificacion__Modificacion" Association="Self.FK__Usuario__PersonaCalificacion__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaCalificacion" EntitySet="PersonaCalificacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__PersonaCambioOrigen__Creacion" Association="Self.FK__Usuario__PersonaCambioOrigen__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__PersonaCambioOrigen__Modificacion" Association="Self.FK__Usuario__PersonaCambioOrigen__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__PersonaCapacitacion__Creacion" Association="Self.FK__Usuario__PersonaCapacitacion__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3486,15 +3425,6 @@
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
-          <EntitySet Name="PersonaCambioUnidad" EntityType="CSBomberosModel.PersonaCambioUnidad" />
-          <AssociationSet Name="FK__Usuario__PersonaCambioOrigen__Creacion1" Association="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__PersonaCambioOrigen__Modificacion1" Association="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
-          </AssociationSet>
           <AssociationSet Name="FK__Rubro__Elemento" Association="CSBomberosModel.FK__Rubro__Elemento">
             <End Role="Rubro" EntitySet="Rubro" />
             <End Role="Elemento" EntitySet="Elemento" />
@@ -3594,10 +3524,6 @@
           <AssociationSet Name="FK__Localidad__PersonaFamiliar" Association="CSBomberosModel.FK__Localidad__PersonaFamiliar">
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Persona__PersonaCambioUnidad" Association="CSBomberosModel.FK__Persona__PersonaCambioUnidad">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="PersonaCambioUnidad" EntitySet="PersonaCambioUnidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaCapacitacion" Association="CSBomberosModel.FK__Persona__PersonaCapacitacion">
             <End Role="Persona" EntitySet="Persona" />
@@ -3891,8 +3817,6 @@
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario1" ToRole="Usuario" />
           <NavigationProperty Name="UsuariosGruposCreados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="UsuariosGruposModificados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
-          <NavigationProperty Name="PersonaCambioUnidad" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
-          <NavigationProperty Name="PersonaCambioUnidad1" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="Usuario" ToRole="PersonaCambioUnidad" />
           <NavigationProperty Name="CapacitacionNivel" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
           <NavigationProperty Name="CapacitacionNivel1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
           <NavigationProperty Name="CapacitacionTipo" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
@@ -4141,13 +4065,14 @@
           <NavigationProperty Name="PersonaAltasBajas" Relationship="CSBomberosModel.FK__Persona__PersonaAltaBaja" FromRole="Persona" ToRole="PersonaAltaBaja" />
           <NavigationProperty Name="PersonaAscensos" Relationship="CSBomberosModel.FK__Persona__PersonaAscenso" FromRole="Persona" ToRole="PersonaAscenso" />
           <NavigationProperty Name="PersonaCalificaciones" Relationship="CSBomberosModel.FK__Persona__PersonaCalificacion" FromRole="Persona" ToRole="PersonaCalificacion" />
-          <NavigationProperty Name="PersonaCambiosUnidad" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="Persona" ToRole="PersonaCambioUnidad" />
           <NavigationProperty Name="PersonaCapacitaciones" Relationship="CSBomberosModel.FK__Persona__PersonaCapacitacion" FromRole="Persona" ToRole="PersonaCapacitacion" />
           <NavigationProperty Name="PersonaExamenes" Relationship="CSBomberosModel.FK__Persona__PersonaExamen" FromRole="Persona" ToRole="PersonaExamen" />
           <NavigationProperty Name="PersonaLicencias" Relationship="CSBomberosModel.FK__Persona__PersonaLicencia" FromRole="Persona" ToRole="PersonaLicencia" />
           <NavigationProperty Name="PersonaLicenciaConducirCategorias" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
           <NavigationProperty Name="PersonaSanciones" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
           <NavigationProperty Name="PersonaSancionesSolicitadas" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
+          <Property Name="Altura" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="Peso" Type="Byte" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -4283,6 +4208,7 @@
           <NavigationProperty Name="Parentesco" Relationship="CSBomberosModel.FK__Parentesco__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Parentesco" />
           <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="DocumentoTipo" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Localidad" />
+          <Property Name="ACargo" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__Persona__PersonaParentesco1">
           <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
@@ -4460,6 +4386,7 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="NivelEstudio" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="NivelEstudio" ToRole="Usuario" />
+          <Property Name="IncluyeSecundario" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonaAccidente">
           <Key>
@@ -4510,6 +4437,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
           <NavigationProperty Name="PersonaBajaMotivo" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaAltaBaja" ToRole="PersonaBajaMotivo" />
+          <Property Name="BajaUnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PersonaAscenso">
           <Key>
@@ -5535,53 +5463,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="PersonaCambioUnidad">
-          <Key>
-            <PropertyRef Name="IDPersona" />
-            <PropertyRef Name="IDCambioUnidad" />
-          </Key>
-          <Property Name="IDPersona" Type="Int32" Nullable="false" />
-          <Property Name="IDCambioUnidad" Type="Byte" Nullable="false" />
-          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="UnidadOrigen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaBaja" Type="DateTime" Precision="0" />
-          <Property Name="UnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Creacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCambioOrigen__Modificacion1" FromRole="PersonaCambioUnidad" ToRole="Usuario" />
-          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaCambioUnidad" FromRole="PersonaCambioUnidad" ToRole="Persona" />
-        </EntityType>
-        <Association Name="FK__Usuario__PersonaCambioOrigen__Creacion1">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.PersonaCambioUnidad" Role="PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__PersonaCambioOrigen__Modificacion1">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.PersonaCambioUnidad" Role="PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Rubro__Elemento">
           <End Type="CSBomberosModel.Rubro" Role="Rubro" Multiplicity="0..1" />
           <End Type="CSBomberosModel.Elemento" Role="Elemento" Multiplicity="*" />
@@ -5704,6 +5585,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
           <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaBajaMotivo" ToRole="PersonaAltaBaja" />
+          <Property Name="EspecificaDestino" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonaCapacitacion">
           <Key>
@@ -6078,18 +5960,6 @@
             <Dependent Role="PersonaFamiliar">
               <PropertyRef Name="DomicilioIDProvincia" />
               <PropertyRef Name="DomicilioIDLocalidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Persona__PersonaCambioUnidad">
-          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="CSBomberosModel.PersonaCambioUnidad" Role="PersonaCambioUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="IDPersona" />
-            </Principal>
-            <Dependent Role="PersonaCambioUnidad">
-              <PropertyRef Name="IDPersona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6687,6 +6557,8 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
                 <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
                 <ScalarProperty Name="IOMATiene" ColumnName="IOMATiene" />
@@ -6743,6 +6615,7 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="ACargo" ColumnName="ACargo" />
                 <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
                 <ScalarProperty Name="IOMATiene" ColumnName="IOMATiene" />
                 <ScalarProperty Name="FactorRH" ColumnName="FactorRH" />
@@ -6845,6 +6718,7 @@
           <EntitySetMapping Name="NivelEstudio">
             <EntityTypeMapping TypeName="CSBomberosModel.NivelEstudio">
               <MappingFragment StoreEntitySet="NivelEstudio">
+                <ScalarProperty Name="IncluyeSecundario" ColumnName="IncluyeSecundario" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -6880,6 +6754,7 @@
           <EntitySetMapping Name="PersonaAltaBaja">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAltaBaja">
               <MappingFragment StoreEntitySet="PersonaAltaBaja">
+                <ScalarProperty Name="BajaUnidadDestino" ColumnName="BajaUnidadDestino" />
                 <ScalarProperty Name="IDPersonaBajaMotivo" ColumnName="IDPersonaBajaMotivo" />
                 <ScalarProperty Name="BajaActaNumero" ColumnName="BajaActaNumero" />
                 <ScalarProperty Name="BajaFolioNumero" ColumnName="BajaFolioNumero" />
@@ -7120,26 +6995,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PersonaCambioUnidad">
-            <EntityTypeMapping TypeName="CSBomberosModel.PersonaCambioUnidad">
-              <MappingFragment StoreEntitySet="PersonaCambioUnidad">
-                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
-                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
-                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
-                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
-                <ScalarProperty Name="Notas" ColumnName="Notas" />
-                <ScalarProperty Name="ActaNumero" ColumnName="ActaNumero" />
-                <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
-                <ScalarProperty Name="LibroNumero" ColumnName="LibroNumero" />
-                <ScalarProperty Name="UnidadDestino" ColumnName="UnidadDestino" />
-                <ScalarProperty Name="FechaBaja" ColumnName="FechaBaja" />
-                <ScalarProperty Name="UnidadOrigen" ColumnName="UnidadOrigen" />
-                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
-                <ScalarProperty Name="IDCambioUnidad" ColumnName="IDCambioUnidad" />
-                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CapacitacionNivel">
             <EntityTypeMapping TypeName="CSBomberosModel.CapacitacionNivel">
               <MappingFragment StoreEntitySet="CapacitacionNivel">
@@ -7216,6 +7071,7 @@
           <EntitySetMapping Name="PersonaBajaMotivo">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaBajaMotivo">
               <MappingFragment StoreEntitySet="PersonaBajaMotivo">
+                <ScalarProperty Name="EspecificaDestino" ColumnName="EspecificaDestino" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

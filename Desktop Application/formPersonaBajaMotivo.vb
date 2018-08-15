@@ -50,6 +50,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = Not mEditMode
+        checkboxEspecificaDestino.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -75,6 +76,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaBajaMotivoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            checkboxEspecificaDestino.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EspecificaDestino)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -102,6 +104,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mPersonaBajaMotivoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .EspecificaDestino = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEspecificaDestino.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)

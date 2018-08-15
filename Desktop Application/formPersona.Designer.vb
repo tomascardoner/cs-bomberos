@@ -80,6 +80,8 @@ Partial Class formPersona
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim labelAltura As System.Windows.Forms.Label
+        Dim labelPeso As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -205,6 +207,7 @@ Partial Class formPersona
         Me.buttonCalificaciones_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificaciones_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCalificaciones_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonCalificaciones_Imprimir = New System.Windows.Forms.ToolStripButton()
         Me.tabpageExamenes = New System.Windows.Forms.TabPage()
         Me.datagridviewExamenes = New System.Windows.Forms.DataGridView()
         Me.columnExamenes_AnioInstancia = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -222,7 +225,8 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.buttonCalificaciones_Imprimir = New System.Windows.Forms.ToolStripButton()
+        Me.integertextboxPeso = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
+        Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -270,6 +274,8 @@ Partial Class formPersona
         labelNotas = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelAltura = New System.Windows.Forms.Label()
+        labelPeso = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -302,6 +308,8 @@ Partial Class formPersona
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripExamenes.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelApellido
@@ -347,19 +355,19 @@ Partial Class formPersona
         'labelCargoJerarquiaActual
         '
         labelCargoJerarquiaActual.AutoSize = True
-        labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 354)
+        labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 380)
         labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
         labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
-        labelCargoJerarquiaActual.TabIndex = 33
+        labelCargoJerarquiaActual.TabIndex = 37
         labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
         '
         'labelIOMANumeroAfiliado
         '
         labelIOMANumeroAfiliado.AutoSize = True
-        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 182)
+        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 208)
         labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
         labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
-        labelIOMANumeroAfiliado.TabIndex = 21
+        labelIOMANumeroAfiliado.TabIndex = 25
         labelIOMANumeroAfiliado.Text = "Nº de afiliado:"
         Me.tooltipMain.SetToolTip(labelIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
@@ -386,28 +394,28 @@ Partial Class formPersona
         'labelIOMATiene
         '
         labelIOMATiene.AutoSize = True
-        labelIOMATiene.Location = New System.Drawing.Point(6, 182)
+        labelIOMATiene.Location = New System.Drawing.Point(6, 208)
         labelIOMATiene.Name = "labelIOMATiene"
         labelIOMATiene.Size = New System.Drawing.Size(97, 13)
-        labelIOMATiene.TabIndex = 19
+        labelIOMATiene.TabIndex = 23
         labelIOMATiene.Text = "Tiene I.O.M.A. por:"
         '
         'labelCantidadHijos
         '
         labelCantidadHijos.AutoSize = True
-        labelCantidadHijos.Location = New System.Drawing.Point(6, 326)
+        labelCantidadHijos.Location = New System.Drawing.Point(6, 352)
         labelCantidadHijos.Name = "labelCantidadHijos"
         labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 31
+        labelCantidadHijos.TabIndex = 35
         labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'labelNivelEstudio
         '
         labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 216)
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 242)
         labelNivelEstudio.Name = "labelNivelEstudio"
         labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 23
+        labelNivelEstudio.TabIndex = 27
         labelNivelEstudio.Text = "Nivel de estudios:"
         '
         'labelFactorRH
@@ -459,28 +467,28 @@ Partial Class formPersona
         'labelNacionalidad
         '
         labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 269)
+        labelNacionalidad.Location = New System.Drawing.Point(6, 295)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 27
+        labelNacionalidad.TabIndex = 31
         labelNacionalidad.Text = "Nacionalidad:"
         '
         'labelProfesion
         '
         labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 243)
+        labelProfesion.Location = New System.Drawing.Point(6, 269)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 25
+        labelProfesion.TabIndex = 29
         labelProfesion.Text = "Profesión:"
         '
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 295)
+        labelCuartel.Location = New System.Drawing.Point(6, 321)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 29
+        labelCuartel.TabIndex = 33
         labelCuartel.Text = "Cuartel:"
         '
         'labelTelefonoParticular
@@ -844,11 +852,11 @@ Partial Class formPersona
         '
         'textboxIOMANumeroAfiliado
         '
-        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 179)
+        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 205)
         Me.textboxIOMANumeroAfiliado.MaxLength = 13
         Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
         Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
-        Me.textboxIOMANumeroAfiliado.TabIndex = 22
+        Me.textboxIOMANumeroAfiliado.TabIndex = 26
         Me.tooltipMain.SetToolTip(Me.textboxIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'buttonLicenciaConducirNumero
@@ -905,11 +913,15 @@ Partial Class formPersona
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 138)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(660, 411)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(660, 438)
         Me.tabcontrolMain.TabIndex = 6
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelPeso)
+        Me.tabpageGeneral.Controls.Add(Me.doubletextboxAltura)
+        Me.tabpageGeneral.Controls.Add(Me.integertextboxPeso)
+        Me.tabpageGeneral.Controls.Add(labelAltura)
         Me.tabpageGeneral.Controls.Add(Me.textboxFechaUltimoAscenso)
         Me.tabpageGeneral.Controls.Add(Me.buttonLicenciaConducirCategoria)
         Me.tabpageGeneral.Controls.Add(Me.textboxLicenciaConducirCategoria)
@@ -950,18 +962,18 @@ Partial Class formPersona
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(652, 409)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
         'textboxFechaUltimoAscenso
         '
-        Me.textboxFechaUltimoAscenso.Location = New System.Drawing.Point(427, 351)
+        Me.textboxFechaUltimoAscenso.Location = New System.Drawing.Point(427, 377)
         Me.textboxFechaUltimoAscenso.Name = "textboxFechaUltimoAscenso"
         Me.textboxFechaUltimoAscenso.ReadOnly = True
         Me.textboxFechaUltimoAscenso.Size = New System.Drawing.Size(92, 20)
-        Me.textboxFechaUltimoAscenso.TabIndex = 35
+        Me.textboxFechaUltimoAscenso.TabIndex = 39
         '
         'buttonLicenciaConducirCategoria
         '
@@ -982,22 +994,22 @@ Partial Class formPersona
         '
         'textboxCargoJerarquiaActual
         '
-        Me.textboxCargoJerarquiaActual.Location = New System.Drawing.Point(142, 351)
+        Me.textboxCargoJerarquiaActual.Location = New System.Drawing.Point(142, 377)
         Me.textboxCargoJerarquiaActual.MaxLength = 10
         Me.textboxCargoJerarquiaActual.Name = "textboxCargoJerarquiaActual"
         Me.textboxCargoJerarquiaActual.ReadOnly = True
         Me.textboxCargoJerarquiaActual.Size = New System.Drawing.Size(279, 20)
-        Me.textboxCargoJerarquiaActual.TabIndex = 34
+        Me.textboxCargoJerarquiaActual.TabIndex = 38
         Me.textboxCargoJerarquiaActual.TabStop = False
         '
         'textboxCantidadHijos
         '
-        Me.textboxCantidadHijos.Location = New System.Drawing.Point(142, 323)
+        Me.textboxCantidadHijos.Location = New System.Drawing.Point(142, 349)
         Me.textboxCantidadHijos.MaxLength = 10
         Me.textboxCantidadHijos.Name = "textboxCantidadHijos"
         Me.textboxCantidadHijos.ReadOnly = True
         Me.textboxCantidadHijos.Size = New System.Drawing.Size(39, 20)
-        Me.textboxCantidadHijos.TabIndex = 32
+        Me.textboxCantidadHijos.TabIndex = 36
         Me.textboxCantidadHijos.TabStop = False
         Me.textboxCantidadHijos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1016,19 +1028,19 @@ Partial Class formPersona
         '
         Me.comboboxIOMATiene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxIOMATiene.FormattingEnabled = True
-        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 179)
+        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 205)
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
-        Me.comboboxIOMATiene.TabIndex = 20
+        Me.comboboxIOMATiene.TabIndex = 24
         '
         'comboboxNivelEstudio
         '
         Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 213)
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 239)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 24
+        Me.comboboxNivelEstudio.TabIndex = 28
         '
         'comboboxFactorRH
         '
@@ -1092,28 +1104,28 @@ Partial Class formPersona
         '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 266)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 292)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(377, 20)
-        Me.textboxNacionalidad.TabIndex = 28
+        Me.textboxNacionalidad.TabIndex = 32
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 240)
+        Me.textboxProfesion.Location = New System.Drawing.Point(142, 266)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(377, 20)
-        Me.textboxProfesion.TabIndex = 26
+        Me.textboxProfesion.TabIndex = 30
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 292)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 318)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(377, 21)
-        Me.comboboxCuartel.TabIndex = 30
+        Me.comboboxCuartel.TabIndex = 34
         '
         'tabpageParticular
         '
@@ -2094,6 +2106,15 @@ Partial Class formPersona
         Me.buttonCalificaciones_Eliminar.Size = New System.Drawing.Size(87, 36)
         Me.buttonCalificaciones_Eliminar.Text = "Eliminar"
         '
+        'buttonCalificaciones_Imprimir
+        '
+        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonCalificaciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCalificaciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCalificaciones_Imprimir.Name = "buttonCalificaciones_Imprimir"
+        Me.buttonCalificaciones_Imprimir.Size = New System.Drawing.Size(87, 36)
+        Me.buttonCalificaciones_Imprimir.Text = "Imprimir"
+        '
         'tabpageExamenes
         '
         Me.tabpageExamenes.Controls.Add(Me.datagridviewExamenes)
@@ -2285,20 +2306,66 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'buttonCalificaciones_Imprimir
+        'labelAltura
         '
-        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
-        Me.buttonCalificaciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCalificaciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCalificaciones_Imprimir.Name = "buttonCalificaciones_Imprimir"
-        Me.buttonCalificaciones_Imprimir.Size = New System.Drawing.Size(87, 36)
-        Me.buttonCalificaciones_Imprimir.Text = "Imprimir"
+        labelAltura.AutoSize = True
+        labelAltura.Location = New System.Drawing.Point(6, 182)
+        labelAltura.Name = "labelAltura"
+        labelAltura.Size = New System.Drawing.Size(37, 13)
+        labelAltura.TabIndex = 19
+        labelAltura.Text = "Altura:"
+        '
+        'integertextboxPeso
+        '
+        Me.integertextboxPeso.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(44, 20)
+        Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxPeso.IntegerValue = CType(0, Long)
+        Me.integertextboxPeso.Location = New System.Drawing.Point(263, 179)
+        Me.integertextboxPeso.MaxValue = CType(200, Long)
+        Me.integertextboxPeso.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxPeso.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
+        Me.integertextboxPeso.MinValue = CType(0, Long)
+        Me.integertextboxPeso.Name = "integertextboxPeso"
+        Me.integertextboxPeso.NullString = ""
+        Me.integertextboxPeso.Size = New System.Drawing.Size(44, 20)
+        Me.integertextboxPeso.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.integertextboxPeso.TabIndex = 22
+        Me.integertextboxPeso.Text = "0"
+        Me.integertextboxPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'doubletextboxAltura
+        '
+        Me.doubletextboxAltura.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(44, 20)
+        Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxAltura.DoubleValue = 0.0R
+        Me.doubletextboxAltura.Location = New System.Drawing.Point(142, 179)
+        Me.doubletextboxAltura.MaxValue = 2.5R
+        Me.doubletextboxAltura.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxAltura.MinValue = 0.0R
+        Me.doubletextboxAltura.Name = "doubletextboxAltura"
+        Me.doubletextboxAltura.NullString = ""
+        Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
+        Me.doubletextboxAltura.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxAltura.TabIndex = 20
+        Me.doubletextboxAltura.Text = "0,00"
+        Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'labelPeso
+        '
+        labelPeso.AutoSize = True
+        labelPeso.Location = New System.Drawing.Point(220, 182)
+        labelPeso.Name = "labelPeso"
+        labelPeso.Size = New System.Drawing.Size(34, 13)
+        labelPeso.TabIndex = 21
+        labelPeso.Text = "Peso:"
         '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(684, 561)
+        Me.ClientSize = New System.Drawing.Size(684, 588)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.pictureboxFoto)
@@ -2369,6 +2436,8 @@ Partial Class formPersona
         Me.toolstripExamenes.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2515,4 +2584,6 @@ Partial Class formPersona
     Friend WithEvents buttonLicenciaConducirCategoria As System.Windows.Forms.Button
     Friend WithEvents textboxFechaUltimoAscenso As System.Windows.Forms.TextBox
     Friend WithEvents buttonCalificaciones_Imprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents doubletextboxAltura As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents integertextboxPeso As Syncfusion.Windows.Forms.Tools.IntegerTextBox
 End Class

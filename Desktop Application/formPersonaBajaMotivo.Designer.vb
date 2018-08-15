@@ -25,6 +25,7 @@ Partial Class formPersonaBajaMotivo
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelEspecificaDestino As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -44,9 +45,11 @@ Partial Class formPersonaBajaMotivo
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxEspecificaDestino = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelEspecificaDestino = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -82,10 +85,10 @@ Partial Class formPersonaBajaMotivo
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(59, 19)
+        Me.textboxNombre.Location = New System.Drawing.Point(113, 19)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(446, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(392, 20)
         Me.textboxNombre.TabIndex = 1
         '
         'labelNombre
@@ -168,6 +171,8 @@ Partial Class formPersonaBajaMotivo
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxEspecificaDestino)
+        Me.tabpageGeneral.Controls.Add(labelEspecificaDestino)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -205,7 +210,7 @@ Partial Class formPersonaBajaMotivo
         Me.labelIDPersonaBajaMotivo.AutoSize = True
         Me.labelIDPersonaBajaMotivo.Location = New System.Drawing.Point(7, 111)
         Me.labelIDPersonaBajaMotivo.Name = "labelIDPersonaBajaMotivo"
-        Me.labelIDPersonaBajaMotivo.Size = New System.Drawing.Size(98, 13)
+        Me.labelIDPersonaBajaMotivo.Size = New System.Drawing.Size(165, 13)
         Me.labelIDPersonaBajaMotivo.TabIndex = 4
         Me.labelIDPersonaBajaMotivo.Text = "ID de Motivo de baja de persona:"
         '
@@ -275,6 +280,24 @@ Partial Class formPersonaBajaMotivo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'checkboxEspecificaDestino
+        '
+        Me.checkboxEspecificaDestino.AutoSize = True
+        Me.checkboxEspecificaDestino.Location = New System.Drawing.Point(113, 59)
+        Me.checkboxEspecificaDestino.Name = "checkboxEspecificaDestino"
+        Me.checkboxEspecificaDestino.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEspecificaDestino.TabIndex = 3
+        Me.checkboxEspecificaDestino.UseVisualStyleBackColor = True
+        '
+        'labelEspecificaDestino
+        '
+        labelEspecificaDestino.AutoSize = True
+        labelEspecificaDestino.Location = New System.Drawing.Point(6, 59)
+        labelEspecificaDestino.Name = "labelEspecificaDestino"
+        labelEspecificaDestino.Size = New System.Drawing.Size(96, 13)
+        labelEspecificaDestino.TabIndex = 2
+        labelEspecificaDestino.Text = "Especifica destino:"
+        '
         'formPersonaBajaMotivo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -319,4 +342,5 @@ Partial Class formPersonaBajaMotivo
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents checkboxEspecificaDestino As System.Windows.Forms.CheckBox
 End Class

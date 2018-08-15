@@ -212,15 +212,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("NETCLIENT")>  _
-        Public ReadOnly Property LoteComprobantes_EnviarEmail_Metodo() As String
-            Get
-                Return CType(Me("LoteComprobantes_EnviarEmail_Metodo"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Bomberos Voluntarios de Lobos")>  _
         Public ReadOnly Property Email_DisplayName() As String
             Get

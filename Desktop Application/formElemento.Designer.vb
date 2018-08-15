@@ -77,12 +77,39 @@ Partial Class formElemento
         labelRubro.TabIndex = 4
         labelRubro.Text = "Rubro:"
         '
+        'labelEsActivo
+        '
+        labelEsActivo.AutoSize = True
+        labelEsActivo.Location = New System.Drawing.Point(7, 85)
+        labelEsActivo.Name = "labelEsActivo"
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        labelEsActivo.TabIndex = 14
+        labelEsActivo.Text = "Activo:"
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(7, 163)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 21
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(7, 137)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 18
+        labelCreacion.Text = "Creación:"
+        '
         'textboxNombre
         '
         Me.textboxNombre.Location = New System.Drawing.Point(97, 18)
-        Me.textboxNombre.MaxLength = 50
+        Me.textboxNombre.MaxLength = 100
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(359, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(395, 20)
         Me.textboxNombre.TabIndex = 3
         '
         'labelNombre
@@ -239,15 +266,6 @@ Partial Class formElemento
         Me.textboxIDElemento.TabStop = False
         Me.textboxIDElemento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'labelEsActivo
-        '
-        labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(7, 85)
-        labelEsActivo.Name = "labelEsActivo"
-        labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 14
-        labelEsActivo.Text = "Activo:"
-        '
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 160)
@@ -283,24 +301,6 @@ Partial Class formElemento
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
-        '
-        'labelModificacion
-        '
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(7, 163)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 21
-        labelModificacion.Text = "Ultima Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(7, 137)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 18
-        labelCreacion.Text = "Creación:"
         '
         'textboxNotas
         '

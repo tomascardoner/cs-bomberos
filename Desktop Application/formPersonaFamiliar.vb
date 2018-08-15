@@ -65,6 +65,7 @@
         comboboxFactorRH.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
+        checkboxACargo.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
 
         ' Contacto
@@ -141,6 +142,7 @@
                     comboboxIOMATiene.SelectedIndex = 3
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
+            checkboxACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ACargo)
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
 
             ' Datos de la pestaña Contacto Particular
@@ -209,6 +211,7 @@
                     .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
             End Select
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
+            .ACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxACargo.CheckState)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
 
             ' Datos de la pestaña Contacto
@@ -354,9 +357,9 @@
         End If
 
         ' Fecha de Nacimiento
-        If datetimepickerFechaNacimiento.Checked And datetimepickerFechaNacimiento.Value.Year = Today.Year Then
+        If datetimepickerFechaNacimiento.Checked And datetimepickerFechaNacimiento.Value.Year > Today.Year Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Se ha especificado una Fecha de Nacimiento que no parece ser válida ya que es del año actual.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("La fecha de nacimiento especificada es mayor al año actual.", MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaNacimiento.Focus()
             Exit Sub
         End If

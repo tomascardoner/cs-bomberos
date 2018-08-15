@@ -53,7 +53,7 @@
 #End Region
 
 #Region "Load and Set Data"
-    Friend Sub RefreshData(Optional ByVal PositionIDElemento As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDInventario As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
 
@@ -80,17 +80,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDElemento = 0
+                PositionIDInventario = 0
             Else
-                PositionIDElemento = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDElemento
+                PositionIDInventario = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDInventario
             End If
         End If
 
         FilterData()
 
-        If PositionIDElemento <> 0 Then
+        If PositionIDInventario <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDElemento = PositionIDElemento Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDInventario = PositionIDInventario Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -331,7 +331,7 @@
 
                 datagridviewMain.Enabled = False
 
-                formInventarioDetalle.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
+                formInventarioDetalle.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDInventario)
 
                 datagridviewMain.Enabled = True
 

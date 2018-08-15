@@ -53,9 +53,6 @@
     <Setting Name="DBConnection_Provider" Type="System.String" Scope="Application">
       <Value Profile="(Default)">System.Data.SqlClient</Value>
     </Setting>
-    <Setting Name="LoteComprobantes_EnviarEmail_Metodo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">NETCLIENT</Value>
-    </Setting>
     <Setting Name="Email_DisplayName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Bomberos Voluntarios de Lobos</Value>
     </Setting>

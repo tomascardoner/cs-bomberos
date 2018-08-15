@@ -77,8 +77,6 @@ Partial Public Class Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property UsuariosGruposCreados As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
     Public Overridable Property UsuariosGruposModificados As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
-    Public Overridable Property PersonaCambioUnidad As ICollection(Of PersonaCambioUnidad) = New HashSet(Of PersonaCambioUnidad)
-    Public Overridable Property PersonaCambioUnidad1 As ICollection(Of PersonaCambioUnidad) = New HashSet(Of PersonaCambioUnidad)
     Public Overridable Property CapacitacionNivel As ICollection(Of CapacitacionNivel) = New HashSet(Of CapacitacionNivel)
     Public Overridable Property CapacitacionNivel1 As ICollection(Of CapacitacionNivel) = New HashSet(Of CapacitacionNivel)
     Public Overridable Property CapacitacionTipo As ICollection(Of CapacitacionTipo) = New HashSet(Of CapacitacionTipo)

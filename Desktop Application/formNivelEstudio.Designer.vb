@@ -25,6 +25,7 @@ Partial Class formNivelEstudio
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelIncluyeSecundario As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -44,9 +45,11 @@ Partial Class formNivelEstudio
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxIncluyeSecundario = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelIncluyeSecundario = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -82,10 +85,10 @@ Partial Class formNivelEstudio
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(59, 19)
+        Me.textboxNombre.Location = New System.Drawing.Point(113, 19)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(446, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(392, 20)
         Me.textboxNombre.TabIndex = 1
         '
         'labelNombre
@@ -168,6 +171,8 @@ Partial Class formNivelEstudio
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxIncluyeSecundario)
+        Me.tabpageGeneral.Controls.Add(labelIncluyeSecundario)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -275,6 +280,24 @@ Partial Class formNivelEstudio
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'checkboxIncluyeSecundario
+        '
+        Me.checkboxIncluyeSecundario.AutoSize = True
+        Me.checkboxIncluyeSecundario.Location = New System.Drawing.Point(113, 59)
+        Me.checkboxIncluyeSecundario.Name = "checkboxIncluyeSecundario"
+        Me.checkboxIncluyeSecundario.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxIncluyeSecundario.TabIndex = 3
+        Me.checkboxIncluyeSecundario.UseVisualStyleBackColor = True
+        '
+        'labelIncluyeSecundario
+        '
+        labelIncluyeSecundario.AutoSize = True
+        labelIncluyeSecundario.Location = New System.Drawing.Point(6, 59)
+        labelIncluyeSecundario.Name = "labelIncluyeSecundario"
+        labelIncluyeSecundario.Size = New System.Drawing.Size(101, 13)
+        labelIncluyeSecundario.TabIndex = 2
+        labelIncluyeSecundario.Text = "Incluye Secundario:"
+        '
         'formNivelEstudio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -319,4 +342,5 @@ Partial Class formNivelEstudio
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents checkboxIncluyeSecundario As System.Windows.Forms.CheckBox
 End Class

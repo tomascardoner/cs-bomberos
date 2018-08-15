@@ -27,6 +27,7 @@ Partial Public Class PersonaAltaBaja
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property BajaUnidadDestino As String
 
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario

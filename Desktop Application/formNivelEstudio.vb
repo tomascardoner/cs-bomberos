@@ -50,6 +50,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = Not mEditMode
+        checkboxIncluyeSecundario.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -75,6 +76,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mNivelEstudioActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            checkboxIncluyeSecundario.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.IncluyeSecundario)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -102,6 +104,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mNivelEstudioActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .IncluyeSecundario = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxIncluyeSecundario.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
