@@ -99,7 +99,7 @@
         End Try
     End Sub
 
-    Private Sub EditarParametro() Handles listviewParametros.DoubleClick
+    Private Sub EditarValorParametro(sender As Object, e As EventArgs) Handles menuParametroEditar.Click, listviewParametros.DoubleClick
         Dim ReporteActual As Reporte
         Dim ParametroActual As ReporteParametro
         Dim ListViewItemActual As ListViewItem
@@ -126,7 +126,7 @@
                     End If
                     formPersonasSeleccionar.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_SINO
+                Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_CUARTEL, Constantes.REPORTE_PARAMETRO_CARGO, Constantes.REPORTE_PARAMETRO_JERARQUIA, Constantes.REPORTE_PARAMETRO_ESTADO, Constantes.REPORTE_PARAMETRO_PERSONABAJAMOTIVO
                     formReportesParametro.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametro.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -138,11 +138,17 @@
     End Sub
 
     Private Sub Parametros_KeyDown(sender As Object, e As KeyEventArgs) Handles listviewParametros.KeyDown
+        If e.KeyCode = Keys.Delete Then
+            menuParametroBorrar.PerformClick()
+        End If
+    End Sub
+
+    Private Sub BorrarValorParametro(sender As Object, e As EventArgs) Handles menuParametroBorrar.Click
         Dim ReporteActual As Reporte
         Dim ParametroActual As ReporteParametro
         Dim ListViewItemActual As ListViewItem
 
-        If listviewParametros.SelectedItems.Count > 0 AndAlso e.KeyCode = Keys.Delete Then
+        If listviewParametros.SelectedItems.Count > 0 Then
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
             ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = CStr(listviewParametros.SelectedItems(0).Tag)).First
             ListViewItemActual = listviewParametros.SelectedItems(0)

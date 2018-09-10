@@ -42,6 +42,11 @@
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////
+    Friend Const REPORTE_PARAMETRO_CUARTEL As String = "CTEL"
+    Friend Const REPORTE_PARAMETRO_CARGO As String = "CARG"
+    Friend Const REPORTE_PARAMETRO_JERARQUIA As String = "JERQ"
+    Friend Const REPORTE_PARAMETRO_ESTADO As String = "ESTD"
+    Friend Const REPORTE_PARAMETRO_PERSONABAJAMOTIVO As String = "PBMT"
     Friend Const REPORTE_PARAMETRO_PERSONA As String = "PERS"
 
     Friend Const REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER As String = "NUIN"

@@ -745,13 +745,17 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub CargoJerarquia(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal IDCargo As Byte)
+    Friend Sub CargoJerarquia(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCargo As Byte = FIELD_VALUE_NOTSPECIFIED_BYTE)
         Dim listItems As List(Of CargoJerarquia)
 
         ComboBoxControl.ValueMember = "IDJerarquia"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo And cj.IDCargo = IDCargo).OrderBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
+        If IDCargo = FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo).OrderBy(Function(cj) cj.Cargo.Orden).ThenBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
+        Else
+            listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo And cj.IDCargo = IDCargo).OrderBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
+        End If
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CargoJerarquia

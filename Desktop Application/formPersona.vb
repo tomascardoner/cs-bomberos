@@ -877,7 +877,7 @@
                               Group Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo Into PersonaBajaMotivo_Group = Group
                               From pbmg In PersonaBajaMotivo_Group.DefaultIfEmpty
                               Where pab.IDPersona = mPersonaActual.IDPersona
-                              Order By pab.AltaFecha
+                              Order By pab.AltaFecha Descending
                               Select New AltasBajas_GridRowData With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = If(pbmg Is Nothing, "", pbmg.Nombre)}).ToList
 
             datagridviewAltasBajas.AutoGenerateColumns = False
@@ -994,7 +994,7 @@
                               Join c In mdbContext.Cargo On pa.IDCargo Equals c.IDCargo
                               Join cj In mdbContext.CargoJerarquia On pa.IDCargo Equals cj.IDCargo And pa.IDJerarquia Equals cj.IDJerarquia
                               Where pa.IDPersona = mPersonaActual.IDPersona
-                              Order By pa.Fecha
+                              Order By pa.Fecha Descending
                               Select New Ascensos_GridRowData With {.IDAscenso = pa.IDAscenso, .Fecha = pa.Fecha, .CargoNombre = c.Nombre, .JerarquiaNombre = cj.Nombre}).ToList
 
             datagridviewAscensos.AutoGenerateColumns = False
@@ -1113,7 +1113,7 @@
             listLicencias = (From pl In mdbContext.PersonaLicencia
                               Join lc In mdbContext.LicenciaCausa On pl.IDLicenciaCausa Equals lc.IDLicenciaCausa
                               Where pl.IDPersona = mPersonaActual.IDPersona
-                              Order By pl.Fecha
+                              Order By pl.Fecha Descending
                               Select New Licencias_GridRowData With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
 
             datagridviewLicencias.AutoGenerateColumns = False
@@ -1228,7 +1228,7 @@
                             Group Join st In mdbContext.SancionTipo On ps.ResolucionIDSancionTipo Equals st.IDSancionTipo Into SancionTipo_Group = Group
                             From stg In SancionTipo_Group.DefaultIfEmpty
                             Where ps.IDPersona = mPersonaActual.IDPersona
-                            Order By ps.SolicitudFecha
+                            Order By ps.SolicitudFecha Descending
                             Select New Sanciones_GridRowData With {.IDSancion = ps.IDSancion, .SolicitudFecha = ps.SolicitudFecha, .SancionTipoNombre = If(stg Is Nothing, "", stg.Nombre)}).ToList
 
             datagridviewSanciones.AutoGenerateColumns = False
@@ -1342,7 +1342,7 @@
             listCapacitaciones = (From pc In mdbContext.PersonaCapacitacion
                               Join c In mdbContext.Curso On pc.IDCurso Equals c.IDCurso
                               Where pc.IDPersona = mPersonaActual.IDPersona
-                              Order By pc.Fecha
+                              Order By pc.Fecha Descending
                               Select New Capacitaciones_GridRowData With {.IDCapacitacion = pc.IDCapacitacion, .Fecha = pc.Fecha, .CursoNombre = c.Nombre}).ToList
 
             datagridviewCapacitaciones.AutoGenerateColumns = False
@@ -1471,7 +1471,7 @@
             listCalificaciones = (From pc In mdbContext.PersonaCalificacion
                                   Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
                                   Where pc.IDPersona = mPersonaActual.IDPersona
-                                  Order By pc.Anio, pc.InstanciaNumero
+                                  Order By pc.Anio Descending, pc.InstanciaNumero Descending
                                   Select New Calificaciones_ListDataItem With {.Anio = pc.Anio, .InstanciaNumero = pc.InstanciaNumero, .IDConcepto = cc.IDCalificacionConcepto, .ConceptoAbreviatura = cc.Abreviatura, .ConceptoNombre = cc.Nombre, .Calificacion = pc.Calificacion}).ToList
 
             listCalificaciones_GridRowData = New List(Of Calificaciones_GridRowData)
@@ -1669,7 +1669,7 @@
         Try
             listExamenes = (From pe In mdbContext.PersonaExamen
                             Where pe.IDPersona = mPersonaActual.IDPersona
-                            Order By pe.Anio, pe.InstanciaNumero
+                            Order By pe.Anio Descending, pe.InstanciaNumero Descending
                             Select New Examenes_GridRowData With {.Anio = pe.Anio, .InstanciaNumero = pe.InstanciaNumero, .AnioInstancia = pe.Anio & " - " & pe.InstanciaNumero, .Calificacion = pe.Calificacion}).ToList
 
             datagridviewExamenes.AutoGenerateColumns = False

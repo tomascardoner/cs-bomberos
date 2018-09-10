@@ -265,7 +265,7 @@ Partial Public Class ReporteParametro
                 Return ""
             Else
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_PERSONA
+                    Case Constantes.REPORTE_PARAMETRO_PERSONA, Constantes.REPORTE_PARAMETRO_CUARTEL, Constantes.REPORTE_PARAMETRO_CARGO, Constantes.REPORTE_PARAMETRO_JERARQUIA, Constantes.REPORTE_PARAMETRO_ESTADO, Constantes.REPORTE_PARAMETRO_PERSONABAJAMOTIVO
                         Return mValorParaMostrar
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)

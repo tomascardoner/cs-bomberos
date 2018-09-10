@@ -27,8 +27,9 @@ Partial Class formReportesParametro
         Me.buttonAceptar = New System.Windows.Forms.ToolStripButton()
         Me.labelValor = New System.Windows.Forms.Label()
         Me.datetimepickerValor = New System.Windows.Forms.DateTimePicker()
-        Me.textboxMoney = New CSBomberos.DesktopApplication.CS_Control_TextBox_Currency()
+        Me.comboboxValor = New System.Windows.Forms.ComboBox()
         Me.textboxNumber = New CSBomberos.DesktopApplication.CS_Control_TextBox_Number()
+        Me.textboxMoney = New CSBomberos.DesktopApplication.CS_Control_TextBox_Currency()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -38,7 +39,7 @@ Partial Class formReportesParametro
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonAceptar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(268, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(345, 39)
         Me.toolstripMain.TabIndex = 29
         '
         'buttonCancelar
@@ -73,32 +74,43 @@ Partial Class formReportesParametro
         'datetimepickerValor
         '
         Me.datetimepickerValor.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerValor.Location = New System.Drawing.Point(61, 66)
+        Me.datetimepickerValor.Location = New System.Drawing.Point(117, 66)
         Me.datetimepickerValor.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerValor.MinDate = New Date(2015, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerValor.Name = "datetimepickerValor"
         Me.datetimepickerValor.Size = New System.Drawing.Size(120, 20)
         Me.datetimepickerValor.TabIndex = 31
         '
-        'textboxMoney
+        'comboboxValor
         '
-        Me.textboxMoney.Location = New System.Drawing.Point(61, 65)
-        Me.textboxMoney.Name = "textboxMoney"
-        Me.textboxMoney.Size = New System.Drawing.Size(120, 20)
-        Me.textboxMoney.TabIndex = 32
+        Me.comboboxValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxValor.FormattingEnabled = True
+        Me.comboboxValor.Location = New System.Drawing.Point(117, 65)
+        Me.comboboxValor.Name = "comboboxValor"
+        Me.comboboxValor.Size = New System.Drawing.Size(216, 21)
+        Me.comboboxValor.TabIndex = 34
         '
         'textboxNumber
         '
-        Me.textboxNumber.Location = New System.Drawing.Point(61, 65)
+        Me.textboxNumber.Location = New System.Drawing.Point(117, 65)
         Me.textboxNumber.Name = "textboxNumber"
+        Me.textboxNumber.NumberStyle = System.Globalization.NumberStyles.None
         Me.textboxNumber.Size = New System.Drawing.Size(100, 20)
         Me.textboxNumber.TabIndex = 33
+        '
+        'textboxMoney
+        '
+        Me.textboxMoney.Location = New System.Drawing.Point(117, 65)
+        Me.textboxMoney.Name = "textboxMoney"
+        Me.textboxMoney.Size = New System.Drawing.Size(120, 20)
+        Me.textboxMoney.TabIndex = 32
         '
         'formReportesParametro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(268, 105)
+        Me.ClientSize = New System.Drawing.Size(345, 105)
+        Me.Controls.Add(Me.comboboxValor)
         Me.Controls.Add(Me.textboxNumber)
         Me.Controls.Add(Me.textboxMoney)
         Me.Controls.Add(Me.datetimepickerValor)
@@ -109,7 +121,7 @@ Partial Class formReportesParametro
         Me.MinimizeBox = False
         Me.Name = "formReportesParametro"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "ReportesParametros"
+        Me.Text = "Especifique el valor del parámetro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
@@ -123,4 +135,5 @@ Partial Class formReportesParametro
     Friend WithEvents datetimepickerValor As System.Windows.Forms.DateTimePicker
     Friend WithEvents textboxMoney As CSBomberos.DesktopApplication.CS_Control_TextBox_Currency
     Friend WithEvents textboxNumber As CSBomberos.DesktopApplication.CS_Control_TextBox_Number
+    Friend WithEvents comboboxValor As System.Windows.Forms.ComboBox
 End Class

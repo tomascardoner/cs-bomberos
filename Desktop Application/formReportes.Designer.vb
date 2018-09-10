@@ -22,6 +22,7 @@ Partial Class formReportes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formReportes))
         Me.panelReportes = New System.Windows.Forms.Panel()
         Me.treeviewReportes = New System.Windows.Forms.TreeView()
@@ -35,8 +36,12 @@ Partial Class formReportes
         Me.buttonAnterior = New System.Windows.Forms.Button()
         Me.buttonPrevisualizar = New System.Windows.Forms.Button()
         Me.buttonImprimir = New System.Windows.Forms.Button()
+        Me.menuParametro = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.menuParametroEditar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuParametroBorrar = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelReportes.SuspendLayout()
         Me.panelParametros.SuspendLayout()
+        Me.menuParametro.SuspendLayout()
         Me.SuspendLayout()
         '
         'panelReportes
@@ -79,6 +84,7 @@ Partial Class formReportes
         Me.panelParametros.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.panelParametros.ContextMenuStrip = Me.menuParametro
         Me.panelParametros.Controls.Add(Me.labelParametrosTitulo)
         Me.panelParametros.Controls.Add(Me.listviewParametros)
         Me.panelParametros.Controls.Add(Me.buttonAnterior)
@@ -170,6 +176,24 @@ Partial Class formReportes
         Me.buttonImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.buttonImprimir.UseVisualStyleBackColor = True
         '
+        'menuParametro
+        '
+        Me.menuParametro.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuParametroEditar, Me.menuParametroBorrar})
+        Me.menuParametro.Name = "menuParametro"
+        Me.menuParametro.Size = New System.Drawing.Size(136, 48)
+        '
+        'menuParametroEditar
+        '
+        Me.menuParametroEditar.Name = "menuParametroEditar"
+        Me.menuParametroEditar.Size = New System.Drawing.Size(135, 22)
+        Me.menuParametroEditar.Text = "Editar valor"
+        '
+        'menuParametroBorrar
+        '
+        Me.menuParametroBorrar.Name = "menuParametroBorrar"
+        Me.menuParametroBorrar.Size = New System.Drawing.Size(135, 22)
+        Me.menuParametroBorrar.Text = "Borrar valor"
+        '
         'formReportes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -184,6 +208,7 @@ Partial Class formReportes
         Me.panelReportes.ResumeLayout(False)
         Me.panelParametros.ResumeLayout(False)
         Me.panelParametros.PerformLayout()
+        Me.menuParametro.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -199,4 +224,7 @@ Partial Class formReportes
     Friend WithEvents columnValor As System.Windows.Forms.ColumnHeader
     Friend WithEvents columnRequerido As System.Windows.Forms.ColumnHeader
     Friend WithEvents labelParametrosTitulo As System.Windows.Forms.Label
+    Friend WithEvents menuParametro As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents menuParametroEditar As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuParametroBorrar As System.Windows.Forms.ToolStripMenuItem
 End Class

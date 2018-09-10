@@ -388,7 +388,7 @@
 
             datagridviewMain.Enabled = False
 
-            formInventarioDetalle.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDElemento)
+            formInventarioDetalle.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDInventario)
 
             datagridviewMain.Enabled = True
 

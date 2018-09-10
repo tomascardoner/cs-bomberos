@@ -25,7 +25,8 @@ Partial Public Class PersonaFamiliar
     Public Property FactorRH As String
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
-    Public Property Vive As Nullable(Of Boolean)
+    Public Property ACargo As Boolean
+    Public Property Vive As Boolean
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
     Public Property DomicilioPiso As String
@@ -44,7 +45,6 @@ Partial Public Class PersonaFamiliar
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property ACargo As Boolean
 
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario

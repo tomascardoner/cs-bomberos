@@ -25,6 +25,8 @@ Partial Public Class Persona
     Public Property Genero As String
     Public Property GrupoSanguineo As String
     Public Property FactorRH As String
+    Public Property Altura As Nullable(Of Decimal)
+    Public Property Peso As Nullable(Of Byte)
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
     Public Property IDNivelEstudio As Nullable(Of Byte)
@@ -61,8 +63,6 @@ Partial Public Class Persona
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property Altura As Nullable(Of Decimal)
-    Public Property Peso As Nullable(Of Byte)
 
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property DocumentoTipo As DocumentoTipo

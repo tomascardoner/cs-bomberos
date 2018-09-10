@@ -42,8 +42,8 @@ Partial Class formSubUbicaciones
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnUbicacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,7 +80,7 @@ Partial Class formSubUbicaciones
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCuartel, Me.columnUbicacion, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnUbicacion, Me.columnCuartel, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -221,15 +221,6 @@ Partial Class formSubUbicaciones
         Me.columnNombre.ReadOnly = True
         Me.columnNombre.Width = 69
         '
-        'columnCuartel
-        '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
-        '
         'columnUbicacion
         '
         Me.columnUbicacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
@@ -238,6 +229,15 @@ Partial Class formSubUbicaciones
         Me.columnUbicacion.Name = "columnUbicacion"
         Me.columnUbicacion.ReadOnly = True
         Me.columnUbicacion.Width = 80
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
         '
         'columnEsActivo
         '
@@ -297,7 +297,7 @@ Partial Class formSubUbicaciones
     Friend WithEvents labelCuartel As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnUbicacion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
 End Class

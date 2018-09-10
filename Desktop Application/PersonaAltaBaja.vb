@@ -18,16 +18,16 @@ Partial Public Class PersonaAltaBaja
     Public Property AltaFolioNumero As String
     Public Property AltaActaNumero As String
     Public Property BajaFecha As Nullable(Of Date)
-    Public Property IDPersonaBajaMotivo As Nullable(Of Byte)
     Public Property BajaLibroNumero As String
     Public Property BajaFolioNumero As String
     Public Property BajaActaNumero As String
+    Public Property IDPersonaBajaMotivo As Nullable(Of Byte)
+    Public Property BajaUnidadDestino As String
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property BajaUnidadDestino As String
 
     Public Overridable Property Persona As Persona
     Public Overridable Property UsuarioCreacion As Usuario

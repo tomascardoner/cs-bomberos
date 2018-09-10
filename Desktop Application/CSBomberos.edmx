@@ -465,11 +465,11 @@
           <Property Name="AltaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="AltaActaNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFecha" Type="date" />
-          <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
-          <Property Name="BajaUnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="BajaLibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
+          <Property Name="BajaUnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -587,7 +587,7 @@
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="ACargo" Type="bit" Nullable="false" />
-          <Property Name="Vive" Type="bit" />
+          <Property Name="Vive" Type="bit" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
           <Property Name="DomicilioPiso" Type="varchar" MaxLength="10" />
@@ -4017,6 +4017,8 @@
           <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="GrupoSanguineo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Altura" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="Peso" Type="Byte" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IDNivelEstudio" Type="Byte" />
@@ -4071,8 +4073,6 @@
           <NavigationProperty Name="PersonaLicenciaConducirCategorias" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
           <NavigationProperty Name="PersonaSanciones" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
           <NavigationProperty Name="PersonaSancionesSolicitadas" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
-          <Property Name="Altura" Type="Decimal" Precision="3" Scale="2" />
-          <Property Name="Peso" Type="Byte" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -4183,7 +4183,8 @@
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="Vive" Type="Boolean" />
+          <Property Name="ACargo" Type="Boolean" Nullable="false" />
+          <Property Name="Vive" Type="Boolean" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -4208,7 +4209,6 @@
           <NavigationProperty Name="Parentesco" Relationship="CSBomberosModel.FK__Parentesco__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Parentesco" />
           <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="DocumentoTipo" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Localidad" />
-          <Property Name="ACargo" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__Persona__PersonaParentesco1">
           <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
@@ -4377,6 +4377,7 @@
           </Key>
           <Property Name="IDNivelEstudio" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IncluyeSecundario" Type="Boolean" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__NivelEstudio__Persona" FromRole="NivelEstudio" ToRole="Persona" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -4386,7 +4387,6 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="NivelEstudio" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="NivelEstudio" ToRole="Usuario" />
-          <Property Name="IncluyeSecundario" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonaAccidente">
           <Key>
@@ -4424,10 +4424,11 @@
           <Property Name="AltaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="AltaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFecha" Type="DateTime" Precision="0" />
-          <Property Name="IDPersonaBajaMotivo" Type="Byte" />
           <Property Name="BajaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDPersonaBajaMotivo" Type="Byte" />
+          <Property Name="BajaUnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -4437,7 +4438,6 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Creacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" FromRole="PersonaAltaBaja" ToRole="Usuario" />
           <NavigationProperty Name="PersonaBajaMotivo" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaAltaBaja" ToRole="PersonaBajaMotivo" />
-          <Property Name="BajaUnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PersonaAscenso">
           <Key>
@@ -5576,6 +5576,7 @@
           </Key>
           <Property Name="IDPersonaBajaMotivo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="EspecificaDestino" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -5585,7 +5586,6 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="PersonaBajaMotivo" ToRole="Usuario" />
           <NavigationProperty Name="PersonaAltaBaja" Relationship="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" FromRole="PersonaBajaMotivo" ToRole="PersonaAltaBaja" />
-          <Property Name="EspecificaDestino" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonaCapacitacion">
           <Key>
