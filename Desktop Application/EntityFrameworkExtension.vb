@@ -111,6 +111,18 @@ Partial Public Class Reporte
         End Set
     End Property
 
+    Private Function GetConditionText() As String
+        Dim ReporteParametro As ReporteParametro
+        Dim ResultText As String = ""
+
+        For Each ReporteParametro In Me.ReporteParametros.Where(Function(rp) (Not rp.Orden Is Nothing) AndAlso (Not rp.Valor Is Nothing) AndAlso rp.Tipo <> Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT AndAlso rp.Tipo <> Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW).OrderBy(Function(rp) rp.Orden)
+            ResultText &= CStr(IIf(ResultText = "", "", ", ")) & ReporteParametro.Nombre & ": " & ReporteParametro.ValorParaMostrar
+        Next ReporteParametro
+        ReporteParametro = Nothing
+
+        Return "Filtros aplicados: " & ResultText
+    End Function
+
     Friend Function Open(ByVal PathAndFileName As String) As Boolean
         If Not My.Computer.FileSystem.FileExists(PathAndFileName) Then
             Return False
@@ -137,12 +149,12 @@ Partial Public Class Reporte
                 With ParameterFieldActual
                     If CStr(IIf(.ParameterType = ParameterType.StoreProcedureParameter, "@", "")) & ParametroActual.IDParametro.TrimEnd = .ParameterFieldName Then
                         Select Case ParametroActual.Tipo
-                            'Case REPORTE_PARAMETRO_TIPO_COMPANY
-                            '    .AddCurrentValue pParametro.CompanyName
-                            'Case REPORTE_PARAMETRO_TIPO_TITLE
-                            '    .AddCurrentValue Titulo
-                            'Case REPORTE_PARAMETRO_TIPO_CONDITION_TEXT
-                            '    .AddCurrentValue GetConditionText()
+                            Case REPORTE_PARAMETRO_TIPO_COMPANY
+                                .CurrentValues.AddValue(pLicensedTo)
+                            Case REPORTE_PARAMETRO_TIPO_TITLE
+                                .CurrentValues.AddValue(Titulo)
+                            Case REPORTE_PARAMETRO_TIPO_FILTER_TEXT
+                                .CurrentValues.AddValue(GetConditionText())
                             Case Else
                                 Select Case .ParameterValueType
                                     Case ParameterValueKind.CurrencyParameter, ParameterValueKind.NumberParameter
@@ -183,9 +195,7 @@ Partial Public Class Reporte
             Next
         Next
 
-        'ReportObject.EnableParameterPrompting = False
         Return True
-
     End Function
 
     Friend Function SetDatabaseConnection(ByVal ServerName As String, ByVal DatabaseName As String, ByVal UserID As String, ByVal Password As String) As Boolean
@@ -227,7 +237,7 @@ Partial Public Class ReporteParametro
             If mValor Is Nothing Then
                 ' El valor no está inicializado, sí que verifico que no haya un valor predeterminado
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_PERSONA
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
@@ -245,7 +255,7 @@ Partial Public Class ReporteParametro
                             mValor = Me.ValorPredeterminadoFechaHora
                         End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
-                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW
                         If Not Me.ValorPredeterminadoSiNo Is Nothing Then
                             mValor = Me.ValorPredeterminadoSiNo
                         End If
@@ -265,7 +275,7 @@ Partial Public Class ReporteParametro
                 Return ""
             Else
                 Select Case Me.Tipo
-                    Case Constantes.REPORTE_PARAMETRO_PERSONA, Constantes.REPORTE_PARAMETRO_CUARTEL, Constantes.REPORTE_PARAMETRO_CARGO, Constantes.REPORTE_PARAMETRO_JERARQUIA, Constantes.REPORTE_PARAMETRO_ESTADO, Constantes.REPORTE_PARAMETRO_PERSONABAJAMOTIVO
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA, Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR
                         Return mValorParaMostrar
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)
@@ -283,7 +293,7 @@ Partial Public Class ReporteParametro
                         Return ""
                     Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                         Return ""
-                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW
                         If CBool(mValor) Then
                             Return My.Resources.STRING_YES
                         Else

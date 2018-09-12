@@ -28,6 +28,8 @@ Partial Class formReportesParametro
         Me.labelValor = New System.Windows.Forms.Label()
         Me.datetimepickerValor = New System.Windows.Forms.DateTimePicker()
         Me.comboboxValor = New System.Windows.Forms.ComboBox()
+        Me.radiobuttonSi = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonNo = New System.Windows.Forms.RadioButton()
         Me.textboxNumber = New CSBomberos.DesktopApplication.CS_Control_TextBox_Number()
         Me.textboxMoney = New CSBomberos.DesktopApplication.CS_Control_TextBox_Currency()
         Me.toolstripMain.SuspendLayout()
@@ -39,7 +41,7 @@ Partial Class formReportesParametro
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonAceptar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(345, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(373, 39)
         Me.toolstripMain.TabIndex = 29
         '
         'buttonCancelar
@@ -76,7 +78,7 @@ Partial Class formReportesParametro
         Me.datetimepickerValor.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datetimepickerValor.Location = New System.Drawing.Point(117, 66)
         Me.datetimepickerValor.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerValor.MinDate = New Date(2015, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerValor.MinDate = New Date(1901, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerValor.Name = "datetimepickerValor"
         Me.datetimepickerValor.Size = New System.Drawing.Size(120, 20)
         Me.datetimepickerValor.TabIndex = 31
@@ -87,8 +89,30 @@ Partial Class formReportesParametro
         Me.comboboxValor.FormattingEnabled = True
         Me.comboboxValor.Location = New System.Drawing.Point(117, 65)
         Me.comboboxValor.Name = "comboboxValor"
-        Me.comboboxValor.Size = New System.Drawing.Size(216, 21)
+        Me.comboboxValor.Size = New System.Drawing.Size(244, 21)
         Me.comboboxValor.TabIndex = 34
+        '
+        'radiobuttonSi
+        '
+        Me.radiobuttonSi.AutoSize = True
+        Me.radiobuttonSi.Location = New System.Drawing.Point(183, 66)
+        Me.radiobuttonSi.Name = "radiobuttonSi"
+        Me.radiobuttonSi.Size = New System.Drawing.Size(34, 17)
+        Me.radiobuttonSi.TabIndex = 35
+        Me.radiobuttonSi.TabStop = True
+        Me.radiobuttonSi.Text = "Si"
+        Me.radiobuttonSi.UseVisualStyleBackColor = True
+        '
+        'radiobuttonNo
+        '
+        Me.radiobuttonNo.AutoSize = True
+        Me.radiobuttonNo.Location = New System.Drawing.Point(244, 66)
+        Me.radiobuttonNo.Name = "radiobuttonNo"
+        Me.radiobuttonNo.Size = New System.Drawing.Size(39, 17)
+        Me.radiobuttonNo.TabIndex = 36
+        Me.radiobuttonNo.TabStop = True
+        Me.radiobuttonNo.Text = "No"
+        Me.radiobuttonNo.UseVisualStyleBackColor = True
         '
         'textboxNumber
         '
@@ -109,7 +133,9 @@ Partial Class formReportesParametro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(345, 105)
+        Me.ClientSize = New System.Drawing.Size(373, 100)
+        Me.Controls.Add(Me.radiobuttonNo)
+        Me.Controls.Add(Me.radiobuttonSi)
         Me.Controls.Add(Me.comboboxValor)
         Me.Controls.Add(Me.textboxNumber)
         Me.Controls.Add(Me.textboxMoney)
@@ -117,6 +143,7 @@ Partial Class formReportesParametro
         Me.Controls.Add(Me.labelValor)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametro"
@@ -136,4 +163,6 @@ Partial Class formReportesParametro
     Friend WithEvents textboxMoney As CSBomberos.DesktopApplication.CS_Control_TextBox_Currency
     Friend WithEvents textboxNumber As CSBomberos.DesktopApplication.CS_Control_TextBox_Number
     Friend WithEvents comboboxValor As System.Windows.Forms.ComboBox
+    Friend WithEvents radiobuttonSi As System.Windows.Forms.RadioButton
+    Friend WithEvents radiobuttonNo As System.Windows.Forms.RadioButton
 End Class

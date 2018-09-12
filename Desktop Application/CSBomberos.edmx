@@ -671,7 +671,7 @@
           </Key>
           <Property Name="IDReporte" Type="smallint" Nullable="false" />
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
@@ -3713,7 +3713,7 @@
           </Key>
           <Property Name="IDReporte" Type="Int16" Nullable="false" />
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />

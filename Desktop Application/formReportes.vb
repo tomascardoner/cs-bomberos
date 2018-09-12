@@ -73,24 +73,26 @@
             For Each ParametroActual As ReporteParametro In ReporteActual.ReporteParametros.OrderBy(Function(rp) rp.Orden)
 
                 With ParametroActual
-                    ' Agrego el Parámetro
+                    ' Agrego el Parámetro si tiene especificado el Orden, si no, no
+                    If Not .Orden Is Nothing Then
 
-                    ParametroListViewItem = New ListViewItem(.Nombre)
-                    ParametroListViewItem.Tag = .IDParametro
-                    If .Requerido Then
-                        ParametroListViewItem.SubItems.Add("Sí")
-                    Else
-                        ParametroListViewItem.SubItems.Add("No")
-                    End If
+                        ParametroListViewItem = New ListViewItem(.Nombre)
+                        ParametroListViewItem.Tag = .IDParametro
+                        If .Requerido Then
+                            ParametroListViewItem.SubItems.Add("Sí")
+                        Else
+                            ParametroListViewItem.SubItems.Add("No")
+                        End If
 
-                    If VarType(.Valor) = vbEmpty Then
-                        ParametroListViewItem.SubItems.Add("")
-                    Else
-                        ParametroListViewItem.SubItems.Add(.ValorParaMostrar)
+                        If VarType(.Valor) = vbEmpty Then
+                            ParametroListViewItem.SubItems.Add("")
+                        Else
+                            ParametroListViewItem.SubItems.Add(.ValorParaMostrar)
+                        End If
+
+                        listviewParametros.Items.Add(ParametroListViewItem)
                     End If
                 End With
-
-                listviewParametros.Items.Add(ParametroListViewItem)
             Next
             listviewParametros.EndUpdate()
 
@@ -113,7 +115,7 @@
 
             Select Case ParametroActual.Tipo
                 ' Personaes
-                Case Constantes.REPORTE_PARAMETRO_PERSONA
+                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
                     If formPersonasSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         Dim PersonaSeleccionada As Persona
 
@@ -126,7 +128,7 @@
                     End If
                     formPersonasSeleccionar.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_CUARTEL, Constantes.REPORTE_PARAMETRO_CARGO, Constantes.REPORTE_PARAMETRO_JERARQUIA, Constantes.REPORTE_PARAMETRO_ESTADO, Constantes.REPORTE_PARAMETRO_PERSONABAJAMOTIVO
+                Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW, Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR
                     formReportesParametro.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametro.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar

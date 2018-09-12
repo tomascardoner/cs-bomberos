@@ -42,12 +42,12 @@
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////
-    Friend Const REPORTE_PARAMETRO_CUARTEL As String = "CTEL"
-    Friend Const REPORTE_PARAMETRO_CARGO As String = "CARG"
-    Friend Const REPORTE_PARAMETRO_JERARQUIA As String = "JERQ"
-    Friend Const REPORTE_PARAMETRO_ESTADO As String = "ESTD"
-    Friend Const REPORTE_PARAMETRO_PERSONABAJAMOTIVO As String = "PBMT"
-    Friend Const REPORTE_PARAMETRO_PERSONA As String = "PERS"
+    Friend Const REPORTE_PARAMETRO_TIPO_CUARTEL As String = "CTEL"
+    Friend Const REPORTE_PARAMETRO_TIPO_CARGO As String = "CARG"
+    Friend Const REPORTE_PARAMETRO_TIPO_JERARQUIA As String = "JERQ"
+    Friend Const REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO As String = "PBMT"
+    Friend Const REPORTE_PARAMETRO_TIPO_PERSONA As String = "PERS"
+    Friend Const REPORTE_PARAMETRO_TIPO_AUTOMOTOR As String = "AUTO"
 
     Friend Const REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER As String = "NUIN"
     Friend Const REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL As String = "NUDE"
@@ -57,5 +57,10 @@
     Friend Const REPORTE_PARAMETRO_TIPO_TIME As String = "TIME"
     Friend Const REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM As String = "YMFR"
     Friend Const REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO As String = "YMTO"
-    Friend Const REPORTE_PARAMETRO_TIPO_SINO As String = "SINO"
+    Friend Const REPORTE_PARAMETRO_TIPO_SINO As String = "BOOL"
+
+    Friend Const REPORTE_PARAMETRO_TIPO_COMPANY As String = "CMNY"
+    Friend Const REPORTE_PARAMETRO_TIPO_TITLE As String = "TITL"
+    Friend Const REPORTE_PARAMETRO_TIPO_FILTER_TEXT As String = "FILT"
+    Friend Const REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW As String = "FLSH"
 End Module
