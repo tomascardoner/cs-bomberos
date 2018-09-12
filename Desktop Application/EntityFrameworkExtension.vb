@@ -184,9 +184,9 @@ Partial Public Class Reporte
                                             End Select
                                         End If
                                     Case ParameterValueKind.StringParameter
-                                        .CurrentValues.AddValue(CStr(ParametroActual.Valor))
+                                        .CurrentValues.AddValue(ParametroActual.Valor)
                                     Case ParameterValueKind.BooleanParameter
-                                        .CurrentValues.AddValue(CBool(ParametroActual.Valor))
+                                        .CurrentValues.AddValue(ParametroActual.Valor)
                                 End Select
                         End Select
                         Exit For
