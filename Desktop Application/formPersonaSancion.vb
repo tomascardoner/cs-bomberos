@@ -202,8 +202,6 @@
                 MsgBox("La Persona que solicita la Sanción no tiene especificado el Cargo y la Jerarquía.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 Exit Sub
             End If
-            mPersonaSancionActual.SolicitudIDCargo = PersonaAscensoUltimo.IDCargo
-            mPersonaSancionActual.SolicitudIDJerarquia = PersonaAscensoUltimo.IDJerarquia
             PersonaAscensoUltimo = Nothing
         End If
 

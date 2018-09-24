@@ -147,7 +147,6 @@
         <AssociationConnector Association="CSBomberosModel.FK__CapacitacionTipo__PersonaCapacitacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" />
         <AssociationConnector Association="CSBomberosModel.FK__Curso__PersonaCapacitacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Curso__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Curso__Modificacion" />

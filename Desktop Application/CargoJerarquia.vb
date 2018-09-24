@@ -26,6 +26,5 @@ Partial Public Class CargoJerarquia
     Public Overridable Property PersonasAscensos As ICollection(Of PersonaAscenso) = New HashSet(Of PersonaAscenso)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property PersonaSancion As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
 
 End Class

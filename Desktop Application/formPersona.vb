@@ -1316,6 +1316,41 @@
         End If
     End Sub
 
+    Private Sub Imprimir_SolicitudSancionDisciplinaria(sender As Object, e As EventArgs) Handles buttonSanciones_Imprimir.Click
+        Dim GridRowDataActual As Sanciones_GridRowData
+
+        If datagridviewSanciones.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Sanción para imprimir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+                GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData)
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewSanciones.Enabled = False
+
+                Using dbContext As New CSBomberosContext(True)
+                    Dim ReporteActual As New Reporte
+
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_SANCIONDISCIPLINARIA))
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDSancion").Single.Valor = GridRowDataActual.IDSancion
+                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre)
+                        End If
+                    Else
+                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    End If
+                End Using
+
+                datagridviewSanciones.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
 #End Region
 
 #Region "Capacitaciones"

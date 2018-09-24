@@ -70,6 +70,8 @@ Partial Class formPersona
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelAltura As System.Windows.Forms.Label
+        Dim labelPeso As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -80,8 +82,6 @@ Partial Class formPersona
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim labelAltura As System.Windows.Forms.Label
-        Dim labelPeso As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -103,6 +103,8 @@ Partial Class formPersona
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.integertextboxPeso = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.textboxFechaUltimoAscenso = New System.Windows.Forms.TextBox()
         Me.buttonLicenciaConducirCategoria = New System.Windows.Forms.Button()
         Me.textboxLicenciaConducirCategoria = New System.Windows.Forms.TextBox()
@@ -225,8 +227,7 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.integertextboxPeso = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
-        Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.buttonSanciones_Imprimir = New System.Windows.Forms.ToolStripButton()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -281,6 +282,8 @@ Partial Class formPersona
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageParticular.SuspendLayout()
         Me.tabpageLaboral.SuspendLayout()
         Me.tabpageFamiliares.SuspendLayout()
@@ -308,8 +311,6 @@ Partial Class formPersona
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripExamenes.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
-        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelApellido
@@ -743,6 +744,24 @@ Partial Class formPersona
         labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
+        'labelAltura
+        '
+        labelAltura.AutoSize = True
+        labelAltura.Location = New System.Drawing.Point(6, 182)
+        labelAltura.Name = "labelAltura"
+        labelAltura.Size = New System.Drawing.Size(37, 13)
+        labelAltura.TabIndex = 19
+        labelAltura.Text = "Altura:"
+        '
+        'labelPeso
+        '
+        labelPeso.AutoSize = True
+        labelPeso.Location = New System.Drawing.Point(220, 182)
+        labelPeso.Name = "labelPeso"
+        labelPeso.Size = New System.Drawing.Size(34, 13)
+        labelPeso.TabIndex = 21
+        labelPeso.Text = "Peso:"
+        '
         'textboxApellido
         '
         Me.textboxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -967,6 +986,43 @@ Partial Class formPersona
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'doubletextboxAltura
+        '
+        Me.doubletextboxAltura.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(44, 20)
+        Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxAltura.DoubleValue = 0.0R
+        Me.doubletextboxAltura.Location = New System.Drawing.Point(142, 179)
+        Me.doubletextboxAltura.MaxValue = 2.5R
+        Me.doubletextboxAltura.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxAltura.MinValue = 0.0R
+        Me.doubletextboxAltura.Name = "doubletextboxAltura"
+        Me.doubletextboxAltura.NullString = ""
+        Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
+        Me.doubletextboxAltura.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.doubletextboxAltura.TabIndex = 20
+        Me.doubletextboxAltura.Text = "0,00"
+        Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'integertextboxPeso
+        '
+        Me.integertextboxPeso.BackGroundColor = System.Drawing.SystemColors.Window
+        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(44, 20)
+        Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.integertextboxPeso.IntegerValue = CType(0, Long)
+        Me.integertextboxPeso.Location = New System.Drawing.Point(263, 179)
+        Me.integertextboxPeso.MaxValue = CType(200, Long)
+        Me.integertextboxPeso.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxPeso.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
+        Me.integertextboxPeso.MinValue = CType(0, Long)
+        Me.integertextboxPeso.Name = "integertextboxPeso"
+        Me.integertextboxPeso.NullString = ""
+        Me.integertextboxPeso.Size = New System.Drawing.Size(44, 20)
+        Me.integertextboxPeso.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
+        Me.integertextboxPeso.TabIndex = 22
+        Me.integertextboxPeso.Text = "0"
+        Me.integertextboxPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'textboxFechaUltimoAscenso
         '
         Me.textboxFechaUltimoAscenso.Location = New System.Drawing.Point(427, 377)
@@ -1156,7 +1212,7 @@ Partial Class formPersona
         Me.tabpageParticular.Location = New System.Drawing.Point(4, 25)
         Me.tabpageParticular.Name = "tabpageParticular"
         Me.tabpageParticular.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageParticular.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageParticular.Size = New System.Drawing.Size(652, 409)
         Me.tabpageParticular.TabIndex = 1
         Me.tabpageParticular.Text = "Contacto Particular"
         Me.tabpageParticular.UseVisualStyleBackColor = True
@@ -1288,7 +1344,7 @@ Partial Class formPersona
         Me.tabpageLaboral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageLaboral.Name = "tabpageLaboral"
         Me.tabpageLaboral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageLaboral.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageLaboral.Size = New System.Drawing.Size(652, 409)
         Me.tabpageLaboral.TabIndex = 9
         Me.tabpageLaboral.Text = "Contacto Laboral"
         Me.tabpageLaboral.UseVisualStyleBackColor = True
@@ -1398,7 +1454,7 @@ Partial Class formPersona
         Me.tabpageFamiliares.Location = New System.Drawing.Point(4, 25)
         Me.tabpageFamiliares.Name = "tabpageFamiliares"
         Me.tabpageFamiliares.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageFamiliares.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageFamiliares.Size = New System.Drawing.Size(652, 409)
         Me.tabpageFamiliares.TabIndex = 10
         Me.tabpageFamiliares.Text = "Familiares"
         Me.tabpageFamiliares.UseVisualStyleBackColor = True
@@ -1424,7 +1480,7 @@ Partial Class formPersona
         Me.datagridviewFamiliares.RowHeadersVisible = False
         Me.datagridviewFamiliares.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewFamiliares.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewFamiliares.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewFamiliares.TabIndex = 6
         '
         'columnFamiliares_Parentesco
@@ -1462,7 +1518,7 @@ Partial Class formPersona
         Me.toolstripFamiliares.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripFamiliares.Location = New System.Drawing.Point(3, 3)
         Me.toolstripFamiliares.Name = "toolstripFamiliares"
-        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 403)
         Me.toolstripFamiliares.TabIndex = 7
         '
         'buttonFamiliares_Agregar
@@ -1502,7 +1558,7 @@ Partial Class formPersona
         Me.tabpageAltasBajas.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAltasBajas.Name = "tabpageAltasBajas"
         Me.tabpageAltasBajas.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAltasBajas.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageAltasBajas.Size = New System.Drawing.Size(652, 409)
         Me.tabpageAltasBajas.TabIndex = 11
         Me.tabpageAltasBajas.Text = "Altas - Bajas"
         Me.tabpageAltasBajas.UseVisualStyleBackColor = True
@@ -1528,7 +1584,7 @@ Partial Class formPersona
         Me.datagridviewAltasBajas.RowHeadersVisible = False
         Me.datagridviewAltasBajas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAltasBajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewAltasBajas.TabIndex = 8
         '
         'columnAltasBajas_AltaFecha
@@ -1565,7 +1621,7 @@ Partial Class formPersona
         Me.toolstripAltasBajas.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAltasBajas.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAltasBajas.Name = "toolstripAltasBajas"
-        Me.toolstripAltasBajas.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripAltasBajas.Size = New System.Drawing.Size(87, 403)
         Me.toolstripAltasBajas.TabIndex = 9
         '
         'buttonAltasBajas_Agregar
@@ -1605,7 +1661,7 @@ Partial Class formPersona
         Me.tabpageAscensos.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAscensos.Name = "tabpageAscensos"
         Me.tabpageAscensos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAscensos.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageAscensos.Size = New System.Drawing.Size(652, 409)
         Me.tabpageAscensos.TabIndex = 12
         Me.tabpageAscensos.Text = "Ascensos"
         Me.tabpageAscensos.UseVisualStyleBackColor = True
@@ -1631,7 +1687,7 @@ Partial Class formPersona
         Me.datagridviewAscensos.RowHeadersVisible = False
         Me.datagridviewAscensos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAscensos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAscensos.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewAscensos.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewAscensos.TabIndex = 2
         '
         'columnAscensos_Fecha
@@ -1669,7 +1725,7 @@ Partial Class formPersona
         Me.toolstripAscensos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAscensos.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAscensos.Name = "toolstripAscensos"
-        Me.toolstripAscensos.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripAscensos.Size = New System.Drawing.Size(87, 403)
         Me.toolstripAscensos.TabIndex = 3
         '
         'buttonAscensos_Agregar
@@ -1709,7 +1765,7 @@ Partial Class formPersona
         Me.tabpageLicencias.Location = New System.Drawing.Point(4, 25)
         Me.tabpageLicencias.Name = "tabpageLicencias"
         Me.tabpageLicencias.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageLicencias.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageLicencias.Size = New System.Drawing.Size(652, 409)
         Me.tabpageLicencias.TabIndex = 13
         Me.tabpageLicencias.Text = "Licencias"
         Me.tabpageLicencias.UseVisualStyleBackColor = True
@@ -1735,7 +1791,7 @@ Partial Class formPersona
         Me.datagridviewLicencias.RowHeadersVisible = False
         Me.datagridviewLicencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewLicencias.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewLicencias.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewLicencias.TabIndex = 4
         '
         'columnLicencias_Fecha
@@ -1782,7 +1838,7 @@ Partial Class formPersona
         Me.toolstripLicencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripLicencias.Location = New System.Drawing.Point(3, 3)
         Me.toolstripLicencias.Name = "toolstripLicencias"
-        Me.toolstripLicencias.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripLicencias.Size = New System.Drawing.Size(87, 403)
         Me.toolstripLicencias.TabIndex = 5
         '
         'buttonLicencias_Agregar
@@ -1822,7 +1878,7 @@ Partial Class formPersona
         Me.tabpageSanciones.Location = New System.Drawing.Point(4, 25)
         Me.tabpageSanciones.Name = "tabpageSanciones"
         Me.tabpageSanciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageSanciones.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageSanciones.Size = New System.Drawing.Size(652, 409)
         Me.tabpageSanciones.TabIndex = 14
         Me.tabpageSanciones.Text = "Sanciones"
         Me.tabpageSanciones.UseVisualStyleBackColor = True
@@ -1841,14 +1897,14 @@ Partial Class formPersona
         Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
         Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewSanciones.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewSanciones.Location = New System.Drawing.Point(93, 3)
         Me.datagridviewSanciones.MultiSelect = False
         Me.datagridviewSanciones.Name = "datagridviewSanciones"
         Me.datagridviewSanciones.ReadOnly = True
         Me.datagridviewSanciones.RowHeadersVisible = False
         Me.datagridviewSanciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewSanciones.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewSanciones.Size = New System.Drawing.Size(556, 403)
         Me.datagridviewSanciones.TabIndex = 6
         '
         'columnSanciones_SolicitudFecha
@@ -1873,11 +1929,11 @@ Partial Class formPersona
         '
         Me.toolstripSanciones.Dock = System.Windows.Forms.DockStyle.Left
         Me.toolstripSanciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar})
+        Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar, Me.buttonSanciones_Imprimir})
         Me.toolstripSanciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripSanciones.Location = New System.Drawing.Point(3, 3)
         Me.toolstripSanciones.Name = "toolstripSanciones"
-        Me.toolstripSanciones.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripSanciones.Size = New System.Drawing.Size(90, 403)
         Me.toolstripSanciones.TabIndex = 7
         '
         'buttonSanciones_Agregar
@@ -1887,7 +1943,7 @@ Partial Class formPersona
         Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSanciones_Agregar.Name = "buttonSanciones_Agregar"
-        Me.buttonSanciones_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Agregar.Size = New System.Drawing.Size(87, 36)
         Me.buttonSanciones_Agregar.Text = "Agregar"
         '
         'buttonSanciones_Editar
@@ -1897,7 +1953,7 @@ Partial Class formPersona
         Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSanciones_Editar.Name = "buttonSanciones_Editar"
-        Me.buttonSanciones_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Editar.Size = New System.Drawing.Size(87, 36)
         Me.buttonSanciones_Editar.Text = "Editar"
         '
         'buttonSanciones_Eliminar
@@ -1907,7 +1963,7 @@ Partial Class formPersona
         Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSanciones_Eliminar.Name = "buttonSanciones_Eliminar"
-        Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(87, 36)
         Me.buttonSanciones_Eliminar.Text = "Eliminar"
         '
         'tabpageCapacitaciones
@@ -1917,7 +1973,7 @@ Partial Class formPersona
         Me.tabpageCapacitaciones.Location = New System.Drawing.Point(4, 25)
         Me.tabpageCapacitaciones.Name = "tabpageCapacitaciones"
         Me.tabpageCapacitaciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageCapacitaciones.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageCapacitaciones.Size = New System.Drawing.Size(652, 409)
         Me.tabpageCapacitaciones.TabIndex = 15
         Me.tabpageCapacitaciones.Text = "Cursos"
         Me.tabpageCapacitaciones.UseVisualStyleBackColor = True
@@ -1943,7 +1999,7 @@ Partial Class formPersona
         Me.datagridviewCapacitaciones.RowHeadersVisible = False
         Me.datagridviewCapacitaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewCapacitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCapacitaciones.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewCapacitaciones.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewCapacitaciones.TabIndex = 6
         '
         'columnCapacitaciones_Fecha
@@ -1972,7 +2028,7 @@ Partial Class formPersona
         Me.toolstripCapacitaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripCapacitaciones.Location = New System.Drawing.Point(3, 3)
         Me.toolstripCapacitaciones.Name = "toolstripCapacitaciones"
-        Me.toolstripCapacitaciones.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripCapacitaciones.Size = New System.Drawing.Size(87, 403)
         Me.toolstripCapacitaciones.TabIndex = 7
         '
         'buttonCapacitaciones_Agregar
@@ -2012,7 +2068,7 @@ Partial Class formPersona
         Me.tabpageCalificaciones.Location = New System.Drawing.Point(4, 25)
         Me.tabpageCalificaciones.Name = "tabpageCalificaciones"
         Me.tabpageCalificaciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageCalificaciones.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageCalificaciones.Size = New System.Drawing.Size(652, 409)
         Me.tabpageCalificaciones.TabIndex = 16
         Me.tabpageCalificaciones.Text = "Calificaciónes"
         Me.tabpageCalificaciones.UseVisualStyleBackColor = True
@@ -2039,7 +2095,7 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.RowHeadersVisible = False
         Me.datagridviewCalificaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewCalificaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCalificaciones.Size = New System.Drawing.Size(556, 376)
+        Me.datagridviewCalificaciones.Size = New System.Drawing.Size(556, 403)
         Me.datagridviewCalificaciones.TabIndex = 6
         '
         'columnCalificaciones_AnioInstancia
@@ -2073,7 +2129,7 @@ Partial Class formPersona
         Me.toolstripCalificaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripCalificaciones.Location = New System.Drawing.Point(3, 3)
         Me.toolstripCalificaciones.Name = "toolstripCalificaciones"
-        Me.toolstripCalificaciones.Size = New System.Drawing.Size(90, 376)
+        Me.toolstripCalificaciones.Size = New System.Drawing.Size(90, 403)
         Me.toolstripCalificaciones.TabIndex = 7
         '
         'buttonCalificaciones_Agregar
@@ -2122,7 +2178,7 @@ Partial Class formPersona
         Me.tabpageExamenes.Location = New System.Drawing.Point(4, 25)
         Me.tabpageExamenes.Name = "tabpageExamenes"
         Me.tabpageExamenes.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageExamenes.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageExamenes.Size = New System.Drawing.Size(652, 409)
         Me.tabpageExamenes.TabIndex = 17
         Me.tabpageExamenes.Text = "Exámenes"
         Me.tabpageExamenes.UseVisualStyleBackColor = True
@@ -2148,7 +2204,7 @@ Partial Class formPersona
         Me.datagridviewExamenes.RowHeadersVisible = False
         Me.datagridviewExamenes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewExamenes.Size = New System.Drawing.Size(559, 376)
+        Me.datagridviewExamenes.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewExamenes.TabIndex = 6
         '
         'columnExamenes_AnioInstancia
@@ -2177,7 +2233,7 @@ Partial Class formPersona
         Me.toolstripExamenes.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripExamenes.Location = New System.Drawing.Point(3, 3)
         Me.toolstripExamenes.Name = "toolstripExamenes"
-        Me.toolstripExamenes.Size = New System.Drawing.Size(87, 376)
+        Me.toolstripExamenes.Size = New System.Drawing.Size(87, 403)
         Me.toolstripExamenes.TabIndex = 7
         '
         'buttonExamenes_Agregar
@@ -2227,7 +2283,7 @@ Partial Class formPersona
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(652, 382)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(652, 409)
         Me.tabpageNotasAuditoria.TabIndex = 7
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -2306,60 +2362,14 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'labelAltura
+        'buttonSanciones_Imprimir
         '
-        labelAltura.AutoSize = True
-        labelAltura.Location = New System.Drawing.Point(6, 182)
-        labelAltura.Name = "labelAltura"
-        labelAltura.Size = New System.Drawing.Size(37, 13)
-        labelAltura.TabIndex = 19
-        labelAltura.Text = "Altura:"
-        '
-        'integertextboxPeso
-        '
-        Me.integertextboxPeso.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(44, 20)
-        Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.integertextboxPeso.IntegerValue = CType(0, Long)
-        Me.integertextboxPeso.Location = New System.Drawing.Point(263, 179)
-        Me.integertextboxPeso.MaxValue = CType(200, Long)
-        Me.integertextboxPeso.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.integertextboxPeso.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
-        Me.integertextboxPeso.MinValue = CType(0, Long)
-        Me.integertextboxPeso.Name = "integertextboxPeso"
-        Me.integertextboxPeso.NullString = ""
-        Me.integertextboxPeso.Size = New System.Drawing.Size(44, 20)
-        Me.integertextboxPeso.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.integertextboxPeso.TabIndex = 22
-        Me.integertextboxPeso.Text = "0"
-        Me.integertextboxPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'doubletextboxAltura
-        '
-        Me.doubletextboxAltura.BackGroundColor = System.Drawing.SystemColors.Window
-        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(44, 20)
-        Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxAltura.DoubleValue = 0.0R
-        Me.doubletextboxAltura.Location = New System.Drawing.Point(142, 179)
-        Me.doubletextboxAltura.MaxValue = 2.5R
-        Me.doubletextboxAltura.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxAltura.MinValue = 0.0R
-        Me.doubletextboxAltura.Name = "doubletextboxAltura"
-        Me.doubletextboxAltura.NullString = ""
-        Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
-        Me.doubletextboxAltura.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
-        Me.doubletextboxAltura.TabIndex = 20
-        Me.doubletextboxAltura.Text = "0,00"
-        Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'labelPeso
-        '
-        labelPeso.AutoSize = True
-        labelPeso.Location = New System.Drawing.Point(220, 182)
-        labelPeso.Name = "labelPeso"
-        labelPeso.Size = New System.Drawing.Size(34, 13)
-        labelPeso.TabIndex = 21
-        labelPeso.Text = "Peso:"
+        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
+        Me.buttonSanciones_Imprimir.Size = New System.Drawing.Size(87, 36)
+        Me.buttonSanciones_Imprimir.Text = "Imprimir"
         '
         'formPersona
         '
@@ -2390,6 +2400,8 @@ Partial Class formPersona
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageParticular.ResumeLayout(False)
         Me.tabpageParticular.PerformLayout()
         Me.tabpageLaboral.ResumeLayout(False)
@@ -2436,8 +2448,6 @@ Partial Class formPersona
         Me.toolstripExamenes.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.integertextboxPeso, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxAltura, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2586,4 +2596,5 @@ Partial Class formPersona
     Friend WithEvents buttonCalificaciones_Imprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents doubletextboxAltura As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents integertextboxPeso As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents buttonSanciones_Imprimir As System.Windows.Forms.ToolStripButton
 End Class

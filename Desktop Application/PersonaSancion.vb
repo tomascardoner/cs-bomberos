@@ -14,8 +14,6 @@ Partial Public Class PersonaSancion
     Public Property IDPersona As Integer
     Public Property IDSancion As Short
     Public Property SolicitudIDPersona As Integer
-    Public Property SolicitudIDCargo As Byte
-    Public Property SolicitudIDJerarquia As Byte
     Public Property SolicitudMotivo As String
     Public Property SolicitudFecha As Date
     Public Property EncuadreTexto As String
@@ -29,7 +27,6 @@ Partial Public Class PersonaSancion
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property CargoJerarquia As CargoJerarquia
     Public Overridable Property Persona As Persona
     Public Overridable Property PersonaSolicita As Persona
     Public Overridable Property SancionTipo As SancionTipo

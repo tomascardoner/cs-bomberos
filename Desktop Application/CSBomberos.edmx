@@ -643,8 +643,6 @@
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDSancion" Type="smallint" Nullable="false" />
           <Property Name="SolicitudIDPersona" Type="int" Nullable="false" />
-          <Property Name="SolicitudIDCargo" Type="tinyint" Nullable="false" />
-          <Property Name="SolicitudIDJerarquia" Type="tinyint" Nullable="false" />
           <Property Name="SolicitudMotivo" Type="varchar(max)" Nullable="false" />
           <Property Name="SolicitudFecha" Type="date" Nullable="false" />
           <Property Name="EncuadreTexto" Type="varchar(max)" />
@@ -932,20 +930,6 @@
             <Dependent Role="PersonaAscenso">
               <PropertyRef Name="IDCargo" />
               <PropertyRef Name="IDJerarquia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CargoJerarquia__PersonaSancion">
-          <End Role="CargoJerarquia" Type="Self.CargoJerarquia" Multiplicity="1" />
-          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CargoJerarquia">
-              <PropertyRef Name="IDCargo" />
-              <PropertyRef Name="IDJerarquia" />
-            </Principal>
-            <Dependent Role="PersonaSancion">
-              <PropertyRef Name="SolicitudIDCargo" />
-              <PropertyRef Name="SolicitudIDJerarquia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2548,10 +2532,6 @@
             <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
             <End Role="PersonaAscenso" EntitySet="PersonaAscenso" />
           </AssociationSet>
-          <AssociationSet Name="FK__CargoJerarquia__PersonaSancion" Association="Self.FK__CargoJerarquia__PersonaSancion">
-            <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
-            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
-          </AssociationSet>
           <AssociationSet Name="FK__CombustibleTipo__Automotor" Association="Self.FK__CombustibleTipo__Automotor">
             <End Role="CombustibleTipo" EntitySet="CombustibleTipo" />
             <End Role="Automotor" EntitySet="Automotor" />
@@ -3469,10 +3449,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CapacitacionTipo" EntitySet="CapacitacionTipo" />
           </AssociationSet>
-          <AssociationSet Name="FK__CargoJerarquia__PersonaSancion" Association="CSBomberosModel.FK__CargoJerarquia__PersonaSancion">
-            <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
-            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
-          </AssociationSet>
           <AssociationSet Name="FK__Curso__PersonaCapacitacion" Association="CSBomberosModel.FK__Curso__PersonaCapacitacion">
             <End Role="Curso" EntitySet="Curso" />
             <End Role="PersonaCapacitacion" EntitySet="PersonaCapacitacion" />
@@ -4349,7 +4325,6 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CargoJerarquia__Creacion" FromRole="CargoJerarquia" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CargoJerarquia__Modificacion" FromRole="CargoJerarquia" ToRole="Usuario" />
-          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" FromRole="CargoJerarquia" ToRole="PersonaSancion" />
         </EntityType>
         <EntityType Name="Elemento">
           <Key>
@@ -5679,8 +5654,6 @@
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
           <Property Name="IDSancion" Type="Int16" Nullable="false" />
           <Property Name="SolicitudIDPersona" Type="Int32" Nullable="false" />
-          <Property Name="SolicitudIDCargo" Type="Byte" Nullable="false" />
-          <Property Name="SolicitudIDJerarquia" Type="Byte" Nullable="false" />
           <Property Name="SolicitudMotivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SolicitudFecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EncuadreTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -5693,7 +5666,6 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CargoJerarquia" Relationship="CSBomberosModel.FK__CargoJerarquia__PersonaSancion" FromRole="PersonaSancion" ToRole="CargoJerarquia" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="PersonaSancion" ToRole="Persona" />
           <NavigationProperty Name="PersonaSolicita" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="PersonaSancion" ToRole="Persona" />
           <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="PersonaSancion" ToRole="SancionTipo" />
@@ -5786,20 +5758,6 @@
             </Principal>
             <Dependent Role="CapacitacionTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CargoJerarquia__PersonaSancion">
-          <End Type="CSBomberosModel.CargoJerarquia" Role="CargoJerarquia" Multiplicity="1" />
-          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CargoJerarquia">
-              <PropertyRef Name="IDCargo" />
-              <PropertyRef Name="IDJerarquia" />
-            </Principal>
-            <Dependent Role="PersonaSancion">
-              <PropertyRef Name="SolicitudIDCargo" />
-              <PropertyRef Name="SolicitudIDJerarquia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7152,6 +7110,7 @@
           <EntitySetMapping Name="PersonaSancion">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaSancion">
               <MappingFragment StoreEntitySet="PersonaSancion">
+                <ScalarProperty Name="SolicitudIDPersona" ColumnName="SolicitudIDPersona" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -7164,9 +7123,6 @@
                 <ScalarProperty Name="EncuadreTexto" ColumnName="EncuadreTexto" />
                 <ScalarProperty Name="SolicitudFecha" ColumnName="SolicitudFecha" />
                 <ScalarProperty Name="SolicitudMotivo" ColumnName="SolicitudMotivo" />
-                <ScalarProperty Name="SolicitudIDJerarquia" ColumnName="SolicitudIDJerarquia" />
-                <ScalarProperty Name="SolicitudIDCargo" ColumnName="SolicitudIDCargo" />
-                <ScalarProperty Name="SolicitudIDPersona" ColumnName="SolicitudIDPersona" />
                 <ScalarProperty Name="IDSancion" ColumnName="IDSancion" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
               </MappingFragment>
