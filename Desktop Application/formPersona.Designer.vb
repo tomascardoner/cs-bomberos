@@ -193,6 +193,7 @@ Partial Class formPersona
         Me.buttonSanciones_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonSanciones_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonSanciones_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonSanciones_Imprimir = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCapacitaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCapacitaciones = New System.Windows.Forms.DataGridView()
         Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -227,7 +228,7 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.buttonSanciones_Imprimir = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicencias_Imprimir = New System.Windows.Forms.ToolStripButton()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -1784,14 +1785,14 @@ Partial Class formPersona
         Me.datagridviewLicencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnLicencias_Fecha, Me.columnLicencias_Causa, Me.columnLicencias_FechaDesde, Me.columnLicencias_FechaHasta})
         Me.datagridviewLicencias.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewLicencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewLicencias.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewLicencias.Location = New System.Drawing.Point(93, 3)
         Me.datagridviewLicencias.MultiSelect = False
         Me.datagridviewLicencias.Name = "datagridviewLicencias"
         Me.datagridviewLicencias.ReadOnly = True
         Me.datagridviewLicencias.RowHeadersVisible = False
         Me.datagridviewLicencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewLicencias.Size = New System.Drawing.Size(559, 403)
+        Me.datagridviewLicencias.Size = New System.Drawing.Size(556, 403)
         Me.datagridviewLicencias.TabIndex = 4
         '
         'columnLicencias_Fecha
@@ -1834,11 +1835,11 @@ Partial Class formPersona
         '
         Me.toolstripLicencias.Dock = System.Windows.Forms.DockStyle.Left
         Me.toolstripLicencias.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripLicencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicencias_Agregar, Me.buttonLicencias_Editar, Me.buttonLicencias_Eliminar})
+        Me.toolstripLicencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicencias_Agregar, Me.buttonLicencias_Editar, Me.buttonLicencias_Eliminar, Me.buttonLicencias_Imprimir})
         Me.toolstripLicencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripLicencias.Location = New System.Drawing.Point(3, 3)
         Me.toolstripLicencias.Name = "toolstripLicencias"
-        Me.toolstripLicencias.Size = New System.Drawing.Size(87, 403)
+        Me.toolstripLicencias.Size = New System.Drawing.Size(90, 403)
         Me.toolstripLicencias.TabIndex = 5
         '
         'buttonLicencias_Agregar
@@ -1848,7 +1849,7 @@ Partial Class formPersona
         Me.buttonLicencias_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonLicencias_Agregar.Name = "buttonLicencias_Agregar"
-        Me.buttonLicencias_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Agregar.Size = New System.Drawing.Size(87, 36)
         Me.buttonLicencias_Agregar.Text = "Agregar"
         '
         'buttonLicencias_Editar
@@ -1858,7 +1859,7 @@ Partial Class formPersona
         Me.buttonLicencias_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonLicencias_Editar.Name = "buttonLicencias_Editar"
-        Me.buttonLicencias_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Editar.Size = New System.Drawing.Size(87, 36)
         Me.buttonLicencias_Editar.Text = "Editar"
         '
         'buttonLicencias_Eliminar
@@ -1868,7 +1869,7 @@ Partial Class formPersona
         Me.buttonLicencias_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonLicencias_Eliminar.Name = "buttonLicencias_Eliminar"
-        Me.buttonLicencias_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicencias_Eliminar.Size = New System.Drawing.Size(87, 36)
         Me.buttonLicencias_Eliminar.Text = "Eliminar"
         '
         'tabpageSanciones
@@ -1965,6 +1966,15 @@ Partial Class formPersona
         Me.buttonSanciones_Eliminar.Name = "buttonSanciones_Eliminar"
         Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(87, 36)
         Me.buttonSanciones_Eliminar.Text = "Eliminar"
+        '
+        'buttonSanciones_Imprimir
+        '
+        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
+        Me.buttonSanciones_Imprimir.Size = New System.Drawing.Size(87, 36)
+        Me.buttonSanciones_Imprimir.Text = "Imprimir"
         '
         'tabpageCapacitaciones
         '
@@ -2362,14 +2372,14 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'buttonSanciones_Imprimir
+        'buttonLicencias_Imprimir
         '
-        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
-        Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
-        Me.buttonSanciones_Imprimir.Size = New System.Drawing.Size(87, 36)
-        Me.buttonSanciones_Imprimir.Text = "Imprimir"
+        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonLicencias_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicencias_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicencias_Imprimir.Name = "buttonLicencias_Imprimir"
+        Me.buttonLicencias_Imprimir.Size = New System.Drawing.Size(87, 36)
+        Me.buttonLicencias_Imprimir.Text = "Imprimir"
         '
         'formPersona
         '
@@ -2597,4 +2607,5 @@ Partial Class formPersona
     Friend WithEvents doubletextboxAltura As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents integertextboxPeso As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents buttonSanciones_Imprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonLicencias_Imprimir As System.Windows.Forms.ToolStripButton
 End Class

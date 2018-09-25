@@ -1201,6 +1201,40 @@
         End If
     End Sub
 
+    Private Sub Imprimir_PlanillaLicencia(sender As Object, e As EventArgs) Handles buttonLicencias_Imprimir.Click
+        Dim GridRowDataActual As Licencias_GridRowData
+
+        If datagridviewLicencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia para imprimir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+                GridRowDataActual = CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData)
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewLicencias.Enabled = False
+
+                Using dbContext As New CSBomberosContext(True)
+                    Dim ReporteActual As New Reporte
+
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_LICENCIA))
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDLicencia").Single.Valor = GridRowDataActual.IDLicencia
+                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre)
+                        End If
+                    Else
+                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    End If
+                End Using
+
+                datagridviewLicencias.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
 #End Region
 
 #Region "Sanciones"
