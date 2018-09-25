@@ -249,6 +249,7 @@
           <Property Name="Codigo" Type="char" MaxLength="5" />
           <Property Name="Cantidad" Type="smallint" />
           <Property Name="IDElemento" Type="int" Nullable="false" />
+          <Property Name="DescripcionPropia" Type="varchar" MaxLength="100" />
           <Property Name="IDModoAdquisicion" Type="tinyint" />
           <Property Name="IDUbicacion" Type="smallint" />
           <Property Name="IDSubUbicacion" Type="smallint" />
@@ -5360,6 +5361,7 @@
           <Property Name="Codigo" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
           <Property Name="Cantidad" Type="Int16" />
           <Property Name="IDElemento" Type="Int32" Nullable="false" />
+          <Property Name="DescripcionPropia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IDModoAdquisicion" Type="Byte" />
           <Property Name="IDUbicacion" Type="Int16" />
           <Property Name="IDSubUbicacion" Type="Int16" />
@@ -6935,6 +6937,7 @@
           <EntitySetMapping Name="Inventario">
             <EntityTypeMapping TypeName="CSBomberosModel.Inventario">
               <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="DescripcionPropia" ColumnName="DescripcionPropia" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

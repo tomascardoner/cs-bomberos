@@ -77,6 +77,7 @@
         textboxCodigo.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = (mEditMode And mInventarioActual.IDInventario = 0)
         comboboxElemento.Enabled = mEditMode
+        textboxDescripcionPropia.ReadOnly = Not mEditMode
         comboboxModoAdquisicion.Enabled = mEditMode
         comboboxUbicacion.Enabled = mEditMode
         comboboxSubUbicacion.Enabled = mEditMode
@@ -119,6 +120,7 @@
             CS_ComboBox.SetSelectedValue(comboboxArea, SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
             CS_ComboBox.SetSelectedValue(comboboxElemento, SelectedItemOptions.Value, .IDElemento)
+            textboxDescripcionPropia.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DescripcionPropia)
             CS_ComboBox.SetSelectedValue(comboboxModoAdquisicion, SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
 
             CS_ComboBox.SetSelectedValue(comboboxUbicacion, SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
@@ -158,11 +160,13 @@
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Codigo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCodigo.Text)
             .IDElemento = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxElemento.SelectedValue).Value
+            .DescripcionPropia = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcionPropia.Text)
             .IDModoAdquisicion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxModoAdquisicion.SelectedValue)
 
             .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
             .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
 
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
             If checkboxEsActivo.Checked Then
                 .FechaBaja = Nothing
@@ -191,7 +195,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs)
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxCodigo.GotFocus, textboxDescripcionPropia.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 

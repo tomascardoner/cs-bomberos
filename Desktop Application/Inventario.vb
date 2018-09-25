@@ -16,6 +16,7 @@ Partial Public Class Inventario
     Public Property Codigo As String
     Public Property Cantidad As Nullable(Of Short)
     Public Property IDElemento As Integer
+    Public Property DescripcionPropia As String
     Public Property IDModoAdquisicion As Nullable(Of Byte)
     Public Property IDUbicacion As Nullable(Of Short)
     Public Property IDSubUbicacion As Nullable(Of Short)

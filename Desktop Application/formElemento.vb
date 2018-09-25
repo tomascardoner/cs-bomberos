@@ -134,6 +134,7 @@
             .IDRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_BYTE)
             .IDSubRubro = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubRubro.SelectedValue, FIELD_VALUE_NOTSPECIFIED_SHORT)
 
+            .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
@@ -157,7 +158,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 

@@ -59,6 +59,8 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
+        Me.labelDescripcionPropia = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -86,10 +88,10 @@ Partial Class formInventarioDetalle
         'labelSubUbicacion
         '
         labelSubUbicacion.AutoSize = True
-        labelSubUbicacion.Location = New System.Drawing.Point(6, 185)
+        labelSubUbicacion.Location = New System.Drawing.Point(6, 228)
         labelSubUbicacion.Name = "labelSubUbicacion"
         labelSubUbicacion.Size = New System.Drawing.Size(80, 13)
-        labelSubUbicacion.TabIndex = 13
+        labelSubUbicacion.TabIndex = 15
         labelSubUbicacion.Text = "Sub-Ubicación:"
         '
         'labelArea
@@ -104,25 +106,25 @@ Partial Class formInventarioDetalle
         'labelModoAdquisicion
         '
         labelModoAdquisicion.AutoSize = True
-        labelModoAdquisicion.Location = New System.Drawing.Point(6, 115)
+        labelModoAdquisicion.Location = New System.Drawing.Point(6, 158)
         labelModoAdquisicion.Name = "labelModoAdquisicion"
         labelModoAdquisicion.Size = New System.Drawing.Size(109, 13)
-        labelModoAdquisicion.TabIndex = 9
+        labelModoAdquisicion.TabIndex = 11
         labelModoAdquisicion.Text = "Modo de Adquisición:"
         '
         'labelUbicacion
         '
         labelUbicacion.AutoSize = True
-        labelUbicacion.Location = New System.Drawing.Point(6, 158)
+        labelUbicacion.Location = New System.Drawing.Point(6, 201)
         labelUbicacion.Name = "labelUbicacion"
         labelUbicacion.Size = New System.Drawing.Size(58, 13)
-        labelUbicacion.TabIndex = 11
+        labelUbicacion.TabIndex = 13
         labelUbicacion.Text = "Ubicación:"
         '
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(5, 85)
+        labelEsActivo.Location = New System.Drawing.Point(5, 134)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -131,7 +133,7 @@ Partial Class formInventarioDetalle
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 188)
+        labelModificacion.Location = New System.Drawing.Point(6, 237)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 11
@@ -140,7 +142,7 @@ Partial Class formInventarioDetalle
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 162)
+        labelCreacion.Location = New System.Drawing.Point(6, 211)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 8
@@ -149,7 +151,7 @@ Partial Class formInventarioDetalle
         'labelFechaBaja
         '
         labelFechaBaja.AutoSize = True
-        labelFechaBaja.Location = New System.Drawing.Point(6, 110)
+        labelFechaBaja.Location = New System.Drawing.Point(6, 159)
         labelFechaBaja.Name = "labelFechaBaja"
         labelFechaBaja.Size = New System.Drawing.Size(79, 13)
         labelFechaBaja.TabIndex = 4
@@ -210,7 +212,7 @@ Partial Class formInventarioDetalle
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(541, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(537, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'comboboxCuartel
@@ -226,10 +228,10 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxSubUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxSubUbicacion.FormattingEnabled = True
-        Me.comboboxSubUbicacion.Location = New System.Drawing.Point(121, 182)
+        Me.comboboxSubUbicacion.Location = New System.Drawing.Point(121, 225)
         Me.comboboxSubUbicacion.Name = "comboboxSubUbicacion"
         Me.comboboxSubUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSubUbicacion.TabIndex = 14
+        Me.comboboxSubUbicacion.TabIndex = 16
         '
         'comboboxArea
         '
@@ -261,19 +263,19 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxModoAdquisicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxModoAdquisicion.FormattingEnabled = True
-        Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(121, 112)
+        Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(121, 155)
         Me.comboboxModoAdquisicion.Name = "comboboxModoAdquisicion"
         Me.comboboxModoAdquisicion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxModoAdquisicion.TabIndex = 10
+        Me.comboboxModoAdquisicion.TabIndex = 12
         '
         'comboboxUbicacion
         '
         Me.comboboxUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxUbicacion.FormattingEnabled = True
-        Me.comboboxUbicacion.Location = New System.Drawing.Point(121, 155)
+        Me.comboboxUbicacion.Location = New System.Drawing.Point(121, 198)
         Me.comboboxUbicacion.Name = "comboboxUbicacion"
         Me.comboboxUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxUbicacion.TabIndex = 12
+        Me.comboboxUbicacion.TabIndex = 14
         '
         'buttonCodigoSiguiente
         '
@@ -291,7 +293,7 @@ Partial Class formInventarioDetalle
         Me.comboboxElemento.FormattingEnabled = True
         Me.comboboxElemento.Location = New System.Drawing.Point(121, 86)
         Me.comboboxElemento.Name = "comboboxElemento"
-        Me.comboboxElemento.Size = New System.Drawing.Size(359, 21)
+        Me.comboboxElemento.Size = New System.Drawing.Size(382, 21)
         Me.comboboxElemento.TabIndex = 8
         '
         'tabcontrolMain
@@ -302,11 +304,13 @@ Partial Class formInventarioDetalle
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(517, 244)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(517, 289)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.labelDescripcionPropia)
+        Me.tabpageGeneral.Controls.Add(Me.textboxDescripcionPropia)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
         Me.tabpageGeneral.Controls.Add(Me.comboboxElemento)
         Me.tabpageGeneral.Controls.Add(Me.labelElemento)
@@ -325,7 +329,7 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(509, 215)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(509, 260)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -349,7 +353,7 @@ Partial Class formInventarioDetalle
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(509, 215)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(509, 260)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -357,7 +361,7 @@ Partial Class formInventarioDetalle
         'datetimepickerFechaBaja
         '
         Me.datetimepickerFechaBaja.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaBaja.Location = New System.Drawing.Point(114, 107)
+        Me.datetimepickerFechaBaja.Location = New System.Drawing.Point(114, 156)
         Me.datetimepickerFechaBaja.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFechaBaja.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaBaja.Name = "datetimepickerFechaBaja"
@@ -377,7 +381,7 @@ Partial Class formInventarioDetalle
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 84)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 133)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -385,7 +389,7 @@ Partial Class formInventarioDetalle
         '
         'textboxIDInventario
         '
-        Me.textboxIDInventario.Location = New System.Drawing.Point(114, 133)
+        Me.textboxIDInventario.Location = New System.Drawing.Point(114, 182)
         Me.textboxIDInventario.MaxLength = 10
         Me.textboxIDInventario.Name = "textboxIDInventario"
         Me.textboxIDInventario.ReadOnly = True
@@ -396,7 +400,7 @@ Partial Class formInventarioDetalle
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 185)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 234)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -405,7 +409,7 @@ Partial Class formInventarioDetalle
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 159)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 208)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -414,7 +418,7 @@ Partial Class formInventarioDetalle
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 185)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 234)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -423,7 +427,7 @@ Partial Class formInventarioDetalle
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 159)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 208)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -437,7 +441,7 @@ Partial Class formInventarioDetalle
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 72)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 118)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -449,11 +453,28 @@ Partial Class formInventarioDetalle
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'textboxDescripcionPropia
+        '
+        Me.textboxDescripcionPropia.Location = New System.Drawing.Point(121, 113)
+        Me.textboxDescripcionPropia.MaxLength = 100
+        Me.textboxDescripcionPropia.Name = "textboxDescripcionPropia"
+        Me.textboxDescripcionPropia.Size = New System.Drawing.Size(382, 20)
+        Me.textboxDescripcionPropia.TabIndex = 10
+        '
+        'labelDescripcionPropia
+        '
+        Me.labelDescripcionPropia.AutoSize = True
+        Me.labelDescripcionPropia.Location = New System.Drawing.Point(6, 116)
+        Me.labelDescripcionPropia.Name = "labelDescripcionPropia"
+        Me.labelDescripcionPropia.Size = New System.Drawing.Size(98, 13)
+        Me.labelDescripcionPropia.TabIndex = 9
+        Me.labelDescripcionPropia.Text = "Descripción propia:"
+        '
         'formInventarioDetalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(541, 299)
+        Me.ClientSize = New System.Drawing.Size(537, 344)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -502,4 +523,6 @@ Partial Class formInventarioDetalle
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
+    Friend WithEvents labelDescripcionPropia As System.Windows.Forms.Label
+    Friend WithEvents textboxDescripcionPropia As System.Windows.Forms.TextBox
 End Class

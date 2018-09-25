@@ -184,7 +184,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMarca.GotFocus, textboxModelo.GotFocus, textboxDominio.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMarca.GotFocus, textboxModelo.GotFocus, textboxDominio.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 

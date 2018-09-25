@@ -10,6 +10,7 @@
         Public Property AreaNombre As String
         Public Property Codigo As String
         Public Property Nombre As String
+        Public Property DescripcionPropia As String
         Public Property IDUbicacion As Short
         Public Property UbicacionNombre As String
         Public Property IDSubUbicacion As Short
@@ -67,7 +68,7 @@
                                        From ug In Ubicaciones_Group.DefaultIfEmpty
                                        Group Join su In dbContext.SubUbicacion On i.IDSubUbicacion Equals su.IDSubUbicacion Into SubUbicaciones_Group = Group
                                        From sug In SubUbicaciones_Group.DefaultIfEmpty
-                                       Select New GridRowData With {.IDInventario = i.IDInventario, .IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = i.IDArea, .AreaNombre = a.Nombre, .Codigo = a.Codigo & i.Codigo, .Nombre = e.Nombre, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
+                                       Select New GridRowData With {.IDInventario = i.IDInventario, .IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = i.IDArea, .AreaNombre = a.Nombre, .Codigo = a.Codigo & i.Codigo, .Nombre = e.Nombre, .DescripcionPropia = i.DescripcionPropia, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -196,9 +197,15 @@
                 End If
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.DescripcionPropia).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
                 Else
-                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenByDescending(Function(dgrd) dgrd.DescripcionPropia).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                End If
+            Case columnDescripcionPropia.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.DescripcionPropia).ThenBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
+                Else
+                    mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.DescripcionPropia).ThenByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.AreaNombre).ToList
                 End If
             Case columnUbicacion.Name
                 If mOrdenTipo = SortOrder.Ascending Then
