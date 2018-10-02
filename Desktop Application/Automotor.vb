@@ -30,8 +30,10 @@ Partial Public Class Automotor
     Public Property CapacidadAguaLitros As Nullable(Of Integer)
     Public Property IDCuartel As Byte
     Public Property EsPropio As Boolean
+    Public Property VerificacionVencimiento As Nullable(Of Date)
     Public Property Notas As String
     Public Property EsActivo As Boolean
+    Public Property IDAutomotorBajaMotivo As Nullable(Of Byte)
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
@@ -44,5 +46,6 @@ Partial Public Class Automotor
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
     Public Overridable Property AutomotorUso As AutomotorUso
+    Public Overridable Property AutomotorBajaMotivo As AutomotorBajaMotivo
 
 End Class

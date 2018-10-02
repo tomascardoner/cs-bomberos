@@ -30,7 +30,7 @@
                 ReporteGrupoNode.Tag = ReporteGrupoActual
                 treeviewReportes.Nodes.Add(ReporteGrupoNode)
 
-                For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes
+                For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True)
                     ' Agrego el Reporte
                     ReporteNode = New TreeNode(ReporteActual.Nombre)
                     ReporteNode.Tag = ReporteActual
@@ -70,6 +70,9 @@
         Try
             listviewParametros.BeginUpdate()
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
+
+            labelParametrosTitulo.Text = String.Format("Parámetros del Reporte: ""{0}""", ReporteActual.Nombre)
+
             For Each ParametroActual As ReporteParametro In ReporteActual.ReporteParametros.OrderBy(Function(rp) rp.Orden)
 
                 With ParametroActual

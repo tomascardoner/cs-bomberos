@@ -1,14 +1,14 @@
 ﻿Friend Class FillAndRefreshLists
 
 #Region "Declarations..."
-    Friend dbContext As CSBomberosContext
+    Private mdbContext As CSBomberosContext
 
     Public Sub New()
-        dbContext = New CSBomberosContext(True)
+        mdbContext = New CSBomberosContext(True)
     End Sub
 
     Protected Overrides Sub Finalize()
-        dbContext.Dispose()
+        mdbContext.Dispose()
         MyBase.Finalize()
     End Sub
 
@@ -18,7 +18,7 @@
         ComboBoxControl.ValueMember = "IDDocumentoTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        Dim qryList = From tbl In dbContext.DocumentoTipo
+        Dim qryList = From tbl In mdbContext.DocumentoTipo
                       Where tbl.EsActivo
                       Order By tbl.Nombre
 
@@ -38,7 +38,7 @@
         ComboBoxControl.ValueMember = "IDProvincia"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        Dim qryList = From tbl In dbContext.Provincia
+        Dim qryList = From tbl In mdbContext.Provincia
                           Order By tbl.Nombre
 
         Dim localList = qryList.ToList
@@ -56,7 +56,7 @@
         ComboBoxControl.ValueMember = "IDLocalidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        Dim qryList = From tbl In dbContext.Localidad
+        Dim qryList = From tbl In mdbContext.Localidad
                           Where tbl.IDProvincia = IDProvincia
                           Order By tbl.Nombre
 
@@ -266,7 +266,7 @@
         ComboBoxControl.ValueMember = "IDNivelEstudio"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New NivelEstudio
@@ -294,9 +294,9 @@
             ' Tengo que limitar la lista al cuartel que tiene especificado
             listItems = New List(Of Cuartel)
 
-            listItems.Insert(0, dbContext.Cuartel.Find(pUsuario.IDCuartel))
+            listItems.Insert(0, mdbContext.Cuartel.Find(pUsuario.IDCuartel))
         Else
-            listItems = dbContext.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+            listItems = mdbContext.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
             If AgregarItem_Todos Then
                 Dim Item_Todos As New Cuartel
@@ -323,9 +323,9 @@
         ComboBoxControl.DisplayMember = "ApellidoNombre"
 
         If MostrarInactivos Then
-            listItems = dbContext.Persona.OrderBy(Function(p) p.ApellidoNombre).ToList
+            listItems = mdbContext.Persona.OrderBy(Function(p) p.ApellidoNombre).ToList
         Else
-            listItems = dbContext.Persona.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.ApellidoNombre).ToList
+            listItems = mdbContext.Persona.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.ApellidoNombre).ToList
         End If
 
         If AgregarItem_NoEspecifica Then
@@ -350,7 +350,7 @@
         ComboBoxControl.ValueMember = "IDSancionTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.SancionTipo.Where(Function(st) st.EsActivo).OrderBy(Function(st) st.Nombre).ToList
+        listItems = mdbContext.SancionTipo.Where(Function(st) st.EsActivo).OrderBy(Function(st) st.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New SancionTipo
@@ -374,7 +374,7 @@
         ComboBoxControl.ValueMember = "IDParentesco"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Parentesco.Where(Function(p) p.EsActivo).OrderBy(Function(pa) pa.Orden).ThenBy(Function(pa) pa.Nombre).ToList
+        listItems = mdbContext.Parentesco.Where(Function(p) p.EsActivo).OrderBy(Function(pa) pa.Orden).ThenBy(Function(pa) pa.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Parentesco
@@ -398,7 +398,7 @@
         ComboBoxControl.ValueMember = "IDPersonaBajaMotivo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.PersonaBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
+        listItems = mdbContext.PersonaBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New PersonaBajaMotivo
@@ -422,7 +422,7 @@
         ComboBoxControl.ValueMember = "IDArea"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Area.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+        listItems = mdbContext.Area.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Area
@@ -447,9 +447,9 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = dbContext.Ubicacion.Where(Function(u) u.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+            listItems = mdbContext.Ubicacion.Where(Function(u) u.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
         Else
-            listItems = dbContext.Ubicacion.Where(Function(u) u.EsActivo And u.IDCuartel = IDCuartel).OrderBy(Function(u) u.Nombre).ToList
+            listItems = mdbContext.Ubicacion.Where(Function(u) u.EsActivo And u.IDCuartel = IDCuartel).OrderBy(Function(u) u.Nombre).ToList
         End If
 
         If AgregarItem_NoEspecifica Then
@@ -474,7 +474,7 @@
         ComboBoxControl.ValueMember = "IDSubUbicacion"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.SubUbicacion.Where(Function(su) su.EsActivo And su.IDUbicacion = IDUbicacion).OrderBy(Function(su) su.Nombre).ToList
+        listItems = mdbContext.SubUbicacion.Where(Function(su) su.EsActivo And su.IDUbicacion = IDUbicacion).OrderBy(Function(su) su.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New SubUbicacion
@@ -498,7 +498,7 @@
         ComboBoxControl.ValueMember = "IDRubro"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Rubro.Where(Function(r) r.EsActivo).OrderBy(Function(r) r.Nombre).ToList
+        listItems = mdbContext.Rubro.Where(Function(r) r.EsActivo).OrderBy(Function(r) r.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Rubro
@@ -522,7 +522,7 @@
         ComboBoxControl.ValueMember = "IDSubRubro"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.SubRubro.Where(Function(sr) sr.EsActivo And sr.IDRubro = IDRubro).OrderBy(Function(sr) sr.Nombre).ToList
+        listItems = mdbContext.SubRubro.Where(Function(sr) sr.EsActivo And sr.IDRubro = IDRubro).OrderBy(Function(sr) sr.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New SubRubro
@@ -547,9 +547,9 @@
         ComboBoxControl.DisplayMember = "NumeroMarcaModelo"
 
         If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = dbContext.Automotor.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Automotor.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
         Else
-            listItems = dbContext.Automotor.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Automotor.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
         End If
 
         If AgregarItem_NoEspecifica Then
@@ -574,7 +574,7 @@
         ComboBoxControl.ValueMember = "IDModoAdquisicion"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.ModoAdquisicion.Where(Function(ma) ma.EsActivo).OrderBy(Function(ma) ma.Nombre).ToList
+        listItems = mdbContext.ModoAdquisicion.Where(Function(ma) ma.EsActivo).OrderBy(Function(ma) ma.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New ModoAdquisicion
@@ -592,13 +592,15 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Elemento(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+#Region "Elemento"
+
+    Friend Sub ElementoFill(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Elemento)
 
         ComboBoxControl.ValueMember = "IDElemento"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Elemento.Where(Function(e) e.EsActivo).OrderBy(Function(e) e.Nombre).ToList
+        listItems = mdbContext.Elemento.Where(Function(e) e.EsActivo).OrderBy(Function(e) e.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Elemento
@@ -616,13 +618,22 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub ElementoRefresh()
+        If Application.OpenForms().OfType(Of formElementos).Any Then
+            'mdbContext.Refresh()
+        End If
+        'mdbContext.Entry(formInventarioDetalle.comboboxElemento.DataSource).Reload()
+    End Sub
+
+#End Region
+
     Friend Sub AutomotorTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of AutomotorTipo)
 
         ComboBoxControl.ValueMember = "IDAutomotorTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.AutomotorTipo.Where(Function(at) at.EsActivo).OrderBy(Function(at) at.Nombre).ToList
+        listItems = mdbContext.AutomotorTipo.Where(Function(at) at.EsActivo).OrderBy(Function(at) at.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New AutomotorTipo
@@ -647,7 +658,7 @@
         ComboBoxControl.ValueMember = "IDAutomotorUso"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.AutomotorUso.Where(Function(au) au.EsActivo).OrderBy(Function(au) au.Nombre).ToList
+        listItems = mdbContext.AutomotorUso.Where(Function(au) au.EsActivo).OrderBy(Function(au) au.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New AutomotorUso
@@ -672,7 +683,7 @@
         ComboBoxControl.ValueMember = "IDCombustibleTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CombustibleTipo.Where(Function(ct) ct.EsActivo).OrderBy(Function(ct) ct.Nombre).ToList
+        listItems = mdbContext.CombustibleTipo.Where(Function(ct) ct.EsActivo).OrderBy(Function(ct) ct.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CombustibleTipo
@@ -698,9 +709,9 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If MostrarGrupoAdministradores Then
-            listItems = dbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo).OrderBy(Function(ug) ug.Nombre).ToList
+            listItems = mdbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo).OrderBy(Function(ug) ug.Nombre).ToList
         Else
-            listItems = dbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo And ug.IDUsuarioGrupo <> USUARIOGRUPO_ADMINISTRADORES_ID).OrderBy(Function(ug) ug.Nombre).ToList
+            listItems = mdbContext.UsuarioGrupo.Where(Function(ug) ug.EsActivo And ug.IDUsuarioGrupo <> USUARIOGRUPO_ADMINISTRADORES_ID).OrderBy(Function(ug) ug.Nombre).ToList
         End If
 
         If AgregarItem_Todos Then
@@ -726,7 +737,7 @@
         ComboBoxControl.ValueMember = "IDCargo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Cargo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Orden).ThenBy(Function(c) c.Nombre).ToList
+        listItems = mdbContext.Cargo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Orden).ThenBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Cargo
@@ -752,9 +763,9 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDCargo = FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo).OrderBy(Function(cj) cj.Cargo.Orden).ThenBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
+            listItems = mdbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo).OrderBy(Function(cj) cj.Cargo.Orden).ThenBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
         Else
-            listItems = dbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo And cj.IDCargo = IDCargo).OrderBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
+            listItems = mdbContext.CargoJerarquia.Where(Function(cj) cj.EsActivo And cj.IDCargo = IDCargo).OrderBy(Function(cj) cj.Orden).ThenBy(Function(cj) cj.Nombre).ToList
         End If
 
         If AgregarItem_Todos Then
@@ -780,7 +791,7 @@
         ComboBoxControl.ValueMember = "IDLicenciaCausa"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.LicenciaCausa.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Nombre).ToList
+        listItems = mdbContext.LicenciaCausa.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New LicenciaCausa
@@ -805,7 +816,7 @@
         ComboBoxControl.ValueMember = "IDLicenciaConducirCategoria"
         ComboBoxControl.DisplayMember = "Codigo"
 
-        listItems = dbContext.LicenciaConducirCategoria.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Codigo).ToList
+        listItems = mdbContext.LicenciaConducirCategoria.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Codigo).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New LicenciaConducirCategoria
@@ -830,7 +841,7 @@
         ComboBoxControl.ValueMember = "IDCurso"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.Curso.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+        listItems = mdbContext.Curso.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New Curso
@@ -855,7 +866,7 @@
         ComboBoxControl.ValueMember = "IDCapacitacionNivel"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CapacitacionNivel.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+        listItems = mdbContext.CapacitacionNivel.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CapacitacionNivel
@@ -880,7 +891,7 @@
         ComboBoxControl.ValueMember = "IDCapacitacionTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = dbContext.CapacitacionTipo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+        listItems = mdbContext.CapacitacionTipo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New CapacitacionTipo
@@ -902,7 +913,7 @@
     Friend Sub PersonaCalificacionAnio(ByRef ComboBoxControl As ComboBox, ByVal IDPersona As Integer, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of String)
 
-        listItems = (From pc In dbContext.PersonaCalificacion
+        listItems = (From pc In mdbContext.PersonaCalificacion
                      Where pc.IDPersona = IDPersona
                      Order By pc.Anio
                      Select CStr(pc.Anio)).Distinct.ToList

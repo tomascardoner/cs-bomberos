@@ -149,6 +149,9 @@
     <Compile Include="Automotor.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="AutomotorBajaMotivo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="AutomotorTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

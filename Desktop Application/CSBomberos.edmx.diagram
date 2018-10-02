@@ -193,6 +193,10 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Alarma__Modificacion" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioParametro" Width="1.5" PointX="15.875" PointY="135.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioParametro" />
+        <EntityTypeShape EntityType="CSBomberosModel.AutomotorBajaMotivo" Width="1.5" PointX="15.875" PointY="42.75" />
+        <AssociationConnector Association="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

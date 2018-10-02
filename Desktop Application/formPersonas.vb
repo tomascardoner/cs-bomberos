@@ -377,37 +377,6 @@
             End If
         End If
     End Sub
-
-    Private Sub Imprimir_Listado() Handles menuitemImprimirListado.Click
-        If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Persona para imprimir el Listado.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                Using dbContext As New CSBomberosContext(True)
-                    Dim ReporteActual As New Reporte
-
-                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_LISTADO))
-                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            ReporteActual.RecordSelectionFormula = mReportSelectionFormula
-
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, "Listado de Personas")
-                        End If
-                    End If
-                End Using
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
-        End If
-    End Sub
-
-
 #End Region
 
 End Class
