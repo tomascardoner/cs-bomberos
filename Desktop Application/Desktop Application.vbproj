@@ -289,6 +289,18 @@
     <Compile Include="formAreas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formAutomotorBajaMotivo.designer.vb">
+      <DependentUpon>formAutomotorBajaMotivo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorBajaMotivo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formAutomotorBajaMotivos.designer.vb">
+      <DependentUpon>formAutomotorBajaMotivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAutomotorBajaMotivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formAutomotorTipo.designer.vb">
       <DependentUpon>formAutomotorTipo.vb</DependentUpon>
     </Compile>
@@ -794,6 +806,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorBajaMotivo.resx">
+      <DependentUpon>formAutomotorBajaMotivo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formAutomotorBajaMotivos.resx">
+      <DependentUpon>formAutomotorBajaMotivos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formAutomotorTipo.resx">
       <DependentUpon>formAutomotorTipo.vb</DependentUpon>

@@ -300,6 +300,21 @@
         End If
     End Sub
 
+    Private Sub AutomotorMotivosBaja() Handles menuitemTablas_MotivosBajaAutomotores.Click
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTORBAJAMOTIVO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorBajaMotivos, Form))
+            formAutomotorBajaMotivos.Show()
+            If formAutomotorBajaMotivos.WindowState = FormWindowState.Minimized Then
+                formAutomotorBajaMotivos.WindowState = FormWindowState.Normal
+            End If
+            formAutomotorBajaMotivos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub Rubros() Handles menuitemTablas_Rubros.Click
         If Permisos.VerificarPermiso(Permisos.RUBRO) Then
             Me.Cursor = Cursors.WaitCursor

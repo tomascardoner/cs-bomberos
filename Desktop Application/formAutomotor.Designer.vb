@@ -32,7 +32,9 @@ Partial Class formAutomotor
         Dim lalbelAutomotorUso As System.Windows.Forms.Label
         Dim labelEsPropio As System.Windows.Forms.Label
         Dim labelEsImportado As System.Windows.Forms.Label
+        Dim labelVerificacionVencimiento As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotor))
+        Me.labelAutomotorBajaMotivo = New System.Windows.Forms.Label()
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.labelModelo = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -60,6 +62,8 @@ Partial Class formAutomotor
         Me.buttonNumeroSiguiente = New System.Windows.Forms.Button()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.datetimepickerVerificacionVencimiento = New System.Windows.Forms.DateTimePicker()
+        Me.checkboxEsImportado = New System.Windows.Forms.CheckBox()
         Me.checkboxEsPropio = New System.Windows.Forms.CheckBox()
         Me.comboboxAutomotorUso = New System.Windows.Forms.ComboBox()
         Me.labelNumeroChasis = New System.Windows.Forms.Label()
@@ -67,6 +71,7 @@ Partial Class formAutomotor
         Me.labelNumeroMotor = New System.Windows.Forms.Label()
         Me.textboxNumeroMotor = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
+        Me.comboboxAutomotorBajaMotivo = New System.Windows.Forms.ComboBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.labelIDAutomotor = New System.Windows.Forms.Label()
@@ -75,7 +80,6 @@ Partial Class formAutomotor
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.checkboxEsImportado = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelAutomotorTipo = New System.Windows.Forms.Label()
@@ -86,6 +90,7 @@ Partial Class formAutomotor
         lalbelAutomotorUso = New System.Windows.Forms.Label()
         labelEsPropio = New System.Windows.Forms.Label()
         labelEsImportado = New System.Windows.Forms.Label()
+        labelVerificacionVencimiento = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -95,7 +100,7 @@ Partial Class formAutomotor
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 301)
+        labelEsActivo.Location = New System.Drawing.Point(6, 332)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -140,19 +145,19 @@ Partial Class formAutomotor
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 376)
+        labelModificacion.Location = New System.Drawing.Point(6, 434)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 9
+        labelModificacion.TabIndex = 11
         labelModificacion.Text = "Ultima Modificación:"
         '
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 350)
+        labelCreacion.Location = New System.Drawing.Point(6, 408)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 6
+        labelCreacion.TabIndex = 8
         labelCreacion.Text = "Creación:"
         '
         'lalbelAutomotorUso
@@ -172,6 +177,33 @@ Partial Class formAutomotor
         labelEsPropio.Size = New System.Drawing.Size(54, 13)
         labelEsPropio.TabIndex = 31
         labelEsPropio.Text = "Es propio:"
+        '
+        'labelEsImportado
+        '
+        labelEsImportado.AutoSize = True
+        labelEsImportado.Location = New System.Drawing.Point(7, 87)
+        labelEsImportado.Name = "labelEsImportado"
+        labelEsImportado.Size = New System.Drawing.Size(71, 13)
+        labelEsImportado.TabIndex = 7
+        labelEsImportado.Text = "Es importado:"
+        '
+        'labelVerificacionVencimiento
+        '
+        labelVerificacionVencimiento.AutoSize = True
+        labelVerificacionVencimiento.Location = New System.Drawing.Point(7, 428)
+        labelVerificacionVencimiento.Name = "labelVerificacionVencimiento"
+        labelVerificacionVencimiento.Size = New System.Drawing.Size(126, 13)
+        labelVerificacionVencimiento.TabIndex = 33
+        labelVerificacionVencimiento.Text = "Vencimiento Verificación:"
+        '
+        'labelAutomotorBajaMotivo
+        '
+        Me.labelAutomotorBajaMotivo.AutoSize = True
+        Me.labelAutomotorBajaMotivo.Location = New System.Drawing.Point(6, 355)
+        Me.labelAutomotorBajaMotivo.Name = "labelAutomotorBajaMotivo"
+        Me.labelAutomotorBajaMotivo.Size = New System.Drawing.Size(81, 13)
+        Me.labelAutomotorBajaMotivo.TabIndex = 4
+        Me.labelAutomotorBajaMotivo.Text = "Motivo de Baja:"
         '
         'textboxModelo
         '
@@ -242,7 +274,7 @@ Partial Class formAutomotor
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 301)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 332)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -413,17 +445,22 @@ Partial Class formAutomotor
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(459, 457)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(459, 486)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerVerificacionVencimiento)
+        Me.tabpageGeneral.Controls.Add(labelVerificacionVencimiento)
         Me.tabpageGeneral.Controls.Add(Me.checkboxEsImportado)
         Me.tabpageGeneral.Controls.Add(labelEsImportado)
         Me.tabpageGeneral.Controls.Add(Me.checkboxEsPropio)
@@ -460,10 +497,30 @@ Partial Class formAutomotor
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(451, 428)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(451, 457)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'datetimepickerVerificacionVencimiento
+        '
+        Me.datetimepickerVerificacionVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerVerificacionVencimiento.Location = New System.Drawing.Point(138, 426)
+        Me.datetimepickerVerificacionVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerVerificacionVencimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerVerificacionVencimiento.Name = "datetimepickerVerificacionVencimiento"
+        Me.datetimepickerVerificacionVencimiento.ShowCheckBox = True
+        Me.datetimepickerVerificacionVencimiento.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerVerificacionVencimiento.TabIndex = 34
+        '
+        'checkboxEsImportado
+        '
+        Me.checkboxEsImportado.AutoSize = True
+        Me.checkboxEsImportado.Location = New System.Drawing.Point(138, 87)
+        Me.checkboxEsImportado.Name = "checkboxEsImportado"
+        Me.checkboxEsImportado.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsImportado.TabIndex = 8
+        Me.checkboxEsImportado.UseVisualStyleBackColor = True
         '
         'checkboxEsPropio
         '
@@ -519,6 +576,8 @@ Partial Class formAutomotor
         '
         'tabpageNotasAuditoria
         '
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelAutomotorBajaMotivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.comboboxAutomotorBajaMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
@@ -534,10 +593,19 @@ Partial Class formAutomotor
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(451, 399)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(451, 457)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
+        '
+        'comboboxAutomotorBajaMotivo
+        '
+        Me.comboboxAutomotorBajaMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxAutomotorBajaMotivo.FormattingEnabled = True
+        Me.comboboxAutomotorBajaMotivo.Location = New System.Drawing.Point(114, 352)
+        Me.comboboxAutomotorBajaMotivo.Name = "comboboxAutomotorBajaMotivo"
+        Me.comboboxAutomotorBajaMotivo.Size = New System.Drawing.Size(329, 21)
+        Me.comboboxAutomotorBajaMotivo.TabIndex = 5
         '
         'textboxNotas
         '
@@ -546,7 +614,7 @@ Partial Class formAutomotor
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(329, 289)
+        Me.textboxNotas.Size = New System.Drawing.Size(329, 320)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -561,84 +629,64 @@ Partial Class formAutomotor
         'labelIDAutomotor
         '
         Me.labelIDAutomotor.AutoSize = True
-        Me.labelIDAutomotor.Location = New System.Drawing.Point(6, 324)
+        Me.labelIDAutomotor.Location = New System.Drawing.Point(6, 382)
         Me.labelIDAutomotor.Name = "labelIDAutomotor"
-        Me.labelIDAutomotor.Size = New System.Drawing.Size(87, 13)
-        Me.labelIDAutomotor.TabIndex = 4
-        Me.labelIDAutomotor.Text = "ID de Automotor:"
+        Me.labelIDAutomotor.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDAutomotor.TabIndex = 6
+        Me.labelIDAutomotor.Text = "ID:"
         '
         'textboxIDAutomotor
         '
-        Me.textboxIDAutomotor.Location = New System.Drawing.Point(114, 321)
+        Me.textboxIDAutomotor.Location = New System.Drawing.Point(114, 379)
         Me.textboxIDAutomotor.MaxLength = 10
         Me.textboxIDAutomotor.Name = "textboxIDAutomotor"
         Me.textboxIDAutomotor.ReadOnly = True
         Me.textboxIDAutomotor.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAutomotor.TabIndex = 5
+        Me.textboxIDAutomotor.TabIndex = 7
         Me.textboxIDAutomotor.TabStop = False
         Me.textboxIDAutomotor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 373)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 431)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
         Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(202, 20)
-        Me.textboxUsuarioModificacion.TabIndex = 11
+        Me.textboxUsuarioModificacion.TabIndex = 13
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 347)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 405)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
         Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(202, 20)
-        Me.textboxUsuarioCreacion.TabIndex = 8
+        Me.textboxUsuarioCreacion.TabIndex = 10
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 373)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 431)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
         Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraModificacion.TabIndex = 10
+        Me.textboxFechaHoraModificacion.TabIndex = 12
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 347)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 405)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraCreacion.TabIndex = 7
-        '
-        'checkboxEsImportado
-        '
-        Me.checkboxEsImportado.AutoSize = True
-        Me.checkboxEsImportado.Checked = True
-        Me.checkboxEsImportado.CheckState = System.Windows.Forms.CheckState.Indeterminate
-        Me.checkboxEsImportado.Location = New System.Drawing.Point(138, 87)
-        Me.checkboxEsImportado.Name = "checkboxEsImportado"
-        Me.checkboxEsImportado.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEsImportado.TabIndex = 8
-        Me.checkboxEsImportado.UseVisualStyleBackColor = True
-        '
-        'labelEsImportado
-        '
-        labelEsImportado.AutoSize = True
-        labelEsImportado.Location = New System.Drawing.Point(7, 87)
-        labelEsImportado.Name = "labelEsImportado"
-        labelEsImportado.Size = New System.Drawing.Size(71, 13)
-        labelEsImportado.TabIndex = 7
-        labelEsImportado.Text = "Es importado:"
+        Me.textboxFechaHoraCreacion.TabIndex = 9
         '
         'formAutomotor
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(481, 511)
+        Me.ClientSize = New System.Drawing.Size(481, 540)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -703,4 +751,7 @@ Partial Class formAutomotor
     Friend WithEvents checkboxEsPropio As System.Windows.Forms.CheckBox
     Friend WithEvents comboboxAutomotorUso As System.Windows.Forms.ComboBox
     Friend WithEvents checkboxEsImportado As System.Windows.Forms.CheckBox
+    Friend WithEvents datetimepickerVerificacionVencimiento As System.Windows.Forms.DateTimePicker
+    Friend WithEvents comboboxAutomotorBajaMotivo As System.Windows.Forms.ComboBox
+    Friend WithEvents labelAutomotorBajaMotivo As System.Windows.Forms.Label
 End Class

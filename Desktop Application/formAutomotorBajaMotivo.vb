@@ -1,31 +1,31 @@
-﻿Public Class formPersonaBajaMotivo
+﻿Public Class formAutomotorBajaMotivo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mPersonaBajaMotivoActual As PersonaBajaMotivo
+    Private mAutomotorBajaMotivoActual As AutomotorBajaMotivo
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersonaBajaMotivo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAutomotorBajaMotivo As Byte)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDPersonaBajaMotivo = 0 Then
+        If IDAutomotorBajaMotivo = 0 Then
             ' Es Nuevo
-            mPersonaBajaMotivoActual = New PersonaBajaMotivo
-            With mPersonaBajaMotivoActual
+            mAutomotorBajaMotivoActual = New AutomotorBajaMotivo
+            With mAutomotorBajaMotivoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.PersonaBajaMotivo.Add(mPersonaBajaMotivoActual)
+            mdbContext.AutomotorBajaMotivo.Add(mAutomotorBajaMotivoActual)
         Else
-            mPersonaBajaMotivoActual = mdbContext.PersonaBajaMotivo.Find(IDPersonaBajaMotivo)
+            mAutomotorBajaMotivoActual = mdbContext.AutomotorBajaMotivo.Find(IDAutomotorBajaMotivo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -50,7 +50,6 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = Not mEditMode
-        checkboxEspecificaDestino.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -67,24 +66,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mPersonaBajaMotivoActual = Nothing
+        mAutomotorBajaMotivoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mPersonaBajaMotivoActual
+        With mAutomotorBajaMotivoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            checkboxEspecificaDestino.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EspecificaDestino)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If .IDPersonaBajaMotivo = 0 Then
-                textboxIDPersonaBajaMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDAutomotorBajaMotivo = 0 Then
+                textboxIDAutomotorBajaMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDPersonaBajaMotivo.Text = String.Format(.IDPersonaBajaMotivo.ToString, "G")
+                textboxIDAutomotorBajaMotivo.Text = String.Format(.IDAutomotorBajaMotivo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -102,9 +100,8 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mPersonaBajaMotivoActual
+        With mAutomotorBajaMotivoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .EspecificaDestino = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEspecificaDestino.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -137,7 +134,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONABAJAMOTIVO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.AUTOMOTORBAJAMOTIVO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -155,12 +152,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mPersonaBajaMotivoActual.IDPersonaBajaMotivo = 0 Then
+        If mAutomotorBajaMotivoActual.IDAutomotorBajaMotivo = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.PersonaBajaMotivo.Count = 0 Then
-                    mPersonaBajaMotivoActual.IDPersonaBajaMotivo = 1
+                If dbcMaxID.AutomotorBajaMotivo.Count = 0 Then
+                    mAutomotorBajaMotivoActual.IDAutomotorBajaMotivo = 1
                 Else
-                    mPersonaBajaMotivoActual.IDPersonaBajaMotivo = dbcMaxID.PersonaBajaMotivo.Max(Function(a) a.IDPersonaBajaMotivo) + CByte(1)
+                    mAutomotorBajaMotivoActual.IDAutomotorBajaMotivo = dbcMaxID.AutomotorBajaMotivo.Max(Function(a) a.IDAutomotorBajaMotivo) + CByte(1)
                 End If
             End Using
         End If
@@ -172,21 +169,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mPersonaBajaMotivoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mPersonaBajaMotivoActual.FechaHoraModificacion = Now
+            mAutomotorBajaMotivoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mAutomotorBajaMotivoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formPersonaBajaMotivos.RefreshData(mPersonaBajaMotivoActual.IDPersonaBajaMotivo)
+                formAutomotorBajaMotivos.RefreshData(mAutomotorBajaMotivoActual.IDAutomotorBajaMotivo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Motivo de Baja de Persona con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Motivo de Baja de Automotor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

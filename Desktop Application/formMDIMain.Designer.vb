@@ -78,6 +78,7 @@ Partial Class formMDIMain
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
+        Me.menuitemTablas_MotivosBajaAutomotores = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -237,7 +238,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_SeparadorAutomotores, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_SeparadorInventario, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_SeparadorUsuarios, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_SeparadorAlarmas, Me.menuitemTablas_Alarmas})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_SeparadorAutomotores, Me.menuitemTablas_TiposAutomotor, Me.menuitemTablas_UsosAutomotor, Me.menuitemTablas_MotivosBajaAutomotores, Me.menuitemTablas_SeparadorInventario, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_SeparadorUsuarios, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_SeparadorAlarmas, Me.menuitemTablas_Alarmas})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -249,153 +250,153 @@ Partial Class formMDIMain
         'menuitemTablas_NivelesEstudio
         '
         Me.menuitemTablas_NivelesEstudio.Name = "menuitemTablas_NivelesEstudio"
-        Me.menuitemTablas_NivelesEstudio.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_NivelesEstudio.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_NivelesEstudio.Text = "Niveles de estudio"
         '
         'menuitemTablas_Parentescos
         '
         Me.menuitemTablas_Parentescos.Name = "menuitemTablas_Parentescos"
-        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Parentescos.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Parentescos.Text = "Parentescos"
         '
         'menuitemTablas_MotivosBajaPersonas
         '
         Me.menuitemTablas_MotivosBajaPersonas.Name = "menuitemTablas_MotivosBajaPersonas"
-        Me.menuitemTablas_MotivosBajaPersonas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_MotivosBajaPersonas.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_MotivosBajaPersonas.Text = "Motivos de baja de personas"
         '
         'menuitemTablas_Cargos
         '
         Me.menuitemTablas_Cargos.Name = "menuitemTablas_Cargos"
-        Me.menuitemTablas_Cargos.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Cargos.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Cargos.Text = "Cargos"
         '
         'menuitemTablas_CargosJerarquias
         '
         Me.menuitemTablas_CargosJerarquias.Name = "menuitemTablas_CargosJerarquias"
-        Me.menuitemTablas_CargosJerarquias.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_CargosJerarquias.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_CargosJerarquias.Text = "Jerarquías"
         '
         'menuitemTablas_CausalesLicenciaPersonas
         '
         Me.menuitemTablas_CausalesLicenciaPersonas.Name = "menuitemTablas_CausalesLicenciaPersonas"
-        Me.menuitemTablas_CausalesLicenciaPersonas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_CausalesLicenciaPersonas.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_CausalesLicenciaPersonas.Text = "Causales de licencia"
         '
         'menuitemTablas_TiposSancion
         '
         Me.menuitemTablas_TiposSancion.Name = "menuitemTablas_TiposSancion"
-        Me.menuitemTablas_TiposSancion.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_TiposSancion.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_TiposSancion.Text = "Tipos de sanción"
         '
         'menuitemTablas_Cursos
         '
         Me.menuitemTablas_Cursos.Name = "menuitemTablas_Cursos"
-        Me.menuitemTablas_Cursos.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Cursos.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Cursos.Text = "Cursos"
         '
         'menuitemTablas_NivelesCapacitacion
         '
         Me.menuitemTablas_NivelesCapacitacion.Name = "menuitemTablas_NivelesCapacitacion"
-        Me.menuitemTablas_NivelesCapacitacion.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_NivelesCapacitacion.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_NivelesCapacitacion.Text = "Niveles de capacitación"
         '
         'menuitemTablas_TiposCapacitacion
         '
         Me.menuitemTablas_TiposCapacitacion.Name = "menuitemTablas_TiposCapacitacion"
-        Me.menuitemTablas_TiposCapacitacion.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_TiposCapacitacion.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_TiposCapacitacion.Text = "Tipos de capacitación"
         '
         'menuitemTablas_ConceptosCalificacion
         '
         Me.menuitemTablas_ConceptosCalificacion.Name = "menuitemTablas_ConceptosCalificacion"
-        Me.menuitemTablas_ConceptosCalificacion.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_ConceptosCalificacion.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_ConceptosCalificacion.Text = "Conceptos de calificación"
         '
         'menuitemTablas_SeparadorAutomotores
         '
         Me.menuitemTablas_SeparadorAutomotores.Name = "menuitemTablas_SeparadorAutomotores"
-        Me.menuitemTablas_SeparadorAutomotores.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_SeparadorAutomotores.Size = New System.Drawing.Size(242, 6)
         '
         'menuitemTablas_TiposAutomotor
         '
         Me.menuitemTablas_TiposAutomotor.Name = "menuitemTablas_TiposAutomotor"
-        Me.menuitemTablas_TiposAutomotor.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_TiposAutomotor.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_TiposAutomotor.Text = "Tipos de automotor"
         '
         'menuitemTablas_UsosAutomotor
         '
         Me.menuitemTablas_UsosAutomotor.Name = "menuitemTablas_UsosAutomotor"
-        Me.menuitemTablas_UsosAutomotor.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_UsosAutomotor.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_UsosAutomotor.Text = "Usos de automotor"
         '
         'menuitemTablas_SeparadorInventario
         '
         Me.menuitemTablas_SeparadorInventario.Name = "menuitemTablas_SeparadorInventario"
-        Me.menuitemTablas_SeparadorInventario.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_SeparadorInventario.Size = New System.Drawing.Size(242, 6)
         '
         'menuitemTablas_Rubros
         '
         Me.menuitemTablas_Rubros.Name = "menuitemTablas_Rubros"
-        Me.menuitemTablas_Rubros.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Rubros.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Rubros.Text = "Rubros de elementos"
         '
         'menuitemTablas_SubRubros
         '
         Me.menuitemTablas_SubRubros.Name = "menuitemTablas_SubRubros"
-        Me.menuitemTablas_SubRubros.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_SubRubros.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_SubRubros.Text = "Sub-rubros de elementos"
         '
         'menuitemTablas_Areas
         '
         Me.menuitemTablas_Areas.Name = "menuitemTablas_Areas"
-        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Areas.Text = "Áreas"
         '
         'menuitemTablas_Ubicaciones
         '
         Me.menuitemTablas_Ubicaciones.Name = "menuitemTablas_Ubicaciones"
-        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Ubicaciones.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Ubicaciones.Text = "Ubicaciones"
         '
         'menuitemTablas_SubUbicaciones
         '
         Me.menuitemTablas_SubUbicaciones.Name = "menuitemTablas_SubUbicaciones"
-        Me.menuitemTablas_SubUbicaciones.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_SubUbicaciones.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_SubUbicaciones.Text = "Sub-ubicaciones"
         '
         'menuitemTablas_SeparadorUsuarios
         '
         Me.menuitemTablas_SeparadorUsuarios.Name = "menuitemTablas_SeparadorUsuarios"
-        Me.menuitemTablas_SeparadorUsuarios.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_SeparadorUsuarios.Size = New System.Drawing.Size(242, 6)
         '
         'menuitemTablas_GruposUsuario
         '
         Me.menuitemTablas_GruposUsuario.Name = "menuitemTablas_GruposUsuario"
-        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_GruposUsuario.Text = "Grupos de usuario"
         '
         'menuitemTablas_Usuarios
         '
         Me.menuitemTablas_Usuarios.Name = "menuitemTablas_Usuarios"
-        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Usuarios.Text = "Usuarios"
         '
         'menuitemTablas_Permisos
         '
         Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
-        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Permisos.Text = "Permisos"
         '
         'menuitemTablas_SeparadorAlarmas
         '
         Me.menuitemTablas_SeparadorAlarmas.Name = "menuitemTablas_SeparadorAlarmas"
-        Me.menuitemTablas_SeparadorAlarmas.Size = New System.Drawing.Size(221, 6)
+        Me.menuitemTablas_SeparadorAlarmas.Size = New System.Drawing.Size(242, 6)
         '
         'menuitemTablas_Alarmas
         '
         Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
-        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(224, 22)
+        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(245, 22)
         Me.menuitemTablas_Alarmas.Text = "Alarmas"
         '
         'buttonPersonas
@@ -444,6 +445,12 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
+        '
+        'menuitemTablas_MotivosBajaAutomotores
+        '
+        Me.menuitemTablas_MotivosBajaAutomotores.Name = "menuitemTablas_MotivosBajaAutomotores"
+        Me.menuitemTablas_MotivosBajaAutomotores.Size = New System.Drawing.Size(245, 22)
+        Me.menuitemTablas_MotivosBajaAutomotores.Text = "Motivos de baja de automotores"
         '
         'formMDIMain
         '
@@ -526,4 +533,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_SeparadorUsuarios As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemTablas_SeparadorAlarmas As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuitemTablas_Alarmas As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuitemTablas_MotivosBajaAutomotores As System.Windows.Forms.ToolStripMenuItem
 End Class

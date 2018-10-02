@@ -19,6 +19,7 @@
             With mPersonaFamiliarActual
                 .IDPersona = IDPersona
 
+                .ACargo = True
                 .Vive = True
                 .DomicilioIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
                 .DomicilioIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)

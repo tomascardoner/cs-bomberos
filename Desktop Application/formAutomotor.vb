@@ -67,9 +67,11 @@
         maskedtextboxCapacidadAguaLitros.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
         checkboxEsPropio.Enabled = mEditMode
+        datetimepickerVerificacionVencimiento.Enabled = mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
+        comboboxAutomotorBajaMotivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -79,6 +81,7 @@
         pFillAndRefreshLists.AutomotorUso(comboboxAutomotorUso, False, False)
         pFillAndRefreshLists.CombustibleTipo(comboboxCombustibleTipo, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        pFillAndRefreshLists.AutomotorBajaMotivo(comboboxAutomotorBajaMotivo, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -117,10 +120,12 @@
             maskedtextboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
             CS_ComboBox.SetSelectedValue(comboboxCuartel, SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             checkboxEsPropio.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsPropio)
+            datetimepickerVerificacionVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.VerificacionVencimiento, datetimepickerVerificacionVencimiento)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
+            CS_ComboBox.SetSelectedValue(comboboxAutomotorBajaMotivo, SelectedItemOptions.ValueOrFirst, .IDAutomotorBajaMotivo)
             If .IDAutomotor = 0 Then
                 textboxIDAutomotor.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
@@ -159,9 +164,15 @@
             .CapacidadAguaLitros = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxCapacidadAguaLitros.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .EsPropio = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsPropio.CheckState)
+            .VerificacionVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerVerificacionVencimiento.Value, datetimepickerVerificacionVencimiento.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
+            If .EsActivo Then
+                .IDAutomotorBajaMotivo = Nothing
+            Else
+                .IDAutomotorBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorBajaMotivo.SelectedValue)
+            End If
         End With
     End Sub
 #End Region
@@ -202,6 +213,10 @@
         End Using
     End Sub
 
+    Private Sub EsActivoCheckedChanged(sender As Object, e As EventArgs) Handles checkboxEsActivo.CheckedChanged
+        labelAutomotorBajaMotivo.Visible = Not checkboxEsActivo.Checked
+        comboboxAutomotorBajaMotivo.Visible = Not checkboxEsActivo.Checked
+    End Sub
 #End Region
 
 #Region "Main Toolbar"

@@ -185,6 +185,7 @@ Partial Class formPersona
         Me.buttonLicencias_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicencias_Imprimir = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
         Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -228,7 +229,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.buttonLicencias_Imprimir = New System.Windows.Forms.ToolStripButton()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -712,7 +712,7 @@ Partial Class formPersona
         'labelEsActivo
         '
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 284)
+        labelEsActivo.Location = New System.Drawing.Point(6, 311)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -730,7 +730,7 @@ Partial Class formPersona
         'labelModificacion
         '
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 359)
+        labelModificacion.Location = New System.Drawing.Point(6, 386)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 7
@@ -739,7 +739,7 @@ Partial Class formPersona
         'labelCreacion
         '
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(7, 333)
+        labelCreacion.Location = New System.Drawing.Point(7, 360)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 4
@@ -1872,6 +1872,15 @@ Partial Class formPersona
         Me.buttonLicencias_Eliminar.Size = New System.Drawing.Size(87, 36)
         Me.buttonLicencias_Eliminar.Text = "Eliminar"
         '
+        'buttonLicencias_Imprimir
+        '
+        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonLicencias_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicencias_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicencias_Imprimir.Name = "buttonLicencias_Imprimir"
+        Me.buttonLicencias_Imprimir.Size = New System.Drawing.Size(87, 36)
+        Me.buttonLicencias_Imprimir.Text = "Imprimir"
+        '
         'tabpageSanciones
         '
         Me.tabpageSanciones.Controls.Add(Me.datagridviewSanciones)
@@ -2301,7 +2310,7 @@ Partial Class formPersona
         'checkboxEsActivo
         '
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 284)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 311)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -2313,13 +2322,13 @@ Partial Class formPersona
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.Size = New System.Drawing.Size(632, 272)
+        Me.textboxNotas.Size = New System.Drawing.Size(532, 299)
         Me.textboxNotas.TabIndex = 1
         '
         'labelIDPersona
         '
         Me.labelIDPersona.AutoSize = True
-        Me.labelIDPersona.Location = New System.Drawing.Point(7, 307)
+        Me.labelIDPersona.Location = New System.Drawing.Point(7, 334)
         Me.labelIDPersona.Name = "labelIDPersona"
         Me.labelIDPersona.Size = New System.Drawing.Size(78, 13)
         Me.labelIDPersona.TabIndex = 7
@@ -2327,7 +2336,7 @@ Partial Class formPersona
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 356)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 383)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -2336,7 +2345,7 @@ Partial Class formPersona
         '
         'textboxIDPersona
         '
-        Me.textboxIDPersona.Location = New System.Drawing.Point(114, 304)
+        Me.textboxIDPersona.Location = New System.Drawing.Point(114, 331)
         Me.textboxIDPersona.MaxLength = 10
         Me.textboxIDPersona.Name = "textboxIDPersona"
         Me.textboxIDPersona.ReadOnly = True
@@ -2347,7 +2356,7 @@ Partial Class formPersona
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 330)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 357)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -2356,7 +2365,7 @@ Partial Class formPersona
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 356)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 383)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -2365,21 +2374,12 @@ Partial Class formPersona
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 330)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 357)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'buttonLicencias_Imprimir
-        '
-        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
-        Me.buttonLicencias_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonLicencias_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonLicencias_Imprimir.Name = "buttonLicencias_Imprimir"
-        Me.buttonLicencias_Imprimir.Size = New System.Drawing.Size(87, 36)
-        Me.buttonLicencias_Imprimir.Text = "Imprimir"
         '
         'formPersona
         '

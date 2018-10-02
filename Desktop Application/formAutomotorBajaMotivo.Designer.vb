@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formPersonaBajaMotivo
+Partial Class formAutomotorBajaMotivo
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -25,7 +25,6 @@ Partial Class formPersonaBajaMotivo
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim labelEspecificaDestino As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -36,10 +35,9 @@ Partial Class formPersonaBajaMotivo
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.checkboxEspecificaDestino = New System.Windows.Forms.CheckBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDPersonaBajaMotivo = New System.Windows.Forms.Label()
-        Me.textboxIDPersonaBajaMotivo = New System.Windows.Forms.TextBox()
+        Me.labelIDAutomotorBajaMotivo = New System.Windows.Forms.Label()
+        Me.textboxIDAutomotorBajaMotivo = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -49,7 +47,6 @@ Partial Class formPersonaBajaMotivo
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
-        labelEspecificaDestino = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -82,15 +79,6 @@ Partial Class formPersonaBajaMotivo
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
         labelCreacion.Text = "Creación:"
-        '
-        'labelEspecificaDestino
-        '
-        labelEspecificaDestino.AutoSize = True
-        labelEspecificaDestino.Location = New System.Drawing.Point(6, 59)
-        labelEspecificaDestino.Name = "labelEspecificaDestino"
-        labelEspecificaDestino.Size = New System.Drawing.Size(96, 13)
-        labelEspecificaDestino.TabIndex = 2
-        labelEspecificaDestino.Text = "Especifica destino:"
         '
         'textboxNombre
         '
@@ -180,8 +168,6 @@ Partial Class formPersonaBajaMotivo
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.checkboxEspecificaDestino)
-        Me.tabpageGeneral.Controls.Add(labelEspecificaDestino)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -192,20 +178,11 @@ Partial Class formPersonaBajaMotivo
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'checkboxEspecificaDestino
-        '
-        Me.checkboxEspecificaDestino.AutoSize = True
-        Me.checkboxEspecificaDestino.Location = New System.Drawing.Point(113, 59)
-        Me.checkboxEspecificaDestino.Name = "checkboxEspecificaDestino"
-        Me.checkboxEspecificaDestino.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxEspecificaDestino.TabIndex = 3
-        Me.checkboxEspecificaDestino.UseVisualStyleBackColor = True
-        '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDPersonaBajaMotivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAutomotorBajaMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDPersonaBajaMotivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAutomotorBajaMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -223,25 +200,25 @@ Partial Class formPersonaBajaMotivo
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDPersonaBajaMotivo
+        'labelIDAutomotorBajaMotivo
         '
-        Me.labelIDPersonaBajaMotivo.AutoSize = True
-        Me.labelIDPersonaBajaMotivo.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDPersonaBajaMotivo.Name = "labelIDPersonaBajaMotivo"
-        Me.labelIDPersonaBajaMotivo.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDPersonaBajaMotivo.TabIndex = 4
-        Me.labelIDPersonaBajaMotivo.Text = "ID:"
+        Me.labelIDAutomotorBajaMotivo.AutoSize = True
+        Me.labelIDAutomotorBajaMotivo.Location = New System.Drawing.Point(7, 111)
+        Me.labelIDAutomotorBajaMotivo.Name = "labelIDAutomotorBajaMotivo"
+        Me.labelIDAutomotorBajaMotivo.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDAutomotorBajaMotivo.TabIndex = 4
+        Me.labelIDAutomotorBajaMotivo.Text = "ID:"
         '
-        'textboxIDPersonaBajaMotivo
+        'textboxIDAutomotorBajaMotivo
         '
-        Me.textboxIDPersonaBajaMotivo.Location = New System.Drawing.Point(115, 108)
-        Me.textboxIDPersonaBajaMotivo.MaxLength = 10
-        Me.textboxIDPersonaBajaMotivo.Name = "textboxIDPersonaBajaMotivo"
-        Me.textboxIDPersonaBajaMotivo.ReadOnly = True
-        Me.textboxIDPersonaBajaMotivo.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDPersonaBajaMotivo.TabIndex = 5
-        Me.textboxIDPersonaBajaMotivo.TabStop = False
-        Me.textboxIDPersonaBajaMotivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDAutomotorBajaMotivo.Location = New System.Drawing.Point(115, 108)
+        Me.textboxIDAutomotorBajaMotivo.MaxLength = 10
+        Me.textboxIDAutomotorBajaMotivo.Name = "textboxIDAutomotorBajaMotivo"
+        Me.textboxIDAutomotorBajaMotivo.ReadOnly = True
+        Me.textboxIDAutomotorBajaMotivo.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDAutomotorBajaMotivo.TabIndex = 5
+        Me.textboxIDAutomotorBajaMotivo.TabStop = False
+        Me.textboxIDAutomotorBajaMotivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -298,7 +275,7 @@ Partial Class formPersonaBajaMotivo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formPersonaBajaMotivo
+        'formAutomotorBajaMotivo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -309,9 +286,9 @@ Partial Class formPersonaBajaMotivo
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formPersonaBajaMotivo"
+        Me.Name = "formAutomotorBajaMotivo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Motivo de Baja de Persona"
+        Me.Text = "Motivo de Baja de Automotor"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -336,11 +313,10 @@ Partial Class formPersonaBajaMotivo
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDPersonaBajaMotivo As System.Windows.Forms.Label
-    Friend WithEvents textboxIDPersonaBajaMotivo As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDAutomotorBajaMotivo As System.Windows.Forms.Label
+    Friend WithEvents textboxIDAutomotorBajaMotivo As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents checkboxEspecificaDestino As System.Windows.Forms.CheckBox
 End Class
