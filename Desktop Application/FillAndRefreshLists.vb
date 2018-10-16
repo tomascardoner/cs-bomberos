@@ -620,7 +620,7 @@
 
     Friend Sub ElementoRefresh()
         If Application.OpenForms().OfType(Of formElementos).Any Then
-            'mdbContext.Refresh()
+            'mdbContext.Automotor.Re()
         End If
         'mdbContext.Entry(formInventarioDetalle.comboboxElemento.DataSource).Reload()
     End Sub

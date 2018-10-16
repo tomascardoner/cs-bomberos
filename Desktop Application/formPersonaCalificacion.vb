@@ -22,7 +22,6 @@
         mIsLoading = True
         mEditMode = EditMode
 
-
         If mIsNew Then
             ' Es Nuevo
             mlistPersonaCalificacion = New List(Of PersonaCalificacion)
@@ -99,6 +98,7 @@
         mdbContext.Dispose()
         mdbContext = Nothing
         mlistPersonaCalificacion = Nothing
+        mlistGridRowData = Nothing
         Me.Dispose()
     End Sub
 #End Region
@@ -186,18 +186,18 @@
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_Calificacion_EDITAR) Then
+    Private Sub Editar() Handles buttonEditar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
     End Sub
 
-    Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
+    Private Sub CerrarOCancelar() Handles buttonCerrar.Click, buttonCancelar.Click
         Me.Close()
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+    Private Sub Guardar() Handles buttonGuardar.Click
         ' Año
         If maskedtextboxAnio.Text.Trim.Length = 0 Then
             MsgBox("Debe ingresar el Año.", MsgBoxStyle.Information, My.Application.Info.Title)

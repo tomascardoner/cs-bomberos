@@ -194,7 +194,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("SGI7w5kh5h8CavwOSyQv/UrKOeDP795S")>  _
         Public ReadOnly Property DBConnection_Password() As String
             Get
                 Return CType(Me("DBConnection_Password"),String)
