@@ -39,7 +39,7 @@
         pDatabase.InitialCatalog = My.Settings.DBConnection_Database
         pDatabase.UserID = My.Settings.DBConnection_UserID
         ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-        Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.DATABASE_PASSWORD_ENCRYPTION_PASSWORD)
+        Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CS_Constants.PUBLIC_ENCRYPTION_PASSWORD)
         If Not PasswordDecrypter.Decrypt(My.Settings.DBConnection_Password, pDatabase.Password) Then
             MsgBox("La contraseña encriptada de conexión a la base de datos, es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
             PasswordDecrypter = Nothing
@@ -76,8 +76,8 @@
         End If
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
-        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(CS_Constants.GENERAL_ENCRYPTION_PASSWORD)
-        If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, ""), pLicensedTo) Then
+        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(Constantes.APPLICATION_LICENSE_PASSWORD)
+        If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), pLicensedTo) Then
             MsgBox("La Licencia especificada es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
             LicenseDecrypter = Nothing
             formSplashScreen.Close()

@@ -48,7 +48,7 @@
       <Value Profile="(Default)">sa</Value>
     </Setting>
     <Setting Name="DBConnection_Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">SGI7w5kh5h8CavwOSyQv/UrKOeDP795S</Value>
+      <Value Profile="(Default)">43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd</Value>
     </Setting>
     <Setting Name="DBConnection_Provider" Type="System.String" Scope="Application">
       <Value Profile="(Default)">System.Data.SqlClient</Value>

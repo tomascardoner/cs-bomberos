@@ -4,6 +4,9 @@
     '//////////////////
     Friend Const APPLICATION_DATABASE_GUID As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
 
+    ' Hex Key - 128 bits
+    Friend Const APPLICATION_LICENSE_PASSWORD As String = "3920586483ee18cb0bdce3a7b20ec72f"
+
     '//////////////////
     '    ALARMA
     '//////////////////
