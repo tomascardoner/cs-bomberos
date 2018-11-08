@@ -169,6 +169,71 @@
             Exit Sub
         End If
 
+        ' Verifico las fechas (Fecha <= Fecha Desde < FechaHasta)
+        If datetimepickerFecha.Value > datetimepickerFechaDesde.Value Then
+            MsgBox("La Fecha de Solicitud de la Licencia no puede ser mayor a la Fecha Desde.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerFecha.Focus()
+            Exit Sub
+        End If
+        If datetimepickerFechaDesde.Value >= datetimepickerFechaHasta.Value Then
+            MsgBox("La Fecha Desde no puede ser mayor o igual a la Fecha Hasta.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerFechaDesde.Focus()
+            Exit Sub
+        End If
+
+        Dim CausaActual As LicenciaCausa
+        CausaActual = CType(comboboxCausa.SelectedItem, LicenciaCausa)
+
+        If Not CausaActual.CantidadDias Is Nothing Then
+            If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
+                If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    datetimepickerFechaHasta.Focus()
+                    Exit Sub
+                End If
+            End If
+        End If
+
+        If Not (CausaActual.CantidadDiasMaximoAnual Is Nothing And Not CausaActual.CantidadVecesMaximoAnual Is Nothing) Then
+            Dim listPersonaLicencia As List(Of PersonaLicencia)
+            Dim listPersonaLicenciaAnios As New List(Of Integer)
+            Dim CantidadDiasAnual As Byte = 0
+            Dim CantidadVecesAnual As Byte = 0
+
+            ' Obtengo todas las licencias del mismo tipo y que tengan el año en común
+            listPersonaLicencia = mdbContext.PersonaLicencia.Where(Function(pl) pl.IDPersona = mPersonaLicenciaActual.IDPersona And pl.IDLicenciaCausa = CausaActual.IDLicenciaCausa And (Year(pl.FechaHasta) >= Year(datetimepickerFechaDesde.Value) And Year(pl.FechaDesde) <= Year(datetimepickerFechaHasta.Value))).ToList
+
+            ' Extraigo la lista de años contenidos
+            For Each PersonaLicenciaActual As PersonaLicencia In listPersonaLicencia
+                If listPersonaLicenciaAnios.IndexOf(Year(PersonaLicenciaActual.FechaDesde)) = -1 Then
+                    listPersonaLicenciaAnios.Add(Year(PersonaLicenciaActual.FechaDesde))
+                End If
+                If Year(PersonaLicenciaActual.FechaDesde) <> Year(PersonaLicenciaActual.FechaHasta) Then
+                    If listPersonaLicenciaAnios.IndexOf(Year(PersonaLicenciaActual.FechaHasta)) = -1 Then
+                        listPersonaLicenciaAnios.Add(Year(PersonaLicenciaActual.FechaHasta))
+                    End If
+                End If
+            Next
+
+            For Each PersonaLicenciaActual As PersonaLicencia In mdbContext.PersonaLicencia.Where(Function(pl) pl.IDPersona = mPersonaLicenciaActual.IDPersona And pl.IDLicenciaCausa = CausaActual.IDLicenciaCausa And (Year(pl.FechaHasta) >= Year(datetimepickerFechaDesde.Value) And Year(pl.FechaDesde) <= Year(datetimepickerFechaHasta.Value)))
+                CantidadDiasAnual += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, PersonaLicenciaActual.FechaDesde, PersonaLicenciaActual.FechaHasta))
+                'CantidadVecesAnual += 
+            Next
+
+            'If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
+            '    If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            '        Exit Sub
+            '    End If
+            'End If
+        End If
+
+        If Not CausaActual.CantidadVecesMaximoAnual Is Nothing Then
+            'If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
+            '    If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            '        Exit Sub
+            '    End If
+            'End If
+        End If
+
         ' Generar el ID nuevo
         If mPersonaLicenciaActual.IDLicencia = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)

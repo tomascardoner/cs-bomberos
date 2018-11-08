@@ -56,6 +56,8 @@
         textboxNombre.ReadOnly = Not mEditMode
         textboxNombreLegal.ReadOnly = Not mEditMode
         updownCantidadDias.Enabled = mEditMode
+        updownCantidadDiasMaximoAnual.Enabled = mEditMode
+        updownCantidadVecesMaximoAnual.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -84,6 +86,8 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxNombreLegal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NombreLegal)
             updownCantidadDias.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadDias)
+            updownCantidadDiasMaximoAnual.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadDiasMaximoAnual)
+            updownCantidadVecesMaximoAnual.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadVecesMaximoAnual)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -112,7 +116,9 @@
         With mLicenciaCausaActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .NombreLegal = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombreLegal.Text)
-            .CantidadDias = CS_ValueTranslation.FromControlUpDownToObjectShort(updownCantidadDias.Value)
+            .CantidadDias = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadDias.Value)
+            .CantidadDiasMaximoAnual = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadDiasMaximoAnual.Value)
+            .CantidadVecesMaximoAnual = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadVecesMaximoAnual.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)

@@ -25,6 +25,8 @@ Partial Class formLicenciaCausas
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -38,6 +40,8 @@ Partial Class formLicenciaCausas
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCantidadDias = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadDiasMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadVecesMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,16 +53,18 @@ Partial Class formLicenciaCausas
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1017, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(1356, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'statusstripMain
         '
+        Me.statusstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 484)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(1032, 22)
+        Me.statusstripMain.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.statusstripMain.Size = New System.Drawing.Size(1376, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -72,17 +78,18 @@ Partial Class formLicenciaCausas
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCantidadDias, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCantidadDias, Me.columnCantidadDiasMaximoAnual, Me.columnCantidadVecesMaximoAnual, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
+        Me.datagridviewMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(1032, 350)
+        Me.datagridviewMain.Size = New System.Drawing.Size(1376, 445)
         Me.datagridviewMain.TabIndex = 0
         '
         'panelToolbars
@@ -93,18 +100,20 @@ Partial Class formLicenciaCausas
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
+        Me.panelToolbars.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(1032, 39)
+        Me.panelToolbars.Size = New System.Drawing.Size(1376, 39)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
         '
         Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripButtons.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(285, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -113,7 +122,7 @@ Partial Class formLicenciaCausas
         Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAgregar.Name = "buttonAgregar"
-        Me.buttonAgregar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonAgregar.Size = New System.Drawing.Size(99, 36)
         Me.buttonAgregar.Text = "Agregar"
         '
         'buttonEditar
@@ -122,7 +131,7 @@ Partial Class formLicenciaCausas
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
-        Me.buttonEditar.Size = New System.Drawing.Size(73, 36)
+        Me.buttonEditar.Size = New System.Drawing.Size(84, 36)
         Me.buttonEditar.Text = "Editar"
         '
         'buttonEliminar
@@ -131,30 +140,31 @@ Partial Class formLicenciaCausas
         Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEliminar.Name = "buttonEliminar"
-        Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
+        Me.buttonEliminar.Size = New System.Drawing.Size(99, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
         'toolstripActivo
         '
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripActivo.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(285, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
-        Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
+        Me.toolstripActivo.Size = New System.Drawing.Size(158, 39)
         Me.toolstripActivo.TabIndex = 12
         '
         'labelActivo
         '
         Me.labelActivo.Name = "labelActivo"
-        Me.labelActivo.Size = New System.Drawing.Size(44, 36)
+        Me.labelActivo.Size = New System.Drawing.Size(54, 36)
         Me.labelActivo.Text = "Activo:"
         '
         'comboboxActivo
         '
         Me.comboboxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxActivo.Name = "comboboxActivo"
-        Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
+        Me.comboboxActivo.Size = New System.Drawing.Size(99, 39)
         '
         'columnNombre
         '
@@ -165,7 +175,7 @@ Partial Class formLicenciaCausas
         Me.columnNombre.HeaderText = "Nombre"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
+        Me.columnNombre.Width = 87
         '
         'columnCantidadDias
         '
@@ -173,10 +183,28 @@ Partial Class formLicenciaCausas
         Me.columnCantidadDias.DataPropertyName = "CantidadDias"
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         Me.columnCantidadDias.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnCantidadDias.HeaderText = "Días"
+        Me.columnCantidadDias.HeaderText = "Cantidad de Días"
         Me.columnCantidadDias.Name = "columnCantidadDias"
         Me.columnCantidadDias.ReadOnly = True
-        Me.columnCantidadDias.Width = 55
+        Me.columnCantidadDias.Width = 108
+        '
+        'columnCantidadDiasMaximoAnual
+        '
+        Me.columnCantidadDiasMaximoAnual.DataPropertyName = "CantidadDiasMaximoAnual"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadDiasMaximoAnual.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnCantidadDiasMaximoAnual.HeaderText = "Máxima cantidad de días por año"
+        Me.columnCantidadDiasMaximoAnual.Name = "columnCantidadDiasMaximoAnual"
+        Me.columnCantidadDiasMaximoAnual.ReadOnly = True
+        '
+        'columnCantidadVecesMaximoAnual
+        '
+        Me.columnCantidadVecesMaximoAnual.DataPropertyName = "CantidadVecesMaximoAnual"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadVecesMaximoAnual.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnCantidadVecesMaximoAnual.HeaderText = "Máxima cantidad de veces por año"
+        Me.columnCantidadVecesMaximoAnual.Name = "columnCantidadVecesMaximoAnual"
+        Me.columnCantidadVecesMaximoAnual.ReadOnly = True
         '
         'columnEsActivo
         '
@@ -187,17 +215,18 @@ Partial Class formLicenciaCausas
         Me.columnEsActivo.ReadOnly = True
         Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 62
+        Me.columnEsActivo.Width = 75
         '
         'formLicenciaCausas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1032, 411)
+        Me.ClientSize = New System.Drawing.Size(1376, 506)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "formLicenciaCausas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Causas de Licencia"
@@ -225,7 +254,9 @@ Partial Class formLicenciaCausas
     Friend WithEvents toolstripActivo As System.Windows.Forms.ToolStrip
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCantidadDias As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnCantidadDias As DataGridViewTextBoxColumn
+    Friend WithEvents columnCantidadDiasMaximoAnual As DataGridViewTextBoxColumn
+    Friend WithEvents columnCantidadVecesMaximoAnual As DataGridViewTextBoxColumn
+    Friend WithEvents columnEsActivo As DataGridViewCheckBoxColumn
 End Class

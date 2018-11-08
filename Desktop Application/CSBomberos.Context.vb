@@ -73,5 +73,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property Alarma() As DbSet(Of Alarma)
     Public Overridable Property UsuarioParametro() As DbSet(Of UsuarioParametro)
     Public Overridable Property AutomotorBajaMotivo() As DbSet(Of AutomotorBajaMotivo)
+    Public Overridable Property DocumentacionTipo() As DbSet(Of DocumentacionTipo)
 
 End Class

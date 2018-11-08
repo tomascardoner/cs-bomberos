@@ -231,6 +231,20 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="DocumentacionTipo">
+          <Key>
+            <PropertyRef Name="IDDocumentacionTipo" />
+          </Key>
+          <Property Name="IDDocumentacionTipo" Type="tinyint" Nullable="false" />
+          <Property Name="EntidadTipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="DocumentoTipo">
           <Key>
             <PropertyRef Name="IDDocumentoTipo" />
@@ -283,7 +297,9 @@
           <Property Name="IDLicenciaCausa" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NombreLegal" Type="varchar" MaxLength="200" />
-          <Property Name="CantidadDias" Type="smallint" />
+          <Property Name="CantidadDias" Type="tinyint" />
+          <Property Name="CantidadDiasMaximoAnual" Type="tinyint" />
+          <Property Name="CantidadVecesMaximoAnual" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -602,6 +618,7 @@
           <Property Name="FactorRH" Type="char" MaxLength="1" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
+          <Property Name="IOMAACargo" Type="bit" Nullable="false" />
           <Property Name="ACargo" Type="bit" Nullable="false" />
           <Property Name="Vive" Type="bit" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
@@ -1813,6 +1830,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__DocumentacionTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="DocumentacionTipo" Type="Self.DocumentacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="DocumentacionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__DocumentacionTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="DocumentacionTipo" Type="Self.DocumentacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="DocumentacionTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Elemento__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Elemento" Type="Self.Elemento" Multiplicity="*" />
@@ -2512,6 +2553,7 @@
           <EntitySet Name="CombustibleTipo" EntityType="Self.CombustibleTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuartel" EntityType="Self.Cuartel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentacionTipo" EntityType="Self.DocumentacionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentoTipo" EntityType="Self.DocumentoTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elemento" EntityType="Self.Elemento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
@@ -2868,6 +2910,14 @@
           <AssociationSet Name="FK__Usuario__Curso__Modificacion" Association="Self.FK__Usuario__Curso__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__DocumentacionTipo__Creacion" Association="Self.FK__Usuario__DocumentacionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DocumentacionTipo" EntitySet="DocumentacionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__DocumentacionTipo__Modificacion" Association="Self.FK__Usuario__DocumentacionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DocumentacionTipo" EntitySet="DocumentacionTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Elemento__Creacion" Association="Self.FK__Usuario__Elemento__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3702,6 +3752,15 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
           </AssociationSet>
+          <EntitySet Name="DocumentacionTipo" EntityType="CSBomberosModel.DocumentacionTipo" />
+          <AssociationSet Name="FK__Usuario__DocumentacionTipo__Creacion" Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DocumentacionTipo" EntitySet="DocumentacionTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__DocumentacionTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="DocumentacionTipo" EntitySet="DocumentacionTipo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -3905,6 +3964,8 @@
           <NavigationProperty Name="UsuarioParametros" Relationship="CSBomberosModel.FK__Usuario__UsuarioParametro" FromRole="Usuario" ToRole="UsuarioParametro" />
           <NavigationProperty Name="AutomotorBajaMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" FromRole="Usuario" ToRole="AutomotorBajaMotivo" />
           <NavigationProperty Name="AutomotorBajaMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" FromRole="Usuario" ToRole="AutomotorBajaMotivo" />
+          <NavigationProperty Name="DocumentacionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
+          <NavigationProperty Name="DocumentacionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -4239,6 +4300,7 @@
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="IOMAACargo" Type="Boolean" Nullable="false" />
           <Property Name="ACargo" Type="Boolean" Nullable="false" />
           <Property Name="Vive" Type="Boolean" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -5601,7 +5663,9 @@
           <Property Name="IDLicenciaCausa" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NombreLegal" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="CantidadDias" Type="Int16" />
+          <Property Name="CantidadDias" Type="Byte" />
+          <Property Name="CantidadDiasMaximoAnual" Type="Byte" />
+          <Property Name="CantidadVecesMaximoAnual" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -6469,6 +6533,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DocumentacionTipo">
+          <Key>
+            <PropertyRef Name="IDDocumentacionTipo" />
+          </Key>
+          <Property Name="IDDocumentacionTipo" Type="Byte" Nullable="false" />
+          <Property Name="EntidadTipo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" FromRole="DocumentacionTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" FromRole="DocumentacionTipo" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Usuario__DocumentacionTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.DocumentacionTipo" Role="DocumentacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="DocumentacionTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__DocumentacionTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.DocumentacionTipo" Role="DocumentacionTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="DocumentacionTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6709,6 +6813,7 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="IOMAACargo" ColumnName="IOMAACargo" />
                 <ScalarProperty Name="ACargo" ColumnName="ACargo" />
                 <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
                 <ScalarProperty Name="IOMATiene" ColumnName="IOMATiene" />
@@ -7137,6 +7242,8 @@
           <EntitySetMapping Name="LicenciaCausa">
             <EntityTypeMapping TypeName="CSBomberosModel.LicenciaCausa">
               <MappingFragment StoreEntitySet="LicenciaCausa">
+                <ScalarProperty Name="CantidadVecesMaximoAnual" ColumnName="CantidadVecesMaximoAnual" />
+                <ScalarProperty Name="CantidadDiasMaximoAnual" ColumnName="CantidadDiasMaximoAnual" />
                 <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
                 <ScalarProperty Name="NombreLegal" ColumnName="NombreLegal" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
@@ -7339,6 +7446,21 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDAutomotorBajaMotivo" ColumnName="IDAutomotorBajaMotivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentacionTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.DocumentacionTipo">
+              <MappingFragment StoreEntitySet="DocumentacionTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="EntidadTipo" ColumnName="EntidadTipo" />
+                <ScalarProperty Name="IDDocumentacionTipo" ColumnName="IDDocumentacionTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

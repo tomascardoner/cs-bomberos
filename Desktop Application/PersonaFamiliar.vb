@@ -25,6 +25,7 @@ Partial Public Class PersonaFamiliar
     Public Property FactorRH As String
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
+    Public Property IOMAACargo As Boolean
     Public Property ACargo As Boolean
     Public Property Vive As Boolean
     Public Property DomicilioCalle1 As String

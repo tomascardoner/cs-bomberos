@@ -10,13 +10,10 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class LicenciaCausa
-    Public Property IDLicenciaCausa As Byte
+Partial Public Class DocumentacionTipo
+    Public Property IDDocumentacionTipo As Byte
+    Public Property EntidadTipo As String
     Public Property Nombre As String
-    Public Property NombreLegal As String
-    Public Property CantidadDias As Nullable(Of Byte)
-    Public Property CantidadDiasMaximoAnual As Nullable(Of Byte)
-    Public Property CantidadVecesMaximoAnual As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -24,7 +21,6 @@ Partial Public Class LicenciaCausa
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property PersonaLicencia As ICollection(Of PersonaLicencia) = New HashSet(Of PersonaLicencia)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
 

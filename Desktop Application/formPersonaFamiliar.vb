@@ -66,6 +66,7 @@
         comboboxFactorRH.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
+        checkboxIOMAACargo.Enabled = mEditMode
         checkboxACargo.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
 
@@ -143,6 +144,7 @@
                     comboboxIOMATiene.SelectedIndex = 3
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
+            checkboxIOMAACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.IOMAACargo)
             checkboxACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ACargo)
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
 
@@ -212,6 +214,7 @@
                     .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
             End Select
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
+            .IOMAACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxIOMAACargo.CheckState)
             .ACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxACargo.CheckState)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
 

@@ -111,5 +111,7 @@ Partial Public Class Usuario
     Public Overridable Property UsuarioParametros As ICollection(Of UsuarioParametro) = New HashSet(Of UsuarioParametro)
     Public Overridable Property AutomotorBajaMotivosCreados As ICollection(Of AutomotorBajaMotivo) = New HashSet(Of AutomotorBajaMotivo)
     Public Overridable Property AutomotorBajaMotivosModificados As ICollection(Of AutomotorBajaMotivo) = New HashSet(Of AutomotorBajaMotivo)
+    Public Overridable Property DocumentacionTiposCreados As ICollection(Of DocumentacionTipo) = New HashSet(Of DocumentacionTipo)
+    Public Overridable Property DocumentacionTiposModificados As ICollection(Of DocumentacionTipo) = New HashSet(Of DocumentacionTipo)
 
 End Class
