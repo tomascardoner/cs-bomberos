@@ -188,10 +188,8 @@ Partial Public Class Reporte
                                             .CurrentValues.AddValue(CStr(ParametroActual.Valor))
                                         End If
                                     Case ParameterValueKind.BooleanParameter
-                                        If ParametroActual.Valor Is Nothing Then
-                                            If .EnableNullValue Then
-                                                .CurrentValues.AddValue(Nothing)
-                                            End If
+                                        If ParametroActual.Valor Is Nothing AndAlso .EnableNullValue Then
+                                            .CurrentValues.AddValue(Nothing)
                                         Else
                                             .CurrentValues.AddValue(CBool(ParametroActual.Valor))
                                         End If

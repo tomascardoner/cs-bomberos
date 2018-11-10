@@ -1171,7 +1171,7 @@
 
                 GridRowDataActual = CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData)
 
-                Mensaje = String.Format("Se eliminará la Licencia seleccionada.{0}{0}Fecha: {1}{0}Causa: {2}{0}Fecha desde: {3}{0}Fecha hasta: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.LicenciaCausaNombre, GridRowDataActual.FechaDesde, GridRowDataActual.FechaHasta)
+                Mensaje = String.Format("Se eliminará la Licencia seleccionada.{0}{0}Fecha: {1}{0}Causa: {2}{0}Fecha desde: {3}{0}Fecha hasta: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha.ToShortDateString, GridRowDataActual.LicenciaCausaNombre, GridRowDataActual.FechaDesde.ToShortDateString, GridRowDataActual.FechaHasta.ToShortDateString)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
