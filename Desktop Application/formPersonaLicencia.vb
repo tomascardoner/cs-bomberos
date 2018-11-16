@@ -181,70 +181,68 @@
             Exit Sub
         End If
 
-        Dim CausaActual As LicenciaCausa
-        CausaActual = CType(comboboxCausa.SelectedItem, LicenciaCausa)
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_IGNORARRESTRICCIONFECHAS, False) Then
+            Dim CausaActual As LicenciaCausa
+            CausaActual = CType(comboboxCausa.SelectedItem, LicenciaCausa)
 
-        If Not CausaActual.CantidadDias Is Nothing Then
-            If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
-                If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                    datetimepickerFechaHasta.Focus()
-                    Exit Sub
+            If Not CausaActual.CantidadDias Is Nothing Then
+                If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
+                    If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                        datetimepickerFechaHasta.Focus()
+                        Exit Sub
+                    End If
+                End If
+            End If
+
+            ' Si corresponde, controlo la cantidad de días y veces anuales
+            If Not (CausaActual.CantidadDiasMaximoAnual Is Nothing And Not CausaActual.CantidadVecesMaximoAnual Is Nothing) Then
+                Dim dictPersonaLicenciaAniosDias As New Dictionary(Of Integer, Short)
+                Dim dictPersonaLicenciaAniosVeces As New Dictionary(Of Integer, Byte)
+
+                ' En primer lugar, tomo los datos de la Licencia actual y generao las entradas correpondientes a cada
+                ' año en los diccionarios
+                With mPersonaLicenciaActual
+                    If Not dictPersonaLicenciaAniosDias.ContainsKey(.FechaDesde.Year) Then
+                        dictPersonaLicenciaAniosDias.Add(.FechaDesde.Year, 0)
+                        dictPersonaLicenciaAniosVeces.Add(.FechaDesde.Year, 0)
+                    End If
+                    If .FechaDesde.Year <> .FechaHasta.Year Then
+                        If dictPersonaLicenciaAniosDias.ContainsKey(.FechaHasta.Year) Then
+                            dictPersonaLicenciaAniosDias.Add(.FechaHasta.Year, 0)
+                            dictPersonaLicenciaAniosVeces.Add(.FechaHasta.Year, 0)
+                        End If
+                    End If
+                End With
+                CalcularDiasYVecesAnuales(datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value, dictPersonaLicenciaAniosDias, dictPersonaLicenciaAniosVeces)
+
+                ' Obtengo todas las licencias del mismo tipo y que tengan el o los años en común
+                ' para verificar la cantidad de días y veces anuales
+                For Each PersonaLicenciaActual As PersonaLicencia In mdbContext.PersonaLicencia.Where(Function(pl) pl.IDPersona = mPersonaLicenciaActual.IDPersona And pl.IDLicenciaCausa = CausaActual.IDLicenciaCausa And pl.IDLicencia <> mPersonaLicenciaActual.IDLicencia And (pl.FechaHasta.Year >= datetimepickerFechaDesde.Value.Year And pl.FechaDesde.Year <= datetimepickerFechaHasta.Value.Year))
+                    CalcularDiasYVecesAnuales(PersonaLicenciaActual.FechaDesde, PersonaLicenciaActual.FechaHasta, dictPersonaLicenciaAniosDias, dictPersonaLicenciaAniosVeces)
+                Next
+
+                If Not CausaActual.CantidadDiasMaximoAnual Is Nothing Then
+                    For Each AnioDias As KeyValuePair(Of Integer, Short) In dictPersonaLicenciaAniosDias
+                        If AnioDias.Value > CausaActual.CantidadDiasMaximoAnual Then
+                            If MsgBox(String.Format("La cantidad de días excede al máximo anual para el tipo de Licencia.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                                Exit Sub
+                            End If
+                        End If
+                    Next
+                End If
+
+                If Not CausaActual.CantidadVecesMaximoAnual Is Nothing Then
+                    For Each AnioDias As KeyValuePair(Of Integer, Byte) In dictPersonaLicenciaAniosVeces
+                        If AnioDias.Value > CausaActual.CantidadVecesMaximoAnual Then
+                            If MsgBox(String.Format("La cantidad de veces excede al máximo anual para el tipo de Licencia.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                                Exit Sub
+                            End If
+                        End If
+                    Next
                 End If
             End If
         End If
 
-        ' Si corresponde, controlo la cantidad de días y veces anuales
-        If Not (CausaActual.CantidadDiasMaximoAnual Is Nothing And Not CausaActual.CantidadVecesMaximoAnual Is Nothing) Then
-            Dim dictPersonaLicenciaAnios As New Dictionary(Of Integer, Short)
-
-            ' Obtengo todas las licencias del mismo tipo y que tengan el o los años en común
-            ' para verificar la cantidad de días y veces anuales
-            For Each PersonaLicenciaActual As PersonaLicencia In mdbContext.PersonaLicencia.Where(Function(pl) pl.IDPersona = mPersonaLicenciaActual.IDPersona And pl.IDLicenciaCausa = CausaActual.IDLicenciaCausa And (pl.FechaHasta.Year >= datetimepickerFechaDesde.Value.Year And pl.FechaDesde.Year <= datetimepickerFechaHasta.Value.Year))
-                If Not dictPersonaLicenciaAnios.ContainsKey(PersonaLicenciaActual.FechaDesde.Year) Then
-                    dictPersonaLicenciaAnios.Add(PersonaLicenciaActual.FechaDesde.Year, 0)
-                End If
-                If PersonaLicenciaActual.FechaDesde.Year <> PersonaLicenciaActual.FechaHasta.Year Then
-                    If dictPersonaLicenciaAnios.ContainsKey(PersonaLicenciaActual.FechaHasta.Year) Then
-                        dictPersonaLicenciaAnios.Add(PersonaLicenciaActual.FechaHasta.Year, 0)
-                    End If
-                End If
-
-                Select Case PersonaLicenciaActual.FechaDesde.Year - PersonaLicenciaActual.FechaHasta.Year
-                    Case 0
-                        ' Ambas fechas son del mismo año
-                        dictPersonaLicenciaAnios(PersonaLicenciaActual.FechaDesde.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, PersonaLicenciaActual.FechaDesde, PersonaLicenciaActual.FechaHasta))
-                    Case 1
-                        ' Las fechas son de años consecutivos
-                        dictPersonaLicenciaAnios(PersonaLicenciaActual.FechaDesde.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, PersonaLicenciaActual.FechaDesde, New Date(PersonaLicenciaActual.FechaDesde.Year, 12, 31)))
-                        dictPersonaLicenciaAnios(PersonaLicenciaActual.FechaHasta.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, New Date(PersonaLicenciaActual.FechaHasta.Year, 1, 1), PersonaLicenciaActual.FechaHasta))
-                    Case Else
-                        ' Las fechas son de más de 2 años!! WTF!!
-                        dictPersonaLicenciaAnios(PersonaLicenciaActual.FechaDesde.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, PersonaLicenciaActual.FechaDesde, New Date(PersonaLicenciaActual.FechaDesde.Year, 12, 31)))
-                        For Anio As Integer = PersonaLicenciaActual.FechaDesde.Year + 1 To PersonaLicenciaActual.FechaHasta.Year - 1
-                            If DateTime.IsLeapYear(Anio) Then
-                                dictPersonaLicenciaAnios(Anio) += Convert.ToInt16(366)
-                            Else
-                                dictPersonaLicenciaAnios(Anio) += Convert.ToInt16(365)
-                            End If
-                        Next
-                        dictPersonaLicenciaAnios(PersonaLicenciaActual.FechaHasta.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, New Date(PersonaLicenciaActual.FechaHasta.Year, 1, 1), PersonaLicenciaActual.FechaHasta))
-                End Select
-            Next
-
-            'If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
-            '    If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-            '        Exit Sub
-            '    End If
-            'End If
-        End If
-
-        If Not CausaActual.CantidadVecesMaximoAnual Is Nothing Then
-            'If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
-            '    If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-            '        Exit Sub
-            '    End If
-            'End If
-        End If
 
         ' Generar el ID nuevo
         If mPersonaLicenciaActual.IDLicencia = 0 Then
@@ -293,6 +291,54 @@
         End If
 
         Me.Close()
+    End Sub
+#End Region
+
+#Region "Extra stuff"
+    Private Sub CalcularDiasYVecesAnuales(ByVal FechaDesde As Date, ByVal FechaHasta As Date, ByRef dictPersonaLicenciaAniosDias As Dictionary(Of Integer, Short), ByRef dictPersonaLicenciaAniosVeces As Dictionary(Of Integer, Byte))
+        Select Case FechaDesde.Year - FechaHasta.Year
+            Case 0
+                ' Ambas fechas son del mismo año
+                dictPersonaLicenciaAniosDias(FechaDesde.Year) += Convert.ToInt16(DateAndTime.DateDiff(DateInterval.Day, FechaDesde, FechaHasta))
+                dictPersonaLicenciaAniosVeces(FechaDesde.Year) += Convert.ToByte(1)
+
+            Case 1
+                ' Las fechas son de años consecutivos
+                ' Verifico que el año esté contemplado en la Licencia Actual
+                If dictPersonaLicenciaAniosDias.ContainsKey(FechaDesde.Year) Then
+                    dictPersonaLicenciaAniosDias(FechaDesde.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, FechaDesde, New Date(FechaDesde.Year, 12, 31)))
+                    dictPersonaLicenciaAniosVeces(FechaDesde.Year) += Convert.ToByte(1)
+                End If
+                ' Verifico que el año esté contemplado en la Licencia Actual
+                If dictPersonaLicenciaAniosDias.ContainsKey(FechaHasta.Year) Then
+                    dictPersonaLicenciaAniosDias(FechaHasta.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, New Date(FechaHasta.Year, 1, 1), FechaHasta))
+                    dictPersonaLicenciaAniosVeces(FechaHasta.Year) += Convert.ToByte(1)
+                End If
+
+            Case Else
+                ' Las fechas son de más de 2 años!! WTF!!
+                ' Verifico que el año esté contemplado en la Licencia Actual
+                If dictPersonaLicenciaAniosDias.ContainsKey(FechaDesde.Year) Then
+                    dictPersonaLicenciaAniosDias(FechaDesde.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, FechaDesde, New Date(FechaDesde.Year, 12, 31)))
+                    dictPersonaLicenciaAniosVeces(FechaDesde.Year) += Convert.ToByte(1)
+                End If
+                For Anio As Integer = FechaDesde.Year + 1 To FechaHasta.Year - 1
+                    ' Verifico que el año esté contemplado en la Licencia Actual
+                    If dictPersonaLicenciaAniosDias.ContainsKey(Anio) Then
+                        If DateTime.IsLeapYear(Anio) Then
+                            dictPersonaLicenciaAniosDias(Anio) += Convert.ToInt16(366)
+                        Else
+                            dictPersonaLicenciaAniosDias(Anio) += Convert.ToInt16(365)
+                        End If
+                        dictPersonaLicenciaAniosVeces(Anio) += Convert.ToByte(1)
+                    End If
+                Next
+                ' Verifico que el año esté contemplado en la Licencia Actual
+                If dictPersonaLicenciaAniosDias.ContainsKey(FechaHasta.Year) Then
+                    dictPersonaLicenciaAniosDias(FechaHasta.Year) += Convert.ToByte(DateAndTime.DateDiff(DateInterval.Day, New Date(FechaHasta.Year, 1, 1), FechaHasta))
+                    dictPersonaLicenciaAniosVeces(FechaHasta.Year) += Convert.ToByte(1)
+                End If
+        End Select
     End Sub
 #End Region
 
