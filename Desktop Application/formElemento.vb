@@ -192,7 +192,7 @@
                 If dbcMaxID.Elemento.Count = 0 Then
                     mElementoActual.IDElemento = 1
                 Else
-                    mElementoActual.IDElemento = dbcMaxID.Elemento.Max(Function(a) a.IDElemento) + CByte(1)
+                    mElementoActual.IDElemento = (From e In dbcMaxID.Elemento Select e.IDElemento).Max + 1 + CByte(1)
                 End If
             End Using
         End If

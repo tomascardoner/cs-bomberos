@@ -287,7 +287,7 @@
                 If dbcMaxID.Inventario.Count = 0 Then
                     mInventarioActual.IDInventario = 1
                 Else
-                    mInventarioActual.IDInventario = dbcMaxID.Inventario.Max(Function(a) a.IDInventario) + CByte(1)
+                    mInventarioActual.IDInventario = (From i In dbcMaxID.Inventario Select i.IDInventario).Max + 1 + CByte(1)
                 End If
             End Using
         End If

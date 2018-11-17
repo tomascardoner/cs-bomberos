@@ -674,7 +674,7 @@
                 If dbcMaxID.Persona.Count = 0 Then
                     mPersonaActual.IDPersona = 1
                 Else
-                    mPersonaActual.IDPersona = dbcMaxID.Persona.Max(Function(ent) ent.IDPersona) + 1
+                    mPersonaActual.IDPersona = (From p In dbcMaxID.Persona Select p.IDPersona).Max + 1
                 End If
             End Using
         End If
