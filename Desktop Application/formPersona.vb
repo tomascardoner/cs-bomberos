@@ -1201,13 +1201,13 @@
         End If
     End Sub
 
-    Private Sub Imprimir_PlanillaLicencia(sender As Object, e As EventArgs) Handles buttonLicencias_Imprimir.Click
+    Private Sub Licencias_Imprimir(sender As Object, e As EventArgs) Handles buttonLicencias_Imprimir.Click
         Dim GridRowDataActual As Licencias_GridRowData
 
         If datagridviewLicencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Licencia para imprimir.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_IMPRIMIR) Then
                 GridRowDataActual = CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData)
 
                 Me.Cursor = Cursors.WaitCursor
@@ -1350,13 +1350,13 @@
         End If
     End Sub
 
-    Private Sub Imprimir_SolicitudSancionDisciplinaria(sender As Object, e As EventArgs) Handles buttonSanciones_Imprimir.Click
+    Private Sub Sanciones_Imprimir(sender As Object, e As EventArgs) Handles buttonSanciones_Imprimir.Click
         Dim GridRowDataActual As Sanciones_GridRowData
 
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para imprimir.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_IMPRIMIR) Then
                 GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData)
 
                 Me.Cursor = Cursors.WaitCursor
@@ -1675,13 +1675,13 @@
         End If
     End Sub
 
-    Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonCalificaciones_Imprimir.Click
+    Private Sub Calificaciones_Imprimir(sender As Object, e As EventArgs) Handles buttonCalificaciones_Imprimir.Click
         Dim GridRowDataActual As Calificaciones_GridRowData
 
         If datagridviewCalificaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Caificación para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+            If Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION_IMPRIMIR) Then
                 GridRowDataActual = CType(datagridviewCalificaciones.SelectedRows(0).DataBoundItem, Calificaciones_GridRowData)
 
                 Me.Cursor = Cursors.WaitCursor

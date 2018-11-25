@@ -201,18 +201,16 @@
 
                 ' En primer lugar, tomo los datos de la Licencia actual y generao las entradas correpondientes a cada
                 ' año en los diccionarios
-                With mPersonaLicenciaActual
-                    If Not dictPersonaLicenciaAniosDias.ContainsKey(.FechaDesde.Year) Then
-                        dictPersonaLicenciaAniosDias.Add(.FechaDesde.Year, 0)
-                        dictPersonaLicenciaAniosVeces.Add(.FechaDesde.Year, 0)
+                If Not dictPersonaLicenciaAniosDias.ContainsKey(datetimepickerFechaDesde.Value.Year) Then
+                    dictPersonaLicenciaAniosDias.Add(datetimepickerFechaDesde.Value.Year, 0)
+                    dictPersonaLicenciaAniosVeces.Add(datetimepickerFechaDesde.Value.Year, 0)
+                End If
+                If datetimepickerFechaDesde.Value.Year <> datetimepickerFechaHasta.Value.Year Then
+                    If dictPersonaLicenciaAniosDias.ContainsKey(datetimepickerFechaHasta.Value.Year) Then
+                        dictPersonaLicenciaAniosDias.Add(datetimepickerFechaHasta.Value.Year, 0)
+                        dictPersonaLicenciaAniosVeces.Add(datetimepickerFechaHasta.Value.Year, 0)
                     End If
-                    If .FechaDesde.Year <> .FechaHasta.Year Then
-                        If dictPersonaLicenciaAniosDias.ContainsKey(.FechaHasta.Year) Then
-                            dictPersonaLicenciaAniosDias.Add(.FechaHasta.Year, 0)
-                            dictPersonaLicenciaAniosVeces.Add(.FechaHasta.Year, 0)
-                        End If
-                    End If
-                End With
+                End If
                 CalcularDiasYVecesAnuales(datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value, dictPersonaLicenciaAniosDias, dictPersonaLicenciaAniosVeces)
 
                 ' Obtengo todas las licencias del mismo tipo y que tengan el o los años en común
