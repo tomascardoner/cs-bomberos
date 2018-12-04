@@ -422,7 +422,11 @@
         ComboBoxControl.ValueMember = "IDArea"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.Area.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+        If IDCuartel = CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
+        Else
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+        End If
 
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Area

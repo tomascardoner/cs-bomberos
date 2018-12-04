@@ -241,9 +241,9 @@
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="datetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -6543,9 +6543,9 @@
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" FromRole="DocumentacionTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" FromRole="DocumentacionTipo" ToRole="Usuario" />
         </EntityType>

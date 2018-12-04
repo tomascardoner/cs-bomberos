@@ -197,7 +197,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="1.5" PointX="15.875" PointY="37.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="2.375" PointX="15.875" PointY="37.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" />
         </Diagram>

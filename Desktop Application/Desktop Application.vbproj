@@ -517,6 +517,30 @@
     <Compile Include="formPersonaSancion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formReportesParametroComboBoxSimple.Designer.vb">
+      <DependentUpon>formReportesParametroComboBoxSimple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroComboBoxSimple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportesParametroComboBoxTriple.Designer.vb">
+      <DependentUpon>formReportesParametroComboBoxTriple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroComboBoxTriple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportesParametroComboBoxDoble.Designer.vb">
+      <DependentUpon>formReportesParametroComboBoxDoble.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroComboBoxDoble.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formReportesParametroSiNo.Designer.vb">
+      <DependentUpon>formReportesParametroSiNo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroSiNo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formRubro.designer.vb">
       <DependentUpon>formRubro.vb</DependentUpon>
     </Compile>
@@ -643,10 +667,10 @@
     <Compile Include="formReportes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formReportesParametro.Designer.vb">
-      <DependentUpon>formReportesParametro.vb</DependentUpon>
+    <Compile Include="formReportesParametroVarios.Designer.vb">
+      <DependentUpon>formReportesParametroVarios.vb</DependentUpon>
     </Compile>
-    <Compile Include="formReportesParametro.vb">
+    <Compile Include="formReportesParametroVarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formReportesVisor.Designer.vb">
@@ -924,6 +948,18 @@
     <EmbeddedResource Include="formPersonaSancion.resx">
       <DependentUpon>formPersonaSancion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroComboBoxSimple.resx">
+      <DependentUpon>formReportesParametroComboBoxSimple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroComboBoxDoble.resx">
+      <DependentUpon>formReportesParametroComboBoxDoble.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroComboBoxTriple.resx">
+      <DependentUpon>formReportesParametroComboBoxTriple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroSiNo.resx">
+      <DependentUpon>formReportesParametroSiNo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="formRubro.resx">
       <DependentUpon>formRubro.vb</DependentUpon>
     </EmbeddedResource>
@@ -987,8 +1023,8 @@
     <EmbeddedResource Include="formReportes.resx">
       <DependentUpon>formReportes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formReportesParametro.resx">
-      <DependentUpon>formReportesParametro.vb</DependentUpon>
+    <EmbeddedResource Include="formReportesParametroVarios.resx">
+      <DependentUpon>formReportesParametroVarios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formReportesVisor.resx">
       <DependentUpon>formReportesVisor.vb</DependentUpon>
