@@ -1076,7 +1076,6 @@
     <None Include="Resources\Fire-Extinguisher-icon_32.png" />
     <None Include="Resources\Fire-Pumper-icon_32.png" />
     <None Include="Resources\Occupations-Firefighter-Male-Light-icon_32.png" />
-    <None Include="Resources\5_Resized.jpg" />
     <None Include="Resources\Printer24.png" />
     <None Include="Resources\printer-icon %285%29.png" />
     <None Include="Resources\printer-icon %286%29.png" />
@@ -1088,8 +1087,6 @@
     <None Include="Resources\document-print-preview %287%29.png" />
     <None Include="Resources\Mail-icon %287%29.png" />
     <None Include="Resources\Mail-icon %286%29.png" />
-    <None Include="Resources\AFIP.jpg" />
-    <None Include="Resources\PagoMisCuentas.jpg" />
     <None Include="Resources\export-icon_16.png" />
     <None Include="Resources\export-icon_32.png" />
     <None Include="Resources\Actions-edit-copy-icon_32.png" />
