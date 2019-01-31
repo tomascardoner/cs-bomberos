@@ -329,7 +329,7 @@
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
-            .Peso = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxPeso.Text)
+            .Peso = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxPeso.Text)
             Select Case comboboxIOMATiene.SelectedIndex
                 Case 0
                     .IOMATiene = Nothing

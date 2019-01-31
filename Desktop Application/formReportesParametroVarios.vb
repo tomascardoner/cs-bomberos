@@ -6,18 +6,18 @@
 
         labelValor.Text = mParametroActual.Nombre & ":"
 
-        textboxMoney.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_MONEY)
-        textboxNumber.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL)
+        doubletextboxNumber.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL)
+        currencytextboxMoney.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_MONEY)
         datetimepickerValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATE Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATETIME)
 
         Select Case mParametroActual.Tipo
             Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
                 If Not mParametroActual.Valor Is Nothing Then
-                    textboxNumber.Text = CStr(mParametroActual.Valor)
+                    doubletextboxNumber.Text = CStr(mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
                 If Not mParametroActual.Valor Is Nothing Then
-                    textboxMoney.Text = CStr(mParametroActual.Valor)
+                    currencytextboxMoney.Text = CStr(mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
                 If Not mParametroActual.Valor Is Nothing Then
@@ -38,9 +38,9 @@
     Private Sub Aceptar(sender As Object, e As EventArgs) Handles buttonAceptar.Click
         Select Case mParametroActual.Tipo
             Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
-                mParametroActual.Valor = textboxNumber.Value
+                mParametroActual.Valor = doubletextboxNumber.DoubleValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
-                mParametroActual.Valor = textboxMoney.Value
+                mParametroActual.Valor = currencytextboxMoney.DecimalValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
                 mParametroActual.Valor = datetimepickerValor.Value
         End Select
