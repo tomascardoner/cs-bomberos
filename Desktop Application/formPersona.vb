@@ -1540,7 +1540,7 @@
             listCalificaciones = (From pc In mdbContext.PersonaCalificacion
                                   Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
                                   Where pc.IDPersona = mPersonaActual.IDPersona
-                                  Order By pc.Anio Descending, pc.InstanciaNumero Descending
+                                  Order By pc.Anio Descending, pc.InstanciaNumero Descending, cc.Abreviatura
                                   Select New Calificaciones_ListDataItem With {.Anio = pc.Anio, .InstanciaNumero = pc.InstanciaNumero, .IDConcepto = cc.IDCalificacionConcepto, .ConceptoAbreviatura = cc.Abreviatura, .ConceptoNombre = cc.Nombre, .Calificacion = pc.Calificacion}).ToList
 
             listCalificaciones_GridRowData = New List(Of Calificaciones_GridRowData)
