@@ -57,16 +57,16 @@
       <Value Profile="(Default)">Bomberos Voluntarios de Lobos</Value>
     </Setting>
     <Setting Name="Email_Address" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">tomascardoner@me.com</Value>
+      <Value Profile="(Default)">documentaciones.cbl@gmail.com</Value>
     </Setting>
     <Setting Name="Email_SMTP_Server" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">mail.horizontedelobos.com.ar</Value>
+      <Value Profile="(Default)">mail.gmail.com</Value>
     </Setting>
     <Setting Name="Email_SMTP_Username" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">administracion@horizontedelobos.com.ar</Value>
+      <Value Profile="(Default)">documentaciones.cbl@gmail.com</Value>
     </Setting>
     <Setting Name="Email_SMTP_Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">yW4DfKMkoW1G6xeH/A+Jj9jGeAXMiW9Xk4NW/87/C7kP9+IdAyHtUw==</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Email_SMTP_Port" Type="System.Int16" Scope="Application">
       <Value Profile="(Default)">25</Value>
@@ -77,23 +77,8 @@
     <Setting Name="Email_SMTP_Timeout" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">30000</Value>
     </Setting>
-    <Setting Name="Comprobante_EnviarEmail_Subject" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{0} N° {1}</Value>
-    </Setting>
-    <Setting Name="Comprobante_EnvioEmail_Body" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Adjuntamos el Comprobante solicitado.{0}{0}Atentamente.</Value>
-    </Setting>
     <Setting Name="Email_Signature" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{0}{0}Bomberos Voluntarios de Lobos{0}Cuartel Principal{0}Ameghino 142 - Lobos{0}Tel.: +54 2227 42-2222{0}info@bomberosdelobos.com.ar{0}www.bomberosdelobos.com.ar</Value>
-    </Setting>
-    <Setting Name="Comprobante_EnviarEmail_Metodo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">NETCLIENT</Value>
-    </Setting>
-    <Setting Name="Email_MaxPerHour" Type="System.Int16" Scope="Application">
-      <Value Profile="(Default)">200</Value>
-    </Setting>
-    <Setting Name="Exchange_Outbound_Folder" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">%ApplicationFolder%\Exchange\Outbound</Value>
     </Setting>
   </Settings>
 </SettingsFile>

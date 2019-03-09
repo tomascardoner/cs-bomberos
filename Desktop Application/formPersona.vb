@@ -36,7 +36,7 @@
             mPersonaActual = mdbContext.Persona.Find(IDPersona)
         End If
 
-        Me.MdiParent = formMDIMain
+        Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
@@ -695,8 +695,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista de Personaes para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersonas") Then
-                    Dim formPersonas As formPersonas = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersonas"), formPersonas)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formPersonas") Then
+                    Dim formPersonas As formPersonas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formPersonas"), formPersonas)
                     formPersonas.RefreshData(mPersonaActual.IDPersona)
                     formPersonas = Nothing
                 End If

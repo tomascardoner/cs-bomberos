@@ -415,8 +415,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formPersona") Then
-                    Dim formPersona As formPersona = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formPersona"), formPersona)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formPersona") Then
+                    Dim formPersona As formPersona = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formPersona"), formPersona)
                     formPersona.Familiares_RefreshData(mPersonaFamiliarActual.IDFamiliar)
                     formPersona = Nothing
                 End If

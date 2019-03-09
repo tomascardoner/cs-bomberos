@@ -43,7 +43,7 @@
             mlistPersonaCalificacion = mdbContext.PersonaCalificacion.Where(Function(pc) pc.IDPersona = IDPersona And pc.Anio = Anio And pc.InstanciaNumero = InstanciaNumero).OrderBy(Function(pc) pc.CalificacionConcepto.Orden).ToList
         End If
 
-        Me.MdiParent = formMDIMain
+        Me.MdiParent = pFormMDIMain
         CS_Form.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()

@@ -308,8 +308,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(formMDIMain, Form), "formInventario") Then
-                    Dim formInventario As formInventario = CType(CS_Form.MDIChild_GetInstance(CType(formMDIMain, Form), "formInventario"), formInventario)
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formInventario") Then
+                    Dim formInventario As formInventario = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formInventario"), formInventario)
                     formInventario.RefreshData(mInventarioActual.IDInventario)
                     formInventario = Nothing
                 End If
