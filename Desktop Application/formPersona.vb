@@ -1222,7 +1222,7 @@
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDLicencia").Single.Valor = GridRowDataActual.IDLicencia
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre)
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre)
                         End If
                     Else
                         MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
@@ -1371,7 +1371,7 @@
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDSancion").Single.Valor = GridRowDataActual.IDSancion
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre)
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre)
                         End If
                     Else
                         MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
@@ -1696,7 +1696,7 @@
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "Anio").Single.Valor = GridRowDataActual.Anio
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
                         End If
                     Else
                         MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)

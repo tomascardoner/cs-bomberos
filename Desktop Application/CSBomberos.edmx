@@ -703,7 +703,6 @@
           <Property Name="IDReporte" Type="smallint" Nullable="false" />
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Titulo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
         </EntityType>
@@ -726,6 +725,7 @@
           <Property Name="Tipo" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="Requerido" Type="bit" Nullable="false" />
           <Property Name="RequeridoLeyenda" Type="varchar" MaxLength="200" />
+          <Property Name="ValorPredeterminadoTexto" Type="varchar" MaxLength="500" />
           <Property Name="ValorPredeterminadoNumeroEntero" Type="int" />
           <Property Name="ValorPredeterminadoNumeroDecimal" Type="decimal" Precision="18" Scale="9" />
           <Property Name="ValorPredeterminadoMoneda" Type="money" />
@@ -3827,7 +3827,6 @@
           <Property Name="IDReporte" Type="Int16" Nullable="false" />
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
@@ -3853,6 +3852,7 @@
           <Property Name="Tipo" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="Requerido" Type="Boolean" Nullable="false" />
           <Property Name="RequeridoLeyenda" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ValorPredeterminadoTexto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ValorPredeterminadoNumeroEntero" Type="Int32" />
           <Property Name="ValorPredeterminadoNumeroDecimal" Type="Decimal" Precision="18" Scale="9" />
           <Property Name="ValorPredeterminadoMoneda" Type="Decimal" Precision="19" Scale="4" />
@@ -6636,7 +6636,6 @@
               <MappingFragment StoreEntitySet="Reporte">
                 <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
                 <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
@@ -6655,6 +6654,7 @@
           <EntitySetMapping Name="ReporteParametro">
             <EntityTypeMapping TypeName="CSBomberosModel.ReporteParametro">
               <MappingFragment StoreEntitySet="ReporteParametro">
+                <ScalarProperty Name="ValorPredeterminadoTexto" ColumnName="ValorPredeterminadoTexto" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="ValorPredeterminadoSiNo" ColumnName="ValorPredeterminadoSiNo" />
                 <ScalarProperty Name="ValorPredeterminadoFechaHora" ColumnName="ValorPredeterminadoFechaHora" />

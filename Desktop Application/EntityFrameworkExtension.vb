@@ -152,7 +152,7 @@ Partial Public Class Reporte
                             Case REPORTE_PARAMETRO_TIPO_COMPANY
                                 .CurrentValues.AddValue(pLicensedTo)
                             Case REPORTE_PARAMETRO_TIPO_TITLE
-                                .CurrentValues.AddValue(Titulo)
+                                .CurrentValues.AddValue(ParametroActual.Valor)
                             Case REPORTE_PARAMETRO_TIPO_FILTER_TEXT
                                 .CurrentValues.AddValue(GetConditionText())
                             Case Else
@@ -244,6 +244,10 @@ Partial Public Class ReporteParametro
                 ' El valor no está inicializado, sí que verifico que no haya un valor predeterminado
                 Select Case Me.Tipo
                     Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+                        If Not Me.ValorPredeterminadoTexto Is Nothing Then
+                            mValor = Me.ValorPredeterminadoTexto
+                        End If
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
@@ -283,6 +287,8 @@ Partial Public Class ReporteParametro
                 Select Case Me.Tipo
                     Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA, Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR, Constantes.REPORTE_PARAMETRO_TIPO_AREA, Constantes.REPORTE_PARAMETRO_TIPO_UBICACION, Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                         Return mValorParaMostrar
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+                        Return Convert.ToString(mValor)
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL

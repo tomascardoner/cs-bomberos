@@ -366,7 +366,7 @@
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDPersona").Single.Valor = CurrentRow.IDPersona
                     If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo & " - " & CurrentRow.ApellidoNombre)
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & CurrentRow.ApellidoNombre)
                         End If
                     End If
                 End Using

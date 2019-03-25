@@ -533,6 +533,12 @@
     <Compile Include="formReportesParametroSiNo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formReportesParametroTextBox.Designer.vb">
+      <DependentUpon>formReportesParametroTextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroTextBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formRubro.designer.vb">
       <DependentUpon>formRubro.vb</DependentUpon>
     </Compile>
@@ -951,6 +957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formReportesParametroSiNo.resx">
       <DependentUpon>formReportesParametroSiNo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroTextBox.resx">
+      <DependentUpon>formReportesParametroTextBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formRubro.resx">
       <DependentUpon>formRubro.vb</DependentUpon>

@@ -14,7 +14,6 @@ Partial Public Class Reporte
     Public Property IDReporte As Short
     Public Property IDReporteGrupo As Byte
     Public Property Nombre As String
-    Public Property Titulo As String
     Public Property Archivo As String
     Public Property MostrarEnVisor As Boolean
 

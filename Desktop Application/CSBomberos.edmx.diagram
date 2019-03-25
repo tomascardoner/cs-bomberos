@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.Provincia" Width="1.5" PointX="0.75" PointY="87.5" />
         <EntityTypeShape EntityType="CSBomberosModel.Reporte" Width="1.5" PointX="3" PointY="1.5" />
         <EntityTypeShape EntityType="CSBomberosModel.ReporteGrupo" Width="1.5" PointX="0.75" PointY="1.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="2.25" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="1.625" PointX="13.5" PointY="78.25" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="15.875" PointY="75.125" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="18.125" PointY="76" />

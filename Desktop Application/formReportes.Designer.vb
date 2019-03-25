@@ -28,6 +28,9 @@ Partial Class formReportes
         Me.treeviewReportes = New System.Windows.Forms.TreeView()
         Me.buttonSiguiente = New System.Windows.Forms.Button()
         Me.panelParametros = New System.Windows.Forms.Panel()
+        Me.menuParametro = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.menuParametroEditar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuParametroBorrar = New System.Windows.Forms.ToolStripMenuItem()
         Me.labelParametrosTitulo = New System.Windows.Forms.Label()
         Me.listviewParametros = New System.Windows.Forms.ListView()
         Me.columnNombre = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -36,9 +39,6 @@ Partial Class formReportes
         Me.buttonAnterior = New System.Windows.Forms.Button()
         Me.buttonPrevisualizar = New System.Windows.Forms.Button()
         Me.buttonImprimir = New System.Windows.Forms.Button()
-        Me.menuParametro = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.menuParametroEditar = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuParametroBorrar = New System.Windows.Forms.ToolStripMenuItem()
         Me.panelReportes.SuspendLayout()
         Me.panelParametros.SuspendLayout()
         Me.menuParametro.SuspendLayout()
@@ -95,6 +95,24 @@ Partial Class formReportes
         Me.panelParametros.Size = New System.Drawing.Size(566, 386)
         Me.panelParametros.TabIndex = 1
         '
+        'menuParametro
+        '
+        Me.menuParametro.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuParametroEditar, Me.menuParametroBorrar})
+        Me.menuParametro.Name = "menuParametro"
+        Me.menuParametro.Size = New System.Drawing.Size(136, 48)
+        '
+        'menuParametroEditar
+        '
+        Me.menuParametroEditar.Name = "menuParametroEditar"
+        Me.menuParametroEditar.Size = New System.Drawing.Size(135, 22)
+        Me.menuParametroEditar.Text = "Editar valor"
+        '
+        'menuParametroBorrar
+        '
+        Me.menuParametroBorrar.Name = "menuParametroBorrar"
+        Me.menuParametroBorrar.Size = New System.Drawing.Size(135, 22)
+        Me.menuParametroBorrar.Text = "Borrar valor"
+        '
         'labelParametrosTitulo
         '
         Me.labelParametrosTitulo.AutoSize = True
@@ -138,7 +156,7 @@ Partial Class formReportes
         'columnValor
         '
         Me.columnValor.Text = "Valor"
-        Me.columnValor.Width = 250
+        Me.columnValor.Width = 500
         '
         'buttonAnterior
         '
@@ -175,24 +193,6 @@ Partial Class formReportes
         Me.buttonImprimir.Text = "Imprimir"
         Me.buttonImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.buttonImprimir.UseVisualStyleBackColor = True
-        '
-        'menuParametro
-        '
-        Me.menuParametro.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuParametroEditar, Me.menuParametroBorrar})
-        Me.menuParametro.Name = "menuParametro"
-        Me.menuParametro.Size = New System.Drawing.Size(136, 48)
-        '
-        'menuParametroEditar
-        '
-        Me.menuParametroEditar.Name = "menuParametroEditar"
-        Me.menuParametroEditar.Size = New System.Drawing.Size(135, 22)
-        Me.menuParametroEditar.Text = "Editar valor"
-        '
-        'menuParametroBorrar
-        '
-        Me.menuParametroBorrar.Name = "menuParametroBorrar"
-        Me.menuParametroBorrar.Size = New System.Drawing.Size(135, 22)
-        Me.menuParametroBorrar.Text = "Borrar valor"
         '
         'formReportes
         '

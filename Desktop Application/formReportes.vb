@@ -71,7 +71,7 @@
             listviewParametros.BeginUpdate()
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
 
-            labelParametrosTitulo.Text = String.Format("Parámetros del Reporte: ""{0}""", ReporteActual.Nombre)
+            labelParametrosTitulo.Text = String.Format("Parámetros del Reporte: ""{0} - {1}""", treeviewReportes.SelectedNode.Parent.Text, ReporteActual.Nombre)
 
             For Each ParametroActual As ReporteParametro In ReporteActual.ReporteParametros.OrderBy(Function(rp) rp.Orden)
 
@@ -129,6 +129,14 @@
                         PersonaSeleccionada = Nothing
                     End If
                     formPersonasSeleccionar.Dispose()
+
+                Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+                    formReportesParametroTextBox.SetAppearance(ParametroActual, ListViewItemActual.Text)
+                    If formReportesParametroTextBox.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
+                    End If
+                    formReportesParametroTextBox.Close()
+                    formReportesParametroTextBox.Dispose()
 
                 Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME
                     formReportesParametroVarios.SetAppearance(ParametroActual, ListViewItemActual.Text)
@@ -292,7 +300,7 @@
                 If sender.Equals(buttonImprimir) Then
                     ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
                 Else
-                    MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Titulo)
+                    MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre)
                 End If
             End If
         End If
