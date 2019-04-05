@@ -1,0 +1,15 @@
+USE [CSBomberos]
+GO
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (0, N'CI Policía Federal', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (80, N'CUIT', 1, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (86, N'CUIL', 1, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (87, N'CDI', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (89, N'LE', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (90, N'LC', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (91, N'CI Extranjera', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (92, N'En Trámite', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (93, N'Acta Nacimiento', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (94, N'Pasaporte', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (95, N'CI Bs. As. RNP', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (96, N'DNI', 0, 1)
+INSERT [dbo].[DocumentoTipo] ([IDDocumentoTipo], [Nombre], [VerificaModulo11], [EsActivo]) VALUES (99, N'Doc. (Otro)', 0, 1)
