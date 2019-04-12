@@ -57,6 +57,7 @@ Partial Public Class Persona
     Public Property TelefonoLaboral As String
     Public Property CelularLaboral As String
     Public Property EmailLaboral As String
+    Public Property HorarioLaboralObservaciones As String
     Public Property EsActivo As Boolean
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
@@ -82,5 +83,8 @@ Partial Public Class Persona
     Public Overridable Property PersonaLicenciaConducirCategorias As ICollection(Of PersonaLicenciaConducirCategoria) = New HashSet(Of PersonaLicenciaConducirCategoria)
     Public Overridable Property PersonaSanciones As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
     Public Overridable Property PersonaSancionesSolicitadas As ICollection(Of PersonaSancion) = New HashSet(Of PersonaSancion)
+    Public Overridable Property PersonaHorariosLaborales As ICollection(Of PersonaHorarioLaboral) = New HashSet(Of PersonaHorarioLaboral)
+    Public Overridable Property PersonaVacunas As ICollection(Of PersonaVacuna) = New HashSet(Of PersonaVacuna)
+    Public Overridable Property PersonaVehiculos As ICollection(Of PersonaVehiculo) = New HashSet(Of PersonaVehiculo)
 
 End Class

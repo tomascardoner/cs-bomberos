@@ -24,13 +24,13 @@
 
         Try
             treeviewReportes.BeginUpdate()
-            For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo
+            For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
                 ' Agrego el Grupo de Reportes
                 ReporteGrupoNode = New TreeNode(ReporteGrupoActual.Nombre)
                 ReporteGrupoNode.Tag = ReporteGrupoActual
                 treeviewReportes.Nodes.Add(ReporteGrupoNode)
 
-                For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True)
+                For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
                     ' Agrego el Reporte
                     ReporteNode = New TreeNode(ReporteActual.Nombre)
                     ReporteNode.Tag = ReporteActual

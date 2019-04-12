@@ -10,12 +10,18 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ReporteGrupo
-    Public Property IDReporteGrupo As Byte
+Partial Public Class VacunaTipo
+    Public Property IDVacunaTipo As Byte
     Public Property Nombre As String
+    Public Property Notas As String
     Public Property EsActivo As Boolean
-    Public Property Orden As Nullable(Of Byte)
+    Public Property IDUsuarioCreacion As Short
+    Public Property FechaHoraCreacion As Date
+    Public Property IDUsuarioModificacion As Short
+    Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Reportes As ICollection(Of Reporte) = New HashSet(Of Reporte)
+    Public Overridable Property PersonaVacunas As ICollection(Of PersonaVacuna) = New HashSet(Of PersonaVacuna)
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

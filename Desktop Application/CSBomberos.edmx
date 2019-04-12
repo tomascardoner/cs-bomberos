@@ -457,7 +457,8 @@
           <Property Name="TelefonoLaboral" Type="varchar" MaxLength="50" />
           <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
           <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
-          <Property Name="Notas" Type="varchar" MaxLength="50" />
+          <Property Name="HorarioLaboralObservaciones" Type="varchar(max)" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -640,6 +641,23 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="PersonaHorarioLaboral">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="DiaSemana" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="DiaSemana" Type="tinyint" Nullable="false" />
+          <Property Name="Turno1Desde" Type="time" Precision="0" />
+          <Property Name="Turno1Hasta" Type="time" Precision="0" />
+          <Property Name="Turno2Desde" Type="time" Precision="0" />
+          <Property Name="Turno2Hasta" Type="time" Precision="0" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="PersonaLicencia">
           <Key>
             <PropertyRef Name="IDPersona" />
@@ -689,6 +707,48 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="PersonaVacuna">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDVacuna" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDVacuna" Type="tinyint" Nullable="false" />
+          <Property Name="IDVacunaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Lote" Type="varchar" MaxLength="20" />
+          <Property Name="DosisNumero" Type="tinyint" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Vencimiento" Type="date" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaVehiculo">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDVehiculo" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDVehiculo" Type="tinyint" Nullable="false" />
+          <Property Name="IDVehiculoTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Dominio" Type="varchar" MaxLength="7" />
+          <Property Name="IDVehiculoMarca" Type="smallint" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" />
+          <Property Name="Anio" Type="smallint" />
+          <Property Name="VerificacionVencimiento" Type="date" />
+          <Property Name="IDVehiculoCompaniaSeguro" Type="smallint" />
+          <Property Name="SeguroPolizaNumero" Type="varchar" MaxLength="50" />
+          <Property Name="SeguroVencimiento" Type="date" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Provincia">
           <Key>
             <PropertyRef Name="IDProvincia" />
@@ -705,6 +765,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -712,6 +773,7 @@
           </Key>
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ReporteParametro">
@@ -855,6 +917,58 @@
           <Property Name="FechaHora" Type="smalldatetime" />
           <Property Name="SiNo" Type="bit" />
           <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="VacunaTipo">
+          <Key>
+            <PropertyRef Name="IDVacunaTipo" />
+          </Key>
+          <Property Name="IDVacunaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiculoCompaniaSeguro">
+          <Key>
+            <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+          </Key>
+          <Property Name="IDVehiculoCompaniaSeguro" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiculoMarca">
+          <Key>
+            <PropertyRef Name="IDVehiculoMarca" />
+          </Key>
+          <Property Name="IDVehiculoMarca" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VehiculoTipo">
+          <Key>
+            <PropertyRef Name="IDVehiculoTipo" />
+          </Key>
+          <Property Name="IDVehiculoTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <Association Name="FK__Area__Inventario">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
@@ -1312,6 +1426,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Persona__PersonaHorarioLaboral">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaHorarioLaboral" Type="Self.PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Persona__PersonaLicencia">
           <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
           <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
@@ -1359,6 +1485,30 @@
             </Principal>
             <Dependent Role="PersonaSancion">
               <PropertyRef Name="SolicitudIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaVacuna">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaVacuna" Type="Self.PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaVehiculo">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDPersona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2274,6 +2424,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PersonaHorarioLaboral__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaHorarioLaboral" Type="Self.PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaHorarioLaboral__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaHorarioLaboral" Type="Self.PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__PersonaLicencia__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="PersonaLicencia" Type="Self.PersonaLicencia" Multiplicity="*" />
@@ -2330,6 +2504,54 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="PersonaSancion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVacuna__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaVacuna" Type="Self.PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVacuna__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaVacuna" Type="Self.PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVehiculo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVehiculo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -2514,6 +2736,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__VacunaTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VacunaTipo" Type="Self.VacunaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VacunaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VacunaTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VacunaTipo" Type="Self.VacunaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VacunaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoCompaniaSeguro__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoCompaniaSeguro" Type="Self.VehiculoCompaniaSeguro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoCompaniaSeguro__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoCompaniaSeguro" Type="Self.VehiculoCompaniaSeguro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoMarca__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoMarca" Type="Self.VehiculoMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoMarca">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoMarca__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoMarca" Type="Self.VehiculoMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoMarca">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoTipo" Type="Self.VehiculoTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="VehiculoTipo" Type="Self.VehiculoTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__UsuarioGrupo__Usuario">
           <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
@@ -2535,6 +2853,54 @@
             </Principal>
             <Dependent Role="UsuarioGrupoPermiso">
               <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacunaTipo__PersonaVacuna">
+          <End Role="VacunaTipo" Type="Self.VacunaTipo" Multiplicity="1" />
+          <End Role="PersonaVacuna" Type="Self.PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VacunaTipo">
+              <PropertyRef Name="IDVacunaTipo" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDVacunaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoCompaniaSeguro__PersonaVehiculo">
+          <End Role="VehiculoCompaniaSeguro" Type="Self.VehiculoCompaniaSeguro" Multiplicity="0..1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoMarca__PersonaVehiculo">
+          <End Role="VehiculoMarca" Type="Self.VehiculoMarca" Multiplicity="0..1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoMarca">
+              <PropertyRef Name="IDVehiculoMarca" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoTipo__PersonaVehiculo">
+          <End Role="VehiculoTipo" Type="Self.VehiculoTipo" Multiplicity="1" />
+          <End Role="PersonaVehiculo" Type="Self.PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoTipo">
+              <PropertyRef Name="IDVehiculoTipo" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2575,9 +2941,12 @@
           <EntitySet Name="PersonaCapacitacion" EntityType="Self.PersonaCapacitacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaExamen" EntityType="Self.PersonaExamen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaFamiliar" EntityType="Self.PersonaFamiliar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaHorarioLaboral" EntityType="Self.PersonaHorarioLaboral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicencia" EntityType="Self.PersonaLicencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicenciaConducirCategoria" EntityType="Self.PersonaLicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaSancion" EntityType="Self.PersonaSancion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaVacuna" EntityType="Self.PersonaVacuna" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaVehiculo" EntityType="Self.PersonaVehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
@@ -2591,6 +2960,10 @@
           <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioParametro" EntityType="Self.UsuarioParametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VacunaTipo" EntityType="Self.VacunaTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehiculoCompaniaSeguro" EntityType="Self.VehiculoCompaniaSeguro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehiculoMarca" EntityType="Self.VehiculoMarca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VehiculoTipo" EntityType="Self.VehiculoTipo" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
@@ -2739,6 +3112,10 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaHorarioLaboral" Association="Self.FK__Persona__PersonaHorarioLaboral">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaLicencia" Association="Self.FK__Persona__PersonaLicencia">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
@@ -2754,6 +3131,14 @@
           <AssociationSet Name="FK__Persona__PersonaSancion__Solicitud" Association="Self.FK__Persona__PersonaSancion__Solicitud">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaVacuna" Association="Self.FK__Persona__PersonaVacuna">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaVehiculo" Association="Self.FK__Persona__PersonaVehiculo">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
           <AssociationSet Name="FK__PersonaBajaMotivo__PersonaAltaBaja" Association="Self.FK__PersonaBajaMotivo__PersonaAltaBaja">
             <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
@@ -3059,6 +3444,14 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaHorarioLaboral__Creacion" Association="Self.FK__Usuario__PersonaHorarioLaboral__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaHorarioLaboral__Modificacion" Association="Self.FK__Usuario__PersonaHorarioLaboral__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__PersonaLicencia__Creacion" Association="Self.FK__Usuario__PersonaLicencia__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaLicencia" EntitySet="PersonaLicencia" />
@@ -3078,6 +3471,22 @@
           <AssociationSet Name="FK__Usuario__PersonaSancion__Modificacion" Association="Self.FK__Usuario__PersonaSancion__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVacuna__Creacion" Association="Self.FK__Usuario__PersonaVacuna__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVacuna__Modificacion" Association="Self.FK__Usuario__PersonaVacuna__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVehiculo__Creacion" Association="Self.FK__Usuario__PersonaVehiculo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVehiculo__Modificacion" Association="Self.FK__Usuario__PersonaVehiculo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Rubro__Creacion" Association="Self.FK__Usuario__Rubro__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3139,6 +3548,38 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="UsuarioParametro" EntitySet="UsuarioParametro" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VacunaTipo__Creacion" Association="Self.FK__Usuario__VacunaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VacunaTipo__Modificacion" Association="Self.FK__Usuario__VacunaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoCompaniaSeguro__Creacion" Association="Self.FK__Usuario__VehiculoCompaniaSeguro__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoCompaniaSeguro__Modificacion" Association="Self.FK__Usuario__VehiculoCompaniaSeguro__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoMarca__Creacion" Association="Self.FK__Usuario__VehiculoMarca__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoMarca__Modificacion" Association="Self.FK__Usuario__VehiculoMarca__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoTipo__Creacion" Association="Self.FK__Usuario__VehiculoTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoTipo__Modificacion" Association="Self.FK__Usuario__VehiculoTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+          </AssociationSet>
           <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="Self.FK__UsuarioGrupo__Usuario">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3146,6 +3587,22 @@
           <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
             <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacunaTipo__PersonaVacuna" Association="Self.FK__VacunaTipo__PersonaVacuna">
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoCompaniaSeguro__PersonaVehiculo" Association="Self.FK__VehiculoCompaniaSeguro__PersonaVehiculo">
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoMarca__PersonaVehiculo" Association="Self.FK__VehiculoMarca__PersonaVehiculo">
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoTipo__PersonaVehiculo" Association="Self.FK__VehiculoTipo__PersonaVehiculo">
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -3761,6 +4218,97 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="DocumentacionTipo" EntitySet="DocumentacionTipo" />
           </AssociationSet>
+          <EntitySet Name="PersonaHorarioLaboral" EntityType="CSBomberosModel.PersonaHorarioLaboral" />
+          <EntitySet Name="PersonaVacuna" EntityType="CSBomberosModel.PersonaVacuna" />
+          <EntitySet Name="PersonaVehiculo" EntityType="CSBomberosModel.PersonaVehiculo" />
+          <EntitySet Name="VacunaTipo" EntityType="CSBomberosModel.VacunaTipo" />
+          <EntitySet Name="VehiculoCompaniaSeguro" EntityType="CSBomberosModel.VehiculoCompaniaSeguro" />
+          <EntitySet Name="VehiculoMarca" EntityType="CSBomberosModel.VehiculoMarca" />
+          <EntitySet Name="VehiculoTipo" EntityType="CSBomberosModel.VehiculoTipo" />
+          <AssociationSet Name="FK__Usuario__PersonaHorarioLaboral__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaHorarioLaboral__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVacuna__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaVacuna__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVacuna__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaVacuna__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VacunaTipo__PersonaVacuna" Association="CSBomberosModel.FK__VacunaTipo__PersonaVacuna">
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVehiculo__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaVehiculo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaVehiculo__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaVehiculo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoCompaniaSeguro__PersonaVehiculo" Association="CSBomberosModel.FK__VehiculoCompaniaSeguro__PersonaVehiculo">
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoMarca__PersonaVehiculo" Association="CSBomberosModel.FK__VehiculoMarca__PersonaVehiculo">
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VehiculoTipo__PersonaVehiculo" Association="CSBomberosModel.FK__VehiculoTipo__PersonaVehiculo">
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VacunaTipo__Creacion" Association="CSBomberosModel.FK__Usuario__VacunaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VacunaTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__VacunaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VacunaTipo" EntitySet="VacunaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoCompaniaSeguro__Creacion" Association="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoCompaniaSeguro__Modificacion" Association="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoCompaniaSeguro" EntitySet="VehiculoCompaniaSeguro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoMarca__Creacion" Association="CSBomberosModel.FK__Usuario__VehiculoMarca__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoMarca__Modificacion" Association="CSBomberosModel.FK__Usuario__VehiculoMarca__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoMarca" EntitySet="VehiculoMarca" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoTipo__Creacion" Association="CSBomberosModel.FK__Usuario__VehiculoTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__VehiculoTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__VehiculoTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaHorarioLaboral" Association="CSBomberosModel.FK__Persona__PersonaHorarioLaboral">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaVacuna" Association="CSBomberosModel.FK__Persona__PersonaVacuna">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaVacuna" EntitySet="PersonaVacuna" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaVehiculo" Association="CSBomberosModel.FK__Persona__PersonaVehiculo">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -3831,6 +4379,7 @@
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
           <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
+          <Property Name="Orden" Type="Byte" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -3840,6 +4389,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
+          <Property Name="Orden" Type="Byte" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -3966,6 +4516,20 @@
           <NavigationProperty Name="AutomotorBajaMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" FromRole="Usuario" ToRole="AutomotorBajaMotivo" />
           <NavigationProperty Name="DocumentacionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
           <NavigationProperty Name="DocumentacionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
+          <NavigationProperty Name="PersonaHorariosLaboralesCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion" FromRole="Usuario" ToRole="PersonaHorarioLaboral" />
+          <NavigationProperty Name="PersonaHorariosLaboralesModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Modificacion" FromRole="Usuario" ToRole="PersonaHorarioLaboral" />
+          <NavigationProperty Name="PersonaVacunasCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaVacuna__Creacion" FromRole="Usuario" ToRole="PersonaVacuna" />
+          <NavigationProperty Name="PersonaVacunasModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaVacuna__Modificacion" FromRole="Usuario" ToRole="PersonaVacuna" />
+          <NavigationProperty Name="PersonaVehiculosCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaVehiculo__Creacion" FromRole="Usuario" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="PersonaVehiculosModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaVehiculo__Modificacion" FromRole="Usuario" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="VacunaTiposCreados" Relationship="CSBomberosModel.FK__Usuario__VacunaTipo__Creacion" FromRole="Usuario" ToRole="VacunaTipo" />
+          <NavigationProperty Name="VacunaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__VacunaTipo__Modificacion" FromRole="Usuario" ToRole="VacunaTipo" />
+          <NavigationProperty Name="VehiculoCompaniasSeguroCreadas" Relationship="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Creacion" FromRole="Usuario" ToRole="VehiculoCompaniaSeguro" />
+          <NavigationProperty Name="VehiculoCompaniasSeguroModificadas" Relationship="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Modificacion" FromRole="Usuario" ToRole="VehiculoCompaniaSeguro" />
+          <NavigationProperty Name="VehiculoMarcasCreadas" Relationship="CSBomberosModel.FK__Usuario__VehiculoMarca__Creacion" FromRole="Usuario" ToRole="VehiculoMarca" />
+          <NavigationProperty Name="VehiculoMarcasModificadas" Relationship="CSBomberosModel.FK__Usuario__VehiculoMarca__Modificacion" FromRole="Usuario" ToRole="VehiculoMarca" />
+          <NavigationProperty Name="VehiculoTiposCreados" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Creacion" FromRole="Usuario" ToRole="VehiculoTipo" />
+          <NavigationProperty Name="VehiculoTiposModificados" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Modificacion" FromRole="Usuario" ToRole="VehiculoTipo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -4166,8 +4730,9 @@
           <Property Name="TelefonoLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CelularLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HorarioLaboralObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <Property Name="Notas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -4190,6 +4755,9 @@
           <NavigationProperty Name="PersonaLicenciaConducirCategorias" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaConducirCategoria" FromRole="Persona" ToRole="PersonaLicenciaConducirCategoria" />
           <NavigationProperty Name="PersonaSanciones" Relationship="CSBomberosModel.FK__Persona__PersonaSancion" FromRole="Persona" ToRole="PersonaSancion" />
           <NavigationProperty Name="PersonaSancionesSolicitadas" Relationship="CSBomberosModel.FK__Persona__PersonaSancion__Solicitud" FromRole="Persona" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaHorariosLaborales" Relationship="CSBomberosModel.FK__Persona__PersonaHorarioLaboral" FromRole="Persona" ToRole="PersonaHorarioLaboral" />
+          <NavigationProperty Name="PersonaVacunas" Relationship="CSBomberosModel.FK__Persona__PersonaVacuna" FromRole="Persona" ToRole="PersonaVacuna" />
+          <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__Persona__PersonaVehiculo" FromRole="Persona" ToRole="PersonaVehiculo" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -6573,6 +7141,394 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PersonaHorarioLaboral">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="DiaSemana" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="DiaSemana" Type="Byte" Nullable="false" />
+          <Property Name="Turno1Desde" Type="Time" Precision="0" />
+          <Property Name="Turno1Hasta" Type="Time" Precision="0" />
+          <Property Name="Turno2Desde" Type="Time" Precision="0" />
+          <Property Name="Turno2Hasta" Type="Time" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion" FromRole="PersonaHorarioLaboral" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Modificacion" FromRole="PersonaHorarioLaboral" ToRole="Usuario" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaHorarioLaboral" FromRole="PersonaHorarioLaboral" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="PersonaVacuna">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDVacuna" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDVacuna" Type="Byte" Nullable="false" />
+          <Property Name="IDVacunaTipo" Type="Byte" Nullable="false" />
+          <Property Name="Lote" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DosisNumero" Type="Byte" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Vencimiento" Type="DateTime" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaVacuna__Creacion" FromRole="PersonaVacuna" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaVacuna__Modificacion" FromRole="PersonaVacuna" ToRole="Usuario" />
+          <NavigationProperty Name="VacunaTipo" Relationship="CSBomberosModel.FK__VacunaTipo__PersonaVacuna" FromRole="PersonaVacuna" ToRole="VacunaTipo" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaVacuna" FromRole="PersonaVacuna" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="PersonaVehiculo">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDVehiculo" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDVehiculo" Type="Byte" Nullable="false" />
+          <Property Name="IDVehiculoTipo" Type="Byte" Nullable="false" />
+          <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="IDVehiculoMarca" Type="Int16" />
+          <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Anio" Type="Int16" />
+          <Property Name="VerificacionVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="IDVehiculoCompaniaSeguro" Type="Int16" />
+          <Property Name="SeguroPolizaNumero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SeguroVencimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaVehiculo__Creacion" FromRole="PersonaVehiculo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaVehiculo__Modificacion" FromRole="PersonaVehiculo" ToRole="Usuario" />
+          <NavigationProperty Name="VehiculoCompaniaSeguro" Relationship="CSBomberosModel.FK__VehiculoCompaniaSeguro__PersonaVehiculo" FromRole="PersonaVehiculo" ToRole="VehiculoCompaniaSeguro" />
+          <NavigationProperty Name="VehiculoMarca" Relationship="CSBomberosModel.FK__VehiculoMarca__PersonaVehiculo" FromRole="PersonaVehiculo" ToRole="VehiculoMarca" />
+          <NavigationProperty Name="VehiculoTipo" Relationship="CSBomberosModel.FK__VehiculoTipo__PersonaVehiculo" FromRole="PersonaVehiculo" ToRole="VehiculoTipo" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaVehiculo" FromRole="PersonaVehiculo" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="VacunaTipo">
+          <Key>
+            <PropertyRef Name="IDVacunaTipo" />
+          </Key>
+          <Property Name="IDVacunaTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaVacunas" Relationship="CSBomberosModel.FK__VacunaTipo__PersonaVacuna" FromRole="VacunaTipo" ToRole="PersonaVacuna" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__VacunaTipo__Creacion" FromRole="VacunaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__VacunaTipo__Modificacion" FromRole="VacunaTipo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="VehiculoCompaniaSeguro">
+          <Key>
+            <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+          </Key>
+          <Property Name="IDVehiculoCompaniaSeguro" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__VehiculoCompaniaSeguro__PersonaVehiculo" FromRole="VehiculoCompaniaSeguro" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Creacion" FromRole="VehiculoCompaniaSeguro" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Modificacion" FromRole="VehiculoCompaniaSeguro" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="VehiculoMarca">
+          <Key>
+            <PropertyRef Name="IDVehiculoMarca" />
+          </Key>
+          <Property Name="IDVehiculoMarca" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__VehiculoMarca__PersonaVehiculo" FromRole="VehiculoMarca" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoMarca__Creacion" FromRole="VehiculoMarca" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoMarca__Modificacion" FromRole="VehiculoMarca" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="VehiculoTipo">
+          <Key>
+            <PropertyRef Name="IDVehiculoTipo" />
+          </Key>
+          <Property Name="IDVehiculoTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__VehiculoTipo__PersonaVehiculo" FromRole="VehiculoTipo" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Creacion" FromRole="VehiculoTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Modificacion" FromRole="VehiculoTipo" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Usuario__PersonaHorarioLaboral__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaHorarioLaboral" Role="PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaHorarioLaboral__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaHorarioLaboral" Role="PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVacuna__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVacuna" Role="PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVacuna__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVacuna" Role="PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VacunaTipo__PersonaVacuna">
+          <End Type="CSBomberosModel.VacunaTipo" Role="VacunaTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVacuna" Role="PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VacunaTipo">
+              <PropertyRef Name="IDVacunaTipo" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDVacunaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVehiculo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaVehiculo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoCompaniaSeguro__PersonaVehiculo">
+          <End Type="CSBomberosModel.VehiculoCompaniaSeguro" Role="VehiculoCompaniaSeguro" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoCompaniaSeguro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoMarca__PersonaVehiculo">
+          <End Type="CSBomberosModel.VehiculoMarca" Role="VehiculoMarca" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoMarca">
+              <PropertyRef Name="IDVehiculoMarca" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoMarca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VehiculoTipo__PersonaVehiculo">
+          <End Type="CSBomberosModel.VehiculoTipo" Role="VehiculoTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VehiculoTipo">
+              <PropertyRef Name="IDVehiculoTipo" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDVehiculoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VacunaTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VacunaTipo" Role="VacunaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VacunaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VacunaTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VacunaTipo" Role="VacunaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VacunaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoCompaniaSeguro__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoCompaniaSeguro" Role="VehiculoCompaniaSeguro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoCompaniaSeguro__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoCompaniaSeguro" Role="VehiculoCompaniaSeguro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoCompaniaSeguro">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoMarca__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoMarca" Role="VehiculoMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoMarca">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoMarca__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoMarca" Role="VehiculoMarca" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoMarca">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoTipo" Role="VehiculoTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__VehiculoTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.VehiculoTipo" Role="VehiculoTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="VehiculoTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaHorarioLaboral">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaHorarioLaboral" Role="PersonaHorarioLaboral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaVacuna">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVacuna" Role="PersonaVacuna" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaVacuna">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaVehiculo">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaVehiculo" Role="PersonaVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6634,6 +7590,7 @@
           <EntitySetMapping Name="Reporte">
             <EntityTypeMapping TypeName="CSBomberosModel.Reporte">
               <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -6645,6 +7602,7 @@
           <EntitySetMapping Name="ReporteGrupo">
             <EntityTypeMapping TypeName="CSBomberosModel.ReporteGrupo">
               <MappingFragment StoreEntitySet="ReporteGrupo">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
@@ -6755,6 +7713,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="HorarioLaboralObservaciones" ColumnName="HorarioLaboralObservaciones" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />
                 <ScalarProperty Name="Altura" ColumnName="Altura" />
                 <ScalarProperty Name="Foto" ColumnName="Foto" />
@@ -7461,6 +8420,121 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="EntidadTipo" ColumnName="EntidadTipo" />
                 <ScalarProperty Name="IDDocumentacionTipo" ColumnName="IDDocumentacionTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaHorarioLaboral">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaHorarioLaboral">
+              <MappingFragment StoreEntitySet="PersonaHorarioLaboral">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Turno2Hasta" ColumnName="Turno2Hasta" />
+                <ScalarProperty Name="Turno2Desde" ColumnName="Turno2Desde" />
+                <ScalarProperty Name="Turno1Hasta" ColumnName="Turno1Hasta" />
+                <ScalarProperty Name="Turno1Desde" ColumnName="Turno1Desde" />
+                <ScalarProperty Name="DiaSemana" ColumnName="DiaSemana" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaVacuna">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaVacuna">
+              <MappingFragment StoreEntitySet="PersonaVacuna">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Vencimiento" ColumnName="Vencimiento" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="DosisNumero" ColumnName="DosisNumero" />
+                <ScalarProperty Name="Lote" ColumnName="Lote" />
+                <ScalarProperty Name="IDVacunaTipo" ColumnName="IDVacunaTipo" />
+                <ScalarProperty Name="IDVacuna" ColumnName="IDVacuna" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaVehiculo">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaVehiculo">
+              <MappingFragment StoreEntitySet="PersonaVehiculo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="SeguroVencimiento" ColumnName="SeguroVencimiento" />
+                <ScalarProperty Name="SeguroPolizaNumero" ColumnName="SeguroPolizaNumero" />
+                <ScalarProperty Name="IDVehiculoCompaniaSeguro" ColumnName="IDVehiculoCompaniaSeguro" />
+                <ScalarProperty Name="VerificacionVencimiento" ColumnName="VerificacionVencimiento" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="IDVehiculoMarca" ColumnName="IDVehiculoMarca" />
+                <ScalarProperty Name="Dominio" ColumnName="Dominio" />
+                <ScalarProperty Name="IDVehiculoTipo" ColumnName="IDVehiculoTipo" />
+                <ScalarProperty Name="IDVehiculo" ColumnName="IDVehiculo" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VacunaTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.VacunaTipo">
+              <MappingFragment StoreEntitySet="VacunaTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDVacunaTipo" ColumnName="IDVacunaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehiculoCompaniaSeguro">
+            <EntityTypeMapping TypeName="CSBomberosModel.VehiculoCompaniaSeguro">
+              <MappingFragment StoreEntitySet="VehiculoCompaniaSeguro">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDVehiculoCompaniaSeguro" ColumnName="IDVehiculoCompaniaSeguro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehiculoMarca">
+            <EntityTypeMapping TypeName="CSBomberosModel.VehiculoMarca">
+              <MappingFragment StoreEntitySet="VehiculoMarca">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDVehiculoMarca" ColumnName="IDVehiculoMarca" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VehiculoTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.VehiculoTipo">
+              <MappingFragment StoreEntitySet="VehiculoTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDVehiculoTipo" ColumnName="IDVehiculoTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

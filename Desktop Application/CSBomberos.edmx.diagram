@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="52">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="40">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="8.25" PointY="83.25" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="3" PointY="86.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="15.875" PointY="105.25" />
@@ -200,6 +200,34 @@
         <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="2.375" PointX="15.875" PointY="37.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaHorarioLaboral" Width="1.5" PointX="15.875" PointY="139.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaVacuna" Width="1.5" PointX="18.125" PointY="63.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaVehiculo" Width="1.5" PointX="27.125" PointY="98.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.VacunaTipo" Width="1.5" PointX="15.875" PointY="29.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoCompaniaSeguro" Width="1.5" PointX="15.875" PointY="144.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoMarca" Width="1.5" PointX="15.875" PointY="148" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoTipo" Width="1.5" PointX="15.875" PointY="33.25" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaVacuna__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaVacuna__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__VacunaTipo__PersonaVacuna" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaVehiculo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaVehiculo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__VehiculoCompaniaSeguro__PersonaVehiculo" />
+        <AssociationConnector Association="CSBomberosModel.FK__VehiculoMarca__PersonaVehiculo" />
+        <AssociationConnector Association="CSBomberosModel.FK__VehiculoTipo__PersonaVehiculo" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VacunaTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VacunaTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoCompaniaSeguro__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoMarca__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoMarca__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__VehiculoTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaHorarioLaboral" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaVacuna" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaVehiculo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -765,6 +765,9 @@
     <Compile Include="PersonaFamiliar.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaHorarioLaboral.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaLicencia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -772,6 +775,12 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonaSancion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaVacuna.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PersonaVehiculo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Provincia.vb">
@@ -812,6 +821,18 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="UsuarioParametro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VacunaTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehiculoCompaniaSeguro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehiculoMarca.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehiculoTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
   </ItemGroup>
