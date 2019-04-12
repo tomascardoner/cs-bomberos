@@ -131,24 +131,6 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property LoteComprobantes_PreseleccionarTodos() As Boolean
-            Get
-                Return CType(Me("LoteComprobantes_PreseleccionarTodos"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
-        Public ReadOnly Property PermiteGenerarMatriculaMesDesde() As Byte
-            Get
-                Return CType(Me("PermiteGenerarMatriculaMesDesde"),Byte)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Bomberos\Reportes")>  _
         Public ReadOnly Property ReportsPath() As String
             Get
