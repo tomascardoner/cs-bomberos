@@ -1,0 +1,89 @@
+2019-04-11
+	- Agregar el campo Orden (tinyint - null) a las tablas ReporteGrupo y Reporte
+	- Agregar el campo HorarioLaboralObservaciones (varchar(MAX)) a la tabla Persona después de EmailLaboral
+	- Cambiar el campo Notas a varchar(MAX) en la tabla Persona
+	- Agregar las tablas:
+		* VehiculoTipo
+		* VehiculoMarca
+		* VehiculoCompaniaSeguro
+		* VacunaTipo
+		* PersonaVehiculo
+		* PersonaVacuna
+		* PersonaHorarioLaboral
+
+2019-03-25
+	* Agregar el campo ValorPredeterminadoTexto varchar(500) a la tabla ReporteParametro
+
+2019-03-21
+	- Renombrar reporte de Inventario a Inventario-Oficio.rpt (archivo y SQL)
+
+2018-10-31
+	- Tabla Reporte: Agregar los reportes 17 y 18
+	- Tabla ReporteParametro: Agregar rows de reportes 17 y 18
+	- Copiar Reportes
+	- Ejecutar StoredProcedures
+
+2018-10-29
+	- Tabla Parametro:
+		* Cambiar LICENSE_COMPANY_NAME a "Pskng600Nz+gigOyFmxpKP74znrpu5yvFejAHXQDx1VqMQWJfHWv8HTCog8Uv1/JKAN+gJsmYsQjJ2I885cdoQ=="
+	- Actualizar EXE
+	- Actualizar módulo de reportes
+	- Borrar funciones y stored-procedures
+	- Actualizar funciones comunes, funciones propias y stored-procedures
+	- Actualizar reportes
+
+2018-10-04
+	- Actualizar Functions - Date
+	- Actualizar Functions
+	- Actualizar Stored Procedures
+
+2018-10-01
+	- Tabla: Automotor
+		* Agregar campo VerificacionVencimiento date null (después de EsPropio)
+		* Agregar campo IDAutomotorBajaMotivo tinyint null (después de EsActivo)
+	- Tabla: Cuartel
+		* Campo Nombre: agrandar a varchar(50)
+	- Tabla: PersonaBajaMotivo
+		* Campo Nombre: achicar a varchar(50)
+	- Tabla: AutomotorBajaMotivo
+		* Crear
+	- Eliminar functión dbo.udf_GetPersonaAntiguedadTotal
+	- Ejecutar Functions y Stored Procedures
+
+2018-09-08
+	- Update Functions
+	- Update Stored procedures
+	- Update Reportes
+	- Update EXE
+	- Revisar nacionalidades en NULL
+	- Tabla: Reporte
+		* Nombre: agrandar a 100
+	- Tabla: PersonaSancion
+		* SolicitudIDCargo: Eliminar
+		* SolicitudIDJerarquia: Eliminar
+	- Tabla: Inventario
+		* Agregar campo: DescripcionPropia varchar(100) null
+	- Tabla: Reporte y ReporteParametro
+		* Copiar datos
+
+2018-08-14
+	- Persona
+		* Agregar campos:
+			* Altura decimal(3, 2) null
+			* Peso tinyint null
+	- NivelEstudio
+		* Agregar campos:
+			* IncluyeSecundario bit not null
+	- PersonaFamiliar
+		* Agregar campos:
+			* ACargo bit not null
+	- PersonaBajaMotivo
+		* Agregar campos
+			* EspecificaDestino bit not null
+	- PeronsaAltaBaja
+		* Reordenar campo IDPersonaBajaMotivo
+		* Agregar campos
+			* BajaUnidadDestino varchar(50) null
+
+	- PersonaCambioUnidad
+		* Eliminar tabla
