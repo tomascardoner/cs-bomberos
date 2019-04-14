@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="40">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="8.25" PointY="83.25" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="3" PointY="86.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="15.875" PointY="105.25" />
@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.Reporte" Width="1.5" PointX="3" PointY="1.5" />
         <EntityTypeShape EntityType="CSBomberosModel.ReporteGrupo" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="2.25" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="1.625" PointX="13.5" PointY="78.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="2.25" PointX="12.875" PointY="78.25" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="15.875" PointY="75.125" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="18.125" PointY="76" />
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Localidad" />

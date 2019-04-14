@@ -4468,41 +4468,41 @@
           <NavigationProperty Name="CalificacionConceptosModificados" Relationship="CSBomberosModel.FK__Usuario__CalificacionConcepto__Modificacion" FromRole="Usuario" ToRole="CalificacionConcepto" />
           <NavigationProperty Name="PersonaCalificacionesCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaCalificacion__Creacion" FromRole="Usuario" ToRole="PersonaCalificacion" />
           <NavigationProperty Name="PersonaCalificacionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" FromRole="Usuario" ToRole="PersonaCalificacion" />
-          <NavigationProperty Name="PenaAplicacion" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" FromRole="Usuario" ToRole="PenaAplicacion" />
-          <NavigationProperty Name="PenaAplicacion1" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" FromRole="Usuario" ToRole="PenaAplicacion" />
+          <NavigationProperty Name="PenaAplicacionesCreadas" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" FromRole="Usuario" ToRole="PenaAplicacion" />
+          <NavigationProperty Name="PenaAplicacionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" FromRole="Usuario" ToRole="PenaAplicacion" />
           <NavigationProperty Name="RubrosCreados" Relationship="CSBomberosModel.FK__Usuario__Rubro__Creacion" FromRole="Usuario" ToRole="Rubro" />
           <NavigationProperty Name="RubrosModificados" Relationship="CSBomberosModel.FK__Usuario__Rubro__Modificacion" FromRole="Usuario" ToRole="Rubro" />
-          <NavigationProperty Name="SubRubro" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Creacion" FromRole="Usuario" ToRole="SubRubro" />
-          <NavigationProperty Name="SubRubro1" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" FromRole="Usuario" ToRole="SubRubro" />
+          <NavigationProperty Name="SubRubrosCreados" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Creacion" FromRole="Usuario" ToRole="SubRubro" />
+          <NavigationProperty Name="SubRubroModificados" Relationship="CSBomberosModel.FK__Usuario__SubRubro__Modificacion" FromRole="Usuario" ToRole="SubRubro" />
           <NavigationProperty Name="UsuariosCreados" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario" ToRole="Usuario1" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Usuario__Creacion" FromRole="Usuario1" ToRole="Usuario" />
           <NavigationProperty Name="UsuariosModificados" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario" ToRole="Usuario1" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Usuario__Modificacion" FromRole="Usuario1" ToRole="Usuario" />
           <NavigationProperty Name="UsuariosGruposCreados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
           <NavigationProperty Name="UsuariosGruposModificados" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="Usuario" ToRole="UsuarioGrupo" />
-          <NavigationProperty Name="CapacitacionNivel" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
-          <NavigationProperty Name="CapacitacionNivel1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
-          <NavigationProperty Name="CapacitacionTipo" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
-          <NavigationProperty Name="CapacitacionTipo1" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
+          <NavigationProperty Name="CapacitacionNivelesCreados" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
+          <NavigationProperty Name="CapacitacionNivelesModificados" Relationship="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" FromRole="Usuario" ToRole="CapacitacionNivel" />
+          <NavigationProperty Name="CapacitacionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Creacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
+          <NavigationProperty Name="CapacitacionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__CapacitacionTipo__Modificacion" FromRole="Usuario" ToRole="CapacitacionTipo" />
           <NavigationProperty Name="CursosCreados" Relationship="CSBomberosModel.FK__Usuario__Curso__Creacion" FromRole="Usuario" ToRole="Curso" />
           <NavigationProperty Name="CursosModificados" Relationship="CSBomberosModel.FK__Usuario__Curso__Modificacion" FromRole="Usuario" ToRole="Curso" />
           <NavigationProperty Name="InventariosCreados" Relationship="CSBomberosModel.FK__Usuario__Inventario__Creacion" FromRole="Usuario" ToRole="Inventario" />
           <NavigationProperty Name="InventariosModificados" Relationship="CSBomberosModel.FK__Usuario__Inventario__Modificacion" FromRole="Usuario" ToRole="Inventario" />
-          <NavigationProperty Name="LicenciaCausa" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="Usuario" ToRole="LicenciaCausa" />
-          <NavigationProperty Name="LicenciaCausa1" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="Usuario" ToRole="LicenciaCausa" />
-          <NavigationProperty Name="LicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
-          <NavigationProperty Name="LicenciaConducirCategoria1" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
-          <NavigationProperty Name="PersonaBajaMotivo" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
-          <NavigationProperty Name="PersonaBajaMotivo1" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
-          <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="PersonaCapacitacion1" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
-          <NavigationProperty Name="PersonaExamen" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="Usuario" ToRole="PersonaExamen" />
-          <NavigationProperty Name="PersonaExamen1" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="Usuario" ToRole="PersonaExamen" />
-          <NavigationProperty Name="PersonaLicencia" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="Usuario" ToRole="PersonaLicencia" />
-          <NavigationProperty Name="PersonaLicencia1" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="Usuario" ToRole="PersonaLicencia" />
-          <NavigationProperty Name="PersonaLicenciaConducirCategoria" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaConducirCategoria" />
-          <NavigationProperty Name="PersonaSancion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="Usuario" ToRole="PersonaSancion" />
-          <NavigationProperty Name="PersonaSancion1" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
+          <NavigationProperty Name="LicenciaCausasCreadas" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Creacion" FromRole="Usuario" ToRole="LicenciaCausa" />
+          <NavigationProperty Name="LicenciaCausasModificadas" Relationship="CSBomberosModel.FK__Usuario__LicenciaCausa__Modificacion" FromRole="Usuario" ToRole="LicenciaCausa" />
+          <NavigationProperty Name="LicenciaConducirCategoriasCreadas" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
+          <NavigationProperty Name="LicenciaConducirCategoriasModificadas" Relationship="CSBomberosModel.FK__Usuario__LicenciaConducirCategoria__Modificacion" FromRole="Usuario" ToRole="LicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaBajaMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Creacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
+          <NavigationProperty Name="PersonaBajaMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaBajaMotivo__Modificacion" FromRole="Usuario" ToRole="PersonaBajaMotivo" />
+          <NavigationProperty Name="PersonaCapacitacionesCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Creacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaCapacitacionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaCapacitacion__Modificacion" FromRole="Usuario" ToRole="PersonaCapacitacion" />
+          <NavigationProperty Name="PersonaExamenesCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Creacion" FromRole="Usuario" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaExamenesModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaExamen__Modificacion" FromRole="Usuario" ToRole="PersonaExamen" />
+          <NavigationProperty Name="PersonaLicenciasCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Creacion" FromRole="Usuario" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaLicenciasModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicencia__Modificacion" FromRole="Usuario" ToRole="PersonaLicencia" />
+          <NavigationProperty Name="PersonaLicenciaConducirCategoriasCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaConducirCategoria" />
+          <NavigationProperty Name="PersonaSancionesCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="Usuario" ToRole="PersonaSancion" />
+          <NavigationProperty Name="PersonaSancionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
           <NavigationProperty Name="SancionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
           <NavigationProperty Name="SancionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
           <NavigationProperty Name="AutomotorUsosCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="Usuario" ToRole="AutomotorUso" />
