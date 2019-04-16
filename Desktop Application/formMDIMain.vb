@@ -180,7 +180,7 @@
         End If
     End Sub
 
-    Private Sub VehiculoTipos() Handles menuitemTablas_TiposVehiculo.Click
+    Private Sub VehiculosTipos() Handles menuitemTablas_TiposVehiculo.Click
         If Permisos.VerificarPermiso(Permisos.VEHICULOTIPO) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -190,6 +190,51 @@
                 formVehiculoTipos.WindowState = FormWindowState.Normal
             End If
             formVehiculoTipos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub VehiculosMarcas() Handles menuitemTablas_MarcasVehiculo.Click
+        If Permisos.VerificarPermiso(Permisos.VEHICULOMARCA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoMarcas, Form))
+            formVehiculoMarcas.Show()
+            If formVehiculoMarcas.WindowState = FormWindowState.Minimized Then
+                formVehiculoMarcas.WindowState = FormWindowState.Normal
+            End If
+            formVehiculoMarcas.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub VehiculosCompaniasSeguros() Handles menuitemTablas_CompaniasSegurosVehiculo.Click
+        If Permisos.VerificarPermiso(Permisos.VEHICULOCOMPANIASEGURO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoCompaniasSeguro, Form))
+            formVehiculoCompaniasSeguro.Show()
+            If formVehiculoCompaniasSeguro.WindowState = FormWindowState.Minimized Then
+                formVehiculoCompaniasSeguro.WindowState = FormWindowState.Normal
+            End If
+            formVehiculoCompaniasSeguro.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub VacunaTipos() Handles menuitemTablas_TiposVacuna.Click
+        If Permisos.VerificarPermiso(Permisos.VACUNATIPO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVacunaTipos, Form))
+            formVacunaTipos.Show()
+            If formVacunaTipos.WindowState = FormWindowState.Minimized Then
+                formVacunaTipos.WindowState = FormWindowState.Normal
+            End If
+            formVacunaTipos.Focus()
 
             Me.Cursor = Cursors.Default
         End If

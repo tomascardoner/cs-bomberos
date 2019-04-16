@@ -145,6 +145,42 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="formVehiculoMarcas.designer.vb">
+      <DependentUpon>formVehiculoMarcas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVehiculoMarcas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVehiculoMarca.designer.vb">
+      <DependentUpon>formVehiculoMarca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVehiculoMarca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVehiculoCompaniasSeguro.designer.vb">
+      <DependentUpon>formVehiculoCompaniasSeguro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVehiculoCompaniasSeguro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVehiculoCompaniaSeguro.designer.vb">
+      <DependentUpon>formVehiculoCompaniaSeguro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVehiculoCompaniaSeguro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVacunaTipos.designer.vb">
+      <DependentUpon>formVacunaTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVacunaTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formVacunaTipo.designer.vb">
+      <DependentUpon>formVacunaTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formVacunaTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Unidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -873,6 +909,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formUnidadBajaMotivos.resx">
       <DependentUpon>formUnidadBajaMotivos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVehiculoMarcas.resx">
+      <DependentUpon>formVehiculoMarcas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVehiculoMarca.resx">
+      <DependentUpon>formVehiculoMarca.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVehiculoCompaniasSeguro.resx">
+      <DependentUpon>formVehiculoCompaniasSeguro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVehiculoCompaniaSeguro.resx">
+      <DependentUpon>formVehiculoCompaniaSeguro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVacunaTipos.resx">
+      <DependentUpon>formVacunaTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formVacunaTipo.resx">
+      <DependentUpon>formVacunaTipo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formVehiculoTipos.resx">
       <DependentUpon>formVehiculoTipos.vb</DependentUpon>

@@ -551,9 +551,9 @@
         ComboBoxControl.DisplayMember = "NumeroMarcaModelo"
 
         If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Numero).ToList
         Else
-            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Numero).ToList
         End If
 
         If AgregarItem_NoEspecifica Then
