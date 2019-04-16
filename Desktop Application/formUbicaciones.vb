@@ -6,7 +6,7 @@
         Public Property Nombre As String
         Public Property IDCuartel As Byte
         Public Property CuartelNombre As String
-        Public Property AutomotorNombre As String
+        Public Property UnidadNombre As String
         Public Property EsActivo As Boolean
     End Class
 
@@ -54,9 +54,9 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistUbicacionesBase = (From u In dbContext.Ubicacion
                                         Join c In dbContext.Cuartel On u.IDCuartel Equals c.IDCuartel
-                                        Group Join a In dbContext.Automotor On u.IDAutomotor Equals a.IDAutomotor Into Automotores_Group = Group
-                                        From ag In Automotores_Group.DefaultIfEmpty
-                                        Select New GridRowData With {.IDUbicacion = u.IDUbicacion, .Nombre = u.Nombre, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .AutomotorNombre = If(ag Is Nothing, "", ag.NumeroMarcaModelo), .EsActivo = u.EsActivo}).ToList
+                                        Group Join a In dbContext.Unidad On u.IDUnidad Equals a.IDUnidad Into Unidades_Group = Group
+                                        From ag In Unidades_Group.DefaultIfEmpty
+                                        Select New GridRowData With {.IDUbicacion = u.IDUbicacion, .Nombre = u.Nombre, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .UnidadNombre = If(ag Is Nothing, "", ag.NumeroMarcaModelo), .EsActivo = u.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -151,11 +151,11 @@
                 Else
                     mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
-            Case columnAutomotor.Name
+            Case columnUnidad.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AutomotorNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.UnidadNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AutomotorNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistUbicacionesFiltradaYOrdenada = mlistUbicacionesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.UnidadNombre).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
             Case columnEsActivo.Name
                 If mOrdenTipo = SortOrder.Ascending Then

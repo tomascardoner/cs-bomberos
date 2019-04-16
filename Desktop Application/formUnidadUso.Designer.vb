@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formAutomotorTipo
+Partial Class formUnidadUso
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -36,8 +36,8 @@ Partial Class formAutomotorTipo
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDAutomotorTipo = New System.Windows.Forms.Label()
-        Me.textboxIDAutomotorTipo = New System.Windows.Forms.TextBox()
+        Me.labelIDUnidadUso = New System.Windows.Forms.Label()
+        Me.textboxIDUnidadUso = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -180,9 +180,9 @@ Partial Class formAutomotorTipo
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAutomotorTipo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDUnidadUso)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAutomotorTipo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDUnidadUso)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -200,25 +200,25 @@ Partial Class formAutomotorTipo
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDAutomotorTipo
+        'labelIDUnidadUso
         '
-        Me.labelIDAutomotorTipo.AutoSize = True
-        Me.labelIDAutomotorTipo.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDAutomotorTipo.Name = "labelIDAutomotorTipo"
-        Me.labelIDAutomotorTipo.Size = New System.Drawing.Size(98, 13)
-        Me.labelIDAutomotorTipo.TabIndex = 4
-        Me.labelIDAutomotorTipo.Text = "ID:"
+        Me.labelIDUnidadUso.AutoSize = True
+        Me.labelIDUnidadUso.Location = New System.Drawing.Point(7, 111)
+        Me.labelIDUnidadUso.Name = "labelIDUnidadUso"
+        Me.labelIDUnidadUso.Size = New System.Drawing.Size(98, 13)
+        Me.labelIDUnidadUso.TabIndex = 4
+        Me.labelIDUnidadUso.Text = "ID:"
         '
-        'textboxIDAutomotorTipo
+        'textboxIDUnidadUso
         '
-        Me.textboxIDAutomotorTipo.Location = New System.Drawing.Point(115, 108)
-        Me.textboxIDAutomotorTipo.MaxLength = 10
-        Me.textboxIDAutomotorTipo.Name = "textboxIDAutomotorTipo"
-        Me.textboxIDAutomotorTipo.ReadOnly = True
-        Me.textboxIDAutomotorTipo.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAutomotorTipo.TabIndex = 5
-        Me.textboxIDAutomotorTipo.TabStop = False
-        Me.textboxIDAutomotorTipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDUnidadUso.Location = New System.Drawing.Point(115, 108)
+        Me.textboxIDUnidadUso.MaxLength = 10
+        Me.textboxIDUnidadUso.Name = "textboxIDUnidadUso"
+        Me.textboxIDUnidadUso.ReadOnly = True
+        Me.textboxIDUnidadUso.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDUnidadUso.TabIndex = 5
+        Me.textboxIDUnidadUso.TabStop = False
+        Me.textboxIDUnidadUso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -275,7 +275,7 @@ Partial Class formAutomotorTipo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formAutomotorTipo
+        'formUnidadUso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -286,9 +286,9 @@ Partial Class formAutomotorTipo
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formAutomotorTipo"
+        Me.Name = "formUnidadUso"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Tipo de Automotor"
+        Me.Text = "Uso de Unidad"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -313,8 +313,8 @@ Partial Class formAutomotorTipo
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDAutomotorTipo As System.Windows.Forms.Label
-    Friend WithEvents textboxIDAutomotorTipo As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDUnidadUso As System.Windows.Forms.Label
+    Friend WithEvents textboxIDUnidadUso As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox

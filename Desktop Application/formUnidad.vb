@@ -1,22 +1,22 @@
-﻿Public Class formAutomotor
+﻿Public Class formUnidad
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mAutomotorActual As Automotor
+    Private mUnidadActual As Unidad
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAutomotor As Short)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUnidad As Short)
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDAutomotor = 0 Then
+        If IDUnidad = 0 Then
             ' Es Nuevo
-            mAutomotorActual = New Automotor
-            With mAutomotorActual
+            mUnidadActual = New Unidad
+            With mUnidadActual
                 .EsPropio = True
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
@@ -24,9 +24,9 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Automotor.Add(mAutomotorActual)
+            mdbContext.Unidad.Add(mUnidadActual)
         Else
-            mAutomotorActual = mdbContext.Automotor.Find(IDAutomotor)
+            mUnidadActual = mdbContext.Unidad.Find(IDUnidad)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -51,7 +51,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         maskedtextboxNumero.ReadOnly = Not mEditMode
-        buttonNumeroSiguiente.Visible = (mEditMode And mAutomotorActual.IDAutomotor = 0)
+        buttonNumeroSiguiente.Visible = (mEditMode And mUnidadActual.IDUnidad = 0)
         textboxMarca.ReadOnly = Not mEditMode
         textboxModelo.ReadOnly = Not mEditMode
         checkboxEsImportado.Enabled = mEditMode
@@ -59,8 +59,8 @@
         textboxNumeroMotor.ReadOnly = Not mEditMode
         textboxNumeroChasis.ReadOnly = Not mEditMode
         textboxDominio.ReadOnly = Not mEditMode
-        comboboxAutomotorTipo.Enabled = mEditMode
-        comboboxAutomotorUso.Enabled = mEditMode
+        comboboxUnidadTipo.Enabled = mEditMode
+        comboboxUnidadUso.Enabled = mEditMode
         comboboxCombustibleTipo.Enabled = mEditMode
         datetimepickerFechaAdquisicion.Enabled = mEditMode
         maskedtextboxKilometrajeInicial.ReadOnly = Not mEditMode
@@ -71,17 +71,17 @@
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
-        comboboxAutomotorBajaMotivo.Enabled = mEditMode
+        comboboxUnidadBajaMotivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.AutomotorTipo(comboboxAutomotorTipo, False, False)
-        pFillAndRefreshLists.AutomotorUso(comboboxAutomotorUso, False, False)
+        pFillAndRefreshLists.UnidadTipo(comboboxUnidadTipo, False, False)
+        pFillAndRefreshLists.UnidadUso(comboboxUnidadUso, False, False)
         pFillAndRefreshLists.CombustibleTipo(comboboxCombustibleTipo, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        pFillAndRefreshLists.AutomotorBajaMotivo(comboboxAutomotorBajaMotivo, False, True)
+        pFillAndRefreshLists.UnidadBajaMotivo(comboboxUnidadBajaMotivo, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -91,15 +91,15 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mAutomotorActual = Nothing
+        mUnidadActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mAutomotorActual
-            If .IDAutomotor = 0 Then
+        With mUnidadActual
+            If .IDUnidad = 0 Then
                 maskedtextboxNumero.Text = ""
                 maskedtextboxAnio.Text = ""
             Else
@@ -112,8 +112,8 @@
             textboxNumeroMotor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroMotor)
             textboxNumeroChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroChasis)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
-            CS_ComboBox.SetSelectedValue(comboboxAutomotorTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorTipo)
-            CS_ComboBox.SetSelectedValue(comboboxAutomotorUso, SelectedItemOptions.ValueOrFirstIfUnique, .IDAutomotorUso)
+            CS_ComboBox.SetSelectedValue(comboboxUnidadTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadTipo)
+            CS_ComboBox.SetSelectedValue(comboboxUnidadUso, SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadUso)
             CS_ComboBox.SetSelectedValue(comboboxCombustibleTipo, SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
             datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
             maskedtextboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
@@ -125,11 +125,11 @@
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            CS_ComboBox.SetSelectedValue(comboboxAutomotorBajaMotivo, SelectedItemOptions.ValueOrFirst, .IDAutomotorBajaMotivo)
-            If .IDAutomotor = 0 Then
-                textboxIDAutomotor.Text = My.Resources.STRING_ITEM_NEW_MALE
+            CS_ComboBox.SetSelectedValue(comboboxUnidadBajaMotivo, SelectedItemOptions.ValueOrFirst, .IDUnidadBajaMotivo)
+            If .IDUnidad = 0 Then
+                textboxIDUnidad.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDAutomotor.Text = String.Format(.IDAutomotor.ToString, "G")
+                textboxIDUnidad.Text = String.Format(.IDUnidad.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -147,7 +147,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mAutomotorActual
+        With mUnidadActual
             .Numero = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxNumero.Text).Value
             .Marca = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMarca.Text)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
@@ -156,8 +156,8 @@
             .NumeroMotor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroMotor.Text)
             .NumeroChasis = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroChasis.Text)
             .Dominio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominio.Text)
-            .IDAutomotorTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorTipo.SelectedValue).Value
-            .IDAutomotorUso = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorUso.SelectedValue).Value
+            .IDUnidadTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxUnidadTipo.SelectedValue).Value
+            .IDUnidadUso = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxUnidadUso.SelectedValue).Value
             .IDCombustibleTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCombustibleTipo.SelectedValue)
             .FechaAdquisicion = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAdquisicion.Value, datetimepickerFechaAdquisicion.Checked)
             .KilometrajeInicial = CS_ValueTranslation.FromControlTextBoxToObjectInteger(maskedtextboxKilometrajeInicial.Text)
@@ -169,9 +169,9 @@
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
             If .EsActivo Then
-                .IDAutomotorBajaMotivo = Nothing
+                .IDUnidadBajaMotivo = Nothing
             Else
-                .IDAutomotorBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAutomotorBajaMotivo.SelectedValue)
+                .IDUnidadBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxUnidadBajaMotivo.SelectedValue)
             End If
         End With
     End Sub
@@ -205,23 +205,23 @@
 
     Private Sub buttonNumeroSiguiente_Click() Handles buttonNumeroSiguiente.Click
         Using dbcMaxNumero As New CSBomberosContext(True)
-            If dbcMaxNumero.Automotor.Count = 0 Then
+            If dbcMaxNumero.Unidad.Count = 0 Then
                 maskedtextboxNumero.Text = CStr(1)
             Else
-                maskedtextboxNumero.Text = CStr(CInt(dbcMaxNumero.Automotor.Max(Function(a) a.Numero)) + 1)
+                maskedtextboxNumero.Text = CStr(CInt(dbcMaxNumero.Unidad.Max(Function(a) a.Numero)) + 1)
             End If
         End Using
     End Sub
 
     Private Sub EsActivoCheckedChanged(sender As Object, e As EventArgs) Handles checkboxEsActivo.CheckedChanged
-        labelAutomotorBajaMotivo.Visible = Not checkboxEsActivo.Checked
-        comboboxAutomotorBajaMotivo.Visible = Not checkboxEsActivo.Checked
+        labelUnidadBajaMotivo.Visible = Not checkboxEsActivo.Checked
+        comboboxUnidadBajaMotivo.Visible = Not checkboxEsActivo.Checked
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTOR_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.Unidad_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -273,15 +273,15 @@
             Exit Sub
         End If
 
-        ' Tipo y Uso de Automotor
-        If comboboxAutomotorTipo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Tipo de Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAutomotorTipo.Focus()
+        ' Tipo y Uso de Unidad
+        If comboboxUnidadTipo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Tipo de Unidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUnidadTipo.Focus()
             Exit Sub
         End If
-        If comboboxAutomotorUso.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Uso del Automotor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAutomotorUso.Focus()
+        If comboboxUnidadUso.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Uso del Unidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUnidadUso.Focus()
             Exit Sub
         End If
 
@@ -318,12 +318,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mAutomotorActual.IDAutomotor = 0 Then
+        If mUnidadActual.IDUnidad = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Automotor.Count = 0 Then
-                    mAutomotorActual.IDAutomotor = 1
+                If dbcMaxID.Unidad.Count = 0 Then
+                    mUnidadActual.IDUnidad = 1
                 Else
-                    mAutomotorActual.IDAutomotor = dbcMaxID.Automotor.Max(Function(a) a.IDAutomotor) + CByte(1)
+                    mUnidadActual.IDUnidad = dbcMaxID.Unidad.Max(Function(a) a.IDUnidad) + CByte(1)
                 End If
             End Using
         End If
@@ -335,8 +335,8 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mAutomotorActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mAutomotorActual.FechaHoraModificacion = Now
+            mUnidadActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mUnidadActual.FechaHoraModificacion = Now
 
             Try
 
@@ -344,13 +344,13 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formAutomotores.RefreshData(mAutomotorActual.IDAutomotor)
+                formUnidades.RefreshData(mUnidadActual.IDUnidad)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Automotor con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Unidad con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

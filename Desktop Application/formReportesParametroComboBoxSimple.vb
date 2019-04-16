@@ -5,7 +5,7 @@
         mParametroActual = ParametroActual
 
         labelValor.Text = ParametroActual.Nombre & ":"
-        comboboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AREA Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION)
+        comboboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UNIDAD Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AREA Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION)
 
         Select Case mParametroActual.Tipo
             Case Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL
@@ -23,8 +23,8 @@
                 If Not mParametroActual.Valor Is Nothing Then
                     CS_ComboBox.SetSelectedValue(comboboxValor, SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR
-                pFillAndRefreshLists.Automotor(comboboxValor, False, False)
+            Case Constantes.REPORTE_PARAMETRO_TIPO_UNIDAD
+                pFillAndRefreshLists.Unidad(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CS_ComboBox.SetSelectedValue(comboboxValor, SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If

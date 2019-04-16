@@ -36,11 +36,11 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Automotor">
+        <EntityType Name="Unidad">
           <Key>
-            <PropertyRef Name="IDAutomotor" />
+            <PropertyRef Name="IDUnidad" />
           </Key>
-          <Property Name="IDAutomotor" Type="smallint" Nullable="false" />
+          <Property Name="IDUnidad" Type="smallint" Nullable="false" />
           <Property Name="Numero" Type="smallint" Nullable="false" />
           <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
@@ -51,8 +51,8 @@
           <Property Name="NumeroMotor" Type="varchar" MaxLength="20" />
           <Property Name="NumeroChasis" Type="varchar" MaxLength="20" />
           <Property Name="Dominio" Type="varchar" MaxLength="7" />
-          <Property Name="IDAutomotorTipo" Type="tinyint" Nullable="false" />
-          <Property Name="IDAutomotorUso" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
           <Property Name="IDCombustibleTipo" Type="tinyint" />
           <Property Name="FechaAdquisicion" Type="date" />
           <Property Name="KilometrajeInicial" Type="int" />
@@ -62,17 +62,17 @@
           <Property Name="VerificacionVencimiento" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IDAutomotorBajaMotivo" Type="tinyint" />
+          <Property Name="IDUnidadBajaMotivo" Type="tinyint" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AutomotorBajaMotivo">
+        <EntityType Name="UnidadBajaMotivo">
           <Key>
-            <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <PropertyRef Name="IDUnidadBajaMotivo" />
           </Key>
-          <Property Name="IDAutomotorBajaMotivo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadBajaMotivo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -81,11 +81,11 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AutomotorTipo">
+        <EntityType Name="UnidadTipo">
           <Key>
-            <PropertyRef Name="IDAutomotorTipo" />
+            <PropertyRef Name="IDUnidadTipo" />
           </Key>
-          <Property Name="IDAutomotorTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -94,11 +94,11 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="AutomotorUso">
+        <EntityType Name="UnidadUso">
           <Key>
-            <PropertyRef Name="IDAutomotorUso" />
+            <PropertyRef Name="IDUnidadUso" />
           </Key>
-          <Property Name="IDAutomotorUso" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -857,7 +857,7 @@
           <Property Name="IDUbicacion" Type="smallint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
-          <Property Name="IDAutomotor" Type="smallint" />
+          <Property Name="IDUnidad" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -982,51 +982,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Automotor__Ubicacion">
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="0..1" />
+        <Association Name="FK__Unidad__Ubicacion">
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
           <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Automotor">
-              <PropertyRef Name="IDAutomotor" />
+            <Principal Role="Unidad">
+              <PropertyRef Name="IDUnidad" />
             </Principal>
             <Dependent Role="Ubicacion">
-              <PropertyRef Name="IDAutomotor" />
+              <PropertyRef Name="IDUnidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutomotorBajaMotivo__Automotor">
-          <End Role="AutomotorBajaMotivo" Type="Self.AutomotorBajaMotivo" Multiplicity="0..1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadBajaMotivo__Unidad">
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="0..1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorBajaMotivo">
-              <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <Principal Role="UnidadBajaMotivo">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutomotorTipo__Automotor">
-          <End Role="AutomotorTipo" Type="Self.AutomotorTipo" Multiplicity="1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadTipo__Unidad">
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorTipo">
-              <PropertyRef Name="IDAutomotorTipo" />
+            <Principal Role="UnidadTipo">
+              <PropertyRef Name="IDUnidadTipo" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorTipo" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutomotorUso__Automotor">
-          <End Role="AutomotorUso" Type="Self.AutomotorUso" Multiplicity="1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadUso__Unidad">
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorUso">
-              <PropertyRef Name="IDAutomotorUso" />
+            <Principal Role="UnidadUso">
+              <PropertyRef Name="IDUnidadUso" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorUso" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadUso" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1092,14 +1092,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CombustibleTipo__Automotor">
+        <Association Name="FK__CombustibleTipo__Unidad">
           <End Role="CombustibleTipo" Type="Self.CombustibleTipo" Multiplicity="0..1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CombustibleTipo">
               <PropertyRef Name="IDCombustibleTipo" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDCombustibleTipo" />
             </Dependent>
           </ReferentialConstraint>
@@ -1116,14 +1116,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cuartel__Automotor">
+        <Association Name="FK__Cuartel__Unidad">
           <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cuartel">
               <PropertyRef Name="IDCuartel" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDCuartel" />
             </Dependent>
           </ReferentialConstraint>
@@ -1692,98 +1692,98 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Automotor__Creacion">
+        <Association Name="FK__Usuario__Unidad__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Automotor__Modificacion">
+        <Association Name="FK__Usuario__Unidad__Modificacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Automotor" Type="Self.Automotor" Multiplicity="*" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorBajaMotivo__Creacion">
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorBajaMotivo" Type="Self.AutomotorBajaMotivo" Multiplicity="*" />
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorBajaMotivo">
+            <Dependent Role="UnidadBajaMotivo">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorBajaMotivo__Modificacion">
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Modificacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorBajaMotivo" Type="Self.AutomotorBajaMotivo" Multiplicity="*" />
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorBajaMotivo">
+            <Dependent Role="UnidadBajaMotivo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorTipo__Creacion">
+        <Association Name="FK__Usuario__UnidadTipo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorTipo" Type="Self.AutomotorTipo" Multiplicity="*" />
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorTipo">
+            <Dependent Role="UnidadTipo">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorTipo__Modificacion">
+        <Association Name="FK__Usuario__UnidadTipo__Modificacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorTipo" Type="Self.AutomotorTipo" Multiplicity="*" />
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorTipo">
+            <Dependent Role="UnidadTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorUso__Creacion">
+        <Association Name="FK__Usuario__UnidadUso__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorUso" Type="Self.AutomotorUso" Multiplicity="*" />
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorUso">
+            <Dependent Role="UnidadUso">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorUso__Modificacion">
+        <Association Name="FK__Usuario__UnidadUso__Modificacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="AutomotorUso" Type="Self.AutomotorUso" Multiplicity="*" />
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorUso">
+            <Dependent Role="UnidadUso">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -2907,10 +2907,10 @@
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Automotor" EntityType="Self.Automotor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AutomotorBajaMotivo" EntityType="Self.AutomotorBajaMotivo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AutomotorTipo" EntityType="Self.AutomotorTipo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AutomotorUso" EntityType="Self.AutomotorUso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadBajaMotivo" EntityType="Self.UnidadBajaMotivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadTipo" EntityType="Self.UnidadTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadUso" EntityType="Self.UnidadUso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalificacionConcepto" EntityType="Self.CalificacionConcepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionNivel" EntityType="Self.CapacitacionNivel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionTipo" EntityType="Self.CapacitacionTipo" Schema="dbo" store:Type="Tables" />
@@ -2968,21 +2968,21 @@
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
           </AssociationSet>
-          <AssociationSet Name="FK__Automotor__Ubicacion" Association="Self.FK__Automotor__Ubicacion">
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__Unidad__Ubicacion" Association="Self.FK__Unidad__Ubicacion">
+            <End Role="Unidad" EntitySet="Unidad" />
             <End Role="Ubicacion" EntitySet="Ubicacion" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutomotorBajaMotivo__Automotor" Association="Self.FK__AutomotorBajaMotivo__Automotor">
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__UnidadBajaMotivo__Unidad" Association="Self.FK__UnidadBajaMotivo__Unidad">
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutomotorTipo__Automotor" Association="Self.FK__AutomotorTipo__Automotor">
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__UnidadTipo__Unidad" Association="Self.FK__UnidadTipo__Unidad">
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutomotorUso__Automotor" Association="Self.FK__AutomotorUso__Automotor">
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__UnidadUso__Unidad" Association="Self.FK__UnidadUso__Unidad">
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="FK__CalificacionConcepto__PersonaCalificacion" Association="Self.FK__CalificacionConcepto__PersonaCalificacion">
             <End Role="CalificacionConcepto" EntitySet="CalificacionConcepto" />
@@ -3004,17 +3004,17 @@
             <End Role="CargoJerarquia" EntitySet="CargoJerarquia" />
             <End Role="PersonaAscenso" EntitySet="PersonaAscenso" />
           </AssociationSet>
-          <AssociationSet Name="FK__CombustibleTipo__Automotor" Association="Self.FK__CombustibleTipo__Automotor">
+          <AssociationSet Name="FK__CombustibleTipo__Unidad" Association="Self.FK__CombustibleTipo__Unidad">
             <End Role="CombustibleTipo" EntitySet="CombustibleTipo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Area" Association="Self.FK__Cuartel__Area">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cuartel__Automotor" Association="Self.FK__Cuartel__Automotor">
+          <AssociationSet Name="FK__Cuartel__Unidad" Association="Self.FK__Cuartel__Unidad">
             <End Role="Cuartel" EntitySet="Cuartel" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Persona" Association="Self.FK__Cuartel__Persona">
             <End Role="Cuartel" EntitySet="Cuartel" />
@@ -3200,37 +3200,37 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Automotor__Creacion" Association="Self.FK__Usuario__Automotor__Creacion">
+          <AssociationSet Name="FK__Usuario__Unidad__Creacion" Association="Self.FK__Usuario__Unidad__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Automotor__Modificacion" Association="Self.FK__Usuario__Automotor__Modificacion">
+          <AssociationSet Name="FK__Usuario__Unidad__Modificacion" Association="Self.FK__Usuario__Unidad__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorBajaMotivo__Creacion" Association="Self.FK__Usuario__AutomotorBajaMotivo__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Creacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorBajaMotivo__Modificacion" Association="Self.FK__Usuario__AutomotorBajaMotivo__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Modificacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorTipo__Creacion" Association="Self.FK__Usuario__AutomotorTipo__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Creacion" Association="Self.FK__Usuario__UnidadTipo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorTipo__Modificacion" Association="Self.FK__Usuario__AutomotorTipo__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Modificacion" Association="Self.FK__Usuario__UnidadTipo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorUso__Creacion" Association="Self.FK__Usuario__AutomotorUso__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadUso__Creacion" Association="Self.FK__Usuario__UnidadUso__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorUso__Modificacion" Association="Self.FK__Usuario__AutomotorUso__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadUso__Modificacion" Association="Self.FK__Usuario__UnidadUso__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__CalificacionConcepto__Creacion" Association="Self.FK__Usuario__CalificacionConcepto__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3770,8 +3770,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaAscenso" EntitySet="PersonaAscenso" />
           </AssociationSet>
-          <EntitySet Name="Automotor" EntityType="CSBomberosModel.Automotor" />
-          <EntitySet Name="AutomotorTipo" EntityType="CSBomberosModel.AutomotorTipo" />
+          <EntitySet Name="Unidad" EntityType="CSBomberosModel.Unidad" />
+          <EntitySet Name="UnidadTipo" EntityType="CSBomberosModel.UnidadTipo" />
           <EntitySet Name="CombustibleTipo" EntityType="CSBomberosModel.CombustibleTipo" />
           <AssociationSet Name="FK__Usuario__Area__Creacion" Association="CSBomberosModel.FK__Usuario__Area__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3781,33 +3781,33 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK__AutomotorTipo__Automotor" Association="CSBomberosModel.FK__AutomotorTipo__Automotor">
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__UnidadTipo__Unidad" Association="CSBomberosModel.FK__UnidadTipo__Unidad">
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__CombustibleTipo__Automotor" Association="CSBomberosModel.FK__CombustibleTipo__Automotor">
+          <AssociationSet Name="FK__CombustibleTipo__Unidad" Association="CSBomberosModel.FK__CombustibleTipo__Unidad">
             <End Role="CombustibleTipo" EntitySet="CombustibleTipo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cuartel__Automotor" Association="CSBomberosModel.FK__Cuartel__Automotor">
+          <AssociationSet Name="FK__Cuartel__Unidad" Association="CSBomberosModel.FK__Cuartel__Unidad">
             <End Role="Cuartel" EntitySet="Cuartel" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Automotor__Creacion" Association="CSBomberosModel.FK__Usuario__Automotor__Creacion">
+          <AssociationSet Name="FK__Usuario__Unidad__Creacion" Association="CSBomberosModel.FK__Usuario__Unidad__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Automotor__Modificacion" Association="CSBomberosModel.FK__Usuario__Automotor__Modificacion">
+          <AssociationSet Name="FK__Usuario__Unidad__Modificacion" Association="CSBomberosModel.FK__Usuario__Unidad__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Automotor" EntitySet="Automotor" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorTipo__Creacion" Association="CSBomberosModel.FK__Usuario__AutomotorTipo__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Creacion" Association="CSBomberosModel.FK__Usuario__UnidadTipo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__AutomotorTipo__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__UnidadTipo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorTipo" EntitySet="AutomotorTipo" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Cargo__Creacion" Association="CSBomberosModel.FK__Usuario__Cargo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3842,8 +3842,8 @@
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK__Automotor__Ubicacion" Association="CSBomberosModel.FK__Automotor__Ubicacion">
-            <End Role="Automotor" EntitySet="Automotor" />
+          <AssociationSet Name="FK__Unidad__Ubicacion" Association="CSBomberosModel.FK__Unidad__Ubicacion">
+            <End Role="Unidad" EntitySet="Unidad" />
             <End Role="Ubicacion" EntitySet="Ubicacion" />
           </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Ubicacion" Association="CSBomberosModel.FK__Cuartel__Ubicacion">
@@ -4157,18 +4157,18 @@
             <End Role="PersonaBajaMotivo" EntitySet="PersonaBajaMotivo" />
             <End Role="PersonaAltaBaja" EntitySet="PersonaAltaBaja" />
           </AssociationSet>
-          <EntitySet Name="AutomotorUso" EntityType="CSBomberosModel.AutomotorUso" />
-          <AssociationSet Name="FK__AutomotorUso__Automotor" Association="CSBomberosModel.FK__AutomotorUso__Automotor">
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <EntitySet Name="UnidadUso" EntityType="CSBomberosModel.UnidadUso" />
+          <AssociationSet Name="FK__UnidadUso__Unidad" Association="CSBomberosModel.FK__UnidadUso__Unidad">
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorUso__Creacion" Association="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadUso__Creacion" Association="CSBomberosModel.FK__Usuario__UnidadUso__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorUso__Modificacion" Association="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadUso__Modificacion" Association="CSBomberosModel.FK__Usuario__UnidadUso__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorUso" EntitySet="AutomotorUso" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__NivelEstudio__Creacion" Association="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -4196,18 +4196,18 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="UsuarioParametro" EntitySet="UsuarioParametro" />
           </AssociationSet>
-          <EntitySet Name="AutomotorBajaMotivo" EntityType="CSBomberosModel.AutomotorBajaMotivo" />
-          <AssociationSet Name="FK__AutomotorBajaMotivo__Automotor" Association="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor">
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
-            <End Role="Automotor" EntitySet="Automotor" />
+          <EntitySet Name="UnidadBajaMotivo" EntityType="CSBomberosModel.UnidadBajaMotivo" />
+          <AssociationSet Name="FK__UnidadBajaMotivo__Unidad" Association="CSBomberosModel.FK__UnidadBajaMotivo__Unidad">
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorBajaMotivo__Creacion" Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion">
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Creacion" Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
           </AssociationSet>
-          <AssociationSet Name="FK__Usuario__AutomotorBajaMotivo__Modificacion" Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion">
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Modificacion" Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="AutomotorBajaMotivo" EntitySet="AutomotorBajaMotivo" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
           </AssociationSet>
           <EntitySet Name="DocumentacionTipo" EntityType="CSBomberosModel.DocumentacionTipo" />
           <AssociationSet Name="FK__Usuario__DocumentacionTipo__Creacion" Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion">
@@ -4447,10 +4447,10 @@
           <NavigationProperty Name="PersonasAscensosModificados" Relationship="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" FromRole="Usuario" ToRole="PersonaAscenso" />
           <NavigationProperty Name="AreasCreadas" Relationship="CSBomberosModel.FK__Usuario__Area__Creacion" FromRole="Usuario" ToRole="Area" />
           <NavigationProperty Name="AreasModificadas" Relationship="CSBomberosModel.FK__Usuario__Area__Modificacion" FromRole="Usuario" ToRole="Area" />
-          <NavigationProperty Name="AutomotoresCreados" Relationship="CSBomberosModel.FK__Usuario__Automotor__Creacion" FromRole="Usuario" ToRole="Automotor" />
-          <NavigationProperty Name="AutomotoresModificados" Relationship="CSBomberosModel.FK__Usuario__Automotor__Modificacion" FromRole="Usuario" ToRole="Automotor" />
-          <NavigationProperty Name="AutomotoresTipoCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorTipo__Creacion" FromRole="Usuario" ToRole="AutomotorTipo" />
-          <NavigationProperty Name="AutomotoresTipoModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorTipo__Modificacion" FromRole="Usuario" ToRole="AutomotorTipo" />
+          <NavigationProperty Name="UnidadesCreados" Relationship="CSBomberosModel.FK__Usuario__Unidad__Creacion" FromRole="Usuario" ToRole="Unidad" />
+          <NavigationProperty Name="UnidadesModificados" Relationship="CSBomberosModel.FK__Usuario__Unidad__Modificacion" FromRole="Usuario" ToRole="Unidad" />
+          <NavigationProperty Name="UnidadesTipoCreados" Relationship="CSBomberosModel.FK__Usuario__UnidadTipo__Creacion" FromRole="Usuario" ToRole="UnidadTipo" />
+          <NavigationProperty Name="UnidadesTipoModificados" Relationship="CSBomberosModel.FK__Usuario__UnidadTipo__Modificacion" FromRole="Usuario" ToRole="UnidadTipo" />
           <NavigationProperty Name="CargosCreados" Relationship="CSBomberosModel.FK__Usuario__Cargo__Creacion" FromRole="Usuario" ToRole="Cargo" />
           <NavigationProperty Name="CargosModificados" Relationship="CSBomberosModel.FK__Usuario__Cargo__Modificacion" FromRole="Usuario" ToRole="Cargo" />
           <NavigationProperty Name="CargosJerarquiasCreados" Relationship="CSBomberosModel.FK__Usuario__CargoJerarquia__Creacion" FromRole="Usuario" ToRole="CargoJerarquia" />
@@ -4505,15 +4505,15 @@
           <NavigationProperty Name="PersonaSancionesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="Usuario" ToRole="PersonaSancion" />
           <NavigationProperty Name="SancionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" FromRole="Usuario" ToRole="SancionTipo" />
           <NavigationProperty Name="SancionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" FromRole="Usuario" ToRole="SancionTipo" />
-          <NavigationProperty Name="AutomotorUsosCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="Usuario" ToRole="AutomotorUso" />
-          <NavigationProperty Name="AutomotorUsosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="Usuario" ToRole="AutomotorUso" />
+          <NavigationProperty Name="UnidadUsosCreados" Relationship="CSBomberosModel.FK__Usuario__UnidadUso__Creacion" FromRole="Usuario" ToRole="UnidadUso" />
+          <NavigationProperty Name="UnidadUsosModificados" Relationship="CSBomberosModel.FK__Usuario__UnidadUso__Modificacion" FromRole="Usuario" ToRole="UnidadUso" />
           <NavigationProperty Name="NivelesEstudioCreados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" FromRole="Usuario" ToRole="NivelEstudio" />
           <NavigationProperty Name="NivelesEstudioModificados" Relationship="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" FromRole="Usuario" ToRole="NivelEstudio" />
           <NavigationProperty Name="AlarmasCreadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Creacion" FromRole="Usuario" ToRole="Alarma" />
           <NavigationProperty Name="AlarmasModificadas" Relationship="CSBomberosModel.FK__Usuario__Alarma__Modificacion" FromRole="Usuario" ToRole="Alarma" />
           <NavigationProperty Name="UsuarioParametros" Relationship="CSBomberosModel.FK__Usuario__UsuarioParametro" FromRole="Usuario" ToRole="UsuarioParametro" />
-          <NavigationProperty Name="AutomotorBajaMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" FromRole="Usuario" ToRole="AutomotorBajaMotivo" />
-          <NavigationProperty Name="AutomotorBajaMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" FromRole="Usuario" ToRole="AutomotorBajaMotivo" />
+          <NavigationProperty Name="UnidadBajaMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Creacion" FromRole="Usuario" ToRole="UnidadBajaMotivo" />
+          <NavigationProperty Name="UnidadBajaMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Modificacion" FromRole="Usuario" ToRole="UnidadBajaMotivo" />
           <NavigationProperty Name="DocumentacionTiposCreados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
           <NavigationProperty Name="DocumentacionTiposModificados" Relationship="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" FromRole="Usuario" ToRole="DocumentacionTipo" />
           <NavigationProperty Name="PersonaHorariosLaboralesCreados" Relationship="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion" FromRole="Usuario" ToRole="PersonaHorarioLaboral" />
@@ -4658,7 +4658,7 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Creacion" FromRole="Cuartel" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" FromRole="Cuartel" ToRole="Usuario" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__Cuartel__Automotor" FromRole="Cuartel" ToRole="Automotor" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__Cuartel__Unidad" FromRole="Cuartel" ToRole="Unidad" />
           <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK__Cuartel__Area" FromRole="Cuartel" ToRole="Area" />
           <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Cuartel__Ubicacion" FromRole="Cuartel" ToRole="Ubicacion" />
           <NavigationProperty Name="Usuarios" Relationship="CSBomberosModel.FK__Cuartel__Usuario" FromRole="Cuartel" ToRole="Usuario" />
@@ -5155,14 +5155,14 @@
           <Property Name="IDUbicacion" Type="Int16" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
-          <Property Name="IDAutomotor" Type="Int16" />
+          <Property Name="IDUnidad" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__Automotor__Ubicacion" FromRole="Ubicacion" ToRole="Automotor" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__Unidad__Ubicacion" FromRole="Ubicacion" ToRole="Unidad" />
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Ubicacion" FromRole="Ubicacion" ToRole="Cuartel" />
           <NavigationProperty Name="SubUbicacion" Relationship="CSBomberosModel.FK__Ubicacion__SubUbicacion" FromRole="Ubicacion" ToRole="SubUbicacion" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Ubicacion__Creacion" FromRole="Ubicacion" ToRole="Usuario" />
@@ -5339,11 +5339,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Automotor">
+        <EntityType Name="Unidad">
           <Key>
-            <PropertyRef Name="IDAutomotor" />
+            <PropertyRef Name="IDUnidad" />
           </Key>
-          <Property Name="IDAutomotor" Type="Int16" Nullable="false" />
+          <Property Name="IDUnidad" Type="Int16" Nullable="false" />
           <Property Name="Numero" Type="Int16" Nullable="false" />
           <Property Name="Marca" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Modelo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -5354,8 +5354,8 @@
           <Property Name="NumeroMotor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="NumeroChasis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
-          <Property Name="IDAutomotorUso" Type="Byte" Nullable="false" />
+          <Property Name="IDUnidadTipo" Type="Byte" Nullable="false" />
+          <Property Name="IDUnidadUso" Type="Byte" Nullable="false" />
           <Property Name="IDCombustibleTipo" Type="Byte" />
           <Property Name="FechaAdquisicion" Type="DateTime" Precision="0" />
           <Property Name="KilometrajeInicial" Type="Int32" />
@@ -5365,25 +5365,25 @@
           <Property Name="VerificacionVencimiento" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <Property Name="IDAutomotorBajaMotivo" Type="Byte" />
+          <Property Name="IDUnidadBajaMotivo" Type="Byte" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AutomotorTipo" Relationship="CSBomberosModel.FK__AutomotorTipo__Automotor" FromRole="Automotor" ToRole="AutomotorTipo" />
-          <NavigationProperty Name="CombustibleTipo" Relationship="CSBomberosModel.FK__CombustibleTipo__Automotor" FromRole="Automotor" ToRole="CombustibleTipo" />
-          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Automotor" FromRole="Automotor" ToRole="Cuartel" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Automotor__Creacion" FromRole="Automotor" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Automotor__Modificacion" FromRole="Automotor" ToRole="Usuario" />
-          <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Automotor__Ubicacion" FromRole="Automotor" ToRole="Ubicacion" />
-          <NavigationProperty Name="AutomotorUso" Relationship="CSBomberosModel.FK__AutomotorUso__Automotor" FromRole="Automotor" ToRole="AutomotorUso" />
-          <NavigationProperty Name="AutomotorBajaMotivo" Relationship="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor" FromRole="Automotor" ToRole="AutomotorBajaMotivo" />
+          <NavigationProperty Name="UnidadTipo" Relationship="CSBomberosModel.FK__UnidadTipo__Unidad" FromRole="Unidad" ToRole="UnidadTipo" />
+          <NavigationProperty Name="CombustibleTipo" Relationship="CSBomberosModel.FK__CombustibleTipo__Unidad" FromRole="Unidad" ToRole="CombustibleTipo" />
+          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Unidad" FromRole="Unidad" ToRole="Cuartel" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Unidad__Creacion" FromRole="Unidad" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Unidad__Modificacion" FromRole="Unidad" ToRole="Usuario" />
+          <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Unidad__Ubicacion" FromRole="Unidad" ToRole="Ubicacion" />
+          <NavigationProperty Name="UnidadUso" Relationship="CSBomberosModel.FK__UnidadUso__Unidad" FromRole="Unidad" ToRole="UnidadUso" />
+          <NavigationProperty Name="UnidadBajaMotivo" Relationship="CSBomberosModel.FK__UnidadBajaMotivo__Unidad" FromRole="Unidad" ToRole="UnidadBajaMotivo" />
         </EntityType>
-        <EntityType Name="AutomotorTipo">
+        <EntityType Name="UnidadTipo">
           <Key>
-            <PropertyRef Name="IDAutomotorTipo" />
+            <PropertyRef Name="IDUnidadTipo" />
           </Key>
-          <Property Name="IDAutomotorTipo" Type="Byte" Nullable="false" />
+          <Property Name="IDUnidadTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -5391,9 +5391,9 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__AutomotorTipo__Automotor" FromRole="AutomotorTipo" ToRole="Automotor" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorTipo__Creacion" FromRole="AutomotorTipo" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorTipo__Modificacion" FromRole="AutomotorTipo" ToRole="Usuario" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__UnidadTipo__Unidad" FromRole="UnidadTipo" ToRole="Unidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UnidadTipo__Creacion" FromRole="UnidadTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UnidadTipo__Modificacion" FromRole="UnidadTipo" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="CombustibleTipo">
           <Key>
@@ -5407,7 +5407,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__CombustibleTipo__Automotor" FromRole="CombustibleTipo" ToRole="Automotor" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__CombustibleTipo__Unidad" FromRole="CombustibleTipo" ToRole="Unidad" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CombustibleTipo__Creacion" FromRole="CombustibleTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CombustibleTipo__Modificacion" FromRole="CombustibleTipo" ToRole="Usuario" />
         </EntityType>
@@ -5435,86 +5435,86 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__AutomotorTipo__Automotor">
-          <End Type="CSBomberosModel.AutomotorTipo" Role="AutomotorTipo" Multiplicity="1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadTipo__Unidad">
+          <End Type="CSBomberosModel.UnidadTipo" Role="UnidadTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorTipo">
-              <PropertyRef Name="IDAutomotorTipo" />
+            <Principal Role="UnidadTipo">
+              <PropertyRef Name="IDUnidadTipo" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorTipo" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CombustibleTipo__Automotor">
+        <Association Name="FK__CombustibleTipo__Unidad">
           <End Type="CSBomberosModel.CombustibleTipo" Role="CombustibleTipo" Multiplicity="0..1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CombustibleTipo">
               <PropertyRef Name="IDCombustibleTipo" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDCombustibleTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cuartel__Automotor">
+        <Association Name="FK__Cuartel__Unidad">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cuartel">
               <PropertyRef Name="IDCuartel" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDCuartel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Automotor__Creacion">
+        <Association Name="FK__Usuario__Unidad__Creacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__Automotor__Modificacion">
+        <Association Name="FK__Usuario__Unidad__Modificacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="Automotor">
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorTipo__Creacion">
+        <Association Name="FK__Usuario__UnidadTipo__Creacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorTipo" Role="AutomotorTipo" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadTipo" Role="UnidadTipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorTipo">
+            <Dependent Role="UnidadTipo">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorTipo__Modificacion">
+        <Association Name="FK__Usuario__UnidadTipo__Modificacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorTipo" Role="AutomotorTipo" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadTipo" Role="UnidadTipo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorTipo">
+            <Dependent Role="UnidadTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -5633,15 +5633,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Automotor__Ubicacion">
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="0..1" />
+        <Association Name="FK__Unidad__Ubicacion">
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="0..1" />
           <End Type="CSBomberosModel.Ubicacion" Role="Ubicacion" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Automotor">
-              <PropertyRef Name="IDAutomotor" />
+            <Principal Role="Unidad">
+              <PropertyRef Name="IDUnidad" />
             </Principal>
             <Dependent Role="Ubicacion">
-              <PropertyRef Name="IDAutomotor" />
+              <PropertyRef Name="IDUnidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6891,11 +6891,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AutomotorUso">
+        <EntityType Name="UnidadUso">
           <Key>
-            <PropertyRef Name="IDAutomotorUso" />
+            <PropertyRef Name="IDUnidadUso" />
           </Key>
-          <Property Name="IDAutomotorUso" Type="Byte" Nullable="false" />
+          <Property Name="IDUnidadUso" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -6903,42 +6903,42 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__AutomotorUso__Automotor" FromRole="AutomotorUso" ToRole="Automotor" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" FromRole="AutomotorUso" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" FromRole="AutomotorUso" ToRole="Usuario" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__UnidadUso__Unidad" FromRole="UnidadUso" ToRole="Unidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UnidadUso__Creacion" FromRole="UnidadUso" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UnidadUso__Modificacion" FromRole="UnidadUso" ToRole="Usuario" />
         </EntityType>
-        <Association Name="FK__AutomotorUso__Automotor">
-          <End Type="CSBomberosModel.AutomotorUso" Role="AutomotorUso" Multiplicity="1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadUso__Unidad">
+          <End Type="CSBomberosModel.UnidadUso" Role="UnidadUso" Multiplicity="1" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorUso">
-              <PropertyRef Name="IDAutomotorUso" />
+            <Principal Role="UnidadUso">
+              <PropertyRef Name="IDUnidadUso" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorUso" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadUso" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorUso__Creacion">
+        <Association Name="FK__Usuario__UnidadUso__Creacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorUso" Role="AutomotorUso" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadUso" Role="UnidadUso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorUso">
+            <Dependent Role="UnidadUso">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorUso__Modificacion">
+        <Association Name="FK__Usuario__UnidadUso__Modificacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorUso" Role="AutomotorUso" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadUso" Role="UnidadUso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorUso">
+            <Dependent Role="UnidadUso">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -7049,11 +7049,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AutomotorBajaMotivo">
+        <EntityType Name="UnidadBajaMotivo">
           <Key>
-            <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <PropertyRef Name="IDUnidadBajaMotivo" />
           </Key>
-          <Property Name="IDAutomotorBajaMotivo" Type="Byte" Nullable="false" />
+          <Property Name="IDUnidadBajaMotivo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -7061,42 +7061,42 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Automotor" Relationship="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor" FromRole="AutomotorBajaMotivo" ToRole="Automotor" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" FromRole="AutomotorBajaMotivo" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" FromRole="AutomotorBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="Unidad" Relationship="CSBomberosModel.FK__UnidadBajaMotivo__Unidad" FromRole="UnidadBajaMotivo" ToRole="Unidad" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Creacion" FromRole="UnidadBajaMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Modificacion" FromRole="UnidadBajaMotivo" ToRole="Usuario" />
         </EntityType>
-        <Association Name="FK__AutomotorBajaMotivo__Automotor">
-          <End Type="CSBomberosModel.AutomotorBajaMotivo" Role="AutomotorBajaMotivo" Multiplicity="0..1" />
-          <End Type="CSBomberosModel.Automotor" Role="Automotor" Multiplicity="*" />
+        <Association Name="FK__UnidadBajaMotivo__Unidad">
+          <End Type="CSBomberosModel.UnidadBajaMotivo" Role="UnidadBajaMotivo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Unidad" Role="Unidad" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AutomotorBajaMotivo">
-              <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <Principal Role="UnidadBajaMotivo">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
             </Principal>
-            <Dependent Role="Automotor">
-              <PropertyRef Name="IDAutomotorBajaMotivo" />
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorBajaMotivo__Creacion">
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Creacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorBajaMotivo" Role="AutomotorBajaMotivo" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadBajaMotivo" Role="UnidadBajaMotivo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorBajaMotivo">
+            <Dependent Role="UnidadBajaMotivo">
               <PropertyRef Name="IDUsuarioCreacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Usuario__AutomotorBajaMotivo__Modificacion">
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Modificacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.AutomotorBajaMotivo" Role="AutomotorBajaMotivo" Multiplicity="*" />
+          <End Type="CSBomberosModel.UnidadBajaMotivo" Role="UnidadBajaMotivo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="IDUsuario" />
             </Principal>
-            <Dependent Role="AutomotorBajaMotivo">
+            <Dependent Role="UnidadBajaMotivo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -7960,7 +7960,7 @@
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
-                <ScalarProperty Name="IDAutomotor" ColumnName="IDAutomotor" />
+                <ScalarProperty Name="IDUnidad" ColumnName="IDUnidad" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -7968,14 +7968,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Automotor">
-            <EntityTypeMapping TypeName="CSBomberosModel.Automotor">
-              <MappingFragment StoreEntitySet="Automotor">
-                <ScalarProperty Name="IDAutomotorBajaMotivo" ColumnName="IDAutomotorBajaMotivo" />
+          <EntitySetMapping Name="Unidad">
+            <EntityTypeMapping TypeName="CSBomberosModel.Unidad">
+              <MappingFragment StoreEntitySet="Unidad">
+                <ScalarProperty Name="IDUnidadBajaMotivo" ColumnName="IDUnidadBajaMotivo" />
                 <ScalarProperty Name="VerificacionVencimiento" ColumnName="VerificacionVencimiento" />
                 <ScalarProperty Name="EsImportado" ColumnName="EsImportado" />
                 <ScalarProperty Name="EsPropio" ColumnName="EsPropio" />
-                <ScalarProperty Name="IDAutomotorUso" ColumnName="IDAutomotorUso" />
+                <ScalarProperty Name="IDUnidadUso" ColumnName="IDUnidadUso" />
                 <ScalarProperty Name="NumeroChasis" ColumnName="NumeroChasis" />
                 <ScalarProperty Name="NumeroMotor" ColumnName="NumeroMotor" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
@@ -7993,17 +7993,17 @@
                 <ScalarProperty Name="IDCombustibleTipo" ColumnName="IDCombustibleTipo" />
                 <ScalarProperty Name="Dominio" ColumnName="Dominio" />
                 <ScalarProperty Name="FechaAdquisicion" ColumnName="FechaAdquisicion" />
-                <ScalarProperty Name="IDAutomotorTipo" ColumnName="IDAutomotorTipo" />
+                <ScalarProperty Name="IDUnidadTipo" ColumnName="IDUnidadTipo" />
                 <ScalarProperty Name="Anio" ColumnName="Anio" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="Marca" ColumnName="Marca" />
-                <ScalarProperty Name="IDAutomotor" ColumnName="IDAutomotor" />
+                <ScalarProperty Name="IDUnidad" ColumnName="IDUnidad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AutomotorTipo">
-            <EntityTypeMapping TypeName="CSBomberosModel.AutomotorTipo">
-              <MappingFragment StoreEntitySet="AutomotorTipo">
+          <EntitySetMapping Name="UnidadTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.UnidadTipo">
+              <MappingFragment StoreEntitySet="UnidadTipo">
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -8011,7 +8011,7 @@
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDAutomotorTipo" ColumnName="IDAutomotorTipo" />
+                <ScalarProperty Name="IDUnidadTipo" ColumnName="IDUnidadTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8348,9 +8348,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AutomotorUso">
-            <EntityTypeMapping TypeName="CSBomberosModel.AutomotorUso">
-              <MappingFragment StoreEntitySet="AutomotorUso">
+          <EntitySetMapping Name="UnidadUso">
+            <EntityTypeMapping TypeName="CSBomberosModel.UnidadUso">
+              <MappingFragment StoreEntitySet="UnidadUso">
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -8358,7 +8358,7 @@
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDAutomotorUso" ColumnName="IDAutomotorUso" />
+                <ScalarProperty Name="IDUnidadUso" ColumnName="IDUnidadUso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8394,9 +8394,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AutomotorBajaMotivo">
-            <EntityTypeMapping TypeName="CSBomberosModel.AutomotorBajaMotivo">
-              <MappingFragment StoreEntitySet="AutomotorBajaMotivo">
+          <EntitySetMapping Name="UnidadBajaMotivo">
+            <EntityTypeMapping TypeName="CSBomberosModel.UnidadBajaMotivo">
+              <MappingFragment StoreEntitySet="UnidadBajaMotivo">
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -8404,7 +8404,7 @@
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDAutomotorBajaMotivo" ColumnName="IDAutomotorBajaMotivo" />
+                <ScalarProperty Name="IDUnidadBajaMotivo" ColumnName="IDUnidadBajaMotivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

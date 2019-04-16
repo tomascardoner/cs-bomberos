@@ -10,8 +10,8 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class AutomotorUso
-    Public Property IDAutomotorUso As Byte
+Partial Public Class UnidadTipo
+    Public Property IDUnidadTipo As Byte
     Public Property Nombre As String
     Public Property Notas As String
     Public Property EsActivo As Boolean
@@ -20,7 +20,7 @@ Partial Public Class AutomotorUso
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Automotor As ICollection(Of Automotor) = New HashSet(Of Automotor)
+    Public Overridable Property Unidad As ICollection(Of Unidad) = New HashSet(Of Unidad)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
 

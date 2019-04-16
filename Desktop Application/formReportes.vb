@@ -154,7 +154,7 @@
                     formReportesParametroSiNo.Close()
                     formReportesParametroSiNo.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_AUTOMOTOR
+                Case Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_UNIDAD
                     formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar

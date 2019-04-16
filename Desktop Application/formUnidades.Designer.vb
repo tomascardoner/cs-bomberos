@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formAutomotores
+Partial Class formUnidades
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -24,7 +24,7 @@ Partial Class formAutomotores
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotores))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formUnidades))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -33,9 +33,9 @@ Partial Class formAutomotores
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.toolstripAutomotorTipo = New System.Windows.Forms.ToolStrip()
-        Me.labelAutomotorTipo = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxAutomotorTipo = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripUnidadTipo = New System.Windows.Forms.ToolStrip()
+        Me.labelUnidadTipo = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxUnidadTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
         Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
@@ -46,14 +46,14 @@ Partial Class formAutomotores
         Me.columnMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnModelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDominio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAutomotorTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUnidadTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
-        Me.toolstripAutomotorTipo.SuspendLayout()
+        Me.toolstripUnidadTipo.SuspendLayout()
         Me.toolstripCuartel.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         Me.SuspendLayout()
@@ -84,7 +84,7 @@ Partial Class formAutomotores
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNumero, Me.columnMarca, Me.columnModelo, Me.columnDominio, Me.columnAutomotorTipo, Me.columnCuartel, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNumero, Me.columnMarca, Me.columnModelo, Me.columnDominio, Me.columnUnidadTipo, Me.columnCuartel, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -102,7 +102,7 @@ Partial Class formAutomotores
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripAutomotorTipo)
+        Me.panelToolbars.Controls.Add(Me.toolstripUnidadTipo)
         Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
@@ -148,27 +148,27 @@ Partial Class formAutomotores
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'toolstripAutomotorTipo
+        'toolstripUnidadTipo
         '
-        Me.toolstripAutomotorTipo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripAutomotorTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripAutomotorTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelAutomotorTipo, Me.comboboxAutomotorTipo})
-        Me.toolstripAutomotorTipo.Location = New System.Drawing.Point(247, 0)
-        Me.toolstripAutomotorTipo.Name = "toolstripAutomotorTipo"
-        Me.toolstripAutomotorTipo.Size = New System.Drawing.Size(219, 39)
-        Me.toolstripAutomotorTipo.TabIndex = 14
+        Me.toolstripUnidadTipo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripUnidadTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripUnidadTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelUnidadTipo, Me.comboboxUnidadTipo})
+        Me.toolstripUnidadTipo.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripUnidadTipo.Name = "toolstripUnidadTipo"
+        Me.toolstripUnidadTipo.Size = New System.Drawing.Size(219, 39)
+        Me.toolstripUnidadTipo.TabIndex = 14
         '
-        'labelAutomotorTipo
+        'labelUnidadTipo
         '
-        Me.labelAutomotorTipo.Name = "labelAutomotorTipo"
-        Me.labelAutomotorTipo.Size = New System.Drawing.Size(34, 36)
-        Me.labelAutomotorTipo.Text = "Tipo:"
+        Me.labelUnidadTipo.Name = "labelUnidadTipo"
+        Me.labelUnidadTipo.Size = New System.Drawing.Size(34, 36)
+        Me.labelUnidadTipo.Text = "Tipo:"
         '
-        'comboboxAutomotorTipo
+        'comboboxUnidadTipo
         '
-        Me.comboboxAutomotorTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAutomotorTipo.Name = "comboboxAutomotorTipo"
-        Me.comboboxAutomotorTipo.Size = New System.Drawing.Size(180, 39)
+        Me.comboboxUnidadTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUnidadTipo.Name = "comboboxUnidadTipo"
+        Me.comboboxUnidadTipo.Size = New System.Drawing.Size(180, 39)
         '
         'toolstripCuartel
         '
@@ -254,14 +254,14 @@ Partial Class formAutomotores
         Me.columnDominio.ReadOnly = True
         Me.columnDominio.Width = 70
         '
-        'columnAutomotorTipo
+        'columnUnidadTipo
         '
-        Me.columnAutomotorTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAutomotorTipo.DataPropertyName = "AutomotorTipoNombre"
-        Me.columnAutomotorTipo.HeaderText = "Tipo"
-        Me.columnAutomotorTipo.Name = "columnAutomotorTipo"
-        Me.columnAutomotorTipo.ReadOnly = True
-        Me.columnAutomotorTipo.Width = 53
+        Me.columnUnidadTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUnidadTipo.DataPropertyName = "UnidadTipoNombre"
+        Me.columnUnidadTipo.HeaderText = "Tipo"
+        Me.columnUnidadTipo.Name = "columnUnidadTipo"
+        Me.columnUnidadTipo.ReadOnly = True
+        Me.columnUnidadTipo.Width = 53
         '
         'columnCuartel
         '
@@ -283,7 +283,7 @@ Partial Class formAutomotores
         Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.columnEsActivo.Width = 62
         '
-        'formAutomotores
+        'formUnidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -292,9 +292,9 @@ Partial Class formAutomotores
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "formAutomotores"
+        Me.Name = "formUnidades"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Automotores"
+        Me.Text = "Unidades"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -302,8 +302,8 @@ Partial Class formAutomotores
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
-        Me.toolstripAutomotorTipo.ResumeLayout(False)
-        Me.toolstripAutomotorTipo.PerformLayout()
+        Me.toolstripUnidadTipo.ResumeLayout(False)
+        Me.toolstripUnidadTipo.PerformLayout()
         Me.toolstripCuartel.ResumeLayout(False)
         Me.toolstripCuartel.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
@@ -326,14 +326,14 @@ Partial Class formAutomotores
     Friend WithEvents toolstripCuartel As System.Windows.Forms.ToolStrip
     Friend WithEvents labelCuartel As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripAutomotorTipo As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelAutomotorTipo As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxAutomotorTipo As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripUnidadTipo As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelUnidadTipo As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxUnidadTipo As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents columnNumero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnMarca As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnModelo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnDominio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnAutomotorTipo As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnUnidadTipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
 End Class

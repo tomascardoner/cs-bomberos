@@ -1,33 +1,31 @@
-﻿Public Class formAutomotorTipo
+﻿Public Class formUnidadBajaMotivo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mAutomotorTipoActual As AutomotorTipo
+    Private mUnidadBajaMotivoActual As UnidadBajaMotivo
 
     Private mIsLoading As Boolean = False
-    Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAutomotorTipo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDUnidadBajaMotivo As Byte)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDAutomotorTipo = 0)
-        
-        If mIsNew Then
+
+        If IDUnidadBajaMotivo = 0 Then
             ' Es Nuevo
-            mAutomotorTipoActual = New AutomotorTipo
-            With mAutomotorTipoActual
+            mUnidadBajaMotivoActual = New UnidadBajaMotivo
+            With mUnidadBajaMotivoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.AutomotorTipo.Add(mAutomotorTipoActual)
+            mdbContext.UnidadBajaMotivo.Add(mUnidadBajaMotivoActual)
         Else
-            mAutomotorTipoActual = mdbContext.AutomotorTipo.Find(IDAutomotorTipo)
+            mUnidadBajaMotivoActual = mdbContext.UnidadBajaMotivo.Find(IDUnidadBajaMotivo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -46,16 +44,13 @@
             Exit Sub
         End If
 
-        ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        ' General
         textboxNombre.ReadOnly = Not mEditMode
 
-        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -71,23 +66,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mAutomotorTipoActual = Nothing
+        mUnidadBajaMotivoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mAutomotorTipoActual
+        With mUnidadBajaMotivoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            If mIsNew Then
-                textboxIDAutomotorTipo.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDUnidadBajaMotivo = 0 Then
+                textboxIDUnidadBajaMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDAutomotorTipo.Text = String.Format(.IDAutomotorTipo.ToString, "G")
+                textboxIDUnidadBajaMotivo.Text = String.Format(.IDUnidadBajaMotivo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -105,7 +100,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mAutomotorTipoActual
+        With mUnidadBajaMotivoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -132,14 +127,14 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 #End Region
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTORTIPO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.UnidadBAJAMOTIVO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -157,12 +152,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mIsNew Then
+        If mUnidadBajaMotivoActual.IDUnidadBajaMotivo = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.AutomotorTipo.Count = 0 Then
-                    mAutomotorTipoActual.IDAutomotorTipo = 1
+                If dbcMaxID.UnidadBajaMotivo.Count = 0 Then
+                    mUnidadBajaMotivoActual.IDUnidadBajaMotivo = 1
                 Else
-                    mAutomotorTipoActual.IDAutomotorTipo = dbcMaxID.AutomotorTipo.Max(Function(a) a.IDAutomotorTipo) + CByte(1)
+                    mUnidadBajaMotivoActual.IDUnidadBajaMotivo = dbcMaxID.UnidadBajaMotivo.Max(Function(a) a.IDUnidadBajaMotivo) + CByte(1)
                 End If
             End Using
         End If
@@ -174,21 +169,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mAutomotorTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mAutomotorTipoActual.FechaHoraModificacion = Now
+            mUnidadBajaMotivoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mUnidadBajaMotivoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formAutomotorTipos.RefreshData(mAutomotorTipoActual.IDAutomotorTipo)
+                formUnidadBajaMotivos.RefreshData(mUnidadBajaMotivoActual.IDUnidadBajaMotivo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Automotor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Motivo de Baja de Unidad con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

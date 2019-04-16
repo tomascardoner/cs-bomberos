@@ -180,6 +180,21 @@
         End If
     End Sub
 
+    Private Sub VehiculoTipos() Handles menuitemTablas_TiposVehiculo.Click
+        If Permisos.VerificarPermiso(Permisos.VEHICULOTIPO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoTipos, Form))
+            formVehiculoTipos.Show()
+            If formVehiculoTipos.WindowState = FormWindowState.Minimized Then
+                formVehiculoTipos.WindowState = FormWindowState.Normal
+            End If
+            formVehiculoTipos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub LicenciaCausas() Handles menuitemTablas_CausalesLicenciaPersonas.Click
         If Permisos.VerificarPermiso(Permisos.LICENCIACAUSA) Then
             Me.Cursor = Cursors.WaitCursor
@@ -270,46 +285,46 @@
         End If
     End Sub
 
-    Private Sub AutomotorTipos() Handles menuitemTablas_TiposAutomotor.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTORTIPO) Then
+    Private Sub UnidadTipos() Handles menuitemTablas_TiposUnidad.Click
+        If Permisos.VerificarPermiso(Permisos.UNIDADTIPO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorTipos, Form))
-            formAutomotorTipos.Show()
-            If formAutomotorTipos.WindowState = FormWindowState.Minimized Then
-                formAutomotorTipos.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadTipos, Form))
+            formUnidadTipos.Show()
+            If formUnidadTipos.WindowState = FormWindowState.Minimized Then
+                formUnidadTipos.WindowState = FormWindowState.Normal
             End If
-            formAutomotorTipos.Focus()
+            formUnidadTipos.Focus()
 
             Me.Cursor = Cursors.Default
         End If
     End Sub
 
-    Private Sub AutomotorUsos() Handles menuitemTablas_UsosAutomotor.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTORUSO) Then
+    Private Sub UnidadUsos() Handles menuitemTablas_UsosUnidad.Click
+        If Permisos.VerificarPermiso(Permisos.UNIDADUSO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorUsos, Form))
-            formAutomotorUsos.Show()
-            If formAutomotorUsos.WindowState = FormWindowState.Minimized Then
-                formAutomotorUsos.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadUsos, Form))
+            formUnidadUsos.Show()
+            If formUnidadUsos.WindowState = FormWindowState.Minimized Then
+                formUnidadUsos.WindowState = FormWindowState.Normal
             End If
-            formAutomotorUsos.Focus()
+            formUnidadUsos.Focus()
 
             Me.Cursor = Cursors.Default
         End If
     End Sub
 
-    Private Sub AutomotorMotivosBaja() Handles menuitemTablas_MotivosBajaAutomotores.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTORBAJAMOTIVO) Then
+    Private Sub UnidadMotivosBaja() Handles menuitemTablas_MotivosBajaUnidad.Click
+        If Permisos.VerificarPermiso(Permisos.UNIDADBAJAMOTIVO) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotorBajaMotivos, Form))
-            formAutomotorBajaMotivos.Show()
-            If formAutomotorBajaMotivos.WindowState = FormWindowState.Minimized Then
-                formAutomotorBajaMotivos.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadBajaMotivos, Form))
+            formUnidadBajaMotivos.Show()
+            If formUnidadBajaMotivos.WindowState = FormWindowState.Minimized Then
+                formUnidadBajaMotivos.WindowState = FormWindowState.Normal
             End If
-            formAutomotorBajaMotivos.Focus()
+            formUnidadBajaMotivos.Focus()
 
             Me.Cursor = Cursors.Default
         End If
@@ -439,17 +454,17 @@
 
 #End Region
 
-#Region "Left Toolbar - Automotores"
-    Private Sub Automotores() Handles buttonUnidades.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTOR) Then
+#Region "Left Toolbar - Unidades"
+    Private Sub Unidades() Handles buttonUnidades.Click
+        If Permisos.VerificarPermiso(Permisos.UNIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAutomotores, Form))
-            formAutomotores.Show()
-            If formAutomotores.WindowState = FormWindowState.Minimized Then
-                formAutomotores.WindowState = FormWindowState.Normal
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidades, Form))
+            formUnidades.Show()
+            If formUnidades.WindowState = FormWindowState.Minimized Then
+                formUnidades.WindowState = FormWindowState.Normal
             End If
-            formAutomotores.Focus()
+            formUnidades.Focus()
 
             Me.Cursor = Cursors.Default
         End If

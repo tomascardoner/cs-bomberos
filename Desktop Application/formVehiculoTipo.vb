@@ -1,8 +1,8 @@
-﻿Public Class formAutomotorUso
+﻿Public Class formVehiculoTipo
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
-    Private mAutomotorUsoActual As AutomotorUso
+    Private mVehiculoTipoActual As VehiculoTipo
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
@@ -10,24 +10,24 @@
 #End Region
 
 #Region "Form stuff"
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAutomotorUso As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDVehiculoTipo As Byte)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDAutomotorUso = 0)
-        
+        mIsNew = (IDVehiculoTipo = 0)
+
         If mIsNew Then
             ' Es Nuevo
-            mAutomotorUsoActual = New AutomotorUso
-            With mAutomotorUsoActual
+            mVehiculoTipoActual = New VehiculoTipo
+            With mVehiculoTipoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.AutomotorUso.Add(mAutomotorUsoActual)
+            mdbContext.VehiculoTipo.Add(mVehiculoTipoActual)
         Else
-            mAutomotorUsoActual = mdbContext.AutomotorUso.Find(IDAutomotorUso)
+            mVehiculoTipoActual = mdbContext.VehiculoTipo.Find(IDVehiculoTipo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -71,23 +71,23 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mAutomotorUsoActual = Nothing
+        mVehiculoTipoActual = Nothing
         Me.Dispose()
     End Sub
 #End Region
 
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
-        With mAutomotorUsoActual
+        With mVehiculoTipoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If mIsNew Then
-                textboxIDAutomotorUso.Text = My.Resources.STRING_ITEM_NEW_MALE
+                textboxIDVehiculoTipo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDAutomotorUso.Text = String.Format(.IDAutomotorUso.ToString, "G")
+                textboxIDVehiculoTipo.Text = String.Format(.IDVehiculoTipo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -105,7 +105,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mAutomotorUsoActual
+        With mVehiculoTipoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -139,7 +139,7 @@
 
 #Region "Main Toolbar"
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.AUTOMOTORUSO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.VEHICULOTIPO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -159,10 +159,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.AutomotorUso.Count = 0 Then
-                    mAutomotorUsoActual.IDAutomotorUso = 1
+                If dbcMaxID.VehiculoTipo.Count = 0 Then
+                    mVehiculoTipoActual.IDVehiculoTipo = 1
                 Else
-                    mAutomotorUsoActual.IDAutomotorUso = dbcMaxID.AutomotorUso.Max(Function(a) a.IDAutomotorUso) + CByte(1)
+                    mVehiculoTipoActual.IDVehiculoTipo = dbcMaxID.VehiculoTipo.Max(Function(a) a.IDVehiculoTipo) + CByte(1)
                 End If
             End Using
         End If
@@ -174,21 +174,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mAutomotorUsoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mAutomotorUsoActual.FechaHoraModificacion = Now
+            mVehiculoTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mVehiculoTipoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formAutomotorUsos.RefreshData(mAutomotorUsoActual.IDAutomotorUso)
+                formVehiculoTipos.RefreshData(mVehiculoTipoActual.IDVehiculoTipo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Uso de Automotor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Automotor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

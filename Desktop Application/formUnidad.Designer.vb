@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formAutomotor
+Partial Class formUnidad
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -24,17 +24,17 @@ Partial Class formAutomotor
     Private Sub InitializeComponent()
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
-        Dim labelAutomotorTipo As System.Windows.Forms.Label
+        Dim labelUnidadTipo As System.Windows.Forms.Label
         Dim labelCombustibleTipo As System.Windows.Forms.Label
         Dim labelFechaAdquisicion As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim lalbelAutomotorUso As System.Windows.Forms.Label
+        Dim lalbelUnidadUso As System.Windows.Forms.Label
         Dim labelEsPropio As System.Windows.Forms.Label
         Dim labelEsImportado As System.Windows.Forms.Label
         Dim labelVerificacionVencimiento As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formAutomotor))
-        Me.labelAutomotorBajaMotivo = New System.Windows.Forms.Label()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formUnidad))
+        Me.labelUnidadBajaMotivo = New System.Windows.Forms.Label()
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.labelModelo = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -44,7 +44,7 @@ Partial Class formAutomotor
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
-        Me.comboboxAutomotorTipo = New System.Windows.Forms.ComboBox()
+        Me.comboboxUnidadTipo = New System.Windows.Forms.ComboBox()
         Me.labelNumero = New System.Windows.Forms.Label()
         Me.textboxMarca = New System.Windows.Forms.TextBox()
         Me.labelMarca = New System.Windows.Forms.Label()
@@ -65,29 +65,29 @@ Partial Class formAutomotor
         Me.datetimepickerVerificacionVencimiento = New System.Windows.Forms.DateTimePicker()
         Me.checkboxEsImportado = New System.Windows.Forms.CheckBox()
         Me.checkboxEsPropio = New System.Windows.Forms.CheckBox()
-        Me.comboboxAutomotorUso = New System.Windows.Forms.ComboBox()
+        Me.comboboxUnidadUso = New System.Windows.Forms.ComboBox()
         Me.labelNumeroChasis = New System.Windows.Forms.Label()
         Me.textboxNumeroChasis = New System.Windows.Forms.TextBox()
         Me.labelNumeroMotor = New System.Windows.Forms.Label()
         Me.textboxNumeroMotor = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.comboboxAutomotorBajaMotivo = New System.Windows.Forms.ComboBox()
+        Me.comboboxUnidadBajaMotivo = New System.Windows.Forms.ComboBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.labelIDAutomotor = New System.Windows.Forms.Label()
-        Me.textboxIDAutomotor = New System.Windows.Forms.TextBox()
+        Me.labelIDUnidad = New System.Windows.Forms.Label()
+        Me.textboxIDUnidad = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
-        labelAutomotorTipo = New System.Windows.Forms.Label()
+        labelUnidadTipo = New System.Windows.Forms.Label()
         labelCombustibleTipo = New System.Windows.Forms.Label()
         labelFechaAdquisicion = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
-        lalbelAutomotorUso = New System.Windows.Forms.Label()
+        lalbelUnidadUso = New System.Windows.Forms.Label()
         labelEsPropio = New System.Windows.Forms.Label()
         labelEsImportado = New System.Windows.Forms.Label()
         labelVerificacionVencimiento = New System.Windows.Forms.Label()
@@ -115,14 +115,14 @@ Partial Class formAutomotor
         labelCuartel.TabIndex = 29
         labelCuartel.Text = "Cuartel:"
         '
-        'labelAutomotorTipo
+        'labelUnidadTipo
         '
-        labelAutomotorTipo.AutoSize = True
-        labelAutomotorTipo.Location = New System.Drawing.Point(8, 217)
-        labelAutomotorTipo.Name = "labelAutomotorTipo"
-        labelAutomotorTipo.Size = New System.Drawing.Size(31, 13)
-        labelAutomotorTipo.TabIndex = 17
-        labelAutomotorTipo.Text = "Tipo:"
+        labelUnidadTipo.AutoSize = True
+        labelUnidadTipo.Location = New System.Drawing.Point(8, 217)
+        labelUnidadTipo.Name = "labelUnidadTipo"
+        labelUnidadTipo.Size = New System.Drawing.Size(31, 13)
+        labelUnidadTipo.TabIndex = 17
+        labelUnidadTipo.Text = "Tipo:"
         '
         'labelCombustibleTipo
         '
@@ -160,14 +160,14 @@ Partial Class formAutomotor
         labelCreacion.TabIndex = 8
         labelCreacion.Text = "Creación:"
         '
-        'lalbelAutomotorUso
+        'lalbelUnidadUso
         '
-        lalbelAutomotorUso.AutoSize = True
-        lalbelAutomotorUso.Location = New System.Drawing.Point(8, 244)
-        lalbelAutomotorUso.Name = "lalbelAutomotorUso"
-        lalbelAutomotorUso.Size = New System.Drawing.Size(29, 13)
-        lalbelAutomotorUso.TabIndex = 19
-        lalbelAutomotorUso.Text = "Uso:"
+        lalbelUnidadUso.AutoSize = True
+        lalbelUnidadUso.Location = New System.Drawing.Point(8, 244)
+        lalbelUnidadUso.Name = "lalbelUnidadUso"
+        lalbelUnidadUso.Size = New System.Drawing.Size(29, 13)
+        lalbelUnidadUso.TabIndex = 19
+        lalbelUnidadUso.Text = "Uso:"
         '
         'labelEsPropio
         '
@@ -196,14 +196,14 @@ Partial Class formAutomotor
         labelVerificacionVencimiento.TabIndex = 33
         labelVerificacionVencimiento.Text = "Vencimiento Verificación:"
         '
-        'labelAutomotorBajaMotivo
+        'labelUnidadBajaMotivo
         '
-        Me.labelAutomotorBajaMotivo.AutoSize = True
-        Me.labelAutomotorBajaMotivo.Location = New System.Drawing.Point(6, 355)
-        Me.labelAutomotorBajaMotivo.Name = "labelAutomotorBajaMotivo"
-        Me.labelAutomotorBajaMotivo.Size = New System.Drawing.Size(81, 13)
-        Me.labelAutomotorBajaMotivo.TabIndex = 4
-        Me.labelAutomotorBajaMotivo.Text = "Motivo de Baja:"
+        Me.labelUnidadBajaMotivo.AutoSize = True
+        Me.labelUnidadBajaMotivo.Location = New System.Drawing.Point(6, 355)
+        Me.labelUnidadBajaMotivo.Name = "labelUnidadBajaMotivo"
+        Me.labelUnidadBajaMotivo.Size = New System.Drawing.Size(81, 13)
+        Me.labelUnidadBajaMotivo.TabIndex = 4
+        Me.labelUnidadBajaMotivo.Text = "Motivo de Baja:"
         '
         'textboxModelo
         '
@@ -289,14 +289,14 @@ Partial Class formAutomotor
         Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
         Me.comboboxCuartel.TabIndex = 30
         '
-        'comboboxAutomotorTipo
+        'comboboxUnidadTipo
         '
-        Me.comboboxAutomotorTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAutomotorTipo.FormattingEnabled = True
-        Me.comboboxAutomotorTipo.Location = New System.Drawing.Point(139, 214)
-        Me.comboboxAutomotorTipo.Name = "comboboxAutomotorTipo"
-        Me.comboboxAutomotorTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxAutomotorTipo.TabIndex = 18
+        Me.comboboxUnidadTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUnidadTipo.FormattingEnabled = True
+        Me.comboboxUnidadTipo.Location = New System.Drawing.Point(139, 214)
+        Me.comboboxUnidadTipo.Name = "comboboxUnidadTipo"
+        Me.comboboxUnidadTipo.Size = New System.Drawing.Size(267, 21)
+        Me.comboboxUnidadTipo.TabIndex = 18
         '
         'labelNumero
         '
@@ -465,8 +465,8 @@ Partial Class formAutomotor
         Me.tabpageGeneral.Controls.Add(labelEsImportado)
         Me.tabpageGeneral.Controls.Add(Me.checkboxEsPropio)
         Me.tabpageGeneral.Controls.Add(labelEsPropio)
-        Me.tabpageGeneral.Controls.Add(lalbelAutomotorUso)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxAutomotorUso)
+        Me.tabpageGeneral.Controls.Add(lalbelUnidadUso)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxUnidadUso)
         Me.tabpageGeneral.Controls.Add(Me.labelNumeroChasis)
         Me.tabpageGeneral.Controls.Add(Me.textboxNumeroChasis)
         Me.tabpageGeneral.Controls.Add(Me.labelNumeroMotor)
@@ -480,9 +480,9 @@ Partial Class formAutomotor
         Me.tabpageGeneral.Controls.Add(labelCuartel)
         Me.tabpageGeneral.Controls.Add(Me.maskedtextboxAnio)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
-        Me.tabpageGeneral.Controls.Add(labelAutomotorTipo)
+        Me.tabpageGeneral.Controls.Add(labelUnidadTipo)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaAdquisicion)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxAutomotorTipo)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxUnidadTipo)
         Me.tabpageGeneral.Controls.Add(labelFechaAdquisicion)
         Me.tabpageGeneral.Controls.Add(Me.labelNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelCapacidadAguaLitros)
@@ -531,14 +531,14 @@ Partial Class formAutomotor
         Me.checkboxEsPropio.TabIndex = 32
         Me.checkboxEsPropio.UseVisualStyleBackColor = True
         '
-        'comboboxAutomotorUso
+        'comboboxUnidadUso
         '
-        Me.comboboxAutomotorUso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAutomotorUso.FormattingEnabled = True
-        Me.comboboxAutomotorUso.Location = New System.Drawing.Point(139, 241)
-        Me.comboboxAutomotorUso.Name = "comboboxAutomotorUso"
-        Me.comboboxAutomotorUso.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxAutomotorUso.TabIndex = 20
+        Me.comboboxUnidadUso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUnidadUso.FormattingEnabled = True
+        Me.comboboxUnidadUso.Location = New System.Drawing.Point(139, 241)
+        Me.comboboxUnidadUso.Name = "comboboxUnidadUso"
+        Me.comboboxUnidadUso.Size = New System.Drawing.Size(267, 21)
+        Me.comboboxUnidadUso.TabIndex = 20
         '
         'labelNumeroChasis
         '
@@ -576,14 +576,14 @@ Partial Class formAutomotor
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelAutomotorBajaMotivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.comboboxAutomotorBajaMotivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelUnidadBajaMotivo)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.comboboxUnidadBajaMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAutomotor)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAutomotor)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDUnidad)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDUnidad)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
@@ -598,14 +598,14 @@ Partial Class formAutomotor
         Me.tabpageNotasAuditoria.Text = "Notas y auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'comboboxAutomotorBajaMotivo
+        'comboboxUnidadBajaMotivo
         '
-        Me.comboboxAutomotorBajaMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAutomotorBajaMotivo.FormattingEnabled = True
-        Me.comboboxAutomotorBajaMotivo.Location = New System.Drawing.Point(114, 352)
-        Me.comboboxAutomotorBajaMotivo.Name = "comboboxAutomotorBajaMotivo"
-        Me.comboboxAutomotorBajaMotivo.Size = New System.Drawing.Size(329, 21)
-        Me.comboboxAutomotorBajaMotivo.TabIndex = 5
+        Me.comboboxUnidadBajaMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUnidadBajaMotivo.FormattingEnabled = True
+        Me.comboboxUnidadBajaMotivo.Location = New System.Drawing.Point(114, 352)
+        Me.comboboxUnidadBajaMotivo.Name = "comboboxUnidadBajaMotivo"
+        Me.comboboxUnidadBajaMotivo.Size = New System.Drawing.Size(329, 21)
+        Me.comboboxUnidadBajaMotivo.TabIndex = 5
         '
         'textboxNotas
         '
@@ -626,25 +626,25 @@ Partial Class formAutomotor
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'labelIDAutomotor
+        'labelIDUnidad
         '
-        Me.labelIDAutomotor.AutoSize = True
-        Me.labelIDAutomotor.Location = New System.Drawing.Point(6, 382)
-        Me.labelIDAutomotor.Name = "labelIDAutomotor"
-        Me.labelIDAutomotor.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDAutomotor.TabIndex = 6
-        Me.labelIDAutomotor.Text = "ID:"
+        Me.labelIDUnidad.AutoSize = True
+        Me.labelIDUnidad.Location = New System.Drawing.Point(6, 382)
+        Me.labelIDUnidad.Name = "labelIDUnidad"
+        Me.labelIDUnidad.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDUnidad.TabIndex = 6
+        Me.labelIDUnidad.Text = "ID:"
         '
-        'textboxIDAutomotor
+        'textboxIDUnidad
         '
-        Me.textboxIDAutomotor.Location = New System.Drawing.Point(114, 379)
-        Me.textboxIDAutomotor.MaxLength = 10
-        Me.textboxIDAutomotor.Name = "textboxIDAutomotor"
-        Me.textboxIDAutomotor.ReadOnly = True
-        Me.textboxIDAutomotor.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAutomotor.TabIndex = 7
-        Me.textboxIDAutomotor.TabStop = False
-        Me.textboxIDAutomotor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDUnidad.Location = New System.Drawing.Point(114, 379)
+        Me.textboxIDUnidad.MaxLength = 10
+        Me.textboxIDUnidad.Name = "textboxIDUnidad"
+        Me.textboxIDUnidad.ReadOnly = True
+        Me.textboxIDUnidad.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDUnidad.TabIndex = 7
+        Me.textboxIDUnidad.TabStop = False
+        Me.textboxIDUnidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -682,7 +682,7 @@ Partial Class formAutomotor
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 9
         '
-        'formAutomotor
+        'formUnidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -694,9 +694,9 @@ Partial Class formAutomotor
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formAutomotor"
+        Me.Name = "formUnidad"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Automotor"
+        Me.Text = "Unidad"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -717,7 +717,7 @@ Partial Class formAutomotor
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxAutomotorTipo As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxUnidadTipo As System.Windows.Forms.ComboBox
     Friend WithEvents labelNumero As System.Windows.Forms.Label
     Friend WithEvents textboxMarca As System.Windows.Forms.TextBox
     Friend WithEvents labelMarca As System.Windows.Forms.Label
@@ -736,8 +736,8 @@ Partial Class formAutomotor
     Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
-    Friend WithEvents labelIDAutomotor As System.Windows.Forms.Label
-    Friend WithEvents textboxIDAutomotor As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDUnidad As System.Windows.Forms.Label
+    Friend WithEvents textboxIDUnidad As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
@@ -749,9 +749,9 @@ Partial Class formAutomotor
     Friend WithEvents labelNumeroMotor As System.Windows.Forms.Label
     Friend WithEvents textboxNumeroMotor As System.Windows.Forms.TextBox
     Friend WithEvents checkboxEsPropio As System.Windows.Forms.CheckBox
-    Friend WithEvents comboboxAutomotorUso As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxUnidadUso As System.Windows.Forms.ComboBox
     Friend WithEvents checkboxEsImportado As System.Windows.Forms.CheckBox
     Friend WithEvents datetimepickerVerificacionVencimiento As System.Windows.Forms.DateTimePicker
-    Friend WithEvents comboboxAutomotorBajaMotivo As System.Windows.Forms.ComboBox
-    Friend WithEvents labelAutomotorBajaMotivo As System.Windows.Forms.Label
+    Friend WithEvents comboboxUnidadBajaMotivo As System.Windows.Forms.ComboBox
+    Friend WithEvents labelUnidadBajaMotivo As System.Windows.Forms.Label
 End Class

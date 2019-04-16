@@ -145,16 +145,16 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Automotor.vb">
+    <Compile Include="Unidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AutomotorBajaMotivo.vb">
+    <Compile Include="UnidadBajaMotivo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AutomotorTipo.vb">
+    <Compile Include="UnidadTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AutomotorUso.vb">
+    <Compile Include="UnidadUso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Control_TabControl.vb">
@@ -287,40 +287,52 @@
     <Compile Include="formAreas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorBajaMotivo.designer.vb">
-      <DependentUpon>formAutomotorBajaMotivo.vb</DependentUpon>
+    <Compile Include="formUnidadBajaMotivo.designer.vb">
+      <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorBajaMotivo.vb">
+    <Compile Include="formUnidadBajaMotivo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorBajaMotivos.designer.vb">
-      <DependentUpon>formAutomotorBajaMotivos.vb</DependentUpon>
+    <Compile Include="formUnidadBajaMotivos.designer.vb">
+      <DependentUpon>formUnidadBajaMotivos.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorBajaMotivos.vb">
+    <Compile Include="formUnidadBajaMotivos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorTipo.designer.vb">
-      <DependentUpon>formAutomotorTipo.vb</DependentUpon>
+    <Compile Include="formVehiculoTipos.designer.vb">
+      <DependentUpon>formVehiculoTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorTipo.vb">
+    <Compile Include="formVehiculoTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorTipos.designer.vb">
-      <DependentUpon>formAutomotorTipos.vb</DependentUpon>
+    <Compile Include="formVehiculoTipo.designer.vb">
+      <DependentUpon>formVehiculoTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorTipos.vb">
+    <Compile Include="formVehiculoTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorUso.designer.vb">
-      <DependentUpon>formAutomotorUso.vb</DependentUpon>
+    <Compile Include="formUnidadTipo.designer.vb">
+      <DependentUpon>formUnidadTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorUso.vb">
+    <Compile Include="formUnidadTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotorUsos.designer.vb">
-      <DependentUpon>formAutomotorUsos.vb</DependentUpon>
+    <Compile Include="formUnidadTipos.designer.vb">
+      <DependentUpon>formUnidadTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotorUsos.vb">
+    <Compile Include="formUnidadTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUnidadUso.designer.vb">
+      <DependentUpon>formUnidadUso.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUnidadUso.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formUnidadUsos.designer.vb">
+      <DependentUpon>formUnidadUsos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formUnidadUsos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formCalificacionConcepto.designer.vb">
@@ -401,10 +413,10 @@
     <Compile Include="formElemento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotor.Designer.vb">
-      <DependentUpon>formAutomotor.vb</DependentUpon>
+    <Compile Include="formUnidad.Designer.vb">
+      <DependentUpon>formUnidad.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotor.vb">
+    <Compile Include="formUnidad.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formInventario.designer.vb">
@@ -605,10 +617,10 @@
     <Compile Include="formElementos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="formAutomotores.Designer.vb">
-      <DependentUpon>formAutomotores.vb</DependentUpon>
+    <Compile Include="formUnidades.Designer.vb">
+      <DependentUpon>formUnidades.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAutomotores.vb">
+    <Compile Include="formUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="formParentesco.Designer.vb">
@@ -856,23 +868,29 @@
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorBajaMotivo.resx">
-      <DependentUpon>formAutomotorBajaMotivo.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidadBajaMotivo.resx">
+      <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorBajaMotivos.resx">
-      <DependentUpon>formAutomotorBajaMotivos.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidadBajaMotivos.resx">
+      <DependentUpon>formUnidadBajaMotivos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorTipo.resx">
-      <DependentUpon>formAutomotorTipo.vb</DependentUpon>
+    <EmbeddedResource Include="formVehiculoTipos.resx">
+      <DependentUpon>formVehiculoTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorTipos.resx">
-      <DependentUpon>formAutomotorTipos.vb</DependentUpon>
+    <EmbeddedResource Include="formVehiculoTipo.resx">
+      <DependentUpon>formVehiculoTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorUso.resx">
-      <DependentUpon>formAutomotorUso.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidadTipo.resx">
+      <DependentUpon>formUnidadTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotorUsos.resx">
-      <DependentUpon>formAutomotorUsos.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidadTipos.resx">
+      <DependentUpon>formUnidadTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUnidadUso.resx">
+      <DependentUpon>formUnidadUso.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formUnidadUsos.resx">
+      <DependentUpon>formUnidadUsos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formCalificacionConcepto.resx">
       <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
@@ -913,8 +931,8 @@
     <EmbeddedResource Include="formElemento.resx">
       <DependentUpon>formElemento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotor.resx">
-      <DependentUpon>formAutomotor.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidad.resx">
+      <DependentUpon>formUnidad.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formInventario.resx">
       <DependentUpon>formInventario.vb</DependentUpon>
@@ -1015,8 +1033,8 @@
     <EmbeddedResource Include="formElementos.resx">
       <DependentUpon>formElementos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="formAutomotores.resx">
-      <DependentUpon>formAutomotores.vb</DependentUpon>
+    <EmbeddedResource Include="formUnidades.resx">
+      <DependentUpon>formUnidades.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formParentesco.resx">
       <DependentUpon>formParentesco.vb</DependentUpon>

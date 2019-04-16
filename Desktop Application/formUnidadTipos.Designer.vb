@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formAutomotorTipos
+Partial Class formUnidadTipos
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -176,7 +176,7 @@ Partial Class formAutomotorTipos
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
-        'formAutomotorTipos
+        'formUnidadTipos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -185,9 +185,9 @@ Partial Class formAutomotorTipos
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
-        Me.Name = "formAutomotorTipos"
+        Me.Name = "formUnidadTipos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Tipos de Automotor"
+        Me.Text = "Tipos de Unidad"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()

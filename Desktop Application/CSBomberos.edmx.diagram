@@ -64,19 +64,19 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.Automotor" Width="1.5" PointX="15.875" PointY="84.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.AutomotorTipo" Width="1.5" PointX="15.875" PointY="115.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.Unidad" Width="1.5" PointX="15.875" PointY="84.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadTipo" Width="1.5" PointX="15.875" PointY="115.875" />
         <EntityTypeShape EntityType="CSBomberosModel.CombustibleTipo" Width="1.5" PointX="15.875" PointY="108" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Area__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Area__Modificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__AutomotorTipo__Automotor" />
-        <AssociationConnector Association="CSBomberosModel.FK__CombustibleTipo__Automotor" />
-        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Automotor" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Automotor__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Automotor__Modificacion" ManuallyRouted="false" >
+        <AssociationConnector Association="CSBomberosModel.FK__UnidadTipo__Unidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__CombustibleTipo__Unidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Unidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Unidad__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Unidad__Modificacion" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorTipo__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cargo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cargo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CargoJerarquia__Creacion" />
@@ -87,7 +87,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Parentesco__PersonaFamiliar" />
         <EntityTypeShape EntityType="CSBomberosModel.SubUbicacion" Width="1.5" PointX="29.375" PointY="87.5" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Area" />
-        <AssociationConnector Association="CSBomberosModel.FK__Automotor__Ubicacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Unidad__Ubicacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Ubicacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Ubicacion__SubUbicacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SubUbicacion__Creacion" />
@@ -181,10 +181,10 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" />
-        <EntityTypeShape EntityType="CSBomberosModel.AutomotorUso" Width="1.5" PointX="15.875" PointY="127.75" />
-        <AssociationConnector Association="CSBomberosModel.FK__AutomotorUso__Automotor" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorUso__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorUso__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadUso" Width="1.5" PointX="15.875" PointY="127.75" />
+        <AssociationConnector Association="CSBomberosModel.FK__UnidadUso__Unidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadUso__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadUso__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" />
@@ -193,10 +193,10 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Alarma__Modificacion" />
         <EntityTypeShape EntityType="CSBomberosModel.UsuarioParametro" Width="1.5" PointX="15.875" PointY="135.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioParametro" />
-        <EntityTypeShape EntityType="CSBomberosModel.AutomotorBajaMotivo" Width="1.5" PointX="15.875" PointY="42.75" />
-        <AssociationConnector Association="CSBomberosModel.FK__AutomotorBajaMotivo__Automotor" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AutomotorBajaMotivo__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadBajaMotivo" Width="1.5" PointX="15.875" PointY="42.75" />
+        <AssociationConnector Association="CSBomberosModel.FK__UnidadBajaMotivo__Unidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Modificacion" />
         <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="2.375" PointX="15.875" PointY="37.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" />

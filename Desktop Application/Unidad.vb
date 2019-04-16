@@ -10,8 +10,8 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Automotor
-    Public Property IDAutomotor As Short
+Partial Public Class Unidad
+    Public Property IDUnidad As Short
     Public Property Numero As Short
     Public Property Marca As String
     Public Property Modelo As String
@@ -22,8 +22,8 @@ Partial Public Class Automotor
     Public Property NumeroMotor As String
     Public Property NumeroChasis As String
     Public Property Dominio As String
-    Public Property IDAutomotorTipo As Byte
-    Public Property IDAutomotorUso As Byte
+    Public Property IDUnidadTipo As Byte
+    Public Property IDUnidadUso As Byte
     Public Property IDCombustibleTipo As Nullable(Of Byte)
     Public Property FechaAdquisicion As Nullable(Of Date)
     Public Property KilometrajeInicial As Nullable(Of Integer)
@@ -33,19 +33,19 @@ Partial Public Class Automotor
     Public Property VerificacionVencimiento As Nullable(Of Date)
     Public Property Notas As String
     Public Property EsActivo As Boolean
-    Public Property IDAutomotorBajaMotivo As Nullable(Of Byte)
+    Public Property IDUnidadBajaMotivo As Nullable(Of Byte)
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property AutomotorTipo As AutomotorTipo
+    Public Overridable Property UnidadTipo As UnidadTipo
     Public Overridable Property CombustibleTipo As CombustibleTipo
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
-    Public Overridable Property AutomotorUso As AutomotorUso
-    Public Overridable Property AutomotorBajaMotivo As AutomotorBajaMotivo
+    Public Overridable Property UnidadUso As UnidadUso
+    Public Overridable Property UnidadBajaMotivo As UnidadBajaMotivo
 
 End Class

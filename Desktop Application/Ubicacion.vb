@@ -14,7 +14,7 @@ Partial Public Class Ubicacion
     Public Property IDUbicacion As Short
     Public Property Nombre As String
     Public Property IDCuartel As Byte
-    Public Property IDAutomotor As Nullable(Of Short)
+    Public Property IDUnidad As Nullable(Of Short)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -22,7 +22,7 @@ Partial Public Class Ubicacion
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Automotor As Automotor
+    Public Overridable Property Unidad As Unidad
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property SubUbicacion As ICollection(Of SubUbicacion) = New HashSet(Of SubUbicacion)
     Public Overridable Property UsuarioCreacion As Usuario

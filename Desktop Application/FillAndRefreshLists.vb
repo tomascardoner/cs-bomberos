@@ -544,27 +544,27 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Automotor(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = FIELD_VALUE_NOTSPECIFIED_BYTE)
-        Dim listItems As List(Of Automotor)
+    Friend Sub Unidad(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, Optional ByVal IDCuartel As Byte = FIELD_VALUE_NOTSPECIFIED_BYTE)
+        Dim listItems As List(Of Unidad)
 
-        ComboBoxControl.ValueMember = "IDAutomotor"
+        ComboBoxControl.ValueMember = "IDUnidad"
         ComboBoxControl.DisplayMember = "NumeroMarcaModelo"
 
         If IDCuartel = FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Automotor.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
         Else
-            listItems = mdbContext.Automotor.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
+            listItems = mdbContext.Unidad.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.NumeroMarcaModelo).ToList
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Automotor
-            Item_NoEspecifica.IDAutomotor = FIELD_VALUE_NOTSPECIFIED_SHORT
+            Dim Item_NoEspecifica As New Unidad
+            Item_NoEspecifica.IDUnidad = FIELD_VALUE_NOTSPECIFIED_SHORT
             Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Automotor
-            Item_Todos.IDAutomotor = FIELD_VALUE_ALL_SHORT
+            Dim Item_Todos As New Unidad
+            Item_Todos.IDUnidad = FIELD_VALUE_ALL_SHORT
             Item_Todos.NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
@@ -624,31 +624,31 @@
 
     Friend Sub ElementoRefresh()
         If Application.OpenForms().OfType(Of formElementos).Any Then
-            'mdbContext.Automotor.Re()
+            'mdbContext.Unidad.Re()
         End If
         'mdbContext.Entry(formInventarioDetalle.comboboxElemento.DataSource).Reload()
     End Sub
 
 #End Region
 
-    Friend Sub AutomotorTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of AutomotorTipo)
+    Friend Sub UnidadTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of UnidadTipo)
 
-        ComboBoxControl.ValueMember = "IDAutomotorTipo"
+        ComboBoxControl.ValueMember = "IDUnidadTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.AutomotorTipo.Where(Function(at) at.EsActivo).OrderBy(Function(at) at.Nombre).ToList
+        listItems = mdbContext.UnidadTipo.Where(Function(at) at.EsActivo).OrderBy(Function(at) at.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New AutomotorTipo
-            Item_Todos.IDAutomotorTipo = FIELD_VALUE_ALL_BYTE
+            Dim Item_Todos As New UnidadTipo
+            Item_Todos.IDUnidadTipo = FIELD_VALUE_ALL_BYTE
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New AutomotorTipo
-            Item_NoEspecifica.IDAutomotorTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Dim Item_NoEspecifica As New UnidadTipo
+            Item_NoEspecifica.IDUnidadTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
@@ -656,24 +656,24 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub AutomotorUso(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of AutomotorUso)
+    Friend Sub UnidadUso(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of UnidadUso)
 
-        ComboBoxControl.ValueMember = "IDAutomotorUso"
+        ComboBoxControl.ValueMember = "IDUnidadUso"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.AutomotorUso.Where(Function(au) au.EsActivo).OrderBy(Function(au) au.Nombre).ToList
+        listItems = mdbContext.UnidadUso.Where(Function(au) au.EsActivo).OrderBy(Function(au) au.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New AutomotorUso
-            Item_Todos.IDAutomotorUso = FIELD_VALUE_ALL_BYTE
+            Dim Item_Todos As New UnidadUso
+            Item_Todos.IDUnidadUso = FIELD_VALUE_ALL_BYTE
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New AutomotorUso
-            Item_NoEspecifica.IDAutomotorUso = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Dim Item_NoEspecifica As New UnidadUso
+            Item_NoEspecifica.IDUnidadUso = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
@@ -681,23 +681,23 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub AutomotorBajaMotivo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of AutomotorBajaMotivo)
+    Friend Sub UnidadBajaMotivo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of UnidadBajaMotivo)
 
-        ComboBoxControl.ValueMember = "IDAutomotorBajaMotivo"
+        ComboBoxControl.ValueMember = "IDUnidadBajaMotivo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.AutomotorBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
+        listItems = mdbContext.UnidadBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New AutomotorBajaMotivo
-            Item_NoEspecifica.IDAutomotorBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Dim Item_NoEspecifica As New UnidadBajaMotivo
+            Item_NoEspecifica.IDUnidadBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New AutomotorBajaMotivo
-            Item_Todos.IDAutomotorBajaMotivo = FIELD_VALUE_ALL_BYTE
+            Dim Item_Todos As New UnidadBajaMotivo
+            Item_Todos.IDUnidadBajaMotivo = FIELD_VALUE_ALL_BYTE
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If

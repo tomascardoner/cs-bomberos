@@ -335,27 +335,27 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-11
--- Description:	Devuelve los datos para el reporte de Unidades (Automotores)
+-- Description:	Devuelve los datos para el reporte de Unidades
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Automotor_Listado') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE usp_Automotor_Listado
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Unidad_Listado') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE usp_Unidad_Listado
 GO
 
-CREATE PROCEDURE usp_Automotor_Listado
+CREATE PROCEDURE usp_Unidad_Listado
 	@IDCuartel tinyint,
-	@IDAutomotor smallint,
+	@IDUnidad smallint,
 	@FechaDesde date,
 	@FechaHasta date
 	AS
 
 	BEGIN
-		SELECT Automotor.IDAutomotor, Automotor.Numero, Automotor.MarcaModelo, Automotor.EsImportado, Automotor.Anio, Automotor.NumeroMotor, Automotor.NumeroChasis, Automotor.Dominio, AutomotorTipo.Nombre AS AutomotorTipoNombre, AutomotorUso.Nombre AS AutomotorUsoNombre, CombustibleTipo.Nombre AS CombustibleTipoNombre, Automotor.FechaAdquisicion, Automotor.KilometrajeInicial, Automotor.CapacidadAguaLitros, Cuartel.Nombre AS CuartelNombre, Automotor.EsPropio, Automotor.VerificacionVencimiento
-			FROM (((Automotor INNER JOIN AutomotorTipo ON Automotor.IDAutomotorTipo = AutomotorTipo.IDAutomotorTipo) INNER JOIN AutomotorUso ON Automotor.IDAutomotorUso = AutomotorUso.IDAutomotorUso) LEFT JOIN CombustibleTipo ON Automotor.IDCombustibleTipo = CombustibleTipo.IDCombustibleTipo) INNER JOIN Cuartel ON Automotor.IDCuartel = Cuartel.IDCuartel
-			WHERE Automotor.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Automotor.IDCuartel = @IDCuartel)
-				AND (@IDAutomotor IS NULL OR Automotor.IDAutomotor = @IDAutomotor)
-				AND (@FechaDesde IS NULL OR Automotor.VerificacionVencimiento >= @FechaDesde)
-				AND (@FechaHasta IS NULL OR Automotor.VerificacionVencimiento <= @FechaHasta)
+		SELECT Unidad.IDUnidad, Unidad.Numero, Unidad.MarcaModelo, Unidad.EsImportado, Unidad.Anio, Unidad.NumeroMotor, Unidad.NumeroChasis, Unidad.Dominio, UnidadTipo.Nombre AS UnidadTipoNombre, UnidadUso.Nombre AS UnidadUsoNombre, CombustibleTipo.Nombre AS CombustibleTipoNombre, Unidad.FechaAdquisicion, Unidad.KilometrajeInicial, Unidad.CapacidadAguaLitros, Cuartel.Nombre AS CuartelNombre, Unidad.EsPropio, Unidad.VerificacionVencimiento
+			FROM (((Unidad INNER JOIN UnidadTipo ON Unidad.IDUnidadTipo = UnidadTipo.IDUnidadTipo) INNER JOIN UnidadUso ON Unidad.IDUnidadUso = UnidadUso.IDUnidadUso) LEFT JOIN CombustibleTipo ON Unidad.IDCombustibleTipo = CombustibleTipo.IDCombustibleTipo) INNER JOIN Cuartel ON Unidad.IDCuartel = Cuartel.IDCuartel
+			WHERE Unidad.EsActivo = 1
+				AND (@IDCuartel IS NULL OR Unidad.IDCuartel = @IDCuartel)
+				AND (@IDUnidad IS NULL OR Unidad.IDUnidad = @IDUnidad)
+				AND (@FechaDesde IS NULL OR Unidad.VerificacionVencimiento >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR Unidad.VerificacionVencimiento <= @FechaHasta)
 	END
 GO
 
