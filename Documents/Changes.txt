@@ -67,3 +67,9 @@
 
 11/04/2019
 	* Reagrupación de Reportes
+
+15/04/2019
+	* ABM de Tipos de Vehículos
+	* ABM de Marcas de Vehículos
+	* ABM de Compañías de Seguros de Vehículos
+	* ABM de Tipos de Vacuna
