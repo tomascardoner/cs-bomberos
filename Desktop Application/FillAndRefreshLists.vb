@@ -245,9 +245,54 @@
     '    End If
     'End Sub
 
-    Friend Sub Mes(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelMes As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub DiaSemana(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelDia As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        ComboBoxControl.Items.Clear()
+        If MostrarNombreDelDia Then
+            If NombreEnIdiomaDelSistema Then
+                For DiaNumero As Integer = 1 To 7
+                    If PrimerLetraEnMayusculas Then
+                        ComboBoxControl.Items.Add(WeekdayName(DiaNumero).ElementAt(0).ToString.ToUpper & WeekdayName(DiaNumero).Substring(1).ToLower)
+                    Else
+                        ComboBoxControl.Items.Add(WeekdayName(DiaNumero))
+                    End If
+                Next
+            Else
+                If PrimerLetraEnMayusculas Then
+                    ComboBoxControl.Items.AddRange({"Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"})
+                Else
+                    ComboBoxControl.Items.AddRange({"domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"})
+                End If
+            End If
+        Else
+            ComboBoxControl.Items.AddRange({1, 2, 3, 4, 5, 6, 7})
+        End If
+
+        If AgregarItem_Todos Then
+            ComboBoxControl.Items.Insert(0, My.Resources.STRING_ITEM_ALL_MALE)
+        End If
+        If AgregarItem_NoEspecifica Then
+            ComboBoxControl.Items.Insert(0, My.Resources.STRING_ITEM_NOT_SPECIFIED)
+        End If
+    End Sub
+
+    Friend Sub Mes(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelMes As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        ComboBoxControl.Items.Clear()
         If MostrarNombreDelMes Then
-            ComboBoxControl.Items.AddRange({"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
+            If NombreEnIdiomaDelSistema Then
+                For MesNumero As Integer = 1 To 12
+                    If PrimerLetraEnMayusculas Then
+                        ComboBoxControl.Items.Add(MonthName(MesNumero).ElementAt(0).ToString.ToUpper & MonthName(MesNumero).Substring(1).ToLower)
+                    Else
+                        ComboBoxControl.Items.Add(MonthName(MesNumero))
+                    End If
+                Next
+            Else
+                If PrimerLetraEnMayusculas Then
+                    ComboBoxControl.Items.AddRange({"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"})
+                Else
+                    ComboBoxControl.Items.AddRange({"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"})
+                End If
+            End If
         Else
             ComboBoxControl.Items.AddRange({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12})
         End If
@@ -806,6 +851,81 @@
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New CargoJerarquia
             Item_NoEspecifica.IDCargo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub VehiculoTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of VehiculoTipo)
+
+        ComboBoxControl.ValueMember = "IDVehiculoTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.VehiculoTipo.Where(Function(vt) vt.EsActivo).OrderBy(Function(vt) vt.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New VehiculoTipo
+            Item_Todos.IDVehiculoTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New VehiculoTipo
+            Item_NoEspecifica.IDVehiculoTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub VehiculoMarca(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of VehiculoMarca)
+
+        ComboBoxControl.ValueMember = "IDVehiculoMarca"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.VehiculoMarca.Where(Function(vm) vm.EsActivo).OrderBy(Function(vm) vm.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New VehiculoMarca
+            Item_Todos.IDVehiculoMarca = FIELD_VALUE_ALL_SHORT
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New VehiculoMarca
+            Item_NoEspecifica.IDVehiculoMarca = FIELD_VALUE_NOTSPECIFIED_SHORT
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub VehiculoCompaniaSeguro(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of VehiculoCompaniaSeguro)
+
+        ComboBoxControl.ValueMember = "IDVehiculoCompaniaSeguro"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.VehiculoCompaniaSeguro.Where(Function(vcs) vcs.EsActivo).OrderBy(Function(vcs) vcs.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New VehiculoCompaniaSeguro
+            Item_Todos.IDVehiculoCompaniaSeguro = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New VehiculoCompaniaSeguro
+            Item_NoEspecifica.IDVehiculoCompaniaSeguro = FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If

@@ -74,10 +74,6 @@
         comboboxDocumentoTipo.Enabled = mEditMode
         textboxDocumentoNumero.ReadOnly = (mEditMode = False)
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
-        buttonLicenciaConducirNumero.Visible = mEditMode
-        textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
-        datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
-        buttonLicenciaConducirCategoria.Visible = mEditMode
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
@@ -119,10 +115,24 @@
         textboxCelularLaboral.ReadOnly = (mEditMode = False)
         textboxEmailLaboral.ReadOnly = (mEditMode = False)
 
-        ' Solapas grillas
+        ' Solapas grillas 1
         toolstripFamiliares.Enabled = Not mEditMode
         toolstripAltasBajas.Enabled = Not mEditMode
         toolstripAscensos.Enabled = Not mEditMode
+
+        ' Horarios
+        toolstripHorarioLaboral.Enabled = Not mEditMode
+        textboxHorarioLaboralObservaciones.ReadOnly = (mEditMode = False)
+
+        ' Vehículos
+        buttonLicenciaConducirNumero.Visible = mEditMode
+        textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
+        datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
+        buttonLicenciaConducirCategoria.Visible = mEditMode
+        toolstripVehiculos.Enabled = Not mEditMode
+
+        ' Solapas grillas 1
+        toolstripVacunas.Enabled = Not mEditMode
         toolstripLicencias.Enabled = Not mEditMode
         toolstripSanciones.Enabled = Not mEditMode
         toolstripCapacitaciones.Enabled = Not mEditMode
@@ -159,6 +169,15 @@
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO, False) Then
             tabcontrolMain.HideTabPageByName(tabpageAscensos.Name)
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageHorarioLaboral.Name)
+        End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_VEHICULO, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageVehiculos.Name)
+        End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_VACUNA, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageVacunas.Name)
+        End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA, False) Then
             tabcontrolMain.HideTabPageByName(tabpageLicencias.Name)
         End If
@@ -178,6 +197,9 @@
         DataGridSetAppearance(datagridviewFamiliares)
         DataGridSetAppearance(datagridviewAltasBajas)
         DataGridSetAppearance(datagridviewAscensos)
+        DataGridSetAppearance(datagridviewHorarioLaboral)
+        DataGridSetAppearance(datagridviewVehiculos)
+        DataGridSetAppearance(datagridviewVacunas)
         DataGridSetAppearance(datagridviewLicencias)
         DataGridSetAppearance(datagridviewSanciones)
         DataGridSetAppearance(datagridviewCapacitaciones)
@@ -219,9 +241,6 @@
             Else
                 textboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             End If
-            textboxLicenciaConducirNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LicenciaConducirNumero)
-            datetimepickerLicenciaConducirVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.LicenciaConducirVencimiento, datetimepickerLicenciaConducirVencimiento)
-            textboxLicenciaConducirCategoria.Text = .LicenciaConducirCategoriasDisplay
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
@@ -274,6 +293,14 @@
             textboxCelularLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularLaboral)
             textboxEmailLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.EmailLaboral)
 
+            ' Datos de la pestaña Horarios
+            textboxHorarioLaboralObservaciones.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.HorarioLaboralObservaciones)
+
+            ' Datos de la pestaña Vehículos
+            textboxLicenciaConducirNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LicenciaConducirNumero)
+            datetimepickerLicenciaConducirVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.LicenciaConducirVencimiento, datetimepickerLicenciaConducirVencimiento)
+            textboxLicenciaConducirCategoria.Text = .LicenciaConducirCategoriasDisplay
+
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
@@ -321,8 +348,6 @@
             Else
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDocumentoNumero.Text)
             End If
-            .LicenciaConducirNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLicenciaConducirNumero.Text)
-            .LicenciaConducirVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerLicenciaConducirVencimiento.Value, datetimepickerLicenciaConducirVencimiento.Checked)
 
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
@@ -375,6 +400,13 @@
             .CelularLaboral = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCelularLaboral.Text)
             .EmailLaboral = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxEmailLaboral.Text)
 
+            ' Datos de la pestaña Horarios
+            .HorarioLaboralObservaciones = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxHorarioLaboralObservaciones.Text)
+
+            ' Datos de la pestaña Vehículos
+            .LicenciaConducirNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLicenciaConducirNumero.Text)
+            .LicenciaConducirVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerLicenciaConducirVencimiento.Value, datetimepickerLicenciaConducirVencimiento.Checked)
+
             ' Datos de la pestaña Notas y Aditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -410,7 +442,7 @@
         pictureboxFoto.Image = Nothing
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMatriculaNumero.GotFocus, textboxApellido.GotFocus, textboxNombre.GotFocus, textboxDocumentoNumero.GotFocus, textboxLicenciaConducirNumero.GotFocus, textboxIOMANumeroAfiliado.GotFocus, textboxProfesion.GotFocus, textboxNacionalidad.GotFocus, textboxDomicilioParticularCalle1.GotFocus, textboxDomicilioParticularNumero.GotFocus, textboxDomicilioParticularPiso.GotFocus, textboxDomicilioParticularDepartamento.GotFocus, textboxDomicilioParticularCalle2.GotFocus, textboxDomicilioParticularCalle3.GotFocus, textboxDomicilioParticularCodigoPostal.GotFocus, textboxDomicilioLaboralCalle1.GotFocus, textboxDomicilioLaboralNumero.GotFocus, textboxDomicilioLaboralPiso.GotFocus, textboxDomicilioLaboralDepartamento.GotFocus, textboxDomicilioLaboralCalle2.GotFocus, textboxDomicilioLaboralCalle3.GotFocus, textboxDomicilioLaboralCodigoPostal.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMatriculaNumero.GotFocus, textboxApellido.GotFocus, textboxNombre.GotFocus, textboxDocumentoNumero.GotFocus, textboxIOMANumeroAfiliado.GotFocus, textboxProfesion.GotFocus, textboxNacionalidad.GotFocus, textboxDomicilioParticularCalle1.GotFocus, textboxDomicilioParticularNumero.GotFocus, textboxDomicilioParticularPiso.GotFocus, textboxDomicilioParticularDepartamento.GotFocus, textboxDomicilioParticularCalle2.GotFocus, textboxDomicilioParticularCalle3.GotFocus, textboxDomicilioParticularCodigoPostal.GotFocus, textboxDomicilioLaboralCalle1.GotFocus, textboxDomicilioLaboralNumero.GotFocus, textboxDomicilioLaboralPiso.GotFocus, textboxDomicilioLaboralDepartamento.GotFocus, textboxDomicilioLaboralCalle2.GotFocus, textboxDomicilioLaboralCalle3.GotFocus, textboxDomicilioLaboralCodigoPostal.GotFocus, textboxHorarioLaboralObservaciones.GotFocus, textboxLicenciaConducirNumero.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -435,6 +467,21 @@
                     If tabpageAscensos.Tag Is Nothing Then
                         Ascensos_RefreshData()
                         tabpageAscensos.Tag = "REFRESHED"
+                    End If
+                Case tabpageHorarioLaboral.Name
+                    If tabpageHorarioLaboral.Tag Is Nothing Then
+                        HorarioLaboral_RefreshData()
+                        tabpageHorarioLaboral.Tag = "REFRESHED"
+                    End If
+                Case tabpageVehiculos.Name
+                    If tabpageVehiculos.Tag Is Nothing Then
+                        Vehiculos_RefreshData()
+                        tabpageVehiculos.Tag = "REFRESHED"
+                    End If
+                Case tabpageVacunas.Name
+                    If tabpageVacunas.Tag Is Nothing Then
+                        Vacunas_RefreshData()
+                        tabpageVacunas.Tag = "REFRESHED"
                     End If
                 Case tabpageLicencias.Name
                     If tabpageLicencias.Tag Is Nothing Then
@@ -476,7 +523,43 @@
         CType(sender, TextBox).Text = CType(sender, TextBox).Text.Replace(".", "")
     End Sub
 
-    Private Sub LicenciaConducirNumeroCopiarNumeroDocumento(sender As Object, e As EventArgs) Handles buttonLicenciaConducirNumero.Click
+    Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
+        If comboboxDomicilioParticularProvincia.SelectedValue Is Nothing Then
+            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, 0, True)
+            comboboxDomicilioParticularLocalidad.SelectedIndex = 0
+        Else
+            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
+            If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            End If
+        End If
+    End Sub
+
+    Private Sub DomicilioParticularLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
+        If Not comboboxDomicilioParticularLocalidad.SelectedValue Is Nothing Then
+            textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal
+        End If
+    End Sub
+
+    Private Sub DomicilioLaboralProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
+        If comboboxDomicilioLaboralProvincia.SelectedValue Is Nothing Then
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, 0, True)
+            comboboxDomicilioLaboralLocalidad.SelectedIndex = 0
+        Else
+            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
+            If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            End If
+        End If
+    End Sub
+
+    Private Sub DomicilioLaboralLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
+        If Not comboboxDomicilioLaboralLocalidad.SelectedValue Is Nothing Then
+            textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal
+        End If
+    End Sub
+
+    Private Sub LicenciaConducirNumeroCopiarNumeroDocumento(sender As Object, e As EventArgs)
         If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
             textboxLicenciaConducirNumero.Text = maskedtextboxDocumentoNumero.Text
         Else
@@ -484,7 +567,7 @@
         End If
     End Sub
 
-    Private Sub LicenciaConducirCategorias(sender As Object, e As EventArgs) Handles buttonLicenciaConducirCategoria.Click
+    Private Sub LicenciaConducirCategorias(sender As Object, e As EventArgs)
 
         formPersonaLicenciaConducirCategorias.LoadAndShow(Me, mPersonaActual)
 
@@ -525,42 +608,6 @@
             textboxLicenciaConducirCategoria.Text = mPersonaActual.LicenciaConducirCategoriasDisplay
         End If
         formPersonaLicenciaConducirCategorias.Close()
-    End Sub
-
-    Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularProvincia.SelectedValueChanged
-        If comboboxDomicilioParticularProvincia.SelectedValue Is Nothing Then
-            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, 0, True)
-            comboboxDomicilioParticularLocalidad.SelectedIndex = 0
-        Else
-            pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
-            If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
-            End If
-        End If
-    End Sub
-
-    Private Sub DomicilioParticularLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioParticularLocalidad.SelectedValue Is Nothing Then
-            textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal
-        End If
-    End Sub
-
-    Private Sub DomicilioLaboralProvincia_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralProvincia.SelectedValueChanged
-        If comboboxDomicilioLaboralProvincia.SelectedValue Is Nothing Then
-            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, 0, True)
-            comboboxDomicilioLaboralLocalidad.SelectedIndex = 0
-        Else
-            pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
-            If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CS_ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
-            End If
-        End If
-    End Sub
-
-    Private Sub DomicilioLaboralLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioLaboralLocalidad.SelectedValue Is Nothing Then
-            textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal
-        End If
     End Sub
 
 #End Region
@@ -1080,6 +1127,366 @@
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
+#Region "Horario Laboral"
+    Friend Class HorarioLaboral_GridRowData
+        Public Property DiaSemana As Byte
+        Public Property Turno1Desde As System.TimeSpan?
+        Public Property Turno1Hasta As System.TimeSpan?
+        Public Property Turno2Desde As System.TimeSpan?
+        Public Property Turno2Hasta As System.TimeSpan?
+    End Class
+
+    Friend Sub HorarioLaboral_RefreshData(Optional ByVal PositionDiaSemana As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listHorarioLaboral As List(Of HorarioLaboral_GridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
+                PositionDiaSemana = 0
+            Else
+                PositionDiaSemana = CType(datagridviewHorarioLaboral.CurrentRow.DataBoundItem, HorarioLaboral_GridRowData).DiaSemana
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listHorarioLaboral = (From phl In mdbContext.PersonaHorarioLaboral
+                                  Where phl.IDPersona = mPersonaActual.IDPersona
+                                  Order By phl.DiaSemana
+                                  Select New HorarioLaboral_GridRowData With {.DiaSemana = phl.DiaSemana, .Turno1Desde = phl.Turno1Desde, .Turno1Hasta = phl.Turno1Hasta, .Turno2Desde = phl.Turno2Desde, .Turno2Hasta = phl.Turno2Hasta}).ToList
+
+            datagridviewHorarioLaboral.AutoGenerateColumns = False
+            datagridviewHorarioLaboral.DataSource = listHorarioLaboral
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer los Horarios Laborales.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionDiaSemana <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewHorarioLaboral.Rows
+                If CType(CurrentRowChecked.DataBoundItem, HorarioLaboral_GridRowData).DiaSemana = PositionDiaSemana Then
+                    datagridviewHorarioLaboral.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_Agregar(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaHorarioLaboral.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            MostrarUltimoCargoJerarquia()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_Editar(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Editar.Click
+        If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Horario Laboral para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaHorarioLaboral.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
+                MostrarUltimoCargoJerarquia()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_Eliminar(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Eliminar.Click
+        If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Horario Laboral para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_ELIMINAR) Then
+                Dim GridRowDataActual As HorarioLaboral_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData)
+
+                Mensaje = String.Format("Se eliminará el Horario Laboral seleccionado.{0}{0}Día semana: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.DiaSemana)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaHorarioEliminar As PersonaHorarioLaboral
+                    PersonaHorarioEliminar = mdbContext.PersonaHorarioLaboral.Find(mPersonaActual.IDPersona, GridRowDataActual.DiaSemana)
+                    mdbContext.PersonaHorarioLaboral.Remove(PersonaHorarioEliminar)
+                    mdbContext.SaveChanges()
+                    PersonaHorarioEliminar = Nothing
+
+                    HorarioLaboral_RefreshData()
+                    MostrarUltimoCargoJerarquia()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_Ver(sender As Object, e As EventArgs) Handles datagridviewHorarioLaboral.DoubleClick
+        If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Horario Laboral para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaHorarioLaboral.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+#End Region
+
+#Region "Vehiculos"
+    Friend Class Vehiculos_GridRowData
+        Public Property IDVehiculo As Byte
+        Public Property TipoNombre As String
+        Public Property Dominio As String
+        Public Property MarcaNombre As String
+        Public Property Modelo As String
+        Public Property Anio As Short?
+    End Class
+
+    Friend Sub Vehiculos_RefreshData(Optional ByVal PositionIDVehiculo As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listVehiculos As List(Of Vehiculos_GridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewVehiculos.CurrentRow Is Nothing Then
+                PositionIDVehiculo = 0
+            Else
+                PositionIDVehiculo = CType(datagridviewVehiculos.CurrentRow.DataBoundItem, Vehiculos_GridRowData).IDVehiculo
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listVehiculos = (From pv In mdbContext.PersonaVehiculo
+                             Join vt In mdbContext.VehiculoTipo On pv.IDVehiculoTipo Equals vt.IDVehiculoTipo
+                             Join vm In mdbContext.VehiculoMarca On pv.IDVehiculoMarca Equals vm.IDVehiculoMarca
+                             Where pv.IDPersona = mPersonaActual.IDPersona
+                             Order By vt.Nombre, pv.IDVehiculo
+                             Select New Vehiculos_GridRowData With {.IDVehiculo = pv.IDVehiculo, .TipoNombre = vt.Nombre, .Dominio = pv.Dominio, .MarcaNombre = vm.Nombre, .Modelo = pv.Modelo, .Anio = pv.Anio}).ToList
+
+            datagridviewVehiculos.AutoGenerateColumns = False
+            datagridviewVehiculos.DataSource = listVehiculos
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer los Vehículos.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDVehiculo <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewVehiculos.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Vehiculos_GridRowData).IDVehiculo = PositionIDVehiculo Then
+                    datagridviewVehiculos.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub Vehiculos_Agregar(sender As Object, e As EventArgs) Handles buttonVehiculos_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_VEHICULO_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaVehiculo.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            MostrarUltimoCargoJerarquia()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Vehiculos_Editar(sender As Object, e As EventArgs) Handles buttonVehiculos_Editar.Click
+        If datagridviewVehiculos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_VEHICULO_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaVehiculo.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData).IDVehiculo)
+                MostrarUltimoCargoJerarquia()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Vehiculos_Eliminar(sender As Object, e As EventArgs) Handles buttonVehiculos_Eliminar.Click
+        If datagridviewVehiculos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_VEHICULO_ELIMINAR) Then
+                Dim GridRowDataActual As Vehiculos_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData)
+
+                Mensaje = String.Format("Se eliminará el Vehículo seleccionado.{0}{0}Tipo: {1}{0}Marca: {2}{0}Modelo: {3}{0}Dominio: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.TipoNombre, GridRowDataActual.MarcaNombre, GridRowDataActual.Modelo, GridRowDataActual.Dominio)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaVehiculoEliminar As PersonaVehiculo
+                    PersonaVehiculoEliminar = mdbContext.PersonaVehiculo.Find(mPersonaActual.IDPersona, GridRowDataActual.IDVehiculo)
+                    mdbContext.PersonaVehiculo.Remove(PersonaVehiculoEliminar)
+                    mdbContext.SaveChanges()
+                    PersonaVehiculoEliminar = Nothing
+
+                    Vehiculos_RefreshData()
+                    MostrarUltimoCargoJerarquia()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Vehiculos_Ver(sender As Object, e As EventArgs) Handles datagridviewVehiculos.DoubleClick
+        If datagridviewVehiculos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaVehiculo.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData).IDVehiculo)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+
+
+#End Region
+
+#Region "Vacunas"
+    Friend Class Vacunas_GridRowData
+        Public Property IDVacuna As Byte
+        Public Property VacunaTipoNombre As String
+        Public Property Lote As String
+        Public Property DosisNumero As Byte?
+        Public Property Fecha As Date?
+        Public Property Vencimiento As Date?
+    End Class
+
+    Friend Sub Vacunas_RefreshData(Optional ByVal PositionIDVacuna As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listVacunas As List(Of Vacunas_GridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewVacunas.CurrentRow Is Nothing Then
+                PositionIDVacuna = 0
+            Else
+                PositionIDVacuna = CType(datagridviewVacunas.CurrentRow.DataBoundItem, Vacunas_GridRowData).IDVacuna
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listVacunas = (From pv In mdbContext.PersonaVacuna
+                           Join vt In mdbContext.VacunaTipo On pv.IDVacunaTipo Equals vt.IDVacunaTipo
+                           Where pv.IDPersona = mPersonaActual.IDPersona
+                           Order By pv.Fecha Descending
+                           Select New Vacunas_GridRowData With {.IDVacuna = pv.IDVacuna, .VacunaTipoNombre = vt.Nombre, .Lote = pv.Lote, .DosisNumero = pv.DosisNumero, .Fecha = pv.Fecha, .Vencimiento = pv.Vencimiento}).ToList
+
+            datagridviewVacunas.AutoGenerateColumns = False
+            datagridviewVacunas.DataSource = listVacunas
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al leer las Vacunas.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDVacuna <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewVacunas.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Vacunas_GridRowData).IDVacuna = PositionIDVacuna Then
+                    datagridviewVacunas.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub Vacunas_Agregar(sender As Object, e As EventArgs) Handles buttonVacunas_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_VACUNA_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaVacuna.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            MostrarUltimoCargoJerarquia()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Vacunas_Editar(sender As Object, e As EventArgs) Handles buttonVacunas_Editar.Click
+        If datagridviewVacunas.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Vacuna para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_VACUNA_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaVacuna.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData).IDVacuna)
+                MostrarUltimoCargoJerarquia()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Vacunas_Eliminar(sender As Object, e As EventArgs) Handles buttonVacunas_Eliminar.Click
+        If datagridviewVacunas.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Vacuna para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_VACUNA_ELIMINAR) Then
+                Dim GridRowDataActual As Vacunas_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData)
+
+                Mensaje = String.Format("Se eliminará la Vacuna seleccionada.{0}{0}Tipo: {1}{0}Lote: {2}{0}Dosis nº: {3}{0}Fecha: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.VacunaTipoNombre, GridRowDataActual.Lote, GridRowDataActual.DosisNumero, GridRowDataActual.Fecha)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaVacunaEliminar As PersonaVacuna
+                    PersonaVacunaEliminar = mdbContext.PersonaVacuna.Find(mPersonaActual.IDPersona, GridRowDataActual.IDVacuna)
+                    mdbContext.PersonaVacuna.Remove(PersonaVacunaEliminar)
+                    mdbContext.SaveChanges()
+                    PersonaVacunaEliminar = Nothing
+
+                    Vacunas_RefreshData()
+                    MostrarUltimoCargoJerarquia()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Vacunas_Ver(sender As Object, e As EventArgs) Handles datagridviewVacunas.DoubleClick
+        If datagridviewVacunas.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Vacuna para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaVacuna.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData).IDVacuna)
 
             Me.Cursor = Cursors.Default
         End If

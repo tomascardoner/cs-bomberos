@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formPersonaAscenso
+Partial Class formPersonaVacuna
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -46,14 +46,14 @@ Partial Class formPersonaAscenso
         Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDAscenso = New System.Windows.Forms.Label()
-        Me.textboxIDAscenso = New System.Windows.Forms.TextBox()
+        Me.labelIDVacuna = New System.Windows.Forms.Label()
+        Me.textboxIDVacuna = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         labelCargo = New System.Windows.Forms.Label()
         labelCargoJerarquia = New System.Windows.Forms.Label()
         labelFolioNumero = New System.Windows.Forms.Label()
@@ -74,7 +74,7 @@ Partial Class formPersonaAscenso
         labelCargo.Location = New System.Drawing.Point(6, 49)
         labelCargo.Name = "labelCargo"
         labelCargo.Size = New System.Drawing.Size(38, 13)
-        labelCargo.TabIndex = 2
+        labelCargo.TabIndex = 4
         labelCargo.Text = "Cargo:"
         '
         'labelCargoJerarquia
@@ -83,7 +83,7 @@ Partial Class formPersonaAscenso
         labelCargoJerarquia.Location = New System.Drawing.Point(6, 76)
         labelCargoJerarquia.Name = "labelCargoJerarquia"
         labelCargoJerarquia.Size = New System.Drawing.Size(55, 13)
-        labelCargoJerarquia.TabIndex = 4
+        labelCargoJerarquia.TabIndex = 6
         labelCargoJerarquia.Text = "Jerarquía:"
         '
         'labelFolioNumero
@@ -92,7 +92,7 @@ Partial Class formPersonaAscenso
         labelFolioNumero.Location = New System.Drawing.Point(173, 114)
         labelFolioNumero.Name = "labelFolioNumero"
         labelFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelFolioNumero.TabIndex = 8
+        labelFolioNumero.TabIndex = 10
         labelFolioNumero.Text = "Folio N°:"
         '
         'labelLibroNumero
@@ -101,7 +101,7 @@ Partial Class formPersonaAscenso
         labelLibroNumero.Location = New System.Drawing.Point(6, 114)
         labelLibroNumero.Name = "labelLibroNumero"
         labelLibroNumero.Size = New System.Drawing.Size(48, 13)
-        labelLibroNumero.TabIndex = 6
+        labelLibroNumero.TabIndex = 8
         labelLibroNumero.Text = "Libro N°:"
         '
         'labelActaNumero
@@ -110,7 +110,7 @@ Partial Class formPersonaAscenso
         labelActaNumero.Location = New System.Drawing.Point(306, 114)
         labelActaNumero.Name = "labelActaNumero"
         labelActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelActaNumero.TabIndex = 10
+        labelActaNumero.TabIndex = 12
         labelActaNumero.Text = "Acta N°:"
         '
         'labelModificacion
@@ -130,15 +130,6 @@ Partial Class formPersonaAscenso
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 18
         labelCreacion.Text = "Creación:"
-        '
-        'labelResolucionNumero
-        '
-        labelResolucionNumero.AutoSize = True
-        labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
-        labelResolucionNumero.Name = "labelResolucionNumero"
-        labelResolucionNumero.Size = New System.Drawing.Size(81, 13)
-        labelResolucionNumero.TabIndex = 12
-        labelResolucionNumero.Text = "Resolución: N°:"
         '
         'buttonGuardar
         '
@@ -187,7 +178,7 @@ Partial Class formPersonaAscenso
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(542, 39)
-        Me.toolstripMain.TabIndex = 1
+        Me.toolstripMain.TabIndex = 16
         '
         'datetimepickerFecha
         '
@@ -197,7 +188,7 @@ Partial Class formPersonaAscenso
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(116, 20)
-        Me.datetimepickerFecha.TabIndex = 1
+        Me.datetimepickerFecha.TabIndex = 3
         '
         'labelFecha
         '
@@ -205,7 +196,7 @@ Partial Class formPersonaAscenso
         Me.labelFecha.Location = New System.Drawing.Point(6, 16)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 0
+        Me.labelFecha.TabIndex = 2
         Me.labelFecha.Text = "Fecha:"
         '
         'textboxNotas
@@ -234,7 +225,7 @@ Partial Class formPersonaAscenso
         Me.comboboxCargo.Location = New System.Drawing.Point(93, 46)
         Me.comboboxCargo.Name = "comboboxCargo"
         Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargo.TabIndex = 3
+        Me.comboboxCargo.TabIndex = 5
         '
         'comboboxCargoJerarquia
         '
@@ -243,7 +234,7 @@ Partial Class formPersonaAscenso
         Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(93, 73)
         Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
         Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargoJerarquia.TabIndex = 5
+        Me.comboboxCargoJerarquia.TabIndex = 7
         '
         'textboxFolioNumero
         '
@@ -251,7 +242,7 @@ Partial Class formPersonaAscenso
         Me.textboxFolioNumero.MaxLength = 10
         Me.textboxFolioNumero.Name = "textboxFolioNumero"
         Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxFolioNumero.TabIndex = 9
+        Me.textboxFolioNumero.TabIndex = 11
         '
         'textboxLibroNumero
         '
@@ -259,7 +250,7 @@ Partial Class formPersonaAscenso
         Me.textboxLibroNumero.MaxLength = 10
         Me.textboxLibroNumero.Name = "textboxLibroNumero"
         Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxLibroNumero.TabIndex = 7
+        Me.textboxLibroNumero.TabIndex = 9
         '
         'textboxActaNumero
         '
@@ -267,7 +258,7 @@ Partial Class formPersonaAscenso
         Me.textboxActaNumero.MaxLength = 10
         Me.textboxActaNumero.Name = "textboxActaNumero"
         Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxActaNumero.TabIndex = 11
+        Me.textboxActaNumero.TabIndex = 13
         '
         'tabcontrolMain
         '
@@ -278,7 +269,7 @@ Partial Class formPersonaAscenso
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
         Me.tabcontrolMain.Size = New System.Drawing.Size(518, 201)
-        Me.tabcontrolMain.TabIndex = 0
+        Me.tabcontrolMain.TabIndex = 17
         '
         'tabpageGeneral
         '
@@ -304,18 +295,10 @@ Partial Class formPersonaAscenso
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'textboxResolucionNumero
-        '
-        Me.textboxResolucionNumero.Location = New System.Drawing.Point(93, 137)
-        Me.textboxResolucionNumero.MaxLength = 15
-        Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
-        Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
-        Me.textboxResolucionNumero.TabIndex = 13
-        '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAscenso)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDAscenso)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDVacuna)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDVacuna)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
@@ -332,25 +315,25 @@ Partial Class formPersonaAscenso
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDAscenso
+        'labelIDVacuna
         '
-        Me.labelIDAscenso.AutoSize = True
-        Me.labelIDAscenso.Location = New System.Drawing.Point(6, 93)
-        Me.labelIDAscenso.Name = "labelIDAscenso"
-        Me.labelIDAscenso.Size = New System.Drawing.Size(80, 13)
-        Me.labelIDAscenso.TabIndex = 16
-        Me.labelIDAscenso.Text = "ID de Ascenso:"
+        Me.labelIDVacuna.AutoSize = True
+        Me.labelIDVacuna.Location = New System.Drawing.Point(6, 93)
+        Me.labelIDVacuna.Name = "labelIDVacuna"
+        Me.labelIDVacuna.Size = New System.Drawing.Size(80, 13)
+        Me.labelIDVacuna.TabIndex = 16
+        Me.labelIDVacuna.Text = "ID de Vacuna:"
         '
-        'textboxIDAscenso
+        'textboxIDVacuna
         '
-        Me.textboxIDAscenso.Location = New System.Drawing.Point(114, 90)
-        Me.textboxIDAscenso.MaxLength = 10
-        Me.textboxIDAscenso.Name = "textboxIDAscenso"
-        Me.textboxIDAscenso.ReadOnly = True
-        Me.textboxIDAscenso.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDAscenso.TabIndex = 17
-        Me.textboxIDAscenso.TabStop = False
-        Me.textboxIDAscenso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDVacuna.Location = New System.Drawing.Point(114, 90)
+        Me.textboxIDVacuna.MaxLength = 10
+        Me.textboxIDVacuna.Name = "textboxIDVacuna"
+        Me.textboxIDVacuna.ReadOnly = True
+        Me.textboxIDVacuna.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDVacuna.TabIndex = 17
+        Me.textboxIDVacuna.TabStop = False
+        Me.textboxIDVacuna.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -388,7 +371,24 @@ Partial Class formPersonaAscenso
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'formPersonaAscenso
+        'labelResolucionNumero
+        '
+        labelResolucionNumero.AutoSize = True
+        labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
+        labelResolucionNumero.Name = "labelResolucionNumero"
+        labelResolucionNumero.Size = New System.Drawing.Size(81, 13)
+        labelResolucionNumero.TabIndex = 14
+        labelResolucionNumero.Text = "Resolución: N°:"
+        '
+        'textboxResolucionNumero
+        '
+        Me.textboxResolucionNumero.Location = New System.Drawing.Point(93, 137)
+        Me.textboxResolucionNumero.MaxLength = 15
+        Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
+        Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
+        Me.textboxResolucionNumero.TabIndex = 15
+        '
+        'formPersonaVacuna
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -399,9 +399,9 @@ Partial Class formPersonaAscenso
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formPersonaAscenso"
+        Me.Name = "formPersonaVacuna"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Ascenso - Promoción de la Persona"
+        Me.Text = "Vacuna - Promoción de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -430,8 +430,8 @@ Partial Class formPersonaAscenso
     Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
-    Friend WithEvents labelIDAscenso As System.Windows.Forms.Label
-    Friend WithEvents textboxIDAscenso As System.Windows.Forms.TextBox
+    Friend WithEvents labelIDVacuna As System.Windows.Forms.Label
+    Friend WithEvents textboxIDVacuna As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox

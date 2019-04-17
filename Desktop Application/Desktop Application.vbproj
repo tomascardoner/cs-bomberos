@@ -145,6 +145,24 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="formPersonaVacuna.Designer.vb">
+      <DependentUpon>formPersonaVacuna.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaVacuna.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaVehiculo.Designer.vb">
+      <DependentUpon>formPersonaVehiculo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaVehiculo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formPersonaHorarioLaboral.Designer.vb">
+      <DependentUpon>formPersonaHorarioLaboral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaHorarioLaboral.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formVehiculoMarcas.designer.vb">
       <DependentUpon>formVehiculoMarcas.vb</DependentUpon>
     </Compile>
@@ -903,6 +921,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaVacuna.resx">
+      <DependentUpon>formPersonaVacuna.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaVehiculo.resx">
+      <DependentUpon>formPersonaVehiculo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaHorarioLaboral.resx">
+      <DependentUpon>formPersonaHorarioLaboral.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUnidadBajaMotivo.resx">
       <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>
