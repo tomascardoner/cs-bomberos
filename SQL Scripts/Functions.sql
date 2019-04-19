@@ -297,3 +297,34 @@ BEGIN
 	RETURN dbo.udf_FormatElapsedYearsMonthsAndDays(@AniosAcumulados, @MesesAcumulados, @DiasAcumulados)
 END
 GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2019-04-19
+-- Description:	Devuelve las Categorías de Licencia de Conducir para una Persona
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaLicenciaConducirCategorias') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetPersonaLicenciaConducirCategorias
+GO
+
+CREATE FUNCTION udf_GetPersonaLicenciaConducirCategorias
+(
+	@IDPersona int
+) RETURNS varchar(MAX) AS
+BEGIN
+	DECLARE @ReturnValue varchar(MAX)
+
+	SELECT @ReturnValue =
+	STUFF((SELECT ', ' + LCC.Codigo
+			FROM LicenciaConducirCategoria AS LCC INNER JOIN PersonaLicenciaConducirCategoria AS PLCC ON LCC.IDLicenciaConducirCategoria = PLCC.IDLicenciaConducirCategoria
+			WHERE PLCC.IDPersona = P.IDPersona
+			ORDER BY LCC.Codigo
+			FOR XML PATH('')), 1, 2, '')
+	FROM Persona AS P
+	WHERE P.IDPersona = @IDPersona
+
+	RETURN @ReturnValue
+END
+GO
