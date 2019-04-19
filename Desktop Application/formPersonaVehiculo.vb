@@ -21,6 +21,7 @@
             With mPersonaVehiculoActual
                 .IDPersona = IDPersona
 
+                .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario

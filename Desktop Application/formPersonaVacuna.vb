@@ -22,6 +22,7 @@
                 .DosisNumero = 1
                 .Fecha = DateTime.Today
                 .Vencimiento = DateTime.Today
+                .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
