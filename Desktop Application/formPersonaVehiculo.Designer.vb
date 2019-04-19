@@ -44,6 +44,13 @@ Partial Class formPersonaVehiculo
         Me.textboxDominio = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.groupboxSeguro = New System.Windows.Forms.GroupBox()
+        Me.datetimepickerSeguroVencimiento = New System.Windows.Forms.DateTimePicker()
+        Me.labelSeguroVencimiento = New System.Windows.Forms.Label()
+        Me.comboboxCompaniaSeguro = New System.Windows.Forms.ComboBox()
+        Me.textboxSeguroPolizaNumero = New System.Windows.Forms.TextBox()
+        Me.maskedtextboxAnio = New System.Windows.Forms.MaskedTextBox()
+        Me.labelAnio = New System.Windows.Forms.Label()
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDVehiculo = New System.Windows.Forms.Label()
@@ -52,13 +59,6 @@ Partial Class formPersonaVehiculo
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.maskedtextboxAnio = New System.Windows.Forms.MaskedTextBox()
-        Me.labelAnio = New System.Windows.Forms.Label()
-        Me.groupboxSeguro = New System.Windows.Forms.GroupBox()
-        Me.comboboxCompaniaSeguro = New System.Windows.Forms.ComboBox()
-        Me.textboxSeguroPolizaNumero = New System.Windows.Forms.TextBox()
-        Me.datetimepickerSeguroVencimiento = New System.Windows.Forms.DateTimePicker()
-        Me.labelSeguroVencimiento = New System.Windows.Forms.Label()
         labelTipo = New System.Windows.Forms.Label()
         labelMarca = New System.Windows.Forms.Label()
         labelDominio = New System.Windows.Forms.Label()
@@ -70,8 +70,8 @@ Partial Class formPersonaVehiculo
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.groupboxSeguro.SuspendLayout()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelTipo
@@ -128,6 +128,24 @@ Partial Class formPersonaVehiculo
         labelModelo.TabIndex = 6
         labelModelo.Text = "Modelo:"
         '
+        'labelCompaniaSeguro
+        '
+        labelCompaniaSeguro.AutoSize = True
+        labelCompaniaSeguro.Location = New System.Drawing.Point(9, 22)
+        labelCompaniaSeguro.Name = "labelCompaniaSeguro"
+        labelCompaniaSeguro.Size = New System.Drawing.Size(59, 13)
+        labelCompaniaSeguro.TabIndex = 0
+        labelCompaniaSeguro.Text = "Compañía:"
+        '
+        'labelFolioNumero
+        '
+        labelFolioNumero.AutoSize = True
+        labelFolioNumero.Location = New System.Drawing.Point(9, 49)
+        labelFolioNumero.Name = "labelFolioNumero"
+        labelFolioNumero.Size = New System.Drawing.Size(53, 13)
+        labelFolioNumero.TabIndex = 2
+        labelFolioNumero.Text = "Póliza N°:"
+        '
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
@@ -182,7 +200,7 @@ Partial Class formPersonaVehiculo
         Me.datetimepickerVerificacionVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datetimepickerVerificacionVencimiento.Location = New System.Drawing.Point(140, 138)
         Me.datetimepickerVerificacionVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerVerificacionVencimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerVerificacionVencimiento.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerVerificacionVencimiento.Name = "datetimepickerVerificacionVencimiento"
         Me.datetimepickerVerificacionVencimiento.ShowCheckBox = True
         Me.datetimepickerVerificacionVencimiento.Size = New System.Drawing.Size(135, 20)
@@ -277,6 +295,78 @@ Partial Class formPersonaVehiculo
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'groupboxSeguro
+        '
+        Me.groupboxSeguro.Controls.Add(Me.datetimepickerSeguroVencimiento)
+        Me.groupboxSeguro.Controls.Add(Me.labelSeguroVencimiento)
+        Me.groupboxSeguro.Controls.Add(labelCompaniaSeguro)
+        Me.groupboxSeguro.Controls.Add(Me.comboboxCompaniaSeguro)
+        Me.groupboxSeguro.Controls.Add(Me.textboxSeguroPolizaNumero)
+        Me.groupboxSeguro.Controls.Add(labelFolioNumero)
+        Me.groupboxSeguro.Location = New System.Drawing.Point(9, 164)
+        Me.groupboxSeguro.Name = "groupboxSeguro"
+        Me.groupboxSeguro.Size = New System.Drawing.Size(495, 106)
+        Me.groupboxSeguro.TabIndex = 12
+        Me.groupboxSeguro.TabStop = False
+        Me.groupboxSeguro.Text = "Seguro:"
+        '
+        'datetimepickerSeguroVencimiento
+        '
+        Me.datetimepickerSeguroVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerSeguroVencimiento.Location = New System.Drawing.Point(131, 72)
+        Me.datetimepickerSeguroVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerSeguroVencimiento.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerSeguroVencimiento.Name = "datetimepickerSeguroVencimiento"
+        Me.datetimepickerSeguroVencimiento.ShowCheckBox = True
+        Me.datetimepickerSeguroVencimiento.Size = New System.Drawing.Size(135, 20)
+        Me.datetimepickerSeguroVencimiento.TabIndex = 5
+        '
+        'labelSeguroVencimiento
+        '
+        Me.labelSeguroVencimiento.AutoSize = True
+        Me.labelSeguroVencimiento.Location = New System.Drawing.Point(9, 75)
+        Me.labelSeguroVencimiento.Name = "labelSeguroVencimiento"
+        Me.labelSeguroVencimiento.Size = New System.Drawing.Size(68, 13)
+        Me.labelSeguroVencimiento.TabIndex = 4
+        Me.labelSeguroVencimiento.Text = "Vencimiento:"
+        '
+        'comboboxCompaniaSeguro
+        '
+        Me.comboboxCompaniaSeguro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCompaniaSeguro.FormattingEnabled = True
+        Me.comboboxCompaniaSeguro.Location = New System.Drawing.Point(131, 19)
+        Me.comboboxCompaniaSeguro.Name = "comboboxCompaniaSeguro"
+        Me.comboboxCompaniaSeguro.Size = New System.Drawing.Size(340, 21)
+        Me.comboboxCompaniaSeguro.TabIndex = 1
+        '
+        'textboxSeguroPolizaNumero
+        '
+        Me.textboxSeguroPolizaNumero.Location = New System.Drawing.Point(131, 46)
+        Me.textboxSeguroPolizaNumero.MaxLength = 50
+        Me.textboxSeguroPolizaNumero.Name = "textboxSeguroPolizaNumero"
+        Me.textboxSeguroPolizaNumero.Size = New System.Drawing.Size(234, 20)
+        Me.textboxSeguroPolizaNumero.TabIndex = 3
+        '
+        'maskedtextboxAnio
+        '
+        Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxAnio.Location = New System.Drawing.Point(140, 112)
+        Me.maskedtextboxAnio.Mask = "9999"
+        Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
+        Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
+        Me.maskedtextboxAnio.TabIndex = 9
+        Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'labelAnio
+        '
+        Me.labelAnio.AutoSize = True
+        Me.labelAnio.Location = New System.Drawing.Point(6, 115)
+        Me.labelAnio.Name = "labelAnio"
+        Me.labelAnio.Size = New System.Drawing.Size(29, 13)
+        Me.labelAnio.TabIndex = 8
+        Me.labelAnio.Text = "Año:"
+        '
         'textboxModelo
         '
         Me.textboxModelo.Location = New System.Drawing.Point(140, 86)
@@ -361,96 +451,6 @@ Partial Class formPersonaVehiculo
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'maskedtextboxAnio
-        '
-        Me.maskedtextboxAnio.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        Me.maskedtextboxAnio.Location = New System.Drawing.Point(140, 112)
-        Me.maskedtextboxAnio.Mask = "9999"
-        Me.maskedtextboxAnio.Name = "maskedtextboxAnio"
-        Me.maskedtextboxAnio.Size = New System.Drawing.Size(47, 20)
-        Me.maskedtextboxAnio.TabIndex = 9
-        Me.maskedtextboxAnio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.maskedtextboxAnio.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
-        '
-        'labelAnio
-        '
-        Me.labelAnio.AutoSize = True
-        Me.labelAnio.Location = New System.Drawing.Point(6, 115)
-        Me.labelAnio.Name = "labelAnio"
-        Me.labelAnio.Size = New System.Drawing.Size(29, 13)
-        Me.labelAnio.TabIndex = 8
-        Me.labelAnio.Text = "Año:"
-        '
-        'groupboxSeguro
-        '
-        Me.groupboxSeguro.Controls.Add(Me.datetimepickerSeguroVencimiento)
-        Me.groupboxSeguro.Controls.Add(Me.labelSeguroVencimiento)
-        Me.groupboxSeguro.Controls.Add(labelCompaniaSeguro)
-        Me.groupboxSeguro.Controls.Add(Me.comboboxCompaniaSeguro)
-        Me.groupboxSeguro.Controls.Add(Me.textboxSeguroPolizaNumero)
-        Me.groupboxSeguro.Controls.Add(labelFolioNumero)
-        Me.groupboxSeguro.Location = New System.Drawing.Point(9, 164)
-        Me.groupboxSeguro.Name = "groupboxSeguro"
-        Me.groupboxSeguro.Size = New System.Drawing.Size(495, 106)
-        Me.groupboxSeguro.TabIndex = 12
-        Me.groupboxSeguro.TabStop = False
-        Me.groupboxSeguro.Text = "Seguro:"
-        '
-        'labelCompaniaSeguro
-        '
-        labelCompaniaSeguro.AutoSize = True
-        labelCompaniaSeguro.Location = New System.Drawing.Point(9, 22)
-        labelCompaniaSeguro.Name = "labelCompaniaSeguro"
-        labelCompaniaSeguro.Size = New System.Drawing.Size(59, 13)
-        labelCompaniaSeguro.TabIndex = 0
-        labelCompaniaSeguro.Text = "Compañía:"
-        '
-        'comboboxCompaniaSeguro
-        '
-        Me.comboboxCompaniaSeguro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCompaniaSeguro.FormattingEnabled = True
-        Me.comboboxCompaniaSeguro.Location = New System.Drawing.Point(131, 19)
-        Me.comboboxCompaniaSeguro.Name = "comboboxCompaniaSeguro"
-        Me.comboboxCompaniaSeguro.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCompaniaSeguro.TabIndex = 1
-        '
-        'textboxSeguroPolizaNumero
-        '
-        Me.textboxSeguroPolizaNumero.Location = New System.Drawing.Point(131, 46)
-        Me.textboxSeguroPolizaNumero.MaxLength = 50
-        Me.textboxSeguroPolizaNumero.Name = "textboxSeguroPolizaNumero"
-        Me.textboxSeguroPolizaNumero.Size = New System.Drawing.Size(234, 20)
-        Me.textboxSeguroPolizaNumero.TabIndex = 3
-        '
-        'labelFolioNumero
-        '
-        labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(9, 49)
-        labelFolioNumero.Name = "labelFolioNumero"
-        labelFolioNumero.Size = New System.Drawing.Size(53, 13)
-        labelFolioNumero.TabIndex = 2
-        labelFolioNumero.Text = "Póliza N°:"
-        '
-        'datetimepickerSeguroVencimiento
-        '
-        Me.datetimepickerSeguroVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerSeguroVencimiento.Location = New System.Drawing.Point(131, 72)
-        Me.datetimepickerSeguroVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerSeguroVencimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerSeguroVencimiento.Name = "datetimepickerSeguroVencimiento"
-        Me.datetimepickerSeguroVencimiento.ShowCheckBox = True
-        Me.datetimepickerSeguroVencimiento.Size = New System.Drawing.Size(135, 20)
-        Me.datetimepickerSeguroVencimiento.TabIndex = 5
-        '
-        'labelSeguroVencimiento
-        '
-        Me.labelSeguroVencimiento.AutoSize = True
-        Me.labelSeguroVencimiento.Location = New System.Drawing.Point(9, 75)
-        Me.labelSeguroVencimiento.Name = "labelSeguroVencimiento"
-        Me.labelSeguroVencimiento.Size = New System.Drawing.Size(68, 13)
-        Me.labelSeguroVencimiento.TabIndex = 4
-        Me.labelSeguroVencimiento.Text = "Vencimiento:"
-        '
         'formPersonaVehiculo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -470,10 +470,10 @@ Partial Class formPersonaVehiculo
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        Me.tabpageNotasAuditoria.ResumeLayout(False)
-        Me.tabpageNotasAuditoria.PerformLayout()
         Me.groupboxSeguro.ResumeLayout(False)
         Me.groupboxSeguro.PerformLayout()
+        Me.tabpageNotasAuditoria.ResumeLayout(False)
+        Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

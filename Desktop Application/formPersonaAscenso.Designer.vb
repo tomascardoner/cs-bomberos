@@ -136,9 +136,9 @@ Partial Class formPersonaAscenso
         labelResolucionNumero.AutoSize = True
         labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
         labelResolucionNumero.Name = "labelResolucionNumero"
-        labelResolucionNumero.Size = New System.Drawing.Size(81, 13)
+        labelResolucionNumero.Size = New System.Drawing.Size(78, 13)
         labelResolucionNumero.TabIndex = 12
-        labelResolucionNumero.Text = "Resolución: N°:"
+        labelResolucionNumero.Text = "Resolución N°:"
         '
         'buttonGuardar
         '
@@ -192,7 +192,7 @@ Partial Class formPersonaAscenso
         'datetimepickerFecha
         '
         Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(93, 10)
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(93, 13)
         Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"

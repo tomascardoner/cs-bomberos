@@ -933,6 +933,31 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+    Friend Sub VacunaTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of VacunaTipo)
+
+        ComboBoxControl.ValueMember = "IDVacunaTipo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.VacunaTipo.Where(Function(vcs) vcs.EsActivo).OrderBy(Function(vcs) vcs.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New VacunaTipo
+            Item_Todos.IDVacunaTipo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New VacunaTipo
+            Item_NoEspecifica.IDVacunaTipo = FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
     Friend Sub LicenciaCausa(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of LicenciaCausa)
 

@@ -202,7 +202,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaHorarioLaboral" Width="1.5" PointX="15.875" PointY="139.875" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaVacuna" Width="1.5" PointX="18.125" PointY="63.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaVehiculo" Width="1.5" PointX="27.125" PointY="98.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaVehiculo" Width="2.375" PointX="27.125" PointY="98.625" />
         <EntityTypeShape EntityType="CSBomberosModel.VacunaTipo" Width="1.5" PointX="15.875" PointY="29.125" />
         <EntityTypeShape EntityType="CSBomberosModel.VehiculoCompaniaSeguro" Width="1.5" PointX="15.875" PointY="144.125" />
         <EntityTypeShape EntityType="CSBomberosModel.VehiculoMarca" Width="1.5" PointX="15.875" PointY="148" />

@@ -4,6 +4,7 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaVehiculoActual As PersonaVehiculo
 
+    Private mIsNew As Boolean
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
 #End Region
@@ -13,7 +14,8 @@
         mIsLoading = True
         mEditMode = EditMode
 
-        If IDVehiculo = 0 Then
+        mIsNew = (IDVehiculo = 0)
+        If mIsNew Then
             ' Es Nuevo
             mPersonaVehiculoActual = New PersonaVehiculo
             With mPersonaVehiculoActual
@@ -59,7 +61,7 @@
         datetimepickerVerificacionVencimiento.Enabled = mEditMode
         comboboxCompaniaSeguro.Enabled = mEditMode
         textboxSeguroPolizaNumero.ReadOnly = Not mEditMode
-        datetimepickerVerificacionVencimiento.Enabled = mEditMode
+        datetimepickerSeguroVencimiento.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -69,8 +71,9 @@
         SetAppearance()
 
         pFillAndRefreshLists.VehiculoTipo(comboboxTipo, False, False)
-        pFillAndRefreshLists.VehiculoMarca(comboboxTipo, False, False)
-        pFillAndRefreshLists.VehiculoCompaniaSeguro(comboboxTipo, False, False)
+        pFillAndRefreshLists.VehiculoMarca(comboboxMarca, False, True)
+
+        pFillAndRefreshLists.VehiculoCompaniaSeguro(comboboxCompaniaSeguro, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -90,13 +93,23 @@
         With mPersonaVehiculoActual
             CS_ComboBox.SetSelectedValue(comboboxTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDVehiculoTipo)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
-            CS_ComboBox.SetSelectedValue(comboboxMarca, SelectedItemOptions.ValueOrFirstIfUnique, .IDVehiculoMarca)
+            CS_ComboBox.SetSelectedValue(comboboxMarca, SelectedItemOptions.ValueOrFirst, .IDVehiculoMarca, CS_Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxModelo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Modelo)
             maskedtextboxAnio.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Anio)
-            datetimepickerVerificacionVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.VerificacionVencimiento)
-            CS_ComboBox.SetSelectedValue(comboboxCompaniaSeguro, SelectedItemOptions.ValueOrFirstIfUnique, .IDVehiculoCompaniaSeguro)
+            If mIsNew Then
+                datetimepickerVerificacionVencimiento.Value = Date.Today
+                datetimepickerVerificacionVencimiento.Checked = False
+            Else
+                datetimepickerVerificacionVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.VerificacionVencimiento)
+            End If
+            CS_ComboBox.SetSelectedValue(comboboxCompaniaSeguro, SelectedItemOptions.ValueOrFirst, .IDVehiculoCompaniaSeguro, CS_Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxSeguroPolizaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SeguroPolizaNumero)
-            datetimepickerSeguroVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.SeguroVencimiento)
+            If mIsNew Then
+                datetimepickerSeguroVencimiento.Value = Date.Today
+                datetimepickerSeguroVencimiento.Checked = False
+            Else
+                datetimepickerSeguroVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.SeguroVencimiento)
+            End If
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -124,11 +137,11 @@
         With mPersonaVehiculoActual
             .IDVehiculoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxTipo.SelectedValue).Value
             .Dominio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDominio.Text)
-            .IDVehiculoMarca = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxMarca.SelectedValue).Value
+            .IDVehiculoMarca = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxMarca.SelectedValue)
             .Modelo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxModelo.Text)
-            .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxAnio.Text).Value
+            .Anio = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxAnio.Text)
             .VerificacionVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerVerificacionVencimiento.Value).Value
-            .IDVehiculoCompaniaSeguro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCompaniaSeguro.SelectedValue).Value
+            .IDVehiculoCompaniaSeguro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCompaniaSeguro.SelectedValue)
             .SeguroPolizaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSeguroPolizaNumero.Text)
             .SeguroVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerSeguroVencimiento.Value).Value
 
@@ -181,6 +194,16 @@
         If comboboxTipo.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Tipo.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxTipo.Focus()
+            Exit Sub
+        End If
+        If Not datetimepickerVerificacionVencimiento.Checked Then
+            MsgBox("Debe especificar la Fecha de Vencimiento de la Verificación.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerVerificacionVencimiento.Focus()
+            Exit Sub
+        End If
+        If Not datetimepickerSeguroVencimiento.Checked Then
+            MsgBox("Debe especificar la Fecha de Vencimiento del Seguro.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerSeguroVencimiento.Focus()
             Exit Sub
         End If
 

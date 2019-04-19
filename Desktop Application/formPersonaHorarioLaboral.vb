@@ -51,7 +51,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
-        comboboxDiaSemana.Enabled = mEditMode
+        comboboxDiaSemana.Enabled = (mPersonaHorarioLaboralActual.DiaSemana = 0 And mEditMode)
         datetimepickerTurno1Desde.Enabled = mEditMode
         datetimepickerTurno1Hasta.Enabled = mEditMode
         datetimepickerTurno2Desde.Enabled = mEditMode
@@ -65,6 +65,15 @@
         SetAppearance()
 
         pFillAndRefreshLists.DiaSemana(comboboxDiaSemana, True, False, True, False, False)
+
+        datetimepickerTurno1Desde.Value = CS_Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Desde.Checked = False
+        datetimepickerTurno1Hasta.Value = CS_Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Hasta.Checked = False
+        datetimepickerTurno2Desde.Value = CS_Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Desde.Checked = False
+        datetimepickerTurno2Hasta.Value = CS_Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Hasta.Checked = False
     End Sub
 
     Friend Sub SetAppearance()
@@ -82,7 +91,7 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaHorarioLaboralActual
-            CS_ComboBox.SetSelectedValue(comboboxDiaSemana, SelectedItemOptions.ValueOrFirstIfUnique, .DiaSemana)
+            comboboxDiaSemana.SelectedIndex = Convert.ToInt16(.DiaSemana - 1)
             datetimepickerTurno1Desde.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.Turno1Desde, datetimepickerTurno1Desde)
             datetimepickerTurno1Hasta.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.Turno1Hasta, datetimepickerTurno1Hasta)
             datetimepickerTurno2Desde.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.Turno2Desde, datetimepickerTurno2Desde)
@@ -107,7 +116,7 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mPersonaHorarioLaboralActual
-            .DiaSemana = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDiaSemana.SelectedValue).Value
+            .DiaSemana = Convert.ToByte(comboboxDiaSemana.SelectedIndex + 1)
             .Turno1Desde = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerTurno1Desde.Value, datetimepickerTurno1Desde.Checked)
             .Turno1Hasta = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerTurno1Hasta.Value, datetimepickerTurno1Hasta.Checked)
             .Turno2Desde = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerTurno2Desde.Value, datetimepickerTurno2Desde.Checked)
@@ -155,6 +164,12 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+        If comboboxDiaSemana.SelectedIndex = -1 Then
+            MsgBox("Debe especificar el Día de la Semana.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxDiaSemana.Focus()
+            Exit Sub
+        End If
+
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()
 
@@ -176,7 +191,7 @@
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity
+                    Case Errors.DuplicatedEntity, Errors.PrimaryKeyViolation
                         MsgBox("No se pueden guardar los cambios porque ya existe un Horario Laboral para el Día de la Semana.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub

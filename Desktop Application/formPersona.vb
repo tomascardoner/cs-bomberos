@@ -1137,6 +1137,7 @@
 #Region "Horario Laboral"
     Friend Class HorarioLaboral_GridRowData
         Public Property DiaSemana As Byte
+        Public Property DiaSemanaNombre As String
         Public Property Turno1Desde As System.TimeSpan?
         Public Property Turno1Hasta As System.TimeSpan?
         Public Property Turno2Desde As System.TimeSpan?
@@ -1162,6 +1163,10 @@
                                   Order By phl.DiaSemana
                                   Select New HorarioLaboral_GridRowData With {.DiaSemana = phl.DiaSemana, .Turno1Desde = phl.Turno1Desde, .Turno1Hasta = phl.Turno1Hasta, .Turno2Desde = phl.Turno2Desde, .Turno2Hasta = phl.Turno2Hasta}).ToList
 
+            For Each HorarioLaboral_GridRowData_Actual As HorarioLaboral_GridRowData In listHorarioLaboral
+                HorarioLaboral_GridRowData_Actual.DiaSemanaNombre = WeekdayName(HorarioLaboral_GridRowData_Actual.DiaSemana)
+            Next
+
             datagridviewHorarioLaboral.AutoGenerateColumns = False
             datagridviewHorarioLaboral.DataSource = listHorarioLaboral
 
@@ -1183,12 +1188,21 @@
         End If
     End Sub
 
-    Private Sub HorarioLaboral_Agregar(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Agregar.Click
+    Private Sub HorarioLaboral_Agregar(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Agregar.ButtonClick
         If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaHorarioLaboral.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-            MostrarUltimoCargoJerarquia()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_AgregarMultiples(sender As Object, e As EventArgs) Handles menuitemHorarioLaboral_AgregarMultiples.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaHorarioLaboralAgregarMultiples.LoadAndShow(Me, mPersonaActual.IDPersona)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1202,7 +1216,6 @@
                 Me.Cursor = Cursors.WaitCursor
 
                 formPersonaHorarioLaboral.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
-                MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1219,7 +1232,7 @@
 
                 GridRowDataActual = CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData)
 
-                Mensaje = String.Format("Se eliminará el Horario Laboral seleccionado.{0}{0}Día semana: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.DiaSemana)
+                Mensaje = String.Format("Se eliminará el Horario Laboral seleccionado.{0}{0}Día semana: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.DiaSemanaNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
@@ -1230,7 +1243,6 @@
                     PersonaHorarioEliminar = Nothing
 
                     HorarioLaboral_RefreshData()
-                    MostrarUltimoCargoJerarquia()
 
                     Me.Cursor = Cursors.Default
                 End If
@@ -1247,6 +1259,15 @@
             formPersonaHorarioLaboral.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_FormatCellHorario(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles datagridviewHorarioLaboral.CellFormatting
+        If datagridviewHorarioLaboral.Columns(e.ColumnIndex).Name.StartsWith("columnHorarioLaboral_Turno") Then
+            If Not e.Value Is Nothing Then
+                e.Value = e.Value.ToString().Substring(0, 5)
+                e.FormattingApplied = True
+            End If
         End If
     End Sub
 #End Region
@@ -1277,10 +1298,11 @@
         Try
             listVehiculos = (From pv In mdbContext.PersonaVehiculo
                              Join vt In mdbContext.VehiculoTipo On pv.IDVehiculoTipo Equals vt.IDVehiculoTipo
-                             Join vm In mdbContext.VehiculoMarca On pv.IDVehiculoMarca Equals vm.IDVehiculoMarca
+                             Group Join vm In mdbContext.VehiculoMarca On pv.IDVehiculoMarca Equals vm.IDVehiculoMarca Into VehiculoMarca_Group = Group
+                             From vmg In VehiculoMarca_Group.DefaultIfEmpty()
                              Where pv.IDPersona = mPersonaActual.IDPersona
                              Order By vt.Nombre, pv.IDVehiculo
-                             Select New Vehiculos_GridRowData With {.IDVehiculo = pv.IDVehiculo, .TipoNombre = vt.Nombre, .Dominio = pv.Dominio, .MarcaNombre = vm.Nombre, .Modelo = pv.Modelo, .Anio = pv.Anio}).ToList
+                             Select New Vehiculos_GridRowData With {.IDVehiculo = pv.IDVehiculo, .TipoNombre = vt.Nombre, .Dominio = pv.Dominio, .MarcaNombre = If(vmg Is Nothing, "", vmg.Nombre), .Modelo = pv.Modelo, .Anio = pv.Anio}).ToList
 
             datagridviewVehiculos.AutoGenerateColumns = False
             datagridviewVehiculos.DataSource = listVehiculos
@@ -1308,7 +1330,6 @@
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaVehiculo.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-            MostrarUltimoCargoJerarquia()
 
             Me.Cursor = Cursors.Default
         End If
@@ -1322,7 +1343,6 @@
                 Me.Cursor = Cursors.WaitCursor
 
                 formPersonaVehiculo.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData).IDVehiculo)
-                MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1350,7 +1370,6 @@
                     PersonaVehiculoEliminar = Nothing
 
                     Vehiculos_RefreshData()
-                    MostrarUltimoCargoJerarquia()
 
                     Me.Cursor = Cursors.Default
                 End If
@@ -1430,7 +1449,6 @@
             Me.Cursor = Cursors.WaitCursor
 
             formPersonaVacuna.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-            MostrarUltimoCargoJerarquia()
 
             Me.Cursor = Cursors.Default
         End If
@@ -1444,7 +1462,6 @@
                 Me.Cursor = Cursors.WaitCursor
 
                 formPersonaVacuna.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData).IDVacuna)
-                MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
             End If
@@ -1461,7 +1478,7 @@
 
                 GridRowDataActual = CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData)
 
-                Mensaje = String.Format("Se eliminará la Vacuna seleccionada.{0}{0}Tipo: {1}{0}Lote: {2}{0}Dosis nº: {3}{0}Fecha: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.VacunaTipoNombre, GridRowDataActual.Lote, GridRowDataActual.DosisNumero, GridRowDataActual.Fecha)
+                Mensaje = String.Format("Se eliminará la Vacuna seleccionada.{0}{0}Tipo: {1}{0}Lote: {2}{0}Dosis nº: {3}{0}Fecha: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.VacunaTipoNombre, GridRowDataActual.Lote, GridRowDataActual.DosisNumero, GridRowDataActual.Fecha.Value.ToShortDateString())
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
@@ -1472,7 +1489,6 @@
                     PersonaVacunaEliminar = Nothing
 
                     Vacunas_RefreshData()
-                    MostrarUltimoCargoJerarquia()
 
                     Me.Cursor = Cursors.Default
                 End If

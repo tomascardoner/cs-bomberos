@@ -19,7 +19,9 @@
             With mPersonaVacunaActual
                 .IDPersona = IDPersona
 
+                .DosisNumero = 1
                 .Fecha = DateTime.Today
+                .Vencimiento = DateTime.Today
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
@@ -52,13 +54,11 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
+        comboboxTipo.Enabled = mEditMode
+        textboxLote.ReadOnly = Not mEditMode
+        updownDosisNumero.Enabled = mEditMode
         datetimepickerFecha.Enabled = mEditMode
-        comboboxCargo.Enabled = mEditMode
-        comboboxCargoJerarquia.Enabled = mEditMode
-        textboxLibroNumero.ReadOnly = Not mEditMode
-        textboxFolioNumero.ReadOnly = Not mEditMode
-        textboxActaNumero.ReadOnly = Not mEditMode
-        textboxResolucionNumero.ReadOnly = Not mEditMode
+        datetimepickerFechaVencimiento.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -67,7 +67,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cargo(comboboxCargo, False, False)
+        pFillAndRefreshLists.VacunaTipo(comboboxTipo, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -85,13 +85,11 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaVacunaActual
+            CS_ComboBox.SetSelectedValue(comboboxTipo, SelectedItemOptions.ValueOrFirstIfUnique, .IDVacunaTipo)
+            textboxLote.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Lote)
+            updownDosisNumero.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.DosisNumero)
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            'CS_ComboBox.SetSelectedValue(comboboxCargo, SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
-            'CS_ComboBox.SetSelectedValue(comboboxCargoJerarquia, SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
-            'textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
-            'textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
-            'textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
-            'textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
+            datetimepickerFechaVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Vencimiento)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -117,13 +115,11 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mPersonaVacunaActual
-            .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            '.IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargo.SelectedValue).Value
-            '.IDJerarquia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargoJerarquia.SelectedValue).Value
-            '.LibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLibroNumero.Text)
-            '.FolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFolioNumero.Text)
-            '.ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
-            '.ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
+            .IDVacunaTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxTipo.SelectedValue).Value
+            .Lote = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLote.Text)
+            .DosisNumero = CS_ValueTranslation.FromControlUpDownToObjectByte(updownDosisNumero.Value)
+            .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value, datetimepickerFecha.Checked)
+            .Vencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaVencimiento.Value, datetimepickerFechaVencimiento.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
@@ -148,13 +144,8 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLibroNumero.GotFocus, textboxFolioNumero.GotFocus, textboxActaNumero.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLote.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
-    End Sub
-
-    Private Sub comboboxCargo_SelectedIndexChanged() Handles comboboxCargo.SelectedIndexChanged
-        pFillAndRefreshLists.CargoJerarquia(comboboxCargoJerarquia, False, False, CByte(comboboxCargo.SelectedValue))
-        comboboxCargoJerarquia.SelectedItem = Nothing
     End Sub
 
 #End Region
@@ -172,14 +163,9 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxCargo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCargo.Focus()
-            Exit Sub
-        End If
-        If comboboxCargoJerarquia.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar la Jerarquía.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCargoJerarquia.Focus()
+        If comboboxTipo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Tipo de Vacuna.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxTipo.Focus()
             Exit Sub
         End If
 
@@ -218,7 +204,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
                     Case Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Vacuna - Promoción con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Vacuna con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -231,6 +217,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

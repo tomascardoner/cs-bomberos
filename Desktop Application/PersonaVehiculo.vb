@@ -18,7 +18,7 @@ Partial Public Class PersonaVehiculo
     Public Property IDVehiculoMarca As Nullable(Of Short)
     Public Property Modelo As String
     Public Property Anio As Nullable(Of Short)
-    Public Property VerificacionVencimiento As Nullable(Of Date)
+    Public Property VerificacionVencimiento As Date
     Public Property IDVehiculoCompaniaSeguro As Nullable(Of Short)
     Public Property SeguroPolizaNumero As String
     Public Property SeguroVencimiento As Date

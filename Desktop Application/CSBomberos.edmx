@@ -7196,7 +7196,7 @@
           <Property Name="IDVehiculoMarca" Type="Int16" />
           <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Anio" Type="Int16" />
-          <Property Name="VerificacionVencimiento" Type="DateTime" Precision="0" />
+          <Property Name="VerificacionVencimiento" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="IDVehiculoCompaniaSeguro" Type="Int16" />
           <Property Name="SeguroPolizaNumero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="SeguroVencimiento" Type="DateTime" Nullable="false" Precision="0" />

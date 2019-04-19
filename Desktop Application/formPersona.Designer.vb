@@ -26,6 +26,8 @@ Partial Class formPersona
         Dim labelApellido As System.Windows.Forms.Label
         Dim labelNombre As System.Windows.Forms.Label
         Dim labelMatriculaNumero As System.Windows.Forms.Label
+        Dim labelPeso As System.Windows.Forms.Label
+        Dim labelAltura As System.Windows.Forms.Label
         Dim labelCargoJerarquiaActual As System.Windows.Forms.Label
         Dim labelIOMANumeroAfiliado As System.Windows.Forms.Label
         Dim labelIOMATiene As System.Windows.Forms.Label
@@ -63,16 +65,14 @@ Partial Class formPersona
         Dim labelDomicilioLaboralProvincia As System.Windows.Forms.Label
         Dim labelDomicilioLaboralNumero As System.Windows.Forms.Label
         Dim labelDomicilioLaboralPiso As System.Windows.Forms.Label
-        Dim labelEsActivo As System.Windows.Forms.Label
-        Dim labelNotas As System.Windows.Forms.Label
-        Dim labelModificacion As System.Windows.Forms.Label
-        Dim labelCreacion As System.Windows.Forms.Label
-        Dim labelAltura As System.Windows.Forms.Label
-        Dim labelPeso As System.Windows.Forms.Label
         Dim labelHorarioLaboralObservaciones As System.Windows.Forms.Label
         Dim labelLicenciaConducirCategoria As System.Windows.Forms.Label
         Dim labelLicenciaConducirvencimiento As System.Windows.Forms.Label
         Dim labelLicenciaConducirNumero As System.Windows.Forms.Label
+        Dim labelEsActivo As System.Windows.Forms.Label
+        Dim labelNotas As System.Windows.Forms.Label
+        Dim labelModificacion As System.Windows.Forms.Label
+        Dim labelCreacion As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -93,6 +93,7 @@ Partial Class formPersona
         Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -187,13 +188,14 @@ Partial Class formPersona
         Me.panelHorarioLaboral = New System.Windows.Forms.TableLayoutPanel()
         Me.panelHorarioLaboralGrilla = New System.Windows.Forms.Panel()
         Me.datagridviewHorarioLaboral = New System.Windows.Forms.DataGridView()
-        Me.columnHorarios_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTurno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTurno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTurno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTurno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripHorarioLaboral = New System.Windows.Forms.ToolStrip()
-        Me.buttonHorarioLaboral_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonHorarioLaboral_Agregar = New System.Windows.Forms.ToolStripSplitButton()
+        Me.menuitemHorarioLaboral_AgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonHorarioLaboral_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonHorarioLaboral_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.panelHorarioLaboralObservaciones = New System.Windows.Forms.Panel()
@@ -283,6 +285,8 @@ Partial Class formPersona
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
+        labelPeso = New System.Windows.Forms.Label()
+        labelAltura = New System.Windows.Forms.Label()
         labelCargoJerarquiaActual = New System.Windows.Forms.Label()
         labelIOMANumeroAfiliado = New System.Windows.Forms.Label()
         labelIOMATiene = New System.Windows.Forms.Label()
@@ -320,16 +324,14 @@ Partial Class formPersona
         labelDomicilioLaboralProvincia = New System.Windows.Forms.Label()
         labelDomicilioLaboralNumero = New System.Windows.Forms.Label()
         labelDomicilioLaboralPiso = New System.Windows.Forms.Label()
-        labelEsActivo = New System.Windows.Forms.Label()
-        labelNotas = New System.Windows.Forms.Label()
-        labelModificacion = New System.Windows.Forms.Label()
-        labelCreacion = New System.Windows.Forms.Label()
-        labelAltura = New System.Windows.Forms.Label()
-        labelPeso = New System.Windows.Forms.Label()
         labelHorarioLaboralObservaciones = New System.Windows.Forms.Label()
         labelLicenciaConducirCategoria = New System.Windows.Forms.Label()
         labelLicenciaConducirvencimiento = New System.Windows.Forms.Label()
         labelLicenciaConducirNumero = New System.Windows.Forms.Label()
+        labelEsActivo = New System.Windows.Forms.Label()
+        labelNotas = New System.Windows.Forms.Label()
+        labelModificacion = New System.Windows.Forms.Label()
+        labelCreacion = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -410,6 +412,24 @@ Partial Class formPersona
         labelMatriculaNumero.Size = New System.Drawing.Size(65, 16)
         labelMatriculaNumero.TabIndex = 0
         labelMatriculaNumero.Text = "Matrícula:"
+        '
+        'labelPeso
+        '
+        labelPeso.AutoSize = True
+        labelPeso.Location = New System.Drawing.Point(220, 134)
+        labelPeso.Name = "labelPeso"
+        labelPeso.Size = New System.Drawing.Size(34, 13)
+        labelPeso.TabIndex = 21
+        labelPeso.Text = "Peso:"
+        '
+        'labelAltura
+        '
+        labelAltura.AutoSize = True
+        labelAltura.Location = New System.Drawing.Point(6, 134)
+        labelAltura.Name = "labelAltura"
+        labelAltura.Size = New System.Drawing.Size(37, 13)
+        labelAltura.TabIndex = 19
+        labelAltura.Text = "Altura:"
         '
         'labelCargoJerarquiaActual
         '
@@ -746,60 +766,6 @@ Partial Class formPersona
         labelDomicilioLaboralPiso.TabIndex = 4
         labelDomicilioLaboralPiso.Text = "Piso:"
         '
-        'labelEsActivo
-        '
-        labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 311)
-        labelEsActivo.Name = "labelEsActivo"
-        labelEsActivo.Size = New System.Drawing.Size(40, 13)
-        labelEsActivo.TabIndex = 2
-        labelEsActivo.Text = "Activo:"
-        '
-        'labelNotas
-        '
-        labelNotas.AutoSize = True
-        labelNotas.Location = New System.Drawing.Point(6, 9)
-        labelNotas.Name = "labelNotas"
-        labelNotas.Size = New System.Drawing.Size(38, 13)
-        labelNotas.TabIndex = 0
-        labelNotas.Text = "Notas:"
-        '
-        'labelModificacion
-        '
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 386)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 7
-        labelModificacion.Text = "Ultima Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(7, 360)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 4
-        labelCreacion.Text = "Creación:"
-        '
-        'labelAltura
-        '
-        labelAltura.AutoSize = True
-        labelAltura.Location = New System.Drawing.Point(6, 134)
-        labelAltura.Name = "labelAltura"
-        labelAltura.Size = New System.Drawing.Size(37, 13)
-        labelAltura.TabIndex = 19
-        labelAltura.Text = "Altura:"
-        '
-        'labelPeso
-        '
-        labelPeso.AutoSize = True
-        labelPeso.Location = New System.Drawing.Point(220, 134)
-        labelPeso.Name = "labelPeso"
-        labelPeso.Size = New System.Drawing.Size(34, 13)
-        labelPeso.TabIndex = 21
-        labelPeso.Text = "Peso:"
-        '
         'labelHorarioLaboralObservaciones
         '
         labelHorarioLaboralObservaciones.AutoSize = True
@@ -838,6 +804,42 @@ Partial Class formPersona
         labelLicenciaConducirNumero.TabIndex = 11
         labelLicenciaConducirNumero.Text = "Licencia de conducir:"
         Me.tooltipMain.SetToolTip(labelLicenciaConducirNumero, "Ingrese el Número de Documento sin utilizar puntos.")
+        '
+        'labelEsActivo
+        '
+        labelEsActivo.AutoSize = True
+        labelEsActivo.Location = New System.Drawing.Point(6, 311)
+        labelEsActivo.Name = "labelEsActivo"
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        labelEsActivo.TabIndex = 2
+        labelEsActivo.Text = "Activo:"
+        '
+        'labelNotas
+        '
+        labelNotas.AutoSize = True
+        labelNotas.Location = New System.Drawing.Point(6, 9)
+        labelNotas.Name = "labelNotas"
+        labelNotas.Size = New System.Drawing.Size(38, 13)
+        labelNotas.TabIndex = 0
+        labelNotas.Text = "Notas:"
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Location = New System.Drawing.Point(6, 386)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
+        labelModificacion.TabIndex = 7
+        labelModificacion.Text = "Ultima Modificación:"
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Location = New System.Drawing.Point(7, 360)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
+        labelCreacion.TabIndex = 4
+        labelCreacion.Text = "Creación:"
         '
         'textboxApellido
         '
@@ -1849,74 +1851,74 @@ Partial Class formPersona
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewHorarioLaboral.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.datagridviewHorarioLaboral.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewHorarioLaboral.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnHorarios_DiaSemana, Me.columnTurno1Desde, Me.columnTurno1Hasta, Me.columnTurno2Desde, Me.columnTurno2Hasta})
+        Me.datagridviewHorarioLaboral.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnHorarioLaboral_DiaSemana, Me.columnHorarioLaboral_Turno1Desde, Me.columnHorarioLaboral_Turno1Hasta, Me.columnHorarioLaboral_Turno2Desde, Me.columnHorarioLaboral_Turno2Hasta})
         Me.datagridviewHorarioLaboral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewHorarioLaboral.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewHorarioLaboral.Location = New System.Drawing.Point(87, 0)
+        Me.datagridviewHorarioLaboral.Location = New System.Drawing.Point(98, 0)
         Me.datagridviewHorarioLaboral.MultiSelect = False
         Me.datagridviewHorarioLaboral.Name = "datagridviewHorarioLaboral"
         Me.datagridviewHorarioLaboral.ReadOnly = True
         Me.datagridviewHorarioLaboral.RowHeadersVisible = False
         Me.datagridviewHorarioLaboral.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewHorarioLaboral.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(559, 343)
+        Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(548, 343)
         Me.datagridviewHorarioLaboral.TabIndex = 10
         '
-        'columnHorarios_DiaSemana
+        'columnHorarioLaboral_DiaSemana
         '
-        Me.columnHorarios_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarios_DiaSemana.DataPropertyName = "DiaSemanaNombre"
+        Me.columnHorarioLaboral_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_DiaSemana.DataPropertyName = "DiaSemanaNombre"
         DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnHorarios_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnHorarios_DiaSemana.HeaderText = "Día semana"
-        Me.columnHorarios_DiaSemana.Name = "columnHorarios_DiaSemana"
-        Me.columnHorarios_DiaSemana.ReadOnly = True
-        Me.columnHorarios_DiaSemana.Width = 83
+        Me.columnHorarioLaboral_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnHorarioLaboral_DiaSemana.HeaderText = "Día semana"
+        Me.columnHorarioLaboral_DiaSemana.Name = "columnHorarioLaboral_DiaSemana"
+        Me.columnHorarioLaboral_DiaSemana.ReadOnly = True
+        Me.columnHorarioLaboral_DiaSemana.Width = 83
         '
-        'columnTurno1Desde
+        'columnHorarioLaboral_Turno1Desde
         '
-        Me.columnTurno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTurno1Desde.DataPropertyName = "Turno1Desde"
+        Me.columnHorarioLaboral_Turno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Desde.DataPropertyName = "Turno1Desde"
         DataGridViewCellStyle6.Format = "t"
         DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnTurno1Desde.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnTurno1Desde.HeaderText = "Mañana desde"
-        Me.columnTurno1Desde.Name = "columnTurno1Desde"
-        Me.columnTurno1Desde.ReadOnly = True
-        Me.columnTurno1Desde.Width = 95
+        Me.columnHorarioLaboral_Turno1Desde.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnHorarioLaboral_Turno1Desde.HeaderText = "Mañana desde"
+        Me.columnHorarioLaboral_Turno1Desde.Name = "columnHorarioLaboral_Turno1Desde"
+        Me.columnHorarioLaboral_Turno1Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Desde.Width = 95
         '
-        'columnTurno1Hasta
+        'columnHorarioLaboral_Turno1Hasta
         '
-        Me.columnTurno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTurno1Hasta.DataPropertyName = "Turno1Hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Hasta.DataPropertyName = "Turno1Hasta"
         DataGridViewCellStyle7.Format = "t"
-        Me.columnTurno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
-        Me.columnTurno1Hasta.HeaderText = "Mañana hasta"
-        Me.columnTurno1Hasta.Name = "columnTurno1Hasta"
-        Me.columnTurno1Hasta.ReadOnly = True
-        Me.columnTurno1Hasta.Width = 92
+        Me.columnHorarioLaboral_Turno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
+        Me.columnHorarioLaboral_Turno1Hasta.HeaderText = "Mañana hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.Name = "columnHorarioLaboral_Turno1Hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Hasta.Width = 92
         '
-        'columnTurno2Desde
+        'columnHorarioLaboral_Turno2Desde
         '
-        Me.columnTurno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTurno2Desde.DataPropertyName = "Turno2Desde"
+        Me.columnHorarioLaboral_Turno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Desde.DataPropertyName = "Turno2Desde"
         DataGridViewCellStyle8.Format = "t"
-        Me.columnTurno2Desde.DefaultCellStyle = DataGridViewCellStyle8
-        Me.columnTurno2Desde.HeaderText = "Tarde desde"
-        Me.columnTurno2Desde.Name = "columnTurno2Desde"
-        Me.columnTurno2Desde.ReadOnly = True
-        Me.columnTurno2Desde.Width = 85
+        Me.columnHorarioLaboral_Turno2Desde.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnHorarioLaboral_Turno2Desde.HeaderText = "Tarde desde"
+        Me.columnHorarioLaboral_Turno2Desde.Name = "columnHorarioLaboral_Turno2Desde"
+        Me.columnHorarioLaboral_Turno2Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Desde.Width = 85
         '
-        'columnTurno2Hasta
+        'columnHorarioLaboral_Turno2Hasta
         '
-        Me.columnTurno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnTurno2Hasta.DataPropertyName = "Turno2hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Hasta.DataPropertyName = "Turno2hasta"
         DataGridViewCellStyle9.Format = "t"
-        Me.columnTurno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
-        Me.columnTurno2Hasta.HeaderText = "Tarde hasta"
-        Me.columnTurno2Hasta.Name = "columnTurno2Hasta"
-        Me.columnTurno2Hasta.ReadOnly = True
-        Me.columnTurno2Hasta.Width = 82
+        Me.columnHorarioLaboral_Turno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnHorarioLaboral_Turno2Hasta.HeaderText = "Tarde hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.Name = "columnHorarioLaboral_Turno2Hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Hasta.Width = 82
         '
         'toolstripHorarioLaboral
         '
@@ -1927,18 +1929,25 @@ Partial Class formPersona
         Me.toolstripHorarioLaboral.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripHorarioLaboral.Location = New System.Drawing.Point(0, 0)
         Me.toolstripHorarioLaboral.Name = "toolstripHorarioLaboral"
-        Me.toolstripHorarioLaboral.Size = New System.Drawing.Size(87, 343)
+        Me.toolstripHorarioLaboral.Size = New System.Drawing.Size(98, 343)
         Me.toolstripHorarioLaboral.TabIndex = 11
         '
         'buttonHorarioLaboral_Agregar
         '
+        Me.buttonHorarioLaboral_Agregar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemHorarioLaboral_AgregarMultiples})
         Me.buttonHorarioLaboral_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonHorarioLaboral_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonHorarioLaboral_Agregar.Name = "buttonHorarioLaboral_Agregar"
-        Me.buttonHorarioLaboral_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonHorarioLaboral_Agregar.Size = New System.Drawing.Size(95, 36)
         Me.buttonHorarioLaboral_Agregar.Text = "Agregar"
+        '
+        'menuitemHorarioLaboral_AgregarMultiples
+        '
+        Me.menuitemHorarioLaboral_AgregarMultiples.Name = "menuitemHorarioLaboral_AgregarMultiples"
+        Me.menuitemHorarioLaboral_AgregarMultiples.Size = New System.Drawing.Size(123, 22)
+        Me.menuitemHorarioLaboral_AgregarMultiples.Text = "Múltiples"
         '
         'buttonHorarioLaboral_Editar
         '
@@ -1947,7 +1956,7 @@ Partial Class formPersona
         Me.buttonHorarioLaboral_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonHorarioLaboral_Editar.Name = "buttonHorarioLaboral_Editar"
-        Me.buttonHorarioLaboral_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonHorarioLaboral_Editar.Size = New System.Drawing.Size(95, 36)
         Me.buttonHorarioLaboral_Editar.Text = "Editar"
         '
         'buttonHorarioLaboral_Eliminar
@@ -1957,7 +1966,7 @@ Partial Class formPersona
         Me.buttonHorarioLaboral_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonHorarioLaboral_Eliminar.Name = "buttonHorarioLaboral_Eliminar"
-        Me.buttonHorarioLaboral_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonHorarioLaboral_Eliminar.Size = New System.Drawing.Size(95, 36)
         Me.buttonHorarioLaboral_Eliminar.Text = "Eliminar"
         '
         'panelHorarioLaboralObservaciones
@@ -2207,7 +2216,7 @@ Partial Class formPersona
         'columnVacunas_Tipo
         '
         Me.columnVacunas_Tipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnVacunas_Tipo.DataPropertyName = "TipoNombre"
+        Me.columnVacunas_Tipo.DataPropertyName = "VacunaTipoNombre"
         Me.columnVacunas_Tipo.HeaderText = "Tipo"
         Me.columnVacunas_Tipo.Name = "columnVacunas_Tipo"
         Me.columnVacunas_Tipo.ReadOnly = True
@@ -2226,6 +2235,8 @@ Partial Class formPersona
         '
         Me.columnVacunas_DosisNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnVacunas_DosisNumero.DataPropertyName = "DosisNumero"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnVacunas_DosisNumero.DefaultCellStyle = DataGridViewCellStyle12
         Me.columnVacunas_DosisNumero.HeaderText = "Dosis nº"
         Me.columnVacunas_DosisNumero.Name = "columnVacunas_DosisNumero"
         Me.columnVacunas_DosisNumero.ReadOnly = True
@@ -2235,9 +2246,9 @@ Partial Class formPersona
         '
         Me.columnVacunas_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnVacunas_Fecha.DataPropertyName = "Fecha"
-        DataGridViewCellStyle12.Format = "d"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.columnVacunas_Fecha.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle13.Format = "d"
+        DataGridViewCellStyle13.NullValue = Nothing
+        Me.columnVacunas_Fecha.DefaultCellStyle = DataGridViewCellStyle13
         Me.columnVacunas_Fecha.HeaderText = "Fecha"
         Me.columnVacunas_Fecha.Name = "columnVacunas_Fecha"
         Me.columnVacunas_Fecha.ReadOnly = True
@@ -2247,8 +2258,8 @@ Partial Class formPersona
         '
         Me.columnVacunas_Vencimiento.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnVacunas_Vencimiento.DataPropertyName = "Vencimiento"
-        DataGridViewCellStyle13.Format = "d"
-        Me.columnVacunas_Vencimiento.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle14.Format = "d"
+        Me.columnVacunas_Vencimiento.DefaultCellStyle = DataGridViewCellStyle14
         Me.columnVacunas_Vencimiento.HeaderText = "Vencimiento"
         Me.columnVacunas_Vencimiento.Name = "columnVacunas_Vencimiento"
         Me.columnVacunas_Vencimiento.ReadOnly = True
@@ -2313,11 +2324,11 @@ Partial Class formPersona
         Me.datagridviewLicencias.AllowUserToAddRows = False
         Me.datagridviewLicencias.AllowUserToDeleteRows = False
         Me.datagridviewLicencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewLicencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewLicencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
         Me.datagridviewLicencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewLicencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnLicencias_Fecha, Me.columnLicencias_Causa, Me.columnLicencias_FechaDesde, Me.columnLicencias_FechaHasta})
         Me.datagridviewLicencias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2436,11 +2447,11 @@ Partial Class formPersona
         Me.datagridviewSanciones.AllowUserToAddRows = False
         Me.datagridviewSanciones.AllowUserToDeleteRows = False
         Me.datagridviewSanciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
         Me.datagridviewSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
         Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2541,11 +2552,11 @@ Partial Class formPersona
         Me.datagridviewCapacitaciones.AllowUserToAddRows = False
         Me.datagridviewCapacitaciones.AllowUserToDeleteRows = False
         Me.datagridviewCapacitaciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCapacitaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCapacitaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
         Me.datagridviewCapacitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewCapacitaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCapacitaciones_Fecha, Me.columnCapacitaciones_CursoNombre})
         Me.datagridviewCapacitaciones.Dock = System.Windows.Forms.DockStyle.Fill
@@ -2637,11 +2648,11 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.AllowUserToAddRows = False
         Me.datagridviewCalificaciones.AllowUserToDeleteRows = False
         Me.datagridviewCalificaciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCalificaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCalificaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle18
         Me.datagridviewCalificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.datagridviewCalificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewCalificaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCalificaciones_AnioInstancia, Me.columnCalificaciones_ConceptosCalificaciones})
@@ -2661,8 +2672,8 @@ Partial Class formPersona
         '
         Me.columnCalificaciones_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCalificaciones_AnioInstancia.DataPropertyName = "AnioInstancia"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle19
         Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
         Me.columnCalificaciones_AnioInstancia.MinimumWidth = 110
         Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
@@ -2673,8 +2684,8 @@ Partial Class formPersona
         '
         Me.columnCalificaciones_ConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCalificaciones_ConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
-        DataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle20
         Me.columnCalificaciones_ConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
         Me.columnCalificaciones_ConceptosCalificaciones.Name = "columnCalificaciones_ConceptosCalificaciones"
         Me.columnCalificaciones_ConceptosCalificaciones.ReadOnly = True
@@ -2748,11 +2759,11 @@ Partial Class formPersona
         Me.datagridviewExamenes.AllowUserToAddRows = False
         Me.datagridviewExamenes.AllowUserToDeleteRows = False
         Me.datagridviewExamenes.AllowUserToResizeRows = False
-        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewExamenes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewExamenes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle21
         Me.datagridviewExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewExamenes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnExamenes_AnioInstancia, Me.columnExamenes_Calificacion})
         Me.datagridviewExamenes.Dock = System.Windows.Forms.DockStyle.Fill
@@ -3173,7 +3184,6 @@ Partial Class formPersona
     Friend WithEvents panelHorarioLaboralGrilla As Panel
     Friend WithEvents datagridviewHorarioLaboral As DataGridView
     Friend WithEvents toolstripHorarioLaboral As ToolStrip
-    Friend WithEvents buttonHorarioLaboral_Agregar As ToolStripButton
     Friend WithEvents buttonHorarioLaboral_Editar As ToolStripButton
     Friend WithEvents buttonHorarioLaboral_Eliminar As ToolStripButton
     Friend WithEvents panelHorarioLaboralObservaciones As Panel
@@ -3203,14 +3213,16 @@ Partial Class formPersona
     Friend WithEvents buttonVacunas_Agregar As ToolStripButton
     Friend WithEvents buttonVacunas_Editar As ToolStripButton
     Friend WithEvents buttonVacunas_Eliminar As ToolStripButton
+    Friend WithEvents buttonHorarioLaboral_Agregar As ToolStripSplitButton
+    Friend WithEvents menuitemHorarioLaboral_AgregarMultiples As ToolStripMenuItem
     Friend WithEvents columnVacunas_Tipo As DataGridViewTextBoxColumn
     Friend WithEvents columnVacunas_Lote As DataGridViewTextBoxColumn
     Friend WithEvents columnVacunas_DosisNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnVacunas_Fecha As DataGridViewTextBoxColumn
     Friend WithEvents columnVacunas_Vencimiento As DataGridViewTextBoxColumn
-    Friend WithEvents columnHorarios_DiaSemana As DataGridViewTextBoxColumn
-    Friend WithEvents columnTurno1Desde As DataGridViewTextBoxColumn
-    Friend WithEvents columnTurno1Hasta As DataGridViewTextBoxColumn
-    Friend WithEvents columnTurno2Desde As DataGridViewTextBoxColumn
-    Friend WithEvents columnTurno2Hasta As DataGridViewTextBoxColumn
+    Friend WithEvents columnHorarioLaboral_DiaSemana As DataGridViewTextBoxColumn
+    Friend WithEvents columnHorarioLaboral_Turno1Desde As DataGridViewTextBoxColumn
+    Friend WithEvents columnHorarioLaboral_Turno1Hasta As DataGridViewTextBoxColumn
+    Friend WithEvents columnHorarioLaboral_Turno2Desde As DataGridViewTextBoxColumn
+    Friend WithEvents columnHorarioLaboral_Turno2Hasta As DataGridViewTextBoxColumn
 End Class

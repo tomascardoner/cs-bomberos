@@ -22,14 +22,11 @@ Partial Class formPersonaVacuna
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim labelCargo As System.Windows.Forms.Label
-        Dim labelCargoJerarquia As System.Windows.Forms.Label
-        Dim labelFolioNumero As System.Windows.Forms.Label
-        Dim labelLibroNumero As System.Windows.Forms.Label
-        Dim labelActaNumero As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim labelResolucionNumero As System.Windows.Forms.Label
+        Dim labelLote As System.Windows.Forms.Label
+        Dim labelDosisNumero As System.Windows.Forms.Label
+        Dim labelTipo As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -39,13 +36,13 @@ Partial Class formPersonaVacuna
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.comboboxCargo = New System.Windows.Forms.ComboBox()
-        Me.comboboxCargoJerarquia = New System.Windows.Forms.ComboBox()
-        Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
-        Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
-        Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxTipo = New System.Windows.Forms.ComboBox()
+        Me.datetimepickerFechaVencimiento = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaVencimiento = New System.Windows.Forms.Label()
+        Me.updownDosisNumero = New System.Windows.Forms.NumericUpDown()
+        Me.textboxLote = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDVacuna = New System.Windows.Forms.Label()
         Me.textboxIDVacuna = New System.Windows.Forms.TextBox()
@@ -53,65 +50,17 @@ Partial Class formPersonaVacuna
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
-        labelCargo = New System.Windows.Forms.Label()
-        labelCargoJerarquia = New System.Windows.Forms.Label()
-        labelFolioNumero = New System.Windows.Forms.Label()
-        labelLibroNumero = New System.Windows.Forms.Label()
-        labelActaNumero = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
-        labelResolucionNumero = New System.Windows.Forms.Label()
+        labelLote = New System.Windows.Forms.Label()
+        labelDosisNumero = New System.Windows.Forms.Label()
+        labelTipo = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.updownDosisNumero, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'labelCargo
-        '
-        labelCargo.AutoSize = True
-        labelCargo.Location = New System.Drawing.Point(6, 49)
-        labelCargo.Name = "labelCargo"
-        labelCargo.Size = New System.Drawing.Size(38, 13)
-        labelCargo.TabIndex = 4
-        labelCargo.Text = "Cargo:"
-        '
-        'labelCargoJerarquia
-        '
-        labelCargoJerarquia.AutoSize = True
-        labelCargoJerarquia.Location = New System.Drawing.Point(6, 76)
-        labelCargoJerarquia.Name = "labelCargoJerarquia"
-        labelCargoJerarquia.Size = New System.Drawing.Size(55, 13)
-        labelCargoJerarquia.TabIndex = 6
-        labelCargoJerarquia.Text = "Jerarquía:"
-        '
-        'labelFolioNumero
-        '
-        labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(173, 114)
-        labelFolioNumero.Name = "labelFolioNumero"
-        labelFolioNumero.Size = New System.Drawing.Size(47, 13)
-        labelFolioNumero.TabIndex = 10
-        labelFolioNumero.Text = "Folio N°:"
-        '
-        'labelLibroNumero
-        '
-        labelLibroNumero.AutoSize = True
-        labelLibroNumero.Location = New System.Drawing.Point(6, 114)
-        labelLibroNumero.Name = "labelLibroNumero"
-        labelLibroNumero.Size = New System.Drawing.Size(48, 13)
-        labelLibroNumero.TabIndex = 8
-        labelLibroNumero.Text = "Libro N°:"
-        '
-        'labelActaNumero
-        '
-        labelActaNumero.AutoSize = True
-        labelActaNumero.Location = New System.Drawing.Point(306, 114)
-        labelActaNumero.Name = "labelActaNumero"
-        labelActaNumero.Size = New System.Drawing.Size(47, 13)
-        labelActaNumero.TabIndex = 12
-        labelActaNumero.Text = "Acta N°:"
         '
         'labelModificacion
         '
@@ -130,6 +79,33 @@ Partial Class formPersonaVacuna
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 18
         labelCreacion.Text = "Creación:"
+        '
+        'labelLote
+        '
+        labelLote.AutoSize = True
+        labelLote.Location = New System.Drawing.Point(6, 40)
+        labelLote.Name = "labelLote"
+        labelLote.Size = New System.Drawing.Size(31, 13)
+        labelLote.TabIndex = 2
+        labelLote.Text = "Lote:"
+        '
+        'labelDosisNumero
+        '
+        labelDosisNumero.AutoSize = True
+        labelDosisNumero.Location = New System.Drawing.Point(6, 65)
+        labelDosisNumero.Name = "labelDosisNumero"
+        labelDosisNumero.Size = New System.Drawing.Size(66, 13)
+        labelDosisNumero.TabIndex = 4
+        labelDosisNumero.Text = "Nº de Dósis:"
+        '
+        'labelTipo
+        '
+        labelTipo.AutoSize = True
+        labelTipo.Location = New System.Drawing.Point(6, 13)
+        labelTipo.Name = "labelTipo"
+        labelTipo.Size = New System.Drawing.Size(31, 13)
+        labelTipo.TabIndex = 0
+        labelTipo.Text = "Tipo:"
         '
         'buttonGuardar
         '
@@ -178,26 +154,26 @@ Partial Class formPersonaVacuna
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(542, 39)
-        Me.toolstripMain.TabIndex = 16
+        Me.toolstripMain.TabIndex = 1
         '
         'datetimepickerFecha
         '
         Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(93, 10)
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(128, 89)
         Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(116, 20)
-        Me.datetimepickerFecha.TabIndex = 3
+        Me.datetimepickerFecha.TabIndex = 7
         '
         'labelFecha
         '
         Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(6, 16)
+        Me.labelFecha.Location = New System.Drawing.Point(6, 93)
         Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 2
-        Me.labelFecha.Text = "Fecha:"
+        Me.labelFecha.Size = New System.Drawing.Size(107, 13)
+        Me.labelFecha.TabIndex = 6
+        Me.labelFecha.Text = "Fecha de Aplicación:"
         '
         'textboxNotas
         '
@@ -218,48 +194,6 @@ Partial Class formPersonaVacuna
         Me.labelNotas.TabIndex = 14
         Me.labelNotas.Text = "Notas:"
         '
-        'comboboxCargo
-        '
-        Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargo.FormattingEnabled = True
-        Me.comboboxCargo.Location = New System.Drawing.Point(93, 46)
-        Me.comboboxCargo.Name = "comboboxCargo"
-        Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargo.TabIndex = 5
-        '
-        'comboboxCargoJerarquia
-        '
-        Me.comboboxCargoJerarquia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargoJerarquia.FormattingEnabled = True
-        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(93, 73)
-        Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
-        Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargoJerarquia.TabIndex = 7
-        '
-        'textboxFolioNumero
-        '
-        Me.textboxFolioNumero.Location = New System.Drawing.Point(226, 111)
-        Me.textboxFolioNumero.MaxLength = 10
-        Me.textboxFolioNumero.Name = "textboxFolioNumero"
-        Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxFolioNumero.TabIndex = 11
-        '
-        'textboxLibroNumero
-        '
-        Me.textboxLibroNumero.Location = New System.Drawing.Point(93, 111)
-        Me.textboxLibroNumero.MaxLength = 10
-        Me.textboxLibroNumero.Name = "textboxLibroNumero"
-        Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxLibroNumero.TabIndex = 9
-        '
-        'textboxActaNumero
-        '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(359, 111)
-        Me.textboxActaNumero.MaxLength = 10
-        Me.textboxActaNumero.Name = "textboxActaNumero"
-        Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxActaNumero.TabIndex = 13
-        '
         'tabcontrolMain
         '
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
@@ -269,24 +203,20 @@ Partial Class formPersonaVacuna
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
         Me.tabcontrolMain.Size = New System.Drawing.Size(518, 201)
-        Me.tabcontrolMain.TabIndex = 17
+        Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(labelResolucionNumero)
-        Me.tabpageGeneral.Controls.Add(Me.textboxResolucionNumero)
+        Me.tabpageGeneral.Controls.Add(labelTipo)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxTipo)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaVencimiento)
+        Me.tabpageGeneral.Controls.Add(Me.labelFechaVencimiento)
+        Me.tabpageGeneral.Controls.Add(labelDosisNumero)
+        Me.tabpageGeneral.Controls.Add(Me.updownDosisNumero)
+        Me.tabpageGeneral.Controls.Add(labelLote)
+        Me.tabpageGeneral.Controls.Add(Me.textboxLote)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
-        Me.tabpageGeneral.Controls.Add(Me.textboxFolioNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
-        Me.tabpageGeneral.Controls.Add(labelFolioNumero)
-        Me.tabpageGeneral.Controls.Add(labelCargo)
-        Me.tabpageGeneral.Controls.Add(labelLibroNumero)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxCargo)
-        Me.tabpageGeneral.Controls.Add(Me.textboxLibroNumero)
-        Me.tabpageGeneral.Controls.Add(labelCargoJerarquia)
-        Me.tabpageGeneral.Controls.Add(labelActaNumero)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxCargoJerarquia)
-        Me.tabpageGeneral.Controls.Add(Me.textboxActaNumero)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
@@ -294,6 +224,52 @@ Partial Class formPersonaVacuna
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'comboboxTipo
+        '
+        Me.comboboxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxTipo.FormattingEnabled = True
+        Me.comboboxTipo.Location = New System.Drawing.Point(128, 10)
+        Me.comboboxTipo.Name = "comboboxTipo"
+        Me.comboboxTipo.Size = New System.Drawing.Size(340, 21)
+        Me.comboboxTipo.TabIndex = 1
+        '
+        'datetimepickerFechaVencimiento
+        '
+        Me.datetimepickerFechaVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaVencimiento.Location = New System.Drawing.Point(128, 115)
+        Me.datetimepickerFechaVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaVencimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaVencimiento.Name = "datetimepickerFechaVencimiento"
+        Me.datetimepickerFechaVencimiento.Size = New System.Drawing.Size(116, 20)
+        Me.datetimepickerFechaVencimiento.TabIndex = 9
+        '
+        'labelFechaVencimiento
+        '
+        Me.labelFechaVencimiento.AutoSize = True
+        Me.labelFechaVencimiento.Location = New System.Drawing.Point(6, 119)
+        Me.labelFechaVencimiento.Name = "labelFechaVencimiento"
+        Me.labelFechaVencimiento.Size = New System.Drawing.Size(116, 13)
+        Me.labelFechaVencimiento.TabIndex = 8
+        Me.labelFechaVencimiento.Text = "Fecha de Vencimiento:"
+        '
+        'updownDosisNumero
+        '
+        Me.updownDosisNumero.Location = New System.Drawing.Point(128, 63)
+        Me.updownDosisNumero.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.updownDosisNumero.Name = "updownDosisNumero"
+        Me.updownDosisNumero.Size = New System.Drawing.Size(43, 20)
+        Me.updownDosisNumero.TabIndex = 5
+        Me.updownDosisNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.updownDosisNumero.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'textboxLote
+        '
+        Me.textboxLote.Location = New System.Drawing.Point(128, 37)
+        Me.textboxLote.MaxLength = 20
+        Me.textboxLote.Name = "textboxLote"
+        Me.textboxLote.Size = New System.Drawing.Size(134, 20)
+        Me.textboxLote.TabIndex = 3
         '
         'tabpageNotasAuditoria
         '
@@ -320,7 +296,7 @@ Partial Class formPersonaVacuna
         Me.labelIDVacuna.AutoSize = True
         Me.labelIDVacuna.Location = New System.Drawing.Point(6, 93)
         Me.labelIDVacuna.Name = "labelIDVacuna"
-        Me.labelIDVacuna.Size = New System.Drawing.Size(80, 13)
+        Me.labelIDVacuna.Size = New System.Drawing.Size(76, 13)
         Me.labelIDVacuna.TabIndex = 16
         Me.labelIDVacuna.Text = "ID de Vacuna:"
         '
@@ -371,28 +347,11 @@ Partial Class formPersonaVacuna
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'labelResolucionNumero
-        '
-        labelResolucionNumero.AutoSize = True
-        labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
-        labelResolucionNumero.Name = "labelResolucionNumero"
-        labelResolucionNumero.Size = New System.Drawing.Size(81, 13)
-        labelResolucionNumero.TabIndex = 14
-        labelResolucionNumero.Text = "Resolución: N°:"
-        '
-        'textboxResolucionNumero
-        '
-        Me.textboxResolucionNumero.Location = New System.Drawing.Point(93, 137)
-        Me.textboxResolucionNumero.MaxLength = 15
-        Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
-        Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
-        Me.textboxResolucionNumero.TabIndex = 15
-        '
         'formPersonaVacuna
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 253)
+        Me.ClientSize = New System.Drawing.Size(542, 255)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -401,12 +360,13 @@ Partial Class formPersonaVacuna
         Me.MinimizeBox = False
         Me.Name = "formPersonaVacuna"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Vacuna - Promoción de la Persona"
+        Me.Text = "Vacuna de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.updownDosisNumero, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -422,11 +382,6 @@ Partial Class formPersonaVacuna
     Friend WithEvents labelFecha As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents comboboxCargo As System.Windows.Forms.ComboBox
-    Friend WithEvents comboboxCargoJerarquia As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
-    Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
     Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
@@ -436,5 +391,9 @@ Partial Class formPersonaVacuna
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxResolucionNumero As System.Windows.Forms.TextBox
+    Friend WithEvents textboxLote As System.Windows.Forms.TextBox
+    Friend WithEvents datetimepickerFechaVencimiento As DateTimePicker
+    Friend WithEvents labelFechaVencimiento As Label
+    Friend WithEvents updownDosisNumero As NumericUpDown
+    Friend WithEvents comboboxTipo As ComboBox
 End Class

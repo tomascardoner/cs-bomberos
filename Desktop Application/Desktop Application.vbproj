@@ -145,6 +145,12 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="formPersonaHorarioLaboralAgregarMultiples.Designer.vb">
+      <DependentUpon>formPersonaHorarioLaboralAgregarMultiples.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formPersonaHorarioLaboralAgregarMultiples.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaVacuna.Designer.vb">
       <DependentUpon>formPersonaVacuna.vb</DependentUpon>
     </Compile>
@@ -921,6 +927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formPersonaHorarioLaboralAgregarMultiples.resx">
+      <DependentUpon>formPersonaHorarioLaboralAgregarMultiples.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaVacuna.resx">
       <DependentUpon>formPersonaVacuna.vb</DependentUpon>
