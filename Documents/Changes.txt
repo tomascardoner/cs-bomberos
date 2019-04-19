@@ -73,3 +73,12 @@
 	* ABM de Marcas de Vehículos
 	* ABM de Compañías de Seguros de Vehículos
 	* ABM de Tipos de Vacuna
+
+18/04/2019
+	* Horario Laboral de Personas
+	* Vehículos de Personas
+	* Vacunas de Personas
+
+19/04/2019
+	* Listado de Vehículos personales por fecha de vencimiento de verificación
+	* Listado de Vehículos personales por fecha de vencimiento de seguro
