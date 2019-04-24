@@ -36,77 +36,6 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Unidad">
-          <Key>
-            <PropertyRef Name="IDUnidad" />
-          </Key>
-          <Property Name="IDUnidad" Type="smallint" Nullable="false" />
-          <Property Name="Numero" Type="smallint" Nullable="false" />
-          <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MarcaModelo" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
-          <Property Name="NumeroMarcaModelo" Type="varchar" MaxLength="109" StoreGeneratedPattern="Computed" />
-          <Property Name="EsImportado" Type="bit" />
-          <Property Name="Anio" Type="smallint" Nullable="false" />
-          <Property Name="NumeroMotor" Type="varchar" MaxLength="20" />
-          <Property Name="NumeroChasis" Type="varchar" MaxLength="20" />
-          <Property Name="Dominio" Type="varchar" MaxLength="7" />
-          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
-          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
-          <Property Name="IDCombustibleTipo" Type="tinyint" />
-          <Property Name="FechaAdquisicion" Type="date" />
-          <Property Name="KilometrajeInicial" Type="int" />
-          <Property Name="CapacidadAguaLitros" Type="int" />
-          <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
-          <Property Name="EsPropio" Type="bit" Nullable="false" />
-          <Property Name="VerificacionVencimiento" Type="date" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IDUnidadBajaMotivo" Type="tinyint" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UnidadBajaMotivo">
-          <Key>
-            <PropertyRef Name="IDUnidadBajaMotivo" />
-          </Key>
-          <Property Name="IDUnidadBajaMotivo" Type="tinyint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UnidadTipo">
-          <Key>
-            <PropertyRef Name="IDUnidadTipo" />
-          </Key>
-          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UnidadUso">
-          <Key>
-            <PropertyRef Name="IDUnidadUso" />
-          </Key>
-          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="CalificacionConcepto">
           <Key>
             <PropertyRef Name="IDCalificacionConcepto" />
@@ -738,7 +667,7 @@
           <Property Name="IDVehiculoMarca" Type="smallint" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" />
           <Property Name="Anio" Type="smallint" />
-          <Property Name="VerificacionVencimiento" Type="date" />
+          <Property Name="VerificacionVencimiento" Type="date" Nullable="false" />
           <Property Name="IDVehiculoCompaniaSeguro" Type="smallint" />
           <Property Name="SeguroPolizaNumero" Type="varchar" MaxLength="50" />
           <Property Name="SeguroVencimiento" Type="date" Nullable="false" />
@@ -865,6 +794,77 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Unidad">
+          <Key>
+            <PropertyRef Name="IDUnidad" />
+          </Key>
+          <Property Name="IDUnidad" Type="smallint" Nullable="false" />
+          <Property Name="Numero" Type="smallint" Nullable="false" />
+          <Property Name="Marca" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MarcaModelo" Type="varchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="NumeroMarcaModelo" Type="varchar" MaxLength="109" StoreGeneratedPattern="Computed" />
+          <Property Name="EsImportado" Type="bit" />
+          <Property Name="Anio" Type="smallint" Nullable="false" />
+          <Property Name="NumeroMotor" Type="varchar" MaxLength="20" />
+          <Property Name="NumeroChasis" Type="varchar" MaxLength="20" />
+          <Property Name="Dominio" Type="varchar" MaxLength="7" />
+          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
+          <Property Name="IDCombustibleTipo" Type="tinyint" />
+          <Property Name="FechaAdquisicion" Type="date" />
+          <Property Name="KilometrajeInicial" Type="int" />
+          <Property Name="CapacidadAguaLitros" Type="int" />
+          <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="EsPropio" Type="bit" Nullable="false" />
+          <Property Name="VerificacionVencimiento" Type="date" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUnidadBajaMotivo" Type="tinyint" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadBajaMotivo">
+          <Key>
+            <PropertyRef Name="IDUnidadBajaMotivo" />
+          </Key>
+          <Property Name="IDUnidadBajaMotivo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadTipo">
+          <Key>
+            <PropertyRef Name="IDUnidadTipo" />
+          </Key>
+          <Property Name="IDUnidadTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnidadUso">
+          <Key>
+            <PropertyRef Name="IDUnidadUso" />
+          </Key>
+          <Property Name="IDUnidadUso" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IDUsuario" />
@@ -982,54 +982,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Unidad__Ubicacion">
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
-          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unidad">
-              <PropertyRef Name="IDUnidad" />
-            </Principal>
-            <Dependent Role="Ubicacion">
-              <PropertyRef Name="IDUnidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UnidadBajaMotivo__Unidad">
-          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="0..1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnidadBajaMotivo">
-              <PropertyRef Name="IDUnidadBajaMotivo" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDUnidadBajaMotivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UnidadTipo__Unidad">
-          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnidadTipo">
-              <PropertyRef Name="IDUnidadTipo" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDUnidadTipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UnidadUso__Unidad">
-          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UnidadUso">
-              <PropertyRef Name="IDUnidadUso" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDUnidadUso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CalificacionConcepto__PersonaCalificacion">
           <End Role="CalificacionConcepto" Type="Self.CalificacionConcepto" Multiplicity="1" />
           <End Role="PersonaCalificacion" Type="Self.PersonaCalificacion" Multiplicity="*" />
@@ -1116,18 +1068,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cuartel__Unidad">
-          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cuartel">
-              <PropertyRef Name="IDCuartel" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDCuartel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Cuartel__Persona">
           <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -1148,6 +1088,18 @@
               <PropertyRef Name="IDCuartel" />
             </Principal>
             <Dependent Role="Ubicacion">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cuartel__Unidad">
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Unidad">
               <PropertyRef Name="IDCuartel" />
             </Dependent>
           </ReferentialConstraint>
@@ -1644,6 +1596,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Unidad__Ubicacion">
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
+          <End Role="Ubicacion" Type="Self.Ubicacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad">
+              <PropertyRef Name="IDUnidad" />
+            </Principal>
+            <Dependent Role="Ubicacion">
+              <PropertyRef Name="IDUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UnidadBajaMotivo__Unidad">
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="0..1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadBajaMotivo">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadBajaMotivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UnidadTipo__Unidad">
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadTipo">
+              <PropertyRef Name="IDUnidadTipo" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UnidadUso__Unidad">
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnidadUso">
+              <PropertyRef Name="IDUnidadUso" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUnidadUso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Alarma__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Alarma" Type="Self.Alarma" Multiplicity="*" />
@@ -1688,102 +1688,6 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Area">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__Unidad__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__Unidad__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadBajaMotivo__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadBajaMotivo">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadBajaMotivo__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadBajaMotivo">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadTipo__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadTipo">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadTipo__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadTipo">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadUso__Creacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadUso">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Usuario__UnidadUso__Modificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="UnidadUso">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -2676,6 +2580,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__Unidad__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Unidad__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadBajaMotivo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadBajaMotivo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadBajaMotivo" Type="Self.UnidadBajaMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadBajaMotivo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadTipo" Type="Self.UnidadTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadUso__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadUso">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__UnidadUso__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UnidadUso" Type="Self.UnidadUso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="UnidadUso">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Usuario__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Usuario1" Type="Self.Usuario" Multiplicity="*" />
@@ -2904,13 +2904,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EstadoDesconocidoLeyenda" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoActivoLeyenda" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnidadBajaMotivo" EntityType="Self.UnidadBajaMotivo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnidadTipo" EntityType="Self.UnidadTipo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnidadUso" EntityType="Self.UnidadUso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalificacionConcepto" EntityType="Self.CalificacionConcepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionNivel" EntityType="Self.CapacitacionNivel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionTipo" EntityType="Self.CapacitacionTipo" Schema="dbo" store:Type="Tables" />
@@ -2956,6 +2956,10 @@
           <EntitySet Name="SubRubro" EntityType="Self.SubRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubUbicacion" EntityType="Self.SubUbicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadBajaMotivo" EntityType="Self.UnidadBajaMotivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadTipo" EntityType="Self.UnidadTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnidadUso" EntityType="Self.UnidadUso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
@@ -2967,22 +2971,6 @@
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Unidad__Ubicacion" Association="Self.FK__Unidad__Ubicacion">
-            <End Role="Unidad" EntitySet="Unidad" />
-            <End Role="Ubicacion" EntitySet="Ubicacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UnidadBajaMotivo__Unidad" Association="Self.FK__UnidadBajaMotivo__Unidad">
-            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
-            <End Role="Unidad" EntitySet="Unidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UnidadTipo__Unidad" Association="Self.FK__UnidadTipo__Unidad">
-            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
-            <End Role="Unidad" EntitySet="Unidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UnidadUso__Unidad" Association="Self.FK__UnidadUso__Unidad">
-            <End Role="UnidadUso" EntitySet="UnidadUso" />
-            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="FK__CalificacionConcepto__PersonaCalificacion" Association="Self.FK__CalificacionConcepto__PersonaCalificacion">
             <End Role="CalificacionConcepto" EntitySet="CalificacionConcepto" />
@@ -3012,10 +3000,6 @@
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cuartel__Unidad" Association="Self.FK__Cuartel__Unidad">
-            <End Role="Cuartel" EntitySet="Cuartel" />
-            <End Role="Unidad" EntitySet="Unidad" />
-          </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Persona" Association="Self.FK__Cuartel__Persona">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Persona" EntitySet="Persona" />
@@ -3023,6 +3007,10 @@
           <AssociationSet Name="FK__Cuartel__Ubicacion" Association="Self.FK__Cuartel__Ubicacion">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cuartel__Unidad" Association="Self.FK__Cuartel__Unidad">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Usuario" Association="Self.FK__Cuartel__Usuario">
             <End Role="Cuartel" EntitySet="Cuartel" />
@@ -3184,6 +3172,22 @@
             <End Role="Ubicacion" EntitySet="Ubicacion" />
             <End Role="SubUbicacion" EntitySet="SubUbicacion" />
           </AssociationSet>
+          <AssociationSet Name="FK__Unidad__Ubicacion" Association="Self.FK__Unidad__Ubicacion">
+            <End Role="Unidad" EntitySet="Unidad" />
+            <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UnidadBajaMotivo__Unidad" Association="Self.FK__UnidadBajaMotivo__Unidad">
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UnidadTipo__Unidad" Association="Self.FK__UnidadTipo__Unidad">
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UnidadUso__Unidad" Association="Self.FK__UnidadUso__Unidad">
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Alarma__Creacion" Association="Self.FK__Usuario__Alarma__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Alarma" EntitySet="Alarma" />
@@ -3199,38 +3203,6 @@
           <AssociationSet Name="FK__Usuario__Area__Modificacion" Association="Self.FK__Usuario__Area__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Area" EntitySet="Area" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Unidad__Creacion" Association="Self.FK__Usuario__Unidad__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Unidad" EntitySet="Unidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__Unidad__Modificacion" Association="Self.FK__Usuario__Unidad__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="Unidad" EntitySet="Unidad" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Creacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Modificacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadTipo__Creacion" Association="Self.FK__Usuario__UnidadTipo__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadTipo__Modificacion" Association="Self.FK__Usuario__UnidadTipo__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadUso__Creacion" Association="Self.FK__Usuario__UnidadUso__Creacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadUso" EntitySet="UnidadUso" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Usuario__UnidadUso__Modificacion" Association="Self.FK__Usuario__UnidadUso__Modificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__CalificacionConcepto__Creacion" Association="Self.FK__Usuario__CalificacionConcepto__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -3527,6 +3499,38 @@
           <AssociationSet Name="FK__Usuario__Ubicacion__Modificacion" Association="Self.FK__Usuario__Ubicacion__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Ubicacion" EntitySet="Ubicacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Unidad__Creacion" Association="Self.FK__Usuario__Unidad__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Unidad__Modificacion" Association="Self.FK__Usuario__Unidad__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Creacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadBajaMotivo__Modificacion" Association="Self.FK__Usuario__UnidadBajaMotivo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadBajaMotivo" EntitySet="UnidadBajaMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Creacion" Association="Self.FK__Usuario__UnidadTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadTipo__Modificacion" Association="Self.FK__Usuario__UnidadTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadTipo" EntitySet="UnidadTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadUso__Creacion" Association="Self.FK__Usuario__UnidadUso__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__UnidadUso__Modificacion" Association="Self.FK__Usuario__UnidadUso__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UnidadUso" EntitySet="UnidadUso" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Usuario__Creacion" Association="Self.FK__Usuario__Usuario__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -4309,6 +4313,10 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
+          <FunctionImport Name="usp_Personas" ReturnType="Collection(CSBomberosModel.usp_Personas_Result)">
+            <Parameter Name="EstadoDesconocidoLeyenda" Mode="In" Type="String" />
+            <Parameter Name="EstadoActivoLeyenda" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -7529,6 +7537,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="usp_Personas_Result">
+          <Property Type="Int32" Name="IDPersona" Nullable="false" />
+          <Property Type="String" Name="MatriculaNumero" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
+          <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="IDCuartel" Nullable="false" />
+          <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IDBajaMotivo" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8538,6 +8557,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_Personas" FunctionName="CSBomberosModel.Store.usp_Personas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSBomberosModel.usp_Personas_Result">
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="MatriculaNumero" ColumnName="MatriculaNumero" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+                <ScalarProperty Name="CuartelNombre" ColumnName="CuartelNombre" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="IDBajaMotivo" ColumnName="IDBajaMotivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

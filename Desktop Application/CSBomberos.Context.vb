@@ -10,6 +10,8 @@
 Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
+Imports System.Data.Entity.Core.Objects
+Imports System.Linq
 
 Partial Public Class CSBomberosContext
     Inherits DbContext
@@ -81,5 +83,13 @@ Partial Public Class CSBomberosContext
     Public Overridable Property VehiculoCompaniaSeguro() As DbSet(Of VehiculoCompaniaSeguro)
     Public Overridable Property VehiculoMarca() As DbSet(Of VehiculoMarca)
     Public Overridable Property VehiculoTipo() As DbSet(Of VehiculoTipo)
+
+    Public Overridable Function usp_Personas(estadoDesconocidoLeyenda As String, estadoActivoLeyenda As String) As ObjectResult(Of usp_Personas_Result)
+        Dim estadoDesconocidoLeyendaParameter As ObjectParameter = If(estadoDesconocidoLeyenda IsNot Nothing, New ObjectParameter("EstadoDesconocidoLeyenda", estadoDesconocidoLeyenda), New ObjectParameter("EstadoDesconocidoLeyenda", GetType(String)))
+
+        Dim estadoActivoLeyendaParameter As ObjectParameter = If(estadoActivoLeyenda IsNot Nothing, New ObjectParameter("EstadoActivoLeyenda", estadoActivoLeyenda), New ObjectParameter("EstadoActivoLeyenda", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of usp_Personas_Result)("usp_Personas", estadoDesconocidoLeyendaParameter, estadoActivoLeyendaParameter)
+    End Function
 
 End Class

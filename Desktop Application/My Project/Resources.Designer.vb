@@ -663,29 +663,20 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Baja.
+        '''  Looks up a localized string similar to «Desconocido».
         '''</summary>
-        Friend ReadOnly Property STRING_PERSONA_ESTADO_BAJA() As String
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_DESCONOCIDO() As String
             Get
-                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_BAJA", resourceCulture)
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_DESCONOCIDO", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Cuerpo Auxiliar.
+        '''  Looks up a localized string similar to No Activo.
         '''</summary>
-        Friend ReadOnly Property STRING_PERSONA_ESTADO_CUERPOAUXILIAR() As String
+        Friend ReadOnly Property STRING_PERSONA_ESTADO_INACTIVO() As String
             Get
-                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_CUERPOAUXILIAR", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Reserva.
-        '''</summary>
-        Friend ReadOnly Property STRING_PERSONA_ESTADO_RESERVA() As String
-            Get
-                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_RESERVA", resourceCulture)
+                Return ResourceManager.GetString("STRING_PERSONA_ESTADO_INACTIVO", resourceCulture)
             End Get
         End Property
         

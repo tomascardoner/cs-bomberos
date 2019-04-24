@@ -89,3 +89,9 @@
 		- Listado con teléfonos
 	* Se agregó firma y aclaración en el Seguro de Sepelio
 	* Se agregaron una columna con las Categorías al Listado de vencimiento de Licencias de Conducir
+
+20/04/2019
+	* Listado de Unidades reducido: se agregó la columna de Uso y se hizo con la hoja apaisada
+
+23/04/2019
+	* Se arregló y amplió el Filtro de Estado de las Personas

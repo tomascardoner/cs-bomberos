@@ -883,6 +883,9 @@
     <Compile Include="Ubicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="usp_Personas_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Usuario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

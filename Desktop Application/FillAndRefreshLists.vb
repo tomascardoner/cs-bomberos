@@ -192,59 +192,6 @@
         End If
     End Sub
 
-    'Friend Sub Estado(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-    '    Dim datatableEstados As New DataTable("Estados")
-    '    Dim datarowRow As DataRow
-
-    '    ComboBoxControl.ValueMember = "IDEstado"
-    '    ComboBoxControl.DisplayMember = "Nombre"
-
-    '    With datatableEstados
-    '        .Columns.Add("IDEstado", System.Type.GetType("System.String"))
-    '        .Columns.Add("Nombre", System.Type.GetType("System.String"))
-
-    '        If AgregarItem_Todos Then
-    '            datarowRow = .NewRow
-    '            datarowRow("IDEstado") = "-"
-    '            datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_MALE
-    '            .Rows.Add(datarowRow)
-    '        End If
-    '        If AgregarItem_NoEspecifica Then
-    '            datarowRow = .NewRow
-    '            datarowRow("IDEstado") = "-"
-    '            datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
-    '            .Rows.Add(datarowRow)
-    '        End If
-
-    '        datarowRow = .NewRow
-    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_ACTIVO
-    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
-    '        .Rows.Add(datarowRow)
-
-    '        datarowRow = .NewRow
-    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_RESERVA
-    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_RESERVA
-    '        .Rows.Add(datarowRow)
-
-    '        datarowRow = .NewRow
-    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_CUERPOAUXILIAR
-    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_CUERPOAUXILIAR
-    '        .Rows.Add(datarowRow)
-
-    '        datarowRow = .NewRow
-    '        datarowRow("IDEstado") = Constantes.PERSONA_ESTADO_BAJA
-    '        datarowRow("Nombre") = My.Resources.STRING_PERSONA_ESTADO_BAJA
-    '        .Rows.Add(datarowRow)
-    '    End With
-
-    '    ComboBoxControl.DataSource = datatableEstados
-    '    If AgregarItem_Todos Or AgregarItem_NoEspecifica Then
-    '        ComboBoxControl.SelectedIndex = -1
-    '    Else
-    '        ComboBoxControl.SelectedIndex = 0
-    '    End If
-    'End Sub
-
     Friend Sub DiaSemana(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelDia As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         ComboBoxControl.Items.Clear()
         If MostrarNombreDelDia Then
@@ -451,6 +398,42 @@
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New PersonaBajaMotivo
+            Item_Todos.IDPersonaBajaMotivo = FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub PersonaEstadoActual(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean)
+        Dim listItems As List(Of PersonaBajaMotivo)
+
+        ComboBoxControl.ValueMember = "IDPersonaBajaMotivo"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.PersonaBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
+
+        Dim Item_Desconocido As New PersonaBajaMotivo
+        Item_Desconocido.IDPersonaBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
+        Item_Desconocido.Nombre = My.Resources.STRING_PERSONA_ESTADO_DESCONOCIDO
+        listItems.Insert(0, Item_Desconocido)
+        Item_Desconocido = Nothing
+
+        Dim Item_Activo As New PersonaBajaMotivo
+        Item_Activo.IDPersonaBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
+        Item_Activo.Nombre = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
+        listItems.Insert(1, Item_Activo)
+        Item_Activo = Nothing
+
+        Dim Item_Inactivo As New PersonaBajaMotivo
+        Item_Inactivo.IDPersonaBajaMotivo = FIELD_VALUE_NOTSPECIFIED_BYTE
+        Item_Inactivo.Nombre = My.Resources.STRING_PERSONA_ESTADO_INACTIVO
+        listItems.Insert(2, Item_Inactivo)
+        Item_Inactivo = Nothing
+
         If AgregarItem_Todos Then
             Dim Item_Todos As New PersonaBajaMotivo
             Item_Todos.IDPersonaBajaMotivo = FIELD_VALUE_ALL_BYTE

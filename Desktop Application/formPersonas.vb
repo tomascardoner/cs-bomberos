@@ -1,23 +1,11 @@
 ﻿Public Class formPersonas
 
 #Region "Declarations"
-    Friend Class GridRowData
-        Public Property IDPersona As Integer
-        Public Property MatriculaNumero As String
-        Public Property Apellido As String
-        Public Property Nombre As String
-        Public Property ApellidoNombre As String
-        Public Property IDCuartel As Byte
-        Public Property CuartelNombre As String
-        Public Property EsActivo As Boolean
-    End Class
-
-    Private mlistPersonaBase As List(Of GridRowData)
-    Private mlistPersonaFiltradaYOrdenada As List(Of GridRowData)
+    Private mlistPersonaBase As List(Of usp_Personas_Result)
+    Private mlistPersonaFiltradaYOrdenada As List(Of usp_Personas_Result)
 
     Private mSkipFilterData As Boolean = False
     Private mBusquedaAplicada As Boolean = False
-    Private mReportSelectionFormula As String
 
     Private OrdenColumna As DataGridViewColumn
     Private OrdenTipo As SortOrder
@@ -34,9 +22,7 @@
         mSkipFilterData = True
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
-
-        comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxActivo.SelectedIndex = 1
+        pFillAndRefreshLists.PersonaEstadoActual(comboboxEstadoActual.ComboBox, True)
 
         mSkipFilterData = False
 
@@ -58,9 +44,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistPersonaBase = (From p In dbContext.Persona
-                                   Join c In dbContext.Cuartel On p.IDCuartel Equals c.IDCuartel
-                                   Select New GridRowData With {.IDPersona = p.IDPersona, .MatriculaNumero = p.MatriculaNumero, .Apellido = p.Apellido, .Nombre = p.Nombre, .ApellidoNombre = p.ApellidoNombre, .IDCuartel = p.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = p.EsActivo}).ToList
+                mlistPersonaBase = dbContext.usp_Personas(My.Resources.STRING_PERSONA_ESTADO_DESCONOCIDO, My.Resources.STRING_PERSONA_ESTADO_ACTIVO).ToList
             End Using
 
         Catch ex As Exception
@@ -75,7 +59,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPersona
+                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona
             End If
         End If
 
@@ -83,7 +67,7 @@
 
         If PositionIDPersona <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDPersona = PositionIDPersona Then
+                If CType(CurrentRowChecked.DataBoundItem, usp_Personas_Result).IDPersona = PositionIDPersona Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnMatriculaNumero.Name)
                     Exit For
                 End If
@@ -99,13 +83,11 @@
 
             Try
                 ' Inicializo las variables
-                mReportSelectionFormula = ""
                 mlistPersonaFiltradaYOrdenada = mlistPersonaBase
 
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
-                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.IDCuartel} = " & comboboxCuartel.ComboBox.SelectedValue.ToString
                 End If
 
                 ' Filtro por Búsqueda en Apellido y Nombre
@@ -113,15 +95,17 @@
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
-                ' Filtro por Activo
-                Select Case comboboxActivo.SelectedIndex
-                    Case CS_Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX      ' Todos
-                    Case CS_Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX      ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = True"
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
-                    Case CS_Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX       ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Persona.EsActivo} = False"
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                ' Filtro por Estado actual
+                Select Case comboboxEstadoActual.SelectedIndex
+                    Case 0  ' Todos
+                    Case 1  ' Desconocido
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.IDBajaMotivo.HasValue).ToList
+                    Case 2  ' Activo
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = 0).ToList
+                    Case 3  ' Inactivo
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value > 0).ToList
+                    Case Else
+                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
                 End Select
 
                 Select Case mlistPersonaFiltradaYOrdenada.Count
@@ -220,11 +204,11 @@
         End If
     End Sub
 
-    Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
+    Private Sub CuartelChanged() Handles comboboxCuartel.SelectedIndexChanged
         FilterData()
     End Sub
 
-    Private Sub comboboxActivo_SelectedIndexChanged() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub EstadoActualChanged() Handles comboboxEstadoActual.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -283,7 +267,7 @@
 
                 datagridviewMain.Enabled = False
 
-                formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPersona)
+                formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
 
                 datagridviewMain.Enabled = True
 
@@ -297,13 +281,16 @@
             MsgBox("No hay ninguna Persona para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_ELIMINAR) Then
-                If MsgBox("Se eliminará la Persona seleccionada." & vbCrLf & vbCrLf & CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).ApellidoNombre & vbCrLf & vbCrLf & "¿Confirma la eliminación definitiva?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Dim Mensaje As String
+
+                Mensaje = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).ApellidoNombre)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext = New CSBomberosContext(True)
                             Dim PersonaActual As Persona
-                            PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPersona)
+                            PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
 
                             dbContext.Persona.Attach(PersonaActual)
                             dbContext.Persona.Remove(PersonaActual)
@@ -338,7 +325,7 @@
 
             datagridviewMain.Enabled = False
 
-            formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDPersona)
+            formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
 
             datagridviewMain.Enabled = True
 
@@ -347,13 +334,13 @@
     End Sub
 
     Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirFichaPersonal.Click
-        Dim CurrentRow As GridRowData
+        Dim CurrentRow As usp_Personas_Result
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
-                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
 
                 Me.Cursor = Cursors.WaitCursor
 
