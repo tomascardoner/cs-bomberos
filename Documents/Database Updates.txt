@@ -1,3 +1,7 @@
+2019-04-23
+	- Eliminar el Stored Procedure: usp_Inventario_Cantidad
+	- Crear el Stored Procedure: usp_Personas_CalificacionesAnuales
+
 2019-04-11
 	- Agregar el campo Orden (tinyint - null) a las tablas ReporteGrupo y Reporte
 	- Agregar el campo HorarioLaboralObservaciones (varchar(MAX)) a la tabla Persona después de EmailLaboral
