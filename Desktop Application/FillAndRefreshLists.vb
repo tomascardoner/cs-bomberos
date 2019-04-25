@@ -252,6 +252,25 @@
         End If
     End Sub
 
+    Friend Sub Anio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim AnioInicioParametro As Integer
+
+        ComboBoxControl.Items.Clear()
+
+        AnioInicioParametro = CS_Parameter_System.GetIntegerAsInteger(Parametros.FILTER_ANIO_INICIAL, 1900)
+
+        For AnioNumero As Integer = Today.Year() To AnioInicioParametro Step -1
+            ComboBoxControl.Items.Add(AnioNumero)
+        Next
+
+        If AgregarItem_Todos Then
+            ComboBoxControl.Items.Insert(0, My.Resources.STRING_ITEM_ALL_MALE)
+        End If
+        If AgregarItem_NoEspecifica Then
+            ComboBoxControl.Items.Insert(0, My.Resources.STRING_ITEM_NOT_SPECIFIED)
+        End If
+    End Sub
+
     Friend Sub NivelEstudio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of NivelEstudio)
 

@@ -95,3 +95,6 @@
 
 23/04/2019
 	* Se arregló y amplió el Filtro de Estado de las Personas
+
+24/04/2019
+	* Se agregó el Reporte de Planilla de Calificaciones de Históricas del Personal

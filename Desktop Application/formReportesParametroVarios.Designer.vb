@@ -27,11 +27,12 @@ Partial Class formReportesParametroVarios
         Me.buttonAceptar = New System.Windows.Forms.ToolStripButton()
         Me.labelValor = New System.Windows.Forms.Label()
         Me.datetimepickerValor = New System.Windows.Forms.DateTimePicker()
-        Me.doubletextboxNumber = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.currencytextboxMoney = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.doubletextboxValor = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.currencytextboxValor = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.comboboxValor = New System.Windows.Forms.ComboBox()
         Me.toolstripMain.SuspendLayout()
-        CType(Me.doubletextboxNumber, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.currencytextboxMoney, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxValor, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxValor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'toolstripMain
@@ -82,46 +83,56 @@ Partial Class formReportesParametroVarios
         Me.datetimepickerValor.Size = New System.Drawing.Size(120, 20)
         Me.datetimepickerValor.TabIndex = 31
         '
-        'doubletextboxNumber
+        'doubletextboxValor
         '
-        Me.doubletextboxNumber.BeforeTouchSize = New System.Drawing.Size(69, 20)
-        Me.doubletextboxNumber.DoubleValue = 0R
-        Me.doubletextboxNumber.Location = New System.Drawing.Point(142, 66)
-        Me.doubletextboxNumber.MaxValue = 999999.99R
-        Me.doubletextboxNumber.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxNumber.MinValue = 0R
-        Me.doubletextboxNumber.Name = "doubletextboxNumber"
-        Me.doubletextboxNumber.NullString = ""
-        Me.doubletextboxNumber.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.doubletextboxNumber.Size = New System.Drawing.Size(69, 20)
-        Me.doubletextboxNumber.TabIndex = 35
-        Me.doubletextboxNumber.Text = "0,00"
-        Me.doubletextboxNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.doubletextboxValor.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.doubletextboxValor.DoubleValue = 0R
+        Me.doubletextboxValor.Location = New System.Drawing.Point(142, 66)
+        Me.doubletextboxValor.MaxValue = 999999.99R
+        Me.doubletextboxValor.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxValor.MinValue = 0R
+        Me.doubletextboxValor.Name = "doubletextboxValor"
+        Me.doubletextboxValor.NullString = ""
+        Me.doubletextboxValor.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.doubletextboxValor.Size = New System.Drawing.Size(69, 20)
+        Me.doubletextboxValor.TabIndex = 35
+        Me.doubletextboxValor.Text = "0,00"
+        Me.doubletextboxValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'currencytextboxMoney
+        'currencytextboxValor
         '
-        Me.currencytextboxMoney.BeforeTouchSize = New System.Drawing.Size(69, 20)
-        Me.currencytextboxMoney.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
-        Me.currencytextboxMoney.Location = New System.Drawing.Point(142, 66)
-        Me.currencytextboxMoney.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
-        Me.currencytextboxMoney.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.currencytextboxMoney.MinValue = New Decimal(New Integer() {0, 0, 0, 131072})
-        Me.currencytextboxMoney.Name = "currencytextboxMoney"
-        Me.currencytextboxMoney.NullString = ""
-        Me.currencytextboxMoney.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
-        Me.currencytextboxMoney.Size = New System.Drawing.Size(100, 20)
-        Me.currencytextboxMoney.TabIndex = 34
-        Me.currencytextboxMoney.Text = "$ 0,00"
-        Me.currencytextboxMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currencytextboxValor.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.currencytextboxValor.DecimalValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxValor.Location = New System.Drawing.Point(142, 66)
+        Me.currencytextboxValor.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.currencytextboxValor.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxValor.MinValue = New Decimal(New Integer() {0, 0, 0, 131072})
+        Me.currencytextboxValor.Name = "currencytextboxValor"
+        Me.currencytextboxValor.NullString = ""
+        Me.currencytextboxValor.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.currencytextboxValor.Size = New System.Drawing.Size(100, 20)
+        Me.currencytextboxValor.TabIndex = 34
+        Me.currencytextboxValor.Text = "$ 0,00"
+        Me.currencytextboxValor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'comboboxValor
+        '
+        Me.comboboxValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxValor.FormattingEnabled = True
+        Me.comboboxValor.Location = New System.Drawing.Point(142, 65)
+        Me.comboboxValor.Name = "comboboxValor"
+        Me.comboboxValor.Size = New System.Drawing.Size(120, 21)
+        Me.comboboxValor.TabIndex = 36
         '
         'formReportesParametroVarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(277, 101)
-        Me.Controls.Add(Me.doubletextboxNumber)
-        Me.Controls.Add(Me.currencytextboxMoney)
+        Me.Controls.Add(Me.doubletextboxValor)
+        Me.Controls.Add(Me.currencytextboxValor)
         Me.Controls.Add(Me.datetimepickerValor)
+        Me.Controls.Add(Me.comboboxValor)
         Me.Controls.Add(Me.labelValor)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -133,8 +144,8 @@ Partial Class formReportesParametroVarios
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        CType(Me.doubletextboxNumber, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.currencytextboxMoney, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxValor, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxValor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -144,6 +155,7 @@ Partial Class formReportesParametroVarios
     Friend WithEvents buttonAceptar As System.Windows.Forms.ToolStripButton
     Friend WithEvents labelValor As System.Windows.Forms.Label
     Friend WithEvents datetimepickerValor As System.Windows.Forms.DateTimePicker
-    Friend WithEvents doubletextboxNumber As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents currencytextboxMoney As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents doubletextboxValor As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents currencytextboxValor As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents comboboxValor As ComboBox
 End Class

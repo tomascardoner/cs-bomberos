@@ -6,22 +6,28 @@
 
         labelValor.Text = mParametroActual.Nombre & ":"
 
-        doubletextboxNumber.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL)
-        currencytextboxMoney.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_MONEY)
+        doubletextboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL)
+        currencytextboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_MONEY)
         datetimepickerValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATE Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATETIME)
+        comboboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_YEAR)
 
         Select Case mParametroActual.Tipo
             Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
                 If Not mParametroActual.Valor Is Nothing Then
-                    doubletextboxNumber.Text = CStr(mParametroActual.Valor)
+                    doubletextboxValor.Text = Convert.ToString(mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
                 If Not mParametroActual.Valor Is Nothing Then
-                    currencytextboxMoney.Text = CStr(mParametroActual.Valor)
+                    currencytextboxValor.Text = Convert.ToString(mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
                 If Not mParametroActual.Valor Is Nothing Then
-                    datetimepickerValor.Value = CDate(mParametroActual.Valor)
+                    datetimepickerValor.Value = Convert.ToDateTime(mParametroActual.Valor)
+                End If
+            Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
+                pFillAndRefreshLists.Anio(comboboxValor, False, False)
+                If Not mParametroActual.Valor Is Nothing Then
+                    comboboxValor.Text = mParametroActual.Valor.ToString()
                 End If
         End Select
     End Sub
@@ -38,11 +44,18 @@
     Private Sub Aceptar(sender As Object, e As EventArgs) Handles buttonAceptar.Click
         Select Case mParametroActual.Tipo
             Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
-                mParametroActual.Valor = doubletextboxNumber.DoubleValue
+                mParametroActual.Valor = doubletextboxValor.DoubleValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
-                mParametroActual.Valor = currencytextboxMoney.DecimalValue
+                mParametroActual.Valor = currencytextboxValor.DecimalValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
                 mParametroActual.Valor = datetimepickerValor.Value
+            Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
+                If comboboxValor.SelectedIndex = -1 Then
+                    MsgBox("Debe seleccionar un valor.", MsgBoxStyle.Information, My.Application.Info.Title)
+                    comboboxValor.Focus()
+                    Exit Sub
+                End If
+                mParametroActual.Valor = comboboxValor.Text
         End Select
 
         Me.DialogResult = Windows.Forms.DialogResult.OK

@@ -248,7 +248,7 @@ Partial Public Class ReporteParametro
                         If Not Me.ValorPredeterminadoTexto Is Nothing Then
                             mValor = Me.ValorPredeterminadoTexto
                         End If
-                    Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_YEAR
                         If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
                             mValor = Me.ValorPredeterminadoNumeroEntero
                         End If
@@ -291,6 +291,8 @@ Partial Public Class ReporteParametro
                         Return Convert.ToString(mValor)
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER
                         Return FormatNumber(mValor, 0)
+                    Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
+                        Return mValor.ToString()
                     Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
                         Return FormatNumber(mValor)
                     Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
