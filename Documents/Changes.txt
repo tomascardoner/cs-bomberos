@@ -98,3 +98,8 @@
 
 24/04/2019
 	* Se agregó el Reporte de Planilla de Calificaciones de Históricas del Personal
+
+28/04/2019
+	* Listado de Inventario: Inventario General
+	* Listado de Inventario: Modo de Adquisición
+	* Listado de Inventario: Control de Inventario
