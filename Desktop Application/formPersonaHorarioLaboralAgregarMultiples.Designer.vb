@@ -34,18 +34,18 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.checkboxDiaSemana1 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana7 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana6 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana5 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana4 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana3 = New System.Windows.Forms.CheckBox()
+        Me.checkboxDiaSemana2 = New System.Windows.Forms.CheckBox()
         Me.datetimepickerTurno2Hasta = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerTurno2Desde = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerTurno1Hasta = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerTurno1Desde = New System.Windows.Forms.DateTimePicker()
         Me.tabpageNotas = New System.Windows.Forms.TabPage()
-        Me.checkboxDiaSemana2 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana3 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana4 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana5 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana6 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana7 = New System.Windows.Forms.CheckBox()
-        Me.checkboxDiaSemana1 = New System.Windows.Forms.CheckBox()
         labelTurno1Desde = New System.Windows.Forms.Label()
         labelTurno1Hasta = New System.Windows.Forms.Label()
         labelTurno2Hasta = New System.Windows.Forms.Label()
@@ -68,7 +68,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         'labelTurno1Hasta
         '
         labelTurno1Hasta.AutoSize = True
-        labelTurno1Hasta.Location = New System.Drawing.Point(232, 75)
+        labelTurno1Hasta.Location = New System.Drawing.Point(227, 75)
         labelTurno1Hasta.Name = "labelTurno1Hasta"
         labelTurno1Hasta.Size = New System.Drawing.Size(38, 13)
         labelTurno1Hasta.TabIndex = 4
@@ -77,7 +77,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         'labelTurno2Hasta
         '
         labelTurno2Hasta.AutoSize = True
-        labelTurno2Hasta.Location = New System.Drawing.Point(232, 105)
+        labelTurno2Hasta.Location = New System.Drawing.Point(227, 105)
         labelTurno2Hasta.Name = "labelTurno2Hasta"
         labelTurno2Hasta.Size = New System.Drawing.Size(38, 13)
         labelTurno2Hasta.TabIndex = 8
@@ -186,15 +186,85 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'checkboxDiaSemana1
+        '
+        Me.checkboxDiaSemana1.AutoSize = True
+        Me.checkboxDiaSemana1.Location = New System.Drawing.Point(180, 38)
+        Me.checkboxDiaSemana1.Name = "checkboxDiaSemana1"
+        Me.checkboxDiaSemana1.Size = New System.Drawing.Size(68, 17)
+        Me.checkboxDiaSemana1.TabIndex = 16
+        Me.checkboxDiaSemana1.Text = "Domingo"
+        Me.checkboxDiaSemana1.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana7
+        '
+        Me.checkboxDiaSemana7.AutoSize = True
+        Me.checkboxDiaSemana7.Location = New System.Drawing.Point(111, 38)
+        Me.checkboxDiaSemana7.Name = "checkboxDiaSemana7"
+        Me.checkboxDiaSemana7.Size = New System.Drawing.Size(63, 17)
+        Me.checkboxDiaSemana7.TabIndex = 15
+        Me.checkboxDiaSemana7.Text = "Sábado"
+        Me.checkboxDiaSemana7.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana6
+        '
+        Me.checkboxDiaSemana6.AutoSize = True
+        Me.checkboxDiaSemana6.Location = New System.Drawing.Point(379, 15)
+        Me.checkboxDiaSemana6.Name = "checkboxDiaSemana6"
+        Me.checkboxDiaSemana6.Size = New System.Drawing.Size(61, 17)
+        Me.checkboxDiaSemana6.TabIndex = 14
+        Me.checkboxDiaSemana6.Text = "Viernes"
+        Me.checkboxDiaSemana6.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana5
+        '
+        Me.checkboxDiaSemana5.AutoSize = True
+        Me.checkboxDiaSemana5.Location = New System.Drawing.Point(313, 15)
+        Me.checkboxDiaSemana5.Name = "checkboxDiaSemana5"
+        Me.checkboxDiaSemana5.Size = New System.Drawing.Size(60, 17)
+        Me.checkboxDiaSemana5.TabIndex = 13
+        Me.checkboxDiaSemana5.Text = "Jueves"
+        Me.checkboxDiaSemana5.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana4
+        '
+        Me.checkboxDiaSemana4.AutoSize = True
+        Me.checkboxDiaSemana4.Location = New System.Drawing.Point(236, 15)
+        Me.checkboxDiaSemana4.Name = "checkboxDiaSemana4"
+        Me.checkboxDiaSemana4.Size = New System.Drawing.Size(71, 17)
+        Me.checkboxDiaSemana4.TabIndex = 12
+        Me.checkboxDiaSemana4.Text = "Miércoles"
+        Me.checkboxDiaSemana4.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana3
+        '
+        Me.checkboxDiaSemana3.AutoSize = True
+        Me.checkboxDiaSemana3.Location = New System.Drawing.Point(172, 15)
+        Me.checkboxDiaSemana3.Name = "checkboxDiaSemana3"
+        Me.checkboxDiaSemana3.Size = New System.Drawing.Size(58, 17)
+        Me.checkboxDiaSemana3.TabIndex = 11
+        Me.checkboxDiaSemana3.Text = "Martes"
+        Me.checkboxDiaSemana3.UseVisualStyleBackColor = True
+        '
+        'checkboxDiaSemana2
+        '
+        Me.checkboxDiaSemana2.AutoSize = True
+        Me.checkboxDiaSemana2.Location = New System.Drawing.Point(111, 15)
+        Me.checkboxDiaSemana2.Name = "checkboxDiaSemana2"
+        Me.checkboxDiaSemana2.Size = New System.Drawing.Size(55, 17)
+        Me.checkboxDiaSemana2.TabIndex = 10
+        Me.checkboxDiaSemana2.Text = "Lunes"
+        Me.checkboxDiaSemana2.UseVisualStyleBackColor = True
+        '
         'datetimepickerTurno2Hasta
         '
         Me.datetimepickerTurno2Hasta.CustomFormat = "HH:mm"
         Me.datetimepickerTurno2Hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerTurno2Hasta.Location = New System.Drawing.Point(276, 101)
+        Me.datetimepickerTurno2Hasta.Location = New System.Drawing.Point(271, 101)
         Me.datetimepickerTurno2Hasta.Name = "datetimepickerTurno2Hasta"
         Me.datetimepickerTurno2Hasta.ShowCheckBox = True
         Me.datetimepickerTurno2Hasta.ShowUpDown = True
-        Me.datetimepickerTurno2Hasta.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno2Hasta.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno2Hasta.TabIndex = 9
         Me.datetimepickerTurno2Hasta.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -206,7 +276,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.datetimepickerTurno2Desde.Name = "datetimepickerTurno2Desde"
         Me.datetimepickerTurno2Desde.ShowCheckBox = True
         Me.datetimepickerTurno2Desde.ShowUpDown = True
-        Me.datetimepickerTurno2Desde.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno2Desde.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno2Desde.TabIndex = 7
         Me.datetimepickerTurno2Desde.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -214,11 +284,11 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         '
         Me.datetimepickerTurno1Hasta.CustomFormat = "HH:mm"
         Me.datetimepickerTurno1Hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerTurno1Hasta.Location = New System.Drawing.Point(276, 71)
+        Me.datetimepickerTurno1Hasta.Location = New System.Drawing.Point(271, 71)
         Me.datetimepickerTurno1Hasta.Name = "datetimepickerTurno1Hasta"
         Me.datetimepickerTurno1Hasta.ShowCheckBox = True
         Me.datetimepickerTurno1Hasta.ShowUpDown = True
-        Me.datetimepickerTurno1Hasta.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno1Hasta.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno1Hasta.TabIndex = 5
         Me.datetimepickerTurno1Hasta.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -230,7 +300,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.datetimepickerTurno1Desde.Name = "datetimepickerTurno1Desde"
         Me.datetimepickerTurno1Desde.ShowCheckBox = True
         Me.datetimepickerTurno1Desde.ShowUpDown = True
-        Me.datetimepickerTurno1Desde.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno1Desde.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno1Desde.TabIndex = 3
         Me.datetimepickerTurno1Desde.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -245,76 +315,6 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.tabpageNotas.TabIndex = 1
         Me.tabpageNotas.Text = "Notas"
         Me.tabpageNotas.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana2
-        '
-        Me.checkboxDiaSemana2.AutoSize = True
-        Me.checkboxDiaSemana2.Location = New System.Drawing.Point(111, 15)
-        Me.checkboxDiaSemana2.Name = "checkboxDiaSemana2"
-        Me.checkboxDiaSemana2.Size = New System.Drawing.Size(55, 17)
-        Me.checkboxDiaSemana2.TabIndex = 10
-        Me.checkboxDiaSemana2.Text = "Lunes"
-        Me.checkboxDiaSemana2.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana3
-        '
-        Me.checkboxDiaSemana3.AutoSize = True
-        Me.checkboxDiaSemana3.Location = New System.Drawing.Point(172, 15)
-        Me.checkboxDiaSemana3.Name = "checkboxDiaSemana3"
-        Me.checkboxDiaSemana3.Size = New System.Drawing.Size(58, 17)
-        Me.checkboxDiaSemana3.TabIndex = 11
-        Me.checkboxDiaSemana3.Text = "Martes"
-        Me.checkboxDiaSemana3.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana4
-        '
-        Me.checkboxDiaSemana4.AutoSize = True
-        Me.checkboxDiaSemana4.Location = New System.Drawing.Point(236, 15)
-        Me.checkboxDiaSemana4.Name = "checkboxDiaSemana4"
-        Me.checkboxDiaSemana4.Size = New System.Drawing.Size(71, 17)
-        Me.checkboxDiaSemana4.TabIndex = 12
-        Me.checkboxDiaSemana4.Text = "Miércoles"
-        Me.checkboxDiaSemana4.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana5
-        '
-        Me.checkboxDiaSemana5.AutoSize = True
-        Me.checkboxDiaSemana5.Location = New System.Drawing.Point(313, 15)
-        Me.checkboxDiaSemana5.Name = "checkboxDiaSemana5"
-        Me.checkboxDiaSemana5.Size = New System.Drawing.Size(60, 17)
-        Me.checkboxDiaSemana5.TabIndex = 13
-        Me.checkboxDiaSemana5.Text = "Jueves"
-        Me.checkboxDiaSemana5.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana6
-        '
-        Me.checkboxDiaSemana6.AutoSize = True
-        Me.checkboxDiaSemana6.Location = New System.Drawing.Point(379, 15)
-        Me.checkboxDiaSemana6.Name = "checkboxDiaSemana6"
-        Me.checkboxDiaSemana6.Size = New System.Drawing.Size(61, 17)
-        Me.checkboxDiaSemana6.TabIndex = 14
-        Me.checkboxDiaSemana6.Text = "Viernes"
-        Me.checkboxDiaSemana6.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana7
-        '
-        Me.checkboxDiaSemana7.AutoSize = True
-        Me.checkboxDiaSemana7.Location = New System.Drawing.Point(111, 38)
-        Me.checkboxDiaSemana7.Name = "checkboxDiaSemana7"
-        Me.checkboxDiaSemana7.Size = New System.Drawing.Size(63, 17)
-        Me.checkboxDiaSemana7.TabIndex = 15
-        Me.checkboxDiaSemana7.Text = "Sábado"
-        Me.checkboxDiaSemana7.UseVisualStyleBackColor = True
-        '
-        'checkboxDiaSemana1
-        '
-        Me.checkboxDiaSemana1.AutoSize = True
-        Me.checkboxDiaSemana1.Location = New System.Drawing.Point(180, 38)
-        Me.checkboxDiaSemana1.Name = "checkboxDiaSemana1"
-        Me.checkboxDiaSemana1.Size = New System.Drawing.Size(68, 17)
-        Me.checkboxDiaSemana1.TabIndex = 16
-        Me.checkboxDiaSemana1.Text = "Domingo"
-        Me.checkboxDiaSemana1.UseVisualStyleBackColor = True
         '
         'formPersonaHorarioLaboralAgregarMultiples
         '

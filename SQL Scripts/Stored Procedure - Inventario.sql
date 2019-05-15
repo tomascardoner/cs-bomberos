@@ -19,24 +19,27 @@ CREATE PROCEDURE usp_Inventario
 	@IDCuartel tinyint,
 	@IDArea smallint,
 	@IDUbicacion smallint,
-	@IDSubUbicacion smallint
+	@IDSubUbicacion smallint,
+	@Baja bit,
+	@FechaBaja date
 	AS
 
 	BEGIN
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT Cuartel.IDCuartel, Cuartel.Nombre AS CuartelNombre, Area.IDArea, Area.Codigo AS AreaCodigo, Area.Nombre AS AreaNombre, Inventario.Codigo AS InventarioCodigo, Area.Codigo + Inventario.Codigo AS AreaInventarioCodigo, Elemento.Nombre AS ElementoNombre, Inventario.DescripcionPropia AS InventarioDescripcionPropia, Elemento.Nombre + ISNULL(' ' + Inventario.DescripcionPropia, '') AS ElementoNombreInventarioDescripcionPropia, Ubicacion.IDUbicacion, Ubicacion.Nombre AS UbicacionNombre, SubUbicacion.IDSubUbicacion, SubUbicacion.Nombre AS SubUbicacionNombre, ModoAdquisicion.IDModoAdquisicion, ModoAdquisicion.Nombre AS ModoAdquisicionNombre, ISNULL(Inventario.Cantidad, 1) AS Cantidad
+		SELECT Cuartel.IDCuartel, Cuartel.Nombre AS CuartelNombre, Area.IDArea, Area.Codigo AS AreaCodigo, Area.Nombre AS AreaNombre, Inventario.Codigo AS InventarioCodigo, Area.Codigo + Inventario.Codigo AS AreaInventarioCodigo, Elemento.Nombre AS ElementoNombre, Inventario.DescripcionPropia AS InventarioDescripcionPropia, Elemento.Nombre + ISNULL(' ' + Inventario.DescripcionPropia, '') AS ElementoNombreInventarioDescripcionPropia, Ubicacion.IDUbicacion, Ubicacion.Nombre AS UbicacionNombre, SubUbicacion.IDSubUbicacion, SubUbicacion.Nombre AS SubUbicacionNombre, ModoAdquisicion.IDModoAdquisicion, ModoAdquisicion.Nombre AS ModoAdquisicionNombre, ISNULL(Inventario.Cantidad, 1) AS Cantidad, Inventario.FechaBaja
 			FROM (((((Inventario INNER JOIN Area ON Inventario.IDArea = Area.IDArea)
 				INNER JOIN Cuartel ON Area.IDCuartel = Cuartel.IDCuartel)
 				INNER JOIN Elemento ON Inventario.IDElemento = Elemento.IDElemento)
 				LEFT JOIN Ubicacion ON Inventario.IDUbicacion = Ubicacion.IDUbicacion)
 				LEFT JOIN SubUbicacion ON Inventario.IDSubUbicacion = SubUbicacion.IDSubUbicacion)
 				LEFT JOIN ModoAdquisicion ON Inventario.IDModoAdquisicion = ModoAdquisicion.IDModoAdquisicion
-			WHERE Inventario.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Area.IDCuartel = @IDCuartel)
+			WHERE (@IDCuartel IS NULL OR Area.IDCuartel = @IDCuartel)
 				AND (@IDArea IS NULL OR Inventario.IDArea = @IDArea)
 				AND (@IDUbicacion IS NULL OR Inventario.IDUbicacion = @IDUbicacion)
 				AND (@IDSubUbicacion IS NULL OR Inventario.IDSubUbicacion = @IDSubUbicacion)
+				AND (@Baja IS NULL OR Inventario.EsActivo <> @Baja)
+				AND (@FechaBaja IS NULL OR Inventario.FechaBaja = @FechaBaja)
 	END
 GO

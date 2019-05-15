@@ -103,3 +103,9 @@
 	* Listado de Inventario: Inventario General
 	* Listado de Inventario: Modo de Adquisición
 	* Listado de Inventario: Control de Inventario
+
+14/05/2019
+	* Se renombraron las columnas en los Horarios Laborales
+	* FIX: Filtro de activo en Inventario no funcionaba
+	* Listado de Baja de Materiales (Inventario)
+	* Inventario: se hizo obligatorio el Modo de Adquisición

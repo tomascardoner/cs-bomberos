@@ -68,7 +68,7 @@
                                        From ug In Ubicaciones_Group.DefaultIfEmpty
                                        Group Join su In dbContext.SubUbicacion On i.IDSubUbicacion Equals su.IDSubUbicacion Into SubUbicaciones_Group = Group
                                        From sug In SubUbicaciones_Group.DefaultIfEmpty
-                                       Select New GridRowData With {.IDInventario = i.IDInventario, .IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = i.IDArea, .AreaNombre = a.Nombre, .Codigo = a.Codigo & i.Codigo, .Nombre = e.Nombre, .DescripcionPropia = i.DescripcionPropia, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = e.EsActivo}).ToList
+                                       Select New GridRowData With {.IDInventario = i.IDInventario, .IDElemento = e.IDElemento, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .IDArea = i.IDArea, .AreaNombre = a.Nombre, .Codigo = a.Codigo & i.Codigo, .Nombre = e.Nombre, .DescripcionPropia = i.DescripcionPropia, .IDUbicacion = If(ug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, ug.IDUbicacion), .UbicacionNombre = If(ug Is Nothing, "", ug.Nombre), .IDSubUbicacion = If(sug Is Nothing, FIELD_VALUE_NOTSPECIFIED_SHORT, sug.IDSubUbicacion), .SubUbicacionNombre = If(sug Is Nothing, "", sug.Nombre), .EsActivo = i.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -147,10 +147,10 @@
                     Case CS_Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todos
                     Case CS_Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Elemento.EsActivo} = 1"
-                        mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                        mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.Where(Function(i) i.EsActivo).ToList
                     Case CS_Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Elemento.EsActivo} = 0"
-                        mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                        mlistInventarioFiltradaYOrdenada = mlistInventarioFiltradaYOrdenada.Where(Function(i) Not i.EsActivo).ToList
                 End Select
 
                 Select Case mlistInventarioFiltradaYOrdenada.Count

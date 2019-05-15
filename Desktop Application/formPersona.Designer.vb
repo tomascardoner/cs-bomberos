@@ -77,11 +77,6 @@ Partial Class formPersona
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -94,6 +89,11 @@ Partial Class formPersona
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -188,11 +188,6 @@ Partial Class formPersona
         Me.panelHorarioLaboral = New System.Windows.Forms.TableLayoutPanel()
         Me.panelHorarioLaboralGrilla = New System.Windows.Forms.Panel()
         Me.datagridviewHorarioLaboral = New System.Windows.Forms.DataGridView()
-        Me.columnHorarioLaboral_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripHorarioLaboral = New System.Windows.Forms.ToolStrip()
         Me.buttonHorarioLaboral_Agregar = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemHorarioLaboral_AgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
@@ -282,6 +277,11 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.columnHorarioLaboral_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -1864,62 +1864,6 @@ Partial Class formPersona
         Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(548, 343)
         Me.datagridviewHorarioLaboral.TabIndex = 10
         '
-        'columnHorarioLaboral_DiaSemana
-        '
-        Me.columnHorarioLaboral_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_DiaSemana.DataPropertyName = "DiaSemanaNombre"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnHorarioLaboral_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnHorarioLaboral_DiaSemana.HeaderText = "Día semana"
-        Me.columnHorarioLaboral_DiaSemana.Name = "columnHorarioLaboral_DiaSemana"
-        Me.columnHorarioLaboral_DiaSemana.ReadOnly = True
-        Me.columnHorarioLaboral_DiaSemana.Width = 83
-        '
-        'columnHorarioLaboral_Turno1Desde
-        '
-        Me.columnHorarioLaboral_Turno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno1Desde.DataPropertyName = "Turno1Desde"
-        DataGridViewCellStyle6.Format = "t"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnHorarioLaboral_Turno1Desde.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnHorarioLaboral_Turno1Desde.HeaderText = "Mañana desde"
-        Me.columnHorarioLaboral_Turno1Desde.Name = "columnHorarioLaboral_Turno1Desde"
-        Me.columnHorarioLaboral_Turno1Desde.ReadOnly = True
-        Me.columnHorarioLaboral_Turno1Desde.Width = 95
-        '
-        'columnHorarioLaboral_Turno1Hasta
-        '
-        Me.columnHorarioLaboral_Turno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno1Hasta.DataPropertyName = "Turno1Hasta"
-        DataGridViewCellStyle7.Format = "t"
-        Me.columnHorarioLaboral_Turno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
-        Me.columnHorarioLaboral_Turno1Hasta.HeaderText = "Mañana hasta"
-        Me.columnHorarioLaboral_Turno1Hasta.Name = "columnHorarioLaboral_Turno1Hasta"
-        Me.columnHorarioLaboral_Turno1Hasta.ReadOnly = True
-        Me.columnHorarioLaboral_Turno1Hasta.Width = 92
-        '
-        'columnHorarioLaboral_Turno2Desde
-        '
-        Me.columnHorarioLaboral_Turno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno2Desde.DataPropertyName = "Turno2Desde"
-        DataGridViewCellStyle8.Format = "t"
-        Me.columnHorarioLaboral_Turno2Desde.DefaultCellStyle = DataGridViewCellStyle8
-        Me.columnHorarioLaboral_Turno2Desde.HeaderText = "Tarde desde"
-        Me.columnHorarioLaboral_Turno2Desde.Name = "columnHorarioLaboral_Turno2Desde"
-        Me.columnHorarioLaboral_Turno2Desde.ReadOnly = True
-        Me.columnHorarioLaboral_Turno2Desde.Width = 85
-        '
-        'columnHorarioLaboral_Turno2Hasta
-        '
-        Me.columnHorarioLaboral_Turno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno2Hasta.DataPropertyName = "Turno2hasta"
-        DataGridViewCellStyle9.Format = "t"
-        Me.columnHorarioLaboral_Turno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
-        Me.columnHorarioLaboral_Turno2Hasta.HeaderText = "Tarde hasta"
-        Me.columnHorarioLaboral_Turno2Hasta.Name = "columnHorarioLaboral_Turno2Hasta"
-        Me.columnHorarioLaboral_Turno2Hasta.ReadOnly = True
-        Me.columnHorarioLaboral_Turno2Hasta.Width = 82
-        '
         'toolstripHorarioLaboral
         '
         Me.toolstripHorarioLaboral.Dock = System.Windows.Forms.DockStyle.Left
@@ -2933,6 +2877,66 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
+        '
+        'columnHorarioLaboral_DiaSemana
+        '
+        Me.columnHorarioLaboral_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_DiaSemana.DataPropertyName = "DiaSemanaNombre"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.columnHorarioLaboral_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnHorarioLaboral_DiaSemana.HeaderText = "Día semana"
+        Me.columnHorarioLaboral_DiaSemana.Name = "columnHorarioLaboral_DiaSemana"
+        Me.columnHorarioLaboral_DiaSemana.ReadOnly = True
+        Me.columnHorarioLaboral_DiaSemana.Width = 90
+        '
+        'columnHorarioLaboral_Turno1Desde
+        '
+        Me.columnHorarioLaboral_Turno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Desde.DataPropertyName = "Turno1Desde"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Format = "t"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.columnHorarioLaboral_Turno1Desde.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnHorarioLaboral_Turno1Desde.HeaderText = "Turno 1 - desde"
+        Me.columnHorarioLaboral_Turno1Desde.Name = "columnHorarioLaboral_Turno1Desde"
+        Me.columnHorarioLaboral_Turno1Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Desde.Width = 72
+        '
+        'columnHorarioLaboral_Turno1Hasta
+        '
+        Me.columnHorarioLaboral_Turno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Hasta.DataPropertyName = "Turno1Hasta"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Format = "t"
+        Me.columnHorarioLaboral_Turno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
+        Me.columnHorarioLaboral_Turno1Hasta.HeaderText = "Turno 1 - hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.Name = "columnHorarioLaboral_Turno1Hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Hasta.Width = 72
+        '
+        'columnHorarioLaboral_Turno2Desde
+        '
+        Me.columnHorarioLaboral_Turno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Desde.DataPropertyName = "Turno2Desde"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Format = "t"
+        Me.columnHorarioLaboral_Turno2Desde.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnHorarioLaboral_Turno2Desde.HeaderText = "Turno 2 - desde"
+        Me.columnHorarioLaboral_Turno2Desde.Name = "columnHorarioLaboral_Turno2Desde"
+        Me.columnHorarioLaboral_Turno2Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Desde.Width = 72
+        '
+        'columnHorarioLaboral_Turno2Hasta
+        '
+        Me.columnHorarioLaboral_Turno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Hasta.DataPropertyName = "Turno2hasta"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Format = "t"
+        Me.columnHorarioLaboral_Turno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnHorarioLaboral_Turno2Hasta.HeaderText = "Turno 2 - hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.Name = "columnHorarioLaboral_Turno2Hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Hasta.Width = 72
         '
         'formPersona
         '

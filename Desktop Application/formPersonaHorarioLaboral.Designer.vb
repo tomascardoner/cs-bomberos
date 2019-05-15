@@ -90,7 +90,7 @@ Partial Class formPersonaHorarioLaboral
         'labelTurno1Hasta
         '
         labelTurno1Hasta.AutoSize = True
-        labelTurno1Hasta.Location = New System.Drawing.Point(227, 49)
+        labelTurno1Hasta.Location = New System.Drawing.Point(222, 49)
         labelTurno1Hasta.Name = "labelTurno1Hasta"
         labelTurno1Hasta.Size = New System.Drawing.Size(38, 13)
         labelTurno1Hasta.TabIndex = 4
@@ -99,7 +99,7 @@ Partial Class formPersonaHorarioLaboral
         'labelTurno2Hasta
         '
         labelTurno2Hasta.AutoSize = True
-        labelTurno2Hasta.Location = New System.Drawing.Point(227, 79)
+        labelTurno2Hasta.Location = New System.Drawing.Point(222, 79)
         labelTurno2Hasta.Name = "labelTurno2Hasta"
         labelTurno2Hasta.Size = New System.Drawing.Size(38, 13)
         labelTurno2Hasta.TabIndex = 8
@@ -235,11 +235,11 @@ Partial Class formPersonaHorarioLaboral
         '
         Me.datetimepickerTurno2Hasta.CustomFormat = "HH:mm"
         Me.datetimepickerTurno2Hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerTurno2Hasta.Location = New System.Drawing.Point(271, 75)
+        Me.datetimepickerTurno2Hasta.Location = New System.Drawing.Point(266, 75)
         Me.datetimepickerTurno2Hasta.Name = "datetimepickerTurno2Hasta"
         Me.datetimepickerTurno2Hasta.ShowCheckBox = True
         Me.datetimepickerTurno2Hasta.ShowUpDown = True
-        Me.datetimepickerTurno2Hasta.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno2Hasta.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno2Hasta.TabIndex = 9
         Me.datetimepickerTurno2Hasta.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -251,7 +251,7 @@ Partial Class formPersonaHorarioLaboral
         Me.datetimepickerTurno2Desde.Name = "datetimepickerTurno2Desde"
         Me.datetimepickerTurno2Desde.ShowCheckBox = True
         Me.datetimepickerTurno2Desde.ShowUpDown = True
-        Me.datetimepickerTurno2Desde.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno2Desde.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno2Desde.TabIndex = 7
         Me.datetimepickerTurno2Desde.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -259,11 +259,11 @@ Partial Class formPersonaHorarioLaboral
         '
         Me.datetimepickerTurno1Hasta.CustomFormat = "HH:mm"
         Me.datetimepickerTurno1Hasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerTurno1Hasta.Location = New System.Drawing.Point(271, 45)
+        Me.datetimepickerTurno1Hasta.Location = New System.Drawing.Point(266, 45)
         Me.datetimepickerTurno1Hasta.Name = "datetimepickerTurno1Hasta"
         Me.datetimepickerTurno1Hasta.ShowCheckBox = True
         Me.datetimepickerTurno1Hasta.ShowUpDown = True
-        Me.datetimepickerTurno1Hasta.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno1Hasta.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno1Hasta.TabIndex = 5
         Me.datetimepickerTurno1Hasta.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '
@@ -275,7 +275,7 @@ Partial Class formPersonaHorarioLaboral
         Me.datetimepickerTurno1Desde.Name = "datetimepickerTurno1Desde"
         Me.datetimepickerTurno1Desde.ShowCheckBox = True
         Me.datetimepickerTurno1Desde.ShowUpDown = True
-        Me.datetimepickerTurno1Desde.Size = New System.Drawing.Size(70, 20)
+        Me.datetimepickerTurno1Desde.Size = New System.Drawing.Size(80, 20)
         Me.datetimepickerTurno1Desde.TabIndex = 3
         Me.datetimepickerTurno1Desde.Value = New Date(1753, 1, 1, 0, 0, 0, 0)
         '

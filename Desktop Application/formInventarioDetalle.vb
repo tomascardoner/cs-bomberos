@@ -280,6 +280,13 @@
             comboboxElemento.Focus()
             Exit Sub
         End If
+        If Not comboboxModoAdquisicion.SelectedValue Is Nothing Then
+            If Convert.ToByte(comboboxModoAdquisicion.SelectedValue) = CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+                MsgBox("Debe especificar el Modo de Adquisición.", MsgBoxStyle.Information, My.Application.Info.Title)
+                comboboxModoAdquisicion.Focus()
+                Exit Sub
+            End If
+        End If
 
         ' Generar el ID nuevo
         If mInventarioActual.IDInventario = 0 Then

@@ -48,6 +48,8 @@ Partial Class formInventarioDetalle
         Me.comboboxElemento = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelDescripcionPropia = New System.Windows.Forms.Label()
+        Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.datetimepickerFechaBaja = New System.Windows.Forms.DateTimePicker()
         Me.labelIDInventario = New System.Windows.Forms.Label()
@@ -59,8 +61,6 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
-        Me.labelDescripcionPropia = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -334,6 +334,23 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'labelDescripcionPropia
+        '
+        Me.labelDescripcionPropia.AutoSize = True
+        Me.labelDescripcionPropia.Location = New System.Drawing.Point(6, 116)
+        Me.labelDescripcionPropia.Name = "labelDescripcionPropia"
+        Me.labelDescripcionPropia.Size = New System.Drawing.Size(98, 13)
+        Me.labelDescripcionPropia.TabIndex = 9
+        Me.labelDescripcionPropia.Text = "Descripción propia:"
+        '
+        'textboxDescripcionPropia
+        '
+        Me.textboxDescripcionPropia.Location = New System.Drawing.Point(121, 113)
+        Me.textboxDescripcionPropia.MaxLength = 100
+        Me.textboxDescripcionPropia.Name = "textboxDescripcionPropia"
+        Me.textboxDescripcionPropia.Size = New System.Drawing.Size(382, 20)
+        Me.textboxDescripcionPropia.TabIndex = 10
+        '
         'tabpageNotasAuditoria
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.datetimepickerFechaBaja)
@@ -372,7 +389,7 @@ Partial Class formInventarioDetalle
         'labelIDInventario
         '
         Me.labelIDInventario.AutoSize = True
-        Me.labelIDInventario.Location = New System.Drawing.Point(6, 136)
+        Me.labelIDInventario.Location = New System.Drawing.Point(6, 185)
         Me.labelIDInventario.Name = "labelIDInventario"
         Me.labelIDInventario.Size = New System.Drawing.Size(21, 13)
         Me.labelIDInventario.TabIndex = 6
@@ -452,23 +469,6 @@ Partial Class formInventarioDetalle
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
-        '
-        'textboxDescripcionPropia
-        '
-        Me.textboxDescripcionPropia.Location = New System.Drawing.Point(121, 113)
-        Me.textboxDescripcionPropia.MaxLength = 100
-        Me.textboxDescripcionPropia.Name = "textboxDescripcionPropia"
-        Me.textboxDescripcionPropia.Size = New System.Drawing.Size(382, 20)
-        Me.textboxDescripcionPropia.TabIndex = 10
-        '
-        'labelDescripcionPropia
-        '
-        Me.labelDescripcionPropia.AutoSize = True
-        Me.labelDescripcionPropia.Location = New System.Drawing.Point(6, 116)
-        Me.labelDescripcionPropia.Name = "labelDescripcionPropia"
-        Me.labelDescripcionPropia.Size = New System.Drawing.Size(98, 13)
-        Me.labelDescripcionPropia.TabIndex = 9
-        Me.labelDescripcionPropia.Text = "Descripción propia:"
         '
         'formInventarioDetalle
         '
