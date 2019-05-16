@@ -114,3 +114,4 @@
 	* Se agregó el estado civil a las Personas y los Familiares
 	* Se agregó el ABM de estados civiles
 	* Se cambió el encabezado de la Planilla de Licencia del Personal
+	* Reporte de Declaración Juradad de Horarios Laborales
