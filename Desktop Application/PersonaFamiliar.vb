@@ -23,6 +23,7 @@ Partial Public Class PersonaFamiliar
     Public Property Genero As String
     Public Property GrupoSanguineo As String
     Public Property FactorRH As String
+    Public Property IDEstadoCivil As Nullable(Of Byte)
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
     Public Property IOMAACargo As Boolean
@@ -53,5 +54,6 @@ Partial Public Class PersonaFamiliar
     Public Overridable Property Parentesco As Parentesco
     Public Overridable Property DocumentoTipo As DocumentoTipo
     Public Overridable Property Localidad As Localidad
+    Public Overridable Property EstadoCivil As EstadoCivil
 
 End Class

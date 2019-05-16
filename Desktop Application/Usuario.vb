@@ -127,5 +127,7 @@ Partial Public Class Usuario
     Public Overridable Property VehiculoMarcasModificadas As ICollection(Of VehiculoMarca) = New HashSet(Of VehiculoMarca)
     Public Overridable Property VehiculoTiposCreados As ICollection(Of VehiculoTipo) = New HashSet(Of VehiculoTipo)
     Public Overridable Property VehiculoTiposModificados As ICollection(Of VehiculoTipo) = New HashSet(Of VehiculoTipo)
+    Public Overridable Property EstadosCivilesCreados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
+    Public Overridable Property EstadosCivilesModificados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
 
 End Class

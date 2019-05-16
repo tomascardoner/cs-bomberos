@@ -145,6 +145,21 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="EstadoCivil.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="formEstadoCivil.designer.vb">
+      <DependentUpon>formEstadoCivil.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formEstadoCivil.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formEstadosCiviles.designer.vb">
+      <DependentUpon>formEstadosCiviles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formEstadosCiviles.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formPersonaHorarioLaboralAgregarMultiples.Designer.vb">
       <DependentUpon>formPersonaHorarioLaboralAgregarMultiples.vb</DependentUpon>
     </Compile>
@@ -930,6 +945,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formEstadoCivil.resx">
+      <DependentUpon>formEstadoCivil.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formEstadosCiviles.resx">
+      <DependentUpon>formEstadosCiviles.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaHorarioLaboralAgregarMultiples.resx">
       <DependentUpon>formPersonaHorarioLaboralAgregarMultiples.vb</DependentUpon>

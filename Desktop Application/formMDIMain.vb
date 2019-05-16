@@ -106,7 +106,7 @@
 
 #Region "Left Toolbar - Tablas"
     Private Sub NivelesEstudio() Handles menuitemTablas_NivelesEstudio.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
+        If Permisos.VerificarPermiso(Permisos.NIVELESTUDIO) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formNivelesEstudio, Form))
@@ -130,6 +130,21 @@
                 formParentescos.WindowState = FormWindowState.Normal
             End If
             formParentescos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub EstadosCiviles() Handles menuitemTablas_EstadosCiviles.Click
+        If Permisos.VerificarPermiso(Permisos.ESTADOCIVIL) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEstadosCiviles, Form))
+            formEstadosCiviles.Show()
+            If formEstadosCiviles.WindowState = FormWindowState.Minimized Then
+                formEstadosCiviles.WindowState = FormWindowState.Normal
+            End If
+            formEstadosCiviles.Focus()
 
             Me.Cursor = Cursors.Default
         End If

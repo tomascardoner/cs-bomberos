@@ -80,6 +80,7 @@
         comboboxFactorRH.Enabled = mEditMode
         doubletextboxAltura.ReadOnly = (mEditMode = False)
         integertextboxPeso.ReadOnly = (mEditMode = False)
+        comboboxEstadoCivil.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
@@ -152,6 +153,7 @@
         pFillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
         pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        pFillAndRefreshLists.EstadoCivil(comboboxEstadoCivil, False, True)
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
@@ -235,7 +237,7 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CS_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CByte(0))
+            CS_ComboBox.SetSelectedValue(comboboxDocumentoTipo, SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             Else
@@ -247,6 +249,7 @@
             CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
             integertextboxPeso.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Peso)
+            CS_ComboBox.SetSelectedValue(comboboxEstadoCivil, SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -342,7 +345,7 @@
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
 
             'Datos de la pestaña General
-            .IDDocumentoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDocumentoTipo.SelectedValue, 0)
+            .IDDocumentoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDocumentoTipo.SelectedValue, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxDocumentoNumero.Text)
             Else
@@ -355,6 +358,7 @@
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
             .Peso = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxPeso.Text)
+            .IDEstadoCivil = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxEstadoCivil.SelectedValue, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             Select Case comboboxIOMATiene.SelectedIndex
                 Case 0
                     .IOMATiene = Nothing
@@ -1259,6 +1263,40 @@
             formPersonaHorarioLaboral.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub HorarioLaboral_Imprimir(sender As Object, e As EventArgs) Handles buttonHorarioLaboral_Imprimir.Click
+        Dim GridRowDataActual As HorarioLaboral_GridRowData
+
+        If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Horario Laboral para imprimir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_IMPRIMIR) Then
+                GridRowDataActual = CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData)
+
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewLicencias.Enabled = False
+
+                Using dbContext As New CSBomberosContext(True)
+                    Dim ReporteActual As New Reporte
+
+                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_HORARIOLABORAL))
+                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
+                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre)
+                        End If
+                    Else
+                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    End If
+                End Using
+
+                datagridviewLicencias.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

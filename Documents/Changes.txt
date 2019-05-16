@@ -109,3 +109,8 @@
 	* FIX: Filtro de activo en Inventario no funcionaba
 	* Listado de Baja de Materiales (Inventario)
 	* Inventario: se hizo obligatorio el Modo de Adquisición
+
+15/05/2019
+	* Se agregó el estado civil a las Personas y los Familiares
+	* Se agregó el ABM de estados civiles
+	* Se cambió el encabezado de la Planilla de Licencia del Personal

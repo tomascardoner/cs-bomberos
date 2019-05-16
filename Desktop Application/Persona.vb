@@ -27,6 +27,7 @@ Partial Public Class Persona
     Public Property FactorRH As String
     Public Property Altura As Nullable(Of Decimal)
     Public Property Peso As Nullable(Of Byte)
+    Public Property IDEstadoCivil As Nullable(Of Byte)
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
     Public Property IDNivelEstudio As Nullable(Of Byte)
@@ -86,5 +87,6 @@ Partial Public Class Persona
     Public Overridable Property PersonaHorariosLaborales As ICollection(Of PersonaHorarioLaboral) = New HashSet(Of PersonaHorarioLaboral)
     Public Overridable Property PersonaVacunas As ICollection(Of PersonaVacuna) = New HashSet(Of PersonaVacuna)
     Public Overridable Property PersonaVehiculos As ICollection(Of PersonaVehiculo) = New HashSet(Of PersonaVehiculo)
+    Public Overridable Property EstadoCivil As EstadoCivil
 
 End Class

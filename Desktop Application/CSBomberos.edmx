@@ -198,6 +198,19 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="EstadoCivil">
+          <Key>
+            <PropertyRef Name="IDEstadoCivil" />
+          </Key>
+          <Property Name="IDEstadoCivil" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Inventario">
           <Key>
             <PropertyRef Name="IDInventario" />
@@ -356,6 +369,7 @@
           <Property Name="FactorRH" Type="char" MaxLength="1" />
           <Property Name="Altura" Type="decimal" Precision="3" Scale="2" />
           <Property Name="Peso" Type="tinyint" />
+          <Property Name="IDEstadoCivil" Type="tinyint" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="IDNivelEstudio" Type="tinyint" />
@@ -546,6 +560,7 @@
           <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="GrupoSanguineo" Type="char" MaxLength="2" />
           <Property Name="FactorRH" Type="char" MaxLength="1" />
+          <Property Name="IDEstadoCivil" Type="tinyint" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="IOMAACargo" Type="bit" Nullable="false" />
@@ -1161,6 +1176,30 @@
             </Principal>
             <Dependent Role="Inventario">
               <PropertyRef Name="IDElemento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCivil__Persona">
+          <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="0..1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCivil__PersonaFamiliar">
+          <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="0..1" />
+          <End Role="PersonaFamiliar" Type="Self.PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDEstadoCivil" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1928,6 +1967,30 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Elemento">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__EstadoCivil__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EstadoCivil">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__EstadoCivil__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="EstadoCivil" Type="Self.EstadoCivil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EstadoCivil">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -2922,6 +2985,7 @@
           <EntitySet Name="DocumentacionTipo" EntityType="Self.DocumentacionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentoTipo" EntityType="Self.DocumentoTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elemento" EntityType="Self.Elemento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EstadoCivil" EntityType="Self.EstadoCivil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Inventario" EntityType="Self.Inventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenciaCausa" EntityType="Self.LicenciaCausa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenciaConducirCategoria" EntityType="Self.LicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
@@ -3031,6 +3095,14 @@
           <AssociationSet Name="FK__Elemento__Inventario" Association="Self.FK__Elemento__Inventario">
             <End Role="Elemento" EntitySet="Elemento" />
             <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCivil__Persona" Association="Self.FK__EstadoCivil__Persona">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCivil__PersonaFamiliar" Association="Self.FK__EstadoCivil__PersonaFamiliar">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
           <AssociationSet Name="FK__LicenciaCausa__PersonaLicencia" Association="Self.FK__LicenciaCausa__PersonaLicencia">
             <End Role="LicenciaCausa" EntitySet="LicenciaCausa" />
@@ -3283,6 +3355,14 @@
           <AssociationSet Name="FK__Usuario__Elemento__Modificacion" Association="Self.FK__Usuario__Elemento__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Elemento" EntitySet="Elemento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__EstadoCivil__Creacion" Association="Self.FK__Usuario__EstadoCivil__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__EstadoCivil__Modificacion" Association="Self.FK__Usuario__EstadoCivil__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Inventario__Creacion" Association="Self.FK__Usuario__Inventario__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -4317,6 +4397,23 @@
             <Parameter Name="EstadoDesconocidoLeyenda" Mode="In" Type="String" />
             <Parameter Name="EstadoActivoLeyenda" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="EstadoCivil" EntityType="CSBomberosModel.EstadoCivil" />
+          <AssociationSet Name="FK__EstadoCivil__Persona" Association="CSBomberosModel.FK__EstadoCivil__Persona">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EstadoCivil__PersonaFamiliar" Association="CSBomberosModel.FK__EstadoCivil__PersonaFamiliar">
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+            <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__EstadoCivil__Creacion" Association="CSBomberosModel.FK__Usuario__EstadoCivil__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__EstadoCivil__Modificacion" Association="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="EstadoCivil" EntitySet="EstadoCivil" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -4538,6 +4635,8 @@
           <NavigationProperty Name="VehiculoMarcasModificadas" Relationship="CSBomberosModel.FK__Usuario__VehiculoMarca__Modificacion" FromRole="Usuario" ToRole="VehiculoMarca" />
           <NavigationProperty Name="VehiculoTiposCreados" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Creacion" FromRole="Usuario" ToRole="VehiculoTipo" />
           <NavigationProperty Name="VehiculoTiposModificados" Relationship="CSBomberosModel.FK__Usuario__VehiculoTipo__Modificacion" FromRole="Usuario" ToRole="VehiculoTipo" />
+          <NavigationProperty Name="EstadosCivilesCreados" Relationship="CSBomberosModel.FK__Usuario__EstadoCivil__Creacion" FromRole="Usuario" ToRole="EstadoCivil" />
+          <NavigationProperty Name="EstadosCivilesModificados" Relationship="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion" FromRole="Usuario" ToRole="EstadoCivil" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -4708,6 +4807,7 @@
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Altura" Type="Decimal" Precision="3" Scale="2" />
           <Property Name="Peso" Type="Byte" />
+          <Property Name="IDEstadoCivil" Type="Byte" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IDNivelEstudio" Type="Byte" />
@@ -4766,6 +4866,7 @@
           <NavigationProperty Name="PersonaHorariosLaborales" Relationship="CSBomberosModel.FK__Persona__PersonaHorarioLaboral" FromRole="Persona" ToRole="PersonaHorarioLaboral" />
           <NavigationProperty Name="PersonaVacunas" Relationship="CSBomberosModel.FK__Persona__PersonaVacuna" FromRole="Persona" ToRole="PersonaVacuna" />
           <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__Persona__PersonaVehiculo" FromRole="Persona" ToRole="PersonaVehiculo" />
+          <NavigationProperty Name="EstadoCivil" Relationship="CSBomberosModel.FK__EstadoCivil__Persona" FromRole="Persona" ToRole="EstadoCivil" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -4874,6 +4975,7 @@
           <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="GrupoSanguineo" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="FactorRH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IDEstadoCivil" Type="Byte" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IOMAACargo" Type="Boolean" Nullable="false" />
@@ -4903,6 +5005,7 @@
           <NavigationProperty Name="Parentesco" Relationship="CSBomberosModel.FK__Parentesco__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Parentesco" />
           <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="DocumentoTipo" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="Localidad" />
+          <NavigationProperty Name="EstadoCivil" Relationship="CSBomberosModel.FK__EstadoCivil__PersonaFamiliar" FromRole="PersonaFamiliar" ToRole="EstadoCivil" />
         </EntityType>
         <Association Name="FK__Persona__PersonaParentesco1">
           <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
@@ -7548,6 +7651,71 @@
           <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="IDBajaMotivo" Nullable="true" />
         </ComplexType>
+        <EntityType Name="EstadoCivil">
+          <Key>
+            <PropertyRef Name="IDEstadoCivil" />
+          </Key>
+          <Property Name="IDEstadoCivil" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Personas" Relationship="CSBomberosModel.FK__EstadoCivil__Persona" FromRole="EstadoCivil" ToRole="Persona" />
+          <NavigationProperty Name="PersonaFamiliares" Relationship="CSBomberosModel.FK__EstadoCivil__PersonaFamiliar" FromRole="EstadoCivil" ToRole="PersonaFamiliar" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__EstadoCivil__Creacion" FromRole="EstadoCivil" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion" FromRole="EstadoCivil" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__EstadoCivil__Persona">
+          <End Type="CSBomberosModel.EstadoCivil" Role="EstadoCivil" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EstadoCivil__PersonaFamiliar">
+          <End Type="CSBomberosModel.EstadoCivil" Role="EstadoCivil" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaFamiliar" Role="PersonaFamiliar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EstadoCivil">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Principal>
+            <Dependent Role="PersonaFamiliar">
+              <PropertyRef Name="IDEstadoCivil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__EstadoCivil__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.EstadoCivil" Role="EstadoCivil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EstadoCivil">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__EstadoCivil__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.EstadoCivil" Role="EstadoCivil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="EstadoCivil">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7732,6 +7900,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="HorarioLaboralObservaciones" ColumnName="HorarioLaboralObservaciones" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />
                 <ScalarProperty Name="Altura" ColumnName="Altura" />
@@ -7791,6 +7960,7 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="IOMAACargo" ColumnName="IOMAACargo" />
                 <ScalarProperty Name="ACargo" ColumnName="ACargo" />
                 <ScalarProperty Name="IOMANumeroAfiliado" ColumnName="IOMANumeroAfiliado" />
@@ -8572,6 +8742,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="EstadoCivil">
+            <EntityTypeMapping TypeName="CSBomberosModel.EstadoCivil">
+              <MappingFragment StoreEntitySet="EstadoCivil">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

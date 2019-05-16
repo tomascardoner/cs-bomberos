@@ -83,6 +83,7 @@ Partial Public Class CSBomberosContext
     Public Overridable Property VehiculoCompaniaSeguro() As DbSet(Of VehiculoCompaniaSeguro)
     Public Overridable Property VehiculoMarca() As DbSet(Of VehiculoMarca)
     Public Overridable Property VehiculoTipo() As DbSet(Of VehiculoTipo)
+    Public Overridable Property EstadoCivil() As DbSet(Of EstadoCivil)
 
     Public Overridable Function usp_Personas(estadoDesconocidoLeyenda As String, estadoActivoLeyenda As String) As ObjectResult(Of usp_Personas_Result)
         Dim estadoDesconocidoLeyendaParameter As ObjectParameter = If(estadoDesconocidoLeyenda IsNot Nothing, New ObjectParameter("EstadoDesconocidoLeyenda", estadoDesconocidoLeyenda), New ObjectParameter("EstadoDesconocidoLeyenda", GetType(String)))

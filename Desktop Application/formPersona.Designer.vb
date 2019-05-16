@@ -73,10 +73,16 @@ Partial Class formPersona
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelEstadoCivil As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -89,11 +95,6 @@ Partial Class formPersona
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -115,6 +116,7 @@ Partial Class formPersona
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.integertextboxPeso = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.textboxFechaUltimoAscenso = New System.Windows.Forms.TextBox()
@@ -188,6 +190,11 @@ Partial Class formPersona
         Me.panelHorarioLaboral = New System.Windows.Forms.TableLayoutPanel()
         Me.panelHorarioLaboralGrilla = New System.Windows.Forms.Panel()
         Me.datagridviewHorarioLaboral = New System.Windows.Forms.DataGridView()
+        Me.columnHorarioLaboral_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnHorarioLaboral_Turno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripHorarioLaboral = New System.Windows.Forms.ToolStrip()
         Me.buttonHorarioLaboral_Agregar = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemHorarioLaboral_AgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
@@ -277,11 +284,7 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.columnHorarioLaboral_DiaSemana = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno1Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno1Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno2Desde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnHorarioLaboral_Turno2Hasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.buttonHorarioLaboral_Imprimir = New System.Windows.Forms.ToolStripButton()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -332,6 +335,7 @@ Partial Class formPersona
         labelNotas = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelEstadoCivil = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -419,7 +423,7 @@ Partial Class formPersona
         labelPeso.Location = New System.Drawing.Point(220, 134)
         labelPeso.Name = "labelPeso"
         labelPeso.Size = New System.Drawing.Size(34, 13)
-        labelPeso.TabIndex = 21
+        labelPeso.TabIndex = 13
         labelPeso.Text = "Peso:"
         '
         'labelAltura
@@ -428,7 +432,7 @@ Partial Class formPersona
         labelAltura.Location = New System.Drawing.Point(6, 134)
         labelAltura.Name = "labelAltura"
         labelAltura.Size = New System.Drawing.Size(37, 13)
-        labelAltura.TabIndex = 19
+        labelAltura.TabIndex = 11
         labelAltura.Text = "Altura:"
         '
         'labelCargoJerarquiaActual
@@ -437,26 +441,26 @@ Partial Class formPersona
         labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 380)
         labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
         labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
-        labelCargoJerarquiaActual.TabIndex = 37
+        labelCargoJerarquiaActual.TabIndex = 31
         labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
         '
         'labelIOMANumeroAfiliado
         '
         labelIOMANumeroAfiliado.AutoSize = True
-        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 174)
+        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 193)
         labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
         labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
-        labelIOMANumeroAfiliado.TabIndex = 25
+        labelIOMANumeroAfiliado.TabIndex = 19
         labelIOMANumeroAfiliado.Text = "Nº de afiliado:"
         Me.tooltipMain.SetToolTip(labelIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'labelIOMATiene
         '
         labelIOMATiene.AutoSize = True
-        labelIOMATiene.Location = New System.Drawing.Point(6, 174)
+        labelIOMATiene.Location = New System.Drawing.Point(6, 193)
         labelIOMATiene.Name = "labelIOMATiene"
         labelIOMATiene.Size = New System.Drawing.Size(97, 13)
-        labelIOMATiene.TabIndex = 23
+        labelIOMATiene.TabIndex = 17
         labelIOMATiene.Text = "Tiene I.O.M.A. por:"
         '
         'labelCantidadHijos
@@ -465,16 +469,16 @@ Partial Class formPersona
         labelCantidadHijos.Location = New System.Drawing.Point(6, 352)
         labelCantidadHijos.Name = "labelCantidadHijos"
         labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 35
+        labelCantidadHijos.TabIndex = 29
         labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'labelNivelEstudio
         '
         labelNivelEstudio.AutoSize = True
-        labelNivelEstudio.Location = New System.Drawing.Point(6, 218)
+        labelNivelEstudio.Location = New System.Drawing.Point(6, 228)
         labelNivelEstudio.Name = "labelNivelEstudio"
         labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 27
+        labelNivelEstudio.TabIndex = 21
         labelNivelEstudio.Text = "Nivel de estudios:"
         '
         'labelFactorRH
@@ -483,7 +487,7 @@ Partial Class formPersona
         labelFactorRH.Location = New System.Drawing.Point(286, 107)
         labelFactorRH.Name = "labelFactorRH"
         labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 17
+        labelFactorRH.TabIndex = 9
         labelFactorRH.Text = "Factor RH:"
         '
         'labelGrupoSanguineo
@@ -492,7 +496,7 @@ Partial Class formPersona
         labelGrupoSanguineo.Location = New System.Drawing.Point(6, 107)
         labelGrupoSanguineo.Name = "labelGrupoSanguineo"
         labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 15
+        labelGrupoSanguineo.TabIndex = 7
         labelGrupoSanguineo.Text = "Grupo sanguíneo:"
         '
         'labelFechaNacimiento
@@ -501,7 +505,7 @@ Partial Class formPersona
         labelFechaNacimiento.Location = New System.Drawing.Point(6, 54)
         labelFechaNacimiento.Name = "labelFechaNacimiento"
         labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
-        labelFechaNacimiento.TabIndex = 11
+        labelFechaNacimiento.TabIndex = 3
         labelFechaNacimiento.Text = "Fecha de nacimiento:"
         '
         'labelGenero
@@ -510,7 +514,7 @@ Partial Class formPersona
         labelGenero.Location = New System.Drawing.Point(6, 80)
         labelGenero.Name = "labelGenero"
         labelGenero.Size = New System.Drawing.Size(45, 13)
-        labelGenero.TabIndex = 13
+        labelGenero.TabIndex = 5
         labelGenero.Text = "Género:"
         '
         'labelDocumento
@@ -526,28 +530,28 @@ Partial Class formPersona
         'labelNacionalidad
         '
         labelNacionalidad.AutoSize = True
-        labelNacionalidad.Location = New System.Drawing.Point(6, 284)
+        labelNacionalidad.Location = New System.Drawing.Point(6, 294)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 31
+        labelNacionalidad.TabIndex = 25
         labelNacionalidad.Text = "Nacionalidad:"
         '
         'labelProfesion
         '
         labelProfesion.AutoSize = True
-        labelProfesion.Location = New System.Drawing.Point(6, 245)
+        labelProfesion.Location = New System.Drawing.Point(6, 255)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 29
+        labelProfesion.TabIndex = 23
         labelProfesion.Text = "Profesión:"
         '
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 310)
+        labelCuartel.Location = New System.Drawing.Point(6, 320)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 33
+        labelCuartel.TabIndex = 27
         labelCuartel.Text = "Cuartel:"
         '
         'labelTelefonoParticular
@@ -841,6 +845,15 @@ Partial Class formPersona
         labelCreacion.TabIndex = 4
         labelCreacion.Text = "Creación:"
         '
+        'labelEstadoCivil
+        '
+        labelEstadoCivil.AutoSize = True
+        labelEstadoCivil.Location = New System.Drawing.Point(6, 160)
+        labelEstadoCivil.Name = "labelEstadoCivil"
+        labelEstadoCivil.Size = New System.Drawing.Size(65, 13)
+        labelEstadoCivil.TabIndex = 15
+        labelEstadoCivil.Text = "Estado Civil:"
+        '
         'textboxApellido
         '
         Me.textboxApellido.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -952,11 +965,11 @@ Partial Class formPersona
         '
         'textboxIOMANumeroAfiliado
         '
-        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 171)
+        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 190)
         Me.textboxIOMANumeroAfiliado.MaxLength = 13
         Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
         Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
-        Me.textboxIOMANumeroAfiliado.TabIndex = 26
+        Me.textboxIOMANumeroAfiliado.TabIndex = 20
         Me.tooltipMain.SetToolTip(Me.textboxIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'textboxDocumentoNumero
@@ -1021,6 +1034,8 @@ Partial Class formPersona
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.comboboxEstadoCivil)
+        Me.tabpageGeneral.Controls.Add(labelEstadoCivil)
         Me.tabpageGeneral.Controls.Add(labelPeso)
         Me.tabpageGeneral.Controls.Add(Me.doubletextboxAltura)
         Me.tabpageGeneral.Controls.Add(Me.integertextboxPeso)
@@ -1062,6 +1077,15 @@ Partial Class formPersona
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'comboboxEstadoCivil
+        '
+        Me.comboboxEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEstadoCivil.FormattingEnabled = True
+        Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 157)
+        Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
+        Me.comboboxEstadoCivil.Size = New System.Drawing.Size(121, 21)
+        Me.comboboxEstadoCivil.TabIndex = 16
+        '
         'doubletextboxAltura
         '
         Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(44, 20)
@@ -1074,7 +1098,7 @@ Partial Class formPersona
         Me.doubletextboxAltura.Name = "doubletextboxAltura"
         Me.doubletextboxAltura.NullString = ""
         Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
-        Me.doubletextboxAltura.TabIndex = 20
+        Me.doubletextboxAltura.TabIndex = 12
         Me.doubletextboxAltura.Text = "0,00"
         Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1092,7 +1116,7 @@ Partial Class formPersona
         Me.integertextboxPeso.Name = "integertextboxPeso"
         Me.integertextboxPeso.NullString = ""
         Me.integertextboxPeso.Size = New System.Drawing.Size(44, 20)
-        Me.integertextboxPeso.TabIndex = 22
+        Me.integertextboxPeso.TabIndex = 14
         Me.integertextboxPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'textboxFechaUltimoAscenso
@@ -1101,7 +1125,7 @@ Partial Class formPersona
         Me.textboxFechaUltimoAscenso.Name = "textboxFechaUltimoAscenso"
         Me.textboxFechaUltimoAscenso.ReadOnly = True
         Me.textboxFechaUltimoAscenso.Size = New System.Drawing.Size(92, 20)
-        Me.textboxFechaUltimoAscenso.TabIndex = 39
+        Me.textboxFechaUltimoAscenso.TabIndex = 33
         '
         'textboxCargoJerarquiaActual
         '
@@ -1110,7 +1134,7 @@ Partial Class formPersona
         Me.textboxCargoJerarquiaActual.Name = "textboxCargoJerarquiaActual"
         Me.textboxCargoJerarquiaActual.ReadOnly = True
         Me.textboxCargoJerarquiaActual.Size = New System.Drawing.Size(279, 20)
-        Me.textboxCargoJerarquiaActual.TabIndex = 38
+        Me.textboxCargoJerarquiaActual.TabIndex = 32
         Me.textboxCargoJerarquiaActual.TabStop = False
         '
         'textboxCantidadHijos
@@ -1120,7 +1144,7 @@ Partial Class formPersona
         Me.textboxCantidadHijos.Name = "textboxCantidadHijos"
         Me.textboxCantidadHijos.ReadOnly = True
         Me.textboxCantidadHijos.Size = New System.Drawing.Size(39, 20)
-        Me.textboxCantidadHijos.TabIndex = 36
+        Me.textboxCantidadHijos.TabIndex = 30
         Me.textboxCantidadHijos.TabStop = False
         Me.textboxCantidadHijos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1128,19 +1152,19 @@ Partial Class formPersona
         '
         Me.comboboxIOMATiene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxIOMATiene.FormattingEnabled = True
-        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 171)
+        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 190)
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
-        Me.comboboxIOMATiene.TabIndex = 24
+        Me.comboboxIOMATiene.TabIndex = 18
         '
         'comboboxNivelEstudio
         '
         Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 215)
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 225)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 28
+        Me.comboboxNivelEstudio.TabIndex = 22
         '
         'comboboxFactorRH
         '
@@ -1149,7 +1173,7 @@ Partial Class formPersona
         Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 104)
         Me.comboboxFactorRH.Name = "comboboxFactorRH"
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxFactorRH.TabIndex = 18
+        Me.comboboxFactorRH.TabIndex = 10
         '
         'comboboxGrupoSanguineo
         '
@@ -1158,7 +1182,7 @@ Partial Class formPersona
         Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 104)
         Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGrupoSanguineo.TabIndex = 16
+        Me.comboboxGrupoSanguineo.TabIndex = 8
         '
         'datetimepickerFechaNacimiento
         '
@@ -1169,7 +1193,7 @@ Partial Class formPersona
         Me.datetimepickerFechaNacimiento.Name = "datetimepickerFechaNacimiento"
         Me.datetimepickerFechaNacimiento.ShowCheckBox = True
         Me.datetimepickerFechaNacimiento.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaNacimiento.TabIndex = 12
+        Me.datetimepickerFechaNacimiento.TabIndex = 4
         '
         'comboboxGenero
         '
@@ -1178,7 +1202,7 @@ Partial Class formPersona
         Me.comboboxGenero.Location = New System.Drawing.Point(142, 77)
         Me.comboboxGenero.Name = "comboboxGenero"
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGenero.TabIndex = 14
+        Me.comboboxGenero.TabIndex = 6
         '
         'comboboxDocumentoTipo
         '
@@ -1204,28 +1228,28 @@ Partial Class formPersona
         '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 281)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 291)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(377, 20)
-        Me.textboxNacionalidad.TabIndex = 32
+        Me.textboxNacionalidad.TabIndex = 26
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 242)
+        Me.textboxProfesion.Location = New System.Drawing.Point(142, 252)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(377, 20)
-        Me.textboxProfesion.TabIndex = 30
+        Me.textboxProfesion.TabIndex = 24
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 307)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 317)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(377, 21)
-        Me.comboboxCuartel.TabIndex = 34
+        Me.comboboxCuartel.TabIndex = 28
         '
         'tabpageParticular
         '
@@ -1864,12 +1888,72 @@ Partial Class formPersona
         Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(548, 343)
         Me.datagridviewHorarioLaboral.TabIndex = 10
         '
+        'columnHorarioLaboral_DiaSemana
+        '
+        Me.columnHorarioLaboral_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_DiaSemana.DataPropertyName = "DiaSemanaNombre"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.columnHorarioLaboral_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnHorarioLaboral_DiaSemana.HeaderText = "Día semana"
+        Me.columnHorarioLaboral_DiaSemana.Name = "columnHorarioLaboral_DiaSemana"
+        Me.columnHorarioLaboral_DiaSemana.ReadOnly = True
+        Me.columnHorarioLaboral_DiaSemana.Width = 83
+        '
+        'columnHorarioLaboral_Turno1Desde
+        '
+        Me.columnHorarioLaboral_Turno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Desde.DataPropertyName = "Turno1Desde"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.Format = "t"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.columnHorarioLaboral_Turno1Desde.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnHorarioLaboral_Turno1Desde.HeaderText = "Turno 1 - desde"
+        Me.columnHorarioLaboral_Turno1Desde.Name = "columnHorarioLaboral_Turno1Desde"
+        Me.columnHorarioLaboral_Turno1Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Desde.Width = 72
+        '
+        'columnHorarioLaboral_Turno1Hasta
+        '
+        Me.columnHorarioLaboral_Turno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno1Hasta.DataPropertyName = "Turno1Hasta"
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.Format = "t"
+        Me.columnHorarioLaboral_Turno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
+        Me.columnHorarioLaboral_Turno1Hasta.HeaderText = "Turno 1 - hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.Name = "columnHorarioLaboral_Turno1Hasta"
+        Me.columnHorarioLaboral_Turno1Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno1Hasta.Width = 72
+        '
+        'columnHorarioLaboral_Turno2Desde
+        '
+        Me.columnHorarioLaboral_Turno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Desde.DataPropertyName = "Turno2Desde"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.Format = "t"
+        Me.columnHorarioLaboral_Turno2Desde.DefaultCellStyle = DataGridViewCellStyle8
+        Me.columnHorarioLaboral_Turno2Desde.HeaderText = "Turno 2 - desde"
+        Me.columnHorarioLaboral_Turno2Desde.Name = "columnHorarioLaboral_Turno2Desde"
+        Me.columnHorarioLaboral_Turno2Desde.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Desde.Width = 72
+        '
+        'columnHorarioLaboral_Turno2Hasta
+        '
+        Me.columnHorarioLaboral_Turno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnHorarioLaboral_Turno2Hasta.DataPropertyName = "Turno2hasta"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.Format = "t"
+        Me.columnHorarioLaboral_Turno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
+        Me.columnHorarioLaboral_Turno2Hasta.HeaderText = "Turno 2 - hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.Name = "columnHorarioLaboral_Turno2Hasta"
+        Me.columnHorarioLaboral_Turno2Hasta.ReadOnly = True
+        Me.columnHorarioLaboral_Turno2Hasta.Width = 72
+        '
         'toolstripHorarioLaboral
         '
         Me.toolstripHorarioLaboral.Dock = System.Windows.Forms.DockStyle.Left
         Me.toolstripHorarioLaboral.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripHorarioLaboral.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripHorarioLaboral.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonHorarioLaboral_Agregar, Me.buttonHorarioLaboral_Editar, Me.buttonHorarioLaboral_Eliminar})
+        Me.toolstripHorarioLaboral.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonHorarioLaboral_Agregar, Me.buttonHorarioLaboral_Editar, Me.buttonHorarioLaboral_Eliminar, Me.buttonHorarioLaboral_Imprimir})
         Me.toolstripHorarioLaboral.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripHorarioLaboral.Location = New System.Drawing.Point(0, 0)
         Me.toolstripHorarioLaboral.Name = "toolstripHorarioLaboral"
@@ -2878,65 +2962,14 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'columnHorarioLaboral_DiaSemana
+        'buttonHorarioLaboral_Imprimir
         '
-        Me.columnHorarioLaboral_DiaSemana.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_DiaSemana.DataPropertyName = "DiaSemanaNombre"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnHorarioLaboral_DiaSemana.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnHorarioLaboral_DiaSemana.HeaderText = "Día semana"
-        Me.columnHorarioLaboral_DiaSemana.Name = "columnHorarioLaboral_DiaSemana"
-        Me.columnHorarioLaboral_DiaSemana.ReadOnly = True
-        Me.columnHorarioLaboral_DiaSemana.Width = 90
-        '
-        'columnHorarioLaboral_Turno1Desde
-        '
-        Me.columnHorarioLaboral_Turno1Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno1Desde.DataPropertyName = "Turno1Desde"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.Format = "t"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnHorarioLaboral_Turno1Desde.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnHorarioLaboral_Turno1Desde.HeaderText = "Turno 1 - desde"
-        Me.columnHorarioLaboral_Turno1Desde.Name = "columnHorarioLaboral_Turno1Desde"
-        Me.columnHorarioLaboral_Turno1Desde.ReadOnly = True
-        Me.columnHorarioLaboral_Turno1Desde.Width = 72
-        '
-        'columnHorarioLaboral_Turno1Hasta
-        '
-        Me.columnHorarioLaboral_Turno1Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno1Hasta.DataPropertyName = "Turno1Hasta"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Format = "t"
-        Me.columnHorarioLaboral_Turno1Hasta.DefaultCellStyle = DataGridViewCellStyle7
-        Me.columnHorarioLaboral_Turno1Hasta.HeaderText = "Turno 1 - hasta"
-        Me.columnHorarioLaboral_Turno1Hasta.Name = "columnHorarioLaboral_Turno1Hasta"
-        Me.columnHorarioLaboral_Turno1Hasta.ReadOnly = True
-        Me.columnHorarioLaboral_Turno1Hasta.Width = 72
-        '
-        'columnHorarioLaboral_Turno2Desde
-        '
-        Me.columnHorarioLaboral_Turno2Desde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno2Desde.DataPropertyName = "Turno2Desde"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle8.Format = "t"
-        Me.columnHorarioLaboral_Turno2Desde.DefaultCellStyle = DataGridViewCellStyle8
-        Me.columnHorarioLaboral_Turno2Desde.HeaderText = "Turno 2 - desde"
-        Me.columnHorarioLaboral_Turno2Desde.Name = "columnHorarioLaboral_Turno2Desde"
-        Me.columnHorarioLaboral_Turno2Desde.ReadOnly = True
-        Me.columnHorarioLaboral_Turno2Desde.Width = 72
-        '
-        'columnHorarioLaboral_Turno2Hasta
-        '
-        Me.columnHorarioLaboral_Turno2Hasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnHorarioLaboral_Turno2Hasta.DataPropertyName = "Turno2hasta"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.Format = "t"
-        Me.columnHorarioLaboral_Turno2Hasta.DefaultCellStyle = DataGridViewCellStyle9
-        Me.columnHorarioLaboral_Turno2Hasta.HeaderText = "Turno 2 - hasta"
-        Me.columnHorarioLaboral_Turno2Hasta.Name = "columnHorarioLaboral_Turno2Hasta"
-        Me.columnHorarioLaboral_Turno2Hasta.ReadOnly = True
-        Me.columnHorarioLaboral_Turno2Hasta.Width = 72
+        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonHorarioLaboral_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonHorarioLaboral_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonHorarioLaboral_Imprimir.Name = "buttonHorarioLaboral_Imprimir"
+        Me.buttonHorarioLaboral_Imprimir.Size = New System.Drawing.Size(95, 36)
+        Me.buttonHorarioLaboral_Imprimir.Text = "Imprimir"
         '
         'formPersona
         '
@@ -3229,4 +3262,6 @@ Partial Class formPersona
     Friend WithEvents columnHorarioLaboral_Turno1Hasta As DataGridViewTextBoxColumn
     Friend WithEvents columnHorarioLaboral_Turno2Desde As DataGridViewTextBoxColumn
     Friend WithEvents columnHorarioLaboral_Turno2Hasta As DataGridViewTextBoxColumn
+    Friend WithEvents comboboxEstadoCivil As ComboBox
+    Friend WithEvents buttonHorarioLaboral_Imprimir As ToolStripButton
 End Class
