@@ -61,6 +61,7 @@ Partial Class formPersonaFamiliar
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.groupboxIOMA = New System.Windows.Forms.GroupBox()
         Me.checkboxIOMAACargo = New System.Windows.Forms.CheckBox()
         Me.textboxIOMANumeroAfiliado = New System.Windows.Forms.TextBox()
@@ -97,7 +98,6 @@ Partial Class formPersonaFamiliar
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelFactorRH = New System.Windows.Forms.Label()
@@ -397,6 +397,15 @@ Partial Class formPersonaFamiliar
         labelIOMATiene.TabIndex = 0
         labelIOMATiene.Text = "Tiene por:"
         '
+        'labelEstadoCivil
+        '
+        labelEstadoCivil.AutoSize = True
+        labelEstadoCivil.Location = New System.Drawing.Point(6, 161)
+        labelEstadoCivil.Name = "labelEstadoCivil"
+        labelEstadoCivil.Size = New System.Drawing.Size(65, 13)
+        labelEstadoCivil.TabIndex = 13
+        labelEstadoCivil.Text = "Estado Civil:"
+        '
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
@@ -504,6 +513,15 @@ Partial Class formPersonaFamiliar
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'comboboxEstadoCivil
+        '
+        Me.comboboxEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEstadoCivil.FormattingEnabled = True
+        Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 158)
+        Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
+        Me.comboboxEstadoCivil.Size = New System.Drawing.Size(161, 21)
+        Me.comboboxEstadoCivil.TabIndex = 14
         '
         'groupboxIOMA
         '
@@ -868,24 +886,6 @@ Partial Class formPersonaFamiliar
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'comboboxEstadoCivil
-        '
-        Me.comboboxEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxEstadoCivil.FormattingEnabled = True
-        Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 158)
-        Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
-        Me.comboboxEstadoCivil.Size = New System.Drawing.Size(121, 21)
-        Me.comboboxEstadoCivil.TabIndex = 14
-        '
-        'labelEstadoCivil
-        '
-        labelEstadoCivil.AutoSize = True
-        labelEstadoCivil.Location = New System.Drawing.Point(6, 161)
-        labelEstadoCivil.Name = "labelEstadoCivil"
-        labelEstadoCivil.Size = New System.Drawing.Size(65, 13)
-        labelEstadoCivil.TabIndex = 13
-        labelEstadoCivil.Text = "Estado Civil:"
         '
         'formPersonaFamiliar
         '

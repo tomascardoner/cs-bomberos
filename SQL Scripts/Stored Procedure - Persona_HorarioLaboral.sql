@@ -23,7 +23,7 @@ CREATE PROCEDURE usp_Persona_HorarioLaboral
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, Persona.ApellidoNombre, CargoJerarquia.Nombre AS Jerarquia, Persona.Profesion, PersonaHorarioLaboral.DiaSemana, PersonaHorarioLaboral.Turno1Desde, PersonaHorarioLaboral.Turno1Hasta, PersonaHorarioLaboral.Turno2Desde, PersonaHorarioLaboral.Turno2Hasta, Persona.HorarioLaboralObservaciones
+		SELECT Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, Persona.ApellidoNombre, CargoJerarquia.Nombre AS Jerarquia, Persona.Profesion, PersonaHorarioLaboral.DiaSemana, CAST(PersonaHorarioLaboral.Turno1Desde AS char(5)) AS Turno1Desde, CAST(PersonaHorarioLaboral.Turno1Hasta AS char(5)) AS Turno1Hasta, CAST(PersonaHorarioLaboral.Turno2Desde AS char(5)) AS Turno2Desde, CAST(PersonaHorarioLaboral.Turno2Hasta AS char(5)) AS Turno2Hasta, Persona.HorarioLaboralObservaciones
 			FROM (((PersonaHorarioLaboral INNER JOIN Persona ON PersonaHorarioLaboral.IDPersona = Persona.IDPersona)
 				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
 				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)

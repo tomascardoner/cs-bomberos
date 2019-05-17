@@ -200,6 +200,7 @@ Partial Class formPersona
         Me.menuitemHorarioLaboral_AgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonHorarioLaboral_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonHorarioLaboral_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonHorarioLaboral_Imprimir = New System.Windows.Forms.ToolStripButton()
         Me.panelHorarioLaboralObservaciones = New System.Windows.Forms.Panel()
         Me.textboxHorarioLaboralObservaciones = New System.Windows.Forms.TextBox()
         Me.tabpageVehiculos = New System.Windows.Forms.TabPage()
@@ -284,7 +285,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.buttonHorarioLaboral_Imprimir = New System.Windows.Forms.ToolStripButton()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -1083,7 +1083,7 @@ Partial Class formPersona
         Me.comboboxEstadoCivil.FormattingEnabled = True
         Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 157)
         Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
-        Me.comboboxEstadoCivil.Size = New System.Drawing.Size(121, 21)
+        Me.comboboxEstadoCivil.Size = New System.Drawing.Size(161, 21)
         Me.comboboxEstadoCivil.TabIndex = 16
         '
         'doubletextboxAltura
@@ -1996,6 +1996,15 @@ Partial Class formPersona
         Me.buttonHorarioLaboral_Eliminar.Name = "buttonHorarioLaboral_Eliminar"
         Me.buttonHorarioLaboral_Eliminar.Size = New System.Drawing.Size(95, 36)
         Me.buttonHorarioLaboral_Eliminar.Text = "Eliminar"
+        '
+        'buttonHorarioLaboral_Imprimir
+        '
+        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonHorarioLaboral_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonHorarioLaboral_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonHorarioLaboral_Imprimir.Name = "buttonHorarioLaboral_Imprimir"
+        Me.buttonHorarioLaboral_Imprimir.Size = New System.Drawing.Size(95, 36)
+        Me.buttonHorarioLaboral_Imprimir.Text = "Imprimir"
         '
         'panelHorarioLaboralObservaciones
         '
@@ -2961,15 +2970,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'buttonHorarioLaboral_Imprimir
-        '
-        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
-        Me.buttonHorarioLaboral_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonHorarioLaboral_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonHorarioLaboral_Imprimir.Name = "buttonHorarioLaboral_Imprimir"
-        Me.buttonHorarioLaboral_Imprimir.Size = New System.Drawing.Size(95, 36)
-        Me.buttonHorarioLaboral_Imprimir.Text = "Imprimir"
         '
         'formPersona
         '

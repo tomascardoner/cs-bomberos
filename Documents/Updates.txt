@@ -2,6 +2,7 @@
 	- Agregar la tabla EstadoCivil
 	- Agregar el campo IDEstadoCivil tinyint (antes de IOMA...) a las tablas Persona y PersonaFamiliar y las relaciones respectivas
 	- Ejecutar el stored procedure: usp_Inventario
+	- Ejecutar el stored procedure: usp_Persona_HorarioLaboral
 	- Ejecutar el script de update
 	- Copiar Reportes de Inventario
 	- Copiar exe
