@@ -571,7 +571,7 @@
         End If
     End Sub
 
-    Private Sub LicenciaConducirCategorias(sender As Object, e As EventArgs)
+    Private Sub LicenciaConducirCategorias(sender As Object, e As EventArgs) Handles buttonLicenciaConducirCategoria.Click
 
         formPersonaLicenciaConducirCategorias.LoadAndShow(Me, mPersonaActual)
 
