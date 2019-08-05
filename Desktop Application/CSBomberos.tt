@@ -155,6 +155,13 @@ End Sub
 
 Public Sub BeginNamespace(ByVal code As CodeGenerationTools)
     Dim codeNamespace as String = code.VsNamespaceSuggestion()
+
+' ----------------------------------
+' 2019-08-03 code added by Tomás A. Cardoner to bypass the creation of namespace directive in all tables files
+' conflicting with existing code
+codeNamespace = String.Empty
+' ----------------------------------
+    
     If Not String.IsNullOrEmpty(codeNamespace) Then
 #>
 Namespace <#=code.EscapeNamespace(codeNamespace)#>
@@ -165,7 +172,15 @@ Namespace <#=code.EscapeNamespace(codeNamespace)#>
 End Sub
 
 Public Sub EndNamespace(ByVal code As CodeGenerationTools)
-    If Not String.IsNullOrEmpty(code.VsNamespaceSuggestion()) Then
+    
+' ----------------------------------
+' 2019-08-03 code added by Tomás A. Cardoner to bypass the creation of namespace directive in all tables files
+' conflicting with existing code
+
+'    If Not String.IsNullOrEmpty(code.VsNamespaceSuggestion()) Then
+' ----------------------------------
+    If Not String.IsNullOrEmpty(String.Empty) Then
+' ----------------------------------
         PopIndent()
 #>
 

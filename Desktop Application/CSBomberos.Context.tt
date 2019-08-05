@@ -40,6 +40,13 @@ End If
 
 <#
 Dim codeNamespace As String = code.VsNamespaceSuggestion()
+
+' ----------------------------------
+' 2019-08-03 code added by Tomás A. Cardoner to bypass the creation of namespace directive in all tables files
+' conflicting with existing code
+codeNamespace = String.Empty
+' ----------------------------------
+
 If Not String.IsNullOrEmpty(codeNamespace) Then
 #>
 Namespace <#=code.EscapeNamespace(codeNamespace)#>

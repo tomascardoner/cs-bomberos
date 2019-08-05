@@ -81,6 +81,7 @@
         doubletextboxAltura.ReadOnly = (mEditMode = False)
         integertextboxPeso.ReadOnly = (mEditMode = False)
         comboboxEstadoCivil.Enabled = mEditMode
+        datetimepickerFechaCasamiento.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
@@ -250,6 +251,7 @@
             doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
             integertextboxPeso.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Peso)
             CS_ComboBox.SetSelectedValue(comboboxEstadoCivil, SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            datetimepickerFechaCasamiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaCasamiento, datetimepickerFechaCasamiento)
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -359,6 +361,7 @@
             .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
             .Peso = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxPeso.Text)
             .IDEstadoCivil = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxEstadoCivil.SelectedValue, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            .FechaCasamiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaCasamiento.Value, datetimepickerFechaCasamiento.Checked)
             Select Case comboboxIOMATiene.SelectedIndex
                 Case 0
                     .IOMATiene = Nothing

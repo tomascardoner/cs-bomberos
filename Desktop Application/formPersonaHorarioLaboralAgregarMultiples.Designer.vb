@@ -32,7 +32,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.labelDiaSemana = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
+        Me.tabcontrolMain = New CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.checkboxDiaSemana1 = New System.Windows.Forms.CheckBox()
         Me.checkboxDiaSemana7 = New System.Windows.Forms.CheckBox()
@@ -95,7 +95,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -105,7 +105,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -347,7 +347,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
     Friend WithEvents labelDiaSemana As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotas As System.Windows.Forms.TabPage
     Friend WithEvents datetimepickerTurno1Hasta As DateTimePicker

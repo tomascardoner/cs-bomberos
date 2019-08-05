@@ -39,7 +39,7 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         Dim qryList = From tbl In mdbContext.Provincia
-                          Order By tbl.Nombre
+                      Order By tbl.Nombre
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
@@ -57,8 +57,8 @@
         ComboBoxControl.DisplayMember = "Nombre"
 
         Dim qryList = From tbl In mdbContext.Localidad
-                          Where tbl.IDProvincia = IDProvincia
-                          Order By tbl.Nombre
+                      Where tbl.IDProvincia = IDProvincia
+                      Order By tbl.Nombre
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then

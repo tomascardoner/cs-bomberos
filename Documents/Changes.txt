@@ -1,82 +1,33 @@
-18/03/2018- Hacer que las grillas que hay en el form de Persona, sólo se carguen cuando está la solapa visible- Agregar verificacion de permisos en todas las grillas de la Persona- Revisar permiso de edición al editar con el botón de edición de los detalles- Ver el tema de que no modifique el Cargo y la Jerarquía en la Sanción al editarla y que la Persona haya sido ascendida01/03/2018- Se agregó una tabla de Cambios de Origen para separarla de la tabla de Altas y Bajas- Se agregaron las tablas de Rubro y SubRubro para los Elementos- Se agregó el campo TieneIOMA char(1) a la tabla Persona- Se eliminó el campo Estado de la tabla Persona14/08/2018
-	* Persona: Se agregaron los campos Peso y Altura
-	* Niveles de Estudio: Se agregó el campo que especifica si incluye Secundario completo
-	* Familiar: Se agregó el campo de Familiar a Cargo
-	* Altas-Bajas: Se agregó el campo de Unidad de Destino
-	* Ventana de Elemento: Se agrandó el campo Nombre de 50 a 100
+03/08/2019
+	* Se agregó la fecha de casamiento
+	* Se actualizó el reporte de Familiares a cargo a la versión requerida
+	* Se renombró el Namespace de la aplicación de "CSBomberos.DesktopApplication" a "CSBomberos"
 
-08/09/2018
-	* Ventana de Persona: Se ordenaron todas las grillas por fecha descendente
-	* Ventana de ABM de Sub-ubicaciones: Se modificó el orden de las columnas
-	* Ventana de Inventario: BUG al abrir un ítem existente
-	* Reporte de Ficha de Personal:
+15/05/2019
+	* Se agregó el estado civil a las Personas y los Familiares
+	* Se agregó el ABM de estados civiles
+	* Se cambió el encabezado de la Planilla de Licencia del Personal
+	* Reporte de Declaración Juradad de Horarios Laborales
 
-		* Se cambiaron las calificaciones anuales a nota numérica
-		* Se agregaron las Altas-Bajas con Unidad de Destino
-		* Se agregaron las Penas disciplinarias
-		* Poder imprimir varias fichas juntas
+14/05/2019
+	* Se renombraron las columnas en los Horarios Laborales
+	* FIX: Filtro de activo en Inventario no funcionaba
+	* Listado de Baja de Materiales (Inventario)
+	* Inventario: se hizo obligatorio el Modo de Adquisición
 
-09/09/2018
-	* Reporte de Planilla de Calificaciones: se agregó el logo de la institución
+28/04/2019
+	* Listado de Inventario: Inventario General
+	* Listado de Inventario: Modo de Adquisición
+	* Listado de Inventario: Control de Inventario
 
-11/09/2018
-	* Reporte de Jerarquías y Antigüedad
-	* Reporte de Antigüedad
-	* Reporte de Unidades
-	* Reporte de Vencimiento de Licencias de Conducir
-	* Reporte de Foja de Servicios
+24/04/2019
+	* Se agregó el Reporte de Planilla de Calificaciones de Históricas del Personal
 
-21/09/2018
-	* Reporte de Eximición de Pago de Licencia de Conducir
-	* Reporte de Constancia de Afiliación a IOMA
-	* Reporte de Declaración de Familiares a Cargo
+23/04/2019
+	* Se arregló y amplió el Filtro de Estado de las Personas
 
-22/09/2018
-	* Reporte de Actualización Seguro de Sepelio
-
-23/09/2018
-	* Reporte de Solicitud Sanción Disciplinaria
-
-24/09/2018
-	* Reporte de Planilla de Licencia de Personal
-
-01/10/2018
-	* Reporte de Jerarquías y Antigüedad: se cambió el orden de los registros a (Cargo-Jerarquía, Antigüedad en el Cargo, Antigüedad total, Fecha de nacimiento, AQpellido y Nombre)
-	* Se filtraron los reportes que no se deben mostrar en el visor
-	* Se agregó el nombre del Reporte en la ventana de lista de parámetros
-
-02/10/2018
-	* Reporte de Foja de Servicios: se agregó el nº de hoja, se acomodó el Logo, se modificaron los subreportes para que no queden separados del título, se revisó el orden de los subreportes
-	* Reporte de Ficha de Persona: se modificaron los subreportes para que no queden separados del título
-	* Se agregaron los campos de Vencimiento Verificación y Motivo de Baja a los Automotores
-	* Se agregó la tabla y el ABM de Motivos de Baja de Automotores
-
-04/10/2018
-	* Reporte de Planilla de Licencia de Personal: FIX - Si la Persona tenía una sola Licencia, el reporte salía en blanco
-	* SQL Functions: se corrigieron las funciones de cálculo de Antigüedad en el Cargo para que tome en cuenta las Altas y Bajas
-
-31/10/2018
-	* Planilla de Licencias: centrar y poner encabezado departamento central
-	* Foja de Servicios: se agregó la Fecha de Ingreso (primera) y la Matrícula
-	* Listado de Cursos
-	* Listado de Sanciones
-
-09/11/2018
-	* Planilla de Licencias: se agregó la Fecha de Interrupción de la última Licencia
-
-11/04/2019
-	* Reagrupación de Reportes
-
-15/04/2019
-	* ABM de Tipos de Vehículos
-	* ABM de Marcas de Vehículos
-	* ABM de Compañías de Seguros de Vehículos
-	* ABM de Tipos de Vacuna
-
-18/04/2019
-	* Horario Laboral de Personas
-	* Vehículos de Personas
-	* Vacunas de Personas
+20/04/2019
+	* Listado de Unidades reducido: se agregó la columna de Uso y se hizo con la hoja apaisada
 
 19/04/2019
 	* Listado de Vehículos personales por fecha de vencimiento de verificación
@@ -90,28 +41,90 @@
 	* Se agregó firma y aclaración en el Seguro de Sepelio
 	* Se agregaron una columna con las Categorías al Listado de vencimiento de Licencias de Conducir
 
-20/04/2019
-	* Listado de Unidades reducido: se agregó la columna de Uso y se hizo con la hoja apaisada
+18/04/2019
+	* Horario Laboral de Personas
+	* Vehículos de Personas
+	* Vacunas de Personas
 
-23/04/2019
-	* Se arregló y amplió el Filtro de Estado de las Personas
+15/04/2019
+	* ABM de Tipos de Vehículos
+	* ABM de Marcas de Vehículos
+	* ABM de Compañías de Seguros de Vehículos
+	* ABM de Tipos de Vacuna
 
-24/04/2019
-	* Se agregó el Reporte de Planilla de Calificaciones de Históricas del Personal
+11/04/2019
+	* Reagrupación de Reportes
 
-28/04/2019
-	* Listado de Inventario: Inventario General
-	* Listado de Inventario: Modo de Adquisición
-	* Listado de Inventario: Control de Inventario
+09/11/2018
+	* Planilla de Licencias: se agregó la Fecha de Interrupción de la última Licencia
 
-14/05/2019
-	* Se renombraron las columnas en los Horarios Laborales
-	* FIX: Filtro de activo en Inventario no funcionaba
-	* Listado de Baja de Materiales (Inventario)
-	* Inventario: se hizo obligatorio el Modo de Adquisición
+31/10/2018
+	* Planilla de Licencias: centrar y poner encabezado departamento central
+	* Foja de Servicios: se agregó la Fecha de Ingreso (primera) y la Matrícula
+	* Listado de Cursos
+	* Listado de Sanciones
 
-15/05/2019
-	* Se agregó el estado civil a las Personas y los Familiares
-	* Se agregó el ABM de estados civiles
-	* Se cambió el encabezado de la Planilla de Licencia del Personal
-	* Reporte de Declaración Juradad de Horarios Laborales
+04/10/2018
+	* Reporte de Planilla de Licencia de Personal: FIX - Si la Persona tenía una sola Licencia, el reporte salía en blanco
+	* SQL Functions: se corrigieron las funciones de cálculo de Antigüedad en el Cargo para que tome en cuenta las Altas y Bajas
+
+02/10/2018
+	* Reporte de Foja de Servicios: se agregó el nº de hoja, se acomodó el Logo, se modificaron los subreportes para que no queden separados del título, se revisó el orden de los subreportes
+	* Reporte de Ficha de Persona: se modificaron los subreportes para que no queden separados del título
+	* Se agregaron los campos de Vencimiento Verificación y Motivo de Baja a los Automotores
+	* Se agregó la tabla y el ABM de Motivos de Baja de Automotores
+
+01/10/2018
+	* Reporte de Jerarquías y Antigüedad: se cambió el orden de los registros a (Cargo-Jerarquía, Antigüedad en el Cargo, Antigüedad total, Fecha de nacimiento, AQpellido y Nombre)
+	* Se filtraron los reportes que no se deben mostrar en el visor
+	* Se agregó el nombre del Reporte en la ventana de lista de parámetros
+
+24/09/2018
+	* Reporte de Planilla de Licencia de Personal
+    
+23/09/2018
+	* Reporte de Solicitud Sanción Disciplinaria
+
+22/09/2018
+	* Reporte de Actualización Seguro de Sepelio
+    
+21/09/2018
+	* Reporte de Eximición de Pago de Licencia de Conducir
+	* Reporte de Constancia de Afiliación a IOMA
+	* Reporte de Declaración de Familiares a Cargo
+
+11/09/2018
+	* Reporte de Jerarquías y Antigüedad
+	* Reporte de Antigüedad
+	* Reporte de Unidades
+	* Reporte de Vencimiento de Licencias de Conducir
+	* Reporte de Foja de Servicios
+
+09/09/2018
+	* Reporte de Planilla de Calificaciones: se agregó el logo de la institución
+
+08/09/2018
+	* Ventana de Persona: Se ordenaron todas las grillas por fecha descendente
+	* Ventana de ABM de Sub-ubicaciones: Se modificó el orden de las columnas
+	* Ventana de Inventario: BUG al abrir un ítem existente
+	* Reporte de Ficha de Personal:
+		* Se cambiaron las calificaciones anuales a nota numérica
+		* Se agregaron las Altas-Bajas con Unidad de Destino
+		* Se agregaron las Penas disciplinarias
+		* Poder imprimir varias fichas juntas    
+    
+14/08/2018
+	* Persona: Se agregaron los campos Peso y Altura
+	* Niveles de Estudio: Se agregó el campo que especifica si incluye Secundario completo
+	* Familiar: Se agregó el campo de Familiar a Cargo
+	* Altas-Bajas: Se agregó el campo de Unidad de Destino
+	* Ventana de Elemento: Se agrandó el campo Nombre de 50 a 100
+    
+01/03/2018
+	- Se agregó una tabla de Cambios de Origen para separarla de la tabla de Altas y Bajas- Se agregaron las tablas de Rubro y SubRubro para los Elementos
+	- Se agregó el campo TieneIOMA char(1) a la tabla Persona- Se eliminó el campo Estado de la tabla Persona
+
+18/03/2018
+	* Hacer que las grillas que hay en el form de Persona, sólo se carguen cuando está la solapa visible
+	- Agregar verificacion de permisos en todas las grillas de la Persona- Revisar permiso de edición al editar con el botón de edición de los detalles
+	- Ver el tema de que no modifique el Cargo y la Jerarquía en la Sanción al editarla y que la Persona haya sido ascendida

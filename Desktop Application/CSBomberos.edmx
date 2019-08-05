@@ -370,6 +370,7 @@
           <Property Name="Altura" Type="decimal" Precision="3" Scale="2" />
           <Property Name="Peso" Type="tinyint" />
           <Property Name="IDEstadoCivil" Type="tinyint" />
+          <Property Name="FechaCasamiento" Type="date" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
           <Property Name="IDNivelEstudio" Type="tinyint" />
@@ -708,6 +709,7 @@
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrigenDatos" Type="varchar" MaxLength="100" />
           <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
         </EntityType>
@@ -4481,6 +4483,7 @@
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrigenDatos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
           <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
@@ -4808,6 +4811,7 @@
           <Property Name="Altura" Type="Decimal" Precision="3" Scale="2" />
           <Property Name="Peso" Type="Byte" />
           <Property Name="IDEstadoCivil" Type="Byte" />
+          <Property Name="FechaCasamiento" Type="DateTime" Precision="0" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IDNivelEstudio" Type="Byte" />
@@ -7777,6 +7781,7 @@
           <EntitySetMapping Name="Reporte">
             <EntityTypeMapping TypeName="CSBomberosModel.Reporte">
               <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="OrigenDatos" ColumnName="OrigenDatos" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
@@ -7900,6 +7905,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="FechaCasamiento" ColumnName="FechaCasamiento" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="HorarioLaboralObservaciones" ColumnName="HorarioLaboralObservaciones" />
                 <ScalarProperty Name="Peso" ColumnName="Peso" />

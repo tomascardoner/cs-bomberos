@@ -95,6 +95,7 @@ Partial Class formPersona
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim labelFechaCasamiento As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -114,7 +115,7 @@ Partial Class formPersona
         Me.buttonLicenciaConducirNumero = New System.Windows.Forms.Button()
         Me.textboxLicenciaConducirNumero = New System.Windows.Forms.TextBox()
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
-        Me.tabcontrolMain = New CSBomberos.DesktopApplication.CS_Control_TabControl()
+        Me.tabcontrolMain = New CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
@@ -285,6 +286,7 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.datetimepickerFechaCasamiento = New System.Windows.Forms.DateTimePicker()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -336,6 +338,7 @@ Partial Class formPersona
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelEstadoCivil = New System.Windows.Forms.Label()
+        labelFechaCasamiento = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -441,7 +444,7 @@ Partial Class formPersona
         labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 380)
         labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
         labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
-        labelCargoJerarquiaActual.TabIndex = 31
+        labelCargoJerarquiaActual.TabIndex = 33
         labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
         '
         'labelIOMANumeroAfiliado
@@ -450,7 +453,7 @@ Partial Class formPersona
         labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 193)
         labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
         labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
-        labelIOMANumeroAfiliado.TabIndex = 19
+        labelIOMANumeroAfiliado.TabIndex = 21
         labelIOMANumeroAfiliado.Text = "Nº de afiliado:"
         Me.tooltipMain.SetToolTip(labelIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
@@ -460,7 +463,7 @@ Partial Class formPersona
         labelIOMATiene.Location = New System.Drawing.Point(6, 193)
         labelIOMATiene.Name = "labelIOMATiene"
         labelIOMATiene.Size = New System.Drawing.Size(97, 13)
-        labelIOMATiene.TabIndex = 17
+        labelIOMATiene.TabIndex = 19
         labelIOMATiene.Text = "Tiene I.O.M.A. por:"
         '
         'labelCantidadHijos
@@ -469,7 +472,7 @@ Partial Class formPersona
         labelCantidadHijos.Location = New System.Drawing.Point(6, 352)
         labelCantidadHijos.Name = "labelCantidadHijos"
         labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 29
+        labelCantidadHijos.TabIndex = 31
         labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'labelNivelEstudio
@@ -478,7 +481,7 @@ Partial Class formPersona
         labelNivelEstudio.Location = New System.Drawing.Point(6, 228)
         labelNivelEstudio.Name = "labelNivelEstudio"
         labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 21
+        labelNivelEstudio.TabIndex = 23
         labelNivelEstudio.Text = "Nivel de estudios:"
         '
         'labelFactorRH
@@ -533,7 +536,7 @@ Partial Class formPersona
         labelNacionalidad.Location = New System.Drawing.Point(6, 294)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 25
+        labelNacionalidad.TabIndex = 27
         labelNacionalidad.Text = "Nacionalidad:"
         '
         'labelProfesion
@@ -542,7 +545,7 @@ Partial Class formPersona
         labelProfesion.Location = New System.Drawing.Point(6, 255)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 23
+        labelProfesion.TabIndex = 25
         labelProfesion.Text = "Profesión:"
         '
         'labelCuartel
@@ -551,7 +554,7 @@ Partial Class formPersona
         labelCuartel.Location = New System.Drawing.Point(6, 320)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 27
+        labelCuartel.TabIndex = 29
         labelCuartel.Text = "Cuartel:"
         '
         'labelTelefonoParticular
@@ -915,7 +918,7 @@ Partial Class formPersona
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CLOSE_32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -925,7 +928,7 @@ Partial Class formPersona
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -935,7 +938,7 @@ Partial Class formPersona
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -945,7 +948,7 @@ Partial Class formPersona
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -969,7 +972,7 @@ Partial Class formPersona
         Me.textboxIOMANumeroAfiliado.MaxLength = 13
         Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
         Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
-        Me.textboxIOMANumeroAfiliado.TabIndex = 20
+        Me.textboxIOMANumeroAfiliado.TabIndex = 22
         Me.tooltipMain.SetToolTip(Me.textboxIOMANumeroAfiliado, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'textboxDocumentoNumero
@@ -1034,6 +1037,8 @@ Partial Class formPersona
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelFechaCasamiento)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaCasamiento)
         Me.tabpageGeneral.Controls.Add(Me.comboboxEstadoCivil)
         Me.tabpageGeneral.Controls.Add(labelEstadoCivil)
         Me.tabpageGeneral.Controls.Add(labelPeso)
@@ -1125,7 +1130,7 @@ Partial Class formPersona
         Me.textboxFechaUltimoAscenso.Name = "textboxFechaUltimoAscenso"
         Me.textboxFechaUltimoAscenso.ReadOnly = True
         Me.textboxFechaUltimoAscenso.Size = New System.Drawing.Size(92, 20)
-        Me.textboxFechaUltimoAscenso.TabIndex = 33
+        Me.textboxFechaUltimoAscenso.TabIndex = 35
         '
         'textboxCargoJerarquiaActual
         '
@@ -1134,7 +1139,7 @@ Partial Class formPersona
         Me.textboxCargoJerarquiaActual.Name = "textboxCargoJerarquiaActual"
         Me.textboxCargoJerarquiaActual.ReadOnly = True
         Me.textboxCargoJerarquiaActual.Size = New System.Drawing.Size(279, 20)
-        Me.textboxCargoJerarquiaActual.TabIndex = 32
+        Me.textboxCargoJerarquiaActual.TabIndex = 34
         Me.textboxCargoJerarquiaActual.TabStop = False
         '
         'textboxCantidadHijos
@@ -1144,7 +1149,7 @@ Partial Class formPersona
         Me.textboxCantidadHijos.Name = "textboxCantidadHijos"
         Me.textboxCantidadHijos.ReadOnly = True
         Me.textboxCantidadHijos.Size = New System.Drawing.Size(39, 20)
-        Me.textboxCantidadHijos.TabIndex = 30
+        Me.textboxCantidadHijos.TabIndex = 32
         Me.textboxCantidadHijos.TabStop = False
         Me.textboxCantidadHijos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1155,7 +1160,7 @@ Partial Class formPersona
         Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 190)
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
-        Me.comboboxIOMATiene.TabIndex = 18
+        Me.comboboxIOMATiene.TabIndex = 20
         '
         'comboboxNivelEstudio
         '
@@ -1164,7 +1169,7 @@ Partial Class formPersona
         Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 225)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 22
+        Me.comboboxNivelEstudio.TabIndex = 24
         '
         'comboboxFactorRH
         '
@@ -1232,7 +1237,7 @@ Partial Class formPersona
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(377, 20)
-        Me.textboxNacionalidad.TabIndex = 26
+        Me.textboxNacionalidad.TabIndex = 28
         '
         'textboxProfesion
         '
@@ -1240,7 +1245,7 @@ Partial Class formPersona
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(377, 20)
-        Me.textboxProfesion.TabIndex = 24
+        Me.textboxProfesion.TabIndex = 26
         '
         'comboboxCuartel
         '
@@ -1249,7 +1254,7 @@ Partial Class formPersona
         Me.comboboxCuartel.Location = New System.Drawing.Point(142, 317)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(377, 21)
-        Me.comboboxCuartel.TabIndex = 28
+        Me.comboboxCuartel.TabIndex = 30
         '
         'tabpageParticular
         '
@@ -1592,7 +1597,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Agregar
         '
-        Me.buttonFamiliares_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonFamiliares_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonFamiliares_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1602,7 +1607,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Editar
         '
-        Me.buttonFamiliares_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonFamiliares_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonFamiliares_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1612,7 +1617,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Eliminar
         '
-        Me.buttonFamiliares_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonFamiliares_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonFamiliares_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1696,7 +1701,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Agregar
         '
-        Me.buttonAltasBajas_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAltasBajas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAltasBajas_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1706,7 +1711,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Editar
         '
-        Me.buttonAltasBajas_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAltasBajas_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonAltasBajas_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1716,7 +1721,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Eliminar
         '
-        Me.buttonAltasBajas_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAltasBajas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonAltasBajas_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1801,7 +1806,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Agregar
         '
-        Me.buttonAscensos_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAscensos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonAscensos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1811,7 +1816,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Editar
         '
-        Me.buttonAscensos_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAscensos_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonAscensos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1821,7 +1826,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Eliminar
         '
-        Me.buttonAscensos_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAscensos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonAscensos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1963,7 +1968,7 @@ Partial Class formPersona
         'buttonHorarioLaboral_Agregar
         '
         Me.buttonHorarioLaboral_Agregar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemHorarioLaboral_AgregarMultiples})
-        Me.buttonHorarioLaboral_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonHorarioLaboral_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonHorarioLaboral_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1979,7 +1984,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Editar
         '
-        Me.buttonHorarioLaboral_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonHorarioLaboral_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonHorarioLaboral_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1989,7 +1994,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Eliminar
         '
-        Me.buttonHorarioLaboral_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonHorarioLaboral_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonHorarioLaboral_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -1999,7 +2004,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Imprimir
         '
-        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonHorarioLaboral_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonHorarioLaboral_Imprimir.Name = "buttonHorarioLaboral_Imprimir"
@@ -2143,7 +2148,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Agregar
         '
-        Me.buttonVehiculos_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonVehiculos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonVehiculos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2153,7 +2158,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Editar
         '
-        Me.buttonVehiculos_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonVehiculos_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonVehiculos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2163,7 +2168,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Eliminar
         '
-        Me.buttonVehiculos_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonVehiculos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonVehiculos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2316,7 +2321,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Agregar
         '
-        Me.buttonVacunas_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonVacunas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonVacunas_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2326,7 +2331,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Editar
         '
-        Me.buttonVacunas_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonVacunas_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonVacunas_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2336,7 +2341,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Eliminar
         '
-        Me.buttonVacunas_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonVacunas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonVacunas_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2430,7 +2435,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Agregar
         '
-        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonLicencias_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2440,7 +2445,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Editar
         '
-        Me.buttonLicencias_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonLicencias_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonLicencias_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2450,7 +2455,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Eliminar
         '
-        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonLicencias_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2460,7 +2465,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Imprimir
         '
-        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonLicencias_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonLicencias_Imprimir.Name = "buttonLicencias_Imprimir"
@@ -2535,7 +2540,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Agregar
         '
-        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonSanciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2545,7 +2550,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Editar
         '
-        Me.buttonSanciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonSanciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonSanciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2555,7 +2560,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Eliminar
         '
-        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonSanciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2565,7 +2570,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Imprimir
         '
-        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
@@ -2640,7 +2645,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Agregar
         '
-        Me.buttonCapacitaciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCapacitaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonCapacitaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2650,7 +2655,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Editar
         '
-        Me.buttonCapacitaciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCapacitaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonCapacitaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2660,7 +2665,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Eliminar
         '
-        Me.buttonCapacitaciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCapacitaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonCapacitaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2742,7 +2747,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Agregar
         '
-        Me.buttonCalificaciones_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCalificaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonCalificaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2752,7 +2757,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Editar
         '
-        Me.buttonCalificaciones_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCalificaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonCalificaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2762,7 +2767,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Eliminar
         '
-        Me.buttonCalificaciones_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCalificaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonCalificaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2772,7 +2777,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Imprimir
         '
-        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
         Me.buttonCalificaciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCalificaciones_Imprimir.Name = "buttonCalificaciones_Imprimir"
@@ -2847,7 +2852,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Agregar
         '
-        Me.buttonExamenes_Agregar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonExamenes_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
         Me.buttonExamenes_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2857,7 +2862,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Editar
         '
-        Me.buttonExamenes_Editar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonExamenes_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
         Me.buttonExamenes_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2867,7 +2872,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Eliminar
         '
-        Me.buttonExamenes_Eliminar.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonExamenes_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
         Me.buttonExamenes_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2970,6 +2975,26 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
+        '
+        'labelFechaCasamiento
+        '
+        labelFechaCasamiento.AutoSize = True
+        labelFechaCasamiento.Location = New System.Drawing.Point(332, 160)
+        labelFechaCasamiento.Name = "labelFechaCasamiento"
+        labelFechaCasamiento.Size = New System.Drawing.Size(112, 13)
+        labelFechaCasamiento.TabIndex = 17
+        labelFechaCasamiento.Text = "Fecha de casamiento:"
+        '
+        'datetimepickerFechaCasamiento
+        '
+        Me.datetimepickerFechaCasamiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaCasamiento.Location = New System.Drawing.Point(457, 157)
+        Me.datetimepickerFechaCasamiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaCasamiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaCasamiento.Name = "datetimepickerFechaCasamiento"
+        Me.datetimepickerFechaCasamiento.ShowCheckBox = True
+        Me.datetimepickerFechaCasamiento.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerFechaCasamiento.TabIndex = 18
         '
         'formPersona
         '
@@ -3102,7 +3127,7 @@ Partial Class formPersona
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CSBomberos.DesktopApplication.CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As CS_Control_TabControl
     Friend WithEvents labelIDPersona As System.Windows.Forms.Label
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents datetimepickerFechaNacimiento As System.Windows.Forms.DateTimePicker
@@ -3264,4 +3289,5 @@ Partial Class formPersona
     Friend WithEvents columnHorarioLaboral_Turno2Hasta As DataGridViewTextBoxColumn
     Friend WithEvents comboboxEstadoCivil As ComboBox
     Friend WithEvents buttonHorarioLaboral_Imprimir As ToolStripButton
+    Friend WithEvents datetimepickerFechaCasamiento As DateTimePicker
 End Class

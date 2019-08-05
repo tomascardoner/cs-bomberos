@@ -4,24 +4,24 @@ Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
 
 Partial Public Class CSBomberosContext
-    Inherits DbContext
+        Inherits DbContext
 
-    Public Shared Property ConnectionString As String
+        Public Shared Property ConnectionString As String
 
-    Public Sub New(ByVal UseCustomConnectionString As Boolean)
-        MyBase.New(ConnectionString)
-    End Sub
+        Public Sub New(ByVal UseCustomConnectionString As Boolean)
+            MyBase.New(ConnectionString)
+        End Sub
 
-    Public Shared Sub CreateConnectionString(ByVal Provider As String, ByVal ProviderConnectionString As String)
-        Dim ecb As EntityConnectionStringBuilder = New EntityConnectionStringBuilder()
+        Public Shared Sub CreateConnectionString(ByVal Provider As String, ByVal ProviderConnectionString As String)
+            Dim ecb As EntityConnectionStringBuilder = New EntityConnectionStringBuilder()
 
-        ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSBomberos")
-        ecb.Provider = Provider
-        ecb.ProviderConnectionString = ProviderConnectionString
+            ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSBomberos")
+            ecb.Provider = Provider
+            ecb.ProviderConnectionString = ProviderConnectionString
 
-        ConnectionString = ecb.ConnectionString
-    End Sub
-End Class
+            ConnectionString = ecb.ConnectionString
+        End Sub
+    End Class
 
 Partial Public Class Persona
     Public ReadOnly Property DomicilioParticularCalleCompleto() As String
@@ -65,7 +65,7 @@ Partial Public Class Persona
         End Get
     End Property
 
-    Public ReadOnly Property LicenciaConducirCategoriasList As List(of LicenciaConducirCategoria)
+    Public ReadOnly Property LicenciaConducirCategoriasList As List(Of LicenciaConducirCategoria)
         Get
             Using dbc As New CSBomberosContext(True)
                 Dim listPersonaLicenciaConducirCategorias As List(Of LicenciaConducirCategoria)

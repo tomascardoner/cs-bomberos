@@ -7,7 +7,7 @@
     <ProjectGuid>{743A95AF-6D3E-4E42-AA27-2D1BE2AF7846}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>Sub Main</StartupObject>
-    <RootNamespace>CSBomberos.DesktopApplication</RootNamespace>
+    <RootNamespace>CSBomberos</RootNamespace>
     <AssemblyName>CSBomberos</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsFormsWithCustomSubMain</MyType>

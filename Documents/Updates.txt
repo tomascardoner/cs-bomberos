@@ -1,3 +1,8 @@
+2019-08-03
+	- Tabla Persona: Agregar el campo FechaCasamiento date null, después de IDEstadoCivil
+	- Tabla Reporte: agregar el campo OrigenDatos vacrhar(100) null, después de Archivo
+	- Actualizar el stored procedure usp_Persona_DatosYFamiliaresACargo
+
 2019-05-15
 	- Agregar la tabla EstadoCivil
 	- Agregar el campo IDEstadoCivil tinyint (antes de IOMA...) a las tablas Persona y PersonaFamiliar y las relaciones respectivas

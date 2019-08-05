@@ -28,6 +28,7 @@ Partial Public Class Persona
     Public Property Altura As Nullable(Of Decimal)
     Public Property Peso As Nullable(Of Byte)
     Public Property IDEstadoCivil As Nullable(Of Byte)
+    Public Property FechaCasamiento As Nullable(Of Date)
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
     Public Property IDNivelEstudio As Nullable(Of Byte)

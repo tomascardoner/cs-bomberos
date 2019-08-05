@@ -108,7 +108,7 @@ Partial Class formAboutBox
         '
         'pictureboxIcon
         '
-        Me.pictureboxIcon.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_APPLICATION_ICON_300
+        Me.pictureboxIcon.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_APPLICATION_ICON_300
         Me.pictureboxIcon.Location = New System.Drawing.Point(12, 12)
         Me.pictureboxIcon.Name = "pictureboxIcon"
         Me.pictureboxIcon.Size = New System.Drawing.Size(90, 96)

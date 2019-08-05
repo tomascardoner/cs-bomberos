@@ -15,6 +15,7 @@ Partial Public Class Reporte
     Public Property IDReporteGrupo As Byte
     Public Property Nombre As String
     Public Property Archivo As String
+    Public Property OrigenDatos As String
     Public Property MostrarEnVisor As Boolean
     Public Property Orden As Nullable(Of Byte)
 

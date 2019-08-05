@@ -169,14 +169,14 @@ Partial Class formMDIMain
         '
         'menuitemVentanaMosaicoHorizontal
         '
-        Me.menuitemVentanaMosaicoHorizontal.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
+        Me.menuitemVentanaMosaicoHorizontal.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
         Me.menuitemVentanaMosaicoHorizontal.Name = "menuitemVentanaMosaicoHorizontal"
         Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoHorizontal.Text = "Mosaico &Horizontal"
         '
         'menuitemVentanaMosaicoVertical
         '
-        Me.menuitemVentanaMosaicoVertical.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
+        Me.menuitemVentanaMosaicoVertical.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
         Me.menuitemVentanaMosaicoVertical.Name = "menuitemVentanaMosaicoVertical"
         Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoVertical.Text = "Mosaico &Vertical"
@@ -200,14 +200,14 @@ Partial Class formMDIMain
         '
         'menuitemVentanaCerrarTodas
         '
-        Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
+        Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
         Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
         Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
         '
         'menuitemVentanaEncajarEnVentana
         '
-        Me.menuitemVentanaEncajarEnVentana.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
+        Me.menuitemVentanaEncajarEnVentana.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
         Me.menuitemVentanaEncajarEnVentana.Name = "menuitemVentanaEncajarEnVentana"
         Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaEncajarEnVentana.Text = "Encajar en ventana"
@@ -244,7 +244,7 @@ Partial Class formMDIMain
         'dropdownbuttonTablas
         '
         Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_EstadosCiviles, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_TiposVehiculo, Me.menuitemTablas_MarcasVehiculo, Me.menuitemTablas_CompaniasSegurosVehiculo, Me.menuitemTablas_TiposVacuna, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion, Me.menuitemTablas_SeparadorUnidades, Me.menuitemTablas_TiposUnidad, Me.menuitemTablas_UsosUnidad, Me.menuitemTablas_MotivosBajaUnidad, Me.menuitemTablas_SeparadorInventario, Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones, Me.menuitemTablas_SeparadorUsuarios, Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos, Me.menuitemTablas_SeparadorAlarmas, Me.menuitemTablas_Alarmas})
-        Me.dropdownbuttonTablas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_TABLAS_32
+        Me.dropdownbuttonTablas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -436,7 +436,7 @@ Partial Class formMDIMain
         '
         'buttonPersonas
         '
-        Me.buttonPersonas.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_PERSONAS_32
+        Me.buttonPersonas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PERSONAS_32
         Me.buttonPersonas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonPersonas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonPersonas.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -446,7 +446,7 @@ Partial Class formMDIMain
         '
         'buttonUnidades
         '
-        Me.buttonUnidades.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_UNIDADES_32
+        Me.buttonUnidades.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_UNIDADES_32
         Me.buttonUnidades.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonUnidades.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonUnidades.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -457,7 +457,7 @@ Partial Class formMDIMain
         'buttonInventario
         '
         Me.buttonInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemInventario_Elementos})
-        Me.buttonInventario.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_ELEMENTOS_32
+        Me.buttonInventario.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ELEMENTOS_32
         Me.buttonInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonInventario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonInventario.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -473,7 +473,7 @@ Partial Class formMDIMain
         '
         'buttonReportes
         '
-        Me.buttonReportes.Image = Global.CSBomberos.DesktopApplication.My.Resources.Resources.IMAGE_REPORTES_32
+        Me.buttonReportes.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_REPORTES_32
         Me.buttonReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonReportes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonReportes.ImageTransparentColor = System.Drawing.Color.Magenta

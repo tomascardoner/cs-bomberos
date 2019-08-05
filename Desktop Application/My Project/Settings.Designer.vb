@@ -285,9 +285,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.CSBomberos.DesktopApplication.My.MySettings
+        Friend ReadOnly Property Settings() As Global.CSBomberos.My.MySettings
             Get
-                Return Global.CSBomberos.DesktopApplication.My.MySettings.Default
+                Return Global.CSBomberos.My.MySettings.Default
             End Get
         End Property
     End Module
