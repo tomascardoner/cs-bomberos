@@ -1226,6 +1226,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Cardoner Sistemas.gif" />
     <None Include="packages.config" />
     <None Include="Resources\Fire-Extinguisher-icon_32.png" />
     <None Include="Resources\Fire-Pumper-icon_32.png" />
