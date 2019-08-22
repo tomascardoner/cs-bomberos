@@ -59,7 +59,7 @@
 
         Catch ex As Exception
 
-            CS_Error.ProcessError(ex, "Error al leer las Categorías de Licencia de Conducir.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Categorías de Licencia de Conducir.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try

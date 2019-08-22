@@ -46,7 +46,7 @@
 
         Catch ex As Exception
 
-            CS_Error.ProcessError(ex, "Error al leer los Conceptos de Calificación.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Conceptos de Calificación.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -104,7 +104,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -248,7 +248,7 @@
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Concepto de Calificación.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Concepto de Calificación.")
                     End Try
 
                     RefreshData()

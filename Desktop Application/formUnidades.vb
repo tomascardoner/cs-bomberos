@@ -64,7 +64,7 @@
             End Using
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Unidades.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Unidades.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -132,7 +132,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -299,7 +299,7 @@
                             Exit Sub
 
                         Catch ex As Exception
-                            CS_Error.ProcessError(ex, "Error al eliminar el Unidad.")
+                            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Unidad.")
                         End Try
 
                         RefreshData()

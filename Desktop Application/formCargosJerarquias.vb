@@ -59,7 +59,7 @@
 
         Catch ex As Exception
 
-            CS_Error.ProcessError(ex, "Error al leer las Jerarquías.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Jerarquías.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -119,7 +119,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -269,7 +269,7 @@
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Jerarquía.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Jerarquía.")
                     End Try
 
                     RefreshData()

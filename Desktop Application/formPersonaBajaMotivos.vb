@@ -47,7 +47,7 @@
 
         Catch ex As Exception
 
-            CS_Error.ProcessError(ex, "Error al leer los Motivos de Baja de Personas.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Motivos de Baja de Personas.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -105,7 +105,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -243,7 +243,7 @@
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Motivo de Baja de Persona.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Motivo de Baja de Persona.")
                     End Try
 
                     RefreshData()

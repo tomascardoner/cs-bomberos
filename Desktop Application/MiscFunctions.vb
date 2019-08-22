@@ -60,7 +60,7 @@ Module MiscFunctions
             End Using
             Return True
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al conectarse a la base de datos.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
             Return False
         End Try
     End Function
@@ -74,7 +74,7 @@ Module MiscFunctions
             Return True
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al cargar los Permisos y los Parámetros del Usuario.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar los Permisos y los Parámetros del Usuario.")
             Return False
 
         End Try

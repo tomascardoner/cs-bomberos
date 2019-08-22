@@ -1,5 +1,6 @@
 ﻿Imports System.Data.Entity
 Imports System.Data.Entity.Core.EntityClient
+Imports System.Data.SqlClient
 Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
@@ -143,7 +144,7 @@ Partial Public Class Reporte
             ReportObject = New ReportDocument
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al crear el objeto del reporte." & vbCrLf & "Probablemente, esto se deba a que no estan correctamente instaladas las librerías de Crystal Reports.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al crear el objeto del reporte." & vbCrLf & "Probablemente, esto se deba a que no estan correctamente instaladas las librerías de Crystal Reports.")
             Return False
         End Try
 
@@ -151,7 +152,7 @@ Partial Public Class Reporte
             ReportObject.Load(PathAndFileName)
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al cargar el reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar el reporte.")
             Return False
         End Try
 
@@ -239,12 +240,13 @@ Partial Public Class Reporte
             Return True
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al establecer la conexión a la base de datos del Reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer la conexión a la base de datos del Reporte.")
             Return False
         End Try
     End Function
 
     Friend Sub CompletarPdf(ByVal destinationFile As String)
+
 
 
         Dim pdfReader As PdfReader = Nothing
@@ -284,7 +286,7 @@ Partial Public Class Reporte
             document.Close()
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al completar el reporte en PDF.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al completar el reporte en PDF.")
         Finally
             document?.Close()
             pdfReader?.Close()
@@ -293,18 +295,15 @@ Partial Public Class Reporte
         Cursor.Current = Cursors.Default
     End Sub
 
-    Private Sub CompletarPdfObtenerDatos()
-        Dim Database As CardonerSistemas.Database.ADO.SQLServer
+    Friend Function CompletarPdfObtenerDatos() As Boolean
+        Dim dataReader As SqlDataReader
 
-        Try
-            Database = New CardonerSistemas.Database.ADO.SQLServer
-            Database.ConnectionString = pDatabase.ConnectionString
+        If pDatabase.OpenDataReader(dataReader, OrigenDatos, CommandType.StoredProcedure, CommandBehavior.SingleResult, "Error al obtener los datos del reporte.") Then
+            Return True
+        End If
 
-
-        Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al obtener los datos del reporte.")
-        End Try
-    End Sub
+        Return False
+    End Function
 
     Private Sub CompletarEncabezadoPdf()
 

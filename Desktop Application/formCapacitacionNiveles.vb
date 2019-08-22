@@ -46,7 +46,7 @@
 
         Catch ex As Exception
 
-            CS_Error.ProcessError(ex, "Error al leer los Niveles de Capacitación.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Niveles de Capacitación.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -104,7 +104,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -242,7 +242,7 @@
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar el Nivel de Capacitación.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Nivel de Capacitación.")
                     End Try
 
                     RefreshData()

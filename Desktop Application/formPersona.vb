@@ -761,13 +761,13 @@
                     Case Errors.DuplicatedEntity
                         MsgBox("No se pueden guardar los cambios porque ya existe una Persona con la misma Matrícula o Apellido y Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case Errors.Unknown
-                        CS_Error.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
 
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
-                CS_Error.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
+                CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
                 Exit Sub
             End Try
         End If
@@ -819,7 +819,7 @@
             datagridviewFamiliares.DataSource = listFamiliares
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Familiares.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Familiares.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -938,7 +938,7 @@
             datagridviewAltasBajas.DataSource = listAltasBajas
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Altas-Bajas.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Altas-Bajas.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1055,7 +1055,7 @@
             datagridviewAscensos.DataSource = listAscensos
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Ascensos.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Ascensos.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1178,7 +1178,7 @@
             datagridviewHorarioLaboral.DataSource = listHorarioLaboral
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Horarios Laborales.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Horarios Laborales.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1349,7 +1349,7 @@
             datagridviewVehiculos.DataSource = listVehiculos
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Vehículos.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Vehículos.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1468,7 +1468,7 @@
             datagridviewVacunas.DataSource = listVacunas
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Vacunas.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Vacunas.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1584,7 +1584,7 @@
             datagridviewLicencias.DataSource = listLicencias
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Licencias.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Licencias.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1733,7 +1733,7 @@
             datagridviewSanciones.DataSource = listSancions
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Sanciones.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Sanciones.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1882,7 +1882,7 @@
             datagridviewCapacitaciones.DataSource = listCapacitaciones
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Capacitaciones.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Capacitaciones.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -2036,7 +2036,7 @@
             datagridviewCalificaciones.DataSource = listCalificaciones_GridRowData
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer las Calificaciones.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Calificaciones.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -2116,7 +2116,7 @@
                         Exit Sub
 
                     Catch ex As Exception
-                        CS_Error.ProcessError(ex, "Error al eliminar la Instancia de Calificación.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Instancia de Calificación.")
                     End Try
 
                     Calificaciones_RefreshData()
@@ -2209,7 +2209,7 @@
             datagridviewExamenes.DataSource = listExamenes
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Exámenes.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Exámenes.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try

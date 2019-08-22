@@ -62,7 +62,7 @@
             End Using
 
         Catch ex As Exception
-            CS_Error.ProcessError(ex, "Error al leer los Elementos.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Elementos.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -143,7 +143,7 @@
                 End Select
 
             Catch ex As Exception
-                CS_Error.ProcessError(ex, "Error al filtrar los datos.")
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
                 Exit Sub
             End Try
@@ -319,7 +319,7 @@
                             Exit Sub
 
                         Catch ex As Exception
-                            CS_Error.ProcessError(ex, "Error al eliminar el Elemento.")
+                            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Elemento.")
                         End Try
 
                         RefreshData()
