@@ -1287,7 +1287,7 @@
 
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_HORARIOLABORAL))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
-                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                    If ReporteActual.Open() Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre)
                         End If
@@ -1684,7 +1684,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_LICENCIA))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDLicencia").Single.Valor = GridRowDataActual.IDLicencia
-                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                    If ReporteActual.Open() Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre)
                         End If
@@ -1833,7 +1833,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_SANCIONDISCIPLINARIA))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDSancion").Single.Valor = GridRowDataActual.IDSancion
-                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                    If ReporteActual.Open() Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre)
                         End If
@@ -2158,7 +2158,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_PLANILLAANUALCALIFICACIONES))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "Anio").Single.Valor = GridRowDataActual.Anio
-                    If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
+                    If ReporteActual.Open() Then
                         If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                             MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
                         End If

@@ -295,12 +295,16 @@
 
         Me.Cursor = Cursors.WaitCursor
 
-        If ReporteActual.Open(My.Settings.ReportsPath & "\" & ReporteActual.Archivo) Then
-            If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                If sender.Equals(buttonImprimir) Then
-                    ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
-                Else
-                    MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre)
+        If ReporteActual.IsPdf Then
+            ReporteActual.CompletarPdf(CS_SpecialFolders.GetTempFileName("pdf"))
+        Else
+            If ReporteActual.Open() Then
+                If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                    If sender.Equals(buttonImprimir) Then
+                        ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
+                    Else
+                        MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre)
+                    End If
                 End If
             End If
         End If

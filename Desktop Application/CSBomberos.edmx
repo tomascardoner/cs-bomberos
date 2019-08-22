@@ -710,8 +710,23 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="OrigenDatos" Type="varchar" MaxLength="100" />
+          <Property Name="IDTipografiaEstilo" Type="tinyint" />
+          <Property Name="MaximoRegistrosDetalle" Type="tinyint" />
+          <Property Name="AgruparPorCampo" Type="varchar" MaxLength="128" />
           <Property Name="MostrarEnVisor" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="ReporteCampo">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDCampo" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDCampo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="IDTipografiaEstilo" Type="tinyint" />
+          <Property Name="PosicionX" Type="smallint" Nullable="false" />
+          <Property Name="PosicionY" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -795,6 +810,18 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipografiaEstilo">
+          <Key>
+            <PropertyRef Name="IDTipografiaEstilo" />
+          </Key>
+          <Property Name="IDTipografiaEstilo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="31" Nullable="false" />
+          <Property Name="Tamanio" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="Negrita" Type="bit" Nullable="false" />
+          <Property Name="Italica" Type="bit" Nullable="false" />
+          <Property Name="Subrayada" Type="bit" Nullable="false" />
+          <Property Name="Tachada" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Ubicacion">
           <Key>
@@ -1529,6 +1556,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Reporte__ReporteCampo">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteCampo" Type="Self.ReporteCampo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteCampo">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Reporte__ReporteParametro">
           <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
           <End Role="ReporteParametro" Type="Self.ReporteParametro" Multiplicity="*" />
@@ -1610,6 +1649,30 @@
             </Principal>
             <Dependent Role="Inventario">
               <PropertyRef Name="IDSubUbicacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TipografiaEstilo__Reporte">
+          <End Role="TipografiaEstilo" Type="Self.TipografiaEstilo" Multiplicity="0..1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipografiaEstilo">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TipografiaEstilo__ReporteCampo">
+          <End Role="TipografiaEstilo" Type="Self.TipografiaEstilo" Multiplicity="0..1" />
+          <End Role="ReporteCampo" Type="Self.ReporteCampo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipografiaEstilo">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Principal>
+            <Dependent Role="ReporteCampo">
+              <PropertyRef Name="IDTipografiaEstilo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3015,12 +3078,14 @@
           <EntitySet Name="PersonaVehiculo" EntityType="Self.PersonaVehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteCampo" EntityType="Self.ReporteCampo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SancionTipo" EntityType="Self.SancionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubRubro" EntityType="Self.SubRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubUbicacion" EntityType="Self.SubUbicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipografiaEstilo" EntityType="Self.TipografiaEstilo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ubicacion" EntityType="Self.Ubicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnidadBajaMotivo" EntityType="Self.UnidadBajaMotivo" Schema="dbo" store:Type="Tables" />
@@ -3210,6 +3275,10 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Localidad" EntitySet="Localidad" />
           </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteCampo" Association="Self.FK__Reporte__ReporteCampo">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteCampo" EntitySet="ReporteCampo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Reporte__ReporteParametro" Association="Self.FK__Reporte__ReporteParametro">
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
@@ -3237,6 +3306,14 @@
           <AssociationSet Name="FK__SubUbicacion__Inventario" Association="Self.FK__SubUbicacion__Inventario">
             <End Role="SubUbicacion" EntitySet="SubUbicacion" />
             <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipografiaEstilo__Reporte" Association="Self.FK__TipografiaEstilo__Reporte">
+            <End Role="TipografiaEstilo" EntitySet="TipografiaEstilo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipografiaEstilo__ReporteCampo" Association="Self.FK__TipografiaEstilo__ReporteCampo">
+            <End Role="TipografiaEstilo" EntitySet="TipografiaEstilo" />
+            <End Role="ReporteCampo" EntitySet="ReporteCampo" />
           </AssociationSet>
           <AssociationSet Name="FK__Ubicacion__Inventario" Association="Self.FK__Ubicacion__Inventario">
             <End Role="Ubicacion" EntitySet="Ubicacion" />
@@ -4416,6 +4493,20 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="EstadoCivil" EntitySet="EstadoCivil" />
           </AssociationSet>
+          <EntitySet Name="ReporteCampo" EntityType="CSBomberosModel.ReporteCampo" />
+          <EntitySet Name="TipografiaEstilo" EntityType="CSBomberosModel.TipografiaEstilo" />
+          <AssociationSet Name="FK__Reporte__ReporteCampo" Association="CSBomberosModel.FK__Reporte__ReporteCampo">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteCampo" EntitySet="ReporteCampo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipografiaEstilo__Reporte" Association="CSBomberosModel.FK__TipografiaEstilo__Reporte">
+            <End Role="TipografiaEstilo" EntitySet="TipografiaEstilo" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TipografiaEstilo__ReporteCampo" Association="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo">
+            <End Role="TipografiaEstilo" EntitySet="TipografiaEstilo" />
+            <End Role="ReporteCampo" EntitySet="ReporteCampo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -4484,10 +4575,15 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="OrigenDatos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDTipografiaEstilo" Type="Byte" />
+          <Property Name="MaximoRegistrosDetalle" Type="Byte" />
+          <Property Name="AgruparPorCampo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
           <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
           <Property Name="Orden" Type="Byte" />
+          <NavigationProperty Name="ReporteCampos" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="Reporte" ToRole="ReporteCampo" />
+          <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__Reporte" FromRole="Reporte" ToRole="TipografiaEstilo" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -7720,6 +7816,70 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ReporteCampo">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDCampo" />
+          </Key>
+          <Property Name="IDReporte" Type="Int16" Nullable="false" />
+          <Property Name="IDCampo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="IDTipografiaEstilo" Type="Byte" />
+          <Property Name="PosicionX" Type="Int16" Nullable="false" />
+          <Property Name="PosicionY" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="ReporteCampo" ToRole="Reporte" />
+          <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" FromRole="ReporteCampo" ToRole="TipografiaEstilo" />
+        </EntityType>
+        <EntityType Name="TipografiaEstilo">
+          <Key>
+            <PropertyRef Name="IDTipografiaEstilo" />
+          </Key>
+          <Property Name="IDTipografiaEstilo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="31" FixedLength="false" Unicode="false" />
+          <Property Name="Tamanio" Type="Decimal" Nullable="false" Precision="5" Scale="2" />
+          <Property Name="Negrita" Type="Boolean" Nullable="false" />
+          <Property Name="Italica" Type="Boolean" Nullable="false" />
+          <Property Name="Subrayada" Type="Boolean" Nullable="false" />
+          <Property Name="Tachada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.FK__TipografiaEstilo__Reporte" FromRole="TipografiaEstilo" ToRole="Reporte" />
+          <NavigationProperty Name="ReporteCampo" Relationship="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" FromRole="TipografiaEstilo" ToRole="ReporteCampo" />
+        </EntityType>
+        <Association Name="FK__Reporte__ReporteCampo">
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="1" />
+          <End Type="CSBomberosModel.ReporteCampo" Role="ReporteCampo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteCampo">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TipografiaEstilo__Reporte">
+          <End Type="CSBomberosModel.TipografiaEstilo" Role="TipografiaEstilo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipografiaEstilo">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TipografiaEstilo__ReporteCampo">
+          <End Type="CSBomberosModel.TipografiaEstilo" Role="TipografiaEstilo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.ReporteCampo" Role="ReporteCampo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipografiaEstilo">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Principal>
+            <Dependent Role="ReporteCampo">
+              <PropertyRef Name="IDTipografiaEstilo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7781,6 +7941,9 @@
           <EntitySetMapping Name="Reporte">
             <EntityTypeMapping TypeName="CSBomberosModel.Reporte">
               <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="AgruparPorCampo" ColumnName="AgruparPorCampo" />
+                <ScalarProperty Name="MaximoRegistrosDetalle" ColumnName="MaximoRegistrosDetalle" />
+                <ScalarProperty Name="IDTipografiaEstilo" ColumnName="IDTipografiaEstilo" />
                 <ScalarProperty Name="OrigenDatos" ColumnName="OrigenDatos" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
@@ -8759,6 +8922,31 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteCampo">
+            <EntityTypeMapping TypeName="CSBomberosModel.ReporteCampo">
+              <MappingFragment StoreEntitySet="ReporteCampo">
+                <ScalarProperty Name="PosicionY" ColumnName="PosicionY" />
+                <ScalarProperty Name="PosicionX" ColumnName="PosicionX" />
+                <ScalarProperty Name="IDTipografiaEstilo" ColumnName="IDTipografiaEstilo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCampo" ColumnName="IDCampo" />
+                <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipografiaEstilo">
+            <EntityTypeMapping TypeName="CSBomberosModel.TipografiaEstilo">
+              <MappingFragment StoreEntitySet="TipografiaEstilo">
+                <ScalarProperty Name="Tachada" ColumnName="Tachada" />
+                <ScalarProperty Name="Subrayada" ColumnName="Subrayada" />
+                <ScalarProperty Name="Italica" ColumnName="Italica" />
+                <ScalarProperty Name="Negrita" ColumnName="Negrita" />
+                <ScalarProperty Name="Tamanio" ColumnName="Tamanio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDTipografiaEstilo" ColumnName="IDTipografiaEstilo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

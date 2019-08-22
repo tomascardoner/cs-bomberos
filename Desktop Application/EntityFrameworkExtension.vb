@@ -1,27 +1,30 @@
 ﻿Imports System.Data.Entity
 Imports System.Data.Entity.Core.EntityClient
+Imports System.IO
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.Shared
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Partial Public Class CSBomberosContext
-        Inherits DbContext
+    Inherits DbContext
 
-        Public Shared Property ConnectionString As String
+    Public Shared Property ConnectionString As String
 
-        Public Sub New(ByVal UseCustomConnectionString As Boolean)
-            MyBase.New(ConnectionString)
-        End Sub
+    Public Sub New(ByVal UseCustomConnectionString As Boolean)
+        MyBase.New(ConnectionString)
+    End Sub
 
-        Public Shared Sub CreateConnectionString(ByVal Provider As String, ByVal ProviderConnectionString As String)
-            Dim ecb As EntityConnectionStringBuilder = New EntityConnectionStringBuilder()
+    Public Shared Sub CreateConnectionString(ByVal Provider As String, ByVal ProviderConnectionString As String)
+        Dim ecb As EntityConnectionStringBuilder = New EntityConnectionStringBuilder()
 
-            ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSBomberos")
-            ecb.Provider = Provider
-            ecb.ProviderConnectionString = ProviderConnectionString
+        ecb.Metadata = String.Format("res://*/{0}.csdl|res://*/{0}.ssdl|res://*/{0}.msl", "CSBomberos")
+        ecb.Provider = Provider
+        ecb.ProviderConnectionString = ProviderConnectionString
 
-            ConnectionString = ecb.ConnectionString
-        End Sub
-    End Class
+        ConnectionString = ecb.ConnectionString
+    End Sub
+End Class
 
 Partial Public Class Persona
     Public ReadOnly Property DomicilioParticularCalleCompleto() As String
@@ -111,6 +114,12 @@ Partial Public Class Reporte
         End Set
     End Property
 
+    Friend ReadOnly Property IsPdf() As Boolean
+        Get
+            Return Me.Archivo.EndsWith(".pdf", StringComparison.InvariantCultureIgnoreCase)
+        End Get
+    End Property
+
     Private Function GetConditionText() As String
         Dim ReporteParametro As ReporteParametro
         Dim ResultText As String = ""
@@ -123,7 +132,9 @@ Partial Public Class Reporte
         Return "Filtros aplicados: " & ResultText
     End Function
 
-    Friend Function Open(ByVal PathAndFileName As String) As Boolean
+    Friend Function Open() As Boolean
+        Dim PathAndFileName As String = My.Settings.ReportsPath & "\" & Me.Archivo
+
         If Not My.Computer.FileSystem.FileExists(PathAndFileName) Then
             Return False
         End If
@@ -232,6 +243,77 @@ Partial Public Class Reporte
             Return False
         End Try
     End Function
+
+    Friend Sub CompletarPdf(ByVal destinationFile As String)
+
+
+        Dim pdfReader As PdfReader = Nothing
+        Dim document As Document = New Document()
+
+
+
+
+        Cursor.Current = Cursors.WaitCursor
+
+        Try
+            Dim fileStream As FileStream = New FileStream(destinationFile, FileMode.Create)
+            Dim instance As PdfWriter = PdfWriter.GetInstance(document, fileStream)
+            Dim pdfContentByte As PdfContentByte = instance.DirectContent
+            Dim pdfImportedPage As PdfImportedPage
+
+            Dim font As Font
+            Dim baseFont As BaseFont
+
+            document.Open()
+            pdfReader = New PdfReader(Archivo)
+
+            ' Si el reporte lo especifica, cargo la tipografía
+            If Me.IDTipografiaEstilo.HasValue Then
+                If FontFactory.IsRegistered(Me.TipografiaEstilo.Nombre) Then
+                    font = FontFactory.GetFont(Me.TipografiaEstilo.Nombre, BaseFont.WINANSI, False, Me.TipografiaEstilo.Tamanio, Me.TipografiaEstilo.Estilo)
+                    baseFont = font.BaseFont
+                End If
+            End If
+
+            document.NewPage()
+            pdfImportedPage = instance.GetImportedPage(pdfReader, 1)
+            pdfContentByte.AddTemplate(pdfImportedPage, 1.0F, 0F, 0F, 1.0F, 0F, 0F)
+
+            'CompletarCartaDePorte(pdfContentByte, bf, i)
+
+            document.Close()
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al completar el reporte en PDF.")
+        Finally
+            document?.Close()
+            pdfReader?.Close()
+        End Try
+
+        Cursor.Current = Cursors.Default
+    End Sub
+
+    Private Sub CompletarPdfObtenerDatos()
+        Dim Database As CardonerSistemas.Database.ADO.SQLServer
+
+        Try
+            Database = New CardonerSistemas.Database.ADO.SQLServer
+            Database.ConnectionString = pDatabase.ConnectionString
+
+
+        Catch ex As Exception
+            CS_Error.ProcessError(ex, "Error al obtener los datos del reporte.")
+        End Try
+    End Sub
+
+    Private Sub CompletarEncabezadoPdf()
+
+    End Sub
+
+    Private Sub CompletarDetallePdf(ByRef campos As List(Of ReporteCampo))
+
+    End Sub
+
 End Class
 
 Partial Public Class ReporteParametro
@@ -322,5 +404,29 @@ Partial Public Class ReporteParametro
         Set(value As String)
             mValorParaMostrar = value
         End Set
+    End Property
+End Class
+
+Partial Public Class TipografiaEstilo
+    Friend ReadOnly Property Estilo() As Integer
+        Get
+            Dim _estilo As Integer = Font.UNDEFINED
+
+            If Me.Negrita And Me.Italica Then
+                _estilo = Font.BOLDITALIC
+            ElseIf Me.Negrita Then
+                _estilo = Font.BOLD
+            ElseIf Me.Italica Then
+                _estilo = Font.ITALIC
+            End If
+            If Me.Subrayada Then
+                _estilo = _estilo Or Font.UNDERLINE
+            End If
+            If Me.Tachada Then
+                _estilo = _estilo Or Font.STRIKETHRU
+            End If
+
+            Return _estilo
+        End Get
     End Property
 End Class
