@@ -294,12 +294,12 @@ Partial Public Class Reporte
             Dim baseFont As BaseFont
 
             ' Si el reporte lo especifica, cargo la tipografía
-            If IDTipografiaEstilo.HasValue Then
-                If FontFactory.IsRegistered(TipografiaEstilo.Nombre) Then
-                    font = FontFactory.GetFont(TipografiaEstilo.Nombre, BaseFont.WINANSI, False, TipografiaEstilo.Tamanio, TipografiaEstilo.Estilo)
-                    baseFont = font.BaseFont
-                End If
+            If IDTipografiaEstilo.HasValue AndAlso FontFactory.IsRegistered(TipografiaEstilo.Nombre) Then
+                font = FontFactory.GetFont(TipografiaEstilo.Nombre, BaseFont.WINANSI, False, TipografiaEstilo.Tamanio, TipografiaEstilo.Estilo)
+            Else
+                font = FontFactory.GetFont(FontFactory.HELVETICA, FontFactory.DefaultEncoding, False)
             End If
+            baseFont = font.BaseFont
 
             Dim valorCampoParaAgrupar As Object = Nothing
             Dim ordinalCampoParaAgrupar As Integer = -2
@@ -314,7 +314,7 @@ Partial Public Class Reporte
                 If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
                     ordinalCampoParaAgrupar = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, AgruparPorCampo)
                 End If
-                If ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar)) Then
+                If (ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar))) Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle) Then
                     valorCampoParaAgrupar = _DataReader.GetValue(ordinalCampoParaAgrupar)
 
                     ' Agregar una nueva página
@@ -322,7 +322,7 @@ Partial Public Class Reporte
                     pdfImportedPage = instance.GetImportedPage(pdfReader, 1)
                     pdfContentByte.AddTemplate(pdfImportedPage, 1.0F, 0F, 0F, 1.0F, 0F, 0F)
                     cantidadPaginas += 1
-                    cantidadRegistrosGrupo = 0
+                    cantidadRegistrosGrupo = 1
 
                     ' Escribir todos los campos
                     For Each campo In ReporteCampos
@@ -342,7 +342,7 @@ Partial Public Class Reporte
                             valorCampoActual = _DataReader.GetValue(ordinalCampoActual)
 
                             ' Escribir el valor en el PDF
-                            PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, campo.EspaciadoY.Value * -cantidadRegistrosGrupo, valorCampoActual)
+                            PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, campo.EspaciadoY.Value * -(cantidadRegistrosGrupo - 1), valorCampoActual)
                         End If
                     Next
                 End If

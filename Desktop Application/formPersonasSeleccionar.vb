@@ -211,10 +211,11 @@
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
 
-    Private Sub datagridviewMain_KeyPress(sender As Object, e As KeyPressEventArgs) Handles datagridviewMain.KeyPress
-        If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+    Private Sub datagridviewMain_KeyDown(sender As Object, e As KeyEventArgs) Handles datagridviewMain.KeyDown
+        If e.KeyCode = Keys.Enter Then
             Seleccionar()
-        ElseIf e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+            e.SuppressKeyPress = True
+        ElseIf e.KeyCode = Keys.Escape Then
             Cancelar()
         End If
     End Sub

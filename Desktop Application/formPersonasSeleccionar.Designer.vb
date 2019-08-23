@@ -38,11 +38,11 @@ Partial Class formPersonasSeleccionar
         Me.buttonSeleccionar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.columnIDPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMatrioculaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.toolstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +65,7 @@ Partial Class formPersonasSeleccionar
         '
         'textboxBuscar
         '
+        Me.textboxBuscar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.textboxBuscar.MaxLength = 100
         Me.textboxBuscar.Name = "textboxBuscar"
         Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
@@ -134,6 +135,7 @@ Partial Class formPersonasSeleccionar
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnMatrioculaNumero, Me.columnApellido, Me.columnNombre})
         Me.datagridviewMain.DataSource = Me.bindingsourceMain
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
