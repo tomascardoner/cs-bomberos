@@ -55,7 +55,7 @@
         pDatabase.CreateConnectionString()
 
         ' Obtengo el Connection String para las conexiones de Entity Framework
-        CSBomberosContext.CreateConnectionString(My.Settings.DBConnection_Provider, pDatabase.ConnectionString)
+        CSBomberosContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(My.Settings.DBConnection_Provider, pDatabase.ConnectionString, "CSBomberos")
 
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."

@@ -18,6 +18,7 @@
 #End Region
 
 #Region "Reportes"
+
     Private Sub CargarListaReportes()
         Dim ReporteGrupoNode As TreeNode
         Dim ReporteNode As TreeNode
@@ -58,6 +59,7 @@
             End If
         End If
     End Sub
+
 #End Region
 
 #Region "Parámetros"
@@ -295,18 +297,7 @@
 
         Me.Cursor = Cursors.WaitCursor
 
-        If ReporteActual.IsPdf Then
-            ReporteActual.CompletarPdf(CS_SpecialFolders.GetTempFileName("pdf"))
-        Else
-            If ReporteActual.Open() Then
-                If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                    If sender.Equals(buttonImprimir) Then
-                        ReporteActual.ReportObject.PrintToPrinter(1, False, 1, 1000)
-                    Else
-                        MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre)
-                    End If
-                End If
-            End If
+        If ReporteActual.Open(Not sender.Equals(buttonImprimir), ReporteActual.Nombre) Then
         End If
 
         Me.Cursor = Cursors.Default

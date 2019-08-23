@@ -130,6 +130,9 @@
     <Compile Include="..\..\..\framework-vbnet\Database.ADO.vb">
       <Link>Database.ADO.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Database.EntityFramework.vb">
+      <Link>Database.EntityFramework.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>ErrorHandler.vb</Link>
     </Compile>
@@ -140,6 +143,9 @@
     <Compile Include="..\..\..\framework-vbnet\ErrorHandlerMessageBox.vb">
       <Link>ErrorHandlerMessageBox.vb</Link>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\SpecialFolders.vb">
+      <Link>SpecialFolders.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ComboBox.vb">
       <Link>CS_ComboBox.vb</Link>
@@ -162,6 +168,8 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaExtension.vb" />
+    <Compile Include="ReporteExtension.vb" />
     <Compile Include="EstadoCivil.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -240,9 +248,11 @@
     <Compile Include="ReporteCampo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReporteParametroExtension.vb" />
     <Compile Include="TipografiaEstilo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="TipografiaEstiloExtension.vb" />
     <Compile Include="Unidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -258,9 +268,6 @@
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Control_TabControl.vb">
       <Link>CS_Control_TabControl.vb</Link>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Database_EF_SQL.vb">
-      <Link>CS_Database_EF_SQL.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Encryption_TripleDES.vb">
       <Link>CS_Encryption_TripleDES.vb</Link>
@@ -288,9 +295,6 @@
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Office_Outlook_LateBinding.vb">
       <Link>CS_Office_Outlook_LateBinding.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_SpecialFolders.vb">
-      <Link>CS_SpecialFolders.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_ValueTranslation.vb">
       <Link>CS_ValueTranslation.vb</Link>
@@ -339,7 +343,7 @@
     <Compile Include="Elemento.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityFrameworkExtension.vb" />
+    <Compile Include="CSBomberosContextExtension.vb" />
     <Compile Include="FillAndRefreshLists.vb" />
     <Compile Include="formAboutBox.designer.vb">
       <DependentUpon>formAboutBox.vb</DependentUpon>

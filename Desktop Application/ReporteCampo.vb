@@ -17,6 +17,7 @@ Partial Public Class ReporteCampo
     Public Property IDTipografiaEstilo As Nullable(Of Byte)
     Public Property PosicionX As Short
     Public Property PosicionY As Short
+    Public Property EspaciadoY As Nullable(Of Short)
 
     Public Overridable Property Reporte As Reporte
     Public Overridable Property TipografiaEstilo As TipografiaEstilo

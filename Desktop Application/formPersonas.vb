@@ -299,8 +299,8 @@
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
-                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                            Case Errors.RelatedEntity
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Persona porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
@@ -351,10 +351,7 @@
 
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_FICHA))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDPersona").Single.Valor = CurrentRow.IDPersona
-                    If ReporteActual.Open() Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & CurrentRow.ApellidoNombre)
-                        End If
+                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & CurrentRow.ApellidoNombre) Then
                     End If
                 End Using
 

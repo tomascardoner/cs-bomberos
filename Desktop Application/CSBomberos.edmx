@@ -727,6 +727,7 @@
           <Property Name="IDTipografiaEstilo" Type="tinyint" />
           <Property Name="PosicionX" Type="smallint" Nullable="false" />
           <Property Name="PosicionY" Type="smallint" Nullable="false" />
+          <Property Name="EspaciadoY" Type="smallint" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -7829,6 +7830,7 @@
           <Property Name="PosicionY" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="ReporteCampo" ToRole="Reporte" />
           <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" FromRole="ReporteCampo" ToRole="TipografiaEstilo" />
+          <Property Name="EspaciadoY" Type="Int16" />
         </EntityType>
         <EntityType Name="TipografiaEstilo">
           <Key>
@@ -8928,6 +8930,7 @@
           <EntitySetMapping Name="ReporteCampo">
             <EntityTypeMapping TypeName="CSBomberosModel.ReporteCampo">
               <MappingFragment StoreEntitySet="ReporteCampo">
+                <ScalarProperty Name="EspaciadoY" ColumnName="EspaciadoY" />
                 <ScalarProperty Name="PosicionY" ColumnName="PosicionY" />
                 <ScalarProperty Name="PosicionX" ColumnName="PosicionX" />
                 <ScalarProperty Name="IDTipografiaEstilo" ColumnName="IDTipografiaEstilo" />

@@ -24,7 +24,7 @@ Module MiscFunctions
         CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
         With VisorReporte
             .Text = WindowText
-            .CRViewerMain.ReportSource = ReporteActual.ReportObject
+            .CRViewerMain.ReportSource = ReporteActual.CRReportObject
             .Show()
             If .WindowState = FormWindowState.Minimized Then
                 .WindowState = FormWindowState.Normal

@@ -130,8 +130,8 @@
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity, Errors.PrimaryKeyViolation
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity, CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         MsgBox("No se pueden guardar los cambios porque ya existe un Horario Laboral para el Día de la Semana.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub

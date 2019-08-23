@@ -757,10 +757,10 @@
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
-                Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                    Case Errors.DuplicatedEntity
+                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
                         MsgBox("No se pueden guardar los cambios porque ya existe una Persona con la misma Matrícula o Apellido y Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                    Case Errors.Unknown
+                    Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
@@ -1287,12 +1287,7 @@
 
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_HORARIOLABORAL))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
-                    If ReporteActual.Open() Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre)
-                        End If
-                    Else
-                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre) Then
                     End If
                 End Using
 
@@ -1684,12 +1679,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_LICENCIA))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDLicencia").Single.Valor = GridRowDataActual.IDLicencia
-                    If ReporteActual.Open() Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre)
-                        End If
-                    Else
-                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.LicenciaCausaNombre) Then
                     End If
                 End Using
 
@@ -1833,12 +1823,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_SANCIONDISCIPLINARIA))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDSancion").Single.Valor = GridRowDataActual.IDSancion
-                    If ReporteActual.Open() Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre)
-                        End If
-                    Else
-                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre) Then
                     End If
                 End Using
 
@@ -2109,8 +2094,8 @@
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Me.Cursor = Cursors.Default
-                        Select Case CS_Database_EF_SQL.TryDecodeDbUpdateException(dbuex)
-                            Case Errors.RelatedEntity
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
                                 MsgBox("No se puede eliminar la Instancia de Calificación porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Exit Sub
@@ -2158,12 +2143,7 @@
                     ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_PLANILLAANUALCALIFICACIONES))
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
                     ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "Anio").Single.Valor = GridRowDataActual.Anio
-                    If ReporteActual.Open() Then
-                        If ReporteActual.SetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
-                            MiscFunctions.PreviewCrystalReport(ReporteActual, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio)
-                        End If
-                    Else
-                        MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, ReporteActual.Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.Anio) Then
                     End If
                 End Using
 
