@@ -1,4 +1,18 @@
 2019-08-03
+	- Tabla TipografiaEstilo: agregar
+	- Tabla ReporteCampo: agregar
+	- Tabla Reporte -> agregar los campos:
+		- IDTipografiaEstilo tinyint null
+		- MaximoRegistrosDetalle tinyint null
+		- AgruparPorCampo varchar(128) null
+	- Actualizar el stored procedure: usp_Persona_DatosYFamiliaresACargo
+	- Agregar el row de TipografiaEstilo
+	- Actualizar campos de los reportes 21 y 22
+	- Eliminar parametro de Título de los reportes 21 y 22
+	- Agregar los campos de reportes para los reportes 21 y 22
+	- Copiar dll de iTextSharp a las PCs
+
+2019-08-03
 	- Tabla Persona: Agregar el campo FechaCasamiento date null, después de IDEstadoCivil
 	- Tabla Reporte: agregar el campo OrigenDatos vacrhar(100) null, después de Archivo
 	- Actualizar el stored procedure usp_Persona_DatosYFamiliaresACargo
