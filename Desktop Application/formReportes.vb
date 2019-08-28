@@ -120,17 +120,46 @@
 
             Select Case ParametroActual.Tipo
                 Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
-                    If formPersonasSeleccionar.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                    Dim fps As New formPersonasSeleccionar
+
+                    fps.EstablecerMultiseleccion(False)
+                    If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         Dim PersonaSeleccionada As Persona
 
-                        PersonaSeleccionada = CType(formPersonasSeleccionar.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
+                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
                         ParametroActual.Valor = PersonaSeleccionada.IDPersona
                         ParametroActual.ValorParaMostrar = PersonaSeleccionada.ApellidoNombre
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
 
                         PersonaSeleccionada = Nothing
                     End If
-                    formPersonasSeleccionar.Dispose()
+                    fps.Dispose()
+
+                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
+                    Dim fps As New formPersonasSeleccionar
+
+                    fps.EstablecerMultiseleccion(True)
+                    If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        Const IDPersonaDelimiter As String = "@"
+                        Const PersonaNombreDelimiter As String = " - "
+
+                        Dim PersonaSeleccionada As Persona
+                        Dim Valores As String = ""
+                        Dim ValorParaMostrar As String = ""
+
+                        For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
+                            PersonaSeleccionada = CType(dataRow.DataBoundItem, Persona)
+                            Valores &= PersonaSeleccionada.IDPersona & IDPersonaDelimiter
+                            ValorParaMostrar &= PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre
+                        Next
+                        ValorParaMostrar = ValorParaMostrar.Remove(0, PersonaNombreDelimiter.Length)
+                        PersonaSeleccionada = Nothing
+
+                        ParametroActual.Valor = Valores
+                        ParametroActual.ValorParaMostrar = ValorParaMostrar
+                        ListViewItemActual.SubItems(2).Text = ValorParaMostrar
+                    End If
+                    fps.Dispose()
 
                 Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
                     formReportesParametroTextBox.SetAppearance(ParametroActual, ListViewItemActual.Text)

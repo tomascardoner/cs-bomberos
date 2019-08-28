@@ -10,12 +10,20 @@
     Private OrdenColumna As DataGridViewColumn
     Private OrdenTipo As SortOrder
 
+    Private Multiseleccion As Boolean = False
+
     Friend Const COLUMNA_IDPersona As String = "columnIDPersona"
     Private Const COLUMNA_APELLIDO As String = "columnApellido"
     Private Const COLUMNA_NOMBRE As String = "columnNombre"
 #End Region
 
 #Region "Form stuff"
+    Friend Sub EstablecerMultiseleccion(ByVal valor As Boolean)
+        Multiseleccion = valor
+
+        datagridviewMain.MultiSelect = Multiseleccion
+    End Sub
+
     Friend Sub SetAppearance()
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -42,6 +50,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDPersona As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Me.Cursor = Cursors.WaitCursor
 
@@ -199,8 +208,11 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Seleccionar() Handles datagridviewMain.DoubleClick, buttonSeleccionar.Click
-        If datagridviewMain.CurrentRow Is Nothing Then
+        If Multiseleccion And datagridviewMain.SelectedRows.Count = 0 Then
+            MsgBox("No se seleccionó ninguna Persona.", vbInformation, My.Application.Info.Title)
+        ElseIf Multiseleccion = False And datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para seleccionar.", vbInformation, My.Application.Info.Title)
         Else
             Me.DialogResult = Windows.Forms.DialogResult.OK

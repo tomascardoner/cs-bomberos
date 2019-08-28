@@ -38,11 +38,11 @@ Partial Class formPersonasSeleccionar
         Me.buttonSeleccionar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.columnIDPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMatrioculaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.toolstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,7 +137,6 @@ Partial Class formPersonasSeleccionar
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
-        Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
@@ -221,8 +220,8 @@ Partial Class formPersonasSeleccionar
     Friend WithEvents buttonCancelar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSeleccionar As System.Windows.Forms.ToolStripButton
     Friend WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
-    Friend WithEvents columnIDPersona As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMatrioculaNumero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnApellido As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents columnIDPersona As DataGridViewTextBoxColumn
+    Friend WithEvents columnMatrioculaNumero As DataGridViewTextBoxColumn
+    Friend WithEvents columnApellido As DataGridViewTextBoxColumn
+    Friend WithEvents columnNombre As DataGridViewTextBoxColumn
 End Class
