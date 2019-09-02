@@ -260,6 +260,9 @@
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteCampo" />
         <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__Reporte" />
         <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" />
+        <EntityTypeShape EntityType="CSBomberosModel.Partido" Width="1.5" PointX="3" PointY="91.5" />
+        <AssociationConnector Association="CSBomberosModel.FK__Partido__Localidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Provincia__Partido" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

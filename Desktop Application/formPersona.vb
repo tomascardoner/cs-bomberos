@@ -544,7 +544,7 @@
 
     Private Sub DomicilioParticularLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
         If Not comboboxDomicilioParticularLocalidad.SelectedValue Is Nothing Then
-            textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal
+            textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
 
@@ -562,7 +562,7 @@
 
     Private Sub DomicilioLaboralLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
         If Not comboboxDomicilioLaboralLocalidad.SelectedValue Is Nothing Then
-            textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal
+            textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
 

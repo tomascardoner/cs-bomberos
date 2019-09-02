@@ -168,6 +168,9 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partido.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaExtension.vb" />
     <Compile Include="ReporteExtension.vb" />
     <Compile Include="EstadoCivil.vb">

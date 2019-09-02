@@ -14,7 +14,8 @@ Partial Public Class Localidad
     Public Property IDProvincia As Byte
     Public Property IDLocalidad As Short
     Public Property Nombre As String
-    Public Property CodigoPostal As String
+    Public Property CodigoPostal As Nullable(Of Short)
+    Public Property IDPartido As Nullable(Of Short)
 
     Public Overridable Property Provincia As Provincia
     Public Overridable Property Cuartel As ICollection(Of Cuartel) = New HashSet(Of Cuartel)
@@ -22,5 +23,6 @@ Partial Public Class Localidad
     Public Overridable Property PersonasParticular As ICollection(Of Persona) = New HashSet(Of Persona)
     Public Overridable Property PersonaCapacitacion As ICollection(Of PersonaCapacitacion) = New HashSet(Of PersonaCapacitacion)
     Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
+    Public Overridable Property Partido As Partido
 
 End Class

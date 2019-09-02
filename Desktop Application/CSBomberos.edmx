@@ -271,7 +271,8 @@
           <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
           <Property Name="IDLocalidad" Type="smallint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="CodigoPostal" Type="char" MaxLength="4" />
+          <Property Name="CodigoPostal" Type="smallint" />
+          <Property Name="IDPartido" Type="smallint" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -335,6 +336,14 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partido">
+          <Key>
+            <PropertyRef Name="IDPartido" />
+          </Key>
+          <Property Name="IDPartido" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="PenaAplicacion">
           <Key>
@@ -700,6 +709,7 @@
           </Key>
           <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Codigo" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Reporte">
           <Key>
@@ -1335,6 +1345,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Partido__Localidad">
+          <End Role="Partido" Type="Self.Partido" Multiplicity="0..1" />
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="IDPartido" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Persona__Localidad__Laboral">
           <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -1553,6 +1575,18 @@
               <PropertyRef Name="IDProvincia" />
             </Principal>
             <Dependent Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provincia__Partido">
+          <End Role="Provincia" Type="Self.Provincia" Multiplicity="1" />
+          <End Role="Partido" Type="Self.Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Partido">
               <PropertyRef Name="IDProvincia" />
             </Dependent>
           </ReferentialConstraint>
@@ -3061,6 +3095,7 @@
           <EntitySet Name="NivelEstudio" EntityType="Self.NivelEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PenaAplicacion" EntityType="Self.PenaAplicacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaAccidente" EntityType="Self.PersonaAccidente" Schema="dbo" store:Type="Tables" />
@@ -3204,6 +3239,10 @@
             <End Role="Parentesco" EntitySet="Parentesco" />
             <End Role="PersonaFamiliar" EntitySet="PersonaFamiliar" />
           </AssociationSet>
+          <AssociationSet Name="FK__Partido__Localidad" Association="Self.FK__Partido__Localidad">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
           <AssociationSet Name="FK__Persona__Localidad__Laboral" Association="Self.FK__Persona__Localidad__Laboral">
             <End Role="Localidad" EntitySet="Localidad" />
             <End Role="Persona" EntitySet="Persona" />
@@ -3275,6 +3314,10 @@
           <AssociationSet Name="FK__Provincia__Localidad" Association="Self.FK__Provincia__Localidad">
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Partido" Association="Self.FK__Provincia__Partido">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Partido" EntitySet="Partido" />
           </AssociationSet>
           <AssociationSet Name="FK__Reporte__ReporteCampo" Association="Self.FK__Reporte__ReporteCampo">
             <End Role="Reporte" EntitySet="Reporte" />
@@ -4508,6 +4551,15 @@
             <End Role="TipografiaEstilo" EntitySet="TipografiaEstilo" />
             <End Role="ReporteCampo" EntitySet="ReporteCampo" />
           </AssociationSet>
+          <EntitySet Name="Partido" EntityType="CSBomberosModel.Partido" />
+          <AssociationSet Name="FK__Partido__Localidad" Association="CSBomberosModel.FK__Partido__Localidad">
+            <End Role="Partido" EntitySet="Partido" />
+            <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Provincia__Partido" Association="CSBomberosModel.FK__Provincia__Partido">
+            <End Role="Provincia" EntitySet="Provincia" />
+            <End Role="Partido" EntitySet="Partido" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -4528,13 +4580,15 @@
           <Property Name="IDProvincia" Type="Byte" Nullable="false" />
           <Property Name="IDLocalidad" Type="Int16" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CodigoPostal" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CodigoPostal" Type="Int16" />
           <NavigationProperty Name="Provincia" Relationship="CSBomberosModel.FK__Provincia__Localidad" FromRole="Localidad" ToRole="Provincia" />
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Localidad__Cuartel" FromRole="Localidad" ToRole="Cuartel" />
           <NavigationProperty Name="PersonasLaboral" Relationship="CSBomberosModel.FK__Persona__Localidad__Laboral" FromRole="Localidad" ToRole="Persona" />
           <NavigationProperty Name="PersonasParticular" Relationship="CSBomberosModel.FK__Persona__Localidad__Particular" FromRole="Localidad" ToRole="Persona" />
           <NavigationProperty Name="PersonaCapacitacion" Relationship="CSBomberosModel.FK__Localidad__PersonaCapacitacion" FromRole="Localidad" ToRole="PersonaCapacitacion" />
           <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="Localidad" ToRole="PersonaFamiliar" />
+          <Property Name="IDPartido" Type="Int16" />
+          <NavigationProperty Name="Partido" Relationship="CSBomberosModel.FK__Partido__Localidad" FromRole="Localidad" ToRole="Partido" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -4566,6 +4620,8 @@
           <Property Name="IDProvincia" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Provincia__Localidad" FromRole="Provincia" ToRole="Localidad" />
+          <Property Name="Codigo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Partido" Relationship="CSBomberosModel.FK__Provincia__Partido" FromRole="Provincia" ToRole="Partido" />
         </EntityType>
         <EntityType Name="Reporte">
           <Key>
@@ -7882,6 +7938,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Partido">
+          <Key>
+            <PropertyRef Name="IDPartido" />
+          </Key>
+          <Property Name="IDPartido" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDProvincia" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Localidades" Relationship="CSBomberosModel.FK__Partido__Localidad" FromRole="Partido" ToRole="Localidad" />
+          <NavigationProperty Name="Provincia" Relationship="CSBomberosModel.FK__Provincia__Partido" FromRole="Partido" ToRole="Provincia" />
+        </EntityType>
+        <Association Name="FK__Partido__Localidad">
+          <End Type="CSBomberosModel.Partido" Role="Partido" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partido">
+              <PropertyRef Name="IDPartido" />
+            </Principal>
+            <Dependent Role="Localidad">
+              <PropertyRef Name="IDPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Provincia__Partido">
+          <End Type="CSBomberosModel.Provincia" Role="Provincia" Multiplicity="1" />
+          <End Type="CSBomberosModel.Partido" Role="Partido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincia">
+              <PropertyRef Name="IDProvincia" />
+            </Principal>
+            <Dependent Role="Partido">
+              <PropertyRef Name="IDProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -7901,6 +7991,7 @@
           <EntitySetMapping Name="Localidad">
             <EntityTypeMapping TypeName="CSBomberosModel.Localidad">
               <MappingFragment StoreEntitySet="Localidad">
+                <ScalarProperty Name="IDPartido" ColumnName="IDPartido" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDLocalidad" ColumnName="IDLocalidad" />
@@ -7935,6 +8026,7 @@
           <EntitySetMapping Name="Provincia">
             <EntityTypeMapping TypeName="CSBomberosModel.Provincia">
               <MappingFragment StoreEntitySet="Provincia">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
               </MappingFragment>
@@ -8950,6 +9042,15 @@
                 <ScalarProperty Name="Tamanio" ColumnName="Tamanio" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDTipografiaEstilo" ColumnName="IDTipografiaEstilo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partido">
+            <EntityTypeMapping TypeName="CSBomberosModel.Partido">
+              <MappingFragment StoreEntitySet="Partido">
+                <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDPartido" ColumnName="IDPartido" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -295,7 +295,7 @@
 
     Private Sub DomicilioLocalidad_Cambio(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
         If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
-            textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal
+            textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
 

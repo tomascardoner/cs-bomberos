@@ -86,6 +86,7 @@ Partial Public Class CSBomberosContext
     Public Overridable Property EstadoCivil() As DbSet(Of EstadoCivil)
     Public Overridable Property ReporteCampo() As DbSet(Of ReporteCampo)
     Public Overridable Property TipografiaEstilo() As DbSet(Of TipografiaEstilo)
+    Public Overridable Property Partido() As DbSet(Of Partido)
 
     Public Overridable Function usp_Personas(estadoDesconocidoLeyenda As String, estadoActivoLeyenda As String) As ObjectResult(Of usp_Personas_Result)
         Dim estadoDesconocidoLeyendaParameter As ObjectParameter = If(estadoDesconocidoLeyenda IsNot Nothing, New ObjectParameter("EstadoDesconocidoLeyenda", estadoDesconocidoLeyenda), New ObjectParameter("EstadoDesconocidoLeyenda", GetType(String)))

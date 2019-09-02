@@ -1,3 +1,15 @@
+2019-09-01
+	- Agregar el campo Código char(1) a la tabla de Provincias
+	- Agregar la tabla de Partidos
+	- Agregar el campo IDPartido smallint a la tabla Localidad
+	- Modificar el campo CodigoPostal de la tabla Localidad a smallint
+	- Agregar relaciones a tabla Partido y Localidad
+	- Actualizar la tabla de Localidades con los Partidos
+	- Agregar los reportes 33, 34 y 35
+	- Copiar los parámetros del reporte 21 al 35 
+	- Ejecutar script de Functiones udf_BitAsXChar
+	- Ejecutar stored procedure usp_Persona_DatosYFamiliaresACargo2
+
 2019-08-03
 	- Tabla TipografiaEstilo: agregar
 	- Tabla ReporteCampo: agregar

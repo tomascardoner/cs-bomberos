@@ -307,8 +307,6 @@ Partial Public Class Reporte
             Dim cantidadRegistrosGrupo As Integer = 0
             Dim cantidadPaginas As Integer = 0
 
-            Dim ordinalCampoActual As Integer
-            Dim valorCampoActual As Object
 
             Do While _DataReader.Read()
                 If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
@@ -325,26 +323,10 @@ Partial Public Class Reporte
                     cantidadRegistrosGrupo = 1
 
                     ' Escribir todos los campos
-                    For Each campo In ReporteCampos
-                        ordinalCampoActual = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, campo.Nombre)
-                        If ordinalCampoActual > -1 Then
-                            valorCampoActual = _DataReader.GetValue(ordinalCampoActual)
-
-                            ' Escribir el valor en el PDF
-                            PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, 0, valorCampoActual)
-                        End If
-                    Next
+                    PdfEscribirCampos(ReporteCampos.AsEnumerable, pdfContentByte, baseFont, cantidadRegistrosGrupo)
                 Else
                     ' Escribir solo los campos que se repiten
-                    For Each campo In ReporteCampos.Where(Function(rc) rc.EspaciadoY.HasValue)
-                        ordinalCampoActual = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, campo.Nombre)
-                        If ordinalCampoActual > -1 Then
-                            valorCampoActual = _DataReader.GetValue(ordinalCampoActual)
-
-                            ' Escribir el valor en el PDF
-                            PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, campo.EspaciadoY.Value * -(cantidadRegistrosGrupo - 1), valorCampoActual)
-                        End If
-                    Next
+                    PdfEscribirCampos(ReporteCampos.Where(Function(rc) rc.EspaciadoY.HasValue), pdfContentByte, baseFont, cantidadRegistrosGrupo)
                 End If
                 cantidadRegistros += 1
                 cantidadRegistrosGrupo += 1
@@ -360,6 +342,35 @@ Partial Public Class Reporte
             Return False
         End Try
     End Function
+
+    Private Sub PdfEscribirCampos(ByRef campos As IEnumerable(Of ReporteCampo), ByRef pdfContentByte As PdfContentByte, ByRef documentBaseFont As BaseFont, ByVal cantidadRegistrosGrupo As Integer)
+        Dim ordinalCampoActual As Integer
+        Dim valorCampoActual As Object
+
+        Dim font As Font
+        Dim baseFont As BaseFont
+
+        For Each campo In campos
+            ordinalCampoActual = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, campo.Nombre)
+            If ordinalCampoActual > -1 Then
+                valorCampoActual = _DataReader.GetValue(ordinalCampoActual)
+
+                If campo.IDTipografiaEstilo.HasValue AndAlso FontFactory.IsRegistered(campo.TipografiaEstilo.Nombre) Then
+                    font = FontFactory.GetFont(TipografiaEstilo.Nombre, BaseFont.WINANSI, False, TipografiaEstilo.Tamanio, TipografiaEstilo.Estilo)
+                    baseFont = font.BaseFont
+                Else
+                    baseFont = documentBaseFont
+                End If
+
+                ' Escribir el valor en el PDF
+                If campo.EspaciadoY.HasValue Then
+                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, campo.EspaciadoY.Value * -(cantidadRegistrosGrupo - 1), valorCampoActual)
+                Else
+                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, 0, valorCampoActual)
+                End If
+            End If
+        Next
+    End Sub
 
     Private Sub PdfCompletarDetalle(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Single, ByRef campo As ReporteCampo, ByVal espaciadoY As Integer, ByVal valor As Object)
         content.BeginText()
