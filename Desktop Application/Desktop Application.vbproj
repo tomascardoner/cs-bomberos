@@ -168,6 +168,12 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="formReportesParametroFamiliares.Designer.vb">
+      <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formReportesParametroFamiliares.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Partido.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -979,6 +985,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formPersonaHorarioLaboral.resx">
       <DependentUpon>formPersonaHorarioLaboral.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formReportesParametroFamiliares.resx">
+      <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formUnidadBajaMotivo.resx">
       <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>

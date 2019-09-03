@@ -26,7 +26,6 @@ Partial Class formPersonasSeleccionar
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
         Me.textboxBuscar = New System.Windows.Forms.ToolStripTextBox()
@@ -39,7 +38,6 @@ Partial Class formPersonasSeleccionar
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
-        Me.columnIDPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMatrioculaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -54,7 +52,7 @@ Partial Class formPersonasSeleccionar
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar, Me.ToolStripSeparator4, Me.labelActivo, Me.comboboxActivo, Me.ToolStripSeparator1, Me.buttonSeleccionar, Me.buttonCancelar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(631, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(520, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'labelBuscar
@@ -132,7 +130,7 @@ Partial Class formPersonasSeleccionar
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnMatrioculaNumero, Me.columnApellido, Me.columnNombre})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMatrioculaNumero, Me.columnApellido, Me.columnNombre})
         Me.datagridviewMain.DataSource = Me.bindingsourceMain
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
@@ -142,19 +140,8 @@ Partial Class formPersonasSeleccionar
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(631, 482)
+        Me.datagridviewMain.Size = New System.Drawing.Size(520, 482)
         Me.datagridviewMain.TabIndex = 0
-        '
-        'columnIDPersona
-        '
-        Me.columnIDPersona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnIDPersona.DataPropertyName = "IDPersona"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnIDPersona.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnIDPersona.HeaderText = "N° Persona"
-        Me.columnIDPersona.Name = "columnIDPersona"
-        Me.columnIDPersona.ReadOnly = True
-        Me.columnIDPersona.Width = 86
         '
         'columnMatrioculaNumero
         '
@@ -169,8 +156,8 @@ Partial Class formPersonasSeleccionar
         '
         Me.columnApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnApellido.DataPropertyName = "Apellido"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle2
         Me.columnApellido.HeaderText = "Apellidos"
         Me.columnApellido.Name = "columnApellido"
         Me.columnApellido.ReadOnly = True
@@ -180,8 +167,8 @@ Partial Class formPersonasSeleccionar
         '
         Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnNombre.HeaderText = "Nombres"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
@@ -191,7 +178,7 @@ Partial Class formPersonasSeleccionar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(631, 521)
+        Me.ClientSize = New System.Drawing.Size(520, 521)
         Me.ControlBox = False
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.toolstripMain)
@@ -220,7 +207,6 @@ Partial Class formPersonasSeleccionar
     Friend WithEvents buttonCancelar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonSeleccionar As System.Windows.Forms.ToolStripButton
     Friend WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
-    Friend WithEvents columnIDPersona As DataGridViewTextBoxColumn
     Friend WithEvents columnMatrioculaNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnApellido As DataGridViewTextBoxColumn
     Friend WithEvents columnNombre As DataGridViewTextBoxColumn

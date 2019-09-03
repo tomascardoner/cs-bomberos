@@ -135,6 +135,8 @@
                     End If
                     fps.Dispose()
 
+                    BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
+
                 Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
                     Dim fps As New formPersonasSeleccionar
 
@@ -149,8 +151,8 @@
 
                         For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
                             PersonaSeleccionada = CType(dataRow.DataBoundItem, Persona)
-                            Valores &= PersonaSeleccionada.IDPersona & IDPersonaDelimiter
-                            ValorParaMostrar &= PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre
+                            Valores = (PersonaSeleccionada.IDPersona & IDPersonaDelimiter & Valores)
+                            ValorParaMostrar = (PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre & ValorParaMostrar)
                         Next
                         ValorParaMostrar = ValorParaMostrar.Remove(0, PersonaNombreDelimiter.Length)
                         PersonaSeleccionada = Nothing
@@ -160,6 +162,45 @@
                         ListViewItemActual.SubItems(2).Text = ValorParaMostrar
                     End If
                     fps.Dispose()
+
+                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE
+                    Dim frpf As New formReportesParametroFamiliares
+                    Dim ParametroPadre As ReporteParametro = Nothing
+
+                    ' Busco si el parámetro actual tiene un parámetro padre
+                    For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
+                        If ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA Then
+                            ParametroPadre = currentReporteParametro
+                            If ParametroPadre.Valor Is Nothing Then
+                                MsgBox("Debe seleccionar a la Persona para poder seleccionar los familiares.", MsgBoxStyle.Information, My.Application.Info.Title)
+                                Exit Sub
+                            End If
+                        End If
+                    Next
+
+                    frpf.EstablecerMultiseleccion(True)
+                    frpf.SetAppearance(Convert.ToInt32(ParametroPadre.Valor), ParametroPadre.ValorParaMostrar)
+                    If frpf.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                        Const IDFamiliarDelimiter As String = "@"
+                        Const FamiliarNombreDelimiter As String = " - "
+
+                        Dim PersonaFamiliarSeleccionada As formReportesParametroFamiliares.Familiares_GridRowData
+                        Dim Valores As String = ""
+                        Dim ValorParaMostrar As String = ""
+
+                        For Each dataRow As DataGridViewRow In frpf.datagridviewMain.SelectedRows
+                            PersonaFamiliarSeleccionada = CType(dataRow.DataBoundItem, formReportesParametroFamiliares.Familiares_GridRowData)
+                            Valores = (PersonaFamiliarSeleccionada.IDFamiliar & IDFamiliarDelimiter & Valores)
+                            ValorParaMostrar = (FamiliarNombreDelimiter & PersonaFamiliarSeleccionada.Apellido & ", " & PersonaFamiliarSeleccionada.Nombre) & ValorParaMostrar
+                        Next
+                        ValorParaMostrar = ValorParaMostrar.Remove(0, FamiliarNombreDelimiter.Length)
+                        PersonaFamiliarSeleccionada = Nothing
+
+                        ParametroActual.Valor = Valores
+                        ParametroActual.ValorParaMostrar = ValorParaMostrar
+                        ListViewItemActual.SubItems(2).Text = ValorParaMostrar
+                    End If
+                    frpf.Dispose()
 
                 Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
                     formReportesParametroTextBox.SetAppearance(ParametroActual, ListViewItemActual.Text)
@@ -269,7 +310,7 @@
                 ListViewItemActual.SubItems(2).Text = ""
 
                 ' Si el parámetro que se borra es Padre o Abuelo de otro parámetro, hay que borrar el valor del parámetro Hijo y Nieto también
-                If ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION Then
+                If ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA Then
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
                 End If
             End If
@@ -284,7 +325,8 @@
             If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA) _
                             Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AREA) _
                             Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
+                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
+                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
                 ParametroHijo = currentReporteParametro
                 ParametroHijo.Valor = Nothing
                 ParametroHijo.ValorParaMostrar = ""

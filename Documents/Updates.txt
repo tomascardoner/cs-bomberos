@@ -1,10 +1,16 @@
 2019-09-01
-	- Tabla ReporteCampo - agregar los campos:
-		- OffsetCaracter tinyint null
+	- Tabla ReporteCampo:
+		Modificar los tipos de:
+		- PosicionX a decimal(4, 1)
+		- PosicionY a decimal(4, 1)
+		- EspaciadoY a decimal(4, 1)
+		Agregar los campos:
+		- EspaciadoIntercaracter decimal(3, 1) null
+		- OffsetCaracter decimal(3, 1) null
 		- CantidadCaracter tinyint null
-		- Alineacion tinyint null
+		- AlineadoDerecha bit null
 	- Tabla Provincia
-		- Agregar el campo Código char(1)
+		- Agregar el campo Codigo char(1)
 	- Tabla Partido - agregar
 	- Tabla Localidad
 		- Agregar el campo IDPartido smallint
@@ -12,9 +18,10 @@
 	- Agregar relaciones a tabla Partido y Localidad
 	- Actualizar la tabla de Localidades con los Partidos
 	- Agregar los reportes 33, 34 y 35
-	- Copiar los parámetros del reporte 21 al 35 
-	- Ejecutar script de Functiones udf_BitAsXChar
-	- Ejecutar stored procedure usp_Persona_DatosYFamiliaresACargo2
+	- Copiar los parámetros del reporte 21 al 35
+	- Copiar los campos de los reportes
+	- Ejecutar script de Funciones Boolean y String
+	- Ejecutar stored procedure: usp_Persona_DatosMultiples y usp_Persona_DatosYFamiliaresACargo2
 
 2019-08-03
 	- Tabla TipografiaEstilo: agregar

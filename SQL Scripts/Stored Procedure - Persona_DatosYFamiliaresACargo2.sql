@@ -28,12 +28,37 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 	@EstadoActivo bit,
 	@IDPersonaBajaMotivo tinyint,
 	@IDPersona int,
+	@IDFamiliares varchar(1000),
 	@IOMAACargo bit
 	AS
 
 	BEGIN
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
+
+		DECLARE @Delimiter char = '@'
+
+		DECLARE @SeparatorPos int = 0
+		DECLARE @DelimiterPosStart int = 0
+		DECLARE @DelimiterPosEnd int = 0
+		DECLARE @ValueLenght int
+		DECLARE @Value varchar(5)
+
+		DECLARE @TableIDFamiliares TABLE (IDFamiliar tinyint not null)
+
+		--PARSEO LAS PESADAS Y LAS GUARDO EN UNA TABLA LOCAL
+		WHILE CHARINDEX(@Delimiter, @IDFamiliares, @SeparatorPos + 1) > 0
+			BEGIN
+				SET @ValueLenght = CHARINDEX(@Delimiter, @IDFamiliares, @SeparatorPos + 1) - @SeparatorPos
+				SET @Value = SUBSTRING(@IDFamiliares, @SeparatorPos, @ValueLenght)
+					
+				--ID PERSONA
+				INSERT INTO @TableIDFamiliares
+					(IDFamiliar)
+					VALUES (CAST(@Value AS int))
+					
+					SET @SeparatorPos = CHARINDEX(@Delimiter, @IDFamiliares, @SeparatorPos + @ValueLenght) + 1
+			END
 
 		SELECT 'SOCIEDAD DE BOMBEROS VOLUNTARIOS DE LOBOS' AS NombreEntidad, dbo.udf_BitAsXChar(@TipoAfiliadoDirecto) AS TipoAfiliadoDirecto, dbo.udf_BitAsXChar(@TipoAfiliadoACargo) AS TipoAfiliadoACargo, dbo.udf_BitAsXChar(@TipoAlta) AS TipoAlta, dbo.udf_BitAsXChar(@TipoModificaciones) AS TipoModificaciones, dbo.udf_BitAsXChar(@TipoRenovaciones) AS TipoRenovaciones, dbo.udf_BitAsXChar(@TipoContinuidad) AS TipoContinuidad, Persona.IDPersona, Persona.IOMANumeroAfiliado, Persona.ApellidoNombre,
 			Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Localidad.Nombre AS LocalidadNombre, Partido.Nombre AS PartidoNombre, Provincia.Nombre AS ProvinciaNombre, Persona.CelularParticular, Persona.EmailParticular, REPLACE(CONVERT(varchar(8), Persona.FechaNacimiento, 3), '/', '') AS FechaNacimiento, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, CONVERT(varchar(10), PersonaAltaBaja.AltaFecha, 103) AS FechaIngreso,
@@ -51,7 +76,7 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 				LEFT JOIN Provincia ON Persona.DomicilioParticularIDProvincia = Provincia.IDProvincia)
 				LEFT JOIN Localidad ON Persona.DomicilioParticularIDProvincia = Localidad.IDProvincia AND Persona.DomicilioParticularIDLocalidad = Localidad.IDLocalidad)
 				LEFT JOIN Partido ON Localidad.IDPartido = Partido.IDPartido)
-				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE (@IOMAACargo = 0 AND PersonaFamiliar.ACargo = 1) OR (@IOMAACargo = 1 AND PersonaFamiliar.IOMAACargo = 1)) AS PF ON Persona.IDPersona = PF.IDPersona)
+				LEFT JOIN (SELECT PersonaFamiliar.* FROM PersonaFamiliar LEFT JOIN @TableIDFamiliares AS tidf ON PersonaFamiliar.IDFamiliar = tidf.IDFamiliar WHERE (@IDFamiliares IS NULL OR tidf.IDFamiliar IS NOT NULL) AND ((@IOMAACargo = 0 AND PersonaFamiliar.ACargo = 1) OR (@IOMAACargo = 1 AND PersonaFamiliar.IOMAACargo = 1))) AS PF ON Persona.IDPersona = PF.IDPersona)
 				LEFT JOIN Parentesco ON PF.IDParentesco = Parentesco.IDParentesco)
 				LEFT JOIN DocumentoTipo AS FamiliarDocumentoTipo ON PF.IDDocumentoTipo = FamiliarDocumentoTipo.IDDocumentoTipo
 			WHERE Persona.EsActivo = 1
