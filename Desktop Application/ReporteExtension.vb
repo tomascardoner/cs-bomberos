@@ -349,6 +349,8 @@ Partial Public Class Reporte
         Dim font As Font
         Dim baseFont As BaseFont
 
+        Dim espaciadoY As Decimal
+
         For Each campo In campos
             ordinalCampoActual = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, campo.Nombre)
             If ordinalCampoActual > -1 Then
@@ -361,31 +363,62 @@ Partial Public Class Reporte
                     baseFont = documentBaseFont
                 End If
 
-                ' Escribir el valor en el PDF
                 If campo.EspaciadoY.HasValue Then
-                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, Convert.ToInt32(campo.EspaciadoY.Value) * -(cantidadRegistrosGrupo - 1), valorCampoActual)
+                    espaciadoY = campo.EspaciadoY.Value * -(cantidadRegistrosGrupo - 1)
                 Else
-                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, 0, valorCampoActual)
+                    espaciadoY = 0
                 End If
+
+                PdfEscribirCampo(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, espaciadoY, valorCampoActual)
             End If
         Next
     End Sub
 
-    Private Sub PdfCompletarDetalle(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Single, ByRef campo As ReporteCampo, ByVal espaciadoY As Integer, ByVal valor As Object)
+    Private Sub PdfEscribirCampo(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
+        If campo.AlineadoDerecha.HasValue AndAlso campo.AlineadoDerecha AndAlso campo.CantidadCaracter.HasValue AndAlso valor.ToString().Length < campo.CantidadCaracter.Value Then
+            ' Intenta alinear a la derecha agregando espacios a la izquierda,
+            ' aunque debido a las tipografías de ancho variable, el efecto no es el esperado
+            valor = valor.ToString().PadLeft(campo.CantidadCaracter.Value)
+        End If
+
+        If campo.OffsetCaracter.HasValue Then
+            PdfEscribirCampoCaracterPorCaracter(content, baseFont, TipografiaEstilo.Tamanio, campo, espaciadoY, valor)
+        Else
+            PdfEscribirCampoEstandard(content, baseFont, TipografiaEstilo.Tamanio, campo, espaciadoY, valor)
+        End If
+    End Sub
+
+    Private Sub PdfEscribirCampoEstandard(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
         content.BeginText()
         content.SetFontAndSize(baseFont, fontSize)
 
         content.SetTextMatrix(campo.PosicionX, campo.PosicionY + espaciadoY)
-        If campo.OffsetCaracter.HasValue Then
-            content.SetCharacterSpacing(campo.OffsetCaracter.Value)
-            If campo.AlineadoDerecha.HasValue AndAlso campo.AlineadoDerecha AndAlso campo.CantidadCaracter.HasValue AndAlso valor.ToString().Length < campo.CantidadCaracter.Value Then
-                valor = valor.ToString().PadLeft(campo.CantidadCaracter.Value)
-            End If
+
+        If campo.EspaciadoIntercaracter.HasValue Then
+            ' Aplico el el espaciado entre caracteres especificado
+            content.SetCharacterSpacing(campo.EspaciadoIntercaracter.Value)
             content.ShowText(valor.ToString())
             content.SetCharacterSpacing(0)
         Else
             content.ShowText(valor.ToString())
         End If
+
+        content.EndText()
+    End Sub
+
+    Private Sub PdfEscribirCampoCaracterPorCaracter(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
+        Dim posicionX As Decimal
+
+        content.BeginText()
+        content.SetFontAndSize(baseFont, fontSize)
+
+        posicionX = campo.PosicionX
+        For Each caracter As Char In valor.ToString()
+            content.SetTextMatrix(posicionX, campo.PosicionY + espaciadoY)
+            content.ShowText(caracter)
+
+            posicionX += campo.OffsetCaracter.Value
+        Next
 
         content.EndText()
     End Sub

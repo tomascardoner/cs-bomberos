@@ -18,6 +18,7 @@ Partial Public Class ReporteCampo
     Public Property PosicionX As Decimal
     Public Property PosicionY As Decimal
     Public Property EspaciadoY As Nullable(Of Decimal)
+    Public Property EspaciadoIntercaracter As Nullable(Of Decimal)
     Public Property OffsetCaracter As Nullable(Of Decimal)
     Public Property CantidadCaracter As Nullable(Of Byte)
     Public Property AlineadoDerecha As Nullable(Of Boolean)
