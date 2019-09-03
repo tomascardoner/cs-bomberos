@@ -1,8 +1,14 @@
 2019-09-01
-	- Agregar el campo Código char(1) a la tabla de Provincias
-	- Agregar la tabla de Partidos
-	- Agregar el campo IDPartido smallint a la tabla Localidad
-	- Modificar el campo CodigoPostal de la tabla Localidad a smallint
+	- Tabla ReporteCampo - agregar los campos:
+		- OffsetCaracter tinyint null
+		- CantidadCaracter tinyint null
+		- Alineacion tinyint null
+	- Tabla Provincia
+		- Agregar el campo Código char(1)
+	- Tabla Partido - agregar
+	- Tabla Localidad
+		- Agregar el campo IDPartido smallint
+		- Modificar el campo CodigoPostal a smallint
 	- Agregar relaciones a tabla Partido y Localidad
 	- Actualizar la tabla de Localidades con los Partidos
 	- Agregar los reportes 33, 34 y 35

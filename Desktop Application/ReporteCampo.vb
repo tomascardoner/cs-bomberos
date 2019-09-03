@@ -15,9 +15,12 @@ Partial Public Class ReporteCampo
     Public Property IDCampo As Byte
     Public Property Nombre As String
     Public Property IDTipografiaEstilo As Nullable(Of Byte)
-    Public Property PosicionX As Short
-    Public Property PosicionY As Short
-    Public Property EspaciadoY As Nullable(Of Short)
+    Public Property PosicionX As Decimal
+    Public Property PosicionY As Decimal
+    Public Property EspaciadoY As Nullable(Of Decimal)
+    Public Property OffsetCaracter As Nullable(Of Decimal)
+    Public Property CantidadCaracter As Nullable(Of Byte)
+    Public Property AlineadoDerecha As Nullable(Of Boolean)
 
     Public Overridable Property Reporte As Reporte
     Public Overridable Property TipografiaEstilo As TipografiaEstilo

@@ -735,9 +735,12 @@
           <Property Name="IDCampo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="IDTipografiaEstilo" Type="tinyint" />
-          <Property Name="PosicionX" Type="smallint" Nullable="false" />
-          <Property Name="PosicionY" Type="smallint" Nullable="false" />
-          <Property Name="EspaciadoY" Type="smallint" />
+          <Property Name="PosicionX" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="PosicionY" Type="decimal" Precision="4" Scale="1" Nullable="false" />
+          <Property Name="EspaciadoY" Type="decimal" Precision="4" Scale="1" />
+          <Property Name="OffsetCaracter" Type="decimal" Precision="3" Scale="1" />
+          <Property Name="CantidadCaracter" Type="tinyint" />
+          <Property Name="AlineadoDerecha" Type="bit" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -7882,11 +7885,14 @@
           <Property Name="IDCampo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="IDTipografiaEstilo" Type="Byte" />
-          <Property Name="PosicionX" Type="Int16" Nullable="false" />
-          <Property Name="PosicionY" Type="Int16" Nullable="false" />
+          <Property Name="PosicionX" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
+          <Property Name="PosicionY" Type="Decimal" Nullable="false" Precision="4" Scale="1" />
           <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="ReporteCampo" ToRole="Reporte" />
           <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" FromRole="ReporteCampo" ToRole="TipografiaEstilo" />
-          <Property Name="EspaciadoY" Type="Int16" />
+          <Property Name="EspaciadoY" Type="Decimal" Precision="4" Scale="1" />
+          <Property Name="OffsetCaracter" Type="Decimal" Precision="3" Scale="1" />
+          <Property Name="CantidadCaracter" Type="Byte" />
+          <Property Name="AlineadoDerecha" Type="Boolean" />
         </EntityType>
         <EntityType Name="TipografiaEstilo">
           <Key>
@@ -9022,6 +9028,9 @@
           <EntitySetMapping Name="ReporteCampo">
             <EntityTypeMapping TypeName="CSBomberosModel.ReporteCampo">
               <MappingFragment StoreEntitySet="ReporteCampo">
+                <ScalarProperty Name="AlineadoDerecha" ColumnName="AlineadoDerecha" />
+                <ScalarProperty Name="CantidadCaracter" ColumnName="CantidadCaracter" />
+                <ScalarProperty Name="OffsetCaracter" ColumnName="OffsetCaracter" />
                 <ScalarProperty Name="EspaciadoY" ColumnName="EspaciadoY" />
                 <ScalarProperty Name="PosicionY" ColumnName="PosicionY" />
                 <ScalarProperty Name="PosicionX" ColumnName="PosicionX" />

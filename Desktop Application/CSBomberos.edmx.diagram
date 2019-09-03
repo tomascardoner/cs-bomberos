@@ -255,8 +255,8 @@
         <AssociationConnector Association="CSBomberosModel.FK__EstadoCivil__PersonaFamiliar" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__EstadoCivil__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.ReporteCampo" Width="1.5" PointX="11.25" PointY="1.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.TipografiaEstilo" Width="1.5" PointX="0.875" PointY="2.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteCampo" Width="1.5" PointX="8" PointY="1.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.TipografiaEstilo" Width="1.5" PointX="5.625" PointY="5.25" />
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteCampo" />
         <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__Reporte" />
         <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" />

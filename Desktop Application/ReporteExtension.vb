@@ -307,7 +307,6 @@ Partial Public Class Reporte
             Dim cantidadRegistrosGrupo As Integer = 0
             Dim cantidadPaginas As Integer = 0
 
-
             Do While _DataReader.Read()
                 If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
                     ordinalCampoParaAgrupar = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, AgruparPorCampo)
@@ -364,7 +363,7 @@ Partial Public Class Reporte
 
                 ' Escribir el valor en el PDF
                 If campo.EspaciadoY.HasValue Then
-                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, campo.EspaciadoY.Value * -(cantidadRegistrosGrupo - 1), valorCampoActual)
+                    PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, Convert.ToInt32(campo.EspaciadoY.Value) * -(cantidadRegistrosGrupo - 1), valorCampoActual)
                 Else
                     PdfCompletarDetalle(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, 0, valorCampoActual)
                 End If
@@ -377,7 +376,16 @@ Partial Public Class Reporte
         content.SetFontAndSize(baseFont, fontSize)
 
         content.SetTextMatrix(campo.PosicionX, campo.PosicionY + espaciadoY)
-        content.ShowText(valor.ToString())
+        If campo.OffsetCaracter.HasValue Then
+            content.SetCharacterSpacing(campo.OffsetCaracter.Value)
+            If campo.AlineadoDerecha.HasValue AndAlso campo.AlineadoDerecha AndAlso campo.CantidadCaracter.HasValue AndAlso valor.ToString().Length < campo.CantidadCaracter.Value Then
+                valor = valor.ToString().PadLeft(campo.CantidadCaracter.Value)
+            End If
+            content.ShowText(valor.ToString())
+            content.SetCharacterSpacing(0)
+        Else
+            content.ShowText(valor.ToString())
+        End If
 
         content.EndText()
     End Sub
