@@ -14,6 +14,7 @@ Partial Public Class Partido
     Public Property IDPartido As Short
     Public Property Nombre As String
     Public Property IDProvincia As Byte
+    Public Property CodigoProvincial As Nullable(Of Byte)
 
     Public Overridable Property Localidades As ICollection(Of Localidad) = New HashSet(Of Localidad)
     Public Overridable Property Provincia As Provincia

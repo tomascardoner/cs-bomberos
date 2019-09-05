@@ -1,3 +1,13 @@
+2019-09-04
+	- Tabla Usuarios
+		- Agregar el campo Notas	varchar(MAX)	null antes de EsActivo
+	- Tabla Partidos
+		- Renombrar 25 de Mayo, 9 de Julio y De La Costa
+		- Borrar: 527	Gobernador Gordillo
+		- Borrar: 528	Bartolomé Mitre
+		- Agregar: 529	Lezama	1	137
+		- Agregar: 530	General Sarmiento	1	48		
+
 2019-09-01
 	- Tabla ReporteCampo:
 		Modificar los tipos de:

@@ -105,395 +105,115 @@
 #End Region
 
 #Region "Left Toolbar - Tablas"
+
     Private Sub NivelesEstudio() Handles menuitemTablas_NivelesEstudio.Click
-        If Permisos.VerificarPermiso(Permisos.NIVELESTUDIO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formNivelesEstudio, Form))
-            formNivelesEstudio.Show()
-            If formNivelesEstudio.WindowState = FormWindowState.Minimized Then
-                formNivelesEstudio.WindowState = FormWindowState.Normal
-            End If
-            formNivelesEstudio.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.NIVELESTUDIO, CType(formNivelesEstudio, Form))
     End Sub
 
     Private Sub Parentescos() Handles menuitemTablas_Parentescos.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formParentescos, Form))
-            formParentescos.Show()
-            If formParentescos.WindowState = FormWindowState.Minimized Then
-                formParentescos.WindowState = FormWindowState.Normal
-            End If
-            formParentescos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.PARENTESCO, CType(formParentescos, Form))
     End Sub
 
     Private Sub EstadosCiviles() Handles menuitemTablas_EstadosCiviles.Click
-        If Permisos.VerificarPermiso(Permisos.ESTADOCIVIL) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formEstadosCiviles, Form))
-            formEstadosCiviles.Show()
-            If formEstadosCiviles.WindowState = FormWindowState.Minimized Then
-                formEstadosCiviles.WindowState = FormWindowState.Normal
-            End If
-            formEstadosCiviles.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.ESTADOCIVIL, CType(formEstadosCiviles, Form))
     End Sub
 
     Private Sub PersonaBajaMotivos() Handles menuitemTablas_MotivosBajaPersonas.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONABAJAMOTIVO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formPersonaBajaMotivos, Form))
-            formPersonaBajaMotivos.Show()
-            If formPersonaBajaMotivos.WindowState = FormWindowState.Minimized Then
-                formPersonaBajaMotivos.WindowState = FormWindowState.Normal
-            End If
-            formPersonaBajaMotivos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.PERSONABAJAMOTIVO, CType(formPersonaBajaMotivos, Form))
     End Sub
 
     Private Sub Cargos() Handles menuitemTablas_Cargos.Click
-        If Permisos.VerificarPermiso(Permisos.CARGO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCargos, Form))
-            formCargos.Show()
-            If formCargos.WindowState = FormWindowState.Minimized Then
-                formCargos.WindowState = FormWindowState.Normal
-            End If
-            formCargos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CARGO, CType(formCargos, Form))
     End Sub
 
     Private Sub CargosJerarquias() Handles menuitemTablas_CargosJerarquias.Click
-        If Permisos.VerificarPermiso(Permisos.CARGOJERARQUIA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCargosJerarquias, Form))
-            formCargosJerarquias.Show()
-            If formCargosJerarquias.WindowState = FormWindowState.Minimized Then
-                formCargosJerarquias.WindowState = FormWindowState.Normal
-            End If
-            formCargosJerarquias.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CARGOJERARQUIA, CType(formCargosJerarquias, Form))
     End Sub
 
     Private Sub VehiculosTipos() Handles menuitemTablas_TiposVehiculo.Click
-        If Permisos.VerificarPermiso(Permisos.VEHICULOTIPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoTipos, Form))
-            formVehiculoTipos.Show()
-            If formVehiculoTipos.WindowState = FormWindowState.Minimized Then
-                formVehiculoTipos.WindowState = FormWindowState.Normal
-            End If
-            formVehiculoTipos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.VEHICULOTIPO, CType(formVehiculoTipos, Form))
     End Sub
 
     Private Sub VehiculosMarcas() Handles menuitemTablas_MarcasVehiculo.Click
-        If Permisos.VerificarPermiso(Permisos.VEHICULOMARCA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoMarcas, Form))
-            formVehiculoMarcas.Show()
-            If formVehiculoMarcas.WindowState = FormWindowState.Minimized Then
-                formVehiculoMarcas.WindowState = FormWindowState.Normal
-            End If
-            formVehiculoMarcas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.VEHICULOMARCA, CType(formVehiculoMarcas, Form))
     End Sub
 
     Private Sub VehiculosCompaniasSeguros() Handles menuitemTablas_CompaniasSegurosVehiculo.Click
-        If Permisos.VerificarPermiso(Permisos.VEHICULOCOMPANIASEGURO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVehiculoCompaniasSeguro, Form))
-            formVehiculoCompaniasSeguro.Show()
-            If formVehiculoCompaniasSeguro.WindowState = FormWindowState.Minimized Then
-                formVehiculoCompaniasSeguro.WindowState = FormWindowState.Normal
-            End If
-            formVehiculoCompaniasSeguro.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.VEHICULOCOMPANIASEGURO, CType(formVehiculoCompaniasSeguro, Form))
     End Sub
 
     Private Sub VacunaTipos() Handles menuitemTablas_TiposVacuna.Click
-        If Permisos.VerificarPermiso(Permisos.VACUNATIPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formVacunaTipos, Form))
-            formVacunaTipos.Show()
-            If formVacunaTipos.WindowState = FormWindowState.Minimized Then
-                formVacunaTipos.WindowState = FormWindowState.Normal
-            End If
-            formVacunaTipos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.VACUNATIPO, CType(formVacunaTipos, Form))
     End Sub
 
     Private Sub LicenciaCausas() Handles menuitemTablas_CausalesLicenciaPersonas.Click
-        If Permisos.VerificarPermiso(Permisos.LICENCIACAUSA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formLicenciaCausas, Form))
-            formLicenciaCausas.Show()
-            If formLicenciaCausas.WindowState = FormWindowState.Minimized Then
-                formLicenciaCausas.WindowState = FormWindowState.Normal
-            End If
-            formLicenciaCausas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.LICENCIACAUSA, CType(formLicenciaCausas, Form))
     End Sub
 
     Private Sub SancionTipos() Handles menuitemTablas_TiposSancion.Click
-        If Permisos.VerificarPermiso(Permisos.SANCIONTIPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSancionTipos, Form))
-            formSancionTipos.Show()
-            If formSancionTipos.WindowState = FormWindowState.Minimized Then
-                formSancionTipos.WindowState = FormWindowState.Normal
-            End If
-            formSancionTipos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.SANCIONTIPO, CType(formSancionTipos, Form))
     End Sub
 
     Private Sub Cursos() Handles menuitemTablas_Cursos.Click
-        If Permisos.VerificarPermiso(Permisos.CURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCursos, Form))
-            formCursos.Show()
-            If formCursos.WindowState = FormWindowState.Minimized Then
-                formCursos.WindowState = FormWindowState.Normal
-            End If
-            formCursos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CURSO, CType(formCursos, Form))
     End Sub
 
     Private Sub CapacitacionNiveles() Handles menuitemTablas_NivelesCapacitacion.Click
-        If Permisos.VerificarPermiso(Permisos.CURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCapacitacionNiveles, Form))
-            formCapacitacionNiveles.Show()
-            If formCapacitacionNiveles.WindowState = FormWindowState.Minimized Then
-                formCapacitacionNiveles.WindowState = FormWindowState.Normal
-            End If
-            formCapacitacionNiveles.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CAPACITACIONNIVEL, CType(formCapacitacionNiveles, Form))
     End Sub
 
     Private Sub CapacitacionTipos() Handles menuitemTablas_TiposCapacitacion.Click
-        If Permisos.VerificarPermiso(Permisos.CURSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCapacitacionTipos, Form))
-            formCapacitacionTipos.Show()
-            If formCapacitacionTipos.WindowState = FormWindowState.Minimized Then
-                formCapacitacionTipos.WindowState = FormWindowState.Normal
-            End If
-            formCapacitacionTipos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CAPACITACIONTIPO, CType(formCapacitacionTipos, Form))
     End Sub
 
     Private Sub CalificacionConceptos() Handles menuitemTablas_ConceptosCalificacion.Click
-        If Permisos.VerificarPermiso(Permisos.CALIFICACIONCONCEPTO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCalificacionConceptos, Form))
-            formCalificacionConceptos.Show()
-            If formCalificacionConceptos.WindowState = FormWindowState.Minimized Then
-                formCalificacionConceptos.WindowState = FormWindowState.Normal
-            End If
-            formCalificacionConceptos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.CALIFICACIONCONCEPTO, CType(formCalificacionConceptos, Form))
     End Sub
 
     Private Sub UnidadTipos() Handles menuitemTablas_TiposUnidad.Click
-        If Permisos.VerificarPermiso(Permisos.UNIDADTIPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadTipos, Form))
-            formUnidadTipos.Show()
-            If formUnidadTipos.WindowState = FormWindowState.Minimized Then
-                formUnidadTipos.WindowState = FormWindowState.Normal
-            End If
-            formUnidadTipos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.UNIDADTIPO, CType(formUnidadTipos, Form))
     End Sub
 
     Private Sub UnidadUsos() Handles menuitemTablas_UsosUnidad.Click
-        If Permisos.VerificarPermiso(Permisos.UNIDADUSO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadUsos, Form))
-            formUnidadUsos.Show()
-            If formUnidadUsos.WindowState = FormWindowState.Minimized Then
-                formUnidadUsos.WindowState = FormWindowState.Normal
-            End If
-            formUnidadUsos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.UNIDADUSO, CType(formUnidadUsos, Form))
     End Sub
 
     Private Sub UnidadMotivosBaja() Handles menuitemTablas_MotivosBajaUnidad.Click
-        If Permisos.VerificarPermiso(Permisos.UNIDADBAJAMOTIVO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUnidadBajaMotivos, Form))
-            formUnidadBajaMotivos.Show()
-            If formUnidadBajaMotivos.WindowState = FormWindowState.Minimized Then
-                formUnidadBajaMotivos.WindowState = FormWindowState.Normal
-            End If
-            formUnidadBajaMotivos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.UNIDADBAJAMOTIVO, CType(formUnidadBajaMotivos, Form))
     End Sub
 
     Private Sub Rubros() Handles menuitemTablas_Rubros.Click
-        If Permisos.VerificarPermiso(Permisos.RUBRO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formRubros, Form))
-            formRubros.Show()
-            If formRubros.WindowState = FormWindowState.Minimized Then
-                formRubros.WindowState = FormWindowState.Normal
-            End If
-            formRubros.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.RUBRO, CType(formRubros, Form))
     End Sub
 
     Private Sub SubRubros() Handles menuitemTablas_SubRubros.Click
-        If Permisos.VerificarPermiso(Permisos.SUBRUBRO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSubRubros, Form))
-            formSubRubros.Show()
-            If formSubRubros.WindowState = FormWindowState.Minimized Then
-                formSubRubros.WindowState = FormWindowState.Normal
-            End If
-            formSubRubros.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.SUBRUBRO, CType(formSubRubros, Form))
     End Sub
 
     Private Sub Areas() Handles menuitemTablas_Areas.Click
-        If Permisos.VerificarPermiso(Permisos.AREA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAreas, Form))
-            formAreas.Show()
-            If formAreas.WindowState = FormWindowState.Minimized Then
-                formAreas.WindowState = FormWindowState.Normal
-            End If
-            formAreas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.AREA, CType(formAreas, Form))
     End Sub
 
     Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click
-        If Permisos.VerificarPermiso(Permisos.UBICACION) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUbicaciones, Form))
-            formUbicaciones.Show()
-            If formUbicaciones.WindowState = FormWindowState.Minimized Then
-                formUbicaciones.WindowState = FormWindowState.Normal
-            End If
-            formUbicaciones.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.UBICACION, CType(formUbicaciones, Form))
     End Sub
 
     Private Sub SubUbicaciones() Handles menuitemTablas_SubUbicaciones.Click
-        If Permisos.VerificarPermiso(Permisos.SUBUBICACION) Then
-            Me.Cursor = Cursors.WaitCursor
+        ShowForm(Permisos.SUBUBICACION, CType(formSubUbicaciones, Form))
+    End Sub
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formSubUbicaciones, Form))
-            formSubUbicaciones.Show()
-            If formSubUbicaciones.WindowState = FormWindowState.Minimized Then
-                formSubUbicaciones.WindowState = FormWindowState.Normal
-            End If
-            formSubUbicaciones.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+    Private Sub Usuarios() Handles menuitemTablas_Usuarios.Click
+        ShowForm(Permisos.USUARIO, CType(formUsuarios, Form))
     End Sub
 
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
-        If Permisos.VerificarPermiso(Permisos.USUARIOGRUPO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formUsuarioGrupoPermisos, Form))
-            formUsuarioGrupoPermisos.Show()
-            If formUsuarioGrupoPermisos.WindowState = FormWindowState.Minimized Then
-                formUsuarioGrupoPermisos.WindowState = FormWindowState.Normal
-            End If
-            formUsuarioGrupoPermisos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
     End Sub
 
     Private Sub Alarmas() Handles menuitemTablas_Alarmas.Click
-        If Permisos.VerificarPermiso(Permisos.ALARMA) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formAlarmas, Form))
-            formAlarmas.Show()
-            If formAlarmas.WindowState = FormWindowState.Minimized Then
-                formAlarmas.WindowState = FormWindowState.Normal
-            End If
-            formAlarmas.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
+        ShowForm(Permisos.ALARMA, CType(formAlarmas, Form))
     End Sub
+
 #End Region
 
 #Region "Left Toolbar - Personas"
@@ -589,6 +309,22 @@
 #End Region
 
 #Region "Extra stuff"
+
+    Private Sub ShowForm(ByVal idPermiso As String, ByRef form As Form)
+        If Permisos.VerificarPermiso(idPermiso) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, form)
+            form.Show()
+            If form.WindowState = FormWindowState.Minimized Then
+                form.WindowState = FormWindowState.Normal
+            End If
+            form.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
             CS_Form.MDIChild_CloseAll(Me)

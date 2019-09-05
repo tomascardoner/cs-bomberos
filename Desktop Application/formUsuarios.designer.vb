@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formUnidades
+Partial Class formUsuarios
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -24,15 +24,12 @@ Partial Class formUnidades
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formUnidades))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnModelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnDominio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnUnidadTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDescripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnUsuarioGrupo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
@@ -40,9 +37,9 @@ Partial Class formUnidades
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.toolstripUnidadTipo = New System.Windows.Forms.ToolStrip()
-        Me.labelUnidadTipo = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxUnidadTipo = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripUsuarioGrupo = New System.Windows.Forms.ToolStrip()
+        Me.labelUsuarioGrupo = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxUsuarioGrupo = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
         Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
@@ -53,7 +50,7 @@ Partial Class formUnidades
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
-        Me.toolstripUnidadTipo.SuspendLayout()
+        Me.toolstripUsuarioGrupo.SuspendLayout()
         Me.toolstripCuartel.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         Me.SuspendLayout()
@@ -61,7 +58,7 @@ Partial Class formUnidades
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(845, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(832, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -70,7 +67,7 @@ Partial Class formUnidades
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
         Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(891, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(847, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -84,7 +81,7 @@ Partial Class formUnidades
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNumero, Me.columnMarca, Me.columnModelo, Me.columnDominio, Me.columnUnidadTipo, Me.columnCuartel, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnDescripcion, Me.columnUsuarioGrupo, Me.columnCuartel, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -94,57 +91,37 @@ Partial Class formUnidades
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(891, 350)
+        Me.datagridviewMain.Size = New System.Drawing.Size(847, 350)
         Me.datagridviewMain.TabIndex = 0
         '
-        'columnNumero
+        'columnNombre
         '
-        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNumero.DataPropertyName = "Numero"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNumero.HeaderText = "Número"
-        Me.columnNumero.Name = "columnNumero"
-        Me.columnNumero.ReadOnly = True
-        Me.columnNumero.Width = 69
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
         '
-        'columnMarca
+        'columnDescripcion
         '
-        Me.columnMarca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnMarca.DataPropertyName = "Marca"
-        Me.columnMarca.HeaderText = "Marca"
-        Me.columnMarca.Name = "columnMarca"
-        Me.columnMarca.ReadOnly = True
-        Me.columnMarca.Width = 62
+        Me.columnDescripcion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDescripcion.DataPropertyName = "Descripcion"
+        Me.columnDescripcion.HeaderText = "Descripción"
+        Me.columnDescripcion.Name = "columnDescripcion"
+        Me.columnDescripcion.ReadOnly = True
+        Me.columnDescripcion.Width = 88
         '
-        'columnModelo
+        'columnUsuarioGrupo
         '
-        Me.columnModelo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnModelo.DataPropertyName = "Modelo"
-        Me.columnModelo.HeaderText = "Modelo"
-        Me.columnModelo.Name = "columnModelo"
-        Me.columnModelo.ReadOnly = True
-        Me.columnModelo.Width = 67
-        '
-        'columnDominio
-        '
-        Me.columnDominio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnDominio.DataPropertyName = "Dominio"
-        Me.columnDominio.HeaderText = "Dominio"
-        Me.columnDominio.Name = "columnDominio"
-        Me.columnDominio.ReadOnly = True
-        Me.columnDominio.Width = 70
-        '
-        'columnUnidadTipo
-        '
-        Me.columnUnidadTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnUnidadTipo.DataPropertyName = "UnidadTipoNombre"
-        Me.columnUnidadTipo.HeaderText = "Tipo"
-        Me.columnUnidadTipo.Name = "columnUnidadTipo"
-        Me.columnUnidadTipo.ReadOnly = True
-        Me.columnUnidadTipo.Width = 53
+        Me.columnUsuarioGrupo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnUsuarioGrupo.DataPropertyName = "UsuarioGrupoNombre"
+        Me.columnUsuarioGrupo.HeaderText = "Grupo"
+        Me.columnUsuarioGrupo.Name = "columnUsuarioGrupo"
+        Me.columnUsuarioGrupo.ReadOnly = True
+        Me.columnUsuarioGrupo.Width = 61
         '
         'columnCuartel
         '
@@ -171,13 +148,13 @@ Partial Class formUnidades
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripUnidadTipo)
+        Me.panelToolbars.Controls.Add(Me.toolstripUsuarioGrupo)
         Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(891, 39)
+        Me.panelToolbars.Size = New System.Drawing.Size(847, 39)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
@@ -187,7 +164,7 @@ Partial Class formUnidades
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(278, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -217,37 +194,37 @@ Partial Class formUnidades
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'toolstripUnidadTipo
+        'toolstripUsuarioGrupo
         '
-        Me.toolstripUnidadTipo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripUnidadTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripUnidadTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelUnidadTipo, Me.comboboxUnidadTipo})
-        Me.toolstripUnidadTipo.Location = New System.Drawing.Point(278, 0)
-        Me.toolstripUnidadTipo.Name = "toolstripUnidadTipo"
-        Me.toolstripUnidadTipo.Size = New System.Drawing.Size(218, 39)
-        Me.toolstripUnidadTipo.TabIndex = 14
+        Me.toolstripUsuarioGrupo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripUsuarioGrupo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripUsuarioGrupo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelUsuarioGrupo, Me.comboboxUsuarioGrupo})
+        Me.toolstripUsuarioGrupo.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripUsuarioGrupo.Name = "toolstripUsuarioGrupo"
+        Me.toolstripUsuarioGrupo.Size = New System.Drawing.Size(248, 39)
+        Me.toolstripUsuarioGrupo.TabIndex = 15
         '
-        'labelUnidadTipo
+        'labelUsuarioGrupo
         '
-        Me.labelUnidadTipo.Name = "labelUnidadTipo"
-        Me.labelUnidadTipo.Size = New System.Drawing.Size(33, 36)
-        Me.labelUnidadTipo.Text = "Tipo:"
+        Me.labelUsuarioGrupo.Name = "labelUsuarioGrupo"
+        Me.labelUsuarioGrupo.Size = New System.Drawing.Size(43, 36)
+        Me.labelUsuarioGrupo.Text = "Grupo:"
         '
-        'comboboxUnidadTipo
+        'comboboxUsuarioGrupo
         '
-        Me.comboboxUnidadTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxUnidadTipo.Name = "comboboxUnidadTipo"
-        Me.comboboxUnidadTipo.Size = New System.Drawing.Size(180, 39)
+        Me.comboboxUsuarioGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxUsuarioGrupo.Name = "comboboxUsuarioGrupo"
+        Me.comboboxUsuarioGrupo.Size = New System.Drawing.Size(200, 39)
         '
         'toolstripCuartel
         '
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(496, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(495, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
-        Me.toolstripCuartel.TabIndex = 13
+        Me.toolstripCuartel.TabIndex = 14
         '
         'labelCuartel
         '
@@ -266,7 +243,7 @@ Partial Class formUnidades
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(679, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(678, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 12
@@ -283,18 +260,18 @@ Partial Class formUnidades
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
-        'formUnidades
+        'formUsuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(891, 411)
+        Me.ClientSize = New System.Drawing.Size(847, 411)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "formUnidades"
+        Me.KeyPreview = True
+        Me.Name = "formUsuarios"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Unidades"
+        Me.Text = "Usuarios"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -302,8 +279,8 @@ Partial Class formUnidades
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
-        Me.toolstripUnidadTipo.ResumeLayout(False)
-        Me.toolstripUnidadTipo.PerformLayout()
+        Me.toolstripUsuarioGrupo.ResumeLayout(False)
+        Me.toolstripUsuarioGrupo.PerformLayout()
         Me.toolstripCuartel.ResumeLayout(False)
         Me.toolstripCuartel.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
@@ -326,14 +303,12 @@ Partial Class formUnidades
     Friend WithEvents toolstripCuartel As System.Windows.Forms.ToolStrip
     Friend WithEvents labelCuartel As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripUnidadTipo As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelUnidadTipo As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxUnidadTipo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents columnNumero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMarca As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnModelo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnDominio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnUnidadTipo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnCuartel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents toolstripUsuarioGrupo As ToolStrip
+    Friend WithEvents labelUsuarioGrupo As ToolStripLabel
+    Friend WithEvents comboboxUsuarioGrupo As ToolStripComboBox
+    Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnDescripcion As DataGridViewTextBoxColumn
+    Friend WithEvents columnUsuarioGrupo As DataGridViewTextBoxColumn
+    Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
+    Friend WithEvents columnEsActivo As DataGridViewCheckBoxColumn
 End Class

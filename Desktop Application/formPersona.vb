@@ -10,6 +10,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer)
         mIsLoading = True
         mIsNew = (IDPersona = 0)
@@ -219,6 +220,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mPersonaActual
             ' Foto

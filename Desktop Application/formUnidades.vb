@@ -1,6 +1,7 @@
 ﻿Public Class formUnidades
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDUnidad As Short
         Public Property Numero As Short
@@ -18,11 +19,10 @@
     Private mlistUnidadesFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
-    Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -98,7 +98,6 @@
 
             Try
                 ' Inicializo las variables
-                mReportSelectionFormula = ""
                 mlistUnidadesFiltradaYOrdenada = mlistUnidadesBase.ToList
 
                 ' Filtro por Unidad Tipo
@@ -115,10 +114,8 @@
                 Select Case comboboxActivo.SelectedIndex
                     Case 0      ' Todos
                     Case 1      ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Unidad.EsActivo} = 1"
                         mlistUnidadesFiltradaYOrdenada = mlistUnidadesFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case 2      ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Unidad.EsActivo} = 0"
                         mlistUnidadesFiltradaYOrdenada = mlistUnidadesFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 

@@ -344,6 +344,7 @@
           <Property Name="IDPartido" Type="smallint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IDProvincia" Type="tinyint" Nullable="false" />
+          <Property Name="CodigoProvincial" Type="tinyint" />
         </EntityType>
         <EntityType Name="PenaAplicacion">
           <Key>
@@ -935,6 +936,7 @@
           <Property Name="Genero" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -4687,6 +4689,7 @@
           <Property Name="Genero" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IDUsuarioGrupo" Type="Byte" Nullable="false" />
           <Property Name="IDCuartel" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -7955,6 +7958,7 @@
           <Property Name="IDProvincia" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Localidades" Relationship="CSBomberosModel.FK__Partido__Localidad" FromRole="Partido" ToRole="Localidad" />
           <NavigationProperty Name="Provincia" Relationship="CSBomberosModel.FK__Provincia__Partido" FromRole="Partido" ToRole="Provincia" />
+          <Property Name="CodigoProvincial" Type="Byte" />
         </EntityType>
         <Association Name="FK__Partido__Localidad">
           <End Type="CSBomberosModel.Partido" Role="Partido" Multiplicity="0..1" />
@@ -8088,6 +8092,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="CSBomberosModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -9060,6 +9065,7 @@
           <EntitySetMapping Name="Partido">
             <EntityTypeMapping TypeName="CSBomberosModel.Partido">
               <MappingFragment StoreEntitySet="Partido">
+                <ScalarProperty Name="CodigoProvincial" ColumnName="CodigoProvincial" />
                 <ScalarProperty Name="IDProvincia" ColumnName="IDProvincia" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDPartido" ColumnName="IDPartido" />
