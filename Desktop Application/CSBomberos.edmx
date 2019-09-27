@@ -383,6 +383,7 @@
           <Property Name="FechaCasamiento" Type="date" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
+          <Property Name="IOMAVencimientoCredencial" Type="date" />
           <Property Name="IDNivelEstudio" Type="tinyint" />
           <Property Name="Profesion" Type="varchar" MaxLength="50" />
           <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
@@ -574,6 +575,7 @@
           <Property Name="IDEstadoCivil" Type="tinyint" />
           <Property Name="IOMATiene" Type="char" MaxLength="1" />
           <Property Name="IOMANumeroAfiliado" Type="varchar" MaxLength="13" />
+          <Property Name="IOMAVencimientoCredencial" Type="date" />
           <Property Name="IOMAACargo" Type="bit" Nullable="false" />
           <Property Name="ACargo" Type="bit" Nullable="false" />
           <Property Name="Vive" Type="bit" Nullable="false" />
@@ -4974,6 +4976,7 @@
           <Property Name="FechaCasamiento" Type="DateTime" Precision="0" />
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="IOMAVencimientoCredencial" Type="DateTime" Precision="0" />
           <Property Name="IDNivelEstudio" Type="Byte" />
           <Property Name="Profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -5143,6 +5146,7 @@
           <Property Name="IOMATiene" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="IOMANumeroAfiliado" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="IOMAACargo" Type="Boolean" Nullable="false" />
+          <Property Name="IOMAVencimientoCredencial" Type="DateTime" Precision="0" />
           <Property Name="ACargo" Type="Boolean" Nullable="false" />
           <Property Name="Vive" Type="Boolean" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -8175,6 +8179,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="IOMAVencimientoCredencial" ColumnName="IOMAVencimientoCredencial" />
                 <ScalarProperty Name="FechaCasamiento" ColumnName="FechaCasamiento" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="HorarioLaboralObservaciones" ColumnName="HorarioLaboralObservaciones" />
@@ -8236,6 +8241,7 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="IOMAVencimientoCredencial" ColumnName="IOMAVencimientoCredencial" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="IOMAACargo" ColumnName="IOMAACargo" />
                 <ScalarProperty Name="ACargo" ColumnName="ACargo" />

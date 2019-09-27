@@ -77,14 +77,15 @@
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
-        comboboxGrupoSanguineo.Enabled = mEditMode
-        comboboxFactorRH.Enabled = mEditMode
         doubletextboxAltura.ReadOnly = (mEditMode = False)
         integertextboxPeso.ReadOnly = (mEditMode = False)
+        comboboxGrupoSanguineo.Enabled = mEditMode
+        comboboxFactorRH.Enabled = mEditMode
         comboboxEstadoCivil.Enabled = mEditMode
         datetimepickerFechaCasamiento.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
+        datetimepickerIOMAVencimientoCredencial.Enabled = mEditMode
         comboboxNivelEstudio.Enabled = mEditMode
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
@@ -248,10 +249,10 @@
             End If
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CS_ComboBox.SetSelectedValue(comboboxGenero, SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
-            CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
-            CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
             integertextboxPeso.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Peso)
+            CS_ComboBox.SetSelectedValue(comboboxGrupoSanguineo, SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CS_ComboBox.SetSelectedValue(comboboxFactorRH, SelectedItemOptions.Value, .FactorRH, "")
             CS_ComboBox.SetSelectedValue(comboboxEstadoCivil, SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             datetimepickerFechaCasamiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaCasamiento, datetimepickerFechaCasamiento)
             Select Case .IOMATiene
@@ -265,6 +266,7 @@
                     comboboxIOMATiene.SelectedIndex = 3
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
+            datetimepickerIOMAVencimientoCredencial.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.IOMAVencimientoCredencial, datetimepickerIOMAVencimientoCredencial)
             CS_ComboBox.SetSelectedValue(comboboxNivelEstudio, SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
@@ -358,10 +360,10 @@
 
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
-            .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
-            .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
             .Peso = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxPeso.Text)
+            .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
+            .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .IDEstadoCivil = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxEstadoCivil.SelectedValue, CS_Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             .FechaCasamiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaCasamiento.Value, datetimepickerFechaCasamiento.Checked)
             Select Case comboboxIOMATiene.SelectedIndex
@@ -375,6 +377,7 @@
                     .IOMATiene = PERSONA_TIENEIOMA_PORTRABAJO
             End Select
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
+            .IOMAVencimientoCredencial = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerIOMAVencimientoCredencial.Value, datetimepickerIOMAVencimientoCredencial.Checked)
             .IDNivelEstudio = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxNivelEstudio.SelectedValue)
 
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)

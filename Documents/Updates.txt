@@ -1,3 +1,13 @@
+2019-09-26
+	- Tabla Persona:
+		- Agregar el campo: IOMAVencimientoCredencial date null
+	- Tabla PersonaFamiliar:
+		- Agregar el campo: IOMAVencimientoCredencial date null
+	- Ejecutar: Stored Procedure - Persona_ObraSocial
+	- Copiar reporte Personas-ObraSocial.rpt
+	- Copiar registro 36 de Reporte 
+	- Copiar parámetros de reporte
+
 2019-09-04
 	- Tabla Usuarios
 		- Agregar el campo Notas	varchar(MAX)	null antes de EsActivo

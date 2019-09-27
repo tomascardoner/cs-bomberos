@@ -31,6 +31,7 @@ Partial Public Class Persona
     Public Property FechaCasamiento As Nullable(Of Date)
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
+    Public Property IOMAVencimientoCredencial As Nullable(Of Date)
     Public Property IDNivelEstudio As Nullable(Of Byte)
     Public Property Profesion As String
     Public Property Nacionalidad As String

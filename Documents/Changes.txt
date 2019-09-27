@@ -1,3 +1,6 @@
+26/09/2019
+	* Se agregó la fecha de vencimiento de la credencial de IOMA
+
 04/09/2019
 	* Se agregó el ABM de Usuarios
 

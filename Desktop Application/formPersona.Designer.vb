@@ -74,6 +74,8 @@ Partial Class formPersona
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelEstadoCivil As System.Windows.Forms.Label
+        Dim labelFechaCasamiento As System.Windows.Forms.Label
+        Dim labelIOMAVencimientoCredencial As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -95,7 +97,6 @@ Partial Class formPersona
         Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim labelFechaCasamiento As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
@@ -115,8 +116,10 @@ Partial Class formPersona
         Me.buttonLicenciaConducirNumero = New System.Windows.Forms.Button()
         Me.textboxLicenciaConducirNumero = New System.Windows.Forms.TextBox()
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.datetimepickerIOMAVencimientoCredencial = New System.Windows.Forms.DateTimePicker()
+        Me.datetimepickerFechaCasamiento = New System.Windows.Forms.DateTimePicker()
         Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.doubletextboxAltura = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.integertextboxPeso = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
@@ -286,7 +289,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.datetimepickerFechaCasamiento = New System.Windows.Forms.DateTimePicker()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -339,6 +341,7 @@ Partial Class formPersona
         labelCreacion = New System.Windows.Forms.Label()
         labelEstadoCivil = New System.Windows.Forms.Label()
         labelFechaCasamiento = New System.Windows.Forms.Label()
+        labelIOMAVencimientoCredencial = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -423,19 +426,19 @@ Partial Class formPersona
         'labelPeso
         '
         labelPeso.AutoSize = True
-        labelPeso.Location = New System.Drawing.Point(220, 134)
+        labelPeso.Location = New System.Drawing.Point(412, 74)
         labelPeso.Name = "labelPeso"
         labelPeso.Size = New System.Drawing.Size(34, 13)
-        labelPeso.TabIndex = 13
+        labelPeso.TabIndex = 9
         labelPeso.Text = "Peso:"
         '
         'labelAltura
         '
         labelAltura.AutoSize = True
-        labelAltura.Location = New System.Drawing.Point(6, 134)
+        labelAltura.Location = New System.Drawing.Point(291, 73)
         labelAltura.Name = "labelAltura"
         labelAltura.Size = New System.Drawing.Size(37, 13)
-        labelAltura.TabIndex = 11
+        labelAltura.TabIndex = 7
         labelAltura.Text = "Altura:"
         '
         'labelCargoJerarquiaActual
@@ -444,13 +447,13 @@ Partial Class formPersona
         labelCargoJerarquiaActual.Location = New System.Drawing.Point(6, 380)
         labelCargoJerarquiaActual.Name = "labelCargoJerarquiaActual"
         labelCargoJerarquiaActual.Size = New System.Drawing.Size(124, 13)
-        labelCargoJerarquiaActual.TabIndex = 33
+        labelCargoJerarquiaActual.TabIndex = 35
         labelCargoJerarquiaActual.Text = "Cargo - Jerarquía actual:"
         '
         'labelIOMANumeroAfiliado
         '
         labelIOMANumeroAfiliado.AutoSize = True
-        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(286, 193)
+        labelIOMANumeroAfiliado.Location = New System.Drawing.Point(291, 164)
         labelIOMANumeroAfiliado.Name = "labelIOMANumeroAfiliado"
         labelIOMANumeroAfiliado.Size = New System.Drawing.Size(73, 13)
         labelIOMANumeroAfiliado.TabIndex = 21
@@ -460,7 +463,7 @@ Partial Class formPersona
         'labelIOMATiene
         '
         labelIOMATiene.AutoSize = True
-        labelIOMATiene.Location = New System.Drawing.Point(6, 193)
+        labelIOMATiene.Location = New System.Drawing.Point(6, 164)
         labelIOMATiene.Name = "labelIOMATiene"
         labelIOMATiene.Size = New System.Drawing.Size(97, 13)
         labelIOMATiene.TabIndex = 19
@@ -472,7 +475,7 @@ Partial Class formPersona
         labelCantidadHijos.Location = New System.Drawing.Point(6, 352)
         labelCantidadHijos.Name = "labelCantidadHijos"
         labelCantidadHijos.Size = New System.Drawing.Size(91, 13)
-        labelCantidadHijos.TabIndex = 31
+        labelCantidadHijos.TabIndex = 33
         labelCantidadHijos.Text = "Cantidad de hijos:"
         '
         'labelNivelEstudio
@@ -481,31 +484,31 @@ Partial Class formPersona
         labelNivelEstudio.Location = New System.Drawing.Point(6, 228)
         labelNivelEstudio.Name = "labelNivelEstudio"
         labelNivelEstudio.Size = New System.Drawing.Size(91, 13)
-        labelNivelEstudio.TabIndex = 23
+        labelNivelEstudio.TabIndex = 25
         labelNivelEstudio.Text = "Nivel de estudios:"
         '
         'labelFactorRH
         '
         labelFactorRH.AutoSize = True
-        labelFactorRH.Location = New System.Drawing.Point(286, 107)
+        labelFactorRH.Location = New System.Drawing.Point(291, 100)
         labelFactorRH.Name = "labelFactorRH"
         labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 9
+        labelFactorRH.TabIndex = 13
         labelFactorRH.Text = "Factor RH:"
         '
         'labelGrupoSanguineo
         '
         labelGrupoSanguineo.AutoSize = True
-        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 107)
+        labelGrupoSanguineo.Location = New System.Drawing.Point(6, 100)
         labelGrupoSanguineo.Name = "labelGrupoSanguineo"
         labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 7
+        labelGrupoSanguineo.TabIndex = 11
         labelGrupoSanguineo.Text = "Grupo sanguíneo:"
         '
         'labelFechaNacimiento
         '
         labelFechaNacimiento.AutoSize = True
-        labelFechaNacimiento.Location = New System.Drawing.Point(6, 54)
+        labelFechaNacimiento.Location = New System.Drawing.Point(6, 47)
         labelFechaNacimiento.Name = "labelFechaNacimiento"
         labelFechaNacimiento.Size = New System.Drawing.Size(109, 13)
         labelFechaNacimiento.TabIndex = 3
@@ -514,7 +517,7 @@ Partial Class formPersona
         'labelGenero
         '
         labelGenero.AutoSize = True
-        labelGenero.Location = New System.Drawing.Point(6, 80)
+        labelGenero.Location = New System.Drawing.Point(6, 73)
         labelGenero.Name = "labelGenero"
         labelGenero.Size = New System.Drawing.Size(45, 13)
         labelGenero.TabIndex = 5
@@ -536,7 +539,7 @@ Partial Class formPersona
         labelNacionalidad.Location = New System.Drawing.Point(6, 294)
         labelNacionalidad.Name = "labelNacionalidad"
         labelNacionalidad.Size = New System.Drawing.Size(72, 13)
-        labelNacionalidad.TabIndex = 27
+        labelNacionalidad.TabIndex = 29
         labelNacionalidad.Text = "Nacionalidad:"
         '
         'labelProfesion
@@ -545,7 +548,7 @@ Partial Class formPersona
         labelProfesion.Location = New System.Drawing.Point(6, 255)
         labelProfesion.Name = "labelProfesion"
         labelProfesion.Size = New System.Drawing.Size(54, 13)
-        labelProfesion.TabIndex = 25
+        labelProfesion.TabIndex = 27
         labelProfesion.Text = "Profesión:"
         '
         'labelCuartel
@@ -554,7 +557,7 @@ Partial Class formPersona
         labelCuartel.Location = New System.Drawing.Point(6, 320)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 29
+        labelCuartel.TabIndex = 31
         labelCuartel.Text = "Cuartel:"
         '
         'labelTelefonoParticular
@@ -851,11 +854,29 @@ Partial Class formPersona
         'labelEstadoCivil
         '
         labelEstadoCivil.AutoSize = True
-        labelEstadoCivil.Location = New System.Drawing.Point(6, 160)
+        labelEstadoCivil.Location = New System.Drawing.Point(6, 127)
         labelEstadoCivil.Name = "labelEstadoCivil"
         labelEstadoCivil.Size = New System.Drawing.Size(65, 13)
         labelEstadoCivil.TabIndex = 15
         labelEstadoCivil.Text = "Estado Civil:"
+        '
+        'labelFechaCasamiento
+        '
+        labelFechaCasamiento.AutoSize = True
+        labelFechaCasamiento.Location = New System.Drawing.Point(337, 127)
+        labelFechaCasamiento.Name = "labelFechaCasamiento"
+        labelFechaCasamiento.Size = New System.Drawing.Size(112, 13)
+        labelFechaCasamiento.TabIndex = 17
+        labelFechaCasamiento.Text = "Fecha de casamiento:"
+        '
+        'labelIOMAVencimientoCredencial
+        '
+        labelIOMAVencimientoCredencial.AutoSize = True
+        labelIOMAVencimientoCredencial.Location = New System.Drawing.Point(6, 194)
+        labelIOMAVencimientoCredencial.Name = "labelIOMAVencimientoCredencial"
+        labelIOMAVencimientoCredencial.Size = New System.Drawing.Size(135, 13)
+        labelIOMAVencimientoCredencial.TabIndex = 23
+        labelIOMAVencimientoCredencial.Text = "Vencimiento de credencial:"
         '
         'textboxApellido
         '
@@ -968,7 +989,7 @@ Partial Class formPersona
         '
         'textboxIOMANumeroAfiliado
         '
-        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(365, 190)
+        Me.textboxIOMANumeroAfiliado.Location = New System.Drawing.Point(370, 161)
         Me.textboxIOMANumeroAfiliado.MaxLength = 13
         Me.textboxIOMANumeroAfiliado.Name = "textboxIOMANumeroAfiliado"
         Me.textboxIOMANumeroAfiliado.Size = New System.Drawing.Size(115, 20)
@@ -977,7 +998,7 @@ Partial Class formPersona
         '
         'textboxDocumentoNumero
         '
-        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
+        Me.textboxDocumentoNumero.Location = New System.Drawing.Point(255, 10)
         Me.textboxDocumentoNumero.MaxLength = 11
         Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
         Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
@@ -1037,6 +1058,8 @@ Partial Class formPersona
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelIOMAVencimientoCredencial)
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerIOMAVencimientoCredencial)
         Me.tabpageGeneral.Controls.Add(labelFechaCasamiento)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaCasamiento)
         Me.tabpageGeneral.Controls.Add(Me.comboboxEstadoCivil)
@@ -1082,11 +1105,33 @@ Partial Class formPersona
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'datetimepickerIOMAVencimientoCredencial
+        '
+        Me.datetimepickerIOMAVencimientoCredencial.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerIOMAVencimientoCredencial.Location = New System.Drawing.Point(147, 190)
+        Me.datetimepickerIOMAVencimientoCredencial.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerIOMAVencimientoCredencial.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerIOMAVencimientoCredencial.Name = "datetimepickerIOMAVencimientoCredencial"
+        Me.datetimepickerIOMAVencimientoCredencial.ShowCheckBox = True
+        Me.datetimepickerIOMAVencimientoCredencial.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerIOMAVencimientoCredencial.TabIndex = 24
+        '
+        'datetimepickerFechaCasamiento
+        '
+        Me.datetimepickerFechaCasamiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaCasamiento.Location = New System.Drawing.Point(462, 124)
+        Me.datetimepickerFechaCasamiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaCasamiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaCasamiento.Name = "datetimepickerFechaCasamiento"
+        Me.datetimepickerFechaCasamiento.ShowCheckBox = True
+        Me.datetimepickerFechaCasamiento.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerFechaCasamiento.TabIndex = 18
+        '
         'comboboxEstadoCivil
         '
         Me.comboboxEstadoCivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxEstadoCivil.FormattingEnabled = True
-        Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 157)
+        Me.comboboxEstadoCivil.Location = New System.Drawing.Point(147, 124)
         Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
         Me.comboboxEstadoCivil.Size = New System.Drawing.Size(161, 21)
         Me.comboboxEstadoCivil.TabIndex = 16
@@ -1096,14 +1141,14 @@ Partial Class formPersona
         Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(44, 20)
         Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxAltura.DoubleValue = 0R
-        Me.doubletextboxAltura.Location = New System.Drawing.Point(142, 131)
+        Me.doubletextboxAltura.Location = New System.Drawing.Point(334, 71)
         Me.doubletextboxAltura.MaxValue = 2.5R
         Me.doubletextboxAltura.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.doubletextboxAltura.MinValue = 0R
         Me.doubletextboxAltura.Name = "doubletextboxAltura"
         Me.doubletextboxAltura.NullString = ""
         Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
-        Me.doubletextboxAltura.TabIndex = 12
+        Me.doubletextboxAltura.TabIndex = 8
         Me.doubletextboxAltura.Text = "0,00"
         Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1113,7 +1158,7 @@ Partial Class formPersona
         Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxPeso.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxPeso.IntegerValue = CType(0, Long)
-        Me.integertextboxPeso.Location = New System.Drawing.Point(263, 131)
+        Me.integertextboxPeso.Location = New System.Drawing.Point(455, 71)
         Me.integertextboxPeso.MaxValue = CType(200, Long)
         Me.integertextboxPeso.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.integertextboxPeso.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
@@ -1121,35 +1166,35 @@ Partial Class formPersona
         Me.integertextboxPeso.Name = "integertextboxPeso"
         Me.integertextboxPeso.NullString = ""
         Me.integertextboxPeso.Size = New System.Drawing.Size(44, 20)
-        Me.integertextboxPeso.TabIndex = 14
+        Me.integertextboxPeso.TabIndex = 10
         Me.integertextboxPeso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'textboxFechaUltimoAscenso
         '
-        Me.textboxFechaUltimoAscenso.Location = New System.Drawing.Point(427, 377)
+        Me.textboxFechaUltimoAscenso.Location = New System.Drawing.Point(432, 377)
         Me.textboxFechaUltimoAscenso.Name = "textboxFechaUltimoAscenso"
         Me.textboxFechaUltimoAscenso.ReadOnly = True
         Me.textboxFechaUltimoAscenso.Size = New System.Drawing.Size(92, 20)
-        Me.textboxFechaUltimoAscenso.TabIndex = 35
+        Me.textboxFechaUltimoAscenso.TabIndex = 37
         '
         'textboxCargoJerarquiaActual
         '
-        Me.textboxCargoJerarquiaActual.Location = New System.Drawing.Point(142, 377)
+        Me.textboxCargoJerarquiaActual.Location = New System.Drawing.Point(147, 377)
         Me.textboxCargoJerarquiaActual.MaxLength = 10
         Me.textboxCargoJerarquiaActual.Name = "textboxCargoJerarquiaActual"
         Me.textboxCargoJerarquiaActual.ReadOnly = True
         Me.textboxCargoJerarquiaActual.Size = New System.Drawing.Size(279, 20)
-        Me.textboxCargoJerarquiaActual.TabIndex = 34
+        Me.textboxCargoJerarquiaActual.TabIndex = 36
         Me.textboxCargoJerarquiaActual.TabStop = False
         '
         'textboxCantidadHijos
         '
-        Me.textboxCantidadHijos.Location = New System.Drawing.Point(142, 349)
+        Me.textboxCantidadHijos.Location = New System.Drawing.Point(147, 349)
         Me.textboxCantidadHijos.MaxLength = 10
         Me.textboxCantidadHijos.Name = "textboxCantidadHijos"
         Me.textboxCantidadHijos.ReadOnly = True
         Me.textboxCantidadHijos.Size = New System.Drawing.Size(39, 20)
-        Me.textboxCantidadHijos.TabIndex = 32
+        Me.textboxCantidadHijos.TabIndex = 34
         Me.textboxCantidadHijos.TabStop = False
         Me.textboxCantidadHijos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1157,7 +1202,7 @@ Partial Class formPersona
         '
         Me.comboboxIOMATiene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxIOMATiene.FormattingEnabled = True
-        Me.comboboxIOMATiene.Location = New System.Drawing.Point(142, 190)
+        Me.comboboxIOMATiene.Location = New System.Drawing.Point(147, 161)
         Me.comboboxIOMATiene.Name = "comboboxIOMATiene"
         Me.comboboxIOMATiene.Size = New System.Drawing.Size(121, 21)
         Me.comboboxIOMATiene.TabIndex = 20
@@ -1166,33 +1211,33 @@ Partial Class formPersona
         '
         Me.comboboxNivelEstudio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxNivelEstudio.FormattingEnabled = True
-        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(142, 225)
+        Me.comboboxNivelEstudio.Location = New System.Drawing.Point(147, 225)
         Me.comboboxNivelEstudio.Name = "comboboxNivelEstudio"
         Me.comboboxNivelEstudio.Size = New System.Drawing.Size(275, 21)
-        Me.comboboxNivelEstudio.TabIndex = 24
+        Me.comboboxNivelEstudio.TabIndex = 26
         '
         'comboboxFactorRH
         '
         Me.comboboxFactorRH.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxFactorRH.FormattingEnabled = True
-        Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 104)
+        Me.comboboxFactorRH.Location = New System.Drawing.Point(370, 97)
         Me.comboboxFactorRH.Name = "comboboxFactorRH"
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxFactorRH.TabIndex = 10
+        Me.comboboxFactorRH.TabIndex = 14
         '
         'comboboxGrupoSanguineo
         '
         Me.comboboxGrupoSanguineo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxGrupoSanguineo.FormattingEnabled = True
-        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 104)
+        Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(147, 97)
         Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGrupoSanguineo.TabIndex = 8
+        Me.comboboxGrupoSanguineo.TabIndex = 12
         '
         'datetimepickerFechaNacimiento
         '
         Me.datetimepickerFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaNacimiento.Location = New System.Drawing.Point(142, 51)
+        Me.datetimepickerFechaNacimiento.Location = New System.Drawing.Point(147, 44)
         Me.datetimepickerFechaNacimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFechaNacimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaNacimiento.Name = "datetimepickerFechaNacimiento"
@@ -1204,7 +1249,7 @@ Partial Class formPersona
         '
         Me.comboboxGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxGenero.FormattingEnabled = True
-        Me.comboboxGenero.Location = New System.Drawing.Point(142, 77)
+        Me.comboboxGenero.Location = New System.Drawing.Point(147, 70)
         Me.comboboxGenero.Name = "comboboxGenero"
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
         Me.comboboxGenero.TabIndex = 6
@@ -1213,7 +1258,7 @@ Partial Class formPersona
         '
         Me.comboboxDocumentoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxDocumentoTipo.FormattingEnabled = True
-        Me.comboboxDocumentoTipo.Location = New System.Drawing.Point(142, 10)
+        Me.comboboxDocumentoTipo.Location = New System.Drawing.Point(147, 10)
         Me.comboboxDocumentoTipo.Name = "comboboxDocumentoTipo"
         Me.comboboxDocumentoTipo.Size = New System.Drawing.Size(102, 21)
         Me.comboboxDocumentoTipo.TabIndex = 1
@@ -1224,7 +1269,7 @@ Partial Class formPersona
         Me.maskedtextboxDocumentoNumero.AsciiOnly = True
         Me.maskedtextboxDocumentoNumero.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
         Me.maskedtextboxDocumentoNumero.HidePromptOnLeave = True
-        Me.maskedtextboxDocumentoNumero.Location = New System.Drawing.Point(250, 10)
+        Me.maskedtextboxDocumentoNumero.Location = New System.Drawing.Point(255, 10)
         Me.maskedtextboxDocumentoNumero.Mask = "00-00000000-0"
         Me.maskedtextboxDocumentoNumero.Name = "maskedtextboxDocumentoNumero"
         Me.maskedtextboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
@@ -1233,28 +1278,28 @@ Partial Class formPersona
         '
         'textboxNacionalidad
         '
-        Me.textboxNacionalidad.Location = New System.Drawing.Point(142, 291)
+        Me.textboxNacionalidad.Location = New System.Drawing.Point(147, 291)
         Me.textboxNacionalidad.MaxLength = 100
         Me.textboxNacionalidad.Name = "textboxNacionalidad"
         Me.textboxNacionalidad.Size = New System.Drawing.Size(377, 20)
-        Me.textboxNacionalidad.TabIndex = 28
+        Me.textboxNacionalidad.TabIndex = 30
         '
         'textboxProfesion
         '
-        Me.textboxProfesion.Location = New System.Drawing.Point(142, 252)
+        Me.textboxProfesion.Location = New System.Drawing.Point(147, 252)
         Me.textboxProfesion.MaxLength = 100
         Me.textboxProfesion.Name = "textboxProfesion"
         Me.textboxProfesion.Size = New System.Drawing.Size(377, 20)
-        Me.textboxProfesion.TabIndex = 26
+        Me.textboxProfesion.TabIndex = 28
         '
         'comboboxCuartel
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(142, 317)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(147, 317)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(377, 21)
-        Me.comboboxCuartel.TabIndex = 30
+        Me.comboboxCuartel.TabIndex = 32
         '
         'tabpageParticular
         '
@@ -2976,26 +3021,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'labelFechaCasamiento
-        '
-        labelFechaCasamiento.AutoSize = True
-        labelFechaCasamiento.Location = New System.Drawing.Point(332, 160)
-        labelFechaCasamiento.Name = "labelFechaCasamiento"
-        labelFechaCasamiento.Size = New System.Drawing.Size(112, 13)
-        labelFechaCasamiento.TabIndex = 17
-        labelFechaCasamiento.Text = "Fecha de casamiento:"
-        '
-        'datetimepickerFechaCasamiento
-        '
-        Me.datetimepickerFechaCasamiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaCasamiento.Location = New System.Drawing.Point(457, 157)
-        Me.datetimepickerFechaCasamiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaCasamiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaCasamiento.Name = "datetimepickerFechaCasamiento"
-        Me.datetimepickerFechaCasamiento.ShowCheckBox = True
-        Me.datetimepickerFechaCasamiento.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaCasamiento.TabIndex = 18
-        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3290,4 +3315,5 @@ Partial Class formPersona
     Friend WithEvents comboboxEstadoCivil As ComboBox
     Friend WithEvents buttonHorarioLaboral_Imprimir As ToolStripButton
     Friend WithEvents datetimepickerFechaCasamiento As DateTimePicker
+    Friend WithEvents datetimepickerIOMAVencimientoCredencial As DateTimePicker
 End Class

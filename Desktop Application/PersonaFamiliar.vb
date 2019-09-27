@@ -27,6 +27,7 @@ Partial Public Class PersonaFamiliar
     Public Property IOMATiene As String
     Public Property IOMANumeroAfiliado As String
     Public Property IOMAACargo As Boolean
+    Public Property IOMAVencimientoCredencial As Nullable(Of Date)
     Public Property ACargo As Boolean
     Public Property Vive As Boolean
     Public Property DomicilioCalle1 As String

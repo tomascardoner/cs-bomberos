@@ -68,6 +68,7 @@
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         checkboxIOMAACargo.Enabled = mEditMode
+        datetimepickerIOMAVencimientoCredencial.Enabled = mEditMode
         checkboxACargo.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
 
@@ -148,6 +149,7 @@
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             checkboxIOMAACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.IOMAACargo)
+            datetimepickerIOMAVencimientoCredencial.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.IOMAVencimientoCredencial, datetimepickerIOMAVencimientoCredencial)
             checkboxACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ACargo)
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
 
@@ -219,6 +221,7 @@
             End Select
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
             .IOMAACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxIOMAACargo.CheckState)
+            .IOMAVencimientoCredencial = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerIOMAVencimientoCredencial.Value, datetimepickerIOMAVencimientoCredencial.Checked)
             .ACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxACargo.CheckState)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
 
