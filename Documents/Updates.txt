@@ -1,8 +1,12 @@
 2019-11-08
+	- Tabla TipografiaEstilo:
+		- Agregar el registro:
+			2	Helvetica	9,00	True	False	False	False
+
 	- Tabla Reporte
 		- Agregar el registro:
 			37	1	Constancia de prestación de servicio	Personas-ConstanciaPrestacionServicio.rpt	NULL	NULL	NULL	NULL	True	NULL
-			38	4	Declaración Jurada para Renovación de Pareja Conviviente	Personas-IOMARenovacionConvivientes.pdf	usp_Persona_DatosYFamiliaresACargo	2	8	IDPersona	True	NULL
+			38	4	Declaración Jurada para Renovación de Pareja Conviviente	Personas-IOMARenovacionConvivientes.pdf	usp_Persona_DatosConyugueEHijosACargo	2	7	IDPersona	True	NULL
 
 	- Tabla ReporteParametro
 		- Copiar desde el reporte 9 al 37
@@ -12,10 +16,30 @@
 			37	HoraServicioInicio                                	Hora de inicio del servicio	TIME	True	Debe especificar la hora de inicio del servicio.	NULL	NULL	NULL	NULL	NULL	NULL	8
 			37	HoraServicioFin                                   	Hora de finalización del servicio	TIME	True	Debe especificar la hora de finalización del servicio.	NULL	NULL	NULL	NULL	NULL	NULL	9
 
-	- Tabla TipografiaEstilo:
-		- Agregar el registro:
-			2	Helvetica	9,00	True	False	False	False
+	- Tabla ReporteCampo
+		- Agregar los registros:
+38	1	LocalidadNombre	NULL	125,0	658,0	NULL	NULL	NULL	NULL	NULL
+38	2	FechaDia	NULL	303,0	658,0	NULL	NULL	NULL	NULL	NULL
+38	3	FechaMes	NULL	400,0	658,0	NULL	NULL	NULL	NULL	NULL
+38	4	FechaAnioCorto	NULL	90,0	642,0	NULL	NULL	NULL	NULL	NULL
+38	5	ApellidoNombre	NULL	343,0	642,0	NULL	NULL	NULL	NULL	NULL
+38	6	IOMANumeroAfiliado	NULL	60,0	626,0	NULL	NULL	NULL	NULL	NULL
+38	7	DocumentoNumero	NULL	380,0	626,0	NULL	NULL	NULL	NULL	NULL
+38	8	ConyugueApellidoNombre	NULL	98,0	609,0	NULL	NULL	NULL	NULL	NULL
+38	9	ConyugueIOMANumeroAfiliado	NULL	384,0	609,0	NULL	NULL	NULL	NULL	NULL
+38	10	ConyugueDocumentoNumero	NULL	206,0	593,0	NULL	NULL	NULL	NULL	NULL
+38	11	DomicilioParticularCalle1	NULL	190,0	577,0	NULL	NULL	NULL	NULL	NULL
+38	12	DomicilioParticularNumero	NULL	408,0	577,0	NULL	NULL	NULL	NULL	NULL
+38	13	LocalidadNombre	NULL	60,0	561,0	NULL	NULL	NULL	NULL	NULL
+38	14	Partido	NULL	270,0	561,0	NULL	NULL	NULL	NULL	NULL
+38	15	Fecha	NULL	85,0	513,0	NULL	NULL	NULL	NULL	NULL
+38	16	ConyugueNombreApellido	NULL	67,0	456,0	NULL	NULL	NULL	NULL	NULL
+38	17	ConyugueDocumentoNumero	NULL	340,0	456,0	NULL	NULL	NULL	NULL	NULL
+38	18	HijoNombreApellido	NULL	67,0	395,0	16,0	NULL	NULL	NULL	NULL
+38	19	HijoDocumentoNumero	NULL	340,0	395,0	16,0	NULL	NULL	NULL	NULL			
+
 	- Actualizar el stored procedure: usp_Persona_DatosYFamiliaresACargo
+	- Agregar el stored procedure: usp_Persona_DatosConyugueEHijosACargo
 	
 
 2019-09-26
