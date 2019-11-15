@@ -8,7 +8,8 @@
 
         doubletextboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL)
         currencytextboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_MONEY)
-        datetimepickerValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATE Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATETIME)
+        datetimepickerValorFecha.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATE Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_DATETIME)
+        datetimepickerValorHora.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_TIME)
         comboboxValor.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_YEAR)
 
         Select Case mParametroActual.Tipo
@@ -22,7 +23,11 @@
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
                 If Not mParametroActual.Valor Is Nothing Then
-                    datetimepickerValor.Value = Convert.ToDateTime(mParametroActual.Valor)
+                    datetimepickerValorFecha.Value = Convert.ToDateTime(mParametroActual.Valor)
+                End If
+            Case Constantes.REPORTE_PARAMETRO_TIPO_TIME
+                If Not mParametroActual.Valor Is Nothing Then
+                    datetimepickerValorHora.Value = Convert.ToDateTime(mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
                 pFillAndRefreshLists.Anio(comboboxValor, False, False)
@@ -48,7 +53,9 @@
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
                 mParametroActual.Valor = currencytextboxValor.DecimalValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
-                mParametroActual.Valor = datetimepickerValor.Value
+                mParametroActual.Valor = datetimepickerValorFecha.Value.ToShortDateString
+            Case Constantes.REPORTE_PARAMETRO_TIPO_TIME
+                mParametroActual.Valor = datetimepickerValorHora.Value.ToShortTimeString
             Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
                 If comboboxValor.SelectedIndex = -1 Then
                     MsgBox("Debe seleccionar un valor.", MsgBoxStyle.Information, My.Application.Info.Title)
