@@ -36,9 +36,9 @@ Partial Class formAboutBox
         Me.columnValor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.pictureboxIcon = New System.Windows.Forms.PictureBox()
         Me.labelLicensedTo = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.pictureCompany = New System.Windows.Forms.PictureBox()
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pictureCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelApplicationTitle
@@ -132,15 +132,15 @@ Partial Class formAboutBox
         Me.labelLicensedTo.Text = "LicensedTo"
         Me.labelLicensedTo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PictureBox1
+        'pictureCompany
         '
-        Me.PictureBox1.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
-        Me.PictureBox1.Location = New System.Drawing.Point(302, 54)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(128, 38)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 6
-        Me.PictureBox1.TabStop = False
+        Me.pictureCompany.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
+        Me.pictureCompany.Location = New System.Drawing.Point(302, 54)
+        Me.pictureCompany.Name = "pictureCompany"
+        Me.pictureCompany.Size = New System.Drawing.Size(128, 38)
+        Me.pictureCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pictureCompany.TabIndex = 6
+        Me.pictureCompany.TabStop = False
         '
         'formAboutBox
         '
@@ -148,7 +148,7 @@ Partial Class formAboutBox
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.OKButton
         Me.ClientSize = New System.Drawing.Size(442, 302)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.pictureCompany)
         Me.Controls.Add(Me.labelLicensedTo)
         Me.Controls.Add(Me.pictureboxIcon)
         Me.Controls.Add(Me.labelApplicationTitle)
@@ -165,7 +165,7 @@ Partial Class formAboutBox
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "formAboutBox"
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictureCompany, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -174,5 +174,5 @@ Partial Class formAboutBox
     Friend WithEvents columnValor As System.Windows.Forms.ColumnHeader
     Friend WithEvents pictureboxIcon As System.Windows.Forms.PictureBox
     Friend WithEvents labelLicensedTo As System.Windows.Forms.Label
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents pictureCompany As PictureBox
 End Class
