@@ -229,6 +229,17 @@
 
         Me.Close()
     End Sub
+
+    Private Sub textboxNombre_Leave(sender As Object, e As EventArgs) Handles textboxNombre.Leave
+        textboxNombre.Text = textboxNombre.Text.Replace(" ", "")
+    End Sub
+
+    Private Sub textboxNombre_KeyDown(sender As Object, e As KeyEventArgs) Handles textboxNombre.KeyDown
+        If e.KeyCode = Keys.Space Then
+            e.SuppressKeyPress = True
+        End If
+    End Sub
+
 #End Region
 
 End Class

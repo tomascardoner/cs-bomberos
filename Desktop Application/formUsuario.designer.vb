@@ -266,6 +266,7 @@ Partial Class formUsuario
         '
         'textboxNombre
         '
+        Me.textboxNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower
         Me.textboxNombre.Location = New System.Drawing.Point(78, 19)
         Me.textboxNombre.MaxLength = 30
         Me.textboxNombre.Name = "textboxNombre"

@@ -1,3 +1,22 @@
+2019-11-20
+	- Tabla Reporte
+		- Agregar el registro:
+			39	4	Listado de Hijos a cargo	Personas-IOMAHijosEdad.rpt	NULL	NULL	NULL	NULL	True	NULL
+
+	- Tabla ReporteParametro
+		- Agregar el registro:
+39	EmpresaNombre                                     	Nombre de la Empresa	CMNY	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL
+39	EstadoActivo                                      	Estado Activo	BOOL	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	4
+39	IDCargo                                           	Cargo	CARG	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	2
+39	IDCuartel                                         	Cuartel	CTEL	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	1
+39	IDJerarquia                                       	Jerarquía	JERQ	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	3
+39	IDPersona                                         	Persona	PERS	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	6
+39	IDPersonaBajaMotivo                               	Motivo de Baja	PBMT	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	5
+39	IOMAACargo                                        	IOMAACargo	BOOL	True	NULL	NULL	NULL	NULL	NULL	NULL	True	NULL
+39	LeyendaFiltros                                    	Leyenda de Filtros	FILT	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL
+39	MostrarLeyendaFiltros                             	Mostrar leyenda de filtros	FLSH	False	NULL	NULL	NULL	NULL	NULL	NULL	NULL	9
+39	Titulo                                            	Título	TITL	False	NULL	Listado de Hijos a cargo	NULL	NULL	NULL	NULL	NULL	NULL
+
 2019-11-08
 	- Tabla TipografiaEstilo:
 		- Agregar el registro:

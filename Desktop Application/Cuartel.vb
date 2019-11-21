@@ -14,6 +14,7 @@ Partial Public Class Cuartel
     Public Property IDCuartel As Byte
     Public Property Codigo As String
     Public Property Nombre As String
+    Public Property Descripcion As String
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
     Public Property DomicilioPiso As String

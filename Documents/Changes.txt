@@ -1,3 +1,7 @@
+15/11/2019
+	* Se agregó el reporte: Constancia de prestación de servicio
+	* Se agregó el reporte: Declaración Jurada para Renovación de Pareja Conviviente
+
 26/09/2019
 	* Se agregó la fecha de vencimiento de la credencial de IOMA
 
