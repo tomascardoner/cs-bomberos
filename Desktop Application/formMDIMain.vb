@@ -106,6 +106,10 @@
 
 #Region "Left Toolbar - Tablas"
 
+    Private Sub Cuarteles() Handles menuitemTablas_Cuarteles.Click
+        ShowForm(Permisos.CUARTEL, CType(formCuarteles, Form))
+    End Sub
+
     Private Sub NivelesEstudio() Handles menuitemTablas_NivelesEstudio.Click
         ShowForm(Permisos.NIVELESTUDIO, CType(formNivelesEstudio, Form))
     End Sub

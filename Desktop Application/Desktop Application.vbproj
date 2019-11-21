@@ -168,6 +168,18 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="formCuarteles.designer.vb">
+      <DependentUpon>formCuarteles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCuarteles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formCuartel.designer.vb">
+      <DependentUpon>formCuartel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formCuartel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="formReportesParametroFamiliares.Designer.vb">
       <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </Compile>
@@ -979,6 +991,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCuarteles.resx">
+      <DependentUpon>formCuarteles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formCuartel.resx">
+      <DependentUpon>formCuartel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formEstadoCivil.resx">
       <DependentUpon>formEstadoCivil.vb</DependentUpon>

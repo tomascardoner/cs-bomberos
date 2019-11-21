@@ -1,4 +1,9 @@
 ﻿Module Permisos
+    Friend Const CUARTEL As String = "CUARTEL"
+    Friend Const CUARTEL_AGREGAR As String = "CUARTEL_AGREGAR"
+    Friend Const CUARTEL_EDITAR As String = "CUARTEL_EDITAR"
+    Friend Const CUARTEL_ELIMINAR As String = "CUARTEL_ELIMINAR"
+
     Friend Const NIVELESTUDIO As String = "NIVELESTUDIO"
     Friend Const NIVELESTUDIO_AGREGAR As String = "NIVELESTUDIO_AGREGAR"
     Friend Const NIVELESTUDIO_EDITAR As String = "NIVELESTUDIO_EDITAR"
