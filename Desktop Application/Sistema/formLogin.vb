@@ -39,7 +39,7 @@
     Private Sub buttonAceptar_Click() Handles buttonAceptar.Click
         Dim UsuarioCurrent As Usuario
 
-        textboxNombre.Text.Trim()
+        textboxNombre.Text = textboxNombre.Text.Trim()
 
         If textboxNombre.TextLength = 0 Then
             MsgBox("Debe ingresar el Nombre del Usuario.", vbInformation, My.Application.Info.Title)

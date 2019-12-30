@@ -753,7 +753,7 @@
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
-                ' Refresco la lista de Personaes para mostrar los cambios
+                ' Refresco la lista de Personas para mostrar los cambios
                 If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formPersonas") Then
                     Dim formPersonas As formPersonas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formPersonas"), formPersonas)
                     formPersonas.RefreshData(mPersonaActual.IDPersona)
@@ -782,7 +782,7 @@
 
     Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
-            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán." & vbCr & vbCr & "¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else

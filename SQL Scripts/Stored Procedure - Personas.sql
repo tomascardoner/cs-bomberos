@@ -9,7 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2019-04-22
--- Description:	Devuelve los Elementos del Inventario
+-- Description:	Devuelve las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Personas') AND type in (N'P', N'PC'))
 	 DROP PROCEDURE usp_Personas

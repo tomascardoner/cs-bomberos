@@ -28,12 +28,12 @@
             For Each FormCurrent As Form In Me.MdiChildren
                 If FormCurrent.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable Then
                     If FormCurrent.Name = "formComprobante" Then
-                        CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
+                        CS_Form.MDIChild_CenterToClientArea(FormCurrent, Form_ClientSize)
                     Else
                         CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent)
                     End If
                 Else
-                    CS_Form.MDIChild_CenterToClientArea(Me, FormCurrent, Form_ClientSize)
+                    CS_Form.MDIChild_CenterToClientArea(FormCurrent, Form_ClientSize)
                 End If
             Next
         End If

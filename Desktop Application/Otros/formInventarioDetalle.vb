@@ -251,7 +251,13 @@
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
-        Me.Close()
+        If mdbContext.ChangeTracker.HasChanges Then
+            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Close()
+            End If
+        Else
+            Me.Close()
+        End If
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click

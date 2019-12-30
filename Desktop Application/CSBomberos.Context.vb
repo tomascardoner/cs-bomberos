@@ -7,11 +7,9 @@
 ' </auto-generated>
 '------------------------------------------------------------------------------
 
-Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
 Imports System.Data.Entity.Core.Objects
-Imports System.Linq
 
 Partial Public Class CSBomberosContext
     Inherits DbContext

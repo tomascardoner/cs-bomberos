@@ -174,51 +174,51 @@ Partial Class formMDIMain
         '
         Me.menuitemVentanaMosaicoHorizontal.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
         Me.menuitemVentanaMosaicoHorizontal.Name = "menuitemVentanaMosaicoHorizontal"
-        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaMosaicoHorizontal.Text = "Mosaico &Horizontal"
         '
         'menuitemVentanaMosaicoVertical
         '
         Me.menuitemVentanaMosaicoVertical.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
         Me.menuitemVentanaMosaicoVertical.Name = "menuitemVentanaMosaicoVertical"
-        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaMosaicoVertical.Text = "Mosaico &Vertical"
         '
         'menuitemVentanaCascada
         '
         Me.menuitemVentanaCascada.Name = "menuitemVentanaCascada"
-        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaCascada.Text = "&Cascada"
         '
         'menuitemVentanaOrganizarIconos
         '
         Me.menuitemVentanaOrganizarIconos.Name = "menuitemVentanaOrganizarIconos"
-        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaOrganizarIconos.Text = "&Organizar Iconos"
         '
         'menuitemVentanaSeparadorCerrarTodas
         '
         Me.menuitemVentanaSeparadorCerrarTodas.Name = "menuitemVentanaSeparadorCerrarTodas"
-        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(174, 6)
+        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(177, 6)
         '
         'menuitemVentanaCerrarTodas
         '
         Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
         Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
-        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
         '
         'menuitemVentanaEncajarEnVentana
         '
         Me.menuitemVentanaEncajarEnVentana.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
         Me.menuitemVentanaEncajarEnVentana.Name = "menuitemVentanaEncajarEnVentana"
-        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(177, 22)
+        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(180, 22)
         Me.menuitemVentanaEncajarEnVentana.Text = "Encajar en ventana"
         '
         'menuitemVentanaSeparadorListaVentanas
         '
         Me.menuitemVentanaSeparadorListaVentanas.Name = "menuitemVentanaSeparadorListaVentanas"
-        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(174, 6)
+        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(177, 6)
         '
         'menuitemAyuda
         '
@@ -230,7 +230,7 @@ Partial Class formMDIMain
         'menuitemAyuda_AcercaDe
         '
         Me.menuitemAyuda_AcercaDe.Name = "menuitemAyuda_AcercaDe"
-        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
+        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(180, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
         'toolstripMain
@@ -259,7 +259,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuPersonas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_EstadosCiviles, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_TiposVehiculo, Me.menuitemTablas_MarcasVehiculo, Me.menuitemTablas_CompaniasSegurosVehiculo, Me.menuitemTablas_TiposVacuna, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion})
         Me.menuitemTablas_MenuPersonas.Name = "menuitemTablas_MenuPersonas"
-        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuPersonas.Text = "Personas"
         '
         'menuitemTablas_NivelesEstudio
@@ -338,7 +338,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuCapacitaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion})
         Me.menuitemTablas_MenuCapacitaciones.Name = "menuitemTablas_MenuCapacitaciones"
-        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuCapacitaciones.Text = "Capacitaciones"
         '
         'menuitemTablas_Cursos
@@ -369,32 +369,32 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUnidades.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_TiposUnidad, Me.menuitemTablas_UsosUnidad, Me.menuitemTablas_MotivosBajaUnidad})
         Me.menuitemTablas_MenuUnidades.Name = "menuitemTablas_MenuUnidades"
-        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuUnidades.Text = "Unidades"
         '
         'menuitemTablas_TiposUnidad
         '
         Me.menuitemTablas_TiposUnidad.Name = "menuitemTablas_TiposUnidad"
-        Me.menuitemTablas_TiposUnidad.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_TiposUnidad.Size = New System.Drawing.Size(169, 22)
         Me.menuitemTablas_TiposUnidad.Text = "Tipos de unidades"
         '
         'menuitemTablas_UsosUnidad
         '
         Me.menuitemTablas_UsosUnidad.Name = "menuitemTablas_UsosUnidad"
-        Me.menuitemTablas_UsosUnidad.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_UsosUnidad.Size = New System.Drawing.Size(169, 22)
         Me.menuitemTablas_UsosUnidad.Text = "Usos de unidades"
         '
         'menuitemTablas_MotivosBajaUnidad
         '
         Me.menuitemTablas_MotivosBajaUnidad.Name = "menuitemTablas_MotivosBajaUnidad"
-        Me.menuitemTablas_MotivosBajaUnidad.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MotivosBajaUnidad.Size = New System.Drawing.Size(169, 22)
         Me.menuitemTablas_MotivosBajaUnidad.Text = "Motivos de baja"
         '
         'menuitemTablas_MenuInventario
         '
         Me.menuitemTablas_MenuInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones})
         Me.menuitemTablas_MenuInventario.Name = "menuitemTablas_MenuInventario"
-        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuInventario.Text = "Inventario"
         '
         'menuitemTablas_Rubros
@@ -431,44 +431,44 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUsuarios.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
         Me.menuitemTablas_MenuUsuarios.Name = "menuitemTablas_MenuUsuarios"
-        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuUsuarios.Text = "Usuarios"
         '
         'menuitemTablas_GruposUsuario
         '
         Me.menuitemTablas_GruposUsuario.Name = "menuitemTablas_GruposUsuario"
-        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_GruposUsuario.Size = New System.Drawing.Size(170, 22)
         Me.menuitemTablas_GruposUsuario.Text = "Grupos de usuario"
         '
         'menuitemTablas_Usuarios
         '
         Me.menuitemTablas_Usuarios.Name = "menuitemTablas_Usuarios"
-        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Usuarios.Size = New System.Drawing.Size(170, 22)
         Me.menuitemTablas_Usuarios.Text = "Usuarios"
         '
         'menuitemTablas_Permisos
         '
         Me.menuitemTablas_Permisos.Name = "menuitemTablas_Permisos"
-        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Permisos.Size = New System.Drawing.Size(170, 22)
         Me.menuitemTablas_Permisos.Text = "Permisos"
         '
         'menuitemTablas_MenuOtros
         '
         Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Alarmas})
         Me.menuitemTablas_MenuOtros.Name = "menuitemTablas_MenuOtros"
-        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuOtros.Text = "Otros"
         '
         'menuitemTablas_Cuarteles
         '
         Me.menuitemTablas_Cuarteles.Name = "menuitemTablas_Cuarteles"
-        Me.menuitemTablas_Cuarteles.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_Cuarteles.Size = New System.Drawing.Size(123, 22)
         Me.menuitemTablas_Cuarteles.Text = "Cuarteles"
         '
         'menuitemTablas_Alarmas
         '
         Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
-        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(123, 22)
         Me.menuitemTablas_Alarmas.Text = "Alarmas"
         '
         'buttonPersonas
