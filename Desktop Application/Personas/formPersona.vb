@@ -135,7 +135,7 @@
         buttonLicenciaConducirCategoria.Visible = mEditMode
         toolstripVehiculos.Enabled = Not mEditMode
 
-        ' Solapas grillas 1
+        ' Solapas grillas 2
         toolstripVacunas.Enabled = Not mEditMode
         toolstripLicencias.Enabled = Not mEditMode
         toolstripSanciones.Enabled = Not mEditMode

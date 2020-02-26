@@ -1,6 +1,6 @@
 ﻿Partial Public Class Persona
     Private Const RutaPrefijo As String = "RUTA "
-    Private Const RutaLeyendaKiloemtro As String = " Km. "
+    Private Const RutaLeyendaKilometro As String = " Km. "
 
     Private Const CallePrefijo As String = "CALLE "
     Private Const CalleLeyendaNumero As String = " Nº "
@@ -24,7 +24,7 @@
             If Not DomicilioParticularCalle1 Is Nothing Then
                 If Not DomicilioParticularNumero Is Nothing Then
                     If DomicilioParticularNumero.TrimStart.ToUpper.StartsWith(RutaPrefijo) Then
-                        DomicilioCompleto &= RutaLeyendaKiloemtro & DomicilioParticularNumero
+                        DomicilioCompleto &= RutaLeyendaKilometro & DomicilioParticularNumero
                     ElseIf DomicilioParticularNumero.TrimStart.ToUpper.StartsWith(CallePrefijo) Then
                         DomicilioCompleto &= CalleLeyendaNumero & DomicilioParticularNumero
                     Else
