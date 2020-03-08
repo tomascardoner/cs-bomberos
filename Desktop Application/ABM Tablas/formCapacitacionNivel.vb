@@ -57,6 +57,7 @@
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
+        checkboxSumaPuntos.Enabled = mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 
@@ -80,6 +81,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mCapacitacionNivelActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            checkboxSumaPuntos.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.SumaPuntos)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -107,6 +109,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mCapacitacionNivelActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .SumaPuntos = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxSumaPuntos.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)

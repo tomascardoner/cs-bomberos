@@ -25,6 +25,7 @@ Partial Class formCapacitacionNivel
         Dim labelEsActivo As System.Windows.Forms.Label
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelSumaPuntos As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -33,7 +34,7 @@ Partial Class formCapacitacionNivel
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDCapacitacionNivel = New System.Windows.Forms.Label()
@@ -44,9 +45,11 @@ Partial Class formCapacitacionNivel
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxSumaPuntos = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelSumaPuntos = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -82,7 +85,7 @@ Partial Class formCapacitacionNivel
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(59, 19)
+        Me.textboxNombre.Location = New System.Drawing.Point(84, 19)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(446, 20)
@@ -168,12 +171,14 @@ Partial Class formCapacitacionNivel
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxSumaPuntos)
+        Me.tabpageGeneral.Controls.Add(labelSumaPuntos)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(511, 189)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(552, 189)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -275,6 +280,24 @@ Partial Class formCapacitacionNivel
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'checkboxSumaPuntos
+        '
+        Me.checkboxSumaPuntos.AutoSize = True
+        Me.checkboxSumaPuntos.Location = New System.Drawing.Point(84, 51)
+        Me.checkboxSumaPuntos.Name = "checkboxSumaPuntos"
+        Me.checkboxSumaPuntos.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxSumaPuntos.TabIndex = 3
+        Me.checkboxSumaPuntos.UseVisualStyleBackColor = True
+        '
+        'labelSumaPuntos
+        '
+        labelSumaPuntos.AutoSize = True
+        labelSumaPuntos.Location = New System.Drawing.Point(6, 51)
+        labelSumaPuntos.Name = "labelSumaPuntos"
+        labelSumaPuntos.Size = New System.Drawing.Size(72, 13)
+        labelSumaPuntos.TabIndex = 2
+        labelSumaPuntos.Text = "Suma puntos:"
+        '
         'formCapacitacionNivel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -319,4 +342,5 @@ Partial Class formCapacitacionNivel
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents checkboxSumaPuntos As CheckBox
 End Class

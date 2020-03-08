@@ -124,6 +124,12 @@
                 Else
                     mlistCapacitacionNivelesFiltradaYOrdenada = mlistCapacitacionNivelesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
                 End If
+            Case columnSumaPuntos.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistCapacitacionNivelesFiltradaYOrdenada = mlistCapacitacionNivelesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.SumaPuntos).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                Else
+                    mlistCapacitacionNivelesFiltradaYOrdenada = mlistCapacitacionNivelesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.SumaPuntos).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                End If
             Case columnEsActivo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
                     mlistCapacitacionNivelesFiltradaYOrdenada = mlistCapacitacionNivelesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList

@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class CapacitacionNivel
     Public Property IDCapacitacionNivel As Byte
     Public Property Nombre As String
+    Public Property SumaPuntos As Boolean
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
