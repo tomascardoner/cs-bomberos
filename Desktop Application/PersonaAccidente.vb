@@ -12,7 +12,7 @@ Imports System.Collections.Generic
 
 Partial Public Class PersonaAccidente
     Public Property IDPersona As Integer
-    Public Property IDAccidente As Byte
+    Public Property IDAccidente As Short
     Public Property Fecha As Date
     Public Property Diagnostico As String
     Public Property LibroNumero As String
@@ -28,7 +28,7 @@ Partial Public Class PersonaAccidente
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property Persona As Persona
-    Public Overridable Property UsuarioCracion As Usuario
+    Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

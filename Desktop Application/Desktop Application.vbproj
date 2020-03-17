@@ -136,6 +136,9 @@
     <Compile Include="..\..\..\framework-vbnet\Constants.vb">
       <Link>Framework\Constants.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\ConstantsKeys.vb">
+      <Link>Framework\ConstantsKeys.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\Database.ADO.vb">
       <Link>Framework\Database.ADO.vb</Link>
     </Compile>
@@ -586,6 +589,12 @@
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
     </Compile>
     <Compile Include="Personas\formPersonaAltaBaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\formPersonaAccidente.Designer.vb">
+      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaAccidente.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\formPersonaBajaMotivo.designer.vb">
@@ -1132,6 +1141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaAltaBaja.resx">
       <DependentUpon>formPersonaAltaBaja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\formPersonaAccidente.resx">
+      <DependentUpon>formPersonaAccidente.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formPersonaBajaMotivo.resx">
       <DependentUpon>formPersonaBajaMotivo.vb</DependentUpon>

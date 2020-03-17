@@ -5361,7 +5361,7 @@
             <PropertyRef Name="IDAccidente" />
           </Key>
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
-          <Property Name="IDAccidente" Type="Byte" Nullable="false" />
+          <Property Name="IDAccidente" Type="Int16" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Diagnostico" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -5376,7 +5376,7 @@
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaAccidente" FromRole="PersonaAccidente" ToRole="Persona" />
-          <NavigationProperty Name="UsuarioCracion" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="PersonaAccidente" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Creacion" FromRole="PersonaAccidente" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaAccidente__Modificacion" FromRole="PersonaAccidente" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="PersonaAltaBaja">

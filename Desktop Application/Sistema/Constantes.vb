@@ -42,6 +42,16 @@
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
+
+    '//////////////
+    '    CAMPOS
+    '//////////////
+    Friend Const CAMPOS_NUMEROAFILIADO As String = "{NUMEROAFILIADO}"
+    Friend Const CAMPOS_SEXO_1CARACTER As String = "{SEXO1}"
+    Friend Const CAMPOS_FECHANACIMIENTO As String = "{FECHANACIMIENTO}"
+    Friend Const CAMPOS_NUMERODOCUMENTO As String = "{NUMERODOCUMENTO}"
+
+
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES
     '///////////////////////////////////

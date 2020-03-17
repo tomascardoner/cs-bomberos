@@ -122,6 +122,7 @@
         ' Solapas grillas 1
         toolstripFamiliares.Enabled = Not mEditMode
         toolstripAltasBajas.Enabled = Not mEditMode
+        toolstripAccidentes.Enabled = Not mEditMode
         toolstripAscensos.Enabled = Not mEditMode
 
         ' Horarios
@@ -171,6 +172,9 @@
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA, False) Then
             tabcontrolMain.HideTabPageByName(tabpageAltasBajas.Name)
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageAccidentes.Name)
+        End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO, False) Then
             tabcontrolMain.HideTabPageByName(tabpageAscensos.Name)
         End If
@@ -201,6 +205,7 @@
 
         DataGridSetAppearance(datagridviewFamiliares)
         DataGridSetAppearance(datagridviewAltasBajas)
+        DataGridSetAppearance(datagridviewAccidentes)
         DataGridSetAppearance(datagridviewAscensos)
         DataGridSetAppearance(datagridviewHorarioLaboral)
         DataGridSetAppearance(datagridviewVehiculos)
@@ -427,6 +432,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -454,12 +460,90 @@
         pictureboxFoto.Image = Nothing
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMatriculaNumero.GotFocus, textboxApellido.GotFocus, textboxNombre.GotFocus, textboxDocumentoNumero.GotFocus, textboxIOMANumeroAfiliado.GotFocus, textboxProfesion.GotFocus, textboxNacionalidad.GotFocus, textboxDomicilioParticularCalle1.GotFocus, textboxDomicilioParticularNumero.GotFocus, textboxDomicilioParticularPiso.GotFocus, textboxDomicilioParticularDepartamento.GotFocus, textboxDomicilioParticularCalle2.GotFocus, textboxDomicilioParticularCalle3.GotFocus, textboxDomicilioParticularCodigoPostal.GotFocus, textboxDomicilioLaboralCalle1.GotFocus, textboxDomicilioLaboralNumero.GotFocus, textboxDomicilioLaboralPiso.GotFocus, textboxDomicilioLaboralDepartamento.GotFocus, textboxDomicilioLaboralCalle2.GotFocus, textboxDomicilioLaboralCalle3.GotFocus, textboxDomicilioLaboralCodigoPostal.GotFocus, textboxHorarioLaboralObservaciones.GotFocus, textboxLicenciaConducirNumero.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxMatriculaNumero.GotFocus, textboxApellido.GotFocus, textboxNombre.GotFocus, textboxDocumentoNumero.GotFocus, textboxProfesion.GotFocus, textboxNacionalidad.GotFocus, textboxDomicilioParticularCalle1.GotFocus, textboxDomicilioParticularNumero.GotFocus, textboxDomicilioParticularPiso.GotFocus, textboxDomicilioParticularDepartamento.GotFocus, textboxDomicilioParticularCalle2.GotFocus, textboxDomicilioParticularCalle3.GotFocus, textboxDomicilioParticularCodigoPostal.GotFocus, textboxDomicilioLaboralCalle1.GotFocus, textboxDomicilioLaboralNumero.GotFocus, textboxDomicilioLaboralPiso.GotFocus, textboxDomicilioLaboralDepartamento.GotFocus, textboxDomicilioLaboralCalle2.GotFocus, textboxDomicilioLaboralCalle3.GotFocus, textboxDomicilioLaboralCodigoPostal.GotFocus, textboxHorarioLaboralObservaciones.GotFocus, textboxLicenciaConducirNumero.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
     Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxDocumentoNumero.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub IOMACertificacionAbrir(sender As Object, e As EventArgs) Handles buttonIOMACertificacionAbrir.Click
+        Dim direccion As String
+
+        direccion = CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_DIRECCION)
+        If direccion.Length > 0 Then
+            Try
+                Cursor = Cursors.AppStarting
+                Process.Start(direccion)
+            Catch ex As Exception
+            Finally
+                Cursor = Cursors.Default
+            End Try
+        End If
+    End Sub
+
+    Private Sub IOMACertificacionCompletar(sender As Object, e As EventArgs) Handles buttonIOMACertificacionCompletar.Click
+        Dim campos As String
+
+        campos = CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_CAMPOS)
+        If campos.Length > 0 Then
+            SendKeys.Send("%" & CardonerSistemas.ConstantsKeys.TAB)
+
+            campos = "%" & CardonerSistemas.ConstantsKeys.TAB & campos
+            campos = campos.Replace(Constantes.CAMPOS_NUMEROAFILIADO, textboxIOMANumeroAfiliado.Text)
+            campos = campos.Replace(Constantes.CAMPOS_SEXO_1CARACTER, CStr(IIf(comboboxGenero.SelectedIndex = 0, "", comboboxGenero.Text.Substring(0, 1))))
+            If datetimepickerFechaNacimiento.Checked Then
+                campos = campos.Replace(Constantes.CAMPOS_FECHANACIMIENTO, datetimepickerFechaNacimiento.Value.ToString("dd/MM/yyyy"))
+            End If
+            If Not comboboxDocumentoTipo.SelectedItem Is Nothing AndAlso CByte(comboboxDocumentoTipo.SelectedValue) > 0 Then
+                If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
+                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, maskedtextboxDocumentoNumero.Text)
+                Else
+                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, textboxDocumentoNumero.Text)
+                End If
+            End If
+            SendKeys.Send(campos)
+        End If
+    End Sub
+
+    Private Sub IOMAPadronAbrir(sender As Object, e As EventArgs) Handles buttonIOMAPadronAbrir.Click
+        Dim direccion As String
+
+        direccion = CS_Parameter_System.GetString(Parametros.IOMA_PADRON_DIRECCION)
+        If direccion.Length > 0 Then
+            Try
+                Cursor = Cursors.AppStarting
+                Process.Start(direccion)
+            Catch ex As Exception
+            Finally
+                Cursor = Cursors.Default
+            End Try
+        End If
+    End Sub
+
+    Private Sub IOMAPadronCompletar(sender As Object, e As EventArgs) Handles buttonIOMAPadronCompletar.Click
+        Dim campos As String
+
+        campos = CS_Parameter_System.GetString(Parametros.IOMA_PADRON_CAMPOS)
+        If campos.Length > 0 Then
+            SendKeys.Send("%" & CardonerSistemas.ConstantsKeys.TAB)
+
+            campos = "%" & CardonerSistemas.ConstantsKeys.TAB & campos
+            campos = campos.Replace(Constantes.CAMPOS_NUMEROAFILIADO, textboxIOMANumeroAfiliado.Text)
+            campos = campos.Replace(Constantes.CAMPOS_SEXO_1CARACTER, CStr(IIf(comboboxGenero.SelectedIndex = 0, "", comboboxGenero.Text.Substring(0, 1))))
+            If datetimepickerFechaNacimiento.Checked Then
+                campos = campos.Replace(Constantes.CAMPOS_FECHANACIMIENTO, datetimepickerFechaNacimiento.Value.ToString("dd/MM/yyyy"))
+            End If
+            If Not comboboxDocumentoTipo.SelectedItem Is Nothing AndAlso CByte(comboboxDocumentoTipo.SelectedValue) > 0 Then
+                If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
+                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, maskedtextboxDocumentoNumero.Text)
+                Else
+                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, textboxDocumentoNumero.Text)
+                End If
+            End If
+            SendKeys.Send(campos)
+        End If
     End Sub
 
     Private Sub TabControlChanged(sender As Object, e As EventArgs) Handles tabcontrolMain.SelectedIndexChanged
@@ -474,6 +558,11 @@
                     If tabpageAltasBajas.Tag Is Nothing Then
                         AltasBajas_RefreshData()
                         tabpageAltasBajas.Tag = "REFRESHED"
+                    End If
+                Case tabpageAccidentes.Name
+                    If tabpageAccidentes.Tag Is Nothing Then
+                        Accidentes_RefreshData()
+                        tabpageAccidentes.Tag = "REFRESHED"
                     End If
                 Case tabpageAscensos.Name
                     If tabpageAscensos.Tag Is Nothing Then
@@ -1027,6 +1116,122 @@
 
 #End Region
 
+#Region "Accidentes"
+
+    Friend Class Accidentes_GridRowData
+        Public Property IDAccidente As Short
+        Public Property Fecha As Date
+        Public Property Diagnostico As String
+        Public Property FechaAlta As Date?
+    End Class
+
+    Friend Sub Accidentes_RefreshData(Optional ByVal PositionIDAccidente As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listAccidentes As List(Of Accidentes_GridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewAccidentes.CurrentRow Is Nothing Then
+                PositionIDAccidente = 0
+            Else
+                PositionIDAccidente = CType(datagridviewAccidentes.CurrentRow.DataBoundItem, Accidentes_GridRowData).IDAccidente
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listAccidentes = (From pa In mdbContext.PersonaAccidente
+                              Where pa.IDPersona = mPersonaActual.IDPersona
+                              Order By pa.Fecha Descending
+                              Select New Accidentes_GridRowData With {.IDAccidente = pa.IDAccidente, .Fecha = pa.Fecha, .Diagnostico = pa.Diagnostico, .FechaAlta = pa.FechaAlta}).ToList
+
+            datagridviewAccidentes.AutoGenerateColumns = False
+            datagridviewAccidentes.DataSource = listAccidentes
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Accidentes.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDAccidente <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewAccidentes.Rows
+                If CType(CurrentRowChecked.DataBoundItem, Accidentes_GridRowData).IDAccidente = PositionIDAccidente Then
+                    datagridviewAccidentes.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub Accidentes_Agregar(sender As Object, e As EventArgs) Handles buttonAccidentes_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Accidentes_Editar(sender As Object, e As EventArgs) Handles buttonAccidentes_Editar.Click
+        If datagridviewAccidentes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Accidente para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAccidentes.SelectedRows(0).DataBoundItem, Accidentes_GridRowData).IDAccidente)
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Accidentes_Eliminar(sender As Object, e As EventArgs) Handles buttonAccidentes_Eliminar.Click
+        If datagridviewAccidentes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Accidente para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE_ELIMINAR) Then
+                Dim GridRowDataActual As Accidentes_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewAccidentes.SelectedRows(0).DataBoundItem, Accidentes_GridRowData)
+
+
+                Mensaje = String.Format("Se eliminará el Accidente seleccionado.{0}{0}Fecha: {1}{0}Diagnóstico: {2}{0}Fecha de alta: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.Diagnostico, IIf(GridRowDataActual.FechaAlta.HasValue, GridRowDataActual.FechaAlta, ""))
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaAccidenteEliminar As PersonaAccidente
+                    PersonaAccidenteEliminar = mdbContext.PersonaAccidente.Find(mPersonaActual.IDPersona, GridRowDataActual.IDAccidente)
+                    mdbContext.PersonaAccidente.Remove(PersonaAccidenteEliminar)
+                    mdbContext.SaveChanges()
+                    PersonaAccidenteEliminar = Nothing
+
+                    Accidentes_RefreshData()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Accidentes_Ver(sender As Object, e As EventArgs) Handles datagridviewAccidentes.DoubleClick
+        If datagridviewAccidentes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Accidente para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaAccidente.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAccidentes.SelectedRows(0).DataBoundItem, Accidentes_GridRowData).IDAccidente)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
 #Region "Ascensos"
     Friend Class Ascensos_GridRowData
         Public Property IDAscenso As Byte
@@ -1081,7 +1286,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
             MostrarUltimoCargoJerarquia()
 
             Me.Cursor = Cursors.Default
@@ -1095,7 +1300,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+                formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
                 MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
@@ -1138,7 +1343,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+            formPersonaAccidente.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
 
             Me.Cursor = Cursors.Default
         End If
