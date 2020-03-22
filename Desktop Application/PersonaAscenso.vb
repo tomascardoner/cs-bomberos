@@ -19,6 +19,7 @@ Partial Public Class PersonaAscenso
     Public Property LibroNumero As String
     Public Property FolioNumero As String
     Public Property ActaNumero As String
+    Public Property OrdenGeneralNumero As String
     Public Property ResolucionNumero As String
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short

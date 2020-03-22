@@ -18,6 +18,7 @@ Partial Public Class Inventario
     Public Property IDElemento As Integer
     Public Property DescripcionPropia As String
     Public Property IDModoAdquisicion As Nullable(Of Byte)
+    Public Property FechaAdquicision As Nullable(Of Date)
     Public Property IDUbicacion As Nullable(Of Short)
     Public Property IDSubUbicacion As Nullable(Of Short)
     Public Property EsActivo As Boolean

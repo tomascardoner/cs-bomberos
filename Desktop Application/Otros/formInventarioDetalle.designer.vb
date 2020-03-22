@@ -31,6 +31,7 @@ Partial Class formInventarioDetalle
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelFechaBaja As System.Windows.Forms.Label
+        Dim labelFechaAdquisicion As System.Windows.Forms.Label
         Me.labelElemento = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
@@ -46,7 +47,7 @@ Partial Class formInventarioDetalle
         Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
         Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
         Me.comboboxElemento = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.labelDescripcionPropia = New System.Windows.Forms.Label()
         Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
@@ -61,6 +62,7 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -70,6 +72,7 @@ Partial Class formInventarioDetalle
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelFechaBaja = New System.Windows.Forms.Label()
+        labelFechaAdquisicion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -88,10 +91,10 @@ Partial Class formInventarioDetalle
         'labelSubUbicacion
         '
         labelSubUbicacion.AutoSize = True
-        labelSubUbicacion.Location = New System.Drawing.Point(6, 228)
+        labelSubUbicacion.Location = New System.Drawing.Point(6, 245)
         labelSubUbicacion.Name = "labelSubUbicacion"
         labelSubUbicacion.Size = New System.Drawing.Size(80, 13)
-        labelSubUbicacion.TabIndex = 15
+        labelSubUbicacion.TabIndex = 17
         labelSubUbicacion.Text = "Sub-Ubicación:"
         '
         'labelArea
@@ -106,7 +109,7 @@ Partial Class formInventarioDetalle
         'labelModoAdquisicion
         '
         labelModoAdquisicion.AutoSize = True
-        labelModoAdquisicion.Location = New System.Drawing.Point(6, 158)
+        labelModoAdquisicion.Location = New System.Drawing.Point(6, 151)
         labelModoAdquisicion.Name = "labelModoAdquisicion"
         labelModoAdquisicion.Size = New System.Drawing.Size(109, 13)
         labelModoAdquisicion.TabIndex = 11
@@ -115,10 +118,10 @@ Partial Class formInventarioDetalle
         'labelUbicacion
         '
         labelUbicacion.AutoSize = True
-        labelUbicacion.Location = New System.Drawing.Point(6, 201)
+        labelUbicacion.Location = New System.Drawing.Point(6, 218)
         labelUbicacion.Name = "labelUbicacion"
         labelUbicacion.Size = New System.Drawing.Size(58, 13)
-        labelUbicacion.TabIndex = 13
+        labelUbicacion.TabIndex = 15
         labelUbicacion.Text = "Ubicación:"
         '
         'labelEsActivo
@@ -219,7 +222,7 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(121, 6)
+        Me.comboboxCuartel.Location = New System.Drawing.Point(124, 6)
         Me.comboboxCuartel.Name = "comboboxCuartel"
         Me.comboboxCuartel.Size = New System.Drawing.Size(267, 21)
         Me.comboboxCuartel.TabIndex = 1
@@ -228,23 +231,23 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxSubUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxSubUbicacion.FormattingEnabled = True
-        Me.comboboxSubUbicacion.Location = New System.Drawing.Point(121, 225)
+        Me.comboboxSubUbicacion.Location = New System.Drawing.Point(124, 242)
         Me.comboboxSubUbicacion.Name = "comboboxSubUbicacion"
         Me.comboboxSubUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSubUbicacion.TabIndex = 16
+        Me.comboboxSubUbicacion.TabIndex = 18
         '
         'comboboxArea
         '
         Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxArea.FormattingEnabled = True
-        Me.comboboxArea.Location = New System.Drawing.Point(121, 33)
+        Me.comboboxArea.Location = New System.Drawing.Point(124, 33)
         Me.comboboxArea.Name = "comboboxArea"
         Me.comboboxArea.Size = New System.Drawing.Size(267, 21)
         Me.comboboxArea.TabIndex = 3
         '
         'textboxCodigo
         '
-        Me.textboxCodigo.Location = New System.Drawing.Point(121, 60)
+        Me.textboxCodigo.Location = New System.Drawing.Point(124, 60)
         Me.textboxCodigo.MaxLength = 5
         Me.textboxCodigo.Name = "textboxCodigo"
         Me.textboxCodigo.Size = New System.Drawing.Size(74, 20)
@@ -263,7 +266,7 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxModoAdquisicion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxModoAdquisicion.FormattingEnabled = True
-        Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(121, 155)
+        Me.comboboxModoAdquisicion.Location = New System.Drawing.Point(124, 148)
         Me.comboboxModoAdquisicion.Name = "comboboxModoAdquisicion"
         Me.comboboxModoAdquisicion.Size = New System.Drawing.Size(267, 21)
         Me.comboboxModoAdquisicion.TabIndex = 12
@@ -272,14 +275,14 @@ Partial Class formInventarioDetalle
         '
         Me.comboboxUbicacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxUbicacion.FormattingEnabled = True
-        Me.comboboxUbicacion.Location = New System.Drawing.Point(121, 198)
+        Me.comboboxUbicacion.Location = New System.Drawing.Point(124, 215)
         Me.comboboxUbicacion.Name = "comboboxUbicacion"
         Me.comboboxUbicacion.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxUbicacion.TabIndex = 14
+        Me.comboboxUbicacion.TabIndex = 16
         '
         'buttonCodigoSiguiente
         '
-        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(201, 60)
+        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(204, 60)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
         Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 20)
         Me.buttonCodigoSiguiente.TabIndex = 6
@@ -291,24 +294,29 @@ Partial Class formInventarioDetalle
         Me.comboboxElemento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.comboboxElemento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comboboxElemento.FormattingEnabled = True
-        Me.comboboxElemento.Location = New System.Drawing.Point(121, 86)
+        Me.comboboxElemento.Location = New System.Drawing.Point(124, 86)
         Me.comboboxElemento.Name = "comboboxElemento"
-        Me.comboboxElemento.Size = New System.Drawing.Size(382, 21)
+        Me.comboboxElemento.Size = New System.Drawing.Size(379, 21)
         Me.comboboxElemento.TabIndex = 8
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(517, 289)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(517, 303)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaAdquisicion)
+        Me.tabpageGeneral.Controls.Add(labelFechaAdquisicion)
         Me.tabpageGeneral.Controls.Add(Me.labelDescripcionPropia)
         Me.tabpageGeneral.Controls.Add(Me.textboxDescripcionPropia)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
@@ -329,7 +337,7 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(509, 260)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(509, 274)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -345,10 +353,10 @@ Partial Class formInventarioDetalle
         '
         'textboxDescripcionPropia
         '
-        Me.textboxDescripcionPropia.Location = New System.Drawing.Point(121, 113)
+        Me.textboxDescripcionPropia.Location = New System.Drawing.Point(124, 113)
         Me.textboxDescripcionPropia.MaxLength = 100
         Me.textboxDescripcionPropia.Name = "textboxDescripcionPropia"
-        Me.textboxDescripcionPropia.Size = New System.Drawing.Size(382, 20)
+        Me.textboxDescripcionPropia.Size = New System.Drawing.Size(379, 20)
         Me.textboxDescripcionPropia.TabIndex = 10
         '
         'tabpageNotasAuditoria
@@ -470,11 +478,31 @@ Partial Class formInventarioDetalle
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'labelFechaAdquisicion
+        '
+        labelFechaAdquisicion.AutoSize = True
+        labelFechaAdquisicion.Location = New System.Drawing.Point(6, 181)
+        labelFechaAdquisicion.Name = "labelFechaAdquisicion"
+        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
+        labelFechaAdquisicion.TabIndex = 13
+        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
+        '
+        'datetimepickerFechaAdquisicion
+        '
+        Me.datetimepickerFechaAdquisicion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaAdquisicion.Location = New System.Drawing.Point(124, 177)
+        Me.datetimepickerFechaAdquisicion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaAdquisicion.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaAdquisicion.Name = "datetimepickerFechaAdquisicion"
+        Me.datetimepickerFechaAdquisicion.ShowCheckBox = True
+        Me.datetimepickerFechaAdquisicion.Size = New System.Drawing.Size(138, 20)
+        Me.datetimepickerFechaAdquisicion.TabIndex = 14
+        '
         'formInventarioDetalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 344)
+        Me.ClientSize = New System.Drawing.Size(537, 358)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -525,4 +553,5 @@ Partial Class formInventarioDetalle
     Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents labelDescripcionPropia As System.Windows.Forms.Label
     Friend WithEvents textboxDescripcionPropia As System.Windows.Forms.TextBox
+    Friend WithEvents datetimepickerFechaAdquisicion As DateTimePicker
 End Class

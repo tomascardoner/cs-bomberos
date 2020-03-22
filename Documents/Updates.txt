@@ -1,3 +1,19 @@
+2020-03-20
+
+	- Tabla Reporte
+		- Agregar el registro:
+			40	1	Listado con cumpleaños	Personas-ListadoCumpleaños.rpt	NULL	NULL	NULL	NULL	True	NULL
+			41	4	Ficha personal	Personas-IOMAFicha.rpt	NULL	NULL	NULL	NULL	True	NULL
+	- Tabla ReporteParametro
+		- Copiar parámetros desde el reporte 6 al 40
+		- Copiar parámetros desde el reporte 1 al 41
+	- Copiar archivos de reportes:
+		- Personas-Cursos.rpt
+		- Personas-IOMAFicha.rpt
+		- Personas-ListadoCumpleaños.rpt
+		- Inventario-ModoAdquisicion.rpt
+
+
 2019-11-20
 	- Tabla Reporte
 		- Agregar el registro:

@@ -5,6 +5,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
         CargarListaReportes()
 
@@ -15,30 +16,47 @@
     Private Sub formReportes_Unload() Handles Me.FormClosed
         mdbContext.Dispose()
     End Sub
+
 #End Region
 
 #Region "Reportes"
 
     Private Sub CargarListaReportes()
-        Dim ReporteGrupoNode As TreeNode
-        Dim ReporteNode As TreeNode
+        Dim ReporteGrupoNodo As TreeNode
+        Dim ReporteGrupoNodoPrimero As TreeNode = Nothing
+        Dim ReporteNodo As TreeNode
+        Dim ReporteNodoPrimero As TreeNode = Nothing
 
         Try
             treeviewReportes.BeginUpdate()
             For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
                 ' Agrego el Grupo de Reportes
-                ReporteGrupoNode = New TreeNode(ReporteGrupoActual.Nombre)
-                ReporteGrupoNode.Tag = ReporteGrupoActual
-                treeviewReportes.Nodes.Add(ReporteGrupoNode)
+                ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre)
+                ReporteGrupoNodo.Tag = ReporteGrupoActual
+                treeviewReportes.Nodes.Add(ReporteGrupoNodo)
+
+                If ReporteGrupoNodoPrimero Is Nothing Then
+                    ReporteGrupoNodoPrimero = ReporteGrupoNodo
+                End If
 
                 For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
                     ' Agrego el Reporte
-                    ReporteNode = New TreeNode(ReporteActual.Nombre)
-                    ReporteNode.Tag = ReporteActual
-                    ReporteGrupoNode.Nodes.Add(ReporteNode)
+                    ReporteNodo = New TreeNode(ReporteActual.Nombre)
+                    ReporteNodo.Tag = ReporteActual
+                    ReporteGrupoNodo.Nodes.Add(ReporteNodo)
+
+                    If ReporteNodoPrimero Is Nothing Then
+                        ReporteNodoPrimero = ReporteNodo
+                    End If
                 Next
             Next
             treeviewReportes.ExpandAll()
+            If Not ReporteGrupoNodoPrimero Is Nothing Then
+                treeviewReportes.TopNode = ReporteGrupoNodoPrimero
+            End If
+            If Not ReporteNodoPrimero Is Nothing Then
+                treeviewReportes.SelectedNode = ReporteNodoPrimero
+            End If
             treeviewReportes.EndUpdate()
 
         Catch ex As Exception
@@ -63,6 +81,7 @@
 #End Region
 
 #Region "Parámetros"
+
     Private Sub CargarListaParametros()
         Dim ReporteActual As Reporte
         Dim ParametroListViewItem As ListViewItem
@@ -345,9 +364,11 @@
         panelReportes.Show()
         panelParametros.Hide()
     End Sub
+
 #End Region
 
 #Region "Mostrar Reporte"
+
     Private Sub MostrarReporte(sender As Object, e As EventArgs) Handles buttonImprimir.Click, buttonPrevisualizar.Click
         Dim ReporteActual As Reporte
 
@@ -373,6 +394,7 @@
 
         Me.Cursor = Cursors.Default
     End Sub
+
 #End Region
 
 End Class

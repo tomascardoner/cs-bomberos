@@ -1233,6 +1233,7 @@
 #End Region
 
 #Region "Ascensos"
+
     Friend Class Ascensos_GridRowData
         Public Property IDAscenso As Byte
         Public Property Fecha As Date
@@ -1286,7 +1287,7 @@
         If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+            formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
             MostrarUltimoCargoJerarquia()
 
             Me.Cursor = Cursors.Default
@@ -1300,7 +1301,7 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                formPersonaAccidente.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+                formPersonaAscenso.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
                 MostrarUltimoCargoJerarquia()
 
                 Me.Cursor = Cursors.Default
@@ -1343,7 +1344,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAccidente.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
 
             Me.Cursor = Cursors.Default
         End If

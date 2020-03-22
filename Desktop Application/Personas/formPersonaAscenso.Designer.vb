@@ -44,7 +44,7 @@ Partial Class formPersonaAscenso
         Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
         Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
         Me.textboxActaNumero = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
@@ -54,6 +54,8 @@ Partial Class formPersonaAscenso
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.labelOrdenGeneralNumero = New System.Windows.Forms.Label()
+        Me.textboxOrdenGeneralNumero = New System.Windows.Forms.TextBox()
         labelCargo = New System.Windows.Forms.Label()
         labelCargoJerarquia = New System.Windows.Forms.Label()
         labelFolioNumero = New System.Windows.Forms.Label()
@@ -89,11 +91,11 @@ Partial Class formPersonaAscenso
         'labelFolioNumero
         '
         labelFolioNumero.AutoSize = True
-        labelFolioNumero.Location = New System.Drawing.Point(173, 114)
+        labelFolioNumero.Location = New System.Drawing.Point(186, 114)
         labelFolioNumero.Name = "labelFolioNumero"
         labelFolioNumero.Size = New System.Drawing.Size(47, 13)
         labelFolioNumero.TabIndex = 8
-        labelFolioNumero.Text = "Folio N°:"
+        labelFolioNumero.Text = "Folio Nº:"
         '
         'labelLibroNumero
         '
@@ -102,16 +104,16 @@ Partial Class formPersonaAscenso
         labelLibroNumero.Name = "labelLibroNumero"
         labelLibroNumero.Size = New System.Drawing.Size(48, 13)
         labelLibroNumero.TabIndex = 6
-        labelLibroNumero.Text = "Libro N°:"
+        labelLibroNumero.Text = "Libro Nº:"
         '
         'labelActaNumero
         '
         labelActaNumero.AutoSize = True
-        labelActaNumero.Location = New System.Drawing.Point(306, 114)
+        labelActaNumero.Location = New System.Drawing.Point(319, 114)
         labelActaNumero.Name = "labelActaNumero"
         labelActaNumero.Size = New System.Drawing.Size(47, 13)
         labelActaNumero.TabIndex = 10
-        labelActaNumero.Text = "Acta N°:"
+        labelActaNumero.Text = "Acta Nº:"
         '
         'labelModificacion
         '
@@ -134,11 +136,11 @@ Partial Class formPersonaAscenso
         'labelResolucionNumero
         '
         labelResolucionNumero.AutoSize = True
-        labelResolucionNumero.Location = New System.Drawing.Point(6, 140)
+        labelResolucionNumero.Location = New System.Drawing.Point(186, 140)
         labelResolucionNumero.Name = "labelResolucionNumero"
         labelResolucionNumero.Size = New System.Drawing.Size(78, 13)
-        labelResolucionNumero.TabIndex = 12
-        labelResolucionNumero.Text = "Resolución N°:"
+        labelResolucionNumero.TabIndex = 14
+        labelResolucionNumero.Text = "Resolución Nº:"
         '
         'buttonGuardar
         '
@@ -192,7 +194,7 @@ Partial Class formPersonaAscenso
         'datetimepickerFecha
         '
         Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(93, 13)
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(106, 12)
         Me.datetimepickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
@@ -231,7 +233,7 @@ Partial Class formPersonaAscenso
         '
         Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCargo.FormattingEnabled = True
-        Me.comboboxCargo.Location = New System.Drawing.Point(93, 46)
+        Me.comboboxCargo.Location = New System.Drawing.Point(106, 46)
         Me.comboboxCargo.Name = "comboboxCargo"
         Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargo.TabIndex = 3
@@ -240,14 +242,14 @@ Partial Class formPersonaAscenso
         '
         Me.comboboxCargoJerarquia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCargoJerarquia.FormattingEnabled = True
-        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(93, 73)
+        Me.comboboxCargoJerarquia.Location = New System.Drawing.Point(106, 73)
         Me.comboboxCargoJerarquia.Name = "comboboxCargoJerarquia"
         Me.comboboxCargoJerarquia.Size = New System.Drawing.Size(340, 21)
         Me.comboboxCargoJerarquia.TabIndex = 5
         '
         'textboxFolioNumero
         '
-        Me.textboxFolioNumero.Location = New System.Drawing.Point(226, 111)
+        Me.textboxFolioNumero.Location = New System.Drawing.Point(239, 111)
         Me.textboxFolioNumero.MaxLength = 10
         Me.textboxFolioNumero.Name = "textboxFolioNumero"
         Me.textboxFolioNumero.Size = New System.Drawing.Size(74, 20)
@@ -255,7 +257,7 @@ Partial Class formPersonaAscenso
         '
         'textboxLibroNumero
         '
-        Me.textboxLibroNumero.Location = New System.Drawing.Point(93, 111)
+        Me.textboxLibroNumero.Location = New System.Drawing.Point(106, 111)
         Me.textboxLibroNumero.MaxLength = 10
         Me.textboxLibroNumero.Name = "textboxLibroNumero"
         Me.textboxLibroNumero.Size = New System.Drawing.Size(74, 20)
@@ -263,7 +265,7 @@ Partial Class formPersonaAscenso
         '
         'textboxActaNumero
         '
-        Me.textboxActaNumero.Location = New System.Drawing.Point(359, 111)
+        Me.textboxActaNumero.Location = New System.Drawing.Point(372, 111)
         Me.textboxActaNumero.MaxLength = 10
         Me.textboxActaNumero.Name = "textboxActaNumero"
         Me.textboxActaNumero.Size = New System.Drawing.Size(74, 20)
@@ -282,6 +284,8 @@ Partial Class formPersonaAscenso
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.labelOrdenGeneralNumero)
+        Me.tabpageGeneral.Controls.Add(Me.textboxOrdenGeneralNumero)
         Me.tabpageGeneral.Controls.Add(labelResolucionNumero)
         Me.tabpageGeneral.Controls.Add(Me.textboxResolucionNumero)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
@@ -306,11 +310,11 @@ Partial Class formPersonaAscenso
         '
         'textboxResolucionNumero
         '
-        Me.textboxResolucionNumero.Location = New System.Drawing.Point(93, 137)
+        Me.textboxResolucionNumero.Location = New System.Drawing.Point(270, 137)
         Me.textboxResolucionNumero.MaxLength = 15
         Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
         Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
-        Me.textboxResolucionNumero.TabIndex = 13
+        Me.textboxResolucionNumero.TabIndex = 15
         '
         'tabpageNotasAuditoria
         '
@@ -388,6 +392,23 @@ Partial Class formPersonaAscenso
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
+        'labelOrdenGeneralNumero
+        '
+        Me.labelOrdenGeneralNumero.AutoSize = True
+        Me.labelOrdenGeneralNumero.Location = New System.Drawing.Point(6, 140)
+        Me.labelOrdenGeneralNumero.Name = "labelOrdenGeneralNumero"
+        Me.labelOrdenGeneralNumero.Size = New System.Drawing.Size(94, 13)
+        Me.labelOrdenGeneralNumero.TabIndex = 12
+        Me.labelOrdenGeneralNumero.Text = "Orden General Nº:"
+        '
+        'textboxOrdenGeneralNumero
+        '
+        Me.textboxOrdenGeneralNumero.Location = New System.Drawing.Point(106, 137)
+        Me.textboxOrdenGeneralNumero.MaxLength = 10
+        Me.textboxOrdenGeneralNumero.Name = "textboxOrdenGeneralNumero"
+        Me.textboxOrdenGeneralNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxOrdenGeneralNumero.TabIndex = 13
+        '
         'formPersonaAscenso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -437,4 +458,6 @@ Partial Class formPersonaAscenso
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxResolucionNumero As System.Windows.Forms.TextBox
+    Friend WithEvents labelOrdenGeneralNumero As Label
+    Friend WithEvents textboxOrdenGeneralNumero As TextBox
 End Class

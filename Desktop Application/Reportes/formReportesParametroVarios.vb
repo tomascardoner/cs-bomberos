@@ -53,9 +53,9 @@
             Case Constantes.REPORTE_PARAMETRO_TIPO_MONEY
                 mParametroActual.Valor = currencytextboxValor.DecimalValue
             Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
-                mParametroActual.Valor = datetimepickerValorFecha.Value.ToShortDateString
+                mParametroActual.Valor = datetimepickerValorFecha.Value
             Case Constantes.REPORTE_PARAMETRO_TIPO_TIME
-                mParametroActual.Valor = datetimepickerValorHora.Value.ToShortTimeString
+                mParametroActual.Valor = datetimepickerValorHora.Value
             Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR
                 If comboboxValor.SelectedIndex = -1 Then
                     MsgBox("Debe seleccionar un valor.", MsgBoxStyle.Information, My.Application.Info.Title)

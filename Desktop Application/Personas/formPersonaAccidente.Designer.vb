@@ -44,6 +44,11 @@ Partial Class formPersonaAccidente
         Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.textboxDisminucionFisica = New System.Windows.Forms.TextBox()
+        Me.datetimepickerFechaAlta = New System.Windows.Forms.DateTimePicker()
+        Me.labelFechaAlta = New System.Windows.Forms.Label()
+        Me.textboxCapacidad = New System.Windows.Forms.TextBox()
+        Me.textboxDiagnostico = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDAccidente = New System.Windows.Forms.Label()
         Me.textboxIDAccidente = New System.Windows.Forms.TextBox()
@@ -51,11 +56,6 @@ Partial Class formPersonaAccidente
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxDiagnostico = New System.Windows.Forms.TextBox()
-        Me.textboxCapacidad = New System.Windows.Forms.TextBox()
-        Me.datetimepickerFechaAlta = New System.Windows.Forms.DateTimePicker()
-        Me.labelFechaAlta = New System.Windows.Forms.Label()
-        Me.textboxDisminucionFisica = New System.Windows.Forms.TextBox()
         labelDiagnostico = New System.Windows.Forms.Label()
         labelFolioNumero = New System.Windows.Forms.Label()
         labelLibroNumero = New System.Windows.Forms.Label()
@@ -86,7 +86,7 @@ Partial Class formPersonaAccidente
         labelFolioNumero.Name = "labelFolioNumero"
         labelFolioNumero.Size = New System.Drawing.Size(47, 13)
         labelFolioNumero.TabIndex = 6
-        labelFolioNumero.Text = "Folio N°:"
+        labelFolioNumero.Text = "Folio Nº:"
         '
         'labelLibroNumero
         '
@@ -95,7 +95,7 @@ Partial Class formPersonaAccidente
         labelLibroNumero.Name = "labelLibroNumero"
         labelLibroNumero.Size = New System.Drawing.Size(48, 13)
         labelLibroNumero.TabIndex = 4
-        labelLibroNumero.Text = "Libro N°:"
+        labelLibroNumero.Text = "Libro Nº:"
         '
         'labelActaNumero
         '
@@ -104,7 +104,7 @@ Partial Class formPersonaAccidente
         labelActaNumero.Name = "labelActaNumero"
         labelActaNumero.Size = New System.Drawing.Size(47, 13)
         labelActaNumero.TabIndex = 8
-        labelActaNumero.Text = "Acta N°:"
+        labelActaNumero.Text = "Acta Nº:"
         '
         'labelModificacion
         '
@@ -132,6 +132,15 @@ Partial Class formPersonaAccidente
         labelCapacidad.Size = New System.Drawing.Size(61, 13)
         labelCapacidad.TabIndex = 12
         labelCapacidad.Text = "Capacidad:"
+        '
+        'Label1
+        '
+        Label1.AutoSize = True
+        Label1.Location = New System.Drawing.Point(6, 231)
+        Label1.Name = "Label1"
+        Label1.Size = New System.Drawing.Size(96, 13)
+        Label1.TabIndex = 14
+        Label1.Text = "Dismunición física:"
         '
         'buttonGuardar
         '
@@ -281,6 +290,56 @@ Partial Class formPersonaAccidente
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'textboxDisminucionFisica
+        '
+        Me.textboxDisminucionFisica.Location = New System.Drawing.Point(108, 228)
+        Me.textboxDisminucionFisica.MaxLength = 500
+        Me.textboxDisminucionFisica.Multiline = True
+        Me.textboxDisminucionFisica.Name = "textboxDisminucionFisica"
+        Me.textboxDisminucionFisica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxDisminucionFisica.Size = New System.Drawing.Size(395, 59)
+        Me.textboxDisminucionFisica.TabIndex = 15
+        '
+        'datetimepickerFechaAlta
+        '
+        Me.datetimepickerFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaAlta.Location = New System.Drawing.Point(108, 137)
+        Me.datetimepickerFechaAlta.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaAlta.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaAlta.Name = "datetimepickerFechaAlta"
+        Me.datetimepickerFechaAlta.ShowCheckBox = True
+        Me.datetimepickerFechaAlta.Size = New System.Drawing.Size(134, 20)
+        Me.datetimepickerFechaAlta.TabIndex = 11
+        '
+        'labelFechaAlta
+        '
+        Me.labelFechaAlta.AutoSize = True
+        Me.labelFechaAlta.Location = New System.Drawing.Point(6, 140)
+        Me.labelFechaAlta.Name = "labelFechaAlta"
+        Me.labelFechaAlta.Size = New System.Drawing.Size(75, 13)
+        Me.labelFechaAlta.TabIndex = 10
+        Me.labelFechaAlta.Text = "Fecha de alta:"
+        '
+        'textboxCapacidad
+        '
+        Me.textboxCapacidad.Location = New System.Drawing.Point(108, 163)
+        Me.textboxCapacidad.MaxLength = 500
+        Me.textboxCapacidad.Multiline = True
+        Me.textboxCapacidad.Name = "textboxCapacidad"
+        Me.textboxCapacidad.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxCapacidad.Size = New System.Drawing.Size(395, 59)
+        Me.textboxCapacidad.TabIndex = 13
+        '
+        'textboxDiagnostico
+        '
+        Me.textboxDiagnostico.Location = New System.Drawing.Point(108, 39)
+        Me.textboxDiagnostico.MaxLength = 500
+        Me.textboxDiagnostico.Multiline = True
+        Me.textboxDiagnostico.Name = "textboxDiagnostico"
+        Me.textboxDiagnostico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxDiagnostico.Size = New System.Drawing.Size(395, 59)
+        Me.textboxDiagnostico.TabIndex = 3
+        '
         'tabpageNotasAuditoria
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDAccidente)
@@ -356,65 +415,6 @@ Partial Class formPersonaAccidente
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
-        '
-        'textboxDiagnostico
-        '
-        Me.textboxDiagnostico.Location = New System.Drawing.Point(108, 39)
-        Me.textboxDiagnostico.MaxLength = 500
-        Me.textboxDiagnostico.Multiline = True
-        Me.textboxDiagnostico.Name = "textboxDiagnostico"
-        Me.textboxDiagnostico.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDiagnostico.Size = New System.Drawing.Size(395, 59)
-        Me.textboxDiagnostico.TabIndex = 3
-        '
-        'textboxCapacidad
-        '
-        Me.textboxCapacidad.Location = New System.Drawing.Point(108, 163)
-        Me.textboxCapacidad.MaxLength = 500
-        Me.textboxCapacidad.Multiline = True
-        Me.textboxCapacidad.Name = "textboxCapacidad"
-        Me.textboxCapacidad.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxCapacidad.Size = New System.Drawing.Size(395, 59)
-        Me.textboxCapacidad.TabIndex = 13
-        '
-        'datetimepickerFechaAlta
-        '
-        Me.datetimepickerFechaAlta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaAlta.Location = New System.Drawing.Point(108, 137)
-        Me.datetimepickerFechaAlta.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaAlta.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaAlta.Name = "datetimepickerFechaAlta"
-        Me.datetimepickerFechaAlta.ShowCheckBox = True
-        Me.datetimepickerFechaAlta.Size = New System.Drawing.Size(134, 20)
-        Me.datetimepickerFechaAlta.TabIndex = 11
-        '
-        'labelFechaAlta
-        '
-        Me.labelFechaAlta.AutoSize = True
-        Me.labelFechaAlta.Location = New System.Drawing.Point(6, 140)
-        Me.labelFechaAlta.Name = "labelFechaAlta"
-        Me.labelFechaAlta.Size = New System.Drawing.Size(75, 13)
-        Me.labelFechaAlta.TabIndex = 10
-        Me.labelFechaAlta.Text = "Fecha de alta:"
-        '
-        'textboxDisminucionFisica
-        '
-        Me.textboxDisminucionFisica.Location = New System.Drawing.Point(108, 228)
-        Me.textboxDisminucionFisica.MaxLength = 500
-        Me.textboxDisminucionFisica.Multiline = True
-        Me.textboxDisminucionFisica.Name = "textboxDisminucionFisica"
-        Me.textboxDisminucionFisica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDisminucionFisica.Size = New System.Drawing.Size(395, 59)
-        Me.textboxDisminucionFisica.TabIndex = 15
-        '
-        'Label1
-        '
-        Label1.AutoSize = True
-        Label1.Location = New System.Drawing.Point(6, 231)
-        Label1.Name = "Label1"
-        Label1.Size = New System.Drawing.Size(96, 13)
-        Label1.TabIndex = 14
-        Label1.Text = "Dismunición física:"
         '
         'formPersonaAccidente
         '

@@ -1,6 +1,7 @@
 ﻿Public Class formInventarioDetalle
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mInventarioActual As Inventario
     Private mIDCuartel As Byte
@@ -8,9 +9,11 @@
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDInventario As Integer)
         mIsLoading = True
         mEditMode = EditMode
@@ -79,6 +82,7 @@
         comboboxElemento.Enabled = mEditMode
         textboxDescripcionPropia.ReadOnly = Not mEditMode
         comboboxModoAdquisicion.Enabled = mEditMode
+        datetimepickerFechaAdquisicion.Enabled = mEditMode
         comboboxUbicacion.Enabled = mEditMode
         comboboxSubUbicacion.Enabled = mEditMode
 
@@ -107,9 +111,11 @@
         mInventarioActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mInventarioActual
             If mIsNew Then
@@ -122,6 +128,7 @@
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxElemento, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDElemento)
             textboxDescripcionPropia.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DescripcionPropia)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxModoAdquisicion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
+            datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquicision, datetimepickerFechaAdquisicion)
 
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxUbicacion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSubUbicacion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
@@ -162,6 +169,7 @@
             .IDElemento = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxElemento.SelectedValue).Value
             .DescripcionPropia = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcionPropia.Text)
             .IDModoAdquisicion = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxModoAdquisicion.SelectedValue)
+            .FechaAdquicision = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaAdquisicion.Value, datetimepickerFechaAdquisicion.Checked)
 
             .IDUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxUbicacion.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .IDSubUbicacion = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxSubUbicacion.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
@@ -175,9 +183,11 @@
             End If
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -240,9 +250,11 @@
     Private Sub checkboxEsActivo_Checked() Handles checkboxEsActivo.CheckedChanged
         datetimepickerFechaBaja.Enabled = (mEditMode And Not checkboxEsActivo.Checked)
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.INVENTARIO_EDITAR) Then
             mEditMode = True
@@ -344,6 +356,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

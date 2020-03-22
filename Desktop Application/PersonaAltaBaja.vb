@@ -17,10 +17,14 @@ Partial Public Class PersonaAltaBaja
     Public Property AltaLibroNumero As String
     Public Property AltaFolioNumero As String
     Public Property AltaActaNumero As String
+    Public Property AltaOrdenGeneralNumero As String
+    Public Property AltaResolucionNumero As String
     Public Property BajaFecha As Nullable(Of Date)
     Public Property BajaLibroNumero As String
     Public Property BajaFolioNumero As String
     Public Property BajaActaNumero As String
+    Public Property BajaOrdenGeneralNumero As String
+    Public Property BajaResolucionNumero As String
     Public Property IDPersonaBajaMotivo As Nullable(Of Byte)
     Public Property BajaUnidadDestino As String
     Public Property Notas As String

@@ -1,3 +1,17 @@
+20/03/2020
+	- Se agregó la solapa de accidentes de personas
+	- Se agregó el reporte: Listado de persona por fecha de nacimiento (para cumpleaños)
+	- Reporte de Cursos, se le agregaron los campos Nivel, Días y Horas
+	- Tabla de Niveles de capacitación: se agregó un campo para indicar si suma puntos
+	- Altas y bajas de personas: se agregaron los campos Nº de Orden General y Nº de Resolución tanto en el alta como en la baja
+	- Ascenso de personas: se agregó el campo Nº de Orden General
+	- Inventario: se agregó el campo Fecha de Adquisición
+	- Se agregó el reporte: Ficha Personal dentro del grupo IOMA
+	- Reporte de Inventario-Modo Adquisición: se agregó el campo Área y se movió el campo Modo de Adquisición al anteúltimo lugar
+	- Reporte de Declaración de Pareja Conviviente de IOMA: se agregó la posibilidad de especificar la fecha de emisión
+
+
+
 15/11/2019
 	* Se agregó el reporte: Constancia de prestación de servicio
 	* Se agregó el reporte: Declaración Jurada para Renovación de Pareja Conviviente

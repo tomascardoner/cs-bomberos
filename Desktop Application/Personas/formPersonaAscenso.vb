@@ -1,14 +1,17 @@
 ﻿Public Class formPersonaAscenso
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaAscensoActual As PersonaAscenso
 
     Private mIsLoading As Boolean = False
     Private mEditMode As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDAscenso As Byte)
         mIsLoading = True
         mEditMode = EditMode
@@ -58,6 +61,7 @@
         textboxLibroNumero.ReadOnly = Not mEditMode
         textboxFolioNumero.ReadOnly = Not mEditMode
         textboxActaNumero.ReadOnly = Not mEditMode
+        textboxOrdenGeneralNumero.ReadOnly = Not mEditMode
         textboxResolucionNumero.ReadOnly = Not mEditMode
 
         ' Notas y Auditoría
@@ -80,9 +84,11 @@
         mPersonaAscensoActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mPersonaAscensoActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
@@ -91,6 +97,7 @@
             textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
             textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
             textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
+            textboxOrdenGeneralNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.OrdenGeneralNumero)
             textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -123,14 +130,17 @@
             .LibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLibroNumero.Text)
             .FolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFolioNumero.Text)
             .ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
+            .OrdenGeneralNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrdenGeneralNumero.Text)
             .ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -148,7 +158,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLibroNumero.GotFocus, textboxFolioNumero.GotFocus, textboxActaNumero.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLibroNumero.GotFocus, textboxFolioNumero.GotFocus, textboxActaNumero.GotFocus, textboxOrdenGeneralNumero.GotFocus, textboxResolucionNumero.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -160,6 +170,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_Ascenso_EDITAR) Then
             mEditMode = True
@@ -231,6 +242,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

@@ -224,6 +224,7 @@
           <Property Name="IDElemento" Type="int" Nullable="false" />
           <Property Name="DescripcionPropia" Type="varchar" MaxLength="100" />
           <Property Name="IDModoAdquisicion" Type="tinyint" />
+          <Property Name="FechaAdquicision" Type="date" />
           <Property Name="IDUbicacion" Type="smallint" />
           <Property Name="IDSubUbicacion" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -454,10 +455,14 @@
           <Property Name="AltaLibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="AltaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="AltaActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="AltaOrdenGeneralNumero" Type="varchar" MaxLength="10" />
+          <Property Name="AltaResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFecha" Type="date" />
           <Property Name="BajaLibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaFolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="BajaActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="BajaOrdenGeneralNumero" Type="varchar" MaxLength="10" />
+          <Property Name="BajaResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
           <Property Name="BajaUnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -479,6 +484,7 @@
           <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
           <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
           <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="OrdenGeneralNumero" Type="varchar" MaxLength="10" />
           <Property Name="ResolucionNumero" Type="varchar" MaxLength="15" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -5390,10 +5396,14 @@
           <Property Name="AltaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="AltaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="AltaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AltaOrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AltaResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFecha" Type="DateTime" Precision="0" />
           <Property Name="BajaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="BajaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BajaOrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="BajaResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IDPersonaBajaMotivo" Type="Byte" />
           <Property Name="BajaUnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -5419,6 +5429,7 @@
           <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ResolucionNumero" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -6357,6 +6368,7 @@
           <Property Name="IDElemento" Type="Int32" Nullable="false" />
           <Property Name="DescripcionPropia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IDModoAdquisicion" Type="Byte" />
+          <Property Name="FechaAdquicision" Type="DateTime" Precision="0" />
           <Property Name="IDUbicacion" Type="Int16" />
           <Property Name="IDSubUbicacion" Type="Int16" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -8388,6 +8400,10 @@
           <EntitySetMapping Name="PersonaAltaBaja">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAltaBaja">
               <MappingFragment StoreEntitySet="PersonaAltaBaja">
+                <ScalarProperty Name="BajaResolucionNumero" ColumnName="BajaResolucionNumero" />
+                <ScalarProperty Name="BajaOrdenGeneralNumero" ColumnName="BajaOrdenGeneralNumero" />
+                <ScalarProperty Name="AltaResolucionNumero" ColumnName="AltaResolucionNumero" />
+                <ScalarProperty Name="AltaOrdenGeneralNumero" ColumnName="AltaOrdenGeneralNumero" />
                 <ScalarProperty Name="BajaUnidadDestino" ColumnName="BajaUnidadDestino" />
                 <ScalarProperty Name="IDPersonaBajaMotivo" ColumnName="IDPersonaBajaMotivo" />
                 <ScalarProperty Name="BajaActaNumero" ColumnName="BajaActaNumero" />
@@ -8411,6 +8427,7 @@
           <EntitySetMapping Name="PersonaAscenso">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAscenso">
               <MappingFragment StoreEntitySet="PersonaAscenso">
+                <ScalarProperty Name="OrdenGeneralNumero" ColumnName="OrdenGeneralNumero" />
                 <ScalarProperty Name="ResolucionNumero" ColumnName="ResolucionNumero" />
                 <ScalarProperty Name="ActaNumero" ColumnName="ActaNumero" />
                 <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
@@ -8613,6 +8630,7 @@
           <EntitySetMapping Name="Inventario">
             <EntityTypeMapping TypeName="CSBomberosModel.Inventario">
               <MappingFragment StoreEntitySet="Inventario">
+                <ScalarProperty Name="FechaAdquicision" ColumnName="FechaAdquicision" />
                 <ScalarProperty Name="DescripcionPropia" ColumnName="DescripcionPropia" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
