@@ -15,6 +15,7 @@
 			41	4	Ficha personal	Personas-IOMAFicha.rpt	NULL	NULL	NULL	NULL	True	NULL
 	- Tabla ReporteParametro
 		- Copiar parámetros desde el reporte 6 al 40
+		- Agregar el título (Listado de cumpleaños) del Reporte 40 al campo ValorPredeterminadoTexto del IDParametro = Titulo
 		- Copiar parámetros desde el reporte 1 al 41
 		- Agregar los registros:
 			38	FechaEmision                                      	Fecha de emisión	DATE	True	Debe especificar la fecha de emisión.	NULL	NULL	NULL	NULL	NULL	NULL	7

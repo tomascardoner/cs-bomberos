@@ -125,7 +125,11 @@ Partial Public Class Reporte
                                 Case REPORTE_PARAMETRO_TIPO_COMPANY
                                     .CurrentValues.AddValue(pLicensedTo)
                                 Case REPORTE_PARAMETRO_TIPO_TITLE
-                                    .CurrentValues.AddValue(ParametroActual.Valor)
+                                    If ParametroActual.Valor Is Nothing Then
+                                        .CurrentValues.AddValue(String.Empty)
+                                    Else
+                                        .CurrentValues.AddValue(ParametroActual.Valor)
+                                    End If
                                 Case REPORTE_PARAMETRO_TIPO_FILTER_TEXT
                                     .CurrentValues.AddValue(CRGetConditionText())
                                 Case Else
