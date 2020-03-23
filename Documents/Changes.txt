@@ -9,7 +9,8 @@
 	- Se agregó el reporte: Ficha Personal dentro del grupo IOMA
 	- Reporte de Inventario-Modo Adquisición: se agregó el campo Área y se movió el campo Modo de Adquisición al anteúltimo lugar
 	- Reporte de Declaración de Pareja Conviviente de IOMA: se agregó la posibilidad de especificar la fecha de emisión
-
+	- Reporte Ficha 2 de IOMA: se agregó la posibilidad de especificar la fecha de emisión y la dirección de e-mail
+	- Membrete de Departamento en reportes: se cambió el texto a valores de la tabla Parametro
 
 
 15/11/2019

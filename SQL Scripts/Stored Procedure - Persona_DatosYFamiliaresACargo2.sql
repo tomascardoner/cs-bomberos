@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2019-09-01
+-- Modifications: 2020-03-22 - se agregó el parámetro @FechaEmision e @Email
 -- Description:	Devuelve los datos de la Persona con sus familiares a cargo
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_DatosYFamiliaresACargo2') AND type in (N'P', N'PC'))
@@ -29,6 +30,8 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 	@IDPersonaBajaMotivo tinyint,
 	@IDPersona int,
 	@IDFamiliares varchar(1000),
+	@FechaEmision date,
+	@Email varchar(50),
 	@IOMAACargo bit
 	AS
 
@@ -61,9 +64,9 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 			END
 
 		SELECT 'SOCIEDAD DE BOMBEROS VOLUNTARIOS DE LOBOS' AS NombreEntidad, dbo.udf_BitAsXChar(@TipoAfiliadoDirecto) AS TipoAfiliadoDirecto, dbo.udf_BitAsXChar(@TipoAfiliadoACargo) AS TipoAfiliadoACargo, dbo.udf_BitAsXChar(@TipoAlta) AS TipoAlta, dbo.udf_BitAsXChar(@TipoModificaciones) AS TipoModificaciones, dbo.udf_BitAsXChar(@TipoRenovaciones) AS TipoRenovaciones, dbo.udf_BitAsXChar(@TipoContinuidad) AS TipoContinuidad, Persona.IDPersona, Persona.IOMANumeroAfiliado, Persona.ApellidoNombre,
-			Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Localidad.Nombre AS LocalidadNombre, Partido.Nombre AS PartidoNombre, Provincia.Nombre AS ProvinciaNombre, Persona.CelularParticular, Persona.EmailParticular, REPLACE(CONVERT(varchar(8), Persona.FechaNacimiento, 3), '/', '') AS FechaNacimiento, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, CONVERT(varchar(10), PersonaAltaBaja.AltaFecha, 103) AS FechaIngreso,
+			Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Localidad.Nombre AS LocalidadNombre, Partido.Nombre AS PartidoNombre, Provincia.Nombre AS ProvinciaNombre, Persona.CelularParticular, @Email AS EmailEspecificado, Persona.EmailParticular, REPLACE(CONVERT(varchar(8), Persona.FechaNacimiento, 3), '/', '') AS FechaNacimiento, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, CONVERT(varchar(10), PersonaAltaBaja.AltaFecha, 103) AS FechaIngreso,
 			dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 1) AS EstadoCivilSoltero, dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 2) AS EstadoCivilCasado, dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 3) AS EstadoCivilViudo, dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 4) AS EstadoCivilDivorciado, dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 5) AS EstadoCivilSeparacionLegal, dbo.udf_EqualValueAsXChar(Persona.IDEstadoCivil, 6) AS EstadoCivilSeparacionHecho,
-			'Ameghino' AS DomicilioEntidadCalle, '160' AS DomicilioEntidadNumero, 'Lobos' AS LocalidadEntidad, 'Buenos Aires' AS ProvinciaEntidad, 'Lobos, ' + CONVERT(varchar(10), GETDATE(), 103) AS LugarFecha, 
+			'Ameghino' AS DomicilioEntidadCalle, '160' AS DomicilioEntidadNumero, 'Lobos' AS LocalidadEntidad, 'Buenos Aires' AS ProvinciaEntidad, 'Lobos, ' + CONVERT(varchar(10), @FechaEmision, 103) AS LugarFecha, 
 			PF.ApellidoNombre AS FamiliarApellidoNombre, dbo.udf_EqualValueAsXChar(PF.IDEstadoCivil, 1) AS FamiliarEstadoCivilSoltero, dbo.udf_EqualValueAsXChar(PF.IDEstadoCivil, 2) AS FamiliarEstadoCivilCasado, dbo.udf_EqualValueAsXChar(PF.IDEstadoCivil, 7) AS FamiliarEstadoCivilConviviente, dbo.udf_StringPadLeft(DAY(PF.FechaNacimiento), 2, '0') AS FamiliarFechaNacimientoDia, dbo.udf_StringPadLeft(MONTH(PF.FechaNacimiento), 2, '0') AS FamiliarFechaNacimientoMes, dbo.udf_StringPadLeft(YEAR(PF.FechaNacimiento) % 100, 2, '0') AS FamiliarFechaNacimientoAnio, FamiliarDocumentoTipo.Nombre AS FamiliarDocumentoTipoNombre, PF.DocumentoNumero AS FamiliarDocumentoNumero
 			FROM (((((((((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
 				LEFT JOIN DocumentoTipo ON Persona.IDDocumentoTipo = DocumentoTipo.IDDocumentoTipo)

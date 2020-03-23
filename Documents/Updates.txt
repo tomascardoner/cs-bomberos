@@ -1,5 +1,14 @@
 2020-03-20
 
+	- Tabla CapacitacionNivel: agregar campo SumaPuntos bit not null, después de Nombre
+	- Tabla Parametro - agregar:
+		- IOMA_CERTIFICACION_CAMPOS - {NUMEROAFILIADO}{TAB}{SEXO1}{TAB}{FECHANACIMIENTO}{TAB}{NUMERODOCUMENTO}
+		- IOMA_CERTIFICACION_DIRECCION - https://autogestion.ioma.gba.gov.ar/usuarios/certificacion
+		- IOMA_PADRON_CAMPOS - {NUMERODOCUMENTO}{TAB}{SEXO1}
+		- IOMA_PADRON_DIRECCION - http://sistemasl.ioma.gba.gov.ar/sistemas/consulta_padron_afiliados/consulta_afiliados.php
+		- ENCABEZADO_DEPARTAMENTO_LINEA1 - CUERPO DE BOMBEROS VOLUNTARIOS DE LOBOS
+		- ENCABEZADO_DEPARTAMENTO_LINEA2 - JEFATURA
+		- ENCABEZADO_DEPARTAMENTO_LINEA3 - DEPARTAMENTO ADMINISTRACIÓN
 	- Tabla Reporte
 		- Agregar el registro:
 			40	1	Listado con cumpleaños	Personas-ListadoCumpleaños.rpt	NULL	NULL	NULL	NULL	True	NULL
@@ -7,11 +16,31 @@
 	- Tabla ReporteParametro
 		- Copiar parámetros desde el reporte 6 al 40
 		- Copiar parámetros desde el reporte 1 al 41
+		- Agregar los registros:
+			38	FechaEmision                                      	Fecha de emisión	DATE	True	Debe especificar la fecha de emisión.	NULL	NULL	NULL	NULL	NULL	NULL	7
+			35	FechaEmision                                      	Fecha de emisión	DATE	True	Debe especificar la fecha de emisión.	NULL	NULL	NULL	NULL	NULL	NULL	14
+			35	Email                                             	Dirección de e-mail:	TEXT	True	Debe especificar la dirección de e-mail.	documentaciones.cbl@gmail.com	NULL	NULL	NULL	NULL	NULL	15
+	- Tabla ReporteCampo
+		- Reemplazar el nombre del campo 16 para el reporte 35 (EmailParticular) por EmailEspecificado
+	- Tabla PersonaAltaBaja
+		- Agregar los campos AltaOrdenGeneralNumero	varchar(10)	null
+		- Agregar los campos AltaResolucionNumero	varchar(10)	null
+		- Agregar los campos BajaOrdenGeneralNumero	varchar(10)	null
+		- Agregar los campos BajaResolucionNumero	varchar(10)	null
+	- Tabla PersonaAscenso: agregar los campos OrdenGeneralNumero	varchar(10)	null
+	- Tabla Inventario: aregar el campo FechaAdquicision date null
 	- Copiar archivos de reportes:
 		- Personas-Cursos.rpt
 		- Personas-IOMAFicha.rpt
 		- Personas-ListadoCumpleaños.rpt
 		- Inventario-ModoAdquisicion.rpt
+		- Encabezado-CuartelCentral.rpt
+	- Ejecutar stored procedures:
+		- Stored Procedure - Persona_Cursos.sql
+		- Stored Procedure - Persona_DatosConyugueEHijosACargo.sql
+		- Stored Procedure - Persona_DatosYFamiliaresACargo2.sql
+		- Stored Procedure - Persona_ListadoCumpleaños.sql
+		- Stored Procedure - Encabezado_Departamento.sql
 
 
 2019-11-20
