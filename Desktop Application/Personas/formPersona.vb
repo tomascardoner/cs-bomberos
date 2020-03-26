@@ -469,81 +469,19 @@
     End Sub
 
     Private Sub IOMACertificacionAbrir(sender As Object, e As EventArgs) Handles buttonIOMACertificacionAbrir.Click
-        Dim direccion As String
-
-        direccion = CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_DIRECCION)
-        If direccion.Length > 0 Then
-            Try
-                Cursor = Cursors.AppStarting
-                Process.Start(direccion)
-            Catch ex As Exception
-            Finally
-                Cursor = Cursors.Default
-            End Try
-        End If
+        CardonerSistemas.Process.Start(CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_DIRECCION))
     End Sub
 
     Private Sub IOMACertificacionCompletar(sender As Object, e As EventArgs) Handles buttonIOMACertificacionCompletar.Click
-        Dim campos As String
-
-        campos = CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_CAMPOS)
-        If campos.Length > 0 Then
-            SendKeys.Send("%" & CardonerSistemas.ConstantsKeys.TAB)
-
-            campos = "%" & CardonerSistemas.ConstantsKeys.TAB & campos
-            campos = campos.Replace(Constantes.CAMPOS_NUMEROAFILIADO, textboxIOMANumeroAfiliado.Text)
-            campos = campos.Replace(Constantes.CAMPOS_SEXO_1CARACTER, CStr(IIf(comboboxGenero.SelectedIndex = 0, "", comboboxGenero.Text.Substring(0, 1))))
-            If datetimepickerFechaNacimiento.Checked Then
-                campos = campos.Replace(Constantes.CAMPOS_FECHANACIMIENTO, datetimepickerFechaNacimiento.Value.ToString("dd/MM/yyyy"))
-            End If
-            If Not comboboxDocumentoTipo.SelectedItem Is Nothing AndAlso CByte(comboboxDocumentoTipo.SelectedValue) > 0 Then
-                If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
-                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, maskedtextboxDocumentoNumero.Text)
-                Else
-                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, textboxDocumentoNumero.Text)
-                End If
-            End If
-            SendKeys.Send(campos)
-        End If
+        CompletarFormulariosExternos.CompletarPersona(CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_CAMPOS), mPersonaActual)
     End Sub
 
     Private Sub IOMAPadronAbrir(sender As Object, e As EventArgs) Handles buttonIOMAPadronAbrir.Click
-        Dim direccion As String
-
-        direccion = CS_Parameter_System.GetString(Parametros.IOMA_PADRON_DIRECCION)
-        If direccion.Length > 0 Then
-            Try
-                Cursor = Cursors.AppStarting
-                Process.Start(direccion)
-            Catch ex As Exception
-            Finally
-                Cursor = Cursors.Default
-            End Try
-        End If
+        CardonerSistemas.Process.Start(CS_Parameter_System.GetString(Parametros.IOMA_PADRON_DIRECCION))
     End Sub
 
     Private Sub IOMAPadronCompletar(sender As Object, e As EventArgs) Handles buttonIOMAPadronCompletar.Click
-        Dim campos As String
-
-        campos = CS_Parameter_System.GetString(Parametros.IOMA_PADRON_CAMPOS)
-        If campos.Length > 0 Then
-            SendKeys.Send("%" & CardonerSistemas.ConstantsKeys.TAB)
-
-            campos = "%" & CardonerSistemas.ConstantsKeys.TAB & campos
-            campos = campos.Replace(Constantes.CAMPOS_NUMEROAFILIADO, textboxIOMANumeroAfiliado.Text)
-            campos = campos.Replace(Constantes.CAMPOS_SEXO_1CARACTER, CStr(IIf(comboboxGenero.SelectedIndex = 0, "", comboboxGenero.Text.Substring(0, 1))))
-            If datetimepickerFechaNacimiento.Checked Then
-                campos = campos.Replace(Constantes.CAMPOS_FECHANACIMIENTO, datetimepickerFechaNacimiento.Value.ToString("dd/MM/yyyy"))
-            End If
-            If Not comboboxDocumentoTipo.SelectedItem Is Nothing AndAlso CByte(comboboxDocumentoTipo.SelectedValue) > 0 Then
-                If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
-                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, maskedtextboxDocumentoNumero.Text)
-                Else
-                    campos = campos.Replace(Constantes.CAMPOS_NUMERODOCUMENTO, textboxDocumentoNumero.Text)
-                End If
-            End If
-            SendKeys.Send(campos)
-        End If
+        CompletarFormulariosExternos.CompletarPersona(CS_Parameter_System.GetString(Parametros.IOMA_PADRON_CAMPOS), mPersonaActual)
     End Sub
 
     Private Sub TabControlChanged(sender As Object, e As EventArgs) Handles tabcontrolMain.SelectedIndexChanged

@@ -42,15 +42,15 @@
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
-
     '//////////////
     '    CAMPOS
     '//////////////
-    Friend Const CAMPOS_NUMEROAFILIADO As String = "{NUMEROAFILIADO}"
-    Friend Const CAMPOS_SEXO_1CARACTER As String = "{SEXO1}"
-    Friend Const CAMPOS_FECHANACIMIENTO As String = "{FECHANACIMIENTO}"
-    Friend Const CAMPOS_NUMERODOCUMENTO As String = "{NUMERODOCUMENTO}"
-
+    ' Nota: para los campos de fecha, se debe especificar el formato con los siguientes sufijos:
+    '   _LITTLEENDIAN_SLASH => fecha en formato "dd/MM/yyyy"
+    Friend Const CAMPOS_PERSONA_NUMEROAFILIADO As String = "[PERSONA_NUMEROAFILIADO]"
+    Friend Const CAMPOS_PERSONA_GENERO_1CARACTER As String = "[PERSONA_GENERO1]"
+    Friend Const CAMPOS_PERSONA_FECHANACIMIENTO_LITTLEENDIAN_SLASH As String = "[PERSONA_FECHANACIMIENTO_LITTLEENDIAN_SLASH]"
+    Friend Const CAMPOS_PERSONA_NUMERODOCUMENTO As String = "[PERSONA_NUMERODOCUMENTO]"
 
     '///////////////////////////////////
     '    PARÁMETROS DE LOS REPORTES

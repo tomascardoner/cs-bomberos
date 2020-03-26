@@ -52,7 +52,7 @@ Partial Public Class Reporte
                 If CRSetParameters() Then
                     If CRSetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
                         If preview Then
-                            MiscFunctions.PreviewCrystalReport(Me, titulo)
+                            Reportes.PreviewCrystalReport(Me, titulo)
                         Else
                             CRReportObject.PrintToPrinter(1, False, 1, 1000)
                         End If

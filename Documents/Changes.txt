@@ -1,3 +1,6 @@
+25/03/2020
+	- Se mejoró la funcionalidad de completar la páginas de consulta de Padrón y Certificación de IOMA
+
 20/03/2020
 	- Se agregó la solapa de accidentes de personas
 	- Se agregó el reporte: Listado de persona por fecha de nacimiento (para cumpleaños)

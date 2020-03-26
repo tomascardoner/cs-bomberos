@@ -1,4 +1,7 @@
-﻿Module Parametros
+﻿Friend Module Parametros
+
+#Region "Constantes"
+
     'SISTEMA
     Friend Const INTERNET_PROXY As String = "INTERNET_PROXY"
 
@@ -8,6 +11,9 @@
     Friend Const USER_PASSWORD_MINIMUM_LENGHT As String = "USER_PASSWORD_MINIMUM_LENGHT"
     Friend Const USER_PASSWORD_SECURE_REQUIRED As String = "USER_PASSWORD_SECURE_REQUIRED"
     Friend Const EMAIL_VALIDATION_REGULAREXPRESSION As String = "EMAIL_VALIDATION_REGULAREXPRESSION"
+
+    ' FINE TUNNING
+    Friend Const ACTIVEWINDOW_CHANGE_WAIT_MILLISECONDS As String = "ACTIVEWINDOW_CHANGE_WAIT_MILLISECONDS"
 
     ' VALORES PREDETERMINADOS
     Friend Const DEFAULT_PROVINCIA_ID As String = "DEFAULT_PROVINCIA_ID"
@@ -61,4 +67,61 @@
 
     ' USUARIOS
     Friend Const USUARIO_INICIOSESION_ALARMA_AVISO_MOSTRAR As String = "USUARIO_INICIOSESION_ALARMA_AVISO_MOSTRAR"
+
+#End Region
+
+    Friend Function LoadParameters() As Boolean
+        Try
+            Using dbcontext As New CSBomberosContext(True)
+                pParametros = dbcontext.Parametro.ToList
+            End Using
+            Return True
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+            Return False
+        End Try
+    End Function
+
+    Friend Function LoadUsuarioPermisosAndParametros() As Boolean
+        Try
+            Using dbcontext As New CSBomberosContext(True)
+                pPermisos = dbcontext.UsuarioGrupoPermiso.ToList
+                pUsuarioParametros = dbcontext.UsuarioParametro.Where(Function(up) up.IDUsuario = pUsuario.IDUsuario).ToList
+            End Using
+            Return True
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al cargar los Permisos y los Parámetros del Usuario.")
+            Return False
+
+        End Try
+    End Function
+
+    Friend Function SaveParameter(parametro As Parametro) As Boolean
+        Try
+            Using dbcontext As New CSBomberosContext(True)
+                Dim parametroExistente As Parametro
+                parametroExistente = dbcontext.Parametro.Find(parametro.IDParametro)
+                If parametroExistente Is Nothing Then
+                    dbcontext.Parametro.Append(parametro)
+                Else
+                    parametroExistente.Texto = parametro.Texto
+                    parametroExistente.NumeroEntero = parametro.NumeroEntero
+                    parametroExistente.NumeroDecimal = parametro.NumeroDecimal
+                    parametroExistente.Moneda = parametro.Moneda
+                    parametroExistente.FechaHora = parametro.FechaHora
+                    parametroExistente.SiNo = parametro.SiNo
+                    parametroExistente.Notas = parametro.Notas
+                End If
+                If dbcontext.ChangeTracker.HasChanges() Then
+                    dbcontext.SaveChanges()
+                End If
+            End Using
+            Return True
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+            Return False
+        End Try
+    End Function
+
 End Module

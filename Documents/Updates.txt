@@ -1,3 +1,7 @@
+2020-03-25
+	- Tabla Parametro
+		- Cambiar el valor de IOMA_CERTIFICACION_CAMPOS a [PERSONA_NUMEROAFILIADO]{TAB}[PERSONA_GENERO1]{TAB}[PERSONA_FECHANACIMIENTO_LITTLEENDIAN_SLASH]{TAB}[PERSONA_NUMERODOCUMENTO]
+
 2020-03-20
 
 	- Tabla CapacitacionNivel: agregar campo SumaPuntos bit not null, después de Nombre
