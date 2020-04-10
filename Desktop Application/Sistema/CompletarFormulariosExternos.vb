@@ -37,7 +37,7 @@
     Friend Sub CompletarPersonaFamiliar(ByVal campos As String, ByRef personaFamiliar As PersonaFamiliar)
         campos = ReemplazarCamposPersonaFamiliar(campos, personaFamiliar)
         If campos.Length > 0 Then
-            RealizarCambioDeVentanaActiva(True)
+            RealizarCambioDeVentanaActiva()
 
             ' Envío los campos
             SendKeys.Send(campos)
@@ -66,8 +66,8 @@
 
 #Region "Common"
 
-    Private Sub RealizarCambioDeVentanaActiva(Optional ByVal doubleTab As Boolean = False)
-        SendKeys.Send(CardonerSistemas.ConstantsKeys.ALT & CardonerSistemas.ConstantsKeys.TAB & CStr(IIf(doubleTab, CardonerSistemas.ConstantsKeys.TAB, "")))
+    Private Sub RealizarCambioDeVentanaActiva()
+        SendKeys.Send(CardonerSistemas.ConstantsKeys.ALT & CardonerSistemas.ConstantsKeys.TAB)
         Application.DoEvents()
 
         ' Wait for activation complete.
