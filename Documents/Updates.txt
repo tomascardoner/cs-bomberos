@@ -1,3 +1,10 @@
+2020-03-29
+	- Ejecutar stored procedures: Stored Procedure - Persona_Cursos.sql
+	- Copiar Reportes
+	- Tabla Reporte: agregar:
+		42	1	Listado de cursos agrupados por Nivel de capacitación	Personas-CursosPorNivel.rpt	NULL	NULL	NULL	NULL	True	NULL
+	- Copiar parámetros desde el reporte 17 al 42
+
 2020-03-25
 	- Tabla Parametro
 		- Cambiar el valor de IOMA_CERTIFICACION_CAMPOS a [PERSONA_NUMEROAFILIADO]{TAB}[PERSONA_GENERO1]{TAB}[PERSONA_FECHANACIMIENTO_LITTLEENDIAN_SLASH]{TAB}[PERSONA_NUMERODOCUMENTO]

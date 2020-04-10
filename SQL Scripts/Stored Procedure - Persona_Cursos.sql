@@ -27,7 +27,7 @@ CREATE PROCEDURE usp_Persona_Cursos
 	AS
 
 	BEGIN
-		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.MatriculaNumero, Persona.ApellidoNombre, Cargo.Nombre AS CargoNombre, Cargo.Orden AS CargoOrden, CargoJerarquia.Nombre AS JerarquiaNombre, CargoJerarquia.Orden AS JerarquiaOrden, PersonaCapacitacion.Fecha AS CursoFecha, Curso.Nombre AS CursoNombre, (CASE ISNULL(PersonaCapacitacion.IDCapacitacionNivel, 254) WHEN 254 THEN PersonaCapacitacion.CapacitacionNivelOtro ELSE CapacitacionNivel.Nombre END) AS CapacitacionNivelNombre, PersonaCapacitacion.CantidadDias, PersonaCapacitacion.CantidadHoras
+		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.MatriculaNumero, Persona.ApellidoNombre, Cargo.Nombre AS CargoNombre, Cargo.Orden AS CargoOrden, CargoJerarquia.Nombre AS JerarquiaNombre, CargoJerarquia.Orden AS JerarquiaOrden, PersonaCapacitacion.Fecha AS CursoFecha, Curso.Nombre AS CursoNombre, (CASE ISNULL(PersonaCapacitacion.IDCapacitacionNivel, 254) WHEN 254 THEN PersonaCapacitacion.CapacitacionNivelOtro ELSE CapacitacionNivel.Nombre END) AS CapacitacionNivelNombre, CapacitacionNivel.SumaPuntos, PersonaCapacitacion.CantidadDias, PersonaCapacitacion.CantidadHoras
 			FROM (((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
 				INNER JOIN PersonaCapacitacion ON Persona.IDPersona = PersonaCapacitacion.IDPersona)
 				INNER JOIN Curso ON PersonaCapacitacion.IDCurso = Curso.IDCurso)

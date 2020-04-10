@@ -86,6 +86,12 @@
         comboboxIOMATiene.Enabled = mEditMode
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         datetimepickerIOMAVencimientoCredencial.Enabled = mEditMode
+        labelIOMACertificacion.Visible = (mEditMode = False)
+        buttonIOMACertificacionAbrir.Visible = (mEditMode = False)
+        buttonIOMACertificacionCompletar.Visible = (mEditMode = False)
+        'labelIOMAPadron.Visible = (mEditMode = False)
+        'buttonIOMAPadronAbrir.Visible = (mEditMode = False)
+        'buttonIOMAPadronCompletar.Visible = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
@@ -652,6 +658,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_EDITAR) Then
             mEditMode = True
@@ -816,6 +823,7 @@
             Me.Close()
         End If
     End Sub
+
 #End Region
 
 #Region "Familiares"

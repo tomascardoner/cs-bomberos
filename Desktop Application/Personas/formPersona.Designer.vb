@@ -76,8 +76,6 @@ Partial Class formPersona
         Dim labelIOMANumeroAfiliado As System.Windows.Forms.Label
         Dim labelIOMATiene As System.Windows.Forms.Label
         Dim labelIOMAVencimientoCredencial As System.Windows.Forms.Label
-        Dim labelIOMACertificacion As System.Windows.Forms.Label
-        Dim labelIOMAPadron As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -101,6 +99,8 @@ Partial Class formPersona
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
+        Me.labelIOMACertificacion = New System.Windows.Forms.Label()
+        Me.labelIOMAPadron = New System.Windows.Forms.Label()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
@@ -191,6 +191,9 @@ Partial Class formPersona
         Me.buttonAltasBajas_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAccidentes = New System.Windows.Forms.TabPage()
         Me.datagridviewAccidentes = New System.Windows.Forms.DataGridView()
+        Me.columnAccidentes_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAccidentes_Diagnostico = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAccidentes_FechaAlta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAccidentes = New System.Windows.Forms.ToolStrip()
         Me.buttonAccidentes_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAccidentes_Editar = New System.Windows.Forms.ToolStripButton()
@@ -303,9 +306,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.columnAccidentes_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAccidentes_Diagnostico = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAccidentes_FechaAlta = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -359,8 +359,6 @@ Partial Class formPersona
         labelIOMANumeroAfiliado = New System.Windows.Forms.Label()
         labelIOMATiene = New System.Windows.Forms.Label()
         labelIOMAVencimientoCredencial = New System.Windows.Forms.Label()
-        labelIOMACertificacion = New System.Windows.Forms.Label()
-        labelIOMAPadron = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.menustripFoto.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -903,23 +901,24 @@ Partial Class formPersona
         '
         'labelIOMACertificacion
         '
-        labelIOMACertificacion.AutoSize = True
-        labelIOMACertificacion.Location = New System.Drawing.Point(307, 47)
-        labelIOMACertificacion.Name = "labelIOMACertificacion"
-        labelIOMACertificacion.Size = New System.Drawing.Size(68, 13)
-        labelIOMACertificacion.TabIndex = 7
-        labelIOMACertificacion.Text = "Certificación:"
-        Me.tooltipMain.SetToolTip(labelIOMACertificacion, "Ingrese el Número de Documento sin utilizar puntos.")
+        Me.labelIOMACertificacion.AutoSize = True
+        Me.labelIOMACertificacion.Location = New System.Drawing.Point(307, 47)
+        Me.labelIOMACertificacion.Name = "labelIOMACertificacion"
+        Me.labelIOMACertificacion.Size = New System.Drawing.Size(68, 13)
+        Me.labelIOMACertificacion.TabIndex = 7
+        Me.labelIOMACertificacion.Text = "Certificación:"
+        Me.tooltipMain.SetToolTip(Me.labelIOMACertificacion, "Ingrese el Número de Documento sin utilizar puntos.")
         '
         'labelIOMAPadron
         '
-        labelIOMAPadron.AutoSize = True
-        labelIOMAPadron.Location = New System.Drawing.Point(519, 27)
-        labelIOMAPadron.Name = "labelIOMAPadron"
-        labelIOMAPadron.Size = New System.Drawing.Size(44, 13)
-        labelIOMAPadron.TabIndex = 10
-        labelIOMAPadron.Text = "Padrón:"
-        Me.tooltipMain.SetToolTip(labelIOMAPadron, "Ingrese el Número de Documento sin utilizar puntos.")
+        Me.labelIOMAPadron.AutoSize = True
+        Me.labelIOMAPadron.Location = New System.Drawing.Point(519, 27)
+        Me.labelIOMAPadron.Name = "labelIOMAPadron"
+        Me.labelIOMAPadron.Size = New System.Drawing.Size(44, 13)
+        Me.labelIOMAPadron.TabIndex = 10
+        Me.labelIOMAPadron.Text = "Padrón:"
+        Me.tooltipMain.SetToolTip(Me.labelIOMAPadron, "Ingrese el Número de Documento sin utilizar puntos.")
+        Me.labelIOMAPadron.Visible = False
         '
         'textboxApellido
         '
@@ -1147,10 +1146,10 @@ Partial Class formPersona
         'groupboxIOMA
         '
         Me.groupboxIOMA.Controls.Add(Me.buttonIOMAPadronCompletar)
-        Me.groupboxIOMA.Controls.Add(labelIOMAPadron)
+        Me.groupboxIOMA.Controls.Add(Me.labelIOMAPadron)
         Me.groupboxIOMA.Controls.Add(Me.buttonIOMAPadronAbrir)
         Me.groupboxIOMA.Controls.Add(Me.buttonIOMACertificacionCompletar)
-        Me.groupboxIOMA.Controls.Add(labelIOMACertificacion)
+        Me.groupboxIOMA.Controls.Add(Me.labelIOMACertificacion)
         Me.groupboxIOMA.Controls.Add(Me.buttonIOMACertificacionAbrir)
         Me.groupboxIOMA.Controls.Add(labelIOMAVencimientoCredencial)
         Me.groupboxIOMA.Controls.Add(Me.datetimepickerIOMAVencimientoCredencial)
@@ -1173,6 +1172,7 @@ Partial Class formPersona
         Me.buttonIOMAPadronCompletar.TabIndex = 11
         Me.buttonIOMAPadronCompletar.Text = "completar"
         Me.buttonIOMAPadronCompletar.UseVisualStyleBackColor = True
+        Me.buttonIOMAPadronCompletar.Visible = False
         '
         'buttonIOMAPadronAbrir
         '
@@ -1182,6 +1182,7 @@ Partial Class formPersona
         Me.buttonIOMAPadronAbrir.TabIndex = 9
         Me.buttonIOMAPadronAbrir.Text = "abrir"
         Me.buttonIOMAPadronAbrir.UseVisualStyleBackColor = True
+        Me.buttonIOMAPadronAbrir.Visible = False
         '
         'buttonIOMACertificacionCompletar
         '
@@ -1905,6 +1906,33 @@ Partial Class formPersona
         Me.datagridviewAccidentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewAccidentes.Size = New System.Drawing.Size(559, 403)
         Me.datagridviewAccidentes.TabIndex = 4
+        '
+        'columnAccidentes_Fecha
+        '
+        Me.columnAccidentes_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAccidentes_Fecha.DataPropertyName = "Fecha"
+        Me.columnAccidentes_Fecha.HeaderText = "Fecha"
+        Me.columnAccidentes_Fecha.Name = "columnAccidentes_Fecha"
+        Me.columnAccidentes_Fecha.ReadOnly = True
+        Me.columnAccidentes_Fecha.Width = 62
+        '
+        'columnAccidentes_Diagnostico
+        '
+        Me.columnAccidentes_Diagnostico.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAccidentes_Diagnostico.DataPropertyName = "Diagnostico"
+        Me.columnAccidentes_Diagnostico.HeaderText = "Diagnóstico"
+        Me.columnAccidentes_Diagnostico.Name = "columnAccidentes_Diagnostico"
+        Me.columnAccidentes_Diagnostico.ReadOnly = True
+        Me.columnAccidentes_Diagnostico.Width = 88
+        '
+        'columnAccidentes_FechaAlta
+        '
+        Me.columnAccidentes_FechaAlta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAccidentes_FechaAlta.DataPropertyName = "FechaAlta"
+        Me.columnAccidentes_FechaAlta.HeaderText = "Fecha de alta"
+        Me.columnAccidentes_FechaAlta.Name = "columnAccidentes_FechaAlta"
+        Me.columnAccidentes_FechaAlta.ReadOnly = True
+        Me.columnAccidentes_FechaAlta.Width = 97
         '
         'toolstripAccidentes
         '
@@ -3195,33 +3223,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'columnAccidentes_Fecha
-        '
-        Me.columnAccidentes_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAccidentes_Fecha.DataPropertyName = "Fecha"
-        Me.columnAccidentes_Fecha.HeaderText = "Fecha"
-        Me.columnAccidentes_Fecha.Name = "columnAccidentes_Fecha"
-        Me.columnAccidentes_Fecha.ReadOnly = True
-        Me.columnAccidentes_Fecha.Width = 62
-        '
-        'columnAccidentes_Diagnostico
-        '
-        Me.columnAccidentes_Diagnostico.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAccidentes_Diagnostico.DataPropertyName = "Diagnostico"
-        Me.columnAccidentes_Diagnostico.HeaderText = "Diagnóstico"
-        Me.columnAccidentes_Diagnostico.Name = "columnAccidentes_Diagnostico"
-        Me.columnAccidentes_Diagnostico.ReadOnly = True
-        Me.columnAccidentes_Diagnostico.Width = 88
-        '
-        'columnAccidentes_FechaAlta
-        '
-        Me.columnAccidentes_FechaAlta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAccidentes_FechaAlta.DataPropertyName = "FechaAlta"
-        Me.columnAccidentes_FechaAlta.HeaderText = "Fecha de alta"
-        Me.columnAccidentes_FechaAlta.Name = "columnAccidentes_FechaAlta"
-        Me.columnAccidentes_FechaAlta.ReadOnly = True
-        Me.columnAccidentes_FechaAlta.Width = 97
-        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3538,4 +3539,6 @@ Partial Class formPersona
     Friend WithEvents columnAccidentes_Fecha As DataGridViewTextBoxColumn
     Friend WithEvents columnAccidentes_Diagnostico As DataGridViewTextBoxColumn
     Friend WithEvents columnAccidentes_FechaAlta As DataGridViewTextBoxColumn
+    Friend WithEvents labelIOMACertificacion As Label
+    Friend WithEvents labelIOMAPadron As Label
 End Class

@@ -27,8 +27,37 @@
             campos = campos.Replace(Constantes.CAMPOS_PERSONA_NUMERODOCUMENTO, persona.DocumentoNumero)
         End If
 
-        ' Parse IF conditions
+        Return campos
+    End Function
 
+#End Region
+
+#Region "Persona Familiar"
+
+    Friend Sub CompletarPersonaFamiliar(ByVal campos As String, ByRef personaFamiliar As PersonaFamiliar)
+        campos = ReemplazarCamposPersonaFamiliar(campos, personaFamiliar)
+        If campos.Length > 0 Then
+            RealizarCambioDeVentanaActiva(True)
+
+            ' Envío los campos
+            SendKeys.Send(campos)
+        End If
+    End Sub
+
+    Private Function ReemplazarCamposPersonaFamiliar(ByVal campos As String, ByRef personaFamiliar As PersonaFamiliar) As String
+
+        If campos.Length = 0 Then
+            Return String.Empty
+        End If
+
+        campos = campos.Replace(Constantes.CAMPOS_PERSONA_NUMEROAFILIADO, personaFamiliar.IOMANumeroAfiliado)
+        campos = campos.Replace(Constantes.CAMPOS_PERSONA_GENERO_1CARACTER, personaFamiliar.Genero)
+        If personaFamiliar.FechaNacimiento.HasValue Then
+            campos = campos.Replace(Constantes.CAMPOS_PERSONA_FECHANACIMIENTO_LITTLEENDIAN_SLASH, personaFamiliar.FechaNacimiento.Value.ToString("dd/MM/yyyy"))
+        End If
+        If personaFamiliar.DocumentoNumero.Length > 0 Then
+            campos = campos.Replace(Constantes.CAMPOS_PERSONA_NUMERODOCUMENTO, personaFamiliar.DocumentoNumero)
+        End If
 
         Return campos
     End Function
@@ -37,8 +66,8 @@
 
 #Region "Common"
 
-    Private Sub RealizarCambioDeVentanaActiva()
-        SendKeys.Send(CardonerSistemas.ConstantsKeys.ALT & CardonerSistemas.ConstantsKeys.TAB)
+    Private Sub RealizarCambioDeVentanaActiva(Optional ByVal doubleTab As Boolean = False)
+        SendKeys.Send(CardonerSistemas.ConstantsKeys.ALT & CardonerSistemas.ConstantsKeys.TAB & CStr(IIf(doubleTab, CardonerSistemas.ConstantsKeys.TAB, "")))
         Application.DoEvents()
 
         ' Wait for activation complete.

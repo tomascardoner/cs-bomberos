@@ -9,6 +9,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDFamiliar As Byte)
         mIsLoading = True
         mEditMode = EditMode
@@ -69,6 +70,9 @@
         textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
         checkboxIOMAACargo.Enabled = mEditMode
         datetimepickerIOMAVencimientoCredencial.Enabled = mEditMode
+        labelIOMACertificacion.Visible = (mEditMode = False)
+        buttonIOMACertificacionAbrir.Visible = (mEditMode = False)
+        buttonIOMACertificacionCompletar.Visible = (mEditMode = False)
         checkboxACargo.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
 
@@ -89,6 +93,7 @@
         ' Notas y Auditoría
         textboxNotas.ReadOnly = (mEditMode = False)
         checkboxEsActivo.Enabled = mEditMode
+
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -248,6 +253,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -271,6 +277,14 @@
 
     Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxDocumentoNumero.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub IOMACertificacionAbrir(sender As Object, e As EventArgs) Handles buttonIOMACertificacionAbrir.Click
+        CardonerSistemas.Process.Start(CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_DIRECCION))
+    End Sub
+
+    Private Sub IOMACertificacionCompletar(sender As Object, e As EventArgs) Handles buttonIOMACertificacionCompletar.Click
+        CompletarFormulariosExternos.CompletarPersonaFamiliar(CS_Parameter_System.GetString(Parametros.IOMA_CERTIFICACION_CAMPOS), mPersonaFamiliarActual)
     End Sub
 
     Private Sub DocumentoTipo_Cambio(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged

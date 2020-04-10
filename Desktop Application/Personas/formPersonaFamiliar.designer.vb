@@ -53,6 +53,7 @@ Partial Class formPersonaFamiliar
         Dim labelIOMATiene As System.Windows.Forms.Label
         Dim labelEstadoCivil As System.Windows.Forms.Label
         Dim labelIOMAVencimientoCredencial As System.Windows.Forms.Label
+        Me.labelIOMACertificacion = New System.Windows.Forms.Label()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -64,6 +65,8 @@ Partial Class formPersonaFamiliar
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.groupboxIOMA = New System.Windows.Forms.GroupBox()
+        Me.buttonIOMACertificacionCompletar = New System.Windows.Forms.Button()
+        Me.buttonIOMACertificacionAbrir = New System.Windows.Forms.Button()
         Me.datetimepickerIOMAVencimientoCredencial = New System.Windows.Forms.DateTimePicker()
         Me.checkboxIOMAACargo = New System.Windows.Forms.CheckBox()
         Me.textboxIOMANumeroAfiliado = New System.Windows.Forms.TextBox()
@@ -187,7 +190,7 @@ Partial Class formPersonaFamiliar
         'labelVive
         '
         labelVive.AutoSize = True
-        labelVive.Location = New System.Drawing.Point(6, 291)
+        labelVive.Location = New System.Drawing.Point(6, 294)
         labelVive.Name = "labelVive"
         labelVive.Size = New System.Drawing.Size(31, 13)
         labelVive.TabIndex = 18
@@ -367,7 +370,7 @@ Partial Class formPersonaFamiliar
         'labelACargo
         '
         labelACargo.AutoSize = True
-        labelACargo.Location = New System.Drawing.Point(6, 265)
+        labelACargo.Location = New System.Drawing.Point(6, 271)
         labelACargo.Name = "labelACargo"
         labelACargo.Size = New System.Drawing.Size(47, 13)
         labelACargo.TabIndex = 16
@@ -417,6 +420,15 @@ Partial Class formPersonaFamiliar
         labelIOMAVencimientoCredencial.Size = New System.Drawing.Size(135, 13)
         labelIOMAVencimientoCredencial.TabIndex = 6
         labelIOMAVencimientoCredencial.Text = "Vencimiento de credencial:"
+        '
+        'labelIOMACertificacion
+        '
+        Me.labelIOMACertificacion.AutoSize = True
+        Me.labelIOMACertificacion.Location = New System.Drawing.Point(305, 49)
+        Me.labelIOMACertificacion.Name = "labelIOMACertificacion"
+        Me.labelIOMACertificacion.Size = New System.Drawing.Size(68, 13)
+        Me.labelIOMACertificacion.TabIndex = 13
+        Me.labelIOMACertificacion.Text = "Certificación:"
         '
         'toolstripMain
         '
@@ -492,7 +504,7 @@ Partial Class formPersonaFamiliar
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 121)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 343)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 345)
         Me.tabcontrolMain.TabIndex = 4
         '
         'tabpageGeneral
@@ -521,7 +533,7 @@ Partial Class formPersonaFamiliar
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 314)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 316)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -537,6 +549,9 @@ Partial Class formPersonaFamiliar
         '
         'groupboxIOMA
         '
+        Me.groupboxIOMA.Controls.Add(Me.buttonIOMACertificacionCompletar)
+        Me.groupboxIOMA.Controls.Add(Me.labelIOMACertificacion)
+        Me.groupboxIOMA.Controls.Add(Me.buttonIOMACertificacionAbrir)
         Me.groupboxIOMA.Controls.Add(labelIOMAVencimientoCredencial)
         Me.groupboxIOMA.Controls.Add(Me.datetimepickerIOMAVencimientoCredencial)
         Me.groupboxIOMA.Controls.Add(Me.checkboxIOMAACargo)
@@ -547,10 +562,28 @@ Partial Class formPersonaFamiliar
         Me.groupboxIOMA.Controls.Add(labelIOMATiene)
         Me.groupboxIOMA.Location = New System.Drawing.Point(6, 186)
         Me.groupboxIOMA.Name = "groupboxIOMA"
-        Me.groupboxIOMA.Size = New System.Drawing.Size(494, 72)
+        Me.groupboxIOMA.Size = New System.Drawing.Size(494, 75)
         Me.groupboxIOMA.TabIndex = 15
         Me.groupboxIOMA.TabStop = False
         Me.groupboxIOMA.Text = "I.O.M.A.:"
+        '
+        'buttonIOMACertificacionCompletar
+        '
+        Me.buttonIOMACertificacionCompletar.Location = New System.Drawing.Point(422, 45)
+        Me.buttonIOMACertificacionCompletar.Name = "buttonIOMACertificacionCompletar"
+        Me.buttonIOMACertificacionCompletar.Size = New System.Drawing.Size(66, 20)
+        Me.buttonIOMACertificacionCompletar.TabIndex = 14
+        Me.buttonIOMACertificacionCompletar.Text = "completar"
+        Me.buttonIOMACertificacionCompletar.UseVisualStyleBackColor = True
+        '
+        'buttonIOMACertificacionAbrir
+        '
+        Me.buttonIOMACertificacionAbrir.Location = New System.Drawing.Point(379, 45)
+        Me.buttonIOMACertificacionAbrir.Name = "buttonIOMACertificacionAbrir"
+        Me.buttonIOMACertificacionAbrir.Size = New System.Drawing.Size(37, 20)
+        Me.buttonIOMACertificacionAbrir.TabIndex = 12
+        Me.buttonIOMACertificacionAbrir.Text = "abrir"
+        Me.buttonIOMACertificacionAbrir.UseVisualStyleBackColor = True
         '
         'datetimepickerIOMAVencimientoCredencial
         '
@@ -592,7 +625,7 @@ Partial Class formPersonaFamiliar
         'checkboxACargo
         '
         Me.checkboxACargo.AutoSize = True
-        Me.checkboxACargo.Location = New System.Drawing.Point(142, 265)
+        Me.checkboxACargo.Location = New System.Drawing.Point(142, 271)
         Me.checkboxACargo.Name = "checkboxACargo"
         Me.checkboxACargo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxACargo.TabIndex = 17
@@ -628,7 +661,7 @@ Partial Class formPersonaFamiliar
         'checkboxVive
         '
         Me.checkboxVive.AutoSize = True
-        Me.checkboxVive.Location = New System.Drawing.Point(142, 291)
+        Me.checkboxVive.Location = New System.Drawing.Point(142, 294)
         Me.checkboxVive.Name = "checkboxVive"
         Me.checkboxVive.Size = New System.Drawing.Size(15, 14)
         Me.checkboxVive.TabIndex = 19
@@ -713,7 +746,7 @@ Partial Class formPersonaFamiliar
         Me.tabpageContacto.Location = New System.Drawing.Point(4, 25)
         Me.tabpageContacto.Name = "tabpageContacto"
         Me.tabpageContacto.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageContacto.Size = New System.Drawing.Size(506, 314)
+        Me.tabpageContacto.Size = New System.Drawing.Size(506, 316)
         Me.tabpageContacto.TabIndex = 1
         Me.tabpageContacto.Text = "Contacto"
         Me.tabpageContacto.UseVisualStyleBackColor = True
@@ -833,7 +866,7 @@ Partial Class formPersonaFamiliar
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 314)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 316)
         Me.tabpageNotasAuditoria.TabIndex = 7
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -916,7 +949,7 @@ Partial Class formPersonaFamiliar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(538, 476)
+        Me.ClientSize = New System.Drawing.Size(538, 475)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(labelApellido)
         Me.Controls.Add(Me.textboxApellido)
@@ -928,6 +961,7 @@ Partial Class formPersonaFamiliar
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaFamiliar"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Familiar de la Persona"
         Me.toolstripMain.ResumeLayout(False)
@@ -992,4 +1026,7 @@ Partial Class formPersonaFamiliar
     Friend WithEvents comboboxIOMATiene As ComboBox
     Friend WithEvents comboboxEstadoCivil As ComboBox
     Friend WithEvents datetimepickerIOMAVencimientoCredencial As DateTimePicker
+    Friend WithEvents buttonIOMACertificacionCompletar As Button
+    Friend WithEvents buttonIOMACertificacionAbrir As Button
+    Friend WithEvents labelIOMACertificacion As Label
 End Class
