@@ -1,4 +1,5 @@
 ﻿Module StartUp
+
     ' Database stuff
     Friend pDatabase As CardonerSistemas.Database.ADO.SQLServer
     Friend pFillAndRefreshLists As FillAndRefreshLists
@@ -156,4 +157,5 @@
         pLicensedTo = Nothing
         pUsuario = Nothing
     End Sub
+
 End Module

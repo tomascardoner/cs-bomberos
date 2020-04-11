@@ -3243,6 +3243,7 @@ Partial Class formPersona
         Me.MaximizeBox = False
         Me.Name = "formPersona"
         Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Persona"
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).EndInit()

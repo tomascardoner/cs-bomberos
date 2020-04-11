@@ -36,9 +36,9 @@ Partial Class formAboutBox
         Me.columnValor = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.pictureboxIcon = New System.Windows.Forms.PictureBox()
         Me.labelLicensedTo = New System.Windows.Forms.Label()
-        Me.pictureCompany = New System.Windows.Forms.PictureBox()
+        Me.pictureboxCompanyLogo = New System.Windows.Forms.PictureBox()
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pictureCompany, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pictureboxCompanyLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelApplicationTitle
@@ -58,7 +58,7 @@ Partial Class formAboutBox
         Me.labelVersion.Location = New System.Drawing.Point(111, 41)
         Me.labelVersion.Margin = New System.Windows.Forms.Padding(6, 0, 3, 0)
         Me.labelVersion.Name = "labelVersion"
-        Me.labelVersion.Size = New System.Drawing.Size(185, 18)
+        Me.labelVersion.Size = New System.Drawing.Size(319, 18)
         Me.labelVersion.TabIndex = 0
         Me.labelVersion.Text = "Version"
         Me.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -132,15 +132,15 @@ Partial Class formAboutBox
         Me.labelLicensedTo.Text = "LicensedTo"
         Me.labelLicensedTo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'pictureCompany
+        'pictureboxCompanyLogo
         '
-        Me.pictureCompany.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
-        Me.pictureCompany.Location = New System.Drawing.Point(302, 54)
-        Me.pictureCompany.Name = "pictureCompany"
-        Me.pictureCompany.Size = New System.Drawing.Size(128, 38)
-        Me.pictureCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pictureCompany.TabIndex = 6
-        Me.pictureCompany.TabStop = False
+        Me.pictureboxCompanyLogo.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
+        Me.pictureboxCompanyLogo.Location = New System.Drawing.Point(302, 63)
+        Me.pictureboxCompanyLogo.Name = "pictureboxCompanyLogo"
+        Me.pictureboxCompanyLogo.Size = New System.Drawing.Size(128, 38)
+        Me.pictureboxCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pictureboxCompanyLogo.TabIndex = 6
+        Me.pictureboxCompanyLogo.TabStop = False
         '
         'formAboutBox
         '
@@ -148,7 +148,7 @@ Partial Class formAboutBox
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.OKButton
         Me.ClientSize = New System.Drawing.Size(442, 302)
-        Me.Controls.Add(Me.pictureCompany)
+        Me.Controls.Add(Me.pictureboxCompanyLogo)
         Me.Controls.Add(Me.labelLicensedTo)
         Me.Controls.Add(Me.pictureboxIcon)
         Me.Controls.Add(Me.labelApplicationTitle)
@@ -165,7 +165,7 @@ Partial Class formAboutBox
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "formAboutBox"
         CType(Me.pictureboxIcon, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pictureCompany, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pictureboxCompanyLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -174,5 +174,5 @@ Partial Class formAboutBox
     Friend WithEvents columnValor As System.Windows.Forms.ColumnHeader
     Friend WithEvents pictureboxIcon As System.Windows.Forms.PictureBox
     Friend WithEvents labelLicensedTo As System.Windows.Forms.Label
-    Friend WithEvents pictureCompany As PictureBox
+    Friend WithEvents pictureboxCompanyLogo As PictureBox
 End Class
