@@ -5,9 +5,9 @@
     Private Sub formLogin_Load() Handles Me.Load
         mdbContext = New CSBomberosContext(True)
 
-        If My.Settings.ShowLastUserLoggedIn Then
-            If My.Settings.LastUserLoggedIn <> "" Then
-                textboxNombre.Text = My.Settings.LastUserLoggedIn
+        If pAppearanceConfig.ShowLastLoggedInUser Then
+            If My.Settings.LastLoggedInUser <> "" Then
+                textboxNombre.Text = My.Settings.LastLoggedInUser
                 labelPassword.TabIndex = 0
                 textboxPassword.TabIndex = 1
                 labelNombre.TabIndex = 6
@@ -107,7 +107,7 @@
         UsuarioCurrent = Nothing
 
         ' Guardo el Nombre de Usuario para mostrarlo la próxima vez
-        My.Settings.LastUserLoggedIn = pUsuario.Nombre
+        My.Settings.LastLoggedInUser = pUsuario.Nombre
         My.Settings.Save()
 
         Appearance.UserLoggedIn()

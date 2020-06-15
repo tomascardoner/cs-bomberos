@@ -22,7 +22,7 @@
         If Not Me.WindowState = FormWindowState.Minimized Then
 
             'OBTENGO LAS MEDIDAS DEL CLIENT AREA DEL FORM MDI
-            Form_ClientSize = New Size(Me.ClientSize.Width - toolstripMain.Width - My.Settings.MDIFormMargin, Me.ClientSize.Height - menustripMain.Height - statusstripMain.Height - My.Settings.MDIFormMargin)
+            Form_ClientSize = New Size(Me.ClientSize.Width - toolstripMain.Width - pAppearanceConfig.MdiFormMargin, Me.ClientSize.Height - menustripMain.Height - statusstripMain.Height - pAppearanceConfig.MdiFormMargin)
 
             'HAGO UN RESIZE DE TODOS LOS CHILDS QUE ESTÉN ABIERTOS
             For Each FormCurrent As Form In Me.MdiChildren

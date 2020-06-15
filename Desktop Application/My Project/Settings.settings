@@ -2,77 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
   <Profiles />
   <Settings>
-    <Setting Name="EnableVisualStyles" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="MinimumSplashScreenDisplaySeconds" Type="System.Byte" Scope="Application">
-      <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="MDIFormMargin" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">4</Value>
-    </Setting>
-    <Setting Name="LastUserLoggedIn" Type="System.String" Scope="User">
+    <Setting Name="LastLoggedInUser" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ShowLastUserLoggedIn" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="GridsAndListsFont" Type="System.Drawing.Font" Scope="Application">
-      <Value Profile="(Default)">Microsoft Sans Serif, 11.25pt</Value>
-    </Setting>
-    <Setting Name="SingleInstanceApplication" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="UseCustomDialogForErrorMessage" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="ReportsPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Bomberos\Reportes</Value>
-    </Setting>
-    <Setting Name="DecimalesEnImportes" Type="System.Byte" Scope="Application">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="DBConnection_Datasource" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">localhost</Value>
-    </Setting>
-    <Setting Name="DBConnection_Database" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">CSBomberos</Value>
-    </Setting>
-    <Setting Name="DBConnection_UserID" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">sa</Value>
-    </Setting>
-    <Setting Name="DBConnection_Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd</Value>
-    </Setting>
-    <Setting Name="DBConnection_Provider" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">System.Data.SqlClient</Value>
-    </Setting>
-    <Setting Name="Email_DisplayName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Bomberos Voluntarios de Lobos</Value>
-    </Setting>
-    <Setting Name="Email_Address" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">documentaciones.cbl@gmail.com</Value>
-    </Setting>
-    <Setting Name="Email_SMTP_Server" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">mail.gmail.com</Value>
-    </Setting>
-    <Setting Name="Email_SMTP_Username" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">documentaciones.cbl@gmail.com</Value>
-    </Setting>
-    <Setting Name="Email_SMTP_Password" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="Email_SMTP_Port" Type="System.Int16" Scope="Application">
-      <Value Profile="(Default)">25</Value>
-    </Setting>
-    <Setting Name="Email_SMTP_UseSSL" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="Email_SMTP_Timeout" Type="System.Int32" Scope="Application">
-      <Value Profile="(Default)">30000</Value>
-    </Setting>
-    <Setting Name="Email_Signature" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{0}{0}Bomberos Voluntarios de Lobos{0}Cuartel Principal{0}Ameghino 142 - Lobos{0}Tel.: +54 2227 42-2222{0}info@bomberosdelobos.com.ar{0}www.bomberosdelobos.com.ar</Value>
     </Setting>
   </Settings>
 </SettingsFile>

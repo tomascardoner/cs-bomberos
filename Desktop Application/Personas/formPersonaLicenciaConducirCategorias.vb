@@ -21,7 +21,7 @@
     End Sub
 
     Friend Sub SetAppearance()
-        checkedlistboxLicenciaConducirCategorias.Font = My.Settings.GridsAndListsFont
+        checkedlistboxLicenciaConducirCategorias.Font = pAppearanceConfig.ListsFont
     End Sub
 
     Private Sub Me_Load() Handles Me.Load

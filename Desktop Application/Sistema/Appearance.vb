@@ -1,8 +1,8 @@
 ﻿Module Appearance
 
     Friend Sub DataGridSetAppearance(ByRef DataGridViewObject As DataGridView)
-        DataGridViewObject.DefaultCellStyle.Font = My.Settings.GridsAndListsFont
-        DataGridViewObject.ColumnHeadersDefaultCellStyle.Font = My.Settings.GridsAndListsFont
+        DataGridViewObject.DefaultCellStyle.Font = pAppearanceConfig.ListsFont
+        DataGridViewObject.ColumnHeadersDefaultCellStyle.Font = pAppearanceConfig.ListsFont
 
         DataGridViewObject.DefaultCellStyle.BackColor = SystemColors.Window
         DataGridViewObject.DefaultCellStyle.ForeColor = SystemColors.ControlText

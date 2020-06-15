@@ -139,6 +139,9 @@
     <Compile Include="..\..\..\framework-vbnet\ComboBox.vb">
       <Link>Framework\ComboBox.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Configuration.vb">
+      <Link>Framework\Configuration.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\Constants.vb">
       <Link>Framework\Constants.vb</Link>
     </Compile>
@@ -195,6 +198,11 @@
     <Compile Include="ABM Tablas\formCuartel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Config\AppearanceConfig.vb" />
+    <Compile Include="Config\Configuration.vb" />
+    <Compile Include="Config\DatabaseConfig.vb" />
+    <Compile Include="Config\EmailConfig.vb" />
+    <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Reportes\formReportesParametroFamiliares.Designer.vb">
       <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </Compile>
@@ -1284,6 +1292,18 @@
       <SubType>Designer</SubType>
     </None>
     <EntityDeploy Include="CSBomberos.edmx" />
+    <None Include="Config\Appearance.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Database.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\Email.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\General.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="CSBomberos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CSBomberos.edmx</DependentUpon>

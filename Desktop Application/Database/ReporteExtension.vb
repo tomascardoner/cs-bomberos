@@ -27,10 +27,10 @@ Partial Public Class Reporte
     End Property
 
     Friend Function Open(ByVal preview As Boolean, Optional ByVal titulo As String = "") As Boolean
-        _PathAndFileName = My.Settings.ReportsPath & "\" & Archivo
+        _PathAndFileName = pGeneralConfig.ReportsPath & "\" & Archivo
 
         If Not My.Computer.FileSystem.FileExists(_PathAndFileName) Then
-            MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, My.Settings.ReportsPath, Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, pGeneralConfig.ReportsPath, Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
             Return False
         End If
 

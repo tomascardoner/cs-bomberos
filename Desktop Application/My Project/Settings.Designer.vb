@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -54,225 +54,16 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property EnableVisualStyles() As Boolean
-            Get
-                Return CType(Me("EnableVisualStyles"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("5")>  _
-        Public ReadOnly Property MinimumSplashScreenDisplaySeconds() As Byte
-            Get
-                Return CType(Me("MinimumSplashScreenDisplaySeconds"),Byte)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("4")>  _
-        Public ReadOnly Property MDIFormMargin() As Integer
-            Get
-                Return CType(Me("MDIFormMargin"),Integer)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LastUserLoggedIn() As String
+        Public Property LastLoggedInUser() As String
             Get
-                Return CType(Me("LastUserLoggedIn"),String)
+                Return CType(Me("LastLoggedInUser"),String)
             End Get
             Set
-                Me("LastUserLoggedIn") = value
+                Me("LastLoggedInUser") = value
             End Set
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property ShowLastUserLoggedIn() As Boolean
-            Get
-                Return CType(Me("ShowLastUserLoggedIn"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Microsoft Sans Serif, 11.25pt")>  _
-        Public ReadOnly Property GridsAndListsFont() As Global.System.Drawing.Font
-            Get
-                Return CType(Me("GridsAndListsFont"),Global.System.Drawing.Font)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property SingleInstanceApplication() As Boolean
-            Get
-                Return CType(Me("SingleInstanceApplication"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
-        Public ReadOnly Property UseCustomDialogForErrorMessage() As Boolean
-            Get
-                Return CType(Me("UseCustomDialogForErrorMessage"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\Tomas\Dropbox\Cardoner Sistemas\CS-Bomberos\Reportes")>  _
-        Public ReadOnly Property ReportsPath() As String
-            Get
-                Return CType(Me("ReportsPath"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("2")>  _
-        Public ReadOnly Property DecimalesEnImportes() As Byte
-            Get
-                Return CType(Me("DecimalesEnImportes"),Byte)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
-        Public ReadOnly Property DBConnection_Datasource() As String
-            Get
-                Return CType(Me("DBConnection_Datasource"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("CSBomberos")>  _
-        Public ReadOnly Property DBConnection_Database() As String
-            Get
-                Return CType(Me("DBConnection_Database"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("sa")>  _
-        Public ReadOnly Property DBConnection_UserID() As String
-            Get
-                Return CType(Me("DBConnection_UserID"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd")>  _
-        Public ReadOnly Property DBConnection_Password() As String
-            Get
-                Return CType(Me("DBConnection_Password"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("System.Data.SqlClient")>  _
-        Public ReadOnly Property DBConnection_Provider() As String
-            Get
-                Return CType(Me("DBConnection_Provider"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Bomberos Voluntarios de Lobos")>  _
-        Public ReadOnly Property Email_DisplayName() As String
-            Get
-                Return CType(Me("Email_DisplayName"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("documentaciones.cbl@gmail.com")>  _
-        Public ReadOnly Property Email_Address() As String
-            Get
-                Return CType(Me("Email_Address"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("mail.gmail.com")>  _
-        Public ReadOnly Property Email_SMTP_Server() As String
-            Get
-                Return CType(Me("Email_SMTP_Server"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("documentaciones.cbl@gmail.com")>  _
-        Public ReadOnly Property Email_SMTP_Username() As String
-            Get
-                Return CType(Me("Email_SMTP_Username"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public ReadOnly Property Email_SMTP_Password() As String
-            Get
-                Return CType(Me("Email_SMTP_Password"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("25")>  _
-        Public ReadOnly Property Email_SMTP_Port() As Short
-            Get
-                Return CType(Me("Email_SMTP_Port"),Short)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
-        Public ReadOnly Property Email_SMTP_UseSSL() As Boolean
-            Get
-                Return CType(Me("Email_SMTP_UseSSL"),Boolean)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("30000")>  _
-        Public ReadOnly Property Email_SMTP_Timeout() As Integer
-            Get
-                Return CType(Me("Email_SMTP_Timeout"),Integer)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("{0}{0}Bomberos Voluntarios de Lobos{0}Cuartel Principal{0}Ameghino 142 - Lobos{0}"& _ 
-            "Tel.: +54 2227 42-2222{0}info@bomberosdelobos.com.ar{0}www.bomberosdelobos.com.a"& _ 
-            "r")>  _
-        Public ReadOnly Property Email_Signature() As String
-            Get
-                Return CType(Me("Email_Signature"),String)
-            End Get
         End Property
     End Class
 End Namespace

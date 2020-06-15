@@ -14,17 +14,17 @@ Public NotInheritable Class formAboutBox
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - DataSource"
-        NewItem.SubItems.Add(My.Settings.DBConnection_Datasource)
+        NewItem.SubItems.Add(pDatabaseConfig.Datasource)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - Database"
-        NewItem.SubItems.Add(My.Settings.DBConnection_Database)
+        NewItem.SubItems.Add(pDatabaseConfig.Database)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem
         NewItem.Text = "Reports Path"
-        NewItem.SubItems.Add(My.Settings.ReportsPath)
+        NewItem.SubItems.Add(pGeneralConfig.ReportsPath)
         listviewPropiedades.Items.Add(NewItem)
     End Sub
 
