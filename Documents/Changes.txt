@@ -1,3 +1,6 @@
+17/07/2020
+	- Se agregó un reporte de Hijos a cargo con edad
+
 29/03/2020
 	- Se agregó un reporte que suma las horas de los cursos agrupados por Nivel de capacitación
 
