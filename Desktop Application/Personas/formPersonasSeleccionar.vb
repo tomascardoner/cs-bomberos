@@ -27,7 +27,7 @@
         DataGridSetAppearance(datagridviewMain)
     End Sub
 
-    Private Sub formPersonaesSeleccionar_Load() Handles Me.Load
+    Private Sub formPersonasSeleccionar_Load() Handles Me.Load
         SetAppearance()
 
         SkipFilterData = True
@@ -43,7 +43,7 @@
         RefreshData()
     End Sub
 
-    Private Sub formPersonaes_FormClosed() Handles Me.FormClosed
+    Private Sub formPersonas_FormClosed() Handles Me.FormClosed
         listPersonaBase = Nothing
     End Sub
 #End Region
@@ -109,7 +109,7 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub formPersonaesSeleccionar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub formPersonasSeleccionar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
                 For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
