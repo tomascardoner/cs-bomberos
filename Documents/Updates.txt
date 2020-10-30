@@ -1,3 +1,8 @@
+2020-10-30
+	- Tabla Persona - agregar los siguientes campos:
+		- 
+	- UPDATE Persona SET ReingresoFormacionRealizada = 0
+
 2020-03-29
 	- Ejecutar stored procedures: Stored Procedure - Persona_Cursos.sql
 	- Copiar Reportes

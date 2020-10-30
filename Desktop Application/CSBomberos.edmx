@@ -396,7 +396,7 @@
           <Property Name="CursoIngresoMeses" Type="tinyint" />
           <Property Name="CursoIngresoHoras" Type="smallint" />
           <Property Name="CursoIngresoResponsableIDPersona" Type="int" />
-          <Property Name="ReingresoFormacionActualizacion" Type="bit" />
+          <Property Name="ReingresoFormacionRealizada" Type="bit" Nullable="false" />
           <Property Name="ReingresoFormacionMeses" Type="tinyint" />
           <Property Name="ReingresoFormacionHoras" Type="smallint" />
           <Property Name="ReingresoFormacionResponsableIDPersona" Type="int" />
@@ -5044,7 +5044,7 @@
           <Property Name="CursoIngresoMeses" Type="Byte" />
           <Property Name="CursoIngresoHoras" Type="Int16" />
           <Property Name="CursoIngresoResponsableIDPersona" Type="Int32" />
-          <Property Name="ReingresoFormacionActualizacion" Type="Boolean" />
+          <Property Name="ReingresoFormacionRealizada" Type="Boolean" Nullable="false" />
           <Property Name="ReingresoFormacionMeses" Type="Byte" />
           <Property Name="ReingresoFormacionHoras" Type="Int16" />
           <Property Name="ReingresoFormacionResponsableIDPersona" Type="Int32" />
@@ -8282,10 +8282,10 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="ReingresoFormacionRealizada" ColumnName="ReingresoFormacionRealizada" />
                 <ScalarProperty Name="ReingresoFormacionResponsableIDPersona" ColumnName="ReingresoFormacionResponsableIDPersona" />
                 <ScalarProperty Name="ReingresoFormacionHoras" ColumnName="ReingresoFormacionHoras" />
                 <ScalarProperty Name="ReingresoFormacionMeses" ColumnName="ReingresoFormacionMeses" />
-                <ScalarProperty Name="ReingresoFormacionActualizacion" ColumnName="ReingresoFormacionActualizacion" />
                 <ScalarProperty Name="CursoIngresoResponsableIDPersona" ColumnName="CursoIngresoResponsableIDPersona" />
                 <ScalarProperty Name="CursoIngresoHoras" ColumnName="CursoIngresoHoras" />
                 <ScalarProperty Name="CursoIngresoMeses" ColumnName="CursoIngresoMeses" />

@@ -41,7 +41,7 @@ Partial Public Class Persona
     Public Property CursoIngresoMeses As Nullable(Of Byte)
     Public Property CursoIngresoHoras As Nullable(Of Short)
     Public Property CursoIngresoResponsableIDPersona As Nullable(Of Integer)
-    Public Property ReingresoFormacionActualizacion As Nullable(Of Boolean)
+    Public Property ReingresoFormacionRealizada As Boolean
     Public Property ReingresoFormacionMeses As Nullable(Of Byte)
     Public Property ReingresoFormacionHoras As Nullable(Of Short)
     Public Property ReingresoFormacionResponsableIDPersona As Nullable(Of Integer)

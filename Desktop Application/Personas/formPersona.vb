@@ -1,12 +1,14 @@
 ﻿Public Class formPersona
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaActual As Persona
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
@@ -75,6 +77,7 @@
         comboboxDocumentoTipo.Enabled = mEditMode
         textboxDocumentoNumero.ReadOnly = (mEditMode = False)
         maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
+        maskedtextboxCUIL.ReadOnly = (mEditMode = False)
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
         doubletextboxAltura.ReadOnly = (mEditMode = False)
@@ -96,6 +99,16 @@
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
+
+        ' Ingreso / Reingreso
+        datetimepickerCursoIngresoFecha.Enabled = mEditMode
+        integertextboxCursoIngresoMeses.ReadOnly = (mEditMode = False)
+        integertextboxCursoIngresoHoras.ReadOnly = (mEditMode = False)
+        comboboxCursoIngresoResponsable.Enabled = mEditMode
+        checkboxReingresoFormacionRealizada.Enabled = mEditMode
+        integertextboxReingresoFormacionMeses.ReadOnly = (mEditMode = False)
+        integertextboxReingresoFormacionHoras.ReadOnly = (mEditMode = False)
+        comboboxReingresoFormacionResponsable.Enabled = mEditMode
 
         ' Contacto Particular
         textboxDomicilioParticularCalle1.ReadOnly = (mEditMode = False)
@@ -167,6 +180,8 @@
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        pFillAndRefreshLists.Persona(comboboxCursoIngresoResponsable, False, False, True)
+        pFillAndRefreshLists.Persona(comboboxReingresoFormacionResponsable, False, False, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
     End Sub
@@ -258,6 +273,7 @@
             Else
                 textboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             End If
+            maskedtextboxCUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIL)
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
@@ -284,6 +300,16 @@
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             MostrarCantidadHijos()
             MostrarUltimoCargoJerarquia()
+
+            ' Datos de la pestaña Ingreso / Reingreso
+            datetimepickerCursoIngresoFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.CursoIngresoFecha, datetimepickerCursoIngresoFecha)
+            integertextboxCursoIngresoMeses.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CursoIngresoMeses)
+            integertextboxCursoIngresoHoras.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CursoIngresoHoras)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCursoIngresoResponsable, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .CursoIngresoResponsableIDPersona, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            checkboxReingresoFormacionRealizada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ReingresoFormacionRealizada)
+            integertextboxReingresoFormacionMeses.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.ReingresoFormacionMeses)
+            integertextboxReingresoFormacionHoras.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.ReingresoFormacionHoras)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxReingresoFormacionResponsable, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ReingresoFormacionResponsableIDPersona, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)
@@ -368,6 +394,7 @@
             Else
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDocumentoNumero.Text)
             End If
+            .CUIL = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIL.Text)
 
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
@@ -394,6 +421,16 @@
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
+
+            ' Datos de la pestaña Ingreso / Reingreso
+            .CursoIngresoFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCursoIngresoFecha.Value, datetimepickerCursoIngresoFecha.Checked)
+            .CursoIngresoMeses = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxCursoIngresoMeses.Text)
+            .CursoIngresoHoras = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectShort(integertextboxCursoIngresoHoras.Text)
+            .CursoIngresoResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxCursoIngresoResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            .ReingresoFormacionRealizada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxReingresoFormacionRealizada.CheckState)
+            .ReingresoFormacionMeses = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxReingresoFormacionMeses.Text)
+            .ReingresoFormacionHoras = CS_ValueTranslation.FromControlSyncfusionIntegerTextBoxToObjectByte(integertextboxReingresoFormacionHoras.Text)
+            .ReingresoFormacionResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxReingresoFormacionResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Contacto Particular
             .DomicilioParticularCalle1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle1.Text)
@@ -435,6 +472,7 @@
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -470,7 +508,7 @@
         CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxDocumentoNumero.GotFocus
+    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxDocumentoNumero.GotFocus, maskedtextboxCUIL.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
@@ -719,6 +757,22 @@
             End If
         End If
 
+        ' Número de CUIL
+        If maskedtextboxCUIL.Text.Length > 0 Then
+            If maskedtextboxCUIL.Text.Trim.Length < 11 Then
+                tabcontrolMain.SelectedTab = tabpageGeneral
+                MsgBox("El CUIL debe contener 11 dígitos (sin contar los guiones).", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIL.Focus()
+                Exit Sub
+            End If
+            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIL.Text) Then
+                tabcontrolMain.SelectedTab = tabpageGeneral
+                MsgBox("El CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
+                maskedtextboxCUIL.Focus()
+                Exit Sub
+            End If
+        End If
+
         ' Fecha de Nacimiento
         If datetimepickerFechaNacimiento.Checked And datetimepickerFechaNacimiento.Value.Year = Today.Year Then
             tabcontrolMain.SelectedTab = tabpageGeneral
@@ -746,7 +800,7 @@
         ' Direcciones de Email
         If textboxEmailParticular.Text.Trim.Length > 0 Then
             If Not CS_Email.IsValidEmail(textboxEmailParticular.Text.Trim, CS_Parameter_System.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
-                tabcontrolMain.SelectedTab = tabpageParticular
+                tabcontrolMain.SelectedTab = tabpageContactoParticular
                 MsgBox("La dirección de E-mail Particular es incorrecta.", vbInformation, My.Application.Info.Title)
                 textboxEmailParticular.Focus()
                 Exit Sub
@@ -754,7 +808,7 @@
         End If
         If textboxEmailLaboral.Text.Trim.Length > 0 Then
             If Not CS_Email.IsValidEmail(textboxEmailLaboral.Text.Trim, CS_Parameter_System.GetString(Parametros.EMAIL_VALIDATION_REGULAREXPRESSION)) Then
-                tabcontrolMain.SelectedTab = tabpageParticular
+                tabcontrolMain.SelectedTab = tabpageContactoParticular
                 MsgBox("La dirección de E-mail Laboral es incorrecta.", vbInformation, My.Application.Info.Title)
                 textboxEmailLaboral.Focus()
                 Exit Sub
@@ -2454,6 +2508,10 @@
                 textboxFechaUltimoAscenso.Text = PersonaAscensoUltimo.Fecha.ToShortDateString
             End If
         End Using
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs)
+
     End Sub
 
 #End Region

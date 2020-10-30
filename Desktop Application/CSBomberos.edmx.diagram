@@ -113,27 +113,31 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Rubro__SubRubro" ManuallyRouted="true" >
-          <ConnectorPoint PointX="17.375" PointY="94.413198242187491" />
-          <ConnectorPoint PointX="17.541666666666668" PointY="94.413198242187491" />
-          <ConnectorPoint PointX="18.020833333333332" PointY="94.413198242187491" />
-          <ConnectorPoint PointX="18.625" PointY="94.413198242187491" />
-          <ConnectorPoint PointX="18.625" PointY="91.5" />
-          <ConnectorPoint PointX="19.541666666666668" PointY="91.5" />
-          <ConnectorPoint PointX="19.708333333333332" PointY="91.5" />
-          <ConnectorPoint PointX="20.625" PointY="91.5" />
-          <ConnectorPoint PointX="20.625" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="20.791666666666668" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="21.083333333333332" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="23.854164166666667" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="24.052083333333332" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="24.791666666666668" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="24.958333333333332" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="25.416664166666667" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="25.645835833333333" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="25.875" PointY="90.378851272527839" />
-          <ConnectorPoint PointX="25.875" PointY="86.125" />
-          <ConnectorPoint PointX="26.875" PointY="86.125" />
-          <ConnectorPoint PointX="26.875" PointY="85.018697916666667" />
+          <ConnectorPoint PointX="16.625" PointY="92.75" />
+          <ConnectorPoint PointX="16.625" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="17.35532151282052" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="17.521988179487185" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="17.541666666666668" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="17.864583333333332" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="18.0625" PointY="92.561829427083325" />
+          <ConnectorPoint PointX="18.0625" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="19.744789166666667" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="19.911455833333331" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="19.947916666666668" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="20.114583333333332" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="20.791666666666668" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="20.958333333333332" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="21.0625" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="21.0625" PointY="80.9375" />
+          <ConnectorPoint PointX="24.135414166666667" PointY="80.9375" />
+          <ConnectorPoint PointX="24.302080833333331" PointY="80.9375" />
+          <ConnectorPoint PointX="24.947919166666669" PointY="80.9375" />
+          <ConnectorPoint PointX="25.114585833333333" PointY="80.9375" />
+          <ConnectorPoint PointX="25.416664166666667" PointY="80.9375" />
+          <ConnectorPoint PointX="25.614583333333332" PointY="80.9375" />
+          <ConnectorPoint PointX="26.03125" PointY="80.9375" />
+          <ConnectorPoint PointX="26.03125" PointY="83.259348958333334" />
+          <ConnectorPoint PointX="26.125" PointY="83.259348958333334" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Rubro__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Rubro__Modificacion" />

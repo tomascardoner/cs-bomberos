@@ -342,13 +342,13 @@
         If AgregarItem_NoEspecifica Then
             Dim Item_NoEspecifica As New Persona
             Item_NoEspecifica.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Item_NoEspecifica.ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New Persona
             Item_Todos.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Item_Todos.ApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
 
