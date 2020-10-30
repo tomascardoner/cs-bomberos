@@ -1,3 +1,6 @@
+2020-10-29
+	- Se modificaó el reporte: Familiares a cargo
+
 17/07/2020
 	- Se agregó un reporte de Hijos a cargo con edad
 
