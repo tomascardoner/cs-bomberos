@@ -1,7 +1,17 @@
 2020-10-30
 	- Tabla Persona - agregar los siguientes campos:
-		- 
+		- CUIL char(11) null
+		- CursoIngresoFecha	date	null
+		- CursoIngresoMeses	tinyint	null
+		- CursoIngresoHoras	smallint	null
+		- CursoIngresoResponsableIDPersona	int	null
+		- ReingresoFormacionRealizada	bit	not null
+		- ReingresoFormacionMeses	tinyint	null
+		- ReingresoFormacionHoras	smallint	null
+		- ReingresoFormacionResponsableIDPersona	int	null
+
 	- UPDATE Persona SET ReingresoFormacionRealizada = 0
+	- Actualizar el Stored Procedure de Ficha Personal
 
 2020-03-29
 	- Ejecutar stored procedures: Stored Procedure - Persona_Cursos.sql
