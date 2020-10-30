@@ -374,6 +374,7 @@
           <Property Name="ApellidoNombre" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="IDDocumentoTipo" Type="tinyint" />
           <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
+          <Property Name="CUIL" Type="char" MaxLength="11" />
           <Property Name="LicenciaConducirNumero" Type="varchar" MaxLength="12" />
           <Property Name="LicenciaConducirVencimiento" Type="date" />
           <Property Name="FechaNacimiento" Type="date" />
@@ -391,6 +392,14 @@
           <Property Name="Profesion" Type="varchar" MaxLength="50" />
           <Property Name="Nacionalidad" Type="varchar" MaxLength="50" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="CursoIngresoFecha" Type="date" />
+          <Property Name="CursoIngresoMeses" Type="tinyint" />
+          <Property Name="CursoIngresoHoras" Type="smallint" />
+          <Property Name="CursoIngresoResponsableIDPersona" Type="int" />
+          <Property Name="ReingresoFormacionActualizacion" Type="bit" />
+          <Property Name="ReingresoFormacionMeses" Type="tinyint" />
+          <Property Name="ReingresoFormacionHoras" Type="smallint" />
+          <Property Name="ReingresoFormacionResponsableIDPersona" Type="int" />
           <Property Name="DomicilioParticularCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioParticularNumero" Type="varchar" MaxLength="10" />
           <Property Name="DomicilioParticularPiso" Type="varchar" MaxLength="10" />
@@ -3083,6 +3092,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Persona_Persona_CursoIngresoResponsable">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="CursoIngresoResponsableIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Persona_ReingresoFormacionResponsable">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="ReingresoFormacionResponsableIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EstadoDesconocidoLeyenda" Type="varchar" Mode="In" />
           <Parameter Name="EstadoActivoLeyenda" Type="varchar" Mode="In" />
@@ -3826,6 +3859,14 @@
           <AssociationSet Name="FK__VehiculoTipo__PersonaVehiculo" Association="Self.FK__VehiculoTipo__PersonaVehiculo">
             <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Persona_CursoIngresoResponsable" Association="Self.FK_Persona_Persona_CursoIngresoResponsable">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Persona_ReingresoFormacionResponsable" Association="Self.FK_Persona_Persona_ReingresoFormacionResponsable">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -4576,6 +4617,14 @@
             <End Role="Provincia" EntitySet="Provincia" />
             <End Role="Partido" EntitySet="Partido" />
           </AssociationSet>
+          <AssociationSet Name="FK_Persona_Persona_CursoIngresoResponsable" Association="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Persona_ReingresoFormacionResponsable" Association="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Persona1" EntitySet="Persona" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -4973,6 +5022,7 @@
           <Property Name="ApellidoNombre" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IDDocumentoTipo" Type="Byte" />
           <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="CUIL" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
           <Property Name="LicenciaConducirNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="LicenciaConducirVencimiento" Type="DateTime" Precision="0" />
           <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
@@ -4990,6 +5040,14 @@
           <Property Name="Profesion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
+          <Property Name="CursoIngresoFecha" Type="DateTime" Precision="0" />
+          <Property Name="CursoIngresoMeses" Type="Byte" />
+          <Property Name="CursoIngresoHoras" Type="Int16" />
+          <Property Name="CursoIngresoResponsableIDPersona" Type="Int32" />
+          <Property Name="ReingresoFormacionActualizacion" Type="Boolean" />
+          <Property Name="ReingresoFormacionMeses" Type="Byte" />
+          <Property Name="ReingresoFormacionHoras" Type="Int16" />
+          <Property Name="ReingresoFormacionResponsableIDPersona" Type="Int32" />
           <Property Name="DomicilioParticularCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioParticularNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioParticularPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -5043,6 +5101,10 @@
           <NavigationProperty Name="PersonaVacunas" Relationship="CSBomberosModel.FK__Persona__PersonaVacuna" FromRole="Persona" ToRole="PersonaVacuna" />
           <NavigationProperty Name="PersonaVehiculos" Relationship="CSBomberosModel.FK__Persona__PersonaVehiculo" FromRole="Persona" ToRole="PersonaVehiculo" />
           <NavigationProperty Name="EstadoCivil" Relationship="CSBomberosModel.FK__EstadoCivil__Persona" FromRole="Persona" ToRole="EstadoCivil" />
+          <NavigationProperty Name="PersonasFormadasIngreso" Relationship="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" FromRole="Persona" ToRole="Persona1" />
+          <NavigationProperty Name="CursoIngresoResponsable" Relationship="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" FromRole="Persona1" ToRole="Persona" />
+          <NavigationProperty Name="PersonasFormadasReingreso" Relationship="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" FromRole="Persona" ToRole="Persona1" />
+          <NavigationProperty Name="ReingresoFormacionResponsable" Relationship="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" FromRole="Persona1" ToRole="Persona" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -8004,6 +8066,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Persona_Persona_CursoIngresoResponsable">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="CursoIngresoResponsableIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Persona_ReingresoFormacionResponsable">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Persona1">
+              <PropertyRef Name="ReingresoFormacionResponsableIDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8196,6 +8282,15 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="ReingresoFormacionResponsableIDPersona" ColumnName="ReingresoFormacionResponsableIDPersona" />
+                <ScalarProperty Name="ReingresoFormacionHoras" ColumnName="ReingresoFormacionHoras" />
+                <ScalarProperty Name="ReingresoFormacionMeses" ColumnName="ReingresoFormacionMeses" />
+                <ScalarProperty Name="ReingresoFormacionActualizacion" ColumnName="ReingresoFormacionActualizacion" />
+                <ScalarProperty Name="CursoIngresoResponsableIDPersona" ColumnName="CursoIngresoResponsableIDPersona" />
+                <ScalarProperty Name="CursoIngresoHoras" ColumnName="CursoIngresoHoras" />
+                <ScalarProperty Name="CursoIngresoMeses" ColumnName="CursoIngresoMeses" />
+                <ScalarProperty Name="CursoIngresoFecha" ColumnName="CursoIngresoFecha" />
+                <ScalarProperty Name="CUIL" ColumnName="CUIL" />
                 <ScalarProperty Name="IOMAVencimientoCredencial" ColumnName="IOMAVencimientoCredencial" />
                 <ScalarProperty Name="FechaCasamiento" ColumnName="FechaCasamiento" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />

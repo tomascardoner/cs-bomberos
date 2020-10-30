@@ -1,3 +1,7 @@
+2020-10-30
+	- Se agregó el CUIL a las Personas
+	- Se agregaron datos del curso de ingreso y del curso de reingreso
+
 2020-10-29
 	- Se modificaó el reporte: Familiares a cargo
 

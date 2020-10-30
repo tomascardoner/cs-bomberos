@@ -19,6 +19,7 @@ Partial Public Class Persona
     Public Property ApellidoNombre As String
     Public Property IDDocumentoTipo As Nullable(Of Byte)
     Public Property DocumentoNumero As String
+    Public Property CUIL As String
     Public Property LicenciaConducirNumero As String
     Public Property LicenciaConducirVencimiento As Nullable(Of Date)
     Public Property FechaNacimiento As Nullable(Of Date)
@@ -36,6 +37,14 @@ Partial Public Class Persona
     Public Property Profesion As String
     Public Property Nacionalidad As String
     Public Property IDCuartel As Byte
+    Public Property CursoIngresoFecha As Nullable(Of Date)
+    Public Property CursoIngresoMeses As Nullable(Of Byte)
+    Public Property CursoIngresoHoras As Nullable(Of Short)
+    Public Property CursoIngresoResponsableIDPersona As Nullable(Of Integer)
+    Public Property ReingresoFormacionActualizacion As Nullable(Of Boolean)
+    Public Property ReingresoFormacionMeses As Nullable(Of Byte)
+    Public Property ReingresoFormacionHoras As Nullable(Of Short)
+    Public Property ReingresoFormacionResponsableIDPersona As Nullable(Of Integer)
     Public Property DomicilioParticularCalle1 As String
     Public Property DomicilioParticularNumero As String
     Public Property DomicilioParticularPiso As String
@@ -90,5 +99,9 @@ Partial Public Class Persona
     Public Overridable Property PersonaVacunas As ICollection(Of PersonaVacuna) = New HashSet(Of PersonaVacuna)
     Public Overridable Property PersonaVehiculos As ICollection(Of PersonaVehiculo) = New HashSet(Of PersonaVehiculo)
     Public Overridable Property EstadoCivil As EstadoCivil
+    Public Overridable Property PersonasFormadasIngreso As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property CursoIngresoResponsable As Persona
+    Public Overridable Property PersonasFormadasReingreso As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property ReingresoFormacionResponsable As Persona
 
 End Class
