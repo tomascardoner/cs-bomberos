@@ -79,6 +79,27 @@ GO
 
 -- =============================================
 -- Author:		Tomás A. Cardoner
+-- Create date: 2020-10-30
+-- Description:	Devuelve la última fecha de Baja
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaBaja') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaBaja
+GO
+
+CREATE FUNCTION udf_GetPersonaUltimaFechaBaja
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS date AS
+BEGIN
+	RETURN (SELECT MAX(BajaFecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND BajaFecha <= @FechaHasta)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-08
 -- Description:	Devuelve la última fecha de Ascenso
 -- =============================================

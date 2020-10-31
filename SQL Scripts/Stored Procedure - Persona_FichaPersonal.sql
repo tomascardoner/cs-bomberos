@@ -34,8 +34,8 @@ CREATE PROCEDURE usp_Persona_FichaPersonal
 		SET @IDParentescoPadre = dbo.udf_GetParametro_NumeroEntero('PARENTESCO_ID_PADRE')
 		SET	@IDParentescoMadre = dbo.udf_GetParametro_NumeroEntero('PARENTESCO_ID_MADRE')
 
-		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.Genero, Persona.Apellido, Persona.Nombre, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, EstadoCivil.Nombre AS EstadoCivil, Persona.CUIL, Persona.CelularParticular, Localidad.Nombre AS Localidad, Partido.Nombre AS Partido, Persona.EmailParticular, NivelEstudio.Nombre AS NivelEstudio, Persona.IOMATiene, Persona.IOMANumeroAfiliado, Persona.CursoIngresoFecha, Persona.CursoIngresoMeses,Persona.CursoIngresoHoras, CursoIngresoResponsable.Apellido AS CursoIngresoResponsableApellido, CursoIngresoResponsable.Nombre AS CursoIngresoResponsableNombre, Persona.ReingresoFormacionRealizada, Persona.ReingresoFormacionMeses, Persona.ReingresoFormacionHoras, ReingresoFormacionResponsable.Apellido AS ReingresoFormacionResponsableApellido, ReingresoFormacionResponsable.Nombre AS ReingresoFormacionResponsableNombre, PersonaAltaBaja.AltaFecha, PersonaAltaBaja.AltaLibroNumero, PersonaAltaBaja.AltaFolioNumero, PersonaAltaBaja.AltaActaNumero, PersonaFamiliarPadre.Apellido AS PadreApellido, PersonaFamiliarPadre.Nombre AS PadreNombre, PersonaFamiliarMadre.Apellido AS MadreApellido, PersonaFamiliarMadre.Nombre AS MadreNombre, Persona.Profesion, Persona.FechaNacimiento, Persona.Nacionalidad, dbo.udf_GetDomicilioCalleLocalidadCompleto(Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Persona.DomicilioParticularPiso, Persona.DomicilioParticularDepartamento, Persona.DomicilioParticularCalle2, Persona.DomicilioParticularCalle3, Persona.DomicilioParticularIDProvincia, Persona.DomicilioParticularIDLocalidad) AS Domicilio
-			FROM (((((((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
+		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.Genero, Persona.Apellido, Persona.Nombre, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, EstadoCivil.Nombre AS EstadoCivil, Persona.CUIL, Persona.CelularParticular, Localidad.Nombre AS Localidad, Partido.Nombre AS Partido, Persona.EmailParticular, NivelEstudio.Nombre AS NivelEstudio, Persona.IOMATiene, Persona.IOMANumeroAfiliado, Persona.CursoIngresoFecha, Persona.CursoIngresoMeses,Persona.CursoIngresoHoras, CursoIngresoResponsable.Apellido AS CursoIngresoResponsableApellido, CursoIngresoResponsable.Nombre AS CursoIngresoResponsableNombre, Persona.ReingresoFormacionRealizada, Persona.ReingresoFormacionMeses, Persona.ReingresoFormacionHoras, ReingresoFormacionResponsable.Apellido AS ReingresoFormacionResponsableApellido, ReingresoFormacionResponsable.Nombre AS ReingresoFormacionResponsableNombre, PersonaAlta.AltaFecha, PersonaAlta.AltaLibroNumero, PersonaAlta.AltaFolioNumero, PersonaAlta.AltaActaNumero, PersonaBaja.BajaFecha, PersonaFamiliarPadre.Apellido AS PadreApellido, PersonaFamiliarPadre.Nombre AS PadreNombre, PersonaFamiliarMadre.Apellido AS MadreApellido, PersonaFamiliarMadre.Nombre AS MadreNombre, Persona.Profesion, Persona.FechaNacimiento, Persona.Nacionalidad, dbo.udf_GetDomicilioCalleLocalidadCompleto(Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Persona.DomicilioParticularPiso, Persona.DomicilioParticularDepartamento, Persona.DomicilioParticularCalle2, Persona.DomicilioParticularCalle3, Persona.DomicilioParticularIDProvincia, Persona.DomicilioParticularIDLocalidad) AS Domicilio
+			FROM ((((((((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
 				LEFT JOIN DocumentoTipo ON Persona.IDDocumentoTipo = DocumentoTipo.IDDocumentoTipo)
 				LEFT JOIN EstadoCivil ON Persona.IDEstadoCivil = EstadoCivil.IDEstadoCivil)
 				LEFT JOIN Localidad ON Persona.DomicilioParticularIDProvincia = Localidad.IDProvincia AND Persona.DomicilioParticularIDLocalidad = Localidad.IDLocalidad)
@@ -45,15 +45,17 @@ CREATE PROCEDURE usp_Persona_FichaPersonal
 				LEFT JOIN Persona AS ReingresoFormacionResponsable ON Persona.ReingresoFormacionResponsableIDPersona = ReingresoFormacionResponsable.IDPersona)
 				LEFT JOIN (SELECT IDPersona, Apellido, Nombre FROM PersonaFamiliar WHERE IDParentesco = @IDParentescoPadre) AS PersonaFamiliarPadre ON Persona.IDPersona = PersonaFamiliarPadre.IDPersona)
 				LEFT JOIN (SELECT IDPersona, Apellido, Nombre FROM PersonaFamiliar WHERE IDParentesco = @IDParentescoMadre) AS PersonaFamiliarMadre ON Persona.IDPersona = PersonaFamiliarMadre.IDPersona)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
+				LEFT JOIN PersonaAltaBaja AS PersonaAlta ON Persona.IDPersona = PersonaAlta.IDPersona)
+				LEFT JOIN PersonaAltaBaja AS PersonaBaja ON Persona.IDPersona = PersonaBaja.IDPersona)
 				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona
 			WHERE Persona.EsActivo = 1
 				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (PersonaAscenso.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR PersonaAscenso.IDJerarquia = @IDJerarquia)))
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
+				AND (PersonaAlta.AltaFecha IS NULL OR PersonaAlta.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
+				AND (PersonaBaja.BajaFecha IS NULL OR PersonaBaja.BajaFecha = dbo.udf_GetPersonaUltimaFechaBaja(Persona.IDPersona, GETDATE()))
 				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAltaBaja.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAlta.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAlta.IDPersonaBajaMotivo IS NOT NULL))
+				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAlta.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
 	END
 GO

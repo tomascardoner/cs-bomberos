@@ -11,6 +11,7 @@
 		- ReingresoFormacionResponsableIDPersona	int	null
 
 	- UPDATE Persona SET ReingresoFormacionRealizada = 0
+	- Actualizar las funciones
 	- Actualizar el Stored Procedure de Ficha Personal
 
 2020-03-29

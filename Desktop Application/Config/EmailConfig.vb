@@ -7,7 +7,7 @@
     Public Property SmtpUserName As String
     Public Property SmtpPassword As String
     Public Property SmtpPort As Integer
-    Public Property SmtpUseSsl As Boolean
+    Public Property SmtpSslOptions As Integer
     Public Property SmtpTimeout As Integer
     Public Property SendMethod As String
     Public Property SendMaxPerHour As Integer
