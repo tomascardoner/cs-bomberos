@@ -124,6 +124,11 @@
     Friend Const SUBUBICACION_EDITAR As String = "SUBUBICACION_EDITAR"
     Friend Const SUBUBICACION_ELIMINAR As String = "SUBUBICACION_ELIMINAR"
 
+    Friend Const RESPONSABLE As String = "RESPONSABLE"
+    Friend Const RESPONSABLE_AGREGAR As String = "RESPONSABLE_AGREGAR"
+    Friend Const RESPONSABLE_EDITAR As String = "RESPONSABLE_EDITAR"
+    Friend Const RESPONSABLE_ELIMINAR As String = "RESPONSABLE_ELIMINAR"
+
     Friend Const USUARIOGRUPO As String = "USUARIOGRUPO"
     Friend Const USUARIOGRUPO_AGREGAR As String = "USUARIOGRUPO_AGREGAR"
     Friend Const USUARIOGRUPO_EDITAR As String = "USUARIOGRUPO_EDITAR"
@@ -418,6 +423,13 @@
             .Nodes.Add(SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(SUBUBICACION_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(AREA, "Responsables")
+        With RootNode
+            .Nodes.Add(RESPONSABLE_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(RESPONSABLE_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(RESPONSABLE_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de usuarios")

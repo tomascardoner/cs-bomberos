@@ -853,6 +853,7 @@
           <Property Name="IDResponsableTipo" Type="tinyint" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" />
           <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -8566,6 +8567,7 @@
           <Property Name="IDResponsableTipo" Type="Byte" Nullable="false" />
           <Property Name="IDCuartel" Type="Byte" />
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
@@ -9940,6 +9942,7 @@
           <EntitySetMapping Name="Responsable">
             <EntityTypeMapping TypeName="CSBomberosModel.Responsable">
               <MappingFragment StoreEntitySet="Responsable">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

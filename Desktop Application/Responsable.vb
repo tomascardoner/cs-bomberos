@@ -15,6 +15,7 @@ Partial Public Class Responsable
     Public Property IDResponsableTipo As Byte
     Public Property IDCuartel As Nullable(Of Byte)
     Public Property IDPersona As Integer
+    Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short

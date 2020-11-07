@@ -187,6 +187,18 @@
     <Compile Include="..\..\..\framework-vbnet\SpecialFolders.vb">
       <Link>Framework\SpecialFolders.vb</Link>
     </Compile>
+    <Compile Include="ABM Tablas\formResponsable.designer.vb">
+      <DependentUpon>formResponsable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formResponsable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\formResponsables.designer.vb">
+      <DependentUpon>formResponsables.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formResponsables.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
       <Link>Framework\CS_Parameter_System.vb</Link>
     </Compile>
@@ -1035,6 +1047,12 @@
     <EmbeddedResource Include="..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>
       <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formResponsable.resx">
+      <DependentUpon>formResponsable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formResponsables.resx">
+      <DependentUpon>formResponsables.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>

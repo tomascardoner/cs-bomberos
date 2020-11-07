@@ -72,7 +72,6 @@ Partial Class formMDIMain
         Me.menuitemTablas_MenuInventario = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Rubros = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubRubros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubUbicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_MenuUsuarios = New System.Windows.Forms.ToolStripMenuItem()
@@ -87,6 +86,8 @@ Partial Class formMDIMain
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
+        Me.menuitemTablas_Responsables = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -174,51 +175,51 @@ Partial Class formMDIMain
         '
         Me.menuitemVentanaMosaicoHorizontal.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
         Me.menuitemVentanaMosaicoHorizontal.Name = "menuitemVentanaMosaicoHorizontal"
-        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoHorizontal.Text = "Mosaico &Horizontal"
         '
         'menuitemVentanaMosaicoVertical
         '
         Me.menuitemVentanaMosaicoVertical.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
         Me.menuitemVentanaMosaicoVertical.Name = "menuitemVentanaMosaicoVertical"
-        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoVertical.Text = "Mosaico &Vertical"
         '
         'menuitemVentanaCascada
         '
         Me.menuitemVentanaCascada.Name = "menuitemVentanaCascada"
-        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaCascada.Text = "&Cascada"
         '
         'menuitemVentanaOrganizarIconos
         '
         Me.menuitemVentanaOrganizarIconos.Name = "menuitemVentanaOrganizarIconos"
-        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaOrganizarIconos.Text = "&Organizar Iconos"
         '
         'menuitemVentanaSeparadorCerrarTodas
         '
         Me.menuitemVentanaSeparadorCerrarTodas.Name = "menuitemVentanaSeparadorCerrarTodas"
-        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(177, 6)
+        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(174, 6)
         '
         'menuitemVentanaCerrarTodas
         '
         Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
         Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
-        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
         '
         'menuitemVentanaEncajarEnVentana
         '
         Me.menuitemVentanaEncajarEnVentana.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
         Me.menuitemVentanaEncajarEnVentana.Name = "menuitemVentanaEncajarEnVentana"
-        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaEncajarEnVentana.Text = "Encajar en ventana"
         '
         'menuitemVentanaSeparadorListaVentanas
         '
         Me.menuitemVentanaSeparadorListaVentanas.Name = "menuitemVentanaSeparadorListaVentanas"
-        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(177, 6)
+        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(174, 6)
         '
         'menuitemAyuda
         '
@@ -230,7 +231,7 @@ Partial Class formMDIMain
         'menuitemAyuda_AcercaDe
         '
         Me.menuitemAyuda_AcercaDe.Name = "menuitemAyuda_AcercaDe"
-        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
         'toolstripMain
@@ -259,7 +260,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuPersonas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_EstadosCiviles, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_TiposVehiculo, Me.menuitemTablas_MarcasVehiculo, Me.menuitemTablas_CompaniasSegurosVehiculo, Me.menuitemTablas_TiposVacuna, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion})
         Me.menuitemTablas_MenuPersonas.Name = "menuitemTablas_MenuPersonas"
-        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuPersonas.Text = "Personas"
         '
         'menuitemTablas_NivelesEstudio
@@ -338,7 +339,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuCapacitaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion})
         Me.menuitemTablas_MenuCapacitaciones.Name = "menuitemTablas_MenuCapacitaciones"
-        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuCapacitaciones.Text = "Capacitaciones"
         '
         'menuitemTablas_Cursos
@@ -369,7 +370,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUnidades.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_TiposUnidad, Me.menuitemTablas_UsosUnidad, Me.menuitemTablas_MotivosBajaUnidad})
         Me.menuitemTablas_MenuUnidades.Name = "menuitemTablas_MenuUnidades"
-        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuUnidades.Text = "Unidades"
         '
         'menuitemTablas_TiposUnidad
@@ -392,9 +393,9 @@ Partial Class formMDIMain
         '
         'menuitemTablas_MenuInventario
         '
-        Me.menuitemTablas_MenuInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Areas, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones})
+        Me.menuitemTablas_MenuInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones})
         Me.menuitemTablas_MenuInventario.Name = "menuitemTablas_MenuInventario"
-        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuInventario.Text = "Inventario"
         '
         'menuitemTablas_Rubros
@@ -408,12 +409,6 @@ Partial Class formMDIMain
         Me.menuitemTablas_SubRubros.Name = "menuitemTablas_SubRubros"
         Me.menuitemTablas_SubRubros.Size = New System.Drawing.Size(207, 22)
         Me.menuitemTablas_SubRubros.Text = "Sub-rubros de elementos"
-        '
-        'menuitemTablas_Areas
-        '
-        Me.menuitemTablas_Areas.Name = "menuitemTablas_Areas"
-        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(207, 22)
-        Me.menuitemTablas_Areas.Text = "Áreas"
         '
         'menuitemTablas_Ubicaciones
         '
@@ -431,7 +426,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUsuarios.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
         Me.menuitemTablas_MenuUsuarios.Name = "menuitemTablas_MenuUsuarios"
-        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuUsuarios.Text = "Usuarios"
         '
         'menuitemTablas_GruposUsuario
@@ -454,21 +449,21 @@ Partial Class formMDIMain
         '
         'menuitemTablas_MenuOtros
         '
-        Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Alarmas})
+        Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Areas, Me.menuitemTablas_Alarmas, Me.menuitemTablas_Responsables})
         Me.menuitemTablas_MenuOtros.Name = "menuitemTablas_MenuOtros"
-        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(154, 22)
+        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuOtros.Text = "Otros"
         '
         'menuitemTablas_Cuarteles
         '
         Me.menuitemTablas_Cuarteles.Name = "menuitemTablas_Cuarteles"
-        Me.menuitemTablas_Cuarteles.Size = New System.Drawing.Size(123, 22)
+        Me.menuitemTablas_Cuarteles.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_Cuarteles.Text = "Cuarteles"
         '
         'menuitemTablas_Alarmas
         '
         Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
-        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(123, 22)
+        Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_Alarmas.Text = "Alarmas"
         '
         'buttonPersonas
@@ -517,6 +512,18 @@ Partial Class formMDIMain
         Me.buttonReportes.Name = "buttonReportes"
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
+        '
+        'menuitemTablas_Responsables
+        '
+        Me.menuitemTablas_Responsables.Name = "menuitemTablas_Responsables"
+        Me.menuitemTablas_Responsables.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Responsables.Text = "Responsables"
+        '
+        'menuitemTablas_Areas
+        '
+        Me.menuitemTablas_Areas.Name = "menuitemTablas_Areas"
+        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Areas.Text = "Áreas"
         '
         'formMDIMain
         '
@@ -583,7 +590,6 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_TiposCapacitacion As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_ConceptosCalificacion As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_MenuInventario As ToolStripMenuItem
-    Friend WithEvents menuitemTablas_Areas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_SubUbicaciones As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_Rubros As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuitemTablas_SubRubros As System.Windows.Forms.ToolStripMenuItem
@@ -608,4 +614,6 @@ Partial Class formMDIMain
     Friend WithEvents buttonInventario As System.Windows.Forms.ToolStripSplitButton
     Friend WithEvents menuitemInventario_Elementos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
+    Friend WithEvents menuitemTablas_Areas As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Responsables As ToolStripMenuItem
 End Class

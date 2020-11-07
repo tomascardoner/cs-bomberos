@@ -106,10 +106,6 @@
 
 #Region "Left Toolbar - Tablas"
 
-    Private Sub Cuarteles() Handles menuitemTablas_Cuarteles.Click
-        ShowForm(Permisos.CUARTEL, CType(formCuarteles, Form))
-    End Sub
-
     Private Sub NivelesEstudio() Handles menuitemTablas_NivelesEstudio.Click
         ShowForm(Permisos.NIVELESTUDIO, CType(formNivelesEstudio, Form))
     End Sub
@@ -194,10 +190,6 @@
         ShowForm(Permisos.SUBRUBRO, CType(formSubRubros, Form))
     End Sub
 
-    Private Sub Areas() Handles menuitemTablas_Areas.Click
-        ShowForm(Permisos.AREA, CType(formAreas, Form))
-    End Sub
-
     Private Sub Ubicaciones() Handles menuitemTablas_Ubicaciones.Click
         ShowForm(Permisos.UBICACION, CType(formUbicaciones, Form))
     End Sub
@@ -214,8 +206,22 @@
         ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
     End Sub
 
+    ' OTROS
+
+    Private Sub Cuarteles() Handles menuitemTablas_Cuarteles.Click
+        ShowForm(Permisos.CUARTEL, CType(formCuarteles, Form))
+    End Sub
+
+    Private Sub Areas() Handles menuitemTablas_Areas.Click
+        ShowForm(Permisos.AREA, CType(formAreas, Form))
+    End Sub
+
     Private Sub Alarmas() Handles menuitemTablas_Alarmas.Click
         ShowForm(Permisos.ALARMA, CType(formAlarmas, Form))
+    End Sub
+
+    Private Sub Responsables() Handles menuitemTablas_Responsables.Click
+        ShowForm(Permisos.RESPONSABLE, CType(formResponsables, Form))
     End Sub
 
 #End Region
