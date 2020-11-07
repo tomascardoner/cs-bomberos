@@ -121,23 +121,19 @@
           <ConnectorPoint PointX="17.864583333333332" PointY="92.561829427083325" />
           <ConnectorPoint PointX="18.0625" PointY="92.561829427083325" />
           <ConnectorPoint PointX="18.0625" PointY="84.052307942708325" />
-          <ConnectorPoint PointX="19.744789166666667" PointY="84.052307942708325" />
-          <ConnectorPoint PointX="19.911455833333331" PointY="84.052307942708325" />
-          <ConnectorPoint PointX="19.947916666666668" PointY="84.052307942708325" />
-          <ConnectorPoint PointX="20.114583333333332" PointY="84.052307942708325" />
-          <ConnectorPoint PointX="20.791666666666668" PointY="84.052307942708325" />
+          <ConnectorPoint PointX="20.541666666666668" PointY="84.052307942708325" />
           <ConnectorPoint PointX="20.958333333333332" PointY="84.052307942708325" />
           <ConnectorPoint PointX="21.0625" PointY="84.052307942708325" />
           <ConnectorPoint PointX="21.0625" PointY="80.9375" />
-          <ConnectorPoint PointX="24.135414166666667" PointY="80.9375" />
-          <ConnectorPoint PointX="24.302080833333331" PointY="80.9375" />
-          <ConnectorPoint PointX="24.947919166666669" PointY="80.9375" />
-          <ConnectorPoint PointX="25.114585833333333" PointY="80.9375" />
+          <ConnectorPoint PointX="22.791666666666668" PointY="80.9375" />
+          <ConnectorPoint PointX="22.958333333333332" PointY="80.9375" />
+          <ConnectorPoint PointX="23.291666666666668" PointY="80.9375" />
+          <ConnectorPoint PointX="23.708333333333332" PointY="80.9375" />
           <ConnectorPoint PointX="25.416664166666667" PointY="80.9375" />
           <ConnectorPoint PointX="25.614583333333332" PointY="80.9375" />
           <ConnectorPoint PointX="26.03125" PointY="80.9375" />
-          <ConnectorPoint PointX="26.03125" PointY="83.259348958333334" />
-          <ConnectorPoint PointX="26.125" PointY="83.259348958333334" />
+          <ConnectorPoint PointX="26.03125" PointY="131.02494011501739" />
+          <ConnectorPoint PointX="26.125" PointY="85.018697916666667" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Rubro__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Rubro__Modificacion" />
@@ -269,6 +265,26 @@
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Partido" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" />
+        <EntityTypeShape EntityType="CSBomberosModel.Compra" Width="1.5" PointX="27.125" PointY="91.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraDetalle" Width="1.5" PointX="9.75" PointY="77.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="23.875" PointY="79.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="21.125" PointY="65.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="15.875" PointY="24.25" />
+        <AssociationConnector Association="CSBomberosModel.FK__Area__CompraDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Compra__CompraDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Proveedor__Compra" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Compra__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Compra__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Responsable" />
+        <AssociationConnector Association="CSBomberosModel.FK__Localidad__Proveedor" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__Responsable" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Proveedor__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__ResponsableTipo__Responsable" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Responsable__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Responsable__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

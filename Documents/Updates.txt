@@ -1,3 +1,11 @@
+2020-11-07
+	- Agregar tabla ResponsableTipo
+	- Agregar tabla Responsable
+	- Agregar tabla Proveedor
+	- Agregar tabla Compra
+	- Agregar tabla CompraDetalle
+
+
 2020-10-30
 	- Tabla Persona - agregar los siguientes campos:
 		- CUIL char(11) null

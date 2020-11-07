@@ -10,11 +10,14 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Cuartel
-    Public Property IDCuartel As Byte
-    Public Property Codigo As String
+Partial Public Class Proveedor
+    Public Property IDProveedor As Short
     Public Property Nombre As String
-    Public Property Descripcion As String
+    Public Property CUIT As String
+    Public Property Telefono1 As String
+    Public Property Telefono2 As String
+    Public Property Email1 As String
+    Public Property Email2 As String
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
     Public Property DomicilioPiso As String
@@ -24,24 +27,16 @@ Partial Public Class Cuartel
     Public Property DomicilioCodigoPostal As String
     Public Property DomicilioIDProvincia As Nullable(Of Byte)
     Public Property DomicilioIDLocalidad As Nullable(Of Short)
-    Public Property Telefono As String
-    Public Property Celular As String
-    Public Property Email As String
-    Public Property EsActivo As Boolean
     Public Property Notas As String
+    Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property Compras As ICollection(Of Compra) = New HashSet(Of Compra)
     Public Overridable Property Localidad As Localidad
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Unidad As ICollection(Of Unidad) = New HashSet(Of Unidad)
-    Public Overridable Property Area As ICollection(Of Area) = New HashSet(Of Area)
-    Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
-    Public Overridable Property Usuarios As ICollection(Of Usuario) = New HashSet(Of Usuario)
-    Public Overridable Property Responsables As ICollection(Of Responsable) = New HashSet(Of Responsable)
+    Public Overridable Property Usuario As Usuario
+    Public Overridable Property Usuario1 As Usuario
 
 End Class

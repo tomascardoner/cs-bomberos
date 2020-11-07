@@ -130,5 +130,13 @@ Partial Public Class Usuario
     Public Overridable Property VehiculoTiposModificados As ICollection(Of VehiculoTipo) = New HashSet(Of VehiculoTipo)
     Public Overridable Property EstadosCivilesCreados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
     Public Overridable Property EstadosCivilesModificados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
+    Public Overridable Property ComprasCreadas As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property ComprasModificadas As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property Proveedor As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
+    Public Overridable Property Proveedor1 As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
+    Public Overridable Property ResponsablesCreados As ICollection(Of Responsable) = New HashSet(Of Responsable)
+    Public Overridable Property ResponsablesModificados As ICollection(Of Responsable) = New HashSet(Of Responsable)
+    Public Overridable Property ResponsableTiposCreados As ICollection(Of ResponsableTipo) = New HashSet(Of ResponsableTipo)
+    Public Overridable Property ResponsableTiposModificados As ICollection(Of ResponsableTipo) = New HashSet(Of ResponsableTipo)
 
 End Class

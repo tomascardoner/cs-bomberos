@@ -178,6 +178,9 @@
       <Link>Framework\ErrorHandlerMessageBox.vb</Link>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Graphics.vb">
+      <Link>Framework\Graphics.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\Process.vb">
       <Link>Framework\Process.vb</Link>
     </Compile>
@@ -211,11 +214,20 @@
     <Compile Include="ABM Tablas\formCuartel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Compra.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompraDetalle.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\EmailConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
+    <Compile Include="Proveedor.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\formReportesParametroFamiliares.Designer.vb">
       <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </Compile>
@@ -318,6 +330,12 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\ReporteParametroExtension.vb" />
+    <Compile Include="Responsable.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResponsableTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Sistema\Appearance.vb" />
     <Compile Include="Sistema\CompletarFormulariosExternos.vb" />
     <Compile Include="Sistema\Reportes.vb" />

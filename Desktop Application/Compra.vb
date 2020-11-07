@@ -10,22 +10,22 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Area
-    Public Property IDArea As Short
-    Public Property IDCuartel As Byte
-    Public Property Codigo As String
-    Public Property Nombre As String
+Partial Public Class Compra
+    Public Property IDCompra As Integer
+    Public Property Fecha As Date
+    Public Property IDProveedor As Nullable(Of Short)
+    Public Property FacturaFecha As Nullable(Of Date)
+    Public Property FacturaNumero As String
+    Public Property Cerrada As Boolean
     Public Property Notas As String
-    Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
+    Public Overridable Property CompraDetalles As ICollection(Of CompraDetalle) = New HashSet(Of CompraDetalle)
+    Public Overridable Property Proveedor As Proveedor
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Cuartel As Cuartel
-    Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
-    Public Overridable Property CompraDetalles As ICollection(Of CompraDetalle) = New HashSet(Of CompraDetalle)
 
 End Class

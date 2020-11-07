@@ -5,6 +5,7 @@
         Public Property IDArea As Short
         Public Property Codigo As String
         Public Property Nombre As String
+        Public Property IDCuartel As Byte
         Public Property CuartelNombre As String
         Public Property EsActivo As Boolean
     End Class
@@ -22,6 +23,8 @@
 
 #Region "Form stuff"
     Friend Sub SetAppearance()
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
+
         DataGridSetAppearance(datagridviewMain)
     End Sub
 
@@ -29,6 +32,8 @@
         SetAppearance()
 
         mSkipFilterData = True
+
+        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1
@@ -51,7 +56,7 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistAreasBase = (From a In dbContext.Area
                                   Join c In dbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
-                                  Select New GridRowData With {.IDArea = a.IDArea, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .EsActivo = a.EsActivo}).ToList
+                                  Select New GridRowData With {.IDArea = a.IDArea, .Codigo = a.Codigo, .Nombre = a.Nombre, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = a.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -92,6 +97,12 @@
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
                 mlistAreasFiltradaYOrdenada = mlistAreasBase.ToList
+
+                ' Filtro por Cuartel
+                If comboboxCuartel.SelectedIndex > 0 Then
+                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Area.IDCuartel} = " & CByte(comboboxCuartel.ComboBox.SelectedValue)
+                    mlistAreasFiltradaYOrdenada = mlistAreasFiltradaYOrdenada.Where(Function(a) a.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                End If
 
                 'Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
@@ -175,7 +186,7 @@
         End If
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -286,6 +297,10 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged
+
     End Sub
 
 #End Region
