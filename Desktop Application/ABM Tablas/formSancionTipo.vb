@@ -154,6 +154,7 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
@@ -162,10 +163,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.SancionTipo.Count = 0 Then
-                    mSancionTipoActual.IDSancionTipo = 1
-                Else
+                If dbcMaxID.SancionTipo.Any() Then
                     mSancionTipoActual.IDSancionTipo = dbcMaxID.SancionTipo.Max(Function(a) a.IDSancionTipo) + CByte(1)
+                Else
+                    mSancionTipoActual.IDSancionTipo = 1
                 End If
             End Using
         End If

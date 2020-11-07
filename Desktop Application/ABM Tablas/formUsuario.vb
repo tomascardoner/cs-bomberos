@@ -174,11 +174,13 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
         End If
         If comboboxUsuarioGrupo.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxUsuarioGrupo.Focus()
             Exit Sub
@@ -187,10 +189,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Usuario.Count = 0 Then
-                    mUsuarioActual.IDUsuario = 1
-                Else
+                If dbcMaxID.Usuario.Any() Then
                     mUsuarioActual.IDUsuario = dbcMaxID.Usuario.Max(Function(a) a.IDUsuario) + CByte(1)
+                Else
+                    mUsuarioActual.IDUsuario = 1
                 End If
             End Using
         End If

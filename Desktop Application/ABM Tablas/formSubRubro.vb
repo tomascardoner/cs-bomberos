@@ -156,12 +156,14 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
         End If
 
         If comboboxRubro.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Rubro.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxRubro.Focus()
             Exit Sub
@@ -170,10 +172,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.SubRubro.Count = 0 Then
-                    mSubRubroActual.IDSubRubro = 1
-                Else
+                If dbcMaxID.SubRubro.Any() Then
                     mSubRubroActual.IDSubRubro = dbcMaxID.SubRubro.Max(Function(a) a.IDSubRubro) + CByte(1)
+                Else
+                    mSubRubroActual.IDSubRubro = 1
                 End If
             End Using
         End If

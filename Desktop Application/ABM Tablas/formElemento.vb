@@ -189,10 +189,10 @@
         ' Generar el ID nuevo
         If mElementoActual.IDElemento = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Elemento.Count = 0 Then
-                    mElementoActual.IDElemento = 1
+                If dbcMaxID.Elemento.Any() Then
+                    mElementoActual.IDElemento = dbcMaxID.Elemento.Max(Function(e) e.IDElemento) + CByte(1)
                 Else
-                    mElementoActual.IDElemento = (From e In dbcMaxID.Elemento Select e.IDElemento).Max + 1 + CByte(1)
+                    mElementoActual.IDElemento = 1
                 End If
             End Using
         End If

@@ -171,10 +171,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.LicenciaCausa.Count = 0 Then
-                    mLicenciaCausaActual.IDLicenciaCausa = 1
-                Else
+                If dbcMaxID.LicenciaCausa.Any() Then
                     mLicenciaCausaActual.IDLicenciaCausa = dbcMaxID.LicenciaCausa.Max(Function(a) a.IDLicenciaCausa) + CByte(1)
+                Else
+                    mLicenciaCausaActual.IDLicenciaCausa = 1
                 End If
             End Using
         End If

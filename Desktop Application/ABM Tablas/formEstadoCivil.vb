@@ -151,6 +151,7 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
@@ -159,10 +160,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.EstadoCivil.Where(Function(e) e.IDEstadoCivil <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Count = 0 Then
-                    mEstadoCivilActual.IDEstadoCivil = 1
-                Else
+                If dbcMaxID.EstadoCivil.Where(Function(e) e.IDEstadoCivil <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Any() Then
                     mEstadoCivilActual.IDEstadoCivil = dbcMaxID.EstadoCivil.Where(Function(e) e.IDEstadoCivil <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(a) a.IDEstadoCivil) + CByte(1)
+                Else
+                    mEstadoCivilActual.IDEstadoCivil = 1
                 End If
             End Using
         End If

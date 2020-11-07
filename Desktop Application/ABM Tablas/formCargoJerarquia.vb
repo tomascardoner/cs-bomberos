@@ -161,12 +161,14 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If comboboxCargo.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCargo.Focus()
             Exit Sub
         End If
 
         If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
@@ -175,10 +177,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.CargoJerarquia.Count = 0 Then
-                    mCargoJerarquiaActual.IDJerarquia = 1
-                Else
+                If dbcMaxID.CargoJerarquia.Any() Then
                     mCargoJerarquiaActual.IDJerarquia = dbcMaxID.CargoJerarquia.Max(Function(a) a.IDJerarquia) + CByte(1)
+                Else
+                    mCargoJerarquiaActual.IDJerarquia = 1
                 End If
             End Using
         End If
