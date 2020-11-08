@@ -1349,6 +1349,7 @@
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formSplashScreen.resx">
       <DependentUpon>formSplashScreen.vb</DependentUpon>
@@ -1417,6 +1418,7 @@
     <None Include="Resources\Actions-edit-copy-icon_32.png" />
     <None Include="Resources\KMHYSEO Crossfit Bomberos.jpg" />
     <None Include="Resources\BOMBEROS %2841%29.png" />
+    <None Include="Resources\shopping-bag_32.png" />
     <Content Include="Sistema\Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />

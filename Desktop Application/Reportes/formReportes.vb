@@ -6,7 +6,13 @@
 
 #Region "Form stuff"
 
+    Private Sub SetAppearance()
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_REPORTES_32)
+    End Sub
+
     Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
+        SetAppearance()
+
         CargarListaReportes()
 
         treeviewReportes.Font = pAppearanceConfig.ListsFont

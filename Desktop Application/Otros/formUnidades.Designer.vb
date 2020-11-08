@@ -24,7 +24,6 @@ Partial Class formUnidades
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formUnidades))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -61,7 +60,7 @@ Partial Class formUnidades
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(845, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(876, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -187,7 +186,7 @@ Partial Class formUnidades
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(278, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -222,7 +221,7 @@ Partial Class formUnidades
         Me.toolstripUnidadTipo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripUnidadTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripUnidadTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelUnidadTipo, Me.comboboxUnidadTipo})
-        Me.toolstripUnidadTipo.Location = New System.Drawing.Point(278, 0)
+        Me.toolstripUnidadTipo.Location = New System.Drawing.Point(247, 0)
         Me.toolstripUnidadTipo.Name = "toolstripUnidadTipo"
         Me.toolstripUnidadTipo.Size = New System.Drawing.Size(218, 39)
         Me.toolstripUnidadTipo.TabIndex = 14
@@ -244,7 +243,7 @@ Partial Class formUnidades
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(496, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(465, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
@@ -266,7 +265,7 @@ Partial Class formUnidades
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(679, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(648, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 12
@@ -291,7 +290,6 @@ Partial Class formUnidades
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "formUnidades"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Unidades"

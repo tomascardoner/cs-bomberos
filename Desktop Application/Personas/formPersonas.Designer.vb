@@ -26,7 +26,6 @@ Partial Class formPersonas
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersonas))
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -36,6 +35,11 @@ Partial Class formPersonas
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnMatriculaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCuartelNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEstadoActual = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
@@ -48,11 +52,6 @@ Partial Class formPersonas
         Me.toolstripEstado = New System.Windows.Forms.ToolStrip()
         Me.labelEstadoActual = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxEstadoActual = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnMatriculaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnApellido = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCuartelNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEstadoActual = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripButtons.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,6 +158,55 @@ Partial Class formPersonas
         Me.datagridviewMain.Size = New System.Drawing.Size(1061, 308)
         Me.datagridviewMain.TabIndex = 0
         '
+        'columnMatriculaNumero
+        '
+        Me.columnMatriculaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnMatriculaNumero.DataPropertyName = "MatriculaNumero"
+        Me.columnMatriculaNumero.HeaderText = "Matrícula"
+        Me.columnMatriculaNumero.Name = "columnMatriculaNumero"
+        Me.columnMatriculaNumero.ReadOnly = True
+        Me.columnMatriculaNumero.Width = 77
+        '
+        'columnApellido
+        '
+        Me.columnApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnApellido.DataPropertyName = "Apellido"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnApellido.HeaderText = "Apellidos"
+        Me.columnApellido.Name = "columnApellido"
+        Me.columnApellido.ReadOnly = True
+        Me.columnApellido.Width = 74
+        '
+        'columnNombre
+        '
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnNombre.HeaderText = "Nombres"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 74
+        '
+        'columnCuartelNombre
+        '
+        Me.columnCuartelNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartelNombre.DataPropertyName = "CuartelNombre"
+        Me.columnCuartelNombre.HeaderText = "Cuartel"
+        Me.columnCuartelNombre.Name = "columnCuartelNombre"
+        Me.columnCuartelNombre.ReadOnly = True
+        Me.columnCuartelNombre.Width = 65
+        '
+        'columnEstadoActual
+        '
+        Me.columnEstadoActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEstadoActual.DataPropertyName = "EstadoActual"
+        Me.columnEstadoActual.HeaderText = "Estado actual"
+        Me.columnEstadoActual.Name = "columnEstadoActual"
+        Me.columnEstadoActual.ReadOnly = True
+        Me.columnEstadoActual.Width = 97
+        '
         'panelToolbars
         '
         Me.panelToolbars.AutoSize = True
@@ -248,55 +296,6 @@ Partial Class formPersonas
         Me.comboboxEstadoActual.Name = "comboboxEstadoActual"
         Me.comboboxEstadoActual.Size = New System.Drawing.Size(150, 39)
         '
-        'columnMatriculaNumero
-        '
-        Me.columnMatriculaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnMatriculaNumero.DataPropertyName = "MatriculaNumero"
-        Me.columnMatriculaNumero.HeaderText = "Matrícula"
-        Me.columnMatriculaNumero.Name = "columnMatriculaNumero"
-        Me.columnMatriculaNumero.ReadOnly = True
-        Me.columnMatriculaNumero.Width = 77
-        '
-        'columnApellido
-        '
-        Me.columnApellido.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnApellido.DataPropertyName = "Apellido"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnApellido.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnApellido.HeaderText = "Apellidos"
-        Me.columnApellido.Name = "columnApellido"
-        Me.columnApellido.ReadOnly = True
-        Me.columnApellido.Width = 74
-        '
-        'columnNombre
-        '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnNombre.HeaderText = "Nombres"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 74
-        '
-        'columnCuartelNombre
-        '
-        Me.columnCuartelNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartelNombre.DataPropertyName = "CuartelNombre"
-        Me.columnCuartelNombre.HeaderText = "Cuartel"
-        Me.columnCuartelNombre.Name = "columnCuartelNombre"
-        Me.columnCuartelNombre.ReadOnly = True
-        Me.columnCuartelNombre.Width = 65
-        '
-        'columnEstadoActual
-        '
-        Me.columnEstadoActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEstadoActual.DataPropertyName = "EstadoActual"
-        Me.columnEstadoActual.HeaderText = "Estado actual"
-        Me.columnEstadoActual.Name = "columnEstadoActual"
-        Me.columnEstadoActual.ReadOnly = True
-        Me.columnEstadoActual.Width = 97
-        '
         'formPersonas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -305,7 +304,6 @@ Partial Class formPersonas
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.Name = "formPersonas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

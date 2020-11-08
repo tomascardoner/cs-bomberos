@@ -6,9 +6,15 @@
 #End Region
 
 #Region "Form stuff"
+    Private Sub SetAppearance()
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_APPLICATION_ICON_300)
+    End Sub
+
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cambio el puntero del mouse para indicar que la aplicación está iniciando
         Me.Cursor = Cursors.AppStarting
+
+        SetAppearance()
 
         ' Deshabilito el Form principal hasta que se cierre el SplashScreen
         Me.Enabled = False

@@ -14,8 +14,9 @@
 
 #Region "Form stuff"
     Friend Sub SetAppearance()
-        datagridviewMain.DefaultCellStyle.Font = pAppearanceConfig.ListsFont
-        datagridviewMain.ColumnHeadersDefaultCellStyle.Font = pAppearanceConfig.ListsFont
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
+
+        DataGridSetAppearance(datagridviewMain)
     End Sub
 
     Private Sub Me_Load() Handles Me.Load

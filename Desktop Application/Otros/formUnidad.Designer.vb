@@ -33,7 +33,6 @@ Partial Class formUnidad
         Dim labelEsPropio As System.Windows.Forms.Label
         Dim labelEsImportado As System.Windows.Forms.Label
         Dim labelVerificacionVencimiento As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formUnidad))
         Me.labelUnidadBajaMotivo = New System.Windows.Forms.Label()
         Me.textboxModelo = New System.Windows.Forms.TextBox()
         Me.labelModelo = New System.Windows.Forms.Label()
@@ -60,7 +59,7 @@ Partial Class formUnidad
         Me.maskedtextboxKilometrajeInicial = New System.Windows.Forms.MaskedTextBox()
         Me.maskedtextboxCapacidadAguaLitros = New System.Windows.Forms.MaskedTextBox()
         Me.buttonNumeroSiguiente = New System.Windows.Forms.Button()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.datetimepickerVerificacionVencimiento = New System.Windows.Forms.DateTimePicker()
         Me.checkboxEsImportado = New System.Windows.Forms.CheckBox()
@@ -690,7 +689,6 @@ Partial Class formUnidad
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
