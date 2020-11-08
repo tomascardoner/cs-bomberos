@@ -5047,7 +5047,7 @@
           <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__Localidad__PersonaFamiliar" FromRole="Localidad" ToRole="PersonaFamiliar" />
           <Property Name="IDPartido" Type="Int16" />
           <NavigationProperty Name="Partido" Relationship="CSBomberosModel.FK__Partido__Localidad" FromRole="Localidad" ToRole="Partido" />
-          <NavigationProperty Name="Proveedor" Relationship="CSBomberosModel.FK__Localidad__Proveedor" FromRole="Localidad" ToRole="Proveedor" />
+          <NavigationProperty Name="Proveedores" Relationship="CSBomberosModel.FK__Localidad__Proveedor" FromRole="Localidad" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -5255,8 +5255,8 @@
           <NavigationProperty Name="EstadosCivilesModificados" Relationship="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion" FromRole="Usuario" ToRole="EstadoCivil" />
           <NavigationProperty Name="ComprasCreadas" Relationship="CSBomberosModel.FK__Usuario__Compra__Creacion" FromRole="Usuario" ToRole="Compra" />
           <NavigationProperty Name="ComprasModificadas" Relationship="CSBomberosModel.FK__Usuario__Compra__Modificacion" FromRole="Usuario" ToRole="Compra" />
-          <NavigationProperty Name="Proveedor" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Creacion" FromRole="Usuario" ToRole="Proveedor" />
-          <NavigationProperty Name="Proveedor1" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" FromRole="Usuario" ToRole="Proveedor" />
+          <NavigationProperty Name="ProveedoresCreados" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Creacion" FromRole="Usuario" ToRole="Proveedor" />
+          <NavigationProperty Name="ProveedoresModificados" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" FromRole="Usuario" ToRole="Proveedor" />
           <NavigationProperty Name="ResponsablesCreados" Relationship="CSBomberosModel.FK__Usuario__Responsable__Creacion" FromRole="Usuario" ToRole="Responsable" />
           <NavigationProperty Name="ResponsablesModificados" Relationship="CSBomberosModel.FK__Usuario__Responsable__Modificacion" FromRole="Usuario" ToRole="Responsable" />
           <NavigationProperty Name="ResponsableTiposCreados" Relationship="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" FromRole="Usuario" ToRole="ResponsableTipo" />
@@ -8556,8 +8556,8 @@
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Compras" Relationship="CSBomberosModel.FK__Proveedor__Compra" FromRole="Proveedor" ToRole="Compra" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__Proveedor" FromRole="Proveedor" ToRole="Localidad" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Creacion" FromRole="Proveedor" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" FromRole="Proveedor" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Creacion" FromRole="Proveedor" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" FromRole="Proveedor" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Responsable">
           <Key>

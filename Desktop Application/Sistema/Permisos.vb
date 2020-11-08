@@ -149,6 +149,11 @@
     Friend Const ALARMA_EDITAR As String = "ALARMA_EDITAR"
     Friend Const ALARMA_ELIMINAR As String = "ALARMA_ELIMINAR"
 
+    Friend Const PROVEEDOR As String = "PROVEEDOR"
+    Friend Const PROVEEDOR_AGREGAR As String = "PROVEEDOR_AGREGAR"
+    Friend Const PROVEEDOR_EDITAR As String = "PROVEEDOR_EDITAR"
+    Friend Const PROVEEDOR_ELIMINAR As String = "PROVEEDOR_ELIMINAR"
+
     Friend Const PERSONA As String = "PERSONA"
     Friend Const PERSONA_AGREGAR As String = "PERSONA_AGREGAR"
     Friend Const PERSONA_EDITAR As String = "PERSONA_EDITAR"
@@ -425,11 +430,18 @@
             .Nodes.Add(SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
-        RootNode = Arbol.Nodes.Add(AREA, "Responsables")
+        RootNode = Arbol.Nodes.Add(RESPONSABLE, "Responsables")
         With RootNode
             .Nodes.Add(RESPONSABLE_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(RESPONSABLE_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(RESPONSABLE_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(PROVEEDOR, "Proveedores")
+        With RootNode
+            .Nodes.Add(PROVEEDOR_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(PROVEEDOR_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(PROVEEDOR_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de usuarios")

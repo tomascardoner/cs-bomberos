@@ -199,6 +199,18 @@
     <Compile Include="ABM Tablas\formResponsables.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\formProveedor.designer.vb">
+      <DependentUpon>formProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\formProveedores.designer.vb">
+      <DependentUpon>formProveedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formProveedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
       <Link>Framework\CS_Parameter_System.vb</Link>
     </Compile>
@@ -1053,6 +1065,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formResponsables.resx">
       <DependentUpon>formResponsables.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formProveedor.resx">
+      <DependentUpon>formProveedor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formProveedores.resx">
+      <DependentUpon>formProveedores.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>

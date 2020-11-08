@@ -224,6 +224,10 @@
         ShowForm(Permisos.RESPONSABLE, CType(formResponsables, Form))
     End Sub
 
+    Private Sub Proveedores() Handles menuitemTablas_Proveedores.Click
+        ShowForm(Permisos.PROVEEDOR, CType(formProveedores, Form))
+    End Sub
+
 #End Region
 
 #Region "Left Toolbar - Personas"

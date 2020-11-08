@@ -80,14 +80,15 @@ Partial Class formMDIMain
         Me.menuitemTablas_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_MenuOtros = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cuarteles = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Responsables = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonPersonas = New System.Windows.Forms.ToolStripButton()
         Me.buttonUnidades = New System.Windows.Forms.ToolStripButton()
         Me.buttonInventario = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuitemTablas_Responsables = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_Proveedores = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -449,7 +450,7 @@ Partial Class formMDIMain
         '
         'menuitemTablas_MenuOtros
         '
-        Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Areas, Me.menuitemTablas_Alarmas, Me.menuitemTablas_Responsables})
+        Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Areas, Me.menuitemTablas_Alarmas, Me.menuitemTablas_Responsables, Me.menuitemTablas_Proveedores})
         Me.menuitemTablas_MenuOtros.Name = "menuitemTablas_MenuOtros"
         Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuOtros.Text = "Otros"
@@ -460,11 +461,23 @@ Partial Class formMDIMain
         Me.menuitemTablas_Cuarteles.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_Cuarteles.Text = "Cuarteles"
         '
+        'menuitemTablas_Areas
+        '
+        Me.menuitemTablas_Areas.Name = "menuitemTablas_Areas"
+        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Areas.Text = "Áreas"
+        '
         'menuitemTablas_Alarmas
         '
         Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
         Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_Alarmas.Text = "Alarmas"
+        '
+        'menuitemTablas_Responsables
+        '
+        Me.menuitemTablas_Responsables.Name = "menuitemTablas_Responsables"
+        Me.menuitemTablas_Responsables.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Responsables.Text = "Responsables"
         '
         'buttonPersonas
         '
@@ -513,17 +526,11 @@ Partial Class formMDIMain
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
         '
-        'menuitemTablas_Responsables
+        'menuitemTablas_Proveedores
         '
-        Me.menuitemTablas_Responsables.Name = "menuitemTablas_Responsables"
-        Me.menuitemTablas_Responsables.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_Responsables.Text = "Responsables"
-        '
-        'menuitemTablas_Areas
-        '
-        Me.menuitemTablas_Areas.Name = "menuitemTablas_Areas"
-        Me.menuitemTablas_Areas.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_Areas.Text = "Áreas"
+        Me.menuitemTablas_Proveedores.Name = "menuitemTablas_Proveedores"
+        Me.menuitemTablas_Proveedores.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_Proveedores.Text = "Proveedores"
         '
         'formMDIMain
         '
@@ -616,4 +623,5 @@ Partial Class formMDIMain
     Friend WithEvents buttonReportes As System.Windows.Forms.ToolStripButton
     Friend WithEvents menuitemTablas_Areas As ToolStripMenuItem
     Friend WithEvents menuitemTablas_Responsables As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_Proveedores As ToolStripMenuItem
 End Class
