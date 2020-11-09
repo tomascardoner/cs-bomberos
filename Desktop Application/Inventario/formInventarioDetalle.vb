@@ -233,7 +233,7 @@
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.Area(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue))
+        pFillAndRefreshLists.Area(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue), False)
         comboboxArea.SelectedItem = Nothing
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, True, CByte(comboboxCuartel.SelectedValue))
         textboxCodigo.Text = ""
@@ -264,7 +264,7 @@
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
-            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            If MsgBox(String.Format("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else

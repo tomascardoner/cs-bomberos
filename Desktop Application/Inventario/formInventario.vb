@@ -264,7 +264,7 @@
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.Area(comboboxArea.ComboBox, True, False, CByte(comboboxCuartel.ComboBox.SelectedValue))
+        pFillAndRefreshLists.Area(comboboxArea.ComboBox, True, False, CByte(comboboxCuartel.ComboBox.SelectedValue), False)
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion.ComboBox, True, True, CByte(comboboxCuartel.ComboBox.SelectedValue))
 
         FilterData()

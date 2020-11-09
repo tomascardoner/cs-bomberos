@@ -43,7 +43,7 @@
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
             Case Constantes.REPORTE_PARAMETRO_TIPO_AREA
-                pFillAndRefreshLists.Area(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
+                pFillAndRefreshLists.Area(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue), False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If

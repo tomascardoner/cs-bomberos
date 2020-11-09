@@ -24,6 +24,8 @@ Partial Class formCompra
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelCuartel = New System.Windows.Forms.Label()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.labelFacturaFecha = New System.Windows.Forms.Label()
@@ -51,6 +53,17 @@ Partial Class formCompra
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.tabpageDetalles = New System.Windows.Forms.TabPage()
+        Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
+        Me.toolstripDetalles = New System.Windows.Forms.ToolStrip()
+        Me.buttonDetallesAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonDetallesEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -59,6 +72,10 @@ Partial Class formCompra
         Me.groupboxFactura.SuspendLayout()
         CType(Me.integertextboxIDCompra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        Me.tabpageDetalles.SuspendLayout()
+        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripDetalles.SuspendLayout()
+        Me.statusstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelModificacion
@@ -152,7 +169,7 @@ Partial Class formCompra
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(537, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(684, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'comboboxProveedor
@@ -171,11 +188,12 @@ Partial Class formCompra
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageDetalles)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(517, 303)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(664, 286)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -192,7 +210,7 @@ Partial Class formCompra
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(509, 274)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(656, 257)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -260,7 +278,7 @@ Partial Class formCompra
         '
         'integertextboxIDCompra
         '
-        Me.integertextboxIDCompra.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.integertextboxIDCompra.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxIDCompra.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxIDCompra.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxIDCompra.IntegerValue = CType(0, Long)
@@ -306,7 +324,7 @@ Partial Class formCompra
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(509, 274)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(656, 257)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -354,7 +372,7 @@ Partial Class formCompra
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 118)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 196)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -366,11 +384,137 @@ Partial Class formCompra
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'tabpageDetalles
+        '
+        Me.tabpageDetalles.Controls.Add(Me.statusstripMain)
+        Me.tabpageDetalles.Controls.Add(Me.datagridviewDetalles)
+        Me.tabpageDetalles.Controls.Add(Me.toolstripDetalles)
+        Me.tabpageDetalles.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageDetalles.Name = "tabpageDetalles"
+        Me.tabpageDetalles.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageDetalles.Size = New System.Drawing.Size(656, 257)
+        Me.tabpageDetalles.TabIndex = 2
+        Me.tabpageDetalles.Text = "Detalles"
+        Me.tabpageDetalles.UseVisualStyleBackColor = True
+        '
+        'datagridviewDetalles
+        '
+        Me.datagridviewDetalles.AllowUserToAddRows = False
+        Me.datagridviewDetalles.AllowUserToDeleteRows = False
+        Me.datagridviewDetalles.AllowUserToResizeRows = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewDetalles.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.datagridviewDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewDetalles.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnArea, Me.columnDetalle, Me.columnImporte})
+        Me.datagridviewDetalles.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewDetalles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewDetalles.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewDetalles.MultiSelect = False
+        Me.datagridviewDetalles.Name = "datagridviewDetalles"
+        Me.datagridviewDetalles.ReadOnly = True
+        Me.datagridviewDetalles.RowHeadersVisible = False
+        Me.datagridviewDetalles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewDetalles.Size = New System.Drawing.Size(563, 251)
+        Me.datagridviewDetalles.TabIndex = 8
+        '
+        'toolstripDetalles
+        '
+        Me.toolstripDetalles.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripDetalles.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripDetalles.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripDetalles.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonDetallesAgregar, Me.buttonDetallesEditar, Me.buttonDetallesEliminar})
+        Me.toolstripDetalles.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripDetalles.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripDetalles.Name = "toolstripDetalles"
+        Me.toolstripDetalles.Size = New System.Drawing.Size(87, 251)
+        Me.toolstripDetalles.TabIndex = 9
+        '
+        'buttonDetallesAgregar
+        '
+        Me.buttonDetallesAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonDetallesAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetallesAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetallesAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetallesAgregar.Name = "buttonDetallesAgregar"
+        Me.buttonDetallesAgregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetallesAgregar.Text = "Agregar"
+        '
+        'buttonDetallesEditar
+        '
+        Me.buttonDetallesEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonDetallesEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetallesEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetallesEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetallesEditar.Name = "buttonDetallesEditar"
+        Me.buttonDetallesEditar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetallesEditar.Text = "Editar"
+        '
+        'buttonDetallesEliminar
+        '
+        Me.buttonDetallesEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonDetallesEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonDetallesEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonDetallesEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonDetallesEliminar.Name = "buttonDetallesEliminar"
+        Me.buttonDetallesEliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonDetallesEliminar.Text = "Eliminar"
+        '
+        'columnArea
+        '
+        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnArea.DataPropertyName = "AreaNombre"
+        Me.columnArea.HeaderText = "Área"
+        Me.columnArea.Name = "columnArea"
+        Me.columnArea.ReadOnly = True
+        Me.columnArea.Width = 54
+        '
+        'columnDetalle
+        '
+        Me.columnDetalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDetalle.DataPropertyName = "Detalle"
+        Me.columnDetalle.HeaderText = "Detalle"
+        Me.columnDetalle.Name = "columnDetalle"
+        Me.columnDetalle.ReadOnly = True
+        Me.columnDetalle.Width = 65
+        '
+        'columnImporte
+        '
+        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnImporte.DataPropertyName = "Importe"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "C2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnImporte.HeaderText = "Importe"
+        Me.columnImporte.Name = "columnImporte"
+        Me.columnImporte.ReadOnly = True
+        Me.columnImporte.Width = 67
+        '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(90, 232)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
+        Me.statusstripMain.SizingGrip = False
+        Me.statusstripMain.TabIndex = 10
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'formCompra
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(537, 358)
+        Me.ClientSize = New System.Drawing.Size(684, 341)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -390,6 +534,13 @@ Partial Class formCompra
         CType(Me.integertextboxIDCompra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        Me.tabpageDetalles.ResumeLayout(False)
+        Me.tabpageDetalles.PerformLayout()
+        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripDetalles.ResumeLayout(False)
+        Me.toolstripDetalles.PerformLayout()
+        Me.statusstripMain.ResumeLayout(False)
+        Me.statusstripMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -421,4 +572,15 @@ Partial Class formCompra
     Friend WithEvents integertextboxIDCompra As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents labelEsActivo As Label
     Friend WithEvents textboxFacturaNumero As TextBox
+    Friend WithEvents tabpageDetalles As TabPage
+    Friend WithEvents datagridviewDetalles As DataGridView
+    Friend WithEvents columnArea As DataGridViewTextBoxColumn
+    Friend WithEvents columnDetalle As DataGridViewTextBoxColumn
+    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
+    Friend WithEvents toolstripDetalles As ToolStrip
+    Friend WithEvents buttonDetallesAgregar As ToolStripButton
+    Friend WithEvents buttonDetallesEditar As ToolStripButton
+    Friend WithEvents buttonDetallesEliminar As ToolStripButton
+    Friend WithEvents statusstripMain As StatusStrip
+    Friend WithEvents statuslabelMain As ToolStripStatusLabel
 End Class

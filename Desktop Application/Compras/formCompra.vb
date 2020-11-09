@@ -68,6 +68,9 @@
         textboxFacturaNumero.ReadOnly = Not mEditMode
         checkboxCerrada.Enabled = mEditMode
 
+        ' Detalles
+        toolstripDetalles.Enabled = mEditMode
+
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
@@ -116,6 +119,8 @@
             Else
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
+
+            DetallesRefreshData()
         End With
     End Sub
 
@@ -170,7 +175,7 @@
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
-            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            If MsgBox(String.Format("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else
@@ -235,6 +240,110 @@
         End If
 
         Me.Close()
+    End Sub
+
+#End Region
+
+#Region "Detalles"
+    Friend Class DetallesGridRowData
+        Public Property IDDetalle As Byte
+        Public Property AreaNombre As String
+        Public Property Detalle As String
+        Public Property Importe As Decimal?
+    End Class
+
+    Friend Sub DetallesRefreshData(Optional ByVal PositionIDDetalle As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listDetalles As List(Of DetallesGridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewDetalles.CurrentRow Is Nothing Then
+                PositionIDDetalle = 0
+            Else
+                PositionIDDetalle = CType(datagridviewDetalles.CurrentRow.DataBoundItem, DetallesGridRowData).IDDetalle
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listDetalles = (From cd In mCompraActual.CompraDetalles
+                            Join a In mdbContext.Area On cd.IDArea Equals a.IDArea
+                            Order By cd.IDDetalle
+                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .AreaNombre = a.Nombre, .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
+
+            datagridviewDetalles.AutoGenerateColumns = False
+            datagridviewDetalles.DataSource = listDetalles
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDDetalle <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewDetalles.Rows
+                If CType(CurrentRowChecked.DataBoundItem, DetallesGridRowData).IDDetalle = PositionIDDetalle Then
+                    datagridviewDetalles.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        ' formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonDetallesEditar.Click
+        If datagridviewDetalles.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Detalle para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            ' formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDFamiliar)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonDetallesEliminar.Click
+        If datagridviewDetalles.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Detalle para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim GridRowDataActual As DetallesGridRowData
+            Dim Mensaje As String
+
+            GridRowDataActual = CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData)
+
+            Mensaje = String.Format("Se eliminará el Detalle seleccionado.{0}{0}Área: {1}{0}Detalle: {2}{0}Importe: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AreaNombre, GridRowDataActual.Detalle, FormatCurrency(GridRowDataActual.Importe))
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mCompraActual.CompraDetalles.Remove(mdbContext.CompraDetalle.Find(mCompraActual.IDCompra, GridRowDataActual.IDDetalle))
+
+                DetallesRefreshData()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewDetalles.DoubleClick
+        If datagridviewDetalles.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Detalle para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            ' formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDFamiliar)
+
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 
 #End Region

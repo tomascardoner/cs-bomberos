@@ -512,25 +512,32 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Area(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal IDCuartel As Byte)
+    Friend Sub Area(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean, ByVal IDCuartel As Byte, ByVal MostrarCuartel As Boolean)
         Dim listItems As List(Of Area)
 
         ComboBoxControl.ValueMember = "IDArea"
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
+            If MostrarCuartel Then
+                listItems = (From a In mdbContext.Area
+                             Where a.EsActivo AndAlso a.IDCuartel = IDCuartel
+                             Order By a.Nombre
+                             Select New Area With {.IDArea = a.IDArea, .Nombre = a.Nombre + " (" + a.Cuartel.Nombre + ")"}).ToList()
+            Else
+                listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
+            End If
         Else
-            listItems = mdbContext.Area.Where(Function(a) a.EsActivo And a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
         End If
 
-        If AgregarItem_NoEspecifica Then
+        If AgregarItemNoEspecifica Then
             Dim Item_NoEspecifica As New Area
             Item_NoEspecifica.IDArea = Short.MinValue
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
-        If AgregarItem_Todos Then
+        If AgregarItemTodos Then
             Dim Item_Todos As New Area
             Item_Todos.IDArea = 0
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE

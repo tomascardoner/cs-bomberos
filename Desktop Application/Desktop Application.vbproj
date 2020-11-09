@@ -250,6 +250,12 @@
     <Compile Include="Compras\formCompra.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Compras\formCompraDetalle.designer.vb">
+      <DependentUpon>formCompraDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompraDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Compras\formCompras.Designer.vb">
       <DependentUpon>formCompras.vb</DependentUpon>
     </Compile>
@@ -1086,6 +1092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompra.resx">
       <DependentUpon>formCompra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compras\formCompraDetalle.resx">
+      <DependentUpon>formCompraDetalle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompras.resx">
       <DependentUpon>formCompras.vb</DependentUpon>
