@@ -3,6 +3,16 @@
 #Region "Declarations..."
     Private mdbContext As CSBomberosContext
 
+    Friend Class AreaYCuartelClass
+        Public Property IDArea As Short
+        Public Property IDCuartel As Byte
+        Public Property Codigo As String
+        Public Property Nombre As String
+        Public Property CuartelNombre As String
+        Public Property NombreYCuartel As String
+        Public Property EsActivo As Boolean
+    End Class
+
     Public Sub New()
         mdbContext = New CSBomberosContext(True)
     End Sub
@@ -512,21 +522,14 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub Area(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean, ByVal IDCuartel As Byte, ByVal MostrarCuartel As Boolean)
+    Friend Sub Area(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean, ByVal IDCuartel As Byte)
         Dim listItems As List(Of Area)
 
         ComboBoxControl.ValueMember = "IDArea"
         ComboBoxControl.DisplayMember = "Nombre"
 
         If IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
-            If MostrarCuartel Then
-                listItems = (From a In mdbContext.Area
-                             Where a.EsActivo AndAlso a.IDCuartel = IDCuartel
-                             Order By a.Nombre
-                             Select New Area With {.IDArea = a.IDArea, .Nombre = a.Nombre + " (" + a.Cuartel.Nombre + ")"}).ToList()
-            Else
-                listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
-            End If
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
         Else
             listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
         End If
@@ -539,6 +542,34 @@
         End If
         If AgregarItemTodos Then
             Dim Item_Todos As New Area
+            Item_Todos.IDArea = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub AreaYCuartel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of AreaYCuartelClass)
+
+        ComboBoxControl.ValueMember = "IDArea"
+        ComboBoxControl.DisplayMember = "NombreYCuartel"
+
+        listItems = (From a In mdbContext.Area
+                     Join c In mdbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
+                     Where a.EsActivo AndAlso c.EsActivo
+                     Order By a.Nombre, c.Nombre
+                     Select New AreaYCuartelClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .EsActivo = a.EsActivo}).ToList()
+
+        If AgregarItemNoEspecifica Then
+            Dim Item_NoEspecifica As New AreaYCuartelClass
+            Item_NoEspecifica.IDArea = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItemTodos Then
+            Dim Item_Todos As New AreaYCuartelClass
             Item_Todos.IDArea = 0
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
             listItems.Insert(0, Item_Todos)

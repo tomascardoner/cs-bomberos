@@ -16,6 +16,7 @@ Partial Public Class CompraDetalle
     Public Property IDArea As Short
     Public Property Detalle As String
     Public Property Importe As Nullable(Of Decimal)
+    Public Property Notas As String
 
     Public Overridable Property Area As Area
     Public Overridable Property Compra As Compra

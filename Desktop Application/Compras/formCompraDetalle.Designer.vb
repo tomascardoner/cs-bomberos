@@ -23,8 +23,6 @@ Partial Class formCompraDetalle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim labelDetalle As System.Windows.Forms.Label
-        Dim labelModificacion As System.Windows.Forms.Label
-        Dim labelCreacion As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -34,26 +32,20 @@ Partial Class formCompraDetalle
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.comboboxArea = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.currencytextboxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.textboxDetalle = New System.Windows.Forms.TextBox()
         Me.labelImporte = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelID = New System.Windows.Forms.Label()
         Me.textboxID = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
-        Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxDetalle = New System.Windows.Forms.TextBox()
-        Me.currencytextboxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         labelDetalle = New System.Windows.Forms.Label()
-        labelModificacion = New System.Windows.Forms.Label()
-        labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelDetalle
@@ -64,24 +56,6 @@ Partial Class formCompraDetalle
         labelDetalle.Size = New System.Drawing.Size(43, 13)
         labelDetalle.TabIndex = 2
         labelDetalle.Text = "Detalle:"
-        '
-        'labelModificacion
-        '
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 241)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(102, 13)
-        labelModificacion.TabIndex = 7
-        labelModificacion.Text = "Última Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 215)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(52, 13)
-        labelCreacion.TabIndex = 4
-        labelCreacion.Text = "Creación:"
         '
         'buttonGuardar
         '
@@ -143,12 +117,12 @@ Partial Class formCompraDetalle
         '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
+        Me.textboxNotas.Location = New System.Drawing.Point(50, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 174)
+        Me.textboxNotas.Size = New System.Drawing.Size(450, 220)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -196,6 +170,32 @@ Partial Class formCompraDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'currencytextboxImporte
+        '
+        Me.currencytextboxImporte.AllowNull = True
+        Me.currencytextboxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
+        Me.currencytextboxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxImporte.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.currencytextboxImporte.Location = New System.Drawing.Point(57, 235)
+        Me.currencytextboxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
+        Me.currencytextboxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxImporte.Name = "currencytextboxImporte"
+        Me.currencytextboxImporte.NullString = ""
+        Me.currencytextboxImporte.Size = New System.Drawing.Size(119, 20)
+        Me.currencytextboxImporte.TabIndex = 5
+        Me.currencytextboxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'textboxDetalle
+        '
+        Me.textboxDetalle.Location = New System.Drawing.Point(57, 33)
+        Me.textboxDetalle.MaxLength = 0
+        Me.textboxDetalle.Multiline = True
+        Me.textboxDetalle.Name = "textboxDetalle"
+        Me.textboxDetalle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxDetalle.Size = New System.Drawing.Size(447, 196)
+        Me.textboxDetalle.TabIndex = 3
+        '
         'labelImporte
         '
         Me.labelImporte.AutoSize = True
@@ -209,12 +209,6 @@ Partial Class formCompraDetalle
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelID)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxID)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
@@ -228,7 +222,7 @@ Partial Class formCompraDetalle
         'labelID
         '
         Me.labelID.AutoSize = True
-        Me.labelID.Location = New System.Drawing.Point(6, 189)
+        Me.labelID.Location = New System.Drawing.Point(6, 235)
         Me.labelID.Name = "labelID"
         Me.labelID.Size = New System.Drawing.Size(21, 13)
         Me.labelID.TabIndex = 2
@@ -236,7 +230,7 @@ Partial Class formCompraDetalle
         '
         'textboxID
         '
-        Me.textboxID.Location = New System.Drawing.Point(114, 186)
+        Me.textboxID.Location = New System.Drawing.Point(50, 232)
         Me.textboxID.MaxLength = 10
         Me.textboxID.Name = "textboxID"
         Me.textboxID.ReadOnly = True
@@ -244,67 +238,6 @@ Partial Class formCompraDetalle
         Me.textboxID.TabIndex = 3
         Me.textboxID.TabStop = False
         Me.textboxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'textboxUsuarioModificacion
-        '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 238)
-        Me.textboxUsuarioModificacion.MaxLength = 50
-        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
-        Me.textboxUsuarioModificacion.ReadOnly = True
-        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioModificacion.TabIndex = 9
-        '
-        'textboxUsuarioCreacion
-        '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 212)
-        Me.textboxUsuarioCreacion.MaxLength = 50
-        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
-        Me.textboxUsuarioCreacion.ReadOnly = True
-        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
-        Me.textboxUsuarioCreacion.TabIndex = 6
-        '
-        'textboxFechaHoraModificacion
-        '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 238)
-        Me.textboxFechaHoraModificacion.MaxLength = 0
-        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
-        Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraModificacion.TabIndex = 8
-        '
-        'textboxFechaHoraCreacion
-        '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 212)
-        Me.textboxFechaHoraCreacion.MaxLength = 0
-        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
-        Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
-        Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'textboxDetalle
-        '
-        Me.textboxDetalle.Location = New System.Drawing.Point(57, 33)
-        Me.textboxDetalle.MaxLength = 0
-        Me.textboxDetalle.Multiline = True
-        Me.textboxDetalle.Name = "textboxDetalle"
-        Me.textboxDetalle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDetalle.Size = New System.Drawing.Size(447, 196)
-        Me.textboxDetalle.TabIndex = 3
-        '
-        'currencytextboxImporte
-        '
-        Me.currencytextboxImporte.AllowNull = True
-        Me.currencytextboxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporte.Location = New System.Drawing.Point(57, 235)
-        Me.currencytextboxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
-        Me.currencytextboxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.currencytextboxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporte.Name = "currencytextboxImporte"
-        Me.currencytextboxImporte.NullString = ""
-        Me.currencytextboxImporte.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.TabIndex = 5
-        Me.currencytextboxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'formCompraDetalle
         '
@@ -325,9 +258,9 @@ Partial Class formCompraDetalle
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -346,10 +279,6 @@ Partial Class formCompraDetalle
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelID As System.Windows.Forms.Label
     Friend WithEvents textboxID As System.Windows.Forms.TextBox
-    Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents labelImporte As Label
     Friend WithEvents textboxDetalle As TextBox
     Friend WithEvents currencytextboxImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox

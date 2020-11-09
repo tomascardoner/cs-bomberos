@@ -243,7 +243,9 @@
     Friend Const COMPRA As String = "COMPRA"
     Friend Const COMPRA_AGREGAR As String = "COMPRA_AGREGAR"
     Friend Const COMPRA_EDITAR As String = "COMPRA_EDITAR"
+    Friend Const COMPRA_EDITAR_CERRADA As String = "COMPRA_EDITAR_CERRADA"
     Friend Const COMPRA_ELIMINAR As String = "COMPRA_ELIMINAR"
+    Friend Const COMPRA_ELIMINAR_CERRADA As String = "COMPRA_ELIMINAR_CERRADA"
 
     Friend Const REPORTE As String = "REPORTE"
 
@@ -585,7 +587,9 @@
         With RootNode
             .Nodes.Add(COMPRA_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(COMPRA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(COMPRA_EDITAR_CERRADA, DESCRIPCION_EDITAR & " compra cerrada")
             .Nodes.Add(COMPRA_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(COMPRA_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " compra cerrada")
         End With
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")

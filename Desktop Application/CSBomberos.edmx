@@ -148,6 +148,7 @@
           <Property Name="IDArea" Type="smallint" Nullable="false" />
           <Property Name="Detalle" Type="varchar(max)" />
           <Property Name="Importe" Type="money" />
+          <Property Name="Notas" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Cuartel">
           <Key>
@@ -8527,6 +8528,7 @@
           <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK__Area__CompraDetalle" FromRole="CompraDetalle" ToRole="Area" />
           <NavigationProperty Name="Compra" Relationship="CSBomberosModel.FK__Compra__CompraDetalle" FromRole="CompraDetalle" ToRole="Compra" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -9903,6 +9905,7 @@
           <EntitySetMapping Name="CompraDetalle">
             <EntityTypeMapping TypeName="CSBomberosModel.CompraDetalle">
               <MappingFragment StoreEntitySet="CompraDetalle">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
                 <ScalarProperty Name="IDArea" ColumnName="IDArea" />

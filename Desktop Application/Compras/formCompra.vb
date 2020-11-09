@@ -22,6 +22,8 @@
             ' Es Nuevo
             mCompraActual = New Compra
             With mCompraActual
+                .Fecha = DateTime.Today
+
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
                 If formCompras.comboboxProveedor.SelectedIndex > 0 Then
                     .IDProveedor = CShort(formCompras.comboboxProveedor.ComboBox.SelectedValue)
@@ -126,7 +128,6 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mCompraActual
-            .IDCompra = CShort(integertextboxIDCompra.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .FacturaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFacturaFecha.Value, datetimepickerFacturaFecha.Checked)
@@ -167,10 +168,17 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
-            mEditMode = True
-            ChangeMode()
+        If Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
+            Exit Sub
         End If
+
+        If mCompraActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
+            MsgBox("La Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            Exit Sub
+        End If
+
+        mEditMode = True
+        ChangeMode()
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
@@ -269,13 +277,13 @@
             listDetalles = (From cd In mCompraActual.CompraDetalles
                             Join a In mdbContext.Area On cd.IDArea Equals a.IDArea
                             Order By cd.IDDetalle
-                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .AreaNombre = a.Nombre, .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
+                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
 
             datagridviewDetalles.AutoGenerateColumns = False
             datagridviewDetalles.DataSource = listDetalles
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles de la Compra.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -295,7 +303,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        ' formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+        formCompraDetalle.LoadAndShow(True, True, Me, mCompraActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -306,7 +314,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            ' formPersonaFamiliar.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDFamiliar)
+            formCompraDetalle.LoadAndShow(True, True, Me, mCompraActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If
@@ -325,7 +333,7 @@
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                mCompraActual.CompraDetalles.Remove(mdbContext.CompraDetalle.Find(mCompraActual.IDCompra, GridRowDataActual.IDDetalle))
+                mCompraActual.CompraDetalles.Remove(mCompraActual.CompraDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
 
                 DetallesRefreshData()
 
@@ -340,7 +348,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            ' formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDFamiliar)
+            formCompraDetalle.LoadAndShow(mEditMode, False, Me, mCompraActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If

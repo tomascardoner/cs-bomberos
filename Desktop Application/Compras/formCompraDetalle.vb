@@ -2,10 +2,13 @@
 
 #Region "Declarations"
 
+    Private mParentForm As Form
     Private mdbContext As New CSBomberosContext(True)
+    Private mCompraActual As Compra
     Private mCompraDetalleActual As CompraDetalle
 
     Private mIsLoading As Boolean = False
+    Private mParentEditMode As Boolean = False
     Private mEditMode As Boolean = False
     Private mIsNew As Boolean = False
 
@@ -13,23 +16,23 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCompra As Integer, ByVal IDDetalle As Byte)
+    Friend Sub LoadAndShow(ByVal ParentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef CompraActual As Compra, ByVal IDDetalle As Byte)
+        mParentForm = ParentForm
         mIsLoading = True
+        mParentEditMode = ParentEditMode
         mEditMode = EditMode
         mIsNew = (IDDetalle = 0)
 
+        mCompraActual = CompraActual
         If mIsNew Then
             ' Es Nuevo
             mCompraDetalleActual = New CompraDetalle
-            With mCompraDetalleActual
-                .IDCompra = IDCompra
-            End With
-            mdbContext.CompraDetalle.Add(mCompraDetalleActual)
+            mCompraActual.CompraDetalles.Add(mCompraDetalleActual)
         Else
-            mCompraDetalleActual = mdbContext.CompraDetalle.Find(IDCompra, IDDetalle)
+            mCompraDetalleActual = mCompraActual.CompraDetalles.Single(Function(cd) cd.IDDetalle = IDDetalle)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CS_Form.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -47,8 +50,8 @@
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = (mParentEditMode And Not mEditMode)
+        buttonCerrar.Visible = Not mEditMode
 
         ' General
         comboboxArea.Enabled = mEditMode
@@ -62,7 +65,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Area(comboboxArea, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, True)
+        pFillAndRefreshLists.AreaYCuartel(comboboxArea, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -70,8 +73,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        mParentForm = Nothing
         mdbContext.Dispose()
         mdbContext = Nothing
+        mCompraActual = Nothing
         mCompraDetalleActual = Nothing
         Me.Dispose()
     End Sub
@@ -82,48 +87,29 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mCompraDetalleActual
-            datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCargoJerarquia, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
-            textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
-            textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
-            textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
-            textboxOrdenGeneralNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.OrdenGeneralNumero)
-            textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
+            ' Datos de la pestaña General
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
+            textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
+            CS_ValueTranslation.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-            If .IDAscenso = 0 Then
+            If .IDDetalle = 0 Then
                 textboxID.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxID.Text = String.Format(.IDAscenso.ToString, "G")
-            End If
-            textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
-            If .UsuarioCreacion Is Nothing Then
-                textboxUsuarioCreacion.Text = ""
-            Else
-                textboxUsuarioCreacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioCreacion.Descripcion)
-            End If
-            textboxFechaHoraModificacion.Text = .FechaHoraModificacion.ToShortDateString & " " & .FechaHoraModificacion.ToShortTimeString
-            If .UsuarioModificacion Is Nothing Then
-                textboxUsuarioModificacion.Text = ""
-            Else
-                textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
+                textboxID.Text = String.Format(.IDDetalle.ToString, "G")
             End If
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mCompraDetalleActual
-            .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxArea.SelectedValue).Value
-            .IDJerarquia = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargoJerarquia.SelectedValue).Value
-            .LibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLibroNumero.Text)
-            .FolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFolioNumero.Text)
-            .ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
-            .OrdenGeneralNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrdenGeneralNumero.Text)
-            .ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
+            ' Datos de la pestaña General
+            .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
+            .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
+            .Importe = CS_ValueTranslation.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)
 
+            ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
@@ -149,13 +135,8 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxDetalle.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
-    End Sub
-
-    Private Sub comboboxCargo_SelectedIndexChanged() Handles comboboxArea.SelectedIndexChanged
-        pFillAndRefreshLists.CargoJerarquia(comboboxCargoJerarquia, False, False, CByte(comboboxArea.SelectedValue))
-        comboboxCargoJerarquia.SelectedItem = Nothing
     End Sub
 
 #End Region
@@ -163,10 +144,8 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO_EDITAR) Then
-            mEditMode = True
-            ChangeMode()
-        End If
+        mEditMode = True
+        ChangeMode()
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
@@ -175,61 +154,25 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If comboboxArea.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cargo.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("Debe especificar el Área.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxArea.Focus()
-            Exit Sub
-        End If
-        If comboboxCargoJerarquia.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar la Jerarquía.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCargoJerarquia.Focus()
             Exit Sub
         End If
 
         ' Generar el ID nuevo
-        If mCompraDetalleActual.IDAscenso = 0 Then
-            Using dbcMaxID As New CSBomberosContext(True)
-                Dim PersonaActual As Persona
-                PersonaActual = dbcMaxID.Persona.Find(mCompraDetalleActual.IDPersona)
-                If PersonaActual.CompraDetalles.Count = 0 Then
-                    mCompraDetalleActual.IDAscenso = 1
-                Else
-                    mCompraDetalleActual.IDAscenso = PersonaActual.CompraDetalles.Max(Function(pa) pa.IDAscenso) + CByte(1)
-                End If
-            End Using
+        If mIsNew Then
+            If mCompraActual.CompraDetalles.Any() Then
+                mCompraDetalleActual.IDDetalle = mCompraActual.CompraDetalles.Max(Function(cd) cd.IDDetalle) + CByte(1)
+            Else
+                mCompraDetalleActual.IDDetalle = 1
+            End If
         End If
 
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()
 
-        If mdbContext.ChangeTracker.HasChanges Then
-
-            Me.Cursor = Cursors.WaitCursor
-
-            mCompraDetalleActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCompraDetalleActual.FechaHoraModificacion = Now
-
-            Try
-
-                ' Guardo los cambios
-                mdbContext.SaveChanges()
-
-                ' Refresco la lista para mostrar los cambios
-                formPersona.Ascensos_RefreshData(mCompraDetalleActual.IDAscenso)
-
-            Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                Me.Cursor = Cursors.Default
-                Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                    Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Ascenso - Promoción con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                End Select
-                Exit Sub
-
-            Catch ex As Exception
-                Me.Cursor = Cursors.Default
-                CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-                Exit Sub
-            End Try
-        End If
+        ' Refresco la lista para mostrar los cambios
+        CType(mParentForm, formCompra).DetallesRefreshData(mCompraDetalleActual.IDDetalle)
 
         Me.Close()
     End Sub
