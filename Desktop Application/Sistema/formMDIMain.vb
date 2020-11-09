@@ -305,6 +305,24 @@
 
 #End Region
 
+#Region "Left Toolbar - Compras"
+    Private Sub Compras() Handles buttonCompras.Click
+        If Permisos.VerificarPermiso(Permisos.COMPRA) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCompras, Form))
+            formCompras.Show()
+            If formCompras.WindowState = FormWindowState.Minimized Then
+                formCompras.WindowState = FormWindowState.Normal
+            End If
+            formCompras.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+#End Region
+
 #Region "Left Toolbar - Reportes"
     Private Sub buttonReportes_Click(sender As Object, e As EventArgs) Handles buttonReportes.Click
         If Permisos.VerificarPermiso(Permisos.REPORTE) Then

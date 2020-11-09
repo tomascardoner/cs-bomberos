@@ -244,6 +244,18 @@
     <Compile Include="CompraDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Compras\formCompra.designer.vb">
+      <DependentUpon>formCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compras\formCompras.Designer.vb">
+      <DependentUpon>formCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
@@ -462,16 +474,16 @@
     <Compile Include="Sistema\formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formAlarma.designer.vb">
+    <Compile Include="Alarmas\formAlarma.designer.vb">
       <DependentUpon>formAlarma.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formAlarma.vb">
+    <Compile Include="Alarmas\formAlarma.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formAlarmas.designer.vb">
+    <Compile Include="Alarmas\formAlarmas.designer.vb">
       <DependentUpon>formAlarmas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formAlarmas.vb">
+    <Compile Include="Alarmas\formAlarmas.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\formArea.designer.vb">
@@ -606,28 +618,28 @@
     <Compile Include="ABM Tablas\formCursos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formElemento.Designer.vb">
+    <Compile Include="Inventario\formElemento.Designer.vb">
       <DependentUpon>formElemento.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formElemento.vb">
+    <Compile Include="Inventario\formElemento.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formUnidad.Designer.vb">
+    <Compile Include="Unidades\formUnidad.Designer.vb">
       <DependentUpon>formUnidad.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formUnidad.vb">
+    <Compile Include="Unidades\formUnidad.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formInventario.designer.vb">
+    <Compile Include="Inventario\formInventario.designer.vb">
       <DependentUpon>formInventario.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formInventario.vb">
+    <Compile Include="Inventario\formInventario.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formInventarioDetalle.designer.vb">
+    <Compile Include="Inventario\formInventarioDetalle.designer.vb">
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formInventarioDetalle.vb">
+    <Compile Include="Inventario\formInventarioDetalle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\formLicenciaCausa.designer.vb">
@@ -816,16 +828,16 @@
     <Compile Include="ABM Tablas\formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formElementos.Designer.vb">
+    <Compile Include="Inventario\formElementos.Designer.vb">
       <DependentUpon>formElementos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formElementos.vb">
+    <Compile Include="Inventario\formElementos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Otros\formUnidades.Designer.vb">
+    <Compile Include="Unidades\formUnidades.Designer.vb">
       <DependentUpon>formUnidades.vb</DependentUpon>
     </Compile>
-    <Compile Include="Otros\formUnidades.vb">
+    <Compile Include="Unidades\formUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\formParentesco.Designer.vb">
@@ -1072,13 +1084,19 @@
     <EmbeddedResource Include="ABM Tablas\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Compras\formCompra.resx">
+      <DependentUpon>formCompra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compras\formCompras.resx">
+      <DependentUpon>formCompras.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formAlarma.resx">
+    <EmbeddedResource Include="Alarmas\formAlarma.resx">
       <DependentUpon>formAlarma.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formAlarmas.resx">
+    <EmbeddedResource Include="Alarmas\formAlarmas.resx">
       <DependentUpon>formAlarmas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formArea.resx">
@@ -1198,16 +1216,16 @@
     <EmbeddedResource Include="ABM Tablas\formCursos.resx">
       <DependentUpon>formCursos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formElemento.resx">
+    <EmbeddedResource Include="Inventario\formElemento.resx">
       <DependentUpon>formElemento.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formUnidad.resx">
+    <EmbeddedResource Include="Unidades\formUnidad.resx">
       <DependentUpon>formUnidad.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formInventario.resx">
+    <EmbeddedResource Include="Inventario\formInventario.resx">
       <DependentUpon>formInventario.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formInventarioDetalle.resx">
+    <EmbeddedResource Include="Inventario\formInventarioDetalle.resx">
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formLicenciaCausa.resx">
@@ -1303,10 +1321,10 @@
     <EmbeddedResource Include="ABM Tablas\formUbicaciones.resx">
       <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formElementos.resx">
+    <EmbeddedResource Include="Inventario\formElementos.resx">
       <DependentUpon>formElementos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Otros\formUnidades.resx">
+    <EmbeddedResource Include="Unidades\formUnidades.resx">
       <DependentUpon>formUnidades.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formParentesco.resx">
@@ -1399,7 +1417,6 @@
   <ItemGroup>
     <None Include="Resources\Cardoner Sistemas.gif" />
     <None Include="packages.config" />
-    <None Include="Resources\Fire-Extinguisher-icon_32.png" />
     <None Include="Resources\Fire-Pumper-icon_32.png" />
     <None Include="Resources\Occupations-Firefighter-Male-Light-icon_32.png" />
     <None Include="Resources\Printer24.png" />

@@ -277,7 +277,7 @@
         ComboBoxControl.ValueMember = "IDNivelEstudio"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(ne) ne.Nombre).ToList
 
         If AgregarItem_Todos Then
             Dim Item_Todos As New NivelEstudio
@@ -290,6 +290,30 @@
             Item_NoEspecifica.IDNivelEstudio = 0
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Proveedor(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Proveedor)
+
+        ComboBoxControl.ValueMember = "IDProveedor"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.Proveedor.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.Nombre).ToList
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Proveedor
+            Item_NoEspecifica.IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Proveedor
+            Item_Todos.IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
         End If
 
         ComboBoxControl.DataSource = listItems

@@ -818,10 +818,10 @@
         ' Generar el ID de la Persona nueva
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Persona.Count = 0 Then
-                    mPersonaActual.IDPersona = 1
+                If dbcMaxID.Persona.Any() Then
+                    mPersonaActual.IDPersona = dbcMaxID.Persona.Max(Function(p) p.IDPersona) + 1
                 Else
-                    mPersonaActual.IDPersona = (From p In dbcMaxID.Persona Select p.IDPersona).Max + 1
+                    mPersonaActual.IDPersona = 1
                 End If
             End Using
         End If

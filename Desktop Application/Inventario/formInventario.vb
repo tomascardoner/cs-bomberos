@@ -333,7 +333,7 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningun Elemento en el Inventario para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Elemento en el Inventario para editar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.INVENTARIO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor

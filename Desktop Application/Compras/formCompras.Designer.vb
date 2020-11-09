@@ -1,0 +1,327 @@
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class formCompras
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        Try
+            If disposing AndAlso components IsNot Nothing Then
+                components.Dispose()
+            End If
+        Finally
+            MyBase.Dispose(disposing)
+        End Try
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
+        Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
+        Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripProveedor = New System.Windows.Forms.ToolStrip()
+        Me.labelProveedor = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxProveedor = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripFacturaNumero = New System.Windows.Forms.ToolStrip()
+        Me.labelFacturaNumero = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxFacturaNumero = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripCerrada = New System.Windows.Forms.ToolStrip()
+        Me.labelCerrada = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxCerrada = New System.Windows.Forms.ToolStripComboBox()
+        Me.columnIDCompra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFacturaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCerrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.statusstripMain.SuspendLayout()
+        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panelToolbars.SuspendLayout()
+        Me.toolstripButtons.SuspendLayout()
+        Me.toolstripProveedor.SuspendLayout()
+        Me.toolstripFacturaNumero.SuspendLayout()
+        Me.toolstripCerrada.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(845, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(860, 22)
+        Me.statusstripMain.TabIndex = 4
+        '
+        'datagridviewMain
+        '
+        Me.datagridviewMain.AllowUserToAddRows = False
+        Me.datagridviewMain.AllowUserToDeleteRows = False
+        Me.datagridviewMain.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDCompra, Me.columnFecha, Me.columnProveedor, Me.columnFacturaNumero, Me.columnImporte, Me.columnCerrada})
+        Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
+        Me.datagridviewMain.MultiSelect = False
+        Me.datagridviewMain.Name = "datagridviewMain"
+        Me.datagridviewMain.ReadOnly = True
+        Me.datagridviewMain.RowHeadersVisible = False
+        Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
+        Me.datagridviewMain.TabIndex = 0
+        '
+        'panelToolbars
+        '
+        Me.panelToolbars.AutoSize = True
+        Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripProveedor)
+        Me.panelToolbars.Controls.Add(Me.toolstripFacturaNumero)
+        Me.panelToolbars.Controls.Add(Me.toolstripCerrada)
+        Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
+        Me.panelToolbars.Name = "panelToolbars"
+        Me.panelToolbars.Size = New System.Drawing.Size(860, 64)
+        Me.panelToolbars.TabIndex = 0
+        '
+        'toolstripButtons
+        '
+        Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
+        Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
+        Me.toolstripButtons.Name = "toolstripButtons"
+        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
+        Me.toolstripButtons.TabIndex = 1
+        '
+        'buttonAgregar
+        '
+        Me.buttonAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAgregar.Name = "buttonAgregar"
+        Me.buttonAgregar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonAgregar.Text = "Agregar"
+        '
+        'buttonEditar
+        '
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEditar.Name = "buttonEditar"
+        Me.buttonEditar.Size = New System.Drawing.Size(73, 36)
+        Me.buttonEditar.Text = "Editar"
+        '
+        'buttonEliminar
+        '
+        Me.buttonEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEliminar.Name = "buttonEliminar"
+        Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
+        Me.buttonEliminar.Text = "Eliminar"
+        '
+        'toolstripProveedor
+        '
+        Me.toolstripProveedor.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripProveedor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripProveedor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelProveedor, Me.comboboxProveedor})
+        Me.toolstripProveedor.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripProveedor.Name = "toolstripProveedor"
+        Me.toolstripProveedor.Size = New System.Drawing.Size(369, 39)
+        Me.toolstripProveedor.TabIndex = 13
+        '
+        'labelProveedor
+        '
+        Me.labelProveedor.Name = "labelProveedor"
+        Me.labelProveedor.Size = New System.Drawing.Size(64, 36)
+        Me.labelProveedor.Text = "Proveedor:"
+        '
+        'comboboxProveedor
+        '
+        Me.comboboxProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxProveedor.Name = "comboboxProveedor"
+        Me.comboboxProveedor.Size = New System.Drawing.Size(300, 39)
+        '
+        'toolstripFacturaNumero
+        '
+        Me.toolstripFacturaNumero.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripFacturaNumero.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripFacturaNumero.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelFacturaNumero, Me.comboboxFacturaNumero})
+        Me.toolstripFacturaNumero.Location = New System.Drawing.Point(616, 0)
+        Me.toolstripFacturaNumero.Name = "toolstripFacturaNumero"
+        Me.toolstripFacturaNumero.Size = New System.Drawing.Size(169, 39)
+        Me.toolstripFacturaNumero.TabIndex = 14
+        '
+        'labelFacturaNumero
+        '
+        Me.labelFacturaNumero.Name = "labelFacturaNumero"
+        Me.labelFacturaNumero.Size = New System.Drawing.Size(64, 36)
+        Me.labelFacturaNumero.Text = "Nº factura:"
+        '
+        'comboboxFacturaNumero
+        '
+        Me.comboboxFacturaNumero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxFacturaNumero.Name = "comboboxFacturaNumero"
+        Me.comboboxFacturaNumero.Size = New System.Drawing.Size(100, 39)
+        '
+        'toolstripCerrada
+        '
+        Me.toolstripCerrada.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCerrada.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCerrada.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCerrada, Me.comboboxCerrada})
+        Me.toolstripCerrada.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripCerrada.Name = "toolstripCerrada"
+        Me.toolstripCerrada.Size = New System.Drawing.Size(131, 25)
+        Me.toolstripCerrada.TabIndex = 12
+        '
+        'labelCerrada
+        '
+        Me.labelCerrada.Name = "labelCerrada"
+        Me.labelCerrada.Size = New System.Drawing.Size(51, 22)
+        Me.labelCerrada.Text = "Cerrada:"
+        '
+        'comboboxCerrada
+        '
+        Me.comboboxCerrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCerrada.Name = "comboboxCerrada"
+        Me.comboboxCerrada.Size = New System.Drawing.Size(75, 25)
+        '
+        'columnIDCompra
+        '
+        Me.columnIDCompra.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnIDCompra.DataPropertyName = "IDCompra"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnIDCompra.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnIDCompra.HeaderText = "Nº O.C."
+        Me.columnIDCompra.Name = "columnIDCompra"
+        Me.columnIDCompra.ReadOnly = True
+        Me.columnIDCompra.Width = 68
+        '
+        'columnFecha
+        '
+        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnProveedor
+        '
+        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnProveedor.DataPropertyName = "ProveedorNombre"
+        Me.columnProveedor.HeaderText = "Proveedor"
+        Me.columnProveedor.Name = "columnProveedor"
+        Me.columnProveedor.ReadOnly = True
+        Me.columnProveedor.Width = 81
+        '
+        'columnFacturaNumero
+        '
+        Me.columnFacturaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFacturaNumero.DataPropertyName = "FacturaNumero"
+        Me.columnFacturaNumero.HeaderText = "Nº factura"
+        Me.columnFacturaNumero.Name = "columnFacturaNumero"
+        Me.columnFacturaNumero.ReadOnly = True
+        Me.columnFacturaNumero.Width = 80
+        '
+        'columnImporte
+        '
+        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnImporte.DataPropertyName = "Importe"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnImporte.HeaderText = "Importe"
+        Me.columnImporte.Name = "columnImporte"
+        Me.columnImporte.ReadOnly = True
+        Me.columnImporte.Width = 67
+        '
+        'columnCerrada
+        '
+        Me.columnCerrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCerrada.DataPropertyName = "Cerrada"
+        Me.columnCerrada.HeaderText = "Cerrada"
+        Me.columnCerrada.Name = "columnCerrada"
+        Me.columnCerrada.ReadOnly = True
+        Me.columnCerrada.Width = 50
+        '
+        'formCompras
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.ClientSize = New System.Drawing.Size(860, 411)
+        Me.Controls.Add(Me.datagridviewMain)
+        Me.Controls.Add(Me.panelToolbars)
+        Me.Controls.Add(Me.statusstripMain)
+        Me.Name = "formCompras"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.Text = "Compras"
+        Me.statusstripMain.ResumeLayout(False)
+        Me.statusstripMain.PerformLayout()
+        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panelToolbars.ResumeLayout(False)
+        Me.panelToolbars.PerformLayout()
+        Me.toolstripButtons.ResumeLayout(False)
+        Me.toolstripButtons.PerformLayout()
+        Me.toolstripProveedor.ResumeLayout(False)
+        Me.toolstripProveedor.PerformLayout()
+        Me.toolstripFacturaNumero.ResumeLayout(False)
+        Me.toolstripFacturaNumero.PerformLayout()
+        Me.toolstripCerrada.ResumeLayout(False)
+        Me.toolstripCerrada.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents statusstripMain As System.Windows.Forms.StatusStrip
+    Friend WithEvents datagridviewMain As System.Windows.Forms.DataGridView
+    Friend WithEvents panelToolbars As System.Windows.Forms.FlowLayoutPanel
+    Friend WithEvents toolstripButtons As System.Windows.Forms.ToolStrip
+    Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents toolstripCerrada As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelCerrada As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxCerrada As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripProveedor As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelProveedor As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxProveedor As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripFacturaNumero As ToolStrip
+    Friend WithEvents labelFacturaNumero As ToolStripLabel
+    Friend WithEvents comboboxFacturaNumero As ToolStripComboBox
+    Friend WithEvents columnIDCompra As DataGridViewTextBoxColumn
+    Friend WithEvents columnFecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnProveedor As DataGridViewTextBoxColumn
+    Friend WithEvents columnFacturaNumero As DataGridViewTextBoxColumn
+    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
+    Friend WithEvents columnCerrada As DataGridViewCheckBoxColumn
+End Class

@@ -334,7 +334,7 @@
 
                 ' Refresco la lista para mostrar los cambios
                 If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formInventario") Then
-                    Dim formInventario As formInventario = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formInventario"), formInventario)
+                    Dim formInventario As formCompras = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formInventario"), formCompras)
                     formInventario.RefreshData(mInventarioActual.IDInventario)
                     formInventario = Nothing
                 End If

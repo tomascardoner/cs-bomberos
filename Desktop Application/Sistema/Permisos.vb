@@ -240,6 +240,11 @@
     Friend Const UNIDAD_EDITAR As String = "UNIDAD_EDITAR"
     Friend Const UNIDAD_ELIMINAR As String = "UNIDAD_ELIMINAR"
 
+    Friend Const COMPRA As String = "COMPRA"
+    Friend Const COMPRA_AGREGAR As String = "COMPRA_AGREGAR"
+    Friend Const COMPRA_EDITAR As String = "COMPRA_EDITAR"
+    Friend Const COMPRA_ELIMINAR As String = "COMPRA_ELIMINAR"
+
     Friend Const REPORTE As String = "REPORTE"
 
     Friend Const DESCRIPCION_AGREGAR As String = "Agregar"
@@ -574,6 +579,13 @@
             .Nodes.Add(ELEMENTO_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(ELEMENTO_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(ELEMENTO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        End With
+
+        RootNode = Arbol.Nodes.Add(COMPRA, "Compras")
+        With RootNode
+            .Nodes.Add(COMPRA_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(COMPRA_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(COMPRA_ELIMINAR, DESCRIPCION_ELIMINAR)
         End With
 
         RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
