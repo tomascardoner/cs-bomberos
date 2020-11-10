@@ -287,6 +287,7 @@ Partial Class formVehiculoCompaniaSeguro
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formVehiculoCompaniaSeguro"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Compañía de Seguros de Vehículos"
         Me.toolstripMain.ResumeLayout(False)

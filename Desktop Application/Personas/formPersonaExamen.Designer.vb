@@ -302,6 +302,7 @@ Partial Class formPersonaExamen
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaExamen"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Examen de la Persona"
         Me.toolstripMain.ResumeLayout(False)

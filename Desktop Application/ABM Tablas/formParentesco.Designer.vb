@@ -287,6 +287,7 @@ Partial Class formParentesco
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formParentesco"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Parentesco"
         Me.toolstripMain.ResumeLayout(False)

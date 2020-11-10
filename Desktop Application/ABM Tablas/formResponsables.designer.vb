@@ -221,6 +221,7 @@ Partial Class formResponsables
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formResponsables"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Responsables"
         Me.statusstripMain.ResumeLayout(False)

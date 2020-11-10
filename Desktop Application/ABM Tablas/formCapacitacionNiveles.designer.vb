@@ -198,6 +198,7 @@ Partial Class formCapacitacionNiveles
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCapacitacionNiveles"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Niveles de Capacitación"
         Me.statusstripMain.ResumeLayout(False)

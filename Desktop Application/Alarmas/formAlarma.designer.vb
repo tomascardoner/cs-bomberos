@@ -356,6 +356,7 @@ Partial Class formAlarma
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formAlarma"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Alarma"
         Me.toolstripMain.ResumeLayout(False)

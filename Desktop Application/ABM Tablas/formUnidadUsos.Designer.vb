@@ -186,6 +186,7 @@ Partial Class formUnidadUsos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formUnidadUsos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Usos de Unidad"
         Me.statusstripMain.ResumeLayout(False)

@@ -404,6 +404,7 @@ Partial Class formLicenciaCausa
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formLicenciaCausa"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Causa de Licencia"
         Me.toolstripMain.ResumeLayout(False)

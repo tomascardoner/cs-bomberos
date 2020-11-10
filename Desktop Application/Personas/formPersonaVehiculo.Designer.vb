@@ -463,6 +463,7 @@ Partial Class formPersonaVehiculo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaVehiculo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Vehículo de la Persona"
         Me.toolstripMain.ResumeLayout(False)

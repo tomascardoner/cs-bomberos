@@ -186,6 +186,7 @@ Partial Class formNivelesEstudio
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formNivelesEstudio"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Niveles de Estudio"
         Me.statusstripMain.ResumeLayout(False)

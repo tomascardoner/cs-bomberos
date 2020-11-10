@@ -186,6 +186,7 @@ Partial Class formUnidadBajaMotivos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formUnidadBajaMotivos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Motivos de baja de Unidades"
         Me.statusstripMain.ResumeLayout(False)

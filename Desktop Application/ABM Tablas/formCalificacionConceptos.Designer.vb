@@ -199,6 +199,7 @@ Partial Class formCalificacionConceptos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCalificacionConceptos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Conceptos de Calificación"
         Me.statusstripMain.ResumeLayout(False)

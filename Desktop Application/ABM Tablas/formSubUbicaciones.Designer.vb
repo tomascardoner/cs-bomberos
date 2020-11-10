@@ -260,6 +260,7 @@ Partial Class formSubUbicaciones
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formSubUbicaciones"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Sub-Ubicaciones"
         Me.statusstripMain.ResumeLayout(False)

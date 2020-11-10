@@ -200,7 +200,7 @@
         End If
 
         ' Generar el ID nuevo
-        If mCompraActual.IDCompra = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
                 If dbcMaxID.Compra.Any() Then
                     mCompraActual.IDCompra = dbcMaxID.Compra.Max(Function(c) c.IDCompra) + 1

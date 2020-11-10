@@ -89,6 +89,7 @@ Partial Class formReportesParametroTextBox
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroTextBox"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)

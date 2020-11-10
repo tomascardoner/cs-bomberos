@@ -596,6 +596,7 @@ Partial Class formCuartel
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCuartel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Cuartel"
         Me.toolstripMain.ResumeLayout(False)

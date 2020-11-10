@@ -186,6 +186,7 @@ Partial Class formRubros
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formRubros"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Rubros"
         Me.statusstripMain.ResumeLayout(False)

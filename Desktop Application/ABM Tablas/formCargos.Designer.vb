@@ -199,6 +199,7 @@ Partial Class formCargos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCargos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Cargos"
         Me.statusstripMain.ResumeLayout(False)

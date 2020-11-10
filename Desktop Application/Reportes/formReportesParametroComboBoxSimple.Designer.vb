@@ -90,6 +90,7 @@ Partial Class formReportesParametroComboBoxSimple
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroComboBox"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)

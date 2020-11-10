@@ -310,6 +310,7 @@ Partial Class formSubRubro
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSubRubro"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Sub-Rubro"
         Me.toolstripMain.ResumeLayout(False)

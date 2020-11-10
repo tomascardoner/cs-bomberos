@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formRubro
+Partial Class formUsuarioGrupo
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -33,11 +33,11 @@ Partial Class formRubro
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDRubro = New System.Windows.Forms.Label()
-        Me.textboxIDRubro = New System.Windows.Forms.TextBox()
+        Me.labelID = New System.Windows.Forms.Label()
+        Me.textboxID = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -180,9 +180,9 @@ Partial Class formRubro
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDRubro)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelID)
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDRubro)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxID)
         Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
@@ -200,25 +200,25 @@ Partial Class formRubro
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDRubro
+        'labelID
         '
-        Me.labelIDRubro.AutoSize = True
-        Me.labelIDRubro.Location = New System.Drawing.Point(7, 111)
-        Me.labelIDRubro.Name = "labelIDRubro"
-        Me.labelIDRubro.Size = New System.Drawing.Size(98, 13)
-        Me.labelIDRubro.TabIndex = 4
-        Me.labelIDRubro.Text = "ID:"
+        Me.labelID.AutoSize = True
+        Me.labelID.Location = New System.Drawing.Point(7, 111)
+        Me.labelID.Name = "labelID"
+        Me.labelID.Size = New System.Drawing.Size(21, 13)
+        Me.labelID.TabIndex = 4
+        Me.labelID.Text = "ID:"
         '
-        'textboxIDRubro
+        'textboxID
         '
-        Me.textboxIDRubro.Location = New System.Drawing.Point(115, 108)
-        Me.textboxIDRubro.MaxLength = 10
-        Me.textboxIDRubro.Name = "textboxIDRubro"
-        Me.textboxIDRubro.ReadOnly = True
-        Me.textboxIDRubro.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDRubro.TabIndex = 5
-        Me.textboxIDRubro.TabStop = False
-        Me.textboxIDRubro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxID.Location = New System.Drawing.Point(115, 108)
+        Me.textboxID.MaxLength = 10
+        Me.textboxID.Name = "textboxID"
+        Me.textboxID.ReadOnly = True
+        Me.textboxID.Size = New System.Drawing.Size(72, 20)
+        Me.textboxID.TabIndex = 5
+        Me.textboxID.TabStop = False
+        Me.textboxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -275,7 +275,7 @@ Partial Class formRubro
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formRubro
+        'formUsuarioGrupo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -286,10 +286,10 @@ Partial Class formRubro
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formRubro"
+        Me.Name = "formUsuarioGrupo"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Rubro"
+        Me.Text = "Grupo de Usuarios"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -314,8 +314,8 @@ Partial Class formRubro
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents labelIDRubro As System.Windows.Forms.Label
-    Friend WithEvents textboxIDRubro As System.Windows.Forms.TextBox
+    Friend WithEvents labelID As System.Windows.Forms.Label
+    Friend WithEvents textboxID As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox

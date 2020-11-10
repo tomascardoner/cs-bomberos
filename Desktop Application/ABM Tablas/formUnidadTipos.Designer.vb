@@ -186,6 +186,7 @@ Partial Class formUnidadTipos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formUnidadTipos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipos de Unidad"
         Me.statusstripMain.ResumeLayout(False)

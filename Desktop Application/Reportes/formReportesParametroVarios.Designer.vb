@@ -152,6 +152,7 @@ Partial Class formReportesParametroVarios
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroVarios"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)

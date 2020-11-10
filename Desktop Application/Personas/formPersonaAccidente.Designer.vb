@@ -428,6 +428,7 @@ Partial Class formPersonaAccidente
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaAccidente"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Accidente de la Persona"
         Me.toolstripMain.ResumeLayout(False)

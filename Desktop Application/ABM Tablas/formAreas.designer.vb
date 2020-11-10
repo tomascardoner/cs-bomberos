@@ -233,6 +233,7 @@ Partial Class formAreas
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formAreas"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Áreas"
         Me.statusstripMain.ResumeLayout(False)

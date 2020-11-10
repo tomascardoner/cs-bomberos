@@ -186,6 +186,7 @@ Partial Class formProveedores
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formProveedores"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Proveedores"
         Me.statusstripMain.ResumeLayout(False)

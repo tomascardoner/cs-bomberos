@@ -693,6 +693,7 @@ Partial Class formUnidad
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUnidad"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Unidad"
         Me.toolstripMain.ResumeLayout(False)

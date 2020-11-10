@@ -186,6 +186,7 @@ Partial Class formCapacitacionTipos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCapacitacionTipos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipos de Capacitación"
         Me.statusstripMain.ResumeLayout(False)

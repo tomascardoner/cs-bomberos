@@ -186,6 +186,7 @@ Partial Class formPersonaBajaMotivos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formPersonaBajaMotivos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Motivos de baja de personas"
         Me.statusstripMain.ResumeLayout(False)

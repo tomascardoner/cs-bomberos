@@ -206,6 +206,7 @@ Partial Class formCuarteles
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCuarteles"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Cuarteles"
         Me.statusstripMain.ResumeLayout(False)

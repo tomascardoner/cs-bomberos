@@ -307,12 +307,12 @@
         End If
 
         ' Generar el ID nuevo
-        If mInventarioActual.IDInventario = 0 Then
+        If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Inventario.Count = 0 Then
-                    mInventarioActual.IDInventario = 1
+                If dbcMaxID.Inventario.Any() Then
+                    mInventarioActual.IDInventario = dbcMaxID.Inventario.Max(Function(i) i.IDInventario) + 1
                 Else
-                    mInventarioActual.IDInventario = (From i In dbcMaxID.Inventario Select i.IDInventario).Max + 1 + CByte(1)
+                    mInventarioActual.IDInventario = 1
                 End If
             End Using
         End If

@@ -160,6 +160,7 @@ Partial Class formAboutBox
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formAboutBox"
+        Me.ShowInTaskbar = False
         Me.Padding = New System.Windows.Forms.Padding(9)
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

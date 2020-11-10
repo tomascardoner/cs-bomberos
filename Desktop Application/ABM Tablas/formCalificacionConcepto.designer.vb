@@ -355,6 +355,7 @@ Partial Class formCalificacionConcepto
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCalificacionConcepto"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Conceptos de Calificación"
         Me.toolstripMain.ResumeLayout(False)

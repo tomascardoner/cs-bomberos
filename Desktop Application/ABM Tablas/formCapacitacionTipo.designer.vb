@@ -287,6 +287,7 @@ Partial Class formCapacitacionTipo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCapacitacionTipo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipo de Capacitación"
         Me.toolstripMain.ResumeLayout(False)

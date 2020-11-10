@@ -332,6 +332,7 @@ Partial Class formArea
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formArea"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Área"
         Me.toolstripMain.ResumeLayout(False)

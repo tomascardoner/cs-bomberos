@@ -186,6 +186,7 @@ Partial Class formParentescos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formParentescos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Parentescos"
         Me.statusstripMain.ResumeLayout(False)

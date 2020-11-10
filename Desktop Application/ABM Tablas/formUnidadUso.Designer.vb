@@ -287,6 +287,7 @@ Partial Class formUnidadUso
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUnidadUso"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Uso de Unidad"
         Me.toolstripMain.ResumeLayout(False)

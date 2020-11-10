@@ -306,6 +306,7 @@ Partial Class formPersonas
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formPersonas"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Personas"
         Me.toolstripButtons.ResumeLayout(False)

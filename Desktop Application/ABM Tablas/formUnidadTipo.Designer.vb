@@ -287,6 +287,7 @@ Partial Class formUnidadTipo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUnidadTipo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipo de Unidad"
         Me.toolstripMain.ResumeLayout(False)

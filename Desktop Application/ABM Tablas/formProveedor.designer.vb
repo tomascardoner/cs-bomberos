@@ -602,6 +602,7 @@ Partial Class formProveedor
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formProveedor"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Proveedor"
         Me.toolstripMain.ResumeLayout(False)

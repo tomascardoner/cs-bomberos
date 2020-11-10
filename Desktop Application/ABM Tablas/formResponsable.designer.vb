@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formResponsable
     Inherits System.Windows.Forms.Form
 
@@ -311,6 +311,7 @@ Partial Class formResponsable
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formResponsable"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Responsable"
         Me.toolstripMain.ResumeLayout(False)

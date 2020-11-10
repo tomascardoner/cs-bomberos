@@ -204,6 +204,10 @@
         ShowForm(Permisos.SUBUBICACION, CType(formSubUbicaciones, Form))
     End Sub
 
+    Private Sub GruposUsuario() Handles menuitemTablas_GruposUsuario.Click
+        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupos, Form))
+    End Sub
+
     Private Sub Usuarios() Handles menuitemTablas_Usuarios.Click
         ShowForm(Permisos.USUARIO, CType(formUsuarios, Form))
     End Sub

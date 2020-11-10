@@ -421,6 +421,7 @@ Partial Class formPersonaAscenso
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaAscenso"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Ascenso - Promoción de la Persona"
         Me.toolstripMain.ResumeLayout(False)

@@ -310,6 +310,7 @@ Partial Class formCapacitacionNivel
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCapacitacionNivel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Nivel de Capacitación"
         Me.toolstripMain.ResumeLayout(False)

@@ -186,6 +186,7 @@ Partial Class formVehiculoMarcas
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formVehiculoMarcas"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Marcas de Vehículos"
         Me.statusstripMain.ResumeLayout(False)

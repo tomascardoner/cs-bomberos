@@ -251,6 +251,7 @@ Partial Class formCompraDetalle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCompraDetalle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Compra"
         Me.toolstripMain.ResumeLayout(False)

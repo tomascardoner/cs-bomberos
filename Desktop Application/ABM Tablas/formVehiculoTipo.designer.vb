@@ -287,6 +287,7 @@ Partial Class formVehiculoTipo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formVehiculoTipo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipo de Vehículo"
         Me.toolstripMain.ResumeLayout(False)

@@ -287,6 +287,7 @@ Partial Class formEstadoCivil
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formEstadoCivil"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Estado Civil"
         Me.toolstripMain.ResumeLayout(False)

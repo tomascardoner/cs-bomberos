@@ -479,6 +479,7 @@ Partial Class formPersonaSancion
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaSancion"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Sanción de la Persona"
         Me.toolstripMain.ResumeLayout(False)

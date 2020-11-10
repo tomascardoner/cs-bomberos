@@ -199,6 +199,7 @@ Partial Class formSancionTipos
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formSancionTipos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipos de Sanción"
         Me.statusstripMain.ResumeLayout(False)

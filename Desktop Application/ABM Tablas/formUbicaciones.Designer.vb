@@ -233,6 +233,7 @@ Partial Class formUbicaciones
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formUbicaciones"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Ubicaciones"
         Me.statusstripMain.ResumeLayout(False)

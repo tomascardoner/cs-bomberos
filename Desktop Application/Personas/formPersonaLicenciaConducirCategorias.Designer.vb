@@ -83,6 +83,7 @@ Partial Class formPersonaLicenciaConducirCategorias
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.Name = "formPersonaLicenciaConducirCategorias"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Categorías de Licencia de Conducir"
         Me.toolstripMain.ResumeLayout(False)

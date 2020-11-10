@@ -186,6 +186,7 @@ Partial Class formEstadosCiviles
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formEstadosCiviles"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Estados Civiles"
         Me.statusstripMain.ResumeLayout(False)

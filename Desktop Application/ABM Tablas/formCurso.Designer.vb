@@ -287,6 +287,7 @@ Partial Class formCurso
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCurso"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Curso"
         Me.toolstripMain.ResumeLayout(False)

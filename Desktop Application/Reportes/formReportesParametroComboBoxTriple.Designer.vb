@@ -134,6 +134,7 @@ Partial Class formReportesParametroComboBoxTriple
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroComboBoxTriple"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)

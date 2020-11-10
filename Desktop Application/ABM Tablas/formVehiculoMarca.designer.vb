@@ -287,6 +287,7 @@ Partial Class formVehiculoMarca
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formVehiculoMarca"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Marca de Vehículo"
         Me.toolstripMain.ResumeLayout(False)

@@ -209,6 +209,7 @@ Partial Class formCargosJerarquias
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formCargosJerarquias"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Jerarquías"
         Me.statusstripMain.ResumeLayout(False)

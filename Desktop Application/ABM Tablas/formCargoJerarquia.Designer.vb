@@ -333,6 +333,7 @@ Partial Class formCargoJerarquia
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCargoJerarquia"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Jerarquía"
         Me.toolstripMain.ResumeLayout(False)

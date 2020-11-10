@@ -91,6 +91,7 @@ Partial Class formOpciones
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.Name = "formOpciones"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Opciones"
         Me.toolstripMain.ResumeLayout(False)

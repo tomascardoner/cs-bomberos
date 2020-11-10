@@ -324,6 +324,7 @@ Partial Class formCompras
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Name = "formCompras"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Compras"
         Me.statusstripMain.ResumeLayout(False)

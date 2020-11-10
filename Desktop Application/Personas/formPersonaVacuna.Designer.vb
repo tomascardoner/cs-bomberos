@@ -359,6 +359,7 @@ Partial Class formPersonaVacuna
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaVacuna"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Vacuna de la Persona"
         Me.toolstripMain.ResumeLayout(False)

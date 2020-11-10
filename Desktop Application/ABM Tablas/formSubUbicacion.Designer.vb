@@ -333,6 +333,7 @@ Partial Class formSubUbicacion
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSubUbicacion"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Sub-Ubicación"
         Me.toolstripMain.ResumeLayout(False)

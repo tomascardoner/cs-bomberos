@@ -310,6 +310,7 @@ Partial Class formNivelEstudio
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formNivelEstudio"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Nivel de Estudio"
         Me.toolstripMain.ResumeLayout(False)

@@ -335,6 +335,7 @@ Partial Class formUbicacion
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUbicacion"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Ubicación"
         Me.toolstripMain.ResumeLayout(False)

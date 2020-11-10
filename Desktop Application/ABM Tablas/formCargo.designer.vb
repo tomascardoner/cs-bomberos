@@ -310,6 +310,7 @@ Partial Class formCargo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formCargo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Cargo"
         Me.toolstripMain.ResumeLayout(False)

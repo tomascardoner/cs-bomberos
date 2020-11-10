@@ -185,6 +185,7 @@ Partial Class formPersonasSeleccionar
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.Name = "formPersonasSeleccionar"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Seleccione una Persona"
         Me.toolstripMain.ResumeLayout(False)

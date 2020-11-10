@@ -345,6 +345,7 @@ Partial Class formPersonaHorarioLaboral
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaHorarioLaboral"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Horario Laboral de la Persona"
         Me.toolstripMain.ResumeLayout(False)

@@ -211,6 +211,18 @@
     <Compile Include="ABM Tablas\formProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\formUsuarioGrupo.designer.vb">
+      <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formUsuarioGrupo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\formUsuarioGrupos.designer.vb">
+      <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\formUsuarioGrupos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
       <Link>Framework\CS_Parameter_System.vb</Link>
     </Compile>
@@ -1089,6 +1101,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formUsuarioGrupo.resx">
+      <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\formUsuarioGrupos.resx">
+      <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompra.resx">
       <DependentUpon>formCompra.vb</DependentUpon>

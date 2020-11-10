@@ -328,6 +328,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaHorarioLaboralAgregarMultiples"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Agregar Múltiples Horarios Laborales de la Persona"
         Me.toolstripMain.ResumeLayout(False)

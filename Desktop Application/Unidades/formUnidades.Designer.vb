@@ -291,6 +291,7 @@ Partial Class formUnidades
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Name = "formUnidades"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Unidades"
         Me.statusstripMain.ResumeLayout(False)

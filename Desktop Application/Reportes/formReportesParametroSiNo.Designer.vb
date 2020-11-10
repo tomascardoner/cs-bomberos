@@ -105,6 +105,7 @@ Partial Class formReportesParametroSiNo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroSiNo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique el valor"
         Me.toolstripMain.ResumeLayout(False)

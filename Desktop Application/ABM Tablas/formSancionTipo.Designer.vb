@@ -310,6 +310,7 @@ Partial Class formSancionTipo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSancionTipo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipo de Sanción"
         Me.toolstripMain.ResumeLayout(False)

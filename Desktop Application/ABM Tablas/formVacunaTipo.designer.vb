@@ -287,6 +287,7 @@ Partial Class formVacunaTipo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formVacunaTipo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Tipo de Vacuna"
         Me.toolstripMain.ResumeLayout(False)

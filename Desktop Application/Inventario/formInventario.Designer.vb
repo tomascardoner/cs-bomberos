@@ -391,6 +391,7 @@ Partial Class formInventario
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Name = "formInventario"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Inventario"
         Me.statusstripMain.ResumeLayout(False)

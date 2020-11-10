@@ -68,6 +68,7 @@ Partial Class formUsuarioGrupoPermisos
         Me.Controls.Add(Me.comboboxUsuarioGrupo)
         Me.Controls.Add(Me.labelUsuarioGrupo)
         Me.Name = "formUsuarioGrupoPermisos"
+        Me.ShowInTaskbar = False
         Me.Text = "Permisos del Grupo de Usuarios"
         Me.ResumeLayout(False)
         Me.PerformLayout()

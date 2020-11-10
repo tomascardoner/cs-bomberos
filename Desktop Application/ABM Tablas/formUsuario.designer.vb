@@ -400,6 +400,7 @@ Partial Class formUsuario
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUsuario"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Usuario"
         Me.toolstripMain.ResumeLayout(False)

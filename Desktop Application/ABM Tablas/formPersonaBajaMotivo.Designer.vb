@@ -310,6 +310,7 @@ Partial Class formPersonaBajaMotivo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formPersonaBajaMotivo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Motivo de Baja de Persona"
         Me.toolstripMain.ResumeLayout(False)

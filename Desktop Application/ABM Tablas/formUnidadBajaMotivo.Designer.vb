@@ -287,6 +287,7 @@ Partial Class formUnidadBajaMotivo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formUnidadBajaMotivo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Motivo de Baja de Unidad"
         Me.toolstripMain.ResumeLayout(False)

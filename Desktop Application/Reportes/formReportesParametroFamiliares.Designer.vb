@@ -150,6 +150,7 @@ Partial Class formReportesParametroFamiliares
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formReportesParametroFamiliares"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Especifique los familiares"
         Me.toolstripMain.ResumeLayout(False)

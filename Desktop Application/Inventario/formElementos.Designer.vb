@@ -298,6 +298,7 @@ Partial Class formElementos
         Me.Controls.Add(Me.statusstripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "formElementos"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Elementos"
         Me.statusstripMain.ResumeLayout(False)

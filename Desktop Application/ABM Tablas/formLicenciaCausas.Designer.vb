@@ -228,6 +228,7 @@ Partial Class formLicenciaCausas
         Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "formLicenciaCausas"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Causas de Licencia"
         Me.statusstripMain.ResumeLayout(False)

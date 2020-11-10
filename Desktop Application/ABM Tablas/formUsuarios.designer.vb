@@ -270,6 +270,7 @@ Partial Class formUsuarios
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
         Me.Name = "formUsuarios"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Usuarios"
         Me.statusstripMain.ResumeLayout(False)
