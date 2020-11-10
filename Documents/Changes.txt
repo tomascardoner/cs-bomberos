@@ -1,9 +1,17 @@
+2020-11-09
+	- Se agregaron Proveedores
+	- Se agregaron Responsables del Cuartel
+	- Se agregaron Compras
+	- Se corrigieron los IDInventario (estaban de 2 en 2)
+	- Se completaron los CUILes
+
+
 2020-10-30
 	- Se agregó el CUIL a las Personas
 	- Se agregaron datos del curso de ingreso y del curso de reingreso
 
 2020-10-29
-	- Se modificaó el reporte: Familiares a cargo
+	- Se modificó el reporte: Familiares a cargo
 
 17/07/2020
 	- Se agregó un reporte de Hijos a cargo con edad

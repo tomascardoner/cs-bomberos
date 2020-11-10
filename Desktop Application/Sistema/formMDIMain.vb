@@ -71,6 +71,49 @@
 #End Region
 
 #Region "Menu Debug"
+
+    Private Sub CompletarCUILs() Handles menuDebug_CompletarCUILs.Click
+        If MessageBox.Show("¿Desea generar los CUILes incompletos?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            Try
+                Dim Prefijo As String
+                Dim Documento As String
+                Dim DigitoVerificador As Byte?
+
+                Using dbContext As New CSBomberosContext(True)
+                    For Each p As Persona In dbContext.Persona.Where(Function(per) per.CUIL Is Nothing AndAlso per.DocumentoNumero IsNot Nothing)
+                        If p.Genero = "F" Then
+                            Prefijo = "27"
+                        Else
+                            Prefijo = "20"
+                        End If
+                        Documento = p.DocumentoNumero.PadLeft(8, "0"c)
+
+                        DigitoVerificador = CardonerSistemas.AFIP.ObtenerDigitoVerificadorCUIT(Prefijo + Documento)
+                        If Not DigitoVerificador.HasValue Then
+                            If p.Genero = "F" Then
+                                Prefijo = "24"
+                            Else
+                                Prefijo = "23"
+                            End If
+                            DigitoVerificador = CardonerSistemas.AFIP.ObtenerDigitoVerificadorCUIT(Prefijo + Documento)
+                        End If
+
+                        If CardonerSistemas.AFIP.VerificarCUIT(Prefijo + Documento + DigitoVerificador.ToString()) Then
+                            p.CUIL = Prefijo + Documento + DigitoVerificador.ToString()
+                        End If
+                    Next
+
+                    dbContext.SaveChanges()
+
+                    MessageBox.Show("Se han actualizado los CUILes incompletos.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End Using
+
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al completar los CUILes incompletos de las Personas.")
+            End Try
+        End If
+    End Sub
+
 #End Region
 
 #Region "Menu Ventana"
