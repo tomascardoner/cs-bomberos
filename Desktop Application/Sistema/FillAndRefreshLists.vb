@@ -3,7 +3,7 @@
 #Region "Declarations..."
     Private mdbContext As CSBomberosContext
 
-    Friend Class AreaYCuartelClass
+    Friend Class AreaNombresClass
         Public Property IDArea As Short
         Public Property IDCuartel As Byte
         Public Property Codigo As String
@@ -11,6 +11,16 @@
         Public Property CuartelNombre As String
         Public Property NombreYCuartel As String
         Public Property EsActivo As Boolean
+    End Class
+
+    Friend Class ResponsableNombresClass
+        Public Property IDResponsable As Byte
+        Public Property IDResponsableTipo As Byte
+        Public Property ResponsableTipoNombre As String
+        Public Property IDCuartel As Byte?
+        Public Property CuartelNombre As String
+        Public Property IDPersona As Integer
+        Public Property PersonaApellidoNombre As String
     End Class
 
     Public Sub New()
@@ -361,7 +371,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub ResponsableTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub ResponsableTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of ResponsableTipo)
 
         ComboBoxControl.ValueMember = "IDResponsableTipo"
@@ -369,17 +379,50 @@
 
         listItems = mdbContext.ResponsableTipo.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
-        If AgregarItem_Todos Then
+        If AgregarItemTodos Then
             Dim Item_Todos As New ResponsableTipo
             Item_Todos.IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, Item_Todos)
         End If
 
-        If AgregarItem_NoEspecifica Then
+        If AgregarItemNoEspecifica Then
             Dim Item_NoEspecifica As New ResponsableTipo
             Item_NoEspecifica.IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub Responsable(ByRef ComboBoxControl As ComboBox, ByVal DisplayMember As String, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of ResponsableNombresClass)
+
+        ComboBoxControl.ValueMember = "IDResponsable"
+        ComboBoxControl.DisplayMember = DisplayMember
+
+        listItems = (From r In mdbContext.Responsable
+                     Join rt In mdbContext.ResponsableTipo On r.IDResponsableTipo Equals rt.IDResponsableTipo
+                     Join p In mdbContext.Persona On r.IDPersona Equals p.IDPersona
+                     Group Join c In mdbContext.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
+                     From cg In CuartelGroup.DefaultIfEmpty
+                     Order By rt.Nombre, p.ApellidoNombre
+                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = p.ApellidoNombre}).ToList()
+
+        If AgregarItemTodos Then
+            Dim Item_Todos As New ResponsableNombresClass
+            Item_Todos.IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
+            Item_Todos.ResponsableTipoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            Item_Todos.PersonaApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItemNoEspecifica Then
+            Dim Item_NoEspecifica As New ResponsableNombresClass
+            Item_NoEspecifica.IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Item_NoEspecifica.PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -551,7 +594,7 @@
     End Sub
 
     Friend Sub AreaYCuartel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
-        Dim listItems As List(Of AreaYCuartelClass)
+        Dim listItems As List(Of AreaNombresClass)
 
         ComboBoxControl.ValueMember = "IDArea"
         ComboBoxControl.DisplayMember = "NombreYCuartel"
@@ -560,16 +603,16 @@
                      Join c In mdbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
                      Where a.EsActivo AndAlso c.EsActivo
                      Order By a.Nombre, c.Nombre
-                     Select New AreaYCuartelClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .EsActivo = a.EsActivo}).ToList()
+                     Select New AreaNombresClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .EsActivo = a.EsActivo}).ToList()
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New AreaYCuartelClass
+            Dim Item_NoEspecifica As New AreaNombresClass
             Item_NoEspecifica.IDArea = Short.MinValue
             Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New AreaYCuartelClass
+            Dim Item_Todos As New AreaNombresClass
             Item_Todos.IDArea = 0
             Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
             listItems.Insert(0, Item_Todos)

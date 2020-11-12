@@ -465,6 +465,52 @@
         End If
     End Sub
 
+    Private Sub menuitemImprimirOrdenCompra_Click(sender As Object, e As EventArgs) Handles menuitemImprimirOrdenCompra.Click
+        Dim CurrentRow As GridRowData
+
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Compra para imprimir la Orden.", vbInformation, My.Application.Info.Title)
+        Else
+
+            If Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR) Then
+                Exit Sub
+            End If
+
+            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR_CERRADA, False) Then
+                MsgBox("La Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                Exit Sub
+            End If
+
+            CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewMain.Enabled = False
+
+            Using dbContext As New CSBomberosContext(True)
+                Dim ParametroActual As New ReporteParametro
+                Dim ReporteActual As New Reporte
+
+                ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_COMPRA_ORDEN))
+                ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompra").Single.Valor = CurrentRow.IDCompra
+
+                ' Solicito que se especifique el Responsable de firmar
+                ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
+                formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
+                formReportesParametroComboBoxSimple.Text = "Especifique el el firmante"
+                If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                    ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & CurrentRow.IDCompra)
+                End If
+                formReportesParametroComboBoxSimple.Close()
+                formReportesParametroComboBoxSimple.Dispose()
+            End Using
+
+            datagridviewMain.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
 #End Region
 
 End Class
