@@ -1,3 +1,9 @@
+2020-11-14
+	- Tabla Parantesco
+		- Agregar el campo ACargoEdadMaxima tinyint NULL después del nombre
+		- Corregir "Conyugue" a "Conyuge"
+
+
 2020-11-07
 	- Agregar tabla ResponsableTipo
 	- Agregar tabla Responsable

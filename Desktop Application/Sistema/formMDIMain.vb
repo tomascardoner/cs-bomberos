@@ -70,49 +70,129 @@
     End Sub
 #End Region
 
+#Region "Menú Sistema"
+
+    Private Sub CompletarCUILes() Handles menuitemSistema_CompletarCuiles.Click
+        If Not Permisos.VerificarPermiso(Permisos.SISTEMA_COMPLETAR_CUIL) Then
+            Exit Sub
+        End If
+        If MessageBox.Show("¿Desea completar los números de CUIL incompletos de las Personas?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+            Using dbContext As New CSBomberosContext(True)
+                Dim cuil As String
+                Dim count As Integer = 0
+                Dim strBuilder As New System.Text.StringBuilder
+
+                For Each p As Persona In dbContext.Persona.Where(Function(per) per.CUIL Is Nothing AndAlso per.DocumentoNumero IsNot Nothing)
+
+                    Select Case p.Genero
+                        Case Constantes.PERSONA_GENERO_FEMENINO
+                            cuil = CardonerSistemas.AFIP.ObtenerCUIT(CardonerSistemas.AFIP.TipoPersonas.Femenino, p.DocumentoNumero)
+                        Case Constantes.PERSONA_GENERO_MASCULINO
+                            cuil = CardonerSistemas.AFIP.ObtenerCUIT(CardonerSistemas.AFIP.TipoPersonas.Masculino, p.DocumentoNumero)
+                        Case Else
+                            cuil = String.Empty
+                    End Select
+                    If cuil <> String.Empty Then
+                        p.CUIL = cuil
+                        count += 1
+                        strBuilder.Append(String.Format("{0}- {1}", vbCrLf, p.ApellidoNombre))
+                    End If
+                Next
+
+                If count > 0 Then
+                    Dim mensajePlantilla As String
+                    Dim mensajeFinal As String
+
+                    If count = 1 Then
+                        mensajePlantilla = "Se actualizará el número de CUIL de 1 Persona.{0}{2}{0}{0}¿Desea continuar?"
+                    Else
+                        mensajePlantilla = "Se actualizarán los números de CUIL de {1} Personas.{0}{2}{0}{0}¿Desea continuar?"
+                    End If
+                    mensajeFinal = String.Format(mensajePlantilla, vbCrLf, count, strBuilder.ToString())
+
+                    If MessageBox.Show(mensajeFinal, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        dbContext.SaveChanges()
+                    End If
+                Else
+                    MessageBox.Show("No se encontraron Personas para actualizar el número de CUIL.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            End Using
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al completar los números de CUIL incompletos de las Personas.")
+        End Try
+    End Sub
+
+    Private Sub VerificarEdadFamiliares() Handles menuitemSistema_VerificarFamiliares.Click
+        If Not Permisos.VerificarPermiso(Permisos.SISTEMA_VERIFICAR_FAMILIARACARGO) Then
+            Exit Sub
+        End If
+        If MessageBox.Show("¿Desea verificar las edades de los Familiares a cargo de las Personas?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        End If
+
+        Try
+            Using dbContext As New CSBomberosContext(True)
+                Dim parentesco As New Parentesco
+                Dim familiares As List(Of PersonaFamiliar)
+                Dim count As Integer = 0
+                Dim strBuilder As New System.Text.StringBuilder
+
+                familiares = (From pf In dbContext.PersonaFamiliar
+                              Join p In dbContext.Parentesco On pf.IDParentesco Equals p.IDParentesco
+                              Where pf.ACargo AndAlso pf.FechaNacimiento IsNot Nothing AndAlso p.ACargoEdadMaxima IsNot Nothing
+                              Order By pf.IDParentesco, pf.IDPersona
+                              Select pf).ToList()
+
+                For Each pf As PersonaFamiliar In familiares
+                    Dim anios As Long
+
+                    ' La lista de familiares está ordanada por IDParentesco,
+                    ' para hacer un parentesco por vez
+                    If parentesco.IDParentesco <> pf.IDParentesco Then
+                        parentesco = dbContext.Parentesco.Find(pf.IDParentesco.Value)
+                    End If
+                    anios = CardonerSistemas.DateTime.GetElapsedCompleteYearsFromDates(pf.FechaNacimiento.Value, DateTime.Today)
+                    If anios > parentesco.ACargoEdadMaxima Then
+                        pf.ACargo = False
+                        count += 1
+                        strBuilder.Append(String.Format("{0}- {1} - ({2} años)", vbCrLf, pf.ApellidoNombre, anios))
+                    End If
+                Next
+
+                If count > 0 Then
+                    Dim mensajePlantilla As String
+                    Dim mensajeFinal As String
+
+                    If count = 1 Then
+                        mensajePlantilla = "Se actualizará 1 Familiar a cargo por estar excedido en la edad.{0}{2}{0}{0}¿Desea continuar?"
+                    Else
+                        mensajePlantilla = "Se actualizarán {1} Familiares a cargo por estar excedidos en la edad.{0}{2}{0}{0}¿Desea continuar?"
+                    End If
+                    mensajeFinal = String.Format(mensajePlantilla, vbCrLf, count, strBuilder.ToString())
+
+                    If MessageBox.Show(mensajeFinal, My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        dbContext.SaveChanges()
+                    End If
+                Else
+                    MessageBox.Show("No se encontraron Familiares a cargo excedidos en la edad.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+
+            End Using
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al verificar las edades de los Familiares a cargo de las Personas.")
+        End Try
+    End Sub
+
+#End Region
+
 #Region "Menu Debug"
 
-    Private Sub CompletarCUILs() Handles menuDebug_CompletarCUILs.Click
-        If MessageBox.Show("¿Desea generar los CUILes incompletos?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Try
-                Dim Prefijo As String
-                Dim Documento As String
-                Dim DigitoVerificador As Byte?
-
-                Using dbContext As New CSBomberosContext(True)
-                    For Each p As Persona In dbContext.Persona.Where(Function(per) per.CUIL Is Nothing AndAlso per.DocumentoNumero IsNot Nothing)
-                        If p.Genero = "F" Then
-                            Prefijo = "27"
-                        Else
-                            Prefijo = "20"
-                        End If
-                        Documento = p.DocumentoNumero.PadLeft(8, "0"c)
-
-                        DigitoVerificador = CardonerSistemas.AFIP.ObtenerDigitoVerificadorCUIT(Prefijo + Documento)
-                        If Not DigitoVerificador.HasValue Then
-                            If p.Genero = "F" Then
-                                Prefijo = "24"
-                            Else
-                                Prefijo = "23"
-                            End If
-                            DigitoVerificador = CardonerSistemas.AFIP.ObtenerDigitoVerificadorCUIT(Prefijo + Documento)
-                        End If
-
-                        If CardonerSistemas.AFIP.VerificarCUIT(Prefijo + Documento + DigitoVerificador.ToString()) Then
-                            p.CUIL = Prefijo + Documento + DigitoVerificador.ToString()
-                        End If
-                    Next
-
-                    dbContext.SaveChanges()
-
-                    MessageBox.Show("Se han actualizado los CUILes incompletos.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                End Using
-
-            Catch ex As Exception
-                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al completar los CUILes incompletos de las Personas.")
-            End Try
-        End If
-    End Sub
 
 #End Region
 

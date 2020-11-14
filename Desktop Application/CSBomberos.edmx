@@ -360,6 +360,7 @@
           </Key>
           <Property Name="IDParentesco" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACargoEdadMaxima" Type="tinyint" />
           <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -5403,6 +5404,7 @@
           </Key>
           <Property Name="IDParentesco" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ACargoEdadMaxima" Type="Byte" />
           <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -8955,6 +8957,7 @@
           <EntitySetMapping Name="Parentesco">
             <EntityTypeMapping TypeName="CSBomberosModel.Parentesco">
               <MappingFragment StoreEntitySet="Parentesco">
+                <ScalarProperty Name="ACargoEdadMaxima" ColumnName="ACargoEdadMaxima" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />

@@ -167,6 +167,9 @@
     <Compile Include="..\..\..\framework-vbnet\Database.EntityFramework.vb">
       <Link>Framework\Database.EntityFramework.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\DateTime.vb">
+      <Link>Framework\DateTime.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>Framework\ErrorHandler.vb</Link>
     </Compile>

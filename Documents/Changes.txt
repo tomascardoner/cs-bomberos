@@ -1,3 +1,12 @@
+2020-11-14
+	- Rutina para destildar familiares a cargo que hayan cumplido la edad máxima
+		- Hijos: 21 años
+		- Padres: 65 años
+	- Rutina para completar números de CUIL
+
+2020-11-11
+	- Se agregó el reporte de Orden de Compra
+
 2020-11-09
 	- Se agregaron Proveedores
 	- Se agregaron Responsables del Cuartel

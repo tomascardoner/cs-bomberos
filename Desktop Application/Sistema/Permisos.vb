@@ -1,4 +1,7 @@
 ﻿Module Permisos
+    Friend Const SISTEMA_COMPLETAR_CUIL As String = "SISTEMA_COMPLETAR_CUIL"
+    Friend Const SISTEMA_VERIFICAR_FAMILIARACARGO As String = "SISTEMA_VERIFICAR_FAMILIARACARGO"
+
     Friend Const CUARTEL As String = "CUARTEL"
     Friend Const CUARTEL_AGREGAR As String = "CUARTEL_AGREGAR"
     Friend Const CUARTEL_EDITAR As String = "CUARTEL_EDITAR"
@@ -277,6 +280,10 @@
         Arbol.SuspendLayout()
 
         Arbol.Nodes.Clear()
+
+        RootNode = Arbol.Nodes.Add(COMPRA, "Sistema")
+        RootNode.Nodes.Add(SISTEMA_COMPLETAR_CUIL, "Completar números de CUIL incompletos.")
+        RootNode.Nodes.Add(SISTEMA_VERIFICAR_FAMILIARACARGO, "Verificar edades de familiares a cargo.")
 
         RootNode = Arbol.Nodes.Add(NIVELESTUDIO, "Niveles de Estudio")
         With RootNode

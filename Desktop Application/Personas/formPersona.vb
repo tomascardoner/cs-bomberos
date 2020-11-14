@@ -399,7 +399,7 @@
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
             .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
-            .Peso = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxPeso.Text)
+            .Peso = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxPeso)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .IDEstadoCivil = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxEstadoCivil.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
@@ -424,12 +424,12 @@
 
             ' Datos de la pestaña Ingreso / Reingreso
             .CursoIngresoFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCursoIngresoFecha.Value, datetimepickerCursoIngresoFecha.Checked)
-            .CursoIngresoMeses = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxCursoIngresoMeses.Text)
-            .CursoIngresoHoras = CS_ValueTranslation.FromControlIntegerTextBoxToObjectShort(integertextboxCursoIngresoHoras.Text)
+            .CursoIngresoMeses = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxCursoIngresoMeses)
+            .CursoIngresoHoras = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxCursoIngresoHoras)
             .CursoIngresoResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxCursoIngresoResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             .ReingresoFormacionRealizada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxReingresoFormacionRealizada.CheckState)
-            .ReingresoFormacionMeses = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxReingresoFormacionMeses.Text)
-            .ReingresoFormacionHoras = CS_ValueTranslation.FromControlIntegerTextBoxToObjectByte(integertextboxReingresoFormacionHoras.Text)
+            .ReingresoFormacionMeses = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxReingresoFormacionMeses)
+            .ReingresoFormacionHoras = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxReingresoFormacionHoras)
             .ReingresoFormacionResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxReingresoFormacionResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Contacto Particular
@@ -991,7 +991,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaFamiliar.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
+            formPersonaFamiliar.LoadAndShow(Not mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
 
             Me.Cursor = Cursors.Default
         End If

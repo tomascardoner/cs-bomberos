@@ -33,7 +33,7 @@ Partial Class formParentesco
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDParentesco = New System.Windows.Forms.Label()
@@ -44,6 +44,8 @@ Partial Class formParentesco
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.integertextboxACargoEdadMaxima = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -51,6 +53,7 @@ Partial Class formParentesco
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        CType(Me.integertextboxACargoEdadMaxima, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelEsActivo
@@ -168,6 +171,8 @@ Partial Class formParentesco
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.integertextboxACargoEdadMaxima)
+        Me.tabpageGeneral.Controls.Add(Me.Label1)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -275,6 +280,31 @@ Partial Class formParentesco
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 64)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(194, 13)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Edad máxima para estar a cargo (años):"
+        '
+        'integertextboxACargoEdadMaxima
+        '
+        Me.integertextboxACargoEdadMaxima.AllowNull = True
+        Me.integertextboxACargoEdadMaxima.BeforeTouchSize = New System.Drawing.Size(44, 20)
+        Me.integertextboxACargoEdadMaxima.IntegerValue = CType(0, Long)
+        Me.integertextboxACargoEdadMaxima.Location = New System.Drawing.Point(209, 61)
+        Me.integertextboxACargoEdadMaxima.MaxValue = CType(100, Long)
+        Me.integertextboxACargoEdadMaxima.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.integertextboxACargoEdadMaxima.MinValue = CType(1, Long)
+        Me.integertextboxACargoEdadMaxima.Name = "integertextboxACargoEdadMaxima"
+        Me.integertextboxACargoEdadMaxima.NullString = ""
+        Me.integertextboxACargoEdadMaxima.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
+        Me.integertextboxACargoEdadMaxima.Size = New System.Drawing.Size(44, 20)
+        Me.integertextboxACargoEdadMaxima.TabIndex = 3
+        Me.integertextboxACargoEdadMaxima.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'formParentesco
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -297,6 +327,7 @@ Partial Class formParentesco
         Me.tabpageGeneral.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        CType(Me.integertextboxACargoEdadMaxima, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -320,4 +351,6 @@ Partial Class formParentesco
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
+    Friend WithEvents integertextboxACargoEdadMaxima As Syncfusion.Windows.Forms.Tools.IntegerTextBox
+    Friend WithEvents Label1 As Label
 End Class

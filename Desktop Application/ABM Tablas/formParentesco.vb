@@ -50,6 +50,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         textboxNombre.ReadOnly = Not mEditMode
+        integertextboxACargoEdadMaxima.ReadOnly = Not mEditMode
 
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -74,7 +75,9 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mParentescoActual
+            ' Datos de la pestaña General
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            CS_ValueTranslation.FromValueByteToControlIntegerTextBox(.ACargoEdadMaxima, integertextboxACargoEdadMaxima)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -101,8 +104,11 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mParentescoActual
+            ' Datos de la pestaña General
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .ACargoEdadMaxima = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxACargoEdadMaxima)
 
+            ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With

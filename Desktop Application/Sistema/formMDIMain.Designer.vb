@@ -32,6 +32,9 @@ Partial Class formMDIMain
         Me.menuitemArchivo_CerrarSesion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemArchivo_Separador_Salir = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemArchivo_Salir = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemSistema = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemSistema_CompletarCuiles = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemSistema_VerificarFamiliares = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentanaMosaicoHorizontal = New System.Windows.Forms.ToolStripMenuItem()
@@ -89,7 +92,6 @@ Partial Class formMDIMain
         Me.menuitemInventario_Elementos = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonCompras = New System.Windows.Forms.ToolStripButton()
         Me.buttonReportes = New System.Windows.Forms.ToolStripButton()
-        Me.menuDebug_CompletarCUILs = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -117,7 +119,7 @@ Partial Class formMDIMain
         '
         'menustripMain
         '
-        Me.menustripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo, Me.menuitemDebug, Me.menuitemVentana, Me.menuitemAyuda})
+        Me.menustripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo, Me.menuitemSistema, Me.menuitemDebug, Me.menuitemVentana, Me.menuitemAyuda})
         Me.menustripMain.Location = New System.Drawing.Point(0, 0)
         Me.menustripMain.MdiWindowListItem = Me.menuitemVentana
         Me.menustripMain.Name = "menustripMain"
@@ -159,9 +161,27 @@ Partial Class formMDIMain
         Me.menuitemArchivo_Salir.Size = New System.Drawing.Size(204, 22)
         Me.menuitemArchivo_Salir.Text = "&Salir"
         '
+        'menuitemSistema
+        '
+        Me.menuitemSistema.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemSistema_CompletarCuiles, Me.menuitemSistema_VerificarFamiliares})
+        Me.menuitemSistema.Name = "menuitemSistema"
+        Me.menuitemSistema.Size = New System.Drawing.Size(60, 20)
+        Me.menuitemSistema.Text = "Sistema"
+        '
+        'menuitemSistema_CompletarCuiles
+        '
+        Me.menuitemSistema_CompletarCuiles.Name = "menuitemSistema_CompletarCuiles"
+        Me.menuitemSistema_CompletarCuiles.Size = New System.Drawing.Size(293, 22)
+        Me.menuitemSistema_CompletarCuiles.Text = "Completar números de CUIL incompletos"
+        '
+        'menuitemSistema_VerificarFamiliares
+        '
+        Me.menuitemSistema_VerificarFamiliares.Name = "menuitemSistema_VerificarFamiliares"
+        Me.menuitemSistema_VerificarFamiliares.Size = New System.Drawing.Size(293, 22)
+        Me.menuitemSistema_VerificarFamiliares.Text = "Verificar edad de Familiares"
+        '
         'menuitemDebug
         '
-        Me.menuitemDebug.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuDebug_CompletarCUILs})
         Me.menuitemDebug.Name = "menuitemDebug"
         Me.menuitemDebug.Size = New System.Drawing.Size(54, 20)
         Me.menuitemDebug.Text = "Debug"
@@ -178,51 +198,51 @@ Partial Class formMDIMain
         '
         Me.menuitemVentanaMosaicoHorizontal.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_HORIZONTALLY
         Me.menuitemVentanaMosaicoHorizontal.Name = "menuitemVentanaMosaicoHorizontal"
-        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaMosaicoHorizontal.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoHorizontal.Text = "Mosaico &Horizontal"
         '
         'menuitemVentanaMosaicoVertical
         '
         Me.menuitemVentanaMosaicoVertical.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_TILE_VERTICALLY
         Me.menuitemVentanaMosaicoVertical.Name = "menuitemVentanaMosaicoVertical"
-        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaMosaicoVertical.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaMosaicoVertical.Text = "Mosaico &Vertical"
         '
         'menuitemVentanaCascada
         '
         Me.menuitemVentanaCascada.Name = "menuitemVentanaCascada"
-        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaCascada.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaCascada.Text = "&Cascada"
         '
         'menuitemVentanaOrganizarIconos
         '
         Me.menuitemVentanaOrganizarIconos.Name = "menuitemVentanaOrganizarIconos"
-        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaOrganizarIconos.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaOrganizarIconos.Text = "&Organizar Iconos"
         '
         'menuitemVentanaSeparadorCerrarTodas
         '
         Me.menuitemVentanaSeparadorCerrarTodas.Name = "menuitemVentanaSeparadorCerrarTodas"
-        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(177, 6)
+        Me.menuitemVentanaSeparadorCerrarTodas.Size = New System.Drawing.Size(174, 6)
         '
         'menuitemVentanaCerrarTodas
         '
         Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_CLOSE_ALL
         Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
-        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
         '
         'menuitemVentanaEncajarEnVentana
         '
         Me.menuitemVentanaEncajarEnVentana.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_MENU_WINDOW_FIT_SIZE
         Me.menuitemVentanaEncajarEnVentana.Name = "menuitemVentanaEncajarEnVentana"
-        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaEncajarEnVentana.Size = New System.Drawing.Size(177, 22)
         Me.menuitemVentanaEncajarEnVentana.Text = "Encajar en ventana"
         '
         'menuitemVentanaSeparadorListaVentanas
         '
         Me.menuitemVentanaSeparadorListaVentanas.Name = "menuitemVentanaSeparadorListaVentanas"
-        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(177, 6)
+        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(174, 6)
         '
         'menuitemAyuda
         '
@@ -544,12 +564,6 @@ Partial Class formMDIMain
         Me.buttonReportes.Size = New System.Drawing.Size(106, 36)
         Me.buttonReportes.Text = "Reportes"
         '
-        'menuDebug_CompletarCUILs
-        '
-        Me.menuDebug_CompletarCUILs.Name = "menuDebug_CompletarCUILs"
-        Me.menuDebug_CompletarCUILs.Size = New System.Drawing.Size(232, 22)
-        Me.menuDebug_CompletarCUILs.Text = "Completar CUILs incompletos"
-        '
         'formMDIMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -642,5 +656,7 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_Responsables As ToolStripMenuItem
     Friend WithEvents menuitemTablas_Proveedores As ToolStripMenuItem
     Friend WithEvents buttonCompras As ToolStripButton
-    Friend WithEvents menuDebug_CompletarCUILs As ToolStripMenuItem
+    Friend WithEvents menuitemSistema As ToolStripMenuItem
+    Friend WithEvents menuitemSistema_CompletarCuiles As ToolStripMenuItem
+    Friend WithEvents menuitemSistema_VerificarFamiliares As ToolStripMenuItem
 End Class
