@@ -1,3 +1,6 @@
+2020-11-24
+	- Se agregó el reporte de Compras por Área
+
 2020-11-14
 	- Rutina para destildar familiares a cargo que hayan cumplido la edad máxima
 		- Hijos: 21 años
