@@ -1,5 +1,8 @@
+2020-11-28
+	- Se agregó el reporte de Resumen de Compras por área
+
 2020-11-24
-	- Se agregó el reporte de Compras por Área
+	- Se agregó el reporte de Listado de Compras por área
 
 2020-11-14
 	- Rutina para destildar familiares a cargo que hayan cumplido la edad máxima
