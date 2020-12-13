@@ -1,3 +1,18 @@
+2020-12-12
+	- Se agregó el item "Todos" al filtro de períodos de las compras
+	- Se cambió el orden del combobox de Responsable
+	- Reporte de Orden de compra:
+		- FIX: no sumaba el importe total
+		- Se agregó el Área y el importe al detalle
+		- Se agrandó el encabezado
+	- Compras:
+		- se agregó el Cuartel y el número de O.C. con botón de siguiente
+		- se agrandó el campo de número de factura
+		- se agregó un botón para poder imprimir la O.C. desde la ventana de la compra
+		- se agregó la funcionalidad de búsqueda al tipear en los combo box de Proveedor y de Área
+	- Áreas: Se agregaron checks para indicar si se muestra en Inventario y en Compras
+	- Ventana principal: se reorganizaron los íconos por módulo
+
 2020-11-28
 	- Se agregó el reporte de Resumen de Compras por área
 

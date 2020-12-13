@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class ResponsableTipo
     Public Property IDResponsableTipo As Byte
     Public Property Nombre As String
+    Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short

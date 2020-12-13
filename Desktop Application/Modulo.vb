@@ -10,14 +10,12 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class ReporteGrupo
-    Public Property IDReporteGrupo As Byte
+Partial Public Class Modulo
     Public Property IDModulo As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
     Public Property Orden As Nullable(Of Byte)
 
-    Public Overridable Property Reportes As ICollection(Of Reporte) = New HashSet(Of Reporte)
-    Public Overridable Property Modulo As Modulo
+    Public Overridable Property ReporteGrupos As ICollection(Of ReporteGrupo) = New HashSet(Of ReporteGrupo)
 
 End Class

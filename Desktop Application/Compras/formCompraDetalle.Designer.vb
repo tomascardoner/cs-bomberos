@@ -136,7 +136,8 @@ Partial Class formCompraDetalle
         '
         'comboboxArea
         '
-        Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxArea.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxArea.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comboboxArea.FormattingEnabled = True
         Me.comboboxArea.Location = New System.Drawing.Point(57, 6)
         Me.comboboxArea.Name = "comboboxArea"

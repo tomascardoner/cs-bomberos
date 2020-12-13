@@ -26,6 +26,8 @@ Partial Class formArea
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
+        Dim labelMostraEnInventario As System.Windows.Forms.Label
+        Dim labelMostrarEnCompras As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -34,8 +36,11 @@ Partial Class formArea
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
+        Me.textboxCodigo = New System.Windows.Forms.TextBox()
+        Me.labelCodigo = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDArea = New System.Windows.Forms.Label()
         Me.textboxIDArea = New System.Windows.Forms.TextBox()
@@ -45,13 +50,14 @@ Partial Class formArea
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.textboxCodigo = New System.Windows.Forms.TextBox()
-        Me.labelCodigo = New System.Windows.Forms.Label()
-        Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
+        Me.checkboxMostrarEnInventario = New System.Windows.Forms.CheckBox()
+        Me.checkboxMostrarEnCompras = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
+        labelMostraEnInventario = New System.Windows.Forms.Label()
+        labelMostrarEnCompras = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -84,6 +90,15 @@ Partial Class formArea
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
         labelCreacion.Text = "Creación:"
+        '
+        'labelCuartel
+        '
+        labelCuartel.AutoSize = True
+        labelCuartel.Location = New System.Drawing.Point(6, 95)
+        labelCuartel.Name = "labelCuartel"
+        labelCuartel.Size = New System.Drawing.Size(43, 13)
+        labelCuartel.TabIndex = 4
+        labelCuartel.Text = "Cuartel:"
         '
         'textboxNombre
         '
@@ -173,6 +188,10 @@ Partial Class formArea
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(labelMostrarEnCompras)
+        Me.tabpageGeneral.Controls.Add(Me.checkboxMostrarEnCompras)
+        Me.tabpageGeneral.Controls.Add(Me.checkboxMostrarEnInventario)
+        Me.tabpageGeneral.Controls.Add(labelMostraEnInventario)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
         Me.tabpageGeneral.Controls.Add(labelCuartel)
         Me.tabpageGeneral.Controls.Add(Me.textboxCodigo)
@@ -186,6 +205,33 @@ Partial Class formArea
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'comboboxCuartel
+        '
+        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCuartel.FormattingEnabled = True
+        Me.comboboxCuartel.Location = New System.Drawing.Point(59, 92)
+        Me.comboboxCuartel.Name = "comboboxCuartel"
+        Me.comboboxCuartel.Size = New System.Drawing.Size(446, 21)
+        Me.comboboxCuartel.TabIndex = 5
+        '
+        'textboxCodigo
+        '
+        Me.textboxCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxCodigo.Location = New System.Drawing.Point(59, 20)
+        Me.textboxCodigo.MaxLength = 5
+        Me.textboxCodigo.Name = "textboxCodigo"
+        Me.textboxCodigo.Size = New System.Drawing.Size(56, 20)
+        Me.textboxCodigo.TabIndex = 1
+        '
+        'labelCodigo
+        '
+        Me.labelCodigo.AutoSize = True
+        Me.labelCodigo.Location = New System.Drawing.Point(6, 23)
+        Me.labelCodigo.Name = "labelCodigo"
+        Me.labelCodigo.Size = New System.Drawing.Size(43, 13)
+        Me.labelCodigo.TabIndex = 0
+        Me.labelCodigo.Text = "Código:"
         '
         'tabpageNotasAuditoria
         '
@@ -284,41 +330,41 @@ Partial Class formArea
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'textboxCodigo
+        'checkboxMostrarEnInventario
         '
-        Me.textboxCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.textboxCodigo.Location = New System.Drawing.Point(59, 20)
-        Me.textboxCodigo.MaxLength = 5
-        Me.textboxCodigo.Name = "textboxCodigo"
-        Me.textboxCodigo.Size = New System.Drawing.Size(56, 20)
-        Me.textboxCodigo.TabIndex = 1
+        Me.checkboxMostrarEnInventario.AutoSize = True
+        Me.checkboxMostrarEnInventario.Location = New System.Drawing.Point(122, 132)
+        Me.checkboxMostrarEnInventario.Name = "checkboxMostrarEnInventario"
+        Me.checkboxMostrarEnInventario.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMostrarEnInventario.TabIndex = 7
+        Me.checkboxMostrarEnInventario.UseVisualStyleBackColor = True
         '
-        'labelCodigo
+        'labelMostraEnInventario
         '
-        Me.labelCodigo.AutoSize = True
-        Me.labelCodigo.Location = New System.Drawing.Point(6, 23)
-        Me.labelCodigo.Name = "labelCodigo"
-        Me.labelCodigo.Size = New System.Drawing.Size(43, 13)
-        Me.labelCodigo.TabIndex = 0
-        Me.labelCodigo.Text = "Código:"
+        labelMostraEnInventario.AutoSize = True
+        labelMostraEnInventario.Location = New System.Drawing.Point(6, 132)
+        labelMostraEnInventario.Name = "labelMostraEnInventario"
+        labelMostraEnInventario.Size = New System.Drawing.Size(110, 13)
+        labelMostraEnInventario.TabIndex = 6
+        labelMostraEnInventario.Text = "Mostrar en Inventario:"
         '
-        'comboboxCuartel
+        'checkboxMostrarEnCompras
         '
-        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCuartel.FormattingEnabled = True
-        Me.comboboxCuartel.Location = New System.Drawing.Point(59, 92)
-        Me.comboboxCuartel.Name = "comboboxCuartel"
-        Me.comboboxCuartel.Size = New System.Drawing.Size(446, 21)
-        Me.comboboxCuartel.TabIndex = 5
+        Me.checkboxMostrarEnCompras.AutoSize = True
+        Me.checkboxMostrarEnCompras.Location = New System.Drawing.Point(122, 160)
+        Me.checkboxMostrarEnCompras.Name = "checkboxMostrarEnCompras"
+        Me.checkboxMostrarEnCompras.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMostrarEnCompras.TabIndex = 9
+        Me.checkboxMostrarEnCompras.UseVisualStyleBackColor = True
         '
-        'labelCuartel
+        'labelMostrarEnCompras
         '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 95)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 4
-        labelCuartel.Text = "Cuartel:"
+        labelMostrarEnCompras.AutoSize = True
+        labelMostrarEnCompras.Location = New System.Drawing.Point(6, 161)
+        labelMostrarEnCompras.Name = "labelMostrarEnCompras"
+        labelMostrarEnCompras.Size = New System.Drawing.Size(104, 13)
+        labelMostrarEnCompras.TabIndex = 8
+        labelMostrarEnCompras.Text = "Mostrar en Compras:"
         '
         'formArea
         '
@@ -368,4 +414,6 @@ Partial Class formArea
     Friend WithEvents textboxCodigo As System.Windows.Forms.TextBox
     Friend WithEvents labelCodigo As System.Windows.Forms.Label
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
+    Friend WithEvents checkboxMostrarEnCompras As CheckBox
+    Friend WithEvents checkboxMostrarEnInventario As CheckBox
 End Class

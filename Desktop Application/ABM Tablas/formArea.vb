@@ -56,6 +56,8 @@
         textboxCodigo.ReadOnly = Not mEditMode
         textboxNombre.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
+        checkboxMostrarEnInventario.Enabled = mEditMode
+        checkboxMostrarEnCompras.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -86,6 +88,8 @@
             textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            checkboxMostrarEnInventario.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnInventario)
+            checkboxMostrarEnCompras.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnCompras)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -115,6 +119,8 @@
             .Codigo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCodigo.Text)
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
+            .MostrarEnInventario = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMostrarEnInventario.CheckState)
+            .MostrarEnCompras = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMostrarEnCompras.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -146,6 +152,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.AREA_EDITAR) Then
             mEditMode = True
@@ -169,6 +176,23 @@
             MsgBox("Debe ingresar especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
             Exit Sub
+        End If
+
+        If Not mIsNew Then
+            ' Si se cambió la opción de Mostrar en Inventario, se debe verificar que no haya Items con este Área
+            If mAreaActual.MostrarEnInventario AndAlso checkboxMostrarEnInventario.Checked = False Then
+                If mAreaActual.Inventario.Any() Then
+                    MsgBox("No se puede dejar de Mostrar en Inventario porque hay ítems que hacen referencia a este Área.", MsgBoxStyle.Information, My.Application.Info.Title)
+                    Exit Sub
+                End If
+            End If
+            ' Si se cambió la opción de Mostrar en Compras, se debe verificar que no haya Compras con este Área
+            If mAreaActual.MostrarEnCompras AndAlso checkboxMostrarEnCompras.Checked = False Then
+                If mAreaActual.CompraDetalles.Any() Then
+                    MsgBox("No se puede dejar de Mostrar en Compras porque hay Detalles que hacen referencia a este Área.", MsgBoxStyle.Information, My.Application.Info.Title)
+                    Exit Sub
+                End If
+            End If
         End If
 
         ' Generar el ID nuevo

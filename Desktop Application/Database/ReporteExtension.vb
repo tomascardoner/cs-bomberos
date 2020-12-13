@@ -26,7 +26,7 @@ Partial Public Class Reporte
         End Get
     End Property
 
-    Friend Function Open(ByVal preview As Boolean, Optional ByVal titulo As String = "") As Boolean
+    Friend Function Open(ByVal preview As Boolean, Optional ByVal titulo As String = "", Optional ByRef modalParent As Form = Nothing) As Boolean
         _PathAndFileName = pGeneralConfig.ReportsPath & "\" & Archivo
 
         If Not My.Computer.FileSystem.FileExists(_PathAndFileName) Then
@@ -50,9 +50,9 @@ Partial Public Class Reporte
         Else
             If OpenCR() Then
                 If CRSetParameters() Then
-                    If CRSetDatabaseConnection(pDatabase.DataSource, pDatabase.InitialCatalog, pDatabase.UserID, pDatabase.Password) Then
+                    If CRSetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
                         If preview Then
-                            Reportes.PreviewCrystalReport(Me, titulo)
+                            Reportes.PreviewCrystalReport(Me, titulo, modalParent)
                         Else
                             CRReportObject.PrintToPrinter(1, False, 1, 1000)
                         End If

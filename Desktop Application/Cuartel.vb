@@ -43,5 +43,6 @@ Partial Public Class Cuartel
     Public Overridable Property Ubicacion As ICollection(Of Ubicacion) = New HashSet(Of Ubicacion)
     Public Overridable Property Usuarios As ICollection(Of Usuario) = New HashSet(Of Usuario)
     Public Overridable Property Responsables As ICollection(Of Responsable) = New HashSet(Of Responsable)
+    Public Overridable Property Compra As ICollection(Of Compra) = New HashSet(Of Compra)
 
 End Class

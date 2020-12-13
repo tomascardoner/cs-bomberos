@@ -8,6 +8,14 @@
     Friend Const APPLICATION_LICENSE_PASSWORD As String = "3920586483ee18cb0bdce3a7b20ec72f"
 
     '//////////////////
+    '    MODULO
+    '//////////////////
+    Friend Const MODULO_DOCUMENTACIONES_ID As Byte = 1
+    Friend Const MODULO_DOCUMENTACIONES_NOMBRE As String = "Documentaciones"
+    Friend Const MODULO_JEFATURA_ID As Byte = 2
+    Friend Const MODULO_JEFATURA_NOMBRE As String = "Jefatura"
+
+    '//////////////////
     '    ALARMA
     '//////////////////
     Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA As String = "PN"

@@ -25,6 +25,9 @@
                 .Fecha = DateTime.Today
 
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
+                If formCompras.comboboxCuartel.SelectedIndex > 0 Then
+                    .IDCuartel = CByte(formCompras.comboboxCuartel.ComboBox.SelectedValue)
+                End If
                 If formCompras.comboboxProveedor.SelectedIndex > 0 Then
                     .IDProveedor = CShort(formCompras.comboboxProveedor.ComboBox.SelectedValue)
                 End If
@@ -61,14 +64,17 @@
         buttonCancelar.Visible = mEditMode
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
+        buttonImprimir.Visible = (mEditMode = False)
 
         ' General
-        integertextboxIDCompra.ReadOnly = True
+        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mCompraActual.CompraDetalles.Any()))
+        integertextboxNumero.ReadOnly = Not mEditMode
         datetimepickerFecha.Enabled = mEditMode
         comboboxProveedor.Enabled = mEditMode
         datetimepickerFacturaFecha.Enabled = mEditMode
         textboxFacturaNumero.ReadOnly = Not mEditMode
         checkboxCerrada.Enabled = mEditMode
+        datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
 
         ' Detalles
         toolstripDetalles.Enabled = mEditMode
@@ -80,6 +86,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         pFillAndRefreshLists.Proveedor(comboboxProveedor, False, True)
     End Sub
 
@@ -100,15 +107,27 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mCompraActual
-            integertextboxIDCompra.IntegerValue = .IDCompra
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            integertextboxNumero.IntegerValue = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxProveedor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDProveedor, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             datetimepickerFacturaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FacturaFecha, datetimepickerFacturaFecha)
             textboxFacturaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FacturaNumero)
             checkboxCerrada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Cerrada)
+            If checkboxCerrada.Checked Then
+                datetimepickerCierreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.CierreFecha, datetimepickerCierreFecha)
+            Else
+                datetimepickerCierreFecha.Value = DateAndTime.Today
+                datetimepickerCierreFecha.Checked = False
+            End If
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            If .IDCompra = 0 Then
+                textboxIDCompra.Text = My.Resources.STRING_ITEM_NEW_MALE
+            Else
+                textboxIDCompra.Text = String.Format(.IDCompra.ToString, "G")
+            End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
                 textboxUsuarioCreacion.Text = ""
@@ -128,11 +147,18 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mCompraActual
+            .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
+            .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .FacturaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFacturaFecha.Value, datetimepickerFacturaFecha.Checked)
             .FacturaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFacturaNumero.Text)
             .Cerrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxCerrada.CheckState)
+            If checkboxCerrada.Checked Then
+                .CierreFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCierreFecha.Value, datetimepickerCierreFecha.Checked)
+            Else
+                .CierreFecha = Nothing
+            End If
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
@@ -161,6 +187,28 @@
 
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
+    End Sub
+
+    Private Sub buttonCodigoSiguiente_Click() Handles buttonCodigoSiguiente.Click
+        If comboboxCuartel.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Exit Sub
+        End If
+
+        Using dbcMaxCodigo As New CSBomberosContext(True)
+            Dim IDCuartel As Byte = CByte(comboboxCuartel.SelectedValue)
+
+            If dbcMaxCodigo.Compra.Any(Function(c) c.IDCuartel = IDCuartel) Then
+                integertextboxNumero.IntegerValue = CInt(dbcMaxCodigo.Compra.Where(Function(c) c.IDCuartel = IDCuartel).Max(Function(c) c.Numero)) + 1
+            Else
+                integertextboxNumero.IntegerValue = 1
+            End If
+        End Using
+    End Sub
+
+    Private Sub checkboxCerrada_CheckedChanged(sender As Object, e As EventArgs) Handles checkboxCerrada.CheckedChanged
+        datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
     End Sub
 
 #End Region
@@ -192,10 +240,27 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+        If comboboxCuartel.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Exit Sub
+        End If
+        If integertextboxNumero.Text.Length = 0 Then
+            MsgBox("Debe ingresar el Número.", MsgBoxStyle.Information, My.Application.Info.Title)
+            integertextboxNumero.Focus()
+            Exit Sub
+        End If
         If comboboxProveedor.SelectedValue Is Nothing Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxProveedor.Focus()
+            Exit Sub
+        End If
+
+        If checkboxCerrada.Checked AndAlso datetimepickerCierreFecha.Checked AndAlso datetimepickerCierreFecha.Value < datetimepickerFecha.Value Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("La fecha de cierre no puede ser anterior a la fecha de la compra.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerCierreFecha.Focus()
             Exit Sub
         End If
 
@@ -236,7 +301,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Compra con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -248,6 +313,39 @@
         End If
 
         Me.Close()
+    End Sub
+
+    Private Sub buttonImprimir_Click(sender As Object, e As EventArgs) Handles buttonImprimir.Click
+        If Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR) Then
+            Exit Sub
+        End If
+
+        If mCompraActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR_CERRADA, False) Then
+            MsgBox("La Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            Exit Sub
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Using dbContext As New CSBomberosContext(True)
+            Dim ParametroActual As New ReporteParametro
+            Dim ReporteActual As New Reporte
+
+            ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_COMPRA_ORDEN))
+            ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompra").Single.Valor = mCompraActual.IDCompra
+
+            ' Solicito que se especifique el Responsable de firmar
+            ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
+            formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
+            formReportesParametroComboBoxSimple.Text = "Especifique el el firmante"
+            If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & mCompraActual.IDCompra, Me)
+            End If
+            formReportesParametroComboBoxSimple.Close()
+            formReportesParametroComboBoxSimple.Dispose()
+        End Using
+
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

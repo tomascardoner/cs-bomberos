@@ -1,3 +1,30 @@
+2020-12-12
+	- Ejecutar script de update
+	- Tabla ReporteGrupo:
+		- Agregar el campo IDModulo tinyint not null, antes de Nombre
+		- Agregar la FK a la tabla Modulo (FK__Modulo__ReporteGrupo)
+	- Tabla Area:
+		- Agregar el campo MostrarEnInventario bit not null, antes de Notas
+		- Agregar el campo MostrarEnCompras bit not null, antes de Notas
+		- Completar campos
+	- Tabla ResponsableTipo:
+		- Agregar el campo Orden tinyint null, antes de Notas
+		- Completar campo
+	- Tabla Compra
+		- Agregar el campo IDCuartel tinyint not null
+		- Agregar el campo Numero int not null
+		- Cambiar el campo FacturaNumero a varchar(200)
+		- Agregar el campo CierreFecha date null, antes de Notas
+		- Agregar un índice único para IDCuartel y Numero (AK__Compra__Numero)
+		- Agregar la FK a la tabla Cuartel (FK__Cuartel__Compra)
+		- Completar campos
+	- Ejecutar:
+		- usp_Compra_Orden
+		- usp_Compra_ListadoPorArea
+	- Copiar reportes:
+		- Compra-Orden.rpt
+
+
 2020-11-14
 	- Tabla Parantesco
 		- Agregar el campo ACargoEdadMaxima tinyint NULL después del nombre

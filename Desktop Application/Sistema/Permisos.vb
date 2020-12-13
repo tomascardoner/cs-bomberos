@@ -252,7 +252,8 @@
     Friend Const COMPRA_IMPRIMIR As String = "COMPRA_IMPRIMIR"
     Friend Const COMPRA_IMPRIMIR_CERRADA As String = "COMPRA_IMPRIMIR_CERRADA"
 
-    Friend Const REPORTE As String = "REPORTE"
+    Friend Const REPORTE_DOCUMENTACIONES As String = "REPORTE_DOCUMENTACIONES"
+    Friend Const REPORTE_JEFATURA As String = "REPORTE_JEFATURA"
 
     Friend Const DESCRIPCION_AGREGAR As String = "Agregar"
     Friend Const DESCRIPCION_EDITAR As String = "Editar"
@@ -603,7 +604,8 @@
             .Nodes.Add(COMPRA_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " compra cerrada")
         End With
 
-        RootNode = Arbol.Nodes.Add(REPORTE, "Reportes")
+        RootNode = Arbol.Nodes.Add(REPORTE_DOCUMENTACIONES, "Reportes")
+        RootNode = Arbol.Nodes.Add(REPORTE_JEFATURA, "Reportes")
 
         Arbol.ExpandAll()
         Arbol.TopNode = Arbol.Nodes(0)

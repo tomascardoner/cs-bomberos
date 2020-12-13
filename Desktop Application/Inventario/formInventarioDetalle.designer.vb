@@ -49,6 +49,7 @@ Partial Class formInventarioDetalle
         Me.comboboxElemento = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
         Me.labelDescripcionPropia = New System.Windows.Forms.Label()
         Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
@@ -62,7 +63,6 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -159,6 +159,15 @@ Partial Class formInventarioDetalle
         labelFechaBaja.Size = New System.Drawing.Size(79, 13)
         labelFechaBaja.TabIndex = 4
         labelFechaBaja.Text = "Fecha de Baja:"
+        '
+        'labelFechaAdquisicion
+        '
+        labelFechaAdquisicion.AutoSize = True
+        labelFechaAdquisicion.Location = New System.Drawing.Point(6, 181)
+        labelFechaAdquisicion.Name = "labelFechaAdquisicion"
+        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
+        labelFechaAdquisicion.TabIndex = 13
+        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
         '
         'labelElemento
         '
@@ -282,9 +291,9 @@ Partial Class formInventarioDetalle
         '
         'buttonCodigoSiguiente
         '
-        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(204, 60)
+        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(204, 59)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
-        Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 20)
+        Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 22)
         Me.buttonCodigoSiguiente.TabIndex = 6
         Me.buttonCodigoSiguiente.Text = "Obtener siguiente"
         Me.buttonCodigoSiguiente.UseVisualStyleBackColor = True
@@ -342,6 +351,17 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'datetimepickerFechaAdquisicion
+        '
+        Me.datetimepickerFechaAdquisicion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFechaAdquisicion.Location = New System.Drawing.Point(124, 177)
+        Me.datetimepickerFechaAdquisicion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerFechaAdquisicion.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerFechaAdquisicion.Name = "datetimepickerFechaAdquisicion"
+        Me.datetimepickerFechaAdquisicion.ShowCheckBox = True
+        Me.datetimepickerFechaAdquisicion.Size = New System.Drawing.Size(138, 20)
+        Me.datetimepickerFechaAdquisicion.TabIndex = 14
+        '
         'labelDescripcionPropia
         '
         Me.labelDescripcionPropia.AutoSize = True
@@ -378,7 +398,7 @@ Partial Class formInventarioDetalle
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(509, 260)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(509, 274)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -477,26 +497,6 @@ Partial Class formInventarioDetalle
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
-        '
-        'labelFechaAdquisicion
-        '
-        labelFechaAdquisicion.AutoSize = True
-        labelFechaAdquisicion.Location = New System.Drawing.Point(6, 181)
-        labelFechaAdquisicion.Name = "labelFechaAdquisicion"
-        labelFechaAdquisicion.Size = New System.Drawing.Size(112, 13)
-        labelFechaAdquisicion.TabIndex = 13
-        labelFechaAdquisicion.Text = "Fecha de Adquisición:"
-        '
-        'datetimepickerFechaAdquisicion
-        '
-        Me.datetimepickerFechaAdquisicion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaAdquisicion.Location = New System.Drawing.Point(124, 177)
-        Me.datetimepickerFechaAdquisicion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerFechaAdquisicion.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerFechaAdquisicion.Name = "datetimepickerFechaAdquisicion"
-        Me.datetimepickerFechaAdquisicion.ShowCheckBox = True
-        Me.datetimepickerFechaAdquisicion.Size = New System.Drawing.Size(138, 20)
-        Me.datetimepickerFechaAdquisicion.TabIndex = 14
         '
         'formInventarioDetalle
         '

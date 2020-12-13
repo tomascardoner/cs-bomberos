@@ -65,7 +65,11 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.AreaYCuartel(comboboxArea, False, False)
+        If mCompraActual.IDCompra = 0 AndAlso CType(mParentForm, formCompra).comboboxCuartel.SelectedIndex > -1 Then
+            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompra).comboboxCuartel.SelectedValue))
+        Else
+            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, mCompraActual.IDCuartel)
+        End If
     End Sub
 
     Friend Sub SetAppearance()

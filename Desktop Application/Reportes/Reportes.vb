@@ -1,15 +1,20 @@
 ﻿Module Reportes
 
-    Friend Sub PreviewCrystalReport(ByRef ReporteActual As Reporte, ByVal WindowText As String)
+    Friend Sub PreviewCrystalReport(ByRef ReporteActual As Reporte, ByVal WindowText As String, Optional ByRef modalParent As Form = Nothing)
         Dim VisorReporte As New formReportesVisor
 
         pFormMDIMain.Cursor = Cursors.WaitCursor
 
-        CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
         With VisorReporte
             .Text = WindowText
             .CRViewerMain.ReportSource = ReporteActual.CRReportObject
-            .Show()
+            If modalParent Is Nothing Then
+                CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
+                .Show()
+            Else
+                .WindowState = FormWindowState.Maximized
+                .ShowDialog(modalParent)
+            End If
             If .WindowState = FormWindowState.Minimized Then
                 .WindowState = FormWindowState.Normal
             End If

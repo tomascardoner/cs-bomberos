@@ -363,8 +363,9 @@
 
 #End Region
 
-#Region "Left Toolbar - Personas"
-    Private Sub Personas() Handles buttonPersonas.Click
+#Region "Left Toolbar - Documentaciones"
+
+    Private Sub Personas() Handles menuitemDocumentaciones_Personas.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -379,10 +380,7 @@
         End If
     End Sub
 
-#End Region
-
-#Region "Left Toolbar - Unidades"
-    Private Sub Unidades() Handles buttonUnidades.Click
+    Private Sub Unidades() Handles menuitemDocumentaciones_Unidades.Click
         If Permisos.VerificarPermiso(Permisos.UNIDAD) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -397,25 +395,7 @@
         End If
     End Sub
 
-#End Region
-
-#Region "Left Toolbar - Inventario"
-    Private Sub Elementos() Handles menuitemInventario_Elementos.Click
-        If Permisos.VerificarPermiso(Permisos.ELEMENTO) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formElementos, Form))
-            formElementos.Show()
-            If formElementos.WindowState = FormWindowState.Minimized Then
-                formElementos.WindowState = FormWindowState.Normal
-            End If
-            formElementos.Focus()
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub Inventario() Handles buttonInventario.ButtonClick
+    Private Sub Inventario() Handles menuitemDocumentaciones_Inventario.Click
         If Permisos.VerificarPermiso(Permisos.INVENTARIO) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -430,10 +410,41 @@
         End If
     End Sub
 
+    Private Sub Elementos() Handles menuitemDocumentaciones_Inventario_Elementos.Click
+        If Permisos.VerificarPermiso(Permisos.ELEMENTO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formElementos, Form))
+            formElementos.Show()
+            If formElementos.WindowState = FormWindowState.Minimized Then
+                formElementos.WindowState = FormWindowState.Normal
+            End If
+            formElementos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DocumentacionesReportes(sender As Object, e As EventArgs) Handles menuitemDocumentaciones_Reportes.Click
+        If Permisos.VerificarPermiso(Permisos.REPORTE_DOCUMENTACIONES) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form))
+            formReportes.SetValues(Constantes.MODULO_DOCUMENTACIONES_ID, Constantes.MODULO_DOCUMENTACIONES_NOMBRE)
+            formReportes.Show()
+            If formReportes.WindowState = FormWindowState.Minimized Then
+                formReportes.WindowState = FormWindowState.Normal
+            End If
+            formReportes.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
 #End Region
 
-#Region "Left Toolbar - Compras"
-    Private Sub Compras() Handles buttonCompras.Click
+#Region "Left Toolbar - Jefatura"
+
+    Private Sub Compras() Handles menuitemJefatura_Compras.Click
         If Permisos.VerificarPermiso(Permisos.COMPRA) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -448,14 +459,12 @@
         End If
     End Sub
 
-#End Region
-
-#Region "Left Toolbar - Reportes"
-    Private Sub buttonReportes_Click(sender As Object, e As EventArgs) Handles buttonReportes.Click
-        If Permisos.VerificarPermiso(Permisos.REPORTE) Then
+    Private Sub JefaturaReportes(sender As Object, e As EventArgs) Handles menuitemJefatura_Reportes.Click
+        If Permisos.VerificarPermiso(Permisos.REPORTE_JEFATURA) Then
             Me.Cursor = Cursors.WaitCursor
 
             CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form))
+            formReportes.SetValues(Constantes.MODULO_JEFATURA_ID, Constantes.MODULO_JEFATURA_NOMBRE)
             formReportes.Show()
             If formReportes.WindowState = FormWindowState.Minimized Then
                 formReportes.WindowState = FormWindowState.Normal
@@ -504,6 +513,14 @@
             formLogin.Close()
             formLogin.Dispose()
         End If
+    End Sub
+
+    Private Sub Personas(sender As Object, e As EventArgs) Handles dropdownbuttonDocumentaciones.Click, menuitemDocumentaciones_Personas.Click
+
+    End Sub
+
+    Private Sub Unidades(sender As Object, e As EventArgs) Handles dropdownbuttonJefatura.Click, menuitemDocumentaciones_Unidades.Click
+
     End Sub
 
 #End Region

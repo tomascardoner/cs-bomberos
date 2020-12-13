@@ -6,6 +6,9 @@
 
     Friend Class GridRowData
         Public Property IDCompra As Integer
+        Public Property IDCuartel As Byte
+        Public Property CuartelNombre As String
+        Public Property Numero As Integer
         Public Property Fecha As Date
         Public Property IDProveedor As Short
         Public Property ProveedorNombre As String
@@ -39,9 +42,10 @@
 
         ' Filtro de período
         InicializarFiltroDeFechas()
-        comboboxPeriodoTipo.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
-        comboboxPeriodoTipo.SelectedIndex = 2
+        comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
+        comboboxPeriodoTipo.SelectedIndex = 3
 
+        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
         pFillAndRefreshLists.Proveedor(comboboxProveedor.ComboBox, True, True)
 
         comboboxFacturaNumero.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_ITEM_COMPLETE_MALE, My.Resources.STRING_ITEM_EMPTY_MALE})
@@ -52,7 +56,7 @@
 
         mSkipFilterData = False
 
-        mOrdenColumna = columnIDCompra
+        mOrdenColumna = columnCuartel
         mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
@@ -100,7 +104,10 @@
         Me.Cursor = Cursors.WaitCursor
 
         Select Case comboboxPeriodoTipo.SelectedIndex
-            Case 0  ' Día
+            Case 0  ' Todas
+                FechaDesde = System.DateTime.MinValue
+                FechaHasta = System.DateTime.MaxValue
+            Case 1  ' Día
                 Select Case comboboxPeriodoValor.SelectedIndex
                     Case 0  ' Hoy
                         FechaDesde = System.DateTime.Today
@@ -121,7 +128,7 @@
                         FechaDesde = System.DateTime.Today.AddDays(-3)
                         FechaHasta = System.DateTime.Today
                 End Select
-            Case 1  ' Semana
+            Case 2  ' Semana
                 Select Case comboboxPeriodoValor.SelectedIndex
                     Case 0  ' Actual
                         FechaDesde = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek)
@@ -136,7 +143,7 @@
                         FechaDesde = System.DateTime.Today.AddDays(-System.DateTime.Today.DayOfWeek - 14)
                         FechaHasta = System.DateTime.Today
                 End Select
-            Case 2  ' Mes
+            Case 3  ' Mes
                 Select Case comboboxPeriodoValor.SelectedIndex
                     Case 0  ' Actual
                         FechaDesde = New Date(System.DateTime.Today.Year, System.DateTime.Today.Month, 1)
@@ -151,7 +158,7 @@
                         FechaDesde = New Date(System.DateTime.Today.Year, System.DateTime.Today.AddMonths(-2).Month, 1)
                         FechaHasta = System.DateTime.Today
                 End Select
-            Case 3  ' Fecha
+            Case 4  ' Fecha
                 Select Case comboboxPeriodoValor.SelectedIndex
                     Case 0  ' igual
                         FechaDesde = CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value
@@ -171,10 +178,11 @@
         Try
             Using dbContext As New CSBomberosContext(True)
                 mlistComprasBase = (From c In dbContext.Compra
+                                    Join cu In dbContext.Cuartel On c.IDCuartel Equals cu.IDCuartel
                                     Group Join p In dbContext.Proveedor On c.IDProveedor Equals p.IDProveedor Into Proveedores_Group = Group
                                     From pg In Proveedores_Group.DefaultIfEmpty
                                     Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompra = c.IDCompra, .Fecha = c.Fecha, .IDProveedor = If(pg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, c.IDProveedor.Value), .ProveedorNombre = If(c.IDProveedor Is Nothing, "", pg.Nombre), .FacturaNumero = c.FacturaNumero, .Importe = c.CompraDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
+                                    Select New GridRowData With {.IDCompra = c.IDCompra, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = If(pg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, c.IDProveedor.Value), .ProveedorNombre = If(c.IDProveedor Is Nothing, "", pg.Nombre), .FacturaNumero = c.FacturaNumero, .Importe = c.CompraDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
             End Using
 
         Catch ex As Exception
@@ -214,6 +222,11 @@
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
                 mlistComprasFiltradaYOrdenada = mlistComprasBase.ToList
+
+                ' Filtro por Cuartel
+                If comboboxCuartel.SelectedIndex > 0 Then
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                End If
 
                 ' Filtro por Proveedor
                 If comboboxProveedor.SelectedIndex > 0 Then
@@ -264,35 +277,41 @@
     Private Sub OrderData()
         ' Realizo las rutinas de ordenamiento
         Select Case mOrdenColumna.Name
-            Case columnIDCompra.Name
+            Case columnCuartel.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
+                End If
+            Case columnNumero.Name
+                If mOrdenTipo = SortOrder.Ascending Then
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Numero).ThenBy(Function(dgrd) dgrd.CuartelNombre).ToList
+                Else
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Numero).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ToList
                 End If
             Case columnFecha.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Fecha).ThenByDescending(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Fecha).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
             Case columnProveedor.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.ProveedorNombre).ThenBy(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.ProveedorNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.ProveedorNombre).ThenByDescending(Function(dgrd) dgrd.Fecha).ThenByDescending(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.ProveedorNombre).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
             Case columnFacturaNumero.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.FacturaNumero).ThenBy(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.FacturaNumero).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.FacturaNumero).ThenByDescending(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.FacturaNumero).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
             Case columnImporte.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Importe).ThenBy(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Importe).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Importe).ThenByDescending(Function(dgrd) dgrd.IDCompra).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Importe).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
         End Select
 
@@ -308,22 +327,25 @@
     Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
         comboboxPeriodoValor.Items.Clear()
         Select Case comboboxPeriodoTipo.SelectedIndex
-            Case 0  ' Día
+            Case 0  ' Todas
+                comboboxPeriodoValor.Items.AddRange({""})
+            Case 1  ' Día
                 comboboxPeriodoValor.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3", "Últimos 4"})
-            Case 1  ' Semana
+            Case 2  ' Semana
                 comboboxPeriodoValor.Items.AddRange({"Actual", "Anterior", "Últimas 2", "Últimas 3"})
-            Case 2  ' Mes
+            Case 3  ' Mes
                 comboboxPeriodoValor.Items.AddRange({"Actual", "Anterior", "Últimos 2", "Últimos 3"})
-            Case 3  ' Fecha
+            Case 4  ' Fecha
                 comboboxPeriodoValor.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
         End Select
+        comboboxPeriodoValor.Visible = comboboxPeriodoTipo.SelectedIndex <> 0
         comboboxPeriodoValor.SelectedIndex = 0
     End Sub
 
     Private Sub PeriodoValorSeleccionar() Handles comboboxPeriodoValor.SelectedIndexChanged
-        datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 3)
-        labelPeriodoFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
-        datetimepickerFechaHastaHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 3 And comboboxPeriodoValor.SelectedIndex = 3)
+        datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 4)
+        labelPeriodoFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = 4 And comboboxPeriodoValor.SelectedIndex = 3)
+        datetimepickerFechaHastaHost.Visible = (comboboxPeriodoTipo.SelectedIndex = 4 And comboboxPeriodoValor.SelectedIndex = 3)
         RefreshData()
     End Sub
 
@@ -331,7 +353,7 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxProveedor.SelectedIndexChanged, comboboxFacturaNumero.SelectedIndexChanged, comboboxCerrada.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxProveedor.SelectedIndexChanged, comboboxFacturaNumero.SelectedIndexChanged, comboboxCerrada.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -465,7 +487,7 @@
         End If
     End Sub
 
-    Private Sub menuitemImprimirOrdenCompra_Click(sender As Object, e As EventArgs) Handles menuitemImprimirOrdenCompra.Click
+    Private Sub menuitemImprimirOrdenCompra_Click(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirOrdenCompra.Click
         Dim CurrentRow As GridRowData
 
         If datagridviewMain.CurrentRow Is Nothing Then

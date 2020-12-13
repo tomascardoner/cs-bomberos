@@ -29,6 +29,8 @@
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="Codigo" Type="char" MaxLength="5" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MostrarEnInventario" Type="bit" Nullable="false" />
+          <Property Name="MostrarEnCompras" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -127,11 +129,14 @@
             <PropertyRef Name="IDCompra" />
           </Key>
           <Property Name="IDCompra" Type="int" Nullable="false" />
+          <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="IDProveedor" Type="smallint" />
           <Property Name="FacturaFecha" Type="date" />
-          <Property Name="FacturaNumero" Type="varchar" MaxLength="16" />
+          <Property Name="FacturaNumero" Type="varchar" MaxLength="200" />
           <Property Name="Cerrada" Type="bit" Nullable="false" />
+          <Property Name="CierreFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -326,6 +331,15 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="IDModulo" />
+          </Key>
+          <Property Name="IDModulo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
         </EntityType>
         <EntityType Name="NivelEstudio">
           <Key>
@@ -824,6 +838,7 @@
             <PropertyRef Name="IDReporteGrupo" />
           </Key>
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="IDModulo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
@@ -867,6 +882,7 @@
           </Key>
           <Property Name="IDResponsableTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -1255,6 +1271,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Cuartel__Compra">
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
+          <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Cuartel__Persona">
           <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
           <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
@@ -1476,6 +1504,18 @@
             </Principal>
             <Dependent Role="Inventario">
               <PropertyRef Name="IDModoAdquisicion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Modulo__ReporteGrupo">
+          <End Role="Modulo" Type="Self.Modulo" Multiplicity="1" />
+          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="IDModulo" />
+            </Principal>
+            <Dependent Role="ReporteGrupo">
+              <PropertyRef Name="IDModulo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3357,30 +3397,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Persona_Persona_CursoIngresoResponsable">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="IDPersona" />
-            </Principal>
-            <Dependent Role="Persona1">
-              <PropertyRef Name="CursoIngresoResponsableIDPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Persona_Persona_ReingresoFormacionResponsable">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Persona1" Type="Self.Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="IDPersona" />
-            </Principal>
-            <Dependent Role="Persona1">
-              <PropertyRef Name="ReingresoFormacionResponsableIDPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EstadoDesconocidoLeyenda" Type="varchar" Mode="In" />
           <Parameter Name="EstadoActivoLeyenda" Type="varchar" Mode="In" />
@@ -3408,6 +3424,7 @@
           <EntitySet Name="Localidad" EntityType="Self.Localidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ModoAdquisicion" EntityType="Self.ModoAdquisicion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NivelEstudio" EntityType="Self.NivelEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="dbo" store:Type="Tables" />
@@ -3494,6 +3511,10 @@
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Area" EntitySet="Area" />
           </AssociationSet>
+          <AssociationSet Name="FK__Cuartel__Compra" Association="Self.FK__Cuartel__Compra">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Persona" Association="Self.FK__Cuartel__Persona">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Persona" EntitySet="Persona" />
@@ -3565,6 +3586,10 @@
           <AssociationSet Name="FK__ModoAdquisicion__Inventario" Association="Self.FK__ModoAdquisicion__Inventario">
             <End Role="ModoAdquisicion" EntitySet="ModoAdquisicion" />
             <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Modulo__ReporteGrupo" Association="Self.FK__Modulo__ReporteGrupo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
           </AssociationSet>
           <AssociationSet Name="FK__NivelEstudio__Persona" Association="Self.FK__NivelEstudio__Persona">
             <End Role="NivelEstudio" EntitySet="NivelEstudio" />
@@ -4189,14 +4214,6 @@
           <AssociationSet Name="FK__VehiculoTipo__PersonaVehiculo" Association="Self.FK__VehiculoTipo__PersonaVehiculo">
             <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_Persona_CursoIngresoResponsable" Association="Self.FK_Persona_Persona_CursoIngresoResponsable">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Persona1" EntitySet="Persona" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Persona_Persona_ReingresoFormacionResponsable" Association="Self.FK_Persona_Persona_ReingresoFormacionResponsable">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Persona1" EntitySet="Persona" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -5020,6 +5037,15 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
           </AssociationSet>
+          <AssociationSet Name="FK__Cuartel__Compra" Association="CSBomberosModel.FK__Cuartel__Compra">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Compra" EntitySet="Compra" />
+          </AssociationSet>
+          <EntitySet Name="Modulo" EntityType="CSBomberosModel.Modulo" />
+          <AssociationSet Name="FK__Modulo__ReporteGrupo" Association="CSBomberosModel.FK__Modulo__ReporteGrupo">
+            <End Role="Modulo" EntitySet="Modulo" />
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -5108,10 +5134,12 @@
             <PropertyRef Name="IDReporteGrupo" />
           </Key>
           <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
+          <Property Name="IDModulo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
           <Property Name="Orden" Type="Byte" />
+          <NavigationProperty Name="Modulo" Relationship="CSBomberosModel.FK__Modulo__ReporteGrupo" FromRole="ReporteGrupo" ToRole="Modulo" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -5397,6 +5425,7 @@
           <NavigationProperty Name="Ubicacion" Relationship="CSBomberosModel.FK__Cuartel__Ubicacion" FromRole="Cuartel" ToRole="Ubicacion" />
           <NavigationProperty Name="Usuarios" Relationship="CSBomberosModel.FK__Cuartel__Usuario" FromRole="Cuartel" ToRole="Usuario" />
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Cuartel__Responsable" FromRole="Cuartel" ToRole="Responsable" />
+          <NavigationProperty Name="Compra" Relationship="CSBomberosModel.FK__Cuartel__Compra" FromRole="Cuartel" ToRole="Compra" />
         </EntityType>
         <EntityType Name="Parentesco">
           <Key>
@@ -5745,6 +5774,8 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="Codigo" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MostrarEnInventario" Type="Boolean" Nullable="false" />
+          <Property Name="MostrarEnCompras" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -8503,11 +8534,14 @@
             <PropertyRef Name="IDCompra" />
           </Key>
           <Property Name="IDCompra" Type="Int32" Nullable="false" />
+          <Property Name="IDCuartel" Type="Byte" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDProveedor" Type="Int16" />
           <Property Name="FacturaFecha" Type="DateTime" Precision="0" />
-          <Property Name="FacturaNumero" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="FacturaNumero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Cerrada" Type="Boolean" Nullable="false" />
+          <Property Name="CierreFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -8517,6 +8551,7 @@
           <NavigationProperty Name="Proveedor" Relationship="CSBomberosModel.FK__Proveedor__Compra" FromRole="Compra" ToRole="Proveedor" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Compra__Creacion" FromRole="Compra" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Compra__Modificacion" FromRole="Compra" ToRole="Usuario" />
+          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Compra" FromRole="Compra" ToRole="Cuartel" />
         </EntityType>
         <EntityType Name="CompraDetalle">
           <Key>
@@ -8588,6 +8623,7 @@
           </Key>
           <Property Name="IDResponsableTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -8780,6 +8816,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Cuartel__Compra">
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
+          <End Type="CSBomberosModel.Compra" Role="Compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Compra">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Modulo">
+          <Key>
+            <PropertyRef Name="IDModulo" />
+          </Key>
+          <Property Name="IDModulo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="Orden" Type="Byte" />
+          <NavigationProperty Name="ReporteGrupos" Relationship="CSBomberosModel.FK__Modulo__ReporteGrupo" FromRole="Modulo" ToRole="ReporteGrupo" />
+        </EntityType>
+        <Association Name="FK__Modulo__ReporteGrupo">
+          <End Type="CSBomberosModel.Modulo" Role="Modulo" Multiplicity="1" />
+          <End Type="CSBomberosModel.ReporteGrupo" Role="ReporteGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulo">
+              <PropertyRef Name="IDModulo" />
+            </Principal>
+            <Dependent Role="ReporteGrupo">
+              <PropertyRef Name="IDModulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8859,6 +8929,7 @@
           <EntitySetMapping Name="ReporteGrupo">
             <EntityTypeMapping TypeName="CSBomberosModel.ReporteGrupo">
               <MappingFragment StoreEntitySet="ReporteGrupo">
+                <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -9087,6 +9158,8 @@
           <EntitySetMapping Name="Area">
             <EntityTypeMapping TypeName="CSBomberosModel.Area">
               <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="MostrarEnCompras" ColumnName="MostrarEnCompras" />
+                <ScalarProperty Name="MostrarEnInventario" ColumnName="MostrarEnInventario" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
@@ -9891,6 +9964,9 @@
           <EntitySetMapping Name="Compra">
             <EntityTypeMapping TypeName="CSBomberosModel.Compra">
               <MappingFragment StoreEntitySet="Compra">
+                <ScalarProperty Name="CierreFecha" ColumnName="CierreFecha" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -9963,6 +10039,7 @@
           <EntitySetMapping Name="ResponsableTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.ResponsableTipo">
               <MappingFragment StoreEntitySet="ResponsableTipo">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -9971,6 +10048,16 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDResponsableTipo" ColumnName="IDResponsableTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modulo">
+            <EntityTypeMapping TypeName="CSBomberosModel.Modulo">
+              <MappingFragment StoreEntitySet="Modulo">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

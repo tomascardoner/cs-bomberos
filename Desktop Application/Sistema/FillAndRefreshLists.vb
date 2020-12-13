@@ -377,7 +377,7 @@
         ComboBoxControl.ValueMember = "IDResponsableTipo"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.ResponsableTipo.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+        listItems = mdbContext.ResponsableTipo.Where(Function(rt) rt.EsActivo).OrderBy(Function(rt) rt.Orden).ThenBy(Function(rt) rt.Nombre).ToList
 
         If AgregarItemTodos Then
             Dim Item_Todos As New ResponsableTipo
@@ -407,7 +407,7 @@
                      Join p In mdbContext.Persona On r.IDPersona Equals p.IDPersona
                      Group Join c In mdbContext.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
                      From cg In CuartelGroup.DefaultIfEmpty
-                     Order By rt.Nombre, p.ApellidoNombre
+                     Order By rt.Orden, rt.Nombre, p.ApellidoNombre
                      Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = p.ApellidoNombre}).ToList()
 
         If AgregarItemTodos Then
@@ -575,6 +575,62 @@
             listItems = mdbContext.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
         Else
             listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.IDCuartel = IDCuartel).OrderBy(Function(a) a.Nombre).ToList
+        End If
+
+        If AgregarItemNoEspecifica Then
+            Dim Item_NoEspecifica As New Area
+            Item_NoEspecifica.IDArea = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItemTodos Then
+            Dim Item_Todos As New Area
+            Item_Todos.IDArea = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub AreaEnInventario(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean, ByVal IDCuartel As Byte)
+        Dim listItems As List(Of Area)
+
+        ComboBoxControl.ValueMember = "IDArea"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        If IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.MostrarEnInventario).OrderBy(Function(a) a.Nombre).ToList
+        Else
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.IDCuartel = IDCuartel AndAlso a.MostrarEnInventario).OrderBy(Function(a) a.Nombre).ToList
+        End If
+
+        If AgregarItemNoEspecifica Then
+            Dim Item_NoEspecifica As New Area
+            Item_NoEspecifica.IDArea = Short.MinValue
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItemTodos Then
+            Dim Item_Todos As New Area
+            Item_Todos.IDArea = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub AreaEnCompras(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean, ByVal IDCuartel As Byte)
+        Dim listItems As List(Of Area)
+
+        ComboBoxControl.ValueMember = "IDArea"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        If IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.MostrarEnCompras).OrderBy(Function(a) a.Nombre).ToList
+        Else
+            listItems = mdbContext.Area.Where(Function(a) a.EsActivo AndAlso a.IDCuartel = IDCuartel AndAlso a.MostrarEnCompras).OrderBy(Function(a) a.Nombre).ToList
         End If
 
         If AgregarItemNoEspecifica Then

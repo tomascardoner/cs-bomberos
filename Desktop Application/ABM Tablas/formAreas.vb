@@ -7,6 +7,8 @@
         Public Property Nombre As String
         Public Property IDCuartel As Byte
         Public Property CuartelNombre As String
+        Public Property MostrarEnInventario As Boolean
+        Public Property MostrarEnCompras As Boolean
         Public Property EsActivo As Boolean
     End Class
 
@@ -56,7 +58,7 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistAreasBase = (From a In dbContext.Area
                                   Join c In dbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
-                                  Select New GridRowData With {.IDArea = a.IDArea, .Codigo = a.Codigo, .Nombre = a.Nombre, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .EsActivo = a.EsActivo}).ToList
+                                  Select New GridRowData With {.IDArea = a.IDArea, .Codigo = a.Codigo, .Nombre = a.Nombre, .IDCuartel = a.IDCuartel, .CuartelNombre = c.Nombre, .MostrarEnInventario = a.MostrarEnInventario, .MostrarEnCompras = a.MostrarEnCompras, .EsActivo = a.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -299,7 +301,7 @@
         End If
     End Sub
 
-    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged, comboboxCuartel.SelectedIndexChanged
 
     End Sub
 

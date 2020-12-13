@@ -2,12 +2,20 @@
 
 #Region "Declarations"
     Private mdbContext As New CSBomberosContext(True)
+    Private mIDModulo As Byte
+    Private mModuloNombre As String
 #End Region
 
 #Region "Form stuff"
 
+    Friend Sub SetValues(ByVal IDModulo As Byte, ByVal ModuloNombre As String)
+        mIDModulo = IDModulo
+        mModuloNombre = ModuloNombre
+    End Sub
+
     Private Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_REPORTES_32)
+        Me.Text = "Reportes - " & mModuloNombre
     End Sub
 
     Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -35,7 +43,7 @@
 
         Try
             treeviewReportes.BeginUpdate()
-            For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
+            For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.Where(Function(rg) rg.IDModulo = mIDModulo).OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
                 ' Agrego el Grupo de Reportes
                 ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre)
                 ReporteGrupoNodo.Tag = ReporteGrupoActual
