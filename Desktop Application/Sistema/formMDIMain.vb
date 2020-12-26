@@ -459,6 +459,21 @@
         End If
     End Sub
 
+    Private Sub CajasArqueos() Handles menuitemJefatura_CajasArqueos.Click
+        If Permisos.VerificarPermiso(Permisos.CAJAARQUEO) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formCajasArqueos, Form))
+            formCajasArqueos.Show()
+            If formCajasArqueos.WindowState = FormWindowState.Minimized Then
+                formCajasArqueos.WindowState = FormWindowState.Normal
+            End If
+            formCajasArqueos.Focus()
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
     Private Sub JefaturaReportes(sender As Object, e As EventArgs) Handles menuitemJefatura_Reportes.Click
         If Permisos.VerificarPermiso(Permisos.REPORTE_JEFATURA) Then
             Me.Cursor = Cursors.WaitCursor

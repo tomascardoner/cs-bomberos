@@ -138,5 +138,9 @@ Partial Public Class Usuario
     Public Overridable Property ResponsablesModificados As ICollection(Of Responsable) = New HashSet(Of Responsable)
     Public Overridable Property ResponsableTiposCreados As ICollection(Of ResponsableTipo) = New HashSet(Of ResponsableTipo)
     Public Overridable Property ResponsableTiposModificados As ICollection(Of ResponsableTipo) = New HashSet(Of ResponsableTipo)
+    Public Overridable Property CajasCreadas As ICollection(Of Caja) = New HashSet(Of Caja)
+    Public Overridable Property CajasModificadas As ICollection(Of Caja) = New HashSet(Of Caja)
+    Public Overridable Property CajaArqueosCreados As ICollection(Of CajaArqueo) = New HashSet(Of CajaArqueo)
+    Public Overridable Property CajaArqueosModificados As ICollection(Of CajaArqueo) = New HashSet(Of CajaArqueo)
 
 End Class

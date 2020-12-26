@@ -7,12 +7,12 @@
         labelValor.Text = mParametroActual.Nombre & ":"
 
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE
+            Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE
                 textboxText.MaxLength = 100
                 If Not mParametroActual.Valor Is Nothing Then
                     textboxText.Text = CStr(mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+            Case Reportes.REPORTE_PARAMETRO_TIPO_TEXT
                 textboxText.MaxLength = 32767
                 If Not mParametroActual.Valor Is Nothing Then
                     textboxText.Text = CStr(mParametroActual.Valor)
@@ -31,7 +31,7 @@
 
     Private Sub Aceptar(sender As Object, e As EventArgs) Handles buttonAceptar.Click
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+            Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE, Reportes.REPORTE_PARAMETRO_TIPO_TEXT
                 mParametroActual.Valor = textboxText.Text.Trim()
         End Select
 

@@ -84,7 +84,7 @@ Partial Public Class Reporte
         Dim ReporteParametro As ReporteParametro
         Dim ResultText As String = ""
 
-        For Each ReporteParametro In Me.ReporteParametros.Where(Function(rp) (Not rp.Orden Is Nothing) AndAlso (Not rp.Valor Is Nothing) AndAlso rp.Tipo <> Constantes.REPORTE_PARAMETRO_TIPO_TITLE AndAlso rp.Tipo <> Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT AndAlso rp.Tipo <> Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW).OrderBy(Function(rp) rp.Orden)
+        For Each ReporteParametro In Me.ReporteParametros.Where(Function(rp) (Not rp.Orden Is Nothing) AndAlso (Not rp.Valor Is Nothing) AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_TITLE AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW).OrderBy(Function(rp) rp.Orden)
             ResultText &= CStr(IIf(ResultText = "", "", ", ")) & ReporteParametro.Nombre & ": " & ReporteParametro.ValorParaMostrar
         Next ReporteParametro
         ReporteParametro = Nothing
@@ -150,13 +150,13 @@ Partial Public Class Reporte
                                                 End Select
                                             Else
                                                 Select Case ParametroActual.Tipo
-                                                    Case Constantes.REPORTE_PARAMETRO_TIPO_DATETIME
+                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_DATETIME
                                                         .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                    Case Constantes.REPORTE_PARAMETRO_TIPO_DATE
+                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_DATE
                                                         .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                    Case Constantes.REPORTE_PARAMETRO_TIPO_TIME
+                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_TIME
                                                         .CurrentValues.AddValue(CDate("1900/01/01 " & CStr(ParametroActual.Valor)))
-                                                    Case Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Constantes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
+                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                                                         .CurrentValues.AddValue(CDate(ParametroActual.Valor))
                                                 End Select
                                             End If

@@ -69,6 +69,7 @@
         ' General
         comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mCompraActual.CompraDetalles.Any()))
         integertextboxNumero.ReadOnly = Not mEditMode
+        buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
         comboboxProveedor.Enabled = mEditMode
         datetimepickerFacturaFecha.Enabled = mEditMode

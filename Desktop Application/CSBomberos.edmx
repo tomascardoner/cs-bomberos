@@ -38,6 +38,51 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Caja">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+          </Key>
+          <Property Name="IDCaja" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CajaArqueo">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+            <PropertyRef Name="IDArqueo" />
+          </Key>
+          <Property Name="IDCaja" Type="tinyint" Nullable="false" />
+          <Property Name="IDArqueo" Type="int" Nullable="false" />
+          <Property Name="SaldoInicial" Type="money" Nullable="false" />
+          <Property Name="ImporteAsignado" Type="money" Nullable="false" />
+          <Property Name="FechaCierre" Type="date" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CajaArqueoDetalle">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+            <PropertyRef Name="IDArqueo" />
+            <PropertyRef Name="IDDetalle" />
+          </Key>
+          <Property Name="IDCaja" Type="tinyint" Nullable="false" />
+          <Property Name="IDArqueo" Type="int" Nullable="false" />
+          <Property Name="IDDetalle" Type="smallint" Nullable="false" />
+          <Property Name="NumeroComprobante" Type="varchar" MaxLength="20" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="Proveedor" Type="varchar" MaxLength="100" />
+          <Property Name="Detalle" Type="varchar" MaxLength="100" />
+          <Property Name="Importe" Type="money" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="CalificacionConcepto">
           <Key>
             <PropertyRef Name="IDCalificacionConcepto" />
@@ -1173,6 +1218,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Caja__CajaArqueo">
+          <End Role="Caja" Type="Self.Caja" Multiplicity="1" />
+          <End Role="CajaArqueo" Type="Self.CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caja">
+              <PropertyRef Name="IDCaja" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
+              <PropertyRef Name="IDCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajaArqueo__CajaArqueoDetalle">
+          <End Role="CajaArqueo" Type="Self.CajaArqueo" Multiplicity="1" />
+          <End Role="CajaArqueoDetalle" Type="Self.CajaArqueoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CajaArqueo">
+              <PropertyRef Name="IDCaja" />
+              <PropertyRef Name="IDArqueo" />
+            </Principal>
+            <Dependent Role="CajaArqueoDetalle">
+              <PropertyRef Name="IDCaja" />
+              <PropertyRef Name="IDArqueo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CalificacionConcepto__PersonaCalificacion">
           <End Role="CalificacionConcepto" Type="Self.CalificacionConcepto" Multiplicity="1" />
           <End Role="PersonaCalificacion" Type="Self.PersonaCalificacion" Multiplicity="*" />
@@ -2061,6 +2132,54 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Area">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Caja__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Caja" Type="Self.Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Caja__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Caja" Type="Self.Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CajaArqueo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CajaArqueo" Type="Self.CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CajaArqueo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CajaArqueo" Type="Self.CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -3404,6 +3523,9 @@
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CajaArqueo" EntityType="Self.CajaArqueo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CajaArqueoDetalle" EntityType="Self.CajaArqueoDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalificacionConcepto" EntityType="Self.CalificacionConcepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionNivel" EntityType="Self.CapacitacionNivel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CapacitacionTipo" EntityType="Self.CapacitacionTipo" Schema="dbo" store:Type="Tables" />
@@ -3478,6 +3600,14 @@
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Caja__CajaArqueo" Association="Self.FK__Caja__CajaArqueo">
+            <End Role="Caja" EntitySet="Caja" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajaArqueo__CajaArqueoDetalle" Association="Self.FK__CajaArqueo__CajaArqueoDetalle">
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+            <End Role="CajaArqueoDetalle" EntitySet="CajaArqueoDetalle" />
           </AssociationSet>
           <AssociationSet Name="FK__CalificacionConcepto__PersonaCalificacion" Association="Self.FK__CalificacionConcepto__PersonaCalificacion">
             <End Role="CalificacionConcepto" EntitySet="CalificacionConcepto" />
@@ -3770,6 +3900,22 @@
           <AssociationSet Name="FK__Usuario__Area__Modificacion" Association="Self.FK__Usuario__Area__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Area" EntitySet="Area" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Caja__Creacion" Association="Self.FK__Usuario__Caja__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Caja__Modificacion" Association="Self.FK__Usuario__Caja__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CajaArqueo__Creacion" Association="Self.FK__Usuario__CajaArqueo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CajaArqueo__Modificacion" Association="Self.FK__Usuario__CajaArqueo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__CalificacionConcepto__Creacion" Association="Self.FK__Usuario__CalificacionConcepto__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -5046,6 +5192,33 @@
             <End Role="Modulo" EntitySet="Modulo" />
             <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
           </AssociationSet>
+          <EntitySet Name="Caja" EntityType="CSBomberosModel.Caja" />
+          <EntitySet Name="CajaArqueo" EntityType="CSBomberosModel.CajaArqueo" />
+          <EntitySet Name="CajaArqueoDetalle" EntityType="CSBomberosModel.CajaArqueoDetalle" />
+          <AssociationSet Name="FK__Caja__CajaArqueo" Association="CSBomberosModel.FK__Caja__CajaArqueo">
+            <End Role="Caja" EntitySet="Caja" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Caja__Creacion" Association="CSBomberosModel.FK__Usuario__Caja__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Caja__Modificacion" Association="CSBomberosModel.FK__Usuario__Caja__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Caja" EntitySet="Caja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CajaArqueo__CajaArqueoDetalle" Association="CSBomberosModel.FK__CajaArqueo__CajaArqueoDetalle">
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+            <End Role="CajaArqueoDetalle" EntitySet="CajaArqueoDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CajaArqueo__Creacion" Association="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CajaArqueo__Modificacion" Association="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CajaArqueo" EntitySet="CajaArqueo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -5291,6 +5464,10 @@
           <NavigationProperty Name="ResponsablesModificados" Relationship="CSBomberosModel.FK__Usuario__Responsable__Modificacion" FromRole="Usuario" ToRole="Responsable" />
           <NavigationProperty Name="ResponsableTiposCreados" Relationship="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" FromRole="Usuario" ToRole="ResponsableTipo" />
           <NavigationProperty Name="ResponsableTiposModificados" Relationship="CSBomberosModel.FK__Usuario__ResponsableTipo__Modificacion" FromRole="Usuario" ToRole="ResponsableTipo" />
+          <NavigationProperty Name="CajasCreadas" Relationship="CSBomberosModel.FK__Usuario__Caja__Creacion" FromRole="Usuario" ToRole="Caja" />
+          <NavigationProperty Name="CajasModificadas" Relationship="CSBomberosModel.FK__Usuario__Caja__Modificacion" FromRole="Usuario" ToRole="Caja" />
+          <NavigationProperty Name="CajaArqueosCreados" Relationship="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion" FromRole="Usuario" ToRole="CajaArqueo" />
+          <NavigationProperty Name="CajaArqueosModificados" Relationship="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion" FromRole="Usuario" ToRole="CajaArqueo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -8850,6 +9027,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Caja">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+          </Key>
+          <Property Name="IDCaja" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="CajaArqueos" Relationship="CSBomberosModel.FK__Caja__CajaArqueo" FromRole="Caja" ToRole="CajaArqueo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Caja__Creacion" FromRole="Caja" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Caja__Modificacion" FromRole="Caja" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="CajaArqueo">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+            <PropertyRef Name="IDArqueo" />
+          </Key>
+          <Property Name="IDCaja" Type="Byte" Nullable="false" />
+          <Property Name="IDArqueo" Type="Int32" Nullable="false" />
+          <Property Name="SaldoInicial" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="ImporteAsignado" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="FechaCierre" Type="DateTime" Precision="0" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Caja" Relationship="CSBomberosModel.FK__Caja__CajaArqueo" FromRole="CajaArqueo" ToRole="Caja" />
+          <NavigationProperty Name="CajaArqueoDetalles" Relationship="CSBomberosModel.FK__CajaArqueo__CajaArqueoDetalle" FromRole="CajaArqueo" ToRole="CajaArqueoDetalle" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion" FromRole="CajaArqueo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion" FromRole="CajaArqueo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="CajaArqueoDetalle">
+          <Key>
+            <PropertyRef Name="IDCaja" />
+            <PropertyRef Name="IDArqueo" />
+            <PropertyRef Name="IDDetalle" />
+          </Key>
+          <Property Name="IDCaja" Type="Byte" Nullable="false" />
+          <Property Name="IDArqueo" Type="Int32" Nullable="false" />
+          <Property Name="IDDetalle" Type="Int16" Nullable="false" />
+          <Property Name="NumeroComprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Detalle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CajaArqueo" Relationship="CSBomberosModel.FK__CajaArqueo__CajaArqueoDetalle" FromRole="CajaArqueoDetalle" ToRole="CajaArqueo" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__Caja__CajaArqueo">
+          <End Type="CSBomberosModel.Caja" Role="Caja" Multiplicity="1" />
+          <End Type="CSBomberosModel.CajaArqueo" Role="CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caja">
+              <PropertyRef Name="IDCaja" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
+              <PropertyRef Name="IDCaja" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Caja__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Caja" Role="Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Caja__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Caja" Role="Caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Caja">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CajaArqueo__CajaArqueoDetalle">
+          <End Type="CSBomberosModel.CajaArqueo" Role="CajaArqueo" Multiplicity="1" />
+          <End Type="CSBomberosModel.CajaArqueoDetalle" Role="CajaArqueoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CajaArqueo">
+              <PropertyRef Name="IDCaja" />
+              <PropertyRef Name="IDArqueo" />
+            </Principal>
+            <Dependent Role="CajaArqueoDetalle">
+              <PropertyRef Name="IDCaja" />
+              <PropertyRef Name="IDArqueo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CajaArqueo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CajaArqueo" Role="CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CajaArqueo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CajaArqueo" Role="CajaArqueo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CajaArqueo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10058,6 +10362,51 @@
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDModulo" ColumnName="IDModulo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Caja">
+            <EntityTypeMapping TypeName="CSBomberosModel.Caja">
+              <MappingFragment StoreEntitySet="Caja">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCaja" ColumnName="IDCaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CajaArqueo">
+            <EntityTypeMapping TypeName="CSBomberosModel.CajaArqueo">
+              <MappingFragment StoreEntitySet="CajaArqueo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="FechaCierre" ColumnName="FechaCierre" />
+                <ScalarProperty Name="ImporteAsignado" ColumnName="ImporteAsignado" />
+                <ScalarProperty Name="SaldoInicial" ColumnName="SaldoInicial" />
+                <ScalarProperty Name="IDArqueo" ColumnName="IDArqueo" />
+                <ScalarProperty Name="IDCaja" ColumnName="IDCaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CajaArqueoDetalle">
+            <EntityTypeMapping TypeName="CSBomberosModel.CajaArqueoDetalle">
+              <MappingFragment StoreEntitySet="CajaArqueoDetalle">
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Importe" ColumnName="Importe" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Proveedor" ColumnName="Proveedor" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="NumeroComprobante" ColumnName="NumeroComprobante" />
+                <ScalarProperty Name="IDDetalle" ColumnName="IDDetalle" />
+                <ScalarProperty Name="IDArqueo" ColumnName="IDArqueo" />
+                <ScalarProperty Name="IDCaja" ColumnName="IDCaja" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

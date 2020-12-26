@@ -95,6 +95,7 @@ Partial Class formMDIMain
         Me.dropdownbuttonJefatura = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemJefatura_Compras = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemJefatura_CajasArqueos = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -558,7 +559,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonJefatura
         '
-        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_Compras, Me.menuitemJefatura_Reportes})
+        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_Compras, Me.menuitemJefatura_CajasArqueos, Me.menuitemJefatura_Reportes})
         Me.dropdownbuttonJefatura.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_JEFATURA_32
         Me.dropdownbuttonJefatura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonJefatura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -580,6 +581,13 @@ Partial Class formMDIMain
         Me.menuitemJefatura_Reportes.Name = "menuitemJefatura_Reportes"
         Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(180, 22)
         Me.menuitemJefatura_Reportes.Text = "Reportes"
+        '
+        'menuitemJefatura_CajasArqueos
+        '
+        Me.menuitemJefatura_CajasArqueos.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CAJAS_32
+        Me.menuitemJefatura_CajasArqueos.Name = "menuitemJefatura_CajasArqueos"
+        Me.menuitemJefatura_CajasArqueos.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_CajasArqueos.Text = "Arqueos de caja"
         '
         'formMDIMain
         '
@@ -679,4 +687,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemDocumentaciones_Inventario_Elementos As ToolStripMenuItem
     Friend WithEvents menuitemDocumentaciones_Reportes As ToolStripMenuItem
     Friend WithEvents menuitemJefatura_Reportes As ToolStripMenuItem
+    Friend WithEvents menuitemJefatura_CajasArqueos As ToolStripMenuItem
 End Class

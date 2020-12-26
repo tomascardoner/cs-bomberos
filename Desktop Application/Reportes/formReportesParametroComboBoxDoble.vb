@@ -10,12 +10,12 @@
         labelValor.Text = ParametroActual.Nombre & ":"
 
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA
+            Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA
                 pFillAndRefreshLists.Cargo(comboboxPadreValor, False, False)
                 If Not mParametroPadre.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_AREA, Constantes.REPORTE_PARAMETRO_TIPO_UBICACION
+            Case Reportes.REPORTE_PARAMETRO_TIPO_AREA, Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                 pFillAndRefreshLists.Cuartel(comboboxPadreValor, False, False)
                 If Not mParametroPadre.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
@@ -37,17 +37,17 @@
             comboboxValor.DataSource = Nothing
         End If
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA
+            Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA
                 pFillAndRefreshLists.CargoJerarquia(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_AREA
+            Case Reportes.REPORTE_PARAMETRO_TIPO_AREA
                 pFillAndRefreshLists.Area(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_UBICACION
+            Case Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                 pFillAndRefreshLists.Ubicacion(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)

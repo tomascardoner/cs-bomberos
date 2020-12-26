@@ -7,27 +7,27 @@
         labelValor.Text = ParametroActual.Nombre & ":"
 
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL
+            Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL
                 pFillAndRefreshLists.Cuartel(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_CARGO
+            Case Reportes.REPORTE_PARAMETRO_TIPO_CARGO
                 pFillAndRefreshLists.Cargo(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO
+            Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO
                 pFillAndRefreshLists.PersonaBajaMotivo(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_UNIDAD
+            Case Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD
                 pFillAndRefreshLists.Unidad(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
-            Case Constantes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
+            Case Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
                 pFillAndRefreshLists.Responsable(comboboxValor, "ResponsableTipoNombre", False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)

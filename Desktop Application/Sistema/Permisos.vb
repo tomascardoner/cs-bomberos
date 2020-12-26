@@ -252,6 +252,15 @@
     Friend Const COMPRA_IMPRIMIR As String = "COMPRA_IMPRIMIR"
     Friend Const COMPRA_IMPRIMIR_CERRADA As String = "COMPRA_IMPRIMIR_CERRADA"
 
+    Friend Const CAJAARQUEO As String = "CAJAARQUEO"
+    Friend Const CAJAARQUEO_AGREGAR As String = "CAJAARQUEO_AGREGAR"
+    Friend Const CAJAARQUEO_EDITAR As String = "CAJAARQUEO_EDITAR"
+    Friend Const CAJAARQUEO_EDITAR_CERRADA As String = "CAJAARQUEO_EDITAR_CERRADA"
+    Friend Const CAJAARQUEO_ELIMINAR As String = "CAJAARQUEO_ELIMINAR"
+    Friend Const CAJAARQUEO_ELIMINAR_CERRADA As String = "CAJAARQUEO_ELIMINAR_CERRADA"
+    Friend Const CAJAARQUEO_IMPRIMIR As String = "CAJAARQUEO_IMPRIMIR"
+    Friend Const CAJAARQUEO_IMPRIMIR_CERRADA As String = "CAJAARQUEO_IMPRIMIR_CERRADA"
+
     Friend Const REPORTE_DOCUMENTACIONES As String = "REPORTE_DOCUMENTACIONES"
     Friend Const REPORTE_JEFATURA As String = "REPORTE_JEFATURA"
 
@@ -602,6 +611,17 @@
             .Nodes.Add(COMPRA_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " compra cerrada")
             .Nodes.Add(COMPRA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
             .Nodes.Add(COMPRA_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " compra cerrada")
+        End With
+
+        RootNode = Arbol.Nodes.Add(CAJAARQUEO, "Arqueos de caja")
+        With RootNode
+            .Nodes.Add(CAJAARQUEO_AGREGAR, DESCRIPCION_AGREGAR)
+            .Nodes.Add(CAJAARQUEO_EDITAR, DESCRIPCION_EDITAR)
+            .Nodes.Add(CAJAARQUEO_EDITAR_CERRADA, DESCRIPCION_EDITAR & " arqueo de caja cerrado")
+            .Nodes.Add(CAJAARQUEO_ELIMINAR, DESCRIPCION_ELIMINAR)
+            .Nodes.Add(CAJAARQUEO_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " arqueo de caja cerrado")
+            .Nodes.Add(CAJAARQUEO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+            .Nodes.Add(CAJAARQUEO_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " arqueo de caja cerrado")
         End With
 
         RootNode = Arbol.Nodes.Add(REPORTE_DOCUMENTACIONES, "Reportes")

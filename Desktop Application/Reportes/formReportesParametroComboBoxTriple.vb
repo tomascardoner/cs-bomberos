@@ -13,7 +13,7 @@
         labelValor.Text = ParametroActual.Nombre & ":"
 
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
+            Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 pFillAndRefreshLists.Cuartel(comboboxAbueloValor, False, False)
                 If Not mParametroAbuelo.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxAbueloValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroAbuelo.Valor)
@@ -36,7 +36,7 @@
             comboboxValor.DataSource = Nothing
         End If
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
+            Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 pFillAndRefreshLists.Ubicacion(comboboxPadreValor, False, False, Convert.ToByte(comboboxAbueloValor.SelectedValue))
                 If Not mParametroPadre.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
@@ -49,7 +49,7 @@
             comboboxValor.DataSource = Nothing
         End If
         Select Case mParametroActual.Tipo
-            Case Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
+            Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 pFillAndRefreshLists.SubUbicacion(comboboxValor, False, False, Convert.ToInt16(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)

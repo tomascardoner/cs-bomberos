@@ -44,6 +44,10 @@
         Try
             treeviewReportes.BeginUpdate()
             For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.Where(Function(rg) rg.IDModulo = mIDModulo).OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
+                If Not ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).Any() Then
+                    Continue For
+                End If
+
                 ' Agrego el Grupo de Reportes
                 ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre)
                 ReporteGrupoNodo.Tag = ReporteGrupoActual
@@ -152,7 +156,7 @@
             ListViewItemActual = listviewParametros.SelectedItems(0)
 
             Select Case ParametroActual.Tipo
-                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONA
+                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Dim fps As New formPersonasSeleccionar
 
                     fps.EstablecerMultiseleccion(False)
@@ -170,7 +174,7 @@
 
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
+                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
                     Dim fps As New formPersonasSeleccionar
 
                     fps.EstablecerMultiseleccion(True)
@@ -196,13 +200,13 @@
                     End If
                     fps.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE
+                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE
                     Dim frpf As New formReportesParametroFamiliares
                     Dim ParametroPadre As ReporteParametro = Nothing
 
                     ' Busco si el parámetro actual tiene un parámetro padre
                     For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-                        If ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA Then
+                        If ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA Then
                             ParametroPadre = currentReporteParametro
                             If ParametroPadre.Valor Is Nothing Then
                                 MsgBox("Debe seleccionar a la Persona para poder seleccionar los familiares.", MsgBoxStyle.Information, My.Application.Info.Title)
@@ -235,7 +239,7 @@
                     End If
                     frpf.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_TITLE, Constantes.REPORTE_PARAMETRO_TIPO_TEXT
+                Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE, Reportes.REPORTE_PARAMETRO_TIPO_TEXT
                     formReportesParametroTextBox.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroTextBox.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -243,7 +247,7 @@
                     formReportesParametroTextBox.Close()
                     formReportesParametroTextBox.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Constantes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Constantes.REPORTE_PARAMETRO_TIPO_MONEY, Constantes.REPORTE_PARAMETRO_TIPO_DATETIME, Constantes.REPORTE_PARAMETRO_TIPO_DATE, Constantes.REPORTE_PARAMETRO_TIPO_TIME, Constantes.REPORTE_PARAMETRO_TIPO_YEAR
+                Case Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Reportes.REPORTE_PARAMETRO_TIPO_MONEY, Reportes.REPORTE_PARAMETRO_TIPO_DATETIME, Reportes.REPORTE_PARAMETRO_TIPO_DATE, Reportes.REPORTE_PARAMETRO_TIPO_TIME, Reportes.REPORTE_PARAMETRO_TIPO_YEAR
                     formReportesParametroVarios.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroVarios.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -251,7 +255,7 @@
                     formReportesParametroVarios.Close()
                     formReportesParametroVarios.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_SINO, Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW
+                Case Reportes.REPORTE_PARAMETRO_TIPO_SINO, Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW
                     formReportesParametroSiNo.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroSiNo.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -259,7 +263,7 @@
                     formReportesParametroSiNo.Close()
                     formReportesParametroSiNo.Dispose()
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL, Constantes.REPORTE_PARAMETRO_TIPO_CARGO, Constantes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Constantes.REPORTE_PARAMETRO_TIPO_UNIDAD, Constantes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
+                Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL, Reportes.REPORTE_PARAMETRO_TIPO_CARGO, Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD, Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
                     formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -269,14 +273,14 @@
 
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA, Constantes.REPORTE_PARAMETRO_TIPO_AREA, Constantes.REPORTE_PARAMETRO_TIPO_UBICACION
+                Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA, Reportes.REPORTE_PARAMETRO_TIPO_AREA, Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                     Dim ParametroPadre As ReporteParametro = Nothing
 
                     ' Busco si el parámetro actual tiene un parámetro padre
                     For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-                        If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AREA AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
+                        If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
                             ParametroPadre = currentReporteParametro
                         End If
                     Next
@@ -293,16 +297,16 @@
 
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 
-                Case Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
+                Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                     Dim ParametroAbuelo As ReporteParametro = Nothing
                     Dim ParametroPadre As ReporteParametro = Nothing
 
                     ' Busco si el parámetro actual tiene un parámetro abuelo y padre
                     For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-                        If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
+                        If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
                             ParametroAbuelo = currentReporteParametro
                         End If
-                        If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION) Then
+                        If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION) Then
                             ParametroPadre = currentReporteParametro
                         End If
                     Next
@@ -343,7 +347,7 @@
                 ListViewItemActual.SubItems(2).Text = ""
 
                 ' Si el parámetro que se borra es Padre o Abuelo de otro parámetro, hay que borrar el valor del parámetro Hijo y Nieto también
-                If ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION Or ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA Then
+                If ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA Then
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
                 End If
             End If
@@ -355,17 +359,17 @@
         Dim ParametroNieto As ReporteParametro = Nothing
 
         For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-            If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CARGO AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_JERARQUIA) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_AREA) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
-                            Or (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
+            If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
+                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
                 ParametroHijo = currentReporteParametro
                 ParametroHijo.Valor = Nothing
                 ParametroHijo.ValorParaMostrar = ""
                 listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroHijo.IDParametro).SubItems(2).Text = ""
             End If
-            If (ParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
+            If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
                 ParametroNieto = currentReporteParametro
                 ParametroNieto.Valor = Nothing
                 ParametroNieto.ValorParaMostrar = ""

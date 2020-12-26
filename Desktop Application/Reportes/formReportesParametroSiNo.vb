@@ -6,9 +6,9 @@
 
         labelValor.Text = ParametroActual.Nombre & ":"
 
-        radiobuttonSi.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SINO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW)
+        radiobuttonSi.Visible = (mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SINO Or mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW)
         radiobuttonSi.Text = My.Resources.STRING_YES
-        radiobuttonNo.Visible = (mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_SINO Or mParametroActual.Tipo = Constantes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW)
+        radiobuttonNo.Visible = (mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SINO Or mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW)
         radiobuttonNo.Text = My.Resources.STRING_NO
 
         If Not mParametroActual.Valor Is Nothing Then

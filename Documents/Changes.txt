@@ -1,3 +1,6 @@
+2020-12-26
+	- Se agregó el módulo de arqueos de cajas
+
 2020-12-12
 	- Se agregó el item "Todos" al filtro de períodos de las compras
 	- Se cambió el orden del combobox de Responsable

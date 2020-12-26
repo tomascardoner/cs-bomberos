@@ -267,6 +267,15 @@
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Compra" />
         <EntityTypeShape EntityType="CSBomberosModel.Modulo" Width="1.5" PointX="1.5" PointY="8.625" />
         <AssociationConnector Association="CSBomberosModel.FK__Modulo__ReporteGrupo" />
+        <EntityTypeShape EntityType="CSBomberosModel.Caja" Width="1.5" PointX="21.75" PointY="136" />
+        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueo" Width="1.5" PointX="33" PointY="134.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueoDetalle" Width="1.5" PointX="35.25" PointY="135.125" />
+        <AssociationConnector Association="CSBomberosModel.FK__Caja__CajaArqueo" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Caja__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Caja__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__CajaArqueo__CajaArqueoDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
