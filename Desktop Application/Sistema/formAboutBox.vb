@@ -12,6 +12,8 @@ Public NotInheritable Class formAboutBox
         ' Propiedades
         Dim NewItem As ListViewItem
 
+        listviewPropiedades.Items.Clear()
+
         NewItem = New ListViewItem
         NewItem.Text = "DB - DataSource"
         NewItem.SubItems.Add(pDatabaseConfig.Datasource)

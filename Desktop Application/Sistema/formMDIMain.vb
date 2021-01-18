@@ -8,6 +8,8 @@
 #Region "Form stuff"
     Private Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_APPLICATION_ICON_300)
+        Me.Text = My.Application.Info.Title
+        Application.DoEvents()
     End Sub
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -18,8 +20,6 @@
 
         ' Deshabilito el Form principal hasta que se cierre el SplashScreen
         Me.Enabled = False
-
-        Me.Text = My.Application.Info.Title
 
         menuitemAyuda_AcercaDe.Text = "&Acerca de " & My.Application.Info.Title & "..."
     End Sub
