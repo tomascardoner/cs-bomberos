@@ -1,4 +1,4 @@
-﻿Public Class AppearanceConfig
+﻿Friend Class AppearanceConfig
     Public Property EnableVisualStyles As Boolean
     Public Property MinimumSplashScreenDisplaySeconds As Integer
     Public Property MdiFormMargin As Byte

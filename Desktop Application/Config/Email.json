@@ -1,0 +1,14 @@
+{
+  "DisplayName": "Bomberos Voluntarios de Lobos",
+  "Address": "documentaciones.cbl@gmail.com",
+  "ReplyToAddress": null,
+  "Signature": "{0}{0}Bomberos Voluntarios de Lobos{0}Cuartel Principal{0}Ameghino 142 - Lobos{0}Tel.: +54 2227 42-2222{0}info@bomberosdelobos.com.ar{0}www.bomberosdelobos.com.ar",
+  "SmtpServer": "mail.gmail.com",
+  "SmtpUserName": "documentaciones.cbl@gmail.com",
+  "SmtpPassword": null,
+  "SmtpPort": 465,
+  "__SMTP SSL options values__": "0=None / 1=Auto / 2=SslOnConnect / 3=StartTls / 4=StartTlsWhenAvailable",
+  "SmtpSslOptions": 1,
+  "SmtpTimeout": 30000,
+  "SendMaxPerHour": 200
+}

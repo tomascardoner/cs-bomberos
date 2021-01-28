@@ -1,0 +1,7 @@
+{
+  "Datasource": "localhost",
+  "Database": "CSBomberos",
+  "UserId": "sa",
+  "Password": "43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd",
+  "Provider": "System.Data.SqlClient"
+}
