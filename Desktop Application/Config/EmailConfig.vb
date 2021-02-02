@@ -9,6 +9,5 @@
     Public Property SmtpPort As Integer
     Public Property SmtpSslOptions As Integer
     Public Property SmtpTimeout As Integer
-    Public Property SendMethod As String
     Public Property SendMaxPerHour As Integer
 End Class
