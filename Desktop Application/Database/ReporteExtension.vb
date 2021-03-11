@@ -39,7 +39,7 @@ Partial Public Class Reporte
         If IsPdf Then
             If OpenPdf() Then
                 If PdfSetParametersAndGetData() Then
-                    Dim destinationFileName As String = CardonerSistemas.SpecialFolders.GetTempFileName("pdf")
+                    Dim destinationFileName As String = CardonerSistemas.Files.GetTempFileName("pdf")
 
                     If PdfProcess(destinationFileName) Then
                         Process.Start(destinationFileName)
@@ -155,7 +155,7 @@ Partial Public Class Reporte
                                                     Case Reportes.REPORTE_PARAMETRO_TIPO_DATE
                                                         .CurrentValues.AddValue(CDate(ParametroActual.Valor))
                                                     Case Reportes.REPORTE_PARAMETRO_TIPO_TIME
-                                                        .CurrentValues.AddValue(CDate("1900/01/01 " & CStr(ParametroActual.Valor)))
+                                                        .CurrentValues.AddValue(CDate(ParametroActual.Valor))
                                                     Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                                                         .CurrentValues.AddValue(CDate(ParametroActual.Valor))
                                                 End Select

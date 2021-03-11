@@ -986,12 +986,16 @@
     End Sub
 
     Private Sub Familiares_Ver(sender As Object, e As EventArgs) Handles datagridviewFamiliares.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewFamiliares.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Familiar para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaFamiliar.LoadAndShow(Not mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
+            formPersonaFamiliar.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewFamiliares.SelectedRows(0).DataBoundItem, Familiares_GridRowData).IDFamiliar)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1103,12 +1107,16 @@
     End Sub
 
     Private Sub AltasBajas_Ver(sender As Object, e As EventArgs) Handles datagridviewAltasBajas.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAltaBaja.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
+            formPersonaAltaBaja.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData).IDAltaBaja)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1219,12 +1227,16 @@
     End Sub
 
     Private Sub Accidentes_Ver(sender As Object, e As EventArgs) Handles datagridviewAccidentes.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewAccidentes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Accidente para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAccidente.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAccidentes.SelectedRows(0).DataBoundItem, Accidentes_GridRowData).IDAccidente)
+            formPersonaAccidente.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewAccidentes.SelectedRows(0).DataBoundItem, Accidentes_GridRowData).IDAccidente)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1339,12 +1351,16 @@
     End Sub
 
     Private Sub Ascensos_Ver(sender As Object, e As EventArgs) Handles datagridviewAscensos.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewAscensos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Ascenso - Promoción para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaAscenso.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
+            formPersonaAscenso.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewAscensos.SelectedRows(0).DataBoundItem, Ascensos_GridRowData).IDAscenso)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1469,12 +1485,16 @@
     End Sub
 
     Private Sub HorarioLaboral_Ver(sender As Object, e As EventArgs) Handles datagridviewHorarioLaboral.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Horario Laboral para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaHorarioLaboral.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
+            formPersonaHorarioLaboral.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData).DiaSemana)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1625,12 +1645,16 @@
     End Sub
 
     Private Sub Vehiculos_Ver(sender As Object, e As EventArgs) Handles datagridviewVehiculos.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewVehiculos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Vehículo para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaVehiculo.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData).IDVehiculo)
+            formPersonaVehiculo.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewVehiculos.SelectedRows(0).DataBoundItem, Vehiculos_GridRowData).IDVehiculo)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1744,12 +1768,16 @@
     End Sub
 
     Private Sub Vacunas_Ver(sender As Object, e As EventArgs) Handles datagridviewVacunas.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewVacunas.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Vacuna para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaVacuna.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData).IDVacuna)
+            formPersonaVacuna.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewVacunas.SelectedRows(0).DataBoundItem, Vacunas_GridRowData).IDVacuna)
 
             Me.Cursor = Cursors.Default
         End If
@@ -1860,12 +1888,16 @@
     End Sub
 
     Private Sub Licencias_Ver(sender As Object, e As EventArgs) Handles datagridviewLicencias.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewLicencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Licencia para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaLicencia.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
+            formPersonaLicencia.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewLicencias.SelectedRows(0).DataBoundItem, Licencias_GridRowData).IDLicencia)
 
             Me.Cursor = Cursors.Default
         End If
@@ -2004,12 +2036,16 @@
     End Sub
 
     Private Sub Sanciones_Ver(sender As Object, e As EventArgs) Handles datagridviewSanciones.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaSancion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
+            formPersonaSancion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
 
             Me.Cursor = Cursors.Default
         End If
@@ -2148,12 +2184,16 @@
     End Sub
 
     Private Sub Capacitaciones_Ver(sender As Object, e As EventArgs) Handles datagridviewCapacitaciones.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewCapacitaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Capacitación para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaCapacitacion.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
+            formPersonaCapacitacion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewCapacitaciones.SelectedRows(0).DataBoundItem, Capacitaciones_GridRowData).IDCapacitacion)
 
             Me.Cursor = Cursors.Default
         End If
@@ -2324,6 +2364,10 @@
     End Sub
 
     Private Sub Calificaciones_Ver(sender As Object, e As EventArgs) Handles datagridviewCalificaciones.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewCalificaciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Instancia de Calificación para ver.", vbInformation, My.Application.Info.Title)
         Else
@@ -2471,12 +2515,16 @@
     End Sub
 
     Private Sub Examenes_Ver(sender As Object, e As EventArgs) Handles datagridviewExamenes.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
         If datagridviewExamenes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Examen para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formPersonaExamen.LoadAndShow(mEditMode, Me, mPersonaActual.IDPersona, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).Anio, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).InstanciaNumero)
+            formPersonaExamen.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).Anio, CType(datagridviewExamenes.SelectedRows(0).DataBoundItem, Examenes_GridRowData).InstanciaNumero)
 
             Me.Cursor = Cursors.Default
         End If

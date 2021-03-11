@@ -129,11 +129,13 @@ Partial Class formReportesParametroVarios
         '
         Me.datetimepickerValorHora.Format = System.Windows.Forms.DateTimePickerFormat.Time
         Me.datetimepickerValorHora.Location = New System.Drawing.Point(221, 66)
+        Me.datetimepickerValorHora.MaxDate = New Date(1900, 1, 1, 23, 59, 59, 0)
+        Me.datetimepickerValorHora.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerValorHora.Name = "datetimepickerValorHora"
         Me.datetimepickerValorHora.ShowUpDown = True
         Me.datetimepickerValorHora.Size = New System.Drawing.Size(82, 20)
         Me.datetimepickerValorHora.TabIndex = 37
-        Me.datetimepickerValorHora.Value = New Date(2019, 11, 8, 0, 0, 0, 0)
+        Me.datetimepickerValorHora.Value = New Date(1900, 1, 1, 0, 0, 0, 0)
         '
         'formReportesParametroVarios
         '

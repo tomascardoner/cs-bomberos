@@ -191,14 +191,14 @@
       <Link>Framework\ErrorHandlerMessageBox.vb</Link>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Files.vb">
+      <Link>Framework\Files.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\Graphics.vb">
       <Link>Framework\Graphics.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Process.vb">
       <Link>Framework\Process.vb</Link>
-    </Compile>
-    <Compile Include="..\..\..\framework-vbnet\SpecialFolders.vb">
-      <Link>Framework\SpecialFolders.vb</Link>
     </Compile>
     <Compile Include="ABM Tablas\formResponsable.designer.vb">
       <DependentUpon>formResponsable.vb</DependentUpon>
@@ -465,9 +465,6 @@
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Email.vb">
       <Link>Framework\CS_Email.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_File.vb">
-      <Link>Framework\CS_File.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_FileLog.vb">
       <Link>Framework\CS_FileLog.vb</Link>
