@@ -1,4 +1,7 @@
 ﻿Module Permisos
+
+#Region "Definición de constantes"
+
     Friend Const SISTEMA_COMPLETAR_CUIL As String = "SISTEMA_COMPLETAR_CUIL"
     Friend Const SISTEMA_VERIFICAR_FAMILIARACARGO As String = "SISTEMA_VERIFICAR_FAMILIARACARGO"
 
@@ -269,6 +272,10 @@
     Friend Const DESCRIPCION_ELIMINAR As String = "Eliminar"
     Friend Const DESCRIPCION_IMPRIMIR As String = "Imprimir"
 
+#End Region
+
+#Region "Verificación de permisos"
+
     Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
         If pUsuario.IDUsuarioGrupo = USUARIOGRUPO_ADMINISTRADORES_ID Then
             Return True
@@ -284,16 +291,21 @@
         End If
     End Function
 
+#End Region
+
+#Region "Asignación de permisos"
+
     Friend Sub CargarArbolDePermisos(ByRef Arbol As TreeView, ByVal IDUsuarioGrupo As Byte)
         Dim RootNode As TreeNode
 
         Arbol.SuspendLayout()
+        Application.DoEvents()
 
         Arbol.Nodes.Clear()
 
         RootNode = Arbol.Nodes.Add(COMPRA, "Sistema")
-        RootNode.Nodes.Add(SISTEMA_COMPLETAR_CUIL, "Completar números de CUIL incompletos.")
-        RootNode.Nodes.Add(SISTEMA_VERIFICAR_FAMILIARACARGO, "Verificar edades de familiares a cargo.")
+        RootNode.Nodes.Add(SISTEMA_COMPLETAR_CUIL, "Completar números de CUIL incompletos")
+        RootNode.Nodes.Add(SISTEMA_VERIFICAR_FAMILIARACARGO, "Verificar edades de familiares a cargo")
 
         RootNode = Arbol.Nodes.Add(NIVELESTUDIO, "Niveles de Estudio")
         With RootNode
@@ -554,7 +566,7 @@
             .Nodes.Add(PERSONA_LICENCIA_AGREGAR, DESCRIPCION_AGREGAR)
             .Nodes.Add(PERSONA_LICENCIA_EDITAR, DESCRIPCION_EDITAR)
             .Nodes.Add(PERSONA_LICENCIA_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_LICENCIA_IGNORARRESTRICCIONFECHAS, "Ignorar restricciones de fechas y veces anuales.")
+            .Nodes.Add(PERSONA_LICENCIA_IGNORARRESTRICCIONFECHAS, "Ignorar restricciones de fechas y veces anuales")
             .Nodes.Add(PERSONA_LICENCIA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
         End With
 
@@ -630,6 +642,34 @@
         Arbol.ExpandAll()
         Arbol.TopNode = Arbol.Nodes(0)
 
+        ' Muestro los permisos asignados
+        MostrarPermisosEstablecidos(Arbol, IDUsuarioGrupo)
+
         Arbol.ResumeLayout()
     End Sub
+
+    Private Sub MostrarPermisosEstablecidos(ByRef Arbol As TreeView, ByVal IDUsuarioGrupo As Byte)
+        Dim listPermisos As List(Of UsuarioGrupoPermiso)
+
+        ' Obtengo la lista de permisos para el Grupo de Usuarios
+        Using dbcontext As New CSBomberosContext(True)
+            Try
+                listPermisos = dbcontext.UsuarioGrupoPermiso.Where(Function(ugp) ugp.IDUsuarioGrupo = IDUsuarioGrupo).OrderBy(Function(ugp) ugp.IDPermiso).ToList()
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de permisos efectivos.")
+                Exit Sub
+            End Try
+        End Using
+
+        ' Marco los items del Tree View que tienen asignado el permiso
+        For Each permiso As UsuarioGrupoPermiso In listPermisos
+            ' Arbol.Nodes.Item(permiso.IDPermiso.Trim()).Checked = True
+            Arbol.Nodes.Find(permiso.IDPermiso.Trim(), True).First.Checked = True
+        Next
+
+        listPermisos = Nothing
+    End Sub
+
+#End Region
+
 End Module

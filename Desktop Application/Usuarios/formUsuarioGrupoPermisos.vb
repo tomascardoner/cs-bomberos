@@ -14,7 +14,11 @@
 
 #Region "Controls behavior"
     Private Sub comboboxUsuarioGrupo_SelectedValueChanged() Handles comboboxUsuarioGrupo.SelectedValueChanged
+        Cursor.Current = Cursors.WaitCursor
+
         Permisos.CargarArbolDePermisos(treeviewPermisos, CByte(comboboxUsuarioGrupo.SelectedValue))
+
+        Cursor.Current = Cursors.Default
     End Sub
 #End Region
 

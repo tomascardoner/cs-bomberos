@@ -224,16 +224,16 @@
     <Compile Include="ABM Tablas\formProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupo.designer.vb">
+    <Compile Include="Usuarios\formUsuarioGrupo.designer.vb">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupo.vb">
+    <Compile Include="Usuarios\formUsuarioGrupo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupos.designer.vb">
+    <Compile Include="Usuarios\formUsuarioGrupos.designer.vb">
       <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupos.vb">
+    <Compile Include="Usuarios\formUsuarioGrupos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
@@ -332,16 +332,16 @@
     <Compile Include="Reportes\formReportesParametroFamiliares.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuario.designer.vb">
+    <Compile Include="Usuarios\formUsuario.designer.vb">
       <DependentUpon>formUsuario.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuario.vb">
+    <Compile Include="Usuarios\formUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarios.designer.vb">
+    <Compile Include="Usuarios\formUsuarios.designer.vb">
       <DependentUpon>formUsuarios.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarios.vb">
+    <Compile Include="Usuarios\formUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Partido.vb">
@@ -972,10 +972,10 @@
       <DependentUpon>formSplashScreen.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupoPermisos.Designer.vb">
+    <Compile Include="Usuarios\formUsuarioGrupoPermisos.Designer.vb">
       <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUsuarioGrupoPermisos.vb">
+    <Compile Include="Usuarios\formUsuarioGrupoPermisos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventario.vb">
@@ -1143,10 +1143,10 @@
     <EmbeddedResource Include="ABM Tablas\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUsuarioGrupo.resx">
+    <EmbeddedResource Include="Usuarios\formUsuarioGrupo.resx">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUsuarioGrupos.resx">
+    <EmbeddedResource Include="Usuarios\formUsuarioGrupos.resx">
       <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cajas\formCajaArqueo.resx">
@@ -1209,10 +1209,10 @@
     <EmbeddedResource Include="Reportes\formReportesParametroFamiliares.resx">
       <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUsuario.resx">
+    <EmbeddedResource Include="Usuarios\formUsuario.resx">
       <DependentUpon>formUsuario.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUsuarios.resx">
+    <EmbeddedResource Include="Usuarios\formUsuarios.resx">
       <DependentUpon>formUsuarios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\formUnidadBajaMotivo.resx">
@@ -1437,7 +1437,7 @@
     <EmbeddedResource Include="Reportes\formReportesVisor.resx">
       <DependentUpon>formReportesVisor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUsuarioGrupoPermisos.resx">
+    <EmbeddedResource Include="Usuarios\formUsuarioGrupoPermisos.resx">
       <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
