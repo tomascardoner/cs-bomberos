@@ -935,10 +935,10 @@
     <Compile Include="Personas\formPersonasSeleccionar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sistema\formLogin.Designer.vb">
+    <Compile Include="Usuarios\formLogin.Designer.vb">
       <DependentUpon>formLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\formLogin.vb">
+    <Compile Include="Usuarios\formLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sistema\formMDIMain.Designer.vb">
@@ -1024,7 +1024,7 @@
     <Compile Include="PenaAplicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sistema\Permisos.vb" />
+    <Compile Include="Usuarios\Permisos.vb" />
     <Compile Include="Persona.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -1422,7 +1422,7 @@
     <EmbeddedResource Include="Personas\formPersonasSeleccionar.resx">
       <DependentUpon>formPersonasSeleccionar.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sistema\formLogin.resx">
+    <EmbeddedResource Include="Usuarios\formLogin.resx">
       <DependentUpon>formLogin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formMDIMain.resx">

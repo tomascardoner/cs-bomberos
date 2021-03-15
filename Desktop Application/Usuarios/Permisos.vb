@@ -2,6 +2,7 @@
 
 #Region "Definición de constantes"
 
+    ' SISTEMA
     Friend Const SISTEMA_COMPLETAR_CUIL As String = "SISTEMA_COMPLETAR_CUIL"
     Friend Const SISTEMA_VERIFICAR_FAMILIARACARGO As String = "SISTEMA_VERIFICAR_FAMILIARACARGO"
 
@@ -295,351 +296,133 @@
 
 #Region "Asignación de permisos"
 
+    Friend Function AgregarNodos(ByRef parent As TreeNode, ByVal permissionKey As String, ByVal permissionDisplay As String, ByVal permissionAddKey As String, ByVal permissionAddDisplay As String, ByVal permissionEditKey As String, ByVal permissionEditDisplay As String, ByVal permissionDeleteKey As String, ByVal permissionDeleteDisplay As String) As TreeNode
+        Dim newNode = parent.Nodes.Add(permissionKey, permissionDisplay)
+
+        With newNode
+            .Nodes.Add(permissionAddKey, permissionAddDisplay)
+            .Nodes.Add(permissionEditKey, permissionEditDisplay)
+            .Nodes.Add(permissionDeleteKey, permissionDeleteDisplay)
+        End With
+        Return newNode
+    End Function
+
     Friend Sub CargarArbolDePermisos(ByRef Arbol As TreeView, ByVal IDUsuarioGrupo As Byte)
-        Dim RootNode As TreeNode
+        Dim nodeRoot As TreeNode
+        Dim nodeParent As TreeNode
+        Dim nodeCurrent As TreeNode
 
         Arbol.SuspendLayout()
         Application.DoEvents()
 
         Arbol.Nodes.Clear()
 
-        RootNode = Arbol.Nodes.Add(COMPRA, "Sistema")
-        RootNode.Nodes.Add(SISTEMA_COMPLETAR_CUIL, "Completar números de CUIL incompletos")
-        RootNode.Nodes.Add(SISTEMA_VERIFICAR_FAMILIARACARGO, "Verificar edades de familiares a cargo")
+        ' TABLAS
+        nodeRoot = Arbol.Nodes.Add("TABLAS", "Tablas")
 
-        RootNode = Arbol.Nodes.Add(NIVELESTUDIO, "Niveles de Estudio")
-        With RootNode
-            .Nodes.Add(NIVELESTUDIO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(NIVELESTUDIO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(NIVELESTUDIO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - PERSONAS
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_PERSONAS", "Personas")
+        AgregarNodos(nodeParent, NIVELESTUDIO, "Niveles de Estudio", NIVELESTUDIO_AGREGAR, DESCRIPCION_AGREGAR, NIVELESTUDIO_EDITAR, DESCRIPCION_EDITAR, NIVELESTUDIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, ESTADOCIVIL, "Estados Civiles", ESTADOCIVIL_AGREGAR, DESCRIPCION_AGREGAR, ESTADOCIVIL_EDITAR, DESCRIPCION_EDITAR, ESTADOCIVIL_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PARENTESCO, "Parentescos", PARENTESCO_AGREGAR, DESCRIPCION_AGREGAR, PARENTESCO_EDITAR, DESCRIPCION_EDITAR, PARENTESCO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PERSONABAJAMOTIVO, "Motivos de baja de personas", PERSONABAJAMOTIVO_AGREGAR, DESCRIPCION_AGREGAR, PERSONABAJAMOTIVO_EDITAR, DESCRIPCION_EDITAR, PERSONABAJAMOTIVO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, CARGO, "Cargos", CARGO_AGREGAR, DESCRIPCION_AGREGAR, CARGO_EDITAR, DESCRIPCION_EDITAR, CARGO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, CARGOJERARQUIA, "Jerarquías", CARGOJERARQUIA_AGREGAR, DESCRIPCION_AGREGAR, CARGOJERARQUIA_EDITAR, DESCRIPCION_EDITAR, CARGOJERARQUIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, VEHICULOTIPO, "Tipos de vehículos", VEHICULOTIPO_AGREGAR, DESCRIPCION_AGREGAR, VEHICULOTIPO_EDITAR, DESCRIPCION_EDITAR, VEHICULOTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, VEHICULOMARCA, "Marcas de vehículos", VEHICULOMARCA_AGREGAR, DESCRIPCION_AGREGAR, VEHICULOMARCA_EDITAR, DESCRIPCION_EDITAR, VEHICULOMARCA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, VEHICULOCOMPANIASEGURO, "Compañías de seguros de vehículos", VEHICULOCOMPANIASEGURO_AGREGAR, DESCRIPCION_AGREGAR, VEHICULOCOMPANIASEGURO_EDITAR, DESCRIPCION_EDITAR, VEHICULOCOMPANIASEGURO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, VACUNATIPO, "Tipos de vacunas", VACUNATIPO_AGREGAR, DESCRIPCION_AGREGAR, VACUNATIPO_EDITAR, DESCRIPCION_EDITAR, VACUNATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, LICENCIACAUSA, "Causales de licencia", LICENCIACAUSA_AGREGAR, DESCRIPCION_AGREGAR, LICENCIACAUSA_EDITAR, DESCRIPCION_EDITAR, LICENCIACAUSA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, SANCIONTIPO, "Tipos de sanción", SANCIONTIPO_AGREGAR, DESCRIPCION_AGREGAR, SANCIONTIPO_EDITAR, DESCRIPCION_EDITAR, SANCIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(ESTADOCIVIL, "Estados Civiles")
-        With RootNode
-            .Nodes.Add(ESTADOCIVIL_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(ESTADOCIVIL_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(ESTADOCIVIL_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - CAPACITACIONES
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_CAPACITACIONES", "Capacitaciones")
+        AgregarNodos(nodeParent, CURSO, "Cursos", CURSO_AGREGAR, DESCRIPCION_AGREGAR, CURSO_EDITAR, DESCRIPCION_EDITAR, CURSO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, CAPACITACIONNIVEL, "Niveles de capacitación", CAPACITACIONNIVEL_AGREGAR, DESCRIPCION_AGREGAR, CAPACITACIONNIVEL_EDITAR, DESCRIPCION_EDITAR, CAPACITACIONNIVEL_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, CAPACITACIONTIPO, "Tipos de capacitación", CAPACITACIONTIPO_AGREGAR, DESCRIPCION_AGREGAR, CAPACITACIONTIPO_EDITAR, DESCRIPCION_EDITAR, CAPACITACIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, CALIFICACIONCONCEPTO, "Conceptos de calificación", CALIFICACIONCONCEPTO_AGREGAR, DESCRIPCION_AGREGAR, CALIFICACIONCONCEPTO_EDITAR, DESCRIPCION_EDITAR, CALIFICACIONCONCEPTO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(PARENTESCO, "Parentescos")
-        With RootNode
-            .Nodes.Add(PARENTESCO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PARENTESCO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PARENTESCO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - UNIDADES
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_UNIDADES", "Unidades")
+        AgregarNodos(nodeParent, UNIDADTIPO, "Tipos de automotor", UNIDADTIPO_AGREGAR, DESCRIPCION_AGREGAR, UNIDADTIPO_EDITAR, DESCRIPCION_EDITAR, UNIDADTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, UNIDADUSO, "Usos de automotor", UNIDADUSO_AGREGAR, DESCRIPCION_AGREGAR, UNIDADUSO_EDITAR, DESCRIPCION_EDITAR, UNIDADUSO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, UNIDADBAJAMOTIVO, "Motivos de baja de automotor", UNIDADBAJAMOTIVO_AGREGAR, DESCRIPCION_AGREGAR, UNIDADBAJAMOTIVO_EDITAR, DESCRIPCION_EDITAR, UNIDADBAJAMOTIVO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(PERSONABAJAMOTIVO, "Motivos de baja de personas")
-        With RootNode
-            .Nodes.Add(PERSONABAJAMOTIVO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONABAJAMOTIVO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONABAJAMOTIVO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - INVENTARIO
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_INVENTARIO", "Inventario")
+        AgregarNodos(nodeParent, RUBRO, "Rubros de elementos", RUBRO_AGREGAR, DESCRIPCION_AGREGAR, RUBRO_EDITAR, DESCRIPCION_EDITAR, RUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, SUBRUBRO, "Sub-rubros de elementos", SUBRUBRO_AGREGAR, DESCRIPCION_AGREGAR, SUBRUBRO_EDITAR, DESCRIPCION_EDITAR, SUBRUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, UBICACION, "Ubicaciones", UBICACION_AGREGAR, DESCRIPCION_AGREGAR, UBICACION_EDITAR, DESCRIPCION_EDITAR, UBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, SUBUBICACION, "Sub-ubicaciones", SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR, SUBUBICACION_EDITAR, DESCRIPCION_EDITAR, SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(CARGO, "Cargos")
-        With RootNode
-            .Nodes.Add(CARGO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CARGO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CARGO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - USUARIOS
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_USUARIOS", "Usuarios")
+        AgregarNodos(nodeParent, USUARIOGRUPO, "Grupos de usuarios", USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR, USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR, USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, USUARIO, "Usuarios", USUARIO_AGREGAR, DESCRIPCION_AGREGAR, USUARIO_EDITAR, DESCRIPCION_EDITAR, USUARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, USUARIOGRUPOPERMISO, "Permisos", USUARIOGRUPOPERMISO_AGREGAR, DESCRIPCION_AGREGAR, USUARIOGRUPOPERMISO_EDITAR, DESCRIPCION_EDITAR, USUARIOGRUPOPERMISO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(CARGOJERARQUIA, "Jerarquías")
-        With RootNode
-            .Nodes.Add(CARGOJERARQUIA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CARGOJERARQUIA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CARGOJERARQUIA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' TABLAS - OTROS
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_OTROS", "Otros")
+        AgregarNodos(nodeParent, CUARTEL, "Cuarteles", CUARTEL_AGREGAR, DESCRIPCION_AGREGAR, CUARTEL_EDITAR, DESCRIPCION_EDITAR, CUARTEL_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, AREA, "Áreas", AREA_AGREGAR, DESCRIPCION_AGREGAR, AREA_EDITAR, DESCRIPCION_EDITAR, AREA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, ALARMA, "Alarmas", ALARMA_AGREGAR, DESCRIPCION_AGREGAR, ALARMA_EDITAR, DESCRIPCION_EDITAR, ALARMA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, RESPONSABLE, "Responsables", RESPONSABLE_AGREGAR, DESCRIPCION_AGREGAR, RESPONSABLE_EDITAR, DESCRIPCION_EDITAR, RESPONSABLE_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PROVEEDOR, "Proveedores", PROVEEDOR_AGREGAR, DESCRIPCION_AGREGAR, PROVEEDOR_EDITAR, DESCRIPCION_EDITAR, PROVEEDOR_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(LICENCIACAUSA, "Causales de licencia")
-        With RootNode
-            .Nodes.Add(LICENCIACAUSA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(LICENCIACAUSA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(LICENCIACAUSA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' DOCUMENTACIONES
+        nodeRoot = Arbol.Nodes.Add("DOCUMENTACIONES", "Documentaciones")
 
-        RootNode = Arbol.Nodes.Add(SANCIONTIPO, "Tipos de sanción")
-        With RootNode
-            .Nodes.Add(SANCIONTIPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(SANCIONTIPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(SANCIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' DOCUMENTACIONES - PERSONAS
+        nodeCurrent = AgregarNodos(nodeRoot, PERSONA, "Personas", PERSONA_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_EDITAR, DESCRIPCION_EDITAR, PERSONA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(PERSONA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        nodeParent = nodeCurrent
+        AgregarNodos(nodeParent, PERSONA_FAMILIAR, "Familiares", PERSONA_FAMILIAR_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_FAMILIAR_EDITAR, DESCRIPCION_EDITAR, PERSONA_FAMILIAR_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PERSONA_ALTABAJA, "Altas y Bajas", PERSONA_ALTABAJA_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_ALTABAJA_EDITAR, DESCRIPCION_EDITAR, PERSONA_ALTABAJA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PERSONA_ASCENSO, "Ascensos", PERSONA_ASCENSO_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_ASCENSO_EDITAR, DESCRIPCION_EDITAR, PERSONA_ASCENSO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeParent, PERSONA_HORARIO, "Horarios", PERSONA_HORARIO_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_HORARIO_EDITAR, DESCRIPCION_EDITAR, PERSONA_HORARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(PERSONA_HORARIO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        AgregarNodos(nodeParent, PERSONA_VEHICULO, "Vehículos", PERSONA_VEHICULO_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_VEHICULO_EDITAR, DESCRIPCION_EDITAR, PERSONA_VEHICULO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, PERSONA_VACUNA, "Vacunas", PERSONA_VACUNA_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_VACUNA_EDITAR, DESCRIPCION_EDITAR, PERSONA_VACUNA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeParent, PERSONA_LICENCIA, "Licencias", PERSONA_LICENCIA_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_LICENCIA_EDITAR, DESCRIPCION_EDITAR, PERSONA_LICENCIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(PERSONA_LICENCIA_IGNORARRESTRICCIONFECHAS, "Ignorar restricciones de fechas y veces anuales")
+        nodeCurrent.Nodes.Add(PERSONA_LICENCIA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        nodeCurrent = AgregarNodos(nodeParent, PERSONA_SANCION, "Sanciones", PERSONA_SANCION_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_SANCION_EDITAR, DESCRIPCION_EDITAR, PERSONA_SANCION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(PERSONA_SANCION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        AgregarNodos(nodeParent, PERSONA_CAPACITACION, "Capacitaciones", PERSONA_CAPACITACION_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_CAPACITACION_EDITAR, DESCRIPCION_EDITAR, PERSONA_CAPACITACION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeParent, PERSONA_CALIFICACION, "Calificaciones", PERSONA_CALIFICACION_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_CALIFICACION_EDITAR, DESCRIPCION_EDITAR, PERSONA_CALIFICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(PERSONA_CALIFICACION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        AgregarNodos(nodeParent, PERSONA_EXAMEN, "Exámenes", PERSONA_EXAMEN_AGREGAR, DESCRIPCION_AGREGAR, PERSONA_EXAMEN_EDITAR, DESCRIPCION_EDITAR, PERSONA_EXAMEN_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(CURSO, "Cursos")
-        With RootNode
-            .Nodes.Add(CURSO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CURSO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CURSO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' DOCUMENTACIONES - UNIDADES
+        AgregarNodos(nodeRoot, UNIDAD, "Unidades", UNIDAD_AGREGAR, DESCRIPCION_AGREGAR, UNIDAD_EDITAR, DESCRIPCION_EDITAR, UNIDAD_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(CAPACITACIONNIVEL, "Niveles de capacitación")
-        With RootNode
-            .Nodes.Add(CAPACITACIONNIVEL_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CAPACITACIONNIVEL_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CAPACITACIONNIVEL_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' DOCUMENTACIONES - INVENTARIO
+        nodeParent = AgregarNodos(nodeRoot, INVENTARIO, "Inventario", INVENTARIO_AGREGAR, DESCRIPCION_AGREGAR, INVENTARIO_EDITAR, DESCRIPCION_EDITAR, INVENTARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, ELEMENTO, "Elementos", ELEMENTO_AGREGAR, DESCRIPCION_AGREGAR, ELEMENTO_EDITAR, DESCRIPCION_EDITAR, ELEMENTO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
-        RootNode = Arbol.Nodes.Add(CAPACITACIONTIPO, "Tipos de capacitación")
-        With RootNode
-            .Nodes.Add(CAPACITACIONTIPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CAPACITACIONTIPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CAPACITACIONTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' DOCUMENTACIONES - REPORTES
+        nodeParent = nodeRoot.Nodes.Add(REPORTE_DOCUMENTACIONES, "Reportes")
 
-        RootNode = Arbol.Nodes.Add(CALIFICACIONCONCEPTO, "Conceptos de calificación")
-        With RootNode
-            .Nodes.Add(CALIFICACIONCONCEPTO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CALIFICACIONCONCEPTO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CALIFICACIONCONCEPTO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' JEFATURA
+        nodeRoot = Arbol.Nodes.Add("JEFATURA", "Jefatura")
 
-        RootNode = Arbol.Nodes.Add(VEHICULOTIPO, "Tipos de vehículos")
-        With RootNode
-            .Nodes.Add(VEHICULOTIPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(VEHICULOTIPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(VEHICULOTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' JEFATURA - COMPRAS
+        nodeCurrent = AgregarNodos(nodeRoot, COMPRA, "Compras", COMPRA_AGREGAR, DESCRIPCION_AGREGAR, COMPRA_EDITAR, DESCRIPCION_EDITAR, COMPRA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(COMPRA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        nodeCurrent.Nodes.Add(COMPRA_EDITAR_CERRADA, DESCRIPCION_EDITAR & " compra cerrada")
+        nodeCurrent.Nodes.Add(COMPRA_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " compra cerrada")
+        nodeCurrent.Nodes.Add(COMPRA_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " compra cerrada")
 
-        RootNode = Arbol.Nodes.Add(VEHICULOMARCA, "Marcas de vehículos")
-        With RootNode
-            .Nodes.Add(VEHICULOMARCA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(VEHICULOMARCA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(VEHICULOMARCA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' JEFATURA - ARQUEOS DE CAJA
+        nodeCurrent = AgregarNodos(nodeRoot, CAJAARQUEO, "Arqueos de caja", CAJAARQUEO_AGREGAR, DESCRIPCION_AGREGAR, CAJAARQUEO_EDITAR, DESCRIPCION_EDITAR, CAJAARQUEO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(CAJAARQUEO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
+        nodeCurrent.Nodes.Add(CAJAARQUEO_EDITAR_CERRADA, DESCRIPCION_EDITAR & " arqueo de caja cerrado")
+        nodeCurrent.Nodes.Add(CAJAARQUEO_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " arqueo de caja cerrado")
+        nodeCurrent.Nodes.Add(CAJAARQUEO_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " arqueo de caja cerrado")
 
-        RootNode = Arbol.Nodes.Add(VEHICULOCOMPANIASEGURO, "Compañías de seguros de vehículos")
-        With RootNode
-            .Nodes.Add(VEHICULOCOMPANIASEGURO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(VEHICULOCOMPANIASEGURO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(VEHICULOCOMPANIASEGURO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
+        ' JEFATURA - REPORTES
+        nodeParent = nodeRoot.Nodes.Add(REPORTE_JEFATURA, "Reportes")
 
-        RootNode = Arbol.Nodes.Add(VACUNATIPO, "Tipos de vacunas")
-        With RootNode
-            .Nodes.Add(VACUNATIPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(VACUNATIPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(VACUNATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(UNIDADTIPO, "Tipos de automotor")
-        With RootNode
-            .Nodes.Add(UNIDADTIPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(UNIDADTIPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(UNIDADTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(UNIDADUSO, "Usos de automotor")
-        With RootNode
-            .Nodes.Add(UNIDADUSO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(UNIDADUSO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(UNIDADUSO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(RUBRO, "Rubros de elementos")
-        With RootNode
-            .Nodes.Add(RUBRO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(RUBRO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(RUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(SUBRUBRO, "Sub-rubros de elementos")
-        With RootNode
-            .Nodes.Add(SUBRUBRO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(SUBRUBRO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(SUBRUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(AREA, "Áreas")
-        With RootNode
-            .Nodes.Add(AREA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(AREA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(AREA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(UBICACION, "Ubicaciones")
-        With RootNode
-            .Nodes.Add(UBICACION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(UBICACION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(UBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(SUBUBICACION, "Sub-ubicaciones")
-        With RootNode
-            .Nodes.Add(SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(SUBUBICACION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(RESPONSABLE, "Responsables")
-        With RootNode
-            .Nodes.Add(RESPONSABLE_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(RESPONSABLE_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(RESPONSABLE_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PROVEEDOR, "Proveedores")
-        With RootNode
-            .Nodes.Add(PROVEEDOR_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PROVEEDOR_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PROVEEDOR_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(USUARIOGRUPO, "Grupos de usuarios")
-        With RootNode
-            .Nodes.Add(USUARIOGRUPO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(USUARIOGRUPO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(USUARIOGRUPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(USUARIO, "Usuarios")
-        With RootNode
-            .Nodes.Add(USUARIO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(USUARIO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(USUARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(USUARIOGRUPOPERMISO, "Permisos")
-        With RootNode
-            .Nodes.Add(USUARIOGRUPOPERMISO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(USUARIOGRUPOPERMISO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(USUARIOGRUPOPERMISO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(ALARMA, "Alarmas")
-        With RootNode
-            .Nodes.Add(ALARMA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(ALARMA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(ALARMA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA, "Personas")
-        With RootNode
-            .Nodes.Add(PERSONA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_FAMILIAR, "Personas - Familiares")
-        With RootNode
-            .Nodes.Add(PERSONA_FAMILIAR_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_FAMILIAR_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_FAMILIAR_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_ALTABAJA, "Personas - Altas y Bajas")
-        With RootNode
-            .Nodes.Add(PERSONA_ALTABAJA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_ALTABAJA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_ALTABAJA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_ASCENSO, "Personas - Ascensos")
-        With RootNode
-            .Nodes.Add(PERSONA_ASCENSO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_ASCENSO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_ASCENSO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_HORARIO, "Personas - Horarios")
-        With RootNode
-            .Nodes.Add(PERSONA_HORARIO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_HORARIO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_HORARIO_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_HORARIO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_VEHICULO, "Personas - Vehículos")
-        With RootNode
-            .Nodes.Add(PERSONA_VEHICULO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_VEHICULO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_VEHICULO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_VACUNA, "Personas - Vacunas")
-        With RootNode
-            .Nodes.Add(PERSONA_VACUNA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_VACUNA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_VACUNA_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_LICENCIA, "Personas - Licencias")
-        With RootNode
-            .Nodes.Add(PERSONA_LICENCIA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_LICENCIA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_LICENCIA_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_LICENCIA_IGNORARRESTRICCIONFECHAS, "Ignorar restricciones de fechas y veces anuales")
-            .Nodes.Add(PERSONA_LICENCIA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_SANCION, "Personas - Sanciones")
-        With RootNode
-            .Nodes.Add(PERSONA_SANCION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_SANCION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_SANCION_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_SANCION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_CAPACITACION, "Personas - Capacitaciones")
-        With RootNode
-            .Nodes.Add(PERSONA_CAPACITACION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_CAPACITACION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_CAPACITACION_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_CALIFICACION, "Personas - Calificaciones")
-        With RootNode
-            .Nodes.Add(PERSONA_CALIFICACION_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_CALIFICACION_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_CALIFICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(PERSONA_CALIFICACION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(PERSONA_EXAMEN, "Personas - Exámenes")
-        With RootNode
-            .Nodes.Add(PERSONA_EXAMEN_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(PERSONA_EXAMEN_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(PERSONA_EXAMEN_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(UNIDAD, "Automotores")
-        With RootNode
-            .Nodes.Add(UNIDAD_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(UNIDAD_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(UNIDAD_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(ELEMENTO, "Elementos")
-        With RootNode
-            .Nodes.Add(ELEMENTO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(ELEMENTO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(ELEMENTO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        End With
-
-        RootNode = Arbol.Nodes.Add(COMPRA, "Compras")
-        With RootNode
-            .Nodes.Add(COMPRA_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(COMPRA_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(COMPRA_EDITAR_CERRADA, DESCRIPCION_EDITAR & " compra cerrada")
-            .Nodes.Add(COMPRA_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(COMPRA_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " compra cerrada")
-            .Nodes.Add(COMPRA_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-            .Nodes.Add(COMPRA_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " compra cerrada")
-        End With
-
-        RootNode = Arbol.Nodes.Add(CAJAARQUEO, "Arqueos de caja")
-        With RootNode
-            .Nodes.Add(CAJAARQUEO_AGREGAR, DESCRIPCION_AGREGAR)
-            .Nodes.Add(CAJAARQUEO_EDITAR, DESCRIPCION_EDITAR)
-            .Nodes.Add(CAJAARQUEO_EDITAR_CERRADA, DESCRIPCION_EDITAR & " arqueo de caja cerrado")
-            .Nodes.Add(CAJAARQUEO_ELIMINAR, DESCRIPCION_ELIMINAR)
-            .Nodes.Add(CAJAARQUEO_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " arqueo de caja cerrado")
-            .Nodes.Add(CAJAARQUEO_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-            .Nodes.Add(CAJAARQUEO_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " arqueo de caja cerrado")
-        End With
-
-        RootNode = Arbol.Nodes.Add(REPORTE_DOCUMENTACIONES, "Reportes")
-        RootNode = Arbol.Nodes.Add(REPORTE_JEFATURA, "Reportes")
-
-        Arbol.ExpandAll()
         Arbol.TopNode = Arbol.Nodes(0)
 
         ' Muestro los permisos asignados
