@@ -3,6 +3,7 @@
 	- Se agregó el área al detalle del arqueo de caja
 	- Se agregaron las columnas de Importe asignado y Saldo actual a la lista de arqueos de caja
 	- Se agregó el Parentesco "Otro" con la posibilidad de especificar el nombre del parentesco en el familiar
+	- Se agregó el campo De emergencia a los familiares
 
 2021-03-15
 	- Se completó el módulo de permisos
