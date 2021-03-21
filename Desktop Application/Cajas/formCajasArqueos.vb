@@ -10,6 +10,7 @@
         Public Property IDArqueo As Integer
         Public Property SaldoInicial As Decimal
         Public Property ImporteAsignado As Decimal
+        Public Property SaldoActual As Decimal
         Public Property FechaCierre As Date?
     End Class
 
@@ -172,7 +173,7 @@
                 mlistCajasArqueosBase = (From ca In dbContext.CajaArqueo
                                          Join c In dbContext.Caja On ca.IDCaja Equals c.IDCaja
                                          Where ca.FechaCierre Is Nothing OrElse ca.FechaCierre >= FechaDesde And ca.FechaCierre <= FechaHasta
-                                         Select New GridRowData With {.IDCaja = ca.IDCaja, .CajaNombre = c.Nombre, .IDArqueo = ca.IDArqueo, .SaldoInicial = ca.SaldoInicial, .FechaCierre = ca.FechaCierre}).ToList
+                                         Select New GridRowData With {.IDCaja = ca.IDCaja, .CajaNombre = c.Nombre, .IDArqueo = ca.IDArqueo, .SaldoInicial = ca.SaldoInicial, .ImporteAsignado = ca.ImporteAsignado, .SaldoActual = ca.SaldoInicial + ca.ImporteAsignado - ca.CajaArqueoDetalles.Sum(Function(cad) cad.Importe), .FechaCierre = ca.FechaCierre}).ToList
             End Using
 
         Catch ex As Exception

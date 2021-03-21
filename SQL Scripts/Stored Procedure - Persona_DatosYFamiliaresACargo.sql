@@ -44,6 +44,7 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo
 				LEFT JOIN Parentesco ON PF.IDParentesco = Parentesco.IDParentesco)
 				LEFT JOIN DocumentoTipo AS FamiliarDocumentoTipo ON PF.IDDocumentoTipo = FamiliarDocumentoTipo.IDDocumentoTipo
 			WHERE Persona.EsActivo = 1
+				AND (PF.IDParentesco IS NULL OR PF.IDParentesco < 254)
 				AND (PF.ACargo IS NULL OR (@IOMAACargo = 0 AND PF.ACargo = 1) OR (@IOMAACargo = 1 AND PF.IOMAACargo = 1))
 				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)

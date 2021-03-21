@@ -22,6 +22,7 @@
 
                 .ACargo = True
                 .Vive = True
+                .EsEmergencia = False
                 .DomicilioIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
                 .DomicilioIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
                 .DomicilioCodigoPostal = CS_Parameter_System.GetString(Parametros.DEFAULT_CODIGOPOSTAL)
@@ -75,6 +76,7 @@
         buttonIOMACertificacionCompletar.Visible = (mEditMode = False)
         checkboxACargo.Enabled = mEditMode
         checkboxVive.Enabled = mEditMode
+        checkboxEsEmergencia.Enabled = mEditMode
 
         ' Contacto
         textboxDomicilioCalle1.ReadOnly = (mEditMode = False)
@@ -131,6 +133,11 @@
 
             ' Datos de la pestaña General
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxParentesco, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            If .IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
+                textboxParentescoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ParentescoOtro)
+            Else
+                textboxParentescoOtro.Text = ""
+            End If
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxDocumentoTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
@@ -157,6 +164,7 @@
             datetimepickerIOMAVencimientoCredencial.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.IOMAVencimientoCredencial, datetimepickerIOMAVencimientoCredencial)
             checkboxACargo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ACargo)
             checkboxVive.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Vive)
+            checkboxEsEmergencia.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsEmergencia)
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle1)
@@ -203,6 +211,11 @@
 
             ' Datos de la pestaña General
             .IDParentesco = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxParentesco.SelectedValue)
+            If CByte(comboboxParentesco.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
+                .ParentescoOtro = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxParentescoOtro.Text)
+            Else
+                .ParentescoOtro = Nothing
+            End If
             .IDDocumentoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxDocumentoTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 .DocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxDocumentoNumero.Text)
@@ -229,6 +242,7 @@
             .IOMAVencimientoCredencial = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerIOMAVencimientoCredencial.Value, datetimepickerIOMAVencimientoCredencial.Checked)
             .ACargo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxACargo.CheckState)
             .Vive = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxVive.CheckState)
+            .EsEmergencia = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsEmergencia.CheckState)
 
             ' Datos de la pestaña Contacto
             .DomicilioCalle1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioCalle1.Text)
@@ -277,6 +291,12 @@
 
     Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxDocumentoNumero.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub Parentesco_Cambio(sender As Object, e As EventArgs) Handles comboboxParentesco.SelectedIndexChanged
+        If Not comboboxParentesco.SelectedItem Is Nothing Then
+            textboxParentescoOtro.Visible = (CByte(comboboxParentesco.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+        End If
     End Sub
 
     Private Sub IOMACertificacionAbrir(sender As Object, e As EventArgs) Handles buttonIOMACertificacionAbrir.Click

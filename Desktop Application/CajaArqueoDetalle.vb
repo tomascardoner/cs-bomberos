@@ -17,10 +17,12 @@ Partial Public Class CajaArqueoDetalle
     Public Property NumeroComprobante As String
     Public Property Fecha As Date
     Public Property Proveedor As String
+    Public Property IDArea As Short
     Public Property Detalle As String
     Public Property Importe As Decimal
     Public Property Notas As String
 
     Public Overridable Property CajaArqueo As CajaArqueo
+    Public Overridable Property Area As Area
 
 End Class

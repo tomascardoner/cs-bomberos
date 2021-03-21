@@ -58,6 +58,7 @@
         textboxNumeroComprobante.ReadOnly = Not mEditMode
         datetimepickerFecha.Enabled = mEditMode
         textboxProveedor.ReadOnly = Not mEditMode
+        comboboxArea.Enabled = mEditMode
         textboxDetalle.ReadOnly = Not mEditMode
         currencytextboxImporte.ReadOnly = Not mEditMode
 
@@ -67,6 +68,8 @@
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
     End Sub
 
     Friend Sub SetAppearance()
@@ -92,6 +95,7 @@
             textboxNumeroComprobante.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroComprobante)
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.Fecha)
             textboxProveedor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Proveedor)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
             CS_ValueTranslation.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 
@@ -111,6 +115,7 @@
             .NumeroComprobante = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNumeroComprobante.Text)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .Proveedor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProveedor.Text)
+            .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
             .Importe = CS_ValueTranslation.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
 
@@ -158,6 +163,12 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+        If comboboxArea.SelectedItem Is Nothing Then
+            MsgBox("Debe especificar el área.", CType(MessageBoxButtons.OK + MessageBoxIcon.Information, MsgBoxStyle), My.Application.Info.Title)
+            comboboxArea.Focus()
+            Exit Sub
+        End If
+
         ' Generar el ID nuevo
         If mIsNew Then
             If mCajaArqueoActual.CajaArqueoDetalles.Any() Then

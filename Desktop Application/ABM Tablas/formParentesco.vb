@@ -162,7 +162,7 @@
         If mParentescoActual.IDParentesco = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
                 If dbcMaxID.Parentesco.Any() Then
-                    mParentescoActual.IDParentesco = dbcMaxID.Parentesco.Max(Function(a) a.IDParentesco) + CByte(1)
+                    mParentescoActual.IDParentesco = dbcMaxID.Parentesco.Where(Function(a) a.IDParentesco < CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(a) a.IDParentesco) + CByte(1)
                 Else
                     mParentescoActual.IDParentesco = 1
                 End If

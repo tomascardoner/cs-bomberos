@@ -907,7 +907,7 @@
                               From pg In Parentescos_Group.DefaultIfEmpty
                               Where pf.IDPersona = mPersonaActual.IDPersona
                               Order By pg.Orden, pf.ApellidoNombre
-                              Select New Familiares_GridRowData With {.IDFamiliar = pf.IDFamiliar, .ParentescoNombre = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, pg.Nombre), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
+                              Select New Familiares_GridRowData With {.IDFamiliar = pf.IDFamiliar, .ParentescoNombre = If(pg Is Nothing, My.Resources.STRING_ITEM_NOT_SPECIFIED, If(pf.IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE, pg.Nombre + ": " + pf.ParentescoOtro, pg.Nombre)), .Apellido = pf.Apellido, .Nombre = pf.Nombre}).ToList
 
             datagridviewFamiliares.AutoGenerateColumns = False
             datagridviewFamiliares.DataSource = listFamiliares

@@ -53,6 +53,7 @@ Partial Class formPersonaFamiliar
         Dim labelIOMATiene As System.Windows.Forms.Label
         Dim labelEstadoCivil As System.Windows.Forms.Label
         Dim labelIOMAVencimientoCredencial As System.Windows.Forms.Label
+        Dim labelEsEmergencia As System.Windows.Forms.Label
         Me.labelIOMACertificacion = New System.Windows.Forms.Label()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
@@ -63,6 +64,7 @@ Partial Class formPersonaFamiliar
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.checkboxEsEmergencia = New System.Windows.Forms.CheckBox()
         Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.groupboxIOMA = New System.Windows.Forms.GroupBox()
         Me.buttonIOMACertificacionCompletar = New System.Windows.Forms.Button()
@@ -103,6 +105,7 @@ Partial Class formPersonaFamiliar
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxParentescoOtro = New System.Windows.Forms.TextBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelFactorRH = New System.Windows.Forms.Label()
@@ -134,6 +137,7 @@ Partial Class formPersonaFamiliar
         labelIOMATiene = New System.Windows.Forms.Label()
         labelEstadoCivil = New System.Windows.Forms.Label()
         labelIOMAVencimientoCredencial = New System.Windows.Forms.Label()
+        labelEsEmergencia = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -166,7 +170,7 @@ Partial Class formPersonaFamiliar
         labelFactorRH.Location = New System.Drawing.Point(286, 129)
         labelFactorRH.Name = "labelFactorRH"
         labelFactorRH.Size = New System.Drawing.Size(59, 13)
-        labelFactorRH.TabIndex = 11
+        labelFactorRH.TabIndex = 12
         labelFactorRH.Text = "Factor RH:"
         '
         'labelGrupoSanguineo
@@ -175,7 +179,7 @@ Partial Class formPersonaFamiliar
         labelGrupoSanguineo.Location = New System.Drawing.Point(6, 129)
         labelGrupoSanguineo.Name = "labelGrupoSanguineo"
         labelGrupoSanguineo.Size = New System.Drawing.Size(93, 13)
-        labelGrupoSanguineo.TabIndex = 9
+        labelGrupoSanguineo.TabIndex = 10
         labelGrupoSanguineo.Text = "Grupo sanguíneo:"
         '
         'labelParentesco
@@ -190,10 +194,10 @@ Partial Class formPersonaFamiliar
         'labelVive
         '
         labelVive.AutoSize = True
-        labelVive.Location = New System.Drawing.Point(6, 294)
+        labelVive.Location = New System.Drawing.Point(152, 271)
         labelVive.Name = "labelVive"
         labelVive.Size = New System.Drawing.Size(31, 13)
-        labelVive.TabIndex = 18
+        labelVive.TabIndex = 19
         labelVive.Text = "Vive:"
         '
         'labelFechaNacimiento
@@ -202,7 +206,7 @@ Partial Class formPersonaFamiliar
         labelFechaNacimiento.Location = New System.Drawing.Point(6, 76)
         labelFechaNacimiento.Name = "labelFechaNacimiento"
         labelFechaNacimiento.Size = New System.Drawing.Size(111, 13)
-        labelFechaNacimiento.TabIndex = 5
+        labelFechaNacimiento.TabIndex = 6
         labelFechaNacimiento.Text = "Fecha de Nacimiento:"
         '
         'labelGenero
@@ -211,7 +215,7 @@ Partial Class formPersonaFamiliar
         labelGenero.Location = New System.Drawing.Point(6, 102)
         labelGenero.Name = "labelGenero"
         labelGenero.Size = New System.Drawing.Size(45, 13)
-        labelGenero.TabIndex = 7
+        labelGenero.TabIndex = 8
         labelGenero.Text = "Género:"
         '
         'labelDocumento
@@ -220,7 +224,7 @@ Partial Class formPersonaFamiliar
         labelDocumento.Location = New System.Drawing.Point(6, 49)
         labelDocumento.Name = "labelDocumento"
         labelDocumento.Size = New System.Drawing.Size(65, 13)
-        labelDocumento.TabIndex = 2
+        labelDocumento.TabIndex = 3
         labelDocumento.Text = "Documento:"
         '
         'labelTelefono
@@ -333,6 +337,8 @@ Partial Class formPersonaFamiliar
         '
         'labelEsActivo
         '
+        labelEsActivo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEsActivo.AutoSize = True
         labelEsActivo.Location = New System.Drawing.Point(6, 216)
         labelEsActivo.Name = "labelEsActivo"
@@ -351,6 +357,8 @@ Partial Class formPersonaFamiliar
         '
         'labelModificacion
         '
+        labelModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
         labelModificacion.Location = New System.Drawing.Point(6, 291)
         labelModificacion.Name = "labelModificacion"
@@ -360,6 +368,8 @@ Partial Class formPersonaFamiliar
         '
         'labelCreacion
         '
+        labelCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
         labelCreacion.Location = New System.Drawing.Point(6, 265)
         labelCreacion.Name = "labelCreacion"
@@ -373,7 +383,7 @@ Partial Class formPersonaFamiliar
         labelACargo.Location = New System.Drawing.Point(6, 271)
         labelACargo.Name = "labelACargo"
         labelACargo.Size = New System.Drawing.Size(47, 13)
-        labelACargo.TabIndex = 16
+        labelACargo.TabIndex = 17
         labelACargo.Text = "A cargo:"
         '
         'labelIOMAACargo
@@ -409,7 +419,7 @@ Partial Class formPersonaFamiliar
         labelEstadoCivil.Location = New System.Drawing.Point(6, 161)
         labelEstadoCivil.Name = "labelEstadoCivil"
         labelEstadoCivil.Size = New System.Drawing.Size(65, 13)
-        labelEstadoCivil.TabIndex = 13
+        labelEstadoCivil.TabIndex = 14
         labelEstadoCivil.Text = "Estado Civil:"
         '
         'labelIOMAVencimientoCredencial
@@ -420,6 +430,15 @@ Partial Class formPersonaFamiliar
         labelIOMAVencimientoCredencial.Size = New System.Drawing.Size(135, 13)
         labelIOMAVencimientoCredencial.TabIndex = 6
         labelIOMAVencimientoCredencial.Text = "Vencimiento de credencial:"
+        '
+        'labelEsEmergencia
+        '
+        labelEsEmergencia.AutoSize = True
+        labelEsEmergencia.Location = New System.Drawing.Point(270, 271)
+        labelEsEmergencia.Name = "labelEsEmergencia"
+        labelEsEmergencia.Size = New System.Drawing.Size(82, 13)
+        labelEsEmergencia.TabIndex = 21
+        labelEsEmergencia.Text = "De emergencia:"
         '
         'labelIOMACertificacion
         '
@@ -497,6 +516,9 @@ Partial Class formPersonaFamiliar
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageContacto)
@@ -504,11 +526,14 @@ Partial Class formPersonaFamiliar
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 121)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 345)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(514, 343)
         Me.tabcontrolMain.TabIndex = 4
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.textboxParentescoOtro)
+        Me.tabpageGeneral.Controls.Add(Me.checkboxEsEmergencia)
+        Me.tabpageGeneral.Controls.Add(labelEsEmergencia)
         Me.tabpageGeneral.Controls.Add(Me.comboboxEstadoCivil)
         Me.tabpageGeneral.Controls.Add(labelEstadoCivil)
         Me.tabpageGeneral.Controls.Add(Me.groupboxIOMA)
@@ -533,10 +558,19 @@ Partial Class formPersonaFamiliar
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 316)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(506, 314)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'checkboxEsEmergencia
+        '
+        Me.checkboxEsEmergencia.AutoSize = True
+        Me.checkboxEsEmergencia.Location = New System.Drawing.Point(358, 271)
+        Me.checkboxEsEmergencia.Name = "checkboxEsEmergencia"
+        Me.checkboxEsEmergencia.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsEmergencia.TabIndex = 22
+        Me.checkboxEsEmergencia.UseVisualStyleBackColor = True
         '
         'comboboxEstadoCivil
         '
@@ -545,7 +579,7 @@ Partial Class formPersonaFamiliar
         Me.comboboxEstadoCivil.Location = New System.Drawing.Point(142, 158)
         Me.comboboxEstadoCivil.Name = "comboboxEstadoCivil"
         Me.comboboxEstadoCivil.Size = New System.Drawing.Size(161, 21)
-        Me.comboboxEstadoCivil.TabIndex = 14
+        Me.comboboxEstadoCivil.TabIndex = 15
         '
         'groupboxIOMA
         '
@@ -563,7 +597,7 @@ Partial Class formPersonaFamiliar
         Me.groupboxIOMA.Location = New System.Drawing.Point(6, 186)
         Me.groupboxIOMA.Name = "groupboxIOMA"
         Me.groupboxIOMA.Size = New System.Drawing.Size(494, 75)
-        Me.groupboxIOMA.TabIndex = 15
+        Me.groupboxIOMA.TabIndex = 16
         Me.groupboxIOMA.TabStop = False
         Me.groupboxIOMA.Text = "I.O.M.A.:"
         '
@@ -625,10 +659,10 @@ Partial Class formPersonaFamiliar
         'checkboxACargo
         '
         Me.checkboxACargo.AutoSize = True
-        Me.checkboxACargo.Location = New System.Drawing.Point(142, 271)
+        Me.checkboxACargo.Location = New System.Drawing.Point(59, 271)
         Me.checkboxACargo.Name = "checkboxACargo"
         Me.checkboxACargo.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxACargo.TabIndex = 17
+        Me.checkboxACargo.TabIndex = 18
         Me.checkboxACargo.UseVisualStyleBackColor = True
         '
         'comboboxFactorRH
@@ -638,7 +672,7 @@ Partial Class formPersonaFamiliar
         Me.comboboxFactorRH.Location = New System.Drawing.Point(365, 126)
         Me.comboboxFactorRH.Name = "comboboxFactorRH"
         Me.comboboxFactorRH.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxFactorRH.TabIndex = 12
+        Me.comboboxFactorRH.TabIndex = 13
         '
         'comboboxGrupoSanguineo
         '
@@ -647,7 +681,7 @@ Partial Class formPersonaFamiliar
         Me.comboboxGrupoSanguineo.Location = New System.Drawing.Point(142, 126)
         Me.comboboxGrupoSanguineo.Name = "comboboxGrupoSanguineo"
         Me.comboboxGrupoSanguineo.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGrupoSanguineo.TabIndex = 10
+        Me.comboboxGrupoSanguineo.TabIndex = 11
         '
         'comboboxParentesco
         '
@@ -661,10 +695,10 @@ Partial Class formPersonaFamiliar
         'checkboxVive
         '
         Me.checkboxVive.AutoSize = True
-        Me.checkboxVive.Location = New System.Drawing.Point(142, 294)
+        Me.checkboxVive.Location = New System.Drawing.Point(189, 271)
         Me.checkboxVive.Name = "checkboxVive"
         Me.checkboxVive.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxVive.TabIndex = 19
+        Me.checkboxVive.TabIndex = 20
         Me.checkboxVive.UseVisualStyleBackColor = True
         '
         'datetimepickerFechaNacimiento
@@ -676,7 +710,7 @@ Partial Class formPersonaFamiliar
         Me.datetimepickerFechaNacimiento.Name = "datetimepickerFechaNacimiento"
         Me.datetimepickerFechaNacimiento.ShowCheckBox = True
         Me.datetimepickerFechaNacimiento.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerFechaNacimiento.TabIndex = 6
+        Me.datetimepickerFechaNacimiento.TabIndex = 7
         '
         'comboboxGenero
         '
@@ -685,7 +719,7 @@ Partial Class formPersonaFamiliar
         Me.comboboxGenero.Location = New System.Drawing.Point(142, 99)
         Me.comboboxGenero.Name = "comboboxGenero"
         Me.comboboxGenero.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxGenero.TabIndex = 8
+        Me.comboboxGenero.TabIndex = 9
         '
         'comboboxDocumentoTipo
         '
@@ -694,7 +728,7 @@ Partial Class formPersonaFamiliar
         Me.comboboxDocumentoTipo.Location = New System.Drawing.Point(142, 46)
         Me.comboboxDocumentoTipo.Name = "comboboxDocumentoTipo"
         Me.comboboxDocumentoTipo.Size = New System.Drawing.Size(102, 21)
-        Me.comboboxDocumentoTipo.TabIndex = 3
+        Me.comboboxDocumentoTipo.TabIndex = 4
         '
         'textboxDocumentoNumero
         '
@@ -702,7 +736,7 @@ Partial Class formPersonaFamiliar
         Me.textboxDocumentoNumero.MaxLength = 11
         Me.textboxDocumentoNumero.Name = "textboxDocumentoNumero"
         Me.textboxDocumentoNumero.Size = New System.Drawing.Size(115, 20)
-        Me.textboxDocumentoNumero.TabIndex = 4
+        Me.textboxDocumentoNumero.TabIndex = 5
         '
         'maskedtextboxDocumentoNumero
         '
@@ -746,7 +780,7 @@ Partial Class formPersonaFamiliar
         Me.tabpageContacto.Location = New System.Drawing.Point(4, 25)
         Me.tabpageContacto.Name = "tabpageContacto"
         Me.tabpageContacto.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageContacto.Size = New System.Drawing.Size(506, 316)
+        Me.tabpageContacto.Size = New System.Drawing.Size(506, 314)
         Me.tabpageContacto.TabIndex = 1
         Me.tabpageContacto.Text = "Contacto"
         Me.tabpageContacto.UseVisualStyleBackColor = True
@@ -866,13 +900,15 @@ Partial Class formPersonaFamiliar
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 316)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(506, 314)
         Me.tabpageNotasAuditoria.TabIndex = 7
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
         'checkboxEsActivo
         '
+        Me.checkboxEsActivo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxEsActivo.AutoSize = True
         Me.checkboxEsActivo.Location = New System.Drawing.Point(114, 216)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
@@ -882,6 +918,8 @@ Partial Class formPersonaFamiliar
         '
         'labelIDFamiliar
         '
+        Me.labelIDFamiliar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelIDFamiliar.AutoSize = True
         Me.labelIDFamiliar.Location = New System.Drawing.Point(6, 239)
         Me.labelIDFamiliar.Name = "labelIDFamiliar"
@@ -891,6 +929,8 @@ Partial Class formPersonaFamiliar
         '
         'textboxIDFamiliar
         '
+        Me.textboxIDFamiliar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.textboxIDFamiliar.Location = New System.Drawing.Point(114, 236)
         Me.textboxIDFamiliar.MaxLength = 10
         Me.textboxIDFamiliar.Name = "textboxIDFamiliar"
@@ -902,15 +942,20 @@ Partial Class formPersonaFamiliar
         '
         'textboxNotas
         '
+        Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxNotas.Location = New System.Drawing.Point(114, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 204)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 205)
         Me.textboxNotas.TabIndex = 1
         '
         'textboxUsuarioModificacion
         '
+        Me.textboxUsuarioModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 288)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
@@ -920,6 +965,8 @@ Partial Class formPersonaFamiliar
         '
         'textboxUsuarioCreacion
         '
+        Me.textboxUsuarioCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 262)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
@@ -929,6 +976,8 @@ Partial Class formPersonaFamiliar
         '
         'textboxFechaHoraModificacion
         '
+        Me.textboxFechaHoraModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 288)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
@@ -938,6 +987,8 @@ Partial Class formPersonaFamiliar
         '
         'textboxFechaHoraCreacion
         '
+        Me.textboxFechaHoraCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 262)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
@@ -945,11 +996,19 @@ Partial Class formPersonaFamiliar
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
+        'textboxParentescoOtro
+        '
+        Me.textboxParentescoOtro.Location = New System.Drawing.Point(309, 10)
+        Me.textboxParentescoOtro.MaxLength = 50
+        Me.textboxParentescoOtro.Name = "textboxParentescoOtro"
+        Me.textboxParentescoOtro.Size = New System.Drawing.Size(191, 20)
+        Me.textboxParentescoOtro.TabIndex = 2
+        '
         'formPersonaFamiliar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(538, 475)
+        Me.ClientSize = New System.Drawing.Size(538, 476)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(labelApellido)
         Me.Controls.Add(Me.textboxApellido)
@@ -1029,4 +1088,6 @@ Partial Class formPersonaFamiliar
     Friend WithEvents buttonIOMACertificacionCompletar As Button
     Friend WithEvents buttonIOMACertificacionAbrir As Button
     Friend WithEvents labelIOMACertificacion As Label
+    Friend WithEvents checkboxEsEmergencia As CheckBox
+    Friend WithEvents textboxParentescoOtro As TextBox
 End Class

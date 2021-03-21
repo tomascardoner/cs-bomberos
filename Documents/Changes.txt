@@ -1,3 +1,12 @@
+2021-03-20
+	- Se agregó la firma del Responsable a los reportes de Listado de Compras y Resumen de Compras
+	- Se agregó el área al detalle del arqueo de caja
+	- Se agregaron las columnas de Importe asignado y Saldo actual a la lista de arqueos de caja
+	- Se agregó el Parentesco "Otro" con la posibilidad de especificar el nombre del parentesco en el familiar
+
+2021-03-15
+	- Se completó el módulo de permisos
+
 2020-12-26
 	- Se agregó el módulo de arqueos de cajas
 

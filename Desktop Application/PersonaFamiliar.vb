@@ -14,6 +14,7 @@ Partial Public Class PersonaFamiliar
     Public Property IDPersona As Integer
     Public Property IDFamiliar As Byte
     Public Property IDParentesco As Nullable(Of Byte)
+    Public Property ParentescoOtro As String
     Public Property Apellido As String
     Public Property Nombre As String
     Public Property ApellidoNombre As String
@@ -30,6 +31,7 @@ Partial Public Class PersonaFamiliar
     Public Property IOMAVencimientoCredencial As Nullable(Of Date)
     Public Property ACargo As Boolean
     Public Property Vive As Boolean
+    Public Property EsEmergencia As Boolean
     Public Property DomicilioCalle1 As String
     Public Property DomicilioNumero As String
     Public Property DomicilioPiso As String

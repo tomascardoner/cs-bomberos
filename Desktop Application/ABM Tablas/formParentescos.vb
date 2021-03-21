@@ -43,7 +43,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistParentescosBase = dbContext.Parentesco.ToList
+                mlistParentescosBase = dbContext.Parentesco.Where(Function(p) p.IDParentesco < CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).ToList
             End Using
 
         Catch ex As Exception

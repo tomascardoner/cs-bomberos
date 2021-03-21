@@ -22,16 +22,14 @@ Partial Class formCajasArqueos
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnCaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnIDArqueo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSaldoInicial = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaCierre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -50,6 +48,12 @@ Partial Class formCajasArqueos
         Me.toolstripCerrada = New System.Windows.Forms.ToolStrip()
         Me.labelCerrada = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCerrada = New System.Windows.Forms.ToolStripComboBox()
+        Me.columnCaja = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnIDArqueo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSaldoInicial = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporteAsignado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSaldoActual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaCierre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -79,13 +83,13 @@ Partial Class formCajasArqueos
         Me.datagridviewMain.AllowUserToAddRows = False
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCaja, Me.columnIDArqueo, Me.columnSaldoInicial, Me.columnFechaCierre})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCaja, Me.columnIDArqueo, Me.columnSaldoInicial, Me.columnImporteAsignado, Me.columnSaldoActual, Me.columnFechaCierre})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
@@ -97,49 +101,6 @@ Partial Class formCajasArqueos
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
-        '
-        'columnCaja
-        '
-        Me.columnCaja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCaja.DataPropertyName = "CajaNombre"
-        Me.columnCaja.HeaderText = "Caja"
-        Me.columnCaja.Name = "columnCaja"
-        Me.columnCaja.ReadOnly = True
-        Me.columnCaja.Width = 53
-        '
-        'columnIDArqueo
-        '
-        Me.columnIDArqueo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnIDArqueo.DataPropertyName = "IDArqueo"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.Format = "N0"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnIDArqueo.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnIDArqueo.HeaderText = "Número"
-        Me.columnIDArqueo.Name = "columnIDArqueo"
-        Me.columnIDArqueo.ReadOnly = True
-        Me.columnIDArqueo.Width = 69
-        '
-        'columnSaldoInicial
-        '
-        Me.columnSaldoInicial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSaldoInicial.DataPropertyName = "SaldoInicial"
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnSaldoInicial.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnSaldoInicial.HeaderText = "Saldo inicial"
-        Me.columnSaldoInicial.Name = "columnSaldoInicial"
-        Me.columnSaldoInicial.ReadOnly = True
-        Me.columnSaldoInicial.Width = 81
-        '
-        'columnFechaCierre
-        '
-        Me.columnFechaCierre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFechaCierre.DataPropertyName = "FechaCierre"
-        Me.columnFechaCierre.HeaderText = "Fecha de cierre"
-        Me.columnFechaCierre.Name = "columnFechaCierre"
-        Me.columnFechaCierre.ReadOnly = True
-        Me.columnFechaCierre.Width = 74
         '
         'panelToolbars
         '
@@ -288,6 +249,75 @@ Partial Class formCajasArqueos
         Me.comboboxCerrada.Name = "comboboxCerrada"
         Me.comboboxCerrada.Size = New System.Drawing.Size(75, 25)
         '
+        'columnCaja
+        '
+        Me.columnCaja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCaja.DataPropertyName = "CajaNombre"
+        Me.columnCaja.HeaderText = "Caja"
+        Me.columnCaja.Name = "columnCaja"
+        Me.columnCaja.ReadOnly = True
+        Me.columnCaja.Width = 53
+        '
+        'columnIDArqueo
+        '
+        Me.columnIDArqueo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnIDArqueo.DataPropertyName = "IDArqueo"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnIDArqueo.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnIDArqueo.HeaderText = "Número"
+        Me.columnIDArqueo.Name = "columnIDArqueo"
+        Me.columnIDArqueo.ReadOnly = True
+        Me.columnIDArqueo.Width = 69
+        '
+        'columnSaldoInicial
+        '
+        Me.columnSaldoInicial.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSaldoInicial.DataPropertyName = "SaldoInicial"
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnSaldoInicial.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnSaldoInicial.HeaderText = "Saldo inicial"
+        Me.columnSaldoInicial.Name = "columnSaldoInicial"
+        Me.columnSaldoInicial.ReadOnly = True
+        Me.columnSaldoInicial.Width = 88
+        '
+        'columnImporteAsignado
+        '
+        Me.columnImporteAsignado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnImporteAsignado.DataPropertyName = "ImporteAsignado"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Format = "C2"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.columnImporteAsignado.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnImporteAsignado.HeaderText = "Importe asignado"
+        Me.columnImporteAsignado.Name = "columnImporteAsignado"
+        Me.columnImporteAsignado.ReadOnly = True
+        Me.columnImporteAsignado.Width = 104
+        '
+        'columnSaldoActual
+        '
+        Me.columnSaldoActual.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSaldoActual.DataPropertyName = "SaldoActual"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.columnSaldoActual.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnSaldoActual.HeaderText = "Saldo actual"
+        Me.columnSaldoActual.Name = "columnSaldoActual"
+        Me.columnSaldoActual.ReadOnly = True
+        Me.columnSaldoActual.Width = 84
+        '
+        'columnFechaCierre
+        '
+        Me.columnFechaCierre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaCierre.DataPropertyName = "FechaCierre"
+        Me.columnFechaCierre.HeaderText = "Fecha de cierre"
+        Me.columnFechaCierre.Name = "columnFechaCierre"
+        Me.columnFechaCierre.ReadOnly = True
+        Me.columnFechaCierre.Width = 74
+        '
         'formCajasArqueos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -341,5 +371,7 @@ Partial Class formCajasArqueos
     Friend WithEvents columnCaja As DataGridViewTextBoxColumn
     Friend WithEvents columnIDArqueo As DataGridViewTextBoxColumn
     Friend WithEvents columnSaldoInicial As DataGridViewTextBoxColumn
+    Friend WithEvents columnImporteAsignado As DataGridViewTextBoxColumn
+    Friend WithEvents columnSaldoActual As DataGridViewTextBoxColumn
     Friend WithEvents columnFechaCierre As DataGridViewTextBoxColumn
 End Class

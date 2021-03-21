@@ -1,3 +1,15 @@
+2021-03-20
+	- Copiar reportes: Compras-ListadoPorArea.rpt, Compras-ResumenPorArea.rpt
+	- Ejecutar stored procedures: usp_Compra_ListadoPorArea
+	- Tabla CajaArqueoDetalle
+		- Agregar el campo IDArea smallint not null, antes del Detalle
+		- Agregar la foreign key FK__Area__CompraDetalle
+	- Tabla Parentesco: agregar el registro: 254, Otro
+	- Tabla PersonaFamiliar: agregar los campos:
+		- ParentescoOtro varchar(50) null después de IDParentesco
+		- EsEmergencia bit not null (0) después de Vive
+	- Copiar EXE
+
 2020-12-12
 	- Ejecutar script de update
 	- Tabla ReporteGrupo:

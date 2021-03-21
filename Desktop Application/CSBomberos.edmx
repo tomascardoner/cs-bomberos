@@ -79,6 +79,7 @@
           <Property Name="NumeroComprobante" Type="varchar" MaxLength="20" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Proveedor" Type="varchar" MaxLength="100" />
+          <Property Name="IDArea" Type="smallint" Nullable="false" />
           <Property Name="Detalle" Type="varchar" MaxLength="100" />
           <Property Name="Importe" Type="money" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -668,6 +669,7 @@
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDFamiliar" Type="tinyint" Nullable="false" />
           <Property Name="IDParentesco" Type="tinyint" />
+          <Property Name="ParentescoOtro" Type="varchar" MaxLength="50" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ApellidoNombre" Type="varchar" MaxLength="102" StoreGeneratedPattern="Computed" Nullable="false" />
@@ -684,6 +686,7 @@
           <Property Name="IOMAACargo" Type="bit" Nullable="false" />
           <Property Name="ACargo" Type="bit" Nullable="false" />
           <Property Name="Vive" Type="bit" Nullable="false" />
+          <Property Name="EsEmergencia" Type="bit" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="varchar" MaxLength="100" />
           <Property Name="DomicilioNumero" Type="varchar" MaxLength="10" />
           <Property Name="DomicilioPiso" Type="varchar" MaxLength="10" />
@@ -1194,6 +1197,18 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Area__CajaArqueoDetalle">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="CajaArqueoDetalle" Type="Self.CajaArqueoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="IDArea" />
+            </Principal>
+            <Dependent Role="CajaArqueoDetalle">
+              <PropertyRef Name="IDArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Area__CompraDetalle">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
           <End Role="CompraDetalle" Type="Self.CompraDetalle" Multiplicity="*" />
@@ -3593,6 +3608,10 @@
           <EntitySet Name="VehiculoCompaniaSeguro" EntityType="Self.VehiculoCompaniaSeguro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoMarca" EntityType="Self.VehiculoMarca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoTipo" EntityType="Self.VehiculoTipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Area__CajaArqueoDetalle" Association="Self.FK__Area__CajaArqueoDetalle">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="CajaArqueoDetalle" EntitySet="CajaArqueoDetalle" />
+          </AssociationSet>
           <AssociationSet Name="FK__Area__CompraDetalle" Association="Self.FK__Area__CompraDetalle">
             <End Role="Area" EntitySet="Area" />
             <End Role="CompraDetalle" EntitySet="CompraDetalle" />
@@ -5219,6 +5238,10 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CajaArqueo" EntitySet="CajaArqueo" />
           </AssociationSet>
+          <AssociationSet Name="FK__Area__CajaArqueoDetalle" Association="CSBomberosModel.FK__Area__CajaArqueoDetalle">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="CajaArqueoDetalle" EntitySet="CajaArqueoDetalle" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -5817,6 +5840,7 @@
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
           <Property Name="IDFamiliar" Type="Byte" Nullable="false" />
           <Property Name="IDParentesco" Type="Byte" />
+          <Property Name="ParentescoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ApellidoNombre" Type="String" Nullable="false" MaxLength="102" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
@@ -5833,6 +5857,7 @@
           <Property Name="IOMAVencimientoCredencial" Type="DateTime" Precision="0" />
           <Property Name="ACargo" Type="Boolean" Nullable="false" />
           <Property Name="Vive" Type="Boolean" Nullable="false" />
+          <Property Name="EsEmergencia" Type="Boolean" Nullable="false" />
           <Property Name="DomicilioCalle1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="DomicilioPiso" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -5964,6 +5989,7 @@
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Area" FromRole="Area" ToRole="Cuartel" />
           <NavigationProperty Name="Inventario" Relationship="CSBomberosModel.FK__Area__Inventario" FromRole="Area" ToRole="Inventario" />
           <NavigationProperty Name="CompraDetalles" Relationship="CSBomberosModel.FK__Area__CompraDetalle" FromRole="Area" ToRole="CompraDetalle" />
+          <NavigationProperty Name="CajaArqueoDetalle" Relationship="CSBomberosModel.FK__Area__CajaArqueoDetalle" FromRole="Area" ToRole="CajaArqueoDetalle" />
         </EntityType>
         <EntityType Name="Cargo">
           <Key>
@@ -9075,10 +9101,12 @@
           <Property Name="NumeroComprobante" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IDArea" Type="Int16" Nullable="false" />
           <Property Name="Detalle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="CajaArqueo" Relationship="CSBomberosModel.FK__CajaArqueo__CajaArqueoDetalle" FromRole="CajaArqueoDetalle" ToRole="CajaArqueo" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK__Area__CajaArqueoDetalle" FromRole="CajaArqueoDetalle" ToRole="Area" />
         </EntityType>
         <Association Name="FK__Caja__CajaArqueo">
           <End Type="CSBomberosModel.Caja" Role="Caja" Multiplicity="1" />
@@ -9151,6 +9179,18 @@
             </Principal>
             <Dependent Role="CajaArqueo">
               <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Area__CajaArqueoDetalle">
+          <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="CSBomberosModel.CajaArqueoDetalle" Role="CajaArqueoDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="IDArea" />
+            </Principal>
+            <Dependent Role="CajaArqueoDetalle">
+              <PropertyRef Name="IDArea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9419,6 +9459,8 @@
           <EntitySetMapping Name="PersonaFamiliar">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaFamiliar">
               <MappingFragment StoreEntitySet="PersonaFamiliar">
+                <ScalarProperty Name="ParentescoOtro" ColumnName="ParentescoOtro" />
+                <ScalarProperty Name="EsEmergencia" ColumnName="EsEmergencia" />
                 <ScalarProperty Name="IOMAVencimientoCredencial" ColumnName="IOMAVencimientoCredencial" />
                 <ScalarProperty Name="IDEstadoCivil" ColumnName="IDEstadoCivil" />
                 <ScalarProperty Name="IOMAACargo" ColumnName="IOMAACargo" />
@@ -10398,6 +10440,7 @@
           <EntitySetMapping Name="CajaArqueoDetalle">
             <EntityTypeMapping TypeName="CSBomberosModel.CajaArqueoDetalle">
               <MappingFragment StoreEntitySet="CajaArqueoDetalle">
+                <ScalarProperty Name="IDArea" ColumnName="IDArea" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />

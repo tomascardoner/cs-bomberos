@@ -22,15 +22,35 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 	@FechaHasta date,
 	@Cerrada bit,
 	@CierreFechaDesde date,
-	@CierreFechaHasta date
+	@CierreFechaHasta date,
+	@IDResponsable tinyint
 	AS
 
 	BEGIN
+		DECLARE @ResponsableIDPersona int
+		DECLARE @ResponsableApellidoNombre varchar(102)
+		DECLARE @ResponsableJerarquia varchar(50)
+		DECLARE @ResponsableTipo varchar(50)
 
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe
+		-- Obtengo el Cargo y el Apellido y nombre del Responsable firmante
+		SELECT @ResponsableIDPersona = r.IDPersona, @ResponsableApellidoNombre = p.ApellidoNombre, @ResponsableTipo = rt.Nombre
+			FROM Responsable AS r
+				INNER JOIN ResponsableTipo AS rt ON r.IDResponsableTipo = rt.IDResponsableTipo
+				INNER JOIN Persona AS p ON r.IDPersona = p.IDPersona
+			WHERE r.IDResponsable = @IDResponsable
+
+		-- Obtengo la Jerarquía del Responsable
+		SELECT @ResponsableJerarquia = cj.Nombre
+			FROM PersonaAscenso AS pa
+				INNER JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
+				INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+			WHERE pa.IDPersona = @ResponsableIDPersona
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
+
+		SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM Compra AS c
 				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraDetalle AS cd ON c.IDCompra = cd.IDCompra

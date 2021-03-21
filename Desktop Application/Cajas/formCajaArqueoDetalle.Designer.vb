@@ -35,15 +35,17 @@ Partial Class formCajaArqueoDetalle
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.textboxDetalle = New System.Windows.Forms.TextBox()
+        Me.textboxProveedor = New System.Windows.Forms.TextBox()
+        Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
+        Me.textboxNumeroComprobante = New System.Windows.Forms.TextBox()
         Me.currencytextboxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.labelImporte = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelID = New System.Windows.Forms.Label()
         Me.textboxID = New System.Windows.Forms.TextBox()
-        Me.textboxNumeroComprobante = New System.Windows.Forms.TextBox()
-        Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
-        Me.textboxProveedor = New System.Windows.Forms.TextBox()
-        Me.textboxDetalle = New System.Windows.Forms.TextBox()
+        Me.labelArea = New System.Windows.Forms.Label()
+        Me.comboboxArea = New System.Windows.Forms.ComboBox()
         labelFecha = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
         labelDetalle = New System.Windows.Forms.Label()
@@ -62,6 +64,24 @@ Partial Class formCajaArqueoDetalle
         labelFecha.Size = New System.Drawing.Size(40, 13)
         labelFecha.TabIndex = 2
         labelFecha.Text = "Fecha:"
+        '
+        'Label1
+        '
+        Label1.AutoSize = True
+        Label1.Location = New System.Drawing.Point(3, 61)
+        Label1.Name = "Label1"
+        Label1.Size = New System.Drawing.Size(59, 13)
+        Label1.TabIndex = 4
+        Label1.Text = "Proveedor:"
+        '
+        'labelDetalle
+        '
+        labelDetalle.AutoSize = True
+        labelDetalle.Location = New System.Drawing.Point(3, 114)
+        labelDetalle.Name = "labelDetalle"
+        labelDetalle.Size = New System.Drawing.Size(43, 13)
+        labelDetalle.TabIndex = 8
+        labelDetalle.Text = "Detalle:"
         '
         'buttonGuardar
         '
@@ -109,7 +129,7 @@ Partial Class formCajaArqueoDetalle
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(542, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(596, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'labelNumeroComprobante
@@ -131,7 +151,7 @@ Partial Class formCajaArqueoDetalle
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(454, 107)
+        Me.textboxNotas.Size = New System.Drawing.Size(508, 129)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -145,19 +165,22 @@ Partial Class formCajaArqueoDetalle
         '
         'tabcontrolMain
         '
-        Me.tabcontrolMain.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(518, 171)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(572, 196)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.labelArea)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxArea)
         Me.tabpageGeneral.Controls.Add(Me.textboxDetalle)
         Me.tabpageGeneral.Controls.Add(Me.textboxProveedor)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
@@ -171,10 +194,42 @@ Partial Class formCajaArqueoDetalle
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(510, 142)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(564, 167)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'textboxDetalle
+        '
+        Me.textboxDetalle.Location = New System.Drawing.Point(111, 111)
+        Me.textboxDetalle.MaxLength = 100
+        Me.textboxDetalle.Name = "textboxDetalle"
+        Me.textboxDetalle.Size = New System.Drawing.Size(393, 20)
+        Me.textboxDetalle.TabIndex = 9
+        '
+        'textboxProveedor
+        '
+        Me.textboxProveedor.Location = New System.Drawing.Point(111, 58)
+        Me.textboxProveedor.MaxLength = 100
+        Me.textboxProveedor.Name = "textboxProveedor"
+        Me.textboxProveedor.Size = New System.Drawing.Size(393, 20)
+        Me.textboxProveedor.TabIndex = 5
+        '
+        'datetimepickerFecha
+        '
+        Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerFecha.Location = New System.Drawing.Point(111, 32)
+        Me.datetimepickerFecha.Name = "datetimepickerFecha"
+        Me.datetimepickerFecha.Size = New System.Drawing.Size(127, 20)
+        Me.datetimepickerFecha.TabIndex = 3
+        '
+        'textboxNumeroComprobante
+        '
+        Me.textboxNumeroComprobante.Location = New System.Drawing.Point(111, 6)
+        Me.textboxNumeroComprobante.MaxLength = 20
+        Me.textboxNumeroComprobante.Name = "textboxNumeroComprobante"
+        Me.textboxNumeroComprobante.Size = New System.Drawing.Size(127, 20)
+        Me.textboxNumeroComprobante.TabIndex = 1
         '
         'currencytextboxImporte
         '
@@ -182,23 +237,23 @@ Partial Class formCajaArqueoDetalle
         Me.currencytextboxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
         Me.currencytextboxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporte.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.currencytextboxImporte.Location = New System.Drawing.Point(111, 110)
+        Me.currencytextboxImporte.Location = New System.Drawing.Point(111, 137)
         Me.currencytextboxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
         Me.currencytextboxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporte.Name = "currencytextboxImporte"
         Me.currencytextboxImporte.NullString = ""
         Me.currencytextboxImporte.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.TabIndex = 9
+        Me.currencytextboxImporte.TabIndex = 11
         Me.currencytextboxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'labelImporte
         '
         Me.labelImporte.AutoSize = True
-        Me.labelImporte.Location = New System.Drawing.Point(3, 113)
+        Me.labelImporte.Location = New System.Drawing.Point(3, 140)
         Me.labelImporte.Name = "labelImporte"
         Me.labelImporte.Size = New System.Drawing.Size(45, 13)
-        Me.labelImporte.TabIndex = 8
+        Me.labelImporte.TabIndex = 10
         Me.labelImporte.Text = "Importe:"
         '
         'tabpageNotasAuditoria
@@ -210,17 +265,16 @@ Partial Class formCajaArqueoDetalle
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(510, 142)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(564, 167)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
         'labelID
         '
-        Me.labelID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.labelID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelID.AutoSize = True
-        Me.labelID.Location = New System.Drawing.Point(6, 122)
+        Me.labelID.Location = New System.Drawing.Point(6, 144)
         Me.labelID.Name = "labelID"
         Me.labelID.Size = New System.Drawing.Size(21, 13)
         Me.labelID.TabIndex = 2
@@ -228,9 +282,8 @@ Partial Class formCajaArqueoDetalle
         '
         'textboxID
         '
-        Me.textboxID.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxID.Location = New System.Drawing.Point(50, 119)
+        Me.textboxID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxID.Location = New System.Drawing.Point(50, 141)
         Me.textboxID.MaxLength = 10
         Me.textboxID.Name = "textboxID"
         Me.textboxID.ReadOnly = True
@@ -239,61 +292,30 @@ Partial Class formCajaArqueoDetalle
         Me.textboxID.TabStop = False
         Me.textboxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'textboxNumeroComprobante
+        'labelArea
         '
-        Me.textboxNumeroComprobante.Location = New System.Drawing.Point(111, 6)
-        Me.textboxNumeroComprobante.MaxLength = 20
-        Me.textboxNumeroComprobante.Name = "textboxNumeroComprobante"
-        Me.textboxNumeroComprobante.Size = New System.Drawing.Size(127, 20)
-        Me.textboxNumeroComprobante.TabIndex = 1
+        Me.labelArea.AutoSize = True
+        Me.labelArea.Location = New System.Drawing.Point(3, 87)
+        Me.labelArea.Name = "labelArea"
+        Me.labelArea.Size = New System.Drawing.Size(32, 13)
+        Me.labelArea.TabIndex = 6
+        Me.labelArea.Text = "Área:"
         '
-        'Label1
+        'comboboxArea
         '
-        Label1.AutoSize = True
-        Label1.Location = New System.Drawing.Point(3, 61)
-        Label1.Name = "Label1"
-        Label1.Size = New System.Drawing.Size(59, 13)
-        Label1.TabIndex = 4
-        Label1.Text = "Proveedor:"
-        '
-        'labelDetalle
-        '
-        labelDetalle.AutoSize = True
-        labelDetalle.Location = New System.Drawing.Point(3, 87)
-        labelDetalle.Name = "labelDetalle"
-        labelDetalle.Size = New System.Drawing.Size(43, 13)
-        labelDetalle.TabIndex = 6
-        labelDetalle.Text = "Detalle:"
-        '
-        'datetimepickerFecha
-        '
-        Me.datetimepickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFecha.Location = New System.Drawing.Point(111, 32)
-        Me.datetimepickerFecha.Name = "datetimepickerFecha"
-        Me.datetimepickerFecha.Size = New System.Drawing.Size(127, 20)
-        Me.datetimepickerFecha.TabIndex = 3
-        '
-        'textboxProveedor
-        '
-        Me.textboxProveedor.Location = New System.Drawing.Point(111, 58)
-        Me.textboxProveedor.MaxLength = 100
-        Me.textboxProveedor.Name = "textboxProveedor"
-        Me.textboxProveedor.Size = New System.Drawing.Size(393, 20)
-        Me.textboxProveedor.TabIndex = 5
-        '
-        'textboxDetalle
-        '
-        Me.textboxDetalle.Location = New System.Drawing.Point(111, 84)
-        Me.textboxDetalle.MaxLength = 100
-        Me.textboxDetalle.Name = "textboxDetalle"
-        Me.textboxDetalle.Size = New System.Drawing.Size(393, 20)
-        Me.textboxDetalle.TabIndex = 7
+        Me.comboboxArea.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxArea.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxArea.FormattingEnabled = True
+        Me.comboboxArea.Location = New System.Drawing.Point(111, 84)
+        Me.comboboxArea.Name = "comboboxArea"
+        Me.comboboxArea.Size = New System.Drawing.Size(447, 21)
+        Me.comboboxArea.TabIndex = 7
         '
         'formCajaArqueoDetalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 225)
+        Me.ClientSize = New System.Drawing.Size(596, 250)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -335,4 +357,6 @@ Partial Class formCajaArqueoDetalle
     Friend WithEvents textboxDetalle As TextBox
     Friend WithEvents textboxProveedor As TextBox
     Friend WithEvents datetimepickerFecha As DateTimePicker
+    Friend WithEvents labelArea As Label
+    Friend WithEvents comboboxArea As ComboBox
 End Class
