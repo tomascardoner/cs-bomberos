@@ -1,0 +1,57 @@
+USE CSBomberos
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-04-17
+-- Description:	Devuelve los datos para la ficha de actualización de un Bombero
+-- =============================================
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonaActualizacionDatos') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE uspPersonaActualizacionDatos
+GO
+
+CREATE PROCEDURE uspPersonaActualizacionDatos
+	@IDCuartel tinyint,
+	@IDCargo tinyint,
+	@IDJerarquia tinyint,
+	@EstadoActivo bit,
+	@IDPersonaBajaMotivo tinyint,
+	@IDPersona int
+	AS
+
+	BEGIN
+		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
+		SET NOCOUNT ON;
+
+		SELECT p.IDPersona, p.MatriculaNumero, p.Apellido, p.Nombre, dt.Nombre AS DocumentoTipo, p.DocumentoNumero, p.CUIL, p.FechaNacimiento, p.Genero, p.Altura, p.Peso, p.GrupoSanguineo, p.FactorRH, ec.Nombre AS EstadoCivil, p.FechaCasamiento,
+			p.IOMATiene, p.IOMANumeroAfiliado, p.IOMAVencimientoCredencial,
+			ne.Nombre AS NivelEstudio, p.Profesion, p.Nacionalidad, c.Nombre AS Cuartel,
+			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS DomicilioParticular, lp.Nombre AS LocalidadParticular,
+			p.TelefonoParticular, p.CelularParticular, p.EmailParticular,
+			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioLaboralCalle1, p.DomicilioLaboralNumero, p.DomicilioLaboralPiso, p.DomicilioLaboralDepartamento, p.DomicilioLaboralCalle2, p.DomicilioLaboralCalle3) AS DomicilioLaboral, ll.Nombre AS LocalidadLaboral,
+			p.TelefonoLaboral, p.CelularLaboral, p.EmailLaboral,
+			pab.AltaFecha, p.LicenciaConducirNumero, p.LicenciaConducirVencimiento
+			FROM (((((((Persona AS p
+				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel)
+				LEFT JOIN DocumentoTipo AS dt ON p.IDDocumentoTipo = dt.IDDocumentoTipo)
+				LEFT JOIN EstadoCivil AS ec ON p.IDEstadoCivil = ec.IDEstadoCivil)
+				LEFT JOIN Localidad AS lp ON p.DomicilioParticularIDProvincia = lp.IDProvincia AND p.DomicilioParticularIDLocalidad = lp.IDLocalidad)
+				LEFT JOIN Localidad AS ll ON p.DomicilioLaboralIDProvincia = ll.IDProvincia AND p.DomicilioLaboralIDLocalidad = ll.IDLocalidad)
+				LEFT JOIN NivelEstudio AS ne ON p.IDNivelEstudio = ne.IDNivelEstudio)
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona)
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+			WHERE p.EsActivo = 1
+				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
+				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
+				AND (pab.AltaFecha IS NULL OR pab.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND pab.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND pab.IDPersonaBajaMotivo IS NOT NULL))
+				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+	END
+GO

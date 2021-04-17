@@ -1,4 +1,5 @@
 ﻿Module Constantes
+
     '//////////////////
     '    APLICACIÓN
     '//////////////////

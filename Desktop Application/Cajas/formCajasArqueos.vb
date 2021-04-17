@@ -223,11 +223,11 @@
 
                 ' Filtro por Cerrada
                 Select Case comboboxCerrada.SelectedIndex
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todas
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todas
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "Not IsNull({CajaArqueo.FechaCierre})"
                         mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre IsNot Nothing).ToList
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "IsNull({CajaArqueo.FechaCierre})"
                         mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre Is Nothing).ToList
                 End Select

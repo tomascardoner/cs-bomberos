@@ -66,13 +66,13 @@
 
         pFillAndRefreshLists.DiaSemana(comboboxDiaSemana, True, False, True, False, False)
 
-        datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Desde.Checked = False
-        datetimepickerTurno1Hasta.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Hasta.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Hasta.Checked = False
-        datetimepickerTurno2Desde.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno2Desde.Checked = False
-        datetimepickerTurno2Hasta.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Hasta.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno2Hasta.Checked = False
     End Sub
 

@@ -1,3 +1,7 @@
+2021-04-17
+	- Agregar el stored procedure: uspPersonaActualizacionDatos
+
+
 2021-03-20
 	- Copiar reportes: Compras-ListadoPorArea.rpt, Compras-ResumenPorArea.rpt
 	- Ejecutar stored procedures: usp_Compra_ListadoPorArea

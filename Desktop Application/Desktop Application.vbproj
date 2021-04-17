@@ -200,40 +200,40 @@
     <Compile Include="..\..\..\framework-vbnet\Process.vb">
       <Link>Framework\Process.vb</Link>
     </Compile>
-    <Compile Include="ABM Tablas\formResponsable.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formResponsable.designer.vb">
       <DependentUpon>formResponsable.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formResponsable.vb">
+    <Compile Include="ABM Tablas\Otros\formResponsable.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formResponsables.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formResponsables.designer.vb">
       <DependentUpon>formResponsables.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formResponsables.vb">
+    <Compile Include="ABM Tablas\Otros\formResponsables.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formProveedor.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formProveedor.designer.vb">
       <DependentUpon>formProveedor.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formProveedor.vb">
+    <Compile Include="ABM Tablas\Otros\formProveedor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formProveedores.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formProveedores.designer.vb">
       <DependentUpon>formProveedores.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formProveedores.vb">
+    <Compile Include="ABM Tablas\Otros\formProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupo.designer.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupo.designer.vb">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupo.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupos.designer.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupos.designer.vb">
       <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupos.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
@@ -251,16 +251,16 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCuarteles.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formCuarteles.designer.vb">
       <DependentUpon>formCuarteles.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCuarteles.vb">
+    <Compile Include="ABM Tablas\Otros\formCuarteles.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCuartel.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formCuartel.designer.vb">
       <DependentUpon>formCuartel.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCuartel.vb">
+    <Compile Include="ABM Tablas\Otros\formCuartel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Caja.vb">
@@ -332,16 +332,16 @@
     <Compile Include="Reportes\formReportesParametroFamiliares.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\formUsuario.designer.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuario.designer.vb">
       <DependentUpon>formUsuario.vb</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\formUsuario.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuario.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\formUsuarios.designer.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarios.designer.vb">
       <DependentUpon>formUsuarios.vb</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\formUsuarios.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarios.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Partido.vb">
@@ -352,16 +352,16 @@
     <Compile Include="EstadoCivil.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formEstadoCivil.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formEstadoCivil.designer.vb">
       <DependentUpon>formEstadoCivil.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formEstadoCivil.vb">
+    <Compile Include="ABM Tablas\Personas\formEstadoCivil.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formEstadosCiviles.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formEstadosCiviles.designer.vb">
       <DependentUpon>formEstadosCiviles.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formEstadosCiviles.vb">
+    <Compile Include="ABM Tablas\Personas\formEstadosCiviles.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Personas\formPersonaHorarioLaboralAgregarMultiples.Designer.vb">
@@ -388,40 +388,40 @@
     <Compile Include="Personas\formPersonaHorarioLaboral.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoMarcas.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoMarcas.designer.vb">
       <DependentUpon>formVehiculoMarcas.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoMarcas.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoMarcas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoMarca.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoMarca.designer.vb">
       <DependentUpon>formVehiculoMarca.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoMarca.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoMarca.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoCompaniasSeguro.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoCompaniasSeguro.designer.vb">
       <DependentUpon>formVehiculoCompaniasSeguro.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoCompaniasSeguro.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoCompaniasSeguro.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoCompaniaSeguro.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoCompaniaSeguro.designer.vb">
       <DependentUpon>formVehiculoCompaniaSeguro.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoCompaniaSeguro.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoCompaniaSeguro.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVacunaTipos.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVacunaTipos.designer.vb">
       <DependentUpon>formVacunaTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVacunaTipos.vb">
+    <Compile Include="ABM Tablas\Personas\formVacunaTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVacunaTipo.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVacunaTipo.designer.vb">
       <DependentUpon>formVacunaTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVacunaTipo.vb">
+    <Compile Include="ABM Tablas\Personas\formVacunaTipo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteCampo.vb">
@@ -533,148 +533,148 @@
     <Compile Include="Sistema\formAboutBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Alarmas\formAlarma.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formAlarma.designer.vb">
       <DependentUpon>formAlarma.vb</DependentUpon>
     </Compile>
-    <Compile Include="Alarmas\formAlarma.vb">
+    <Compile Include="ABM Tablas\Otros\formAlarma.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Alarmas\formAlarmas.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formAlarmas.designer.vb">
       <DependentUpon>formAlarmas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Alarmas\formAlarmas.vb">
+    <Compile Include="ABM Tablas\Otros\formAlarmas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formArea.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formArea.designer.vb">
       <DependentUpon>formArea.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formArea.vb">
+    <Compile Include="ABM Tablas\Otros\formArea.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formAreas.designer.vb">
+    <Compile Include="ABM Tablas\Otros\formAreas.designer.vb">
       <DependentUpon>formAreas.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formAreas.vb">
+    <Compile Include="ABM Tablas\Otros\formAreas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadBajaMotivo.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadBajaMotivo.designer.vb">
       <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadBajaMotivo.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadBajaMotivo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadBajaMotivos.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadBajaMotivos.designer.vb">
       <DependentUpon>formUnidadBajaMotivos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadBajaMotivos.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadBajaMotivos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoTipos.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoTipos.designer.vb">
       <DependentUpon>formVehiculoTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoTipos.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoTipo.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoTipo.designer.vb">
       <DependentUpon>formVehiculoTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formVehiculoTipo.vb">
+    <Compile Include="ABM Tablas\Personas\formVehiculoTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadTipo.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadTipo.designer.vb">
       <DependentUpon>formUnidadTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadTipo.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadTipos.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadTipos.designer.vb">
       <DependentUpon>formUnidadTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadTipos.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadUso.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadUso.designer.vb">
       <DependentUpon>formUnidadUso.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadUso.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadUso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadUsos.designer.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadUsos.designer.vb">
       <DependentUpon>formUnidadUsos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUnidadUsos.vb">
+    <Compile Include="ABM Tablas\Unidades\formUnidadUsos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCalificacionConcepto.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCalificacionConcepto.designer.vb">
       <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCalificacionConcepto.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCalificacionConcepto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCalificacionConceptos.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCalificacionConceptos.designer.vb">
       <DependentUpon>formCalificacionConceptos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCalificacionConceptos.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCalificacionConceptos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionNivel.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionNivel.designer.vb">
       <DependentUpon>formCapacitacionNivel.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionNivel.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionNivel.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionNiveles.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionNiveles.designer.vb">
       <DependentUpon>formCapacitacionNiveles.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionNiveles.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionNiveles.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionTipo.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionTipo.designer.vb">
       <DependentUpon>formCapacitacionTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionTipo.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionTipos.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionTipos.designer.vb">
       <DependentUpon>formCapacitacionTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCapacitacionTipos.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCapacitacionTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCargo.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formCargo.designer.vb">
       <DependentUpon>formCargo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCargo.vb">
+    <Compile Include="ABM Tablas\Personas\formCargo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCargoJerarquia.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formCargoJerarquia.designer.vb">
       <DependentUpon>formCargoJerarquia.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCargoJerarquia.vb">
+    <Compile Include="ABM Tablas\Personas\formCargoJerarquia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCargos.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formCargos.designer.vb">
       <DependentUpon>formCargos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCargos.vb">
+    <Compile Include="ABM Tablas\Personas\formCargos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCargosJerarquias.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formCargosJerarquias.designer.vb">
       <DependentUpon>formCargosJerarquias.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCargosJerarquias.vb">
+    <Compile Include="ABM Tablas\Personas\formCargosJerarquias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCurso.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCurso.designer.vb">
       <DependentUpon>formCurso.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCurso.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCurso.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formCursos.designer.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCursos.designer.vb">
       <DependentUpon>formCursos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formCursos.vb">
+    <Compile Include="ABM Tablas\Capacitaciones\formCursos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventario\formElemento.Designer.vb">
@@ -701,28 +701,28 @@
     <Compile Include="Inventario\formInventarioDetalle.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formLicenciaCausa.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formLicenciaCausa.designer.vb">
       <DependentUpon>formLicenciaCausa.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formLicenciaCausa.vb">
+    <Compile Include="ABM Tablas\Personas\formLicenciaCausa.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formLicenciaCausas.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formLicenciaCausas.designer.vb">
       <DependentUpon>formLicenciaCausas.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formLicenciaCausas.vb">
+    <Compile Include="ABM Tablas\Personas\formLicenciaCausas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formNivelesEstudio.Designer.vb">
+    <Compile Include="ABM Tablas\Personas\formNivelesEstudio.Designer.vb">
       <DependentUpon>formNivelesEstudio.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formNivelesEstudio.vb">
+    <Compile Include="ABM Tablas\Personas\formNivelesEstudio.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formNivelEstudio.Designer.vb">
+    <Compile Include="ABM Tablas\Personas\formNivelEstudio.Designer.vb">
       <DependentUpon>formNivelEstudio.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formNivelEstudio.vb">
+    <Compile Include="ABM Tablas\Personas\formNivelEstudio.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sistema\formOpciones.Designer.vb">
@@ -743,16 +743,16 @@
     <Compile Include="Personas\formPersonaAccidente.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formPersonaBajaMotivo.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formPersonaBajaMotivo.designer.vb">
       <DependentUpon>formPersonaBajaMotivo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formPersonaBajaMotivo.vb">
+    <Compile Include="ABM Tablas\Personas\formPersonaBajaMotivo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formPersonaBajaMotivos.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formPersonaBajaMotivos.designer.vb">
       <DependentUpon>formPersonaBajaMotivos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formPersonaBajaMotivos.vb">
+    <Compile Include="ABM Tablas\Personas\formPersonaBajaMotivos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Personas\formPersonaCalificacion.Designer.vb">
@@ -827,64 +827,64 @@
     <Compile Include="Reportes\formReportesParametroTextBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formRubro.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formRubro.designer.vb">
       <DependentUpon>formRubro.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formRubro.vb">
+    <Compile Include="ABM Tablas\Inventario\formRubro.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formRubros.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formRubros.designer.vb">
       <DependentUpon>formRubros.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formRubros.vb">
+    <Compile Include="ABM Tablas\Inventario\formRubros.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSancionTipo.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formSancionTipo.designer.vb">
       <DependentUpon>formSancionTipo.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSancionTipo.vb">
+    <Compile Include="ABM Tablas\Personas\formSancionTipo.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSancionTipos.designer.vb">
+    <Compile Include="ABM Tablas\Personas\formSancionTipos.designer.vb">
       <DependentUpon>formSancionTipos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSancionTipos.vb">
+    <Compile Include="ABM Tablas\Personas\formSancionTipos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSubRubro.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubRubro.designer.vb">
       <DependentUpon>formSubRubro.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSubRubro.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubRubro.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSubRubros.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubRubros.designer.vb">
       <DependentUpon>formSubRubros.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSubRubros.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubRubros.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSubUbicacion.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubUbicacion.designer.vb">
       <DependentUpon>formSubUbicacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSubUbicacion.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubUbicacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formSubUbicaciones.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubUbicaciones.designer.vb">
       <DependentUpon>formSubUbicaciones.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formSubUbicaciones.vb">
+    <Compile Include="ABM Tablas\Inventario\formSubUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUbicacion.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formUbicacion.designer.vb">
       <DependentUpon>formUbicacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUbicacion.vb">
+    <Compile Include="ABM Tablas\Inventario\formUbicacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formUbicaciones.designer.vb">
+    <Compile Include="ABM Tablas\Inventario\formUbicaciones.designer.vb">
       <DependentUpon>formUbicaciones.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formUbicaciones.vb">
+    <Compile Include="ABM Tablas\Inventario\formUbicaciones.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventario\formElementos.Designer.vb">
@@ -899,16 +899,16 @@
     <Compile Include="Unidades\formUnidades.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formParentesco.Designer.vb">
+    <Compile Include="ABM Tablas\Personas\formParentesco.Designer.vb">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formParentesco.vb">
+    <Compile Include="ABM Tablas\Personas\formParentesco.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\formParentescos.Designer.vb">
+    <Compile Include="ABM Tablas\Personas\formParentescos.Designer.vb">
       <DependentUpon>formParentescos.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\formParentescos.vb">
+    <Compile Include="ABM Tablas\Personas\formParentescos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Personas\formPersonaFamiliar.designer.vb">
@@ -972,10 +972,10 @@
       <DependentUpon>formSplashScreen.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupoPermisos.Designer.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupoPermisos.Designer.vb">
       <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
     </Compile>
-    <Compile Include="Usuarios\formUsuarioGrupoPermisos.vb">
+    <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupoPermisos.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Inventario.vb">
@@ -1131,22 +1131,22 @@
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>
       <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formResponsable.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formResponsable.resx">
       <DependentUpon>formResponsable.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formResponsables.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formResponsables.resx">
       <DependentUpon>formResponsables.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formProveedor.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formProveedor.resx">
       <DependentUpon>formProveedor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formProveedores.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\formUsuarioGrupo.resx">
+    <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuarioGrupo.resx">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\formUsuarioGrupos.resx">
+    <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuarioGrupos.resx">
       <DependentUpon>formUsuarioGrupos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cajas\formCajaArqueo.resx">
@@ -1170,28 +1170,28 @@
     <EmbeddedResource Include="Sistema\formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Alarmas\formAlarma.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formAlarma.resx">
       <DependentUpon>formAlarma.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Alarmas\formAlarmas.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formAlarmas.resx">
       <DependentUpon>formAlarmas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formArea.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formArea.resx">
       <DependentUpon>formArea.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formAreas.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formAreas.resx">
       <DependentUpon>formAreas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCuarteles.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formCuarteles.resx">
       <DependentUpon>formCuarteles.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCuartel.resx">
+    <EmbeddedResource Include="ABM Tablas\Otros\formCuartel.resx">
       <DependentUpon>formCuartel.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formEstadoCivil.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formEstadoCivil.resx">
       <DependentUpon>formEstadoCivil.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formEstadosCiviles.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formEstadosCiviles.resx">
       <DependentUpon>formEstadosCiviles.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaHorarioLaboralAgregarMultiples.resx">
@@ -1209,88 +1209,88 @@
     <EmbeddedResource Include="Reportes\formReportesParametroFamiliares.resx">
       <DependentUpon>formReportesParametroFamiliares.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\formUsuario.resx">
+    <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuario.resx">
       <DependentUpon>formUsuario.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\formUsuarios.resx">
+    <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuarios.resx">
       <DependentUpon>formUsuarios.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadBajaMotivo.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadBajaMotivo.resx">
       <DependentUpon>formUnidadBajaMotivo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadBajaMotivos.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadBajaMotivos.resx">
       <DependentUpon>formUnidadBajaMotivos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoMarcas.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoMarcas.resx">
       <DependentUpon>formVehiculoMarcas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoMarca.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoMarca.resx">
       <DependentUpon>formVehiculoMarca.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoCompaniasSeguro.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoCompaniasSeguro.resx">
       <DependentUpon>formVehiculoCompaniasSeguro.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoCompaniaSeguro.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoCompaniaSeguro.resx">
       <DependentUpon>formVehiculoCompaniaSeguro.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVacunaTipos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVacunaTipos.resx">
       <DependentUpon>formVacunaTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVacunaTipo.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVacunaTipo.resx">
       <DependentUpon>formVacunaTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoTipos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoTipos.resx">
       <DependentUpon>formVehiculoTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formVehiculoTipo.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formVehiculoTipo.resx">
       <DependentUpon>formVehiculoTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadTipo.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadTipo.resx">
       <DependentUpon>formUnidadTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadTipos.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadTipos.resx">
       <DependentUpon>formUnidadTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadUso.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadUso.resx">
       <DependentUpon>formUnidadUso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUnidadUsos.resx">
+    <EmbeddedResource Include="ABM Tablas\Unidades\formUnidadUsos.resx">
       <DependentUpon>formUnidadUsos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCalificacionConcepto.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCalificacionConcepto.resx">
       <DependentUpon>formCalificacionConcepto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCalificacionConceptos.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCalificacionConceptos.resx">
       <DependentUpon>formCalificacionConceptos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCapacitacionNivel.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCapacitacionNivel.resx">
       <DependentUpon>formCapacitacionNivel.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCapacitacionNiveles.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCapacitacionNiveles.resx">
       <DependentUpon>formCapacitacionNiveles.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCapacitacionTipo.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCapacitacionTipo.resx">
       <DependentUpon>formCapacitacionTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCapacitacionTipos.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCapacitacionTipos.resx">
       <DependentUpon>formCapacitacionTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCargo.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formCargo.resx">
       <DependentUpon>formCargo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCargoJerarquia.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formCargoJerarquia.resx">
       <DependentUpon>formCargoJerarquia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCargos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formCargos.resx">
       <DependentUpon>formCargos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCargosJerarquias.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formCargosJerarquias.resx">
       <DependentUpon>formCargosJerarquias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCurso.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCurso.resx">
       <DependentUpon>formCurso.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formCursos.resx">
+    <EmbeddedResource Include="ABM Tablas\Capacitaciones\formCursos.resx">
       <DependentUpon>formCursos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\formElemento.resx">
@@ -1305,16 +1305,16 @@
     <EmbeddedResource Include="Inventario\formInventarioDetalle.resx">
       <DependentUpon>formInventarioDetalle.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formLicenciaCausa.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formLicenciaCausa.resx">
       <DependentUpon>formLicenciaCausa.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formLicenciaCausas.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formLicenciaCausas.resx">
       <DependentUpon>formLicenciaCausas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formNivelesEstudio.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formNivelesEstudio.resx">
       <DependentUpon>formNivelesEstudio.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formNivelEstudio.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formNivelEstudio.resx">
       <DependentUpon>formNivelEstudio.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formOpciones.resx">
@@ -1326,10 +1326,10 @@
     <EmbeddedResource Include="Personas\formPersonaAccidente.resx">
       <DependentUpon>formPersonaAccidente.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formPersonaBajaMotivo.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formPersonaBajaMotivo.resx">
       <DependentUpon>formPersonaBajaMotivo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formPersonaBajaMotivos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formPersonaBajaMotivos.resx">
       <DependentUpon>formPersonaBajaMotivos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaCalificacion.resx">
@@ -1368,34 +1368,34 @@
     <EmbeddedResource Include="Reportes\formReportesParametroTextBox.resx">
       <DependentUpon>formReportesParametroTextBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formRubro.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formRubro.resx">
       <DependentUpon>formRubro.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formRubros.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formRubros.resx">
       <DependentUpon>formRubros.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSancionTipo.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formSancionTipo.resx">
       <DependentUpon>formSancionTipo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSancionTipos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formSancionTipos.resx">
       <DependentUpon>formSancionTipos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSubRubro.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formSubRubro.resx">
       <DependentUpon>formSubRubro.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSubRubros.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formSubRubros.resx">
       <DependentUpon>formSubRubros.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSubUbicacion.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formSubUbicacion.resx">
       <DependentUpon>formSubUbicacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formSubUbicaciones.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formSubUbicaciones.resx">
       <DependentUpon>formSubUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUbicacion.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formUbicacion.resx">
       <DependentUpon>formUbicacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formUbicaciones.resx">
+    <EmbeddedResource Include="ABM Tablas\Inventario\formUbicaciones.resx">
       <DependentUpon>formUbicaciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\formElementos.resx">
@@ -1404,10 +1404,10 @@
     <EmbeddedResource Include="Unidades\formUnidades.resx">
       <DependentUpon>formUnidades.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formParentesco.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formParentesco.resx">
       <DependentUpon>formParentesco.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\formParentescos.resx">
+    <EmbeddedResource Include="ABM Tablas\Personas\formParentescos.resx">
       <DependentUpon>formParentescos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaFamiliar.resx">
@@ -1437,7 +1437,7 @@
     <EmbeddedResource Include="Reportes\formReportesVisor.resx">
       <DependentUpon>formReportesVisor.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Usuarios\formUsuarioGrupoPermisos.resx">
+    <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuarioGrupoPermisos.resx">
       <DependentUpon>formUsuarioGrupoPermisos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

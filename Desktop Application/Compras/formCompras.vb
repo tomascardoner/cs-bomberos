@@ -244,11 +244,11 @@
 
                 ' Filtro por Cerrada
                 Select Case comboboxCerrada.SelectedIndex
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_ALL_LISTINDEX       ' Todas
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_YES_LISTINDEX       ' Sí
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todas
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Compra.Cerrada} = 1"
                         mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.Cerrada).ToList
-                    Case CardonerSistemas.Constants.COMBOBOX_ALLYESNO_NO_LISTINDEX        ' No
+                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Compra.Cerrada} = 0"
                         mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) Not c.Cerrada).ToList
                 End Select

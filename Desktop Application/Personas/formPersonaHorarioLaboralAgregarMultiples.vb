@@ -1,11 +1,14 @@
 ﻿Public Class formPersonaHorarioLaboralAgregarMultiples
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mIDPersona As Integer
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByRef ParentForm As Form, ByVal IDPersona As Integer)
         mIDPersona = IDPersona
 
@@ -18,13 +21,13 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Desde.Checked = False
-        datetimepickerTurno1Hasta.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno1Hasta.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Hasta.Checked = False
-        datetimepickerTurno2Desde.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno2Desde.Checked = False
-        datetimepickerTurno2Hasta.Value = CardonerSistemas.Constants.DATETIMEPICKER_MINIMUM_VALUE
+        datetimepickerTurno2Hasta.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno2Hasta.Checked = False
     End Sub
 
@@ -37,9 +40,11 @@
         mdbContext = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Set Data"
+
     Friend Sub SetDataFromControlsToObject()
         If checkboxDiaSemana1.Checked Then
             AddPersonaHorarioLaboral(1)
@@ -84,9 +89,11 @@
         End With
         mdbContext.PersonaHorarioLaboral.Add(PersonaHorarioLaboralNuevo)
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -103,6 +110,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
         Me.Close()
     End Sub
@@ -145,6 +153,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class
