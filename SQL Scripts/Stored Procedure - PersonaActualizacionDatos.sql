@@ -28,15 +28,21 @@ CREATE PROCEDURE uspPersonaActualizacionDatos
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT p.IDPersona, p.MatriculaNumero, p.Apellido, p.Nombre, dt.Nombre AS DocumentoTipo, p.DocumentoNumero, p.CUIL, p.FechaNacimiento, p.Genero, p.Altura, p.Peso, p.GrupoSanguineo, p.FactorRH, ec.Nombre AS EstadoCivil, p.FechaCasamiento,
+		SELECT p.IDPersona, p.MatriculaNumero, p.Apellido, p.Nombre, p.ApellidoNombre, dt.Nombre AS DocumentoTipo, p.DocumentoNumero, p.CUIL, p.FechaNacimiento, p.Genero, p.Altura, p.Peso, p.GrupoSanguineo, p.FactorRH, ec.Nombre AS EstadoCivil, p.FechaCasamiento,
 			p.IOMATiene, p.IOMANumeroAfiliado, p.IOMAVencimientoCredencial,
 			ne.Nombre AS NivelEstudio, p.Profesion, p.Nacionalidad, c.Nombre AS Cuartel,
 			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS DomicilioParticular, lp.Nombre AS LocalidadParticular,
 			p.TelefonoParticular, p.CelularParticular, p.EmailParticular,
 			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioLaboralCalle1, p.DomicilioLaboralNumero, p.DomicilioLaboralPiso, p.DomicilioLaboralDepartamento, p.DomicilioLaboralCalle2, p.DomicilioLaboralCalle3) AS DomicilioLaboral, ll.Nombre AS LocalidadLaboral,
 			p.TelefonoLaboral, p.CelularLaboral, p.EmailLaboral,
-			pab.AltaFecha, p.LicenciaConducirNumero, p.LicenciaConducirVencimiento
-			FROM (((((((Persona AS p
+			pab.AltaFecha, p.LicenciaConducirNumero, p.LicenciaConducirVencimiento,
+			(CASE f.IDParentesco WHEN 254 THEN ISNULL(f.ParentescoOtro, fp.Nombre) ELSE fp.Nombre END) AS Parentesco, fp.Orden AS ParentescoOrden,
+			f.Apellido AS FamiliarApellido, f.Nombre AS FamiliarNombre, f.ApellidoNombre AS FamiliarApellidoNombre, fdt.Nombre AS FamiliarDocumentoTipo, f.DocumentoNumero AS FamiliarDocumentoNumero, f.FechaNacimiento AS FamiliarFechaNacimiento,
+			f.Genero AS FamiliarGenero, f.GrupoSanguineo AS FamiliarGrupoSanguineo, f.FactorRH AS FamiliarFactorRH, fec.Nombre AS FamiliarEstadoCivil,
+			f.IOMATiene AS FamiliarIOMATiene, f.IOMANumeroAfiliado AS FamiliarIOMANumeroAfiliado, f.IOMAVencimientoCredencial AS FamiliarIOMAVencimientoCredencial, f.IOMAACargo AS FamiliarIOMAACargo,
+			f.ACargo AS FamiliarACargo, f.Vive AS FamiliarVive, f.EsEmergencia AS FamiliarEsEmergencia,
+			dbo.udf_GetDomicilioCalleCompleto(f.DomicilioCalle1, f.DomicilioNumero, f.DomicilioPiso, f.DomicilioDepartamento, f.DomicilioCalle2, f.DomicilioCalle3) AS FamiliarDomicilio, fl.Nombre AS FamiliarLocalidad
+			FROM ((((((((((((Persona AS p
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel)
 				LEFT JOIN DocumentoTipo AS dt ON p.IDDocumentoTipo = dt.IDDocumentoTipo)
 				LEFT JOIN EstadoCivil AS ec ON p.IDEstadoCivil = ec.IDEstadoCivil)
@@ -44,7 +50,12 @@ CREATE PROCEDURE uspPersonaActualizacionDatos
 				LEFT JOIN Localidad AS ll ON p.DomicilioLaboralIDProvincia = ll.IDProvincia AND p.DomicilioLaboralIDLocalidad = ll.IDLocalidad)
 				LEFT JOIN NivelEstudio AS ne ON p.IDNivelEstudio = ne.IDNivelEstudio)
 				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona)
-				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona)
+				LEFT JOIN PersonaFamiliar AS f ON p.IDPersona = f.IDPersona)
+				LEFT JOIN Parentesco AS fp ON f.IDParentesco = fp.IDParentesco)
+				LEFT JOIN DocumentoTipo AS fdt ON f.IDDocumentoTipo = fdt.IDDocumentoTipo)
+				LEFT JOIN EstadoCivil AS fec ON f.IDEstadoCivil = fec.IDEstadoCivil)
+				LEFT JOIN Localidad AS fl ON f.DomicilioIDProvincia = fl.IDProvincia AND f.DomicilioIDLocalidad = fl.IDLocalidad
 			WHERE p.EsActivo = 1
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)

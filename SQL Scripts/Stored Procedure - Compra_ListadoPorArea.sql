@@ -50,7 +50,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 			WHERE pa.IDPersona = @ResponsableIDPersona
 				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
 
-		SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, cd.IDArea, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM Compra AS c
 				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraDetalle AS cd ON c.IDCompra = cd.IDCompra
@@ -63,7 +63,18 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				AND (@Cerrada IS NULL OR c.Cerrada = @Cerrada)
 				AND (@CierreFechaDesde IS NULL OR c.CierreFecha >= @CierreFechaDesde)
 				AND (@CierreFechaHasta IS NULL OR c.CierreFecha <= @CierreFechaHasta)
-			GROUP BY cd.IDArea, c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero
-			ORDER BY cd.IDArea, cd.IDDetalle
+			GROUP BY cd.IDArea, c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero)
+		UNION
+		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, ca.IDArqueo AS Numero, ca.FechaCierre AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+			FROM CajaArqueo AS ca
+				INNER JOIN CajaArqueoDetalle AS cad ON ca.IDArqueo = cad.IDArqueo
+				LEFT JOIN Area AS a ON a.IDArea = cad.IDArea
+				LEFT JOIN Cuartel AS c ON a.IDCuartel = c.IDCuartel
+			WHERE (@IDCuartel IS NULL OR a.IDCuartel = @IDCuartel)
+				AND (@IDArea IS NULL OR cad.IDArea = @IDArea)
+				AND (@FechaDesde IS NULL OR ca.FechaCierre >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR ca.FechaCierre <= @FechaHasta)
+			GROUP BY cad.IDArea, ca.IDArqueo, c.Codigo, c.Nombre, ca.FechaCierre, cad.Proveedor, a.Nombre, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante)
+			ORDER BY IDArea, IDDetalle
 	END
 GO

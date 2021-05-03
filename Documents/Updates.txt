@@ -1,3 +1,7 @@
+2021-04-18
+	- Crear tabla SiniestroRubro, SiniestroTipo, Siniestro y Siniestro Asistencia
+	
+
 2021-04-17
 	- Agregar el stored procedure: uspPersonaActualizacionDatos
 

@@ -121,6 +121,27 @@ GO
 
 -- =============================================
 -- Author:		Tomás A. Cardoner
+-- Create date: 2021-04-18
+-- Description:	Devuelve la última fecha de Licencia
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaLicencia') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaLicencia
+GO
+
+CREATE FUNCTION udf_GetPersonaUltimaFechaLicencia
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS date AS
+BEGIN
+	RETURN (SELECT MAX(Fecha) FROM PersonaLicencia WHERE IDPersona = @IDPersona AND Fecha <= @FechaHasta)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-04
 -- Description:	Devuelve la antigüedad expresada en días,
 --				de una Persona desde la FechaDesde hasta FechaHasta
