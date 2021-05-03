@@ -336,7 +336,7 @@
     End Sub
 
     Private Sub UsuarioGrupoPermisos() Handles menuitemTablas_Permisos.Click
-        ShowForm(Permisos.USUARIOGRUPO, CType(formUsuarioGrupoPermisos, Form))
+        ShowForm(Permisos.USUARIOGRUPOPERMISO, CType(formUsuarioGrupoPermisos, Form))
     End Sub
 
     ' OTROS
