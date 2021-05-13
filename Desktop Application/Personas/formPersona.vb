@@ -96,6 +96,7 @@
         'buttonIOMAPadronAbrir.Visible = (mEditMode = False)
         'buttonIOMAPadronCompletar.Visible = (mEditMode = False)
         comboboxNivelEstudio.Enabled = mEditMode
+        textboxTituloObtenido.ReadOnly = (mEditMode = False)
         textboxProfesion.ReadOnly = (mEditMode = False)
         textboxNacionalidad.ReadOnly = (mEditMode = False)
         comboboxCuartel.Enabled = mEditMode
@@ -295,6 +296,7 @@
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             datetimepickerIOMAVencimientoCredencial.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.IOMAVencimientoCredencial, datetimepickerIOMAVencimientoCredencial)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxNivelEstudio, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
+            textboxTituloObtenido.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TituloObtenido)
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
@@ -417,7 +419,7 @@
             .IOMANumeroAfiliado = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxIOMANumeroAfiliado.Text)
             .IOMAVencimientoCredencial = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerIOMAVencimientoCredencial.Value, datetimepickerIOMAVencimientoCredencial.Checked)
             .IDNivelEstudio = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxNivelEstudio.SelectedValue)
-
+            .TituloObtenido = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTituloObtenido.Text)
             .Profesion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProfesion.Text)
             .Nacionalidad = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNacionalidad.Text)
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value

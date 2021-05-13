@@ -19,8 +19,6 @@ CREATE PROCEDURE uspPersonaUltimaLicencia
 	@IDCuartel tinyint,
 	@IDCargo tinyint,
 	@IDJerarquia tinyint,
-	@EstadoActivo bit,
-	@IDPersonaBajaMotivo tinyint,
 	@FechaDesde date,
 	@FechaHasta date
 	AS
@@ -50,8 +48,7 @@ CREATE PROCEDURE uspPersonaUltimaLicencia
 				AND (pab.AltaFecha IS NULL OR pab.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(p.IDPersona, GETDATE()))
 				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
 				AND (pl.Fecha IS NULL OR pl.Fecha = dbo.udf_GetPersonaUltimaFechaLicencia(p.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND pab.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND pab.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+				AND pab.IDPersonaBajaMotivo IS NULL
 				AND (@FechaDesde IS NULL OR pl.Fecha >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR pl.Fecha <= @FechaHasta)
 	END

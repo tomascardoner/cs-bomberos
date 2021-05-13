@@ -34,6 +34,7 @@ Partial Public Class Persona
     Public Property IOMANumeroAfiliado As String
     Public Property IOMAVencimientoCredencial As Nullable(Of Date)
     Public Property IDNivelEstudio As Nullable(Of Byte)
+    Public Property TituloObtenido As String
     Public Property Profesion As String
     Public Property Nacionalidad As String
     Public Property IDCuartel As Byte

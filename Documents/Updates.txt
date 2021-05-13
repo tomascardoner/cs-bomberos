@@ -1,3 +1,9 @@
+2021-05-09
+	- Persona: Agregar el campo TituloObtenido varchar(100) null después de IDNivelEstudio
+	- Agregar tablas nuevas desde los scripts
+	- Agregar TipoOtro a los siniestros
+
+
 2021-04-18
 	- Crear tabla SiniestroRubro, SiniestroTipo, Siniestro y Siniestro Asistencia
 	

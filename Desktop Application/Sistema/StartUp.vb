@@ -45,29 +45,13 @@
         formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
-        ' Obtengo el Connection String para las conexiones de ADO .NET
-        pDatabase = New CardonerSistemas.Database.ADO.SQLServer
-        pDatabase.ApplicationName = My.Application.Info.Title
-        pDatabase.Datasource = pDatabaseConfig.Datasource
-        pDatabase.InitialCatalog = pDatabaseConfig.Database
-        pDatabase.UserId = pDatabaseConfig.UserId
-        ' Desencripto la contraseña de la conexión a la base de datos que está en el archivo app.config
-        Dim PasswordDecrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PublicEncryptionPassword)
-        If Not PasswordDecrypter.Decrypt(pDatabaseConfig.Password, pDatabase.Password) Then
-            MsgBox("La contraseña encriptada de conexión a la base de datos, es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-            PasswordDecrypter = Nothing
+        ' Obtengo los parámetros de conexión a la base de datos
+        If Not Database.ObtenerParametrosDeConexion() Then
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
             Exit Sub
         End If
-        PasswordDecrypter = Nothing
-        pDatabase.MultipleActiveResultsets = True
-        pDatabase.WorkstationID = My.Computer.Name
-        pDatabase.CreateConnectionString()
-
-        ' Obtengo el Connection String para las conexiones de Entity Framework
-        CSBomberosContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "CSBomberos")
 
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."

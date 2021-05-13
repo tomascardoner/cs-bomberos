@@ -65,7 +65,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				AND (@CierreFechaHasta IS NULL OR c.CierreFecha <= @CierreFechaHasta)
 			GROUP BY cd.IDArea, c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero)
 		UNION
-		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, ca.IDArqueo AS Numero, ca.FechaCierre AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca
 				INNER JOIN CajaArqueoDetalle AS cad ON ca.IDArqueo = cad.IDArqueo
 				LEFT JOIN Area AS a ON a.IDArea = cad.IDArea
@@ -74,7 +74,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				AND (@IDArea IS NULL OR cad.IDArea = @IDArea)
 				AND (@FechaDesde IS NULL OR ca.FechaCierre >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR ca.FechaCierre <= @FechaHasta)
-			GROUP BY cad.IDArea, ca.IDArqueo, c.Codigo, c.Nombre, ca.FechaCierre, cad.Proveedor, a.Nombre, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante)
+			GROUP BY cad.IDArea, ca.IDArqueo, c.Codigo, c.Nombre, cad.Fecha, cad.Proveedor, a.Nombre, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante)
 			ORDER BY IDArea, IDDetalle
 	END
 GO

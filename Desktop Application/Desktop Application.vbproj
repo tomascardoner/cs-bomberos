@@ -171,6 +171,14 @@
     <Compile Include="..\..\..\framework-vbnet\ConstantsKeys.vb">
       <Link>Framework\ConstantsKeys.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\CS_Database_SelectSource.designer.vb">
+      <Link>Framework\CS_Database_SelectSource.designer.vb</Link>
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\CS_Database_SelectSource.vb">
+      <Link>Framework\CS_Database_SelectSource.vb</Link>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\Database.ADO.vb">
       <Link>Framework\Database.ADO.vb</Link>
     </Compile>
@@ -320,6 +328,7 @@
     <Compile Include="Config\EmailConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Database\CajaArqueoExtension.vb" />
+    <Compile Include="Database\Database.vb" />
     <Compile Include="Modulo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -432,6 +441,24 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="ResponsableTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroAsistencia.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroAsistenciaTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroAsistenciaTipoPuntaje.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroRubro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Sistema\Appearance.vb" />
@@ -1127,6 +1154,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\..\..\framework-vbnet\CS_Database_SelectSource.resx">
+      <Link>Framework\CS_Database_SelectSource.resx</Link>
+      <DependentUpon>CS_Database_SelectSource.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>
       <DependentUpon>ErrorHandlerMessageBox.vb</DependentUpon>
@@ -1516,6 +1547,7 @@
     <None Include="Resources\Document.png" />
     <None Include="Resources\Organigrama_Alt_32.png" />
     <None Include="Resources\cashier2_118191_32.png" />
+    <None Include="Resources\DatabaseSearch48.png" />
     <Content Include="Sistema\Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />

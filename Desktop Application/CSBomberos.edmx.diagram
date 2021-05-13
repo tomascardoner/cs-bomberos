@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="80">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="13.5" PointY="122" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="5.25" PointY="125.375" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="21.75" PointY="155.5" />
@@ -277,6 +277,25 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__CajaArqueoDetalle" />
+        <EntityTypeShape EntityType="CSBomberosModel.Siniestro" Width="1.5" PointX="29.25" PointY="114.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistencia" Width="1.5" PointX="24" PointY="205.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipo" Width="1.5" PointX="21.75" PointY="202.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipoPuntaje" Width="1.5" PointX="24" PointY="202.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroRubro" Width="1.5" PointX="21.75" PointY="65.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroTipo" Width="1.5" PointX="24" PointY="100" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Siniestro" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroTipo__Siniestro" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Siniestro__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Siniestro__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistenciaTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistenciaTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroRubro__SiniestroTipo" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroRubro__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroRubro__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroTipo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

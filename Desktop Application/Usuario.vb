@@ -142,5 +142,13 @@ Partial Public Class Usuario
     Public Overridable Property CajasModificadas As ICollection(Of Caja) = New HashSet(Of Caja)
     Public Overridable Property CajaArqueosCreados As ICollection(Of CajaArqueo) = New HashSet(Of CajaArqueo)
     Public Overridable Property CajaArqueosModificados As ICollection(Of CajaArqueo) = New HashSet(Of CajaArqueo)
+    Public Overridable Property SiniestrosCreados As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
+    Public Overridable Property SiniestrosModificados As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
+    Public Overridable Property SiniestrosAsistenciasTipoCreados As ICollection(Of SiniestroAsistenciaTipo) = New HashSet(Of SiniestroAsistenciaTipo)
+    Public Overridable Property SiniestrosAsistenciasTipoModificados As ICollection(Of SiniestroAsistenciaTipo) = New HashSet(Of SiniestroAsistenciaTipo)
+    Public Overridable Property SiniestrosRubrosCreados As ICollection(Of SiniestroRubro) = New HashSet(Of SiniestroRubro)
+    Public Overridable Property SiniestrosRubrosModificados As ICollection(Of SiniestroRubro) = New HashSet(Of SiniestroRubro)
+    Public Overridable Property SiniestrosTiposCreados As ICollection(Of SiniestroTipo) = New HashSet(Of SiniestroTipo)
+    Public Overridable Property SiniestrosTiposModificados As ICollection(Of SiniestroTipo) = New HashSet(Of SiniestroTipo)
 
 End Class
