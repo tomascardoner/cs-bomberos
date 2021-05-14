@@ -22,6 +22,7 @@ Partial Public Class Siniestro
     Public Property Fecha As Date
     Public Property HoraSalida As System.TimeSpan
     Public Property HoraFin As System.TimeSpan
+    Public Property Anulado As Boolean
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

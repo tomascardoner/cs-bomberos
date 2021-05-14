@@ -981,6 +981,7 @@
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="0" Nullable="false" />
           <Property Name="HoraFin" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Anulado" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -5999,7 +6000,7 @@
           <NavigationProperty Name="Usuarios" Relationship="CSBomberosModel.FK__Cuartel__Usuario" FromRole="Cuartel" ToRole="Usuario" />
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Cuartel__Responsable" FromRole="Cuartel" ToRole="Responsable" />
           <NavigationProperty Name="Compra" Relationship="CSBomberosModel.FK__Cuartel__Compra" FromRole="Cuartel" ToRole="Compra" />
-          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK__Cuartel__Siniestro" FromRole="Cuartel" ToRole="Siniestro" />
+          <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK__Cuartel__Siniestro" FromRole="Cuartel" ToRole="Siniestro" />
         </EntityType>
         <EntityType Name="Parentesco">
           <Key>
@@ -9584,6 +9585,7 @@
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HoraSalida" Type="Time" Nullable="false" Precision="0" />
           <Property Name="HoraFin" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Anulado" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -11097,6 +11099,7 @@
           <EntitySetMapping Name="Siniestro">
             <EntityTypeMapping TypeName="CSBomberosModel.Siniestro">
               <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="Anulado" ColumnName="Anulado" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
