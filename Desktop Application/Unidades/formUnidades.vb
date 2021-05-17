@@ -198,15 +198,8 @@
 #End Region
 
 #Region "Controls behavior"
-    Private Sub comboboxUnidadTipo_SelectedIndexChanged() Handles comboboxUnidadTipo.SelectedIndexChanged
-        FilterData()
-    End Sub
 
-    Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        FilterData()
-    End Sub
-
-    Private Sub comboboxActivo_SelectedIndexChanged() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxUnidadTipo.SelectedIndexChanged, comboboxCuartel.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -255,7 +248,7 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Unidad para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Unidad para editar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.Unidad_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
@@ -273,7 +266,7 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Unidad para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Unidad para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.Unidad_ELIMINAR) Then
 
@@ -282,7 +275,7 @@
                 Using dbContext = New CSBomberosContext(True)
                     Dim UnidadActual As Unidad = dbContext.Unidad.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDUnidad)
                     Dim Mensaje As String
-                    Mensaje = String.Format("Se eliminará el Unidad seleccionado.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, UnidadActual.NumeroMarcaModelo)
+                    Mensaje = String.Format("Se eliminará la Unidad seleccionada.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, UnidadActual.NumeroMarcaModelo)
                     If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                         Try
@@ -292,13 +285,13 @@
                         Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                             Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                                 Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                    MsgBox("No se puede eliminar el Unidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                    MsgBox("No se puede eliminar la Unidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                             End Select
                             Me.Cursor = Cursors.Default
                             Exit Sub
 
                         Catch ex As Exception
-                            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Unidad.")
+                            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Unidad.")
                         End Try
 
                         RefreshData()
@@ -312,7 +305,7 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Unidad para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Unidad para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 

@@ -29,6 +29,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_COMPRAS_32)
 
@@ -97,6 +98,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDCompra As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
@@ -324,6 +326,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
         comboboxPeriodoValor.Items.Clear()
         Select Case comboboxPeriodoTipo.SelectedIndex

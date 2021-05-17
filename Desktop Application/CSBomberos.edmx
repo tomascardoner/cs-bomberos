@@ -974,10 +974,12 @@
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="NumeroPrefijo" Type="smallint" Nullable="false" />
           <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="NumeroCompleto" Type="varchar" MaxLength="8000" StoreGeneratedPattern="Computed" />
           <Property Name="IDSiniestroRubro" Type="tinyint" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="tinyint" Nullable="false" />
           <Property Name="TipoOtro" Type="varchar" MaxLength="50" />
           <Property Name="Clave" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ClaveNombre" Type="varchar" MaxLength="7" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="0" Nullable="false" />
           <Property Name="HoraFin" Type="time" Precision="0" Nullable="false" />
@@ -9578,10 +9580,12 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="NumeroPrefijo" Type="Int16" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="NumeroCompleto" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="IDSiniestroRubro" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="Byte" Nullable="false" />
           <Property Name="TipoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Clave" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ClaveNombre" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HoraSalida" Type="Time" Nullable="false" Precision="0" />
           <Property Name="HoraFin" Type="Time" Nullable="false" Precision="0" />
@@ -11099,6 +11103,8 @@
           <EntitySetMapping Name="Siniestro">
             <EntityTypeMapping TypeName="CSBomberosModel.Siniestro">
               <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="ClaveNombre" ColumnName="ClaveNombre" />
+                <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
                 <ScalarProperty Name="Anulado" ColumnName="Anulado" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />

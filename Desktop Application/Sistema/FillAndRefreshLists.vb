@@ -34,6 +34,36 @@
 
 #End Region
 
+#Region "Personas"
+
+    Friend Sub Persona(ByRef ComboBoxControl As ComboBox, ByVal MostrarInactivos As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Persona)
+
+        ComboBoxControl.ValueMember = "IDPersona"
+        ComboBoxControl.DisplayMember = "ApellidoNombre"
+
+        If MostrarInactivos Then
+            listItems = mdbContext.Persona.OrderBy(Function(p) p.ApellidoNombre).ToList
+        Else
+            listItems = mdbContext.Persona.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.ApellidoNombre).ToList
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New Persona
+            Item_NoEspecifica.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
+            Item_NoEspecifica.ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New Persona
+            Item_Todos.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
+            Item_Todos.ApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
     Friend Sub DocumentoTipo(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
         ComboBoxControl.ValueMember = "IDDocumentoTipo"
         ComboBoxControl.DisplayMember = "Nombre"
@@ -212,6 +242,59 @@
         End If
     End Sub
 
+    Friend Sub NivelEstudio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of NivelEstudio)
+
+        ComboBoxControl.ValueMember = "IDNivelEstudio"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(ne) ne.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New NivelEstudio
+            Item_Todos.IDNivelEstudio = 0
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New NivelEstudio
+            Item_NoEspecifica.IDNivelEstudio = 0
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Friend Sub EstadoCivil(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of EstadoCivil)
+
+        ComboBoxControl.ValueMember = "IDEstadoCivil"
+        ComboBoxControl.DisplayMember = "Nombre"
+
+        listItems = mdbContext.EstadoCivil.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
+
+        If AgregarItem_Todos Then
+            Dim Item_Todos As New EstadoCivil
+            Item_Todos.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
+            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            listItems.Insert(0, Item_Todos)
+        End If
+
+        If AgregarItem_NoEspecifica Then
+            Dim Item_NoEspecifica As New EstadoCivil
+            Item_NoEspecifica.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, Item_NoEspecifica)
+        End If
+
+        ComboBoxControl.DataSource = listItems
+    End Sub
+
+#End Region
+
+#Region "Calendario"
+
     Friend Sub DiaSemana(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelDia As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         ComboBoxControl.Items.Clear()
         If MostrarNombreDelDia Then
@@ -291,29 +374,9 @@
         End If
     End Sub
 
-    Friend Sub NivelEstudio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of NivelEstudio)
+#End Region
 
-        ComboBoxControl.ValueMember = "IDNivelEstudio"
-        ComboBoxControl.DisplayMember = "Nombre"
-
-        listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(ne) ne.Nombre).ToList
-
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New NivelEstudio
-            Item_Todos.IDNivelEstudio = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            listItems.Insert(0, Item_Todos)
-        End If
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New NivelEstudio
-            Item_NoEspecifica.IDNivelEstudio = 0
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
+#Region "Compras"
 
     Friend Sub Proveedor(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Proveedor)
@@ -338,6 +401,8 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
+#End Region
 
     Friend Sub Cuartel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Cuartel)
@@ -424,34 +489,6 @@
             Item_NoEspecifica.ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             Item_NoEspecifica.PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
-
-    Friend Sub Persona(ByRef ComboBoxControl As ComboBox, ByVal MostrarInactivos As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of Persona)
-
-        ComboBoxControl.ValueMember = "IDPersona"
-        ComboBoxControl.DisplayMember = "ApellidoNombre"
-
-        If MostrarInactivos Then
-            listItems = mdbContext.Persona.OrderBy(Function(p) p.ApellidoNombre).ToList
-        Else
-            listItems = mdbContext.Persona.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.ApellidoNombre).ToList
-        End If
-
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Persona
-            Item_NoEspecifica.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
-            Item_NoEspecifica.ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New Persona
-            Item_Todos.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
-            Item_Todos.ApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
-            listItems.Insert(0, Item_Todos)
         End If
 
         ComboBoxControl.DataSource = listItems
@@ -888,6 +925,8 @@
 
 #End Region
 
+#Region "Unidades"
+
     Friend Sub UnidadTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of UnidadTipo)
 
@@ -987,6 +1026,10 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
+#End Region
+
+#Region "Usuarios"
+
     Friend Sub UsuarioGrupo(ByRef ComboBoxControl As ComboBox, ByVal MostrarGrupoAdministradores As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of UsuarioGrupo)
 
@@ -1015,6 +1058,10 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
+#End Region
+
+#Region "Personas"
 
     Friend Sub Cargo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Cargo)
@@ -1069,6 +1116,10 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
+#End Region
+
+#Region "Vehículos"
 
     Friend Sub VehiculoTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of VehiculoTipo)
@@ -1144,6 +1195,8 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
+#End Region
 
     Friend Sub VacunaTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of VacunaTipo)
@@ -1270,30 +1323,7 @@
         ComboBoxControl.DataSource = listItems
     End Sub
 
-    Friend Sub EstadoCivil(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of EstadoCivil)
 
-        ComboBoxControl.ValueMember = "IDEstadoCivil"
-        ComboBoxControl.DisplayMember = "Nombre"
-
-        listItems = mdbContext.EstadoCivil.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
-
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New EstadoCivil
-            Item_Todos.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            listItems.Insert(0, Item_Todos)
-        End If
-
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New EstadoCivil
-            Item_NoEspecifica.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
 
     Friend Sub CapacitacionTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of CapacitacionTipo)
@@ -1338,4 +1368,5 @@
 
         ComboBoxControl.DataSource = listItems
     End Sub
+
 End Class

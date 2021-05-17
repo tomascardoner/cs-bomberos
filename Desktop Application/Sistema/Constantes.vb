@@ -49,6 +49,21 @@
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS As String = "B"
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE As String = "Bomberos"
 
+    '//////////////////
+    '    SINIESTROS
+    '//////////////////
+    Friend Const SINIESTRO_NUMEROPREFIJO_DIGITOS As Byte = 4
+    Friend Const SINIESTRO_NUMERO_DIGITOS As Byte = 8
+
+    Friend Const SINIESTRO_CLAVE_ROJA As String = "R"
+    Friend Const SINIESTRO_CLAVE_ROJA_NOMBRE As String = "Roja"
+    Friend Const SINIESTRO_CLAVE_NARANJA As String = "N"
+    Friend Const SINIESTRO_CLAVE_NARANJA_NOMBRE As String = "Naranja"
+    Friend Const SINIESTRO_CLAVE_AZUL As String = "A"
+    Friend Const SINIESTRO_CLAVE_AZUL_NOMBRE As String = "Azul"
+    Friend Const SINIESTRO_CLAVE_VERDE As String = "V"
+    Friend Const SINIESTRO_CLAVE_VERDE_NOMBRE As String = "Verde"
+
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
     '//////////////

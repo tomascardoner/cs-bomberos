@@ -15,10 +15,12 @@ Partial Public Class Siniestro
     Public Property IDCuartel As Byte
     Public Property NumeroPrefijo As Short
     Public Property Numero As Integer
+    Public Property NumeroCompleto As String
     Public Property IDSiniestroRubro As Byte
     Public Property IDSiniestroTipo As Byte
     Public Property TipoOtro As String
     Public Property Clave As String
+    Public Property ClaveNombre As String
     Public Property Fecha As Date
     Public Property HoraSalida As System.TimeSpan
     Public Property HoraFin As System.TimeSpan

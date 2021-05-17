@@ -263,6 +263,11 @@
     Friend Const CAJAARQUEO_IMPRIMIR As String = "CAJAARQUEO_IMPRIMIR"
     Friend Const CAJAARQUEO_IMPRIMIR_CERRADA As String = "CAJAARQUEO_IMPRIMIR_CERRADA"
 
+    Friend Const SINIESTRO As String = "SINIESTRO"
+    Friend Const SINIESTRO_AGREGAR As String = "SINIESTRO_AGREGAR"
+    Friend Const SINIESTRO_EDITAR As String = "SINIESTRO_EDITAR"
+    Friend Const SINIESTRO_ELIMINAR As String = "SINIESTRO_ELIMINAR"
+
     Friend Const REPORTE_DOCUMENTACIONES As String = "REPORTE_DOCUMENTACIONES"
     Friend Const REPORTE_JEFATURA As String = "REPORTE_JEFATURA"
 
@@ -420,6 +425,12 @@
 
         ' JEFATURA - REPORTES
         nodeParent = nodeRoot.Nodes.Add(REPORTE_JEFATURA, "Reportes")
+
+        ' GUARDIA
+        nodeRoot = Arbol.Nodes.Add("GUARDI", "Guardia")
+
+        ' GUARDIA - SINIESTROS
+        nodeCurrent = AgregarNodos(nodeRoot, SINIESTRO, "Siniestros", SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         Arbol.TopNode = Arbol.Nodes(0)
 

@@ -329,6 +329,7 @@
     <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Database\CajaArqueoExtension.vb" />
     <Compile Include="Database\Database.vb" />
+    <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Modulo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -457,6 +458,12 @@
     </Compile>
     <Compile Include="SiniestroRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestros.designer.vb">
+      <DependentUpon>formSiniestros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestros.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="SiniestroTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -1197,6 +1204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompras.resx">
       <DependentUpon>formCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestros.resx">
+      <DependentUpon>formSiniestros.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sistema\formAboutBox.resx">
       <DependentUpon>formAboutBox.vb</DependentUpon>

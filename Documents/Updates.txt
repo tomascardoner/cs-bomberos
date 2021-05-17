@@ -1,3 +1,10 @@
+2021-05-16
+	- Cambiar año de siniestros de 1990 a 1900
+	- Siniestro: agregar los campos
+	ALTER TABLE Siniestro
+	ADD NumeroCompleto AS REPLACE(STR(NumeroPrefijo, 4), SPACE(1), '0') + '-' + REPLACE(STR(Numero, 8), SPACE(1), '0')
+	ADD ClaveNombre AS (CASE Clave WHEN 'V' THEN 'Verde' WHEN 'A' THEN 'Azul' WHEN 'N' THEN 'Naranja' WHEN 'R' THEN 'Roja' ELSE '' END)
+
 2021-05-09
 	- Persona: Agregar el campo TituloObtenido varchar(100) null después de IDNivelEstudio
 	- Agregar tablas nuevas desde los scripts

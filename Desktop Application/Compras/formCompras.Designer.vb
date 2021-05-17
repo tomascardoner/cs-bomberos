@@ -28,6 +28,13 @@ Partial Class formCompras
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFacturaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCerrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -52,13 +59,6 @@ Partial Class formCompras
         Me.toolstripCerrada = New System.Windows.Forms.ToolStrip()
         Me.labelCerrada = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCerrada = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFacturaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCerrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -108,6 +108,77 @@ Partial Class formCompras
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnNumero
+        '
+        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNumero.DataPropertyName = "Numero"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNumero.HeaderText = "Número"
+        Me.columnNumero.Name = "columnNumero"
+        Me.columnNumero.ReadOnly = True
+        Me.columnNumero.Width = 69
+        '
+        'columnFecha
+        '
+        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnProveedor
+        '
+        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnProveedor.DataPropertyName = "ProveedorNombre"
+        Me.columnProveedor.HeaderText = "Proveedor"
+        Me.columnProveedor.Name = "columnProveedor"
+        Me.columnProveedor.ReadOnly = True
+        Me.columnProveedor.Width = 81
+        '
+        'columnFacturaNumero
+        '
+        Me.columnFacturaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFacturaNumero.DataPropertyName = "FacturaNumero"
+        Me.columnFacturaNumero.HeaderText = "Nº factura"
+        Me.columnFacturaNumero.Name = "columnFacturaNumero"
+        Me.columnFacturaNumero.ReadOnly = True
+        Me.columnFacturaNumero.Width = 80
+        '
+        'columnImporte
+        '
+        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnImporte.DataPropertyName = "Importe"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnImporte.HeaderText = "Importe"
+        Me.columnImporte.Name = "columnImporte"
+        Me.columnImporte.ReadOnly = True
+        Me.columnImporte.Width = 67
+        '
+        'columnCerrada
+        '
+        Me.columnCerrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCerrada.DataPropertyName = "Cerrada"
+        Me.columnCerrada.HeaderText = "Cerrada"
+        Me.columnCerrada.Name = "columnCerrada"
+        Me.columnCerrada.ReadOnly = True
+        Me.columnCerrada.Width = 50
         '
         'panelToolbars
         '
@@ -301,77 +372,6 @@ Partial Class formCompras
         Me.comboboxCerrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxCerrada.Name = "comboboxCerrada"
         Me.comboboxCerrada.Size = New System.Drawing.Size(75, 25)
-        '
-        'columnCuartel
-        '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
-        '
-        'columnNumero
-        '
-        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNumero.DataPropertyName = "Numero"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNumero.HeaderText = "Número"
-        Me.columnNumero.Name = "columnNumero"
-        Me.columnNumero.ReadOnly = True
-        Me.columnNumero.Width = 69
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnProveedor
-        '
-        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnProveedor.DataPropertyName = "ProveedorNombre"
-        Me.columnProveedor.HeaderText = "Proveedor"
-        Me.columnProveedor.Name = "columnProveedor"
-        Me.columnProveedor.ReadOnly = True
-        Me.columnProveedor.Width = 81
-        '
-        'columnFacturaNumero
-        '
-        Me.columnFacturaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFacturaNumero.DataPropertyName = "FacturaNumero"
-        Me.columnFacturaNumero.HeaderText = "Nº factura"
-        Me.columnFacturaNumero.Name = "columnFacturaNumero"
-        Me.columnFacturaNumero.ReadOnly = True
-        Me.columnFacturaNumero.Width = 80
-        '
-        'columnImporte
-        '
-        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnImporte.DataPropertyName = "Importe"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnImporte.HeaderText = "Importe"
-        Me.columnImporte.Name = "columnImporte"
-        Me.columnImporte.ReadOnly = True
-        Me.columnImporte.Width = 67
-        '
-        'columnCerrada
-        '
-        Me.columnCerrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCerrada.DataPropertyName = "Cerrada"
-        Me.columnCerrada.HeaderText = "Cerrada"
-        Me.columnCerrada.Name = "columnCerrada"
-        Me.columnCerrada.ReadOnly = True
-        Me.columnCerrada.Width = 50
         '
         'formCompras
         '
