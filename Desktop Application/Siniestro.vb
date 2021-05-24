@@ -13,8 +13,8 @@ Imports System.Collections.Generic
 Partial Public Class Siniestro
     Public Property IDSiniestro As Integer
     Public Property IDCuartel As Byte
-    Public Property NumeroPrefijo As Short
-    Public Property Numero As Integer
+    Public Property NumeroPrefijo As String
+    Public Property Numero As String
     Public Property NumeroCompleto As String
     Public Property IDSiniestroRubro As Byte
     Public Property IDSiniestroTipo As Byte

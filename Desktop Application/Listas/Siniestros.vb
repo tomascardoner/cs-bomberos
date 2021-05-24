@@ -92,4 +92,29 @@
         control.DataSource = datatableClaves
     End Sub
 
+    Friend Sub LlenarComboBoxAsistenciaTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of SiniestroAsistenciaTipo)
+
+        control.ValueMember = "IDSiniestroAsistenciaTipo"
+        control.DisplayMember = "Nombre"
+
+        listItems = context.SiniestroAsistenciaTipo.Where(Function(sr) sr.EsActivo).OrderBy(Function(sr) sr.Nombre).ToList
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroAsistenciaTipo
+            todos.IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
+            todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            listItems.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroAsistenciaTipo
+            noEspecifica.IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
+            noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            listItems.Insert(0, noEspecifica)
+        End If
+
+        control.DataSource = listItems
+    End Sub
+
 End Module

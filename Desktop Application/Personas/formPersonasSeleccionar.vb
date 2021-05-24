@@ -1,6 +1,7 @@
 ﻿Public Class formPersonasSeleccionar
 
 #Region "Declarations"
+
     Private listPersonaBase As List(Of Persona)
     Private listPersonaFiltradaYOrdenada As List(Of Persona)
 
@@ -14,9 +15,11 @@
 
     Private Const COLUMNA_APELLIDO As String = "columnApellido"
     Private Const COLUMNA_NOMBRE As String = "columnNombre"
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub EstablecerMultiseleccion(ByVal valor As Boolean)
         Multiseleccion = valor
 
@@ -46,6 +49,7 @@
     Private Sub formPersonas_FormClosed() Handles Me.FormClosed
         listPersonaBase = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"

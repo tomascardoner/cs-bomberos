@@ -40,7 +40,7 @@
 
         ChangeMode()
 
-        Me.ShowDialog(ParentForm)
+        Me.ShowDialog(mParentForm)
     End Sub
 
     Private Sub ChangeMode()

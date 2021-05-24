@@ -27,7 +27,7 @@ Partial Class formSiniestro
         Dim labelHoraSalida As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
         Dim labelHoraFin As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNumero = New System.Windows.Forms.Label()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -39,7 +39,9 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.integertextboxNumeroPrefijo = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
+        Me.labelNumeroSeparador = New System.Windows.Forms.Label()
+        Me.maskedtextboxNumero = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxNumeroPrefijo = New System.Windows.Forms.MaskedTextBox()
         Me.datetimepickerHoraFin = New System.Windows.Forms.DateTimePicker()
         Me.labelClave = New System.Windows.Forms.Label()
         Me.comboboxClave = New System.Windows.Forms.ComboBox()
@@ -52,15 +54,14 @@ Partial Class formSiniestro
         Me.datetimepickerHoraSalida = New System.Windows.Forms.DateTimePicker()
         Me.labelSiniestroRubro = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
-        Me.integertextboxNumero = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
-        Me.tabpageDetalles = New System.Windows.Forms.TabPage()
-        Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
+        Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
+        Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnSiniestroAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripDetalles = New System.Windows.Forms.ToolStrip()
-        Me.buttonDetallesAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetallesEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripAsistencias = New System.Windows.Forms.ToolStrip()
+        Me.buttonAsistenciasAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonAsistenciasEditar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonAsistenciasEliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.checkboxAnulado = New System.Windows.Forms.CheckBox()
         Me.labelAnulado = New System.Windows.Forms.Label()
@@ -80,11 +81,9 @@ Partial Class formSiniestro
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        CType(Me.integertextboxNumeroPrefijo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.integertextboxNumero, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tabpageDetalles.SuspendLayout()
-        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripDetalles.SuspendLayout()
+        Me.tabpageAsistencias.SuspendLayout()
+        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripAsistencias.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -114,7 +113,7 @@ Partial Class formSiniestro
         labelHoraSalida.Location = New System.Drawing.Point(6, 205)
         labelHoraSalida.Name = "labelHoraSalida"
         labelHoraSalida.Size = New System.Drawing.Size(78, 13)
-        labelHoraSalida.TabIndex = 16
+        labelHoraSalida.TabIndex = 17
         labelHoraSalida.Text = "Hora de salida:"
         '
         'labelCuartel
@@ -132,7 +131,7 @@ Partial Class formSiniestro
         labelHoraFin.Location = New System.Drawing.Point(6, 231)
         labelHoraFin.Name = "labelHoraFin"
         labelHoraFin.Size = New System.Drawing.Size(62, 13)
-        labelHoraFin.TabIndex = 18
+        labelHoraFin.TabIndex = 19
         labelHoraFin.Text = "Hora de fin:"
         '
         'labelNumero
@@ -150,7 +149,7 @@ Partial Class formSiniestro
         Me.labelFecha.Location = New System.Drawing.Point(6, 71)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 6
+        Me.labelFecha.TabIndex = 7
         Me.labelFecha.Text = "Fecha:"
         '
         'buttonGuardar
@@ -216,11 +215,12 @@ Partial Class formSiniestro
         '
         Me.comboboxSiniestroRubro.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.comboboxSiniestroRubro.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxSiniestroRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxSiniestroRubro.FormattingEnabled = True
         Me.comboboxSiniestroRubro.Location = New System.Drawing.Point(96, 94)
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
         Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroRubro.TabIndex = 9
+        Me.comboboxSiniestroRubro.TabIndex = 10
         '
         'tabcontrolMain
         '
@@ -229,7 +229,7 @@ Partial Class formSiniestro
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageDetalles)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageAsistencias)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
@@ -239,7 +239,9 @@ Partial Class formSiniestro
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.integertextboxNumeroPrefijo)
+        Me.tabpageGeneral.Controls.Add(Me.labelNumeroSeparador)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxNumero)
+        Me.tabpageGeneral.Controls.Add(Me.maskedtextboxNumeroPrefijo)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerHoraFin)
         Me.tabpageGeneral.Controls.Add(labelHoraFin)
         Me.tabpageGeneral.Controls.Add(Me.labelClave)
@@ -255,7 +257,6 @@ Partial Class formSiniestro
         Me.tabpageGeneral.Controls.Add(labelHoraSalida)
         Me.tabpageGeneral.Controls.Add(Me.labelSiniestroRubro)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
-        Me.tabpageGeneral.Controls.Add(Me.integertextboxNumero)
         Me.tabpageGeneral.Controls.Add(Me.comboboxSiniestroRubro)
         Me.tabpageGeneral.Controls.Add(Me.labelNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
@@ -267,26 +268,38 @@ Partial Class formSiniestro
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'integertextboxNumeroPrefijo
+        'labelNumeroSeparador
         '
-        Me.integertextboxNumeroPrefijo.BeforeTouchSize = New System.Drawing.Size(86, 20)
-        Me.integertextboxNumeroPrefijo.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.integertextboxNumeroPrefijo.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.integertextboxNumeroPrefijo.IntegerValue = CType(0, Long)
-        Me.integertextboxNumeroPrefijo.Location = New System.Drawing.Point(96, 42)
-        Me.integertextboxNumeroPrefijo.MaxValue = CType(9999, Long)
-        Me.integertextboxNumeroPrefijo.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.integertextboxNumeroPrefijo.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
-        Me.integertextboxNumeroPrefijo.MinValue = CType(1, Long)
-        Me.integertextboxNumeroPrefijo.Name = "integertextboxNumeroPrefijo"
-        Me.integertextboxNumeroPrefijo.NullString = ""
-        Me.integertextboxNumeroPrefijo.Size = New System.Drawing.Size(49, 20)
-        Me.integertextboxNumeroPrefijo.TabIndex = 3
-        Me.integertextboxNumeroPrefijo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.labelNumeroSeparador.AutoSize = True
+        Me.labelNumeroSeparador.Location = New System.Drawing.Point(140, 47)
+        Me.labelNumeroSeparador.Name = "labelNumeroSeparador"
+        Me.labelNumeroSeparador.Size = New System.Drawing.Size(10, 13)
+        Me.labelNumeroSeparador.TabIndex = 4
+        Me.labelNumeroSeparador.Text = "-"
+        '
+        'maskedtextboxNumero
+        '
+        Me.maskedtextboxNumero.HidePromptOnLeave = True
+        Me.maskedtextboxNumero.Location = New System.Drawing.Point(151, 42)
+        Me.maskedtextboxNumero.Mask = "00000000"
+        Me.maskedtextboxNumero.Name = "maskedtextboxNumero"
+        Me.maskedtextboxNumero.Size = New System.Drawing.Size(71, 20)
+        Me.maskedtextboxNumero.TabIndex = 5
+        Me.maskedtextboxNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'maskedtextboxNumeroPrefijo
+        '
+        Me.maskedtextboxNumeroPrefijo.HidePromptOnLeave = True
+        Me.maskedtextboxNumeroPrefijo.Location = New System.Drawing.Point(96, 42)
+        Me.maskedtextboxNumeroPrefijo.Mask = "0000"
+        Me.maskedtextboxNumeroPrefijo.Name = "maskedtextboxNumeroPrefijo"
+        Me.maskedtextboxNumeroPrefijo.Size = New System.Drawing.Size(41, 20)
+        Me.maskedtextboxNumeroPrefijo.TabIndex = 3
+        Me.maskedtextboxNumeroPrefijo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'datetimepickerHoraFin
         '
-        Me.datetimepickerHoraFin.CustomFormat = "hh:MM"
+        Me.datetimepickerHoraFin.CustomFormat = "HH:mm"
         Me.datetimepickerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.datetimepickerHoraFin.Location = New System.Drawing.Point(96, 227)
         Me.datetimepickerHoraFin.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
@@ -294,7 +307,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowCheckBox = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraFin.TabIndex = 19
+        Me.datetimepickerHoraFin.TabIndex = 20
         '
         'labelClave
         '
@@ -302,18 +315,19 @@ Partial Class formSiniestro
         Me.labelClave.Location = New System.Drawing.Point(6, 177)
         Me.labelClave.Name = "labelClave"
         Me.labelClave.Size = New System.Drawing.Size(37, 13)
-        Me.labelClave.TabIndex = 14
+        Me.labelClave.TabIndex = 15
         Me.labelClave.Text = "Clave:"
         '
         'comboboxClave
         '
         Me.comboboxClave.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.comboboxClave.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxClave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxClave.FormattingEnabled = True
         Me.comboboxClave.Location = New System.Drawing.Point(96, 174)
         Me.comboboxClave.Name = "comboboxClave"
         Me.comboboxClave.Size = New System.Drawing.Size(86, 21)
-        Me.comboboxClave.TabIndex = 15
+        Me.comboboxClave.TabIndex = 16
         '
         'labelSiniestroTipoOtro
         '
@@ -321,8 +335,9 @@ Partial Class formSiniestro
         Me.labelSiniestroTipoOtro.Location = New System.Drawing.Point(6, 151)
         Me.labelSiniestroTipoOtro.Name = "labelSiniestroTipoOtro"
         Me.labelSiniestroTipoOtro.Size = New System.Drawing.Size(30, 13)
-        Me.labelSiniestroTipoOtro.TabIndex = 12
+        Me.labelSiniestroTipoOtro.TabIndex = 13
         Me.labelSiniestroTipoOtro.Text = "Otro:"
+        Me.labelSiniestroTipoOtro.Visible = False
         '
         'textboxSiniestroTipoOtro
         '
@@ -330,7 +345,8 @@ Partial Class formSiniestro
         Me.textboxSiniestroTipoOtro.MaxLength = 50
         Me.textboxSiniestroTipoOtro.Name = "textboxSiniestroTipoOtro"
         Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(267, 20)
-        Me.textboxSiniestroTipoOtro.TabIndex = 13
+        Me.textboxSiniestroTipoOtro.TabIndex = 14
+        Me.textboxSiniestroTipoOtro.Visible = False
         '
         'labelSiniestroTipo
         '
@@ -338,25 +354,26 @@ Partial Class formSiniestro
         Me.labelSiniestroTipo.Location = New System.Drawing.Point(6, 124)
         Me.labelSiniestroTipo.Name = "labelSiniestroTipo"
         Me.labelSiniestroTipo.Size = New System.Drawing.Size(31, 13)
-        Me.labelSiniestroTipo.TabIndex = 10
+        Me.labelSiniestroTipo.TabIndex = 11
         Me.labelSiniestroTipo.Text = "Tipo:"
         '
         'comboboxSiniestroTipo
         '
         Me.comboboxSiniestroTipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.comboboxSiniestroTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxSiniestroTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxSiniestroTipo.FormattingEnabled = True
         Me.comboboxSiniestroTipo.Location = New System.Drawing.Point(96, 121)
         Me.comboboxSiniestroTipo.Name = "comboboxSiniestroTipo"
         Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroTipo.TabIndex = 11
+        Me.comboboxSiniestroTipo.TabIndex = 12
         '
         'buttonCodigoSiguiente
         '
-        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(243, 42)
+        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(229, 42)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
         Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 22)
-        Me.buttonCodigoSiguiente.TabIndex = 5
+        Me.buttonCodigoSiguiente.TabIndex = 6
         Me.buttonCodigoSiguiente.Text = "Obtener siguiente"
         Me.buttonCodigoSiguiente.UseVisualStyleBackColor = True
         '
@@ -371,7 +388,7 @@ Partial Class formSiniestro
         '
         'datetimepickerHoraSalida
         '
-        Me.datetimepickerHoraSalida.CustomFormat = "hh:MM"
+        Me.datetimepickerHoraSalida.CustomFormat = "HH:mm"
         Me.datetimepickerHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.datetimepickerHoraSalida.Location = New System.Drawing.Point(96, 201)
         Me.datetimepickerHoraSalida.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
@@ -379,7 +396,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraSalida.Name = "datetimepickerHoraSalida"
         Me.datetimepickerHoraSalida.ShowCheckBox = True
         Me.datetimepickerHoraSalida.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraSalida.TabIndex = 17
+        Me.datetimepickerHoraSalida.TabIndex = 18
         '
         'labelSiniestroRubro
         '
@@ -387,7 +404,7 @@ Partial Class formSiniestro
         Me.labelSiniestroRubro.Location = New System.Drawing.Point(6, 97)
         Me.labelSiniestroRubro.Name = "labelSiniestroRubro"
         Me.labelSiniestroRubro.Size = New System.Drawing.Size(39, 13)
-        Me.labelSiniestroRubro.TabIndex = 8
+        Me.labelSiniestroRubro.TabIndex = 9
         Me.labelSiniestroRubro.Text = "Rubro:"
         '
         'datetimepickerFecha
@@ -398,60 +415,43 @@ Partial Class formSiniestro
         Me.datetimepickerFecha.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(113, 20)
-        Me.datetimepickerFecha.TabIndex = 7
+        Me.datetimepickerFecha.TabIndex = 8
         '
-        'integertextboxNumero
+        'tabpageAsistencias
         '
-        Me.integertextboxNumero.BeforeTouchSize = New System.Drawing.Size(86, 20)
-        Me.integertextboxNumero.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.integertextboxNumero.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.integertextboxNumero.IntegerValue = CType(0, Long)
-        Me.integertextboxNumero.Location = New System.Drawing.Point(151, 42)
-        Me.integertextboxNumero.MaxValue = CType(99999999, Long)
-        Me.integertextboxNumero.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.integertextboxNumero.MinMaxValidation = Syncfusion.Windows.Forms.Tools.MinMaxValidation.OnLostFocus
-        Me.integertextboxNumero.MinValue = CType(1, Long)
-        Me.integertextboxNumero.Name = "integertextboxNumero"
-        Me.integertextboxNumero.NullString = ""
-        Me.integertextboxNumero.Size = New System.Drawing.Size(86, 20)
-        Me.integertextboxNumero.TabIndex = 4
-        Me.integertextboxNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.tabpageAsistencias.Controls.Add(Me.datagridviewAsistencias)
+        Me.tabpageAsistencias.Controls.Add(Me.toolstripAsistencias)
+        Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageAsistencias.Name = "tabpageAsistencias"
+        Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageAsistencias.Size = New System.Drawing.Size(656, 326)
+        Me.tabpageAsistencias.TabIndex = 2
+        Me.tabpageAsistencias.Text = "Asistencias"
+        Me.tabpageAsistencias.UseVisualStyleBackColor = True
         '
-        'tabpageDetalles
+        'datagridviewAsistencias
         '
-        Me.tabpageDetalles.Controls.Add(Me.datagridviewDetalles)
-        Me.tabpageDetalles.Controls.Add(Me.toolstripDetalles)
-        Me.tabpageDetalles.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageDetalles.Name = "tabpageDetalles"
-        Me.tabpageDetalles.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDetalles.Size = New System.Drawing.Size(656, 326)
-        Me.tabpageDetalles.TabIndex = 2
-        Me.tabpageDetalles.Text = "Detalles"
-        Me.tabpageDetalles.UseVisualStyleBackColor = True
-        '
-        'datagridviewDetalles
-        '
-        Me.datagridviewDetalles.AllowUserToAddRows = False
-        Me.datagridviewDetalles.AllowUserToDeleteRows = False
-        Me.datagridviewDetalles.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewDetalles.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.datagridviewDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewDetalles.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
-        Me.datagridviewDetalles.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewDetalles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewDetalles.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewDetalles.MultiSelect = False
-        Me.datagridviewDetalles.Name = "datagridviewDetalles"
-        Me.datagridviewDetalles.ReadOnly = True
-        Me.datagridviewDetalles.RowHeadersVisible = False
-        Me.datagridviewDetalles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewDetalles.Size = New System.Drawing.Size(563, 320)
-        Me.datagridviewDetalles.TabIndex = 8
+        Me.datagridviewAsistencias.AllowUserToAddRows = False
+        Me.datagridviewAsistencias.AllowUserToDeleteRows = False
+        Me.datagridviewAsistencias.AllowUserToResizeRows = False
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
+        Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewAsistencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewAsistencias.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewAsistencias.MultiSelect = False
+        Me.datagridviewAsistencias.Name = "datagridviewAsistencias"
+        Me.datagridviewAsistencias.ReadOnly = True
+        Me.datagridviewAsistencias.RowHeadersVisible = False
+        Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(563, 320)
+        Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
         '
@@ -471,47 +471,47 @@ Partial Class formSiniestro
         Me.columnSiniestroAsistenciaTipo.ReadOnly = True
         Me.columnSiniestroAsistenciaTipo.Width = 80
         '
-        'toolstripDetalles
+        'toolstripAsistencias
         '
-        Me.toolstripDetalles.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripDetalles.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripDetalles.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripDetalles.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonDetallesAgregar, Me.buttonDetallesEditar, Me.buttonDetallesEliminar})
-        Me.toolstripDetalles.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripDetalles.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripDetalles.Name = "toolstripDetalles"
-        Me.toolstripDetalles.Size = New System.Drawing.Size(87, 320)
-        Me.toolstripDetalles.TabIndex = 9
+        Me.toolstripAsistencias.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripAsistencias.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripAsistencias.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripAsistencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAsistenciasAgregar, Me.buttonAsistenciasEditar, Me.buttonAsistenciasEliminar})
+        Me.toolstripAsistencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripAsistencias.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripAsistencias.Name = "toolstripAsistencias"
+        Me.toolstripAsistencias.Size = New System.Drawing.Size(87, 320)
+        Me.toolstripAsistencias.TabIndex = 9
         '
-        'buttonDetallesAgregar
+        'buttonAsistenciasAgregar
         '
-        Me.buttonDetallesAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonDetallesAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesAgregar.Name = "buttonDetallesAgregar"
-        Me.buttonDetallesAgregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesAgregar.Text = "Agregar"
+        Me.buttonAsistenciasAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAsistenciasAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonAsistenciasAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciasAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciasAgregar.Name = "buttonAsistenciasAgregar"
+        Me.buttonAsistenciasAgregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonAsistenciasAgregar.Text = "Agregar"
         '
-        'buttonDetallesEditar
+        'buttonAsistenciasEditar
         '
-        Me.buttonDetallesEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonDetallesEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesEditar.Name = "buttonDetallesEditar"
-        Me.buttonDetallesEditar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesEditar.Text = "Editar"
+        Me.buttonAsistenciasEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAsistenciasEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonAsistenciasEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciasEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciasEditar.Name = "buttonAsistenciasEditar"
+        Me.buttonAsistenciasEditar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonAsistenciasEditar.Text = "Editar"
         '
-        'buttonDetallesEliminar
+        'buttonAsistenciasEliminar
         '
-        Me.buttonDetallesEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonDetallesEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesEliminar.Name = "buttonDetallesEliminar"
-        Me.buttonDetallesEliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesEliminar.Text = "Eliminar"
+        Me.buttonAsistenciasEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAsistenciasEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonAsistenciasEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciasEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciasEliminar.Name = "buttonAsistenciasEliminar"
+        Me.buttonAsistenciasEliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonAsistenciasEliminar.Text = "Eliminar"
         '
         'tabpageNotasAuditoria
         '
@@ -659,13 +659,11 @@ Partial Class formSiniestro
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        CType(Me.integertextboxNumeroPrefijo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.integertextboxNumero, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tabpageDetalles.ResumeLayout(False)
-        Me.tabpageDetalles.PerformLayout()
-        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripDetalles.ResumeLayout(False)
-        Me.toolstripDetalles.PerformLayout()
+        Me.tabpageAsistencias.ResumeLayout(False)
+        Me.tabpageAsistencias.PerformLayout()
+        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripAsistencias.ResumeLayout(False)
+        Me.toolstripAsistencias.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -691,13 +689,12 @@ Partial Class formSiniestro
     Friend WithEvents labelFecha As Label
     Friend WithEvents labelSiniestroRubro As Label
     Friend WithEvents datetimepickerFecha As DateTimePicker
-    Friend WithEvents integertextboxNumero As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents tabpageDetalles As TabPage
-    Friend WithEvents datagridviewDetalles As DataGridView
-    Friend WithEvents toolstripDetalles As ToolStrip
-    Friend WithEvents buttonDetallesAgregar As ToolStripButton
-    Friend WithEvents buttonDetallesEditar As ToolStripButton
-    Friend WithEvents buttonDetallesEliminar As ToolStripButton
+    Friend WithEvents tabpageAsistencias As TabPage
+    Friend WithEvents datagridviewAsistencias As DataGridView
+    Friend WithEvents toolstripAsistencias As ToolStrip
+    Friend WithEvents buttonAsistenciasAgregar As ToolStripButton
+    Friend WithEvents buttonAsistenciasEditar As ToolStripButton
+    Friend WithEvents buttonAsistenciasEliminar As ToolStripButton
     Friend WithEvents datetimepickerHoraSalida As DateTimePicker
     Friend WithEvents buttonImprimir As ToolStripButton
     Friend WithEvents labelIDSiniestro As Label
@@ -713,7 +710,9 @@ Partial Class formSiniestro
     Friend WithEvents checkboxAnulado As CheckBox
     Friend WithEvents labelAnulado As Label
     Friend WithEvents datetimepickerHoraFin As DateTimePicker
-    Friend WithEvents integertextboxNumeroPrefijo As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents columnPersona As DataGridViewTextBoxColumn
     Friend WithEvents columnSiniestroAsistenciaTipo As DataGridViewTextBoxColumn
+    Friend WithEvents labelNumeroSeparador As Label
+    Friend WithEvents maskedtextboxNumero As MaskedTextBox
+    Friend WithEvents maskedtextboxNumeroPrefijo As MaskedTextBox
 End Class

@@ -465,6 +465,12 @@
     <Compile Include="Siniestros\formSiniestro.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistencia.designer.vb">
+      <DependentUpon>formSiniestroAsistencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </Compile>
@@ -1213,6 +1219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestro.resx">
       <DependentUpon>formSiniestro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistencia.resx">
+      <DependentUpon>formSiniestroAsistencia.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>

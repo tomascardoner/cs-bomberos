@@ -1,3 +1,20 @@
+2021-05-24
+	- TablaSiniestro
+		- Cambiar tipo de datos del número:
+			- Agregar los campos:
+				- NumeroPrefijoChar char(4) null
+				- NumeroChar char(8) null
+			- Actualizar los campos con:
+				- UPDATE Siniestro
+					SET NumeroPrefijoChar = RIGHT('0000' + CAST(NumeroPrefijo AS VARCHAR(4)), 4),
+					NumeroChar = RIGHT('00000000' + CAST(Numero AS VARCHAR(8)), 8)
+			- Eliminar los campos: NumeroPrefijo, Numero, NumeroCompleto
+			- Cambiar el nombre y poner not null a los 2 campos nuevos
+			- Agregar el campo NumeroCompleto:
+				- ALTER TABLE Siniestro
+					ADD NumeroCompleto AS NumeroPrefijo + '-' + Numero
+
+
 2021-05-23
 	- Tabla: Siniestro
 		- Cambiar el nombre del campo TipoOtro a SiniestroTipoOtro

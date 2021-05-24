@@ -74,8 +74,8 @@
 
         ' General
         comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mSiniestroActual.SiniestroAsistencias.Any()))
-        integertextboxNumeroPrefijo.ReadOnly = Not mEditMode
-        integertextboxNumero.ReadOnly = Not mEditMode
+        maskedtextboxNumeroPrefijo.ReadOnly = Not mEditMode
+        maskedtextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
         comboboxSiniestroRubro.Enabled = mEditMode
@@ -87,7 +87,7 @@
         checkboxAnulado.Enabled = mEditMode
 
         ' Detalles
-        toolstripDetalles.Enabled = mEditMode
+        toolstripAsistencias.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -98,6 +98,7 @@
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
+        Siniestros.LlenarComboBoxClaves(comboboxClave, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -118,15 +119,15 @@
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            integertextboxNumeroPrefijo.IntegerValue = .NumeroPrefijo
-            integertextboxNumero.IntegerValue = .Numero
+            maskedtextboxNumeroPrefijo.Text = .NumeroPrefijo
+            maskedtextboxNumero.Text = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroRubro)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroTipo)
             textboxSiniestroTipoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SiniestroTipoOtro)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Clave)
-            'datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyTime(.HoraSalida, datetimepickerHoraSalida)
-            'datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyTime(.HoraFin, datetimepickerHoraSalida)
+            datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
+            datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
             checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -156,14 +157,15 @@
     Friend Sub SetDataFromControlsToObject()
         With mSiniestroActual
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
-            .Numero = CInt(integertextboxNumero.IntegerValue)
+            .NumeroPrefijo = maskedtextboxNumeroPrefijo.Text
+            .Numero = maskedtextboxNumero.Text
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .IDSiniestroRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSiniestroRubro.SelectedValue).Value
             .IDSiniestroTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSiniestroTipo.SelectedValue).Value
             .SiniestroTipoOtro = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSiniestroTipoOtro.Text)
             .Clave = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxClave.SelectedValue)
-            '.HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerHoraSalida.Value)
-            '.HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerHoraFin.Value)
+            .HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraSalida.Value, datetimepickerHoraSalida.Checked)
+            .HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraFin.Value, datetimepickerHoraFin.Checked)
             .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -191,29 +193,58 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSiniestroTipoOtro.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub buttonCodigoSiguiente_Click() Handles buttonCodigoSiguiente.Click
+    Private Sub maskedtextboxNumeroPrefijo_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.LostFocus
+        maskedtextboxNumeroPrefijo.Text = maskedtextboxNumeroPrefijo.Text.PadLeft(Constantes.SINIESTRO_NUMEROPREFIJO_DIGITOS, "0"c)
+    End Sub
+
+    Private Sub maskedtextboxNumero_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumero.LostFocus
+        maskedtextboxNumero.Text = maskedtextboxNumero.Text.PadLeft(Constantes.SINIESTRO_NUMERO_DIGITOS, "0"c)
+    End Sub
+
+    Private Sub buttonCodigoSiguiente_Click(sender As Object, e As EventArgs) Handles buttonCodigoSiguiente.Click
         If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
             Exit Sub
         End If
+        If maskedtextboxNumeroPrefijo.Text.Length = 0 Then
+            MsgBox("Debe ingresar el Prefijo del Número.", MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxNumeroPrefijo.Focus()
+            Exit Sub
+        End If
 
-        Dim IDCuartel As Byte = CByte(comboboxCuartel.SelectedValue)
+        Dim idCuartel As Byte = CByte(comboboxCuartel.SelectedValue)
+        Dim numeroSiguiente As Integer
 
-        If mdbContext.Siniestro.Any(Function(c) c.IDCuartel = IDCuartel) Then
-            integertextboxNumero.IntegerValue = CInt(mdbContext.Siniestro.Where(Function(s) s.IDCuartel = IDCuartel And s.NumeroPrefijo = integertextboxNumeroPrefijo.IntegerValue).Max(Function(c) c.Numero)) + 1
+        If mdbContext.Siniestro.Any(Function(s) s.IDCuartel = idCuartel) Then
+            Dim numeroUltimo As String
+
+            numeroUltimo = mdbContext.Siniestro.Where(Function(s) s.IDCuartel = idCuartel And s.NumeroPrefijo = maskedtextboxNumeroPrefijo.Text).Max(Function(s) s.Numero)
+            numeroSiguiente = CInt(numeroUltimo) + 1
         Else
-            integertextboxNumero.IntegerValue = 1
+            numeroSiguiente = 1
+        End If
+
+        maskedtextboxNumero.Text = numeroSiguiente.ToString().PadLeft(Constantes.SINIESTRO_NUMERO_DIGITOS, "0"c)
+    End Sub
+
+    Private Sub SiniestroRubroCambio(sender As Object, e As EventArgs) Handles comboboxSiniestroRubro.SelectedIndexChanged
+        If comboboxSiniestroRubro.SelectedIndex >= 0 Then
+            Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo, CType(comboboxSiniestroRubro.SelectedItem, SiniestroRubro).IDSiniestroRubro, False, False)
         End If
     End Sub
 
-    Private Sub SiniestroRubroCambio() Handles comboboxSiniestroRubro.SelectedIndexChanged
-        If comboboxSiniestroRubro.SelectedIndex >= 0 Then
-            Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo, CType(comboboxSiniestroRubro.SelectedItem, SiniestroRubro).IDSiniestroRubro, False, False)
+    Private Sub SiniestroTipoCambio(sender As Object, e As EventArgs) Handles comboboxSiniestroTipo.SelectedIndexChanged
+        If comboboxSiniestroTipo.SelectedIndex > -1 Then
+            labelSiniestroTipoOtro.Visible = (CByte(comboboxSiniestroTipo.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+            textboxSiniestroTipoOtro.Visible = (CByte(comboboxSiniestroTipo.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+        Else
+            labelSiniestroTipoOtro.Visible = False
+            textboxSiniestroTipoOtro.Visible = False
         End If
     End Sub
 
@@ -242,18 +273,21 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If comboboxCuartel.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
             Exit Sub
         End If
-        If integertextboxNumeroPrefijo.Text.Length = 0 Then
+        If maskedtextboxNumeroPrefijo.Text.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Prefijo del Número.", MsgBoxStyle.Information, My.Application.Info.Title)
-            integertextboxNumeroPrefijo.Focus()
+            maskedtextboxNumeroPrefijo.Focus()
             Exit Sub
         End If
-        If integertextboxNumero.Text.Length = 0 Then
+        If maskedtextboxNumero.Text.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Número.", MsgBoxStyle.Information, My.Application.Info.Title)
-            integertextboxNumero.Focus()
+            maskedtextboxNumero.Focus()
             Exit Sub
         End If
         If comboboxSiniestroRubro.SelectedValue Is Nothing Then
@@ -304,7 +338,11 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
+                        tabcontrolMain.SelectedTab = tabpageGeneral
                         MsgBox("No se pueden guardar los cambios porque ya existe una Siniestro con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
+                        tabcontrolMain.SelectedTab = tabpageAsistencias
+                        MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -320,7 +358,7 @@
 
 #End Region
 
-#Region "Detalles"
+#Region "Asistencias"
 
     Friend Class AsistenciasGridRowData
         Public Property IDPersona As Integer
@@ -333,10 +371,10 @@
         Dim listAsistencias As List(Of AsistenciasGridRowData)
 
         If RestoreCurrentPosition Then
-            If datagridviewDetalles.CurrentRow Is Nothing Then
+            If datagridviewAsistencias.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CType(datagridviewDetalles.CurrentRow.DataBoundItem, AsistenciasGridRowData).IDPersona
+                PositionIDPersona = CType(datagridviewAsistencias.CurrentRow.DataBoundItem, AsistenciasGridRowData).IDPersona
             End If
         End If
 
@@ -349,8 +387,8 @@
                                Order By p.ApellidoNombre
                                Select New AsistenciasGridRowData With {.IDPersona = sa.IDPersona, .ApellidoNombre = p.ApellidoNombre, .IDSiniestroAsistenciaTipo = sa.IDSiniestroAsistenciaTipo, .SiniestroAsistenciaTipoNombre = sat.Nombre}).ToList
 
-            datagridviewDetalles.AutoGenerateColumns = False
-            datagridviewDetalles.DataSource = listAsistencias
+            datagridviewAsistencias.AutoGenerateColumns = False
+            datagridviewAsistencias.DataSource = listAsistencias
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Asistencias del Siniestro.")
@@ -361,49 +399,49 @@
         Me.Cursor = Cursors.Default
 
         If PositionIDPersona <> 0 Then
-            For Each CurrentRowChecked As DataGridViewRow In datagridviewDetalles.Rows
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewAsistencias.Rows
                 If CType(CurrentRowChecked.DataBoundItem, AsistenciasGridRowData).IDPersona = PositionIDPersona Then
-                    datagridviewDetalles.CurrentCell = CurrentRowChecked.Cells(0)
+                    datagridviewAsistencias.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
             Next
         End If
     End Sub
 
-    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
+    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        ' formSiniestroDetalle.LoadAndShow(True, True, Me, mSiniestroActual, 0)
+        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonDetallesEditar.Click
-        If datagridviewDetalles.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Detalle para editar.", vbInformation, My.Application.Info.Title)
+    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonAsistenciasEditar.Click
+        If datagridviewAsistencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Asistencia para editar.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            ' formSiniestroDetalle.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
 
             Me.Cursor = Cursors.Default
         End If
     End Sub
 
-    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonDetallesEliminar.Click
-        If datagridviewDetalles.CurrentRow Is Nothing Then
+    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonAsistenciasEliminar.Click
+        If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             Dim GridRowDataActual As AsistenciasGridRowData
             Dim Mensaje As String
 
-            GridRowDataActual = CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, AsistenciasGridRowData)
+            GridRowDataActual = CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData)
 
-            ' Mensaje = String.Format("Se eliminará la Asistencia seleccionada.{0}{0}Área: {1}{0}Detalle: {2}{0}Importe: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AreaNombre, GridRowDataActual.Detalle, FormatCurrency(GridRowDataActual.Importe))
+            Mensaje = String.Format("Se eliminará la Asistencia. Si está por eliminar una Asistencia duplicada de una Persona, tenga en cuenta que se eliminará la primera de la lista, y no necesariemente la que usted seleccionó. Verifique los datos luego de eliminar.{0}{0}Persona: {1}{0}Asistencia: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.ApellidoNombre, GridRowDataActual.SiniestroAsistenciaTipoNombre)
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                ' mSiniestroActual.SiniestroDetalles.Remove(mSiniestroActual.SiniestroDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
+                mSiniestroActual.SiniestroAsistencias.Remove(mSiniestroActual.SiniestroAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
 
                 AsistenciasRefreshData()
 
@@ -412,20 +450,16 @@
         End If
     End Sub
 
-    Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewDetalles.DoubleClick
-        If datagridviewDetalles.CurrentRow Is Nothing Then
+    Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewAsistencias.DoubleClick
+        If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            ' formSiniestroDetalle.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
 
             Me.Cursor = Cursors.Default
         End If
-    End Sub
-
-    Private Sub buttonCodigoSiguiente_Click(sender As Object, e As EventArgs) Handles buttonCodigoSiguiente.Click
-
     End Sub
 
 #End Region
