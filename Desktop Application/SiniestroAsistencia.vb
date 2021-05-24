@@ -16,5 +16,7 @@ Partial Public Class SiniestroAsistencia
     Public Property IDSiniestroAsistenciaTipo As Byte
 
     Public Overridable Property SiniestroAsistenciaTipo As SiniestroAsistenciaTipo
+    Public Overridable Property Persona As Persona
+    Public Overridable Property Siniestro As Siniestro
 
 End Class

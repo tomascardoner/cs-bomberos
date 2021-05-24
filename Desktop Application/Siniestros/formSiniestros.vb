@@ -409,7 +409,7 @@
 
             datagridviewMain.Enabled = False
 
-            formUnidad.LoadAndShow(True, Me, 0)
+            formSiniestro.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -426,7 +426,7 @@
 
                 datagridviewMain.Enabled = False
 
-                'formUnidad.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDUnidad)
+                formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
 
                 datagridviewMain.Enabled = True
 
@@ -482,7 +482,7 @@
 
             datagridviewMain.Enabled = False
 
-            'formUnidad.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+            formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
 
             datagridviewMain.Enabled = True
 

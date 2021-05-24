@@ -105,5 +105,6 @@ Partial Public Class Persona
     Public Overridable Property PersonasFormadasReingreso As ICollection(Of Persona) = New HashSet(Of Persona)
     Public Overridable Property ReingresoFormacionResponsable As Persona
     Public Overridable Property Responsables As ICollection(Of Responsable) = New HashSet(Of Responsable)
+    Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
 
 End Class

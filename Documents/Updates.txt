@@ -1,3 +1,11 @@
+2021-05-23
+	- Tabla: Siniestro
+		- Cambiar el nombre del campo TipoOtro a SiniestroTipoOtro
+		- Cambiar la nulabilidad del campo HoraSalida y HoraFin a true
+		- Agregar el FK a la tabla SiniestroAsistencia
+		- Ejecutar script de update
+
+
 2021-05-16
 	- Cambiar año de siniestros de 1990 a 1900
 	- Siniestro: agregar los campos

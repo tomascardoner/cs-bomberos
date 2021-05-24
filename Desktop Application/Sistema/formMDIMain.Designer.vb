@@ -22,7 +22,6 @@ Partial Class formMDIMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formMDIMain))
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.labelStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.labelUsuarioNombre = New System.Windows.Forms.ToolStripStatusLabel()
@@ -529,14 +528,14 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Personas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PERSONAS_32
         Me.menuitemDocumentaciones_Personas.Name = "menuitemDocumentaciones_Personas"
-        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(127, 22)
         Me.menuitemDocumentaciones_Personas.Text = "Personas"
         '
         'menuitemDocumentaciones_Unidades
         '
         Me.menuitemDocumentaciones_Unidades.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_UNIDADES_32
         Me.menuitemDocumentaciones_Unidades.Name = "menuitemDocumentaciones_Unidades"
-        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(127, 22)
         Me.menuitemDocumentaciones_Unidades.Text = "Unidades"
         '
         'menuitemDocumentaciones_Inventario
@@ -544,7 +543,7 @@ Partial Class formMDIMain
         Me.menuitemDocumentaciones_Inventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Inventario_Elementos})
         Me.menuitemDocumentaciones_Inventario.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ELEMENTOS_32
         Me.menuitemDocumentaciones_Inventario.Name = "menuitemDocumentaciones_Inventario"
-        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(127, 22)
         Me.menuitemDocumentaciones_Inventario.Text = "Inventario"
         '
         'menuitemDocumentaciones_Inventario_Elementos
@@ -557,7 +556,7 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Reportes.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_REPORTES_32
         Me.menuitemDocumentaciones_Reportes.Name = "menuitemDocumentaciones_Reportes"
-        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(127, 22)
         Me.menuitemDocumentaciones_Reportes.Text = "Reportes"
         '
         'dropdownbuttonJefatura
@@ -595,16 +594,17 @@ Partial Class formMDIMain
         'dropdownbuttonGuardia
         '
         Me.dropdownbuttonGuardia.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemGuardia_Siniestros})
-        Me.dropdownbuttonGuardia.Image = CType(resources.GetObject("dropdownbuttonGuardia.Image"), System.Drawing.Image)
+        Me.dropdownbuttonGuardia.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_GUARDIA_32
         Me.dropdownbuttonGuardia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonGuardia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonGuardia.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonGuardia.Name = "dropdownbuttonGuardia"
-        Me.dropdownbuttonGuardia.Size = New System.Drawing.Size(146, 20)
+        Me.dropdownbuttonGuardia.Size = New System.Drawing.Size(146, 36)
         Me.dropdownbuttonGuardia.Text = "Guardia"
         '
         'menuitemGuardia_Siniestros
         '
+        Me.menuitemGuardia_Siniestros.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_SINIESTRO_32
         Me.menuitemGuardia_Siniestros.Name = "menuitemGuardia_Siniestros"
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(180, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"

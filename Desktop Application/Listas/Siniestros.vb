@@ -1,5 +1,6 @@
 ﻿Module Siniestros
-    Friend Sub LlenarComboBoxRubros(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarTodos As Boolean, ByVal mostrarNoEspecifica As Boolean)
+
+    Friend Sub LlenarComboBoxRubros(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim listItems As List(Of SiniestroRubro)
 
         control.ValueMember = "IDSiniestroRubro"
@@ -7,14 +8,14 @@
 
         listItems = context.SiniestroRubro.Where(Function(sr) sr.EsActivo).OrderBy(Function(sr) sr.Nombre).ToList
 
-        If mostrarTodos Then
+        If mostrarItemTodos Then
             Dim todos As New SiniestroRubro
             todos.IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
             todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, todos)
         End If
 
-        If mostrarNoEspecifica Then
+        If mostrarItemNoEspecifica Then
             Dim noEspecifica As New SiniestroRubro
             noEspecifica.IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
             noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
@@ -24,7 +25,7 @@
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal IDSiniestroRubro As Byte, ByVal mostrarTodos As Boolean, ByVal mostrarNoEspecifica As Boolean)
+    Friend Sub LlenarComboBoxTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal IDSiniestroRubro As Byte, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim listItems As List(Of SiniestroTipo)
 
         control.ValueMember = "IDSiniestroTipo"
@@ -32,14 +33,14 @@
 
         listItems = context.SiniestroTipo.Where(Function(st) st.EsActivo AndAlso st.IDSiniestroRubro = IDSiniestroRubro).OrderBy(Function(sr) sr.Nombre).ToList
 
-        If mostrarTodos Then
+        If mostrarItemTodos Then
             Dim todos As New SiniestroTipo
             todos.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
             todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
             listItems.Insert(0, todos)
         End If
 
-        If mostrarNoEspecifica Then
+        If mostrarItemNoEspecifica Then
             Dim noEspecifica As New SiniestroTipo
             noEspecifica.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
             noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
@@ -49,7 +50,7 @@
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxClaves(ByRef control As ComboBox, ByVal mostrarTodos As Boolean)
+    Friend Sub LlenarComboBoxClaves(ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean)
         Dim datatableClaves As New DataTable("Claves")
         Dim datarowRow As DataRow
 
@@ -60,7 +61,7 @@
             .Columns.Add("IDClave", System.Type.GetType("System.String"))
             .Columns.Add("Nombre", System.Type.GetType("System.String"))
 
-            If mostrarTodos Then
+            If mostrarItemTodos Then
                 datarowRow = .NewRow
                 datarowRow("IDClave") = CardonerSistemas.Constants.FIELD_VALUE_ALL_STRING
                 datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_FEMALE
@@ -90,4 +91,5 @@
 
         control.DataSource = datatableClaves
     End Sub
+
 End Module

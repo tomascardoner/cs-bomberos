@@ -459,6 +459,12 @@
     <Compile Include="SiniestroRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Siniestros\formSiniestro.designer.vb">
+      <DependentUpon>formSiniestro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestro.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </Compile>
@@ -560,7 +566,7 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CSBomberosContextExtension.vb" />
-    <Compile Include="Sistema\FillAndRefreshLists.vb" />
+    <Compile Include="Listas\FillAndRefreshLists.vb" />
     <Compile Include="Sistema\formAboutBox.designer.vb">
       <DependentUpon>formAboutBox.vb</DependentUpon>
     </Compile>
@@ -1205,6 +1211,9 @@
     <EmbeddedResource Include="Compras\formCompras.resx">
       <DependentUpon>formCompras.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestro.resx">
+      <DependentUpon>formSiniestro.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </EmbeddedResource>
@@ -1558,6 +1567,8 @@
     <None Include="Resources\Organigrama_Alt_32.png" />
     <None Include="Resources\cashier2_118191_32.png" />
     <None Include="Resources\DatabaseSearch48.png" />
+    <None Include="Resources\emergency_32.png" />
+    <None Include="Resources\fender-bender_32.png" />
     <Content Include="Sistema\Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />
