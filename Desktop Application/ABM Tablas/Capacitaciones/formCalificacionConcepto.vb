@@ -1,15 +1,18 @@
 ﻿Public Class formCalificacionConcepto
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mCalificacionConceptoActual As CalificacionConcepto
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCalificacionConcepto As Byte)
         mIsLoading = True
         mEditMode = EditMode
@@ -77,9 +80,11 @@
         mCalificacionConceptoActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mCalificacionConceptoActual
             textboxAbreviatura.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Abreviatura)
@@ -121,6 +126,7 @@
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

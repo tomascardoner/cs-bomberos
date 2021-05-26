@@ -1009,6 +1009,7 @@
           <Property Name="EsPresente" Type="bit" Nullable="false" />
           <Property Name="EsAusenciaJustificada" Type="bit" Nullable="false" />
           <Property Name="ExcluyeDelTotal" Type="bit" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -9621,7 +9622,7 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="NumeroPrefijo" Type="String" Nullable="false" FixedLength="true" MaxLength="4" Unicode="false" />
           <Property Name="Numero" Type="String" Nullable="false" FixedLength="true" MaxLength="8" Unicode="false" />
-          <Property Name="NumeroCompleto" Type="String" Nullable="false" FixedLength="true" MaxLength="13" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NumeroCompleto" Type="String" Nullable="false" FixedLength="false" MaxLength="13" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IDSiniestroRubro" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="Byte" Nullable="false" />
           <Property Name="SiniestroTipoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -9664,6 +9665,7 @@
           <Property Name="EsPresente" Type="Boolean" Nullable="false" />
           <Property Name="EsAusenciaJustificada" Type="Boolean" Nullable="false" />
           <Property Name="ExcluyeDelTotal" Type="Boolean" Nullable="false" />
+          <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -11205,6 +11207,7 @@
           <EntitySetMapping Name="SiniestroAsistenciaTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistenciaTipo">
               <MappingFragment StoreEntitySet="SiniestroAsistenciaTipo">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

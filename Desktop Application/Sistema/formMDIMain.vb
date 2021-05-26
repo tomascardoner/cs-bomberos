@@ -6,6 +6,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Private Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_APPLICATION_ICON_300)
         Me.Text = My.Application.Info.Title

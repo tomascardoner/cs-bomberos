@@ -1,5 +1,5 @@
 2021-05-24
-	- TablaSiniestro
+	- Tabla Siniestro:
 		- Cambiar tipo de datos del número:
 			- Agregar los campos:
 				- NumeroPrefijoChar char(4) null
@@ -13,6 +13,8 @@
 			- Agregar el campo NumeroCompleto:
 				- ALTER TABLE Siniestro
 					ADD NumeroCompleto AS NumeroPrefijo + '-' + Numero
+	- Tabla SiniestroAsistenciaTipo:
+		- Agregar el campo Orden tinyint null antes de las Notas
 
 
 2021-05-23

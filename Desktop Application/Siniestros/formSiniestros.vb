@@ -404,7 +404,7 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.Unidad_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.UNIDAD_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
@@ -487,6 +487,29 @@
             datagridviewMain.Enabled = True
 
             Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Asistencia_Click() Handles buttonAsistenciaMultiple.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                datagridviewMain.Enabled = False
+
+                CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formSiniestroAsistenciaMultiple, Form))
+                formSiniestroAsistenciaMultiple.Show()
+                If formSiniestroAsistenciaMultiple.WindowState = FormWindowState.Minimized Then
+                    formSiniestroAsistenciaMultiple.WindowState = FormWindowState.Normal
+                End If
+                formSiniestroAsistenciaMultiple.Focus()
+
+                datagridviewMain.Enabled = True
+
+                Me.Cursor = Cursors.Default
+            End If
         End If
     End Sub
 

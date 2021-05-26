@@ -471,6 +471,12 @@
     <Compile Include="Siniestros\formSiniestroAsistencia.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaMultiple.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaMultiple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaMultiple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </Compile>
@@ -1223,6 +1229,9 @@
     <EmbeddedResource Include="Siniestros\formSiniestroAsistencia.resx">
       <DependentUpon>formSiniestroAsistencia.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaMultiple.resx">
+      <DependentUpon>formSiniestroAsistenciaMultiple.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </EmbeddedResource>
@@ -1578,6 +1587,7 @@
     <None Include="Resources\DatabaseSearch48.png" />
     <None Include="Resources\emergency_32.png" />
     <None Include="Resources\fender-bender_32.png" />
+    <None Include="Resources\Check-2-icon_32.png" />
     <Content Include="Sistema\Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />
