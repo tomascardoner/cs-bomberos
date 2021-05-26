@@ -55,8 +55,6 @@
 
     Friend Function CreateRows() As Boolean
         Try
-            datagridviewMain.Visible = False
-
             For Each tipo As SiniestroAsistenciaTipo In mdbContext.SiniestroAsistenciaTipo.Where(Function(sat) sat.EsActivo).OrderBy(Function(sat) sat.Orden).ThenBy(Function(sat) sat.Nombre)
                 Dim newColumn As New DataGridViewCheckBoxColumn()
 
