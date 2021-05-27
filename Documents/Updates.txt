@@ -16,6 +16,9 @@
 	- Tabla SiniestroAsistenciaTipo:
 		- Agregar el campo Orden tinyint null antes de las Notas
 
+	- Tabla Persona:
+		- Agregar el campo Orden smallint null antes de las Notas
+
 
 2021-05-23
 	- Tabla: Siniestro

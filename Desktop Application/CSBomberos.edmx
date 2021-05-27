@@ -515,6 +515,7 @@
           <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
           <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
           <Property Name="HorarioLaboralObservaciones" Type="varchar(max)" />
+          <Property Name="Orden" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -6128,6 +6129,7 @@
           <Property Name="EmailLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HorarioLaboralObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="Orden" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -10104,6 +10106,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="TituloObtenido" ColumnName="TituloObtenido" />
                 <ScalarProperty Name="ReingresoFormacionRealizada" ColumnName="ReingresoFormacionRealizada" />
                 <ScalarProperty Name="ReingresoFormacionResponsableIDPersona" ColumnName="ReingresoFormacionResponsableIDPersona" />

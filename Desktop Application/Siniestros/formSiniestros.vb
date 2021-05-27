@@ -20,7 +20,7 @@
         Public Property Anulado As Boolean
     End Class
 
-    Private mContext As New CSBomberosContext(True)
+    Private mdbContext As New CSBomberosContext(True)
     Private mlistSiniestrosBase As List(Of GridRowData)
     Private mlistSiniestrosFiltradaYOrdenada As List(Of GridRowData)
 
@@ -45,7 +45,7 @@
         mSkipFilterData = True
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
-        Siniestros.LlenarComboBoxRubros(mContext, comboboxSiniestroRubro.ComboBox, True, False)
+        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
         Siniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True)
 
         ' Filtro de período
@@ -97,8 +97,8 @@
     End Sub
 
     Private Sub Me_Closed() Handles Me.FormClosed
-        mContext.Dispose()
-        mContext = Nothing
+        mdbContext.Dispose()
+        mdbContext = Nothing
     End Sub
 
 #End Region
@@ -184,10 +184,10 @@
         End Select
 
         Try
-            mlistSiniestrosBase = (From s In mContext.Siniestro
-                                   Join c In mContext.Cuartel On s.IDCuartel Equals c.IDCuartel
-                                   Join sr In mContext.SiniestroRubro On s.IDSiniestroRubro Equals sr.IDSiniestroRubro
-                                   Join st In mContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
+            mlistSiniestrosBase = (From s In mdbContext.Siniestro
+                                   Join c In mdbContext.Cuartel On s.IDCuartel Equals c.IDCuartel
+                                   Join sr In mdbContext.SiniestroRubro On s.IDSiniestroRubro Equals sr.IDSiniestroRubro
+                                   Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
                                    Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
                                    Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .Clave = s.Clave, .ClaveNombre = s.ClaveNombre, .Fecha = s.Fecha, .Anulado = s.Anulado}).ToList
 
@@ -369,7 +369,7 @@
     End Sub
 
     Private Sub CambioRubro() Handles comboboxSiniestroRubro.SelectedIndexChanged
-        Siniestros.LlenarComboBoxTipos(mContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
+        Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
     End Sub
 
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick
@@ -443,31 +443,30 @@
 
                 Me.Cursor = Cursors.WaitCursor
 
-                Using dbContext = New CSBomberosContext(True)
-                    Dim siniestroActual As Siniestro = dbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
-                    Dim Mensaje As String
-                    Mensaje = String.Format("Se eliminará el Siniestro seleccionado.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, siniestroActual.NumeroCompleto)
-                    If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Dim siniestroActual As Siniestro = mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+                Dim Mensaje As String
 
-                        Try
-                            dbContext.Siniestro.Remove(siniestroActual)
-                            dbContext.SaveChanges()
+                Mensaje = String.Format("Se eliminará el Siniestro seleccionado.{0}{0}{1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, siniestroActual.NumeroCompleto)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
-                        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                                Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                    MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                            End Select
-                            Me.Cursor = Cursors.Default
-                            Exit Sub
+                    Try
+                        mdbContext.Siniestro.Remove(siniestroActual)
+                        mdbContext.SaveChanges()
 
-                        Catch ex As Exception
-                            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
-                        End Try
+                    Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                                MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        End Select
+                        Me.Cursor = Cursors.Default
+                        Exit Sub
 
-                        RefreshData()
-                    End If
-                End Using
+                    Catch ex As Exception
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
+                    End Try
+
+                    RefreshData()
+                End If
 
                 Me.Cursor = Cursors.Default
             End If
@@ -499,12 +498,7 @@
 
                 datagridviewMain.Enabled = False
 
-                CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(formSiniestroAsistenciaMultiple, Form))
-                formSiniestroAsistenciaMultiple.Show()
-                If formSiniestroAsistenciaMultiple.WindowState = FormWindowState.Minimized Then
-                    formSiniestroAsistenciaMultiple.WindowState = FormWindowState.Normal
-                End If
-                formSiniestroAsistenciaMultiple.Focus()
+                formSiniestroAsistenciaMultiple.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
 
                 datagridviewMain.Enabled = True
 

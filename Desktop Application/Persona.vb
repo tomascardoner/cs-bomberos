@@ -72,6 +72,7 @@ Partial Public Class Persona
     Public Property EmailLaboral As String
     Public Property HorarioLaboralObservaciones As String
     Public Property EsActivo As Boolean
+    Public Property Orden As Nullable(Of Short)
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

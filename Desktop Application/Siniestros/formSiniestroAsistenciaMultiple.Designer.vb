@@ -33,8 +33,8 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.textboxCuartel = New System.Windows.Forms.TextBox()
         Me.textboxFecha = New System.Windows.Forms.TextBox()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnIDPersonas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnIDPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnPersonaApellidoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -46,7 +46,7 @@ Partial Class formSiniestroAsistenciaMultiple
         labelCuartel.Location = New System.Drawing.Point(12, 54)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 3
+        labelCuartel.TabIndex = 2
         labelCuartel.Text = "Cuartel:"
         '
         'buttonGuardar
@@ -76,7 +76,7 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(634, 39)
-        Me.toolstripMain.TabIndex = 2
+        Me.toolstripMain.TabIndex = 1
         '
         'labelNumero
         '
@@ -84,7 +84,7 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.labelNumero.Location = New System.Drawing.Point(292, 54)
         Me.labelNumero.Name = "labelNumero"
         Me.labelNumero.Size = New System.Drawing.Size(47, 13)
-        Me.labelNumero.TabIndex = 5
+        Me.labelNumero.TabIndex = 4
         Me.labelNumero.Text = "Número:"
         '
         'labelFecha
@@ -93,7 +93,7 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.labelFecha.Location = New System.Drawing.Point(468, 54)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 7
+        Me.labelFecha.TabIndex = 6
         Me.labelFecha.Text = "Fecha:"
         '
         'textboxNumeroCompleto
@@ -102,7 +102,8 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
         Me.textboxNumeroCompleto.ReadOnly = True
         Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
-        Me.textboxNumeroCompleto.TabIndex = 6
+        Me.textboxNumeroCompleto.TabIndex = 5
+        Me.textboxNumeroCompleto.TabStop = False
         '
         'textboxCuartel
         '
@@ -110,7 +111,8 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.textboxCuartel.Name = "textboxCuartel"
         Me.textboxCuartel.ReadOnly = True
         Me.textboxCuartel.Size = New System.Drawing.Size(212, 20)
-        Me.textboxCuartel.TabIndex = 4
+        Me.textboxCuartel.TabIndex = 3
+        Me.textboxCuartel.TabStop = False
         '
         'textboxFecha
         '
@@ -118,7 +120,8 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.textboxFecha.Name = "textboxFecha"
         Me.textboxFecha.ReadOnly = True
         Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
-        Me.textboxFecha.TabIndex = 8
+        Me.textboxFecha.TabIndex = 7
+        Me.textboxFecha.TabStop = False
         '
         'datagridviewMain
         '
@@ -134,37 +137,40 @@ Partial Class formSiniestroAsistenciaMultiple
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersonas, Me.columnPersona})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnPersonaApellidoNombre})
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(12, 77)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
-        Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(610, 278)
-        Me.datagridviewMain.TabIndex = 9
+        Me.datagridviewMain.TabIndex = 0
         '
-        'columnIDPersonas
+        'columnIDPersona
         '
-        Me.columnIDPersonas.HeaderText = "IDPersona"
-        Me.columnIDPersonas.Name = "columnIDPersonas"
-        Me.columnIDPersonas.ReadOnly = True
-        Me.columnIDPersonas.Visible = False
+        Me.columnIDPersona.Frozen = True
+        Me.columnIDPersona.HeaderText = "IDPersona"
+        Me.columnIDPersona.Name = "columnIDPersona"
+        Me.columnIDPersona.Visible = False
         '
-        'columnPersona
+        'columnPersonaApellidoNombre
         '
-        Me.columnPersona.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPersona.HeaderText = "Persona"
-        Me.columnPersona.Name = "columnPersona"
-        Me.columnPersona.ReadOnly = True
-        Me.columnPersona.Width = 71
+        Me.columnPersonaApellidoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnPersonaApellidoNombre.Frozen = True
+        Me.columnPersonaApellidoNombre.HeaderText = "Persona"
+        Me.columnPersonaApellidoNombre.Name = "columnPersonaApellidoNombre"
+        Me.columnPersonaApellidoNombre.ReadOnly = True
+        Me.columnPersonaApellidoNombre.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.columnPersonaApellidoNombre.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.columnPersonaApellidoNombre.Width = 52
         '
         'formSiniestroAsistenciaMultiple
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoValidate = System.Windows.Forms.AutoValidate.Disable
         Me.ClientSize = New System.Drawing.Size(634, 367)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.textboxFecha)
@@ -174,8 +180,8 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.Controls.Add(Me.labelNumero)
         Me.Controls.Add(Me.labelFecha)
         Me.Controls.Add(Me.toolstripMain)
-        Me.KeyPreview = True
         Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistenciaMultiple"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
@@ -196,6 +202,6 @@ Partial Class formSiniestroAsistenciaMultiple
     Friend WithEvents textboxCuartel As TextBox
     Friend WithEvents textboxFecha As TextBox
     Friend WithEvents datagridviewMain As DataGridView
-    Friend WithEvents columnIDPersonas As DataGridViewTextBoxColumn
-    Friend WithEvents columnPersona As DataGridViewTextBoxColumn
+    Friend WithEvents columnIDPersona As DataGridViewTextBoxColumn
+    Friend WithEvents columnPersonaApellidoNombre As DataGridViewTextBoxColumn
 End Class
