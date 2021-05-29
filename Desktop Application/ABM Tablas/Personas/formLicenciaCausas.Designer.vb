@@ -30,6 +30,11 @@ Partial Class formLicenciaCausas
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadDias = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadDiasMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadVecesMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -38,11 +43,6 @@ Partial Class formLicenciaCausas
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadDias = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadDiasMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadVecesMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class formLicenciaCausas
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1356, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(619, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -61,10 +61,9 @@ Partial Class formLicenciaCausas
         '
         Me.statusstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 484)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 225)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.statusstripMain.Size = New System.Drawing.Size(1376, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(634, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -82,89 +81,14 @@ Partial Class formLicenciaCausas
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
-        Me.datagridviewMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(1376, 445)
+        Me.datagridviewMain.Size = New System.Drawing.Size(634, 186)
         Me.datagridviewMain.TabIndex = 0
-        '
-        'panelToolbars
-        '
-        Me.panelToolbars.AutoSize = True
-        Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripActivo)
-        Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
-        Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
-        Me.panelToolbars.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(1376, 39)
-        Me.panelToolbars.TabIndex = 0
-        '
-        'toolstripButtons
-        '
-        Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripButtons.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
-        Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
-        Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(285, 39)
-        Me.toolstripButtons.TabIndex = 1
-        '
-        'buttonAgregar
-        '
-        Me.buttonAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
-        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAgregar.Name = "buttonAgregar"
-        Me.buttonAgregar.Size = New System.Drawing.Size(99, 36)
-        Me.buttonAgregar.Text = "Agregar"
-        '
-        'buttonEditar
-        '
-        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
-        Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEditar.Name = "buttonEditar"
-        Me.buttonEditar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonEditar.Text = "Editar"
-        '
-        'buttonEliminar
-        '
-        Me.buttonEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
-        Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonEliminar.Name = "buttonEliminar"
-        Me.buttonEliminar.Size = New System.Drawing.Size(99, 36)
-        Me.buttonEliminar.Text = "Eliminar"
-        '
-        'toolstripActivo
-        '
-        Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripActivo.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(285, 0)
-        Me.toolstripActivo.Name = "toolstripActivo"
-        Me.toolstripActivo.Size = New System.Drawing.Size(158, 39)
-        Me.toolstripActivo.TabIndex = 12
-        '
-        'labelActivo
-        '
-        Me.labelActivo.Name = "labelActivo"
-        Me.labelActivo.Size = New System.Drawing.Size(54, 36)
-        Me.labelActivo.Text = "Activo:"
-        '
-        'comboboxActivo
-        '
-        Me.comboboxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxActivo.Name = "comboboxActivo"
-        Me.comboboxActivo.Size = New System.Drawing.Size(99, 39)
         '
         'columnNombre
         '
@@ -175,7 +99,7 @@ Partial Class formLicenciaCausas
         Me.columnNombre.HeaderText = "Nombre"
         Me.columnNombre.Name = "columnNombre"
         Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 87
+        Me.columnNombre.Width = 69
         '
         'columnCantidadDias
         '
@@ -186,7 +110,7 @@ Partial Class formLicenciaCausas
         Me.columnCantidadDias.HeaderText = "Cantidad de Días"
         Me.columnCantidadDias.Name = "columnCantidadDias"
         Me.columnCantidadDias.ReadOnly = True
-        Me.columnCantidadDias.Width = 108
+        Me.columnCantidadDias.Width = 85
         '
         'columnCantidadDiasMaximoAnual
         '
@@ -215,18 +139,92 @@ Partial Class formLicenciaCausas
         Me.columnEsActivo.ReadOnly = True
         Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 75
+        Me.columnEsActivo.Width = 62
+        '
+        'panelToolbars
+        '
+        Me.panelToolbars.AutoSize = True
+        Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripActivo)
+        Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
+        Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
+        Me.panelToolbars.Name = "panelToolbars"
+        Me.panelToolbars.Size = New System.Drawing.Size(634, 39)
+        Me.panelToolbars.TabIndex = 0
+        '
+        'toolstripButtons
+        '
+        Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripButtons.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
+        Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
+        Me.toolstripButtons.Name = "toolstripButtons"
+        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
+        Me.toolstripButtons.TabIndex = 1
+        '
+        'buttonAgregar
+        '
+        Me.buttonAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAgregar.Name = "buttonAgregar"
+        Me.buttonAgregar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonAgregar.Text = "Agregar"
+        '
+        'buttonEditar
+        '
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEditar.Name = "buttonEditar"
+        Me.buttonEditar.Size = New System.Drawing.Size(73, 36)
+        Me.buttonEditar.Text = "Editar"
+        '
+        'buttonEliminar
+        '
+        Me.buttonEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonEliminar.Name = "buttonEliminar"
+        Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
+        Me.buttonEliminar.Text = "Eliminar"
+        '
+        'toolstripActivo
+        '
+        Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripActivo.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
+        Me.toolstripActivo.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripActivo.Name = "toolstripActivo"
+        Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
+        Me.toolstripActivo.TabIndex = 12
+        '
+        'labelActivo
+        '
+        Me.labelActivo.Name = "labelActivo"
+        Me.labelActivo.Size = New System.Drawing.Size(44, 36)
+        Me.labelActivo.Text = "Activo:"
+        '
+        'comboboxActivo
+        '
+        Me.comboboxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxActivo.Name = "comboboxActivo"
+        Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
         'formLicenciaCausas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1376, 506)
+        Me.ClientSize = New System.Drawing.Size(634, 247)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formLicenciaCausas"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

@@ -53,7 +53,7 @@ Partial Class formUbicaciones
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1017, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(568, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -62,7 +62,7 @@ Partial Class formUbicaciones
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
         Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(1032, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(583, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -86,7 +86,7 @@ Partial Class formUbicaciones
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(1032, 350)
+        Me.datagridviewMain.Size = New System.Drawing.Size(583, 350)
         Me.datagridviewMain.TabIndex = 0
         '
         'columnNombre
@@ -139,7 +139,7 @@ Partial Class formUbicaciones
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(1032, 39)
+        Me.panelToolbars.Size = New System.Drawing.Size(583, 39)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
@@ -186,7 +186,7 @@ Partial Class formUbicaciones
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
         Me.toolstripCuartel.Location = New System.Drawing.Point(247, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
-        Me.toolstripCuartel.Size = New System.Drawing.Size(216, 39)
+        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 14
         '
         'labelCuartel
@@ -206,7 +206,7 @@ Partial Class formUbicaciones
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(463, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(430, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 12
@@ -227,11 +227,13 @@ Partial Class formUbicaciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1032, 411)
+        Me.ClientSize = New System.Drawing.Size(583, 411)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formUbicaciones"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

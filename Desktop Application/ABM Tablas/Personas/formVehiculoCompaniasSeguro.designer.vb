@@ -47,16 +47,16 @@ Partial Class formVehiculoCompaniasSeguro
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1017, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(486, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'statusstripMain
         '
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 249)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(1032, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(501, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -80,7 +80,7 @@ Partial Class formVehiculoCompaniasSeguro
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(1032, 350)
+        Me.datagridviewMain.Size = New System.Drawing.Size(501, 210)
         Me.datagridviewMain.TabIndex = 0
         '
         'columnNombre
@@ -114,7 +114,7 @@ Partial Class formVehiculoCompaniasSeguro
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(1032, 39)
+        Me.panelToolbars.Size = New System.Drawing.Size(501, 39)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
@@ -180,11 +180,13 @@ Partial Class formVehiculoCompaniasSeguro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1032, 411)
+        Me.ClientSize = New System.Drawing.Size(501, 271)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.KeyPreview = True
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formVehiculoCompaniasSeguro"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

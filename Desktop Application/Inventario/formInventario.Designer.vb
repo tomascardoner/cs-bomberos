@@ -279,7 +279,7 @@ Partial Class formInventario
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
         Me.toolstripCuartel.Location = New System.Drawing.Point(440, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
-        Me.toolstripCuartel.Size = New System.Drawing.Size(216, 39)
+        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
         '
         'labelCuartel
@@ -299,7 +299,7 @@ Partial Class formInventario
         Me.toolstripArea.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
-        Me.toolstripArea.Location = New System.Drawing.Point(656, 0)
+        Me.toolstripArea.Location = New System.Drawing.Point(623, 0)
         Me.toolstripArea.Name = "toolstripArea"
         Me.toolstripArea.Size = New System.Drawing.Size(189, 39)
         Me.toolstripArea.TabIndex = 14
@@ -390,6 +390,8 @@ Partial Class formInventario
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formInventario"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

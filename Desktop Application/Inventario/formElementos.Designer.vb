@@ -209,6 +209,7 @@ Partial Class formElementos
         '
         'textboxBuscar
         '
+        Me.textboxBuscar.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.textboxBuscar.MaxLength = 100
         Me.textboxBuscar.Name = "textboxBuscar"
         Me.textboxBuscar.Size = New System.Drawing.Size(120, 39)
@@ -251,7 +252,7 @@ Partial Class formElementos
         Me.toolstripSubUbicacion.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSubRubro, Me.comboboxSubRubro})
         Me.toolstripSubUbicacion.Location = New System.Drawing.Point(0, 39)
         Me.toolstripSubUbicacion.Name = "toolstripSubUbicacion"
-        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(305, 25)
+        Me.toolstripSubUbicacion.Size = New System.Drawing.Size(272, 25)
         Me.toolstripSubUbicacion.TabIndex = 16
         '
         'labelSubRubro
@@ -271,7 +272,7 @@ Partial Class formElementos
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(305, 39)
+        Me.toolstripActivo.Location = New System.Drawing.Point(272, 39)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 25)
         Me.toolstripActivo.TabIndex = 12
@@ -297,6 +298,8 @@ Partial Class formElementos
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formElementos"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

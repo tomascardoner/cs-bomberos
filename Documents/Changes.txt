@@ -1,3 +1,7 @@
+2021-05-28
+	- Se agregaron los Siniestros de la Guardia
+
+
 2021-03-20
 	- Se agregó la firma del Responsable a los reportes de Listado de Compras y Resumen de Compras
 	- Se agregó el campo de Área al detalle del arqueo de caja

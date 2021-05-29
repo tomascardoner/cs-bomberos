@@ -201,6 +201,8 @@ Partial Class formReportes
         Me.ClientSize = New System.Drawing.Size(591, 410)
         Me.Controls.Add(Me.panelReportes)
         Me.Controls.Add(Me.panelParametros)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formReportes"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual

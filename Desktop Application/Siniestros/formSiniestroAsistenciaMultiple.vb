@@ -4,7 +4,6 @@
 
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestroActual As Siniestro
-    Private mGridData As Object
 
 #End Region
 
@@ -24,7 +23,7 @@
             Me.WindowState = FormWindowState.Normal
         End If
 
-        Me.Focus()
+        Me.Show()
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -69,7 +68,8 @@
                 With newColumn
                     .AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
                     .HeaderText = tipo.Nombre
-                    .Name = "@" & tipo.IDSiniestroAsistenciaTipo
+                    .Name = "columnIDSiniestroAsistenciaTipo#" & tipo.IDSiniestroAsistenciaTipo.ToString()
+                    .Tag = tipo.IDSiniestroAsistenciaTipo
                 End With
                 datagridviewMain.Columns.Add(newColumn)
             Next
@@ -80,6 +80,8 @@
             Return False
 
         Finally
+            listTiposActivos = Nothing
+            listTiposEnSiniestro = Nothing
             datagridviewMain.Visible = True
         End Try
     End Function
@@ -121,12 +123,15 @@
             Return False
 
         Finally
+            listPersonasActivasDelCuartel = Nothing
+            listPersonasEnSiniestro = Nothing
             datagridviewMain.Visible = True
-
         End Try
     End Function
 
     Private Function FillData() As Boolean
+        Dim listAsistenciasEnSiniestro As List(Of SiniestroAsistencia)
+
         textboxCuartel.Text = mSiniestroActual.Cuartel.Nombre
         textboxNumeroCompleto.Text = mSiniestroActual.NumeroCompleto
         textboxFecha.Text = mSiniestroActual.Fecha.ToShortDateString()
@@ -134,13 +139,24 @@
         Try
             datagridviewMain.Visible = False
 
-            Dim listAsistencias As New List(Of SiniestroAsistencia)
+            listAsistenciasEnSiniestro = (From p In mdbContext.Persona
+                                          Join sa In mdbContext.SiniestroAsistencia On p.IDPersona Equals sa.IDPersona
+                                          Where sa.IDSiniestro = mSiniestroActual.IDSiniestro
+                                          Order By p.Orden, p.ApellidoNombre
+                                          Select sa).ToList()
 
-            For Each asistencia In mSiniestroActual.SiniestroAsistencias.Where(Function(sa) sa.IDSiniestro = mSiniestroActual.IDSiniestro)
+            Dim startRowIndex As Integer = 0
+            Dim columnName As String
 
+            For Each asistencia In listAsistenciasEnSiniestro
+                For rowIndex As Integer = startRowIndex To datagridviewMain.Rows.Count - 1
+                    If CInt(datagridviewMain.Rows(rowIndex).Cells("columnIDPersona").Value) = asistencia.IDPersona Then
+                        columnName = "columnIDSiniestroAsistenciaTipo#" & asistencia.IDSiniestroAsistenciaTipo.ToString
+                        datagridviewMain.Rows(rowIndex).Cells(columnName).Value = True
+                        startRowIndex = rowIndex + 1
+                    End If
+                Next
             Next
-
-            ' datagridviewMain.DataSource
 
             datagridviewMain.Visible = True
             Return True

@@ -381,6 +381,8 @@ Partial Class formCompras
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "formCompras"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
