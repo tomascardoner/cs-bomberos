@@ -5,6 +5,12 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestroActual As Siniestro
 
+    Private mTipoAsistenciaFirstColumnIndex As Integer
+
+    Private Const ColumnNameIdPersona As String = "columnIDPersona"
+    Private Const ColumnNameApellidoNombre As String = "columnPersonaApellidoNombre"
+    Private Const ColumnNameAsistenciaTipoPrefijo As String = "columnIDSiniestroAsistenciaTipo#"
+
 #End Region
 
 #Region "Form stuff"
@@ -13,6 +19,8 @@
         mSiniestroActual = siniestroActual
 
         InitializeFormAndControls()
+
+        mTipoAsistenciaFirstColumnIndex = datagridviewMain.ColumnCount
 
         CreateColumns()
         CreateRows()
@@ -35,6 +43,7 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        mSiniestroActual = Nothing
         mdbContext.Dispose()
         mdbContext = Nothing
         mSiniestroActual = Nothing
@@ -68,7 +77,7 @@
                 With newColumn
                     .AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
                     .HeaderText = tipo.Nombre
-                    .Name = "columnIDSiniestroAsistenciaTipo#" & tipo.IDSiniestroAsistenciaTipo.ToString()
+                    .Name = ColumnNameAsistenciaTipoPrefijo & tipo.IDSiniestroAsistenciaTipo.ToString()
                     .Tag = tipo.IDSiniestroAsistenciaTipo
                 End With
                 datagridviewMain.Columns.Add(newColumn)
@@ -112,8 +121,8 @@
                 newRowId = datagridviewMain.Rows.Add()
                 newRow = datagridviewMain.Rows(newRowId)
                 With newRow
-                    .Cells("columnIDPersona").Value = persona.IDPersona
-                    .Cells("columnPersonaApellidoNombre").Value = persona.ApellidoNombre
+                    .Cells(ColumnNameIdPersona).Value = persona.IDPersona
+                    .Cells(ColumnNameApellidoNombre).Value = persona.ApellidoNombre
                 End With
             Next
             Return True
@@ -130,14 +139,14 @@
     End Function
 
     Private Function FillData() As Boolean
-        Dim listAsistenciasEnSiniestro As List(Of SiniestroAsistencia)
-
         textboxCuartel.Text = mSiniestroActual.Cuartel.Nombre
         textboxNumeroCompleto.Text = mSiniestroActual.NumeroCompleto
         textboxFecha.Text = mSiniestroActual.Fecha.ToShortDateString()
 
+        datagridviewMain.Visible = False
+
         Try
-            datagridviewMain.Visible = False
+            Dim listAsistenciasEnSiniestro As List(Of SiniestroAsistencia)
 
             listAsistenciasEnSiniestro = (From p In mdbContext.Persona
                                           Join sa In mdbContext.SiniestroAsistencia On p.IDPersona Equals sa.IDPersona
@@ -149,23 +158,39 @@
             Dim columnName As String
 
             For Each asistencia In listAsistenciasEnSiniestro
-                For rowIndex As Integer = startRowIndex To datagridviewMain.Rows.Count - 1
-                    If CInt(datagridviewMain.Rows(rowIndex).Cells("columnIDPersona").Value) = asistencia.IDPersona Then
-                        columnName = "columnIDSiniestroAsistenciaTipo#" & asistencia.IDSiniestroAsistenciaTipo.ToString
+                For rowIndex As Integer = startRowIndex To datagridviewMain.RowCount - 1
+                    If CInt(datagridviewMain.Rows(rowIndex).Cells(ColumnNameIdPersona).Value) = asistencia.IDPersona Then
+                        columnName = ColumnNameAsistenciaTipoPrefijo & asistencia.IDSiniestroAsistenciaTipo.ToString
                         datagridviewMain.Rows(rowIndex).Cells(columnName).Value = True
                         startRowIndex = rowIndex + 1
                     End If
                 Next
             Next
 
-            datagridviewMain.Visible = True
             Return True
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los Tipos de Asistencia.")
             Return False
+
+        Finally
+            datagridviewMain.Visible = True
         End Try
     End Function
+
+#End Region
+
+#Region "Controls behavior"
+
+    ' Este evento lo tengo que capturar y hacer commit para que se dispare el evento CellValueChanged
+    ' Aparentemente, esta es la solución propuesta por Microsoft
+    Private Sub datagridviewMain_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datagridviewMain.CellContentClick
+        datagridviewMain.CommitEdit(DataGridViewDataErrorContexts.Commit)
+    End Sub
+
+    Private Sub datagridviewMain_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles datagridviewMain.CellValueChanged
+        VerificarAsistenciaUnicaEnFila(e.ColumnIndex, e.RowIndex)
+    End Sub
 
 #End Region
 
@@ -176,8 +201,110 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        Me.Close()
+        If MessageBox.Show("¿Desea guardar los cambios?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            If GuardarCambios() Then
+                Me.Close()
+            End If
+        End If
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Sub VerificarAsistenciaUnicaEnFila(ByVal columnIndex As Integer, ByVal rowIndex As Integer)
+        If columnIndex < mTipoAsistenciaFirstColumnIndex Or rowIndex < 0 Then
+            Exit Sub
+        End If
+
+        If CBool(datagridviewMain.Rows(rowIndex).Cells(columnIndex).Value) Then
+            For verifyColumnIndex As Integer = mTipoAsistenciaFirstColumnIndex To datagridviewMain.ColumnCount - 1
+                If verifyColumnIndex <> columnIndex AndAlso CBool(datagridviewMain.Rows(rowIndex).Cells(verifyColumnIndex).Value) Then
+                    datagridviewMain.Rows(rowIndex).Cells(verifyColumnIndex).Value = False
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Function ObtenerAsistenciaTipoEnFila(ByRef row As DataGridViewRow) As Byte
+        For verifyColumnIndex As Integer = mTipoAsistenciaFirstColumnIndex To datagridviewMain.ColumnCount - 1
+            If CBool(row.Cells(verifyColumnIndex).Value) Then
+                Return CByte(verifyColumnIndex)
+            End If
+        Next
+
+        Return 0
+    End Function
+
+    Private Function BorrarAsistenciaEnBD(ByVal idPersona As Integer) As Boolean
+        Try
+            Dim sa As SiniestroAsistencia
+
+            sa = mdbContext.SiniestroAsistencia.Find(mSiniestroActual.IDSiniestro, idPersona)
+            If sa IsNot Nothing Then
+                mdbContext.SiniestroAsistencia.Remove(sa)
+                mdbContext.SaveChanges()
+            End If
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al borrar la Asistencia de la base de datos.")
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+    Private Function AgregarOActualizarAsistenciaEnBD(ByVal idPersona As Integer, ByVal idSiniestroAsistenciaTipo As Byte) As Boolean
+        Try
+            Dim sa As SiniestroAsistencia
+
+            sa = mdbContext.SiniestroAsistencia.Find(mSiniestroActual.IDSiniestro, idPersona)
+            If sa Is Nothing Then
+                sa = New SiniestroAsistencia
+                sa.IDSiniestro = mSiniestroActual.IDSiniestro
+                sa.IDPersona = idPersona
+                sa.IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                mdbContext.SiniestroAsistencia.Add(sa)
+                mdbContext.SaveChanges()
+            ElseIf sa.IDSiniestroAsistenciaTipo <> idSiniestroAsistenciaTipo Then
+                sa.IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                mdbContext.SaveChanges()
+            End If
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al actualizar la Asistencia en la base de datos.")
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+    Private Function GuardarCambios() As Boolean
+
+        Me.Cursor = Cursors.WaitCursor
+
+        For Each row As DataGridViewRow In datagridviewMain.Rows
+            Dim idPersona As Integer
+            Dim idSiniestroAsistenciaTipo As Byte
+
+            idPersona = CInt(row.Cells(ColumnNameIdPersona).Value)
+            idSiniestroAsistenciaTipo = ObtenerAsistenciaTipoEnFila(row)
+
+            If idSiniestroAsistenciaTipo = 0 Then
+                If Not BorrarAsistenciaEnBD(idPersona) Then
+                    Me.Cursor = Cursors.Default
+                    Return False
+                End If
+            Else
+                If Not AgregarOActualizarAsistenciaEnBD(idPersona, idSiniestroAsistenciaTipo) Then
+                    Me.Cursor = Cursors.Default
+                    Return False
+                End If
+            End If
+        Next
+        Me.Cursor = Cursors.Default
+        Return True
+    End Function
 
 #End Region
 

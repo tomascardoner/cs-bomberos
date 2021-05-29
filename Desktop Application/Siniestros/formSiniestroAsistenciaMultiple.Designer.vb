@@ -127,6 +127,7 @@ Partial Class formSiniestroAsistenciaMultiple
         '
         Me.datagridviewMain.AllowUserToAddRows = False
         Me.datagridviewMain.AllowUserToDeleteRows = False
+        Me.datagridviewMain.AllowUserToResizeColumns = False
         Me.datagridviewMain.AllowUserToResizeRows = False
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
@@ -138,7 +139,6 @@ Partial Class formSiniestroAsistenciaMultiple
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDPersona, Me.columnPersonaApellidoNombre})
-        Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(12, 77)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
