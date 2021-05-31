@@ -149,7 +149,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.datetimepickerFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(212, 51)
         Me.datetimepickerFechaInicio.Name = "datetimepickerFechaInicio"
-        Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(92, 20)
+        Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(94, 20)
         Me.datetimepickerFechaInicio.TabIndex = 1
         '
         'updownPuntajeClaveVerde

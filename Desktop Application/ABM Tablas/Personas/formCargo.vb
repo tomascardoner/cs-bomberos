@@ -135,6 +135,14 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
+    Private Sub UpDowns_Enter(sender As Object, e As EventArgs) Handles updownOrden.Enter
+        Dim nud As NumericUpDown
+
+        nud = CType(sender, NumericUpDown)
+        nud.Select(0, nud.Text.Length)
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"

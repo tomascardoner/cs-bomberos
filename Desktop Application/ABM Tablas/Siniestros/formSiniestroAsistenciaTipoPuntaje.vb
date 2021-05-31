@@ -128,6 +128,13 @@
         End Select
     End Sub
 
+    Private Sub UpDowns_Enter(sender As Object, e As EventArgs) Handles updownPuntajeClaveVerde.Enter, updownPuntajeClaveAzul.Enter, updownPuntajeClaveNaranja.Enter, updownPuntajeClaveRoja.Enter, updownPorcentajeDescuentoPorSalidaAnticipada.Enter
+        Dim nud As NumericUpDown
+
+        nud = CType(sender, NumericUpDown)
+        nud.Select(0, nud.Text.Length)
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"
