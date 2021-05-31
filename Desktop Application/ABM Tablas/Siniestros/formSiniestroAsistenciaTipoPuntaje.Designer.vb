@@ -147,14 +147,14 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         'datetimepickerFechaInicio
         '
         Me.datetimepickerFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(207, 51)
+        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(212, 51)
         Me.datetimepickerFechaInicio.Name = "datetimepickerFechaInicio"
         Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(92, 20)
         Me.datetimepickerFechaInicio.TabIndex = 1
         '
         'updownPuntajeClaveVerde
         '
-        Me.updownPuntajeClaveVerde.Location = New System.Drawing.Point(207, 77)
+        Me.updownPuntajeClaveVerde.Location = New System.Drawing.Point(212, 77)
         Me.updownPuntajeClaveVerde.Name = "updownPuntajeClaveVerde"
         Me.updownPuntajeClaveVerde.Size = New System.Drawing.Size(46, 20)
         Me.updownPuntajeClaveVerde.TabIndex = 3
@@ -162,7 +162,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         '
         'updownPuntajeClaveAzul
         '
-        Me.updownPuntajeClaveAzul.Location = New System.Drawing.Point(207, 103)
+        Me.updownPuntajeClaveAzul.Location = New System.Drawing.Point(212, 103)
         Me.updownPuntajeClaveAzul.Name = "updownPuntajeClaveAzul"
         Me.updownPuntajeClaveAzul.Size = New System.Drawing.Size(46, 20)
         Me.updownPuntajeClaveAzul.TabIndex = 5
@@ -170,7 +170,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         '
         'updownPuntajeClaveNaranja
         '
-        Me.updownPuntajeClaveNaranja.Location = New System.Drawing.Point(207, 129)
+        Me.updownPuntajeClaveNaranja.Location = New System.Drawing.Point(212, 129)
         Me.updownPuntajeClaveNaranja.Name = "updownPuntajeClaveNaranja"
         Me.updownPuntajeClaveNaranja.Size = New System.Drawing.Size(46, 20)
         Me.updownPuntajeClaveNaranja.TabIndex = 7
@@ -178,7 +178,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         '
         'updownPuntajeClaveRoja
         '
-        Me.updownPuntajeClaveRoja.Location = New System.Drawing.Point(207, 155)
+        Me.updownPuntajeClaveRoja.Location = New System.Drawing.Point(212, 155)
         Me.updownPuntajeClaveRoja.Name = "updownPuntajeClaveRoja"
         Me.updownPuntajeClaveRoja.Size = New System.Drawing.Size(46, 20)
         Me.updownPuntajeClaveRoja.TabIndex = 9
@@ -186,7 +186,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         '
         'updownPorcentajeDescuentoPorSalidaAnticipada
         '
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.Location = New System.Drawing.Point(207, 181)
+        Me.updownPorcentajeDescuentoPorSalidaAnticipada.Location = New System.Drawing.Point(212, 181)
         Me.updownPorcentajeDescuentoPorSalidaAnticipada.Name = "updownPorcentajeDescuentoPorSalidaAnticipada"
         Me.updownPorcentajeDescuentoPorSalidaAnticipada.Size = New System.Drawing.Size(46, 20)
         Me.updownPorcentajeDescuentoPorSalidaAnticipada.TabIndex = 11

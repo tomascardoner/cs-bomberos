@@ -99,11 +99,11 @@
             If mIsNew Then
                 .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
             End If
-            .PuntosClaveVerde = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveVerde.Value).Value
-            .PuntosClaveAzul = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveAzul.Value).Value
-            .PuntosClaveNaranja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveNaranja.Value).Value
-            .PuntosClaveRoja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveRoja.Value).Value
-            .PorcentajeDescuentoPorSalidaAnticipada = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPorcentajeDescuentoPorSalidaAnticipada.Value).Value
+            .PuntosClaveVerde = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveVerde.Value, -1).Value
+            .PuntosClaveAzul = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveAzul.Value, -1).Value
+            .PuntosClaveNaranja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveNaranja.Value, -1).Value
+            .PuntosClaveRoja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveRoja.Value, -1).Value
+            .PorcentajeDescuentoPorSalidaAnticipada = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPorcentajeDescuentoPorSalidaAnticipada.Value, -1).Value
         End With
     End Sub
 
