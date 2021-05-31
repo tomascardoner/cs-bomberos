@@ -372,6 +372,20 @@
         ShowForm(Permisos.PROVEEDOR, CType(formProveedores, Form))
     End Sub
 
+    ' SINIESTROS
+
+    Private Sub SiniestrosRubros() Handles menuitemTablas_SiniestrosRubros.Click
+        ShowForm(Permisos.SINIESTRORUBRO, CType(formSiniestroRubros, Form))
+    End Sub
+
+    Private Sub SiniestrosTipos() Handles menuitemTablas_SiniestrosTipos.Click
+        ShowForm(Permisos.SINIESTROTIPO, CType(formSiniestroTipos, Form))
+    End Sub
+
+    Private Sub SiniestrosAsistenciasTipos() Handles menuitemTablas_SiniestrosAsistenciasTipos.Click
+        ShowForm(Permisos.SINIESTROASISTENCIATIPO, CType(formSiniestroAsistenciaTipos, Form))
+    End Sub
+
 #End Region
 
 #Region "Left Toolbar - Documentaciones"

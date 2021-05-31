@@ -50,7 +50,7 @@
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxClaves(ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean)
+    Friend Sub LlenarComboBoxClaves(ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim datatableClaves As New DataTable("Claves")
         Dim datarowRow As DataRow
 
@@ -65,6 +65,13 @@
                 datarowRow = .NewRow
                 datarowRow("IDClave") = CardonerSistemas.Constants.FIELD_VALUE_ALL_STRING
                 datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_FEMALE
+                .Rows.Add(datarowRow)
+            End If
+
+            If mostrarItemNoEspecifica Then
+                datarowRow = .NewRow
+                datarowRow("IDClave") = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING
+                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
                 .Rows.Add(datarowRow)
             End If
 
@@ -98,7 +105,7 @@
         control.ValueMember = "IDSiniestroAsistenciaTipo"
         control.DisplayMember = "Nombre"
 
-        listItems = context.SiniestroAsistenciaTipo.Where(Function(sr) sr.EsActivo).OrderBy(Function(sr) sr.Nombre).ToList
+        listItems = context.SiniestroAsistenciaTipo.Where(Function(sat) sat.EsActivo).OrderBy(Function(sat) sat.Orden).ThenBy(Function(sat) sat.Nombre).ToList
 
         If mostrarItemTodos Then
             Dim todos As New SiniestroAsistenciaTipo

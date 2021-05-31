@@ -46,7 +46,7 @@
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
         Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True)
+        Siniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True, False)
 
         ' Filtro de período
         InicializarFiltroDeFechas()

@@ -232,6 +232,48 @@
     <Compile Include="ABM Tablas\Otros\formProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipoPuntaje.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaTipoPuntaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipoPuntaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipos.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroRubro.designer.vb">
+      <DependentUpon>formSiniestroRubro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroRubro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroRubros.designer.vb">
+      <DependentUpon>formSiniestroRubros.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroRubros.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroTipo.designer.vb">
+      <DependentUpon>formSiniestroTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroTipos.designer.vb">
+      <DependentUpon>formSiniestroTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupo.designer.vb">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>
     </Compile>
@@ -1198,6 +1240,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Otros\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.resx">
+      <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipoPuntaje.resx">
+      <DependentUpon>formSiniestroAsistenciaTipoPuntaje.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipos.resx">
+      <DependentUpon>formSiniestroAsistenciaTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroRubro.resx">
+      <DependentUpon>formSiniestroRubro.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroRubros.resx">
+      <DependentUpon>formSiniestroRubros.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroTipo.resx">
+      <DependentUpon>formSiniestroTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroTipos.resx">
+      <DependentUpon>formSiniestroTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Usuarios\formUsuarioGrupo.resx">
       <DependentUpon>formUsuarioGrupo.vb</DependentUpon>

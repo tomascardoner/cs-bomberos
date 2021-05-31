@@ -86,7 +86,7 @@
         datetimepickerHoraFin.Enabled = mEditMode
         checkboxAnulado.Enabled = mEditMode
 
-        ' Detalles
+        ' Asistencias
         toolstripAsistencias.Enabled = mEditMode
 
         ' Notas y Auditoría
@@ -98,7 +98,7 @@
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
         Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClave, False)
+        Siniestros.LlenarComboBoxClaves(comboboxClave, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -125,7 +125,7 @@
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroRubro)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroTipo)
             textboxSiniestroTipoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SiniestroTipoOtro)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Clave)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Clave, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
             datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
             checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
@@ -240,8 +240,15 @@
 
     Private Sub SiniestroTipoCambio(sender As Object, e As EventArgs) Handles comboboxSiniestroTipo.SelectedIndexChanged
         If comboboxSiniestroTipo.SelectedIndex > -1 Then
-            labelSiniestroTipoOtro.Visible = (CByte(comboboxSiniestroTipo.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
-            textboxSiniestroTipoOtro.Visible = (CByte(comboboxSiniestroTipo.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+            Dim siniestroTipoActual As SiniestroTipo
+
+            siniestroTipoActual = CType(comboboxSiniestroTipo.SelectedItem, SiniestroTipo)
+
+            labelSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+            textboxSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
+            If siniestroTipoActual.ClavePredeterminada <> Nothing Then
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.ClavePredeterminada)
+            End If
         Else
             labelSiniestroTipoOtro.Visible = False
             textboxSiniestroTipoOtro.Visible = False

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formCargosJerarquias
+Partial Class formSiniestroTipos
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,33 +22,33 @@ Partial Class formCargosJerarquias
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnCargo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnOrden = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripRubro = New System.Windows.Forms.ToolStrip()
+        Me.labelRubro = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxRubro = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripCargo = New System.Windows.Forms.ToolStrip()
-        Me.labelCargo = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxCargo = New System.Windows.Forms.ToolStripComboBox()
+        Me.columnSiniestroRubro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnClavePredeterminada = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
+        Me.toolstripRubro.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
-        Me.toolstripCargo.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -71,13 +71,13 @@ Partial Class formCargosJerarquias
         Me.datagridviewMain.AllowUserToAddRows = False
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCargo, Me.columnNombre, Me.columnOrden, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSiniestroRubro, Me.columnNombre, Me.columnClavePredeterminada, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -90,54 +90,12 @@ Partial Class formCargosJerarquias
         Me.datagridviewMain.Size = New System.Drawing.Size(638, 243)
         Me.datagridviewMain.TabIndex = 0
         '
-        'columnCargo
-        '
-        Me.columnCargo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCargo.DataPropertyName = "CargoNombre"
-        Me.columnCargo.HeaderText = "Cargo"
-        Me.columnCargo.Name = "columnCargo"
-        Me.columnCargo.ReadOnly = True
-        Me.columnCargo.Width = 60
-        '
-        'columnNombre
-        '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnNombre.HeaderText = "Nombre"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
-        '
-        'columnOrden
-        '
-        Me.columnOrden.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnOrden.DataPropertyName = "Orden"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnOrden.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnOrden.HeaderText = "Orden"
-        Me.columnOrden.Name = "columnOrden"
-        Me.columnOrden.ReadOnly = True
-        Me.columnOrden.Width = 61
-        '
-        'columnEsActivo
-        '
-        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsActivo.DataPropertyName = "EsActivo"
-        Me.columnEsActivo.HeaderText = "Activo"
-        Me.columnEsActivo.Name = "columnEsActivo"
-        Me.columnEsActivo.ReadOnly = True
-        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 62
-        '
         'panelToolbars
         '
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripCargo)
+        Me.panelToolbars.Controls.Add(Me.toolstripRubro)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
@@ -182,12 +140,34 @@ Partial Class formCargosJerarquias
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
+        'toolstripRubro
+        '
+        Me.toolstripRubro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripRubro.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripRubro.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelRubro, Me.comboboxRubro})
+        Me.toolstripRubro.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripRubro.Name = "toolstripRubro"
+        Me.toolstripRubro.Size = New System.Drawing.Size(197, 39)
+        Me.toolstripRubro.TabIndex = 14
+        '
+        'labelRubro
+        '
+        Me.labelRubro.Name = "labelRubro"
+        Me.labelRubro.Size = New System.Drawing.Size(42, 36)
+        Me.labelRubro.Text = "Rubro:"
+        '
+        'comboboxRubro
+        '
+        Me.comboboxRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxRubro.Name = "comboboxRubro"
+        Me.comboboxRubro.Size = New System.Drawing.Size(150, 39)
+        '
         'toolstripActivo
         '
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(477, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(444, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 12
@@ -204,29 +184,49 @@ Partial Class formCargosJerarquias
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
-        'toolstripCargo
+        'columnSiniestroRubro
         '
-        Me.toolstripCargo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripCargo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCargo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCargo, Me.comboboxCargo})
-        Me.toolstripCargo.Location = New System.Drawing.Point(247, 0)
-        Me.toolstripCargo.Name = "toolstripCargo"
-        Me.toolstripCargo.Size = New System.Drawing.Size(230, 39)
-        Me.toolstripCargo.TabIndex = 13
+        Me.columnSiniestroRubro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSiniestroRubro.DataPropertyName = "RubroNombre"
+        Me.columnSiniestroRubro.HeaderText = "Rubro"
+        Me.columnSiniestroRubro.Name = "columnSiniestroRubro"
+        Me.columnSiniestroRubro.ReadOnly = True
+        Me.columnSiniestroRubro.Width = 61
         '
-        'labelCargo
+        'columnNombre
         '
-        Me.labelCargo.Name = "labelCargo"
-        Me.labelCargo.Size = New System.Drawing.Size(42, 36)
-        Me.labelCargo.Text = "Cargo:"
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
         '
-        'comboboxCargo
+        'columnClavePredeterminada
         '
-        Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargo.Name = "comboboxCargo"
-        Me.comboboxCargo.Size = New System.Drawing.Size(150, 39)
+        Me.columnClavePredeterminada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnClavePredeterminada.DataPropertyName = "ClavePredeterminadaNombre"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnClavePredeterminada.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnClavePredeterminada.HeaderText = "Clave Predeterminada"
+        Me.columnClavePredeterminada.Name = "columnClavePredeterminada"
+        Me.columnClavePredeterminada.ReadOnly = True
+        Me.columnClavePredeterminada.Width = 124
         '
-        'formCargosJerarquias
+        'columnEsActivo
+        '
+        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsActivo.DataPropertyName = "EsActivo"
+        Me.columnEsActivo.HeaderText = "Activo"
+        Me.columnEsActivo.Name = "columnEsActivo"
+        Me.columnEsActivo.ReadOnly = True
+        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnEsActivo.Width = 62
+        '
+        'formSiniestroTipos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -237,10 +237,10 @@ Partial Class formCargosJerarquias
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formCargosJerarquias"
+        Me.Name = "formSiniestroTipos"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Jerarquías"
+        Me.Text = "Tipos de Siniestros"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -248,10 +248,10 @@ Partial Class formCargosJerarquias
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
+        Me.toolstripRubro.ResumeLayout(False)
+        Me.toolstripRubro.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
         Me.toolstripActivo.PerformLayout()
-        Me.toolstripCargo.ResumeLayout(False)
-        Me.toolstripCargo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -267,11 +267,11 @@ Partial Class formCargosJerarquias
     Friend WithEvents toolstripActivo As System.Windows.Forms.ToolStrip
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents columnCargo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnOrden As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents toolstripCargo As ToolStrip
-    Friend WithEvents labelCargo As ToolStripLabel
-    Friend WithEvents comboboxCargo As ToolStripComboBox
+    Friend WithEvents toolstripRubro As ToolStrip
+    Friend WithEvents labelRubro As ToolStripLabel
+    Friend WithEvents comboboxRubro As ToolStripComboBox
+    Friend WithEvents columnSiniestroRubro As DataGridViewTextBoxColumn
+    Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnClavePredeterminada As DataGridViewTextBoxColumn
+    Friend WithEvents columnEsActivo As DataGridViewCheckBoxColumn
 End Class

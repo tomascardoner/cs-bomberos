@@ -1,6 +1,7 @@
 ﻿Public Class formCargosJerarquias
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDCargo As Byte
         Public Property CargoNombre As String
@@ -20,9 +21,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
 
@@ -34,6 +37,8 @@
 
         mSkipFilterData = True
 
+        pFillAndRefreshLists.Cargo(comboboxCargo.ComboBox, True, False)
+
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1
 
@@ -44,9 +49,11 @@
 
         RefreshData()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDCargo As Byte = 0, Optional ByVal PositionIDJerarquia As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -99,6 +106,11 @@
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
                 mlistCargosJerarquiasFiltradaYOrdenada = mlistCargosJerarquiasBase.ToList
+
+                ' Filtro por Cargo
+                If comboboxCargo.SelectedIndex > 0 Then
+                    mlistCargosJerarquiasFiltradaYOrdenada = mlistCargosJerarquiasFiltradaYOrdenada.Where(Function(p) p.IDCargo = CByte(comboboxCargo.ComboBox.SelectedValue)).ToList
+                End If
 
                 'Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
@@ -167,9 +179,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -182,7 +196,7 @@
         End If
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxCargo.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -212,6 +226,7 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
@@ -293,6 +308,10 @@
 
             Me.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged
+
     End Sub
 
 #End Region

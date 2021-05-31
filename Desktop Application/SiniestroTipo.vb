@@ -14,8 +14,8 @@ Partial Public Class SiniestroTipo
     Public Property IDSiniestroRubro As Byte
     Public Property IDSiniestroTipo As Byte
     Public Property Nombre As String
-    Public Property UsaClave As Boolean
     Public Property ClavePredeterminada As String
+    Public Property ClavePredeterminadaNombre As String
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short

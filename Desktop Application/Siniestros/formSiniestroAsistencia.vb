@@ -50,7 +50,7 @@
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
+        buttonEditar.Visible = (mParentEditMode And mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
         buttonPersona.Visible = mIsNew
@@ -151,7 +151,7 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PARENTESCO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If

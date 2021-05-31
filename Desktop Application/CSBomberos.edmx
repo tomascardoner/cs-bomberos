@@ -1052,8 +1052,8 @@
           <Property Name="IDSiniestroRubro" Type="tinyint" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UsaClave" Type="bit" Nullable="false" />
           <Property Name="ClavePredeterminada" Type="char" MaxLength="1" />
+          <Property Name="ClavePredeterminadaNombre" Type="varchar" MaxLength="7" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -9717,8 +9717,8 @@
           <Property Name="IDSiniestroRubro" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UsaClave" Type="Boolean" Nullable="false" />
           <Property Name="ClavePredeterminada" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ClavePredeterminadaNombre" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -11256,6 +11256,7 @@
           <EntitySetMapping Name="SiniestroTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroTipo">
               <MappingFragment StoreEntitySet="SiniestroTipo">
+                <ScalarProperty Name="ClavePredeterminadaNombre" ColumnName="ClavePredeterminadaNombre" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
@@ -11263,7 +11264,6 @@
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="ClavePredeterminada" ColumnName="ClavePredeterminada" />
-                <ScalarProperty Name="UsaClave" ColumnName="UsaClave" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDSiniestroTipo" ColumnName="IDSiniestroTipo" />
                 <ScalarProperty Name="IDSiniestroRubro" ColumnName="IDSiniestroRubro" />
