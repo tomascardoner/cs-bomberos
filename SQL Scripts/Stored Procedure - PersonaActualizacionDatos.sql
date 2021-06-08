@@ -83,5 +83,6 @@ CREATE PROCEDURE uspPersonaActualizacionDatosFamiliares
 				LEFT JOIN DocumentoTipo AS fdt ON f.IDDocumentoTipo = fdt.IDDocumentoTipo)
 				LEFT JOIN EstadoCivil AS fec ON f.IDEstadoCivil = fec.IDEstadoCivil)
 				LEFT JOIN Localidad AS fl ON f.DomicilioIDProvincia = fl.IDProvincia AND f.DomicilioIDLocalidad = fl.IDLocalidad
+			WHERE f.Vive = 1
 	END
 GO
