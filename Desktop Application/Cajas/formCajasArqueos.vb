@@ -90,9 +90,14 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDCaja As Byte = 0, Optional PositionIDArqueo As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
+
+        If mSkipFilterData Then
+            Exit Sub
+        End If
 
         Me.Cursor = Cursors.WaitCursor
 
@@ -173,7 +178,7 @@
                 mlistCajasArqueosBase = (From ca In dbContext.CajaArqueo
                                          Join c In dbContext.Caja On ca.IDCaja Equals c.IDCaja
                                          Where ca.FechaCierre Is Nothing OrElse ca.FechaCierre >= FechaDesde And ca.FechaCierre <= FechaHasta
-                                         Select New GridRowData With {.IDCaja = ca.IDCaja, .CajaNombre = c.Nombre, .IDArqueo = ca.IDArqueo, .SaldoInicial = ca.SaldoInicial, .ImporteAsignado = ca.ImporteAsignado, .SaldoActual = ca.SaldoInicial + ca.ImporteAsignado - ca.CajaArqueoDetalles.Sum(Function(cad) cad.Importe), .FechaCierre = ca.FechaCierre}).ToList
+                                         Select New GridRowData With {.IDCaja = ca.IDCaja, .CajaNombre = c.Nombre, .IDArqueo = ca.IDArqueo, .SaldoInicial = ca.SaldoInicial, .ImporteAsignado = ca.ImporteAsignado, .SaldoActual = ca.SaldoInicial + ca.ImporteAsignado - If(ca.CajaArqueoDetalles.Any(), ca.CajaArqueoDetalles.Sum(Function(cad) cad.Importe), 0), .FechaCierre = ca.FechaCierre}).ToList
             End Using
 
         Catch ex As Exception
@@ -208,49 +213,51 @@
 
     Private Sub FilterData()
 
-        If Not mSkipFilterData Then
-            Me.Cursor = Cursors.WaitCursor
-
-            Try
-                ' Inicializo las variables
-                mReportSelectionFormula = ""
-                mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosBase.ToList
-
-                ' Filtro por Caja
-                If comboboxCaja.SelectedIndex > 0 Then
-                    mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.IDCaja = CByte(comboboxCaja.ComboBox.SelectedValue)).ToList
-                End If
-
-                ' Filtro por Cerrada
-                Select Case comboboxCerrada.SelectedIndex
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todas
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "Not IsNull({CajaArqueo.FechaCierre})"
-                        mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre IsNot Nothing).ToList
-                    Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "IsNull({CajaArqueo.FechaCierre})"
-                        mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre Is Nothing).ToList
-                End Select
-
-                Select Case mlistCajasArqueosFiltradaYOrdenada.Count
-                    Case 0
-                        statuslabelMain.Text = String.Format("No hay Arqueos de Caja para mostrar.")
-                    Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Arqueo de Caja.")
-                    Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Arqueos de Caja.", mlistCajasArqueosFiltradaYOrdenada.Count)
-                End Select
-
-            Catch ex As Exception
-                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
-                Me.Cursor = Cursors.Default
-                Exit Sub
-            End Try
-
-            OrderData()
-
-            Me.Cursor = Cursors.Default
+        If mSkipFilterData Then
+            Exit Sub
         End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            ' Inicializo las variables
+            mReportSelectionFormula = ""
+            mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosBase.ToList
+
+            ' Filtro por Caja
+            If comboboxCaja.SelectedIndex > 0 Then
+                mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.IDCaja = CByte(comboboxCaja.ComboBox.SelectedValue)).ToList
+            End If
+
+            ' Filtro por Cerrada
+            Select Case comboboxCerrada.SelectedIndex
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_AllListindex       ' Todas
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_YesListindex       ' Sí
+                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "Not IsNull({CajaArqueo.FechaCierre})"
+                    mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre IsNot Nothing).ToList
+                Case CardonerSistemas.Constants.ComboBoxAllYesNo_NoListindex        ' No
+                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "IsNull({CajaArqueo.FechaCierre})"
+                    mlistCajasArqueosFiltradaYOrdenada = mlistCajasArqueosFiltradaYOrdenada.Where(Function(ca) ca.FechaCierre Is Nothing).ToList
+            End Select
+
+            Select Case mlistCajasArqueosFiltradaYOrdenada.Count
+                Case 0
+                    statuslabelMain.Text = String.Format("No hay Arqueos de Caja para mostrar.")
+                Case 1
+                    statuslabelMain.Text = String.Format("Se muestra 1 Arqueo de Caja.")
+                Case Else
+                    statuslabelMain.Text = String.Format("Se muestran {0} Arqueos de Caja.", mlistCajasArqueosFiltradaYOrdenada.Count)
+            End Select
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        OrderData()
+
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub OrderData()
