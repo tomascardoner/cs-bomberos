@@ -15,7 +15,6 @@
     Private mlistSiniestroTiposFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn

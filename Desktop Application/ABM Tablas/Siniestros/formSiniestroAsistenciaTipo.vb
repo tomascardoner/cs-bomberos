@@ -216,7 +216,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Asistencia de Siniestros con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Asistencia a Siniestros con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -254,7 +254,7 @@
             datagridviewPuntajes.DataSource = listPuntajes
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Puntajes del Tipo de Asistencia de Siniestros.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Puntajes del Tipo de Asistencia a Siniestros.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -281,7 +281,7 @@
 
     Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonPuntajesEditar.Click
         If datagridviewPuntajes.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Puntaje del Tipo de Asistencia de Siniestros para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para editar.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
@@ -293,7 +293,7 @@
 
     Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonPuntajesEliminar.Click
         If datagridviewPuntajes.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Puntaje del Tipo de Asistencia de Siniestros para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             Dim Mensaje As String
 
@@ -312,7 +312,7 @@
 
     Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewPuntajes.DoubleClick
         If datagridviewPuntajes.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Puntaje del Tipo de Asistencia de Siniestros para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 

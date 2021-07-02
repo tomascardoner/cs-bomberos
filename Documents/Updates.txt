@@ -1,3 +1,6 @@
+2021-07-02:
+	- Crear tablas nuevas (script)
+
 2021-05-24
 	- Tabla Siniestro:
 		- Cambiar tipo de datos del número:

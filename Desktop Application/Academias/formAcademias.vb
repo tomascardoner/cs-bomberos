@@ -1,4 +1,4 @@
-﻿Public Class formSiniestros
+﻿Public Class formAcademias
 
 #Region "Declarations"
 
@@ -6,25 +6,19 @@
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
     Friend Class GridRowData
-        Public Property IDSiniestro As Integer
+        Public Property IDAcademia As Integer
         Public Property IDCuartel As Byte
         Public Property CuartelNombre As String
-        Public Property NumeroCompleto As String
-        Public Property IDSiniestroRubro As Byte
-        Public Property SiniestroRubroNombre As String
-        Public Property IDSiniestroTipo As Byte
-        Public Property SiniestroTipoNombre As String
-        Public Property Clave As String
-        Public Property ClaveNombre As String
+        Public Property IDAcademiaTipo As Byte
+        Public Property AcademiaTipoNombre As String
         Public Property Fecha As Date
-        Public Property Anulado As Boolean
     End Class
 
     Private mdbContext As New CSBomberosContext(True)
-    Private mlistSiniestrosBase As List(Of GridRowData)
-    Private mlistSiniestrosFiltradaYOrdenada As List(Of GridRowData)
+    Private mlistAcademiasBase As List(Of GridRowData)
+    Private mlistAcademiasFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
+    Private mSkipFilterData As Boolean
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
@@ -34,7 +28,8 @@
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_SINIESTRO_32)
+        'TODO: Buscar un ícono para las academias
+        'Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_ACADEMIA_32)
 
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -45,20 +40,17 @@
         mSkipFilterData = True
 
         pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
-        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True, False)
 
         ' Filtro de período
         InicializarFiltroDeFechas()
         comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
         comboboxPeriodoTipo.SelectedIndex = 3
 
-        comboboxAnulado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
-        comboboxAnulado.SelectedIndex = 2
+        Academias.LlenarComboBoxTipos(mdbContext, comboboxAcademiaTipo.ComboBox, True, False)
 
         mSkipFilterData = False
 
-        mOrdenColumna = columnNumero
+        mOrdenColumna = columnFecha
         mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
@@ -105,7 +97,7 @@
 
 #Region "Load and Set Data"
 
-    Friend Sub RefreshData(Optional ByVal PositionIDSiniestro As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDAcademia As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
 
@@ -184,15 +176,14 @@
         End Select
 
         Try
-            mlistSiniestrosBase = (From s In mdbContext.Siniestro
-                                   Join c In mdbContext.Cuartel On s.IDCuartel Equals c.IDCuartel
-                                   Join sr In mdbContext.SiniestroRubro On s.IDSiniestroRubro Equals sr.IDSiniestroRubro
-                                   Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
-                                   Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
-                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .Clave = s.Clave, .ClaveNombre = s.ClaveNombre, .Fecha = s.Fecha, .Anulado = s.Anulado}).ToList
+            mlistAcademiasBase = (From a In mdbContext.Academia
+                                  Join c In mdbContext.Cuartel On a.IDCuartel Equals c.IDCuartel
+                                  Join at In mdbContext.AcademiaTipo On a.IDAcademiaTipo Equals at.IDAcademiaTipo
+                                  Where a.Fecha >= FechaDesde And a.Fecha <= FechaHasta
+                                  Select New GridRowData With {.IDAcademia = a.IDAcademia, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .IDAcademiaTipo = a.IDAcademiaTipo, .AcademiaTipoNombre = at.Nombre, .Fecha = a.Fecha}).ToList
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Siniestros.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Academias.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -201,17 +192,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDSiniestro = 0
+                PositionIDAcademia = 0
             Else
-                PositionIDSiniestro = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDSiniestro
+                PositionIDAcademia = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDAcademia
             End If
         End If
 
         FilterData()
 
-        If PositionIDSiniestro <> 0 Then
+        If PositionIDAcademia <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDSiniestro = PositionIDSiniestro Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDAcademia = PositionIDAcademia Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -226,44 +217,25 @@
 
             Try
                 ' Inicializo las variables
-                mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosBase.ToList
+                mlistAcademiasFiltradaYOrdenada = mlistAcademiasBase.ToList
 
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.Where(Function(s) s.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
-                ' Filtro por Siniestro Rubro
-                If comboboxSiniestroRubro.SelectedIndex > 0 Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.IDSiniestroRubro = CByte(comboboxSiniestroRubro.ComboBox.SelectedValue)).ToList
+                ' Filtro por Academia Tipo
+                If comboboxAcademiaTipo.SelectedIndex > 0 Then
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.Where(Function(s) s.IDAcademiaTipo = CByte(comboboxAcademiaTipo.ComboBox.SelectedValue)).ToList
                 End If
 
-                ' Filtro por Siniestro Tipo
-                If comboboxSiniestroTipo.SelectedIndex > 0 Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.IDSiniestroTipo = CByte(comboboxSiniestroTipo.ComboBox.SelectedValue)).ToList
-                End If
-
-                ' Filtro por Clave
-                If comboboxClave.SelectedIndex > 0 Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Clave = CStr(comboboxClave.ComboBox.SelectedValue)).ToList
-                End If
-
-                ' Filtro por Anulado
-                Select Case comboboxAnulado.SelectedIndex
-                    Case 0      ' Todos
-                    Case 1      ' Sí
-                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Anulado).ToList
-                    Case 2      ' No
-                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) Not s.Anulado).ToList
-                End Select
-
-                Select Case mlistSiniestrosFiltradaYOrdenada.Count
+                Select Case mlistAcademiasFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Siniestros para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Academias para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Siniestro.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Academia.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Siniestros.", mlistSiniestrosFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Academias.", mlistAcademiasFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -283,50 +255,26 @@
         Select Case mOrdenColumna.Name
             Case columnCuartel.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Fecha).ToList
                 Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                End If
-            Case columnNumero.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Fecha).ToList
                 End If
             Case columnFecha.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.CuartelNombre).ToList
                 Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Fecha).ThenBy(Function(dgrd) dgrd.CuartelNombre).ToList
                 End If
-            Case columnSiniestroRubro.Name
+            Case columnAcademiaTipo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.SiniestroRubroNombre).ThenBy(Function(dgrd) dgrd.SiniestroTipoNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.AcademiaTipoNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Fecha).ToList
                 Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.SiniestroRubroNombre).ThenBy(Function(dgrd) dgrd.SiniestroTipoNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                End If
-            Case columnSiniestroTipo.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.SiniestroTipoNombre).ThenBy(Function(dgrd) dgrd.SiniestroRubroNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.SiniestroTipoNombre).ThenBy(Function(dgrd) dgrd.SiniestroRubroNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                End If
-            Case columnClave.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.ClaveNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.ClaveNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                End If
-            Case columnAnulado.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Anulado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
-                Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Anulado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistAcademiasFiltradaYOrdenada = mlistAcademiasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.AcademiaTipoNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Fecha).ToList
                 End If
         End Select
 
         datagridviewMain.AutoGenerateColumns = False
-        datagridviewMain.DataSource = mlistSiniestrosFiltradaYOrdenada
+        datagridviewMain.DataSource = mlistAcademiasFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
@@ -364,12 +312,8 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxSiniestroTipo.SelectedIndexChanged, comboboxClave.SelectedIndexChanged, comboboxAnulado.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxAcademiaTipo.SelectedIndexChanged
         FilterData()
-    End Sub
-
-    Private Sub CambioRubro() Handles comboboxSiniestroRubro.SelectedIndexChanged
-        Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
     End Sub
 
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick
@@ -404,12 +348,12 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.SINIESTRO_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.ACADEMIA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formSiniestro.LoadAndShow(True, Me, 0)
+            formAcademia.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -419,14 +363,14 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Siniestro para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Academia para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ACADEMIA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
 
-                formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+                formAcademia.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDAcademia)
 
                 datagridviewMain.Enabled = True
 
@@ -437,32 +381,32 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Siniestro para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Academia para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.ACADEMIA_ELIMINAR) Then
 
                 Me.Cursor = Cursors.WaitCursor
 
-                Dim siniestroActual As Siniestro = mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+                Dim academiaActual As Academia = mdbContext.Academia.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDAcademia)
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará el Siniestro seleccionado.{0}{0}Número: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, siniestroActual.NumeroCompleto)
+                Mensaje = String.Format("Se eliminará la Academia seleccionada.{0}{0}Fecha: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, academiaActual.Fecha)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
-                        mdbContext.Siniestro.Remove(siniestroActual)
+                        mdbContext.Academia.Remove(academiaActual)
                         mdbContext.SaveChanges()
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar la Academia porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Academia.")
                     End Try
 
                     RefreshData()
@@ -475,13 +419,13 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Siniestro para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Academia para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+            formAcademia.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDAcademia)
 
             datagridviewMain.Enabled = True
 
@@ -491,14 +435,14 @@
 
     Private Sub Asistencia_Click() Handles buttonAsistenciaMultiple.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Academia para asistir.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ACADEMIA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 datagridviewMain.Enabled = False
 
-                formSiniestroAsistenciaMultiple.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
+                formAcademiaAsistenciaMultiple.LoadAndShow(mdbContext.Academia.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDAcademia))
 
                 datagridviewMain.Enabled = True
 

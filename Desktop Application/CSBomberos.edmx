@@ -5,6 +5,59 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CSBomberosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Academia">
+          <Key>
+            <PropertyRef Name="IDAcademia" />
+          </Key>
+          <Property Name="IDAcademia" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="IDAcademiaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="AcademiaTipoOtro" Type="varchar" MaxLength="50" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademiaAsistencia">
+          <Key>
+            <PropertyRef Name="IDAcademia" />
+            <PropertyRef Name="IDPersona" />
+          </Key>
+          <Property Name="IDAcademia" Type="int" Nullable="false" />
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDAcademiaAsistenciaTipo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademiaAsistenciaTipo">
+          <Key>
+            <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+          </Key>
+          <Property Name="IDAcademiaAsistenciaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Abreviatura" Type="varchar" MaxLength="5" />
+          <Property Name="EsPresente" Type="bit" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AcademiaTipo">
+          <Key>
+            <PropertyRef Name="IDAcademiaTipo" />
+          </Key>
+          <Property Name="IDAcademiaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Alarma">
           <Key>
             <PropertyRef Name="IDAlarma" />
@@ -1293,6 +1346,42 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Academia__AcademiaAsistencia">
+          <End Role="Academia" Type="Self.Academia" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Academia">
+              <PropertyRef Name="IDAcademia" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAcademia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademiaAsistenciaTipo__AcademiaAsistencia">
+          <End Role="AcademiaAsistenciaTipo" Type="Self.AcademiaAsistenciaTipo" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademiaTipo__Academia">
+          <End Role="AcademiaTipo" Type="Self.AcademiaTipo" Multiplicity="1" />
+          <End Role="Academia" Type="Self.Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaTipo">
+              <PropertyRef Name="IDAcademiaTipo" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDAcademiaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Area__CajaArqueoDetalle">
           <End Role="Area" Type="Self.Area" Multiplicity="1" />
           <End Role="CajaArqueoDetalle" Type="Self.CajaArqueoDetalle" Multiplicity="*" />
@@ -1438,6 +1527,18 @@
             </Principal>
             <Dependent Role="CompraDetalle">
               <PropertyRef Name="IDCompra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cuartel__Academia">
+          <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
+          <End Role="Academia" Type="Self.Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDCuartel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1746,6 +1847,18 @@
             </Principal>
             <Dependent Role="Localidad">
               <PropertyRef Name="IDPartido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__AcademiaAsistencia">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDPersona" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2282,6 +2395,78 @@
             </Principal>
             <Dependent Role="Unidad">
               <PropertyRef Name="IDUnidadUso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Academia__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Academia" Type="Self.Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Academia__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Academia" Type="Self.Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistenciaTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaAsistenciaTipo" Type="Self.AcademiaAsistenciaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistenciaTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaAsistenciaTipo" Type="Self.AcademiaAsistenciaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaTipo" Type="Self.AcademiaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaTipo" Type="Self.AcademiaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3814,6 +3999,10 @@
           <Parameter Name="EstadoActivoLeyenda" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="CSBomberosModelStoreContainer">
+          <EntitySet Name="Academia" EntityType="Self.Academia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademiaAsistencia" EntityType="Self.AcademiaAsistencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademiaAsistenciaTipo" EntityType="Self.AcademiaAsistenciaTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademiaTipo" EntityType="Self.AcademiaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
@@ -3892,6 +4081,18 @@
           <EntitySet Name="VehiculoCompaniaSeguro" EntityType="Self.VehiculoCompaniaSeguro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoMarca" EntityType="Self.VehiculoMarca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoTipo" EntityType="Self.VehiculoTipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Academia__AcademiaAsistencia" Association="Self.FK__Academia__AcademiaAsistencia">
+            <End Role="Academia" EntitySet="Academia" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademiaAsistenciaTipo__AcademiaAsistencia" Association="Self.FK__AcademiaAsistenciaTipo__AcademiaAsistencia">
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademiaTipo__Academia" Association="Self.FK__AcademiaTipo__Academia">
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
           <AssociationSet Name="FK__Area__CajaArqueoDetalle" Association="Self.FK__Area__CajaArqueoDetalle">
             <End Role="Area" EntitySet="Area" />
             <End Role="CajaArqueoDetalle" EntitySet="CajaArqueoDetalle" />
@@ -3939,6 +4140,10 @@
           <AssociationSet Name="FK__Compra__CompraDetalle" Association="Self.FK__Compra__CompraDetalle">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="CompraDetalle" EntitySet="CompraDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cuartel__Academia" Association="Self.FK__Cuartel__Academia">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Academia" EntitySet="Academia" />
           </AssociationSet>
           <AssociationSet Name="FK__Cuartel__Area" Association="Self.FK__Cuartel__Area">
             <End Role="Cuartel" EntitySet="Cuartel" />
@@ -4039,6 +4244,10 @@
           <AssociationSet Name="FK__Partido__Localidad" Association="Self.FK__Partido__Localidad">
             <End Role="Partido" EntitySet="Partido" />
             <End Role="Localidad" EntitySet="Localidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__AcademiaAsistencia" Association="Self.FK__Persona__AcademiaAsistencia">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
           </AssociationSet>
           <AssociationSet Name="FK__Persona__Localidad__Laboral" Association="Self.FK__Persona__Localidad__Laboral">
             <End Role="Localidad" EntitySet="Localidad" />
@@ -4215,6 +4424,30 @@
           <AssociationSet Name="FK__UnidadUso__Unidad" Association="Self.FK__UnidadUso__Unidad">
             <End Role="UnidadUso" EntitySet="UnidadUso" />
             <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Academia__Creacion" Association="Self.FK__Usuario__Academia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Academia__Modificacion" Association="Self.FK__Usuario__Academia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistenciaTipo__Creacion" Association="Self.FK__Usuario__AcademiaAsistenciaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistenciaTipo__Modificacion" Association="Self.FK__Usuario__AcademiaAsistenciaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaTipo__Creacion" Association="Self.FK__Usuario__AcademiaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaTipo__Modificacion" Association="Self.FK__Usuario__AcademiaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Alarma__Creacion" Association="Self.FK__Usuario__Alarma__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -5652,6 +5885,54 @@
             <End Role="Siniestro" EntitySet="Siniestro" />
             <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
           </AssociationSet>
+          <EntitySet Name="Academia" EntityType="CSBomberosModel.Academia" />
+          <EntitySet Name="AcademiaAsistencia" EntityType="CSBomberosModel.AcademiaAsistencia" />
+          <EntitySet Name="AcademiaAsistenciaTipo" EntityType="CSBomberosModel.AcademiaAsistenciaTipo" />
+          <EntitySet Name="AcademiaTipo" EntityType="CSBomberosModel.AcademiaTipo" />
+          <AssociationSet Name="FK__Academia__AcademiaAsistencia" Association="CSBomberosModel.FK__Academia__AcademiaAsistencia">
+            <End Role="Academia" EntitySet="Academia" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademiaTipo__Academia" Association="CSBomberosModel.FK__AcademiaTipo__Academia">
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cuartel__Academia" Association="CSBomberosModel.FK__Cuartel__Academia">
+            <End Role="Cuartel" EntitySet="Cuartel" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Academia__Creacion" Association="CSBomberosModel.FK__Usuario__Academia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Academia__Modificacion" Association="CSBomberosModel.FK__Usuario__Academia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademiaAsistenciaTipo__AcademiaAsistencia" Association="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia">
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__AcademiaAsistencia" Association="CSBomberosModel.FK__Persona__AcademiaAsistencia">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistenciaTipo__Creacion" Association="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistenciaTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaTipo__Creacion" Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -5909,6 +6190,12 @@
           <NavigationProperty Name="SiniestrosRubrosModificados" Relationship="CSBomberosModel.FK__Usuario__SiniestroRubro__Modificacion" FromRole="Usuario" ToRole="SiniestroRubro" />
           <NavigationProperty Name="SiniestrosTiposCreados" Relationship="CSBomberosModel.FK__Usuario__SiniestroTipo__Creacion" FromRole="Usuario" ToRole="SiniestroTipo" />
           <NavigationProperty Name="SiniestrosTiposModificados" Relationship="CSBomberosModel.FK__Usuario__SiniestroTipo__Modificacion" FromRole="Usuario" ToRole="SiniestroTipo" />
+          <NavigationProperty Name="AcademiasCreadas" Relationship="CSBomberosModel.FK__Usuario__Academia__Creacion" FromRole="Usuario" ToRole="Academia" />
+          <NavigationProperty Name="AcademiasModificadas" Relationship="CSBomberosModel.FK__Usuario__Academia__Modificacion" FromRole="Usuario" ToRole="Academia" />
+          <NavigationProperty Name="AcademiaAsistenciaTiposCreados" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion" FromRole="Usuario" ToRole="AcademiaAsistenciaTipo" />
+          <NavigationProperty Name="AcademiaAsistenciaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" FromRole="Usuario" ToRole="AcademiaAsistenciaTipo" />
+          <NavigationProperty Name="AcademiaTiposCreados" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion" FromRole="Usuario" ToRole="AcademiaTipo" />
+          <NavigationProperty Name="AcademiaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" FromRole="Usuario" ToRole="AcademiaTipo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -6045,6 +6332,7 @@
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Cuartel__Responsable" FromRole="Cuartel" ToRole="Responsable" />
           <NavigationProperty Name="Compra" Relationship="CSBomberosModel.FK__Cuartel__Compra" FromRole="Cuartel" ToRole="Compra" />
           <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK__Cuartel__Siniestro" FromRole="Cuartel" ToRole="Siniestro" />
+          <NavigationProperty Name="Academias" Relationship="CSBomberosModel.FK__Cuartel__Academia" FromRole="Cuartel" ToRole="Academia" />
         </EntityType>
         <EntityType Name="Parentesco">
           <Key>
@@ -6163,6 +6451,7 @@
           <NavigationProperty Name="ReingresoFormacionResponsable" Relationship="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" FromRole="Persona1" ToRole="Persona" />
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Persona__Responsable" FromRole="Persona" ToRole="Responsable" />
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Persona__SiniestroAsistencia" FromRole="Persona" ToRole="SiniestroAsistencia" />
+          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -9912,6 +10201,205 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Academia">
+          <Key>
+            <PropertyRef Name="IDAcademia" />
+          </Key>
+          <Property Name="IDAcademia" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDCuartel" Type="Byte" Nullable="false" />
+          <Property Name="IDAcademiaTipo" Type="Byte" Nullable="false" />
+          <Property Name="AcademiaTipoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__Academia__AcademiaAsistencia" FromRole="Academia" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="AcademiaTipo" Relationship="CSBomberosModel.FK__AcademiaTipo__Academia" FromRole="Academia" ToRole="AcademiaTipo" />
+          <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Academia" FromRole="Academia" ToRole="Cuartel" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Academia__Creacion" FromRole="Academia" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Academia__Modificacion" FromRole="Academia" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="AcademiaAsistencia">
+          <Key>
+            <PropertyRef Name="IDAcademia" />
+            <PropertyRef Name="IDPersona" />
+          </Key>
+          <Property Name="IDAcademia" Type="Int32" Nullable="false" />
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDAcademiaAsistenciaTipo" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Academia" Relationship="CSBomberosModel.FK__Academia__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="Academia" />
+          <NavigationProperty Name="AcademiaAsistenciaTipo" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="AcademiaAsistenciaTipo" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="Persona" />
+        </EntityType>
+        <EntityType Name="AcademiaAsistenciaTipo">
+          <Key>
+            <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+          </Key>
+          <Property Name="IDAcademiaAsistenciaTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="EsPresente" Type="Boolean" Nullable="false" />
+          <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="AcademiaTipo">
+          <Key>
+            <PropertyRef Name="IDAcademiaTipo" />
+          </Key>
+          <Property Name="IDAcademiaTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Academias" Relationship="CSBomberosModel.FK__AcademiaTipo__Academia" FromRole="AcademiaTipo" ToRole="Academia" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion" FromRole="AcademiaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" FromRole="AcademiaTipo" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Academia__AcademiaAsistencia">
+          <End Type="CSBomberosModel.Academia" Role="Academia" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Academia">
+              <PropertyRef Name="IDAcademia" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAcademia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademiaTipo__Academia">
+          <End Type="CSBomberosModel.AcademiaTipo" Role="AcademiaTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.Academia" Role="Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaTipo">
+              <PropertyRef Name="IDAcademiaTipo" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDAcademiaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cuartel__Academia">
+          <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
+          <End Type="CSBomberosModel.Academia" Role="Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuartel">
+              <PropertyRef Name="IDCuartel" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDCuartel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Academia__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Academia" Role="Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Academia__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Academia" Role="Academia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Academia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademiaAsistenciaTipo__AcademiaAsistencia">
+          <End Type="CSBomberosModel.AcademiaAsistenciaTipo" Role="AcademiaAsistenciaTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__AcademiaAsistencia">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistenciaTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistenciaTipo" Role="AcademiaAsistenciaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistenciaTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistenciaTipo" Role="AcademiaAsistenciaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaTipo" Role="AcademiaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaTipo" Role="AcademiaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11267,6 +11755,62 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDSiniestroTipo" ColumnName="IDSiniestroTipo" />
                 <ScalarProperty Name="IDSiniestroRubro" ColumnName="IDSiniestroRubro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Academia">
+            <EntityTypeMapping TypeName="CSBomberosModel.Academia">
+              <MappingFragment StoreEntitySet="Academia">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="AcademiaTipoOtro" ColumnName="AcademiaTipoOtro" />
+                <ScalarProperty Name="IDAcademiaTipo" ColumnName="IDAcademiaTipo" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDAcademia" ColumnName="IDAcademia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademiaAsistencia">
+            <EntityTypeMapping TypeName="CSBomberosModel.AcademiaAsistencia">
+              <MappingFragment StoreEntitySet="AcademiaAsistencia">
+                <ScalarProperty Name="IDAcademiaAsistenciaTipo" ColumnName="IDAcademiaAsistenciaTipo" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="IDAcademia" ColumnName="IDAcademia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademiaAsistenciaTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.AcademiaAsistenciaTipo">
+              <MappingFragment StoreEntitySet="AcademiaAsistenciaTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="EsPresente" ColumnName="EsPresente" />
+                <ScalarProperty Name="Abreviatura" ColumnName="Abreviatura" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDAcademiaAsistenciaTipo" ColumnName="IDAcademiaAsistenciaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademiaTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.AcademiaTipo">
+              <MappingFragment StoreEntitySet="AcademiaTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDAcademiaTipo" ColumnName="IDAcademiaTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

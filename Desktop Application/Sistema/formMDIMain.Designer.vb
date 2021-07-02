@@ -76,6 +76,13 @@ Partial Class formMDIMain
         Me.menuitemTablas_SubRubros = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Ubicaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_SubUbicaciones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_MenuAcademias = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_AcademiasTipos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_AcademiasAsistenciasTipos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_MenuSiniestros = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SiniestrosRubros = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SiniestrosTipos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SiniestrosAsistenciasTipos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_MenuUsuarios = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_GruposUsuario = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Usuarios = New System.Windows.Forms.ToolStripMenuItem()
@@ -86,9 +93,6 @@ Partial Class formMDIMain
         Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Responsables = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Proveedores = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_MenuSiniestros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_SiniestrosRubros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_SiniestrosTipos = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonDocumentaciones = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemDocumentaciones_Personas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemDocumentaciones_Unidades = New System.Windows.Forms.ToolStripMenuItem()
@@ -101,7 +105,7 @@ Partial Class formMDIMain
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_SiniestrosAsistenciasTipos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemDocumentaciones_Academias = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -280,7 +284,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonTablas
         '
-        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_MenuPersonas, Me.menuitemTablas_MenuCapacitaciones, Me.menuitemTablas_MenuUnidades, Me.menuitemTablas_MenuInventario, Me.menuitemTablas_MenuUsuarios, Me.menuitemTablas_MenuOtros, Me.menuitemTablas_MenuSiniestros})
+        Me.dropdownbuttonTablas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_MenuPersonas, Me.menuitemTablas_MenuCapacitaciones, Me.menuitemTablas_MenuUnidades, Me.menuitemTablas_MenuInventario, Me.menuitemTablas_MenuAcademias, Me.menuitemTablas_MenuSiniestros, Me.menuitemTablas_MenuUsuarios, Me.menuitemTablas_MenuOtros})
         Me.dropdownbuttonTablas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_TABLAS_32
         Me.dropdownbuttonTablas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -455,6 +459,50 @@ Partial Class formMDIMain
         Me.menuitemTablas_SubUbicaciones.Size = New System.Drawing.Size(207, 22)
         Me.menuitemTablas_SubUbicaciones.Text = "Sub-ubicaciones"
         '
+        'menuitemTablas_MenuAcademias
+        '
+        Me.menuitemTablas_MenuAcademias.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_AcademiasTipos, Me.menuitemTablas_AcademiasAsistenciasTipos})
+        Me.menuitemTablas_MenuAcademias.Name = "menuitemTablas_MenuAcademias"
+        Me.menuitemTablas_MenuAcademias.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuAcademias.Text = "Academias"
+        '
+        'menuitemTablas_AcademiasTipos
+        '
+        Me.menuitemTablas_AcademiasTipos.Name = "menuitemTablas_AcademiasTipos"
+        Me.menuitemTablas_AcademiasTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_AcademiasTipos.Text = "Tipos"
+        '
+        'menuitemTablas_AcademiasAsistenciasTipos
+        '
+        Me.menuitemTablas_AcademiasAsistenciasTipos.Name = "menuitemTablas_AcademiasAsistenciasTipos"
+        Me.menuitemTablas_AcademiasAsistenciasTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_AcademiasAsistenciasTipos.Text = "Tipos de asistencia"
+        '
+        'menuitemTablas_MenuSiniestros
+        '
+        Me.menuitemTablas_MenuSiniestros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_SiniestrosRubros, Me.menuitemTablas_SiniestrosTipos, Me.menuitemTablas_SiniestrosAsistenciasTipos})
+        Me.menuitemTablas_MenuSiniestros.Name = "menuitemTablas_MenuSiniestros"
+        Me.menuitemTablas_MenuSiniestros.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuSiniestros.Text = "Siniestros"
+        '
+        'menuitemTablas_SiniestrosRubros
+        '
+        Me.menuitemTablas_SiniestrosRubros.Name = "menuitemTablas_SiniestrosRubros"
+        Me.menuitemTablas_SiniestrosRubros.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosRubros.Text = "Rubros"
+        '
+        'menuitemTablas_SiniestrosTipos
+        '
+        Me.menuitemTablas_SiniestrosTipos.Name = "menuitemTablas_SiniestrosTipos"
+        Me.menuitemTablas_SiniestrosTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosTipos.Text = "Tipos"
+        '
+        'menuitemTablas_SiniestrosAsistenciasTipos
+        '
+        Me.menuitemTablas_SiniestrosAsistenciasTipos.Name = "menuitemTablas_SiniestrosAsistenciasTipos"
+        Me.menuitemTablas_SiniestrosAsistenciasTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosAsistenciasTipos.Text = "Tipos de asistencia"
+        '
         'menuitemTablas_MenuUsuarios
         '
         Me.menuitemTablas_MenuUsuarios.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
@@ -517,28 +565,9 @@ Partial Class formMDIMain
         Me.menuitemTablas_Proveedores.Size = New System.Drawing.Size(145, 22)
         Me.menuitemTablas_Proveedores.Text = "Proveedores"
         '
-        'menuitemTablas_MenuSiniestros
-        '
-        Me.menuitemTablas_MenuSiniestros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_SiniestrosRubros, Me.menuitemTablas_SiniestrosTipos, Me.menuitemTablas_SiniestrosAsistenciasTipos})
-        Me.menuitemTablas_MenuSiniestros.Name = "menuitemTablas_MenuSiniestros"
-        Me.menuitemTablas_MenuSiniestros.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_MenuSiniestros.Text = "Siniestros"
-        '
-        'menuitemTablas_SiniestrosRubros
-        '
-        Me.menuitemTablas_SiniestrosRubros.Name = "menuitemTablas_SiniestrosRubros"
-        Me.menuitemTablas_SiniestrosRubros.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_SiniestrosRubros.Text = "Rubros"
-        '
-        'menuitemTablas_SiniestrosTipos
-        '
-        Me.menuitemTablas_SiniestrosTipos.Name = "menuitemTablas_SiniestrosTipos"
-        Me.menuitemTablas_SiniestrosTipos.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_SiniestrosTipos.Text = "Tipos"
-        '
         'dropdownbuttonDocumentaciones
         '
-        Me.dropdownbuttonDocumentaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Personas, Me.menuitemDocumentaciones_Unidades, Me.menuitemDocumentaciones_Inventario, Me.menuitemDocumentaciones_Reportes})
+        Me.dropdownbuttonDocumentaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Personas, Me.menuitemDocumentaciones_Unidades, Me.menuitemDocumentaciones_Inventario, Me.menuitemDocumentaciones_Academias, Me.menuitemDocumentaciones_Reportes})
         Me.dropdownbuttonDocumentaciones.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_DOCUMENTACIONES_32
         Me.dropdownbuttonDocumentaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonDocumentaciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -551,14 +580,14 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Personas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PERSONAS_32
         Me.menuitemDocumentaciones_Personas.Name = "menuitemDocumentaciones_Personas"
-        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(127, 22)
+        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(180, 22)
         Me.menuitemDocumentaciones_Personas.Text = "Personas"
         '
         'menuitemDocumentaciones_Unidades
         '
         Me.menuitemDocumentaciones_Unidades.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_UNIDADES_32
         Me.menuitemDocumentaciones_Unidades.Name = "menuitemDocumentaciones_Unidades"
-        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(127, 22)
+        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(180, 22)
         Me.menuitemDocumentaciones_Unidades.Text = "Unidades"
         '
         'menuitemDocumentaciones_Inventario
@@ -566,7 +595,7 @@ Partial Class formMDIMain
         Me.menuitemDocumentaciones_Inventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Inventario_Elementos})
         Me.menuitemDocumentaciones_Inventario.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ELEMENTOS_32
         Me.menuitemDocumentaciones_Inventario.Name = "menuitemDocumentaciones_Inventario"
-        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(127, 22)
+        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(180, 22)
         Me.menuitemDocumentaciones_Inventario.Text = "Inventario"
         '
         'menuitemDocumentaciones_Inventario_Elementos
@@ -579,7 +608,7 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Reportes.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_REPORTES_32
         Me.menuitemDocumentaciones_Reportes.Name = "menuitemDocumentaciones_Reportes"
-        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(127, 22)
+        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(180, 22)
         Me.menuitemDocumentaciones_Reportes.Text = "Reportes"
         '
         'dropdownbuttonJefatura
@@ -632,11 +661,11 @@ Partial Class formMDIMain
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
         '
-        'menuitemTablas_SiniestrosAsistenciasTipos
+        'menuitemDocumentaciones_Academias
         '
-        Me.menuitemTablas_SiniestrosAsistenciasTipos.Name = "menuitemTablas_SiniestrosAsistenciasTipos"
-        Me.menuitemTablas_SiniestrosAsistenciasTipos.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemTablas_SiniestrosAsistenciasTipos.Text = "Tipos de asistencia"
+        Me.menuitemDocumentaciones_Academias.Name = "menuitemDocumentaciones_Academias"
+        Me.menuitemDocumentaciones_Academias.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Academias.Text = "Academias"
         '
         'formMDIMain
         '
@@ -743,4 +772,8 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_SiniestrosRubros As ToolStripMenuItem
     Friend WithEvents menuitemTablas_SiniestrosTipos As ToolStripMenuItem
     Friend WithEvents menuitemTablas_SiniestrosAsistenciasTipos As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_MenuAcademias As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_AcademiasTipos As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_AcademiasAsistenciasTipos As ToolStripMenuItem
+    Friend WithEvents menuitemDocumentaciones_Academias As ToolStripMenuItem
 End Class

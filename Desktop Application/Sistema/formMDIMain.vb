@@ -336,6 +336,30 @@
         ShowForm(Permisos.SUBUBICACION, CType(formSubUbicaciones, Form))
     End Sub
 
+    ' ACADEMIAS 
+
+    Private Sub AcademiasTipos() Handles menuitemTablas_AcademiasTipos.Click
+        ShowForm(Permisos.ACADEMIATIPO, CType(formAcademiaTipos, Form))
+    End Sub
+
+    Private Sub AcademiasAsistenciasTipos() Handles menuitemTablas_AcademiasAsistenciasTipos.Click
+        ShowForm(Permisos.ACADEMIAASISTENCIATIPO, CType(formAcademiaAsistenciaTipos, Form))
+    End Sub
+
+    ' SINIESTROS
+
+    Private Sub SiniestrosRubros() Handles menuitemTablas_SiniestrosRubros.Click
+        ShowForm(Permisos.SINIESTRORUBRO, CType(formSiniestroRubros, Form))
+    End Sub
+
+    Private Sub SiniestrosTipos() Handles menuitemTablas_SiniestrosTipos.Click
+        ShowForm(Permisos.SINIESTROTIPO, CType(formSiniestroTipos, Form))
+    End Sub
+
+    Private Sub SiniestrosAsistenciasTipos() Handles menuitemTablas_SiniestrosAsistenciasTipos.Click
+        ShowForm(Permisos.SINIESTROASISTENCIATIPO, CType(formSiniestroAsistenciaTipos, Form))
+    End Sub
+
     ' USUARIOS
 
     Private Sub GruposUsuario() Handles menuitemTablas_GruposUsuario.Click
@@ -372,20 +396,6 @@
         ShowForm(Permisos.PROVEEDOR, CType(formProveedores, Form))
     End Sub
 
-    ' SINIESTROS
-
-    Private Sub SiniestrosRubros() Handles menuitemTablas_SiniestrosRubros.Click
-        ShowForm(Permisos.SINIESTRORUBRO, CType(formSiniestroRubros, Form))
-    End Sub
-
-    Private Sub SiniestrosTipos() Handles menuitemTablas_SiniestrosTipos.Click
-        ShowForm(Permisos.SINIESTROTIPO, CType(formSiniestroTipos, Form))
-    End Sub
-
-    Private Sub SiniestrosAsistenciasTipos() Handles menuitemTablas_SiniestrosAsistenciasTipos.Click
-        ShowForm(Permisos.SINIESTROASISTENCIATIPO, CType(formSiniestroAsistenciaTipos, Form))
-    End Sub
-
 #End Region
 
 #Region "Left Toolbar - Documentaciones"
@@ -404,6 +414,10 @@
 
     Private Sub Elementos() Handles menuitemDocumentaciones_Inventario_Elementos.Click
         ShowForm(Permisos.ELEMENTO, CType(formElementos, Form))
+    End Sub
+
+    Private Sub Academias() Handles menuitemDocumentaciones_Academias.Click
+        ShowForm(Permisos.ACADEMIA, CType(formAcademias, Form))
     End Sub
 
     Private Sub DocumentacionesReportes(sender As Object, e As EventArgs) Handles menuitemDocumentaciones_Reportes.Click

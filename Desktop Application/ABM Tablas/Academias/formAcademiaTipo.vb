@@ -1,36 +1,36 @@
-﻿Public Class formSiniestroTipo
+﻿Public Class formAcademiaTipo
 
 #Region "Declarations"
 
     Private mdbContext As New CSBomberosContext(True)
-    Private mSiniestroTipoActual As SiniestroTipo
+    Private mAcademiaTipoActual As AcademiaTipo
 
-    Private mIsLoading As Boolean = False
-    Private mIsNew As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mIsNew As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSiniestroRubro As Byte, ByVal IDSiniestroTipo As Byte)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDAcademiaTipo As Byte)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDSiniestroTipo = 0)
+        mIsNew = (IDAcademiaTipo = 0)
 
         If mIsNew Then
             ' Es Nuevo
-            mSiniestroTipoActual = New SiniestroTipo
-            With mSiniestroTipoActual
+            mAcademiaTipoActual = New AcademiaTipo
+            With mAcademiaTipoActual
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.SiniestroTipo.Add(mSiniestroTipoActual)
+            mdbContext.AcademiaTipo.Add(mAcademiaTipoActual)
         Else
-            mSiniestroTipoActual = mdbContext.SiniestroTipo.Find(IDSiniestroRubro, IDSiniestroTipo)
+            mAcademiaTipoActual = mdbContext.AcademiaTipo.Find(IDAcademiaTipo)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -56,9 +56,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
-        comboboxRubro.Enabled = mIsNew
         textboxNombre.ReadOnly = Not mEditMode
-        comboboxClavePredeterminada.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -67,9 +65,6 @@
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
-
-        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxRubro, False, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClavePredeterminada, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -79,7 +74,7 @@
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mSiniestroTipoActual = Nothing
+        mAcademiaTipoActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -88,10 +83,8 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mSiniestroTipoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDSiniestroRubro)
+        With mAcademiaTipoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClavePredeterminada, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ClavePredeterminada, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -99,7 +92,7 @@
             If mIsNew Then
                 textboxID.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxID.Text = String.Format(.IDSiniestroTipo.ToString, "G")
+                textboxID.Text = String.Format(.IDAcademiaTipo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -117,12 +110,8 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mSiniestroTipoActual
-            If mIsNew Then
-                .IDSiniestroRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue).Value
-            End If
+        With mAcademiaTipoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .ClavePredeterminada = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxClavePredeterminada.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
@@ -159,7 +148,7 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.SINIESTROTIPO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.ACADEMIATIPO_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -170,13 +159,6 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxRubro.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Rubro.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxRubro.Focus()
-            Exit Sub
-        End If
-
         If textboxNombre.Text.Trim.Length = 0 Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
@@ -186,14 +168,11 @@
 
         ' Generar el ID nuevo
         If mIsNew Then
-            Dim idRubro As Byte
-
-            idRubro = CByte(comboboxRubro.SelectedValue)
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.SiniestroTipo.Where(Function(st) st.IDSiniestroRubro = idRubro And st.IDSiniestroTipo < CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Any() Then
-                    mSiniestroTipoActual.IDSiniestroTipo = dbcMaxID.SiniestroTipo.Where(Function(st) st.IDSiniestroRubro = idRubro And st.IDSiniestroTipo < CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(a) a.IDSiniestroTipo) + CByte(1)
+                If dbcMaxID.AcademiaTipo.Any() Then
+                    mAcademiaTipoActual.IDAcademiaTipo = dbcMaxID.AcademiaTipo.Where(Function(at) at.IDAcademiaTipo < CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).Max(Function(at) at.IDAcademiaTipo) + CByte(1)
                 Else
-                    mSiniestroTipoActual.IDSiniestroTipo = 1
+                    mAcademiaTipoActual.IDAcademiaTipo = 1
                 End If
             End Using
         End If
@@ -205,21 +184,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mSiniestroTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mSiniestroTipoActual.FechaHoraModificacion = Now
+            mAcademiaTipoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mAcademiaTipoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formSiniestroTipos.RefreshData(mSiniestroTipoActual.IDSiniestroRubro, mSiniestroTipoActual.IDSiniestroTipo)
+                formAcademiaTipos.RefreshData(mAcademiaTipoActual.IDAcademiaTipo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Siniestro con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Academia con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

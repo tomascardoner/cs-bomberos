@@ -298,6 +298,21 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__SiniestroAsistencia" />
         <AssociationConnector Association="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" />
+        <EntityTypeShape EntityType="CSBomberosModel.Academia" Width="1.5" PointX="27" PointY="158" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistencia" Width="1.5" PointX="24" PointY="97" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistenciaTipo" Width="1.5" PointX="21.75" PointY="61" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaTipo" Width="1.5" PointX="21.75" PointY="208.125" />
+        <AssociationConnector Association="CSBomberosModel.FK__Academia__AcademiaAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__AcademiaTipo__Academia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Academia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Academia__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Academia__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__AcademiaAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,12 +1,11 @@
-﻿Public Class formSiniestroAsistenciaTipos
+﻿Public Class formAcademiaTipos
 
 #Region "Declarations"
 
-    Private mlistSiniestroAsistenciaTiposBase As List(Of SiniestroAsistenciaTipo)
-    Private mlistSiniestroAsistenciaTiposFiltradaYOrdenada As List(Of SiniestroAsistenciaTipo)
+    Private mlistAcademiaTiposBase As List(Of AcademiaTipo)
+    Private mlistAcademiaTiposFiltradaYOrdenada As List(Of AcademiaTipo)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
@@ -32,7 +31,7 @@
 
         mSkipFilterData = False
 
-        mOrdenColumna = columnOrden
+        mOrdenColumna = columnNombre
         mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
@@ -42,18 +41,20 @@
 
 #Region "Load and Set Data"
 
-    Friend Sub RefreshData(Optional ByVal PositionIDSiniestroAsistenciaTipo As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDAcademiaTipo As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistSiniestroAsistenciaTiposBase = dbContext.SiniestroAsistenciaTipo.ToList
+                mlistAcademiaTiposBase = (From at In dbContext.AcademiaTipo
+                                          Where at.IDAcademiaTipo <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE).ToList
+
             End Using
 
         Catch ex As Exception
 
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Tipos de Asistencia a Siniestros.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Tipos de Academias.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -62,17 +63,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDSiniestroAsistenciaTipo = 0
+                PositionIDAcademiaTipo = 0
             Else
-                PositionIDSiniestroAsistenciaTipo = CType(datagridviewMain.CurrentRow.DataBoundItem, SiniestroAsistenciaTipo).IDSiniestroAsistenciaTipo
+                PositionIDAcademiaTipo = CType(datagridviewMain.CurrentRow.DataBoundItem, AcademiaTipo).IDAcademiaTipo
             End If
         End If
 
         FilterData()
 
-        If PositionIDSiniestroAsistenciaTipo <> 0 Then
+        If PositionIDAcademiaTipo <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, SiniestroAsistenciaTipo).IDSiniestroAsistenciaTipo = PositionIDSiniestroAsistenciaTipo Then
+                If CType(CurrentRowChecked.DataBoundItem, AcademiaTipo).IDAcademiaTipo = PositionIDAcademiaTipo Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -88,26 +89,26 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-                mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposBase.ToList
+                mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposBase.ToList
 
                 'Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case 0      ' Todos
                     Case 1      ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{SiniestroAsistenciaTipo.EsActivo} = 1"
-                        mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{AcademiaTipo.EsActivo} = 1"
+                        mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case 2      ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{SiniestroAsistenciaTipo.EsActivo} = 0"
-                        mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{AcademiaTipo.EsActivo} = 0"
+                        mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 
-                Select Case mlistSiniestroAsistenciaTiposFiltradaYOrdenada.Count
+                Select Case mlistAcademiaTiposFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Tipos de Asistencia a Siniestros para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Tipos de Academias para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Tipo de Asistencia a Siniestros.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Tipo de Academia.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Tipos de Asistencia a Siniestros.", mlistSiniestroAsistenciaTiposFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Tipos de Academias.", mlistAcademiaTiposFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -127,26 +128,20 @@
         Select Case mOrdenColumna.Name
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
                 Else
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ToList
-                End If
-            Case columnOrden.Name
-                If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Orden).ThenBy(Function(dgrd) dgrd.Nombre).ToList
-                Else
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Orden).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
                 End If
             Case columnEsActivo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistSiniestroAsistenciaTiposFiltradaYOrdenada = mlistSiniestroAsistenciaTiposFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistAcademiaTiposFiltradaYOrdenada = mlistAcademiaTiposFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
         End Select
 
         datagridviewMain.AutoGenerateColumns = False
-        datagridviewMain.DataSource = mlistSiniestroAsistenciaTiposFiltradaYOrdenada
+        datagridviewMain.DataSource = mlistAcademiaTiposFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
@@ -204,10 +199,10 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.SINIESTROASISTENCIATIPO_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.ACADEMIATIPO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistenciaTipo.LoadAndShow(True, Me, 0)
+            formAcademiaTipo.LoadAndShow(True, Me, 0)
 
             Me.Cursor = Cursors.Default
         End If
@@ -215,12 +210,12 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Tipo de Asistencia a Siniestros para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Tipo de Academia para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTROASISTENCIATIPO_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ACADEMIATIPO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                formSiniestroAsistenciaTipo.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipo).IDSiniestroAsistenciaTipo)
+                formAcademiaTipo.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, AcademiaTipo).IDAcademiaTipo)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -229,37 +224,38 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Tipo de Asistencia a Siniestros para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Tipo de Academia para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.SiniestroAsistenciaTipo_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.ACADEMIATIPO_ELIMINAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-
+                Dim academiaTipo As AcademiaTipo
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará el Tipo de Asistencia a Siniestros seleccionado.{0}{0}Nombre: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipo).Nombre)
+                academiaTipo = CType(datagridviewMain.SelectedRows(0).DataBoundItem, AcademiaTipo)
+                Mensaje = String.Format("Se eliminará el Tipo de Academia seleccionado.{0}{0}Nombre: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, academiaTipo.Nombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
                         Using dbContext = New CSBomberosContext(True)
-                            Dim SiniestroAsistenciaTipoEliminar As SiniestroAsistenciaTipo
+                            Dim AcademiaTipoEliminar As AcademiaTipo
 
-                            SiniestroAsistenciaTipoEliminar = dbContext.SiniestroAsistenciaTipo.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipo).IDSiniestroAsistenciaTipo)
-                            dbContext.SiniestroAsistenciaTipo.Remove(SiniestroAsistenciaTipoEliminar)
+                            AcademiaTipoEliminar = dbContext.AcademiaTipo.Find(academiaTipo.IDAcademiaTipo)
+                            dbContext.AcademiaTipo.Remove(AcademiaTipoEliminar)
                             dbContext.SaveChanges()
-                            SiniestroAsistenciaTipoEliminar = Nothing
+                            AcademiaTipoEliminar = Nothing
                         End Using
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar el Tipo de Asistencia a Siniestros porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar el Tipo de Academia porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Tipo de Asistencia a Siniestros.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Tipo de Academia.")
                     End Try
 
                     RefreshData()
@@ -273,11 +269,11 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Tipo de Asistencia a Siniestros para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Tipo de Academia para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistenciaTipo.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipo).IDSiniestroAsistenciaTipo)
+            formAcademiaTipo.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, AcademiaTipo).IDAcademiaTipo)
 
             Me.Cursor = Cursors.Default
         End If

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formSiniestroAsistenciaTipos
+Partial Class formAcademiaAsistenciaTipos
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -189,7 +189,7 @@ Partial Class formSiniestroAsistenciaTipos
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
-        'formSiniestroAsistenciaTipos
+        'formAcademiaAsistenciaTipos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -200,10 +200,10 @@ Partial Class formSiniestroAsistenciaTipos
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formSiniestroAsistenciaTipos"
+        Me.Name = "formAcademiaAsistenciaTipos"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Tipos de asistencia a siniestros"
+        Me.Text = "Tipos de asistencia a academias"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
