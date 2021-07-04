@@ -1736,6 +1736,7 @@
     <None Include="Resources\emergency_32.png" />
     <None Include="Resources\fender-bender_32.png" />
     <None Include="Resources\Check-2-icon_32.png" />
+    <None Include="Resources\parade32.png" />
     <Content Include="Sistema\Application.ico" />
     <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
     <None Include="Resources\Move Next %28Arrow%29 Green24.png" />

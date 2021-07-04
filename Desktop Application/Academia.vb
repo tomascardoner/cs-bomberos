@@ -12,8 +12,8 @@ Imports System.Collections.Generic
 
 Partial Public Class Academia
     Public Property IDAcademia As Integer
-    Public Property Fecha As Date
     Public Property IDCuartel As Byte
+    Public Property Fecha As Date
     Public Property IDAcademiaTipo As Byte
     Public Property AcademiaTipoOtro As String
     Public Property Notas As String

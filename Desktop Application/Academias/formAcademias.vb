@@ -28,8 +28,7 @@
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
-        'TODO: Buscar un ícono para las academias
-        'Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_ACADEMIA_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_ACADEMIA_32)
 
         DataGridSetAppearance(datagridviewMain)
     End Sub

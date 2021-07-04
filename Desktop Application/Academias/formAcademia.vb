@@ -86,7 +86,7 @@
     End Sub
 
     Friend Sub SetAppearance()
-        'Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_ACADEMIA_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_ACADEMIA_32)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

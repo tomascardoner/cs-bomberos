@@ -10206,8 +10206,8 @@
             <PropertyRef Name="IDAcademia" />
           </Key>
           <Property Name="IDAcademia" Type="Int32" Nullable="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDAcademiaTipo" Type="Byte" Nullable="false" />
           <Property Name="AcademiaTipoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
