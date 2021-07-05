@@ -74,6 +74,8 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				AND (@IDArea IS NULL OR cad.IDArea = @IDArea)
 				AND (@FechaDesde IS NULL OR ca.FechaCierre >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR ca.FechaCierre <= @FechaHasta)
+				AND (@CierreFechaDesde IS NULL OR ca.FechaCierre >= @CierreFechaDesde)
+				AND (@CierreFechaHasta IS NULL OR ca.FechaCierre <= @CierreFechaHasta)
 			GROUP BY cad.IDArea, ca.IDArqueo, c.Codigo, c.Nombre, cad.Fecha, cad.Proveedor, a.Nombre, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante)
 			ORDER BY IDArea, IDDetalle
 	END
