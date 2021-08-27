@@ -15,7 +15,7 @@
     Private mlistUsuariosBase As List(Of GridRowData)
     Private mlistUsuariosFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
+    Private mSkipFilterData As Boolean
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder

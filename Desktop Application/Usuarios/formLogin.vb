@@ -1,5 +1,5 @@
 ﻿Public Class formLogin
-    Private mIntentos As Integer = 0
+    Private mIntentos As Integer
     Private mdbContext As CSBomberosContext
 
     Private Sub formLogin_Load() Handles Me.Load
