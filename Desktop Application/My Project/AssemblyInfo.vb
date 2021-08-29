@@ -1,4 +1,5 @@
-﻿Imports System
+﻿Imports System.Resources
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -8,17 +9,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("CS-Bomberos 2016")> 
-<Assembly: AssemblyDescription("Sistema de Gestión para Cuarteles de Bomberos")> 
-<Assembly: AssemblyCompany("Cardoner Sistemas")> 
+<Assembly: AssemblyTitle("CS-Bomberos 2016")>
+<Assembly: AssemblyDescription("Sistema de Gestión para Cuarteles de Bomberos")>
+<Assembly: AssemblyCompany("Cardoner Sistemas")>
 <Assembly: AssemblyProduct("CS-Bomberos")>
 <Assembly: AssemblyCopyright("© 2016-2021 Cardoner Sistemas. Reservados todos los derechos.")>
-<Assembly: AssemblyTrademark("® CS-Bomberos 2016")> 
+<Assembly: AssemblyTrademark("® CS-Bomberos 2016")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("73F12740-24EF-415a-B9A2-87F87D4D83F8")> 
+<Assembly: Guid("73F12740-24EF-415a-B9A2-87F87D4D83F8")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +32,7 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.*")> 
+<Assembly: AssemblyVersion("1.0.*")>
+<Assembly: NeutralResourcesLanguage("es-AR")>
+
 ' <Assembly: AssemblyFileVersion("1.0.0.0")> 

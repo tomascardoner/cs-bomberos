@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <Import Project="packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props" Condition="Exists('packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props')" />
   <Import Project="packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.props" Condition="Exists('packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.props')" />
   <Import Project="packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.props" Condition="Exists('packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.props')" />
   <Import Project="packages\Microsoft.CodeQuality.Analyzers.3.3.2\build\Microsoft.CodeQuality.Analyzers.props" Condition="Exists('packages\Microsoft.CodeQuality.Analyzers.3.3.2\build\Microsoft.CodeQuality.Analyzers.props')" />
@@ -131,11 +131,11 @@
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Security" />
-    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Encodings.Web.5.0.1\lib\net461\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json, Version=5.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Text.Json.5.0.1\lib\net461\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Text.Json, Version=5.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Text.Json.5.0.2\lib\net461\System.Text.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -178,6 +178,9 @@
     <Compile Include="..\..\..\framework-vbnet\CS_Database_SelectSource.vb">
       <Link>Framework\CS_Database_SelectSource.vb</Link>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\CS_ValueTranslation_Syncfusion.vb">
+      <Link>Framework\CS_ValueTranslation_Syncfusion.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Database.ADO.vb">
       <Link>Framework\Database.ADO.vb</Link>
@@ -431,6 +434,7 @@
     <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Database\CajaArqueoExtension.vb" />
     <Compile Include="Database\Database.vb" />
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Listas\Academias.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Modulo.vb">
@@ -1090,6 +1094,12 @@
     <Compile Include="Personas\formPersonasSeleccionar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Usuarios\formCambiarContrasena.Designer.vb">
+      <DependentUpon>formCambiarContrasena.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\formCambiarContrasena.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Usuarios\formLogin.Designer.vb">
       <DependentUpon>formLogin.vb</DependentUpon>
     </Compile>
@@ -1638,6 +1648,9 @@
     <EmbeddedResource Include="Personas\formPersonasSeleccionar.resx">
       <DependentUpon>formPersonasSeleccionar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\formCambiarContrasena.resx">
+      <DependentUpon>formCambiarContrasena.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Usuarios\formLogin.resx">
       <DependentUpon>formLogin.vb</DependentUpon>
     </EmbeddedResource>
@@ -1667,6 +1680,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".editorconfig" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -1785,6 +1799,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\analyzers\dotnet\vb\Microsoft.CodeAnalysis.NetAnalyzers.dll" />
+    <Analyzer Include="packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\analyzers\dotnet\vb\Microsoft.CodeAnalysis.VisualBasic.NetAnalyzers.dll" />
     <Analyzer Include="packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.2\analyzers\dotnet\Microsoft.CodeAnalysis.VersionCheckAnalyzer.dll" />
     <Analyzer Include="packages\Microsoft.CodeQuality.Analyzers.3.3.2\analyzers\dotnet\vb\Humanizer.dll" />
     <Analyzer Include="packages\Microsoft.CodeQuality.Analyzers.3.3.2\analyzers\dotnet\vb\Microsoft.CodeQuality.Analyzers.dll" />
@@ -1809,15 +1825,15 @@
     <Error Condition="!Exists('packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.targets'))" />
     <Error Condition="!Exists('packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.props'))" />
     <Error Condition="!Exists('packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.targets'))" />
-    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.props'))" />
-    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.targets" Condition="Exists('packages\Microsoft.CodeAnalysis.VersionCheckAnalyzer.3.3.2\build\Microsoft.CodeAnalysis.VersionCheckAnalyzer.targets')" />
   <Import Project="packages\Microsoft.CodeQuality.Analyzers.3.3.2\build\Microsoft.CodeQuality.Analyzers.targets" Condition="Exists('packages\Microsoft.CodeQuality.Analyzers.3.3.2\build\Microsoft.CodeQuality.Analyzers.targets')" />
   <Import Project="packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.targets" Condition="Exists('packages\Microsoft.NetCore.Analyzers.3.3.2\build\Microsoft.NetCore.Analyzers.targets')" />
   <Import Project="packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.targets" Condition="Exists('packages\Microsoft.NetFramework.Analyzers.3.3.2\build\Microsoft.NetFramework.Analyzers.targets')" />
-  <Import Project="packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.targets" Condition="Exists('packages\Microsoft.CodeAnalysis.FxCopAnalyzers.3.3.2\build\Microsoft.CodeAnalysis.FxCopAnalyzers.targets')" />
+  <Import Project="packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets" Condition="Exists('packages\Microsoft.CodeAnalysis.NetAnalyzers.5.0.3\build\Microsoft.CodeAnalysis.NetAnalyzers.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

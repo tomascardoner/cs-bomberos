@@ -85,11 +85,11 @@
             Me.Cursor = Cursors.Default
             mIntentos += 1
             If mIntentos > 3 Then
-                Me.DialogResult = Windows.Forms.DialogResult.Cancel
+                Me.DialogResult = DialogResult.Cancel
             End If
             Exit Sub
         End If
-        If String.Compare(textboxPassword.Text, UsuarioCurrent.Password, False) <> 0 Then
+        If String.Compare(textboxPassword.Text, UsuarioCurrent.Password, StringComparison.InvariantCulture) <> 0 Then
             My.Application.Log.WriteEntry(String.Format("Se intentó iniciar sesión con el Usuario '{0}', pero la Contraseña es incorrecta.", textboxNombre.Text.Trim), TraceEventType.Warning)
             MsgBox("La Contraseña ingresada es incorrecta.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             textboxPassword.SelectAll()
@@ -98,7 +98,7 @@
             Me.Cursor = Cursors.Default
             mIntentos += 1
             If mIntentos > 3 Then
-                Me.DialogResult = Windows.Forms.DialogResult.Cancel
+                Me.DialogResult = DialogResult.Cancel
             End If
             Exit Sub
         End If
@@ -114,10 +114,10 @@
 
         Me.Cursor = Cursors.Default
 
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
     End Sub
 
     Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
     End Sub
 End Class

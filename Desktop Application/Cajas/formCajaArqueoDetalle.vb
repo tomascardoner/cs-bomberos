@@ -26,8 +26,7 @@
         mCajaArqueoActual = CajaArqueoActual
         If mIsNew Then
             ' Es Nuevo
-            mCajaArqueoDetalleActual = New CajaArqueoDetalle
-            mCajaArqueoDetalleActual.Fecha = Date.Today
+            mCajaArqueoDetalleActual = New CajaArqueoDetalle With {.Fecha = Date.Today}
             mCajaArqueoActual.CajaArqueoDetalles.Add(mCajaArqueoDetalleActual)
         Else
             mCajaArqueoDetalleActual = mCajaArqueoActual.CajaArqueoDetalles.Single(Function(cad) cad.IDDetalle = IDDetalle)
@@ -97,7 +96,7 @@
             textboxProveedor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Proveedor)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
-            CS_ValueTranslation.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
+            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -117,7 +116,7 @@
             .Proveedor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProveedor.Text)
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
-            .Importe = CS_ValueTranslation.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
+            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

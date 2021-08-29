@@ -5,6 +5,9 @@
     Private mParentForm As Form
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestroActual As Siniestro
+    Private mCuartelNombre As String
+    Private mNumeroCompleto As String
+    Private mFecha As String
     Private mSiniestroAsistenciaActual As SiniestroAsistencia
 
     Private mIsLoading As Boolean = False
@@ -16,7 +19,7 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroActual As Siniestro, ByVal idPersona As Integer)
+    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroActual As Siniestro, ByVal idPersona As Integer, ByVal CuartelNombre As String, ByVal NumeroCompleto As String, ByVal Fecha As String)
         mParentForm = parentForm
         mIsLoading = True
         mParentEditMode = parentEditMode
@@ -24,6 +27,9 @@
         mIsNew = (idPersona = 0)
 
         mSiniestroActual = siniestroActual
+        mCuartelNombre = CuartelNombre
+        mNumeroCompleto = NumeroCompleto
+        mFecha = Fecha
         If mIsNew Then
             ' Es Nuevo
             mSiniestroAsistenciaActual = New SiniestroAsistencia
@@ -82,9 +88,9 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroAsistenciaActual
-            textboxCuartel.Text = mSiniestroActual.Cuartel.Nombre
-            textboxNumeroCompleto.Text = mSiniestroActual.NumeroCompleto
-            textboxFecha.Text = mSiniestroActual.Fecha.ToShortDateString()
+            textboxCuartel.Text = mCuartelNombre
+            textboxNumeroCompleto.Text = mNumeroCompleto
+            textboxFecha.Text = mFecha
 
             If mIsNew Then
                 textboxPersona.Text = ""
@@ -139,8 +145,6 @@
                 PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
                 textboxPersona.Tag = PersonaSeleccionada.IDPersona
                 textboxPersona.Text = PersonaSeleccionada.ApellidoNombre
-
-                PersonaSeleccionada = Nothing
             End If
             fps.Dispose()
         End If

@@ -1,8 +1,10 @@
 ﻿Public Class formMDIMain
 
 #Region "Declarations"
+
     Friend Form_ClientSize As Size
-    Private AFIP_TicketAcceso_Homo As String
+    Private ReadOnly AFIP_TicketAcceso_Homo As String
+
 #End Region
 
 #Region "Form stuff"
@@ -58,6 +60,7 @@
 #End Region
 
 #Region "Menu Archivo"
+
     Private Sub Opciones() Handles menuitemArchivo_Opciones.Click
         formOpciones.ShowDialog(Me)
     End Sub
@@ -66,9 +69,14 @@
         CerrarSesionUsuario()
     End Sub
 
+    Private Sub UsuarioCambiarContrasena() Handles menuitemArchivo_CambiarContrasena.Click
+        formCambiarContrasena.ShowDialog(Me)
+    End Sub
+
     Private Sub ApplicacionSalir() Handles menuitemArchivo_Salir.Click
         Me.Close()
     End Sub
+
 #End Region
 
 #Region "Menú Sistema"
@@ -198,6 +206,7 @@
 #End Region
 
 #Region "Menu Ventana"
+
     Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentanaMosaicoHorizontal.Click
         Me.LayoutMdi(MdiLayout.TileHorizontal)
     End Sub
@@ -215,7 +224,7 @@
     End Sub
 
     Private Sub menuitemVentana_EncajarEnVentana_Click() Handles menuitemVentanaEncajarEnVentana.Click
-        If Not Me.ActiveMdiChild Is Nothing Then
+        If Me.ActiveMdiChild IsNot Nothing Then
             Me.ActiveMdiChild.Left = 0
             Me.ActiveMdiChild.Top = 0
             Me.ActiveMdiChild.Size = Form_ClientSize
@@ -225,6 +234,7 @@
     Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentanaCerrarTodas.Click
         CS_Form.MDIChild_CloseAll(Me)
     End Sub
+
 #End Region
 
 #Region "Menu Ayuda"

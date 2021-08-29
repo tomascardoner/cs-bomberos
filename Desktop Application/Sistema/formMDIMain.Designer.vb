@@ -106,6 +106,7 @@ Partial Class formMDIMain
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemArchivo_CambiarContrasena = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -142,7 +143,7 @@ Partial Class formMDIMain
         '
         'menuitemArchivo
         '
-        Me.menuitemArchivo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo_Opciones, Me.menuitemArchivo_Separador_CerrarSesion, Me.menuitemArchivo_CerrarSesion, Me.menuitemArchivo_Separador_Salir, Me.menuitemArchivo_Salir})
+        Me.menuitemArchivo.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemArchivo_Opciones, Me.menuitemArchivo_Separador_CerrarSesion, Me.menuitemArchivo_CerrarSesion, Me.menuitemArchivo_CambiarContrasena, Me.menuitemArchivo_Separador_Salir, Me.menuitemArchivo_Salir})
         Me.menuitemArchivo.Name = "menuitemArchivo"
         Me.menuitemArchivo.Size = New System.Drawing.Size(60, 20)
         Me.menuitemArchivo.Text = "&Archivo"
@@ -150,29 +151,29 @@ Partial Class formMDIMain
         'menuitemArchivo_Opciones
         '
         Me.menuitemArchivo_Opciones.Name = "menuitemArchivo_Opciones"
-        Me.menuitemArchivo_Opciones.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemArchivo_Opciones.Size = New System.Drawing.Size(180, 22)
         Me.menuitemArchivo_Opciones.Text = "Opciones"
         '
         'menuitemArchivo_Separador_CerrarSesion
         '
         Me.menuitemArchivo_Separador_CerrarSesion.Name = "menuitemArchivo_Separador_CerrarSesion"
-        Me.menuitemArchivo_Separador_CerrarSesion.Size = New System.Drawing.Size(201, 6)
+        Me.menuitemArchivo_Separador_CerrarSesion.Size = New System.Drawing.Size(177, 6)
         '
         'menuitemArchivo_CerrarSesion
         '
         Me.menuitemArchivo_CerrarSesion.Name = "menuitemArchivo_CerrarSesion"
-        Me.menuitemArchivo_CerrarSesion.Size = New System.Drawing.Size(204, 22)
-        Me.menuitemArchivo_CerrarSesion.Text = "Cerrar sesión del Usuario"
+        Me.menuitemArchivo_CerrarSesion.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemArchivo_CerrarSesion.Text = "Cambiar de Usuario"
         '
         'menuitemArchivo_Separador_Salir
         '
         Me.menuitemArchivo_Separador_Salir.Name = "menuitemArchivo_Separador_Salir"
-        Me.menuitemArchivo_Separador_Salir.Size = New System.Drawing.Size(201, 6)
+        Me.menuitemArchivo_Separador_Salir.Size = New System.Drawing.Size(177, 6)
         '
         'menuitemArchivo_Salir
         '
         Me.menuitemArchivo_Salir.Name = "menuitemArchivo_Salir"
-        Me.menuitemArchivo_Salir.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemArchivo_Salir.Size = New System.Drawing.Size(180, 22)
         Me.menuitemArchivo_Salir.Text = "&Salir"
         '
         'menuitemSistema
@@ -580,14 +581,14 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Personas.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PERSONAS_32
         Me.menuitemDocumentaciones_Personas.Name = "menuitemDocumentaciones_Personas"
-        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Personas.Text = "Personas"
         '
         'menuitemDocumentaciones_Unidades
         '
         Me.menuitemDocumentaciones_Unidades.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_UNIDADES_32
         Me.menuitemDocumentaciones_Unidades.Name = "menuitemDocumentaciones_Unidades"
-        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Unidades.Text = "Unidades"
         '
         'menuitemDocumentaciones_Inventario
@@ -595,7 +596,7 @@ Partial Class formMDIMain
         Me.menuitemDocumentaciones_Inventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Inventario_Elementos})
         Me.menuitemDocumentaciones_Inventario.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ELEMENTOS_32
         Me.menuitemDocumentaciones_Inventario.Name = "menuitemDocumentaciones_Inventario"
-        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Inventario.Text = "Inventario"
         '
         'menuitemDocumentaciones_Inventario_Elementos
@@ -608,14 +609,14 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Academias.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ACADEMIA_32
         Me.menuitemDocumentaciones_Academias.Name = "menuitemDocumentaciones_Academias"
-        Me.menuitemDocumentaciones_Academias.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Academias.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Academias.Text = "Academias"
         '
         'menuitemDocumentaciones_Reportes
         '
         Me.menuitemDocumentaciones_Reportes.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_REPORTES_32
         Me.menuitemDocumentaciones_Reportes.Name = "menuitemDocumentaciones_Reportes"
-        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Reportes.Text = "Reportes"
         '
         'dropdownbuttonJefatura
@@ -667,6 +668,12 @@ Partial Class formMDIMain
         Me.menuitemGuardia_Siniestros.Name = "menuitemGuardia_Siniestros"
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
+        '
+        'menuitemArchivo_CambiarContrasena
+        '
+        Me.menuitemArchivo_CambiarContrasena.Name = "menuitemArchivo_CambiarContrasena"
+        Me.menuitemArchivo_CambiarContrasena.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemArchivo_CambiarContrasena.Text = "Cambiar contraseña"
         '
         'formMDIMain
         '
@@ -777,4 +784,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_AcademiasTipos As ToolStripMenuItem
     Friend WithEvents menuitemTablas_AcademiasAsistenciasTipos As ToolStripMenuItem
     Friend WithEvents menuitemDocumentaciones_Academias As ToolStripMenuItem
+    Friend WithEvents menuitemArchivo_CambiarContrasena As ToolStripMenuItem
 End Class

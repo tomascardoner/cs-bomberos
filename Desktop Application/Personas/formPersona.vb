@@ -400,8 +400,8 @@
 
             .FechaNacimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaNacimiento.Value, datetimepickerFechaNacimiento.Checked)
             .Genero = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGenero.SelectedValue)
-            .Altura = CS_ValueTranslation.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
-            .Peso = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxPeso)
+            .Altura = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxAltura.Text)
+            .Peso = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueByte(integertextboxPeso)
             .GrupoSanguineo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupoSanguineo.SelectedValue)
             .FactorRH = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxFactorRH.SelectedValue)
             .IDEstadoCivil = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxEstadoCivil.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
@@ -426,12 +426,12 @@
 
             ' Datos de la pestaña Ingreso / Reingreso
             .CursoIngresoFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCursoIngresoFecha.Value, datetimepickerCursoIngresoFecha.Checked)
-            .CursoIngresoMeses = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxCursoIngresoMeses)
-            .CursoIngresoHoras = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxCursoIngresoHoras)
+            .CursoIngresoMeses = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueByte(integertextboxCursoIngresoMeses)
+            .CursoIngresoHoras = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxCursoIngresoHoras)
             .CursoIngresoResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxCursoIngresoResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             .ReingresoFormacionRealizada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxReingresoFormacionRealizada.CheckState)
-            .ReingresoFormacionMeses = CS_ValueTranslation.FromControlIntegerTextBoxToValueByte(integertextboxReingresoFormacionMeses)
-            .ReingresoFormacionHoras = CS_ValueTranslation.FromControlIntegerTextBoxToValueShort(integertextboxReingresoFormacionHoras)
+            .ReingresoFormacionMeses = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueByte(integertextboxReingresoFormacionMeses)
+            .ReingresoFormacionHoras = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxReingresoFormacionHoras)
             .ReingresoFormacionResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxReingresoFormacionResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Contacto Particular
@@ -598,7 +598,7 @@
     End Sub
 
     Private Sub DocumentoTipo_Cambiar(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
-        If Not comboboxDocumentoTipo.SelectedItem Is Nothing Then
+        If comboboxDocumentoTipo.SelectedItem IsNot Nothing Then
             textboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11)
             maskedtextboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not textboxDocumentoNumero.Visible)
         End If
@@ -621,7 +621,7 @@
     End Sub
 
     Private Sub DomicilioParticularLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioParticularLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioParticularLocalidad.SelectedValue Is Nothing Then
+        If comboboxDomicilioParticularLocalidad.SelectedValue IsNot Nothing Then
             textboxDomicilioParticularCodigoPostal.Text = CType(comboboxDomicilioParticularLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
@@ -639,7 +639,7 @@
     End Sub
 
     Private Sub DomicilioLaboralLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLaboralLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioLaboralLocalidad.SelectedValue Is Nothing Then
+        If comboboxDomicilioLaboralLocalidad.SelectedValue IsNot Nothing Then
             textboxDomicilioLaboralCodigoPostal.Text = CType(comboboxDomicilioLaboralLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
@@ -678,10 +678,11 @@
             ' Paso 2: Agregar las que están en el Combobox pero no en la base de datos
             For Each LicenciaConducirCategoriaSeleccionada As LicenciaConducirCategoria In listLicenciaConducirCategoriaSeleccionadas
                 If mPersonaActual.PersonaLicenciaConducirCategorias.Where(Function(plcc) plcc.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria).FirstOrDefault Is Nothing Then
-                    Dim PersonaLicenciaConducirCategoriaAgregar As New PersonaLicenciaConducirCategoria
-                    PersonaLicenciaConducirCategoriaAgregar.IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria
-                    PersonaLicenciaConducirCategoriaAgregar.IDUsuarioCreacion = pUsuario.IDUsuario
-                    PersonaLicenciaConducirCategoriaAgregar.FechaHoraCreacion = Now
+                    Dim PersonaLicenciaConducirCategoriaAgregar As New PersonaLicenciaConducirCategoria With {
+                        .IDLicenciaConducirCategoria = LicenciaConducirCategoriaSeleccionada.IDLicenciaConducirCategoria,
+                        .IDUsuarioCreacion = pUsuario.IDUsuario,
+                        .FechaHoraCreacion = Now
+                    }
                     mPersonaActual.PersonaLicenciaConducirCategorias.Add(PersonaLicenciaConducirCategoriaAgregar)
                     PersonaLicenciaConducirCategoriaAgregar = Nothing
                 End If
@@ -1533,7 +1534,7 @@
 
     Private Sub HorarioLaboral_FormatCellHorario(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles datagridviewHorarioLaboral.CellFormatting
         If datagridviewHorarioLaboral.Columns(e.ColumnIndex).Name.StartsWith("columnHorarioLaboral_Turno") Then
-            If Not e.Value Is Nothing Then
+            If e.Value IsNot Nothing Then
                 e.Value = e.Value.ToString().Substring(0, 5)
                 e.FormattingApplied = True
             End If
@@ -2535,13 +2536,14 @@
 #End Region
 
 #Region "Extra stuff"
+
     Private Sub MostrarCantidadHijos()
         Dim ParentescoIDHijo As Byte
 
         ParentescoIDHijo = CS_Parameter_System.GetIntegerAsByte(Parametros.PARENTESCO_ID_HIJO)
 
         Using dbContext As New CSBomberosContext(True)
-            textboxCantidadHijos.Text = dbContext.PersonaFamiliar.Where(Function(pf) pf.IDPersona = mPersonaActual.IDPersona AndAlso (Not pf.IDParentesco Is Nothing) AndAlso pf.IDParentesco.Value = ParentescoIDHijo).Count().ToString
+            textboxCantidadHijos.Text = dbContext.PersonaFamiliar.Where(Function(pf) pf.IDPersona = mPersonaActual.IDPersona AndAlso (pf.IDParentesco IsNot Nothing) AndAlso pf.IDParentesco.Value = ParentescoIDHijo).Count().ToString
         End Using
     End Sub
 

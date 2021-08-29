@@ -94,7 +94,7 @@
             ' Datos de la pestaña General
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
-            CS_ValueTranslation.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
+            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -111,7 +111,7 @@
             ' Datos de la pestaña General
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
-            .Importe = CS_ValueTranslation.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)
+            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

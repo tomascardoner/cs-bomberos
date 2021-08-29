@@ -178,13 +178,13 @@
 
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
-            Case Microsoft.VisualBasic.ChrW(Keys.Return)
+            Case ChrW(Keys.Return)
                 If mEditMode Then
                     buttonGuardar.PerformClick()
                 Else
                     buttonCerrar.PerformClick()
                 End If
-            Case Microsoft.VisualBasic.ChrW(Keys.Escape)
+            Case ChrW(Keys.Escape)
                 If mEditMode Then
                     buttonCancelar.PerformClick()
                 Else
@@ -418,7 +418,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0)
+        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0, comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -429,7 +429,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
+            formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
 
             Me.Cursor = Cursors.Default
         End If
@@ -463,7 +463,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
+            formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
 
             Me.Cursor = Cursors.Default
         End If

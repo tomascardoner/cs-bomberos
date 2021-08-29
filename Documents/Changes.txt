@@ -1,3 +1,8 @@
+2021-08-29
+	- BUG FIX: al intentar agregar una Asistencia a un nuevo Siniestro, da un error
+	- Se agregó la opción de cambiar la contraseña del usuario
+
+
 2021-05-28
 	- Se agregaron los Siniestros de la Guardia
 
