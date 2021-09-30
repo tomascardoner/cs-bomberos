@@ -398,6 +398,10 @@
         ShowForm(Permisos.ALARMA, CType(formAlarmas, Form))
     End Sub
 
+    Private Sub TiposResponsables() Handles menuitemTablas_TiposResponsables.Click
+        ShowForm(Permisos.RESPONSABLETIPO, CType(formResponsableTipos, Form))
+    End Sub
+
     Private Sub Responsables() Handles menuitemTablas_Responsables.Click
         ShowForm(Permisos.RESPONSABLE, CType(formResponsables, Form))
     End Sub

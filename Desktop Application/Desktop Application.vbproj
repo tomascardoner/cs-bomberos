@@ -264,6 +264,18 @@
     <Compile Include="ABM Tablas\Otros\formProveedores.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\Otros\formResponsableTipo.designer.vb">
+      <DependentUpon>formResponsableTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Otros\formResponsableTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Otros\formResponsableTipos.designer.vb">
+      <DependentUpon>formResponsableTipos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Otros\formResponsableTipos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.designer.vb">
       <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
     </Compile>
@@ -1328,6 +1340,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Otros\formProveedores.resx">
       <DependentUpon>formProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Otros\formResponsableTipo.resx">
+      <DependentUpon>formResponsableTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Otros\formResponsableTipos.resx">
+      <DependentUpon>formResponsableTipos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.resx">
       <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
