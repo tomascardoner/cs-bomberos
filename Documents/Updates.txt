@@ -1,4 +1,14 @@
-2021-07-02:
+2021-10-02
+	- Tabla Responsable:
+		- permitir NULL en IDPersona
+		- agregar PersonaOtra varchar(100) después de IDPersona
+	- Stored procedures:
+		- usp_Compra_ListadoPorArea
+		- usp_CajaArqueo
+		- usp_Compra_Orden
+	- Copiar reportes
+
+2021-07-02
 	- Crear tablas nuevas (script)
 
 2021-05-24

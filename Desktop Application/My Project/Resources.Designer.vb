@@ -718,6 +718,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to «Otra».
+        '''</summary>
+        Friend ReadOnly Property STRING_ITEM_OTHER_FEMALE() As String
+            Get
+                Return ResourceManager.GetString("STRING_ITEM_OTHER_FEMALE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to «Otro».
+        '''</summary>
+        Friend ReadOnly Property STRING_ITEM_OTHER_MALE() As String
+            Get
+                Return ResourceManager.GetString("STRING_ITEM_OTHER_MALE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to «.
         '''</summary>
         Friend ReadOnly Property STRING_ITEM_START_CHAR() As String

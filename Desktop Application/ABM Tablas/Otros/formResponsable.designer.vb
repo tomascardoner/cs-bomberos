@@ -46,6 +46,8 @@ Partial Class formResponsable
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.labelPersonaOtra = New System.Windows.Forms.Label()
+        Me.textboxPersonaOtra = New System.Windows.Forms.TextBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
@@ -163,6 +165,8 @@ Partial Class formResponsable
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.labelPersonaOtra)
+        Me.tabpageGeneral.Controls.Add(Me.textboxPersonaOtra)
         Me.tabpageGeneral.Controls.Add(Me.comboboxPersona)
         Me.tabpageGeneral.Controls.Add(Label1)
         Me.tabpageGeneral.Controls.Add(Me.comboboxResponsableTipo)
@@ -299,6 +303,25 @@ Partial Class formResponsable
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'labelPersonaOtra
+        '
+        Me.labelPersonaOtra.AutoSize = True
+        Me.labelPersonaOtra.Location = New System.Drawing.Point(6, 119)
+        Me.labelPersonaOtra.Name = "labelPersonaOtra"
+        Me.labelPersonaOtra.Size = New System.Drawing.Size(30, 13)
+        Me.labelPersonaOtra.TabIndex = 6
+        Me.labelPersonaOtra.Text = "Otra:"
+        Me.labelPersonaOtra.Visible = False
+        '
+        'textboxPersonaOtra
+        '
+        Me.textboxPersonaOtra.Location = New System.Drawing.Point(61, 116)
+        Me.textboxPersonaOtra.MaxLength = 100
+        Me.textboxPersonaOtra.Name = "textboxPersonaOtra"
+        Me.textboxPersonaOtra.Size = New System.Drawing.Size(444, 20)
+        Me.textboxPersonaOtra.TabIndex = 7
+        Me.textboxPersonaOtra.Visible = False
+        '
         'formResponsable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -345,4 +368,6 @@ Partial Class formResponsable
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxResponsableTipo As ComboBox
     Friend WithEvents comboboxPersona As ComboBox
+    Friend WithEvents labelPersonaOtra As Label
+    Friend WithEvents textboxPersonaOtra As TextBox
 End Class

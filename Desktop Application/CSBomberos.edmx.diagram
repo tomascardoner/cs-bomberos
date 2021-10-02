@@ -247,7 +247,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.Compra" Width="1.5" PointX="32" PointY="124.75" />
         <EntityTypeShape EntityType="CSBomberosModel.CompraDetalle" Width="1.5" PointX="26.25" PointY="133.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="29.75" PointY="121.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="27" PointY="106" />
+        <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="26.875" PointY="106" />
         <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="21.75" PointY="70" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__CompraDetalle" />
         <AssociationConnector Association="CSBomberosModel.FK__Compra__CompraDetalle" />

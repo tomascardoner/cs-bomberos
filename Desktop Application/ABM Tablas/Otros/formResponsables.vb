@@ -49,6 +49,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDResponsable As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -57,10 +58,11 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistResponsablesBase = (From r In dbContext.Responsable
                                          Join rt In dbContext.ResponsableTipo On r.IDResponsableTipo Equals rt.IDResponsableTipo
-                                         Join p In dbContext.Persona On r.IDPersona Equals p.IDPersona
+                                         Group Join p In dbContext.Persona On r.IDPersona Equals p.IDPersona Into Personas_Group = Group
+                                         From pg In Personas_Group.DefaultIfEmpty
                                          Group Join c In dbContext.Cuartel On r.IDCuartel Equals c.IDCuartel Into Cuarteles_Group = Group
                                          From cg In Cuarteles_Group.DefaultIfEmpty
-                                         Select New GridRowData With {.IDResponsable = r.IDResponsable, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, cg.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .PersonaApellidoNombre = p.ApellidoNombre}).ToList
+                                         Select New GridRowData With {.IDResponsable = r.IDResponsable, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, cg.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList
             End Using
 
         Catch ex As Exception
@@ -158,6 +160,7 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

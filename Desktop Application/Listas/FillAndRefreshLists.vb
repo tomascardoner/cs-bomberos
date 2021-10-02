@@ -1,6 +1,7 @@
 ﻿Friend Class FillAndRefreshLists
 
 #Region "Declarations..."
+
     Private mdbContext As CSBomberosContext
 
     Friend Class AreaNombresClass
@@ -19,7 +20,7 @@
         Public Property ResponsableTipoNombre As String
         Public Property IDCuartel As Byte?
         Public Property CuartelNombre As String
-        Public Property IDPersona As Integer
+        Public Property IDPersona As Integer?
         Public Property PersonaApellidoNombre As String
     End Class
 
@@ -36,7 +37,7 @@
 
 #Region "Personas"
 
-    Friend Sub Persona(ByRef ComboBoxControl As ComboBox, ByVal MostrarInactivos As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Sub Persona(ByRef ComboBoxControl As ComboBox, ByVal MostrarInactivos As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean, ByVal AgregarItem_Otra As Boolean)
         Dim listItems As List(Of Persona)
 
         ComboBoxControl.ValueMember = "IDPersona"
@@ -53,6 +54,12 @@
             Item_NoEspecifica.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
             Item_NoEspecifica.ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             listItems.Insert(0, Item_NoEspecifica)
+        End If
+        If AgregarItem_Otra Then
+            Dim Item_Otra As New Persona
+            Item_Otra.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
+            Item_Otra.ApellidoNombre = My.Resources.STRING_ITEM_OTHER_FEMALE
+            listItems.Insert(0, Item_Otra)
         End If
         If AgregarItem_Todos Then
             Dim Item_Todos As New Persona
@@ -469,11 +476,12 @@
 
         listItems = (From r In mdbContext.Responsable
                      Join rt In mdbContext.ResponsableTipo On r.IDResponsableTipo Equals rt.IDResponsableTipo
-                     Join p In mdbContext.Persona On r.IDPersona Equals p.IDPersona
+                     Group Join p In mdbContext.Persona On r.IDPersona Equals p.IDPersona Into PersonaGroup = Group
+                     From pg In PersonaGroup.DefaultIfEmpty
                      Group Join c In mdbContext.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
                      From cg In CuartelGroup.DefaultIfEmpty
-                     Order By rt.Orden, rt.Nombre, p.ApellidoNombre
-                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = p.ApellidoNombre}).ToList()
+                     Order By rt.Orden, rt.Nombre, pg.ApellidoNombre, r.PersonaOtra
+                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
 
         If AgregarItemTodos Then
             Dim Item_Todos As New ResponsableNombresClass

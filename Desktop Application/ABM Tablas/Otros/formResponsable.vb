@@ -1,15 +1,18 @@
 ﻿Public Class formResponsable
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mResponsableActual As Responsable
 
     Private mIsLoading As Boolean = False
     Private mIsNew As Boolean = False
     Private mEditMode As Boolean = False
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDResponsable As Short)
         mIsLoading = True
         mEditMode = EditMode
@@ -55,6 +58,7 @@
         comboboxResponsableTipo.Enabled = mEditMode
         comboboxCuartel.Enabled = mEditMode
         comboboxPersona.Enabled = mEditMode
+        textboxPersonaOtra.ReadOnly = Not mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -65,7 +69,7 @@
 
         pFillAndRefreshLists.ResponsableTipo(comboboxResponsableTipo, False, False)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, True)
-        pFillAndRefreshLists.Persona(comboboxPersona, False, False, False)
+        pFillAndRefreshLists.Persona(comboboxPersona, False, False, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -78,14 +82,21 @@
         mResponsableActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mResponsableActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDResponsableTipo)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPersona, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPersona)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPersona, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDPersona)
+            If .IDPersona Is Nothing Then
+                textboxPersonaOtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.PersonaOtra)
+            Else
+                textboxPersonaOtra.Text = ""
+            End If
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -113,14 +124,22 @@
         With mResponsableActual
             .IDResponsableTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxResponsableTipo.SelectedValue).Value
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .IDPersona = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPersona.SelectedValue).Value
+            If CInt(comboboxPersona.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
+                .IDPersona = Nothing
+                .PersonaOtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxPersonaOtra.Text)
+            Else
+                .IDPersona = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPersona.SelectedValue).Value
+                .PersonaOtra = Nothing
+            End If
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -138,12 +157,28 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus
+    Private Sub PersonaCambio(sender As Object, e As EventArgs) Handles comboboxPersona.SelectedIndexChanged
+        If comboboxPersona.SelectedIndex > -1 Then
+            Dim personaActual As Persona
+
+            personaActual = CType(comboboxPersona.SelectedItem, Persona)
+
+            labelPersonaOtra.Visible = (personaActual.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER)
+            textboxPersonaOtra.Visible = (personaActual.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER)
+        Else
+            labelPersonaOtra.Visible = False
+            textboxPersonaOtra.Visible = False
+        End If
+    End Sub
+
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxPersonaOtra.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.AREA_EDITAR) Then
             mEditMode = True
@@ -173,6 +208,14 @@
             MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxPersona.Focus()
             Exit Sub
+        End If
+        If CInt(comboboxPersona.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
+            If textboxPersonaOtra.Text.Trim.Length = 0 Then
+                tabcontrolMain.SelectedTab = tabpageGeneral
+                MsgBox("Debe especificar la Persona Otra.", MsgBoxStyle.Information, My.Application.Info.Title)
+                textboxPersonaOtra.Focus()
+                Exit Sub
+            End If
         End If
 
         ' Generar el ID nuevo
@@ -220,6 +263,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

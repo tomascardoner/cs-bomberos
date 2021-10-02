@@ -972,7 +972,8 @@
           <Property Name="IDResponsable" Type="tinyint" Nullable="false" />
           <Property Name="IDResponsableTipo" Type="tinyint" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" />
-          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDPersona" Type="int" />
+          <Property Name="PersonaOtra" Type="varchar" MaxLength="100" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -2061,7 +2062,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Persona__Responsable">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
           <End Role="Responsable" Type="Self.Responsable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -9519,7 +9520,8 @@
           <Property Name="IDResponsable" Type="Byte" Nullable="false" />
           <Property Name="IDResponsableTipo" Type="Byte" Nullable="false" />
           <Property Name="IDCuartel" Type="Byte" />
-          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDPersona" Type="Int32" />
+          <Property Name="PersonaOtra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -9635,7 +9637,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Persona__Responsable">
-          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="0..1" />
           <End Type="CSBomberosModel.Responsable" Role="Responsable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Persona">
@@ -11583,6 +11585,7 @@
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="PersonaOtra" ColumnName="PersonaOtra" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
                 <ScalarProperty Name="IDResponsableTipo" ColumnName="IDResponsableTipo" />

@@ -1,3 +1,6 @@
+2021-09-30
+	- Se agregó el ABM de tipos de responsables
+
 2021-08-29
 	- BUG FIX: al intentar agregar una Asistencia a un nuevo Siniestro, da un error
 	- Se agregó la opción de cambiar la contraseña del usuario

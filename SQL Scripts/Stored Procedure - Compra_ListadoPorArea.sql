@@ -29,6 +29,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 	BEGIN
 		DECLARE @ResponsableIDPersona int
 		DECLARE @ResponsableApellidoNombre varchar(102)
+		DECLARE @ResponsableEstadoActivo bit
 		DECLARE @ResponsableJerarquia varchar(50)
 		DECLARE @ResponsableTipo varchar(50)
 
@@ -36,21 +37,35 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 		SET NOCOUNT ON;
 
 		-- Obtengo el Cargo y el Apellido y nombre del Responsable firmante
-		SELECT @ResponsableIDPersona = r.IDPersona, @ResponsableApellidoNombre = p.ApellidoNombre, @ResponsableTipo = rt.Nombre
+		SELECT @ResponsableIDPersona = r.IDPersona, @ResponsableApellidoNombre = ISNULL(p.ApellidoNombre, r.PersonaOtra), @ResponsableTipo = rt.Nombre
 			FROM Responsable AS r
 				INNER JOIN ResponsableTipo AS rt ON r.IDResponsableTipo = rt.IDResponsableTipo
-				INNER JOIN Persona AS p ON r.IDPersona = p.IDPersona
+				LEFT JOIN Persona AS p ON r.IDPersona = p.IDPersona
 			WHERE r.IDResponsable = @IDResponsable
 
-		-- Obtengo la Jerarquía del Responsable
-		SELECT @ResponsableJerarquia = cj.Nombre
-			FROM PersonaAscenso AS pa
-				INNER JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
-				INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
-			WHERE pa.IDPersona = @ResponsableIDPersona
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
+		-- Obtengo el Estado actual del Responsable
+		IF @ResponsableIDPersona IS NULL
+			SET @ResponsableEstadoActivo = 0
+		ELSE
+			SELECT @ResponsableEstadoActivo = (CASE ISNULL(pab.IDAltaBaja, 0) WHEN 0 THEN 0 ELSE (CASE ISNULL(pab.BajaFecha, '') WHEN '' THEN 1 ELSE 0 END) END)
+				FROM (Persona AS p
+					LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona)
+					LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+				WHERE p.IDPersona = @ResponsableIDPersona
+					AND (pab.AltaFecha IS NULL OR pab.AltaFecha = (SELECT MAX(AltaFecha) FROM PersonaAltaBaja WHERE IDPersona = pab.IDPersona GROUP BY IDPersona))
 
-		(SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, cd.IDArea, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		-- Obtengo la Jerarquía del Responsable
+		IF @ResponsableIDPersona IS NULL
+			SET @ResponsableJerarquia = NULL
+		ELSE
+			SELECT @ResponsableJerarquia = cj.Nombre
+				FROM PersonaAscenso AS pa
+					INNER JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
+					INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+				WHERE pa.IDPersona = @ResponsableIDPersona
+					AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
+
+		(SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, cd.IDArea, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM Compra AS c
 				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraDetalle AS cd ON c.IDCompra = cd.IDCompra
@@ -65,7 +80,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				AND (@CierreFechaHasta IS NULL OR c.CierreFecha <= @CierreFechaHasta)
 			GROUP BY cd.IDArea, c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero)
 		UNION
-		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca
 				INNER JOIN CajaArqueoDetalle AS cad ON ca.IDArqueo = cad.IDArqueo
 				LEFT JOIN Area AS a ON a.IDArea = cad.IDArea

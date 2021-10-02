@@ -9,6 +9,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDSancion As Short)
         mIsLoading = True
         mEditMode = EditMode
@@ -71,7 +72,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Persona(comboboxSolicitudPersona, False, False, False)
+        pFillAndRefreshLists.Persona(comboboxSolicitudPersona, False, False, False, False)
         pFillAndRefreshLists.SancionTipo(comboboxResolucionSancionTipo, False, True)
     End Sub
 
@@ -85,6 +86,7 @@
         mPersonaSancionActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
