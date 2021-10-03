@@ -1,17 +1,20 @@
 ﻿Public Class formPersonas
 
 #Region "Declarations"
+
     Private mlistPersonaBase As List(Of usp_Personas_Result)
     Private mlistPersonaFiltradaYOrdenada As List(Of usp_Personas_Result)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
+    Private mBusquedaAplicada As Boolean
 
     Private OrdenColumna As DataGridViewColumn
     Private OrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_PERSONAS_32)
 
@@ -38,6 +41,7 @@
         mlistPersonaBase = Nothing
         mlistPersonaFiltradaYOrdenada = Nothing
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
@@ -88,14 +92,14 @@
                 ' Inicializo las variables
                 mlistPersonaFiltradaYOrdenada = mlistPersonaBase
 
-                ' Filtro por Cuartel
-                If comboboxCuartel.SelectedIndex > 0 Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
-                End If
-
                 ' Filtro por Búsqueda en Apellido y Nombre
                 If mBusquedaAplicada Then
                     mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                End If
+
+                ' Filtro por Cuartel
+                If comboboxCuartel.SelectedIndex > 0 Then
+                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Estado actual
@@ -168,6 +172,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Not textboxBuscar.Focused Then
             If Char.IsLetter(e.KeyChar) Then
@@ -247,6 +252,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.Persona_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -364,6 +370,7 @@
             End If
         End If
     End Sub
+
 #End Region
 
 End Class

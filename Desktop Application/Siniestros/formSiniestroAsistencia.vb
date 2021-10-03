@@ -5,21 +5,22 @@
     Private mParentForm As Form
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestroActual As Siniestro
+    Private mIDCuartel As Byte
     Private mCuartelNombre As String
     Private mNumeroCompleto As String
     Private mFecha As String
     Private mSiniestroAsistenciaActual As SiniestroAsistencia
 
-    Private mIsLoading As Boolean = False
-    Private mParentEditMode As Boolean = False
-    Private mEditMode As Boolean = False
-    Private mIsNew As Boolean = False
+    Private mIsLoading As Boolean
+    Private mParentEditMode As Boolean
+    Private mEditMode As Boolean
+    Private mIsNew As Boolean
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroActual As Siniestro, ByVal idPersona As Integer, ByVal CuartelNombre As String, ByVal NumeroCompleto As String, ByVal Fecha As String)
+    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroActual As Siniestro, ByVal idPersona As Integer, ByVal idCuartel As Byte, ByVal CuartelNombre As String, ByVal NumeroCompleto As String, ByVal Fecha As String)
         mParentForm = parentForm
         mIsLoading = True
         mParentEditMode = parentEditMode
@@ -27,6 +28,7 @@
         mIsNew = (idPersona = 0)
 
         mSiniestroActual = siniestroActual
+        mIDCuartel = idCuartel
         mCuartelNombre = CuartelNombre
         mNumeroCompleto = NumeroCompleto
         mFecha = Fecha
@@ -136,13 +138,12 @@
 
     Private Sub SeleccionarPersona() Handles buttonPersona.Click
         If mIsNew Then
-            Dim fps As New formPersonasSeleccionar
+            Dim fps As New formPersonasSeleccionar(False, mIDCuartel, True)
 
-            fps.EstablecerMultiseleccion(False)
             If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                Dim PersonaSeleccionada As Persona
+                Dim PersonaSeleccionada As usp_Personas_Result
 
-                PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
+                PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
                 textboxPersona.Tag = PersonaSeleccionada.IDPersona
                 textboxPersona.Text = PersonaSeleccionada.ApellidoNombre
             End If

@@ -326,7 +326,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        formAcademiaAsistencia.LoadAndShow(True, True, Me, mAcademiaActual, 0)
+        formAcademiaAsistencia.LoadAndShow(True, True, Me, mAcademiaActual, 0, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, datetimepickerFecha.Value.ToShortDateString())
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -337,7 +337,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formAcademiaAsistencia.LoadAndShow(True, True, Me, mAcademiaActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
+            formAcademiaAsistencia.LoadAndShow(True, True, Me, mAcademiaActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, datetimepickerFecha.Value.ToShortDateString())
 
             Me.Cursor = Cursors.Default
         End If
@@ -371,7 +371,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formAcademiaAsistencia.LoadAndShow(mEditMode, False, Me, mAcademiaActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona)
+            formAcademiaAsistencia.LoadAndShow(mEditMode, False, Me, mAcademiaActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, datetimepickerFecha.Value.ToShortDateString())
 
             Me.Cursor = Cursors.Default
         End If

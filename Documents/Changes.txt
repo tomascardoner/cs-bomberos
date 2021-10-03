@@ -1,6 +1,8 @@
 2021-10-03
 	- Se corrigió el código de Cuartel (trim) en el ABM de Cuarteles
 	- Se agregó el prefijo de numeración de siniestros a la tabla de Cuarteles
+	- Se agregaron filtros de Cuartel y de Estado actual a la ventana de selección de Personas
+	- Se arregló un error al cargar Asistencia a una nueva Academia
 
 2021-10-02
 	- Se agregó la posibilidad de especificar una persona externa (Otra) en el Responsable

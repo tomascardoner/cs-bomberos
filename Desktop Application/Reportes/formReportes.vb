@@ -157,13 +157,12 @@
 
             Select Case ParametroActual.Tipo
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
-                    Dim fps As New formPersonasSeleccionar
+                    Dim fps As New formPersonasSeleccionar(False, 0, False)
 
-                    fps.EstablecerMultiseleccion(False)
                     If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                        Dim PersonaSeleccionada As Persona
+                        Dim PersonaSeleccionada As usp_Personas_Result
 
-                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, Persona)
+                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
                         ParametroActual.Valor = PersonaSeleccionada.IDPersona
                         ParametroActual.ValorParaMostrar = PersonaSeleccionada.ApellidoNombre
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -175,19 +174,18 @@
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
-                    Dim fps As New formPersonasSeleccionar
+                    Dim fps As New formPersonasSeleccionar(True, 0, False)
 
-                    fps.EstablecerMultiseleccion(True)
                     If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         Const IDPersonaDelimiter As String = "@"
                         Const PersonaNombreDelimiter As String = " - "
 
-                        Dim PersonaSeleccionada As Persona
+                        Dim PersonaSeleccionada As usp_Personas_Result
                         Dim Valores As String = ""
                         Dim ValorParaMostrar As String = ""
 
                         For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
-                            PersonaSeleccionada = CType(dataRow.DataBoundItem, Persona)
+                            PersonaSeleccionada = CType(dataRow.DataBoundItem, usp_Personas_Result)
                             Valores = (PersonaSeleccionada.IDPersona & IDPersonaDelimiter & Valores)
                             ValorParaMostrar = (PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre & ValorParaMostrar)
                         Next
