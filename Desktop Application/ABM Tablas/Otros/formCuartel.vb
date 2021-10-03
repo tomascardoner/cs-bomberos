@@ -9,6 +9,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCuartel As Byte)
         mIsLoading = True
         mEditMode = EditMode
@@ -70,6 +71,10 @@
         textboxCelular.ReadOnly = (mEditMode = False)
         textboxEmail.ReadOnly = (mEditMode = False)
 
+        ' Extras
+        maskedtextboxPrefijoSiniestro.ReadOnly = (mEditMode = False)
+
+        ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
@@ -90,12 +95,14 @@
         mCuartelActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mCuartelActual
-            textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo)
+            textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).Trim()
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
             textboxDomicilioCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle1)
@@ -110,6 +117,9 @@
             textboxTelefono.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono)
             textboxCelular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Celular)
             textboxEmail.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Email)
+
+            ' Datos de la pestaña Extras
+            maskedtextboxPrefijoSiniestro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.PrefijoSiniestro)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -152,10 +162,15 @@
             .Celular = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCelular.Text)
             .Email = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxEmail.Text)
 
+            ' Datos de la pestaña Extras
+            .PrefijoSiniestro = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxPrefijoSiniestro.Text)
+
+            ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -200,6 +215,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.CUARTEL_EDITAR) Then
             mEditMode = True
@@ -222,6 +238,12 @@
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
+            Exit Sub
+        End If
+        If maskedtextboxPrefijoSiniestro.Text.Trim.Length > 0 AndAlso maskedtextboxPrefijoSiniestro.Text.Trim.Length < 4 Then
+            tabcontrolMain.SelectedTab = tabpageExtras
+            MsgBox("Debe completar el prefijo para nº de siniestros o dejarlo vacío.", MsgBoxStyle.Information, My.Application.Info.Title)
+            maskedtextboxPrefijoSiniestro.Focus()
             Exit Sub
         End If
 
@@ -270,6 +292,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

@@ -68,8 +68,8 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxRubro, False, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClavePredeterminada, False, True)
+        ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxRubro, False, False)
+        ListasSiniestros.LlenarComboBoxClaves(comboboxClavePredeterminada, False, True)
     End Sub
 
     Friend Sub SetAppearance()

@@ -36,7 +36,7 @@
         mSkipFilterData = True
 
         Using context As New CSBomberosContext(True)
-            Siniestros.LlenarComboBoxRubros(context, comboboxRubro.ComboBox, True, False)
+            ListasSiniestros.LlenarComboBoxRubros(context, comboboxRubro.ComboBox, True, False)
         End Using
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})

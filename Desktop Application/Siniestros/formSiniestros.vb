@@ -44,9 +44,9 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
-        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
+        ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
+        ListasSiniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True, False)
 
         ' Filtro de período
         InicializarFiltroDeFechas()
@@ -369,7 +369,7 @@
     End Sub
 
     Private Sub CambioRubro() Handles comboboxSiniestroRubro.SelectedIndexChanged
-        Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
+        ListasSiniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
     End Sub
 
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick

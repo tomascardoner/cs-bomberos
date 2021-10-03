@@ -1,3 +1,10 @@
+2021-10-03
+	- Se corrigió el código de Cuartel (trim) en el ABM de Cuarteles
+	- Se agregó el prefijo de numeración de siniestros a la tabla de Cuarteles
+
+2021-10-02
+	- Se agregó la posibilidad de especificar una persona externa (Otra) en el Responsable
+
 2021-09-30
 	- Se agregó el ABM de tipos de responsables
 

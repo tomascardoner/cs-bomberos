@@ -1,3 +1,6 @@
+2021-10-03
+	- Tabla Cuartel: agregar el campo PrefijoSiniestro char(4) null antes de las Notas
+
 2021-10-02
 	- Tabla Responsable:
 		- permitir NULL en IDPersona

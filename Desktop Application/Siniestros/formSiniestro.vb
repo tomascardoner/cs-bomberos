@@ -96,9 +96,9 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        Siniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
-        Siniestros.LlenarComboBoxClaves(comboboxClave, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
+        ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
+        ListasSiniestros.LlenarComboBoxClaves(comboboxClave, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -211,6 +211,13 @@
             comboboxCuartel.Focus()
             Exit Sub
         End If
+
+        Dim cuartel As Cuartel
+        cuartel = CType(comboboxCuartel.SelectedItem, Cuartel)
+        If cuartel.PrefijoSiniestro IsNot Nothing Then
+            maskedtextboxNumeroPrefijo.Text = cuartel.PrefijoSiniestro
+        End If
+
         If maskedtextboxNumeroPrefijo.Text.Length = 0 Then
             MsgBox("Debe ingresar el Prefijo del Número.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxNumeroPrefijo.Focus()
@@ -234,7 +241,7 @@
 
     Private Sub SiniestroRubroCambio(sender As Object, e As EventArgs) Handles comboboxSiniestroRubro.SelectedIndexChanged
         If comboboxSiniestroRubro.SelectedIndex >= 0 Then
-            Siniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo, CType(comboboxSiniestroRubro.SelectedItem, SiniestroRubro).IDSiniestroRubro, False, False)
+            ListasSiniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo, CType(comboboxSiniestroRubro.SelectedItem, SiniestroRubro).IDSiniestroRubro, False, False)
         End If
     End Sub
 

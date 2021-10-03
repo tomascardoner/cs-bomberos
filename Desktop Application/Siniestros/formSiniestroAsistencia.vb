@@ -66,7 +66,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        Siniestros.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
+        ListasSiniestros.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
     End Sub
 
     Friend Sub SetAppearance()

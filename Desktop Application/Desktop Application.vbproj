@@ -497,6 +497,7 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Listas\Academias.vb" />
+    <Compile Include="Listas\Comun.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Localidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>

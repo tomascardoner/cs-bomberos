@@ -28,6 +28,7 @@ Partial Public Class Cuartel
     Public Property Celular As String
     Public Property Email As String
     Public Property EsActivo As Boolean
+    Public Property PrefijoSiniestro As String
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

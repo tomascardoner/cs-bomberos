@@ -10,8 +10,8 @@
             <PropertyRef Name="IDAcademia" />
           </Key>
           <Property Name="IDAcademia" Type="int" Nullable="false" />
-          <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="IDAcademiaTipo" Type="tinyint" Nullable="false" />
           <Property Name="AcademiaTipoOtro" Type="varchar" MaxLength="50" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -274,6 +274,7 @@
           <Property Name="Telefono" Type="varchar" MaxLength="50" />
           <Property Name="Celular" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="PrefijoSiniestro" Type="char" MaxLength="4" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -6319,6 +6320,7 @@
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Cuartel__Persona" FromRole="Cuartel" ToRole="Persona" />
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__Cuartel" FromRole="Cuartel" ToRole="Localidad" />
+          <Property Name="PrefijoSiniestro" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -10552,6 +10554,7 @@
           <EntitySetMapping Name="Cuartel">
             <EntityTypeMapping TypeName="CSBomberosModel.Cuartel">
               <MappingFragment StoreEntitySet="Cuartel">
+                <ScalarProperty Name="PrefijoSiniestro" ColumnName="PrefijoSiniestro" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
