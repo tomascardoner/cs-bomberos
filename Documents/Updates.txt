@@ -1,3 +1,8 @@
+2021-10-30
+	- Tabla PersonaSancion: agregar el campo ResolucionNumero varchar(10) null después de ResolucionFecha
+	- Agregar la tabla AcademiaAsistenciaTipoPuntaje
+	- Tabla SiniestroAsistenciaTipoPuntaje: Renombrar los campos Puntos a Puntaje
+
 2021-10-03
 	- Tabla Cuartel: agregar el campo PrefijoSiniestro char(4) null antes de las Notas
 

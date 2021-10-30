@@ -1,11 +1,13 @@
 ﻿Public Class formPersonaSancion
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaSancionActual As PersonaSancion
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
@@ -62,6 +64,7 @@
 
         comboboxResolucionSancionTipo.Enabled = mEditMode
         datetimepickerResolucionFecha.Enabled = mEditMode
+        textboxResolucionNumero.Enabled = mEditMode
 
         datetimepickerNotificacionFecha.Enabled = mEditMode
 
@@ -70,14 +73,8 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.Persona(comboboxSolicitudPersona, False, False, False, False)
         pFillAndRefreshLists.SancionTipo(comboboxResolucionSancionTipo, False, True)
-    End Sub
-
-    Friend Sub SetAppearance()
-
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -90,6 +87,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mPersonaSancionActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSolicitudPersona, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .SolicitudIDPersona)
@@ -101,6 +99,7 @@
 
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
             datetimepickerResolucionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.ResolucionFecha, datetimepickerResolucionFecha)
+            textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
 
             datetimepickerNotificacionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.NotificacionFecha, datetimepickerNotificacionFecha)
 
@@ -137,15 +136,18 @@
 
             .ResolucionIDSancionTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxResolucionSancionTipo.SelectedValue)
             .ResolucionFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerResolucionFecha.Value, datetimepickerResolucionFecha.Checked)
+            .ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
 
             .NotificacionFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerNotificacionFecha.Value, datetimepickerNotificacionFecha.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -163,7 +165,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSolicitudMotivo.GotFocus, textboxEncuadreTexto.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSolicitudMotivo.GotFocus, textboxEncuadreTexto.GotFocus, textboxResolucionNumero.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 

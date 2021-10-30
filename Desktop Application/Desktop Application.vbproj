@@ -222,6 +222,12 @@
     <Compile Include="ABM Tablas\Academias\formAcademiaAsistenciaTipo.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\Academias\formAcademiaAsistenciaTipoPuntaje.designer.vb">
+      <DependentUpon>formAcademiaAsistenciaTipoPuntaje.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Academias\formAcademiaAsistenciaTipoPuntaje.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM Tablas\Academias\formAcademiaAsistenciaTipos.Designer.vb">
       <DependentUpon>formAcademiaAsistenciaTipos.vb</DependentUpon>
     </Compile>
@@ -337,6 +343,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="AcademiaAsistenciaTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AcademiaAsistenciaTipoPuntaje.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Academias\formAcademia.designer.vb">
@@ -1320,6 +1329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Academias\formAcademiaAsistenciaTipo.resx">
       <DependentUpon>formAcademiaAsistenciaTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Academias\formAcademiaAsistenciaTipoPuntaje.resx">
+      <DependentUpon>formAcademiaAsistenciaTipoPuntaje.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Academias\formAcademiaAsistenciaTipos.resx">
       <DependentUpon>formAcademiaAsistenciaTipos.vb</DependentUpon>

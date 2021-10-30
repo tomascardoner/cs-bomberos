@@ -45,6 +45,15 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="AcademiaAsistenciaTipoPuntaje">
+          <Key>
+            <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            <PropertyRef Name="FechaInicio" />
+          </Key>
+          <Property Name="IDAcademiaAsistenciaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="Puntaje" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="AcademiaTipo">
           <Key>
             <PropertyRef Name="IDAcademiaTipo" />
@@ -821,6 +830,7 @@
           <Property Name="EncuadreFecha" Type="date" />
           <Property Name="ResolucionIDSancionTipo" Type="tinyint" />
           <Property Name="ResolucionFecha" Type="date" />
+          <Property Name="ResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="NotificacionFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -1080,10 +1090,10 @@
           </Key>
           <Property Name="IDSiniestroAsistenciaTipo" Type="tinyint" Nullable="false" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
-          <Property Name="PuntosClaveVerde" Type="tinyint" Nullable="false" />
-          <Property Name="PuntosClaveAzul" Type="tinyint" Nullable="false" />
-          <Property Name="PuntosClaveNaranja" Type="tinyint" Nullable="false" />
-          <Property Name="PuntosClaveRoja" Type="tinyint" Nullable="false" />
+          <Property Name="PuntajeClaveVerde" Type="tinyint" Nullable="false" />
+          <Property Name="PuntajeClaveAzul" Type="tinyint" Nullable="false" />
+          <Property Name="PuntajeClaveNaranja" Type="tinyint" Nullable="false" />
+          <Property Name="PuntajeClaveRoja" Type="tinyint" Nullable="false" />
           <Property Name="PorcentajeDescuentoPorSalidaAnticipada" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="SiniestroRubro">
@@ -1368,6 +1378,18 @@
               <PropertyRef Name="IDAcademiaAsistenciaTipo" />
             </Principal>
             <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje">
+          <End Role="AcademiaAsistenciaTipo" Type="Self.AcademiaAsistenciaTipo" Multiplicity="1" />
+          <End Role="AcademiaAsistenciaTipoPuntaje" Type="Self.AcademiaAsistenciaTipoPuntaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipoPuntaje">
               <PropertyRef Name="IDAcademiaAsistenciaTipo" />
             </Dependent>
           </ReferentialConstraint>
@@ -4004,6 +4026,7 @@
           <EntitySet Name="Academia" EntityType="Self.Academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademiaAsistencia" EntityType="Self.AcademiaAsistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademiaAsistenciaTipo" EntityType="Self.AcademiaAsistenciaTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AcademiaAsistenciaTipoPuntaje" EntityType="Self.AcademiaAsistenciaTipoPuntaje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademiaTipo" EntityType="Self.AcademiaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
@@ -4090,6 +4113,10 @@
           <AssociationSet Name="FK__AcademiaAsistenciaTipo__AcademiaAsistencia" Association="Self.FK__AcademiaAsistenciaTipo__AcademiaAsistencia">
             <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
             <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" Association="Self.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje">
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+            <End Role="AcademiaAsistenciaTipoPuntaje" EntitySet="AcademiaAsistenciaTipoPuntaje" />
           </AssociationSet>
           <AssociationSet Name="FK__AcademiaTipo__Academia" Association="Self.FK__AcademiaTipo__Academia">
             <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
@@ -5934,6 +5961,11 @@
           <AssociationSet Name="FK__Usuario__AcademiaTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="AcademiaTipo" EntitySet="AcademiaTipo" />
+          </AssociationSet>
+          <EntitySet Name="AcademiaAsistenciaTipoPuntaje" EntityType="CSBomberosModel.AcademiaAsistenciaTipoPuntaje" />
+          <AssociationSet Name="FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" Association="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje">
+            <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
+            <End Role="AcademiaAsistenciaTipoPuntaje" EntitySet="AcademiaAsistenciaTipoPuntaje" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -8089,6 +8121,7 @@
           <Property Name="EncuadreFecha" Type="DateTime" Precision="0" />
           <Property Name="ResolucionIDSancionTipo" Type="Byte" />
           <Property Name="ResolucionFecha" Type="DateTime" Precision="0" />
+          <Property Name="ResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NotificacionFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -9979,12 +10012,12 @@
           </Key>
           <Property Name="IDSiniestroAsistenciaTipo" Type="Byte" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PuntosClaveVerde" Type="Byte" Nullable="false" />
-          <Property Name="PuntosClaveAzul" Type="Byte" Nullable="false" />
-          <Property Name="PuntosClaveNaranja" Type="Byte" Nullable="false" />
-          <Property Name="PuntosClaveRoja" Type="Byte" Nullable="false" />
-          <Property Name="PorcentajeDescuentoPorSalidaAnticipada" Type="Byte" Nullable="false" />
           <NavigationProperty Name="SiniestroAsistenciaTipo" Relationship="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje" FromRole="SiniestroAsistenciaTipoPuntaje" ToRole="SiniestroAsistenciaTipo" />
+          <Property Name="PuntajeClaveVerde" Type="Byte" Nullable="false" />
+          <Property Name="PuntajeClaveAzul" Type="Byte" Nullable="false" />
+          <Property Name="PuntajeClaveNaranja" Type="Byte" Nullable="false" />
+          <Property Name="PuntajeClaveRoja" Type="Byte" Nullable="false" />
+          <Property Name="PorcentajeDescuentoPorSalidaAnticipada" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="SiniestroRubro">
           <Key>
@@ -10255,6 +10288,7 @@
           <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="AcademiasAsistenciasTipoPuntajes" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistenciaTipoPuntaje" />
         </EntityType>
         <EntityType Name="AcademiaTipo">
           <Key>
@@ -10401,6 +10435,28 @@
             </Principal>
             <Dependent Role="AcademiaTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AcademiaAsistenciaTipoPuntaje">
+          <Key>
+            <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            <PropertyRef Name="FechaInicio" />
+          </Key>
+          <Property Name="IDAcademiaAsistenciaTipo" Type="Byte" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Puntaje" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="AcademiaAsistenciaTipo" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" FromRole="AcademiaAsistenciaTipoPuntaje" ToRole="AcademiaAsistenciaTipo" />
+        </EntityType>
+        <Association Name="FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje">
+          <End Type="CSBomberosModel.AcademiaAsistenciaTipo" Role="AcademiaAsistenciaTipo" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistenciaTipoPuntaje" Role="AcademiaAsistenciaTipoPuntaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcademiaAsistenciaTipo">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistenciaTipoPuntaje">
+              <PropertyRef Name="IDAcademiaAsistenciaTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11228,6 +11284,7 @@
           <EntitySetMapping Name="PersonaSancion">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaSancion">
               <MappingFragment StoreEntitySet="PersonaSancion">
+                <ScalarProperty Name="ResolucionNumero" ColumnName="ResolucionNumero" />
                 <ScalarProperty Name="SolicitudIDPersona" ColumnName="SolicitudIDPersona" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -11723,11 +11780,11 @@
           <EntitySetMapping Name="SiniestroAsistenciaTipoPuntaje">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistenciaTipoPuntaje">
               <MappingFragment StoreEntitySet="SiniestroAsistenciaTipoPuntaje">
+                <ScalarProperty Name="PuntajeClaveRoja" ColumnName="PuntajeClaveRoja" />
+                <ScalarProperty Name="PuntajeClaveNaranja" ColumnName="PuntajeClaveNaranja" />
+                <ScalarProperty Name="PuntajeClaveAzul" ColumnName="PuntajeClaveAzul" />
+                <ScalarProperty Name="PuntajeClaveVerde" ColumnName="PuntajeClaveVerde" />
                 <ScalarProperty Name="PorcentajeDescuentoPorSalidaAnticipada" ColumnName="PorcentajeDescuentoPorSalidaAnticipada" />
-                <ScalarProperty Name="PuntosClaveRoja" ColumnName="PuntosClaveRoja" />
-                <ScalarProperty Name="PuntosClaveNaranja" ColumnName="PuntosClaveNaranja" />
-                <ScalarProperty Name="PuntosClaveAzul" ColumnName="PuntosClaveAzul" />
-                <ScalarProperty Name="PuntosClaveVerde" ColumnName="PuntosClaveVerde" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="IDSiniestroAsistenciaTipo" ColumnName="IDSiniestroAsistenciaTipo" />
               </MappingFragment>
@@ -11817,6 +11874,15 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDAcademiaTipo" ColumnName="IDAcademiaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcademiaAsistenciaTipoPuntaje">
+            <EntityTypeMapping TypeName="CSBomberosModel.AcademiaAsistenciaTipoPuntaje">
+              <MappingFragment StoreEntitySet="AcademiaAsistenciaTipoPuntaje">
+                <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="IDAcademiaAsistenciaTipo" ColumnName="IDAcademiaAsistenciaTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

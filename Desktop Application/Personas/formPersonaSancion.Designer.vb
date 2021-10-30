@@ -27,6 +27,7 @@ Partial Class formPersonaSancion
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelSolicitudPersona As System.Windows.Forms.Label
         Dim labelResolucionSancionTipo As System.Windows.Forms.Label
+        Dim labelResolucionNumero As System.Windows.Forms.Label
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -36,7 +37,7 @@ Partial Class formPersonaSancion
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.groupboxNotificacion = New System.Windows.Forms.GroupBox()
         Me.datetimepickerNotificacionFecha = New System.Windows.Forms.DateTimePicker()
@@ -60,11 +61,13 @@ Partial Class formPersonaSancion
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         labelSolicitudMotivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelSolicitudPersona = New System.Windows.Forms.Label()
         labelResolucionSancionTipo = New System.Windows.Forms.Label()
+        labelResolucionNumero = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -265,6 +268,8 @@ Partial Class formPersonaSancion
         '
         'groupboxResolucion
         '
+        Me.groupboxResolucion.Controls.Add(labelResolucionNumero)
+        Me.groupboxResolucion.Controls.Add(Me.textboxResolucionNumero)
         Me.groupboxResolucion.Controls.Add(Me.comboboxResolucionSancionTipo)
         Me.groupboxResolucion.Controls.Add(labelResolucionSancionTipo)
         Me.groupboxResolucion.Controls.Add(Me.datetimepickerResolucionFecha)
@@ -467,6 +472,23 @@ Partial Class formPersonaSancion
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
+        'labelResolucionNumero
+        '
+        labelResolucionNumero.AutoSize = True
+        labelResolucionNumero.Location = New System.Drawing.Point(230, 52)
+        labelResolucionNumero.Name = "labelResolucionNumero"
+        labelResolucionNumero.Size = New System.Drawing.Size(78, 13)
+        labelResolucionNumero.TabIndex = 4
+        labelResolucionNumero.Text = "Resolución Nº:"
+        '
+        'textboxResolucionNumero
+        '
+        Me.textboxResolucionNumero.Location = New System.Drawing.Point(314, 49)
+        Me.textboxResolucionNumero.MaxLength = 15
+        Me.textboxResolucionNumero.Name = "textboxResolucionNumero"
+        Me.textboxResolucionNumero.Size = New System.Drawing.Size(116, 20)
+        Me.textboxResolucionNumero.TabIndex = 5
+        '
         'formPersonaSancion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -533,4 +555,5 @@ Partial Class formPersonaSancion
     Friend WithEvents datetimepickerNotificacionFecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents labelNotificacionFecha As System.Windows.Forms.Label
     Friend WithEvents textboxSolicitudMotivo As System.Windows.Forms.TextBox
+    Friend WithEvents textboxResolucionNumero As TextBox
 End Class

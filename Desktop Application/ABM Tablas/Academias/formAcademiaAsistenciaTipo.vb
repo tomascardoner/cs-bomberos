@@ -5,8 +5,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mAcademiaAsistenciaTipoActual As AcademiaAsistenciaTipo
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
@@ -59,6 +59,9 @@
         checkboxEsPresente.Enabled = mEditMode
         updownOrden.Enabled = mEditMode
 
+        ' Puntajes
+        toolstripPuntajes.Enabled = mEditMode
+
         ' Notas y auditoría
         textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
@@ -72,7 +75,7 @@
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
     End Sub
 
-    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
         mAcademiaAsistenciaTipoActual = Nothing
@@ -111,6 +114,8 @@
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
         End With
+
+        PuntajesRefreshData()
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
@@ -129,7 +134,7 @@
 
 #Region "Controls behavior"
 
-    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles MyBase.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
                 If mEditMode Then
@@ -146,7 +151,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxAbreviatura.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus, textboxNombre.GotFocus, textboxAbreviatura.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -217,6 +222,98 @@
         End If
 
         Me.Close()
+    End Sub
+
+#End Region
+
+#Region "Puntajes"
+
+    Friend Sub PuntajesRefreshData(Optional ByVal PositionFechaInicio As Date = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listPuntajes As List(Of AcademiaAsistenciaTipoPuntaje)
+
+        If RestoreCurrentPosition Then
+            If datagridviewPuntajes.CurrentRow Is Nothing Then
+                PositionFechaInicio = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE
+            Else
+                PositionFechaInicio = CType(datagridviewPuntajes.CurrentRow.DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listPuntajes = mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.OrderBy(Function(satp) satp.FechaInicio).ToList()
+
+            datagridviewPuntajes.AutoGenerateColumns = False
+            datagridviewPuntajes.DataSource = listPuntajes
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Puntajes del Tipo de Asistencia a Academias.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionFechaInicio <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewPuntajes.Rows
+                If CType(CurrentRowChecked.DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio = PositionFechaInicio Then
+                    datagridviewPuntajes.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonPuntajesAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+
+        formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE)
+
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonPuntajesEditar.Click
+        If datagridviewPuntajes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Academias para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonPuntajesEliminar.Click
+        If datagridviewPuntajes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Academias para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            Dim Mensaje As String
+
+            Mensaje = String.Format("Se eliminará el Puntaje.{0}{0}Fecha de inicio: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio.ToShortDateString())
+            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                Me.Cursor = Cursors.WaitCursor
+
+                mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Remove(mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.First(Function(satp) satp.FechaInicio = CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio))
+
+                PuntajesRefreshData()
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub DetallesVer(sender As Object, e As EventArgs) Handles datagridviewPuntajes.DoubleClick
+        If datagridviewPuntajes.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Academias para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(mEditMode, False, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio)
+
+            Me.Cursor = Cursors.Default
+        End If
     End Sub
 
 #End Region

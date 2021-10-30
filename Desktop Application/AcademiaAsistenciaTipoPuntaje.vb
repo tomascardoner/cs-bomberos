@@ -10,15 +10,11 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class SiniestroAsistenciaTipoPuntaje
-    Public Property IDSiniestroAsistenciaTipo As Byte
+Partial Public Class AcademiaAsistenciaTipoPuntaje
+    Public Property IDAcademiaAsistenciaTipo As Byte
     Public Property FechaInicio As Date
-    Public Property PuntajeClaveVerde As Byte
-    Public Property PuntajeClaveAzul As Byte
-    Public Property PuntajeClaveNaranja As Byte
-    Public Property PuntajeClaveRoja As Byte
-    Public Property PorcentajeDescuentoPorSalidaAnticipada As Byte
+    Public Property Puntaje As Byte
 
-    Public Overridable Property SiniestroAsistenciaTipo As SiniestroAsistenciaTipo
+    Public Overridable Property AcademiaAsistenciaTipo As AcademiaAsistenciaTipo
 
 End Class

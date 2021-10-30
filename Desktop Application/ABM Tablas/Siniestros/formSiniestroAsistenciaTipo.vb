@@ -5,8 +5,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestroAsistenciaTipoActual As SiniestroAsistenciaTipo
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
@@ -117,9 +117,9 @@
             Else
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
-
-            PuntajesRefreshData()
         End With
+
+        PuntajesRefreshData()
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
@@ -310,7 +310,7 @@
         End If
     End Sub
 
-    Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewPuntajes.DoubleClick
+    Private Sub DetallesVer(sender As Object, e As EventArgs) Handles datagridviewPuntajes.DoubleClick
         If datagridviewPuntajes.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Puntaje del Tipo de Asistencia a Siniestros para ver.", vbInformation, My.Application.Info.Title)
         Else

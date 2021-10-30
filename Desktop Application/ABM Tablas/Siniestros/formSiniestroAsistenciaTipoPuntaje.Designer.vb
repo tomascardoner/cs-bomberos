@@ -105,7 +105,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(462, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(326, 39)
         Me.toolstripMain.TabIndex = 12
         '
         'labelPuntajeClaveNaranja
@@ -113,36 +113,36 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.labelPuntajeClaveNaranja.AutoSize = True
         Me.labelPuntajeClaveNaranja.Location = New System.Drawing.Point(12, 131)
         Me.labelPuntajeClaveNaranja.Name = "labelPuntajeClaveNaranja"
-        Me.labelPuntajeClaveNaranja.Size = New System.Drawing.Size(110, 13)
+        Me.labelPuntajeClaveNaranja.Size = New System.Drawing.Size(113, 13)
         Me.labelPuntajeClaveNaranja.TabIndex = 6
-        Me.labelPuntajeClaveNaranja.Text = "Puntos clave naranja:"
+        Me.labelPuntajeClaveNaranja.Text = "Puntaje clave naranja:"
         '
         'labelPuntajeClaveVerde
         '
         Me.labelPuntajeClaveVerde.AutoSize = True
         Me.labelPuntajeClaveVerde.Location = New System.Drawing.Point(12, 79)
         Me.labelPuntajeClaveVerde.Name = "labelPuntajeClaveVerde"
-        Me.labelPuntajeClaveVerde.Size = New System.Drawing.Size(102, 13)
+        Me.labelPuntajeClaveVerde.Size = New System.Drawing.Size(105, 13)
         Me.labelPuntajeClaveVerde.TabIndex = 2
-        Me.labelPuntajeClaveVerde.Text = "Puntos clave verde:"
+        Me.labelPuntajeClaveVerde.Text = "Puntaje clave verde:"
         '
         'labelPuntajeClaveAzul
         '
         Me.labelPuntajeClaveAzul.AutoSize = True
         Me.labelPuntajeClaveAzul.Location = New System.Drawing.Point(12, 105)
         Me.labelPuntajeClaveAzul.Name = "labelPuntajeClaveAzul"
-        Me.labelPuntajeClaveAzul.Size = New System.Drawing.Size(94, 13)
+        Me.labelPuntajeClaveAzul.Size = New System.Drawing.Size(97, 13)
         Me.labelPuntajeClaveAzul.TabIndex = 4
-        Me.labelPuntajeClaveAzul.Text = "Puntos clave azul:"
+        Me.labelPuntajeClaveAzul.Text = "Puntaje clave azul:"
         '
         'labelPuntajeClaveRoja
         '
         Me.labelPuntajeClaveRoja.AutoSize = True
         Me.labelPuntajeClaveRoja.Location = New System.Drawing.Point(12, 157)
         Me.labelPuntajeClaveRoja.Name = "labelPuntajeClaveRoja"
-        Me.labelPuntajeClaveRoja.Size = New System.Drawing.Size(92, 13)
+        Me.labelPuntajeClaveRoja.Size = New System.Drawing.Size(95, 13)
         Me.labelPuntajeClaveRoja.TabIndex = 8
-        Me.labelPuntajeClaveRoja.Text = "Puntos clave roja:"
+        Me.labelPuntajeClaveRoja.Text = "Puntaje clave roja:"
         '
         'datetimepickerFechaInicio
         '
@@ -205,7 +205,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(462, 217)
+        Me.ClientSize = New System.Drawing.Size(326, 217)
         Me.Controls.Add(Me.updownPorcentajeDescuentoPorSalidaAnticipada)
         Me.Controls.Add(Me.labelPorcentajeDescuentoPorSalidaAnticipada)
         Me.Controls.Add(Me.updownPuntajeClaveRoja)

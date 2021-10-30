@@ -26,5 +26,6 @@ Partial Public Class AcademiaAsistenciaTipo
     Public Overridable Property AcademiaAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property AcademiasAsistenciasTipoPuntajes As ICollection(Of AcademiaAsistenciaTipoPuntaje) = New HashSet(Of AcademiaAsistenciaTipoPuntaje)
 
 End Class

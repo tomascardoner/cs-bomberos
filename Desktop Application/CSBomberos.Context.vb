@@ -106,6 +106,7 @@ Partial Public Class CSBomberosContext
     Public Overridable Property AcademiaAsistencia() As DbSet(Of AcademiaAsistencia)
     Public Overridable Property AcademiaAsistenciaTipo() As DbSet(Of AcademiaAsistenciaTipo)
     Public Overridable Property AcademiaTipo() As DbSet(Of AcademiaTipo)
+    Public Overridable Property AcademiaAsistenciaTipoPuntaje() As DbSet(Of AcademiaAsistenciaTipoPuntaje)
 
     Public Overridable Function usp_Personas(estadoDesconocidoLeyenda As String, estadoActivoLeyenda As String) As ObjectResult(Of usp_Personas_Result)
         Dim estadoDesconocidoLeyendaParameter As ObjectParameter = If(estadoDesconocidoLeyenda IsNot Nothing, New ObjectParameter("EstadoDesconocidoLeyenda", estadoDesconocidoLeyenda), New ObjectParameter("EstadoDesconocidoLeyenda", GetType(String)))

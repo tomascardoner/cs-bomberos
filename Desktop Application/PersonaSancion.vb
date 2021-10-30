@@ -20,6 +20,7 @@ Partial Public Class PersonaSancion
     Public Property EncuadreFecha As Nullable(Of Date)
     Public Property ResolucionIDSancionTipo As Nullable(Of Byte)
     Public Property ResolucionFecha As Nullable(Of Date)
+    Public Property ResolucionNumero As String
     Public Property NotificacionFecha As Nullable(Of Date)
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
