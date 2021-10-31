@@ -4,10 +4,11 @@
 	- Tabla SiniestroAsistenciaTipoPuntaje: Renombrar los campos Puntos a Puntaje
 	- Agregar la tabla PersonaLicenciaEspecial
 	- Copiar el reporte Personas-Ficha baja.pdf
+	- Agregar el reportes 52 a todas las tablas de Reportes
 	- Cambiar el nombre de los reportes:
 		- Personas-Ficha actualizada -> Personas-FichaActualizada
 		- Personas-Ficha reingreso -> Personas-FichaReingreso
-	- DROP FUNCTION dbo.udf_EqualIntegerValuesAsXChar
+	- DROP FUNCTION dbo.udf_EqualValueAsXChar
 	- Generar funciones del framework-sql:
 		- Functions - Numeric
 		- Functions - String
