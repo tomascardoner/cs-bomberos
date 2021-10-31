@@ -816,6 +816,23 @@
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="PersonaLicenciaEspecial">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicenciaEspecial" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IDLicenciaEspecial" Type="smallint" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="FechaDesde" Type="date" Nullable="false" />
+          <Property Name="FechaHasta" Type="date" Nullable="false" />
+          <Property Name="PresentaCertificado" Type="bit" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="PersonaSancion">
           <Key>
             <PropertyRef Name="IDPersona" />
@@ -2032,6 +2049,18 @@
               <PropertyRef Name="IDPersona" />
             </Principal>
             <Dependent Role="PersonaLicenciaConducirCategoria">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaLicenciaEspecial">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaLicenciaEspecial" Type="Self.PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
               <PropertyRef Name="IDPersona" />
             </Dependent>
           </ReferentialConstraint>
@@ -3334,6 +3363,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaEspecial__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaLicenciaEspecial" Type="Self.PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaEspecial__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="PersonaLicenciaEspecial" Type="Self.PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__PersonaSancion__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
@@ -4071,6 +4124,7 @@
           <EntitySet Name="PersonaHorarioLaboral" EntityType="Self.PersonaHorarioLaboral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicencia" EntityType="Self.PersonaLicencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicenciaConducirCategoria" EntityType="Self.PersonaLicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaLicenciaEspecial" EntityType="Self.PersonaLicenciaEspecial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaSancion" EntityType="Self.PersonaSancion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaVacuna" EntityType="Self.PersonaVacuna" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaVehiculo" EntityType="Self.PersonaVehiculo" Schema="dbo" store:Type="Tables" />
@@ -4325,6 +4379,10 @@
           <AssociationSet Name="FK__Persona__PersonaLicenciaConducirCategoria" Association="Self.FK__Persona__PersonaLicenciaConducirCategoria">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaLicenciaEspecial" Association="Self.FK__Persona__PersonaLicenciaEspecial">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
           </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaSancion" Association="Self.FK__Persona__PersonaSancion">
             <End Role="Persona" EntitySet="Persona" />
@@ -4757,6 +4815,14 @@
           <AssociationSet Name="FK__Usuario__PersonaLicenciaConducirCategoria__Creacion" Association="Self.FK__Usuario__PersonaLicenciaConducirCategoria__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaLicenciaConducirCategoria" EntitySet="PersonaLicenciaConducirCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaEspecial__Creacion" Association="Self.FK__Usuario__PersonaLicenciaEspecial__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaEspecial__Modificacion" Association="Self.FK__Usuario__PersonaLicenciaEspecial__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__PersonaSancion__Creacion" Association="Self.FK__Usuario__PersonaSancion__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -5967,6 +6033,19 @@
             <End Role="AcademiaAsistenciaTipo" EntitySet="AcademiaAsistenciaTipo" />
             <End Role="AcademiaAsistenciaTipoPuntaje" EntitySet="AcademiaAsistenciaTipoPuntaje" />
           </AssociationSet>
+          <EntitySet Name="PersonaLicenciaEspecial" EntityType="CSBomberosModel.PersonaLicenciaEspecial" />
+          <AssociationSet Name="FK__Persona__PersonaLicenciaEspecial" Association="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaEspecial__Creacion" Association="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__PersonaLicenciaEspecial__Modificacion" Association="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="PersonaLicenciaEspecial" EntitySet="PersonaLicenciaEspecial" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -6230,6 +6309,8 @@
           <NavigationProperty Name="AcademiaAsistenciaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" FromRole="Usuario" ToRole="AcademiaAsistenciaTipo" />
           <NavigationProperty Name="AcademiaTiposCreados" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion" FromRole="Usuario" ToRole="AcademiaTipo" />
           <NavigationProperty Name="AcademiaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" FromRole="Usuario" ToRole="AcademiaTipo" />
+          <NavigationProperty Name="PersonasLicenciasEspecialesCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaEspecial" />
+          <NavigationProperty Name="PersonasLicenciasEspecialesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Modificacion" FromRole="Usuario" ToRole="PersonaLicenciaEspecial" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -6487,6 +6568,7 @@
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Persona__Responsable" FromRole="Persona" ToRole="Responsable" />
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Persona__SiniestroAsistencia" FromRole="Persona" ToRole="SiniestroAsistencia" />
           <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="PersonasLicenciasEspeciales" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="Persona" ToRole="PersonaLicenciaEspecial" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -10460,6 +10542,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PersonaLicenciaEspecial">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IDLicenciaEspecial" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IDLicenciaEspecial" Type="Int16" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaDesde" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaHasta" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PresentaCertificado" Type="Boolean" Nullable="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="PersonaLicenciaEspecial" ToRole="Persona" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Creacion" FromRole="PersonaLicenciaEspecial" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Modificacion" FromRole="PersonaLicenciaEspecial" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Persona__PersonaLicenciaEspecial">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaEspecial" Role="PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaEspecial__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaEspecial" Role="PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__PersonaLicenciaEspecial__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaLicenciaEspecial" Role="PersonaLicenciaEspecial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="PersonaLicenciaEspecial">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11883,6 +12021,23 @@
                 <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="IDAcademiaAsistenciaTipo" ColumnName="IDAcademiaAsistenciaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaLicenciaEspecial">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaLicenciaEspecial">
+              <MappingFragment StoreEntitySet="PersonaLicenciaEspecial">
+                <ScalarProperty Name="PresentaCertificado" ColumnName="PresentaCertificado" />
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="FechaHasta" ColumnName="FechaHasta" />
+                <ScalarProperty Name="FechaDesde" ColumnName="FechaDesde" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IDLicenciaEspecial" ColumnName="IDLicenciaEspecial" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

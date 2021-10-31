@@ -310,20 +310,30 @@ Partial Public Class Reporte
             Dim cantidadRegistros As Integer = 0
             Dim cantidadRegistrosGrupo As Integer = 0
             Dim cantidadPaginas As Integer = 0
+            Dim crearPaginaNueva As Boolean
 
             Do While _DataReader.Read()
                 If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
                     ordinalCampoParaAgrupar = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, AgruparPorCampo)
                 End If
-                If (ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar))) Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle) Then
-                    valorCampoParaAgrupar = _DataReader.GetValue(ordinalCampoParaAgrupar)
 
+                ' Determino si hay que empezar una página nueva
+                If String.IsNullOrEmpty(AgruparPorCampo) AndAlso (cantidadRegistrosGrupo = 0 Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle)) Then
+                    crearPaginaNueva = True
+                End If
+                If (ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar))) Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle) Then
+                    crearPaginaNueva = True
+                    valorCampoParaAgrupar = _DataReader.GetValue(ordinalCampoParaAgrupar)
+                End If
+
+                If crearPaginaNueva Then
                     ' Agregar una nueva página
                     document.NewPage()
                     pdfImportedPage = instance.GetImportedPage(pdfReader, 1)
                     pdfContentByte.AddTemplate(pdfImportedPage, 1.0F, 0F, 0F, 1.0F, 0F, 0F)
                     cantidadPaginas += 1
                     cantidadRegistrosGrupo = 1
+                    crearPaginaNueva = False
 
                     ' Escribir todos los campos
                     PdfEscribirCampos(ReporteCampos.AsEnumerable, pdfContentByte, baseFont, cantidadRegistrosGrupo)
@@ -333,7 +343,6 @@ Partial Public Class Reporte
                 End If
                 cantidadRegistros += 1
                 cantidadRegistrosGrupo += 1
-
             Loop
 
             document.Close()

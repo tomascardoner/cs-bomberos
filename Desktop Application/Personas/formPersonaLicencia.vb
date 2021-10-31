@@ -1,11 +1,13 @@
 ﻿Public Class formPersonaLicencia
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaLicenciaActual As PersonaLicencia
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
@@ -151,6 +153,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA_EDITAR) Then
             mEditMode = True
@@ -171,12 +174,12 @@
 
         ' Verifico las fechas (Fecha <= Fecha Desde < FechaHasta)
         If datetimepickerFecha.Value > datetimepickerFechaDesde.Value Then
-            MsgBox("La Fecha de Solicitud de la Licencia no puede ser mayor a la Fecha Desde.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("La Fecha de Solicitud de la Licencia no puede ser mayor a la Fecha desde.", MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFecha.Focus()
             Exit Sub
         End If
         If datetimepickerFechaDesde.Value >= datetimepickerFechaHasta.Value Then
-            MsgBox("La Fecha Desde no puede ser mayor o igual a la Fecha Hasta.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("La Fecha desde no puede ser mayor o igual a la Fecha hasta.", MsgBoxStyle.Information, My.Application.Info.Title)
             datetimepickerFechaDesde.Focus()
             Exit Sub
         End If
@@ -247,10 +250,10 @@
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
                 PersonaActual = dbcMaxID.Persona.Find(mPersonaLicenciaActual.IDPersona)
-                If PersonaActual.PersonaLicencias.Count = 0 Then
-                    mPersonaLicenciaActual.IDLicencia = 1
+                If PersonaActual.PersonaLicencias.Any() Then
+                    mPersonaLicenciaActual.IDLicencia = PersonaActual.PersonaLicencias.Max(Function(pl) pl.IDLicencia) + CShort(1)
                 Else
-                    mPersonaLicenciaActual.IDLicencia = PersonaActual.PersonaLicencias.Max(Function(pl) pl.IDLicencia) + CByte(1)
+                    mPersonaLicenciaActual.IDLicencia = 1
                 End If
             End Using
         End If
@@ -277,7 +280,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Licencia con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Licencia con la misma Fecha desde.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -290,6 +293,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 #Region "Extra stuff"

@@ -2,6 +2,18 @@
 	- Tabla PersonaSancion: agregar el campo ResolucionNumero varchar(10) null después de ResolucionFecha
 	- Agregar la tabla AcademiaAsistenciaTipoPuntaje
 	- Tabla SiniestroAsistenciaTipoPuntaje: Renombrar los campos Puntos a Puntaje
+	- Agregar la tabla PersonaLicenciaEspecial
+	- Copiar el reporte Personas-Ficha baja.pdf
+	- Cambiar el nombre de los reportes:
+		- Personas-Ficha actualizada -> Personas-FichaActualizada
+		- Personas-Ficha reingreso -> Personas-FichaReingreso
+	- DROP FUNCTION dbo.udf_EqualIntegerValuesAsXChar
+	- Generar funciones del framework-sql:
+		- Functions - Numeric
+		- Functions - String
+	- Ejecutar los stored procedures:
+		- usp_Persona_DatosParaBaja
+		- usp_Persona_DatosYFamiliaresACargo2
 
 2021-10-03
 	- Tabla Cuartel: agregar el campo PrefijoSiniestro char(4) null antes de las Notas

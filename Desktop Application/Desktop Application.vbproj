@@ -571,8 +571,17 @@
     <Compile Include="PersonaLicenciaConducirCategoria.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaLicenciaEspecial.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaSancion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaLicenciaEspecial.designer.vb">
+      <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaLicenciaEspecial.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="PersonaVacuna.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -1416,6 +1425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompras.resx">
       <DependentUpon>formCompras.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
+      <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestro.resx">
       <DependentUpon>formSiniestro.vb</DependentUpon>

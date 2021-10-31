@@ -85,6 +85,7 @@ Partial Class formPersona
         Dim labelReingresoFormacionHoras As System.Windows.Forms.Label
         Dim labelReingresoFormacionMeses As System.Windows.Forms.Label
         Dim labelReingresoFormacionRealizada As System.Windows.Forms.Label
+        Dim labelTituloObtenido As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -107,7 +108,7 @@ Partial Class formPersona
         Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim labelTituloObtenido As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formPersona))
         Me.labelIOMACertificacion = New System.Windows.Forms.Label()
         Me.labelIOMAPadron = New System.Windows.Forms.Label()
@@ -131,6 +132,7 @@ Partial Class formPersona
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.textboxTituloObtenido = New System.Windows.Forms.TextBox()
         Me.maskedtextboxCUIL = New System.Windows.Forms.MaskedTextBox()
         Me.groupboxIOMA = New System.Windows.Forms.GroupBox()
         Me.buttonIOMAPadronCompletar = New System.Windows.Forms.Button()
@@ -285,6 +287,16 @@ Partial Class formPersona
         Me.buttonLicencias_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonLicencias_Imprimir = New System.Windows.Forms.ToolStripButton()
+        Me.tabpageLicenciasEspeciales = New System.Windows.Forms.TabPage()
+        Me.datagridviewLicenciasEspeciales = New System.Windows.Forms.DataGridView()
+        Me.columnLicenciasEspeciales_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicenciasEspeciales_FechaDesde = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicenciasEspeciales_FechaHasta = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnLicenciasEspeciales_PresentaCertificado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.toolstripLicenciasEspeciales = New System.Windows.Forms.ToolStrip()
+        Me.buttonLicenciasEspeciales_Agregar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicenciasEspeciales_Editar = New System.Windows.Forms.ToolStripButton()
+        Me.buttonLicenciasEspeciales_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
         Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -328,7 +340,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxTituloObtenido = New System.Windows.Forms.TextBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -439,6 +450,9 @@ Partial Class formPersona
         Me.tabpageLicencias.SuspendLayout()
         CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripLicencias.SuspendLayout()
+        Me.tabpageLicenciasEspeciales.SuspendLayout()
+        CType(Me.datagridviewLicenciasEspeciales, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripLicenciasEspeciales.SuspendLayout()
         Me.tabpageSanciones.SuspendLayout()
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripSanciones.SuspendLayout()
@@ -821,7 +835,7 @@ Partial Class formPersona
         'labelHorarioLaboralObservaciones
         '
         labelHorarioLaboralObservaciones.AutoSize = True
-        labelHorarioLaboralObservaciones.Location = New System.Drawing.Point(0, 12)
+        labelHorarioLaboralObservaciones.Location = New System.Drawing.Point(5, 12)
         labelHorarioLaboralObservaciones.Name = "labelHorarioLaboralObservaciones"
         labelHorarioLaboralObservaciones.Size = New System.Drawing.Size(81, 13)
         labelHorarioLaboralObservaciones.TabIndex = 4
@@ -830,7 +844,7 @@ Partial Class formPersona
         'labelLicenciaConducirCategoria
         '
         labelLicenciaConducirCategoria.AutoSize = True
-        labelLicenciaConducirCategoria.Location = New System.Drawing.Point(2, 32)
+        labelLicenciaConducirCategoria.Location = New System.Drawing.Point(3, 32)
         labelLicenciaConducirCategoria.Name = "labelLicenciaConducirCategoria"
         labelLicenciaConducirCategoria.Size = New System.Drawing.Size(62, 13)
         labelLicenciaConducirCategoria.TabIndex = 16
@@ -840,7 +854,7 @@ Partial Class formPersona
         'labelLicenciaConducirvencimiento
         '
         labelLicenciaConducirvencimiento.AutoSize = True
-        labelLicenciaConducirvencimiento.Location = New System.Drawing.Point(293, 7)
+        labelLicenciaConducirvencimiento.Location = New System.Drawing.Point(291, 6)
         labelLicenciaConducirvencimiento.Name = "labelLicenciaConducirvencimiento"
         labelLicenciaConducirvencimiento.Size = New System.Drawing.Size(68, 13)
         labelLicenciaConducirvencimiento.TabIndex = 14
@@ -850,7 +864,7 @@ Partial Class formPersona
         'labelLicenciaConducirNumero
         '
         labelLicenciaConducirNumero.AutoSize = True
-        labelLicenciaConducirNumero.Location = New System.Drawing.Point(2, 6)
+        labelLicenciaConducirNumero.Location = New System.Drawing.Point(3, 6)
         labelLicenciaConducirNumero.Name = "labelLicenciaConducirNumero"
         labelLicenciaConducirNumero.Size = New System.Drawing.Size(109, 13)
         labelLicenciaConducirNumero.TabIndex = 11
@@ -1028,6 +1042,15 @@ Partial Class formPersona
         labelReingresoFormacionRealizada.TabIndex = 0
         labelReingresoFormacionRealizada.Text = "Realizado:"
         '
+        'labelTituloObtenido
+        '
+        labelTituloObtenido.AutoSize = True
+        labelTituloObtenido.Location = New System.Drawing.Point(6, 259)
+        labelTituloObtenido.Name = "labelTituloObtenido"
+        labelTituloObtenido.Size = New System.Drawing.Size(82, 13)
+        labelTituloObtenido.TabIndex = 24
+        labelTituloObtenido.Text = "Título obtenido:"
+        '
         'labelIOMACertificacion
         '
         Me.labelIOMACertificacion.AutoSize = True
@@ -1170,9 +1193,9 @@ Partial Class formPersona
         'buttonLicenciaConducirNumero
         '
         Me.buttonLicenciaConducirNumero.Font = New System.Drawing.Font("Wingdings", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-        Me.buttonLicenciaConducirNumero.Location = New System.Drawing.Point(259, 2)
+        Me.buttonLicenciaConducirNumero.Location = New System.Drawing.Point(239, 2)
         Me.buttonLicenciaConducirNumero.Name = "buttonLicenciaConducirNumero"
-        Me.buttonLicenciaConducirNumero.Size = New System.Drawing.Size(27, 21)
+        Me.buttonLicenciaConducirNumero.Size = New System.Drawing.Size(27, 22)
         Me.buttonLicenciaConducirNumero.TabIndex = 13
         Me.buttonLicenciaConducirNumero.Text = "Ã"
         Me.tooltipMain.SetToolTip(Me.buttonLicenciaConducirNumero, "Copiar número de documento")
@@ -1180,7 +1203,7 @@ Partial Class formPersona
         '
         'textboxLicenciaConducirNumero
         '
-        Me.textboxLicenciaConducirNumero.Location = New System.Drawing.Point(138, 3)
+        Me.textboxLicenciaConducirNumero.Location = New System.Drawing.Point(118, 3)
         Me.textboxLicenciaConducirNumero.MaxLength = 11
         Me.textboxLicenciaConducirNumero.Name = "textboxLicenciaConducirNumero"
         Me.textboxLicenciaConducirNumero.Size = New System.Drawing.Size(115, 20)
@@ -1218,6 +1241,7 @@ Partial Class formPersona
         Me.tabcontrolMain.Controls.Add(Me.tabpageVehiculos)
         Me.tabcontrolMain.Controls.Add(Me.tabpageVacunas)
         Me.tabcontrolMain.Controls.Add(Me.tabpageLicencias)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageLicenciasEspeciales)
         Me.tabcontrolMain.Controls.Add(Me.tabpageSanciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageCapacitaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageCalificaciones)
@@ -1276,6 +1300,14 @@ Partial Class formPersona
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'textboxTituloObtenido
+        '
+        Me.textboxTituloObtenido.Location = New System.Drawing.Point(147, 256)
+        Me.textboxTituloObtenido.MaxLength = 100
+        Me.textboxTituloObtenido.Name = "textboxTituloObtenido"
+        Me.textboxTituloObtenido.Size = New System.Drawing.Size(377, 20)
+        Me.textboxTituloObtenido.TabIndex = 25
         '
         'maskedtextboxCUIL
         '
@@ -1550,9 +1582,9 @@ Partial Class formPersona
         Me.tabpageIngresoReingreso.Controls.Add(Me.groupboxReingresoFormacion)
         Me.tabpageIngresoReingreso.Controls.Add(Me.groupboxCursoIngreso)
         Me.tabpageIngresoReingreso.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageIngresoReingreso.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageIngresoReingreso.Name = "tabpageIngresoReingreso"
-        Me.tabpageIngresoReingreso.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageIngresoReingreso.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageIngresoReingreso.Size = New System.Drawing.Size(652, 408)
         Me.tabpageIngresoReingreso.TabIndex = 22
         Me.tabpageIngresoReingreso.Text = "Ingreso / reingreso"
         Me.tabpageIngresoReingreso.UseVisualStyleBackColor = True
@@ -1726,7 +1758,7 @@ Partial Class formPersona
         Me.tabpageContactoParticular.Location = New System.Drawing.Point(4, 25)
         Me.tabpageContactoParticular.Name = "tabpageContactoParticular"
         Me.tabpageContactoParticular.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageContactoParticular.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageContactoParticular.Size = New System.Drawing.Size(652, 408)
         Me.tabpageContactoParticular.TabIndex = 1
         Me.tabpageContactoParticular.Text = "Contacto Particular"
         Me.tabpageContactoParticular.UseVisualStyleBackColor = True
@@ -1858,7 +1890,7 @@ Partial Class formPersona
         Me.tabpageContactoLaboral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageContactoLaboral.Name = "tabpageContactoLaboral"
         Me.tabpageContactoLaboral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageContactoLaboral.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageContactoLaboral.Size = New System.Drawing.Size(652, 408)
         Me.tabpageContactoLaboral.TabIndex = 9
         Me.tabpageContactoLaboral.Text = "Contacto Laboral"
         Me.tabpageContactoLaboral.UseVisualStyleBackColor = True
@@ -1966,9 +1998,9 @@ Partial Class formPersona
         Me.tabpageFamiliares.Controls.Add(Me.datagridviewFamiliares)
         Me.tabpageFamiliares.Controls.Add(Me.toolstripFamiliares)
         Me.tabpageFamiliares.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageFamiliares.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageFamiliares.Name = "tabpageFamiliares"
-        Me.tabpageFamiliares.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageFamiliares.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageFamiliares.Size = New System.Drawing.Size(652, 408)
         Me.tabpageFamiliares.TabIndex = 10
         Me.tabpageFamiliares.Text = "Familiares"
         Me.tabpageFamiliares.UseVisualStyleBackColor = True
@@ -1987,14 +2019,14 @@ Partial Class formPersona
         Me.datagridviewFamiliares.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFamiliares_Parentesco, Me.columnFamiliares_Apellido, Me.columnFamiliares_Nombre})
         Me.datagridviewFamiliares.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewFamiliares.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewFamiliares.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewFamiliares.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewFamiliares.MultiSelect = False
         Me.datagridviewFamiliares.Name = "datagridviewFamiliares"
         Me.datagridviewFamiliares.ReadOnly = True
         Me.datagridviewFamiliares.RowHeadersVisible = False
         Me.datagridviewFamiliares.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewFamiliares.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewFamiliares.Size = New System.Drawing.Size(559, 409)
+        Me.datagridviewFamiliares.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewFamiliares.TabIndex = 6
         '
         'columnFamiliares_Parentesco
@@ -2031,9 +2063,9 @@ Partial Class formPersona
         Me.toolstripFamiliares.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripFamiliares.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonFamiliares_Agregar, Me.buttonFamiliares_Editar, Me.buttonFamiliares_Eliminar})
         Me.toolstripFamiliares.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripFamiliares.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripFamiliares.Location = New System.Drawing.Point(0, 0)
         Me.toolstripFamiliares.Name = "toolstripFamiliares"
-        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 409)
+        Me.toolstripFamiliares.Size = New System.Drawing.Size(87, 408)
         Me.toolstripFamiliares.TabIndex = 7
         '
         'buttonFamiliares_Agregar
@@ -2071,9 +2103,9 @@ Partial Class formPersona
         Me.tabpageAltasBajas.Controls.Add(Me.datagridviewAltasBajas)
         Me.tabpageAltasBajas.Controls.Add(Me.toolstripAltasBajas)
         Me.tabpageAltasBajas.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageAltasBajas.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageAltasBajas.Name = "tabpageAltasBajas"
-        Me.tabpageAltasBajas.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAltasBajas.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageAltasBajas.Size = New System.Drawing.Size(652, 408)
         Me.tabpageAltasBajas.TabIndex = 11
         Me.tabpageAltasBajas.Text = "Altas - Bajas"
         Me.tabpageAltasBajas.UseVisualStyleBackColor = True
@@ -2092,14 +2124,14 @@ Partial Class formPersona
         Me.datagridviewAltasBajas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAltasBajas_AltaFecha, Me.columnAltasBajas_BajaFecha, Me.columnaltasBajas_BajaMotivo})
         Me.datagridviewAltasBajas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAltasBajas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAltasBajas.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewAltasBajas.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewAltasBajas.MultiSelect = False
         Me.datagridviewAltasBajas.Name = "datagridviewAltasBajas"
         Me.datagridviewAltasBajas.ReadOnly = True
         Me.datagridviewAltasBajas.RowHeadersVisible = False
         Me.datagridviewAltasBajas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAltasBajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(559, 409)
+        Me.datagridviewAltasBajas.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewAltasBajas.TabIndex = 8
         '
         'columnAltasBajas_AltaFecha
@@ -2135,9 +2167,9 @@ Partial Class formPersona
         Me.toolstripAltasBajas.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripAltasBajas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAltasBajas_Agregar, Me.buttonAltasBajas_Editar, Me.buttonAltasBajas_Eliminar})
         Me.toolstripAltasBajas.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripAltasBajas.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripAltasBajas.Location = New System.Drawing.Point(0, 0)
         Me.toolstripAltasBajas.Name = "toolstripAltasBajas"
-        Me.toolstripAltasBajas.Size = New System.Drawing.Size(87, 409)
+        Me.toolstripAltasBajas.Size = New System.Drawing.Size(87, 408)
         Me.toolstripAltasBajas.TabIndex = 9
         '
         'buttonAltasBajas_Agregar
@@ -2175,9 +2207,9 @@ Partial Class formPersona
         Me.tabpageAccidentes.Controls.Add(Me.datagridviewAccidentes)
         Me.tabpageAccidentes.Controls.Add(Me.toolstripAccidentes)
         Me.tabpageAccidentes.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageAccidentes.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageAccidentes.Name = "tabpageAccidentes"
-        Me.tabpageAccidentes.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAccidentes.Size = New System.Drawing.Size(652, 415)
+        Me.tabpageAccidentes.Size = New System.Drawing.Size(652, 408)
         Me.tabpageAccidentes.TabIndex = 21
         Me.tabpageAccidentes.Text = "Accidentes"
         Me.tabpageAccidentes.UseVisualStyleBackColor = True
@@ -2196,14 +2228,14 @@ Partial Class formPersona
         Me.datagridviewAccidentes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAccidentes_Fecha, Me.columnAccidentes_Diagnostico, Me.columnAccidentes_FechaAlta})
         Me.datagridviewAccidentes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAccidentes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAccidentes.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewAccidentes.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewAccidentes.MultiSelect = False
         Me.datagridviewAccidentes.Name = "datagridviewAccidentes"
         Me.datagridviewAccidentes.ReadOnly = True
         Me.datagridviewAccidentes.RowHeadersVisible = False
         Me.datagridviewAccidentes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAccidentes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAccidentes.Size = New System.Drawing.Size(559, 409)
+        Me.datagridviewAccidentes.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewAccidentes.TabIndex = 4
         '
         'columnAccidentes_Fecha
@@ -2240,9 +2272,9 @@ Partial Class formPersona
         Me.toolstripAccidentes.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripAccidentes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAccidentes_Agregar, Me.buttonAccidentes_Editar, Me.buttonAccidentes_Eliminar})
         Me.toolstripAccidentes.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripAccidentes.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripAccidentes.Location = New System.Drawing.Point(0, 0)
         Me.toolstripAccidentes.Name = "toolstripAccidentes"
-        Me.toolstripAccidentes.Size = New System.Drawing.Size(87, 409)
+        Me.toolstripAccidentes.Size = New System.Drawing.Size(87, 408)
         Me.toolstripAccidentes.TabIndex = 5
         '
         'buttonAccidentes_Agregar
@@ -2280,9 +2312,9 @@ Partial Class formPersona
         Me.tabpageAscensos.Controls.Add(Me.datagridviewAscensos)
         Me.tabpageAscensos.Controls.Add(Me.toolstripAscensos)
         Me.tabpageAscensos.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageAscensos.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageAscensos.Name = "tabpageAscensos"
-        Me.tabpageAscensos.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAscensos.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageAscensos.Size = New System.Drawing.Size(652, 408)
         Me.tabpageAscensos.TabIndex = 12
         Me.tabpageAscensos.Text = "Ascensos"
         Me.tabpageAscensos.UseVisualStyleBackColor = True
@@ -2301,14 +2333,14 @@ Partial Class formPersona
         Me.datagridviewAscensos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAscensos_Fecha, Me.columnAscensos_Cargo, Me.columnAscensos_Jerarquia})
         Me.datagridviewAscensos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAscensos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAscensos.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewAscensos.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewAscensos.MultiSelect = False
         Me.datagridviewAscensos.Name = "datagridviewAscensos"
         Me.datagridviewAscensos.ReadOnly = True
         Me.datagridviewAscensos.RowHeadersVisible = False
         Me.datagridviewAscensos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAscensos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAscensos.Size = New System.Drawing.Size(559, 393)
+        Me.datagridviewAscensos.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewAscensos.TabIndex = 2
         '
         'columnAscensos_Fecha
@@ -2345,9 +2377,9 @@ Partial Class formPersona
         Me.toolstripAscensos.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripAscensos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAscensos_Agregar, Me.buttonAscensos_Editar, Me.buttonAscensos_Eliminar})
         Me.toolstripAscensos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripAscensos.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripAscensos.Location = New System.Drawing.Point(0, 0)
         Me.toolstripAscensos.Name = "toolstripAscensos"
-        Me.toolstripAscensos.Size = New System.Drawing.Size(87, 393)
+        Me.toolstripAscensos.Size = New System.Drawing.Size(87, 408)
         Me.toolstripAscensos.TabIndex = 3
         '
         'buttonAscensos_Agregar
@@ -2384,8 +2416,9 @@ Partial Class formPersona
         '
         Me.tabpageHorarioLaboral.Controls.Add(Me.panelHorarioLaboral)
         Me.tabpageHorarioLaboral.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageHorarioLaboral.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageHorarioLaboral.Name = "tabpageHorarioLaboral"
-        Me.tabpageHorarioLaboral.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageHorarioLaboral.Size = New System.Drawing.Size(652, 408)
         Me.tabpageHorarioLaboral.TabIndex = 18
         Me.tabpageHorarioLaboral.Text = "Horario Laboral"
         Me.tabpageHorarioLaboral.UseVisualStyleBackColor = True
@@ -2398,11 +2431,12 @@ Partial Class formPersona
         Me.panelHorarioLaboral.Controls.Add(Me.panelHorarioLaboralObservaciones, 0, 1)
         Me.panelHorarioLaboral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelHorarioLaboral.Location = New System.Drawing.Point(0, 0)
+        Me.panelHorarioLaboral.Margin = New System.Windows.Forms.Padding(0)
         Me.panelHorarioLaboral.Name = "panelHorarioLaboral"
         Me.panelHorarioLaboral.RowCount = 2
         Me.panelHorarioLaboral.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.panelHorarioLaboral.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
-        Me.panelHorarioLaboral.Size = New System.Drawing.Size(652, 399)
+        Me.panelHorarioLaboral.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
+        Me.panelHorarioLaboral.Size = New System.Drawing.Size(652, 408)
         Me.panelHorarioLaboral.TabIndex = 0
         '
         'panelHorarioLaboralGrilla
@@ -2410,9 +2444,10 @@ Partial Class formPersona
         Me.panelHorarioLaboralGrilla.Controls.Add(Me.datagridviewHorarioLaboral)
         Me.panelHorarioLaboralGrilla.Controls.Add(Me.toolstripHorarioLaboral)
         Me.panelHorarioLaboralGrilla.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelHorarioLaboralGrilla.Location = New System.Drawing.Point(3, 3)
+        Me.panelHorarioLaboralGrilla.Location = New System.Drawing.Point(0, 0)
+        Me.panelHorarioLaboralGrilla.Margin = New System.Windows.Forms.Padding(0)
         Me.panelHorarioLaboralGrilla.Name = "panelHorarioLaboralGrilla"
-        Me.panelHorarioLaboralGrilla.Size = New System.Drawing.Size(646, 333)
+        Me.panelHorarioLaboralGrilla.Size = New System.Drawing.Size(652, 353)
         Me.panelHorarioLaboralGrilla.TabIndex = 0
         '
         'datagridviewHorarioLaboral
@@ -2436,7 +2471,7 @@ Partial Class formPersona
         Me.datagridviewHorarioLaboral.RowHeadersVisible = False
         Me.datagridviewHorarioLaboral.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewHorarioLaboral.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(548, 333)
+        Me.datagridviewHorarioLaboral.Size = New System.Drawing.Size(554, 353)
         Me.datagridviewHorarioLaboral.TabIndex = 10
         '
         'columnHorarioLaboral_DiaSemana
@@ -2508,7 +2543,7 @@ Partial Class formPersona
         Me.toolstripHorarioLaboral.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripHorarioLaboral.Location = New System.Drawing.Point(0, 0)
         Me.toolstripHorarioLaboral.Name = "toolstripHorarioLaboral"
-        Me.toolstripHorarioLaboral.Size = New System.Drawing.Size(98, 333)
+        Me.toolstripHorarioLaboral.Size = New System.Drawing.Size(98, 353)
         Me.toolstripHorarioLaboral.TabIndex = 11
         '
         'buttonHorarioLaboral_Agregar
@@ -2562,26 +2597,28 @@ Partial Class formPersona
         Me.panelHorarioLaboralObservaciones.Controls.Add(labelHorarioLaboralObservaciones)
         Me.panelHorarioLaboralObservaciones.Controls.Add(Me.textboxHorarioLaboralObservaciones)
         Me.panelHorarioLaboralObservaciones.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelHorarioLaboralObservaciones.Location = New System.Drawing.Point(3, 342)
+        Me.panelHorarioLaboralObservaciones.Location = New System.Drawing.Point(0, 353)
+        Me.panelHorarioLaboralObservaciones.Margin = New System.Windows.Forms.Padding(0)
         Me.panelHorarioLaboralObservaciones.Name = "panelHorarioLaboralObservaciones"
-        Me.panelHorarioLaboralObservaciones.Size = New System.Drawing.Size(646, 54)
+        Me.panelHorarioLaboralObservaciones.Size = New System.Drawing.Size(652, 55)
         Me.panelHorarioLaboralObservaciones.TabIndex = 1
         '
         'textboxHorarioLaboralObservaciones
         '
-        Me.textboxHorarioLaboralObservaciones.Location = New System.Drawing.Point(87, 9)
+        Me.textboxHorarioLaboralObservaciones.Location = New System.Drawing.Point(98, 9)
         Me.textboxHorarioLaboralObservaciones.MaxLength = 0
         Me.textboxHorarioLaboralObservaciones.Multiline = True
         Me.textboxHorarioLaboralObservaciones.Name = "textboxHorarioLaboralObservaciones"
-        Me.textboxHorarioLaboralObservaciones.Size = New System.Drawing.Size(556, 42)
+        Me.textboxHorarioLaboralObservaciones.Size = New System.Drawing.Size(553, 46)
         Me.textboxHorarioLaboralObservaciones.TabIndex = 5
         '
         'tabpageVehiculos
         '
         Me.tabpageVehiculos.Controls.Add(Me.panelVehiculos)
         Me.tabpageVehiculos.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageVehiculos.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageVehiculos.Name = "tabpageVehiculos"
-        Me.tabpageVehiculos.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageVehiculos.Size = New System.Drawing.Size(652, 408)
         Me.tabpageVehiculos.TabIndex = 19
         Me.tabpageVehiculos.Text = "Vehículos"
         Me.tabpageVehiculos.UseVisualStyleBackColor = True
@@ -2594,11 +2631,12 @@ Partial Class formPersona
         Me.panelVehiculos.Controls.Add(Me.panelVehiculosEncabezado, 0, 0)
         Me.panelVehiculos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelVehiculos.Location = New System.Drawing.Point(0, 0)
+        Me.panelVehiculos.Margin = New System.Windows.Forms.Padding(0)
         Me.panelVehiculos.Name = "panelVehiculos"
         Me.panelVehiculos.RowCount = 2
-        Me.panelVehiculos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60.0!))
+        Me.panelVehiculos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55.0!))
         Me.panelVehiculos.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.panelVehiculos.Size = New System.Drawing.Size(652, 399)
+        Me.panelVehiculos.Size = New System.Drawing.Size(652, 408)
         Me.panelVehiculos.TabIndex = 0
         '
         'panelVehiculosGrilla
@@ -2606,9 +2644,10 @@ Partial Class formPersona
         Me.panelVehiculosGrilla.Controls.Add(Me.datagridviewVehiculos)
         Me.panelVehiculosGrilla.Controls.Add(Me.toolstripVehiculos)
         Me.panelVehiculosGrilla.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelVehiculosGrilla.Location = New System.Drawing.Point(3, 63)
+        Me.panelVehiculosGrilla.Location = New System.Drawing.Point(0, 55)
+        Me.panelVehiculosGrilla.Margin = New System.Windows.Forms.Padding(0)
         Me.panelVehiculosGrilla.Name = "panelVehiculosGrilla"
-        Me.panelVehiculosGrilla.Size = New System.Drawing.Size(646, 333)
+        Me.panelVehiculosGrilla.Size = New System.Drawing.Size(652, 353)
         Me.panelVehiculosGrilla.TabIndex = 0
         '
         'datagridviewVehiculos
@@ -2632,7 +2671,7 @@ Partial Class formPersona
         Me.datagridviewVehiculos.RowHeadersVisible = False
         Me.datagridviewVehiculos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewVehiculos.Size = New System.Drawing.Size(559, 333)
+        Me.datagridviewVehiculos.Size = New System.Drawing.Size(565, 353)
         Me.datagridviewVehiculos.TabIndex = 4
         '
         'columnVehiculos_Tipo
@@ -2689,7 +2728,7 @@ Partial Class formPersona
         Me.toolstripVehiculos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripVehiculos.Location = New System.Drawing.Point(0, 0)
         Me.toolstripVehiculos.Name = "toolstripVehiculos"
-        Me.toolstripVehiculos.Size = New System.Drawing.Size(87, 333)
+        Me.toolstripVehiculos.Size = New System.Drawing.Size(87, 353)
         Me.toolstripVehiculos.TabIndex = 5
         '
         'buttonVehiculos_Agregar
@@ -2724,6 +2763,7 @@ Partial Class formPersona
         '
         'panelVehiculosEncabezado
         '
+        Me.panelVehiculosEncabezado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelVehiculosEncabezado.Controls.Add(Me.buttonLicenciaConducirCategoria)
         Me.panelVehiculosEncabezado.Controls.Add(Me.textboxLicenciaConducirCategoria)
         Me.panelVehiculosEncabezado.Controls.Add(labelLicenciaConducirCategoria)
@@ -2733,9 +2773,10 @@ Partial Class formPersona
         Me.panelVehiculosEncabezado.Controls.Add(labelLicenciaConducirNumero)
         Me.panelVehiculosEncabezado.Controls.Add(Me.textboxLicenciaConducirNumero)
         Me.panelVehiculosEncabezado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panelVehiculosEncabezado.Location = New System.Drawing.Point(3, 3)
+        Me.panelVehiculosEncabezado.Location = New System.Drawing.Point(0, 0)
+        Me.panelVehiculosEncabezado.Margin = New System.Windows.Forms.Padding(0)
         Me.panelVehiculosEncabezado.Name = "panelVehiculosEncabezado"
-        Me.panelVehiculosEncabezado.Size = New System.Drawing.Size(646, 54)
+        Me.panelVehiculosEncabezado.Size = New System.Drawing.Size(652, 55)
         Me.panelVehiculosEncabezado.TabIndex = 1
         '
         'buttonLicenciaConducirCategoria
@@ -2749,16 +2790,16 @@ Partial Class formPersona
         '
         'textboxLicenciaConducirCategoria
         '
-        Me.textboxLicenciaConducirCategoria.Location = New System.Drawing.Point(138, 29)
+        Me.textboxLicenciaConducirCategoria.Location = New System.Drawing.Point(118, 29)
         Me.textboxLicenciaConducirCategoria.Name = "textboxLicenciaConducirCategoria"
         Me.textboxLicenciaConducirCategoria.ReadOnly = True
-        Me.textboxLicenciaConducirCategoria.Size = New System.Drawing.Size(355, 20)
+        Me.textboxLicenciaConducirCategoria.Size = New System.Drawing.Size(375, 20)
         Me.textboxLicenciaConducirCategoria.TabIndex = 17
         '
         'datetimepickerLicenciaConducirVencimiento
         '
         Me.datetimepickerLicenciaConducirVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerLicenciaConducirVencimiento.Location = New System.Drawing.Point(367, 3)
+        Me.datetimepickerLicenciaConducirVencimiento.Location = New System.Drawing.Point(365, 3)
         Me.datetimepickerLicenciaConducirVencimiento.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerLicenciaConducirVencimiento.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerLicenciaConducirVencimiento.Name = "datetimepickerLicenciaConducirVencimiento"
@@ -2771,8 +2812,9 @@ Partial Class formPersona
         Me.tabpageVacunas.Controls.Add(Me.datagridviewVacunas)
         Me.tabpageVacunas.Controls.Add(Me.toolstripVacunas)
         Me.tabpageVacunas.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageVacunas.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageVacunas.Name = "tabpageVacunas"
-        Me.tabpageVacunas.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageVacunas.Size = New System.Drawing.Size(652, 408)
         Me.tabpageVacunas.TabIndex = 20
         Me.tabpageVacunas.Text = "Vacunas"
         Me.tabpageVacunas.UseVisualStyleBackColor = True
@@ -2798,7 +2840,7 @@ Partial Class formPersona
         Me.datagridviewVacunas.RowHeadersVisible = False
         Me.datagridviewVacunas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewVacunas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewVacunas.Size = New System.Drawing.Size(565, 399)
+        Me.datagridviewVacunas.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewVacunas.TabIndex = 4
         '
         'columnVacunas_Tipo
@@ -2862,7 +2904,7 @@ Partial Class formPersona
         Me.toolstripVacunas.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripVacunas.Location = New System.Drawing.Point(0, 0)
         Me.toolstripVacunas.Name = "toolstripVacunas"
-        Me.toolstripVacunas.Size = New System.Drawing.Size(87, 399)
+        Me.toolstripVacunas.Size = New System.Drawing.Size(87, 408)
         Me.toolstripVacunas.TabIndex = 5
         '
         'buttonVacunas_Agregar
@@ -2900,9 +2942,9 @@ Partial Class formPersona
         Me.tabpageLicencias.Controls.Add(Me.datagridviewLicencias)
         Me.tabpageLicencias.Controls.Add(Me.toolstripLicencias)
         Me.tabpageLicencias.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageLicencias.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageLicencias.Name = "tabpageLicencias"
-        Me.tabpageLicencias.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageLicencias.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageLicencias.Size = New System.Drawing.Size(652, 408)
         Me.tabpageLicencias.TabIndex = 13
         Me.tabpageLicencias.Text = "Licencias"
         Me.tabpageLicencias.UseVisualStyleBackColor = True
@@ -2921,14 +2963,14 @@ Partial Class formPersona
         Me.datagridviewLicencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnLicencias_Fecha, Me.columnLicencias_Causa, Me.columnLicencias_FechaDesde, Me.columnLicencias_FechaHasta})
         Me.datagridviewLicencias.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewLicencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewLicencias.Location = New System.Drawing.Point(93, 3)
+        Me.datagridviewLicencias.Location = New System.Drawing.Point(90, 0)
         Me.datagridviewLicencias.MultiSelect = False
         Me.datagridviewLicencias.Name = "datagridviewLicencias"
         Me.datagridviewLicencias.ReadOnly = True
         Me.datagridviewLicencias.RowHeadersVisible = False
         Me.datagridviewLicencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewLicencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewLicencias.Size = New System.Drawing.Size(556, 393)
+        Me.datagridviewLicencias.Size = New System.Drawing.Size(562, 408)
         Me.datagridviewLicencias.TabIndex = 4
         '
         'columnLicencias_Fecha
@@ -2974,9 +3016,9 @@ Partial Class formPersona
         Me.toolstripLicencias.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripLicencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicencias_Agregar, Me.buttonLicencias_Editar, Me.buttonLicencias_Eliminar, Me.buttonLicencias_Imprimir})
         Me.toolstripLicencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripLicencias.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripLicencias.Location = New System.Drawing.Point(0, 0)
         Me.toolstripLicencias.Name = "toolstripLicencias"
-        Me.toolstripLicencias.Size = New System.Drawing.Size(90, 393)
+        Me.toolstripLicencias.Size = New System.Drawing.Size(90, 408)
         Me.toolstripLicencias.TabIndex = 5
         '
         'buttonLicencias_Agregar
@@ -3018,14 +3060,128 @@ Partial Class formPersona
         Me.buttonLicencias_Imprimir.Size = New System.Drawing.Size(87, 36)
         Me.buttonLicencias_Imprimir.Text = "Imprimir"
         '
+        'tabpageLicenciasEspeciales
+        '
+        Me.tabpageLicenciasEspeciales.Controls.Add(Me.datagridviewLicenciasEspeciales)
+        Me.tabpageLicenciasEspeciales.Controls.Add(Me.toolstripLicenciasEspeciales)
+        Me.tabpageLicenciasEspeciales.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageLicenciasEspeciales.Margin = New System.Windows.Forms.Padding(0)
+        Me.tabpageLicenciasEspeciales.Name = "tabpageLicenciasEspeciales"
+        Me.tabpageLicenciasEspeciales.Size = New System.Drawing.Size(652, 408)
+        Me.tabpageLicenciasEspeciales.TabIndex = 23
+        Me.tabpageLicenciasEspeciales.Text = "Licencias especiales"
+        Me.tabpageLicenciasEspeciales.UseVisualStyleBackColor = True
+        '
+        'datagridviewLicenciasEspeciales
+        '
+        Me.datagridviewLicenciasEspeciales.AllowUserToAddRows = False
+        Me.datagridviewLicenciasEspeciales.AllowUserToDeleteRows = False
+        Me.datagridviewLicenciasEspeciales.AllowUserToResizeRows = False
+        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewLicenciasEspeciales.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        Me.datagridviewLicenciasEspeciales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewLicenciasEspeciales.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnLicenciasEspeciales_Fecha, Me.columnLicenciasEspeciales_FechaDesde, Me.columnLicenciasEspeciales_FechaHasta, Me.columnLicenciasEspeciales_PresentaCertificado})
+        Me.datagridviewLicenciasEspeciales.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.datagridviewLicenciasEspeciales.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewLicenciasEspeciales.Location = New System.Drawing.Point(87, 0)
+        Me.datagridviewLicenciasEspeciales.MultiSelect = False
+        Me.datagridviewLicenciasEspeciales.Name = "datagridviewLicenciasEspeciales"
+        Me.datagridviewLicenciasEspeciales.ReadOnly = True
+        Me.datagridviewLicenciasEspeciales.RowHeadersVisible = False
+        Me.datagridviewLicenciasEspeciales.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewLicenciasEspeciales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewLicenciasEspeciales.Size = New System.Drawing.Size(565, 408)
+        Me.datagridviewLicenciasEspeciales.TabIndex = 6
+        '
+        'columnLicenciasEspeciales_Fecha
+        '
+        Me.columnLicenciasEspeciales_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicenciasEspeciales_Fecha.DataPropertyName = "Fecha"
+        Me.columnLicenciasEspeciales_Fecha.HeaderText = "Fecha"
+        Me.columnLicenciasEspeciales_Fecha.Name = "columnLicenciasEspeciales_Fecha"
+        Me.columnLicenciasEspeciales_Fecha.ReadOnly = True
+        Me.columnLicenciasEspeciales_Fecha.Width = 62
+        '
+        'columnLicenciasEspeciales_FechaDesde
+        '
+        Me.columnLicenciasEspeciales_FechaDesde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicenciasEspeciales_FechaDesde.DataPropertyName = "FechaDesde"
+        Me.columnLicenciasEspeciales_FechaDesde.HeaderText = "Fecha desde"
+        Me.columnLicenciasEspeciales_FechaDesde.Name = "columnLicenciasEspeciales_FechaDesde"
+        Me.columnLicenciasEspeciales_FechaDesde.ReadOnly = True
+        Me.columnLicenciasEspeciales_FechaDesde.Width = 87
+        '
+        'columnLicenciasEspeciales_FechaHasta
+        '
+        Me.columnLicenciasEspeciales_FechaHasta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicenciasEspeciales_FechaHasta.DataPropertyName = "FechaHasta"
+        Me.columnLicenciasEspeciales_FechaHasta.HeaderText = "Fecha hasta"
+        Me.columnLicenciasEspeciales_FechaHasta.Name = "columnLicenciasEspeciales_FechaHasta"
+        Me.columnLicenciasEspeciales_FechaHasta.ReadOnly = True
+        Me.columnLicenciasEspeciales_FechaHasta.Width = 84
+        '
+        'columnLicenciasEspeciales_PresentaCertificado
+        '
+        Me.columnLicenciasEspeciales_PresentaCertificado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnLicenciasEspeciales_PresentaCertificado.DataPropertyName = "PresentaCertificado"
+        Me.columnLicenciasEspeciales_PresentaCertificado.HeaderText = "Presenta certificado"
+        Me.columnLicenciasEspeciales_PresentaCertificado.Name = "columnLicenciasEspeciales_PresentaCertificado"
+        Me.columnLicenciasEspeciales_PresentaCertificado.ReadOnly = True
+        Me.columnLicenciasEspeciales_PresentaCertificado.Width = 96
+        '
+        'toolstripLicenciasEspeciales
+        '
+        Me.toolstripLicenciasEspeciales.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripLicenciasEspeciales.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripLicenciasEspeciales.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripLicenciasEspeciales.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonLicenciasEspeciales_Agregar, Me.buttonLicenciasEspeciales_Editar, Me.buttonLicenciasEspeciales_Eliminar})
+        Me.toolstripLicenciasEspeciales.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.toolstripLicenciasEspeciales.Location = New System.Drawing.Point(0, 0)
+        Me.toolstripLicenciasEspeciales.Name = "toolstripLicenciasEspeciales"
+        Me.toolstripLicenciasEspeciales.Size = New System.Drawing.Size(87, 408)
+        Me.toolstripLicenciasEspeciales.TabIndex = 7
+        '
+        'buttonLicenciasEspeciales_Agregar
+        '
+        Me.buttonLicenciasEspeciales_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonLicenciasEspeciales_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicenciasEspeciales_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicenciasEspeciales_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicenciasEspeciales_Agregar.Name = "buttonLicenciasEspeciales_Agregar"
+        Me.buttonLicenciasEspeciales_Agregar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicenciasEspeciales_Agregar.Text = "Agregar"
+        '
+        'buttonLicenciasEspeciales_Editar
+        '
+        Me.buttonLicenciasEspeciales_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonLicenciasEspeciales_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicenciasEspeciales_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicenciasEspeciales_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicenciasEspeciales_Editar.Name = "buttonLicenciasEspeciales_Editar"
+        Me.buttonLicenciasEspeciales_Editar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicenciasEspeciales_Editar.Text = "Editar"
+        '
+        'buttonLicenciasEspeciales_Eliminar
+        '
+        Me.buttonLicenciasEspeciales_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonLicenciasEspeciales_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.buttonLicenciasEspeciales_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonLicenciasEspeciales_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonLicenciasEspeciales_Eliminar.Name = "buttonLicenciasEspeciales_Eliminar"
+        Me.buttonLicenciasEspeciales_Eliminar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonLicenciasEspeciales_Eliminar.Text = "Eliminar"
+        '
         'tabpageSanciones
         '
         Me.tabpageSanciones.Controls.Add(Me.datagridviewSanciones)
         Me.tabpageSanciones.Controls.Add(Me.toolstripSanciones)
         Me.tabpageSanciones.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageSanciones.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageSanciones.Name = "tabpageSanciones"
-        Me.tabpageSanciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageSanciones.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageSanciones.Size = New System.Drawing.Size(652, 408)
         Me.tabpageSanciones.TabIndex = 14
         Me.tabpageSanciones.Text = "Sanciones"
         Me.tabpageSanciones.UseVisualStyleBackColor = True
@@ -3035,23 +3191,23 @@ Partial Class formPersona
         Me.datagridviewSanciones.AllowUserToAddRows = False
         Me.datagridviewSanciones.AllowUserToDeleteRows = False
         Me.datagridviewSanciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle18
         Me.datagridviewSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
         Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewSanciones.Location = New System.Drawing.Point(93, 3)
+        Me.datagridviewSanciones.Location = New System.Drawing.Point(90, 0)
         Me.datagridviewSanciones.MultiSelect = False
         Me.datagridviewSanciones.Name = "datagridviewSanciones"
         Me.datagridviewSanciones.ReadOnly = True
         Me.datagridviewSanciones.RowHeadersVisible = False
         Me.datagridviewSanciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewSanciones.Size = New System.Drawing.Size(556, 393)
+        Me.datagridviewSanciones.Size = New System.Drawing.Size(562, 408)
         Me.datagridviewSanciones.TabIndex = 6
         '
         'columnSanciones_SolicitudFecha
@@ -3079,9 +3235,9 @@ Partial Class formPersona
         Me.toolstripSanciones.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar, Me.buttonSanciones_Imprimir})
         Me.toolstripSanciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripSanciones.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripSanciones.Location = New System.Drawing.Point(0, 0)
         Me.toolstripSanciones.Name = "toolstripSanciones"
-        Me.toolstripSanciones.Size = New System.Drawing.Size(90, 393)
+        Me.toolstripSanciones.Size = New System.Drawing.Size(90, 408)
         Me.toolstripSanciones.TabIndex = 7
         '
         'buttonSanciones_Agregar
@@ -3128,9 +3284,9 @@ Partial Class formPersona
         Me.tabpageCapacitaciones.Controls.Add(Me.datagridviewCapacitaciones)
         Me.tabpageCapacitaciones.Controls.Add(Me.toolstripCapacitaciones)
         Me.tabpageCapacitaciones.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageCapacitaciones.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageCapacitaciones.Name = "tabpageCapacitaciones"
-        Me.tabpageCapacitaciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageCapacitaciones.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageCapacitaciones.Size = New System.Drawing.Size(652, 408)
         Me.tabpageCapacitaciones.TabIndex = 15
         Me.tabpageCapacitaciones.Text = "Cursos"
         Me.tabpageCapacitaciones.UseVisualStyleBackColor = True
@@ -3140,23 +3296,23 @@ Partial Class formPersona
         Me.datagridviewCapacitaciones.AllowUserToAddRows = False
         Me.datagridviewCapacitaciones.AllowUserToDeleteRows = False
         Me.datagridviewCapacitaciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCapacitaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCapacitaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
         Me.datagridviewCapacitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewCapacitaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCapacitaciones_Fecha, Me.columnCapacitaciones_CursoNombre})
         Me.datagridviewCapacitaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewCapacitaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewCapacitaciones.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewCapacitaciones.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewCapacitaciones.MultiSelect = False
         Me.datagridviewCapacitaciones.Name = "datagridviewCapacitaciones"
         Me.datagridviewCapacitaciones.ReadOnly = True
         Me.datagridviewCapacitaciones.RowHeadersVisible = False
         Me.datagridviewCapacitaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewCapacitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCapacitaciones.Size = New System.Drawing.Size(559, 393)
+        Me.datagridviewCapacitaciones.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewCapacitaciones.TabIndex = 6
         '
         'columnCapacitaciones_Fecha
@@ -3184,9 +3340,9 @@ Partial Class formPersona
         Me.toolstripCapacitaciones.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripCapacitaciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCapacitaciones_Agregar, Me.buttonCapacitaciones_Editar, Me.buttonCapacitaciones_Eliminar})
         Me.toolstripCapacitaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripCapacitaciones.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripCapacitaciones.Location = New System.Drawing.Point(0, 0)
         Me.toolstripCapacitaciones.Name = "toolstripCapacitaciones"
-        Me.toolstripCapacitaciones.Size = New System.Drawing.Size(87, 393)
+        Me.toolstripCapacitaciones.Size = New System.Drawing.Size(87, 408)
         Me.toolstripCapacitaciones.TabIndex = 7
         '
         'buttonCapacitaciones_Agregar
@@ -3224,9 +3380,9 @@ Partial Class formPersona
         Me.tabpageCalificaciones.Controls.Add(Me.datagridviewCalificaciones)
         Me.tabpageCalificaciones.Controls.Add(Me.toolstripCalificaciones)
         Me.tabpageCalificaciones.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageCalificaciones.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageCalificaciones.Name = "tabpageCalificaciones"
-        Me.tabpageCalificaciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageCalificaciones.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageCalificaciones.Size = New System.Drawing.Size(652, 408)
         Me.tabpageCalificaciones.TabIndex = 16
         Me.tabpageCalificaciones.Text = "Calificaciónes"
         Me.tabpageCalificaciones.UseVisualStyleBackColor = True
@@ -3236,32 +3392,32 @@ Partial Class formPersona
         Me.datagridviewCalificaciones.AllowUserToAddRows = False
         Me.datagridviewCalificaciones.AllowUserToDeleteRows = False
         Me.datagridviewCalificaciones.AllowUserToResizeRows = False
-        DataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewCalificaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewCalificaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle20
         Me.datagridviewCalificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
         Me.datagridviewCalificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewCalificaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCalificaciones_AnioInstancia, Me.columnCalificaciones_ConceptosCalificaciones})
         Me.datagridviewCalificaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewCalificaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewCalificaciones.Location = New System.Drawing.Point(93, 3)
+        Me.datagridviewCalificaciones.Location = New System.Drawing.Point(90, 0)
         Me.datagridviewCalificaciones.MultiSelect = False
         Me.datagridviewCalificaciones.Name = "datagridviewCalificaciones"
         Me.datagridviewCalificaciones.ReadOnly = True
         Me.datagridviewCalificaciones.RowHeadersVisible = False
         Me.datagridviewCalificaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewCalificaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewCalificaciones.Size = New System.Drawing.Size(556, 393)
+        Me.datagridviewCalificaciones.Size = New System.Drawing.Size(562, 408)
         Me.datagridviewCalificaciones.TabIndex = 6
         '
         'columnCalificaciones_AnioInstancia
         '
         Me.columnCalificaciones_AnioInstancia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCalificaciones_AnioInstancia.DataPropertyName = "AnioInstancia"
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCalificaciones_AnioInstancia.DefaultCellStyle = DataGridViewCellStyle21
         Me.columnCalificaciones_AnioInstancia.HeaderText = "Año - Instancia"
         Me.columnCalificaciones_AnioInstancia.MinimumWidth = 110
         Me.columnCalificaciones_AnioInstancia.Name = "columnCalificaciones_AnioInstancia"
@@ -3272,8 +3428,8 @@ Partial Class formPersona
         '
         Me.columnCalificaciones_ConceptosCalificaciones.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnCalificaciones_ConceptosCalificaciones.DataPropertyName = "ConceptosCalificaciones"
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnCalificaciones_ConceptosCalificaciones.DefaultCellStyle = DataGridViewCellStyle22
         Me.columnCalificaciones_ConceptosCalificaciones.HeaderText = "Conceptos y Calificaciones"
         Me.columnCalificaciones_ConceptosCalificaciones.Name = "columnCalificaciones_ConceptosCalificaciones"
         Me.columnCalificaciones_ConceptosCalificaciones.ReadOnly = True
@@ -3286,9 +3442,9 @@ Partial Class formPersona
         Me.toolstripCalificaciones.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripCalificaciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCalificaciones_Agregar, Me.buttonCalificaciones_Editar, Me.buttonCalificaciones_Eliminar, Me.buttonCalificaciones_Imprimir})
         Me.toolstripCalificaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripCalificaciones.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripCalificaciones.Location = New System.Drawing.Point(0, 0)
         Me.toolstripCalificaciones.Name = "toolstripCalificaciones"
-        Me.toolstripCalificaciones.Size = New System.Drawing.Size(90, 393)
+        Me.toolstripCalificaciones.Size = New System.Drawing.Size(90, 408)
         Me.toolstripCalificaciones.TabIndex = 7
         '
         'buttonCalificaciones_Agregar
@@ -3335,9 +3491,9 @@ Partial Class formPersona
         Me.tabpageExamenes.Controls.Add(Me.datagridviewExamenes)
         Me.tabpageExamenes.Controls.Add(Me.toolstripExamenes)
         Me.tabpageExamenes.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageExamenes.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageExamenes.Name = "tabpageExamenes"
-        Me.tabpageExamenes.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageExamenes.Size = New System.Drawing.Size(652, 399)
+        Me.tabpageExamenes.Size = New System.Drawing.Size(652, 408)
         Me.tabpageExamenes.TabIndex = 17
         Me.tabpageExamenes.Text = "Exámenes"
         Me.tabpageExamenes.UseVisualStyleBackColor = True
@@ -3347,23 +3503,23 @@ Partial Class formPersona
         Me.datagridviewExamenes.AllowUserToAddRows = False
         Me.datagridviewExamenes.AllowUserToDeleteRows = False
         Me.datagridviewExamenes.AllowUserToResizeRows = False
-        DataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewExamenes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewExamenes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle23
         Me.datagridviewExamenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewExamenes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnExamenes_AnioInstancia, Me.columnExamenes_Calificacion})
         Me.datagridviewExamenes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewExamenes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewExamenes.Location = New System.Drawing.Point(90, 3)
+        Me.datagridviewExamenes.Location = New System.Drawing.Point(87, 0)
         Me.datagridviewExamenes.MultiSelect = False
         Me.datagridviewExamenes.Name = "datagridviewExamenes"
         Me.datagridviewExamenes.ReadOnly = True
         Me.datagridviewExamenes.RowHeadersVisible = False
         Me.datagridviewExamenes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewExamenes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewExamenes.Size = New System.Drawing.Size(559, 393)
+        Me.datagridviewExamenes.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewExamenes.TabIndex = 6
         '
         'columnExamenes_AnioInstancia
@@ -3391,9 +3547,9 @@ Partial Class formPersona
         Me.toolstripExamenes.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripExamenes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonExamenes_Agregar, Me.buttonExamenes_Editar, Me.buttonExamenes_Eliminar})
         Me.toolstripExamenes.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripExamenes.Location = New System.Drawing.Point(3, 3)
+        Me.toolstripExamenes.Location = New System.Drawing.Point(0, 0)
         Me.toolstripExamenes.Name = "toolstripExamenes"
-        Me.toolstripExamenes.Size = New System.Drawing.Size(87, 393)
+        Me.toolstripExamenes.Size = New System.Drawing.Size(87, 408)
         Me.toolstripExamenes.TabIndex = 7
         '
         'buttonExamenes_Agregar
@@ -3443,7 +3599,7 @@ Partial Class formPersona
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(652, 395)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(652, 408)
         Me.tabpageNotasAuditoria.TabIndex = 7
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -3538,23 +3694,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'textboxTituloObtenido
-        '
-        Me.textboxTituloObtenido.Location = New System.Drawing.Point(147, 256)
-        Me.textboxTituloObtenido.MaxLength = 100
-        Me.textboxTituloObtenido.Name = "textboxTituloObtenido"
-        Me.textboxTituloObtenido.Size = New System.Drawing.Size(377, 20)
-        Me.textboxTituloObtenido.TabIndex = 25
-        '
-        'labelTituloObtenido
-        '
-        labelTituloObtenido.AutoSize = True
-        labelTituloObtenido.Location = New System.Drawing.Point(6, 259)
-        labelTituloObtenido.Name = "labelTituloObtenido"
-        labelTituloObtenido.Size = New System.Drawing.Size(82, 13)
-        labelTituloObtenido.TabIndex = 24
-        labelTituloObtenido.Text = "Título obtenido:"
         '
         'formPersona
         '
@@ -3651,6 +3790,11 @@ Partial Class formPersona
         CType(Me.datagridviewLicencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripLicencias.ResumeLayout(False)
         Me.toolstripLicencias.PerformLayout()
+        Me.tabpageLicenciasEspeciales.ResumeLayout(False)
+        Me.tabpageLicenciasEspeciales.PerformLayout()
+        CType(Me.datagridviewLicenciasEspeciales, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripLicenciasEspeciales.ResumeLayout(False)
+        Me.toolstripLicenciasEspeciales.PerformLayout()
         Me.tabpageSanciones.ResumeLayout(False)
         Me.tabpageSanciones.PerformLayout()
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3897,4 +4041,14 @@ Partial Class formPersona
     Friend WithEvents integertextboxReingresoFormacionHoras As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxReingresoFormacionMeses As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents textboxTituloObtenido As TextBox
+    Friend WithEvents tabpageLicenciasEspeciales As TabPage
+    Friend WithEvents datagridviewLicenciasEspeciales As DataGridView
+    Friend WithEvents toolstripLicenciasEspeciales As ToolStrip
+    Friend WithEvents buttonLicenciasEspeciales_Agregar As ToolStripButton
+    Friend WithEvents buttonLicenciasEspeciales_Editar As ToolStripButton
+    Friend WithEvents buttonLicenciasEspeciales_Eliminar As ToolStripButton
+    Friend WithEvents columnLicenciasEspeciales_Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnLicenciasEspeciales_FechaDesde As DataGridViewTextBoxColumn
+    Friend WithEvents columnLicenciasEspeciales_FechaHasta As DataGridViewTextBoxColumn
+    Friend WithEvents columnLicenciasEspeciales_PresentaCertificado As DataGridViewCheckBoxColumn
 End Class

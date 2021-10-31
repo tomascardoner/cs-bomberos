@@ -5,9 +5,9 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaActual As Persona
 
-    Private mIsLoading As Boolean = False
-    Private mIsNew As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mIsNew As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
@@ -159,6 +159,7 @@
         ' Solapas grillas 2
         toolstripVacunas.Enabled = Not mEditMode
         toolstripLicencias.Enabled = Not mEditMode
+        toolstripLicenciasEspeciales.Enabled = Not mEditMode
         toolstripSanciones.Enabled = Not mEditMode
         toolstripCapacitaciones.Enabled = Not mEditMode
         toolstripCalificaciones.Enabled = Not mEditMode
@@ -212,6 +213,9 @@
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA, False) Then
             tabcontrolMain.HideTabPageByName(tabpageLicencias.Name)
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIAESPECIAL, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageLicenciasEspeciales.Name)
+        End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_SANCION, False) Then
             tabcontrolMain.HideTabPageByName(tabpageSanciones.Name)
         End If
@@ -233,6 +237,7 @@
         DataGridSetAppearance(datagridviewVehiculos)
         DataGridSetAppearance(datagridviewVacunas)
         DataGridSetAppearance(datagridviewLicencias)
+        DataGridSetAppearance(datagridviewLicenciasEspeciales)
         DataGridSetAppearance(datagridviewSanciones)
         DataGridSetAppearance(datagridviewCapacitaciones)
         DataGridSetAppearance(datagridviewCalificaciones)
@@ -245,6 +250,7 @@
         mPersonaActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
@@ -257,7 +263,7 @@
             Else
                 Dim aFoto As Byte()
                 aFoto = .Foto
-                Dim memstr As New System.IO.MemoryStream(aFoto, 0, aFoto.Length)
+                Dim memstr As New IO.MemoryStream(aFoto, 0, aFoto.Length)
                 memstr.Write(aFoto, 0, aFoto.Length)
                 pictureboxFoto.Image = Image.FromStream(memstr, True)
             End If
@@ -572,6 +578,11 @@
                     If tabpageLicencias.Tag Is Nothing Then
                         Licencias_RefreshData()
                         tabpageLicencias.Tag = "REFRESHED"
+                    End If
+                Case tabpageLicenciasEspeciales.Name
+                    If tabpageLicenciasEspeciales.Tag Is Nothing Then
+                        LicenciasEspeciales_RefreshData()
+                        tabpageLicenciasEspeciales.Tag = "REFRESHED"
                     End If
                 Case tabpageSanciones.Name
                     If tabpageSanciones.Tag Is Nothing Then
@@ -1935,6 +1946,126 @@
             End If
         End If
     End Sub
+#End Region
+
+#Region "Licencias Especiales"
+
+    Friend Class LicenciasEspeciales_GridRowData
+        Public Property IDLicenciaEspecial As Short
+        Public Property Fecha As Date
+        Public Property FechaDesde As Date
+        Public Property FechaHasta As Date
+        Public Property PresentaCertificado As Boolean
+    End Class
+
+    Friend Sub LicenciasEspeciales_RefreshData(Optional ByVal PositionIDLicenciaEspecial As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+        Dim listLicencias As List(Of LicenciasEspeciales_GridRowData)
+
+        If RestoreCurrentPosition Then
+            If datagridviewLicenciasEspeciales.CurrentRow Is Nothing Then
+                PositionIDLicenciaEspecial = 0
+            Else
+                PositionIDLicenciaEspecial = CType(datagridviewLicenciasEspeciales.CurrentRow.DataBoundItem, LicenciasEspeciales_GridRowData).IDLicenciaEspecial
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listLicencias = (From ple In mdbContext.PersonaLicenciaEspecial
+                             Where ple.IDPersona = mPersonaActual.IDPersona
+                             Order By ple.Fecha Descending
+                             Select New LicenciasEspeciales_GridRowData With {.IDLicenciaEspecial = ple.IDLicenciaEspecial, .Fecha = ple.Fecha, .FechaDesde = ple.FechaDesde, .FechaHasta = ple.FechaHasta, .PresentaCertificado = ple.PresentaCertificado}).ToList
+
+            datagridviewLicenciasEspeciales.AutoGenerateColumns = False
+            datagridviewLicenciasEspeciales.DataSource = listLicencias
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Licencias Especiales.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If PositionIDLicenciaEspecial <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In datagridviewLicenciasEspeciales.Rows
+                If CType(CurrentRowChecked.DataBoundItem, LicenciasEspeciales_GridRowData).IDLicenciaEspecial = PositionIDLicenciaEspecial Then
+                    datagridviewLicenciasEspeciales.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub LicenciasEspeciales_Agregar(sender As Object, e As EventArgs) Handles buttonLicenciasEspeciales_Agregar.Click
+        If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIAESPECIAL_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaLicenciaEspecial.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LicenciasEspeciales_Editar(sender As Object, e As EventArgs) Handles buttonLicenciasEspeciales_Editar.Click
+        If datagridviewLicenciasEspeciales.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia Especial para editar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIAESPECIAL_EDITAR) Then
+                Me.Cursor = Cursors.WaitCursor
+
+                formPersonaLicenciaEspecial.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewLicenciasEspeciales.SelectedRows(0).DataBoundItem, LicenciasEspeciales_GridRowData).IDLicenciaEspecial)
+
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub LicenciasEspeciales_Eliminar(sender As Object, e As EventArgs) Handles buttonLicenciasEspeciales_Eliminar.Click
+        If datagridviewLicenciasEspeciales.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia Especial para eliminar.", vbInformation, My.Application.Info.Title)
+        Else
+            If Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIAESPECIAL_ELIMINAR) Then
+                Dim GridRowDataActual As LicenciasEspeciales_GridRowData
+                Dim Mensaje As String
+
+                GridRowDataActual = CType(datagridviewLicenciasEspeciales.SelectedRows(0).DataBoundItem, LicenciasEspeciales_GridRowData)
+
+                Mensaje = String.Format("Se eliminará la Licencia Especial seleccionada.{0}{0}Fecha: {1}{0}Fecha desde: {2}{0}Fecha hasta: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha.ToShortDateString, GridRowDataActual.FechaDesde.ToShortDateString, GridRowDataActual.FechaHasta.ToShortDateString)
+                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                    Me.Cursor = Cursors.WaitCursor
+
+                    Dim PersonaLicenciaEspecialEliminar As PersonaLicenciaEspecial
+                    PersonaLicenciaEspecialEliminar = mdbContext.PersonaLicenciaEspecial.Find(mPersonaActual.IDPersona, GridRowDataActual.IDLicenciaEspecial)
+                    mdbContext.PersonaLicenciaEspecial.Remove(PersonaLicenciaEspecialEliminar)
+                    mdbContext.SaveChanges()
+                    PersonaLicenciaEspecialEliminar = Nothing
+
+                    LicenciasEspeciales_RefreshData()
+
+                    Me.Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub LicenciasEspeciales_Ver(sender As Object, e As EventArgs) Handles datagridviewLicenciasEspeciales.DoubleClick
+        If mEditMode Then
+            ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
+            Exit Sub
+        End If
+        If datagridviewLicenciasEspeciales.CurrentRow Is Nothing Then
+            MsgBox("No hay ninguna Licencia Especial para ver.", vbInformation, My.Application.Info.Title)
+        Else
+            Me.Cursor = Cursors.WaitCursor
+
+            formPersonaLicenciaEspecial.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewLicenciasEspeciales.SelectedRows(0).DataBoundItem, LicenciasEspeciales_GridRowData).IDLicenciaEspecial)
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
 #End Region
 
 #Region "Sanciones"

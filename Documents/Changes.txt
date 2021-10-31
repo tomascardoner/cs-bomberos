@@ -2,7 +2,8 @@
 	- Se agregó el campo ResolucionNumero a las sanciones
 	- Se agregó la tabla de Puntajes para las Academias
 	- Se renombraron los campos de Puntajes de los Siniestros
-
+	- Se agregaron las Licencias Especiales
+	- Se agrego el reporte Personas - Ficha de baja
 
 2021-10-03
 	- Se corrigió el código de Cuartel (trim) en el ABM de Cuarteles
