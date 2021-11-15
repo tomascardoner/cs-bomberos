@@ -1,3 +1,18 @@
+2021-11-08
+	- Actualizar funciones de SQL
+	- Crear sp usp_Personas_Puntajes
+	- Agregar el parámetro SINIESTRO_ASISTENCIATIPO_PRESENTE_ID - NumeroEntero: 1
+	- Tabla AcademiaAsistenciaTipoPuntaje
+		- Agregar el campo IDAcademiaAsistenciaTipoPuntaje tinyint como PK
+		- Agregar un índice único AK__AcademiaAsistenciaTipoPuntaje__FechaInicio
+		- Modificar el tipo de dato del puntaje a decimal(4, 2)
+	- Tabla SiniestroAsistenciaTipoPuntaje
+		- Agregar el campo IDSiniestroAsistenciaTipoPuntaje tinyint como PK
+		- Agregar un índice único AK__SiniestroAsistenciaTipoPuntaje__FechaInicio
+		- Modificar el tipo de dato de los puntajes a decimal(4, 2)
+		- Borrar el campo PorcentajeDescuentoPorSalidaAnticipada
+
+
 2021-10-30
 	- Tabla PersonaSancion: agregar el campo ResolucionNumero varchar(10) null después de ResolucionFecha
 	- Agregar la tabla AcademiaAsistenciaTipoPuntaje

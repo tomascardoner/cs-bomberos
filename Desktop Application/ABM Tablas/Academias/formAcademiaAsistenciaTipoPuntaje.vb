@@ -16,12 +16,12 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef AcademiaAsistenciaTipoActual As AcademiaAsistenciaTipo, ByVal fechaInicio As Date)
+    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef AcademiaAsistenciaTipoActual As AcademiaAsistenciaTipo, ByVal idAcademiaAsistenciaTipoPuntaje As Byte)
         mParentForm = parentForm
         mIsLoading = True
         mParentEditMode = parentEditMode
         mEditMode = editMode
-        mIsNew = (fechaInicio = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE)
+        mIsNew = (idAcademiaAsistenciaTipoPuntaje = 0)
 
         mAcademiaAsistenciaTipoActual = AcademiaAsistenciaTipoActual
         If mIsNew Then
@@ -30,7 +30,7 @@
             mAcademiaAsistenciaTipoPuntajeActual.FechaInicio = DateAndTime.Today
             mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Add(mAcademiaAsistenciaTipoPuntajeActual)
         Else
-            mAcademiaAsistenciaTipoPuntajeActual = mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Single(Function(satp) satp.FechaInicio = fechaInicio)
+            mAcademiaAsistenciaTipoPuntajeActual = mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Single(Function(satp) satp.IDAcademiaAsistenciaTipoPuntaje = idAcademiaAsistenciaTipoPuntaje)
         End If
 
         CS_Form.CenterToParent(mParentForm, Me)
@@ -54,8 +54,8 @@
         buttonEditar.Visible = (mParentEditMode And mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        datetimepickerFechaInicio.Enabled = (mIsNew And mEditMode)
-        updownPuntaje.Enabled = mEditMode
+        datetimepickerFechaInicio.Enabled = mEditMode
+        doubletextboxPuntaje.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -82,16 +82,14 @@
     Friend Sub SetDataFromObjectToControls()
         With mAcademiaAsistenciaTipoPuntajeActual
             datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInicio)
-            updownPuntaje.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Puntaje)
+            doubletextboxPuntaje.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Puntaje)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mAcademiaAsistenciaTipoPuntajeActual
-            If mIsNew Then
-                .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
-            End If
-            .Puntaje = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntaje.Value, -1).Value
+            .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
+            .Puntaje = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntaje.Text).Value
         End With
     End Sub
 
@@ -116,7 +114,7 @@
         End Select
     End Sub
 
-    Private Sub UpDowns_Enter(sender As Object, e As EventArgs) Handles updownPuntaje.Enter
+    Private Sub UpDowns_Enter(sender As Object, e As EventArgs)
         Dim nud As NumericUpDown
 
         nud = CType(sender, NumericUpDown)
@@ -142,8 +140,17 @@
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()
 
+        ' Si es nuevo, asigno un id
+        If mIsNew Then
+            If mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Any() Then
+                mAcademiaAsistenciaTipoPuntajeActual.IDAcademiaAsistenciaTipoPuntaje = CByte(mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Max(Function(aatp) aatp.IDAcademiaAsistenciaTipoPuntaje) + 1)
+            Else
+                mAcademiaAsistenciaTipoPuntajeActual.IDAcademiaAsistenciaTipoPuntaje = 1
+            End If
+        End If
+
         ' Refresco la lista para mostrar los cambios
-        CType(mParentForm, formAcademiaAsistenciaTipo).PuntajesRefreshData(mAcademiaAsistenciaTipoPuntajeActual.FechaInicio)
+        CType(mParentForm, formAcademiaAsistenciaTipo).PuntajesRefreshData(mAcademiaAsistenciaTipoPuntajeActual.IDAcademiaAsistenciaTipoPuntaje)
 
         Me.Close()
     End Sub

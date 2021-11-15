@@ -31,7 +31,6 @@ Partial Class formSiniestroAsistenciaTipo
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -72,7 +71,6 @@ Partial Class formSiniestroAsistenciaTipo
         Me.columnPuntajeClaveAzul = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnPuntajeClaveNaranja = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnPuntajeClaveRoja = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -88,8 +86,9 @@ Partial Class formSiniestroAsistenciaTipo
         '
         'labelEsActivo
         '
+        labelEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(7, 85)
+        labelEsActivo.Location = New System.Drawing.Point(6, 90)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -97,8 +96,9 @@ Partial Class formSiniestroAsistenciaTipo
         '
         'labelModificacion
         '
+        labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(7, 163)
+        labelModificacion.Location = New System.Drawing.Point(6, 168)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 9
@@ -106,8 +106,9 @@ Partial Class formSiniestroAsistenciaTipo
         '
         'labelCreacion
         '
+        labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(7, 137)
+        labelCreacion.Location = New System.Drawing.Point(6, 142)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
@@ -159,7 +160,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(599, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(544, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'tabcontrolMain
@@ -174,7 +175,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(577, 271)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(522, 207)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -194,7 +195,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(569, 242)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(514, 178)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -312,7 +313,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabpagePuntajes.Location = New System.Drawing.Point(4, 25)
         Me.tabpagePuntajes.Name = "tabpagePuntajes"
         Me.tabpagePuntajes.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpagePuntajes.Size = New System.Drawing.Size(569, 242)
+        Me.tabpagePuntajes.Size = New System.Drawing.Size(514, 178)
         Me.tabpagePuntajes.TabIndex = 2
         Me.tabpagePuntajes.Text = "Puntajes"
         Me.tabpagePuntajes.UseVisualStyleBackColor = True
@@ -328,7 +329,7 @@ Partial Class formSiniestroAsistenciaTipo
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewPuntajes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewPuntajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewPuntajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaInicio, Me.columnPuntajeClaveVerde, Me.columnPuntajeClaveAzul, Me.columnPuntajeClaveNaranja, Me.columnPuntajeClaveRoja, Me.columnPorcentajeDescuentoPorSalidaAnticipada})
+        Me.datagridviewPuntajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaInicio, Me.columnPuntajeClaveVerde, Me.columnPuntajeClaveAzul, Me.columnPuntajeClaveNaranja, Me.columnPuntajeClaveRoja})
         Me.datagridviewPuntajes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewPuntajes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewPuntajes.Location = New System.Drawing.Point(90, 3)
@@ -338,7 +339,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.datagridviewPuntajes.RowHeadersVisible = False
         Me.datagridviewPuntajes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewPuntajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewPuntajes.Size = New System.Drawing.Size(476, 236)
+        Me.datagridviewPuntajes.Size = New System.Drawing.Size(421, 172)
         Me.datagridviewPuntajes.TabIndex = 10
         '
         'toolstripPuntajes
@@ -350,7 +351,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.toolstripPuntajes.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripPuntajes.Location = New System.Drawing.Point(3, 3)
         Me.toolstripPuntajes.Name = "toolstripPuntajes"
-        Me.toolstripPuntajes.Size = New System.Drawing.Size(87, 236)
+        Me.toolstripPuntajes.Size = New System.Drawing.Size(87, 172)
         Me.toolstripPuntajes.TabIndex = 11
         '
         'buttonPuntajesAgregar
@@ -400,15 +401,16 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(569, 242)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(514, 178)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
         'labelID
         '
+        Me.labelID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelID.AutoSize = True
-        Me.labelID.Location = New System.Drawing.Point(7, 111)
+        Me.labelID.Location = New System.Drawing.Point(6, 116)
         Me.labelID.Name = "labelID"
         Me.labelID.Size = New System.Drawing.Size(21, 13)
         Me.labelID.TabIndex = 4
@@ -418,7 +420,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.checkboxEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(116, 137)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(116, 89)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -427,7 +429,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxID
         '
         Me.textboxID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxID.Location = New System.Drawing.Point(115, 161)
+        Me.textboxID.Location = New System.Drawing.Point(115, 113)
         Me.textboxID.MaxLength = 10
         Me.textboxID.Name = "textboxID"
         Me.textboxID.ReadOnly = True
@@ -439,7 +441,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 213)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 165)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -449,7 +451,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxUsuarioCreacion
         '
         Me.textboxUsuarioCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(242, 187)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(242, 139)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -459,7 +461,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxFechaHoraModificacion
         '
         Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(115, 213)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(115, 165)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -469,7 +471,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxFechaHoraCreacion
         '
         Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(115, 187)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(115, 139)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -486,7 +488,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(444, 125)
+        Me.textboxNotas.Size = New System.Drawing.Size(389, 77)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -514,8 +516,8 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.columnPuntajeClaveVerde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnPuntajeClaveVerde.DataPropertyName = "PuntajeClaveVerde"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Format = "N0"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N2"
         DataGridViewCellStyle3.NullValue = Nothing
         Me.columnPuntajeClaveVerde.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnPuntajeClaveVerde.HeaderText = "Verde"
@@ -527,8 +529,8 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.columnPuntajeClaveAzul.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnPuntajeClaveAzul.DataPropertyName = "PuntajeClaveAzul"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Format = "N0"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N2"
         DataGridViewCellStyle4.NullValue = Nothing
         Me.columnPuntajeClaveAzul.DefaultCellStyle = DataGridViewCellStyle4
         Me.columnPuntajeClaveAzul.HeaderText = "Azul"
@@ -540,8 +542,8 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.columnPuntajeClaveNaranja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnPuntajeClaveNaranja.DataPropertyName = "PuntajeClaveNaranja"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.Format = "N0"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N2"
         DataGridViewCellStyle5.NullValue = Nothing
         Me.columnPuntajeClaveNaranja.DefaultCellStyle = DataGridViewCellStyle5
         Me.columnPuntajeClaveNaranja.HeaderText = "Naranja"
@@ -553,8 +555,8 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.columnPuntajeClaveRoja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnPuntajeClaveRoja.DataPropertyName = "PuntajeClaveRoja"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle6.Format = "N0"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "N2"
         DataGridViewCellStyle6.NullValue = Nothing
         Me.columnPuntajeClaveRoja.DefaultCellStyle = DataGridViewCellStyle6
         Me.columnPuntajeClaveRoja.HeaderText = "Roja"
@@ -562,24 +564,11 @@ Partial Class formSiniestroAsistenciaTipo
         Me.columnPuntajeClaveRoja.ReadOnly = True
         Me.columnPuntajeClaveRoja.Width = 54
         '
-        'columnPorcentajeDescuentoPorSalidaAnticipada
-        '
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.DataPropertyName = "PorcentajeDescuentoPorSalidaAnticipada"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.Format = "N0"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.DefaultCellStyle = DataGridViewCellStyle7
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.HeaderText = "% descuento por salida anticipada"
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.Name = "columnPorcentajeDescuentoPorSalidaAnticipada"
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.ReadOnly = True
-        Me.columnPorcentajeDescuentoPorSalidaAnticipada.Width = 132
-        '
         'formSiniestroAsistenciaTipo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(599, 325)
+        Me.ClientSize = New System.Drawing.Size(544, 261)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -647,5 +636,4 @@ Partial Class formSiniestroAsistenciaTipo
     Friend WithEvents columnPuntajeClaveAzul As DataGridViewTextBoxColumn
     Friend WithEvents columnPuntajeClaveNaranja As DataGridViewTextBoxColumn
     Friend WithEvents columnPuntajeClaveRoja As DataGridViewTextBoxColumn
-    Friend WithEvents columnPorcentajeDescuentoPorSalidaAnticipada As DataGridViewTextBoxColumn
 End Class

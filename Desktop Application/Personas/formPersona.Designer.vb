@@ -1423,7 +1423,7 @@ Partial Class formPersona
         '
         'doubletextboxAltura
         '
-        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxAltura.DoubleValue = 0R
         Me.doubletextboxAltura.Location = New System.Drawing.Point(334, 71)
@@ -1432,14 +1432,14 @@ Partial Class formPersona
         Me.doubletextboxAltura.MinValue = 0R
         Me.doubletextboxAltura.Name = "doubletextboxAltura"
         Me.doubletextboxAltura.NullString = ""
-        Me.doubletextboxAltura.Size = New System.Drawing.Size(55, 20)
+        Me.doubletextboxAltura.Size = New System.Drawing.Size(33, 20)
         Me.doubletextboxAltura.TabIndex = 10
         Me.doubletextboxAltura.Text = "0,00"
         Me.doubletextboxAltura.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'integertextboxPeso
         '
-        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxPeso.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxPeso.IntegerValue = CType(0, Long)
@@ -1626,7 +1626,7 @@ Partial Class formPersona
         '
         'integertextboxReingresoFormacionHoras
         '
-        Me.integertextboxReingresoFormacionHoras.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.integertextboxReingresoFormacionHoras.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.integertextboxReingresoFormacionHoras.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxReingresoFormacionHoras.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxReingresoFormacionHoras.IntegerValue = CType(0, Long)
@@ -1643,7 +1643,7 @@ Partial Class formPersona
         '
         'integertextboxReingresoFormacionMeses
         '
-        Me.integertextboxReingresoFormacionMeses.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.integertextboxReingresoFormacionMeses.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.integertextboxReingresoFormacionMeses.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxReingresoFormacionMeses.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxReingresoFormacionMeses.IntegerValue = CType(0, Long)
@@ -1686,7 +1686,7 @@ Partial Class formPersona
         '
         'integertextboxCursoIngresoHoras
         '
-        Me.integertextboxCursoIngresoHoras.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.integertextboxCursoIngresoHoras.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.integertextboxCursoIngresoHoras.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxCursoIngresoHoras.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxCursoIngresoHoras.IntegerValue = CType(0, Long)
@@ -1703,7 +1703,7 @@ Partial Class formPersona
         '
         'integertextboxCursoIngresoMeses
         '
-        Me.integertextboxCursoIngresoMeses.BeforeTouchSize = New System.Drawing.Size(29, 20)
+        Me.integertextboxCursoIngresoMeses.BeforeTouchSize = New System.Drawing.Size(33, 20)
         Me.integertextboxCursoIngresoMeses.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxCursoIngresoMeses.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxCursoIngresoMeses.IntegerValue = CType(0, Long)

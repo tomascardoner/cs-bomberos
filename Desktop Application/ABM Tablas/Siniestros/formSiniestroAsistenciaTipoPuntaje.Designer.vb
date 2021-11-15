@@ -35,19 +35,16 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.labelPuntajeClaveRoja = New System.Windows.Forms.Label()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.datetimepickerFechaInicio = New System.Windows.Forms.DateTimePicker()
-        Me.updownPuntajeClaveVerde = New System.Windows.Forms.NumericUpDown()
-        Me.updownPuntajeClaveAzul = New System.Windows.Forms.NumericUpDown()
-        Me.updownPuntajeClaveNaranja = New System.Windows.Forms.NumericUpDown()
-        Me.updownPuntajeClaveRoja = New System.Windows.Forms.NumericUpDown()
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada = New System.Windows.Forms.NumericUpDown()
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada = New System.Windows.Forms.Label()
+        Me.doubletextboxPuntajeClaveVerde = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.doubletextboxPuntajeClaveAzul = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.doubletextboxPuntajeClaveNaranja = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.doubletextboxPuntajeClaveRoja = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         labelFechaInicio = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
-        CType(Me.updownPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.updownPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.updownPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.updownPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.updownPorcentajeDescuentoPorSalidaAnticipada, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelFechaInicio
@@ -105,8 +102,8 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(326, 39)
-        Me.toolstripMain.TabIndex = 12
+        Me.toolstripMain.Size = New System.Drawing.Size(276, 39)
+        Me.toolstripMain.TabIndex = 10
         '
         'labelPuntajeClaveNaranja
         '
@@ -147,71 +144,84 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         'datetimepickerFechaInicio
         '
         Me.datetimepickerFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(212, 51)
+        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(139, 52)
         Me.datetimepickerFechaInicio.Name = "datetimepickerFechaInicio"
         Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(94, 20)
         Me.datetimepickerFechaInicio.TabIndex = 1
         '
-        'updownPuntajeClaveVerde
+        'doubletextboxPuntajeClaveVerde
         '
-        Me.updownPuntajeClaveVerde.Location = New System.Drawing.Point(212, 77)
-        Me.updownPuntajeClaveVerde.Name = "updownPuntajeClaveVerde"
-        Me.updownPuntajeClaveVerde.Size = New System.Drawing.Size(46, 20)
-        Me.updownPuntajeClaveVerde.TabIndex = 3
-        Me.updownPuntajeClaveVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.doubletextboxPuntajeClaveVerde.BeforeTouchSize = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveVerde.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPuntajeClaveVerde.DoubleValue = 0R
+        Me.doubletextboxPuntajeClaveVerde.Location = New System.Drawing.Point(139, 78)
+        Me.doubletextboxPuntajeClaveVerde.MaxValue = 99.99R
+        Me.doubletextboxPuntajeClaveVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPuntajeClaveVerde.MinValue = 0R
+        Me.doubletextboxPuntajeClaveVerde.Name = "doubletextboxPuntajeClaveVerde"
+        Me.doubletextboxPuntajeClaveVerde.NullString = ""
+        Me.doubletextboxPuntajeClaveVerde.Size = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveVerde.TabIndex = 3
+        Me.doubletextboxPuntajeClaveVerde.Text = "0,00"
+        Me.doubletextboxPuntajeClaveVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'updownPuntajeClaveAzul
+        'doubletextboxPuntajeClaveAzul
         '
-        Me.updownPuntajeClaveAzul.Location = New System.Drawing.Point(212, 103)
-        Me.updownPuntajeClaveAzul.Name = "updownPuntajeClaveAzul"
-        Me.updownPuntajeClaveAzul.Size = New System.Drawing.Size(46, 20)
-        Me.updownPuntajeClaveAzul.TabIndex = 5
-        Me.updownPuntajeClaveAzul.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.doubletextboxPuntajeClaveAzul.BeforeTouchSize = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveAzul.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPuntajeClaveAzul.DoubleValue = 0R
+        Me.doubletextboxPuntajeClaveAzul.Location = New System.Drawing.Point(139, 104)
+        Me.doubletextboxPuntajeClaveAzul.MaxValue = 99.99R
+        Me.doubletextboxPuntajeClaveAzul.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPuntajeClaveAzul.MinValue = 0R
+        Me.doubletextboxPuntajeClaveAzul.Name = "doubletextboxPuntajeClaveAzul"
+        Me.doubletextboxPuntajeClaveAzul.NullString = ""
+        Me.doubletextboxPuntajeClaveAzul.Size = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveAzul.TabIndex = 5
+        Me.doubletextboxPuntajeClaveAzul.Text = "0,00"
+        Me.doubletextboxPuntajeClaveAzul.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'updownPuntajeClaveNaranja
+        'doubletextboxPuntajeClaveNaranja
         '
-        Me.updownPuntajeClaveNaranja.Location = New System.Drawing.Point(212, 129)
-        Me.updownPuntajeClaveNaranja.Name = "updownPuntajeClaveNaranja"
-        Me.updownPuntajeClaveNaranja.Size = New System.Drawing.Size(46, 20)
-        Me.updownPuntajeClaveNaranja.TabIndex = 7
-        Me.updownPuntajeClaveNaranja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.doubletextboxPuntajeClaveNaranja.BeforeTouchSize = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveNaranja.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPuntajeClaveNaranja.DoubleValue = 0R
+        Me.doubletextboxPuntajeClaveNaranja.Location = New System.Drawing.Point(139, 130)
+        Me.doubletextboxPuntajeClaveNaranja.MaxValue = 99.99R
+        Me.doubletextboxPuntajeClaveNaranja.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPuntajeClaveNaranja.MinValue = 0R
+        Me.doubletextboxPuntajeClaveNaranja.Name = "doubletextboxPuntajeClaveNaranja"
+        Me.doubletextboxPuntajeClaveNaranja.NullString = ""
+        Me.doubletextboxPuntajeClaveNaranja.Size = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveNaranja.TabIndex = 7
+        Me.doubletextboxPuntajeClaveNaranja.Text = "0,00"
+        Me.doubletextboxPuntajeClaveNaranja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'updownPuntajeClaveRoja
+        'doubletextboxPuntajeClaveRoja
         '
-        Me.updownPuntajeClaveRoja.Location = New System.Drawing.Point(212, 155)
-        Me.updownPuntajeClaveRoja.Name = "updownPuntajeClaveRoja"
-        Me.updownPuntajeClaveRoja.Size = New System.Drawing.Size(46, 20)
-        Me.updownPuntajeClaveRoja.TabIndex = 9
-        Me.updownPuntajeClaveRoja.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'updownPorcentajeDescuentoPorSalidaAnticipada
-        '
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.Location = New System.Drawing.Point(212, 181)
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.Name = "updownPorcentajeDescuentoPorSalidaAnticipada"
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.Size = New System.Drawing.Size(46, 20)
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.TabIndex = 11
-        Me.updownPorcentajeDescuentoPorSalidaAnticipada.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelPorcentajeDescuentoPorSalidaAnticipada
-        '
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.AutoSize = True
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.Location = New System.Drawing.Point(12, 183)
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.Name = "labelPorcentajeDescuentoPorSalidaAnticipada"
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.Size = New System.Drawing.Size(186, 13)
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.TabIndex = 10
-        Me.labelPorcentajeDescuentoPorSalidaAnticipada.Text = "% de descuento por salida anticipada:"
+        Me.doubletextboxPuntajeClaveRoja.BeforeTouchSize = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveRoja.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPuntajeClaveRoja.DoubleValue = 0R
+        Me.doubletextboxPuntajeClaveRoja.Location = New System.Drawing.Point(139, 156)
+        Me.doubletextboxPuntajeClaveRoja.MaxValue = 99.99R
+        Me.doubletextboxPuntajeClaveRoja.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPuntajeClaveRoja.MinValue = 0R
+        Me.doubletextboxPuntajeClaveRoja.Name = "doubletextboxPuntajeClaveRoja"
+        Me.doubletextboxPuntajeClaveRoja.NullString = ""
+        Me.doubletextboxPuntajeClaveRoja.Size = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntajeClaveRoja.TabIndex = 9
+        Me.doubletextboxPuntajeClaveRoja.Text = "0,00"
+        Me.doubletextboxPuntajeClaveRoja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'formSiniestroAsistenciaTipoPuntaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(326, 217)
-        Me.Controls.Add(Me.updownPorcentajeDescuentoPorSalidaAnticipada)
-        Me.Controls.Add(Me.labelPorcentajeDescuentoPorSalidaAnticipada)
-        Me.Controls.Add(Me.updownPuntajeClaveRoja)
-        Me.Controls.Add(Me.updownPuntajeClaveNaranja)
-        Me.Controls.Add(Me.updownPuntajeClaveAzul)
-        Me.Controls.Add(Me.updownPuntajeClaveVerde)
+        Me.ClientSize = New System.Drawing.Size(276, 185)
+        Me.Controls.Add(Me.doubletextboxPuntajeClaveRoja)
+        Me.Controls.Add(Me.doubletextboxPuntajeClaveNaranja)
+        Me.Controls.Add(Me.doubletextboxPuntajeClaveAzul)
+        Me.Controls.Add(Me.doubletextboxPuntajeClaveVerde)
         Me.Controls.Add(Me.datetimepickerFechaInicio)
         Me.Controls.Add(Me.labelPuntajeClaveRoja)
         Me.Controls.Add(labelFechaInicio)
@@ -229,11 +239,10 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.Text = "Puntaje de Tipo de Asistencia a Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        CType(Me.updownPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.updownPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.updownPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.updownPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.updownPorcentajeDescuentoPorSalidaAnticipada, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -249,10 +258,8 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
     Friend WithEvents labelPuntajeClaveRoja As Label
     Friend WithEvents tooltipMain As ToolTip
     Friend WithEvents datetimepickerFechaInicio As DateTimePicker
-    Friend WithEvents updownPuntajeClaveVerde As NumericUpDown
-    Friend WithEvents updownPuntajeClaveAzul As NumericUpDown
-    Friend WithEvents updownPuntajeClaveNaranja As NumericUpDown
-    Friend WithEvents updownPuntajeClaveRoja As NumericUpDown
-    Friend WithEvents updownPorcentajeDescuentoPorSalidaAnticipada As NumericUpDown
-    Friend WithEvents labelPorcentajeDescuentoPorSalidaAnticipada As Label
+    Friend WithEvents doubletextboxPuntajeClaveVerde As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents doubletextboxPuntajeClaveAzul As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents doubletextboxPuntajeClaveNaranja As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents doubletextboxPuntajeClaveRoja As Syncfusion.Windows.Forms.Tools.DoubleTextBox
 End Class

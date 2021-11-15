@@ -22,8 +22,6 @@ CREATE FUNCTION udf_GetCalificacionAnualFinal_Abreviada
 	@CalificacionAnual decimal(4,2)
 ) RETURNS varchar(2) AS
 BEGIN
-	DECLARE @Result varchar(2)
-
 	RETURN (CASE 
 				WHEN @CalificacionAnual < 4 THEN 'D'
 				WHEN @CalificacionAnual >= 4 AND @CalificacionAnual < 6 THEN 'R'
@@ -368,5 +366,187 @@ BEGIN
 	WHERE P.IDPersona = @IDPersona
 
 	RETURN @ReturnValue
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve el nombre de la Clave de un Siniestro
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestro') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetNombreClaveSiniestro
+GO
+
+CREATE FUNCTION udf_GetNombreClaveSiniestro
+(	
+	@Clave char(2)
+) RETURNS varchar(12) AS
+BEGIN
+	RETURN (CASE 
+				WHEN @Clave = 'V' THEN 'Verde'
+				WHEN @Clave = 'A' THEN 'Azul'
+				WHEN @Clave = 'AV' THEN 'Azul / Verde'
+				WHEN @Clave = 'N' THEN 'Naranja'
+				WHEN @Clave = 'R' THEN 'Roja'
+				ELSE 'Desconocida'
+			END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve el nombre en plural de la Clave de un Siniestro
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroPlural') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroPlural
+GO
+
+CREATE FUNCTION udf_GetNombreClaveSiniestroPlural
+(	
+	@Clave char(2)
+) RETURNS varchar(15) AS
+BEGIN
+	RETURN (CASE 
+				WHEN @Clave = 'V' THEN 'Verdes'
+				WHEN @Clave = 'A' THEN 'Azules'
+				WHEN @Clave = 'AV' THEN 'Azules / Verdes'
+				WHEN @Clave = 'N' THEN 'Naranjas'
+				WHEN @Clave = 'R' THEN 'Rojas'
+				ELSE 'Desconocidas'
+			END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetClaveSiniestroAgrupada') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetClaveSiniestroAgrupada
+GO
+
+CREATE FUNCTION udf_GetClaveSiniestroAgrupada
+(	
+	@Clave char(1)
+) RETURNS char(2) AS
+BEGIN
+	RETURN (CASE 
+				WHEN @Clave = 'V' THEN 'AV'
+				WHEN @Clave = 'A' THEN 'AV'
+				WHEN @Clave = 'N' THEN 'N'
+				WHEN @Clave = 'R' THEN 'R'
+				ELSE ''
+			END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve el nombre de la Clave de un Siniestro juntando las verdes y azules
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroAgrupada') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroAgrupada
+GO
+
+CREATE FUNCTION udf_GetNombreClaveSiniestroAgrupada
+(	
+	@Clave char(1)
+) RETURNS varchar(12) AS
+BEGIN
+	RETURN dbo.udf_GetNombreClaveSiniestro(dbo.udf_GetClaveSiniestroAgrupada(@Clave))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve el nombre en plural de la Clave de un Siniestro juntando las verdes y azules
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroAgrupadaPlural') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroAgrupadaPlural
+GO
+
+CREATE FUNCTION udf_GetNombreClaveSiniestroAgrupadaPlural
+(	
+	@Clave char(2)
+) RETURNS varchar(15) AS
+BEGIN
+	RETURN dbo.udf_GetNombreClaveSiniestroPlural(dbo.udf_GetClaveSiniestroAgrupada(@Clave))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-03
+-- Description:	Devuelve el puntaje de Presente para una fecha de Siniestro
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPuntajeClaveSiniestro') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetPuntajeClaveSiniestro
+GO
+
+CREATE FUNCTION udf_GetPuntajeClaveSiniestro
+(	
+	@Clave char(1),
+	@Fecha date
+) RETURNS tinyint AS
+BEGIN
+
+	DECLARE @IDSiniestroAsistenciaTipo tinyint
+
+	SELECT @IDSiniestroAsistenciaTipo = NumeroEntero
+		FROM Parametro
+		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
+
+	RETURN (SELECT TOP 1 (CASE @Clave WHEN 'V' THEN PuntajeClaveVerde WHEN 'A' THEN PuntajeClaveAzul WHEN 'N' THEN PuntajeClaveNaranja WHEN 'R' THEN PuntajeClaveRoja ELSE 0 END)
+		FROM SiniestroAsistenciaTipoPuntaje
+		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
+		ORDER BY FechaInicio DESC)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-08
+-- Description:	Devuelve el porcentaje de descuento por salida anticipada de Presente para una fecha de Siniestro
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPorcentajeDescuentoSiniestro') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetPorcentajeDescuentoSiniestro
+GO
+
+CREATE FUNCTION udf_GetPorcentajeDescuentoSiniestro
+(	
+	@Clave char(1),
+	@Fecha date
+) RETURNS tinyint AS
+BEGIN
+
+	DECLARE @IDSiniestroAsistenciaTipo tinyint
+
+	SELECT @IDSiniestroAsistenciaTipo = NumeroEntero
+		FROM Parametro
+		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
+
+	RETURN (SELECT TOP 1 PorcentajeDescuentoPorSalidaAnticipada
+		FROM SiniestroAsistenciaTipoPuntaje
+		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
+		ORDER BY FechaInicio DESC)
 END
 GO

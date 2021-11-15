@@ -32,10 +32,10 @@ Partial Class formAcademiaAsistenciaTipoPuntaje
         Me.labelPuntaje = New System.Windows.Forms.Label()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.datetimepickerFechaInicio = New System.Windows.Forms.DateTimePicker()
-        Me.updownPuntaje = New System.Windows.Forms.NumericUpDown()
+        Me.doubletextboxPuntaje = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         labelFechaInicio = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
-        CType(Me.updownPuntaje, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.doubletextboxPuntaje, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelFechaInicio
@@ -93,7 +93,7 @@ Partial Class formAcademiaAsistenciaTipoPuntaje
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(291, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(308, 39)
         Me.toolstripMain.TabIndex = 12
         '
         'labelPuntaje
@@ -113,20 +113,28 @@ Partial Class formAcademiaAsistenciaTipoPuntaje
         Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(94, 20)
         Me.datetimepickerFechaInicio.TabIndex = 1
         '
-        'updownPuntaje
+        'doubletextboxPuntaje
         '
-        Me.updownPuntaje.Location = New System.Drawing.Point(100, 77)
-        Me.updownPuntaje.Name = "updownPuntaje"
-        Me.updownPuntaje.Size = New System.Drawing.Size(46, 20)
-        Me.updownPuntaje.TabIndex = 3
-        Me.updownPuntaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.doubletextboxPuntaje.BeforeTouchSize = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntaje.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.doubletextboxPuntaje.DoubleValue = 0R
+        Me.doubletextboxPuntaje.Location = New System.Drawing.Point(100, 77)
+        Me.doubletextboxPuntaje.MaxValue = 99.99R
+        Me.doubletextboxPuntaje.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.doubletextboxPuntaje.MinValue = 0R
+        Me.doubletextboxPuntaje.Name = "doubletextboxPuntaje"
+        Me.doubletextboxPuntaje.NullString = ""
+        Me.doubletextboxPuntaje.Size = New System.Drawing.Size(36, 20)
+        Me.doubletextboxPuntaje.TabIndex = 3
+        Me.doubletextboxPuntaje.Text = "0,00"
+        Me.doubletextboxPuntaje.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'formAcademiaAsistenciaTipoPuntaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(291, 114)
-        Me.Controls.Add(Me.updownPuntaje)
+        Me.ClientSize = New System.Drawing.Size(308, 114)
+        Me.Controls.Add(Me.doubletextboxPuntaje)
         Me.Controls.Add(Me.datetimepickerFechaInicio)
         Me.Controls.Add(labelFechaInicio)
         Me.Controls.Add(Me.labelPuntaje)
@@ -141,7 +149,7 @@ Partial Class formAcademiaAsistenciaTipoPuntaje
         Me.Text = "Puntaje de Tipo de Asistencia a Academia"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        CType(Me.updownPuntaje, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.doubletextboxPuntaje, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -154,5 +162,5 @@ Partial Class formAcademiaAsistenciaTipoPuntaje
     Friend WithEvents labelPuntaje As Label
     Friend WithEvents tooltipMain As ToolTip
     Friend WithEvents datetimepickerFechaInicio As DateTimePicker
-    Friend WithEvents updownPuntaje As NumericUpDown
+    Friend WithEvents doubletextboxPuntaje As Syncfusion.Windows.Forms.Tools.DoubleTextBox
 End Class

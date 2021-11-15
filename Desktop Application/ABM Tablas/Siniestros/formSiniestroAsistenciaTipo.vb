@@ -274,7 +274,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonPuntajesAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        formSiniestroAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mSiniestroAsistenciaTipoActual, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE)
+        formSiniestroAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mSiniestroAsistenciaTipoActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -285,7 +285,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mSiniestroAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipoPuntaje).FechaInicio)
+            formSiniestroAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mSiniestroAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipoPuntaje).IDSiniestroAsistenciaTipoPuntaje)
 
             Me.Cursor = Cursors.Default
         End If
@@ -316,7 +316,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formSiniestroAsistenciaTipoPuntaje.LoadAndShow(mEditMode, False, Me, mSiniestroAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipoPuntaje).FechaInicio)
+            formSiniestroAsistenciaTipoPuntaje.LoadAndShow(mEditMode, False, Me, mSiniestroAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, SiniestroAsistenciaTipoPuntaje).IDSiniestroAsistenciaTipoPuntaje)
 
             Me.Cursor = Cursors.Default
         End If

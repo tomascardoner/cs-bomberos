@@ -16,12 +16,12 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroAsistenciaTipoActual As SiniestroAsistenciaTipo, ByVal fechaInicio As Date)
+    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal editMode As Boolean, ByRef parentForm As Form, ByRef siniestroAsistenciaTipoActual As SiniestroAsistenciaTipo, ByVal idSiniestroAsistenciaTipoPuntaje As Byte)
         mParentForm = parentForm
         mIsLoading = True
         mParentEditMode = parentEditMode
         mEditMode = editMode
-        mIsNew = (fechaInicio = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE)
+        mIsNew = (idSiniestroAsistenciaTipoPuntaje = 0)
 
         mSiniestroAsistenciaTipoActual = siniestroAsistenciaTipoActual
         If mIsNew Then
@@ -30,7 +30,7 @@
             mSiniestroAsistenciaTipoPuntajeActual.FechaInicio = DateAndTime.Today
             mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Add(mSiniestroAsistenciaTipoPuntajeActual)
         Else
-            mSiniestroAsistenciaTipoPuntajeActual = mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Single(Function(satp) satp.FechaInicio = fechaInicio)
+            mSiniestroAsistenciaTipoPuntajeActual = mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Single(Function(satp) satp.IDSiniestroAsistenciaTipoPuntaje = idSiniestroAsistenciaTipoPuntaje)
         End If
 
         CS_Form.CenterToParent(mParentForm, Me)
@@ -54,12 +54,11 @@
         buttonEditar.Visible = (mParentEditMode And mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        datetimepickerFechaInicio.Enabled = (mIsNew And mEditMode)
-        updownPuntajeClaveVerde.Enabled = mEditMode
-        updownPuntajeClaveAzul.Enabled = mEditMode
-        updownPuntajeClaveNaranja.Enabled = mEditMode
-        updownPuntajeClaveRoja.Enabled = mEditMode
-        updownPorcentajeDescuentoPorSalidaAnticipada.Enabled = mEditMode
+        datetimepickerFechaInicio.Enabled = mEditMode
+        doubletextboxPuntajeClaveVerde.Enabled = mEditMode
+        doubletextboxPuntajeClaveAzul.Enabled = mEditMode
+        doubletextboxPuntajeClaveNaranja.Enabled = mEditMode
+        doubletextboxPuntajeClaveRoja.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -86,24 +85,20 @@
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroAsistenciaTipoPuntajeActual
             datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInicio)
-            updownPuntajeClaveVerde.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.PuntajeClaveVerde)
-            updownPuntajeClaveAzul.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.PuntajeClaveAzul)
-            updownPuntajeClaveNaranja.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.PuntajeClaveNaranja)
-            updownPuntajeClaveRoja.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.PuntajeClaveRoja)
-            updownPorcentajeDescuentoPorSalidaAnticipada.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.PorcentajeDescuentoPorSalidaAnticipada)
+            doubletextboxPuntajeClaveVerde.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveVerde)
+            doubletextboxPuntajeClaveAzul.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveAzul)
+            doubletextboxPuntajeClaveNaranja.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveNaranja)
+            doubletextboxPuntajeClaveRoja.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveRoja)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mSiniestroAsistenciaTipoPuntajeActual
-            If mIsNew Then
-                .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
-            End If
-            .PuntajeClaveVerde = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveVerde.Value, -1).Value
-            .PuntajeClaveAzul = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveAzul.Value, -1).Value
-            .PuntajeClaveNaranja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveNaranja.Value, -1).Value
-            .PuntajeClaveRoja = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPuntajeClaveRoja.Value, -1).Value
-            .PorcentajeDescuentoPorSalidaAnticipada = CS_ValueTranslation.FromControlUpDownToObjectByte(updownPorcentajeDescuentoPorSalidaAnticipada.Value, -1).Value
+            .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
+            .PuntajeClaveVerde = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveVerde.Text).Value
+            .PuntajeClaveAzul = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveAzul.Text).Value
+            .PuntajeClaveNaranja = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveNaranja.Text).Value
+            .PuntajeClaveRoja = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveRoja.Text).Value
         End With
     End Sub
 
@@ -128,7 +123,7 @@
         End Select
     End Sub
 
-    Private Sub UpDowns_Enter(sender As Object, e As EventArgs) Handles updownPuntajeClaveVerde.Enter, updownPuntajeClaveAzul.Enter, updownPuntajeClaveNaranja.Enter, updownPuntajeClaveRoja.Enter, updownPorcentajeDescuentoPorSalidaAnticipada.Enter
+    Private Sub UpDowns_Enter(sender As Object, e As EventArgs)
         Dim nud As NumericUpDown
 
         nud = CType(sender, NumericUpDown)
@@ -153,6 +148,15 @@
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()
+
+        ' Si es nuevo, asigno un id
+        If mIsNew Then
+            If mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Any() Then
+                mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipoPuntaje = CByte(mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Max(Function(satp) satp.IDSiniestroAsistenciaTipoPuntaje) + 1)
+            Else
+                mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipoPuntaje = 1
+            End If
+        End If
 
         ' Refresco la lista para mostrar los cambios
         CType(mParentForm, formSiniestroAsistenciaTipo).PuntajesRefreshData(mSiniestroAsistenciaTipoPuntajeActual.FechaInicio)

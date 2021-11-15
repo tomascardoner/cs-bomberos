@@ -26,8 +26,8 @@ Partial Public Class SiniestroAsistenciaTipo
     Public Property FechaHoraModificacion As Date
 
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
-    Public Overridable Property SiniestrosAsistenciasTipoPuntajes As ICollection(Of SiniestroAsistenciaTipoPuntaje) = New HashSet(Of SiniestroAsistenciaTipoPuntaje)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property SiniestrosAsistenciasTipoPuntajes As ICollection(Of SiniestroAsistenciaTipoPuntaje) = New HashSet(Of SiniestroAsistenciaTipoPuntaje)
 
 End Class

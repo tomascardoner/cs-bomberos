@@ -228,14 +228,14 @@
 
 #Region "Puntajes"
 
-    Friend Sub PuntajesRefreshData(Optional ByVal PositionFechaInicio As Date = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub PuntajesRefreshData(Optional ByVal PositionIDAcademiaAsistenciaTipoPuntaje As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim listPuntajes As List(Of AcademiaAsistenciaTipoPuntaje)
 
         If RestoreCurrentPosition Then
             If datagridviewPuntajes.CurrentRow Is Nothing Then
-                PositionFechaInicio = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE
+                PositionIDAcademiaAsistenciaTipoPuntaje = 0
             Else
-                PositionFechaInicio = CType(datagridviewPuntajes.CurrentRow.DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio
+                PositionIDAcademiaAsistenciaTipoPuntaje = CType(datagridviewPuntajes.CurrentRow.DataBoundItem, AcademiaAsistenciaTipoPuntaje).IDAcademiaAsistenciaTipoPuntaje
             End If
         End If
 
@@ -255,9 +255,9 @@
 
         Me.Cursor = Cursors.Default
 
-        If PositionFechaInicio <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE Then
+        If PositionIDAcademiaAsistenciaTipoPuntaje <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewPuntajes.Rows
-                If CType(CurrentRowChecked.DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio = PositionFechaInicio Then
+                If CType(CurrentRowChecked.DataBoundItem, AcademiaAsistenciaTipoPuntaje).IDAcademiaAsistenciaTipoPuntaje = PositionIDAcademiaAsistenciaTipoPuntaje Then
                     datagridviewPuntajes.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -268,7 +268,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonPuntajesAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_DATE)
+        formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -279,7 +279,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio)
+            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(True, True, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).IDAcademiaAsistenciaTipoPuntaje)
 
             Me.Cursor = Cursors.Default
         End If
@@ -295,7 +295,7 @@
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Remove(mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.First(Function(satp) satp.FechaInicio = CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio))
+                mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Remove(mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.First(Function(satp) satp.IDAcademiaAsistenciaTipoPuntaje = CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).IDAcademiaAsistenciaTipoPuntaje))
 
                 PuntajesRefreshData()
 
@@ -310,7 +310,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(mEditMode, False, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).FechaInicio)
+            formAcademiaAsistenciaTipoPuntaje.LoadAndShow(mEditMode, False, Me, mAcademiaAsistenciaTipoActual, CType(datagridviewPuntajes.SelectedRows(0).DataBoundItem, AcademiaAsistenciaTipoPuntaje).IDAcademiaAsistenciaTipoPuntaje)
 
             Me.Cursor = Cursors.Default
         End If

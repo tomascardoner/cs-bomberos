@@ -12,12 +12,12 @@ Imports System.Collections.Generic
 
 Partial Public Class SiniestroAsistenciaTipoPuntaje
     Public Property IDSiniestroAsistenciaTipo As Byte
+    Public Property IDSiniestroAsistenciaTipoPuntaje As Byte
     Public Property FechaInicio As Date
-    Public Property PuntajeClaveVerde As Byte
-    Public Property PuntajeClaveAzul As Byte
-    Public Property PuntajeClaveNaranja As Byte
-    Public Property PuntajeClaveRoja As Byte
-    Public Property PorcentajeDescuentoPorSalidaAnticipada As Byte
+    Public Property PuntajeClaveVerde As Decimal
+    Public Property PuntajeClaveAzul As Decimal
+    Public Property PuntajeClaveNaranja As Decimal
+    Public Property PuntajeClaveRoja As Decimal
 
     Public Overridable Property SiniestroAsistenciaTipo As SiniestroAsistenciaTipo
 

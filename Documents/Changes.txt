@@ -1,3 +1,11 @@
+2021-11-14
+	- Se agregó un campo ID a la tabla AcademiaAsistenciaTipoPuntaje para poder cambiar la fecha de inicio que antes era una PK
+	- Se cambió el tipo de datos del puntaje de la tabla AcademiaAsistenciaTipoPuntaje a un número decimal con 2 decimales
+	- Se agregó un campo ID a la tabla SiniestroAsistenciaTipoPuntaje para poder cambiar la fecha de inicio que antes era una PK
+	- Se cambió el tipo de datos de los puntajes de la tabla SiniestroAsistenciaTipoPuntaje a un número decimal con 2 decimales
+	- Se eliminó el campo de Porcentaje de descuento de la tabla SiniestroAsistenciaTipoPuntaje
+
+
 2021-10-30
 	- Se agregó el campo ResolucionNumero a las sanciones
 	- Se agregó la tabla de Puntajes para las Academias

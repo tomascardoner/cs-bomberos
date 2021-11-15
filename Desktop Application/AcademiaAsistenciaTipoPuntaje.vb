@@ -12,8 +12,9 @@ Imports System.Collections.Generic
 
 Partial Public Class AcademiaAsistenciaTipoPuntaje
     Public Property IDAcademiaAsistenciaTipo As Byte
+    Public Property IDAcademiaAsistenciaTipoPuntaje As Byte
     Public Property FechaInicio As Date
-    Public Property Puntaje As Byte
+    Public Property Puntaje As Decimal
 
     Public Overridable Property AcademiaAsistenciaTipo As AcademiaAsistenciaTipo
 
