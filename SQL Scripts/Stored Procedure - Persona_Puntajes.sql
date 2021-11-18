@@ -22,34 +22,56 @@ CREATE PROCEDURE usp_Personas_Puntajes
 	AS
 BEGIN
 
-	DECLARE @IDSiniestroAsistenciaTipo tinyint
-	DECLARE @SiniestrosPuntajes table (IDSiniestro int not null PRIMARY KEY, Puntaje tinyint null, PorcentajeDescuentoPorSalidaAnticipada tinyint)
-	DECLARE @SiniestrosPorClave table (Clave char(2) not null PRIMARY KEY, Cantidad int not null, Puntaje int not null)
-	DECLARE @PersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje int not null, PRIMARY KEY (IDPersona, Clave))
-	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, ClaveVACantidad int, ClaveVAPuntaje int, ClaveNCantidad int, ClaveNPuntaje int, ClaveRCantidad int, ClaveRPuntaje int)
+	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint, @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
+	DECLARE @SiniestrosPuntajes table (IDSiniestro int not null, IDSiniestroAsistenciaTipo tinyint not null, IDSiniestroAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDSiniestro, IDSiniestroAsistenciaTipo))
+	DECLARE @SiniestrosPorClave table (Clave char(2) not null PRIMARY KEY, Cantidad int not null, Puntaje decimal(8,2) not null)
+	DECLARE @PersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
+	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, ClaveVACantidad int, ClaveVAPuntaje decimal(8,2), ClaveNCantidad int, ClaveNPuntaje decimal(8,2), ClaveRCantidad int, ClaveRPuntaje decimal(8,2))
 	DECLARE @CantidadVA int, @CantidadN int, @CantidadR int
-	DECLARE @PuntajeVA int, @PuntajeN int, @PuntajeR int
+	DECLARE @PuntajeVA decimal(8,2), @PuntajeN decimal(8,2), @PuntajeR decimal(8,2)
 
 	-- OBTENGO EL ID DEL TIPO DE ASISTENCIA "PRESENTE" A SINIESTROS
-	SELECT @IDSiniestroAsistenciaTipo = NumeroEntero
+	SELECT @IDSiniestroAsistenciaTipoPresente = NumeroEntero
 		FROM Parametro
 		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
 
-	-- ASIGNO LOS PUNTAJES A CADA SINIESTRO
-	INSERT INTO @SiniestrosPuntajes
-		(IDSiniestro, Puntaje, PorcentajeDescuentoPorSalidaAnticipada)
-		SELECT IDSiniestro, dbo.udf_GetPuntajeClaveSiniestro(Clave, Fecha), dbo.udf_GetPorcentajeDescuentoSiniestro(Clave, Fecha)
-			FROM Siniestro
-			WHERE Anulado = 0
-				AND IDCuartel = @IDCuartel
-				AND Fecha BETWEEN @FechaDesde AND @FechaHasta
+	-- OBTENGO EL ID DEL TIPO DE ASISTENCIA "PRESENTE CON SALIDA ANTICIPADA" A SINIESTROS
+	SELECT @IDSiniestroAsistenciaTipoSalidaAnticipada = NumeroEntero
+		FROM Parametro
+		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID'
 
-	-- CALCULO LA CANTIDAD DE SINIESTROS Y PUNTAJE TOTAL POR CLAVE
+	-- AGREGO EL ID DEL PUNTAJE VIGENTE A LA FECHA DE CADA SINIESTRO PARA PRESENTE
+	INSERT INTO @SiniestrosPuntajes
+		(IDSiniestro, IDSiniestroAsistenciaTipo, IDSiniestroAsistenciaTipoPuntaje)
+		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoPresente, dbo.udf_GetIdPuntajeClaveSiniestro(@IDSiniestroAsistenciaTipoPresente, s.Clave, s.Fecha)
+			FROM Siniestro AS s
+			WHERE s.Anulado = 0
+				AND s.IDCuartel = @IDCuartel
+				AND s.Fecha BETWEEN @FechaDesde AND @FechaHasta
+
+	-- ASIGNO EL ID DEL PUNTAJE VIGENTE A LA FECHA DE CADA SINIESTRO PARA SALIDA ANTICIPADA
+	INSERT INTO @SiniestrosPuntajes
+		(IDSiniestro, IDSiniestroAsistenciaTipo, IDSiniestroAsistenciaTipoPuntaje)
+		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoSalidaAnticipada, dbo.udf_GetIdPuntajeClaveSiniestro(@IDSiniestroAsistenciaTipoSalidaAnticipada, s.Clave, s.Fecha)
+			FROM Siniestro AS s
+			WHERE s.Anulado = 0
+				AND s.IDCuartel = @IDCuartel
+				AND s.Fecha BETWEEN @FechaDesde AND @FechaHasta
+
+	-- ASIGNO LOS PUNTAJES CORRESPONDIENTES
+	UPDATE @SiniestrosPuntajes
+		SET Puntaje = (CASE s.Clave WHEN 'V' THEN PuntajeClaveVerde WHEN 'A' THEN PuntajeClaveAzul WHEN 'N' THEN PuntajeClaveNaranja WHEN 'R' THEN PuntajeClaveRoja ELSE 0 END)
+		FROM Siniestro AS s
+			INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
+			INNER JOIN SiniestroAsistenciaTipoPuntaje AS satp ON sp.IDSiniestroAsistenciaTipo = satp.IDSiniestroAsistenciaTipo AND sp.IDSiniestroAsistenciaTipoPuntaje = satp.IDSiniestroAsistenciaTipoPuntaje
+
+	-- CALCULO LA CANTIDAD DE SINIESTROS Y PUNTAJE TOTAL DE PRESENTE POR CLAVE
 	INSERT INTO @SiniestrosPorClave
 		(Clave, Cantidad, Puntaje)
 		SELECT dbo.udf_GetClaveSiniestroAgrupada(s.Clave), COUNT(s.IDSiniestro) AS Cantidad, SUM(sp.Puntaje) AS Puntaje
 			FROM Siniestro AS s
 				INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
+			WHERE sp.IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipoPresente
 			GROUP BY dbo.udf_GetClaveSiniestroAgrupada(s.Clave)
 
 	-- OBTENGO LOS VALORES DE CANTIDAD DE SINIESTROS POR CLAVE
@@ -86,11 +108,11 @@ BEGIN
 	-- CALCULO LOS PUNTAJES POR CLAVE PARA CADA PERSONA
 	INSERT INTO @PersonasPuntajesPorClave
 		(IDPersona, Clave, Cantidad, Puntaje)
-		SELECT rf.IDPersona, dbo.udf_GetClaveSiniestroAgrupada(s.Clave) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(dbo.udf_GetPuntajeClaveSiniestro(s.Clave, s.Fecha)), 0)
+		SELECT rf.IDPersona, dbo.udf_GetClaveSiniestroAgrupada(s.Clave) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
 			FROM @ResultadoFinal AS rf
 				LEFT JOIN (SiniestroAsistencia AS sa
 				INNER JOIN Siniestro AS s ON sa.IDSiniestro = s.IDSiniestro
-				INNER JOIN @SiniestrosPuntajes AS sp ON sa.IDSiniestro = sp.IDSiniestro) ON rf.IDPersona = sa.IDPersona
+				INNER JOIN @SiniestrosPuntajes AS sp ON sa.IDSiniestro = sp.IDSiniestro AND sa.IDSiniestroAsistenciaTipo = sp.IDSiniestroAsistenciaTipo) ON rf.IDPersona = sa.IDPersona
 			GROUP BY rf.IDPersona, dbo.udf_GetClaveSiniestroAgrupada(s.Clave)
 
 	-- INSERTO LOS RESULTADOS PARA LAS CLAVES VERDES Y AZULES

@@ -1,7 +1,8 @@
-2021-11-08
+2021-11-14
 	- Actualizar funciones de SQL
 	- Crear sp usp_Personas_Puntajes
 	- Agregar el parámetro SINIESTRO_ASISTENCIATIPO_PRESENTE_ID - NumeroEntero: 1
+	- Agregar el parámetro SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID - NumeroEntero: 10
 	- Tabla AcademiaAsistenciaTipoPuntaje
 		- Agregar el campo IDAcademiaAsistenciaTipoPuntaje tinyint como PK
 		- Agregar un índice único AK__AcademiaAsistenciaTipoPuntaje__FechaInicio

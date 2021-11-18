@@ -493,58 +493,22 @@ GO
 
 -- =============================================
 -- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
--- Description:	Devuelve el puntaje de Presente para una fecha de Siniestro
+-- Create date: 2021-11-17
+-- Description:	Devuelve el id del puntaje para una fecha de Siniestro
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPuntajeClaveSiniestro') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPuntajeClaveSiniestro
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetIdPuntajeClaveSiniestro') AND type = N'FN')
+	DROP FUNCTION dbo.udf_GetIdPuntajeClaveSiniestro
 GO
 
-CREATE FUNCTION udf_GetPuntajeClaveSiniestro
-(	
+CREATE FUNCTION udf_GetIdPuntajeClaveSiniestro
+(
+	@IDSiniestroAsistenciaTipo tinyint,
 	@Clave char(1),
 	@Fecha date
 ) RETURNS tinyint AS
 BEGIN
 
-	DECLARE @IDSiniestroAsistenciaTipo tinyint
-
-	SELECT @IDSiniestroAsistenciaTipo = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
-
-	RETURN (SELECT TOP 1 (CASE @Clave WHEN 'V' THEN PuntajeClaveVerde WHEN 'A' THEN PuntajeClaveAzul WHEN 'N' THEN PuntajeClaveNaranja WHEN 'R' THEN PuntajeClaveRoja ELSE 0 END)
-		FROM SiniestroAsistenciaTipoPuntaje
-		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
-		ORDER BY FechaInicio DESC)
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
--- Create date: 2021-11-08
--- Description:	Devuelve el porcentaje de descuento por salida anticipada de Presente para una fecha de Siniestro
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPorcentajeDescuentoSiniestro') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPorcentajeDescuentoSiniestro
-GO
-
-CREATE FUNCTION udf_GetPorcentajeDescuentoSiniestro
-(	
-	@Clave char(1),
-	@Fecha date
-) RETURNS tinyint AS
-BEGIN
-
-	DECLARE @IDSiniestroAsistenciaTipo tinyint
-
-	SELECT @IDSiniestroAsistenciaTipo = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
-
-	RETURN (SELECT TOP 1 PorcentajeDescuentoPorSalidaAnticipada
+	RETURN (SELECT TOP 1 IDSiniestroAsistenciaTipoPuntaje
 		FROM SiniestroAsistenciaTipoPuntaje
 		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
 		ORDER BY FechaInicio DESC)
