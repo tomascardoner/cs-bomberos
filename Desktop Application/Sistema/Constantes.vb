@@ -49,6 +49,9 @@
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS As String = "B"
     Friend Const PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE As String = "Bomberos"
 
+    Friend Const PERSONA_ALTABAJA_TIPO_ALTA As String = "A"
+    Friend Const PERSONA_ALTABAJA_TIPO_BAJA As String = "B"
+
     '//////////////////
     '    SINIESTROS
     '//////////////////

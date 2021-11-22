@@ -615,18 +615,14 @@
           </Key>
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDAltaBaja" Type="tinyint" Nullable="false" />
-          <Property Name="AltaFecha" Type="date" Nullable="false" />
-          <Property Name="AltaLibroNumero" Type="varchar" MaxLength="10" />
-          <Property Name="AltaFolioNumero" Type="varchar" MaxLength="10" />
-          <Property Name="AltaActaNumero" Type="varchar" MaxLength="10" />
-          <Property Name="AltaOrdenGeneralNumero" Type="varchar" MaxLength="10" />
-          <Property Name="AltaResolucionNumero" Type="varchar" MaxLength="10" />
-          <Property Name="BajaFecha" Type="date" />
-          <Property Name="BajaLibroNumero" Type="varchar" MaxLength="10" />
-          <Property Name="BajaFolioNumero" Type="varchar" MaxLength="10" />
-          <Property Name="BajaActaNumero" Type="varchar" MaxLength="10" />
-          <Property Name="BajaOrdenGeneralNumero" Type="varchar" MaxLength="10" />
-          <Property Name="BajaResolucionNumero" Type="varchar" MaxLength="10" />
+          <Property Name="Tipo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TipoNombre" Type="varchar" MaxLength="4" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Fecha" Type="date" Nullable="false" />
+          <Property Name="LibroNumero" Type="varchar" MaxLength="10" />
+          <Property Name="FolioNumero" Type="varchar" MaxLength="10" />
+          <Property Name="ActaNumero" Type="varchar" MaxLength="10" />
+          <Property Name="OrdenGeneralNumero" Type="varchar" MaxLength="10" />
+          <Property Name="ResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="IDPersonaBajaMotivo" Type="tinyint" />
           <Property Name="BajaUnidadDestino" Type="varchar" MaxLength="50" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -4073,8 +4069,6 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="EstadoDesconocidoLeyenda" Type="varchar" Mode="In" />
-          <Parameter Name="EstadoActivoLeyenda" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Academia" EntityType="Self.Academia" Schema="dbo" store:Type="Tables" />
@@ -5759,8 +5753,6 @@
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
           <FunctionImport Name="usp_Personas" ReturnType="Collection(CSBomberosModel.usp_Personas_Result)">
-            <Parameter Name="EstadoDesconocidoLeyenda" Mode="In" Type="String" />
-            <Parameter Name="EstadoActivoLeyenda" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="EstadoCivil" EntityType="CSBomberosModel.EstadoCivil" />
           <AssociationSet Name="FK__EstadoCivil__Persona" Association="CSBomberosModel.FK__EstadoCivil__Persona">
@@ -6925,18 +6917,14 @@
           </Key>
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
           <Property Name="IDAltaBaja" Type="Byte" Nullable="false" />
-          <Property Name="AltaFecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="AltaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="AltaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="AltaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="AltaOrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="AltaResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BajaFecha" Type="DateTime" Precision="0" />
-          <Property Name="BajaLibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BajaFolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BajaActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BajaOrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="BajaResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="TipoNombre" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LibroNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FolioNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ActaNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrdenGeneralNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="IDPersonaBajaMotivo" Type="Byte" />
           <Property Name="BajaUnidadDestino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -9367,7 +9355,7 @@
           <Property Type="Byte" Name="IDCuartel" Nullable="false" />
           <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="IDBajaMotivo" Nullable="true" />
+          <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
         </ComplexType>
         <EntityType Name="EstadoCivil">
           <Key>
@@ -11014,20 +11002,16 @@
           <EntitySetMapping Name="PersonaAltaBaja">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaAltaBaja">
               <MappingFragment StoreEntitySet="PersonaAltaBaja">
-                <ScalarProperty Name="BajaResolucionNumero" ColumnName="BajaResolucionNumero" />
-                <ScalarProperty Name="BajaOrdenGeneralNumero" ColumnName="BajaOrdenGeneralNumero" />
-                <ScalarProperty Name="AltaResolucionNumero" ColumnName="AltaResolucionNumero" />
-                <ScalarProperty Name="AltaOrdenGeneralNumero" ColumnName="AltaOrdenGeneralNumero" />
+                <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="ResolucionNumero" ColumnName="ResolucionNumero" />
+                <ScalarProperty Name="OrdenGeneralNumero" ColumnName="OrdenGeneralNumero" />
+                <ScalarProperty Name="ActaNumero" ColumnName="ActaNumero" />
+                <ScalarProperty Name="FolioNumero" ColumnName="FolioNumero" />
+                <ScalarProperty Name="LibroNumero" ColumnName="LibroNumero" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="BajaUnidadDestino" ColumnName="BajaUnidadDestino" />
                 <ScalarProperty Name="IDPersonaBajaMotivo" ColumnName="IDPersonaBajaMotivo" />
-                <ScalarProperty Name="BajaActaNumero" ColumnName="BajaActaNumero" />
-                <ScalarProperty Name="BajaFolioNumero" ColumnName="BajaFolioNumero" />
-                <ScalarProperty Name="BajaLibroNumero" ColumnName="BajaLibroNumero" />
-                <ScalarProperty Name="BajaFecha" ColumnName="BajaFecha" />
-                <ScalarProperty Name="AltaActaNumero" ColumnName="AltaActaNumero" />
-                <ScalarProperty Name="AltaFolioNumero" ColumnName="AltaFolioNumero" />
-                <ScalarProperty Name="AltaLibroNumero" ColumnName="AltaLibroNumero" />
-                <ScalarProperty Name="AltaFecha" ColumnName="AltaFecha" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

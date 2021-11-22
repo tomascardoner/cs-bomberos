@@ -102,13 +102,13 @@
         datagridviewMain.Visible = False
 
         Try
-            ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha del siniestro, están activas en el cuerpo
+            ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha de la academia, están activas en el cuerpo
             listPersonasActivasDelCuartel = (From p In mdbContext.Persona
                                              Join pab In mdbContext.PersonaAltaBaja On p.IDPersona Equals pab.IDPersona
-                                             Where p.EsActivo AndAlso p.IDCuartel = mAcademiaActual.IDCuartel AndAlso pab.AltaFecha <= mAcademiaActual.Fecha AndAlso (pab.BajaFecha Is Nothing Or pab.BajaFecha > mAcademiaActual.Fecha)
+                                             Where p.EsActivo AndAlso p.IDCuartel = mAcademiaActual.IDCuartel AndAlso pab.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA AndAlso pab.Fecha <= mAcademiaActual.Fecha
                                              Select p).ToList()
 
-            ' Obtengo las personas que ya están asignadas al siniestro actual
+            ' Obtengo las personas que ya están asignadas a la academia actual
             listPersonasEnAcademia = (From p In mdbContext.Persona
                                       Join sa In mdbContext.AcademiaAsistencia On p.IDPersona Equals sa.IDPersona
                                       Where sa.IDAcademia = mAcademiaActual.IDAcademia
@@ -259,10 +259,11 @@
 
             sa = mdbContext.AcademiaAsistencia.Find(mAcademiaActual.IDAcademia, idPersona)
             If sa Is Nothing Then
-                sa = New AcademiaAsistencia
-                sa.IDAcademia = mAcademiaActual.IDAcademia
-                sa.IDPersona = idPersona
-                sa.IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo
+                sa = New AcademiaAsistencia With {
+                    .IDAcademia = mAcademiaActual.IDAcademia,
+                    .IDPersona = idPersona,
+                    .IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo
+                }
                 mdbContext.AcademiaAsistencia.Add(sa)
                 mdbContext.SaveChanges()
             ElseIf sa.IDAcademiaAsistenciaTipo <> idAcademiaAsistenciaTipo Then

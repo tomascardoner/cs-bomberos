@@ -47,12 +47,11 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 		IF @ResponsableIDPersona IS NULL
 			SET @ResponsableEstadoActivo = 0
 		ELSE
-			SELECT @ResponsableEstadoActivo = (CASE ISNULL(pab.IDAltaBaja, 0) WHEN 0 THEN 0 ELSE (CASE ISNULL(pab.BajaFecha, '') WHEN '' THEN 1 ELSE 0 END) END)
-				FROM (Persona AS p
-					LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona)
-					LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+			SELECT @ResponsableEstadoActivo = dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo)
+				FROM Persona AS p
+					LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
 				WHERE p.IDPersona = @ResponsableIDPersona
-					AND (pab.AltaFecha IS NULL OR pab.AltaFecha = (SELECT MAX(AltaFecha) FROM PersonaAltaBaja WHERE IDPersona = pab.IDPersona GROUP BY IDPersona))
+					AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(@ResponsableIDPersona, GETDATE())
 
 		-- Obtengo la Jerarquía del Responsable
 		IF @ResponsableIDPersona IS NULL
@@ -63,7 +62,7 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 					INNER JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
 					INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
 				WHERE pa.IDPersona = @ResponsableIDPersona
-					AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
+					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
 		(SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, cd.IDArea, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM Compra AS c

@@ -109,12 +109,8 @@ Partial Public Class CSBomberosContext
     Public Overridable Property AcademiaAsistenciaTipoPuntaje() As DbSet(Of AcademiaAsistenciaTipoPuntaje)
     Public Overridable Property SiniestroAsistenciaTipoPuntaje() As DbSet(Of SiniestroAsistenciaTipoPuntaje)
 
-    Public Overridable Function usp_Personas(estadoDesconocidoLeyenda As String, estadoActivoLeyenda As String) As ObjectResult(Of usp_Personas_Result)
-        Dim estadoDesconocidoLeyendaParameter As ObjectParameter = If(estadoDesconocidoLeyenda IsNot Nothing, New ObjectParameter("EstadoDesconocidoLeyenda", estadoDesconocidoLeyenda), New ObjectParameter("EstadoDesconocidoLeyenda", GetType(String)))
-
-        Dim estadoActivoLeyendaParameter As ObjectParameter = If(estadoActivoLeyenda IsNot Nothing, New ObjectParameter("EstadoActivoLeyenda", estadoActivoLeyenda), New ObjectParameter("EstadoActivoLeyenda", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of usp_Personas_Result)("usp_Personas", estadoDesconocidoLeyendaParameter, estadoActivoLeyendaParameter)
+    Public Overridable Function usp_Personas() As ObjectResult(Of usp_Personas_Result)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of usp_Personas_Result)("usp_Personas")
     End Function
 
 End Class

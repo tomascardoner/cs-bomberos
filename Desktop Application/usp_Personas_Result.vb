@@ -19,6 +19,6 @@ Partial Public Class usp_Personas_Result
     Public Property IDCuartel As Byte
     Public Property CuartelNombre As String
     Public Property EstadoActual As String
-    Public Property IDBajaMotivo As Nullable(Of Integer)
+    Public Property IDBajaMotivo As Nullable(Of Byte)
 
 End Class

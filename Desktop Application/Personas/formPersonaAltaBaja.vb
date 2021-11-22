@@ -7,8 +7,8 @@
     Private mPersonaBajaMotivo As PersonaBajaMotivo
 
     Private mIsNew As Boolean
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
@@ -25,7 +25,7 @@
             With mPersonaAltaBajaActual
                 .IDPersona = IDPersona
 
-                .AltaFecha = DateTime.Today
+                .Fecha = DateTime.Today
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
@@ -57,19 +57,15 @@
         buttonEditar.Visible = (mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        datetimepickerAltaFecha.Enabled = mEditMode
-        textboxAltaLibroNumero.ReadOnly = Not mEditMode
-        textboxAltaFolioNumero.ReadOnly = Not mEditMode
-        textboxAltaActaNumero.ReadOnly = Not mEditMode
-        textboxAltaOrdenGeneralNumero.ReadOnly = Not mEditMode
-        textboxAltaResolucionNumero.ReadOnly = Not mEditMode
+        radiobuttonTipoAlta.Enabled = mEditMode
+        radiobuttonTipoBaja.Enabled = mEditMode
+        datetimepickerFecha.Enabled = mEditMode
+        textboxLibroNumero.ReadOnly = Not mEditMode
+        textboxFolioNumero.ReadOnly = Not mEditMode
+        textboxActaNumero.ReadOnly = Not mEditMode
+        textboxOrdenGeneralNumero.ReadOnly = Not mEditMode
+        textboxResolucionNumero.ReadOnly = Not mEditMode
 
-        datetimepickerBajaFecha.Enabled = mEditMode
-        textboxBajaLibroNumero.ReadOnly = Not mEditMode
-        textboxBajaFolioNumero.ReadOnly = Not mEditMode
-        textboxBajaActaNumero.ReadOnly = Not mEditMode
-        textboxBajaOrdenGeneralNumero.ReadOnly = Not mEditMode
-        textboxBajaResolucionNumero.ReadOnly = Not mEditMode
         comboboxBajaMotivo.Enabled = mEditMode
         textboxBajaUnidadDestino.ReadOnly = Not mEditMode
 
@@ -79,12 +75,6 @@
     Friend Sub InitializeFormAndControls()
         ' Cargo los ComboBox
         pFillAndRefreshLists.PersonaBajaMotivo(comboboxBajaMotivo, False, True)
-
-        SetAppearance()
-    End Sub
-
-    Friend Sub SetAppearance()
-
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -101,24 +91,26 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mPersonaAltaBajaActual
-            datetimepickerAltaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.AltaFecha)
-            textboxAltaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaLibroNumero)
-            textboxAltaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaFolioNumero)
-            textboxAltaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaActaNumero)
-            textboxAltaOrdenGeneralNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaOrdenGeneralNumero)
-            textboxAltaResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AltaResolucionNumero)
+            radiobuttonTipoAlta.Checked = (.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA)
+            radiobuttonTipoBaja.Checked = (.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_BAJA)
+            datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
+            textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
+            textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
+            textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)
+            textboxOrdenGeneralNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.OrdenGeneralNumero)
+            textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
 
-            datetimepickerBajaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.BajaFecha, datetimepickerBajaFecha)
-            textboxBajaLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaLibroNumero)
-            textboxBajaFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaFolioNumero)
-            textboxBajaActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaActaNumero)
-            textboxBajaOrdenGeneralNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaOrdenGeneralNumero)
-            textboxBajaResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaResolucionNumero)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxBajaMotivo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
-            If (Not mPersonaBajaMotivo Is Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
-                textboxBajaUnidadDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaUnidadDestino)
+            ' Baja
+            If .Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA Then
+                comboboxBajaMotivo.SelectedIndex = -1
+                textboxBajaUnidadDestino.Text = String.Empty
             Else
-                textboxBajaUnidadDestino.Text = ""
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxBajaMotivo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
+                If (mPersonaBajaMotivo IsNot Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
+                    textboxBajaUnidadDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaUnidadDestino)
+                Else
+                    textboxBajaUnidadDestino.Text = ""
+                End If
             End If
 
             ' Datos de la pestaña Notas y Auditoría
@@ -145,24 +137,25 @@
 
     Friend Sub SetDataFromControlsToObject()
         With mPersonaAltaBajaActual
-            .AltaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerAltaFecha.Value).Value
-            .AltaLibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaLibroNumero.Text)
-            .AltaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaFolioNumero.Text)
-            .AltaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaActaNumero.Text)
-            .AltaOrdenGeneralNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaOrdenGeneralNumero.Text)
-            .AltaResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxAltaResolucionNumero.Text)
+            .Tipo = If(radiobuttonTipoAlta.Checked, Constantes.PERSONA_ALTABAJA_TIPO_ALTA, Constantes.PERSONA_ALTABAJA_TIPO_BAJA)
+            .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
+            .LibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLibroNumero.Text)
+            .FolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFolioNumero.Text)
+            .ActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxActaNumero.Text)
+            .OrdenGeneralNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxOrdenGeneralNumero.Text)
+            .ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
 
-            .BajaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerBajaFecha.Value, datetimepickerBajaFecha.Checked)
-            .BajaLibroNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaLibroNumero.Text)
-            .BajaFolioNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaFolioNumero.Text)
-            .BajaActaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaActaNumero.Text)
-            .BajaOrdenGeneralNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaOrdenGeneralNumero.Text)
-            .BajaResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaResolucionNumero.Text)
-            .IDPersonaBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxBajaMotivo.SelectedValue)
-            If (Not mPersonaBajaMotivo Is Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
-                .BajaUnidadDestino = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaUnidadDestino.Text)
-            Else
+            ' Baja
+            If radiobuttonTipoAlta.Checked Then
+                .IDPersonaBajaMotivo = Nothing
                 .BajaUnidadDestino = Nothing
+            Else
+                .IDPersonaBajaMotivo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxBajaMotivo.SelectedValue)
+                If (mPersonaBajaMotivo IsNot Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
+                    .BajaUnidadDestino = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxBajaUnidadDestino.Text)
+                Else
+                    .BajaUnidadDestino = Nothing
+                End If
             End If
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -190,12 +183,16 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxAltaLibroNumero.GotFocus, textboxAltaFolioNumero.GotFocus, textboxAltaActaNumero.GotFocus, textboxAltaOrdenGeneralNumero.GotFocus, textboxAltaResolucionNumero.GotFocus, textboxBajaLibroNumero.GotFocus, textboxBajaFolioNumero.GotFocus, textboxBajaActaNumero.GotFocus, textboxBajaOrdenGeneralNumero.GotFocus, textboxBajaResolucionNumero.GotFocus, textboxBajaUnidadDestino.GotFocus, textboxNotas.GotFocus
+    Private Sub RadioButtons_CheckedChanged(sender As Object, e As EventArgs) Handles radiobuttonTipoAlta.CheckedChanged, radiobuttonTipoBaja.CheckedChanged
+        groupboxBaja.Visible = radiobuttonTipoBaja.Checked
+    End Sub
+
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxLibroNumero.GotFocus, textboxFolioNumero.GotFocus, textboxActaNumero.GotFocus, textboxOrdenGeneralNumero.GotFocus, textboxResolucionNumero.GotFocus, textboxBajaUnidadDestino.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
     Private Sub comboboxBajaMotivo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboboxBajaMotivo.SelectedIndexChanged
-        If Not comboboxBajaMotivo.SelectedItem Is Nothing Then
+        If comboboxBajaMotivo.SelectedItem IsNot Nothing Then
             mPersonaBajaMotivo = CType(comboboxBajaMotivo.SelectedItem, PersonaBajaMotivo)
 
             labelBajaUnidadDestino.Visible = mPersonaBajaMotivo.EspecificaDestino
@@ -219,6 +216,11 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
+        If Not (radiobuttonTipoAlta.Checked Or radiobuttonTipoBaja.Checked) Then
+            MsgBox("Debe indicar si es un Alta o una Baja.", MsgBoxStyle.Information, My.Application.Info.Title)
+            Exit Sub
+        End If
+
         ' Generar el ID nuevo
         If mPersonaAltaBajaActual.IDAltaBaja = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
@@ -254,7 +256,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Alta-Baja con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Alta o una Baja con los mismos datos.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

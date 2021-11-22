@@ -13,11 +13,11 @@ GO
 -- Create date: 2017-01-09
 -- Description:	Devuelve la calificación anual final dada la calificación promedio
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetCalificacionAnualFinal_Abreviada') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetCalificacionAnualFinal_Abreviada
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerCalificacionAnualFinalAbreviada') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerCalificacionAnualFinalAbreviada
 GO
 
-CREATE FUNCTION udf_GetCalificacionAnualFinal_Abreviada
+CREATE FUNCTION PersonaObtenerCalificacionAnualFinalAbreviada
 (	
 	@CalificacionAnual decimal(4,2)
 ) RETURNS varchar(2) AS
@@ -37,18 +37,38 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-31
--- Description:	Devuelve la primer fecha de Alta
+-- Description:	Devuelve la primera fecha de Alta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaPrimerFechaAlta') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaPrimerFechaAlta
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerPrimeraFechaAlta') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerPrimeraFechaAlta
 GO
 
-CREATE FUNCTION udf_GetPersonaPrimerFechaAlta
+CREATE FUNCTION PersonaObtenerPrimeraFechaAlta
 (	
 	@IDPersona int
 ) RETURNS date AS
 BEGIN
-	RETURN (SELECT MIN(AltaFecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona)
+	RETURN (SELECT MIN(Fecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'A')
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el ID de la primera Alta
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdPrimeraAlta') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdPrimeraAlta
+GO
+
+CREATE FUNCTION PersonaObtenerIdPrimeraAlta
+(	
+	@IDPersona int
+) RETURNS tinyint AS
+BEGIN
+	RETURN (SELECT TOP 1 IDAltaBaja FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'A' ORDER BY Fecha)
 END
 GO
 
@@ -59,17 +79,38 @@ GO
 -- Create date: 2018-09-08
 -- Description:	Devuelve la última fecha de Alta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaAlta') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaAlta
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerFechaUltimaAlta') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerFechaUltimaAlta
 GO
 
-CREATE FUNCTION udf_GetPersonaUltimaFechaAlta
+CREATE FUNCTION PersonaObtenerFechaUltimaAlta
 (	
 	@IDPersona int,
 	@FechaHasta date
 ) RETURNS date AS
 BEGIN
-	RETURN (SELECT MAX(AltaFecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND AltaFecha <= @FechaHasta)
+	RETURN (SELECT MAX(Fecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'A' AND Fecha <= ISNULL(@FechaHasta, GETDATE()))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el ID de la última Alta
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdUltimaAlta') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdUltimaAlta
+GO
+
+CREATE FUNCTION PersonaObtenerIdUltimaAlta
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS tinyint AS
+BEGIN
+	RETURN (SELECT TOP 1 IDAltaBaja FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'A' AND Fecha <= ISNULL(@FechaHasta, GETDATE()) ORDER BY Fecha DESC)
 END
 GO
 
@@ -80,17 +121,84 @@ GO
 -- Create date: 2020-10-30
 -- Description:	Devuelve la última fecha de Baja
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaBaja') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaBaja
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerFechaUltimaBaja') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerFechaUltimaBaja
 GO
 
-CREATE FUNCTION udf_GetPersonaUltimaFechaBaja
+CREATE FUNCTION PersonaObtenerFechaUltimaBaja
 (	
 	@IDPersona int,
 	@FechaHasta date
 ) RETURNS date AS
 BEGIN
-	RETURN (SELECT MAX(BajaFecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND BajaFecha <= @FechaHasta)
+	RETURN (SELECT MAX(Fecha) FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'B' AND Fecha <= ISNULL(@FechaHasta, GETDATE()))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el ID de la última Baja
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdUltimaBaja') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdUltimaBaja
+GO
+
+CREATE FUNCTION PersonaObtenerIdUltimaBaja
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS tinyint AS
+BEGIN
+	RETURN (SELECT TOP 1 IDAltaBaja FROM PersonaAltaBaja WHERE IDPersona = @IDPersona AND Tipo = 'B' AND Fecha <= ISNULL(@FechaHasta, GETDATE()) ORDER BY Fecha DESC)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el ID del Alta o Baja anterior a la última Baja
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdAnteriorAUltimaBaja') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdAnteriorAUltimaBaja
+GO
+
+CREATE FUNCTION PersonaObtenerIdAnteriorAUltimaBaja
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS tinyint AS
+BEGIN
+	RETURN dbo.PersonaObtenerIdUltimaAltaBaja(@IDPersona, DATEADD(day, -1, dbo.PersonaObtenerFechaUltimaBaja(@IDPersona, NULL)))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-20
+-- Description:	Devuelve el ID de la última Alta o Baja
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdUltimaAltaBaja') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdUltimaAltaBaja
+GO
+
+CREATE FUNCTION PersonaObtenerIdUltimaAltaBaja
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS tinyint AS
+BEGIN
+	RETURN (
+		SELECT TOP 1 IDAltaBaja
+			FROM PersonaAltaBaja
+			WHERE IDPersona = @IDPersona AND Fecha <= ISNULL(@FechaHasta, GETDATE())
+			ORDER BY Fecha DESC, Tipo ASC)
 END
 GO
 
@@ -101,17 +209,42 @@ GO
 -- Create date: 2018-09-08
 -- Description:	Devuelve la última fecha de Ascenso
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaAscenso') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaAscenso
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerFechaUltimoAscenso') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerFechaUltimoAscenso
 GO
 
-CREATE FUNCTION udf_GetPersonaUltimaFechaAscenso
+CREATE FUNCTION PersonaObtenerFechaUltimoAscenso
 (	
 	@IDPersona int,
 	@FechaHasta date
 ) RETURNS date AS
 BEGIN
-	RETURN (SELECT MAX(Fecha) FROM PersonaAscenso WHERE IDPersona = @IDPersona AND Fecha <= @FechaHasta)
+	RETURN (SELECT MAX(Fecha) FROM PersonaAscenso WHERE IDPersona = @IDPersona AND Fecha <= ISNULL(@FechaHasta, GETDATE()))
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve la jerarquía según la última fecha de Ascenso
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerNombreJerarquiaUltimoAscenso') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerNombreJerarquiaUltimoAscenso
+GO
+
+CREATE FUNCTION PersonaObtenerNombreJerarquiaUltimoAscenso
+(	
+	@IDPersona int,
+	@FechaHasta date
+) RETURNS varchar(50) AS
+BEGIN
+	RETURN (SELECT cj.Nombre
+				FROM PersonaAscenso AS pa
+					INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+					WHERE IDPersona = @IDPersona
+						AND Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@IDPersona, @FechaHasta))
 END
 GO
 
@@ -122,17 +255,17 @@ GO
 -- Create date: 2021-04-18
 -- Description:	Devuelve la última fecha de Licencia
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaUltimaFechaLicencia') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaUltimaFechaLicencia
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerFechaUltimaLicencia') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerFechaUltimaLicencia
 GO
 
-CREATE FUNCTION udf_GetPersonaUltimaFechaLicencia
+CREATE FUNCTION PersonaObtenerFechaUltimaLicencia
 (	
 	@IDPersona int,
 	@FechaHasta date
 ) RETURNS date AS
 BEGIN
-	RETURN (SELECT MAX(Fecha) FROM PersonaLicencia WHERE IDPersona = @IDPersona AND Fecha <= @FechaHasta)
+	RETURN (SELECT MAX(Fecha) FROM PersonaLicencia WHERE IDPersona = @IDPersona AND Fecha <= ISNULL(@FechaHasta, GETDATE()))
 END
 GO
 
@@ -141,30 +274,62 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-04
+-- Updates: 2021-11-21 - Se adaptó a la nueva estructura de la tabla de Altas y Bajas
 -- Description:	Devuelve la antigüedad expresada en días,
 --				de una Persona desde la FechaDesde hasta FechaHasta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaAntiguedadDias') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaAntiguedadDias
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerAntiguedadEnDias') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerAntiguedadEnDias
 GO
 
-CREATE FUNCTION udf_GetPersonaAntiguedadDias
+CREATE FUNCTION PersonaObtenerAntiguedadEnDias
 (
 	@IDPersona int,
 	@FechaDesde date,
 	@FechaHasta date
 ) RETURNS int AS
-BEGIN
-	IF @FechaDesde IS NULL
-		SET @FechaDesde = '1800-01-01'
 
-	RETURN (
-		SELECT SUM(DATEDIFF(DAY, (CASE WHEN AltaFecha < @FechaDesde THEN @FechaDesde ELSE AltaFecha END), ISNULL(BajaFecha, @FechaHasta)))
+BEGIN
+	DECLARE @Dias int = 0
+	DECLARE @TipoAnterior char(1), @TipoActual char(1)
+	DECLARE @FechaAnterior date, @FechaActual date
+
+	-- Si está especificada la fecha desde, me fijo si el registro inmediato anterior no es un alta
+	IF @FechaDesde IS NOT NULL
+		SELECT TOP 1 @TipoAnterior = Tipo, @FechaAnterior = @FechaDesde
 			FROM PersonaAltaBaja
 			WHERE IDPersona = @IDPersona
-				AND AltaFecha <= @FechaHasta
-				AND (BajaFecha IS NULL OR BajaFecha > @FechaDesde)
-			)
+				AND Fecha < @FechaDesde
+			ORDER BY Fecha DESC, Tipo ASC
+
+	-- Creo un cursor para recorrer los registros
+	DECLARE CursorAltasBajas CURSOR LOCAL FORWARD_ONLY STATIC FOR
+		SELECT Tipo, Fecha
+			FROM PersonaAltaBaja
+			WHERE IDPersona = @IDPersona
+				AND (@FechaDesde IS NULL OR Fecha >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR Fecha <= @FechaHasta)
+			ORDER BY Fecha, Tipo DESC
+
+	OPEN CursorAltasBajas
+	FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual
+
+	WHILE @@FETCH_STATUS = 0
+		BEGIN
+		IF @TipoActual = 'B' AND @TipoAnterior = 'A'
+			SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, @FechaActual)
+
+		SET @TipoAnterior = @TipoActual
+		SET @FechaAnterior = @FechaActual
+
+		FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual
+		END
+
+	-- Si el último registro es un Alta, sumo los días transcurridos hasta la Fecha Hasta
+	IF @TipoAnterior = 'A'
+		SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, ISNULL(@FechaHasta, GETDATE()))
+
+	RETURN @Dias
 END
 GO
 
@@ -173,67 +338,22 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-04
+-- Updates: 2021-11-21 - Se modificó completamente para que utilice la función PersonaObtenerAntiguedadEnDias
 -- Description:	Devuelve la antigüedad expresada en años, meses y días,
 --				de una Persona desde la FechaDesde hasta FechaHasta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaAntiguedadLeyenda') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaAntiguedadLeyenda
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerAntiguedadEnLetras') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerAntiguedadEnLetras
 GO
 
-CREATE FUNCTION udf_GetPersonaAntiguedadLeyenda
+CREATE FUNCTION PersonaObtenerAntiguedadEnLetras
 (
 	@IDPersona int,
 	@FechaDesde date,
 	@FechaHasta date
 ) RETURNS varchar(100) AS
 BEGIN
-	DECLARE @FechaAlta date
-	DECLARE @FechaBaja date
-
-	DECLARE @AniosAcumulados smallint = 0
-	DECLARE @MesesAcumulados smallint = 0
-	DECLARE @DiasAcumulados smallint = 0
-
-	IF @FechaDesde IS NULL
-		SET @FechaDesde = '1800-01-01'
-	IF @FechaHasta IS NULL
-		SET @FechaHasta = GETDATE()
-
-	DECLARE AltaBajaCursor CURSOR LOCAL FORWARD_ONLY STATIC FOR 
-		SELECT (CASE WHEN AltaFecha < @FechaDesde THEN @FechaDesde ELSE AltaFecha END) AS FechaAlta, ISNULL(BajaFecha, @FechaHasta) AS FechaBaja
-			FROM PersonaAltaBaja
-			WHERE IDPersona = @IDPersona
-				AND AltaFecha <= @FechaHasta
-				AND (BajaFecha IS NULL OR BajaFecha > @FechaDesde)
-
-	OPEN AltaBajaCursor
-	FETCH NEXT FROM AltaBajaCursor INTO @FechaAlta, @FechaBaja
-
-	WHILE @@FETCH_STATUS = 0
-	BEGIN
-		SELECT @AniosAcumulados = @AniosAcumulados + Years, @MesesAcumulados = @MesesAcumulados + Months, @DiasAcumulados = @DiasAcumulados + [Days]
-			FROM dbo.udf_GetElapsedYearsMonthsAndDaysFromDatesAsTable(@FechaAlta, @FechaBaja)
-
-		FETCH NEXT FROM AltaBajaCursor INTO @FechaAlta, @FechaBaja
-	END
-
-	CLOSE AltaBajaCursor
-
-	DEALLOCATE AltaBajaCursor
-
-	IF @DiasAcumulados >= 30
-		BEGIN
-		SET @MesesAcumulados = @MesesAcumulados + (@DiasAcumulados / 30)
-		SET @DiasAcumulados = (@DiasAcumulados % 30)
-		END
-
-	IF @MesesAcumulados >= 12
-		BEGIN
-		SET @AniosAcumulados = @AniosAcumulados + (@MesesAcumulados / 12)
-		SET @MesesAcumulados = (@MesesAcumulados % 12)
-		END
-
-	RETURN dbo.udf_FormatElapsedYearsMonthsAndDays(@AniosAcumulados, @MesesAcumulados, @DiasAcumulados)
+	RETURN dbo.udf_GetElapsedYearsMonthsAndDaysFromDays(dbo.PersonaObtenerAntiguedadEnDias(@IDPersona, @FechaDesde, @FechaHasta))
 END
 GO
 
@@ -245,11 +365,11 @@ GO
 -- Description:	Devuelve la antigüedad expresada en días,
 --				de una Persona en el último Cargo tomando como referencia la fecha hasta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaAntiguedadEnCargoDias') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaAntiguedadEnCargoDias
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerAntiguedadEnElCargoEnDias') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerAntiguedadEnElCargoEnDias
 GO
 
-CREATE FUNCTION udf_GetPersonaAntiguedadEnCargoDias
+CREATE FUNCTION PersonaObtenerAntiguedadEnElCargoEnDias
 (
 	@IDPersona int,
 	@FechaHasta date
@@ -257,15 +377,9 @@ CREATE FUNCTION udf_GetPersonaAntiguedadEnCargoDias
 BEGIN
 	DECLARE @FechaInicioEnCargo date
 
-	SET @FechaInicioEnCargo = dbo.udf_GetPersonaUltimaFechaAscenso(@IDPersona, @FechaHasta)
+	SET @FechaInicioEnCargo = dbo.PersonaObtenerFechaUltimoAscenso(@IDPersona, @FechaHasta)
 
-	RETURN (
-		SELECT SUM(DATEDIFF(DAY, (CASE WHEN AltaFecha < @FechaInicioEnCargo THEN @FechaInicioEnCargo ELSE AltaFecha END), ISNULL(BajaFecha, @FechaHasta)))
-			FROM PersonaAltaBaja
-			WHERE IDPersona = @IDPersona
-				AND AltaFecha <= @FechaHasta
-				AND (BajaFecha IS NULL OR BajaFecha > @FechaInicioEnCargo)
-			)
+	RETURN dbo.PersonaObtenerAntiguedadEnDias(@IDPersona, @FechaInicioEnCargo, @FechaHasta)
 END
 GO
 
@@ -274,67 +388,21 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-04
+-- Updates: 2021-11-21 - Se modificó para que utilice la función PersonaObtenerAntiguedadEnElCargoEnDias
 -- Description:	Devuelve la antigüedad expresada en años, meses y días,
 --				de una Persona en el último Cargo tomando como referencia la fecha hasta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaAntiguedadEnCargoLeyenda') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaAntiguedadEnCargoLeyenda
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerAntiguedadEnElCargoEnLetras') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerAntiguedadEnElCargoEnLetras
 GO
 
-CREATE FUNCTION udf_GetPersonaAntiguedadEnCargoLeyenda
+CREATE FUNCTION PersonaObtenerAntiguedadEnElCargoEnLetras
 (
 	@IDPersona int,
 	@FechaHasta date
 ) RETURNS varchar(100) AS
 BEGIN
-	DECLARE @FechaAlta date
-	DECLARE @FechaBaja date
-	DECLARE @FechaInicioEnCargo date
-
-	DECLARE @AniosAcumulados smallint = 0
-	DECLARE @MesesAcumulados smallint = 0
-	DECLARE @DiasAcumulados smallint = 0
-
-	IF @FechaHasta IS NULL
-		SET @FechaHasta = GETDATE()
-
-	SET @FechaInicioEnCargo = dbo.udf_GetPersonaUltimaFechaAscenso(@IDPersona, @FechaHasta)
-
-	DECLARE AltaBajaCursor CURSOR LOCAL FORWARD_ONLY STATIC FOR 
-		SELECT (CASE WHEN AltaFecha < @FechaInicioEnCargo THEN @FechaInicioEnCargo ELSE AltaFecha END) AS FechaAlta, ISNULL(BajaFecha, @FechaHasta) AS FechaBaja
-			FROM PersonaAltaBaja
-			WHERE IDPersona = @IDPersona
-				AND AltaFecha <= @FechaHasta
-				AND (BajaFecha IS NULL OR BajaFecha > @FechaInicioEnCargo)
-
-	OPEN AltaBajaCursor
-	FETCH NEXT FROM AltaBajaCursor INTO @FechaAlta, @FechaBaja
-
-	WHILE @@FETCH_STATUS = 0
-	BEGIN
-		SELECT @AniosAcumulados = @AniosAcumulados + Years, @MesesAcumulados = @MesesAcumulados + Months, @DiasAcumulados = @DiasAcumulados + [Days]
-			FROM dbo.udf_GetElapsedYearsMonthsAndDaysFromDatesAsTable(@FechaAlta, @FechaBaja)
-
-		FETCH NEXT FROM AltaBajaCursor INTO @FechaAlta, @FechaBaja
-	END
-
-	CLOSE AltaBajaCursor
-
-	DEALLOCATE AltaBajaCursor
-
-	IF @DiasAcumulados >= 30
-		BEGIN
-		SET @MesesAcumulados = @MesesAcumulados + (@DiasAcumulados / 30)
-		SET @DiasAcumulados = (@DiasAcumulados % 30)
-		END
-
-	IF @MesesAcumulados >= 12
-		BEGIN
-		SET @AniosAcumulados = @AniosAcumulados + (@MesesAcumulados / 12)
-		SET @MesesAcumulados = (@MesesAcumulados % 12)
-		END
-
-	RETURN dbo.udf_FormatElapsedYearsMonthsAndDays(@AniosAcumulados, @MesesAcumulados, @DiasAcumulados)
+	RETURN dbo.udf_GetElapsedYearsMonthsAndDaysFromDays(dbo.PersonaObtenerAntiguedadEnElCargoEnDias(@IDPersona, @FechaHasta))
 END
 GO
 
@@ -345,11 +413,11 @@ GO
 -- Create date: 2019-04-19
 -- Description:	Devuelve las Categorías de Licencia de Conducir para una Persona
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetPersonaLicenciaConducirCategorias') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetPersonaLicenciaConducirCategorias
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerCategoriasLicenciaDeConducir') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerCategoriasLicenciaDeConducir
 GO
 
-CREATE FUNCTION udf_GetPersonaLicenciaConducirCategorias
+CREATE FUNCTION PersonaObtenerCategoriasLicenciaDeConducir
 (
 	@IDPersona int
 ) RETURNS varchar(MAX) AS
@@ -376,11 +444,11 @@ GO
 -- Create date: 2021-11-03
 -- Description:	Devuelve el nombre de la Clave de un Siniestro
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestro') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetNombreClaveSiniestro
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClave') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerNombreClave
 GO
 
-CREATE FUNCTION udf_GetNombreClaveSiniestro
+CREATE FUNCTION SiniestroObtenerNombreClave
 (	
 	@Clave char(2)
 ) RETURNS varchar(12) AS
@@ -403,11 +471,11 @@ GO
 -- Create date: 2021-11-03
 -- Description:	Devuelve el nombre en plural de la Clave de un Siniestro
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroPlural') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroPlural
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveEnPlural') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveEnPlural
 GO
 
-CREATE FUNCTION udf_GetNombreClaveSiniestroPlural
+CREATE FUNCTION SiniestroObtenerNombreClaveEnPlural
 (	
 	@Clave char(2)
 ) RETURNS varchar(15) AS
@@ -430,11 +498,11 @@ GO
 -- Create date: 2021-11-03
 -- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetClaveSiniestroAgrupada') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetClaveSiniestroAgrupada
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerClaveAgrupada') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerClaveAgrupada
 GO
 
-CREATE FUNCTION udf_GetClaveSiniestroAgrupada
+CREATE FUNCTION SiniestroObtenerClaveAgrupada
 (	
 	@Clave char(1)
 ) RETURNS char(2) AS
@@ -456,16 +524,16 @@ GO
 -- Create date: 2021-11-03
 -- Description:	Devuelve el nombre de la Clave de un Siniestro juntando las verdes y azules
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroAgrupada') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroAgrupada
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveAgrupada') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupada
 GO
 
-CREATE FUNCTION udf_GetNombreClaveSiniestroAgrupada
+CREATE FUNCTION SiniestroObtenerNombreClaveAgrupada
 (	
 	@Clave char(1)
 ) RETURNS varchar(12) AS
 BEGIN
-	RETURN dbo.udf_GetNombreClaveSiniestro(dbo.udf_GetClaveSiniestroAgrupada(@Clave))
+	RETURN dbo.SiniestroObtenerNombreClave(dbo.SiniestroObtenerClaveAgrupada(@Clave))
 END
 GO
 
@@ -476,16 +544,16 @@ GO
 -- Create date: 2021-11-03
 -- Description:	Devuelve el nombre en plural de la Clave de un Siniestro juntando las verdes y azules
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetNombreClaveSiniestroAgrupadaPlural') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetNombreClaveSiniestroAgrupadaPlural
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveAgrupadaEnPlural') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupadaEnPlural
 GO
 
-CREATE FUNCTION udf_GetNombreClaveSiniestroAgrupadaPlural
+CREATE FUNCTION SiniestroObtenerNombreClaveAgrupadaEnPlural
 (	
 	@Clave char(2)
 ) RETURNS varchar(15) AS
 BEGIN
-	RETURN dbo.udf_GetNombreClaveSiniestroPlural(dbo.udf_GetClaveSiniestroAgrupada(@Clave))
+	RETURN dbo.SiniestroObtenerNombreClaveEnPlural(dbo.SiniestroObtenerClaveAgrupada(@Clave))
 END
 GO
 
@@ -496,11 +564,11 @@ GO
 -- Create date: 2021-11-17
 -- Description:	Devuelve el id del puntaje para una fecha de Siniestro
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.udf_GetIdPuntajeClaveSiniestro') AND type = N'FN')
-	DROP FUNCTION dbo.udf_GetIdPuntajeClaveSiniestro
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerIdPuntajeClave') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerIdPuntajeClave
 GO
 
-CREATE FUNCTION udf_GetIdPuntajeClaveSiniestro
+CREATE FUNCTION SiniestroObtenerIdPuntajeClave
 (
 	@IDSiniestroAsistenciaTipo tinyint,
 	@Clave char(1),
@@ -512,5 +580,71 @@ BEGIN
 		FROM SiniestroAsistenciaTipoPuntaje
 		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
 		ORDER BY FechaInicio DESC)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el estado de la persona
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerEstado') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerEstado
+GO
+
+CREATE FUNCTION PersonaObtenerEstado
+(	
+	@Tipo char(1),
+	@BajaMotivo varchar(50)
+) RETURNS varchar(50) AS
+BEGIN
+	DECLARE @EstadoActivo varchar(6) = 'Activo'
+	DECLARE @EstadoBaja varchar(17) = 'Baja (sin motivo)'
+	DECLARE @EstadoDesconocido varchar(13) = '«Desconocido»'
+
+	RETURN (CASE @Tipo WHEN 'A' THEN @EstadoActivo WHEN 'B' THEN ISNULL(@BajaMotivo, @EstadoBaja) ELSE @EstadoDesconocido END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve si la persona tiene estado activo
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerSiEstadoEsActivo') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerSiEstadoEsActivo
+GO
+
+CREATE FUNCTION PersonaObtenerSiEstadoEsActivo
+(	
+	@Tipo char(1)
+) RETURNS bit AS
+BEGIN
+	RETURN (CASE @Tipo WHEN 'A' THEN 1 ELSE 0 END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-21
+-- Description:	Devuelve el motivo de baja de la persona
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerIdBajaMotivo') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerIdBajaMotivo
+GO
+
+CREATE FUNCTION PersonaObtenerIdBajaMotivo
+(	
+	@Tipo char(1),
+	@IDBajaMotivo tinyint
+) RETURNS tinyint AS
+BEGIN
+	RETURN (CASE @Tipo WHEN 'A' THEN 0 WHEN 'B' THEN ISNULL(@IDBajaMotivo, 255) ELSE NULL END)
 END
 GO

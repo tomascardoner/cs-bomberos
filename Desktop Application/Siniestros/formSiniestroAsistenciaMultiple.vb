@@ -105,7 +105,7 @@
             ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha del siniestro, están activas en el cuerpo
             listPersonasActivasDelCuartel = (From p In mdbContext.Persona
                                              Join pab In mdbContext.PersonaAltaBaja On p.IDPersona Equals pab.IDPersona
-                                             Where p.EsActivo AndAlso p.IDCuartel = mSiniestroActual.IDCuartel AndAlso pab.AltaFecha <= mSiniestroActual.Fecha AndAlso (pab.BajaFecha Is Nothing Or pab.BajaFecha > mSiniestroActual.Fecha)
+                                             Where p.EsActivo AndAlso p.IDCuartel = mSiniestroActual.IDCuartel AndAlso pab.Fecha <= mSiniestroActual.Fecha
                                              Select p).ToList()
 
             ' Obtengo las personas que ya están asignadas al siniestro actual
@@ -260,10 +260,11 @@
 
             sa = mdbContext.SiniestroAsistencia.Find(mSiniestroActual.IDSiniestro, idPersona)
             If sa Is Nothing Then
-                sa = New SiniestroAsistencia
-                sa.IDSiniestro = mSiniestroActual.IDSiniestro
-                sa.IDPersona = idPersona
-                sa.IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                sa = New SiniestroAsistencia With {
+                    .IDSiniestro = mSiniestroActual.IDSiniestro,
+                    .IDPersona = idPersona,
+                    .IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                }
                 mdbContext.SiniestroAsistencia.Add(sa)
                 mdbContext.SaveChanges()
             ElseIf sa.IDSiniestroAsistenciaTipo <> idSiniestroAsistenciaTipo Then

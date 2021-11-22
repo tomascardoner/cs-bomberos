@@ -37,7 +37,7 @@ CREATE PROCEDURE uspPersonaActualizacionDatos
 			p.TelefonoParticular, p.CelularParticular, p.EmailParticular,
 			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioLaboralCalle1, p.DomicilioLaboralNumero, p.DomicilioLaboralPiso, p.DomicilioLaboralDepartamento, p.DomicilioLaboralCalle2, p.DomicilioLaboralCalle3) AS DomicilioLaboral, ll.Nombre AS LocalidadLaboral,
 			p.TelefonoLaboral, p.CelularLaboral, p.EmailLaboral,
-			pab.AltaFecha, p.LicenciaConducirNumero, p.LicenciaConducirVencimiento
+			pab.Fecha, p.LicenciaConducirNumero, p.LicenciaConducirVencimiento
 			FROM (((((((Persona AS p
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel)
 				LEFT JOIN DocumentoTipo AS dt ON p.IDDocumentoTipo = dt.IDDocumentoTipo)
@@ -51,7 +51,7 @@ CREATE PROCEDURE uspPersonaActualizacionDatos
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
-				AND (pab.AltaFecha IS NULL OR pab.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(p.IDPersona, GETDATE()))
+				AND (pab.Fecha IS NULL OR pab.IDAltaBaja = dbo.udf_GetPersonaUltimaAltaBaja(p.IDPersona, GETDATE()))
 				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
 				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND pab.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND pab.IDPersonaBajaMotivo IS NOT NULL))
 				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)

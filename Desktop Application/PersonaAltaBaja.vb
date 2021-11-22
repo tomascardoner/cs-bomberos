@@ -13,18 +13,14 @@ Imports System.Collections.Generic
 Partial Public Class PersonaAltaBaja
     Public Property IDPersona As Integer
     Public Property IDAltaBaja As Byte
-    Public Property AltaFecha As Date
-    Public Property AltaLibroNumero As String
-    Public Property AltaFolioNumero As String
-    Public Property AltaActaNumero As String
-    Public Property AltaOrdenGeneralNumero As String
-    Public Property AltaResolucionNumero As String
-    Public Property BajaFecha As Nullable(Of Date)
-    Public Property BajaLibroNumero As String
-    Public Property BajaFolioNumero As String
-    Public Property BajaActaNumero As String
-    Public Property BajaOrdenGeneralNumero As String
-    Public Property BajaResolucionNumero As String
+    Public Property Tipo As String
+    Public Property TipoNombre As String
+    Public Property Fecha As Date
+    Public Property LibroNumero As String
+    Public Property FolioNumero As String
+    Public Property ActaNumero As String
+    Public Property OrdenGeneralNumero As String
+    Public Property ResolucionNumero As String
     Public Property IDPersonaBajaMotivo As Nullable(Of Byte)
     Public Property BajaUnidadDestino As String
     Public Property Notas As String

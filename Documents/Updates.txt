@@ -1,3 +1,20 @@
+2021-11-18
+	- Verificar que exista el parámetro PARENTESCO_ID_HIJO
+	- Tabla PersonaAltaBaja:
+		- Borrar el índice AK__PersonaAltaBaja__AltaFecha
+		- Agregar el campo Tipo char(1) not null después del PK
+		- Agregar el campo TipoNombre
+			ALTER TABLE PersonaAltaBaja
+				ADD TipoNombre AS (CASE Tipo WHEN 'A' THEN 'Alta' WHEN 'B' THEN 'Baja' ELSE '' END)
+		- Cambiar posición de campo TipoNombre
+		- Ejecutar el script de update: 2021-11-18.sql
+		- Sacar el prefijo 'Alta' a los campos: AltaFecha, AltaLibroNumero, AltaFolioNumero, AltaActaNumero, AltaOrdenGeneralNumero, AltaResolucionNumero
+		- Borrar los campos: BajaFecha, BajaLibroNumero, BajaFolioNumero, BajaActaNumero, BajaOrdenGeneralNumero, BajaResolucionNumero
+	- Ejecutar arhivo de Fuciones SQL
+	- Ejecutar todos los archivos de stored procedure
+	- Copiar reportes
+
+
 2021-11-14
 	- Actualizar funciones de SQL
 	- Crear sp usp_Personas_Puntajes

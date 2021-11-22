@@ -206,9 +206,6 @@ Partial Class formPersona
         Me.buttonFamiliares_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAltasBajas = New System.Windows.Forms.TabPage()
         Me.datagridviewAltasBajas = New System.Windows.Forms.DataGridView()
-        Me.columnAltasBajas_AltaFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAltasBajas_BajaFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnaltasBajas_BajaMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAltasBajas = New System.Windows.Forms.ToolStrip()
         Me.buttonAltasBajas_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAltasBajas_Editar = New System.Windows.Forms.ToolStripButton()
@@ -340,6 +337,9 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.columnAltasBajas_TipoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAltasBajas_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnaltasBajas_BajaMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -1031,7 +1031,6 @@ Partial Class formPersona
         labelReingresoFormacionMeses.Size = New System.Drawing.Size(41, 13)
         labelReingresoFormacionMeses.TabIndex = 2
         labelReingresoFormacionMeses.Text = "Meses:"
-        AddHandler labelReingresoFormacionMeses.Click, AddressOf Me.Label3_Click
         '
         'labelReingresoFormacionRealizada
         '
@@ -1423,7 +1422,7 @@ Partial Class formPersona
         '
         'doubletextboxAltura
         '
-        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.doubletextboxAltura.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.doubletextboxAltura.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.doubletextboxAltura.DoubleValue = 0R
         Me.doubletextboxAltura.Location = New System.Drawing.Point(334, 71)
@@ -1439,7 +1438,7 @@ Partial Class formPersona
         '
         'integertextboxPeso
         '
-        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.integertextboxPeso.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxPeso.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxPeso.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxPeso.IntegerValue = CType(0, Long)
@@ -1626,7 +1625,7 @@ Partial Class formPersona
         '
         'integertextboxReingresoFormacionHoras
         '
-        Me.integertextboxReingresoFormacionHoras.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.integertextboxReingresoFormacionHoras.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxReingresoFormacionHoras.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxReingresoFormacionHoras.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxReingresoFormacionHoras.IntegerValue = CType(0, Long)
@@ -1643,7 +1642,7 @@ Partial Class formPersona
         '
         'integertextboxReingresoFormacionMeses
         '
-        Me.integertextboxReingresoFormacionMeses.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.integertextboxReingresoFormacionMeses.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxReingresoFormacionMeses.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxReingresoFormacionMeses.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxReingresoFormacionMeses.IntegerValue = CType(0, Long)
@@ -1686,7 +1685,7 @@ Partial Class formPersona
         '
         'integertextboxCursoIngresoHoras
         '
-        Me.integertextboxCursoIngresoHoras.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.integertextboxCursoIngresoHoras.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxCursoIngresoHoras.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxCursoIngresoHoras.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxCursoIngresoHoras.IntegerValue = CType(0, Long)
@@ -1703,7 +1702,7 @@ Partial Class formPersona
         '
         'integertextboxCursoIngresoMeses
         '
-        Me.integertextboxCursoIngresoMeses.BeforeTouchSize = New System.Drawing.Size(33, 20)
+        Me.integertextboxCursoIngresoMeses.BeforeTouchSize = New System.Drawing.Size(29, 20)
         Me.integertextboxCursoIngresoMeses.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxCursoIngresoMeses.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxCursoIngresoMeses.IntegerValue = CType(0, Long)
@@ -2107,7 +2106,7 @@ Partial Class formPersona
         Me.tabpageAltasBajas.Name = "tabpageAltasBajas"
         Me.tabpageAltasBajas.Size = New System.Drawing.Size(652, 408)
         Me.tabpageAltasBajas.TabIndex = 11
-        Me.tabpageAltasBajas.Text = "Altas - Bajas"
+        Me.tabpageAltasBajas.Text = "Altas y Bajas"
         Me.tabpageAltasBajas.UseVisualStyleBackColor = True
         '
         'datagridviewAltasBajas
@@ -2121,7 +2120,7 @@ Partial Class formPersona
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewAltasBajas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.datagridviewAltasBajas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewAltasBajas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAltasBajas_AltaFecha, Me.columnAltasBajas_BajaFecha, Me.columnaltasBajas_BajaMotivo})
+        Me.datagridviewAltasBajas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAltasBajas_TipoNombre, Me.columnAltasBajas_Fecha, Me.columnaltasBajas_BajaMotivo})
         Me.datagridviewAltasBajas.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAltasBajas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewAltasBajas.Location = New System.Drawing.Point(87, 0)
@@ -2133,32 +2132,6 @@ Partial Class formPersona
         Me.datagridviewAltasBajas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewAltasBajas.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewAltasBajas.TabIndex = 8
-        '
-        'columnAltasBajas_AltaFecha
-        '
-        Me.columnAltasBajas_AltaFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAltasBajas_AltaFecha.DataPropertyName = "AltaFecha"
-        Me.columnAltasBajas_AltaFecha.HeaderText = "Fecha de alta"
-        Me.columnAltasBajas_AltaFecha.Name = "columnAltasBajas_AltaFecha"
-        Me.columnAltasBajas_AltaFecha.ReadOnly = True
-        Me.columnAltasBajas_AltaFecha.Width = 97
-        '
-        'columnAltasBajas_BajaFecha
-        '
-        Me.columnAltasBajas_BajaFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAltasBajas_BajaFecha.DataPropertyName = "BajaFecha"
-        Me.columnAltasBajas_BajaFecha.HeaderText = "Fecha de baja"
-        Me.columnAltasBajas_BajaFecha.Name = "columnAltasBajas_BajaFecha"
-        Me.columnAltasBajas_BajaFecha.ReadOnly = True
-        '
-        'columnaltasBajas_BajaMotivo
-        '
-        Me.columnaltasBajas_BajaMotivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnaltasBajas_BajaMotivo.DataPropertyName = "BajaMotivoNombre"
-        Me.columnaltasBajas_BajaMotivo.HeaderText = "Motivo de baja"
-        Me.columnaltasBajas_BajaMotivo.Name = "columnaltasBajas_BajaMotivo"
-        Me.columnaltasBajas_BajaMotivo.ReadOnly = True
-        Me.columnaltasBajas_BajaMotivo.Width = 102
         '
         'toolstripAltasBajas
         '
@@ -3695,6 +3668,33 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
+        'columnAltasBajas_TipoNombre
+        '
+        Me.columnAltasBajas_TipoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAltasBajas_TipoNombre.DataPropertyName = "TipoNombre"
+        Me.columnAltasBajas_TipoNombre.HeaderText = "Tipo"
+        Me.columnAltasBajas_TipoNombre.Name = "columnAltasBajas_TipoNombre"
+        Me.columnAltasBajas_TipoNombre.ReadOnly = True
+        Me.columnAltasBajas_TipoNombre.Width = 53
+        '
+        'columnAltasBajas_Fecha
+        '
+        Me.columnAltasBajas_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAltasBajas_Fecha.DataPropertyName = "Fecha"
+        Me.columnAltasBajas_Fecha.HeaderText = "Fecha"
+        Me.columnAltasBajas_Fecha.Name = "columnAltasBajas_Fecha"
+        Me.columnAltasBajas_Fecha.ReadOnly = True
+        Me.columnAltasBajas_Fecha.Width = 62
+        '
+        'columnaltasBajas_BajaMotivo
+        '
+        Me.columnaltasBajas_BajaMotivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnaltasBajas_BajaMotivo.DataPropertyName = "BajaMotivoNombre"
+        Me.columnaltasBajas_BajaMotivo.HeaderText = "Motivo de baja"
+        Me.columnaltasBajas_BajaMotivo.Name = "columnaltasBajas_BajaMotivo"
+        Me.columnaltasBajas_BajaMotivo.ReadOnly = True
+        Me.columnaltasBajas_BajaMotivo.Width = 102
+        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3897,9 +3897,6 @@ Partial Class formPersona
     Friend WithEvents buttonAltasBajas_Agregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonAltasBajas_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonAltasBajas_Eliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents columnAltasBajas_AltaFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnAltasBajas_BajaFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnaltasBajas_BajaMotivo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents tabpageAscensos As System.Windows.Forms.TabPage
     Friend WithEvents tabpageLicencias As System.Windows.Forms.TabPage
     Friend WithEvents tabpageSanciones As System.Windows.Forms.TabPage
@@ -4051,4 +4048,7 @@ Partial Class formPersona
     Friend WithEvents columnLicenciasEspeciales_FechaDesde As DataGridViewTextBoxColumn
     Friend WithEvents columnLicenciasEspeciales_FechaHasta As DataGridViewTextBoxColumn
     Friend WithEvents columnLicenciasEspeciales_PresentaCertificado As DataGridViewCheckBoxColumn
+    Friend WithEvents columnAltasBajas_TipoNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnAltasBajas_Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnaltasBajas_BajaMotivo As DataGridViewTextBoxColumn
 End Class

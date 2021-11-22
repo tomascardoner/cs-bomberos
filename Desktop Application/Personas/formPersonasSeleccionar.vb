@@ -63,7 +63,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                listPersonaBase = dbContext.usp_Personas(My.Resources.STRING_PERSONA_ESTADO_DESCONOCIDO, My.Resources.STRING_PERSONA_ESTADO_ACTIVO).ToList
+                listPersonaBase = dbContext.usp_Personas().ToList
             End Using
 
         Catch ex As Exception

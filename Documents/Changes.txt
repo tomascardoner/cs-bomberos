@@ -1,3 +1,7 @@
+2021-11-18
+	- Se modificó la tabla de Altas y Bajas para que permita cargar 2 bajas consecutivas
+
+
 2021-11-14
 	- Se agregó un campo ID a la tabla AcademiaAsistenciaTipoPuntaje para poder cambiar la fecha de inicio que antes era una PK
 	- Se cambió el tipo de datos del puntaje de la tabla AcademiaAsistenciaTipoPuntaje a un número decimal con 2 decimales

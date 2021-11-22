@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2020-12-21
+-- Updates: 2021-11-21 - Se hicieron los cambios para la nueva estructura de la tabla PersonaAltaBaja
 -- Description:	Devuelve los datos para el Arqueo de Caja
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_CajaArqueo') AND type in (N'P', N'PC'))
@@ -42,12 +43,11 @@ CREATE PROCEDURE usp_CajaArqueo
 		IF @ResponsableIDPersona IS NULL
 			SET @ResponsableEstadoActivo = 0
 		ELSE
-			SELECT @ResponsableEstadoActivo = (CASE ISNULL(pab.IDAltaBaja, 0) WHEN 0 THEN 0 ELSE (CASE ISNULL(pab.BajaFecha, '') WHEN '' THEN 1 ELSE 0 END) END)
-				FROM (Persona AS p
-					LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona)
-					LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+			SELECT @ResponsableEstadoActivo = dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo)
+				FROM Persona AS p
+					LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
 				WHERE p.IDPersona = @ResponsableIDPersona
-					AND (pab.AltaFecha IS NULL OR pab.AltaFecha = (SELECT MAX(AltaFecha) FROM PersonaAltaBaja WHERE IDPersona = pab.IDPersona GROUP BY IDPersona))
+					AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(@ResponsableIDPersona, GETDATE())
 
 		-- Obtengo la Jerarquía del Responsable
 		IF @ResponsableIDPersona IS NULL
@@ -58,9 +58,11 @@ CREATE PROCEDURE usp_CajaArqueo
 					INNER JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
 					INNER JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
 				WHERE pa.IDPersona = @ResponsableIDPersona
-					AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(@ResponsableIDPersona, GETDATE()))
+					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		SELECT ca.IDCaja, ca.IDArqueo, c.Nombre AS CajaNombre, ca.SaldoInicial, ca.ImporteAsignado, ca.FechaCierre, cad.IDDetalle, cad.NumeroComprobante, cad.Fecha, cad.Proveedor, cad.Detalle, cad.Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		SELECT ca.IDCaja, ca.IDArqueo, c.Nombre AS CajaNombre, ca.SaldoInicial, ca.ImporteAsignado, ca.FechaCierre, cad.IDDetalle, cad.NumeroComprobante, cad.Fecha,
+				cad.Proveedor, cad.Detalle, cad.Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo,
+				@ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca
 				INNER JOIN Caja AS c ON ca.IDCaja = c.IDCaja
 				LEFT JOIN CajaArqueoDetalle AS cad ON ca.IDCaja = cad.IDCaja AND ca.IDArqueo = cad.IDArqueo

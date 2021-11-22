@@ -161,7 +161,7 @@ Partial Public Class Reporte
                                                 End Select
                                             End If
                                         Case ParameterValueKind.StringParameter
-                                            If Not ParametroActual.Valor Is Nothing Then
+                                            If ParametroActual.Valor IsNot Nothing Then
                                                 .CurrentValues.AddValue(CStr(ParametroActual.Valor))
                                             End If
                                         Case ParameterValueKind.BooleanParameter
@@ -238,6 +238,7 @@ Partial Public Class Reporte
     End Function
 
     Friend Function PdfSetParametersAndGetData() As Boolean
+        Dim command As SqlCommand = New SqlCommand()
 
         Try
             If Not pDatabase.IsConnected Then
@@ -246,9 +247,8 @@ Partial Public Class Reporte
                 End If
             End If
 
-            Dim command As SqlCommand = New SqlCommand()
-            command.Connection = pDatabase.Connection
-            command.CommandText = OrigenDatos
+            Command.Connection = pDatabase.Connection
+            Command.CommandText = OrigenDatos
             command.CommandType = CommandType.StoredProcedure
 
             For Each parametroActual As ReporteParametro In Me.ReporteParametros
@@ -259,9 +259,16 @@ Partial Public Class Reporte
                 End If
             Next
 
-            _DataReader = command.ExecuteReader(CommandBehavior.SingleResult)
-            command.Dispose()
-            command = Nothing
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer los parámetros del reporte.")
+            Return False
+
+        End Try
+
+        Try
+            _DataReader = Command.ExecuteReader(CommandBehavior.SingleResult)
+            Command.Dispose()
+            Command = Nothing
 
             If _DataReader.HasRows Then
                 Return True
@@ -271,7 +278,7 @@ Partial Public Class Reporte
             End If
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer los parámetros del reporte.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los datos para el reporte.")
             Return False
 
         End Try

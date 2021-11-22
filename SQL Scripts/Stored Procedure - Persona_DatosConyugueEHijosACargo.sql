@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2019-11-15
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los datos de la Persona y su cónyugue con sus Hijos a cargo
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_DatosConyugueEHijosACargo') AND type in (N'P', N'PC'))
@@ -30,31 +31,53 @@ CREATE PROCEDURE usp_Persona_DatosConyugueEHijosACargo
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT 'Lobos' AS Partido, 'Lobos' AS Ciudad, DAY(@FechaEmision) AS FechaDia, FORMAT(@FechaEmision, 'MMMM', 'es-es') AS FechaMes, YEAR(@FechaEmision) AS FechaAnio, FORMAT(@FechaEmision, 'yy') AS FechaAnioCorto, FORMAT(@FechaEmision, 'dd/MM/yyyy') AS Fecha, Cuartel.Nombre AS CuartelNombre, Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, Persona.ApellidoNombre, Persona.Nombre + ' ' + Persona.Apellido AS NombreApellido, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, EstadoCivil.Nombre AS EstadoCivil, CONVERT(varchar(10), Persona.FechaNacimiento, 103) AS FechaNacimiento, CONVERT(varchar(10), Persona.FechaCasamiento, 103) AS FechaCasamiento, Persona.Profesion, Persona.Nacionalidad, Cargo.Nombre AS Cargo, Cargo.Orden AS CargoOrden, CargoJerarquia.Nombre AS Jerarquia, CargoJerarquia.Orden AS JerarquiaOrden, (CASE ISNULL(PersonaAltaBaja.IDPersonaBajaMotivo, 0) WHEN 0 THEN 'Activo' ELSE PersonaBajaMotivo.Nombre END) AS Estado, Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, dbo.udf_GetDomicilioCalleCompleto(Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Persona.DomicilioParticularPiso, Persona.DomicilioParticularDepartamento, Persona.DomicilioParticularCalle2, Persona.DomicilioParticularCalle3) AS Domicilio, Localidad.Nombre AS LocalidadNombre, Persona.IOMANumeroAfiliado, CONVERT(varchar(10), PersonaAltaBaja.AltaFecha, 103) AS AltaFecha, Conyugue.Apellido AS ConyugueApellido, Conyugue.Nombre AS ConyugueNombre, Conyugue.ApellidoNombre AS ConyugueApellidoNombre, Conyugue.Nombre + ' ' + Conyugue.Apellido AS ConyugueNombreApellido, dbo.udf_GetDomicilioCalleCompleto(Conyugue.DomicilioCalle1, Conyugue.DomicilioNumero, Conyugue.DomicilioPiso, Conyugue.DomicilioDepartamento, Conyugue.DomicilioCalle2, Conyugue.DomicilioCalle3) AS ConyugueDomicilio, Conyugue.IOMANumeroAfiliado AS ConyugueIOMANumeroAfiliado, CONVERT(varchar(10), Conyugue.FechaNacimiento, 103) AS ConyugueFechaNacimiento, ConyugueDocumentoTipo.Nombre AS ConyugueDocumentoTipoNombre, Conyugue.DocumentoNumero AS ConyugueDocumentoNumero, Conyugue.Notas AS ConyugueNotas, Hijo.Apellido AS HijoApellido, Hijo.Nombre AS HijoNombre, Hijo.ApellidoNombre AS HijoApellidoNombre, Hijo.Nombre + ' ' + Hijo.Apellido AS HijoNombreApellido, dbo.udf_GetDomicilioCalleCompleto(Hijo.DomicilioCalle1, Hijo.DomicilioNumero, Hijo.DomicilioPiso, Hijo.DomicilioDepartamento, Hijo.DomicilioCalle2, Hijo.DomicilioCalle3) AS HijoDomicilio, Hijo.IOMANumeroAfiliado AS HijoIOMANumeroAfiliado, Hijo.FechaNacimiento AS HijoFechaNacimiento, HijoDocumentoTipo.Nombre AS HijoDocumentoTipoNombre, Hijo.DocumentoNumero AS HijoDocumentoNumero, Hijo.Notas AS HijoNotas
-			FROM (((((((((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
-				LEFT JOIN DocumentoTipo ON Persona.IDDocumentoTipo = DocumentoTipo.IDDocumentoTipo)
-				LEFT JOIN EstadoCivil ON Persona.IDEstadoCivil = EstadoCivil.IDEstadoCivil)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia)
-				LEFT JOIN PersonaBajaMotivo ON PersonaAltaBaja.IDPersonaBajaMotivo = PersonaBajaMotivo.IDPersonaBajaMotivo)
-				LEFT JOIN Provincia ON Persona.DomicilioParticularIDProvincia = Provincia.IDProvincia)
-				LEFT JOIN Localidad ON Persona.DomicilioParticularIDProvincia = Localidad.IDProvincia AND Persona.DomicilioParticularIDLocalidad = Localidad.IDLocalidad)
-				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE PersonaFamiliar.IDParentesco = 7 AND ((@IOMAACargo = 0 AND PersonaFamiliar.ACargo = 1) OR (@IOMAACargo = 1 AND PersonaFamiliar.IOMAACargo = 1))) AS Conyugue ON Persona.IDPersona = Conyugue.IDPersona)
-				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE PersonaFamiliar.IDParentesco = 4 AND ((@IOMAACargo = 0 AND PersonaFamiliar.ACargo = 1) OR (@IOMAACargo = 1 AND PersonaFamiliar.IOMAACargo = 1))) AS Hijo ON Persona.IDPersona = Hijo.IDPersona)
-				LEFT JOIN DocumentoTipo AS ConyugueDocumentoTipo ON Conyugue.IDDocumentoTipo = ConyugueDocumentoTipo.IDDocumentoTipo)
-				LEFT JOIN DocumentoTipo AS HijoDocumentoTipo ON Hijo.IDDocumentoTipo = HijoDocumentoTipo.IDDocumentoTipo
-			WHERE Persona.EsActivo = 1
+		DECLARE @IDParentescoHijo tinyint
+
+		SET @IDParentescoHijo = dbo.udf_GetParametro_NumeroEntero('PARENTESCO_ID_HIJO')
+
+		SELECT 'Lobos' AS Partido, 'Lobos' AS Ciudad,
+				DAY(@FechaEmision) AS FechaDia, FORMAT(@FechaEmision, 'MMMM', 'es-es') AS FechaMes, YEAR(@FechaEmision) AS FechaAnio,
+				FORMAT(@FechaEmision, 'yy') AS FechaAnioCorto, FORMAT(@FechaEmision, 'dd/MM/yyyy') AS Fecha,
+				c.Nombre AS CuartelNombre, p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, p.ApellidoNombre, p.Nombre + ' ' + p.Apellido AS NombreApellido,
+				dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, ec.Nombre AS EstadoCivil, CONVERT(varchar(10), p.FechaNacimiento, 103) AS FechaNacimiento,
+				CONVERT(varchar(10), p.FechaCasamiento, 103) AS FechaCasamiento, p.Profesion, p.Nacionalidad,
+				ca.Nombre AS Cargo, ca.Orden AS CargoOrden, cj.Nombre AS Jerarquia, cj.Orden AS JerarquiaOrden,
+				dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS Estado,
+				p.DomicilioParticularCalle1, p.DomicilioParticularNumero, dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS Domicilio,
+				l.Nombre AS LocalidadNombre, p.IOMANumeroAfiliado, CONVERT(varchar(10), dbo.PersonaObtenerFechaUltimaAlta(p.IDPersona, NULL), 103) AS AltaFecha,
+				Conyugue.Apellido AS ConyugueApellido, Conyugue.Nombre AS ConyugueNombre, Conyugue.ApellidoNombre AS ConyugueApellidoNombre, Conyugue.Nombre + ' ' + Conyugue.Apellido AS ConyugueNombreApellido,
+				dbo.udf_GetDomicilioCalleCompleto(Conyugue.DomicilioCalle1, Conyugue.DomicilioNumero, Conyugue.DomicilioPiso, Conyugue.DomicilioDepartamento, Conyugue.DomicilioCalle2, Conyugue.DomicilioCalle3) AS ConyugueDomicilio,
+				Conyugue.IOMANumeroAfiliado AS ConyugueIOMANumeroAfiliado, CONVERT(varchar(10), Conyugue.FechaNacimiento, 103) AS ConyugueFechaNacimiento,
+				cdt.Nombre AS ConyugueDocumentoTipoNombre, Conyugue.DocumentoNumero AS ConyugueDocumentoNumero, Conyugue.Notas AS ConyugueNotas,
+				Hijo.Apellido AS HijoApellido, Hijo.Nombre AS HijoNombre, Hijo.ApellidoNombre AS HijoApellidoNombre, Hijo.Nombre + ' ' + Hijo.Apellido AS HijoNombreApellido,
+				dbo.udf_GetDomicilioCalleCompleto(Hijo.DomicilioCalle1, Hijo.DomicilioNumero, Hijo.DomicilioPiso, Hijo.DomicilioDepartamento, Hijo.DomicilioCalle2, Hijo.DomicilioCalle3) AS HijoDomicilio,
+				Hijo.IOMANumeroAfiliado AS HijoIOMANumeroAfiliado, Hijo.FechaNacimiento AS HijoFechaNacimiento,
+				hdt.Nombre AS HijoDocumentoTipoNombre, Hijo.DocumentoNumero AS HijoDocumentoNumero, Hijo.Notas AS HijoNotas
+			FROM Persona AS p
+				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
+				LEFT JOIN DocumentoTipo AS dt ON p.IDDocumentoTipo = dt.IDDocumentoTipo
+				LEFT JOIN EstadoCivil AS ec ON p.IDEstadoCivil = ec.IDEstadoCivil
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+				LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+				LEFT JOIN Provincia AS pr ON p.DomicilioParticularIDProvincia = pr.IDProvincia
+				LEFT JOIN Localidad AS l ON p.DomicilioParticularIDProvincia = l.IDProvincia AND p.DomicilioParticularIDLocalidad = l.IDLocalidad
+				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE IDParentesco = 7 AND ((@IOMAACargo = 0 AND ACargo = 1) OR (@IOMAACargo = 1 AND IOMAACargo = 1))) AS Conyugue ON p.IDPersona = Conyugue.IDPersona
+				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE IDParentesco = @IDParentescoHijo AND ((@IOMAACargo = 0 AND ACargo = 1) OR (@IOMAACargo = 1 AND IOMAACargo = 1))) AS Hijo ON p.IDPersona = Hijo.IDPersona
+				LEFT JOIN DocumentoTipo AS cdt ON Conyugue.IDDocumentoTipo = cdt.IDDocumentoTipo
+				LEFT JOIN DocumentoTipo AS hdt ON Hijo.IDDocumentoTipo = hdt.IDDocumentoTipo
+			WHERE p.EsActivo = 1
 				AND (Conyugue.ACargo IS NULL OR (@IOMAACargo = 0 AND Conyugue.ACargo = 1) OR (@IOMAACargo = 1 AND Conyugue.IOMAACargo = 1))
 				AND (Hijo.ACargo IS NULL OR (@IOMAACargo = 0 AND Hijo.ACargo = 1) OR (@IOMAACargo = 1 AND Hijo.IOMAACargo = 1))
-				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
-				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
-				AND (@IDCargo IS NULL OR (PersonaAscenso.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR PersonaAscenso.IDJerarquia = @IDJerarquia)))
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAltaBaja.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
-			ORDER BY Persona.IDPersona, Hijo.FechaNacimiento
+				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
+				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
+				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+			ORDER BY p.IDPersona, Hijo.FechaNacimiento
 	END
 GO

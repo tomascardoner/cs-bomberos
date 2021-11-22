@@ -21,8 +21,8 @@
             Dim DomicilioCompleto As String
 
             DomicilioCompleto = DomicilioParticularCalle1
-            If Not DomicilioParticularCalle1 Is Nothing Then
-                If Not DomicilioParticularNumero Is Nothing Then
+            If DomicilioParticularCalle1 IsNot Nothing Then
+                If DomicilioParticularNumero IsNot Nothing Then
                     If DomicilioParticularNumero.TrimStart.ToUpper.StartsWith(RutaPrefijo) Then
                         DomicilioCompleto &= RutaLeyendaKilometro & DomicilioParticularNumero
                     ElseIf DomicilioParticularNumero.TrimStart.ToUpper.StartsWith(CallePrefijo) Then
@@ -32,7 +32,7 @@
                     End If
                 End If
 
-                If Not DomicilioParticularPiso Is Nothing Then
+                If DomicilioParticularPiso IsNot Nothing Then
                     If IsNumeric(DomicilioParticularPiso) Then
                         DomicilioCompleto &= PisoPrefijo & DomicilioParticularPiso & PisoSufijo
                     Else
@@ -40,12 +40,12 @@
                     End If
                 End If
 
-                If Not DomicilioParticularDepartamento Is Nothing Then
+                If DomicilioParticularDepartamento IsNot Nothing Then
                     DomicilioCompleto &= DepartamentoPrefijo & DomicilioParticularDepartamento & DepartamentoSufijo
                 End If
 
-                If Not DomicilioParticularCalle2 Is Nothing Then
-                    If Not DomicilioParticularCalle3 Is Nothing Then
+                If DomicilioParticularCalle2 IsNot Nothing Then
+                    If DomicilioParticularCalle3 IsNot Nothing Then
                         DomicilioCompleto &= Calles3PrimerSeparador & DomicilioParticularCalle2 & Calles3SegundoSeparador & DomicilioParticularCalle3
                     Else
                         DomicilioCompleto &= Calles2Separador & DomicilioParticularCalle2

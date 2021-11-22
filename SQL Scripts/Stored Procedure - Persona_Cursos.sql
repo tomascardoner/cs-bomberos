@@ -27,23 +27,28 @@ CREATE PROCEDURE usp_Persona_Cursos
 	AS
 
 	BEGIN
-		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.MatriculaNumero, Persona.ApellidoNombre, Cargo.Nombre AS CargoNombre, Cargo.Orden AS CargoOrden, CargoJerarquia.Nombre AS JerarquiaNombre, CargoJerarquia.Orden AS JerarquiaOrden, PersonaCapacitacion.Fecha AS CursoFecha, Curso.Nombre AS CursoNombre, (CASE ISNULL(PersonaCapacitacion.IDCapacitacionNivel, 254) WHEN 254 THEN PersonaCapacitacion.CapacitacionNivelOtro ELSE CapacitacionNivel.Nombre END) AS CapacitacionNivelNombre, CapacitacionNivel.SumaPuntos, PersonaCapacitacion.CantidadDias, PersonaCapacitacion.CantidadHoras
-			FROM (((((((Persona INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
-				INNER JOIN PersonaCapacitacion ON Persona.IDPersona = PersonaCapacitacion.IDPersona)
-				INNER JOIN Curso ON PersonaCapacitacion.IDCurso = Curso.IDCurso)
-				LEFT JOIN CapacitacionNivel ON PersonaCapacitacion.IDCapacitacionNivel = CapacitacionNivel.IDCapacitacionNivel)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
+		SELECT p.IDPersona, Cuartel.Nombre AS CuartelNombre, p.MatriculaNumero, p.ApellidoNombre,
+				Cargo.Nombre AS CargoNombre, Cargo.Orden AS CargoOrden, CargoJerarquia.Nombre AS JerarquiaNombre, CargoJerarquia.Orden AS JerarquiaOrden,
+				PersonaCapacitacion.Fecha AS CursoFecha, Curso.Nombre AS CursoNombre,
+				(CASE ISNULL(PersonaCapacitacion.IDCapacitacionNivel, 254) WHEN 254 THEN PersonaCapacitacion.CapacitacionNivelOtro ELSE CapacitacionNivel.Nombre END) AS CapacitacionNivelNombre,
+				CapacitacionNivel.SumaPuntos, PersonaCapacitacion.CantidadDias, PersonaCapacitacion.CantidadHoras
+			FROM Persona AS p
+				INNER JOIN Cuartel ON p.IDCuartel = Cuartel.IDCuartel
+				INNER JOIN PersonaCapacitacion ON p.IDPersona = PersonaCapacitacion.IDPersona
+				INNER JOIN Curso ON PersonaCapacitacion.IDCurso = Curso.IDCurso
+				LEFT JOIN CapacitacionNivel ON PersonaCapacitacion.IDCapacitacionNivel = CapacitacionNivel.IDCapacitacionNivel
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso ON p.IDPersona = PersonaAscenso.IDPersona
+				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo
 				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia
-			WHERE Persona.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
+			WHERE p.EsActivo = 1
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (PersonaAscenso.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR PersonaAscenso.IDJerarquia = @IDJerarquia)))
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAltaBaja.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
-				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
+				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@FechaDesde IS NULL OR PersonaCapacitacion.Fecha >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR PersonaCapacitacion.Fecha <= @FechaHasta)
 	END

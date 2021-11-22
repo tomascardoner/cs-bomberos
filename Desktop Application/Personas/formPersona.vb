@@ -1017,11 +1017,13 @@
 
 #End Region
 
-#Region "Altas-Bajas"
+#Region "Altas y Bajas"
+
     Friend Class AltasBajas_GridRowData
         Public Property IDAltaBaja As Byte
-        Public Property AltaFecha As Date
-        Public Property BajaFecha As Date?
+        Public Property Tipo As String
+        Public Property TipoNombre As String
+        Public Property Fecha As Date
         Public Property BajaMotivoNombre As String
     End Class
 
@@ -1043,14 +1045,14 @@
                               Group Join pbm In mdbContext.PersonaBajaMotivo On pab.IDPersonaBajaMotivo Equals pbm.IDPersonaBajaMotivo Into PersonaBajaMotivo_Group = Group
                               From pbmg In PersonaBajaMotivo_Group.DefaultIfEmpty
                               Where pab.IDPersona = mPersonaActual.IDPersona
-                              Order By pab.AltaFecha Descending
-                              Select New AltasBajas_GridRowData With {.IDAltaBaja = pab.IDAltaBaja, .AltaFecha = pab.AltaFecha, .BajaFecha = pab.BajaFecha, .BajaMotivoNombre = If(pbmg Is Nothing, "", pbmg.Nombre)}).ToList
+                              Order By pab.Fecha Descending, pab.Tipo Ascending
+                              Select New AltasBajas_GridRowData With {.IDAltaBaja = pab.IDAltaBaja, .Fecha = pab.Fecha, .Tipo = pab.Tipo, .TipoNombre = pab.TipoNombre, .BajaMotivoNombre = If(pbmg Is Nothing, "", pbmg.Nombre)}).ToList
 
             datagridviewAltasBajas.AutoGenerateColumns = False
             datagridviewAltasBajas.DataSource = listAltasBajas
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Altas-Bajas.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Altas y Bajas.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -1079,7 +1081,7 @@
 
     Private Sub AltasBajas_Editar(sender As Object, e As EventArgs) Handles buttonAltasBajas_Editar.Click
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Alta-Baja para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Alta o Baja para editar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
@@ -1093,7 +1095,7 @@
 
     Private Sub AltasBajas_Eliminar(sender As Object, e As EventArgs) Handles buttonAltasBajas_Eliminar.Click
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Alta-Baja para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Alta o Baja para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA_ELIMINAR) Then
                 Dim GridRowDataActual As AltasBajas_GridRowData
@@ -1101,8 +1103,11 @@
 
                 GridRowDataActual = CType(datagridviewAltasBajas.SelectedRows(0).DataBoundItem, AltasBajas_GridRowData)
 
-
-                Mensaje = String.Format("Se eliminará la Alta-Baja seleccionada.{0}{0}Fecha Alta: {1}{0}Fecha Baja: {2}{0}Motivo de Baja: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AltaFecha, GridRowDataActual.BajaFecha, GridRowDataActual.BajaMotivoNombre)
+                If GridRowDataActual.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA Then
+                    Mensaje = String.Format("Se eliminará el Alta seleccionada.{0}{0}Fecha: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha)
+                Else
+                    Mensaje = String.Format("Se eliminará la Baja seleccionada.{0}{0}Fecha: {1}{0}Motivo: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Fecha, GridRowDataActual.BajaMotivoNombre)
+                End If
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
@@ -1126,7 +1131,7 @@
             Exit Sub
         End If
         If datagridviewAltasBajas.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Alta-Baja para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Alta o Baja para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
@@ -2691,10 +2696,6 @@
                 textboxFechaUltimoAscenso.Text = PersonaAscensoUltimo.Fecha.ToShortDateString
             End If
         End Using
-    End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs)
-
     End Sub
 
 #End Region

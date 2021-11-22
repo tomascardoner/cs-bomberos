@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-22
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_HorarioLaboral') AND type in (N'P', N'PC'))
@@ -23,12 +24,16 @@ CREATE PROCEDURE usp_Persona_HorarioLaboral
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, Persona.ApellidoNombre, CargoJerarquia.Nombre AS Jerarquia, Persona.Profesion, PersonaHorarioLaboral.DiaSemana, CAST(PersonaHorarioLaboral.Turno1Desde AS char(5)) AS Turno1Desde, CAST(PersonaHorarioLaboral.Turno1Hasta AS char(5)) AS Turno1Hasta, CAST(PersonaHorarioLaboral.Turno2Desde AS char(5)) AS Turno2Desde, CAST(PersonaHorarioLaboral.Turno2Hasta AS char(5)) AS Turno2Hasta, Persona.HorarioLaboralObservaciones
-			FROM (((PersonaHorarioLaboral INNER JOIN Persona ON PersonaHorarioLaboral.IDPersona = Persona.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia
-			WHERE PersonaHorarioLaboral.IDPersona = @IDPersona
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
+		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, p.ApellidoNombre, cj.Nombre AS Jerarquia, p.Profesion, phl.DiaSemana,
+				CAST(phl.Turno1Desde AS char(5)) AS Turno1Desde, CAST(phl.Turno1Hasta AS char(5)) AS Turno1Hasta,
+				CAST(phl.Turno2Desde AS char(5)) AS Turno2Desde, CAST(phl.Turno2Hasta AS char(5)) AS Turno2Hasta,
+				p.HorarioLaboralObservaciones
+			FROM Persona AS p
+				INNER JOIN PersonaHorarioLaboral AS phl ON p.IDPersona = phl.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+			WHERE phl.IDPersona = @IDPersona
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
 	END
 GO
