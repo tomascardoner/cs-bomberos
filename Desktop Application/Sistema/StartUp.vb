@@ -72,6 +72,22 @@
             Exit Sub
         End If
 
+        ' Verifico que la versión de la Base de Datos se igual a la de esta versión de la Aplicación
+        Select Case CS_Parameter_System.GetIntegerAsInteger(Parametros.APPLICATION_DATABASE_VERSION)
+            Case Is < Constantes.APPLICATION_DATABASE_VERSION
+                MsgBox("La versión de la Base de Datos es anterior a la versión de la Aplicación.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                formSplashScreen.Close()
+                formSplashScreen.Dispose()
+                TerminateApplication()
+                Exit Sub
+            Case Is > Constantes.APPLICATION_DATABASE_VERSION
+                MsgBox("La versión de la Aplicación está desactualizada.", MsgBoxStyle.Critical, My.Application.Info.Title)
+                formSplashScreen.Close()
+                formSplashScreen.Dispose()
+                TerminateApplication()
+                Exit Sub
+        End Select
+
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
         Dim LicenseDecrypter As New CS_Encrypt_TripleDES(Constantes.APPLICATION_LICENSE_PASSWORD)
         If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), pLicensedTo) Then
