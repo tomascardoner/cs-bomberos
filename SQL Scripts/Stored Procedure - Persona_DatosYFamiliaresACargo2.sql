@@ -69,7 +69,7 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 				dbo.udf_BitAsXChar(@TipoRenovaciones) AS TipoRenovaciones, dbo.udf_BitAsXChar(@TipoContinuidad) AS TipoContinuidad, p.IDPersona, p.IOMANumeroAfiliado,
 				p.ApellidoNombre, p.DomicilioParticularCalle1, p.DomicilioParticularNumero, l.Nombre AS LocalidadNombre, par.Nombre AS PartidoNombre,
 				pr.Nombre AS ProvinciaNombre, p.CelularParticular, @Email AS EmailEspecificado, p.EmailParticular, REPLACE(CONVERT(varchar(8), p.FechaNacimiento, 3), '/', '') AS FechaNacimiento,
-				dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, CONVERT(varchar(10), dbo.udf_GetPersonaUltimaFechaAlta(p.IDPersona, NULL), 103) AS FechaIngreso,
+				dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, CONVERT(varchar(10), dbo.PersonaObtenerFechaUltimaAlta(p.IDPersona, NULL), 103) AS FechaIngreso,
 				dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 1) AS EstadoCivilSoltero, dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 2) AS EstadoCivilCasado,
 				dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 3) AS EstadoCivilViudo, dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 4) AS EstadoCivilDivorciado,
 				dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 5) AS EstadoCivilSeparacionLegal, dbo.udf_EqualIntegerValuesAsXChar(p.IDEstadoCivil, 6) AS EstadoCivilSeparacionHecho,
@@ -104,9 +104,9 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo2
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
-				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.udf_GetPersonaIDUltimaAltaBaja(p.IDPersona, GETDATE()))
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR dbo.udf_GetPersonaEstadoActivo(pab.Tipo) = @EstadoActivo)
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
 				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
 			ORDER BY p.IDPersona, pf.FechaNacimiento
 	END

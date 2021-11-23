@@ -23,12 +23,18 @@ CREATE PROCEDURE usp_Unidad_Listado
 	AS
 
 	BEGIN
-		SELECT Unidad.IDUnidad, Unidad.Numero, Unidad.MarcaModelo, Unidad.EsImportado, Unidad.Anio, Unidad.NumeroMotor, Unidad.NumeroChasis, Unidad.Dominio, UnidadTipo.Nombre AS UnidadTipoNombre, UnidadUso.Nombre AS UnidadUsoNombre, CombustibleTipo.Nombre AS CombustibleTipoNombre, Unidad.FechaAdquisicion, Unidad.KilometrajeInicial, Unidad.CapacidadAguaLitros, Cuartel.Nombre AS CuartelNombre, Unidad.EsPropio, Unidad.VerificacionVencimiento
-			FROM (((Unidad INNER JOIN UnidadTipo ON Unidad.IDUnidadTipo = UnidadTipo.IDUnidadTipo) INNER JOIN UnidadUso ON Unidad.IDUnidadUso = UnidadUso.IDUnidadUso) LEFT JOIN CombustibleTipo ON Unidad.IDCombustibleTipo = CombustibleTipo.IDCombustibleTipo) INNER JOIN Cuartel ON Unidad.IDCuartel = Cuartel.IDCuartel
-			WHERE Unidad.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Unidad.IDCuartel = @IDCuartel)
-				AND (@IDUnidad IS NULL OR Unidad.IDUnidad = @IDUnidad)
-				AND (@FechaDesde IS NULL OR Unidad.VerificacionVencimiento >= @FechaDesde)
-				AND (@FechaHasta IS NULL OR Unidad.VerificacionVencimiento <= @FechaHasta)
+		SELECT u.IDUnidad, u.Numero, u.MarcaModelo, u.EsImportado, u.Anio, u.NumeroMotor, u.NumeroChasis, u.Dominio,
+				ut.Nombre AS UnidadTipoNombre, uu.Nombre AS UnidadUsoNombre, ct.Nombre AS CombustibleTipoNombre, u.FechaAdquisicion,
+				u.KilometrajeInicial, u.CapacidadAguaLitros, c.Nombre AS CuartelNombre, u.EsPropio, u.VerificacionVencimiento
+			FROM Unidad AS u
+				INNER JOIN UnidadTipo AS ut ON u.IDUnidadTipo = ut.IDUnidadTipo
+				INNER JOIN UnidadUso AS uu ON u.IDUnidadUso = uu.IDUnidadUso
+				LEFT JOIN CombustibleTipo AS ct ON u.IDCombustibleTipo = ct.IDCombustibleTipo
+				INNER JOIN Cuartel AS c ON u.IDCuartel = c.IDCuartel
+			WHERE u.EsActivo = 1
+				AND (@IDCuartel IS NULL OR u.IDCuartel = @IDCuartel)
+				AND (@IDUnidad IS NULL OR u.IDUnidad = @IDUnidad)
+				AND (@FechaDesde IS NULL OR u.VerificacionVencimiento >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR u.VerificacionVencimiento <= @FechaHasta)
 	END
 GO

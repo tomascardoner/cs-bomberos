@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2021-11-06
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los puntajes de siniestros de las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Personas_Puntajes') AND type in (N'P', N'PC'))
@@ -43,7 +44,7 @@ BEGIN
 	-- AGREGO EL ID DEL PUNTAJE VIGENTE A LA FECHA DE CADA SINIESTRO PARA PRESENTE
 	INSERT INTO @SiniestrosPuntajes
 		(IDSiniestro, IDSiniestroAsistenciaTipo, IDSiniestroAsistenciaTipoPuntaje)
-		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoPresente, dbo.udf_GetIdPuntajeClaveSiniestro(@IDSiniestroAsistenciaTipoPresente, s.Clave, s.Fecha)
+		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoPresente, dbo.SiniestroObtenerIdPuntajeClave(@IDSiniestroAsistenciaTipoPresente, s.Clave, s.Fecha)
 			FROM Siniestro AS s
 			WHERE s.Anulado = 0
 				AND s.IDCuartel = @IDCuartel
@@ -52,7 +53,7 @@ BEGIN
 	-- ASIGNO EL ID DEL PUNTAJE VIGENTE A LA FECHA DE CADA SINIESTRO PARA SALIDA ANTICIPADA
 	INSERT INTO @SiniestrosPuntajes
 		(IDSiniestro, IDSiniestroAsistenciaTipo, IDSiniestroAsistenciaTipoPuntaje)
-		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoSalidaAnticipada, dbo.udf_GetIdPuntajeClaveSiniestro(@IDSiniestroAsistenciaTipoSalidaAnticipada, s.Clave, s.Fecha)
+		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoSalidaAnticipada, dbo.SiniestroObtenerIdPuntajeClave(@IDSiniestroAsistenciaTipoSalidaAnticipada, s.Clave, s.Fecha)
 			FROM Siniestro AS s
 			WHERE s.Anulado = 0
 				AND s.IDCuartel = @IDCuartel
@@ -68,11 +69,11 @@ BEGIN
 	-- CALCULO LA CANTIDAD DE SINIESTROS Y PUNTAJE TOTAL DE PRESENTE POR CLAVE
 	INSERT INTO @SiniestrosPorClave
 		(Clave, Cantidad, Puntaje)
-		SELECT dbo.udf_GetClaveSiniestroAgrupada(s.Clave), COUNT(s.IDSiniestro) AS Cantidad, SUM(sp.Puntaje) AS Puntaje
+		SELECT dbo.SiniestroObtenerClaveAgrupada(s.Clave), COUNT(s.IDSiniestro) AS Cantidad, SUM(sp.Puntaje) AS Puntaje
 			FROM Siniestro AS s
 				INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
 			WHERE sp.IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipoPresente
-			GROUP BY dbo.udf_GetClaveSiniestroAgrupada(s.Clave)
+			GROUP BY dbo.SiniestroObtenerClaveAgrupada(s.Clave)
 
 	-- OBTENGO LOS VALORES DE CANTIDAD DE SINIESTROS POR CLAVE
 	SELECT @CantidadVA = AV, @CantidadN = N, @CantidadR = R
@@ -102,18 +103,18 @@ BEGIN
 				INNER JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
 			WHERE p.EsActivo = 1
 				AND p.IDCuartel = @IDCuartel
-				AND pab.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(p.IDPersona, @FechaHasta)
-				AND pab.BajaFecha IS NULL
+				AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, @FechaHasta)
+				AND pab.Tipo = 'A'
 
 	-- CALCULO LOS PUNTAJES POR CLAVE PARA CADA PERSONA
 	INSERT INTO @PersonasPuntajesPorClave
 		(IDPersona, Clave, Cantidad, Puntaje)
-		SELECT rf.IDPersona, dbo.udf_GetClaveSiniestroAgrupada(s.Clave) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
+		SELECT rf.IDPersona, dbo.SiniestroObtenerClaveAgrupada(s.Clave) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
 			FROM @ResultadoFinal AS rf
 				LEFT JOIN (SiniestroAsistencia AS sa
 				INNER JOIN Siniestro AS s ON sa.IDSiniestro = s.IDSiniestro
 				INNER JOIN @SiniestrosPuntajes AS sp ON sa.IDSiniestro = sp.IDSiniestro AND sa.IDSiniestroAsistenciaTipo = sp.IDSiniestroAsistenciaTipo) ON rf.IDPersona = sa.IDPersona
-			GROUP BY rf.IDPersona, dbo.udf_GetClaveSiniestroAgrupada(s.Clave)
+			GROUP BY rf.IDPersona, dbo.SiniestroObtenerClaveAgrupada(s.Clave)
 
 	-- INSERTO LOS RESULTADOS PARA LAS CLAVES VERDES Y AZULES
 	UPDATE @ResultadoFinal
@@ -137,7 +138,11 @@ BEGIN
 			WHERE Clave = 'R'
 
 	-- SELECCIONO LAS PERSONAS Y LOS PUNTAJES DE CADA SINIESTRO
-	SELECT ISNULL(p.Orden, 0) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre, @PuntajeVA + @PuntajeN + @PuntajeR AS PuntajeTotal, @CantidadVA AS ClaveVACantidadTotal, ISNULL(ClaveVACantidad, 0) AS ClaveVACantidad, ISNULL(ClaveVAPuntaje, 0) AS ClaveVAPuntaje, @CantidadN AS ClaveNCantidadTotal, ISNULL(ClaveNCantidad, 0) AS ClaveNCantidad, ISNULL(ClaveNPuntaje, 0) AS ClaveNPuntaje, @CantidadR AS ClaveRCantidadTotal, ISNULL(ClaveRCantidad, 0) AS ClaveRCantidad, ISNULL(ClaveRPuntaje, 0) AS ClaveRPuntaje, (CAST(ISNULL(ClaveVAPuntaje, 0) + ISNULL(ClaveNPuntaje, 0) + ISNULL(ClaveRPuntaje, 0) AS decimal) / (@PuntajeVA + @PuntajeN + @PuntajeR)) AS ProporcionPuntaje
+	SELECT ISNULL(p.Orden, 0) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre, @PuntajeVA + @PuntajeN + @PuntajeR AS PuntajeTotal,
+			@CantidadVA AS ClaveVACantidadTotal, ISNULL(ClaveVACantidad, 0) AS ClaveVACantidad, ISNULL(ClaveVAPuntaje, 0) AS ClaveVAPuntaje, @CantidadN AS ClaveNCantidadTotal,
+			ISNULL(ClaveNCantidad, 0) AS ClaveNCantidad, ISNULL(ClaveNPuntaje, 0) AS ClaveNPuntaje, @CantidadR AS ClaveRCantidadTotal, ISNULL(ClaveRCantidad, 0) AS ClaveRCantidad,
+			ISNULL(ClaveRPuntaje, 0) AS ClaveRPuntaje,
+			(CAST(ISNULL(ClaveVAPuntaje, 0) + ISNULL(ClaveNPuntaje, 0) + ISNULL(ClaveRPuntaje, 0) AS decimal) / (@PuntajeVA + @PuntajeN + @PuntajeR)) AS ProporcionPuntaje
 		FROM @ResultadoFinal AS rf
 			INNER JOIN Persona AS p ON rf.IDPersona = p.IDPersona
 		ORDER BY ISNULL(ClaveVAPuntaje, 0) + ISNULL(ClaveNPuntaje, 0) + ISNULL(ClaveRPuntaje, 0) DESC, p.ApellidoNombre

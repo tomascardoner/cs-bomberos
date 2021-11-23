@@ -25,14 +25,19 @@ CREATE PROCEDURE usp_Vehiculo_Listado
 	AS
 
 	BEGIN
-		SELECT Persona.MatriculaNumero AS PersonaMatriculaNumero, Persona.ApellidoNombre AS PersonaApellidoNombre, PersonaVehiculo.IDVehiculo, VehiculoTipo.Nombre AS VehiculoTipoNombre, PersonaVehiculo.Dominio, VehiculoMarca.Nombre AS VehiculoMarcaNombre, PersonaVehiculo.Modelo, PersonaVehiculo.Anio, PersonaVehiculo.VerificacionVencimiento, VehiculoCompaniaSeguro.Nombre AS VehiculoCompaniaSeguroNombre, PersonaVehiculo.SeguroPolizaNumero, PersonaVehiculo.SeguroVencimiento
-			FROM (((Persona INNER JOIN PersonaVehiculo ON Persona.IDPersona = PersonaVehiculo.IDPersona) INNER JOIN VehiculoTipo ON PersonaVehiculo.IDVehiculoTipo = VehiculoTipo.IDVehiculoTipo) LEFT JOIN VehiculoMarca ON PersonaVehiculo.IDVehiculoMarca = VehiculoMarca.IDVehiculoMarca) LEFT JOIN VehiculoCompaniaSeguro ON PersonaVehiculo.IDVehiculoCompaniaSeguro = VehiculoCompaniaSeguro.IDVehiculoCompaniaSeguro
-			WHERE PersonaVehiculo.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
-				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
-				AND (@FechaVencimientoVerificacionDesde IS NULL OR PersonaVehiculo.VerificacionVencimiento >= @FechaVencimientoVerificacionDesde)
-				AND (@FechaVencimientoVerificacionHasta IS NULL OR PersonaVehiculo.VerificacionVencimiento <= @FechaVencimientoVerificacionHasta)
-				AND (@FechaVencimientoSeguroDesde IS NULL OR PersonaVehiculo.SeguroVencimiento >= @FechaVencimientoSeguroDesde)
-				AND (@FechaVencimientoSeguroHasta IS NULL OR PersonaVehiculo.SeguroVencimiento <= @FechaVencimientoSeguroHasta)
+		SELECT p.MatriculaNumero AS PersonaMatriculaNumero, p.ApellidoNombre AS PersonaApellidoNombre, pv.IDVehiculo, vt.Nombre AS VehiculoTipoNombre, pv.Dominio,
+			vm.Nombre AS VehiculoMarcaNombre, pv.Modelo, pv.Anio, pv.VerificacionVencimiento, vcs.Nombre AS VehiculoCompaniaSeguroNombre, pv.SeguroPolizaNumero, pv.SeguroVencimiento
+			FROM Persona AS p
+				INNER JOIN PersonaVehiculo AS pv ON p.IDPersona = pv.IDPersona
+				INNER JOIN VehiculoTipo AS vt ON pv.IDVehiculoTipo = vt.IDVehiculoTipo
+				LEFT JOIN VehiculoMarca AS vm ON pv.IDVehiculoMarca = vm.IDVehiculoMarca
+				LEFT JOIN VehiculoCompaniaSeguro AS vcs ON pv.IDVehiculoCompaniaSeguro = vcs.IDVehiculoCompaniaSeguro
+			WHERE pv.EsActivo = 1
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
+				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
+				AND (@FechaVencimientoVerificacionDesde IS NULL OR pv.VerificacionVencimiento >= @FechaVencimientoVerificacionDesde)
+				AND (@FechaVencimientoVerificacionHasta IS NULL OR pv.VerificacionVencimiento <= @FechaVencimientoVerificacionHasta)
+				AND (@FechaVencimientoSeguroDesde IS NULL OR pv.SeguroVencimiento >= @FechaVencimientoSeguroDesde)
+				AND (@FechaVencimientoSeguroHasta IS NULL OR pv.SeguroVencimiento <= @FechaVencimientoSeguroHasta)
 	END
 GO

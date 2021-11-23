@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-22
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_SancionDisciplinaria') AND type in (N'P', N'PC'))
@@ -24,18 +25,21 @@ CREATE PROCEDURE usp_Persona_SancionDisciplinaria
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, CargoJerarquia.Nombre AS Jerarquia, SolicitudPersona.Apellido AS SolicitudPersonaApellido, SolicitudPersona.Nombre AS SolicitudPersonaNombre, SolicitudCargoJerarquia.Nombre AS SolicitudJerarquia, PersonaSancion.SolicitudMotivo, PersonaSancion.SolicitudFecha, PersonaSancion.EncuadreTexto, PersonaSancion.EncuadreFecha, SancionTipo.Nombre AS ResolucionSancionTipoNombre, PersonaSancion.ResolucionFecha, PersonaSancion.NotificacionFecha
-			FROM ((((((((PersonaSancion INNER JOIN Persona ON PersonaSancion.IDPersona = Persona.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia)
-				INNER JOIN Persona AS SolicitudPersona ON PersonaSancion.SolicitudIDPersona = SolicitudPersona.IDPersona)
-				LEFT JOIN PersonaAscenso AS SolicitudPersonaAscenso ON SolicitudPersona.IDPersona = SolicitudPersonaAscenso.IDPersona)
-				LEFT JOIN Cargo AS SolicitudCargo ON SolicitudPersonaAscenso.IDCargo = SolicitudCargo.IDCargo)
-				LEFT JOIN CargoJerarquia AS SolicitudCargoJerarquia ON SolicitudPersonaAscenso.IDCargo = SolicitudCargoJerarquia.IDCargo AND SolicitudPersonaAscenso.IDJerarquia = SolicitudCargoJerarquia.IDJerarquia)
-				LEFT JOIN SancionTipo ON PersonaSancion.ResolucionIDSancionTipo = SancionTipo.IDSancionTipo
-			WHERE PersonaSancion.IDPersona = @IDPersona AND PersonaSancion.IDSancion = @IDSancion
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, PersonaSancion.SolicitudFecha))
-				AND (SolicitudPersonaAscenso.Fecha IS NULL OR SolicitudPersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(SolicitudPersona.IDPersona, PersonaSancion.SolicitudFecha))
+		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, cj.Nombre AS Jerarquia, sp.Apellido AS SolicitudPersonaApellido,
+				sp.Nombre AS SolicitudPersonaNombre, scj.Nombre AS SolicitudJerarquia, ps.SolicitudMotivo, ps.SolicitudFecha, ps.EncuadreTexto, ps.EncuadreFecha,
+				st.Nombre AS ResolucionSancionTipoNombre, ps.ResolucionFecha, ps.NotificacionFecha
+			FROM PersonaSancion AS ps
+				INNER JOIN Persona AS p ON ps.IDPersona = p.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+				INNER JOIN Persona AS sp ON ps.SolicitudIDPersona = sp.IDPersona
+				LEFT JOIN PersonaAscenso AS spa ON sp.IDPersona = spa.IDPersona
+				LEFT JOIN Cargo AS sca ON spa.IDCargo = sca.IDCargo
+				LEFT JOIN CargoJerarquia AS scj ON spa.IDCargo = scj.IDCargo AND spa.IDJerarquia = scj.IDJerarquia
+				LEFT JOIN SancionTipo AS st ON ps.ResolucionIDSancionTipo = st.IDSancionTipo
+			WHERE ps.IDPersona = @IDPersona AND ps.IDSancion = @IDSancion
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, ps.SolicitudFecha))
+				AND (spa.Fecha IS NULL OR spa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(sp.IDPersona, ps.SolicitudFecha))
 	END
 GO

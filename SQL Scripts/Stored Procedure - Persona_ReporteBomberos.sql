@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-18
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los datos para la Planilla de Excel del Reporte de Bomberos
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_ReporteBomberos') AND type in (N'P', N'PC'))
@@ -28,33 +29,36 @@ CREATE PROCEDURE usp_Persona_ReporteBomberos
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		-- ORDENO LAS PERSONAS - START
+		-- Ordeno las personas
 		CREATE TABLE #PersonaOrden
 			(IDPersona int NOT NULL, Orden smallint NOT NULL,
 				CONSTRAINT PK__PersonaOrden PRIMARY KEY CLUSTERED 
-					(IDPersona ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
-			)
+					(IDPersona ASC) WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON))
 		EXEC dbo.usp_FillPersonaOrderTable
-		-- ORDENO LAS PERSONAS - END
 
-		SELECT Persona.IDPersona, Persona.Apellido, Persona.Nombre, DocumentoTipo.Nombre AS DocumentoTipoNombre, Persona.DocumentoNumero, Persona.FechaNacimiento, Persona.MatriculaNumero, Persona.Altura, Persona.Peso, Persona.Genero, Provincia.Nombre AS ProvinciaNombre, Localidad.Nombre AS LocalidadNombre, dbo.udf_GetDomicilioCalleCompleto(Persona.DomicilioParticularCalle1, Persona.DomicilioParticularNumero, Persona.DomicilioParticularPiso, Persona.DomicilioParticularDepartamento, Persona.DomicilioParticularCalle2, Persona.DomicilioParticularCalle3) AS Domicilio, Persona.EmailParticular, Persona.CelularParticular, Persona.GrupoSanguineo, Persona.FactorRH, 'CFBVRA' AS Organizacion, 'Bombero' AS Formacion, Cargo.Nombre AS Cargo, CargoJerarquia.Nombre AS Jerarquia, NivelEstudio.Nombre AS NivelEstudioNombre, (CASE ISNULL(PersonaAltaBaja.IDPersonaBajaMotivo, 0) WHEN 0 THEN 'Activo' ELSE PersonaBajaMotivo.Nombre END) AS Estado, (CASE ISNULL(PersonaAltaBaja.BajaFecha, '') WHEN '' THEN PersonaAltaBaja.AltaFecha ELSE PersonaAltaBaja.BajaFecha END) AS FechaEstado, #PersonaOrden.Orden
-			FROM (((((((((Persona INNER JOIN #PersonaOrden ON Persona.IDPersona = #PersonaOrden.IDPersona)
-				LEFT JOIN DocumentoTipo ON Persona.IDDocumentoTipo = DocumentoTipo.IDDocumentoTipo)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia)
-				LEFT JOIN PersonaBajaMotivo ON PersonaAltaBaja.IDPersonaBajaMotivo = PersonaBajaMotivo.IDPersonaBajaMotivo)
-				LEFT JOIN Provincia ON Persona.DomicilioParticularIDProvincia = Provincia.IDProvincia)
-				LEFT JOIN Localidad ON Persona.DomicilioParticularIDProvincia = Localidad.IDProvincia AND Persona.DomicilioLaboralIDLocalidad = Localidad.IDLocalidad)
-				LEFT JOIN NivelEstudio ON Persona.IDNivelEstudio = NivelEstudio.IDNivelEstudio
-			WHERE Persona.EsActivo = 1
-				AND (@IDPersona IS NULL OR Persona.IDPersona = @IDPersona)
-				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
-				AND (@IDCargo IS NULL OR (PersonaAscenso.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR PersonaAscenso.IDJerarquia = @IDJerarquia)))
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAltaBaja.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+		SELECT p.IDPersona, p.Apellido, p.Nombre, dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, p.FechaNacimiento, p.MatriculaNumero, p.Altura, p.Peso, p.Genero,
+			pr.Nombre AS ProvinciaNombre, l.Nombre AS LocalidadNombre,
+			dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS Domicilio,
+			p.EmailParticular, p.CelularParticular, p.GrupoSanguineo, p.FactorRH, 'CFBVRA' AS Organizacion, 'Bombero' AS Formacion, ca.Nombre AS Cargo, cj.Nombre AS Jerarquia,
+			ne.Nombre AS NivelEstudioNombre, dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS Estado, pab.Fecha AS FechaEstado, #PersonaOrden.Orden
+			FROM Persona AS p
+				INNER JOIN #PersonaOrden ON p.IDPersona = #PersonaOrden.IDPersona
+				LEFT JOIN DocumentoTipo AS dt ON p.IDDocumentoTipo = dt.IDDocumentoTipo
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+				LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+				LEFT JOIN Provincia AS pr ON p.DomicilioParticularIDProvincia = pr.IDProvincia
+				LEFT JOIN Localidad AS l ON p.DomicilioParticularIDProvincia = l.IDProvincia AND p.DomicilioLaboralIDLocalidad = l.IDLocalidad
+				LEFT JOIN NivelEstudio AS ne ON p.IDNivelEstudio = ne.IDNivelEstudio
+			WHERE p.EsActivo = 1
+				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
+				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
+				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
 	END
 GO

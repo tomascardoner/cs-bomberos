@@ -34,6 +34,6 @@ CREATE PROCEDURE usp_Persona_HorarioLaboral
 				LEFT JOIN Cargo AS c ON pa.IDCargo = c.IDCargo
 				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
 			WHERE phl.IDPersona = @IDPersona
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
 	END
 GO

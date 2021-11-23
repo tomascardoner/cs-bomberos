@@ -38,21 +38,24 @@ CREATE PROCEDURE usp_Persona_ListadoRegistroConducir
 		EXEC dbo.usp_FillPersonaOrderTable
 		-- ORDENO LAS PERSONAS - END
 
-		SELECT Persona.IDPersona, Cuartel.Nombre AS CuartelNombre, Persona.MatriculaNumero, Persona.ApellidoNombre, Cargo.Nombre AS CargoNombre, CargoJerarquia.Nombre AS JerarquiaNombre, Persona.LicenciaConducirNumero, Persona.LicenciaConducirVencimiento, dbo.udf_GetPersonaLicenciaConducirCategorias(Persona.IDPersona) AS LicenciaConducirCategorias, #PersonaOrden.Orden
-			FROM ((((((Persona INNER JOIN #PersonaOrden ON Persona.IDPersona = #PersonaOrden.IDPersona)
-				INNER JOIN Cuartel ON Persona.IDCuartel = Cuartel.IDCuartel)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia)
-			WHERE Persona.EsActivo = 1
-				AND (@IDCuartel IS NULL OR Persona.IDCuartel = @IDCuartel)
-				AND (@IDCargo IS NULL OR (PersonaAscenso.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR PersonaAscenso.IDJerarquia = @IDJerarquia)))
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, GETDATE()))
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND PersonaAltaBaja.IDPersonaBajaMotivo IS NOT NULL))
-				AND (@IDPersonaBajaMotivo IS NULL OR PersonaAltaBaja.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
-				AND (@FechaDesde IS NULL OR Persona.LicenciaConducirVencimiento >= @FechaDesde)
-				AND (@FechaHasta IS NULL OR Persona.LicenciaConducirVencimiento <= @FechaHasta)
+		SELECT p.IDPersona, c.Nombre AS CuartelNombre, p.MatriculaNumero, p.ApellidoNombre, ca.Nombre AS CargoNombre, cj.Nombre AS JerarquiaNombre,
+				p.LicenciaConducirNumero, p.LicenciaConducirVencimiento, 
+				dbo.PersonaObtenerCategoriasLicenciaConducir(p.IDPersona) AS LicenciaConducirCategorias, #PersonaOrden.Orden
+			FROM Persona AS p
+				INNER JOIN #PersonaOrden ON p.IDPersona = #PersonaOrden.IDPersona
+				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+			WHERE p.EsActivo = 1
+				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
+				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
+				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
+				AND (@FechaDesde IS NULL OR p.LicenciaConducirVencimiento >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR p.LicenciaConducirVencimiento <= @FechaHasta)
 	END
 GO

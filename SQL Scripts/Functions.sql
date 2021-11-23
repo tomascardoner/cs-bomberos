@@ -39,11 +39,11 @@ GO
 -- Create date: 2018-10-31
 -- Description:	Devuelve la primera fecha de Alta
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerPrimeraFechaAlta') AND type = N'FN')
-	DROP FUNCTION dbo.PersonaObtenerPrimeraFechaAlta
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerFechaPrimeraAlta') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerFechaPrimeraAlta
 GO
 
-CREATE FUNCTION PersonaObtenerPrimeraFechaAlta
+CREATE FUNCTION PersonaObtenerFechaPrimeraAlta
 (	
 	@IDPersona int
 ) RETURNS date AS
@@ -275,6 +275,7 @@ GO
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-10-04
 -- Updates: 2021-11-21 - Se adaptó a la nueva estructura de la tabla de Altas y Bajas
+--			2021-11-22 - Se actualizó para que tome en cuenta el tiempo en Reserva
 -- Description:	Devuelve la antigüedad expresada en días,
 --				de una Persona desde la FechaDesde hasta FechaHasta
 -- =============================================
@@ -290,13 +291,14 @@ CREATE FUNCTION PersonaObtenerAntiguedadEnDias
 ) RETURNS int AS
 
 BEGIN
+	DECLARE @IDPersonaBajaMotivoReserva tinyint = 4
 	DECLARE @Dias int = 0
-	DECLARE @TipoAnterior char(1), @TipoActual char(1)
-	DECLARE @FechaAnterior date, @FechaActual date
+	DECLARE @TipoAnterior char(1), @FechaAnterior date, @IDPersonaBajaMotivoAnterior tinyint
+	DECLARE @TipoActual char(1), @FechaActual date, @IDPersonaBajaMotivoActual tinyint
 
 	-- Si está especificada la fecha desde, me fijo si el registro inmediato anterior no es un alta
 	IF @FechaDesde IS NOT NULL
-		SELECT TOP 1 @TipoAnterior = Tipo, @FechaAnterior = @FechaDesde
+		SELECT TOP 1 @TipoAnterior = Tipo, @FechaAnterior = @FechaDesde, @IDPersonaBajaMotivoAnterior = IDPersonaBajaMotivo
 			FROM PersonaAltaBaja
 			WHERE IDPersona = @IDPersona
 				AND Fecha < @FechaDesde
@@ -304,7 +306,7 @@ BEGIN
 
 	-- Creo un cursor para recorrer los registros
 	DECLARE CursorAltasBajas CURSOR LOCAL FORWARD_ONLY STATIC FOR
-		SELECT Tipo, Fecha
+		SELECT Tipo, Fecha, IDPersonaBajaMotivo
 			FROM PersonaAltaBaja
 			WHERE IDPersona = @IDPersona
 				AND (@FechaDesde IS NULL OR Fecha >= @FechaDesde)
@@ -312,21 +314,22 @@ BEGIN
 			ORDER BY Fecha, Tipo DESC
 
 	OPEN CursorAltasBajas
-	FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual
+	FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual, @IDPersonaBajaMotivoActual
 
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
-		IF @TipoActual = 'B' AND @TipoAnterior = 'A'
+		IF @TipoActual = 'B' AND (@TipoAnterior = 'A' OR @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoReserva)
 			SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, @FechaActual)
 
 		SET @TipoAnterior = @TipoActual
 		SET @FechaAnterior = @FechaActual
+		SET @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoActual
 
-		FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual
+		FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual, @IDPersonaBajaMotivoActual
 		END
 
 	-- Si el último registro es un Alta, sumo los días transcurridos hasta la Fecha Hasta
-	IF @TipoAnterior = 'A'
+	IF @TipoAnterior = 'A' OR @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoReserva
 		SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, ISNULL(@FechaHasta, GETDATE()))
 
 	RETURN @Dias
@@ -413,11 +416,11 @@ GO
 -- Create date: 2019-04-19
 -- Description:	Devuelve las Categorías de Licencia de Conducir para una Persona
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerCategoriasLicenciaDeConducir') AND type = N'FN')
-	DROP FUNCTION dbo.PersonaObtenerCategoriasLicenciaDeConducir
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.PersonaObtenerCategoriasLicenciaConducir') AND type = N'FN')
+	DROP FUNCTION dbo.PersonaObtenerCategoriasLicenciaConducir
 GO
 
-CREATE FUNCTION PersonaObtenerCategoriasLicenciaDeConducir
+CREATE FUNCTION PersonaObtenerCategoriasLicenciaConducir
 (
 	@IDPersona int
 ) RETURNS varchar(MAX) AS

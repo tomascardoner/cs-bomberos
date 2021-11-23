@@ -30,8 +30,8 @@ CREATE PROCEDURE usp_Persona_FojaServicio
 		SET NOCOUNT ON;
 
 		SELECT p.IDPersona, c.Nombre AS CuartelNombre, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, p.FechaNacimiento,
-				dbo.udf_GetPersonaPrimerFechaAlta(p.IDPersona) AS FechaIngreso, cj.Nombre AS Jerarquia,
-				dbo.udf_GetPersonaEstado(pab.Tipo, pab.IDPersonaBajaMotivo) AS EstadoActual,
+				dbo.PersonaObtenerFechaPrimeraAlta(p.IDPersona) AS FechaIngreso, cj.Nombre AS Jerarquia,
+				dbo.PersonaObtenerEstado(pab.Tipo, pab.IDPersonaBajaMotivo) AS EstadoActual,
 				dbo.udf_GetDomicilioCalleLocalidadCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3, p.DomicilioParticularIDProvincia, p.DomicilioParticularIDLocalidad) AS Domicilio
 			FROM Persona AS p
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
@@ -45,9 +45,9 @@ CREATE PROCEDURE usp_Persona_FojaServicio
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
-				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.udf_GetPersonaIDUltimaAltaBaja(p.IDPersona, GETDATE()))
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR dbo.udf_GetPersonaEstadoActivo(pab.Tipo) = @EstadoActivo)
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
 				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
 	END
 GO

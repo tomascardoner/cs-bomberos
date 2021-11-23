@@ -4068,8 +4068,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="PersonaObtenerIdUltimaAltaBaja" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="tinyint">
+          <Parameter Name="IDPersona" Type="int" Mode="In" />
+          <Parameter Name="FechaHasta" Type="date" Mode="In" />
         </Function>
+        <Function Name="usp_Personas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Academia" EntityType="Self.Academia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AcademiaAsistencia" EntityType="Self.AcademiaAsistencia" Schema="dbo" store:Type="Tables" />

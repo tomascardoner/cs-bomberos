@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-22
+-- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_PlanillaLicencia') AND type in (N'P', N'PC'))
@@ -29,20 +30,28 @@ CREATE PROCEDURE usp_Persona_PlanillaLicencia
 		DECLARE @LicenciaAnteriorFechaInterrupcion date
 		DECLARE @LicenciaAnteriorCausaNombre varchar(100)
 
-		SELECT TOP 1 @LicenciaAnteriorFechaDesde = PersonaLicencia.FechaDesde, @LicenciaAnteriorFechaHasta = PersonaLicencia.FechaHasta, @LicenciaAnteriorFechaInterrupcion = PersonaLicencia.FechaInterrupcion, @LicenciaAnteriorCausaNombre = LicenciaCausa.Nombre
-			FROM PersonaLicencia INNER JOIN LicenciaCausa ON PersonaLicencia.IDLicenciaCausa = LicenciaCausa.IDLicenciaCausa
-			WHERE IDPersona = @IDPersona AND Fecha < (SELECT Fecha FROM PersonaLicencia WHERE IDPersona = @IDPersona AND IDLicencia = @IDLicencia)
-			ORDER BY Fecha DESC
+		SELECT TOP 1 @LicenciaAnteriorFechaDesde = pl.FechaDesde, @LicenciaAnteriorFechaHasta = pl.FechaHasta, @LicenciaAnteriorFechaInterrupcion = pl.FechaInterrupcion, @LicenciaAnteriorCausaNombre = lc.Nombre
+			FROM PersonaLicencia AS pl
+				INNER JOIN LicenciaCausa AS lc ON pl.IDLicenciaCausa = lc.IDLicenciaCausa
+			WHERE pl.IDPersona = @IDPersona
+				AND pl.Fecha < (SELECT Fecha FROM PersonaLicencia WHERE IDPersona = @IDPersona AND IDLicencia = @IDLicencia)
+			ORDER BY pl.Fecha DESC
 
-		SELECT Persona.IDPersona, Persona.MatriculaNumero, Persona.Genero, Persona.Apellido, Persona.Nombre, CargoJerarquia.Nombre AS Jerarquia, PersonaAltaBaja.AltaFecha, dbo.udf_GetPersonaAntiguedadLeyenda(Persona.IDPersona, NULL, PersonaLicencia.Fecha) AS Antiguedad,  PersonaLicencia.Fecha, LicenciaCausa.Nombre AS LicenciaCausaNombre, PersonaLicencia.FechaDesde, PersonaLicencia.FechaHasta, PersonaLicencia.FechaInterrupcion, @LicenciaAnteriorFechaDesde AS PersonaLicenciaUltimaFechaDesde, @LicenciaAnteriorFechaHasta AS PersonaLicenciaUltimaFechaHasta, @LicenciaAnteriorFechaInterrupcion AS PersonaLicenciaUltimaFechaInterrupcion, @LicenciaAnteriorCausaNombre AS LicenciaCausaUltimaNombre
-			FROM (((((PersonaLicencia INNER JOIN Persona ON PersonaLicencia.IDPersona = Persona.IDPersona)
-				INNER JOIN LicenciaCausa ON PersonaLicencia.IDLicenciaCausa = LicenciaCausa.IDLicenciaCausa)
-				LEFT JOIN PersonaAltaBaja ON Persona.IDPersona = PersonaAltaBaja.IDPersona)
-				LEFT JOIN PersonaAscenso ON Persona.IDPersona = PersonaAscenso.IDPersona)
-				LEFT JOIN Cargo ON PersonaAscenso.IDCargo = Cargo.IDCargo)
-				LEFT JOIN CargoJerarquia ON PersonaAscenso.IDCargo = CargoJerarquia.IDCargo AND PersonaAscenso.IDJerarquia = CargoJerarquia.IDJerarquia
-			WHERE PersonaLicencia.IDPersona = @IDPersona AND PersonaLicencia.IDLicencia = @IDLicencia
-				AND (PersonaAltaBaja.AltaFecha IS NULL OR PersonaAltaBaja.AltaFecha = dbo.udf_GetPersonaUltimaFechaAlta(Persona.IDPersona, PersonaLicencia.Fecha))
-				AND (PersonaAscenso.Fecha IS NULL OR PersonaAscenso.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(Persona.IDPersona, PersonaLicencia.Fecha))
+		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, cj.Nombre AS Jerarquia, pab.Fecha AS AltaFecha,
+				dbo.PersonaObtenerAntiguedadEnLetras(p.IDPersona, NULL, pl.Fecha) AS Antiguedad,  pl.Fecha, lc.Nombre AS LicenciaCausaNombre, 
+				pl.FechaDesde, pl.FechaHasta, pl.FechaInterrupcion, @LicenciaAnteriorFechaDesde AS PersonaLicenciaUltimaFechaDesde,
+				@LicenciaAnteriorFechaHasta AS PersonaLicenciaUltimaFechaHasta, @LicenciaAnteriorFechaInterrupcion AS PersonaLicenciaUltimaFechaInterrupcion,
+				@LicenciaAnteriorCausaNombre AS LicenciaCausaUltimaNombre
+			FROM PersonaLicencia AS pl
+				INNER JOIN Persona AS p ON pl.IDPersona = p.IDPersona
+				INNER JOIN LicenciaCausa AS lc ON pl.IDLicenciaCausa = lc.IDLicenciaCausa
+				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
+			WHERE pl.IDPersona = @IDPersona
+				AND pl.IDLicencia = @IDLicencia
+				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
 	END
 GO

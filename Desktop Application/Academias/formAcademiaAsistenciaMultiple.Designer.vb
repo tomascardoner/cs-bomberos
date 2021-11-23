@@ -163,7 +163,7 @@ Partial Class formAcademiaAsistenciaMultiple
         Me.Name = "formAcademiaAsistenciaMultiple"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Asistencia múltiple a Siniestro"
+        Me.Text = "Asistencia múltiple a Academia"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()

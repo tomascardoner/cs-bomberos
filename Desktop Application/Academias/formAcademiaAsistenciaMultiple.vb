@@ -105,7 +105,7 @@
             ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha de la academia, están activas en el cuerpo
             listPersonasActivasDelCuartel = (From p In mdbContext.Persona
                                              Join pab In mdbContext.PersonaAltaBaja On p.IDPersona Equals pab.IDPersona
-                                             Where p.EsActivo AndAlso p.IDCuartel = mAcademiaActual.IDCuartel AndAlso pab.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA AndAlso pab.Fecha <= mAcademiaActual.Fecha
+                                             Where p.EsActivo AndAlso p.IDCuartel = mAcademiaActual.IDCuartel AndAlso pab.IDAltaBaja = mdbContext.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, mAcademiaActual.Fecha) AndAlso pab.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA
                                              Select p).ToList()
 
             ' Obtengo las personas que ya están asignadas a la academia actual

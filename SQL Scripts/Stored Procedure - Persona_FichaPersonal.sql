@@ -39,7 +39,7 @@ CREATE PROCEDURE usp_Persona_FichaPersonal
 				p.CUIL, p.CelularParticular, l.Nombre AS Localidad, par.Nombre AS Partido, p.EmailParticular, ne.Nombre AS NivelEstudio, p.IOMATiene, p.IOMANumeroAfiliado,
 				p.CursoIngresoFecha, p.CursoIngresoMeses,p.CursoIngresoHoras, cir.Apellido AS CursoIngresoResponsableApellido, cir.Nombre AS CursoIngresoResponsableNombre,
 				p.ReingresoFormacionRealizada, p.ReingresoFormacionMeses, p.ReingresoFormacionHoras, rfr.Apellido AS ReingresoFormacionResponsableApellido, rfr.Nombre AS ReingresoFormacionResponsableNombre,
-				pua.Fecha AS UltimaAltaFecha, pua.LibroNumero AS UltimaAltaLibroNumero, pua.FolioNumero AS UltimaAltaFolioNumero, pua.ActaNumero AS UltimaAltaActaNumero, dbo.udf_GetPersonaUltimaFechaBaja(p.IDPersona, GETDATE()) AS UltimaBajaFecha,
+				pua.Fecha AS AltaFecha, pua.LibroNumero AS AltaLibroNumero, pua.FolioNumero AS AltaFolioNumero, pua.ActaNumero AS AltaActaNumero, dbo.PersonaObtenerFechaUltimaBaja(p.IDPersona, GETDATE()) AS BajaFecha,
 				pfp.Apellido AS PadreApellido, pfp.Nombre AS PadreNombre, pfm.Apellido AS MadreApellido, pfm.Nombre AS MadreNombre,
 				p.Profesion, p.FechaNacimiento, p.Nacionalidad,
 				dbo.udf_GetDomicilioCalleLocalidadCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3, p.DomicilioParticularIDProvincia, p.DomicilioParticularIDLocalidad) AS Domicilio
@@ -61,10 +61,10 @@ CREATE PROCEDURE usp_Persona_FichaPersonal
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
-				AND (pab.Fecha IS NULL OR pab.IDAltaBaja = dbo.udf_GetPersonaIDUltimaAltaBaja(p.IDPersona, GETDATE()))
-				AND (pua.Fecha IS NULL OR pua.IDAltaBaja = dbo.udf_GetPersonaIDUltimaAlta(p.IDPersona, GETDATE()))
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.udf_GetPersonaUltimaFechaAscenso(p.IDPersona, GETDATE()))
-				AND (@EstadoActivo IS NULL OR (@EstadoActivo = 1 AND pab.IDPersonaBajaMotivo IS NULL) OR (@EstadoActivo = 0 AND pab.IDPersonaBajaMotivo IS NOT NULL))
+				AND (pab.Fecha IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, GETDATE()))
+				AND (pua.Fecha IS NULL OR pua.IDAltaBaja = dbo.PersonaObtenerIdUltimaAlta(p.IDPersona, GETDATE()))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND (@EstadoActivo IS NULL OR dbo.PersonaObtenerSiEstadoEsActivo(pab.Tipo) = @EstadoActivo)
 				AND (@IDPersonaBajaMotivo IS NULL OR pab.IDPersonaBajaMotivo = @IDPersonaBajaMotivo)
 	END
 GO
