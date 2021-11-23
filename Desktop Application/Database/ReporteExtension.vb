@@ -84,7 +84,7 @@ Partial Public Class Reporte
         Dim ReporteParametro As ReporteParametro
         Dim ResultText As String = ""
 
-        For Each ReporteParametro In Me.ReporteParametros.Where(Function(rp) (Not rp.Orden Is Nothing) AndAlso (Not rp.Valor Is Nothing) AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_TITLE AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW).OrderBy(Function(rp) rp.Orden)
+        For Each ReporteParametro In Me.ReporteParametros.Where(Function(rp) (rp.Orden IsNot Nothing) AndAlso (rp.Valor IsNot Nothing) AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_TITLE AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT AndAlso rp.Tipo <> Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW).OrderBy(Function(rp) rp.Orden)
             ResultText &= CStr(IIf(ResultText = "", "", ", ")) & ReporteParametro.Nombre & ": " & ReporteParametro.ValorParaMostrar
         Next ReporteParametro
         ReporteParametro = Nothing
@@ -238,50 +238,48 @@ Partial Public Class Reporte
     End Function
 
     Friend Function PdfSetParametersAndGetData() As Boolean
-        Dim command As SqlCommand = New SqlCommand()
+        Using command As New SqlCommand()
+            Try
+                If Not pDatabase.IsConnected Then
+                    If Not pDatabase.Connect() Then
+                        Return False
+                    End If
+                End If
 
-        Try
-            If Not pDatabase.IsConnected Then
-                If Not pDatabase.Connect() Then
+                command.Connection = pDatabase.Connection
+                command.CommandText = OrigenDatos
+                command.CommandType = CommandType.StoredProcedure
+
+                For Each parametroActual As ReporteParametro In Me.ReporteParametros
+                    If parametroActual.Valor Is Nothing Then
+                        command.Parameters.AddWithValue("@" & parametroActual.IDParametro.TrimEnd, DBNull.Value)
+                    Else
+                        command.Parameters.AddWithValue("@" & parametroActual.IDParametro.TrimEnd, parametroActual.Valor)
+                    End If
+                Next
+
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer los parámetros del reporte.")
+                Return False
+
+            End Try
+
+            Try
+                _DataReader = command.ExecuteReader(CommandBehavior.SingleResult)
+
+                If _DataReader.HasRows Then
+                    Return True
+                Else
+                    MsgBox("No hay datos para mostrar en el Reporte.", MsgBoxStyle.Information, My.Application.Info.Title)
                     Return False
                 End If
-            End If
 
-            Command.Connection = pDatabase.Connection
-            Command.CommandText = OrigenDatos
-            command.CommandType = CommandType.StoredProcedure
-
-            For Each parametroActual As ReporteParametro In Me.ReporteParametros
-                If parametroActual.Valor Is Nothing Then
-                    command.Parameters.AddWithValue("@" & parametroActual.IDParametro.TrimEnd, DBNull.Value)
-                Else
-                    command.Parameters.AddWithValue("@" & parametroActual.IDParametro.TrimEnd, parametroActual.Valor)
-                End If
-            Next
-
-        Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer los parámetros del reporte.")
-            Return False
-
-        End Try
-
-        Try
-            _DataReader = Command.ExecuteReader(CommandBehavior.SingleResult)
-            Command.Dispose()
-            Command = Nothing
-
-            If _DataReader.HasRows Then
-                Return True
-            Else
-                MsgBox("No hay datos para mostrar en el Reporte.", MsgBoxStyle.Information, My.Application.Info.Title)
+            Catch ex As Exception
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los datos para el reporte.")
                 Return False
-            End If
 
-        Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los datos para el reporte.")
-            Return False
-
-        End Try
+            End Try
+        End Using
     End Function
 
     Friend Function PdfProcess(ByVal destinationFileName As String) As Boolean
@@ -290,7 +288,7 @@ Partial Public Class Reporte
             Dim pdfReader As PdfReader
             Dim document As New Document
 
-            Dim fileStream As FileStream = New FileStream(destinationFileName, FileMode.Create)
+            Dim fileStream = New FileStream(destinationFileName, FileMode.Create)
             Dim instance As PdfWriter = PdfWriter.GetInstance(document, fileStream)
 
             document.Open()
@@ -394,7 +392,9 @@ Partial Public Class Reporte
         Next
     End Sub
 
+#Disable Warning CA1801 ' Review unused parameters
     Private Sub PdfEscribirCampo(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
+#Enable Warning CA1801 ' Review unused parameters
         If campo.AlineadoDerecha.HasValue AndAlso campo.AlineadoDerecha AndAlso campo.CantidadCaracter.HasValue AndAlso valor.ToString().Length < campo.CantidadCaracter.Value Then
             ' Intenta alinear a la derecha agregando espacios a la izquierda,
             ' aunque debido a las tipografías de ancho variable, el efecto no es el esperado
@@ -408,7 +408,7 @@ Partial Public Class Reporte
         End If
     End Sub
 
-    Private Sub PdfEscribirCampoEstandard(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
+    Private Shared Sub PdfEscribirCampoEstandard(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
         content.BeginText()
         content.SetFontAndSize(baseFont, fontSize)
 
@@ -426,7 +426,7 @@ Partial Public Class Reporte
         content.EndText()
     End Sub
 
-    Private Sub PdfEscribirCampoCaracterPorCaracter(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
+    Private Shared Sub PdfEscribirCampoCaracterPorCaracter(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
         Dim posicionX As Decimal
 
         content.BeginText()

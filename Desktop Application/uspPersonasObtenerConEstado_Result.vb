@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class usp_Personas_Result
+Partial Public Class uspPersonasObtenerConEstado_Result
     Public Property IDPersona As Integer
     Public Property MatriculaNumero As String
     Public Property ApellidoNombre As String

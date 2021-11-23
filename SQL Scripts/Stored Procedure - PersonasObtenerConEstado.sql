@@ -9,13 +9,15 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2019-04-22
--- Description:	Devuelve las Personas
+-- Updates: 2021-11-22 - Actualización para nuevo formato de Altas y Bajas
+--			2021-11-23 - Se renombró de usp_Personas a uspPersonasObtenerConEstado
+-- Description:	Devuelve las personas con su estado actual
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Personas') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE usp_Personas
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerConEstado') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE uspPersonasObtenerConEstado
 GO
 
-CREATE PROCEDURE usp_Personas
+CREATE PROCEDURE uspPersonasObtenerConEstado
 	AS
 
 	BEGIN
@@ -29,5 +31,5 @@ CREATE PROCEDURE usp_Personas
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
 				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
 				LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
-			WHERE pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, NULL)
+			WHERE (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, NULL))
 	END

@@ -138,13 +138,11 @@
             Dim fps As New formPersonasSeleccionar(False, mIDCuartel, True)
 
             If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                Dim PersonaSeleccionada As usp_Personas_Result
+                Dim PersonaSeleccionada As uspPersonasObtenerConEstado_Result
 
-                PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
+                PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
                 textboxPersona.Tag = PersonaSeleccionada.IDPersona
                 textboxPersona.Text = PersonaSeleccionada.ApellidoNombre
-
-                PersonaSeleccionada = Nothing
             End If
             fps.Dispose()
         End If

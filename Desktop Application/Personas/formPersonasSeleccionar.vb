@@ -2,16 +2,16 @@
 
 #Region "Declarations"
 
-    Private listPersonaBase As List(Of usp_Personas_Result)
-    Private listPersonaFiltradaYOrdenada As List(Of usp_Personas_Result)
+    Private listPersonasBase As List(Of uspPersonasObtenerConEstado_Result)
+    Private listPersonasFiltradaYOrdenada As List(Of uspPersonasObtenerConEstado_Result)
 
-    Private SkipFilterData As Boolean
+    Private ReadOnly SkipFilterData As Boolean
     Private BusquedaAplicada As Boolean
 
     Private OrdenColumna As DataGridViewColumn
     Private OrdenTipo As SortOrder
 
-    Private MultiSeleccion As Boolean
+    Private ReadOnly MultiSeleccion As Boolean
 
 #End Region
 
@@ -51,7 +51,7 @@
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
-        listPersonaBase = Nothing
+        listPersonasBase = Nothing
     End Sub
 
 #End Region
@@ -63,7 +63,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                listPersonaBase = dbContext.usp_Personas().ToList
+                listPersonasBase = dbContext.uspPersonasObtenerConEstado().ToList
             End Using
 
         Catch ex As Exception
@@ -85,29 +85,29 @@
 
             Try
                 ' Inicializo las variables
-                listPersonaFiltradaYOrdenada = listPersonaBase
+                listPersonasFiltradaYOrdenada = listPersonasBase
 
                 ' Filtro por Búsqueda en Apellido y Nombre
                 If BusquedaAplicada Then
-                    listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                    listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
-                    listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                    listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Estado actual
                 Select Case comboboxEstadoActual.SelectedIndex
                     Case 0  ' Todos
                     Case 1  ' Desconocido
-                        listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(a) Not a.IDBajaMotivo.HasValue).ToList
+                        listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) Not a.IDBajaMotivo.HasValue).ToList
                     Case 2  ' Activo
-                        listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = 0).ToList
+                        listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = 0).ToList
                     Case 3  ' Inactivo
-                        listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value > 0).ToList
+                        listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value > 0).ToList
                     Case Else
-                        listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
+                        listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
                 End Select
 
             Catch ex As Exception
@@ -126,18 +126,18 @@
         ' Realizo las rutinas de ordenamiento
         If OrdenColumna Is columnApellido Then
             If OrdenTipo = SortOrder.Ascending Then
-                listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderBy(Function(col) col.Apellido & col.Nombre).ToList
+                listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.OrderBy(Function(col) col.Apellido & col.Nombre).ToList
             Else
-                listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.Apellido & col.Nombre).ToList
+                listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.Apellido & col.Nombre).ToList
             End If
         ElseIf OrdenColumna Is columnNombre Then
             If OrdenTipo = SortOrder.Ascending Then
-                listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderBy(Function(col) col.Nombre & col.Apellido).ToList
+                listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.OrderBy(Function(col) col.Nombre & col.Apellido).ToList
             Else
-                listPersonaFiltradaYOrdenada = listPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre & col.Apellido).ToList
+                listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre & col.Apellido).ToList
             End If
         End If
-        bindingsourceMain.DataSource = listPersonaFiltradaYOrdenada
+        bindingsourceMain.DataSource = listPersonasFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         OrdenColumna.HeaderCell.SortGlyphDirection = OrdenTipo
@@ -210,7 +210,7 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not OrdenColumna Is Nothing Then
+                If OrdenColumna IsNot Nothing Then
                     OrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 

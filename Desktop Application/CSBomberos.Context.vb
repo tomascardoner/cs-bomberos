@@ -109,8 +109,28 @@ Partial Public Class CSBomberosContext
     Public Overridable Property AcademiaAsistenciaTipoPuntaje() As DbSet(Of AcademiaAsistenciaTipoPuntaje)
     Public Overridable Property SiniestroAsistenciaTipoPuntaje() As DbSet(Of SiniestroAsistenciaTipoPuntaje)
 
-    Public Overridable Function usp_Personas() As ObjectResult(Of usp_Personas_Result)
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of usp_Personas_Result)("usp_Personas")
+    Public Overridable Function uspAcademiaObtenerPersonasParaAsistencia(iDAcademia As Nullable(Of Integer), fecha As Nullable(Of Date), iDCuartel As Nullable(Of Byte)) As ObjectResult(Of uspAcademiaObtenerPersonasParaAsistencia_Result)
+        Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
+
+        Dim fechaParameter As ObjectParameter = If(fecha.HasValue, New ObjectParameter("Fecha", fecha), New ObjectParameter("Fecha", GetType(Date)))
+
+        Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of uspAcademiaObtenerPersonasParaAsistencia_Result)("uspAcademiaObtenerPersonasParaAsistencia", iDAcademiaParameter, fechaParameter, iDCuartelParameter)
+    End Function
+
+    Public Overridable Function uspPersonasObtenerConEstado() As ObjectResult(Of uspPersonasObtenerConEstado_Result)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of uspPersonasObtenerConEstado_Result)("uspPersonasObtenerConEstado")
+    End Function
+
+    Public Overridable Function uspSiniestroObtenerPersonasParaAsistencia(iDSiniestro As Nullable(Of Integer), fecha As Nullable(Of Date), iDCuartel As Nullable(Of Byte)) As ObjectResult(Of uspSiniestroObtenerPersonasParaAsistencia_Result)
+        Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
+
+        Dim fechaParameter As ObjectParameter = If(fecha.HasValue, New ObjectParameter("Fecha", fecha), New ObjectParameter("Fecha", GetType(Date)))
+
+        Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of uspSiniestroObtenerPersonasParaAsistencia_Result)("uspSiniestroObtenerPersonasParaAsistencia", iDSiniestroParameter, fechaParameter, iDCuartelParameter)
     End Function
 
 End Class

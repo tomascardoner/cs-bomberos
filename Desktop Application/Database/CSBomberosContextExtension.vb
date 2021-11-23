@@ -5,14 +5,11 @@ Partial Public Class CSBomberosContext
 
     Public Shared Property ConnectionString As String
 
+#Disable Warning CA1801 ' Review unused parameters
     Public Sub New(ByVal UseCustomConnectionString As Boolean)
+#Enable Warning CA1801 ' Review unused parameters
         MyBase.New(ConnectionString)
     End Sub
-
-    <DbFunctionAttribute("CSBomberosContext", "PersonaObtenerIdUltimaAltaBaja")>
-    Public Function PersonaObtenerIdUltimaAltaBaja(ByVal IDPersona As Integer, ByVal FechaHasta As Date) As Byte
-        Throw New NotSupportedException("Direct calls are not supported.")
-    End Function
 End Class
 
 

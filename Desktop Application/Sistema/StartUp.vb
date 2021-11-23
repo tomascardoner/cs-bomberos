@@ -139,7 +139,7 @@
     End Sub
 
     Friend Sub TerminateApplication()
-        If Not pFormMDIMain Is Nothing Then
+        If pFormMDIMain IsNot Nothing Then
             For Each formCurrent As Form In pFormMDIMain.MdiChildren()
                 formCurrent.Close()
                 formCurrent.Dispose()

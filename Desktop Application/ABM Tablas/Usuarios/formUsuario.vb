@@ -69,7 +69,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Genero(comboboxGenero, False)
+        FillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.UsuarioGrupo(comboboxUsuarioGrupo, True, False, False)
         pFillAndRefreshLists.Cuartel(comboboxCuartel, False, True)
     End Sub

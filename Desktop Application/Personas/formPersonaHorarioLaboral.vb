@@ -64,7 +64,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.DiaSemana(comboboxDiaSemana, True, False, True, False, False)
+        FillAndRefreshLists.DiaSemana(comboboxDiaSemana, True, False, True, False, False)
 
         datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Desde.Checked = False

@@ -1,3 +1,11 @@
+2021-11-23
+	- Borrar el stored procedure usp_Personas
+	- Ejecutar stored procedures:
+		- Stored Procedure - PersonasObtenerConEstado
+		- Stored Procedure - AcademiaObtenerPersonasParaAsistencia
+		- Stored Procedure - SiniestroObtenerPersonasParaAsistencia
+	- Eliminar el stored procedure usp_Personas
+
 2021-11-18
 	- Verificar que exista el parámetro PARENTESCO_ID_HIJO
 	- Tabla PersonaAltaBaja:

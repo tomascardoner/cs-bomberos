@@ -104,9 +104,9 @@
         ' Cargo los ComboBox
         pFillAndRefreshLists.Parentesco(comboboxParentesco, False, True)
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
-        pFillAndRefreshLists.Genero(comboboxGenero, False)
-        pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
-        pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        FillAndRefreshLists.Genero(comboboxGenero, False)
+        FillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
+        FillAndRefreshLists.FactorRH(comboboxFactorRH, True)
         pFillAndRefreshLists.EstadoCivil(comboboxEstadoCivil, False, True)
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)

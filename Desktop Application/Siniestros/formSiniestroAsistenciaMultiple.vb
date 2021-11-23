@@ -96,25 +96,15 @@
     End Function
 
     Friend Function CreateRows() As Boolean
-        Dim listPersonasActivasDelCuartel As List(Of Persona)
-        Dim listPersonasEnSiniestro As List(Of Persona)
+        Dim listPersonas As List(Of uspSiniestroObtenerPersonasParaAsistencia_Result)
 
         datagridviewMain.Visible = False
 
         Try
             ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha del siniestro, están activas en el cuerpo
-            listPersonasActivasDelCuartel = (From p In mdbContext.Persona
-                                             Join pab In mdbContext.PersonaAltaBaja On p.IDPersona Equals pab.IDPersona
-                                             Where p.EsActivo AndAlso p.IDCuartel = mSiniestroActual.IDCuartel AndAlso pab.Fecha <= mSiniestroActual.Fecha
-                                             Select p).ToList()
+            listPersonas = mdbContext.uspSiniestroObtenerPersonasParaAsistencia(mSiniestroActual.IDSiniestro, mSiniestroActual.Fecha, mSiniestroActual.IDCuartel).ToList()
 
-            ' Obtengo las personas que ya están asignadas al siniestro actual
-            listPersonasEnSiniestro = (From p In mdbContext.Persona
-                                       Join sa In mdbContext.SiniestroAsistencia On p.IDPersona Equals sa.IDPersona
-                                       Where sa.IDSiniestro = mSiniestroActual.IDSiniestro
-                                       Select p).ToList()
-
-            For Each persona As Persona In listPersonasActivasDelCuartel.Union(listPersonasEnSiniestro).OrderBy(Function(p) p.Orden).ThenBy(Function(p) p.ApellidoNombre)
+            For Each persona As uspSiniestroObtenerPersonasParaAsistencia_Result In listPersonas
                 Dim newRowId As Integer
                 Dim newRow As New DataGridViewRow()
 
@@ -132,8 +122,7 @@
             Return False
 
         Finally
-            listPersonasActivasDelCuartel = Nothing
-            listPersonasEnSiniestro = Nothing
+            listPersonas = Nothing
             datagridviewMain.Visible = True
         End Try
     End Function

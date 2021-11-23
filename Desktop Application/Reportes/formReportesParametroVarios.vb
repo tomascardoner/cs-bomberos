@@ -30,7 +30,7 @@
                     datetimepickerValorHora.Value = Convert.ToDateTime(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR
-                pFillAndRefreshLists.Anio(comboboxValor, False, False)
+                FillAndRefreshLists.Anio(comboboxValor, False, False)
                 If Not mParametroActual.Valor Is Nothing Then
                     comboboxValor.Text = mParametroActual.Valor.ToString()
                 End If

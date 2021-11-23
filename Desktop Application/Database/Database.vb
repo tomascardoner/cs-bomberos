@@ -17,8 +17,9 @@
         End If
 
         ' Obtengo el Connection String para las conexiones de ADO .NET
-        pDatabase = New CardonerSistemas.Database.ADO.SQLServer
-        pDatabase.ApplicationName = My.Application.Info.Title
+        pDatabase = New CardonerSistemas.Database.ADO.SQLServer With {
+            .ApplicationName = My.Application.Info.Title
+        }
         If dataSourceIndex > -1 Then
             pDatabase.Datasource = pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)).ElementAt(dataSourceIndex)
             ' Database

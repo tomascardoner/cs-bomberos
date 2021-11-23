@@ -6,7 +6,6 @@
     Private mlistAcademiaAsistenciaTiposFiltradaYOrdenada As List(Of AcademiaAsistenciaTipo)
 
     Private mSkipFilterData As Boolean
-    Private ReadOnly mBusquedaAplicada As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn

@@ -96,25 +96,14 @@
     End Function
 
     Friend Function CreateRows() As Boolean
-        Dim listPersonasActivasDelCuartel As List(Of Persona)
-        Dim listPersonasEnAcademia As List(Of Persona)
+        Dim listPersonas As List(Of uspAcademiaObtenerPersonasParaAsistencia_Result)
 
         datagridviewMain.Visible = False
 
         Try
-            ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha de la academia, están activas en el cuerpo
-            listPersonasActivasDelCuartel = (From p In mdbContext.Persona
-                                             Join pab In mdbContext.PersonaAltaBaja On p.IDPersona Equals pab.IDPersona
-                                             Where p.EsActivo AndAlso p.IDCuartel = mAcademiaActual.IDCuartel AndAlso pab.IDAltaBaja = mdbContext.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, mAcademiaActual.Fecha) AndAlso pab.Tipo = Constantes.PERSONA_ALTABAJA_TIPO_ALTA
-                                             Select p).ToList()
+            listPersonas = mdbContext.uspAcademiaObtenerPersonasParaAsistencia(mAcademiaActual.IDAcademia, mAcademiaActual.Fecha, mAcademiaActual.IDCuartel).ToList()
 
-            ' Obtengo las personas que ya están asignadas a la academia actual
-            listPersonasEnAcademia = (From p In mdbContext.Persona
-                                      Join sa In mdbContext.AcademiaAsistencia On p.IDPersona Equals sa.IDPersona
-                                      Where sa.IDAcademia = mAcademiaActual.IDAcademia
-                                      Select p).ToList()
-
-            For Each persona As Persona In listPersonasActivasDelCuartel.Union(listPersonasEnAcademia).OrderBy(Function(p) p.Orden).ThenBy(Function(p) p.ApellidoNombre)
+            For Each persona As uspAcademiaObtenerPersonasParaAsistencia_Result In listPersonas
                 Dim newRowId As Integer
                 Dim newRow As New DataGridViewRow()
 
@@ -132,8 +121,7 @@
             Return False
 
         Finally
-            listPersonasActivasDelCuartel = Nothing
-            listPersonasEnAcademia = Nothing
+            listPersonas = Nothing
             datagridviewMain.Visible = True
         End Try
     End Function

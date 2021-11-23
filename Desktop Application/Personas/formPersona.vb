@@ -175,9 +175,9 @@
 
         ' Cargo los ComboBox
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
-        pFillAndRefreshLists.Genero(comboboxGenero, False)
-        pFillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
-        pFillAndRefreshLists.FactorRH(comboboxFactorRH, True)
+        FillAndRefreshLists.Genero(comboboxGenero, False)
+        FillAndRefreshLists.GrupoSanguineo(comboboxGrupoSanguineo, True)
+        FillAndRefreshLists.FactorRH(comboboxFactorRH, True)
         pFillAndRefreshLists.EstadoCivil(comboboxEstadoCivil, False, True)
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
@@ -884,7 +884,7 @@
 
     Private Sub buttonCancelar_Click() Handles buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
-            If MsgBox("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            If MsgBox(String.Format(My.Resources.STRING_CONFIRMAR_CANCELACION_DATOS, vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else

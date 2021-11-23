@@ -1,4 +1,5 @@
 ﻿Friend Class FillAndRefreshLists
+    Implements IDisposable
 
 #Region "Declarations..."
 
@@ -50,21 +51,24 @@
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Persona
-            Item_NoEspecifica.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
-            Item_NoEspecifica.ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Persona With {
+                .IDPersona = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER,
+                .ApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Otra Then
-            Dim Item_Otra As New Persona
-            Item_Otra.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER
-            Item_Otra.ApellidoNombre = My.Resources.STRING_ITEM_OTHER_FEMALE
+            Dim Item_Otra As New Persona With {
+                .IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER,
+                .ApellidoNombre = My.Resources.STRING_ITEM_OTHER_FEMALE
+            }
             listItems.Insert(0, Item_Otra)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Persona
-            Item_Todos.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
-            Item_Todos.ApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Persona With {
+                .IDPersona = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER,
+                .ApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -81,10 +85,11 @@
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
-            Dim UnspecifiedItem As New DocumentoTipo
-            UnspecifiedItem.IDDocumentoTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            UnspecifiedItem.VerificaModulo11 = False
+            Dim UnspecifiedItem As New DocumentoTipo With {
+                .IDDocumentoTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED,
+                .VerificaModulo11 = False
+            }
             localList.Insert(0, UnspecifiedItem)
         End If
 
@@ -100,9 +105,10 @@
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
-            Dim UnspecifiedItem As New Provincia
-            UnspecifiedItem.IDProvincia = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim UnspecifiedItem As New Provincia With {
+                .IDProvincia = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             localList.Insert(0, UnspecifiedItem)
         End If
 
@@ -119,16 +125,17 @@
 
         Dim localList = qryList.ToList
         If ShowUnspecifiedItem Then
-            Dim UnspecifiedItem As New Localidad
-            UnspecifiedItem.IDLocalidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            UnspecifiedItem.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim UnspecifiedItem As New Localidad With {
+                .IDLocalidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             localList.Insert(0, UnspecifiedItem)
         End If
 
         ComboBoxControl.DataSource = localList
     End Sub
 
-    Friend Sub Genero(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
+    Friend Shared Sub Genero(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
         Dim datatableGeneros As New DataTable("Generos")
         Dim datarowRow As DataRow
 
@@ -165,7 +172,7 @@
         End If
     End Sub
 
-    Friend Sub GrupoSanguineo(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
+    Friend Shared Sub GrupoSanguineo(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
         Dim datatableGrupoSanguineos As New DataTable("GrupoSanguineos")
         Dim datarowRow As DataRow
 
@@ -212,7 +219,7 @@
         End If
     End Sub
 
-    Friend Sub FactorRH(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
+    Friend Shared Sub FactorRH(ByRef ComboBoxControl As ComboBox, ByVal ShowUnspecifiedItem As Boolean)
         Dim datatableFactorRHs As New DataTable("FactorRHs")
         Dim datarowRow As DataRow
 
@@ -258,15 +265,17 @@
         listItems = mdbContext.NivelEstudio.Where(Function(ne) ne.EsActivo).OrderBy(Function(ne) ne.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New NivelEstudio
-            Item_Todos.IDNivelEstudio = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New NivelEstudio With {
+                .IDNivelEstudio = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New NivelEstudio
-            Item_NoEspecifica.IDNivelEstudio = 0
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New NivelEstudio With {
+                .IDNivelEstudio = 0,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -282,16 +291,18 @@
         listItems = mdbContext.EstadoCivil.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New EstadoCivil
-            Item_Todos.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New EstadoCivil With {
+                .IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New EstadoCivil
-            Item_NoEspecifica.IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New EstadoCivil With {
+                .IDEstadoCivil = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -302,7 +313,7 @@
 
 #Region "Calendario"
 
-    Friend Sub DiaSemana(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelDia As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Shared Sub DiaSemana(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelDia As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         ComboBoxControl.Items.Clear()
         If MostrarNombreDelDia Then
             If NombreEnIdiomaDelSistema Then
@@ -332,7 +343,7 @@
         End If
     End Sub
 
-    Friend Sub Mes(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelMes As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Shared Sub Mes(ByRef ComboBoxControl As ComboBox, ByVal MostrarNombreDelMes As Boolean, ByVal NombreEnIdiomaDelSistema As Boolean, ByVal PrimerLetraEnMayusculas As Boolean, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         ComboBoxControl.Items.Clear()
         If MostrarNombreDelMes Then
             If NombreEnIdiomaDelSistema Then
@@ -362,7 +373,7 @@
         End If
     End Sub
 
-    Friend Sub Anio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+    Friend Shared Sub Anio(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim AnioInicioParametro As Integer
 
         ComboBoxControl.Items.Clear()
@@ -394,15 +405,17 @@
         listItems = mdbContext.Proveedor.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Proveedor
-            Item_NoEspecifica.IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Proveedor With {
+                .IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Proveedor
-            Item_Todos.IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Proveedor With {
+                .IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -426,17 +439,19 @@
             listItems = mdbContext.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
             If AgregarItem_Todos Then
-                Dim Item_Todos As New Cuartel
-                Item_Todos.IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-                Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+                Dim Item_Todos As New Cuartel With {
+                    .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                    .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+                }
                 listItems.Insert(0, Item_Todos)
             End If
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Cuartel
-            Item_NoEspecifica.IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Cuartel With {
+                .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -452,16 +467,18 @@
         listItems = mdbContext.ResponsableTipo.Where(Function(rt) rt.EsActivo).OrderBy(Function(rt) rt.Orden).ThenBy(Function(rt) rt.Nombre).ToList
 
         If AgregarItemTodos Then
-            Dim Item_Todos As New ResponsableTipo
-            Item_Todos.IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New ResponsableTipo With {
+                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New ResponsableTipo
-            Item_NoEspecifica.IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New ResponsableTipo With {
+                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -484,18 +501,20 @@
                      Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
 
         If AgregarItemTodos Then
-            Dim Item_Todos As New ResponsableNombresClass
-            Item_Todos.IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.ResponsableTipoNombre = My.Resources.STRING_ITEM_ALL_MALE
-            Item_Todos.PersonaApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New ResponsableNombresClass With {
+                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .ResponsableTipoNombre = My.Resources.STRING_ITEM_ALL_MALE,
+                .PersonaApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New ResponsableNombresClass
-            Item_NoEspecifica.IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            Item_NoEspecifica.PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New ResponsableNombresClass With {
+                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED,
+                .PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -511,15 +530,17 @@
         listItems = mdbContext.SancionTipo.Where(Function(st) st.EsActivo).OrderBy(Function(st) st.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New SancionTipo
-            Item_NoEspecifica.IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New SancionTipo With {
+                .IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New SancionTipo
-            Item_Todos.IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New SancionTipo With {
+                .IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -535,15 +556,17 @@
         listItems = mdbContext.Parentesco.Where(Function(p) p.EsActivo).OrderBy(Function(pa) pa.Orden).ThenBy(Function(pa) pa.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Parentesco
-            Item_NoEspecifica.IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Parentesco With {
+                .IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Parentesco
-            Item_Todos.IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Parentesco With {
+                .IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -559,15 +582,17 @@
         listItems = mdbContext.PersonaBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New PersonaBajaMotivo
-            Item_NoEspecifica.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New PersonaBajaMotivo With {
+                .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New PersonaBajaMotivo
-            Item_Todos.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New PersonaBajaMotivo With {
+                .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -582,28 +607,32 @@
 
         listItems = mdbContext.PersonaBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
 
-        Dim Item_Desconocido As New PersonaBajaMotivo
-        Item_Desconocido.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-        Item_Desconocido.Nombre = My.Resources.STRING_PERSONA_ESTADO_DESCONOCIDO
+        Dim Item_Desconocido As New PersonaBajaMotivo With {
+            .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+            .Nombre = My.Resources.STRING_PERSONA_ESTADO_DESCONOCIDO
+        }
         listItems.Insert(0, Item_Desconocido)
         Item_Desconocido = Nothing
 
-        Dim Item_Activo As New PersonaBajaMotivo
-        Item_Activo.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-        Item_Activo.Nombre = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
+        Dim Item_Activo As New PersonaBajaMotivo With {
+            .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+            .Nombre = My.Resources.STRING_PERSONA_ESTADO_ACTIVO
+        }
         listItems.Insert(1, Item_Activo)
         Item_Activo = Nothing
 
-        Dim Item_Inactivo As New PersonaBajaMotivo
-        Item_Inactivo.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-        Item_Inactivo.Nombre = My.Resources.STRING_PERSONA_ESTADO_INACTIVO
+        Dim Item_Inactivo As New PersonaBajaMotivo With {
+            .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+            .Nombre = My.Resources.STRING_PERSONA_ESTADO_INACTIVO
+        }
         listItems.Insert(2, Item_Inactivo)
         Item_Inactivo = Nothing
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New PersonaBajaMotivo
-            Item_Todos.IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New PersonaBajaMotivo With {
+                .IDPersonaBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -623,15 +652,17 @@
         End If
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New Area
-            Item_NoEspecifica.IDArea = Short.MinValue
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Area With {
+                .IDArea = Short.MinValue,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New Area
-            Item_Todos.IDArea = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Area With {
+                .IDArea = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -651,15 +682,17 @@
         End If
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New Area
-            Item_NoEspecifica.IDArea = Short.MinValue
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Area With {
+                .IDArea = Short.MinValue,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New Area
-            Item_Todos.IDArea = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Area With {
+                .IDArea = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -679,15 +712,17 @@
         End If
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New Area
-            Item_NoEspecifica.IDArea = Short.MinValue
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Area With {
+                .IDArea = Short.MinValue,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New Area
-            Item_Todos.IDArea = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Area With {
+                .IDArea = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -707,15 +742,17 @@
                      Select New AreaNombresClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .EsActivo = a.EsActivo}).ToList()
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New AreaNombresClass
-            Item_NoEspecifica.IDArea = Short.MinValue
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New AreaNombresClass With {
+                .IDArea = Short.MinValue,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New AreaNombresClass
-            Item_Todos.IDArea = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New AreaNombresClass With {
+                .IDArea = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -731,15 +768,17 @@
         listItems = mdbContext.Caja.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
 
         If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New Caja
-            Item_NoEspecifica.IDCaja = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Caja With {
+                .IDCaja = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItemTodos Then
-            Dim Item_Todos As New Caja
-            Item_Todos.IDCaja = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Caja With {
+                .IDCaja = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -759,15 +798,17 @@
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Ubicacion
-            Item_NoEspecifica.IDUbicacion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Ubicacion With {
+                .IDUbicacion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Ubicacion
-            Item_Todos.IDUbicacion = 0
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Ubicacion With {
+                .IDUbicacion = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -783,15 +824,17 @@
         listItems = mdbContext.SubUbicacion.Where(Function(su) su.EsActivo And su.IDUbicacion = IDUbicacion).OrderBy(Function(su) su.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New SubUbicacion
-            Item_NoEspecifica.IDSubUbicacion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New SubUbicacion With {
+                .IDSubUbicacion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New SubUbicacion
-            Item_Todos.IDSubUbicacion = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New SubUbicacion With {
+                .IDSubUbicacion = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -807,15 +850,17 @@
         listItems = mdbContext.Rubro.Where(Function(r) r.EsActivo).OrderBy(Function(r) r.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Rubro
-            Item_NoEspecifica.IDRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Rubro With {
+                .IDRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Rubro
-            Item_Todos.IDRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New Rubro With {
+                .IDRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -831,15 +876,17 @@
         listItems = mdbContext.SubRubro.Where(Function(sr) sr.EsActivo And sr.IDRubro = IDRubro).OrderBy(Function(sr) sr.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New SubRubro
-            Item_NoEspecifica.IDSubRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New SubRubro With {
+                .IDSubRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New SubRubro
-            Item_Todos.IDSubRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim Item_Todos As New SubRubro With {
+                .IDSubRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -859,15 +906,17 @@
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Unidad
-            Item_NoEspecifica.IDUnidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Unidad With {
+                .IDUnidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .NumeroMarcaModelo = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Unidad
-            Item_Todos.IDUnidad = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Unidad With {
+                .IDUnidad = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .NumeroMarcaModelo = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -883,15 +932,17 @@
         listItems = mdbContext.ModoAdquisicion.Where(Function(ma) ma.EsActivo).OrderBy(Function(ma) ma.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New ModoAdquisicion
-            Item_NoEspecifica.IDModoAdquisicion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New ModoAdquisicion With {
+                .IDModoAdquisicion = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New ModoAdquisicion
-            Item_Todos.IDModoAdquisicion = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New ModoAdquisicion With {
+                .IDModoAdquisicion = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -909,26 +960,21 @@
         listItems = mdbContext.Elemento.Where(Function(e) e.EsActivo).OrderBy(Function(e) e.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Elemento
-            Item_NoEspecifica.IDElemento = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Elemento With {
+                .IDElemento = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Elemento
-            Item_Todos.IDElemento = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Elemento With {
+                .IDElemento = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         ComboBoxControl.DataSource = listItems
-    End Sub
-
-    Friend Sub ElementoRefresh()
-        If Application.OpenForms().OfType(Of formElementos).Any Then
-            'mdbContext.Unidad.Re()
-        End If
-        'mdbContext.Entry(formInventarioDetalle.comboboxElemento.DataSource).Reload()
     End Sub
 
 #End Region
@@ -944,16 +990,18 @@
         listItems = mdbContext.UnidadTipo.Where(Function(at) at.EsActivo).OrderBy(Function(at) at.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New UnidadTipo
-            Item_Todos.IDUnidadTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New UnidadTipo With {
+                .IDUnidadTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New UnidadTipo
-            Item_NoEspecifica.IDUnidadTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New UnidadTipo With {
+                .IDUnidadTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -969,16 +1017,18 @@
         listItems = mdbContext.UnidadUso.Where(Function(au) au.EsActivo).OrderBy(Function(au) au.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New UnidadUso
-            Item_Todos.IDUnidadUso = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New UnidadUso With {
+                .IDUnidadUso = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New UnidadUso
-            Item_NoEspecifica.IDUnidadUso = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New UnidadUso With {
+                .IDUnidadUso = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -994,15 +1044,17 @@
         listItems = mdbContext.UnidadBajaMotivo.Where(Function(pbm) pbm.EsActivo).OrderBy(Function(pbm) pbm.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New UnidadBajaMotivo
-            Item_NoEspecifica.IDUnidadBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New UnidadBajaMotivo With {
+                .IDUnidadBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New UnidadBajaMotivo
-            Item_Todos.IDUnidadBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New UnidadBajaMotivo With {
+                .IDUnidadBajaMotivo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
@@ -1018,16 +1070,18 @@
         listItems = mdbContext.CombustibleTipo.Where(Function(ct) ct.EsActivo).OrderBy(Function(ct) ct.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New CombustibleTipo
-            Item_Todos.IDCombustibleTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New CombustibleTipo With {
+                .IDCombustibleTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New CombustibleTipo
-            Item_NoEspecifica.IDCombustibleTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New CombustibleTipo With {
+                .IDCombustibleTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1051,16 +1105,18 @@
         End If
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New UsuarioGrupo
-            Item_Todos.IDUsuarioGrupo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New UsuarioGrupo With {
+                .IDUsuarioGrupo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New UsuarioGrupo
-            Item_NoEspecifica.IDUsuarioGrupo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New UsuarioGrupo With {
+                .IDUsuarioGrupo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1080,16 +1136,18 @@
         listItems = mdbContext.Cargo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Orden).ThenBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Cargo
-            Item_Todos.IDCargo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Cargo With {
+                .IDCargo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Cargo
-            Item_NoEspecifica.IDCargo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Cargo With {
+                .IDCargo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1109,16 +1167,18 @@
         End If
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New CargoJerarquia
-            Item_Todos.IDCargo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New CargoJerarquia With {
+                .IDCargo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New CargoJerarquia
-            Item_NoEspecifica.IDCargo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New CargoJerarquia With {
+                .IDCargo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1138,16 +1198,18 @@
         listItems = mdbContext.VehiculoTipo.Where(Function(vt) vt.EsActivo).OrderBy(Function(vt) vt.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New VehiculoTipo
-            Item_Todos.IDVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New VehiculoTipo With {
+                .IDVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New VehiculoTipo
-            Item_NoEspecifica.IDVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New VehiculoTipo With {
+                .IDVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1163,16 +1225,18 @@
         listItems = mdbContext.VehiculoMarca.Where(Function(vm) vm.EsActivo).OrderBy(Function(vm) vm.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New VehiculoMarca
-            Item_Todos.IDVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New VehiculoMarca With {
+                .IDVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New VehiculoMarca
-            Item_NoEspecifica.IDVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New VehiculoMarca With {
+                .IDVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1188,16 +1252,18 @@
         listItems = mdbContext.VehiculoCompaniaSeguro.Where(Function(vcs) vcs.EsActivo).OrderBy(Function(vcs) vcs.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New VehiculoCompaniaSeguro
-            Item_Todos.IDVehiculoCompaniaSeguro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New VehiculoCompaniaSeguro With {
+                .IDVehiculoCompaniaSeguro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New VehiculoCompaniaSeguro
-            Item_NoEspecifica.IDVehiculoCompaniaSeguro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New VehiculoCompaniaSeguro With {
+                .IDVehiculoCompaniaSeguro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1215,16 +1281,18 @@
         listItems = mdbContext.VacunaTipo.Where(Function(vcs) vcs.EsActivo).OrderBy(Function(vcs) vcs.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New VacunaTipo
-            Item_Todos.IDVacunaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New VacunaTipo With {
+                .IDVacunaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New VacunaTipo
-            Item_NoEspecifica.IDVacunaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New VacunaTipo With {
+                .IDVacunaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1240,16 +1308,18 @@
         listItems = mdbContext.LicenciaCausa.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New LicenciaCausa
-            Item_Todos.IDLicenciaCausa = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New LicenciaCausa With {
+                .IDLicenciaCausa = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New LicenciaCausa
-            Item_NoEspecifica.IDLicenciaCausa = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New LicenciaCausa With {
+                .IDLicenciaCausa = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1265,16 +1335,18 @@
         listItems = mdbContext.LicenciaConducirCategoria.Where(Function(lc) lc.EsActivo).OrderBy(Function(lc) lc.Codigo).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New LicenciaConducirCategoria
-            Item_Todos.IDLicenciaConducirCategoria = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New LicenciaConducirCategoria With {
+                .IDLicenciaConducirCategoria = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New LicenciaConducirCategoria
-            Item_NoEspecifica.IDLicenciaConducirCategoria = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New LicenciaConducirCategoria With {
+                .IDLicenciaConducirCategoria = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1290,16 +1362,18 @@
         listItems = mdbContext.Curso.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Curso
-            Item_Todos.IDCurso = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New Curso With {
+                .IDCurso = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Curso
-            Item_NoEspecifica.IDCurso = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Curso With {
+                .IDCurso = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1315,16 +1389,18 @@
         listItems = mdbContext.CapacitacionNivel.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New CapacitacionNivel
-            Item_Todos.IDCapacitacionNivel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New CapacitacionNivel With {
+                .IDCapacitacionNivel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New CapacitacionNivel
-            Item_NoEspecifica.IDCapacitacionNivel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New CapacitacionNivel With {
+                .IDCapacitacionNivel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1342,16 +1418,18 @@
         listItems = mdbContext.CapacitacionTipo.Where(Function(c) c.EsActivo).OrderBy(Function(c) c.Nombre).ToList
 
         If AgregarItem_Todos Then
-            Dim Item_Todos As New CapacitacionTipo
-            Item_Todos.IDCapacitacionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim Item_Todos As New CapacitacionTipo With {
+                .IDCapacitacionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, Item_Todos)
         End If
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New CapacitacionTipo
-            Item_NoEspecifica.IDCapacitacionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New CapacitacionTipo With {
+                .IDCapacitacionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 
@@ -1375,6 +1453,14 @@
         End If
 
         ComboBoxControl.DataSource = listItems
+    End Sub
+
+    Public Sub Dispose() Implements IDisposable.Dispose
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
+        GC.SuppressFinalize(Me)
     End Sub
 
 End Class

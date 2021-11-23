@@ -2,8 +2,8 @@
 
 #Region "Declarations"
 
-    Private mlistPersonaBase As List(Of usp_Personas_Result)
-    Private mlistPersonaFiltradaYOrdenada As List(Of usp_Personas_Result)
+    Private mlistPersonasBase As List(Of uspPersonasObtenerConEstado_Result)
+    Private mlistPersonasFiltradaYOrdenada As List(Of uspPersonasObtenerConEstado_Result)
 
     Private mSkipFilterData As Boolean
     Private mBusquedaAplicada As Boolean
@@ -38,8 +38,8 @@
     End Sub
 
     Private Sub Me_FormClosed() Handles Me.FormClosed
-        mlistPersonaBase = Nothing
-        mlistPersonaFiltradaYOrdenada = Nothing
+        mlistPersonasBase = Nothing
+        mlistPersonasFiltradaYOrdenada = Nothing
     End Sub
 
 #End Region
@@ -51,7 +51,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistPersonaBase = dbContext.usp_Personas().ToList
+                mlistPersonasBase = dbContext.uspPersonasObtenerConEstado().ToList
             End Using
 
         Catch ex As Exception
@@ -66,7 +66,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona
+                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona
             End If
         End If
 
@@ -74,7 +74,7 @@
 
         If PositionIDPersona <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, usp_Personas_Result).IDPersona = PositionIDPersona Then
+                If CType(CurrentRowChecked.DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona = PositionIDPersona Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnMatriculaNumero.Name)
                     Exit For
                 End If
@@ -90,38 +90,38 @@
 
             Try
                 ' Inicializo las variables
-                mlistPersonaFiltradaYOrdenada = mlistPersonaBase
+                mlistPersonasFiltradaYOrdenada = mlistPersonasBase
 
                 ' Filtro por Búsqueda en Apellido y Nombre
                 If mBusquedaAplicada Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
                 End If
 
                 ' Filtro por Cuartel
                 If comboboxCuartel.SelectedIndex > 0 Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(p) p.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Estado actual
                 Select Case comboboxEstadoActual.SelectedIndex
                     Case 0  ' Todos
                     Case 1  ' Desconocido
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) Not a.IDBajaMotivo.HasValue).ToList
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(a) Not a.IDBajaMotivo.HasValue).ToList
                     Case 2  ' Activo
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = 0).ToList
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = 0).ToList
                     Case 3  ' Inactivo
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value > 0).ToList
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value > 0).ToList
                     Case Else
-                        mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
                 End Select
 
-                Select Case mlistPersonaFiltradaYOrdenada.Count
+                Select Case mlistPersonasFiltradaYOrdenada.Count
                     Case 0
                         statuslabelMain.Text = String.Format("No hay Personas para mostrar.")
                     Case 1
                         statuslabelMain.Text = String.Format("Se muestra 1 Persona.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Personas.", mlistPersonaFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Personas.", mlistPersonasFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -141,34 +141,35 @@
         Select Case OrdenColumna.Name
             Case columnMatriculaNumero.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.MatriculaNumero).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderBy(Function(col) col.MatriculaNumero).ToList
                 Else
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.MatriculaNumero).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.MatriculaNumero).ToList
                 End If
             Case columnApellido.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.Apellido).ThenBy(Function(col) col.Nombre).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderBy(Function(col) col.Apellido).ThenBy(Function(col) col.Nombre).ToList
                 Else
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.Apellido).ThenByDescending(Function(col) col.Nombre).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.Apellido).ThenByDescending(Function(col) col.Nombre).ToList
                 End If
             Case columnNombre.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ThenBy(Function(col) col.Apellido).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderBy(Function(col) col.Nombre).ThenBy(Function(col) col.Apellido).ToList
                 Else
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ThenByDescending(Function(col) col.Apellido).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.Nombre).ThenByDescending(Function(col) col.Apellido).ToList
                 End If
             Case columnCuartelNombre.Name
                 If OrdenTipo = SortOrder.Ascending Then
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderBy(Function(col) col.CuartelNombre).ThenBy(Function(col) col.Apellido).ThenBy(Function(col) col.Nombre).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderBy(Function(col) col.CuartelNombre).ThenBy(Function(col) col.Apellido).ThenBy(Function(col) col.Nombre).ToList
                 Else
-                    mlistPersonaFiltradaYOrdenada = mlistPersonaFiltradaYOrdenada.OrderByDescending(Function(col) col.CuartelNombre).ThenByDescending(Function(col) col.Apellido).ThenByDescending(Function(col) col.Nombre).ToList
+                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.CuartelNombre).ThenByDescending(Function(col) col.Apellido).ThenByDescending(Function(col) col.Nombre).ToList
                 End If
         End Select
-        bindingsourceMain.DataSource = mlistPersonaFiltradaYOrdenada
+        bindingsourceMain.DataSource = mlistPersonasFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         OrdenColumna.HeaderCell.SortGlyphDirection = OrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -236,7 +237,7 @@
             Else
                 ' La columna clickeada es diferencte a la que ya estaba ordenada.
                 ' En primer lugar saco el ícono de orden de la columna vieja
-                If Not OrdenColumna Is Nothing Then
+                If OrdenColumna IsNot Nothing Then
                     OrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
                 End If
 
@@ -276,7 +277,7 @@
 
                 datagridviewMain.Enabled = False
 
-                formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
+                formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
 
                 datagridviewMain.Enabled = True
 
@@ -292,14 +293,14 @@
             If Permisos.VerificarPermiso(Permisos.PERSONA_ELIMINAR) Then
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).ApellidoNombre)
+                Mensaje = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).ApellidoNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                     Me.Cursor = Cursors.WaitCursor
 
                     Try
                         Using dbContext = New CSBomberosContext(True)
                             Dim PersonaActual As Persona
-                            PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
+                            PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
 
                             dbContext.Persona.Attach(PersonaActual)
                             dbContext.Persona.Remove(PersonaActual)
@@ -334,7 +335,7 @@
 
             datagridviewMain.Enabled = False
 
-            formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result).IDPersona)
+            formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
 
             datagridviewMain.Enabled = True
 
@@ -343,13 +344,13 @@
     End Sub
 
     Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirFichaPersonal.Click
-        Dim CurrentRow As usp_Personas_Result
+        Dim CurrentRow As uspPersonasObtenerConEstado_Result
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
-                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
+                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
 
                 Me.Cursor = Cursors.WaitCursor
 

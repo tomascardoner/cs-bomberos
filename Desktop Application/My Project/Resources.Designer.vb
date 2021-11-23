@@ -511,6 +511,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Ha seleccionado cancelar.{0}{0}¿Confirma que desea descartar los cambios?.
+        '''</summary>
+        Friend ReadOnly Property STRING_CONFIRMAR_CANCELACION_DATOS() As String
+            Get
+                Return ResourceManager.GetString("STRING_CONFIRMAR_CANCELACION_DATOS", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to ambas direcciones de e-mail.
         '''</summary>
         Friend ReadOnly Property STRING_ENTIDAD_COMPROBANTE_ENVIAREMAIL_AMBAS() As String

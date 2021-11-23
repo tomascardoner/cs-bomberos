@@ -346,4 +346,7 @@
   <data name="STRING_ITEM_OTHER_MALE" xml:space="preserve">
     <value>«Otro»</value>
   </data>
+  <data name="STRING_CONFIRMAR_CANCELACION_DATOS" xml:space="preserve">
+    <value>Ha seleccionado cancelar.{0}{0}¿Confirma que desea descartar los cambios?</value>
+  </data>
 </root>

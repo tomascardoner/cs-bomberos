@@ -1231,7 +1231,13 @@
     <Compile Include="UnidadUso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="usp_Personas_Result.vb">
+    <Compile Include="uspAcademiaObtenerPersonasParaAsistencia_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspPersonasObtenerConEstado_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspSiniestroObtenerPersonasParaAsistencia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.vb">

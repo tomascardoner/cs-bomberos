@@ -1,9 +1,11 @@
 ﻿Public Class formReportes
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mIDModulo As Byte
     Private mModuloNombre As String
+
 #End Region
 
 #Region "Form stuff"
@@ -29,6 +31,7 @@
 
     Private Sub formReportes_Unload() Handles Me.FormClosed
         mdbContext.Dispose()
+        mdbContext = Nothing
     End Sub
 
 #End Region
@@ -49,8 +52,9 @@
                 End If
 
                 ' Agrego el Grupo de Reportes
-                ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre)
-                ReporteGrupoNodo.Tag = ReporteGrupoActual
+                ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre) With {
+                    .Tag = ReporteGrupoActual
+                }
                 treeviewReportes.Nodes.Add(ReporteGrupoNodo)
 
                 If ReporteGrupoNodoPrimero Is Nothing Then
@@ -59,8 +63,9 @@
 
                 For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
                     ' Agrego el Reporte
-                    ReporteNodo = New TreeNode(ReporteActual.Nombre)
-                    ReporteNodo.Tag = ReporteActual
+                    ReporteNodo = New TreeNode(ReporteActual.Nombre) With {
+                        .Tag = ReporteActual
+                    }
                     ReporteGrupoNodo.Nodes.Add(ReporteNodo)
 
                     If ReporteNodoPrimero Is Nothing Then
@@ -69,10 +74,10 @@
                 Next
             Next
             treeviewReportes.ExpandAll()
-            If Not ReporteGrupoNodoPrimero Is Nothing Then
+            If ReporteGrupoNodoPrimero IsNot Nothing Then
                 treeviewReportes.TopNode = ReporteGrupoNodoPrimero
             End If
-            If Not ReporteNodoPrimero Is Nothing Then
+            If ReporteNodoPrimero IsNot Nothing Then
                 treeviewReportes.SelectedNode = ReporteNodoPrimero
             End If
             treeviewReportes.EndUpdate()
@@ -116,7 +121,7 @@
 
                 With ParametroActual
                     ' Agrego el Parámetro si tiene especificado el Orden, si no, no
-                    If Not .Orden Is Nothing Then
+                    If .Orden IsNot Nothing Then
 
                         ParametroListViewItem = New ListViewItem(.Nombre)
                         ParametroListViewItem.Name = CardonerSistemas.Constants.KEY_STRINGER & .IDParametro
@@ -160,9 +165,9 @@
                     Dim fps As New formPersonasSeleccionar(False, 0, False)
 
                     If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                        Dim PersonaSeleccionada As usp_Personas_Result
+                        Dim PersonaSeleccionada As uspPersonasObtenerConEstado_Result
 
-                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, usp_Personas_Result)
+                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
                         ParametroActual.Valor = PersonaSeleccionada.IDPersona
                         ParametroActual.ValorParaMostrar = PersonaSeleccionada.ApellidoNombre
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
@@ -180,12 +185,12 @@
                         Const IDPersonaDelimiter As String = "@"
                         Const PersonaNombreDelimiter As String = " - "
 
-                        Dim PersonaSeleccionada As usp_Personas_Result
+                        Dim PersonaSeleccionada As uspPersonasObtenerConEstado_Result
                         Dim Valores As String = ""
                         Dim ValorParaMostrar As String = ""
 
                         For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
-                            PersonaSeleccionada = CType(dataRow.DataBoundItem, usp_Personas_Result)
+                            PersonaSeleccionada = CType(dataRow.DataBoundItem, uspPersonasObtenerConEstado_Result)
                             Valores = (PersonaSeleccionada.IDPersona & IDPersonaDelimiter & Valores)
                             ValorParaMostrar = (PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre & ValorParaMostrar)
                         Next
@@ -286,7 +291,7 @@
                     formReportesParametroComboBoxDoble.SetAppearance(ParametroPadre, ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroComboBoxDoble.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
-                        If Not ParametroPadre Is Nothing Then
+                        If ParametroPadre IsNot Nothing Then
                             listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
                         End If
                     End If
@@ -312,10 +317,10 @@
                     formReportesParametroComboBoxTriple.SetAppearance(ParametroAbuelo, ParametroPadre, ParametroActual, ListViewItemActual.Text)
                     If formReportesParametroComboBoxTriple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
-                        If Not ParametroAbuelo Is Nothing Then
+                        If ParametroAbuelo IsNot Nothing Then
                             listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroAbuelo.IDParametro).SubItems(2).Text = ParametroAbuelo.ValorParaMostrar
                         End If
-                        If Not ParametroPadre Is Nothing Then
+                        If ParametroPadre IsNot Nothing Then
                             listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
                         End If
                     End If
@@ -339,7 +344,7 @@
         If listviewParametros.SelectedItems.Count > 0 Then
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
             ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = listviewParametros.SelectedItems(0).Name.Remove(0, CardonerSistemas.Constants.KEY_STRINGER.Length)).First
-            If Not ParametroActual.Valor Is Nothing Then
+            If ParametroActual.Valor IsNot Nothing Then
                 ListViewItemActual = listviewParametros.SelectedItems(0)
                 ParametroActual.Valor = Nothing
                 ListViewItemActual.SubItems(2).Text = ""
@@ -353,27 +358,29 @@
     End Sub
 
     Private Sub BorrarValoresDeParametrosHijos(ByRef ParametroActual As ReporteParametro, ByRef ReporteActual As Reporte)
-        Dim ParametroHijo As ReporteParametro = Nothing
-        Dim ParametroNieto As ReporteParametro = Nothing
 
         For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
+
             If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA) _
                             Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA) _
                             Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION) _
                             Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
                             Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
-                ParametroHijo = currentReporteParametro
+                Dim ParametroHijo As ReporteParametro = currentReporteParametro
                 ParametroHijo.Valor = Nothing
                 ParametroHijo.ValorParaMostrar = ""
                 listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroHijo.IDParametro).SubItems(2).Text = ""
             End If
+
             If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
-                ParametroNieto = currentReporteParametro
+                Dim ParametroNieto As ReporteParametro = currentReporteParametro
                 ParametroNieto.Valor = Nothing
                 ParametroNieto.ValorParaMostrar = ""
                 listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroNieto.IDParametro).SubItems(2).Text = ""
             End If
+
         Next
+
     End Sub
 
     Private Sub Anterior() Handles buttonAnterior.Click
