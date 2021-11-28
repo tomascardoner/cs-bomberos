@@ -1,3 +1,19 @@
+2021-11-27
+	- Agregar el parámetro ACADEMIA_ASISTENCIATIPO_PRESENTE_ID - NumeroEntero: 1
+	- Agregar el parámetro ACADEMIA_ASISTENCIATIPO_FUERAHORA_ID - NumeroEntero: 12
+	- Actualizar funciones de Sql
+	- Actualizar stored procedure de PersonasObtenerPuntajes
+	- Actualier reporte Personas-Puntajes.rpt
+	- DROP FUNCTION dbo.SiniestroObtenerIdPuntajeClave
+	- Agregar el reporte id 53 a las tablas correspondientes
+
+2021-11-26
+	DROP FUNCTION dbo.SiniestroObtenerNombreClave
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveEnPlural
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupada
+	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupadaEnPlural
+
+
 2021-11-23
 	- Borrar el stored procedure usp_Personas
 	- Ejecutar stored procedures:

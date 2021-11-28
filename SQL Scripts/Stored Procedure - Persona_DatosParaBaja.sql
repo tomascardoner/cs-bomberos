@@ -36,7 +36,7 @@ CREATE PROCEDURE usp_Persona_DatosParaBaja
 				dbo.udf_EqualIntegerValuesAsXChar(dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo), 1) AS EstadoActivo,
 				dbo.udf_EqualIntegerValuesAsXChar(pabanterior.IDPersonaBajaMotivo, @IDPersonaBajaMotivoReserva) AS EstadoReserva,
 				c.Nombre AS Cargo,
-				(CASE dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.IDAltaBaja) WHEN 1 THEN cj.Nombre ELSE '' END) AS JerarquiaActivo,
+				(CASE dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo) WHEN 1 THEN cj.Nombre ELSE '' END) AS JerarquiaActivo,
 				(CASE pabanterior.IDPersonaBajaMotivo WHEN @IDPersonaBajaMotivoReserva THEN cj.Nombre ELSE '' END) AS JerarquiaReserva,
 				p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularCodigoPostal, l.Nombre AS Localidad,
 				dbo.udf_EqualStringValuesAsXChar(p.IOMATiene, 'T') AS IomaPorTrabajo, dbo.udf_EqualStringValuesAsXChar(p.IOMATiene, 'B') AS IomaPorBomberos,

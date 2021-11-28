@@ -445,60 +445,6 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2021-11-03
--- Description:	Devuelve el nombre de la Clave de un Siniestro
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClave') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerNombreClave
-GO
-
-CREATE FUNCTION SiniestroObtenerNombreClave
-(	
-	@Clave char(2)
-) RETURNS varchar(12) AS
-BEGIN
-	RETURN (CASE 
-				WHEN @Clave = 'V' THEN 'Verde'
-				WHEN @Clave = 'A' THEN 'Azul'
-				WHEN @Clave = 'AV' THEN 'Azul / Verde'
-				WHEN @Clave = 'N' THEN 'Naranja'
-				WHEN @Clave = 'R' THEN 'Roja'
-				ELSE 'Desconocida'
-			END)
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
--- Description:	Devuelve el nombre en plural de la Clave de un Siniestro
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveEnPlural') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerNombreClaveEnPlural
-GO
-
-CREATE FUNCTION SiniestroObtenerNombreClaveEnPlural
-(	
-	@Clave char(2)
-) RETURNS varchar(15) AS
-BEGIN
-	RETURN (CASE 
-				WHEN @Clave = 'V' THEN 'Verdes'
-				WHEN @Clave = 'A' THEN 'Azules'
-				WHEN @Clave = 'AV' THEN 'Azules / Verdes'
-				WHEN @Clave = 'N' THEN 'Naranjas'
-				WHEN @Clave = 'R' THEN 'Rojas'
-				ELSE 'Desconocidas'
-			END)
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
 -- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules
 -- =============================================
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerClaveAgrupada') AND type = N'FN')
@@ -515,6 +461,39 @@ BEGIN
 				WHEN @Clave = 'A' THEN 'AV'
 				WHEN @Clave = 'N' THEN 'N'
 				WHEN @Clave = 'R' THEN 'R'
+			END)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-26
+-- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules y separando las Rojas por presente y salida anticipada
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerClaveAgrupadaYPorcentaje') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerClaveAgrupadaYPorcentaje
+GO
+
+CREATE FUNCTION SiniestroObtenerClaveAgrupadaYPorcentaje
+(	
+	@Clave char(1),
+	@IDSiniestroAsistenciaTipo tinyint,
+	@IDSiniestroAsistenciaTipoPresente tinyint,
+	@IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
+) RETURNS char(2) AS
+BEGIN
+	RETURN (CASE 
+				WHEN @Clave = 'V' THEN 'AV'
+				WHEN @Clave = 'A' THEN 'AV'
+				WHEN @Clave = 'N' THEN 'N'
+				WHEN @Clave = 'R' THEN
+					(CASE @IDSiniestroAsistenciaTipo
+						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'R1'
+						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'R5'
+						ELSE ''
+					END)
 				ELSE ''
 			END)
 END
@@ -524,57 +503,16 @@ GO
 
 -- =============================================
 -- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
--- Description:	Devuelve el nombre de la Clave de un Siniestro juntando las verdes y azules
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveAgrupada') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupada
-GO
-
-CREATE FUNCTION SiniestroObtenerNombreClaveAgrupada
-(	
-	@Clave char(1)
-) RETURNS varchar(12) AS
-BEGIN
-	RETURN dbo.SiniestroObtenerNombreClave(dbo.SiniestroObtenerClaveAgrupada(@Clave))
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
--- Description:	Devuelve el nombre en plural de la Clave de un Siniestro juntando las verdes y azules
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerNombreClaveAgrupadaEnPlural') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerNombreClaveAgrupadaEnPlural
-GO
-
-CREATE FUNCTION SiniestroObtenerNombreClaveAgrupadaEnPlural
-(	
-	@Clave char(2)
-) RETURNS varchar(15) AS
-BEGIN
-	RETURN dbo.SiniestroObtenerNombreClaveEnPlural(dbo.SiniestroObtenerClaveAgrupada(@Clave))
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
 -- Create date: 2021-11-17
--- Description:	Devuelve el id del puntaje para una fecha de Siniestro
+-- Description:	Devuelve el id del puntaje de un siniestro para la fecha especificada
 -- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerIdPuntajeClave') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerIdPuntajeClave
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerIdPuntaje') AND type = N'FN')
+	DROP FUNCTION dbo.SiniestroObtenerIdPuntaje
 GO
 
-CREATE FUNCTION SiniestroObtenerIdPuntajeClave
+CREATE FUNCTION SiniestroObtenerIdPuntaje
 (
 	@IDSiniestroAsistenciaTipo tinyint,
-	@Clave char(1),
 	@Fecha date
 ) RETURNS tinyint AS
 BEGIN
@@ -582,6 +520,31 @@ BEGIN
 	RETURN (SELECT TOP 1 IDSiniestroAsistenciaTipoPuntaje
 		FROM SiniestroAsistenciaTipoPuntaje
 		WHERE IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipo AND FechaInicio <= @Fecha
+		ORDER BY FechaInicio DESC)
+END
+GO
+
+
+
+-- =============================================
+-- Author:		Tomás A. Cardoner
+-- Create date: 2021-11-28
+-- Description:	Devuelve el id del puntaje de una academia para la fecha especificada
+-- =============================================
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.AcademiaObtenerIdPuntaje') AND type = N'FN')
+	DROP FUNCTION dbo.AcademiaObtenerIdPuntaje
+GO
+
+CREATE FUNCTION AcademiaObtenerIdPuntaje
+(
+	@IDAcademiaAsistenciaTipo tinyint,
+	@Fecha date
+) RETURNS tinyint AS
+BEGIN
+
+	RETURN (SELECT TOP 1 IDAcademiaAsistenciaTipoPuntaje
+		FROM AcademiaAsistenciaTipoPuntaje
+		WHERE IDAcademiaAsistenciaTipo = @IDAcademiaAsistenciaTipo AND FechaInicio <= @Fecha
 		ORDER BY FechaInicio DESC)
 END
 GO

@@ -79,7 +79,7 @@ Partial Class formReportesParametroVarios
         Me.datetimepickerValorFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.datetimepickerValorFecha.Location = New System.Drawing.Point(183, 66)
         Me.datetimepickerValorFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerValorFecha.MinDate = New Date(1901, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerValorFecha.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerValorFecha.Name = "datetimepickerValorFecha"
         Me.datetimepickerValorFecha.Size = New System.Drawing.Size(120, 20)
         Me.datetimepickerValorFecha.TabIndex = 31
