@@ -66,7 +66,7 @@
         buttonImprimir.Visible = (mEditMode = False)
 
         ' General
-        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mAcademiaActual.AcademiaAsistencias.Any()))
+        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mAcademiaActual.AcademiasAsistencias.Any()))
         datetimepickerFecha.Enabled = mEditMode
         comboboxAcademiaTipo.Enabled = mEditMode
         textboxAcademiaTipoOtro.ReadOnly = Not mEditMode
@@ -258,6 +258,8 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         tabcontrolMain.SelectedTab = tabpageAsistencias
                         MsgBox("No se pueden guardar los cambios porque existe una Asistencia a la Academia duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case Else
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
 
@@ -296,7 +298,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listAsistencias = (From sa In mAcademiaActual.AcademiaAsistencias
+            listAsistencias = (From sa In mAcademiaActual.AcademiasAsistencias
                                Join p In mdbContext.Persona On sa.IDPersona Equals p.IDPersona
                                Join sat In mdbContext.AcademiaAsistenciaTipo On sa.IDAcademiaAsistenciaTipo Equals sat.IDAcademiaAsistenciaTipo
                                Order By p.ApellidoNombre
@@ -356,7 +358,7 @@
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                mAcademiaActual.AcademiaAsistencias.Remove(mAcademiaActual.AcademiaAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
+                mAcademiaActual.AcademiasAsistencias.Remove(mAcademiaActual.AcademiasAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
 
                 AsistenciasRefreshData()
 

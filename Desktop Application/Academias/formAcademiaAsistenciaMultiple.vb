@@ -250,12 +250,20 @@
                 sa = New AcademiaAsistencia With {
                     .IDAcademia = mAcademiaActual.IDAcademia,
                     .IDPersona = idPersona,
-                    .IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo
+                    .IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo,
+                    .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                    .IDUsuarioCreacion = pUsuario.IDUsuario,
+                    .FechaHoraCreacion = Now,
+                    .IDUsuarioModificacion = pUsuario.IDUsuario,
+                    .FechaHoraModificacion = Now
                 }
                 mdbContext.AcademiaAsistencia.Add(sa)
                 mdbContext.SaveChanges()
             ElseIf sa.IDAcademiaAsistenciaTipo <> idAcademiaAsistenciaTipo Then
                 sa.IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo
+                sa.IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID
+                sa.IDUsuarioModificacion = pUsuario.IDUsuario
+                sa.FechaHoraModificacion = Now
                 mdbContext.SaveChanges()
             End If
 

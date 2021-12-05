@@ -26,5 +26,6 @@ Partial Public Class Reporte
     Public Overridable Property ReporteGrupo As ReporteGrupo
     Public Overridable Property ReporteCampos As ICollection(Of ReporteCampo) = New HashSet(Of ReporteCampo)
     Public Overridable Property TipografiaEstilo As TipografiaEstilo
+    Public Overridable Property UsuarioGrupo As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)
 
 End Class

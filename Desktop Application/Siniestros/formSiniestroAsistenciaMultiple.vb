@@ -252,12 +252,20 @@
                 sa = New SiniestroAsistencia With {
                     .IDSiniestro = mSiniestroActual.IDSiniestro,
                     .IDPersona = idPersona,
-                    .IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                    .IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo,
+                    .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                    .IDUsuarioCreacion = pUsuario.IDUsuario,
+                    .FechaHoraCreacion = Now,
+                    .IDUsuarioModificacion = pUsuario.IDUsuario,
+                    .FechaHoraModificacion = Now
                 }
                 mdbContext.SiniestroAsistencia.Add(sa)
                 mdbContext.SaveChanges()
             ElseIf sa.IDSiniestroAsistenciaTipo <> idSiniestroAsistenciaTipo Then
                 sa.IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
+                sa.IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID
+                sa.IDUsuarioModificacion = pUsuario.IDUsuario
+                sa.FechaHoraModificacion = Now
                 mdbContext.SaveChanges()
             End If
 

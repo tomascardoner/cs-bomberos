@@ -5,26 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="66">
-        <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="13.5" PointY="122" />
-        <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="5.25" PointY="125.375" />
-        <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="21.75" PointY="155.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.Parametro" Width="1.5" PointX="3.75" PointY="9.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.Provincia" Width="1.5" PointX="0.75" PointY="124" />
-        <EntityTypeShape EntityType="CSBomberosModel.Reporte" Width="1.5" PointX="3" PointY="4.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.ReporteGrupo" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="2.25" PointX="5.25" PointY="4.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="2.25" PointX="18.75" PointY="114.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="21.75" PointY="117.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="24" PointY="118.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="19.5" PointY="193.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="17.25" PointY="180.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="16.5" PointY="205.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Parametro" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Provincia" Width="1.5" PointX="15" PointY="180.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Reporte" Width="1.5" PointX="3" PointY="151.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteGrupo" Width="1.5" PointX="0.75" PointY="148.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteParametro" Width="2.25" PointX="5.25" PointY="156.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Usuario" Width="2.25" PointX="13.5" PointY="138.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupo" Width="1.5" PointX="8.25" PointY="151.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioGrupoPermiso" Width="1.5" PointX="10.5" PointY="152.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Log" />
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteParametro" />
         <AssociationConnector Association="CSBomberosModel.FK__ReporteGrupo__Reporte" />
         <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__Usuario" />
         <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" />
-        <EntityTypeShape EntityType="CSBomberosModel.Cuartel" Width="1.5" PointX="7.5" PointY="123.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.Parentesco" Width="1.5" PointX="21.75" PointY="146.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.Persona" Width="1.875" PointX="15.75" PointY="117.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Cuartel" Width="1.5" PointX="19.5" PointY="149.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Parentesco" Width="1.5" PointX="16.5" PointY="196.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.Persona" Width="1.875" PointX="21.75" PointY="185" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Persona" />
         <AssociationConnector Association="CSBomberosModel.FK__Localidad__Cuartel" />
         <AssociationConnector Association="CSBomberosModel.FK__DocumentoTipo__Persona" />
@@ -32,7 +32,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Localidad__Particular" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Persona__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Persona__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaFamiliar" Width="1.5" PointX="24" PointY="153.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaFamiliar" Width="1.5" PointX="27.375" PointY="192.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaParentesco1" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaFamiliar__Modificacion" />
@@ -40,15 +40,15 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Parentesco__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Cuartel__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.Area" Width="1.75" PointX="12.75" PointY="125" />
-        <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="21.75" PointY="162.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="24" PointY="138.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.75" PointX="30" PointY="132.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="21.75" PointY="121.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="21.75" PointY="125.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaAltaBaja" Width="1.5" PointX="24" PointY="146.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaAscenso" Width="1.5" PointX="26.75" PointY="121.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.Ubicacion" Width="1.5" PointX="27.75" PointY="128.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Area" Width="1.75" PointX="24.75" PointY="151.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.Cargo" Width="1.5" PointX="16.5" PointY="211.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.CargoJerarquia" Width="1.5" PointX="18.75" PointY="175.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Elemento" Width="1.75" PointX="18.75" PointY="165.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.NivelEstudio" Width="1.5" PointX="16.5" PointY="144" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAccidente" Width="1.5" PointX="27.375" PointY="171.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAltaBaja" Width="1.5" PointX="24.375" PointY="184.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaAscenso" Width="1.5" PointX="24.375" PointY="172.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.Ubicacion" Width="1.5" PointX="30" PointY="153.625" />
         <AssociationConnector Association="CSBomberosModel.FK__Cargo__CargoJerarquia" />
         <AssociationConnector Association="CSBomberosModel.FK__CargoJerarquia__PersonaAscenso" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Elemento__Creacion" />
@@ -64,9 +64,9 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAltaBaja__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaAscenso__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.Unidad" Width="1.5" PointX="9.75" PointY="123.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.UnidadTipo" Width="1.5" PointX="21.75" PointY="166.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.CombustibleTipo" Width="1.5" PointX="21.75" PointY="158.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.Unidad" Width="1.5" PointX="21.75" PointY="170.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadTipo" Width="1.5" PointX="16.5" PointY="216" />
+        <EntityTypeShape EntityType="CSBomberosModel.CombustibleTipo" Width="1.5" PointX="16.5" PointY="208" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Area__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Area__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__UnidadTipo__Unidad" />
@@ -85,7 +85,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CombustibleTipo__Modificacion" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Parentesco__PersonaFamiliar" />
-        <EntityTypeShape EntityType="CSBomberosModel.SubUbicacion" Width="1.5" PointX="33" PointY="130.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.SubUbicacion" Width="1.5" PointX="32.25" PointY="151.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Area" />
         <AssociationConnector Association="CSBomberosModel.FK__Unidad__Ubicacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Ubicacion" />
@@ -95,11 +95,11 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Ubicacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Ubicacion__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Usuario" />
-        <EntityTypeShape EntityType="CSBomberosModel.ModoAdquisicion" Width="1.5" PointX="21.75" PointY="113.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.ModoAdquisicion" Width="1.5" PointX="16.5" PointY="140.125" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ModoAdquisicion__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.CalificacionConcepto" Width="1.5" PointX="21.75" PointY="97.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaCalificacion" Width="1.5" PointX="27" PointY="116.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CalificacionConcepto" Width="1.5" PointX="16.5" PointY="123.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaCalificacion" Width="1.5" PointX="27.375" PointY="159.25" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CalificacionConcepto__Modificacion" ManuallyRouted="false" >
         </AssociationConnector>
@@ -107,9 +107,9 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaCalificacion__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__CalificacionConcepto__PersonaCalificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaCalificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.PenaAplicacion" Width="1.5" PointX="21.75" PointY="89.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.Rubro" Width="1.5" PointX="21.75" PointY="142.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.SubRubro" Width="1.5" PointX="32" PointY="120.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.PenaAplicacion" Width="1.5" PointX="16.5" PointY="116" />
+        <EntityTypeShape EntityType="CSBomberosModel.Rubro" Width="1.5" PointX="16.5" PointY="192.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.SubRubro" Width="1.5" PointX="21.75" PointY="161.375" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PenaAplicacion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PenaAplicacion__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Rubro__SubRubro" ManuallyRouted="false" >
@@ -122,7 +122,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Usuario__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.Inventario" Width="1.5" PointX="35.25" PointY="123.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.Inventario" Width="1.5" PointX="34.5" PointY="151.125" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__Inventario" />
         <AssociationConnector Association="CSBomberosModel.FK__Elemento__Inventario" />
         <AssociationConnector Association="CSBomberosModel.FK__ModoAdquisicion__Inventario" />
@@ -130,18 +130,18 @@
         <AssociationConnector Association="CSBomberosModel.FK__Ubicacion__Inventario" />
         <AssociationConnector Association="CSBomberosModel.FK__Rubro__Elemento" />
         <AssociationConnector Association="CSBomberosModel.FK__SubRubro__Elemento" />
-        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionNivel" Width="1.5" PointX="21.75" PointY="101.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionTipo" Width="1.5" PointX="21.75" PointY="109.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.Curso" Width="1.5" PointX="21.75" PointY="93.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.LicenciaCausa" Width="1.5" PointX="21.75" PointY="150.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.LicenciaConducirCategoria" Width="1.5" PointX="21.75" PointY="170.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaBajaMotivo" Width="1.5" PointX="21.75" PointY="174.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaCapacitacion" Width="1.5" PointX="24" PointY="111.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaExamen" Width="1.5" PointX="24.75" PointY="127.5" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicencia" Width="1.5" PointX="24" PointY="132.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicenciaConducirCategoria" Width="1.5" PointX="24" PointY="142.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaSancion" Width="1.5" PointX="24" PointY="121.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.SancionTipo" Width="1.5" PointX="21.75" PointY="105.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionNivel" Width="1.5" PointX="16.5" PointY="128" />
+        <EntityTypeShape EntityType="CSBomberosModel.CapacitacionTipo" Width="1.5" PointX="16.5" PointY="136.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Curso" Width="1.5" PointX="16.5" PointY="119.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.LicenciaCausa" Width="1.5" PointX="16.5" PointY="200.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.LicenciaConducirCategoria" Width="1.5" PointX="16.5" PointY="219.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaBajaMotivo" Width="1.5" PointX="16.5" PointY="223.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaCapacitacion" Width="1.5" PointX="24.375" PointY="159.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaExamen" Width="1.5" PointX="27.375" PointY="167" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicencia" Width="1.5" PointX="30.375" PointY="175.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicenciaConducirCategoria" Width="1.5" PointX="28.375" PointY="183.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaSancion" Width="1.5" PointX="24.375" PointY="165.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.SancionTipo" Width="1.5" PointX="16.5" PointY="132.125" />
         <AssociationConnector Association="CSBomberosModel.FK__CapacitacionNivel__PersonaCapacitacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CapacitacionNivel__Modificacion" />
@@ -182,32 +182,32 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__PersonaBajaMotivo__PersonaAltaBaja" />
-        <EntityTypeShape EntityType="CSBomberosModel.UnidadUso" Width="1.5" PointX="21.75" PointY="178.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadUso" Width="1.5" PointX="16.5" PointY="228" />
         <AssociationConnector Association="CSBomberosModel.FK__UnidadUso__Unidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadUso__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadUso__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__NivelEstudio__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__LicenciaConducirCategoria__PersonaLicenciaConducirCategoria" />
-        <EntityTypeShape EntityType="CSBomberosModel.Alarma" Width="1.5" PointX="21.75" PointY="182.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Alarma" Width="1.5" PointX="16.5" PointY="231.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Alarma__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Alarma__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.UsuarioParametro" Width="1.5" PointX="21.75" PointY="186.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.UsuarioParametro" Width="1.5" PointX="16.5" PointY="236.125" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UsuarioParametro" />
-        <EntityTypeShape EntityType="CSBomberosModel.UnidadBajaMotivo" Width="1.5" PointX="21.75" PointY="85.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.UnidadBajaMotivo" Width="1.5" PointX="16.5" PointY="112.125" />
         <AssociationConnector Association="CSBomberosModel.FK__UnidadBajaMotivo__Unidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__UnidadBajaMotivo__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="2.375" PointX="21.75" PointY="81.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.DocumentacionTipo" Width="2.375" PointX="16.5" PointY="108.25" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__DocumentacionTipo__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaHorarioLaboral" Width="1.5" PointX="21.75" PointY="131.25" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaVacuna" Width="1.5" PointX="24" PointY="104.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaVehiculo" Width="2.375" PointX="27" PointY="137.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.VacunaTipo" Width="1.5" PointX="21.75" PointY="74" />
-        <EntityTypeShape EntityType="CSBomberosModel.VehiculoCompaniaSeguro" Width="1.5" PointX="21.75" PointY="190.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.VehiculoMarca" Width="1.5" PointX="21.75" PointY="194" />
-        <EntityTypeShape EntityType="CSBomberosModel.VehiculoTipo" Width="1.5" PointX="21.75" PointY="77.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaHorarioLaboral" Width="1.5" PointX="30.375" PointY="170.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaVacuna" Width="1.5" PointX="27.375" PointY="149.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaVehiculo" Width="2.375" PointX="24.375" PointY="177.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.VacunaTipo" Width="1.5" PointX="16.5" PointY="100.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoCompaniaSeguro" Width="1.5" PointX="16.5" PointY="239.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoMarca" Width="1.5" PointX="16.5" PointY="243.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.VehiculoTipo" Width="1.5" PointX="16.5" PointY="104.375" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaHorarioLaboral__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaVacuna__Creacion" />
@@ -229,37 +229,27 @@
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaHorarioLaboral" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaVacuna" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaVehiculo" />
-        <EntityTypeShape EntityType="CSBomberosModel.EstadoCivil" Width="1.5" PointX="21.75" PointY="197.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.EstadoCivil" Width="1.5" PointX="16.5" PointY="247.625" />
         <AssociationConnector Association="CSBomberosModel.FK__EstadoCivil__Persona" />
         <AssociationConnector Association="CSBomberosModel.FK__EstadoCivil__PersonaFamiliar" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__EstadoCivil__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__EstadoCivil__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.ReporteCampo" Width="1.5" PointX="8.25" PointY="4.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.TipografiaEstilo" Width="1.5" PointX="0.75" PointY="4.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.ReporteCampo" Width="1.5" PointX="5.25" PointY="150.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.TipografiaEstilo" Width="1.5" PointX="0.75" PointY="152.25" />
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteCampo" />
         <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__Reporte" />
-        <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" ManuallyRouted="true" >
-          <ConnectorPoint PointX="2.25" PointY="4.5" />
-          <ConnectorPoint PointX="2.625" PointY="4.125" />
-          <ConnectorPoint PointX="2.625" PointY="3.5707072243596105" />
-          <ConnectorPoint PointX="2.6979166666666665" PointY="3.57070722435961" />
-          <ConnectorPoint PointX="2.8645833333333335" PointY="3.5707072243596105" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="3.57070722435961" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="3.5707072243596105" />
-          <ConnectorPoint PointX="8.0253836153846159" PointY="3.5707072243596105" />
-          <ConnectorPoint PointX="8.0253836153846159" PointY="3.875" />
-          <ConnectorPoint PointX="8.2753836153846159" PointY="4.125" />
+        <AssociationConnector Association="CSBomberosModel.FK__TipografiaEstilo__ReporteCampo" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="CSBomberosModel.Partido" Width="1.5" PointX="3" PointY="128.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Partido" Width="1.5" PointX="15" PointY="183" />
         <AssociationConnector Association="CSBomberosModel.FK__Partido__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Partido" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" />
-        <EntityTypeShape EntityType="CSBomberosModel.Compra" Width="1.5" PointX="32" PointY="124.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraDetalle" Width="1.5" PointX="26.25" PointY="133.875" />
-        <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="29.75" PointY="121.125" />
-        <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="26.875" PointY="106" />
-        <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="21.75" PointY="70" />
+        <EntityTypeShape EntityType="CSBomberosModel.Compra" Width="1.5" PointX="21.75" PointY="152.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraDetalle" Width="1.5" PointX="27.25" PointY="155" />
+        <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="16.5" PointY="150.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="24.375" PointY="146.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="16.5" PointY="96.375" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__CompraDetalle" />
         <AssociationConnector Association="CSBomberosModel.FK__Compra__CompraDetalle" />
         <AssociationConnector Association="CSBomberosModel.FK__Proveedor__Compra" />
@@ -276,11 +266,11 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Compra" />
-        <EntityTypeShape EntityType="CSBomberosModel.Modulo" Width="1.5" PointX="1.5" PointY="8.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Modulo" Width="1.5" PointX="1.5" PointY="145.625" />
         <AssociationConnector Association="CSBomberosModel.FK__Modulo__ReporteGrupo" />
-        <EntityTypeShape EntityType="CSBomberosModel.Caja" Width="1.5" PointX="21.75" PointY="136" />
-        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueo" Width="1.5" PointX="33" PointY="134.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueoDetalle" Width="1.5" PointX="35.25" PointY="135.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Caja" Width="1.5" PointX="16.5" PointY="188.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueo" Width="1.5" PointX="21.75" PointY="166.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.CajaArqueoDetalle" Width="1.5" PointX="30.25" PointY="159" />
         <AssociationConnector Association="CSBomberosModel.FK__Caja__CajaArqueo" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Caja__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Caja__Modificacion" />
@@ -288,11 +278,11 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CajaArqueo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__CajaArqueoDetalle" />
-        <EntityTypeShape EntityType="CSBomberosModel.Siniestro" Width="1.5" PointX="29.25" PointY="114.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistencia" Width="1.5" PointX="24.625" PointY="205.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipo" Width="1.5" PointX="21.75" PointY="202.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroRubro" Width="1.5" PointX="21.75" PointY="65.75" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroTipo" Width="1.5" PointX="24" PointY="100" />
+        <EntityTypeShape EntityType="CSBomberosModel.Siniestro" Width="1.5" PointX="21.75" PointY="145.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistencia" Width="1.5" PointX="24.375" PointY="199.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipo" Width="1.5" PointX="16.5" PointY="251.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroRubro" Width="1.5" PointX="16.5" PointY="92.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroTipo" Width="1.5" PointX="18.75" PointY="128.625" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Siniestro" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroTipo__Siniestro" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Siniestro__Creacion" />
@@ -307,10 +297,10 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__SiniestroAsistencia" />
         <AssociationConnector Association="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" />
-        <EntityTypeShape EntityType="CSBomberosModel.Academia" Width="1.5" PointX="27" PointY="158" />
-        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistencia" Width="1.5" PointX="24" PointY="97" />
-        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistenciaTipo" Width="1.5" PointX="21.75" PointY="61" />
-        <EntityTypeShape EntityType="CSBomberosModel.AcademiaTipo" Width="1.5" PointX="21.75" PointY="208.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.Academia" Width="1.5" PointX="24.75" PointY="194.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistencia" Width="1.5" PointX="27" PointY="144.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistenciaTipo" Width="1.5" PointX="16.5" PointY="87.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaTipo" Width="1.5" PointX="16.5" PointY="256.75" />
         <AssociationConnector Association="CSBomberosModel.FK__Academia__AcademiaAsistencia" />
         <AssociationConnector Association="CSBomberosModel.FK__AcademiaTipo__Academia" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Academia" />
@@ -322,14 +312,22 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicenciaEspecial" Width="1.5" PointX="30.75" PointY="137.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.PersonaLicenciaEspecial" Width="1.5" PointX="30.375" PointY="165.875" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Modificacion" />
-        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistenciaTipoPuntaje" Width="1.5" PointX="24" PointY="62" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipoPuntaje" Width="1.5" PointX="24" PointY="201.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.AcademiaAsistenciaTipoPuntaje" Width="1.5" PointX="18.75" PointY="88.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipoPuntaje" Width="1.5" PointX="18.75" PointY="252.5" />
         <AssociationConnector Association="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje" />
+        <EntityTypeShape EntityType="CSBomberosModel.AsistenciaMetodo" Width="1.5" PointX="24.75" PointY="143.125" />
+        <AssociationConnector Association="CSBomberosModel.FK__AsistenciaMetodo__AcademiaAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__AsistenciaMetodo__SiniestroAsistencia" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.UsuarioGrupoPermisoReporte" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

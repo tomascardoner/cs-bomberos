@@ -35,6 +35,6 @@ Partial Public Class Siniestro
     Public Overridable Property SiniestroTipo As SiniestroTipo
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property SiniestroAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
+    Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
 
 End Class

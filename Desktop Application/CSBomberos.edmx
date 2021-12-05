@@ -28,6 +28,11 @@
           <Property Name="IDAcademia" Type="int" Nullable="false" />
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDAcademiaAsistenciaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDAsistenciaMetodo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="AcademiaAsistenciaTipo">
           <Key>
@@ -100,6 +105,15 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AsistenciaMetodo">
+          <Key>
+            <PropertyRef Name="IDAsistenciaMetodo" />
+          </Key>
+          <Property Name="IDAsistenciaMetodo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Caja">
           <Key>
@@ -1078,6 +1092,11 @@
           <Property Name="IDSiniestro" Type="int" Nullable="false" />
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDSiniestroAsistenciaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDAsistenciaMetodo" Type="tinyint" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SiniestroAsistenciaTipo">
           <Key>
@@ -1305,6 +1324,14 @@
           <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
           <Property Name="IDPermiso" Type="char" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="UsuarioGrupoPermisoReporte">
+          <Key>
+            <PropertyRef Name="IDUsuarioGrupo" />
+            <PropertyRef Name="IDReporte" />
+          </Key>
+          <Property Name="IDUsuarioGrupo" Type="tinyint" Nullable="false" />
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+        </EntityType>
         <EntityType Name="UsuarioParametro">
           <Key>
             <PropertyRef Name="IDUsuario" />
@@ -1453,6 +1480,30 @@
             </Principal>
             <Dependent Role="Inventario">
               <PropertyRef Name="IDArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AsistenciaMetodo__AcademiaAsistencia">
+          <End Role="AsistenciaMetodo" Type="Self.AsistenciaMetodo" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AsistenciaMetodo">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AsistenciaMetodo__SiniestroAsistencia">
+          <End Role="AsistenciaMetodo" Type="Self.AsistenciaMetodo" Multiplicity="1" />
+          <End Role="SiniestroAsistencia" Type="Self.SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AsistenciaMetodo">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDAsistenciaMetodo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2206,6 +2257,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Reporte__UsuarioGrupoPermisoReporte">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermisoReporte" Type="Self.UsuarioGrupoPermisoReporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermisoReporte">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ReporteGrupo__Reporte">
           <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
           <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
@@ -2468,6 +2531,30 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Academia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistencia__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistencia__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="AcademiaAsistencia" Type="Self.AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -3600,6 +3687,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__SiniestroAsistencia__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroAsistencia" Type="Self.SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroAsistencia__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroAsistencia" Type="Self.SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__SiniestroAsistenciaTipo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="SiniestroAsistenciaTipo" Type="Self.SiniestroAsistenciaTipo" Multiplicity="*" />
@@ -4020,6 +4131,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__UsuarioGrupo__UsuarioGrupoPermisoReporte">
+          <End Role="UsuarioGrupo" Type="Self.UsuarioGrupo" Multiplicity="1" />
+          <End Role="UsuarioGrupoPermisoReporte" Type="Self.UsuarioGrupoPermisoReporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioGrupo">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Principal>
+            <Dependent Role="UsuarioGrupoPermisoReporte">
+              <PropertyRef Name="IDUsuarioGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__VacunaTipo__PersonaVacuna">
           <End Role="VacunaTipo" Type="Self.VacunaTipo" Multiplicity="1" />
           <End Role="PersonaVacuna" Type="Self.PersonaVacuna" Multiplicity="*" />
@@ -4087,6 +4210,7 @@
           <EntitySet Name="AcademiaTipo" EntityType="Self.AcademiaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Alarma" EntityType="Self.Alarma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AsistenciaMetodo" EntityType="Self.AsistenciaMetodo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Caja" EntityType="Self.Caja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CajaArqueo" EntityType="Self.CajaArqueo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CajaArqueoDetalle" EntityType="Self.CajaArqueoDetalle" Schema="dbo" store:Type="Tables" />
@@ -4159,6 +4283,7 @@
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupo" EntityType="Self.UsuarioGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioGrupoPermiso" EntityType="Self.UsuarioGrupoPermiso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioGrupoPermisoReporte" EntityType="Self.UsuarioGrupoPermisoReporte" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioParametro" EntityType="Self.UsuarioParametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VacunaTipo" EntityType="Self.VacunaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VehiculoCompaniaSeguro" EntityType="Self.VehiculoCompaniaSeguro" Schema="dbo" store:Type="Tables" />
@@ -4191,6 +4316,14 @@
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
             <End Role="Inventario" EntitySet="Inventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AsistenciaMetodo__AcademiaAsistencia" Association="Self.FK__AsistenciaMetodo__AcademiaAsistencia">
+            <End Role="AsistenciaMetodo" EntitySet="AsistenciaMetodo" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AsistenciaMetodo__SiniestroAsistencia" Association="Self.FK__AsistenciaMetodo__SiniestroAsistencia">
+            <End Role="AsistenciaMetodo" EntitySet="AsistenciaMetodo" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
           </AssociationSet>
           <AssociationSet Name="FK__Caja__CajaArqueo" Association="Self.FK__Caja__CajaArqueo">
             <End Role="Caja" EntitySet="Caja" />
@@ -4436,6 +4569,10 @@
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
           </AssociationSet>
+          <AssociationSet Name="FK__Reporte__UsuarioGrupoPermisoReporte" Association="Self.FK__Reporte__UsuarioGrupoPermisoReporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="UsuarioGrupoPermisoReporte" EntitySet="UsuarioGrupoPermisoReporte" />
+          </AssociationSet>
           <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
             <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
             <End Role="Reporte" EntitySet="Reporte" />
@@ -4523,6 +4660,14 @@
           <AssociationSet Name="FK__Usuario__Academia__Modificacion" Association="Self.FK__Usuario__Academia__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Academia" EntitySet="Academia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistencia__Creacion" Association="Self.FK__Usuario__AcademiaAsistencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistencia__Modificacion" Association="Self.FK__Usuario__AcademiaAsistencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__AcademiaAsistenciaTipo__Creacion" Association="Self.FK__Usuario__AcademiaAsistenciaTipo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -4900,6 +5045,14 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Siniestro" EntitySet="Siniestro" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroAsistencia__Creacion" Association="Self.FK__Usuario__SiniestroAsistencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroAsistencia__Modificacion" Association="Self.FK__Usuario__SiniestroAsistencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__SiniestroAsistenciaTipo__Creacion" Association="Self.FK__Usuario__SiniestroAsistenciaTipo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="SiniestroAsistenciaTipo" EntitySet="SiniestroAsistenciaTipo" />
@@ -5039,6 +5192,10 @@
           <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermiso" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermiso">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
             <End Role="UsuarioGrupoPermiso" EntitySet="UsuarioGrupoPermiso" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsuarioGrupo__UsuarioGrupoPermisoReporte" Association="Self.FK__UsuarioGrupo__UsuarioGrupoPermisoReporte">
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+            <End Role="UsuarioGrupoPermisoReporte" EntitySet="UsuarioGrupoPermisoReporte" />
           </AssociationSet>
           <AssociationSet Name="FK__VacunaTipo__PersonaVacuna" Association="Self.FK__VacunaTipo__PersonaVacuna">
             <End Role="VacunaTipo" EntitySet="VacunaTipo" />
@@ -6057,6 +6214,35 @@
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
             <Parameter Name="IDCuartel" Mode="In" Type="Byte" />
           </FunctionImport>
+          <EntitySet Name="AsistenciaMetodo" EntityType="CSBomberosModel.AsistenciaMetodo" />
+          <AssociationSet Name="FK__AsistenciaMetodo__AcademiaAsistencia" Association="CSBomberosModel.FK__AsistenciaMetodo__AcademiaAsistencia">
+            <End Role="AsistenciaMetodo" EntitySet="AsistenciaMetodo" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistencia__Creacion" Association="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__AcademiaAsistencia__Modificacion" Association="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="AcademiaAsistencia" EntitySet="AcademiaAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AsistenciaMetodo__SiniestroAsistencia" Association="CSBomberosModel.FK__AsistenciaMetodo__SiniestroAsistencia">
+            <End Role="AsistenciaMetodo" EntitySet="AsistenciaMetodo" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroAsistencia__Creacion" Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroAsistencia__Modificacion" Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioGrupoPermisoReporte" Association="CSBomberosModel.UsuarioGrupoPermisoReporte">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -6139,6 +6325,7 @@
           <Property Name="Orden" Type="Byte" />
           <NavigationProperty Name="ReporteCampos" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="Reporte" ToRole="ReporteCampo" />
           <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__Reporte" FromRole="Reporte" ToRole="TipografiaEstilo" />
+          <NavigationProperty Name="UsuarioGrupo" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="Reporte" ToRole="UsuarioGrupo" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -6322,6 +6509,10 @@
           <NavigationProperty Name="AcademiaTiposModificados" Relationship="CSBomberosModel.FK__Usuario__AcademiaTipo__Modificacion" FromRole="Usuario" ToRole="AcademiaTipo" />
           <NavigationProperty Name="PersonasLicenciasEspecialesCreadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Creacion" FromRole="Usuario" ToRole="PersonaLicenciaEspecial" />
           <NavigationProperty Name="PersonasLicenciasEspecialesModificadas" Relationship="CSBomberosModel.FK__Usuario__PersonaLicenciaEspecial__Modificacion" FromRole="Usuario" ToRole="PersonaLicenciaEspecial" />
+          <NavigationProperty Name="AcademiasAsistenciasCreadas" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Creacion" FromRole="Usuario" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="AcademiasAsistenciasModificadas" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Modificacion" FromRole="Usuario" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="SiniestrosAsistenciasCreadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion" FromRole="Usuario" ToRole="SiniestroAsistencia" />
+          <NavigationProperty Name="SiniestrosAsistenciasModificadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion" FromRole="Usuario" ToRole="SiniestroAsistencia" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -6339,6 +6530,7 @@
           <NavigationProperty Name="UsuarioGrupoPermisos" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
+          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="UsuarioGrupo" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="UsuarioGrupoPermiso">
           <Key>
@@ -6578,7 +6770,7 @@
           <NavigationProperty Name="ReingresoFormacionResponsable" Relationship="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" FromRole="Persona1" ToRole="Persona" />
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__Persona__Responsable" FromRole="Persona" ToRole="Responsable" />
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Persona__SiniestroAsistencia" FromRole="Persona" ToRole="SiniestroAsistencia" />
-          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="PersonasLicenciasEspeciales" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="Persona" ToRole="PersonaLicenciaEspecial" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
@@ -10047,7 +10239,7 @@
           <NavigationProperty Name="SiniestroTipo" Relationship="CSBomberosModel.FK__SiniestroTipo__Siniestro" FromRole="Siniestro" ToRole="SiniestroTipo" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Siniestro__Creacion" FromRole="Siniestro" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Siniestro__Modificacion" FromRole="Siniestro" ToRole="Usuario" />
-          <NavigationProperty Name="SiniestroAsistencias" Relationship="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" FromRole="Siniestro" ToRole="SiniestroAsistencia" />
+          <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" FromRole="Siniestro" ToRole="SiniestroAsistencia" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -10060,6 +10252,14 @@
           <NavigationProperty Name="SiniestroAsistenciaTipo" Relationship="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistencia" FromRole="SiniestroAsistencia" ToRole="SiniestroAsistenciaTipo" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__SiniestroAsistencia" FromRole="SiniestroAsistencia" ToRole="Persona" />
           <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" FromRole="SiniestroAsistencia" ToRole="Siniestro" />
+          <Property Name="IDAsistenciaMetodo" Type="Byte" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AsistenciaMetodo" Relationship="CSBomberosModel.FK__AsistenciaMetodo__SiniestroAsistencia" FromRole="SiniestroAsistencia" ToRole="AsistenciaMetodo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion" FromRole="SiniestroAsistencia" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion" FromRole="SiniestroAsistencia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="SiniestroAsistenciaTipo">
           <Key>
@@ -10304,7 +10504,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__Academia__AcademiaAsistencia" FromRole="Academia" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__Academia__AcademiaAsistencia" FromRole="Academia" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="AcademiaTipo" Relationship="CSBomberosModel.FK__AcademiaTipo__Academia" FromRole="Academia" ToRole="AcademiaTipo" />
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__Academia" FromRole="Academia" ToRole="Cuartel" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Academia__Creacion" FromRole="Academia" ToRole="Usuario" />
@@ -10321,6 +10521,14 @@
           <NavigationProperty Name="Academia" Relationship="CSBomberosModel.FK__Academia__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="Academia" />
           <NavigationProperty Name="AcademiaAsistenciaTipo" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="AcademiaAsistenciaTipo" />
           <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="Persona" />
+          <Property Name="IDAsistenciaMetodo" Type="Byte" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="AsistenciaMetodo" Relationship="CSBomberosModel.FK__AsistenciaMetodo__AcademiaAsistencia" FromRole="AcademiaAsistencia" ToRole="AsistenciaMetodo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Creacion" FromRole="AcademiaAsistencia" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Modificacion" FromRole="AcademiaAsistencia" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="AcademiaAsistenciaTipo">
           <Key>
@@ -10337,7 +10545,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="AcademiaAsistencias" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistencia" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Creacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistenciaTipo__Modificacion" FromRole="AcademiaAsistenciaTipo" ToRole="Usuario" />
           <NavigationProperty Name="AcademiasAsistenciasTipoPuntajes" Relationship="CSBomberosModel.FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje" FromRole="AcademiaAsistenciaTipo" ToRole="AcademiaAsistenciaTipoPuntaje" />
@@ -10614,6 +10822,93 @@
           <Property Type="Int32" Name="IDPersona" Nullable="false" />
           <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
         </ComplexType>
+        <EntityType Name="AsistenciaMetodo">
+          <Key>
+            <PropertyRef Name="IDAsistenciaMetodo" />
+          </Key>
+          <Property Name="IDAsistenciaMetodo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Byte" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__AsistenciaMetodo__AcademiaAsistencia" FromRole="AsistenciaMetodo" ToRole="AcademiaAsistencia" />
+          <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__AsistenciaMetodo__SiniestroAsistencia" FromRole="AsistenciaMetodo" ToRole="SiniestroAsistencia" />
+        </EntityType>
+        <Association Name="FK__AsistenciaMetodo__AcademiaAsistencia">
+          <End Type="CSBomberosModel.AsistenciaMetodo" Role="AsistenciaMetodo" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AsistenciaMetodo">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistencia__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__AcademiaAsistencia__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.AcademiaAsistencia" Role="AcademiaAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="AcademiaAsistencia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AsistenciaMetodo__SiniestroAsistencia">
+          <End Type="CSBomberosModel.AsistenciaMetodo" Role="AsistenciaMetodo" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroAsistencia" Role="SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AsistenciaMetodo">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDAsistenciaMetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroAsistencia__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroAsistencia" Role="SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroAsistencia__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroAsistencia" Role="SiniestroAsistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroAsistencia">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioGrupoPermisoReporte">
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
+          <End Type="CSBomberosModel.UsuarioGrupo" Role="UsuarioGrupo" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11887,6 +12182,11 @@
           <EntitySetMapping Name="SiniestroAsistencia">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistencia">
               <MappingFragment StoreEntitySet="SiniestroAsistencia">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="IDAsistenciaMetodo" ColumnName="IDAsistenciaMetodo" />
                 <ScalarProperty Name="IDSiniestroAsistenciaTipo" ColumnName="IDSiniestroAsistenciaTipo" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
                 <ScalarProperty Name="IDSiniestro" ColumnName="IDSiniestro" />
@@ -11962,6 +12262,11 @@
           <EntitySetMapping Name="AcademiaAsistencia">
             <EntityTypeMapping TypeName="CSBomberosModel.AcademiaAsistencia">
               <MappingFragment StoreEntitySet="AcademiaAsistencia">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="IDAsistenciaMetodo" ColumnName="IDAsistenciaMetodo" />
                 <ScalarProperty Name="IDAcademiaAsistenciaTipo" ColumnName="IDAcademiaAsistenciaTipo" />
                 <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
                 <ScalarProperty Name="IDAcademia" ColumnName="IDAcademia" />
@@ -12070,6 +12375,24 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="AsistenciaMetodo">
+            <EntityTypeMapping TypeName="CSBomberosModel.AsistenciaMetodo">
+              <MappingFragment StoreEntitySet="AsistenciaMetodo">
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDAsistenciaMetodo" ColumnName="IDAsistenciaMetodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsuarioGrupoPermisoReporte" TypeName="CSBomberosModel.UsuarioGrupoPermisoReporte" StoreEntitySet="UsuarioGrupoPermisoReporte">
+            <EndProperty Name="UsuarioGrupo">
+              <ScalarProperty Name="IDUsuarioGrupo" ColumnName="IDUsuarioGrupo" />
+            </EndProperty>
+            <EndProperty Name="Reporte">
+              <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

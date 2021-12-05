@@ -14,9 +14,17 @@ Partial Public Class SiniestroAsistencia
     Public Property IDSiniestro As Integer
     Public Property IDPersona As Integer
     Public Property IDSiniestroAsistenciaTipo As Byte
+    Public Property IDAsistenciaMetodo As Byte
+    Public Property IDUsuarioCreacion As Short
+    Public Property FechaHoraCreacion As Date
+    Public Property IDUsuarioModificacion As Short
+    Public Property FechaHoraModificacion As Date
 
     Public Overridable Property SiniestroAsistenciaTipo As SiniestroAsistenciaTipo
     Public Overridable Property Persona As Persona
     Public Overridable Property Siniestro As Siniestro
+    Public Overridable Property AsistenciaMetodo As AsistenciaMetodo
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class

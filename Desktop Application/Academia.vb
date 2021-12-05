@@ -22,7 +22,7 @@ Partial Public Class Academia
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property AcademiaAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
+    Public Overridable Property AcademiasAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
     Public Overridable Property AcademiaTipo As AcademiaTipo
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property UsuarioCreacion As Usuario

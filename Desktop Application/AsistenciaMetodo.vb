@@ -10,22 +10,13 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class AcademiaAsistenciaTipo
-    Public Property IDAcademiaAsistenciaTipo As Byte
+Partial Public Class AsistenciaMetodo
+    Public Property IDAsistenciaMetodo As Byte
     Public Property Nombre As String
-    Public Property Abreviatura As String
-    Public Property EsPresente As Boolean
     Public Property Orden As Nullable(Of Byte)
-    Public Property Notas As String
     Public Property EsActivo As Boolean
-    Public Property IDUsuarioCreacion As Short
-    Public Property FechaHoraCreacion As Date
-    Public Property IDUsuarioModificacion As Short
-    Public Property FechaHoraModificacion As Date
 
     Public Overridable Property AcademiasAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
-    Public Overridable Property UsuarioCreacion As Usuario
-    Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property AcademiasAsistenciasTipoPuntajes As ICollection(Of AcademiaAsistenciaTipoPuntaje) = New HashSet(Of AcademiaAsistenciaTipoPuntaje)
+    Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
 
 End Class

@@ -34,10 +34,16 @@
         mFecha = Fecha
         If mIsNew Then
             ' Es Nuevo
-            mSiniestroAsistenciaActual = New SiniestroAsistencia
-            mSiniestroActual.SiniestroAsistencias.Add(mSiniestroAsistenciaActual)
+            mSiniestroAsistenciaActual = New SiniestroAsistencia With {
+                .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                .IDUsuarioCreacion = pUsuario.IDUsuario,
+                .FechaHoraCreacion = Now,
+                .IDUsuarioModificacion = pUsuario.IDUsuario,
+                .FechaHoraModificacion = Now
+                }
+            mSiniestroActual.SiniestrosAsistencias.Add(mSiniestroAsistenciaActual)
         Else
-            mSiniestroAsistenciaActual = mSiniestroActual.SiniestroAsistencias.Single(Function(sa) sa.IDPersona = idPersona)
+            mSiniestroAsistenciaActual = mSiniestroActual.SiniestrosAsistencias.Single(Function(sa) sa.IDPersona = idPersona)
         End If
 
         CS_Form.CenterToParent(mParentForm, Me)
@@ -179,6 +185,9 @@
             comboboxAsistenciaTipo.Focus()
             Exit Sub
         End If
+
+        mSiniestroAsistenciaActual.IDUsuarioModificacion = pUsuario.IDUsuario
+        mSiniestroAsistenciaActual.FechaHoraModificacion = Now
 
         ' Paso los datos desde los controles al Objecto de EF
         SetDataFromControlsToObject()

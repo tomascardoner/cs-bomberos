@@ -73,7 +73,7 @@
         buttonImprimir.Visible = (mEditMode = False)
 
         ' General
-        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mSiniestroActual.SiniestroAsistencias.Any()))
+        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mSiniestroActual.SiniestrosAsistencias.Any()))
         maskedtextboxNumeroPrefijo.ReadOnly = Not mEditMode
         maskedtextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
@@ -363,6 +363,8 @@
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         tabcontrolMain.SelectedTab = tabpageAsistencias
                         MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case Else
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
 
@@ -401,7 +403,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listAsistencias = (From sa In mSiniestroActual.SiniestroAsistencias
+            listAsistencias = (From sa In mSiniestroActual.SiniestrosAsistencias
                                Join p In mdbContext.Persona On sa.IDPersona Equals p.IDPersona
                                Join sat In mdbContext.SiniestroAsistenciaTipo On sa.IDSiniestroAsistenciaTipo Equals sat.IDSiniestroAsistenciaTipo
                                Order By p.ApellidoNombre
@@ -461,7 +463,7 @@
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                mSiniestroActual.SiniestroAsistencias.Remove(mSiniestroActual.SiniestroAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
+                mSiniestroActual.SiniestrosAsistencias.Remove(mSiniestroActual.SiniestrosAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
 
                 AsistenciasRefreshData()
 

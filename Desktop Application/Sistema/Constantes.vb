@@ -53,6 +53,8 @@
     Friend Const PERSONA_ALTABAJA_TIPO_ALTA As String = "A"
     Friend Const PERSONA_ALTABAJA_TIPO_BAJA As String = "B"
 
+    Friend Const ASISTENCIA_METODO_MANUAL_ID As Byte = 1
+
     '//////////////////
     '    SINIESTROS
     '//////////////////
