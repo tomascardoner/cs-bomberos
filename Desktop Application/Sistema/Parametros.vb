@@ -88,7 +88,8 @@
     Friend Function LoadUsuarioPermisosAndParametros() As Boolean
         Try
             Using dbcontext As New CSBomberosContext(True)
-                pPermisos = dbcontext.UsuarioGrupoPermiso.ToList
+                pPermisos = dbcontext.UsuarioGrupoPermiso.Where(Function(p) p.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo).ToList
+                pPermisosReportes = dbcontext.UsuarioGrupo.Find(pUsuario.IDUsuarioGrupo).Reporte.ToList
                 pUsuarioParametros = dbcontext.UsuarioParametro.Where(Function(up) up.IDUsuario = pUsuario.IDUsuario).ToList
             End Using
             Return True

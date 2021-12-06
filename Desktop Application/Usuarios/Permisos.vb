@@ -324,7 +324,7 @@
         If pUsuario.IDUsuarioGrupo = USUARIOGRUPO_ADMINISTRADORES_ID Then
             Return True
         Else
-            If pPermisos.Find(Function(usrper) usrper.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo And usrper.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
+            If pPermisos.Find(Function(p) p.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
                 If MostrarAviso Then
                     MsgBox("No tiene autorización para realizar esta acción.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End If
@@ -335,9 +335,24 @@
         End If
     End Function
 
+    Friend Function VerificarPermisoReporte(ByVal IDReporte As Short, Optional ByVal MostrarAviso As Boolean = True) As Boolean
+        If pUsuario.IDUsuarioGrupo = USUARIOGRUPO_ADMINISTRADORES_ID Then
+            Return True
+        Else
+            If Not pPermisosReportes.Any(Function(p) p.IDReporte = IDReporte) Then
+                If MostrarAviso Then
+                    MsgBox("No tiene autorización para ver este Reporte.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                End If
+                Return False
+            Else
+                Return True
+            End If
+        End If
+    End Function
+
 #End Region
 
-#Region "Asignación de permisos"
+#Region "Asignación de permisos comunes"
 
     Friend Function AgregarNodos(ByRef parent As TreeNode, ByVal permissionKey As String, ByVal permissionDisplay As String, ByVal permissionAddKey As String, ByVal permissionAddDisplay As String, ByVal permissionEditKey As String, ByVal permissionEditDisplay As String, ByVal permissionDeleteKey As String, ByVal permissionDeleteDisplay As String) As TreeNode
         Dim newNode = parent.Nodes.Add(permissionKey, permissionDisplay)
@@ -399,15 +414,15 @@
         AgregarNodos(nodeParent, SUBUBICACION, "Sub-ubicaciones", SUBUBICACION_AGREGAR, DESCRIPCION_AGREGAR, SUBUBICACION_EDITAR, DESCRIPCION_EDITAR, SUBUBICACION_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' TABLAS - ACADEMIAS
-        nodeRoot = Arbol.Nodes.Add("TABLAS_ACADEMIAS", "Academias")
-        AgregarNodos(nodeRoot, ACADEMIATIPO, "Tipos de Academias", ACADEMIATIPO_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIATIPO_EDITAR, DESCRIPCION_EDITAR, ACADEMIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        AgregarNodos(nodeRoot, ACADEMIAASISTENCIATIPO, "Tipos de Asistencia a Academias", ACADEMIAASISTENCIATIPO_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIAASISTENCIATIPO_EDITAR, DESCRIPCION_EDITAR, ACADEMIAASISTENCIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_ACADEMIAS", "Academias")
+        AgregarNodos(nodeParent, ACADEMIATIPO, "Tipos de Academias", ACADEMIATIPO_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIATIPO_EDITAR, DESCRIPCION_EDITAR, ACADEMIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, ACADEMIAASISTENCIATIPO, "Tipos de Asistencia a Academias", ACADEMIAASISTENCIATIPO_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIAASISTENCIATIPO_EDITAR, DESCRIPCION_EDITAR, ACADEMIAASISTENCIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' TABLAS - SINIESTROS
-        nodeRoot = Arbol.Nodes.Add("TABLAS_GUARDIA", "Guardia")
-        AgregarNodos(nodeRoot, SINIESTRORUBRO, "Rubros de Siniestros", SINIESTRORUBRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRORUBRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRORUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        AgregarNodos(nodeRoot, SINIESTROTIPO, "Tipos de Siniestros", SINIESTROTIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROTIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        AgregarNodos(nodeRoot, SINIESTROASISTENCIATIPO, "Tipos de Asistencia a Siniestros", SINIESTROASISTENCIATIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROASISTENCIATIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROASISTENCIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeParent = nodeRoot.Nodes.Add("TABLAS_GUARDIA", "Guardia")
+        AgregarNodos(nodeParent, SINIESTRORUBRO, "Rubros de Siniestros", SINIESTRORUBRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRORUBRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRORUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, SINIESTROTIPO, "Tipos de Siniestros", SINIESTROTIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROTIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeParent, SINIESTROASISTENCIATIPO, "Tipos de Asistencia a Siniestros", SINIESTROASISTENCIATIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROASISTENCIATIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROASISTENCIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' TABLAS - USUARIOS
         nodeParent = nodeRoot.Nodes.Add("TABLAS_USUARIOS", "Usuarios")
@@ -480,12 +495,9 @@
         nodeParent = nodeRoot.Nodes.Add(REPORTE_JEFATURA, "Reportes")
 
         ' GUARDIA
-        nodeRoot = Arbol.Nodes.Add("GUARDI", "Guardia")
+        nodeRoot = Arbol.Nodes.Add("GUARDIA", "Guardia")
 
         ' GUARDIA - SINIESTROS
-        AgregarNodos(nodeRoot, SINIESTRORUBRO, "Rubros de Siniestros", SINIESTRORUBRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRORUBRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRORUBRO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        AgregarNodos(nodeRoot, SINIESTROTIPO, "Tipos de Siniestros", SINIESTROTIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROTIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROTIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
-        AgregarNodos(nodeRoot, SINIESTROASISTENCIATIPO, "Tipos de Asistencia de Siniestros", SINIESTROASISTENCIATIPO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTROASISTENCIATIPO_EDITAR, DESCRIPCION_EDITAR, SINIESTROASISTENCIATIPO_ELIMINAR, DESCRIPCION_ELIMINAR)
         AgregarNodos(nodeRoot, SINIESTRO, "Siniestros", SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         Arbol.TopNode = Arbol.Nodes(0)
@@ -516,6 +528,74 @@
         Next
 
         listPermisos = Nothing
+    End Sub
+
+#End Region
+
+#Region "Asignación de permisos de reportes"
+
+    Friend Sub CargarArbolDePermisosDeReportes(ByRef context As CSBomberosContext, ByRef arbol As TreeView, ByVal idUsuarioGrupo As Byte)
+        Dim ModuloNodo As TreeNode
+        Dim ReporteGrupoNodo As TreeNode
+        Dim ReporteNodo As TreeNode
+
+        Try
+            arbol.SuspendLayout()
+            Application.DoEvents()
+
+            arbol.Nodes.Clear()
+
+            For Each modulo As Modulo In context.Modulo.Where(Function(m) m.EsActivo).OrderBy(Function(m) m.Orden).ThenBy(Function(m) m.Nombre)
+                ' Agrego los nodos de los módulos
+                ModuloNodo = arbol.Nodes.Add("MODULO_" & modulo.IDModulo, modulo.Nombre)
+
+                For Each reporteGrupo As ReporteGrupo In modulo.ReporteGrupos.OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
+                    If Not reporteGrupo.Reportes.Where(Function(r) r.MostrarEnVisor = True).Any() Then
+                        Continue For
+                    End If
+
+                    ' Agrego el Grupo de Reportes
+                    ReporteGrupoNodo = ModuloNodo.Nodes.Add("GRUPO_" & reporteGrupo.IDReporteGrupo, reporteGrupo.Nombre)
+
+                    For Each reporte As Reporte In reporteGrupo.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
+                        If Permisos.VerificarPermisoReporte(reporte.IDReporte, False) Then
+                            ' Agrego el Reporte
+                            ReporteNodo = ReporteGrupoNodo.Nodes.Add("REPORTE_" & reporte.IDReporte, reporte.Nombre)
+                        End If
+                    Next
+                Next
+            Next
+
+            arbol.TopNode = arbol.Nodes(0)
+
+            ' Muestro los permisos asignados
+            MostrarPermisosEstablecidosDeReportes(context, arbol, idUsuarioGrupo)
+
+            arbol.ResumeLayout()
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de Reportes.")
+        End Try
+
+    End Sub
+
+    Private Sub MostrarPermisosEstablecidosDeReportes(ByRef context As CSBomberosContext, ByRef arbol As TreeView, ByVal idUsuarioGrupo As Byte)
+        Dim listReportes As List(Of Reporte)
+
+        ' Obtengo la lista de permisos de reportes para el Grupo de Usuarios
+        Try
+            listReportes = context.UsuarioGrupo.Find(idUsuarioGrupo).Reporte.OrderBy(Function(r) r.IDReporte).ToList()
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de permisos de reportes efectivos.")
+            Exit Sub
+        End Try
+
+        ' Marco los items del Tree View que tienen asignado el permiso
+        For Each reporte As Reporte In listReportes
+            arbol.Nodes.Find("REPORTE_" & reporte.IDReporte, True).First.Checked = True
+        Next
+
+        listReportes = Nothing
     End Sub
 
 #End Region

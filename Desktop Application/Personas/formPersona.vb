@@ -1524,27 +1524,27 @@
 
         If datagridviewHorarioLaboral.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Horario Laboral para imprimir.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_IMPRIMIR) Then
-                GridRowDataActual = CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData)
+            Exit Sub
+        End If
+        If Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO_IMPRIMIR) Then
+            GridRowDataActual = CType(datagridviewHorarioLaboral.SelectedRows(0).DataBoundItem, HorarioLaboral_GridRowData)
 
-                Me.Cursor = Cursors.WaitCursor
+            Me.Cursor = Cursors.WaitCursor
 
-                datagridviewLicencias.Enabled = False
+            datagridviewLicencias.Enabled = False
 
-                Using dbContext As New CSBomberosContext(True)
-                    Dim ReporteActual As New Reporte
+            Using dbContext As New CSBomberosContext(True)
+                Dim ReporteActual As New Reporte
 
-                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_HORARIOLABORAL))
-                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
-                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre) Then
-                    End If
-                End Using
+                ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_HORARIOLABORAL))
+                ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
+                If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre) Then
+                End If
+            End Using
 
-                datagridviewLicencias.Enabled = True
+            datagridviewLicencias.Enabled = True
 
-                Me.Cursor = Cursors.Default
-            End If
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 

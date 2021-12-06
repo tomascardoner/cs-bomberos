@@ -1,4 +1,5 @@
 ﻿Module StartUp
+
     ' Config files
     Friend pAppearanceConfig As New AppearanceConfig
     Friend pDatabaseConfig As DatabaseConfig
@@ -11,6 +12,7 @@
 
     Friend pFormMDIMain As formMDIMain
     Friend pPermisos As List(Of UsuarioGrupoPermiso)
+    Friend pPermisosReportes As List(Of Reporte)
     Friend pParametros As List(Of Parametro)
     Friend pUsuario As Usuario
     Friend pUsuarioParametros As List(Of UsuarioParametro)
@@ -170,6 +172,7 @@
         pDatabase = Nothing
         pFillAndRefreshLists = Nothing
         pPermisos = Nothing
+        pPermisosReportes = Nothing
         pParametros = Nothing
         pLicensedTo = Nothing
         pUsuario = Nothing

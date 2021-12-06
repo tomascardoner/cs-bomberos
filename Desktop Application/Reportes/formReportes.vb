@@ -39,37 +39,37 @@
 #Region "Reportes"
 
     Private Sub CargarListaReportes()
-        Dim ReporteGrupoNodo As TreeNode
+        Dim ReporteGrupoNodo As TreeNode = Nothing
         Dim ReporteGrupoNodoPrimero As TreeNode = Nothing
         Dim ReporteNodo As TreeNode
         Dim ReporteNodoPrimero As TreeNode = Nothing
 
         Try
             treeviewReportes.BeginUpdate()
-            For Each ReporteGrupoActual As ReporteGrupo In mdbContext.ReporteGrupo.Where(Function(rg) rg.IDModulo = mIDModulo).OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
-                If Not ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).Any() Then
+            For Each reporteGrupo As ReporteGrupo In mdbContext.ReporteGrupo.Where(Function(rg) rg.IDModulo = mIDModulo).OrderBy(Function(rg) rg.Orden).ThenBy(Function(rg) rg.Nombre)
+                If Not reporteGrupo.Reportes.Where(Function(r) r.MostrarEnVisor = True).Any() Then
                     Continue For
                 End If
 
-                ' Agrego el Grupo de Reportes
-                ReporteGrupoNodo = New TreeNode(ReporteGrupoActual.Nombre) With {
-                    .Tag = ReporteGrupoActual
-                }
-                treeviewReportes.Nodes.Add(ReporteGrupoNodo)
+                For Each reporte As Reporte In reporteGrupo.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
+                    If Permisos.VerificarPermisoReporte(reporte.IDReporte, False) Then
+                        ' Si no está creado el nodo del Grupo, lo creo
+                        If ReporteGrupoNodo Is Nothing OrElse ReporteGrupoNodo.Text <> reporteGrupo.Nombre Then
+                            ReporteGrupoNodo = New TreeNode(reporteGrupo.Nombre) With {.Tag = reporteGrupo}
+                            treeviewReportes.Nodes.Add(ReporteGrupoNodo)
 
-                If ReporteGrupoNodoPrimero Is Nothing Then
-                    ReporteGrupoNodoPrimero = ReporteGrupoNodo
-                End If
+                            If ReporteGrupoNodoPrimero Is Nothing Then
+                                ReporteGrupoNodoPrimero = ReporteGrupoNodo
+                            End If
+                        End If
 
-                For Each ReporteActual As Reporte In ReporteGrupoActual.Reportes.Where(Function(r) r.MostrarEnVisor = True).OrderBy(Function(r) r.Orden).ThenBy(Function(r) r.Nombre)
-                    ' Agrego el Reporte
-                    ReporteNodo = New TreeNode(ReporteActual.Nombre) With {
-                        .Tag = ReporteActual
-                    }
-                    ReporteGrupoNodo.Nodes.Add(ReporteNodo)
+                        ' Agrego el Reporte
+                        ReporteNodo = New TreeNode(reporte.Nombre) With {.Tag = reporte}
+                        ReporteGrupoNodo.Nodes.Add(ReporteNodo)
 
-                    If ReporteNodoPrimero Is Nothing Then
-                        ReporteNodoPrimero = ReporteNodo
+                        If ReporteNodoPrimero Is Nothing Then
+                            ReporteNodoPrimero = ReporteNodo
+                        End If
                     End If
                 Next
             Next
@@ -80,6 +80,7 @@
             If ReporteNodoPrimero IsNot Nothing Then
                 treeviewReportes.SelectedNode = ReporteNodoPrimero
             End If
+
             treeviewReportes.EndUpdate()
 
         Catch ex As Exception
@@ -90,15 +91,18 @@
     Private Sub Siguiente() Handles treeviewReportes.NodeMouseDoubleClick, buttonSiguiente.Click
         If treeviewReportes.SelectedNode Is Nothing Then
             MsgBox("No hay ningún Reporte seleccionado para imprimir.", vbInformation, My.Application.Info.Title)
-        Else
-            If treeviewReportes.SelectedNode.Level = 0 Then
-                MsgBox("Debe seleccionar un Reporte (y no un Grupo) para imprimir.", vbInformation, My.Application.Info.Title)
-            Else
-                CargarListaParametros()
-                panelReportes.Hide()
-                panelParametros.Show()
-            End If
         End If
+        If treeviewReportes.SelectedNode.Level = 0 Then
+            MsgBox("Debe seleccionar un Reporte (y no un Grupo) para imprimir.", vbInformation, My.Application.Info.Title)
+            Exit Sub
+        End If
+        If Not Permisos.VerificarPermisoReporte(CType(treeviewReportes.SelectedNode.Tag, Reporte).IDReporte) Then
+            Exit Sub
+        End If
+
+        CargarListaParametros()
+        panelReportes.Hide()
+        panelParametros.Show()
     End Sub
 
 #End Region
