@@ -1,3 +1,12 @@
+2021-12-08
+	- Se arregló un bug al agregar una asistencia a un siniestro o academia y luego cancelarla
+	- Se creó un nuevo grupo de reportes "Calificación y asistencia"
+
+
+2021-12-05
+	- Se agregaron permisos para los Reportes
+	- Se agregó método de asistencia y datos de auditoría (usuarios y fechas de creación y modificación) a las asistencias de Academias y de Siniestros
+
 2021-11-18
 	- Se modificó la tabla de Altas y Bajas para que permita cargar 2 bajas consecutivas
 	- Se arregló el cálculo de antigüedad para que tome en cuenta el tiempo en Reserva

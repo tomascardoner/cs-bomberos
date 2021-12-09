@@ -3,7 +3,7 @@
 	- Agregar el parámetro ACADEMIA_ASISTENCIATIPO_FUERAHORA_ID - NumeroEntero: 12
 	- Actualizar funciones de Sql
 	- Actualizar stored procedure de PersonasObtenerPuntajes
-	- Actualier reporte Personas-Puntajes.rpt
+	- Actualizar reporte Personas-Puntajes.rpt
 	- Agregar el reporte id 53 a las tablas correspondientes
 	- Agregar las tablas AsistenciaMetodo y UsuarioGrupoPermisoReporte
 	- Tablas AcademiaAsistencia y SiniestroAsistencia, agregar los campos:

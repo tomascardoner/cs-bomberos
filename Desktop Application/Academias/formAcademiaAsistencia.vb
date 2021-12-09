@@ -166,6 +166,9 @@
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
+        If mIsNew Then
+            mAcademiaActual.AcademiasAsistencias.Remove(mAcademiaAsistenciaActual)
+        End If
         Me.Close()
     End Sub
 

@@ -10,6 +10,7 @@ GO
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2021-11-06
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
+--			2021-12-07 - Bug fixes
 -- Description:	Devuelve los puntajes de siniestros y academias de las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerPuntajes') AND type in (N'P', N'PC'))
@@ -225,10 +226,10 @@ BEGIN
 			ISNULL(SiniestrosClaveR50Cantidad, 0) AS SiniestrosClaveR50Cantidad, ISNULL(SiniestrosClaveR50Puntaje, 0) AS SiniestrosClaveR50Puntaje,
 			ISNULL(AcademiasPCantidad, 0) AS AcademiasPCantidad, ISNULL(AcademiasPPuntaje, 0) AS AcademiasPPuntaje,
 			ISNULL(AcademiasFHCantidad, 0) AS AcademiasFHCantidad, ISNULL(AcademiasFHPuntaje, 0) AS AcademiasFHPuntaje,
-			(CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) / (ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0)) * 100) AS ProporcionPuntajeMaximo,
-			CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) AS PuntajeTotal
+			(CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) / (ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0)) * 100) AS ProporcionPuntajeMaximo,
+			CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) AS PuntajeTotal
 		FROM @ResultadoFinal AS rf
 			INNER JOIN Persona AS p ON rf.IDPersona = p.IDPersona
-		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.ApellidoNombre
+		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.ApellidoNombre
 END
 GO

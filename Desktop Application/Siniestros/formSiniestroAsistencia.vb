@@ -169,6 +169,9 @@
     End Sub
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
+        If mIsNew Then
+            mSiniestroActual.SiniestrosAsistencias.Remove(mSiniestroAsistenciaActual)
+        End If
         Me.Close()
     End Sub
 
