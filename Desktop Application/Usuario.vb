@@ -162,5 +162,7 @@ Partial Public Class Usuario
     Public Overridable Property AcademiasAsistenciasModificadas As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
     Public Overridable Property SiniestrosAsistenciasCreadas As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestrosAsistenciasModificadas As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
+    Public Overridable Property SiniestrosClavesCreadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
+    Public Overridable Property SiniestrosClavesModificadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
 
 End Class

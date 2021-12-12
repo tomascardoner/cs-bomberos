@@ -10,11 +10,10 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class SiniestroTipo
-    Public Property IDSiniestroRubro As Byte
-    Public Property IDSiniestroTipo As Byte
+Partial Public Class SiniestroClave
+    Public Property IDSiniestroClave As Byte
     Public Property Nombre As String
-    Public Property IDSiniestroClave As Nullable(Of Byte)
+    Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
@@ -22,10 +21,10 @@ Partial Public Class SiniestroTipo
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Siniestros As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
-    Public Overridable Property SiniestroRubro As SiniestroRubro
+    Public Overridable Property SiniestroAsistenciaTipoPuntajesClave As ICollection(Of SiniestroAsistenciaTipoPuntajeClave) = New HashSet(Of SiniestroAsistenciaTipoPuntajeClave)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property SiniestroClave As SiniestroClave
+    Public Overridable Property Siniestros As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
+    Public Overridable Property SiniestrosTipos As ICollection(Of SiniestroTipo) = New HashSet(Of SiniestroTipo)
 
 End Class

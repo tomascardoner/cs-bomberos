@@ -316,7 +316,7 @@ Partial Class formSiniestros
         Me.toolstripClave.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelClave, Me.comboboxClave})
         Me.toolstripClave.Location = New System.Drawing.Point(218, 39)
         Me.toolstripClave.Name = "toolstripClave"
-        Me.toolstripClave.Size = New System.Drawing.Size(119, 25)
+        Me.toolstripClave.Size = New System.Drawing.Size(244, 25)
         Me.toolstripClave.TabIndex = 16
         '
         'labelClave
@@ -330,7 +330,7 @@ Partial Class formSiniestros
         Me.comboboxClave.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxClave.DropDownWidth = 75
         Me.comboboxClave.Name = "comboboxClave"
-        Me.comboboxClave.Size = New System.Drawing.Size(75, 25)
+        Me.comboboxClave.Size = New System.Drawing.Size(200, 25)
         '
         'toolstripPeriodo
         '
@@ -338,7 +338,7 @@ Partial Class formSiniestros
         Me.toolstripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripPeriodo.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPeriodo, Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelPeriodoFechaY})
-        Me.toolstripPeriodo.Location = New System.Drawing.Point(337, 39)
+        Me.toolstripPeriodo.Location = New System.Drawing.Point(462, 39)
         Me.toolstripPeriodo.Name = "toolstripPeriodo"
         Me.toolstripPeriodo.Size = New System.Drawing.Size(267, 25)
         Me.toolstripPeriodo.TabIndex = 17
@@ -372,7 +372,7 @@ Partial Class formSiniestros
         Me.toolstripAnulado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripAnulado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripAnulado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelAnulado, Me.comboboxAnulado})
-        Me.toolstripAnulado.Location = New System.Drawing.Point(604, 39)
+        Me.toolstripAnulado.Location = New System.Drawing.Point(729, 39)
         Me.toolstripAnulado.Name = "toolstripAnulado"
         Me.toolstripAnulado.Size = New System.Drawing.Size(135, 25)
         Me.toolstripAnulado.TabIndex = 12

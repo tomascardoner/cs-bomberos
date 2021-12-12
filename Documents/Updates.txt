@@ -1,3 +1,17 @@
+2021-12-11
+	- Agregar la tabla SiniestroClave
+	- Agregar la tabla SiniestroAsistenciaTipoPuntajeClave
+	- Actualizar los datos
+	- Borrar de la tabla SiniestroAsistenciaTipoPuntaje, los campos de puntaje
+	- Agregar el campo IDSiniestroClave a la tabla Siniestro
+	- Ejecutar el script de update
+	- Borrar de la tabla Siniestro, los campo Clave y ClaveNombre
+	- Establecer FK al campo IDSiniestroClave y sacar null
+	- Actualizar funciones de Sql
+	- Ejecutar stored procedure de puntajes
+	- Copiar EXE
+	- Copiar reporte de Puntajes
+
 2021-11-27
 	- Agregar el parámetro ACADEMIA_ASISTENCIATIPO_PRESENTE_ID - NumeroEntero: 1
 	- Agregar el parámetro ACADEMIA_ASISTENCIATIPO_FUERAHORA_ID - NumeroEntero: 12

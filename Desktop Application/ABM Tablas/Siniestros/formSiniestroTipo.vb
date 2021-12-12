@@ -69,7 +69,7 @@
         SetAppearance()
 
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxRubro, False, False)
-        ListasSiniestros.LlenarComboBoxClaves(comboboxClavePredeterminada, False, True)
+        ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClavePredeterminada, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -91,7 +91,7 @@
         With mSiniestroTipoActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDSiniestroRubro)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClavePredeterminada, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ClavePredeterminada, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClavePredeterminada, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroClave, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -122,7 +122,7 @@
                 .IDSiniestroRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxRubro.SelectedValue).Value
             End If
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .ClavePredeterminada = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxClavePredeterminada.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
+            .IDSiniestroClave = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxClavePredeterminada.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)

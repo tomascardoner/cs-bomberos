@@ -62,8 +62,10 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistSiniestroTiposBase = (From st In dbContext.SiniestroTipo
                                            Join sr In dbContext.SiniestroRubro On st.IDSiniestroRubro Equals sr.IDSiniestroRubro
+                                           Group Join sc In dbContext.SiniestroClave On st.IDSiniestroClave Equals sc.IDSiniestroClave Into Claves_Group = Group
+                                           From cg In Claves_Group.DefaultIfEmpty
                                            Where st.IDSiniestroTipo <> CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE
-                                           Select New GridRowData With {.IDSiniestroRubro = st.IDSiniestroRubro, .RubroNombre = sr.Nombre, .IDSiniestroTipo = st.IDSiniestroTipo, .Nombre = st.Nombre, .ClavePredeterminadaNombre = st.ClavePredeterminadaNombre, .EsActivo = st.EsActivo}).ToList
+                                           Select New GridRowData With {.IDSiniestroRubro = st.IDSiniestroRubro, .RubroNombre = sr.Nombre, .IDSiniestroTipo = st.IDSiniestroTipo, .Nombre = st.Nombre, .ClavePredeterminadaNombre = If(cg Is Nothing, String.Empty, cg.Nombre), .EsActivo = st.EsActivo}).ToList
 
             End Using
 

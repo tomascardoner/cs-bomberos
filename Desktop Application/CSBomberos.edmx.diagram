@@ -328,6 +328,14 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.UsuarioGrupoPermisoReporte" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroAsistenciaTipoPuntajeClave" Width="1.5" PointX="21" PointY="205.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroClave" Width="1.5" PointX="16.5" PointY="158.25" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroClave__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__Siniestro" />
+        <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

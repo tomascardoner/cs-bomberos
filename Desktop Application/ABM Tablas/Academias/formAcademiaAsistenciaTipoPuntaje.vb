@@ -26,8 +26,9 @@
         mAcademiaAsistenciaTipoActual = AcademiaAsistenciaTipoActual
         If mIsNew Then
             ' Es Nuevo
-            mAcademiaAsistenciaTipoPuntajeActual = New AcademiaAsistenciaTipoPuntaje
-            mAcademiaAsistenciaTipoPuntajeActual.FechaInicio = DateAndTime.Today
+            mAcademiaAsistenciaTipoPuntajeActual = New AcademiaAsistenciaTipoPuntaje With {
+                .FechaInicio = DateAndTime.Today
+            }
             mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Add(mAcademiaAsistenciaTipoPuntajeActual)
         Else
             mAcademiaAsistenciaTipoPuntajeActual = mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Single(Function(satp) satp.IDAcademiaAsistenciaTipoPuntaje = idAcademiaAsistenciaTipoPuntaje)
@@ -112,13 +113,6 @@
                     buttonCerrar.PerformClick()
                 End If
         End Select
-    End Sub
-
-    Private Sub UpDowns_Enter(sender As Object, e As EventArgs)
-        Dim nud As NumericUpDown
-
-        nud = CType(sender, NumericUpDown)
-        nud.Select(0, nud.Text.Length)
     End Sub
 
 #End Region

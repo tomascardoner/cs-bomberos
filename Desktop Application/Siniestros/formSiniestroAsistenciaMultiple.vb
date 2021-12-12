@@ -7,8 +7,6 @@
 
     Private mTipoAsistenciaFirstColumnIndex As Integer
 
-    Private Const ColumnNameIdPersona As String = "columnIDPersona"
-    Private Const ColumnNameApellidoNombre As String = "columnPersonaApellidoNombre"
     Private Const ColumnNameAsistenciaTipoPrefijo As String = "columnIDSiniestroAsistenciaTipo#"
 
 #End Region
@@ -111,8 +109,8 @@
                 newRowId = datagridviewMain.Rows.Add()
                 newRow = datagridviewMain.Rows(newRowId)
                 With newRow
-                    .Cells(ColumnNameIdPersona).Value = persona.IDPersona
-                    .Cells(ColumnNameApellidoNombre).Value = persona.ApellidoNombre
+                    .Cells(columnIDPersona.Name).Value = persona.IDPersona
+                    .Cells(columnPersonaApellidoNombre.Name).Value = persona.ApellidoNombre
                 End With
             Next
             Return True
@@ -148,7 +146,7 @@
 
             For Each asistencia In listAsistenciasEnSiniestro
                 For rowIndex As Integer = startRowIndex To datagridviewMain.RowCount - 1
-                    If CInt(datagridviewMain.Rows(rowIndex).Cells(ColumnNameIdPersona).Value) = asistencia.IDPersona Then
+                    If CInt(datagridviewMain.Rows(rowIndex).Cells(columnIDPersona.Name).Value) = asistencia.IDPersona Then
                         columnName = ColumnNameAsistenciaTipoPrefijo & asistencia.IDSiniestroAsistenciaTipo.ToString
                         datagridviewMain.Rows(rowIndex).Cells(columnName).Value = True
                         startRowIndex = rowIndex + 1
@@ -159,7 +157,7 @@
             Return True
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los Tipos de Asistencia.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener las Asistencias.")
             Return False
 
         Finally
@@ -285,7 +283,7 @@
             Dim idPersona As Integer
             Dim idSiniestroAsistenciaTipo As Byte
 
-            idPersona = CInt(row.Cells(ColumnNameIdPersona).Value)
+            idPersona = CInt(row.Cells(columnIDPersona.Name).Value)
             idSiniestroAsistenciaTipo = ObtenerAsistenciaTipoEnFila(row)
 
             If idSiniestroAsistenciaTipo = 0 Then

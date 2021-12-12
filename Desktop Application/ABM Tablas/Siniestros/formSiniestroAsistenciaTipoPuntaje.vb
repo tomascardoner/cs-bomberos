@@ -26,8 +26,9 @@
         mSiniestroAsistenciaTipoActual = siniestroAsistenciaTipoActual
         If mIsNew Then
             ' Es Nuevo
-            mSiniestroAsistenciaTipoPuntajeActual = New SiniestroAsistenciaTipoPuntaje
-            mSiniestroAsistenciaTipoPuntajeActual.FechaInicio = DateAndTime.Today
+            mSiniestroAsistenciaTipoPuntajeActual = New SiniestroAsistenciaTipoPuntaje With {
+                .FechaInicio = DateAndTime.Today
+            }
             mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Add(mSiniestroAsistenciaTipoPuntajeActual)
         Else
             mSiniestroAsistenciaTipoPuntajeActual = mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Single(Function(satp) satp.IDSiniestroAsistenciaTipoPuntaje = idSiniestroAsistenciaTipoPuntaje)
@@ -35,7 +36,9 @@
 
         CS_Form.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
-        SetDataFromObjectToControls()
+
+        CreateRows()
+        FillData()
 
         mIsLoading = False
 
@@ -55,10 +58,8 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         datetimepickerFechaInicio.Enabled = mEditMode
-        doubletextboxPuntajeClaveVerde.Enabled = mEditMode
-        doubletextboxPuntajeClaveAzul.Enabled = mEditMode
-        doubletextboxPuntajeClaveNaranja.Enabled = mEditMode
-        doubletextboxPuntajeClaveRoja.Enabled = mEditMode
+
+        datagridviewPuntajes.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -80,27 +81,75 @@
 
 #End Region
 
-#Region "Load and Set Data"
+#Region "Grid data"
 
-    Friend Sub SetDataFromObjectToControls()
-        With mSiniestroAsistenciaTipoPuntajeActual
-            datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInicio)
-            doubletextboxPuntajeClaveVerde.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveVerde)
-            doubletextboxPuntajeClaveAzul.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveAzul)
-            doubletextboxPuntajeClaveNaranja.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveNaranja)
-            doubletextboxPuntajeClaveRoja.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.PuntajeClaveRoja)
-        End With
-    End Sub
+    Friend Function CreateRows() As Boolean
+        Dim listClaves As List(Of SiniestroClave)
 
-    Friend Sub SetDataFromControlsToObject()
-        With mSiniestroAsistenciaTipoPuntajeActual
-            .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
-            .PuntajeClaveVerde = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveVerde.Text).Value
-            .PuntajeClaveAzul = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveAzul.Text).Value
-            .PuntajeClaveNaranja = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveNaranja.Text).Value
-            .PuntajeClaveRoja = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntajeClaveRoja.Text).Value
-        End With
-    End Sub
+        datagridviewPuntajes.Visible = False
+
+        Try
+            listClaves = mdbContext.SiniestroClave.OrderBy(Function(sc) sc.Orden).ThenBy(Function(sc) sc.Nombre).ToList()
+
+            For Each clave As SiniestroClave In listClaves
+                Dim newRowId As Integer
+                Dim newRow As New DataGridViewRow()
+
+                newRowId = datagridviewPuntajes.Rows.Add()
+                newRow = datagridviewPuntajes.Rows(newRowId)
+                With newRow
+                    .Cells(columnIDSiniestroClave.Name).Value = clave.IDSiniestroClave
+                    .Cells(columnSiniestroClaveNombre.Name).Value = clave.Nombre
+                End With
+            Next
+            Return True
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener las Claves de Siniestros.")
+            Return False
+
+        Finally
+            listClaves = Nothing
+            datagridviewPuntajes.Visible = True
+        End Try
+    End Function
+
+    Private Function FillData() As Boolean
+        datetimepickerFechaInicio.Value = mSiniestroAsistenciaTipoPuntajeActual.FechaInicio
+
+        datagridviewPuntajes.Visible = False
+
+        Try
+            Dim listPuntajes As List(Of SiniestroAsistenciaTipoPuntajeClave)
+
+            listPuntajes = (From sc In mdbContext.SiniestroClave
+                            Join satpc In mdbContext.SiniestroAsistenciaTipoPuntajeClave On sc.IDSiniestroClave Equals satpc.IDSiniestroClave
+                            Where satpc.IDSiniestroAsistenciaTipo = mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipo And satpc.IDSiniestroAsistenciaTipoPuntaje = mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipoPuntaje
+                            Order By sc.Orden, sc.Nombre
+                            Select satpc).ToList()
+
+            Dim startRowIndex As Integer = 0
+            Dim columnName As String
+
+            For Each puntaje As SiniestroAsistenciaTipoPuntajeClave In listPuntajes
+                For rowIndex As Integer = startRowIndex To datagridviewPuntajes.RowCount - 1
+                    If CInt(datagridviewPuntajes.Rows(rowIndex).Cells(columnIDSiniestroClave.Name).Value) = puntaje.IDSiniestroClave Then
+                        datagridviewPuntajes.Rows(rowIndex).Cells(columnPuntaje.Name).Value = puntaje.Puntaje
+                        startRowIndex = rowIndex + 1
+                    End If
+                Next
+            Next
+
+            Return True
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los Puntajes.")
+            Return False
+
+        Finally
+            datagridviewPuntajes.Visible = True
+        End Try
+    End Function
 
 #End Region
 
@@ -123,11 +172,18 @@
         End Select
     End Sub
 
-    Private Sub UpDowns_Enter(sender As Object, e As EventArgs)
-        Dim nud As NumericUpDown
-
-        nud = CType(sender, NumericUpDown)
-        nud.Select(0, nud.Text.Length)
+    Private Sub datagridviewPuntajes_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles datagridviewPuntajes.CellEndEdit
+        If IsNumeric(datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value) Then
+            Dim value As Decimal = Decimal.Parse(datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString, Globalization.NumberStyles.AllowDecimalPoint)
+            If value < -99.99 Or value > 99.99 Then
+                MsgBox("El puntaje debe estar dentro del rango -99,99 y 99,99.", MsgBoxStyle.Information, My.Application.Info.Title)
+                datagridviewPuntajes.Focus()
+                Exit Sub
+            End If
+            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = value
+        Else
+            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = Nothing
+        End If
     End Sub
 
 #End Region
@@ -146,8 +202,6 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        ' Paso los datos desde los controles al Objecto de EF
-        SetDataFromControlsToObject()
 
         ' Si es nuevo, asigno un id
         If mIsNew Then
@@ -158,11 +212,80 @@
             End If
         End If
 
+        ' Establezco los datos
+        mSiniestroAsistenciaTipoPuntajeActual.FechaInicio = datetimepickerFechaInicio.Value
+        GuardarCambios()
+
         ' Refresco la lista para mostrar los cambios
         CType(mParentForm, formSiniestroAsistenciaTipo).PuntajesRefreshData(mSiniestroAsistenciaTipoPuntajeActual.FechaInicio)
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function BorrarPuntaje(ByVal idSiniestroClave As Byte) As Boolean
+        Dim puntajeClave As SiniestroAsistenciaTipoPuntajeClave
+
+        puntajeClave = mSiniestroAsistenciaTipoPuntajeActual.SiniestroAsistenciaTipoPuntajesClave.Where(Function(satpc) satpc.IDSiniestroClave = idSiniestroClave).FirstOrDefault()
+        If puntajeClave IsNot Nothing Then
+            mSiniestroAsistenciaTipoPuntajeActual.SiniestroAsistenciaTipoPuntajesClave.Remove(puntajeClave)
+        End If
+
+        Return True
+    End Function
+
+    Private Function AgregarOActualizarPuntaje(ByVal idSiniestroClave As Byte, ByVal puntaje As Decimal) As Boolean
+        Try
+            Dim puntajeClave As SiniestroAsistenciaTipoPuntajeClave
+
+            puntajeClave = mSiniestroAsistenciaTipoPuntajeActual.SiniestroAsistenciaTipoPuntajesClave.Where(Function(satpc) satpc.IDSiniestroClave = idSiniestroClave).FirstOrDefault()
+            If puntajeClave Is Nothing Then
+                puntajeClave = New SiniestroAsistenciaTipoPuntajeClave With {
+                    .IDSiniestroAsistenciaTipo = mSiniestroAsistenciaTipoActual.IDSiniestroAsistenciaTipo,
+                    .IDSiniestroClave = idSiniestroClave,
+                    .Puntaje = puntaje
+                }
+                mSiniestroAsistenciaTipoPuntajeActual.SiniestroAsistenciaTipoPuntajesClave.Add(puntajeClave)
+            ElseIf puntajeClave.Puntaje <> puntaje Then
+                puntajeClave.Puntaje = puntaje
+            End If
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al actualizar el Puntaje.")
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+    Private Function GuardarCambios() As Boolean
+
+        Me.Cursor = Cursors.WaitCursor
+
+        For Each row As DataGridViewRow In datagridviewPuntajes.Rows
+            Dim idSiniestroClave As Byte
+
+            idSiniestroClave = CByte(row.Cells(columnIDSiniestroClave.Name).Value)
+
+            If row.Cells(columnPuntaje.Name).Value Is Nothing Then
+                If Not BorrarPuntaje(idSiniestroClave) Then
+                    Me.Cursor = Cursors.Default
+                    Return False
+                End If
+            Else
+                ' Parsear la celda a Decimal
+                If Not AgregarOActualizarPuntaje(idSiniestroClave, CDec(row.Cells(columnPuntaje.Name).Value)) Then
+                    Me.Cursor = Cursors.Default
+                    Return False
+                End If
+            End If
+        Next
+        Me.Cursor = Cursors.Default
+        Return True
+    End Function
 
 #End Region
 

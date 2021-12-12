@@ -19,8 +19,7 @@ Partial Public Class Siniestro
     Public Property IDSiniestroRubro As Byte
     Public Property IDSiniestroTipo As Byte
     Public Property SiniestroTipoOtro As String
-    Public Property Clave As String
-    Public Property ClaveNombre As String
+    Public Property IDSiniestroClave As Byte
     Public Property Fecha As Date
     Public Property HoraSalida As Nullable(Of System.TimeSpan)
     Public Property HoraFin As Nullable(Of System.TimeSpan)
@@ -36,5 +35,6 @@ Partial Public Class Siniestro
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
+    Public Overridable Property SiniestroClave As SiniestroClave
 
 End Class

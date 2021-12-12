@@ -82,19 +82,19 @@ BEGIN
 
 	-- Siniestros: asigno los puntajes correspondientes a cada siniestro
 	UPDATE @SiniestrosPuntajes
-		SET Puntaje = (CASE s.Clave WHEN 'V' THEN PuntajeClaveVerde WHEN 'A' THEN PuntajeClaveAzul WHEN 'N' THEN PuntajeClaveNaranja WHEN 'R' THEN PuntajeClaveRoja ELSE 0 END)
+		SET Puntaje = satpc.Puntaje
 		FROM Siniestro AS s
 			INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
-			INNER JOIN SiniestroAsistenciaTipoPuntaje AS satp ON sp.IDSiniestroAsistenciaTipo = satp.IDSiniestroAsistenciaTipo AND sp.IDSiniestroAsistenciaTipoPuntaje = satp.IDSiniestroAsistenciaTipoPuntaje
+			INNER JOIN SiniestroAsistenciaTipoPuntajeClave AS satpc ON sp.IDSiniestroAsistenciaTipo = satpc.IDSiniestroAsistenciaTipo AND sp.IDSiniestroAsistenciaTipoPuntaje = satpc.IDSiniestroAsistenciaTipoPuntaje AND s.IDSiniestroClave = satpc.IDSiniestroClave
 
 	-- Siniestros: calculo la cantidad de siniestros y el puntaje total de cada clave
 	INSERT INTO @SiniestrosPorClave
 		(Clave, Cantidad, Puntaje)
-		SELECT dbo.SiniestroObtenerClaveAgrupada(s.Clave), COUNT(s.IDSiniestro) AS Cantidad, ISNULL(SUM(sp.Puntaje), 0) AS Puntaje
+		SELECT dbo.SiniestroObtenerClaveAgrupada(s.IDSiniestroClave), COUNT(s.IDSiniestro) AS Cantidad, ISNULL(SUM(sp.Puntaje), 0) AS Puntaje
 			FROM Siniestro AS s
 				INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
 			WHERE sp.IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipoPresente
-			GROUP BY dbo.SiniestroObtenerClaveAgrupada(s.Clave)
+			GROUP BY dbo.SiniestroObtenerClaveAgrupada(s.IDSiniestroClave)
 
 	-- Siniestros: asigno las cantidades de siniestros por cada clave a las variables
 	SELECT @SiniestrosCantidadVA = AV, @SiniestrosCantidadN = N, @SiniestrosCantidadR = R
@@ -119,12 +119,12 @@ BEGIN
 	-- Siniestros: calculo los puntajes de cada persona por cada clave
 	INSERT INTO @SiniestrosPersonasPuntajesPorClave
 		(IDPersona, Clave, Cantidad, Puntaje)
-		SELECT rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.Clave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
+		SELECT rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.IDSiniestroClave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
 			FROM @ResultadoFinal AS rf
 				LEFT JOIN (SiniestroAsistencia AS sa
 				INNER JOIN Siniestro AS s ON sa.IDSiniestro = s.IDSiniestro
 				INNER JOIN @SiniestrosPuntajes AS sp ON sa.IDSiniestro = sp.IDSiniestro AND sa.IDSiniestroAsistenciaTipo = sp.IDSiniestroAsistenciaTipo) ON rf.IDPersona = sa.IDPersona
-			GROUP BY rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.Clave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada)
+			GROUP BY rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.IDSiniestroClave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada)
 
 	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves verdes y azules
 	UPDATE @ResultadoFinal
@@ -219,7 +219,7 @@ BEGIN
 
 	-- Común: muestro las personas y los puntajes
 	SELECT ISNULL(@SiniestrosCantidadVA, 0) AS SiniestrosClaveVACantidadTotal, ISNULL(@SiniestrosCantidadN, 0) AS SiniestrosClaveNCantidadTotal, ISNULL(@SiniestrosCantidadR, 0) AS SiniestrosClaveRCantidadTotal, @AcademiasCantidad AS AcademiasCantidadTotal, ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0) AS PuntajeMaximo,
-			ISNULL(p.Orden, 0) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
+			ROW_NUMBER() OVER (ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
 			ISNULL(SiniestrosClaveVACantidad, 0) AS SiniestrosClaveVACantidad, ISNULL(SiniestrosClaveVAPuntaje, 0) AS SiniestrosClaveVAPuntaje,
 			ISNULL(SiniestrosClaveNCantidad, 0) AS SiniestrosClaveNCantidad, ISNULL(SiniestrosClaveNPuntaje, 0) AS SiniestrosClaveNPuntaje,
 			ISNULL(SiniestrosClaveR100Cantidad, 0) AS SiniestrosClaveR100Cantidad, ISNULL(SiniestrosClaveR100Puntaje, 0) AS SiniestrosClaveR100Puntaje,
@@ -230,6 +230,6 @@ BEGIN
 			CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) AS PuntajeTotal
 		FROM @ResultadoFinal AS rf
 			INNER JOIN Persona AS p ON rf.IDPersona = p.IDPersona
-		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.ApellidoNombre
+		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden
 END
 GO

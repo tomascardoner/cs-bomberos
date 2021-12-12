@@ -27,10 +27,6 @@ Partial Class formSiniestroAsistenciaTipo
         Dim labelCreacion As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -67,10 +63,6 @@ Partial Class formSiniestroAsistenciaTipo
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPuntajeClaveVerde = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPuntajeClaveAzul = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPuntajeClaveNaranja = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnPuntajeClaveRoja = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -329,7 +321,7 @@ Partial Class formSiniestroAsistenciaTipo
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewPuntajes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewPuntajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewPuntajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaInicio, Me.columnPuntajeClaveVerde, Me.columnPuntajeClaveAzul, Me.columnPuntajeClaveNaranja, Me.columnPuntajeClaveRoja})
+        Me.datagridviewPuntajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFechaInicio})
         Me.datagridviewPuntajes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewPuntajes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewPuntajes.Location = New System.Drawing.Point(90, 3)
@@ -512,58 +504,6 @@ Partial Class formSiniestroAsistenciaTipo
         Me.columnFechaInicio.ReadOnly = True
         Me.columnFechaInicio.Width = 74
         '
-        'columnPuntajeClaveVerde
-        '
-        Me.columnPuntajeClaveVerde.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPuntajeClaveVerde.DataPropertyName = "PuntajeClaveVerde"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnPuntajeClaveVerde.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnPuntajeClaveVerde.HeaderText = "Verde"
-        Me.columnPuntajeClaveVerde.Name = "columnPuntajeClaveVerde"
-        Me.columnPuntajeClaveVerde.ReadOnly = True
-        Me.columnPuntajeClaveVerde.Width = 60
-        '
-        'columnPuntajeClaveAzul
-        '
-        Me.columnPuntajeClaveAzul.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPuntajeClaveAzul.DataPropertyName = "PuntajeClaveAzul"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N2"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.columnPuntajeClaveAzul.DefaultCellStyle = DataGridViewCellStyle4
-        Me.columnPuntajeClaveAzul.HeaderText = "Azul"
-        Me.columnPuntajeClaveAzul.Name = "columnPuntajeClaveAzul"
-        Me.columnPuntajeClaveAzul.ReadOnly = True
-        Me.columnPuntajeClaveAzul.Width = 52
-        '
-        'columnPuntajeClaveNaranja
-        '
-        Me.columnPuntajeClaveNaranja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPuntajeClaveNaranja.DataPropertyName = "PuntajeClaveNaranja"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.columnPuntajeClaveNaranja.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnPuntajeClaveNaranja.HeaderText = "Naranja"
-        Me.columnPuntajeClaveNaranja.Name = "columnPuntajeClaveNaranja"
-        Me.columnPuntajeClaveNaranja.ReadOnly = True
-        Me.columnPuntajeClaveNaranja.Width = 69
-        '
-        'columnPuntajeClaveRoja
-        '
-        Me.columnPuntajeClaveRoja.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnPuntajeClaveRoja.DataPropertyName = "PuntajeClaveRoja"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnPuntajeClaveRoja.DefaultCellStyle = DataGridViewCellStyle6
-        Me.columnPuntajeClaveRoja.HeaderText = "Roja"
-        Me.columnPuntajeClaveRoja.Name = "columnPuntajeClaveRoja"
-        Me.columnPuntajeClaveRoja.ReadOnly = True
-        Me.columnPuntajeClaveRoja.Width = 54
-        '
         'formSiniestroAsistenciaTipo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -632,8 +572,4 @@ Partial Class formSiniestroAsistenciaTipo
     Friend WithEvents buttonPuntajesEditar As ToolStripButton
     Friend WithEvents buttonPuntajesEliminar As ToolStripButton
     Friend WithEvents columnFechaInicio As DataGridViewTextBoxColumn
-    Friend WithEvents columnPuntajeClaveVerde As DataGridViewTextBoxColumn
-    Friend WithEvents columnPuntajeClaveAzul As DataGridViewTextBoxColumn
-    Friend WithEvents columnPuntajeClaveNaranja As DataGridViewTextBoxColumn
-    Friend WithEvents columnPuntajeClaveRoja As DataGridViewTextBoxColumn
 End Class

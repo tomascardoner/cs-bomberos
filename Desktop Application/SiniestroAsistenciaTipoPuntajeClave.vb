@@ -10,12 +10,13 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class SiniestroAsistenciaTipoPuntaje
+Partial Public Class SiniestroAsistenciaTipoPuntajeClave
     Public Property IDSiniestroAsistenciaTipo As Byte
     Public Property IDSiniestroAsistenciaTipoPuntaje As Byte
-    Public Property FechaInicio As Date
+    Public Property IDSiniestroClave As Byte
+    Public Property Puntaje As Decimal
 
-    Public Overridable Property SiniestroAsistenciaTipo As SiniestroAsistenciaTipo
-    Public Overridable Property SiniestroAsistenciaTipoPuntajesClave As ICollection(Of SiniestroAsistenciaTipoPuntajeClave) = New HashSet(Of SiniestroAsistenciaTipoPuntajeClave)
+    Public Overridable Property SiniestroAsistenciaTipoPuntaje As SiniestroAsistenciaTipoPuntaje
+    Public Overridable Property SiniestroClave As SiniestroClave
 
 End Class

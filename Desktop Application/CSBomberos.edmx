@@ -1072,8 +1072,7 @@
           <Property Name="IDSiniestroRubro" Type="tinyint" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="tinyint" Nullable="false" />
           <Property Name="SiniestroTipoOtro" Type="varchar" MaxLength="50" />
-          <Property Name="Clave" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="ClaveNombre" Type="varchar" MaxLength="7" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IDSiniestroClave" Type="tinyint" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="0" />
           <Property Name="HoraFin" Type="time" Precision="0" />
@@ -1124,10 +1123,31 @@
           <Property Name="IDSiniestroAsistenciaTipo" Type="tinyint" Nullable="false" />
           <Property Name="IDSiniestroAsistenciaTipoPuntaje" Type="tinyint" Nullable="false" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
-          <Property Name="PuntajeClaveVerde" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="PuntajeClaveAzul" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="PuntajeClaveNaranja" Type="decimal" Precision="4" Scale="2" Nullable="false" />
-          <Property Name="PuntajeClaveRoja" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiniestroAsistenciaTipoPuntajeClave">
+          <Key>
+            <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+            <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            <PropertyRef Name="IDSiniestroClave" />
+          </Key>
+          <Property Name="IDSiniestroAsistenciaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="IDSiniestroAsistenciaTipoPuntaje" Type="tinyint" Nullable="false" />
+          <Property Name="IDSiniestroClave" Type="tinyint" Nullable="false" />
+          <Property Name="Puntaje" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiniestroClave">
+          <Key>
+            <PropertyRef Name="IDSiniestroClave" />
+          </Key>
+          <Property Name="IDSiniestroClave" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Orden" Type="tinyint" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SiniestroRubro">
           <Key>
@@ -1150,8 +1170,7 @@
           <Property Name="IDSiniestroRubro" Type="tinyint" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ClavePredeterminada" Type="char" MaxLength="1" />
-          <Property Name="ClavePredeterminadaNombre" Type="varchar" MaxLength="7" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IDSiniestroClave" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -2362,6 +2381,56 @@
             </Principal>
             <Dependent Role="SiniestroAsistenciaTipoPuntaje">
               <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave">
+          <End Role="SiniestroAsistenciaTipoPuntaje" Type="Self.SiniestroAsistenciaTipoPuntaje" Multiplicity="1" />
+          <End Role="SiniestroAsistenciaTipoPuntajeClave" Type="Self.SiniestroAsistenciaTipoPuntajeClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroAsistenciaTipoPuntaje">
+              <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+              <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            </Principal>
+            <Dependent Role="SiniestroAsistenciaTipoPuntajeClave">
+              <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+              <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__Siniestro">
+          <End Role="SiniestroClave" Type="Self.SiniestroClave" Multiplicity="1" />
+          <End Role="Siniestro" Type="Self.Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave">
+          <End Role="SiniestroClave" Type="Self.SiniestroClave" Multiplicity="1" />
+          <End Role="SiniestroAsistenciaTipoPuntajeClave" Type="Self.SiniestroAsistenciaTipoPuntajeClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="SiniestroAsistenciaTipoPuntajeClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__SiniestroTipo">
+          <End Role="SiniestroClave" Type="Self.SiniestroClave" Multiplicity="0..1" />
+          <End Role="SiniestroTipo" Type="Self.SiniestroTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="SiniestroTipo">
+              <PropertyRef Name="IDSiniestroClave" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3735,6 +3804,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__SiniestroClave__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroClave" Type="Self.SiniestroClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroClave">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroClave__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroClave" Type="Self.SiniestroClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroClave">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__SiniestroRubro__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="SiniestroRubro" Type="Self.SiniestroRubro" Multiplicity="*" />
@@ -4270,6 +4363,8 @@
           <EntitySet Name="SiniestroAsistencia" EntityType="Self.SiniestroAsistencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroAsistenciaTipo" EntityType="Self.SiniestroAsistenciaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroAsistenciaTipoPuntaje" EntityType="Self.SiniestroAsistenciaTipoPuntaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiniestroAsistenciaTipoPuntajeClave" EntityType="Self.SiniestroAsistenciaTipoPuntajeClave" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiniestroClave" EntityType="Self.SiniestroClave" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroRubro" EntityType="Self.SiniestroRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroTipo" EntityType="Self.SiniestroTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubRubro" EntityType="Self.SubRubro" Schema="dbo" store:Type="Tables" />
@@ -4604,6 +4699,22 @@
           <AssociationSet Name="FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje" Association="Self.FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje">
             <End Role="SiniestroAsistenciaTipo" EntitySet="SiniestroAsistenciaTipo" />
             <End Role="SiniestroAsistenciaTipoPuntaje" EntitySet="SiniestroAsistenciaTipoPuntaje" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave" Association="Self.FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave">
+            <End Role="SiniestroAsistenciaTipoPuntaje" EntitySet="SiniestroAsistenciaTipoPuntaje" />
+            <End Role="SiniestroAsistenciaTipoPuntajeClave" EntitySet="SiniestroAsistenciaTipoPuntajeClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__Siniestro" Association="Self.FK__SiniestroClave__Siniestro">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave" Association="Self.FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="SiniestroAsistenciaTipoPuntajeClave" EntitySet="SiniestroAsistenciaTipoPuntajeClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__SiniestroTipo" Association="Self.FK__SiniestroClave__SiniestroTipo">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="SiniestroTipo" EntitySet="SiniestroTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__SiniestroRubro__SiniestroTipo" Association="Self.FK__SiniestroRubro__SiniestroTipo">
             <End Role="SiniestroRubro" EntitySet="SiniestroRubro" />
@@ -5060,6 +5171,14 @@
           <AssociationSet Name="FK__Usuario__SiniestroAsistenciaTipo__Modificacion" Association="Self.FK__Usuario__SiniestroAsistenciaTipo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="SiniestroAsistenciaTipo" EntitySet="SiniestroAsistenciaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroClave__Creacion" Association="Self.FK__Usuario__SiniestroClave__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroClave__Modificacion" Association="Self.FK__Usuario__SiniestroClave__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__SiniestroRubro__Creacion" Association="Self.FK__Usuario__SiniestroRubro__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -6243,6 +6362,32 @@
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
           </AssociationSet>
+          <EntitySet Name="SiniestroAsistenciaTipoPuntajeClave" EntityType="CSBomberosModel.SiniestroAsistenciaTipoPuntajeClave" />
+          <EntitySet Name="SiniestroClave" EntityType="CSBomberosModel.SiniestroClave" />
+          <AssociationSet Name="FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave" Association="CSBomberosModel.FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave">
+            <End Role="SiniestroAsistenciaTipoPuntaje" EntitySet="SiniestroAsistenciaTipoPuntaje" />
+            <End Role="SiniestroAsistenciaTipoPuntajeClave" EntitySet="SiniestroAsistenciaTipoPuntajeClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave" Association="CSBomberosModel.FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="SiniestroAsistenciaTipoPuntajeClave" EntitySet="SiniestroAsistenciaTipoPuntajeClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroClave__Creacion" Association="CSBomberosModel.FK__Usuario__SiniestroClave__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SiniestroClave__Modificacion" Association="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__Siniestro" Association="CSBomberosModel.FK__SiniestroClave__Siniestro">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SiniestroClave__SiniestroTipo" Association="CSBomberosModel.FK__SiniestroClave__SiniestroTipo">
+            <End Role="SiniestroClave" EntitySet="SiniestroClave" />
+            <End Role="SiniestroTipo" EntitySet="SiniestroTipo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -6513,6 +6658,8 @@
           <NavigationProperty Name="AcademiasAsistenciasModificadas" Relationship="CSBomberosModel.FK__Usuario__AcademiaAsistencia__Modificacion" FromRole="Usuario" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="SiniestrosAsistenciasCreadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Creacion" FromRole="Usuario" ToRole="SiniestroAsistencia" />
           <NavigationProperty Name="SiniestrosAsistenciasModificadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroAsistencia__Modificacion" FromRole="Usuario" ToRole="SiniestroAsistencia" />
+          <NavigationProperty Name="SiniestrosClavesCreadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroClave__Creacion" FromRole="Usuario" ToRole="SiniestroClave" />
+          <NavigationProperty Name="SiniestrosClavesModificadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" FromRole="Usuario" ToRole="SiniestroClave" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -10224,8 +10371,7 @@
           <Property Name="IDSiniestroRubro" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="Byte" Nullable="false" />
           <Property Name="SiniestroTipoOtro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Clave" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="ClaveNombre" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="IDSiniestroClave" Type="Byte" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HoraSalida" Type="Time" Precision="0" Nullable="true" />
           <Property Name="HoraFin" Type="Time" Precision="0" Nullable="true" />
@@ -10240,6 +10386,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Siniestro__Creacion" FromRole="Siniestro" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Siniestro__Modificacion" FromRole="Siniestro" ToRole="Usuario" />
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" FromRole="Siniestro" ToRole="SiniestroAsistencia" />
+          <NavigationProperty Name="SiniestroClave" Relationship="CSBomberosModel.FK__SiniestroClave__Siniestro" FromRole="Siniestro" ToRole="SiniestroClave" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -10307,8 +10454,7 @@
           <Property Name="IDSiniestroRubro" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroTipo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ClavePredeterminada" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="ClavePredeterminadaNombre" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="IDSiniestroClave" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -10319,6 +10465,7 @@
           <NavigationProperty Name="SiniestroRubro" Relationship="CSBomberosModel.FK__SiniestroRubro__SiniestroTipo" FromRole="SiniestroTipo" ToRole="SiniestroRubro" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroTipo__Creacion" FromRole="SiniestroTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroTipo__Modificacion" FromRole="SiniestroTipo" ToRole="Usuario" />
+          <NavigationProperty Name="SiniestroClave" Relationship="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" FromRole="SiniestroTipo" ToRole="SiniestroClave" />
         </EntityType>
         <Association Name="FK__Cuartel__Siniestro">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -10773,11 +10920,8 @@
           <Property Name="IDSiniestroAsistenciaTipo" Type="Byte" Nullable="false" />
           <Property Name="IDSiniestroAsistenciaTipoPuntaje" Type="Byte" Nullable="false" />
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PuntajeClaveVerde" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="PuntajeClaveAzul" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="PuntajeClaveNaranja" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
-          <Property Name="PuntajeClaveRoja" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
           <NavigationProperty Name="SiniestroAsistenciaTipo" Relationship="CSBomberosModel.FK__SiniestroAsistenciaTipo__SiniestroAsistenciaTipoPuntaje" FromRole="SiniestroAsistenciaTipoPuntaje" ToRole="SiniestroAsistenciaTipo" />
+          <NavigationProperty Name="SiniestroAsistenciaTipoPuntajesClave" Relationship="CSBomberosModel.FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave" FromRole="SiniestroAsistenciaTipoPuntaje" ToRole="SiniestroAsistenciaTipoPuntajeClave" />
         </EntityType>
         <Association Name="FK__AcademiaAsistenciaTipo__AcademiaAsistenciaTipoPuntaje">
           <End Type="CSBomberosModel.AcademiaAsistenciaTipo" Role="AcademiaAsistenciaTipo" Multiplicity="1" />
@@ -10908,6 +11052,112 @@
         <Association Name="UsuarioGrupoPermisoReporte">
           <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
           <End Type="CSBomberosModel.UsuarioGrupo" Role="UsuarioGrupo" Multiplicity="*" />
+        </Association>
+        <EntityType Name="SiniestroAsistenciaTipoPuntajeClave">
+          <Key>
+            <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+            <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            <PropertyRef Name="IDSiniestroClave" />
+          </Key>
+          <Property Name="IDSiniestroAsistenciaTipo" Type="Byte" Nullable="false" />
+          <Property Name="IDSiniestroAsistenciaTipoPuntaje" Type="Byte" Nullable="false" />
+          <Property Name="IDSiniestroClave" Type="Byte" Nullable="false" />
+          <Property Name="Puntaje" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
+          <NavigationProperty Name="SiniestroAsistenciaTipoPuntaje" Relationship="CSBomberosModel.FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave" FromRole="SiniestroAsistenciaTipoPuntajeClave" ToRole="SiniestroAsistenciaTipoPuntaje" />
+          <NavigationProperty Name="SiniestroClave" Relationship="CSBomberosModel.FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave" FromRole="SiniestroAsistenciaTipoPuntajeClave" ToRole="SiniestroClave" />
+        </EntityType>
+        <EntityType Name="SiniestroClave">
+          <Key>
+            <PropertyRef Name="IDSiniestroClave" />
+          </Key>
+          <Property Name="IDSiniestroClave" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orden" Type="Byte" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="SiniestroAsistenciaTipoPuntajesClave" Relationship="CSBomberosModel.FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave" FromRole="SiniestroClave" ToRole="SiniestroAsistenciaTipoPuntajeClave" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroClave__Creacion" FromRole="SiniestroClave" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" FromRole="SiniestroClave" ToRole="Usuario" />
+          <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK__SiniestroClave__Siniestro" FromRole="SiniestroClave" ToRole="Siniestro" />
+          <NavigationProperty Name="SiniestrosTipos" Relationship="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" FromRole="SiniestroClave" ToRole="SiniestroTipo" />
+        </EntityType>
+        <Association Name="FK__SiniestroAsistenciaTipoPuntaje__SiniestroAsistenciaTipoPuntajeClave">
+          <End Type="CSBomberosModel.SiniestroAsistenciaTipoPuntaje" Role="SiniestroAsistenciaTipoPuntaje" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroAsistenciaTipoPuntajeClave" Role="SiniestroAsistenciaTipoPuntajeClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroAsistenciaTipoPuntaje">
+              <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+              <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            </Principal>
+            <Dependent Role="SiniestroAsistenciaTipoPuntajeClave">
+              <PropertyRef Name="IDSiniestroAsistenciaTipo" />
+              <PropertyRef Name="IDSiniestroAsistenciaTipoPuntaje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__SiniestroAsistenciaTipoPuntajeClave">
+          <End Type="CSBomberosModel.SiniestroClave" Role="SiniestroClave" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroAsistenciaTipoPuntajeClave" Role="SiniestroAsistenciaTipoPuntajeClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="SiniestroAsistenciaTipoPuntajeClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroClave__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroClave" Role="SiniestroClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroClave">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SiniestroClave__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroClave" Role="SiniestroClave" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroClave">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__Siniestro">
+          <End Type="CSBomberosModel.SiniestroClave" Role="SiniestroClave" Multiplicity="1" />
+          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SiniestroClave__SiniestroTipo">
+          <End Type="CSBomberosModel.SiniestroClave" Role="SiniestroClave" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.SiniestroTipo" Role="SiniestroTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SiniestroClave">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Principal>
+            <Dependent Role="SiniestroTipo">
+              <PropertyRef Name="IDSiniestroClave" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -12157,11 +12407,11 @@
           <EntitySetMapping Name="Siniestro">
             <EntityTypeMapping TypeName="CSBomberosModel.Siniestro">
               <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
                 <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="NumeroPrefijo" ColumnName="NumeroPrefijo" />
                 <ScalarProperty Name="SiniestroTipoOtro" ColumnName="SiniestroTipoOtro" />
-                <ScalarProperty Name="ClaveNombre" ColumnName="ClaveNombre" />
                 <ScalarProperty Name="Anulado" ColumnName="Anulado" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -12171,7 +12421,6 @@
                 <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
                 <ScalarProperty Name="HoraSalida" ColumnName="HoraSalida" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="IDSiniestroTipo" ColumnName="IDSiniestroTipo" />
                 <ScalarProperty Name="IDSiniestroRubro" ColumnName="IDSiniestroRubro" />
                 <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
@@ -12229,14 +12478,13 @@
           <EntitySetMapping Name="SiniestroTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroTipo">
               <MappingFragment StoreEntitySet="SiniestroTipo">
-                <ScalarProperty Name="ClavePredeterminadaNombre" ColumnName="ClavePredeterminadaNombre" />
+                <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
-                <ScalarProperty Name="ClavePredeterminada" ColumnName="ClavePredeterminada" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDSiniestroTipo" ColumnName="IDSiniestroTipo" />
                 <ScalarProperty Name="IDSiniestroRubro" ColumnName="IDSiniestroRubro" />
@@ -12334,10 +12582,6 @@
           <EntitySetMapping Name="SiniestroAsistenciaTipoPuntaje">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistenciaTipoPuntaje">
               <MappingFragment StoreEntitySet="SiniestroAsistenciaTipoPuntaje">
-                <ScalarProperty Name="PuntajeClaveRoja" ColumnName="PuntajeClaveRoja" />
-                <ScalarProperty Name="PuntajeClaveNaranja" ColumnName="PuntajeClaveNaranja" />
-                <ScalarProperty Name="PuntajeClaveAzul" ColumnName="PuntajeClaveAzul" />
-                <ScalarProperty Name="PuntajeClaveVerde" ColumnName="PuntajeClaveVerde" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
                 <ScalarProperty Name="IDSiniestroAsistenciaTipoPuntaje" ColumnName="IDSiniestroAsistenciaTipoPuntaje" />
                 <ScalarProperty Name="IDSiniestroAsistenciaTipo" ColumnName="IDSiniestroAsistenciaTipo" />
@@ -12393,6 +12637,31 @@
               <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="SiniestroAsistenciaTipoPuntajeClave">
+            <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistenciaTipoPuntajeClave">
+              <MappingFragment StoreEntitySet="SiniestroAsistenciaTipoPuntajeClave">
+                <ScalarProperty Name="Puntaje" ColumnName="Puntaje" />
+                <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
+                <ScalarProperty Name="IDSiniestroAsistenciaTipoPuntaje" ColumnName="IDSiniestroAsistenciaTipoPuntaje" />
+                <ScalarProperty Name="IDSiniestroAsistenciaTipo" ColumnName="IDSiniestroAsistenciaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiniestroClave">
+            <EntityTypeMapping TypeName="CSBomberosModel.SiniestroClave">
+              <MappingFragment StoreEntitySet="SiniestroClave">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -14,7 +14,7 @@
         Public Property SiniestroRubroNombre As String
         Public Property IDSiniestroTipo As Byte
         Public Property SiniestroTipoNombre As String
-        Public Property Clave As String
+        Public Property IDSiniestroClave As Byte
         Public Property ClaveNombre As String
         Public Property Fecha As Date
         Public Property Anulado As Boolean
@@ -46,7 +46,7 @@
 
         ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
-        ListasSiniestros.LlenarComboBoxClaves(comboboxClave.ComboBox, True, False)
+        ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave.ComboBox, True, False)
 
         ' Filtro de período
         InicializarFiltroDeFechas()
@@ -188,8 +188,9 @@
                                    Join c In mdbContext.Cuartel On s.IDCuartel Equals c.IDCuartel
                                    Join sr In mdbContext.SiniestroRubro On s.IDSiniestroRubro Equals sr.IDSiniestroRubro
                                    Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
+                                   Join sc In mdbContext.SiniestroClave On s.IDSiniestroClave Equals sc.IDSiniestroClave
                                    Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
-                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .Clave = s.Clave, .ClaveNombre = s.ClaveNombre, .Fecha = s.Fecha, .Anulado = s.Anulado}).ToList
+                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .Anulado = s.Anulado}).ToList
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Siniestros.")
@@ -245,7 +246,7 @@
 
                 ' Filtro por Clave
                 If comboboxClave.SelectedIndex > 0 Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Clave = CStr(comboboxClave.ComboBox.SelectedValue)).ToList
+                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.IDSiniestroClave = CByte(comboboxClave.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Anulado
@@ -387,7 +388,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 

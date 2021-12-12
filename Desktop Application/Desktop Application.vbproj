@@ -727,6 +727,12 @@
     <Compile Include="SiniestroAsistenciaTipoPuntaje.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="SiniestroAsistenciaTipoPuntajeClave.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroClave.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="SiniestroRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

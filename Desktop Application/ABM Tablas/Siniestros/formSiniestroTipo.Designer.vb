@@ -204,7 +204,7 @@ Partial Class formSiniestroTipo
         Me.comboboxClavePredeterminada.FormattingEnabled = True
         Me.comboboxClavePredeterminada.Location = New System.Drawing.Point(125, 88)
         Me.comboboxClavePredeterminada.Name = "comboboxClavePredeterminada"
-        Me.comboboxClavePredeterminada.Size = New System.Drawing.Size(86, 21)
+        Me.comboboxClavePredeterminada.Size = New System.Drawing.Size(340, 21)
         Me.comboboxClavePredeterminada.TabIndex = 5
         '
         'comboboxRubro

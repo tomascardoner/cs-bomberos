@@ -7,8 +7,6 @@
 
     Private mTipoAsistenciaFirstColumnIndex As Integer
 
-    Private Const ColumnNameIdPersona As String = "columnIDPersona"
-    Private Const ColumnNameApellidoNombre As String = "columnPersonaApellidoNombre"
     Private Const ColumnNameAsistenciaTipoPrefijo As String = "columnIDAcademiaAsistenciaTipo#"
 
 #End Region
@@ -110,8 +108,8 @@
                 newRowId = datagridviewMain.Rows.Add()
                 newRow = datagridviewMain.Rows(newRowId)
                 With newRow
-                    .Cells(ColumnNameIdPersona).Value = persona.IDPersona
-                    .Cells(ColumnNameApellidoNombre).Value = persona.ApellidoNombre
+                    .Cells(columnIDPersona.Name).Value = persona.IDPersona
+                    .Cells(columnPersonaApellidoNombre.Name).Value = persona.ApellidoNombre
                 End With
             Next
             Return True
@@ -144,9 +142,9 @@
             Dim startRowIndex As Integer = 0
             Dim columnName As String
 
-            For Each asistencia In listAsistenciasEnAcademia
+            For Each asistencia As AcademiaAsistencia In listAsistenciasEnAcademia
                 For rowIndex As Integer = startRowIndex To datagridviewMain.RowCount - 1
-                    If CInt(datagridviewMain.Rows(rowIndex).Cells(ColumnNameIdPersona).Value) = asistencia.IDPersona Then
+                    If CInt(datagridviewMain.Rows(rowIndex).Cells(columnIDPersona.Name).Value) = asistencia.IDPersona Then
                         columnName = ColumnNameAsistenciaTipoPrefijo & asistencia.IDAcademiaAsistenciaTipo.ToString
                         datagridviewMain.Rows(rowIndex).Cells(columnName).Value = True
                         startRowIndex = rowIndex + 1
@@ -157,7 +155,7 @@
             Return True
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener los Tipos de Asistencia.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener las Asistencias.")
             Return False
 
         Finally
@@ -283,7 +281,7 @@
             Dim idPersona As Integer
             Dim idAcademiaAsistenciaTipo As Byte
 
-            idPersona = CInt(row.Cells(ColumnNameIdPersona).Value)
+            idPersona = CInt(row.Cells(columnIDPersona.Name).Value)
             idAcademiaAsistenciaTipo = ObtenerAsistenciaTipoEnFila(row)
 
             If idAcademiaAsistenciaTipo = 0 Then

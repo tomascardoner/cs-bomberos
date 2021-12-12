@@ -24,27 +24,22 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim labelFechaInicio As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.labelPuntajeClaveNaranja = New System.Windows.Forms.Label()
-        Me.labelPuntajeClaveVerde = New System.Windows.Forms.Label()
-        Me.labelPuntajeClaveAzul = New System.Windows.Forms.Label()
-        Me.labelPuntajeClaveRoja = New System.Windows.Forms.Label()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.datetimepickerFechaInicio = New System.Windows.Forms.DateTimePicker()
-        Me.doubletextboxPuntajeClaveVerde = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxPuntajeClaveAzul = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxPuntajeClaveNaranja = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
-        Me.doubletextboxPuntajeClaveRoja = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
+        Me.datagridviewPuntajes = New System.Windows.Forms.DataGridView()
+        Me.columnIDSiniestroClave = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSiniestroClaveNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnPuntaje = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelFechaInicio = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
-        CType(Me.doubletextboxPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.doubletextboxPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datagridviewPuntajes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelFechaInicio
@@ -102,132 +97,77 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(276, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(299, 39)
         Me.toolstripMain.TabIndex = 10
-        '
-        'labelPuntajeClaveNaranja
-        '
-        Me.labelPuntajeClaveNaranja.AutoSize = True
-        Me.labelPuntajeClaveNaranja.Location = New System.Drawing.Point(12, 131)
-        Me.labelPuntajeClaveNaranja.Name = "labelPuntajeClaveNaranja"
-        Me.labelPuntajeClaveNaranja.Size = New System.Drawing.Size(113, 13)
-        Me.labelPuntajeClaveNaranja.TabIndex = 6
-        Me.labelPuntajeClaveNaranja.Text = "Puntaje clave naranja:"
-        '
-        'labelPuntajeClaveVerde
-        '
-        Me.labelPuntajeClaveVerde.AutoSize = True
-        Me.labelPuntajeClaveVerde.Location = New System.Drawing.Point(12, 79)
-        Me.labelPuntajeClaveVerde.Name = "labelPuntajeClaveVerde"
-        Me.labelPuntajeClaveVerde.Size = New System.Drawing.Size(105, 13)
-        Me.labelPuntajeClaveVerde.TabIndex = 2
-        Me.labelPuntajeClaveVerde.Text = "Puntaje clave verde:"
-        '
-        'labelPuntajeClaveAzul
-        '
-        Me.labelPuntajeClaveAzul.AutoSize = True
-        Me.labelPuntajeClaveAzul.Location = New System.Drawing.Point(12, 105)
-        Me.labelPuntajeClaveAzul.Name = "labelPuntajeClaveAzul"
-        Me.labelPuntajeClaveAzul.Size = New System.Drawing.Size(97, 13)
-        Me.labelPuntajeClaveAzul.TabIndex = 4
-        Me.labelPuntajeClaveAzul.Text = "Puntaje clave azul:"
-        '
-        'labelPuntajeClaveRoja
-        '
-        Me.labelPuntajeClaveRoja.AutoSize = True
-        Me.labelPuntajeClaveRoja.Location = New System.Drawing.Point(12, 157)
-        Me.labelPuntajeClaveRoja.Name = "labelPuntajeClaveRoja"
-        Me.labelPuntajeClaveRoja.Size = New System.Drawing.Size(95, 13)
-        Me.labelPuntajeClaveRoja.TabIndex = 8
-        Me.labelPuntajeClaveRoja.Text = "Puntaje clave roja:"
         '
         'datetimepickerFechaInicio
         '
         Me.datetimepickerFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(139, 52)
+        Me.datetimepickerFechaInicio.Location = New System.Drawing.Point(100, 52)
         Me.datetimepickerFechaInicio.Name = "datetimepickerFechaInicio"
         Me.datetimepickerFechaInicio.Size = New System.Drawing.Size(94, 20)
         Me.datetimepickerFechaInicio.TabIndex = 1
         '
-        'doubletextboxPuntajeClaveVerde
+        'datagridviewPuntajes
         '
-        Me.doubletextboxPuntajeClaveVerde.BeforeTouchSize = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveVerde.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxPuntajeClaveVerde.DoubleValue = 0R
-        Me.doubletextboxPuntajeClaveVerde.Location = New System.Drawing.Point(139, 78)
-        Me.doubletextboxPuntajeClaveVerde.MaxValue = 99.99R
-        Me.doubletextboxPuntajeClaveVerde.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxPuntajeClaveVerde.MinValue = 0R
-        Me.doubletextboxPuntajeClaveVerde.Name = "doubletextboxPuntajeClaveVerde"
-        Me.doubletextboxPuntajeClaveVerde.NullString = ""
-        Me.doubletextboxPuntajeClaveVerde.Size = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveVerde.TabIndex = 3
-        Me.doubletextboxPuntajeClaveVerde.Text = "0,00"
-        Me.doubletextboxPuntajeClaveVerde.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.datagridviewPuntajes.AllowUserToAddRows = False
+        Me.datagridviewPuntajes.AllowUserToDeleteRows = False
+        Me.datagridviewPuntajes.AllowUserToResizeColumns = False
+        Me.datagridviewPuntajes.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewPuntajes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewPuntajes.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.datagridviewPuntajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewPuntajes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnIDSiniestroClave, Me.columnSiniestroClaveNombre, Me.columnPuntaje})
+        Me.datagridviewPuntajes.Location = New System.Drawing.Point(12, 78)
+        Me.datagridviewPuntajes.MultiSelect = False
+        Me.datagridviewPuntajes.Name = "datagridviewPuntajes"
+        Me.datagridviewPuntajes.RowHeadersVisible = False
+        Me.datagridviewPuntajes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewPuntajes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.datagridviewPuntajes.Size = New System.Drawing.Size(275, 309)
+        Me.datagridviewPuntajes.TabIndex = 2
         '
-        'doubletextboxPuntajeClaveAzul
+        'columnIDSiniestroClave
         '
-        Me.doubletextboxPuntajeClaveAzul.BeforeTouchSize = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveAzul.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxPuntajeClaveAzul.DoubleValue = 0R
-        Me.doubletextboxPuntajeClaveAzul.Location = New System.Drawing.Point(139, 104)
-        Me.doubletextboxPuntajeClaveAzul.MaxValue = 99.99R
-        Me.doubletextboxPuntajeClaveAzul.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxPuntajeClaveAzul.MinValue = 0R
-        Me.doubletextboxPuntajeClaveAzul.Name = "doubletextboxPuntajeClaveAzul"
-        Me.doubletextboxPuntajeClaveAzul.NullString = ""
-        Me.doubletextboxPuntajeClaveAzul.Size = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveAzul.TabIndex = 5
-        Me.doubletextboxPuntajeClaveAzul.Text = "0,00"
-        Me.doubletextboxPuntajeClaveAzul.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.columnIDSiniestroClave.DataPropertyName = "IDSiniestroClave"
+        Me.columnIDSiniestroClave.HeaderText = "IDClave"
+        Me.columnIDSiniestroClave.Name = "columnIDSiniestroClave"
+        Me.columnIDSiniestroClave.Visible = False
         '
-        'doubletextboxPuntajeClaveNaranja
+        'columnSiniestroClaveNombre
         '
-        Me.doubletextboxPuntajeClaveNaranja.BeforeTouchSize = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveNaranja.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxPuntajeClaveNaranja.DoubleValue = 0R
-        Me.doubletextboxPuntajeClaveNaranja.Location = New System.Drawing.Point(139, 130)
-        Me.doubletextboxPuntajeClaveNaranja.MaxValue = 99.99R
-        Me.doubletextboxPuntajeClaveNaranja.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxPuntajeClaveNaranja.MinValue = 0R
-        Me.doubletextboxPuntajeClaveNaranja.Name = "doubletextboxPuntajeClaveNaranja"
-        Me.doubletextboxPuntajeClaveNaranja.NullString = ""
-        Me.doubletextboxPuntajeClaveNaranja.Size = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveNaranja.TabIndex = 7
-        Me.doubletextboxPuntajeClaveNaranja.Text = "0,00"
-        Me.doubletextboxPuntajeClaveNaranja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.columnSiniestroClaveNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSiniestroClaveNombre.DataPropertyName = "SiniestroClaveNombre"
+        Me.columnSiniestroClaveNombre.HeaderText = "Clave"
+        Me.columnSiniestroClaveNombre.Name = "columnSiniestroClaveNombre"
+        Me.columnSiniestroClaveNombre.ReadOnly = True
+        Me.columnSiniestroClaveNombre.Width = 59
         '
-        'doubletextboxPuntajeClaveRoja
+        'columnPuntaje
         '
-        Me.doubletextboxPuntajeClaveRoja.BeforeTouchSize = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveRoja.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxPuntajeClaveRoja.DoubleValue = 0R
-        Me.doubletextboxPuntajeClaveRoja.Location = New System.Drawing.Point(139, 156)
-        Me.doubletextboxPuntajeClaveRoja.MaxValue = 99.99R
-        Me.doubletextboxPuntajeClaveRoja.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxPuntajeClaveRoja.MinValue = 0R
-        Me.doubletextboxPuntajeClaveRoja.Name = "doubletextboxPuntajeClaveRoja"
-        Me.doubletextboxPuntajeClaveRoja.NullString = ""
-        Me.doubletextboxPuntajeClaveRoja.Size = New System.Drawing.Size(36, 20)
-        Me.doubletextboxPuntajeClaveRoja.TabIndex = 9
-        Me.doubletextboxPuntajeClaveRoja.Text = "0,00"
-        Me.doubletextboxPuntajeClaveRoja.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.columnPuntaje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "N2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnPuntaje.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnPuntaje.HeaderText = "Puntaje"
+        Me.columnPuntaje.Name = "columnPuntaje"
+        Me.columnPuntaje.Width = 68
         '
         'formSiniestroAsistenciaTipoPuntaje
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(276, 185)
-        Me.Controls.Add(Me.doubletextboxPuntajeClaveRoja)
-        Me.Controls.Add(Me.doubletextboxPuntajeClaveNaranja)
-        Me.Controls.Add(Me.doubletextboxPuntajeClaveAzul)
-        Me.Controls.Add(Me.doubletextboxPuntajeClaveVerde)
+        Me.ClientSize = New System.Drawing.Size(299, 399)
+        Me.Controls.Add(Me.datagridviewPuntajes)
         Me.Controls.Add(Me.datetimepickerFechaInicio)
-        Me.Controls.Add(Me.labelPuntajeClaveRoja)
         Me.Controls.Add(labelFechaInicio)
-        Me.Controls.Add(Me.labelPuntajeClaveVerde)
-        Me.Controls.Add(Me.labelPuntajeClaveAzul)
-        Me.Controls.Add(Me.labelPuntajeClaveNaranja)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
@@ -239,10 +179,7 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
         Me.Text = "Puntaje de Tipo de Asistencia a Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        CType(Me.doubletextboxPuntajeClaveVerde, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxPuntajeClaveAzul, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxPuntajeClaveNaranja, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.doubletextboxPuntajeClaveRoja, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datagridviewPuntajes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -252,14 +189,10 @@ Partial Class formSiniestroAsistenciaTipoPuntaje
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelPuntajeClaveNaranja As Label
-    Friend WithEvents labelPuntajeClaveVerde As Label
-    Friend WithEvents labelPuntajeClaveAzul As Label
-    Friend WithEvents labelPuntajeClaveRoja As Label
     Friend WithEvents tooltipMain As ToolTip
     Friend WithEvents datetimepickerFechaInicio As DateTimePicker
-    Friend WithEvents doubletextboxPuntajeClaveVerde As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents doubletextboxPuntajeClaveAzul As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents doubletextboxPuntajeClaveNaranja As Syncfusion.Windows.Forms.Tools.DoubleTextBox
-    Friend WithEvents doubletextboxPuntajeClaveRoja As Syncfusion.Windows.Forms.Tools.DoubleTextBox
+    Friend WithEvents datagridviewPuntajes As DataGridView
+    Friend WithEvents columnIDSiniestroClave As DataGridViewTextBoxColumn
+    Friend WithEvents columnSiniestroClaveNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnPuntaje As DataGridViewTextBoxColumn
 End Class

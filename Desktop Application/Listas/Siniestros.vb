@@ -9,16 +9,18 @@
         listItems = context.SiniestroRubro.Where(Function(sr) sr.EsActivo).OrderBy(Function(sr) sr.Nombre).ToList
 
         If mostrarItemTodos Then
-            Dim todos As New SiniestroRubro
-            todos.IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim todos As New SiniestroRubro With {
+                .IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, todos)
         End If
 
         If mostrarItemNoEspecifica Then
-            Dim noEspecifica As New SiniestroRubro
-            noEspecifica.IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim noEspecifica As New SiniestroRubro With {
+                .IDSiniestroRubro = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, noEspecifica)
         End If
 
@@ -34,69 +36,49 @@
         listItems = context.SiniestroTipo.Where(Function(st) st.EsActivo AndAlso st.IDSiniestroRubro = IDSiniestroRubro).OrderBy(Function(sr) sr.Nombre).ToList
 
         If mostrarItemTodos Then
-            Dim todos As New SiniestroTipo
-            todos.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            Dim todos As New SiniestroTipo With {
+                .IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
             listItems.Insert(0, todos)
         End If
 
         If mostrarItemNoEspecifica Then
-            Dim noEspecifica As New SiniestroTipo
-            noEspecifica.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim noEspecifica As New SiniestroTipo With {
+                .IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, noEspecifica)
         End If
 
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxClaves(ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
-        Dim datatableClaves As New DataTable("Claves")
-        Dim datarowRow As DataRow
+    Friend Sub LlenarComboBoxClaves(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of SiniestroClave)
 
-        control.ValueMember = "IDClave"
+        control.ValueMember = "IDSiniestroClave"
         control.DisplayMember = "Nombre"
 
-        With datatableClaves
-            .Columns.Add("IDClave", System.Type.GetType("System.String"))
-            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+        listItems = context.SiniestroClave.Where(Function(sc) sc.EsActivo).OrderBy(Function(sc) sc.Orden).ThenBy(Function(sc) sc.Nombre).ToList
 
-            If mostrarItemTodos Then
-                datarowRow = .NewRow
-                datarowRow("IDClave") = CardonerSistemas.Constants.FIELD_VALUE_ALL_STRING
-                datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_FEMALE
-                .Rows.Add(datarowRow)
-            End If
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroClave With {
+                .IDSiniestroClave = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
+            listItems.Insert(0, todos)
+        End If
 
-            If mostrarItemNoEspecifica Then
-                datarowRow = .NewRow
-                datarowRow("IDClave") = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING
-                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
-                .Rows.Add(datarowRow)
-            End If
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroClave With {
+                .IDSiniestroClave = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            listItems.Insert(0, noEspecifica)
+        End If
 
-            datarowRow = .NewRow
-            datarowRow("IDClave") = Constantes.SINIESTRO_CLAVE_VERDE
-            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVE_VERDE_NOMBRE
-            .Rows.Add(datarowRow)
-
-            datarowRow = .NewRow
-            datarowRow("IDClave") = Constantes.SINIESTRO_CLAVE_AZUL
-            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVE_AZUL_NOMBRE
-            .Rows.Add(datarowRow)
-
-            datarowRow = .NewRow
-            datarowRow("IDClave") = Constantes.SINIESTRO_CLAVE_NARANJA
-            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVE_NARANJA_NOMBRE
-            .Rows.Add(datarowRow)
-
-            datarowRow = .NewRow
-            datarowRow("IDClave") = Constantes.SINIESTRO_CLAVE_ROJA
-            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVE_ROJA_NOMBRE
-            .Rows.Add(datarowRow)
-        End With
-
-        control.DataSource = datatableClaves
+        control.DataSource = listItems
     End Sub
 
     Friend Sub LlenarComboBoxAsistenciaTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
@@ -108,16 +90,18 @@
         listItems = context.SiniestroAsistenciaTipo.Where(Function(sat) sat.EsActivo).OrderBy(Function(sat) sat.Orden).ThenBy(Function(sat) sat.Nombre).ToList
 
         If mostrarItemTodos Then
-            Dim todos As New SiniestroAsistenciaTipo
-            todos.IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-            todos.Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            Dim todos As New SiniestroAsistenciaTipo With {
+                .IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
             listItems.Insert(0, todos)
         End If
 
         If mostrarItemNoEspecifica Then
-            Dim noEspecifica As New SiniestroAsistenciaTipo
-            noEspecifica.IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            noEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim noEspecifica As New SiniestroAsistenciaTipo With {
+                .IDSiniestroAsistenciaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, noEspecifica)
         End If
 

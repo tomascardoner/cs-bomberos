@@ -35,7 +35,7 @@
                     .IDSiniestroTipo = CByte(formSiniestros.comboboxSiniestroTipo.ComboBox.SelectedValue)
                 End If
                 If formSiniestros.comboboxClave.SelectedIndex > 0 Then
-                    .Clave = CStr(formSiniestros.comboboxClave.ComboBox.SelectedValue)
+                    .IDSiniestroClave = CByte(formSiniestros.comboboxClave.ComboBox.SelectedValue)
                 End If
 
                 .Anulado = False
@@ -98,7 +98,7 @@
 
         ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
-        ListasSiniestros.LlenarComboBoxClaves(comboboxClave, False, False)
+        ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -125,7 +125,7 @@
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroRubro)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroTipo)
             textboxSiniestroTipoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SiniestroTipoOtro)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Clave, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDSiniestroClave)
             datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
             checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
@@ -163,7 +163,7 @@
             .IDSiniestroRubro = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSiniestroRubro.SelectedValue).Value
             .IDSiniestroTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSiniestroTipo.SelectedValue).Value
             .SiniestroTipoOtro = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSiniestroTipoOtro.Text)
-            .Clave = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxClave.SelectedValue)
+            .IDSiniestroClave = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxClave.SelectedValue).Value
             .HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraSalida.Value, datetimepickerHoraSalida.Checked)
             .HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraFin.Value, datetimepickerHoraFin.Checked)
             .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
@@ -253,8 +253,8 @@
 
             labelSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
             textboxSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
-            If siniestroTipoActual.ClavePredeterminada <> Nothing Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.ClavePredeterminada)
+            If siniestroTipoActual.IDSiniestroClave.HasValue Then
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.IDSiniestroClave)
             End If
         Else
             labelSiniestroTipoOtro.Visible = False

@@ -453,14 +453,18 @@ GO
 
 CREATE FUNCTION SiniestroObtenerClaveAgrupada
 (	
-	@Clave char(1)
+	@IDSiniestroClave tinyint
 ) RETURNS char(2) AS
 BEGIN
-	RETURN (CASE 
-				WHEN @Clave = 'V' THEN 'AV'
-				WHEN @Clave = 'A' THEN 'AV'
-				WHEN @Clave = 'N' THEN 'N'
-				WHEN @Clave = 'R' THEN 'R'
+	RETURN (CASE @IDSiniestroClave
+				WHEN 1 THEN 'AV'
+				WHEN 2 THEN 'AV'
+				WHEN 3 THEN 'N'
+				WHEN 4 THEN 'R'
+				WHEN 5 THEN 'SE'
+				WHEN 6 THEN 'AV'
+				WHEN 7 THEN 'AV'
+				WHEN 8 THEN 'AV'
 			END)
 END
 GO
@@ -478,22 +482,26 @@ GO
 
 CREATE FUNCTION SiniestroObtenerClaveAgrupadaYPorcentaje
 (	
-	@Clave char(1),
+	@IDSiniestroClave tinyint,
 	@IDSiniestroAsistenciaTipo tinyint,
 	@IDSiniestroAsistenciaTipoPresente tinyint,
 	@IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
 ) RETURNS char(2) AS
 BEGIN
-	RETURN (CASE 
-				WHEN @Clave = 'V' THEN 'AV'
-				WHEN @Clave = 'A' THEN 'AV'
-				WHEN @Clave = 'N' THEN 'N'
-				WHEN @Clave = 'R' THEN
+	RETURN (CASE @IDSiniestroClave
+				WHEN 1 THEN 'AV'
+				WHEN 2 THEN 'AV'
+				WHEN 3 THEN 'N'
+				WHEN 4 THEN
 					(CASE @IDSiniestroAsistenciaTipo
 						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'R1'
 						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'R5'
 						ELSE ''
 					END)
+				WHEN 5 THEN 'SE'
+				WHEN 6 THEN 'AV'
+				WHEN 7 THEN 'AV'
+				WHEN 8 THEN 'AV'
 				ELSE ''
 			END)
 END

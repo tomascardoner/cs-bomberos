@@ -5,8 +5,7 @@
     Private mlistSiniestroAsistenciaTiposBase As List(Of SiniestroAsistenciaTipo)
     Private mlistSiniestroAsistenciaTiposFiltradaYOrdenada As List(Of SiniestroAsistenciaTipo)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
@@ -187,7 +186,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
