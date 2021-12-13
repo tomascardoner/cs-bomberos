@@ -173,17 +173,38 @@
     End Sub
 
     Private Sub datagridviewPuntajes_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles datagridviewPuntajes.CellEndEdit
-        If IsNumeric(datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value) Then
-            Dim value As Decimal = Decimal.Parse(datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString, Globalization.NumberStyles.AllowDecimalPoint)
-            If value < -99.99 Or value > 99.99 Then
-                MsgBox("El puntaje debe estar dentro del rango -99,99 y 99,99.", MsgBoxStyle.Information, My.Application.Info.Title)
-                datagridviewPuntajes.Focus()
-                Exit Sub
-            End If
-            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = value
-        Else
+        Dim stringValue As String
+        Dim decimalValue As Decimal
+
+        ' Verifico que el texto ingresado sea un número
+        If Not IsNumeric(datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value) Then
             datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = Nothing
+            Exit Sub
         End If
+
+        ' Reemplazo el punto por el separador decimal
+        stringValue = datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value.ToString
+        stringValue = stringValue.Replace(".", My.Application.Culture.NumberFormat.NumberDecimalSeparator)
+
+        ' Convierto el valor ingresado a un número decimal
+        If Not Decimal.TryParse(stringValue, decimalValue) Then
+            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = Nothing
+            Exit Sub
+        End If
+
+        ' Verifico que el valor esté dentro de los valores permitidos
+        If decimalValue < -99.99 Then
+            MsgBox("El puntaje debe ser mayor o igual a -99,99.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = Nothing
+            Exit Sub
+        End If
+        If decimalValue > 99.99 Then
+            MsgBox("El puntaje debe ser menor a 99,99.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = Nothing
+            Exit Sub
+        End If
+
+        datagridviewPuntajes.Rows(e.RowIndex).Cells(e.ColumnIndex).Value = decimalValue
     End Sub
 
 #End Region
