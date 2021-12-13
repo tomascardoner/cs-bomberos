@@ -366,6 +366,10 @@
         ShowForm(Permisos.SINIESTROTIPO, CType(formSiniestroTipos, Form))
     End Sub
 
+    Private Sub SiniestrosClaves() Handles menuitemTablas_SiniestrosClaves.Click
+        ShowForm(Permisos.SINIESTROCLAVE, CType(formSiniestroClaves, Form))
+    End Sub
+
     Private Sub SiniestrosAsistenciasTipos() Handles menuitemTablas_SiniestrosAsistenciasTipos.Click
         ShowForm(Permisos.SINIESTROASISTENCIATIPO, CType(formSiniestroAsistenciaTipos, Form))
     End Sub

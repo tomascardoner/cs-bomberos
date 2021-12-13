@@ -300,6 +300,18 @@
     <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroClave.designer.vb">
+      <DependentUpon>formSiniestroClave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroClave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroClaves.designer.vb">
+      <DependentUpon>formSiniestroClaves.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Siniestros\formSiniestroClaves.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM Tablas\Siniestros\formSiniestroRubro.designer.vb">
       <DependentUpon>formSiniestroRubro.vb</DependentUpon>
     </Compile>
@@ -1392,6 +1404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipos.resx">
       <DependentUpon>formSiniestroAsistenciaTipos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroClave.resx">
+      <DependentUpon>formSiniestroClave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroClaves.resx">
+      <DependentUpon>formSiniestroClaves.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroRubro.resx">
       <DependentUpon>formSiniestroRubro.vb</DependentUpon>

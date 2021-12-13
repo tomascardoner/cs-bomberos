@@ -92,6 +92,7 @@ Partial Class formMDIMain
         Me.menuitemTablas_Cuarteles = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Areas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Alarmas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_TiposResponsables = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Responsables = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Proveedores = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonDocumentaciones = New System.Windows.Forms.ToolStripDropDownButton()
@@ -107,7 +108,7 @@ Partial Class formMDIMain
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemTablas_TiposResponsables = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_SiniestrosClaves = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -488,7 +489,7 @@ Partial Class formMDIMain
         '
         'menuitemTablas_MenuSiniestros
         '
-        Me.menuitemTablas_MenuSiniestros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_SiniestrosRubros, Me.menuitemTablas_SiniestrosTipos, Me.menuitemTablas_SiniestrosAsistenciasTipos})
+        Me.menuitemTablas_MenuSiniestros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_SiniestrosRubros, Me.menuitemTablas_SiniestrosTipos, Me.menuitemTablas_SiniestrosClaves, Me.menuitemTablas_SiniestrosAsistenciasTipos})
         Me.menuitemTablas_MenuSiniestros.Name = "menuitemTablas_MenuSiniestros"
         Me.menuitemTablas_MenuSiniestros.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_MenuSiniestros.Text = "Siniestros"
@@ -496,19 +497,19 @@ Partial Class formMDIMain
         'menuitemTablas_SiniestrosRubros
         '
         Me.menuitemTablas_SiniestrosRubros.Name = "menuitemTablas_SiniestrosRubros"
-        Me.menuitemTablas_SiniestrosRubros.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosRubros.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_SiniestrosRubros.Text = "Rubros"
         '
         'menuitemTablas_SiniestrosTipos
         '
         Me.menuitemTablas_SiniestrosTipos.Name = "menuitemTablas_SiniestrosTipos"
-        Me.menuitemTablas_SiniestrosTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosTipos.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_SiniestrosTipos.Text = "Tipos"
         '
         'menuitemTablas_SiniestrosAsistenciasTipos
         '
         Me.menuitemTablas_SiniestrosAsistenciasTipos.Name = "menuitemTablas_SiniestrosAsistenciasTipos"
-        Me.menuitemTablas_SiniestrosAsistenciasTipos.Size = New System.Drawing.Size(172, 22)
+        Me.menuitemTablas_SiniestrosAsistenciasTipos.Size = New System.Drawing.Size(180, 22)
         Me.menuitemTablas_SiniestrosAsistenciasTipos.Text = "Tipos de asistencia"
         '
         'menuitemTablas_MenuUsuarios
@@ -560,6 +561,12 @@ Partial Class formMDIMain
         Me.menuitemTablas_Alarmas.Name = "menuitemTablas_Alarmas"
         Me.menuitemTablas_Alarmas.Size = New System.Drawing.Size(189, 22)
         Me.menuitemTablas_Alarmas.Text = "Alarmas"
+        '
+        'menuitemTablas_TiposResponsables
+        '
+        Me.menuitemTablas_TiposResponsables.Name = "menuitemTablas_TiposResponsables"
+        Me.menuitemTablas_TiposResponsables.Size = New System.Drawing.Size(189, 22)
+        Me.menuitemTablas_TiposResponsables.Text = "Tipos de responsables"
         '
         'menuitemTablas_Responsables
         '
@@ -676,11 +683,11 @@ Partial Class formMDIMain
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
         '
-        'menuitemTablas_TiposResponsables
+        'menuitemTablas_SiniestrosClaves
         '
-        Me.menuitemTablas_TiposResponsables.Name = "menuitemTablas_TiposResponsables"
-        Me.menuitemTablas_TiposResponsables.Size = New System.Drawing.Size(189, 22)
-        Me.menuitemTablas_TiposResponsables.Text = "Tipos de responsables"
+        Me.menuitemTablas_SiniestrosClaves.Name = "menuitemTablas_SiniestrosClaves"
+        Me.menuitemTablas_SiniestrosClaves.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_SiniestrosClaves.Text = "Claves"
         '
         'formMDIMain
         '
@@ -793,4 +800,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemDocumentaciones_Academias As ToolStripMenuItem
     Friend WithEvents menuitemArchivo_CambiarContrasena As ToolStripMenuItem
     Friend WithEvents menuitemTablas_TiposResponsables As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_SiniestrosClaves As ToolStripMenuItem
 End Class
