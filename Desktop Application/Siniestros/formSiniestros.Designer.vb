@@ -75,7 +75,7 @@ Partial Class formSiniestros
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(876, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(845, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -85,6 +85,7 @@ Partial Class formSiniestros
         Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
         Me.statusstripMain.Name = "statusstripMain"
         Me.statusstripMain.Size = New System.Drawing.Size(891, 22)
+        Me.statusstripMain.SizingGrip = False
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain

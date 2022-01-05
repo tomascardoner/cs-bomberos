@@ -412,6 +412,15 @@
             datagridviewAsistencias.AutoGenerateColumns = False
             datagridviewAsistencias.DataSource = listAsistencias
 
+            Select Case listAsistencias.Count
+                Case 0
+                    statuslabelMain.Text = String.Format("No hay Asistencias para mostrar.")
+                Case 1
+                    statuslabelMain.Text = String.Format("Se muestra 1 Asistencia.")
+                Case Else
+                    statuslabelMain.Text = String.Format("Se muestran {0} Asistencias.", listAsistencias.Count)
+            End Select
+
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Asistencias del Siniestro.")
             Me.Cursor = Cursors.Default

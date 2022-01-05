@@ -25,7 +25,7 @@ Partial Class formAcademia
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
@@ -58,6 +58,8 @@ Partial Class formAcademia
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
@@ -68,6 +70,7 @@ Partial Class formAcademia
         CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripAsistencias.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        Me.statusstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelModificacion
@@ -261,11 +264,12 @@ Partial Class formAcademia
         'tabpageAsistencias
         '
         Me.tabpageAsistencias.Controls.Add(Me.datagridviewAsistencias)
+        Me.tabpageAsistencias.Controls.Add(Me.statusstripMain)
         Me.tabpageAsistencias.Controls.Add(Me.toolstripAsistencias)
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAsistencias.Name = "tabpageAsistencias"
         Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAsistencias.Size = New System.Drawing.Size(656, 326)
+        Me.tabpageAsistencias.Size = New System.Drawing.Size(656, 295)
         Me.tabpageAsistencias.TabIndex = 2
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
@@ -275,11 +279,11 @@ Partial Class formAcademia
         Me.datagridviewAsistencias.AllowUserToAddRows = False
         Me.datagridviewAsistencias.AllowUserToDeleteRows = False
         Me.datagridviewAsistencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnAcademiaAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -291,7 +295,7 @@ Partial Class formAcademia
         Me.datagridviewAsistencias.RowHeadersVisible = False
         Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAsistencias.Size = New System.Drawing.Size(563, 320)
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(563, 267)
         Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
@@ -321,7 +325,7 @@ Partial Class formAcademia
         Me.toolstripAsistencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAsistencias.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAsistencias.Name = "toolstripAsistencias"
-        Me.toolstripAsistencias.Size = New System.Drawing.Size(87, 320)
+        Me.toolstripAsistencias.Size = New System.Drawing.Size(87, 289)
         Me.toolstripAsistencias.TabIndex = 9
         '
         'buttonAsistenciasAgregar
@@ -458,6 +462,22 @@ Partial Class formAcademia
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(90, 270)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
+        Me.statusstripMain.SizingGrip = False
+        Me.statusstripMain.TabIndex = 11
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'formAcademia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -485,6 +505,8 @@ Partial Class formAcademia
         Me.toolstripAsistencias.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        Me.statusstripMain.ResumeLayout(False)
+        Me.statusstripMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -521,4 +543,6 @@ Partial Class formAcademia
     Friend WithEvents textboxAcademiaTipoOtro As TextBox
     Friend WithEvents columnPersona As DataGridViewTextBoxColumn
     Friend WithEvents columnAcademiaAsistenciaTipo As DataGridViewTextBoxColumn
+    Friend WithEvents statusstripMain As StatusStrip
+    Friend WithEvents statuslabelMain As ToolStripStatusLabel
 End Class

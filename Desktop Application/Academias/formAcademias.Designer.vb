@@ -26,6 +26,9 @@ Partial Class formAcademias
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAcademiaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -43,9 +46,6 @@ Partial Class formAcademias
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
         Me.labelPeriodoFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAcademiaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -68,6 +68,7 @@ Partial Class formAcademias
         Me.statusstripMain.Location = New System.Drawing.Point(0, 389)
         Me.statusstripMain.Name = "statusstripMain"
         Me.statusstripMain.Size = New System.Drawing.Size(891, 22)
+        Me.statusstripMain.SizingGrip = False
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -93,6 +94,33 @@ Partial Class formAcademias
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(891, 325)
         Me.datagridviewMain.TabIndex = 0
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnFecha
+        '
+        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnAcademiaTipo
+        '
+        Me.columnAcademiaTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAcademiaTipo.DataPropertyName = "AcademiaTipoNombre"
+        Me.columnAcademiaTipo.HeaderText = "Tipo"
+        Me.columnAcademiaTipo.Name = "columnAcademiaTipo"
+        Me.columnAcademiaTipo.ReadOnly = True
+        Me.columnAcademiaTipo.Width = 53
         '
         'panelToolbars
         '
@@ -232,33 +260,6 @@ Partial Class formAcademias
         Me.labelPeriodoFechaY.Name = "labelPeriodoFechaY"
         Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 22)
         Me.labelPeriodoFechaY.Text = "y"
-        '
-        'columnCuartel
-        '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnAcademiaTipo
-        '
-        Me.columnAcademiaTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAcademiaTipo.DataPropertyName = "AcademiaTipoNombre"
-        Me.columnAcademiaTipo.HeaderText = "Tipo"
-        Me.columnAcademiaTipo.Name = "columnAcademiaTipo"
-        Me.columnAcademiaTipo.ReadOnly = True
-        Me.columnAcademiaTipo.Width = 53
         '
         'formAcademias
         '

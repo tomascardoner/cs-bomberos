@@ -55,6 +55,8 @@ Partial Class formSiniestro
         Me.labelSiniestroRubro = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnSiniestroAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,6 +84,7 @@ Partial Class formSiniestro
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
         Me.tabpageAsistencias.SuspendLayout()
+        Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripAsistencias.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
@@ -420,6 +423,7 @@ Partial Class formSiniestro
         'tabpageAsistencias
         '
         Me.tabpageAsistencias.Controls.Add(Me.datagridviewAsistencias)
+        Me.tabpageAsistencias.Controls.Add(Me.statusstripMain)
         Me.tabpageAsistencias.Controls.Add(Me.toolstripAsistencias)
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAsistencias.Name = "tabpageAsistencias"
@@ -428,6 +432,22 @@ Partial Class formSiniestro
         Me.tabpageAsistencias.TabIndex = 2
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
+        '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(90, 301)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
+        Me.statusstripMain.SizingGrip = False
+        Me.statusstripMain.TabIndex = 10
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'datagridviewAsistencias
         '
@@ -450,7 +470,7 @@ Partial Class formSiniestro
         Me.datagridviewAsistencias.RowHeadersVisible = False
         Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAsistencias.Size = New System.Drawing.Size(563, 320)
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(563, 298)
         Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
@@ -661,6 +681,8 @@ Partial Class formSiniestro
         Me.tabpageGeneral.PerformLayout()
         Me.tabpageAsistencias.ResumeLayout(False)
         Me.tabpageAsistencias.PerformLayout()
+        Me.statusstripMain.ResumeLayout(False)
+        Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripAsistencias.ResumeLayout(False)
         Me.toolstripAsistencias.PerformLayout()
@@ -715,4 +737,6 @@ Partial Class formSiniestro
     Friend WithEvents labelNumeroSeparador As Label
     Friend WithEvents maskedtextboxNumero As MaskedTextBox
     Friend WithEvents maskedtextboxNumeroPrefijo As MaskedTextBox
+    Friend WithEvents statusstripMain As StatusStrip
+    Friend WithEvents statuslabelMain As ToolStripStatusLabel
 End Class

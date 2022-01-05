@@ -216,7 +216,7 @@
     Private Function ObtenerAsistenciaTipoEnFila(ByRef row As DataGridViewRow) As Byte
         For verifyColumnIndex As Integer = mTipoAsistenciaFirstColumnIndex To datagridviewMain.ColumnCount - 1
             If CBool(row.Cells(verifyColumnIndex).Value) Then
-                Return CByte(verifyColumnIndex)
+                Return CByte(datagridviewMain.Columns(verifyColumnIndex).Tag)
             End If
         Next
 
