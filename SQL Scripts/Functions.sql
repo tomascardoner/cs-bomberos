@@ -491,14 +491,19 @@ BEGIN
 	RETURN (CASE @IDSiniestroClave
 				WHEN 1 THEN 'AV'
 				WHEN 2 THEN 'AV'
-				WHEN 3 THEN 'N'
+				WHEN 3 THEN
+					(CASE @IDSiniestroAsistenciaTipo
+						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'N1'
+						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'N5'
+						ELSE ''
+					END)
 				WHEN 4 THEN
 					(CASE @IDSiniestroAsistenciaTipo
 						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'R1'
 						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'R5'
 						ELSE ''
 					END)
-				WHEN 5 THEN 'SE'
+				WHEN 5 THEN 'SP'
 				WHEN 6 THEN 'AV'
 				WHEN 7 THEN 'AV'
 				WHEN 8 THEN 'AV'

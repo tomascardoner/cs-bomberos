@@ -1,3 +1,6 @@
+2022-01-23
+	- Reporte de puntajes: se agregaron los servicios especiales y se abrió las claves naranjas en 2 (100% y 50%)
+
 2021-12-08
 	- Se arregló un bug al agregar una asistencia a un siniestro o academia y luego cancelarla
 	- Se creó un nuevo grupo de reportes "Calificación y asistencia"

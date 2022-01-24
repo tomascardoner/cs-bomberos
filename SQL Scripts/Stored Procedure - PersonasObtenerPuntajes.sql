@@ -11,6 +11,7 @@ GO
 -- Creation date: 2021-11-06
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 --			2021-12-07 - Bug fixes
+--          2022-01-23 - Se agregaron los servicios especiales y las claves naranjas al 50%
 -- Description:	Devuelve los puntajes de siniestros y academias de las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerPuntajes') AND type in (N'P', N'PC'))
@@ -24,15 +25,15 @@ CREATE PROCEDURE uspPersonasObtenerPuntajes
 	AS
 BEGIN
 	-- Declaraciones comunes
-	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, SiniestrosClaveVACantidad int, SiniestrosClaveVAPuntaje decimal(8,2), SiniestrosClaveNCantidad int, SiniestrosClaveNPuntaje decimal(8,2), SiniestrosClaveR100Cantidad int, SiniestrosClaveR100Puntaje decimal(8,2), SiniestrosClaveR50Cantidad int, SiniestrosClaveR50Puntaje decimal(8,2), AcademiasPCantidad int, AcademiasPPuntaje decimal(8,2), AcademiasFHCantidad int, AcademiasFHPuntaje decimal(8,2))
+	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, SiniestrosClaveVACantidad int, SiniestrosClaveVAPuntaje decimal(8,2), SiniestrosClaveSPCantidad int, SiniestrosClaveSPPuntaje decimal(8,2), SiniestrosClaveN100Cantidad int, SiniestrosClaveN100Puntaje decimal(8,2), SiniestrosClaveN50Cantidad int, SiniestrosClaveN50Puntaje decimal(8,2), SiniestrosClaveR100Cantidad int, SiniestrosClaveR100Puntaje decimal(8,2), SiniestrosClaveR50Cantidad int, SiniestrosClaveR50Puntaje decimal(8,2), AcademiasPCantidad int, AcademiasPPuntaje decimal(8,2), AcademiasFHCantidad int, AcademiasFHPuntaje decimal(8,2))
 
 	-- Declaraciones para los siniestros
 	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint, @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
 	DECLARE @SiniestrosPuntajes table (IDSiniestro int not null, IDSiniestroAsistenciaTipo tinyint not null, IDSiniestroAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDSiniestro, IDSiniestroAsistenciaTipo))
 	DECLARE @SiniestrosPorClave table (Clave char(2) not null PRIMARY KEY, Cantidad int not null, Puntaje decimal(8,2) not null)
 	DECLARE @SiniestrosPersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
-	DECLARE @SiniestrosCantidadVA int, @SiniestrosCantidadN int, @SiniestrosCantidadR int
-	DECLARE @SiniestrosPuntajeVA decimal(8,2), @SiniestrosPuntajeN decimal(8,2), @SiniestrosPuntajeR decimal(8,2)
+	DECLARE @SiniestrosCantidadVA int, @SiniestrosCantidadSP int, @SiniestrosCantidadN int, @SiniestrosCantidadR int
+	DECLARE @SiniestrosPuntajeVA decimal(8,2), @SiniestrosPuntajeSP decimal(8,2), @SiniestrosPuntajeN decimal(8,2), @SiniestrosPuntajeR decimal(8,2)
 
 	-- Declaraciones para las academias
 	DECLARE @IDAcademiaAsistenciaTipoPresente tinyint, @IDAcademiaAsistenciaTipoFueraHora tinyint
@@ -103,7 +104,7 @@ BEGIN
 			FROM @SiniestrosPorClave) src
 		PIVOT
 		(MAX(Cantidad)
-			FOR Clave IN (AV, N, R)
+			FOR Clave IN (AV, SP, N, R)
 		) piv
 
 	-- Siniestros: asigno los puntajes totales por cada clave a las variables
@@ -113,7 +114,7 @@ BEGIN
 			FROM @SiniestrosPorClave) src
 		PIVOT
 		(MAX(Puntaje)
-			FOR Clave IN (AV, N, R)
+			FOR Clave IN (AV, SP, N, R)
 		) piv
 
 	-- Siniestros: calculo los puntajes de cada persona por cada clave
@@ -133,12 +134,26 @@ BEGIN
 				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
 			WHERE spppc.Clave = 'AV'
 
-	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves naranjas
+	-- Siniestros: asigno las cantidades y puntajes de las personas para las salidas programadas
 	UPDATE @ResultadoFinal
-		SET SiniestrosClaveNCantidad = Cantidad, SiniestrosClaveNPuntaje = Puntaje
+		SET SiniestrosClaveSPCantidad = Cantidad, SiniestrosClaveSPPuntaje = Puntaje
 			FROM @SiniestrosPersonasPuntajesPorClave AS spppc
 				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
-			WHERE spppc.Clave = 'N'
+			WHERE spppc.Clave = 'SP'
+
+	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves naranjas con "Presente"
+	UPDATE @ResultadoFinal
+		SET SiniestrosClaveN100Cantidad = Cantidad, SiniestrosClaveN100Puntaje = Puntaje
+			FROM @SiniestrosPersonasPuntajesPorClave AS spppc
+				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
+			WHERE spppc.Clave = 'N1'
+
+	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves naranjas con "Salida anticipada"
+	UPDATE @ResultadoFinal
+		SET SiniestrosClaveN50Cantidad = Cantidad, SiniestrosClaveN50Puntaje = Puntaje
+			FROM @SiniestrosPersonasPuntajesPorClave AS spppc
+				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
+			WHERE spppc.Clave = 'N5'
 
 	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves rojas con "Presente"
 	UPDATE @ResultadoFinal
@@ -218,18 +233,20 @@ BEGIN
 			WHERE apppc.Clave = 'AF'
 
 	-- Común: muestro las personas y los puntajes
-	SELECT ISNULL(@SiniestrosCantidadVA, 0) AS SiniestrosClaveVACantidadTotal, ISNULL(@SiniestrosCantidadN, 0) AS SiniestrosClaveNCantidadTotal, ISNULL(@SiniestrosCantidadR, 0) AS SiniestrosClaveRCantidadTotal, @AcademiasCantidad AS AcademiasCantidadTotal, ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0) AS PuntajeMaximo,
-			ROW_NUMBER() OVER (ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
+	SELECT ISNULL(@SiniestrosCantidadVA, 0) AS SiniestrosClaveVACantidadTotal, ISNULL(@SiniestrosCantidadSP, 0) AS SiniestrosClaveSPCantidadTotal, ISNULL(@SiniestrosCantidadN, 0) AS SiniestrosClaveNCantidadTotal, ISNULL(@SiniestrosCantidadR, 0) AS SiniestrosClaveRCantidadTotal, @AcademiasCantidad AS AcademiasCantidadTotal, ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0) AS PuntajeMaximo,
+			ROW_NUMBER() OVER (ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveSPPuntaje, 0) + ISNULL(SiniestrosClaveN100Puntaje, 0) + ISNULL(SiniestrosClaveN50Puntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
 			ISNULL(SiniestrosClaveVACantidad, 0) AS SiniestrosClaveVACantidad, ISNULL(SiniestrosClaveVAPuntaje, 0) AS SiniestrosClaveVAPuntaje,
-			ISNULL(SiniestrosClaveNCantidad, 0) AS SiniestrosClaveNCantidad, ISNULL(SiniestrosClaveNPuntaje, 0) AS SiniestrosClaveNPuntaje,
+			ISNULL(SiniestrosClaveSPCantidad, 0) AS SiniestrosClaveSPCantidad, ISNULL(SiniestrosClaveSPPuntaje, 0) AS SiniestrosClaveSPPuntaje,
+			ISNULL(SiniestrosClaveN100Cantidad, 0) AS SiniestrosClaveN100Cantidad, ISNULL(SiniestrosClaveN100Puntaje, 0) AS SiniestrosClaveN100Puntaje,
+			ISNULL(SiniestrosClaveN50Cantidad, 0) AS SiniestrosClaveN50Cantidad, ISNULL(SiniestrosClaveN50Puntaje, 0) AS SiniestrosClaveN50Puntaje,
 			ISNULL(SiniestrosClaveR100Cantidad, 0) AS SiniestrosClaveR100Cantidad, ISNULL(SiniestrosClaveR100Puntaje, 0) AS SiniestrosClaveR100Puntaje,
 			ISNULL(SiniestrosClaveR50Cantidad, 0) AS SiniestrosClaveR50Cantidad, ISNULL(SiniestrosClaveR50Puntaje, 0) AS SiniestrosClaveR50Puntaje,
 			ISNULL(AcademiasPCantidad, 0) AS AcademiasPCantidad, ISNULL(AcademiasPPuntaje, 0) AS AcademiasPPuntaje,
 			ISNULL(AcademiasFHCantidad, 0) AS AcademiasFHCantidad, ISNULL(AcademiasFHPuntaje, 0) AS AcademiasFHPuntaje,
-			(CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) / (ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0)) * 100) AS ProporcionPuntajeMaximo,
-			CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) AS PuntajeTotal
+			(CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveSPPuntaje, 0) + ISNULL(SiniestrosClaveN100Puntaje, 0) + ISNULL(SiniestrosClaveN50Puntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) / (ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeSP, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0)) * 100) AS ProporcionPuntajeMaximo,
+			CAST(ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveSPPuntaje, 0) + ISNULL(SiniestrosClaveN100Puntaje, 0) + ISNULL(SiniestrosClaveN50Puntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) AS decimal) AS PuntajeTotal
 		FROM @ResultadoFinal AS rf
 			INNER JOIN Persona AS p ON rf.IDPersona = p.IDPersona
-		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveNPuntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden
+		ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveSPPuntaje, 0) + ISNULL(SiniestrosClaveN100Puntaje, 0) + ISNULL(SiniestrosClaveN50Puntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden
 END
 GO
