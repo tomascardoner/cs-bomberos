@@ -111,7 +111,7 @@ Partial Class formAboutBox
         '
         'pictureboxIcon
         '
-        Me.pictureboxIcon.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_APPLICATION_ICON_300
+        Me.pictureboxIcon.Image = Global.CSBomberos.My.Resources.Resources.ImageAplicacionIcon300
         Me.pictureboxIcon.Location = New System.Drawing.Point(12, 12)
         Me.pictureboxIcon.Name = "pictureboxIcon"
         Me.pictureboxIcon.Size = New System.Drawing.Size(90, 96)
@@ -134,7 +134,7 @@ Partial Class formAboutBox
         '
         'pictureboxCompanyLogo
         '
-        Me.pictureboxCompanyLogo.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CARDONERSISTEMAS
+        Me.pictureboxCompanyLogo.Image = Global.CSBomberos.My.Resources.Resources.ImageCardonerSistemas
         Me.pictureboxCompanyLogo.Location = New System.Drawing.Point(302, 63)
         Me.pictureboxCompanyLogo.Name = "pictureboxCompanyLogo"
         Me.pictureboxCompanyLogo.Size = New System.Drawing.Size(128, 38)

@@ -1,11 +1,12 @@
-﻿Public Class formCompras
+﻿Public Class formCompraOrdenes
 
 #Region "Declarations"
+
     Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
     Friend Class GridRowData
-        Public Property IDCompra As Integer
+        Public Property IDCompraOrden As Integer
         Public Property IDCuartel As Byte
         Public Property CuartelNombre As String
         Public Property Numero As Integer
@@ -20,18 +21,18 @@
     Private mlistComprasBase As List(Of GridRowData)
     Private mlistComprasFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_COMPRAS_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenCompra32)
 
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -99,7 +100,7 @@
 
 #Region "Load and Set Data"
 
-    Friend Sub RefreshData(Optional ByVal PositionIDCompra As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDCompraOrden As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
 
@@ -179,16 +180,16 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistComprasBase = (From c In dbContext.Compra
+                mlistComprasBase = (From c In dbContext.CompraOrden
                                     Join cu In dbContext.Cuartel On c.IDCuartel Equals cu.IDCuartel
                                     Group Join p In dbContext.Proveedor On c.IDProveedor Equals p.IDProveedor Into Proveedores_Group = Group
                                     From pg In Proveedores_Group.DefaultIfEmpty
                                     Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompra = c.IDCompra, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = If(pg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, c.IDProveedor.Value), .ProveedorNombre = If(c.IDProveedor Is Nothing, "", pg.Nombre), .FacturaNumero = c.FacturaNumero, .Importe = c.CompraDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
+                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = If(pg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, c.IDProveedor.Value), .ProveedorNombre = If(c.IDProveedor Is Nothing, "", pg.Nombre), .FacturaNumero = c.FacturaNumero, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
             End Using
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Compras.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Órdenes de Compra.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -197,17 +198,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDCompra = 0
+                PositionIDCompraOrden = 0
             Else
-                PositionIDCompra = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDCompra
+                PositionIDCompraOrden = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDCompraOrden
             End If
         End If
 
         FilterData()
 
-        If PositionIDCompra <> 0 Then
+        If PositionIDCompraOrden <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCompra = PositionIDCompra Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCompraOrden = PositionIDCompraOrden Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -257,11 +258,11 @@
 
                 Select Case mlistComprasFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Compras para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Órdenes de Compra para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Compra.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Órden de Compra.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Compras.", mlistComprasFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Órdenes de Compra.", mlistComprasFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -323,6 +324,7 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -375,7 +377,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
@@ -386,16 +388,18 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.COMPRA_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.COMPRAORDEN_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formCompra.LoadAndShow(True, Me, 0)
+            formCompraOrden.LoadAndShow(True, Me, 0)
 
             datagridviewMain.Enabled = True
 
@@ -405,14 +409,14 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Compra para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Órden de Compra para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
+            If Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_EDITAR) Then
                 Exit Sub
             End If
 
-            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR_CERRADA, False) Then
-                MsgBox("La Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_EDITAR_CERRADA, False) Then
+                MsgBox("La Órden de Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -420,7 +424,7 @@
 
             datagridviewMain.Enabled = False
 
-            formCompra.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompra)
+            formCompraOrden.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompraOrden)
 
             datagridviewMain.Enabled = True
 
@@ -430,14 +434,14 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Compra para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Órden de Compra para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Not Permisos.VerificarPermiso(Permisos.COMPRA_ELIMINAR) Then
+            If Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_ELIMINAR) Then
                 Exit Sub
             End If
 
-            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_ELIMINAR_CERRADA, False) Then
-                MsgBox("La Compra está cerrada y no tiene autorización para eliminarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_ELIMINAR_CERRADA, False) Then
+                MsgBox("La Órden de Compra está cerrada y no tiene autorización para eliminarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -447,23 +451,23 @@
                 Dim GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará la Compra seleccionada.{0}{0}Número: {1}{0}Fecha: {2}{0}Proveedor: {3}{0}Importe: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.IDCompra, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.ProveedorNombre, FormatCurrency(GridRowDataActual.Importe))
+                Mensaje = String.Format("Se eliminará la Compra seleccionada.{0}{0}Número: {1}{0}Fecha: {2}{0}Proveedor: {3}{0}Importe: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Numero, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.ProveedorNombre, FormatCurrency(GridRowDataActual.Importe))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
-                        dbContext.Compra.Remove(dbContext.Compra.Find(GridRowDataActual.IDCompra))
+                        dbContext.CompraOrden.Remove(dbContext.CompraOrden.Find(GridRowDataActual.IDCompraOrden))
                         dbContext.SaveChanges()
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Compra porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar la Órden de Compra porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Compra.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Órden de Compra.")
                     End Try
 
                     RefreshData()
@@ -476,13 +480,13 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Compra para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Órden de Compra para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formCompra.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompra)
+            formCompraOrden.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompraOrden)
 
             datagridviewMain.Enabled = True
 
@@ -494,15 +498,15 @@
         Dim CurrentRow As GridRowData
 
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Compra para imprimir la Orden.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Compra para imprimir la Órden.", vbInformation, My.Application.Info.Title)
         Else
 
-            If Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR) Then
+            If Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_IMPRIMIR) Then
                 Exit Sub
             End If
 
-            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR_CERRADA, False) Then
-                MsgBox("La Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_IMPRIMIR_CERRADA, False) Then
+                MsgBox("La Órden de Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -517,14 +521,14 @@
                 Dim ReporteActual As New Reporte
 
                 ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_COMPRA_ORDEN))
-                ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompra").Single.Valor = CurrentRow.IDCompra
+                ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompraOrden").Single.Valor = CurrentRow.IDCompraOrden
 
                 ' Solicito que se especifique el Responsable de firmar
                 ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
                 formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
-                formReportesParametroComboBoxSimple.Text = "Especifique el el firmante"
+                formReportesParametroComboBoxSimple.Text = "Especifique el firmante"
                 If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                    ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & CurrentRow.IDCompra)
+                    ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & CurrentRow.IDCompraOrden)
                 End If
                 formReportesParametroComboBoxSimple.Close()
                 formReportesParametroComboBoxSimple.Dispose()

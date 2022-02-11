@@ -17,7 +17,7 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Compra_Or
 GO
 
 CREATE PROCEDURE usp_Compra_Orden
-	@IDCompra int,
+	@IDCompraOrden int,
 	@IDResponsable tinyint
 	AS
 
@@ -59,14 +59,14 @@ CREATE PROCEDURE usp_Compra_Orden
 				WHERE pa.IDPersona = @ResponsableIDPersona
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
-			FROM Compra AS c
+		SELECT c.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+			FROM CompraOrden AS c
 				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
-				LEFT JOIN CompraDetalle AS cd ON c.IDCompra = cd.IDCompra
+				LEFT JOIN CompraOrdenDetalle AS cd ON c.IDCompraOrden = cd.IDCompraOrden
 				LEFT JOIN Area AS a ON cd.IDArea = a.IDArea
 				LEFT JOIN Proveedor AS p ON c.IDProveedor = p.IDProveedor
-			WHERE c.IDCompra = @IDCompra
-			GROUP BY c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero
+			WHERE c.IDCompraOrden = @IDCompraOrden
+			GROUP BY c.IDCompraOrden, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero
 			ORDER BY cd.IDDetalle
 	END
 GO

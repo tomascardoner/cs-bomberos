@@ -1132,7 +1132,7 @@ Partial Class formPersona
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -1142,7 +1142,7 @@ Partial Class formPersona
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -1152,7 +1152,7 @@ Partial Class formPersona
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -1162,7 +1162,7 @@ Partial Class formPersona
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -2069,7 +2069,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Agregar
         '
-        Me.buttonFamiliares_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonFamiliares_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonFamiliares_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2079,7 +2079,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Editar
         '
-        Me.buttonFamiliares_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonFamiliares_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonFamiliares_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2089,7 +2089,7 @@ Partial Class formPersona
         '
         'buttonFamiliares_Eliminar
         '
-        Me.buttonFamiliares_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonFamiliares_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonFamiliares_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonFamiliares_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonFamiliares_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2147,7 +2147,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Agregar
         '
-        Me.buttonAltasBajas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAltasBajas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonAltasBajas_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2157,7 +2157,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Editar
         '
-        Me.buttonAltasBajas_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAltasBajas_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonAltasBajas_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2167,7 +2167,7 @@ Partial Class formPersona
         '
         'buttonAltasBajas_Eliminar
         '
-        Me.buttonAltasBajas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAltasBajas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonAltasBajas_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAltasBajas_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAltasBajas_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2252,7 +2252,7 @@ Partial Class formPersona
         '
         'buttonAccidentes_Agregar
         '
-        Me.buttonAccidentes_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAccidentes_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonAccidentes_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAccidentes_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAccidentes_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2262,7 +2262,7 @@ Partial Class formPersona
         '
         'buttonAccidentes_Editar
         '
-        Me.buttonAccidentes_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAccidentes_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonAccidentes_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAccidentes_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAccidentes_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2272,7 +2272,7 @@ Partial Class formPersona
         '
         'buttonAccidentes_Eliminar
         '
-        Me.buttonAccidentes_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAccidentes_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonAccidentes_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAccidentes_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAccidentes_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2357,7 +2357,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Agregar
         '
-        Me.buttonAscensos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonAscensos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonAscensos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2367,7 +2367,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Editar
         '
-        Me.buttonAscensos_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonAscensos_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonAscensos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2377,7 +2377,7 @@ Partial Class formPersona
         '
         'buttonAscensos_Eliminar
         '
-        Me.buttonAscensos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonAscensos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonAscensos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonAscensos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAscensos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2522,7 +2522,7 @@ Partial Class formPersona
         'buttonHorarioLaboral_Agregar
         '
         Me.buttonHorarioLaboral_Agregar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemHorarioLaboral_AgregarMultiples})
-        Me.buttonHorarioLaboral_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonHorarioLaboral_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonHorarioLaboral_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2538,7 +2538,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Editar
         '
-        Me.buttonHorarioLaboral_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonHorarioLaboral_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonHorarioLaboral_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2548,7 +2548,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Eliminar
         '
-        Me.buttonHorarioLaboral_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonHorarioLaboral_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonHorarioLaboral_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonHorarioLaboral_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2558,7 +2558,7 @@ Partial Class formPersona
         '
         'buttonHorarioLaboral_Imprimir
         '
-        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonHorarioLaboral_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonHorarioLaboral_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonHorarioLaboral_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonHorarioLaboral_Imprimir.Name = "buttonHorarioLaboral_Imprimir"
@@ -2706,7 +2706,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Agregar
         '
-        Me.buttonVehiculos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonVehiculos_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonVehiculos_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2716,7 +2716,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Editar
         '
-        Me.buttonVehiculos_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonVehiculos_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonVehiculos_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2726,7 +2726,7 @@ Partial Class formPersona
         '
         'buttonVehiculos_Eliminar
         '
-        Me.buttonVehiculos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonVehiculos_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonVehiculos_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVehiculos_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVehiculos_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2882,7 +2882,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Agregar
         '
-        Me.buttonVacunas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonVacunas_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonVacunas_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2892,7 +2892,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Editar
         '
-        Me.buttonVacunas_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonVacunas_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonVacunas_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2902,7 +2902,7 @@ Partial Class formPersona
         '
         'buttonVacunas_Eliminar
         '
-        Me.buttonVacunas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonVacunas_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonVacunas_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonVacunas_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonVacunas_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -2996,7 +2996,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Agregar
         '
-        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonLicencias_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonLicencias_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3006,7 +3006,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Editar
         '
-        Me.buttonLicencias_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonLicencias_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonLicencias_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3016,7 +3016,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Eliminar
         '
-        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonLicencias_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonLicencias_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicencias_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3026,7 +3026,7 @@ Partial Class formPersona
         '
         'buttonLicencias_Imprimir
         '
-        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonLicencias_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonLicencias_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicencias_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonLicencias_Imprimir.Name = "buttonLicencias_Imprimir"
@@ -3119,7 +3119,7 @@ Partial Class formPersona
         '
         'buttonLicenciasEspeciales_Agregar
         '
-        Me.buttonLicenciasEspeciales_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonLicenciasEspeciales_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonLicenciasEspeciales_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicenciasEspeciales_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicenciasEspeciales_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3129,7 +3129,7 @@ Partial Class formPersona
         '
         'buttonLicenciasEspeciales_Editar
         '
-        Me.buttonLicenciasEspeciales_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonLicenciasEspeciales_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonLicenciasEspeciales_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicenciasEspeciales_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicenciasEspeciales_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3139,7 +3139,7 @@ Partial Class formPersona
         '
         'buttonLicenciasEspeciales_Eliminar
         '
-        Me.buttonLicenciasEspeciales_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonLicenciasEspeciales_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonLicenciasEspeciales_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonLicenciasEspeciales_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonLicenciasEspeciales_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3215,7 +3215,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Agregar
         '
-        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonSanciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3225,7 +3225,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Editar
         '
-        Me.buttonSanciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonSanciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonSanciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3235,7 +3235,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Eliminar
         '
-        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonSanciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3245,7 +3245,7 @@ Partial Class formPersona
         '
         'buttonSanciones_Imprimir
         '
-        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
@@ -3320,7 +3320,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Agregar
         '
-        Me.buttonCapacitaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCapacitaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonCapacitaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3330,7 +3330,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Editar
         '
-        Me.buttonCapacitaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCapacitaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonCapacitaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3340,7 +3340,7 @@ Partial Class formPersona
         '
         'buttonCapacitaciones_Eliminar
         '
-        Me.buttonCapacitaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCapacitaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonCapacitaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCapacitaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCapacitaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3422,7 +3422,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Agregar
         '
-        Me.buttonCalificaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonCalificaciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonCalificaciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3432,7 +3432,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Editar
         '
-        Me.buttonCalificaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonCalificaciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonCalificaciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3442,7 +3442,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Eliminar
         '
-        Me.buttonCalificaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonCalificaciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonCalificaciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonCalificaciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3452,7 +3452,7 @@ Partial Class formPersona
         '
         'buttonCalificaciones_Imprimir
         '
-        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonCalificaciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonCalificaciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCalificaciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCalificaciones_Imprimir.Name = "buttonCalificaciones_Imprimir"
@@ -3527,7 +3527,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Agregar
         '
-        Me.buttonExamenes_Agregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonExamenes_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonExamenes_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3537,7 +3537,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Editar
         '
-        Me.buttonExamenes_Editar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonExamenes_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonExamenes_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -3547,7 +3547,7 @@ Partial Class formPersona
         '
         'buttonExamenes_Eliminar
         '
-        Me.buttonExamenes_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonExamenes_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonExamenes_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonExamenes_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonExamenes_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta

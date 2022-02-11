@@ -71,7 +71,7 @@
     End Sub
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_TABLAS_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageTablas32)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -188,7 +188,7 @@
             End If
             ' Si se cambió la opción de Mostrar en Compras, se debe verificar que no haya Compras con este Área
             If mAreaActual.MostrarEnCompras AndAlso checkboxMostrarEnCompras.Checked = False Then
-                If mAreaActual.CompraDetalles.Any() Then
+                If mAreaActual.CompraOrdenDetalles.Any() Then
                     MsgBox("No se puede dejar de Mostrar en Compras porque hay Detalles que hacen referencia a este Área.", MsgBoxStyle.Information, My.Application.Info.Title)
                     Exit Sub
                 End If
@@ -240,6 +240,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

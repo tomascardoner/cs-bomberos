@@ -16,7 +16,7 @@
     End Sub
 
     Private Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_REPORTES_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageReporte32)
         Me.Text = "Reportes - " & mModuloNombre
     End Sub
 

@@ -10,8 +10,8 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class CompraDetalle
-    Public Property IDCompra As Integer
+Partial Public Class CompraOrdenDetalle
+    Public Property IDCompraOrden As Integer
     Public Property IDDetalle As Byte
     Public Property IDArea As Short
     Public Property Detalle As String
@@ -19,6 +19,6 @@ Partial Public Class CompraDetalle
     Public Property Notas As String
 
     Public Overridable Property Area As Area
-    Public Overridable Property Compra As Compra
+    Public Overridable Property CompraOrden As CompraOrden
 
 End Class

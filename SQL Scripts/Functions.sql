@@ -461,7 +461,7 @@ BEGIN
 				WHEN 2 THEN 'AV'
 				WHEN 3 THEN 'N'
 				WHEN 4 THEN 'R'
-				WHEN 5 THEN 'SE'
+				WHEN 5 THEN 'SP'
 				WHEN 6 THEN 'AV'
 				WHEN 7 THEN 'AV'
 				WHEN 8 THEN 'AV'

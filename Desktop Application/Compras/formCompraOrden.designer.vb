@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formCompra
+Partial Class formCompraOrden
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -62,8 +62,8 @@ Partial Class formCompra
         Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonDetallesEliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.labelIDCompra = New System.Windows.Forms.Label()
-        Me.textboxIDCompra = New System.Windows.Forms.TextBox()
+        Me.labelIDCompraOrden = New System.Windows.Forms.Label()
+        Me.textboxIDCompraOrden = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
@@ -151,7 +151,7 @@ Partial Class formCompra
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -161,7 +161,7 @@ Partial Class formCompra
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -171,7 +171,7 @@ Partial Class formCompra
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -181,7 +181,7 @@ Partial Class formCompra
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CLOSE_32
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -200,7 +200,7 @@ Partial Class formCompra
         'buttonImprimir
         '
         Me.buttonImprimir.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonImprimir.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_PRINT_32
+        Me.buttonImprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
@@ -462,7 +462,7 @@ Partial Class formCompra
         '
         'buttonDetallesAgregar
         '
-        Me.buttonDetallesAgregar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_ADD_32
+        Me.buttonDetallesAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
         Me.buttonDetallesAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonDetallesAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonDetallesAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -472,7 +472,7 @@ Partial Class formCompra
         '
         'buttonDetallesEditar
         '
-        Me.buttonDetallesEditar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_EDIT_32
+        Me.buttonDetallesEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonDetallesEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonDetallesEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonDetallesEditar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -482,7 +482,7 @@ Partial Class formCompra
         '
         'buttonDetallesEliminar
         '
-        Me.buttonDetallesEliminar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_ITEM_DELETE_32
+        Me.buttonDetallesEliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
         Me.buttonDetallesEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.buttonDetallesEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonDetallesEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
@@ -492,8 +492,8 @@ Partial Class formCompra
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDCompra)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDCompra)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDCompraOrden)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDCompraOrden)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
@@ -510,25 +510,25 @@ Partial Class formCompra
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'labelIDCompra
+        'labelIDCompraOrden
         '
-        Me.labelIDCompra.AutoSize = True
-        Me.labelIDCompra.Location = New System.Drawing.Point(6, 185)
-        Me.labelIDCompra.Name = "labelIDCompra"
-        Me.labelIDCompra.Size = New System.Drawing.Size(21, 13)
-        Me.labelIDCompra.TabIndex = 2
-        Me.labelIDCompra.Text = "ID:"
+        Me.labelIDCompraOrden.AutoSize = True
+        Me.labelIDCompraOrden.Location = New System.Drawing.Point(6, 185)
+        Me.labelIDCompraOrden.Name = "labelIDCompraOrden"
+        Me.labelIDCompraOrden.Size = New System.Drawing.Size(21, 13)
+        Me.labelIDCompraOrden.TabIndex = 2
+        Me.labelIDCompraOrden.Text = "ID:"
         '
-        'textboxIDCompra
+        'textboxIDCompraOrden
         '
-        Me.textboxIDCompra.Location = New System.Drawing.Point(114, 182)
-        Me.textboxIDCompra.MaxLength = 10
-        Me.textboxIDCompra.Name = "textboxIDCompra"
-        Me.textboxIDCompra.ReadOnly = True
-        Me.textboxIDCompra.Size = New System.Drawing.Size(72, 20)
-        Me.textboxIDCompra.TabIndex = 3
-        Me.textboxIDCompra.TabStop = False
-        Me.textboxIDCompra.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.textboxIDCompraOrden.Location = New System.Drawing.Point(114, 182)
+        Me.textboxIDCompraOrden.MaxLength = 10
+        Me.textboxIDCompraOrden.Name = "textboxIDCompraOrden"
+        Me.textboxIDCompraOrden.ReadOnly = True
+        Me.textboxIDCompraOrden.Size = New System.Drawing.Size(72, 20)
+        Me.textboxIDCompraOrden.TabIndex = 3
+        Me.textboxIDCompraOrden.TabStop = False
+        Me.textboxIDCompraOrden.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
@@ -588,7 +588,7 @@ Partial Class formCompra
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formCompra
+        'formCompraOrden
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -599,10 +599,10 @@ Partial Class formCompra
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formCompra"
+        Me.Name = "formCompraOrden"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Compra"
+        Me.Text = "Órden de compra"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
@@ -660,8 +660,8 @@ Partial Class formCompra
     Friend WithEvents buttonDetallesEliminar As ToolStripButton
     Friend WithEvents datetimepickerCierreFecha As DateTimePicker
     Friend WithEvents buttonImprimir As ToolStripButton
-    Friend WithEvents labelIDCompra As Label
-    Friend WithEvents textboxIDCompra As TextBox
+    Friend WithEvents labelIDCompraOrden As Label
+    Friend WithEvents textboxIDCompraOrden As TextBox
     Friend WithEvents comboboxCuartel As ComboBox
     Friend WithEvents buttonCodigoSiguiente As Button
 End Class

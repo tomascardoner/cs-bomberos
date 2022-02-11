@@ -16,7 +16,7 @@
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_PERSONAS_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImagePersona32)
 
         DataGridSetAppearance(datagridviewMain)
     End Sub

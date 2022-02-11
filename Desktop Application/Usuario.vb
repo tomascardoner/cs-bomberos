@@ -130,8 +130,8 @@ Partial Public Class Usuario
     Public Overridable Property VehiculoTiposModificados As ICollection(Of VehiculoTipo) = New HashSet(Of VehiculoTipo)
     Public Overridable Property EstadosCivilesCreados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
     Public Overridable Property EstadosCivilesModificados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
-    Public Overridable Property ComprasCreadas As ICollection(Of Compra) = New HashSet(Of Compra)
-    Public Overridable Property ComprasModificadas As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property CompraOrdensCreadas As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
+    Public Overridable Property CompraOrdensModificadas As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
     Public Overridable Property ProveedoresCreados As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
     Public Overridable Property ProveedoresModificados As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
     Public Overridable Property ResponsablesCreados As ICollection(Of Responsable) = New HashSet(Of Responsable)
@@ -164,5 +164,11 @@ Partial Public Class Usuario
     Public Overridable Property SiniestrosAsistenciasModificadas As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestrosClavesCreadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
     Public Overridable Property SiniestrosClavesModificadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
+    Public Overridable Property CompraFacturasCreadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
+    Public Overridable Property CompraFacturasModificadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
+    Public Overridable Property CompraFacturaDetallesCreados As ICollection(Of CompraFacturaDetalle) = New HashSet(Of CompraFacturaDetalle)
+    Public Overridable Property CompraFacturaDetallesModificados As ICollection(Of CompraFacturaDetalle) = New HashSet(Of CompraFacturaDetalle)
+    Public Overridable Property CompraOrdenFactura As ICollection(Of CompraOrdenFactura) = New HashSet(Of CompraOrdenFactura)
+    Public Overridable Property CompraOrdenFactura1 As ICollection(Of CompraOrdenFactura) = New HashSet(Of CompraOrdenFactura)
 
 End Class

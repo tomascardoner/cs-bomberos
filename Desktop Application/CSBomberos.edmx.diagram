@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="66">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="75">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="19.5" PointY="193.75" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="17.25" PointY="180.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="16.5" PointY="205.25" />
@@ -245,16 +245,16 @@
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Partido" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" />
         <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" />
-        <EntityTypeShape EntityType="CSBomberosModel.Compra" Width="1.5" PointX="21.75" PointY="152.375" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraDetalle" Width="1.5" PointX="27.25" PointY="155" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraOrden" Width="1.5" PointX="21.75" PointY="152.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraOrdenDetalle" Width="1.5" PointX="27.25" PointY="155" />
         <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="16.5" PointY="150.625" />
         <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="24.375" PointY="146.625" />
         <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="16.5" PointY="96.375" />
-        <AssociationConnector Association="CSBomberosModel.FK__Area__CompraDetalle" />
-        <AssociationConnector Association="CSBomberosModel.FK__Compra__CompraDetalle" />
-        <AssociationConnector Association="CSBomberosModel.FK__Proveedor__Compra" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Compra__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Compra__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Area__CompraOrdenDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__CompraOrden__CompraOrdenDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Proveedor__CompraOrden" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CompraOrden__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__CompraOrden__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Responsable" />
         <AssociationConnector Association="CSBomberosModel.FK__Localidad__Proveedor" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Responsable" />
@@ -265,7 +265,7 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Responsable__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__ResponsableTipo__Modificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Compra" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cuartel__CompraOrden" />
         <EntityTypeShape EntityType="CSBomberosModel.Modulo" Width="1.5" PointX="1.5" PointY="145.625" />
         <AssociationConnector Association="CSBomberosModel.FK__Modulo__ReporteGrupo" />
         <EntityTypeShape EntityType="CSBomberosModel.Caja" Width="1.5" PointX="16.5" PointY="188.375" />
@@ -336,6 +336,20 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__Siniestro" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraFactura" Width="1.5" PointX="18.75" PointY="159" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraFacturaDetalle" Width="1.5" PointX="30.25" PointY="146.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraOrdenFactura" Width="1.5" PointX="33" PointY="157.875" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_Area" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_Proveedor" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioCreacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioModificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_CompraFactura" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_CompraFactura" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioCreacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioModificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_CompraOrden" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioCreacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioModificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,3 +1,19 @@
+2022-02-04
+	- Crear la funcion udfStringPadLeft
+	- Crear las tablas CompraFactura, CompraFacturaDetalle y CompraOrdenFactura
+	- Renombrar tabla Compra a CompraOrden y sus Keys y FKs
+	- Cambiar el número de factura con id 45 a 0009B00000229
+	- Cambiar el número de factura con id 95 a 0009B00000363 y en Notas: SE REALIZO CON OC MANUAL 1616
+	- Cambiar el número de factura con id 96 a 00001C00002844
+	- Cambiar el número de factura con id 118 a 0029B00169952
+	- Importar facturas usando el script 2022-02-06
+	- Avisar de que revisen la factura B-7-1491 del proveedor Electricidad Benitez
+	- Ejecutar stored procedures de Ordenes de Compra
+	- Copiar reportes
+
+
+
+
 2021-12-11
 	- Agregar la tabla SiniestroClave
 	- Agregar la tabla SiniestroAsistenciaTipoPuntajeClave

@@ -1,35 +1,35 @@
-﻿Public Class formCompraDetalle
+﻿Public Class formCompraOrdenDetalle
 
 #Region "Declarations"
 
     Private mParentForm As Form
     Private mdbContext As New CSBomberosContext(True)
-    Private mCompraActual As Compra
-    Private mCompraDetalleActual As CompraDetalle
+    Private mCompraOrdenActual As CompraOrden
+    Private mCompraOrdenDetalleActual As CompraOrdenDetalle
 
-    Private mIsLoading As Boolean = False
-    Private mParentEditMode As Boolean = False
-    Private mEditMode As Boolean = False
-    Private mIsNew As Boolean = False
+    Private mIsLoading As Boolean
+    Private mParentEditMode As Boolean
+    Private mEditMode As Boolean
+    Private mIsNew As Boolean
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal ParentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef CompraActual As Compra, ByVal IDDetalle As Byte)
+    Friend Sub LoadAndShow(ByVal ParentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef CompraOrdenActual As CompraOrden, ByVal IDDetalle As Byte)
         mParentForm = ParentForm
         mIsLoading = True
         mParentEditMode = ParentEditMode
         mEditMode = EditMode
         mIsNew = (IDDetalle = 0)
 
-        mCompraActual = CompraActual
+        mCompraOrdenActual = CompraOrdenActual
         If mIsNew Then
             ' Es Nuevo
-            mCompraDetalleActual = New CompraDetalle
-            mCompraActual.CompraDetalles.Add(mCompraDetalleActual)
+            mCompraOrdenDetalleActual = New CompraOrdenDetalle
+            mCompraOrdenActual.CompraOrdenDetalles.Add(mCompraOrdenDetalleActual)
         Else
-            mCompraDetalleActual = mCompraActual.CompraDetalles.Single(Function(cd) cd.IDDetalle = IDDetalle)
+            mCompraOrdenDetalleActual = mCompraOrdenActual.CompraOrdenDetalles.Single(Function(cd) cd.IDDetalle = IDDetalle)
         End If
 
         CS_Form.CenterToParent(mParentForm, Me)
@@ -63,25 +63,19 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
-        If mCompraActual.IDCompra = 0 AndAlso CType(mParentForm, formCompra).comboboxCuartel.SelectedIndex > -1 Then
-            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompra).comboboxCuartel.SelectedValue))
+        If mCompraOrdenActual.IDCompraOrden = 0 AndAlso CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedIndex > -1 Then
+            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
         Else
-            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, mCompraActual.IDCuartel)
+            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, mCompraOrdenActual.IDCuartel)
         End If
-    End Sub
-
-    Friend Sub SetAppearance()
-
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mParentForm = Nothing
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCompraActual = Nothing
-        mCompraDetalleActual = Nothing
+        mCompraOrdenActual = Nothing
+        mCompraOrdenDetalleActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -90,7 +84,7 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mCompraDetalleActual
+        With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
@@ -107,7 +101,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCompraDetalleActual
+        With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
@@ -165,10 +159,10 @@
 
         ' Generar el ID nuevo
         If mIsNew Then
-            If mCompraActual.CompraDetalles.Any() Then
-                mCompraDetalleActual.IDDetalle = mCompraActual.CompraDetalles.Max(Function(cd) cd.IDDetalle) + CByte(1)
+            If mCompraOrdenActual.CompraOrdenDetalles.Any() Then
+                mCompraOrdenDetalleActual.IDDetalle = mCompraOrdenActual.CompraOrdenDetalles.Max(Function(cd) cd.IDDetalle) + CByte(1)
             Else
-                mCompraDetalleActual.IDDetalle = 1
+                mCompraOrdenDetalleActual.IDDetalle = 1
             End If
         End If
 
@@ -176,7 +170,7 @@
         SetDataFromControlsToObject()
 
         ' Refresco la lista para mostrar los cambios
-        CType(mParentForm, formCompra).DetallesRefreshData(mCompraDetalleActual.IDDetalle)
+        CType(mParentForm, formCompraOrden).DetallesRefreshData(mCompraOrdenDetalleActual.IDDetalle)
 
         Me.Close()
     End Sub

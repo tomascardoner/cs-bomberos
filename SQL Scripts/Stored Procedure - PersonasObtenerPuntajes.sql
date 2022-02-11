@@ -12,6 +12,7 @@ GO
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 --			2021-12-07 - Bug fixes
 --          2022-01-23 - Se agregaron los servicios especiales y las claves naranjas al 50%
+--			2022-02-03 - Bug fix
 -- Description:	Devuelve los puntajes de siniestros y academias de las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerPuntajes') AND type in (N'P', N'PC'))
@@ -98,7 +99,7 @@ BEGIN
 			GROUP BY dbo.SiniestroObtenerClaveAgrupada(s.IDSiniestroClave)
 
 	-- Siniestros: asigno las cantidades de siniestros por cada clave a las variables
-	SELECT @SiniestrosCantidadVA = AV, @SiniestrosCantidadN = N, @SiniestrosCantidadR = R
+	SELECT @SiniestrosCantidadVA = AV, @SiniestrosCantidadSP = SP, @SiniestrosCantidadN = N, @SiniestrosCantidadR = R
 	FROM
 		(SELECT Clave, Cantidad
 			FROM @SiniestrosPorClave) src
@@ -108,7 +109,7 @@ BEGIN
 		) piv
 
 	-- Siniestros: asigno los puntajes totales por cada clave a las variables
-	SELECT @SiniestrosPuntajeVA = AV, @SiniestrosPuntajeN = N, @SiniestrosPuntajeR = R
+	SELECT @SiniestrosPuntajeVA = AV, @SiniestrosPuntajeSP = SP, @SiniestrosPuntajeN = N, @SiniestrosPuntajeR = R
 	FROM
 		(SELECT Clave, Puntaje
 			FROM @SiniestrosPorClave) src

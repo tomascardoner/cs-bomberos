@@ -1,35 +1,35 @@
-﻿Public Class formCompra
+﻿Public Class formCompraOrden
 
 #Region "Declarations"
 
     Private mdbContext As New CSBomberosContext(True)
-    Private mCompraActual As Compra
+    Private mCompraOrdenActual As CompraOrden
 
-    Private mIsLoading As Boolean = False
-    Private mIsNew As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mIsNew As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCompra As Integer)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCompraOrden As Integer)
         mIsLoading = True
         mEditMode = EditMode
 
-        mIsNew = (IDCompra = 0)
+        mIsNew = (IDCompraOrden = 0)
         If mIsNew Then
             ' Es Nuevo
-            mCompraActual = New Compra
-            With mCompraActual
+            mCompraOrdenActual = New CompraOrden
+            With mCompraOrdenActual
                 .Fecha = DateTime.Today
 
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
-                If formCompras.comboboxCuartel.SelectedIndex > 0 Then
-                    .IDCuartel = CByte(formCompras.comboboxCuartel.ComboBox.SelectedValue)
+                If formCompraOrdenes.comboboxCuartel.SelectedIndex > 0 Then
+                    .IDCuartel = CByte(formCompraOrdenes.comboboxCuartel.ComboBox.SelectedValue)
                 End If
-                If formCompras.comboboxProveedor.SelectedIndex > 0 Then
-                    .IDProveedor = CShort(formCompras.comboboxProveedor.ComboBox.SelectedValue)
+                If formCompraOrdenes.comboboxProveedor.SelectedIndex > 0 Then
+                    .IDProveedor = CShort(formCompraOrdenes.comboboxProveedor.ComboBox.SelectedValue)
                 End If
 
                 .Cerrada = False
@@ -38,9 +38,9 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Compra.Add(mCompraActual)
+            mdbContext.CompraOrden.Add(mCompraOrdenActual)
         Else
-            mCompraActual = mdbContext.Compra.Find(IDCompra)
+            mCompraOrdenActual = mdbContext.CompraOrden.Find(IDCompraOrden)
         End If
 
         CS_Form.CenterToParent(ParentForm, Me)
@@ -67,7 +67,7 @@
         buttonImprimir.Visible = (mEditMode = False)
 
         ' General
-        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mCompraActual.CompraDetalles.Any()))
+        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mCompraOrdenActual.CompraOrdenDetalles.Any()))
         integertextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
@@ -92,13 +92,13 @@
     End Sub
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_COMPRAS_32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenCompra32)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mdbContext.Dispose()
         mdbContext = Nothing
-        mCompraActual = Nothing
+        mCompraOrdenActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -107,7 +107,7 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mCompraActual
+        With mCompraOrdenActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             integertextboxNumero.IntegerValue = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
@@ -124,10 +124,10 @@
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-            If .IDCompra = 0 Then
-                textboxIDCompra.Text = My.Resources.STRING_ITEM_NEW_MALE
+            If .IDCompraOrden = 0 Then
+                textboxIDCompraOrden.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDCompra.Text = String.Format(.IDCompra.ToString, "G")
+                textboxIDCompraOrden.Text = String.Format(.IDCompraOrden.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -147,7 +147,7 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCompraActual
+        With mCompraOrdenActual
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
@@ -200,8 +200,8 @@
         Using dbcMaxCodigo As New CSBomberosContext(True)
             Dim IDCuartel As Byte = CByte(comboboxCuartel.SelectedValue)
 
-            If dbcMaxCodigo.Compra.Any(Function(c) c.IDCuartel = IDCuartel) Then
-                integertextboxNumero.IntegerValue = CInt(dbcMaxCodigo.Compra.Where(Function(c) c.IDCuartel = IDCuartel).Max(Function(c) c.Numero)) + 1
+            If dbcMaxCodigo.CompraOrden.Any(Function(c) c.IDCuartel = IDCuartel) Then
+                integertextboxNumero.IntegerValue = CInt(dbcMaxCodigo.CompraOrden.Where(Function(c) c.IDCuartel = IDCuartel).Max(Function(c) c.Numero)) + 1
             Else
                 integertextboxNumero.IntegerValue = 1
             End If
@@ -217,12 +217,12 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_EDITAR) Then
             Exit Sub
         End If
 
-        If mCompraActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_EDITAR) Then
-            MsgBox("La Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+        If mCompraOrdenActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_EDITAR) Then
+            MsgBox("La Órden de Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             Exit Sub
         End If
 
@@ -232,7 +232,7 @@
 
     Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
-            If MsgBox(String.Format("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            If MsgBox(String.Format(My.Resources.STRING_CONFIRMAR_CANCELACION_DATOS, vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
             End If
         Else
@@ -241,37 +241,17 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxCuartel.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-        If integertextboxNumero.Text.Length = 0 Then
-            MsgBox("Debe ingresar el Número.", MsgBoxStyle.Information, My.Application.Info.Title)
-            integertextboxNumero.Focus()
-            Exit Sub
-        End If
-        If comboboxProveedor.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxProveedor.Focus()
-            Exit Sub
-        End If
-
-        If checkboxCerrada.Checked AndAlso datetimepickerCierreFecha.Checked AndAlso datetimepickerCierreFecha.Value < datetimepickerFecha.Value Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("La fecha de cierre no puede ser anterior a la fecha de la compra.", MsgBoxStyle.Information, My.Application.Info.Title)
-            datetimepickerCierreFecha.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Compra.Any() Then
-                    mCompraActual.IDCompra = dbcMaxID.Compra.Max(Function(c) c.IDCompra) + 1
+                If dbcMaxID.CompraOrden.Any() Then
+                    mCompraOrdenActual.IDCompraOrden = dbcMaxID.CompraOrden.Max(Function(c) c.IDCompraOrden) + 1
                 Else
-                    mCompraActual.IDCompra = 1
+                    mCompraOrdenActual.IDCompraOrden = 1
                 End If
             End Using
         End If
@@ -283,8 +263,8 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCompraActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCompraActual.FechaHoraModificacion = Now
+            mCompraOrdenActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mCompraOrdenActual.FechaHoraModificacion = Now
 
             Try
 
@@ -292,17 +272,17 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCompras") Then
-                    Dim formCompras As formCompras = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCompras"), formCompras)
-                    formCompras.RefreshData(mCompraActual.IDCompra)
-                    formCompras = Nothing
+                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCompraOrdenes") Then
+                    Dim formCompraOrdens As formCompraOrdenes = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCompraOrdenes"), formCompraOrdenes)
+                    formCompraOrdens.RefreshData(mCompraOrdenActual.IDCompraOrden)
+                    formCompraOrdens = Nothing
                 End If
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Órden de Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -317,12 +297,12 @@
     End Sub
 
     Private Sub buttonImprimir_Click(sender As Object, e As EventArgs) Handles buttonImprimir.Click
-        If Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR) Then
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_IMPRIMIR) Then
             Exit Sub
         End If
 
-        If mCompraActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRA_IMPRIMIR_CERRADA, False) Then
-            MsgBox("La Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+        If mCompraOrdenActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_IMPRIMIR_CERRADA, False) Then
+            MsgBox("La Órden de Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             Exit Sub
         End If
 
@@ -333,14 +313,14 @@
             Dim ReporteActual As New Reporte
 
             ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_COMPRA_ORDEN))
-            ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompra").Single.Valor = mCompraActual.IDCompra
+            ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDCompraOrden").Single.Valor = mCompraOrdenActual.IDCompraOrden
 
             ' Solicito que se especifique el Responsable de firmar
             ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
             formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
-            formReportesParametroComboBoxSimple.Text = "Especifique el el firmante"
+            formReportesParametroComboBoxSimple.Text = "Especifique el firmante"
             If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & mCompraActual.IDCompra, Me)
+                ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & mCompraOrdenActual.IDCompraOrden, Me)
             End If
             formReportesParametroComboBoxSimple.Close()
             formReportesParametroComboBoxSimple.Dispose()
@@ -352,6 +332,7 @@
 #End Region
 
 #Region "Detalles"
+
     Friend Class DetallesGridRowData
         Public Property IDDetalle As Byte
         Public Property AreaNombre As String
@@ -373,7 +354,7 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listDetalles = (From cd In mCompraActual.CompraDetalles
+            listDetalles = (From cd In mCompraOrdenActual.CompraOrdenDetalles
                             Join a In mdbContext.Area On cd.IDArea Equals a.IDArea
                             Order By cd.IDDetalle
                             Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
@@ -382,7 +363,7 @@
             datagridviewDetalles.DataSource = listDetalles
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles de la Compra.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles de la Órden de Compra.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -402,7 +383,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        formCompraDetalle.LoadAndShow(True, True, Me, mCompraActual, 0)
+        formCompraOrdenDetalle.LoadAndShow(True, True, Me, mCompraOrdenActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -413,7 +394,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formCompraDetalle.LoadAndShow(True, True, Me, mCompraActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formCompraOrdenDetalle.LoadAndShow(True, True, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If
@@ -432,7 +413,7 @@
             If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Cursor = Cursors.WaitCursor
 
-                mCompraActual.CompraDetalles.Remove(mCompraActual.CompraDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
+                mCompraOrdenActual.CompraOrdenDetalles.Remove(mCompraOrdenActual.CompraOrdenDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
 
                 DetallesRefreshData()
 
@@ -447,11 +428,43 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formCompraDetalle.LoadAndShow(mEditMode, False, Me, mCompraActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formCompraOrdenDetalle.LoadAndShow(mEditMode, False, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If comboboxCuartel.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Return False
+        End If
+        If integertextboxNumero.IntegerValue = 0 Then
+            MsgBox("Debe especificar el Número de Órden de Compra.", MsgBoxStyle.Information, My.Application.Info.Title)
+            integertextboxNumero.Focus()
+            Return False
+        End If
+        If comboboxProveedor.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxProveedor.Focus()
+            Return False
+        End If
+
+        If checkboxCerrada.Checked AndAlso datetimepickerCierreFecha.Checked AndAlso datetimepickerCierreFecha.Value < datetimepickerFecha.Value Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("La fecha de cierre no puede ser anterior a la fecha de la compra.", MsgBoxStyle.Information, My.Application.Info.Title)
+            datetimepickerCierreFecha.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

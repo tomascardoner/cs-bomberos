@@ -2,7 +2,6 @@
 
 #Region "Declarations"
 
-    Friend Form_ClientSize As Size
     Private ReadOnly AFIP_TicketAcceso_Homo As String
 
 #End Region
@@ -10,7 +9,7 @@
 #Region "Form stuff"
 
     Private Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.IMAGE_APPLICATION_ICON_300)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageAplicacionIcon300)
         Me.Text = My.Application.Info.Title
         Application.DoEvents()
     End Sub
@@ -27,27 +26,6 @@
         menuitemAyuda_AcercaDe.Text = "&Acerca de " & My.Application.Info.Title & "..."
     End Sub
 
-    Private Sub formMDIMain_Resize() Handles Me.Resize
-        If Not Me.WindowState = FormWindowState.Minimized Then
-
-            'OBTENGO LAS MEDIDAS DEL CLIENT AREA DEL FORM MDI
-            Form_ClientSize = New Size(Me.ClientSize.Width - toolstripMain.Width - pAppearanceConfig.MdiFormMargin, Me.ClientSize.Height - menustripMain.Height - statusstripMain.Height - pAppearanceConfig.MdiFormMargin)
-
-            'HAGO UN RESIZE DE TODOS LOS CHILDS QUE ESTÉN ABIERTOS
-            For Each FormCurrent As Form In Me.MdiChildren
-                If FormCurrent.FormBorderStyle = Windows.Forms.FormBorderStyle.Sizable Then
-                    If FormCurrent.Name = "formComprobante" Then
-                        CS_Form.MDIChild_CenterToClientArea(FormCurrent, Form_ClientSize)
-                    Else
-                        CS_Form.MDIChild_PositionAndSizeToFit(Me, FormCurrent)
-                    End If
-                Else
-                    CS_Form.MDIChild_CenterToClientArea(FormCurrent, Form_ClientSize)
-                End If
-            Next
-        End If
-    End Sub
-
     Private Sub MDIMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If Not (e.CloseReason = CloseReason.ApplicationExitCall Or e.CloseReason = CloseReason.TaskManagerClosing Or e.CloseReason = CloseReason.WindowsShutDown) Then
             If MsgBox("¿Desea salir de la aplicación?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
@@ -57,6 +35,7 @@
         End If
         TerminateApplication()
     End Sub
+
 #End Region
 
 #Region "Menu Archivo"
@@ -81,7 +60,7 @@
 
 #Region "Menú Sistema"
 
-    Private Sub CompletarCUILes() Handles menuitemSistema_CompletarCuiles.Click
+    Private Shared Sub CompletarCUILes() Handles menuitemSistema_CompletarCuiles.Click
         If Not Permisos.VerificarPermiso(Permisos.SISTEMA_COMPLETAR_CUIL) Then
             Exit Sub
         End If
@@ -99,9 +78,9 @@
 
                     Select Case p.Genero
                         Case Constantes.PERSONA_GENERO_FEMENINO
-                            cuil = CardonerSistemas.AFIP.ObtenerCUIT(CardonerSistemas.AFIP.TipoPersonas.Femenino, p.DocumentoNumero)
+                            cuil = CardonerSistemas.Afip.ObtenerCuit(CardonerSistemas.Afip.TipoPersonas.Femenino, p.DocumentoNumero)
                         Case Constantes.PERSONA_GENERO_MASCULINO
-                            cuil = CardonerSistemas.AFIP.ObtenerCUIT(CardonerSistemas.AFIP.TipoPersonas.Masculino, p.DocumentoNumero)
+                            cuil = CardonerSistemas.Afip.ObtenerCuit(CardonerSistemas.Afip.TipoPersonas.Masculino, p.DocumentoNumero)
                         Case Else
                             cuil = String.Empty
                     End Select
@@ -136,7 +115,7 @@
         End Try
     End Sub
 
-    Private Sub VerificarEdadFamiliares() Handles menuitemSistema_VerificarFamiliares.Click
+    Private Shared Sub VerificarEdadFamiliares() Handles menuitemSistema_VerificarFamiliares.Click
         If Not Permisos.VerificarPermiso(Permisos.SISTEMA_VERIFICAR_FAMILIARACARGO) Then
             Exit Sub
         End If
@@ -206,30 +185,6 @@
 #End Region
 
 #Region "Menu Ventana"
-
-    Private Sub menuitemVentana_MosaicoHorizontal_Click() Handles menuitemVentanaMosaicoHorizontal.Click
-        Me.LayoutMdi(MdiLayout.TileHorizontal)
-    End Sub
-
-    Private Sub menuitemVentana_MosaicoVertical_Click() Handles menuitemVentanaMosaicoVertical.Click
-        Me.LayoutMdi(MdiLayout.TileVertical)
-    End Sub
-
-    Private Sub menuitemVentana_Cascada_Click() Handles menuitemVentanaCascada.Click
-        Me.LayoutMdi(MdiLayout.Cascade)
-    End Sub
-
-    Private Sub menuitemVentana_OrganizarIconos_Click() Handles menuitemVentanaOrganizarIconos.Click
-        Me.LayoutMdi(MdiLayout.ArrangeIcons)
-    End Sub
-
-    Private Sub menuitemVentana_EncajarEnVentana_Click() Handles menuitemVentanaEncajarEnVentana.Click
-        If Me.ActiveMdiChild IsNot Nothing Then
-            Me.ActiveMdiChild.Left = 0
-            Me.ActiveMdiChild.Top = 0
-            Me.ActiveMdiChild.Size = Form_ClientSize
-        End If
-    End Sub
 
     Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentanaCerrarTodas.Click
         CS_Form.MDIChild_CloseAll(Me)
@@ -445,17 +400,30 @@
 
 #Region "Left Toolbar - Jefatura"
 
-    Private Sub Compras() Handles menuitemJefatura_Compras.Click
-        ShowForm(Permisos.COMPRA, CType(formCompras, Form))
+    Private Sub OrdenesCompra() Handles menuitemJefatura_OrdenesCompra.Click
+        ShowForm(Permisos.COMPRAORDEN, CType(formCompraOrdenes, Form))
     End Sub
 
-    Private Sub CajasArqueos() Handles menuitemJefatura_CajasArqueos.Click
+    Private Sub ArqueosCaja() Handles menuitemJefatura_ArqueosCaja.Click
         ShowForm(Permisos.CAJAARQUEO, CType(formCajasArqueos, Form))
     End Sub
 
     Private Sub JefaturaReportes(sender As Object, e As EventArgs) Handles menuitemJefatura_Reportes.Click
         ShowFormReportes(Permisos.REPORTE_JEFATURA, Constantes.MODULO_JEFATURA_ID, Constantes.MODULO_JEFATURA_NOMBRE)
     End Sub
+
+#End Region
+
+#Region "Left Toolbar - Comisión directiva"
+
+    Private Sub FacturasCompra() Handles menuitemComisionDirectiva_FacturasCompra.Click
+        ShowForm(Permisos.COMPRAFACTURA, CType(formCompraFacturas, Form))
+    End Sub
+
+    Private Sub ComisionDirectivaReportes(sender As Object, e As EventArgs) Handles menuitemComisionDirectiva_Reportes.Click
+        ShowFormReportes(Permisos.REPORTE_COMISIONDIRECTIVA, Constantes.MODULO_COMISIONDIRECTIVA_ID, Constantes.MODULO_COMISIONDIRECTIVA_NOMBRE)
+    End Sub
+
 #End Region
 
 #Region "Left Toolbar - Guardia"
@@ -519,6 +487,14 @@
             formLogin.Close()
             formLogin.Dispose()
         End If
+    End Sub
+
+    Private Sub Compras(sender As Object, e As EventArgs) Handles menuitemJefatura_OrdenesCompra.Click
+
+    End Sub
+
+    Private Sub CajasArqueos(sender As Object, e As EventArgs) Handles menuitemJefatura_ArqueosCaja.Click
+
     End Sub
 
 #End Region

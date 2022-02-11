@@ -151,7 +151,7 @@ Partial Class formPersonasSeleccionar
         'buttonBuscarBorrar
         '
         Me.buttonBuscarBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonBuscarBorrar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CLOSE_16
+        Me.buttonBuscarBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
         Me.buttonBuscarBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonBuscarBorrar.Name = "buttonBuscarBorrar"
         Me.buttonBuscarBorrar.Size = New System.Drawing.Size(23, 22)
@@ -213,7 +213,7 @@ Partial Class formPersonasSeleccionar
         '
         'buttonSeleccionar
         '
-        Me.buttonSeleccionar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonSeleccionar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
         Me.buttonSeleccionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonSeleccionar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonSeleccionar.Name = "buttonSeleccionar"
@@ -222,7 +222,7 @@ Partial Class formPersonasSeleccionar
         '
         'buttonCancelar
         '
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"

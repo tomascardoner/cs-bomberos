@@ -80,7 +80,7 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Sistema\Application.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\Aplicacion\Aplicacion.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
@@ -462,28 +462,49 @@
     <Compile Include="CombustibleTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Compra.vb">
+    <Compile Include="CompraFactura.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraDetalle.vb">
+    <Compile Include="CompraFacturaDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompra.designer.vb">
-      <DependentUpon>formCompra.vb</DependentUpon>
+    <Compile Include="CompraOrden.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompra.vb">
+    <Compile Include="CompraOrdenDetalle.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompraOrdenFactura.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompraFactura.designer.vb">
+      <DependentUpon>formCompraFactura.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompraFactura.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compras\formCompraDetalle.designer.vb">
-      <DependentUpon>formCompraDetalle.vb</DependentUpon>
+    <Compile Include="Compras\formCompraFacturas.designer.vb">
+      <DependentUpon>formCompraFacturas.vb</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompraDetalle.vb">
+    <Compile Include="Compras\formCompraFacturas.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compras\formCompras.Designer.vb">
-      <DependentUpon>formCompras.vb</DependentUpon>
+    <Compile Include="Compras\formCompraOrden.designer.vb">
+      <DependentUpon>formCompraOrden.vb</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompras.vb">
+    <Compile Include="Compras\formCompraOrden.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compras\formCompraOrdenDetalle.designer.vb">
+      <DependentUpon>formCompraOrdenDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompraOrdenDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compras\formCompraOrdenes.Designer.vb">
+      <DependentUpon>formCompraOrdenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Compras\formCompraOrdenes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
@@ -511,6 +532,7 @@
     <Compile Include="EstadoCivil.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="Inventario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -534,6 +556,11 @@
     </Compile>
     <Compile Include="Modulo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="NivelEstudio.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -1328,11 +1355,6 @@
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -1450,14 +1472,20 @@
     <EmbeddedResource Include="Cajas\formCajasArqueos.resx">
       <DependentUpon>formCajasArqueos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompra.resx">
-      <DependentUpon>formCompra.vb</DependentUpon>
+    <EmbeddedResource Include="Compras\formCompraFactura.resx">
+      <DependentUpon>formCompraFactura.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompraDetalle.resx">
-      <DependentUpon>formCompraDetalle.vb</DependentUpon>
+    <EmbeddedResource Include="Compras\formCompraFacturas.resx">
+      <DependentUpon>formCompraFacturas.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompras.resx">
-      <DependentUpon>formCompras.vb</DependentUpon>
+    <EmbeddedResource Include="Compras\formCompraOrden.resx">
+      <DependentUpon>formCompraOrden.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compras\formCompraOrdenDetalle.resx">
+      <DependentUpon>formCompraOrdenDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compras\formCompraOrdenes.resx">
+      <DependentUpon>formCompraOrdenes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
@@ -1803,57 +1831,43 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Cardoner Sistemas.gif" />
+    <Content Include="Resources\Acciones\AsistenciaMultiple32.png" />
+    <Content Include="Resources\Acciones\Buscar16.png" />
+    <Content Include="Resources\Aplicacion\InicioSesion48.png" />
+    <Content Include="Resources\Framework\DatabaseSelect48.png" />
+    <Content Include="Resources\Framework\WindowsCloseAll16.png" />
+    <Content Include="Resources\Items\Academia32.png" />
+    <Content Include="Resources\Items\ArqueoCaja32.png" />
+    <Content Include="Resources\Items\Elemento32.png" />
+    <Content Include="Resources\Items\OrdenCompra32.png" />
+    <Content Include="Resources\Items\Persona32.png" />
+    <Content Include="Resources\Items\PersonaHombre16.png" />
+    <Content Include="Resources\Items\PersonaMujer16.png" />
+    <Content Include="Resources\Items\Reporte32.png" />
+    <Content Include="Resources\Items\Siniestro32.png" />
+    <Content Include="Resources\Items\Unidad32.png" />
+    <Content Include="Resources\Modulos\ComisionDirectiva32.png" />
     <None Include="packages.config" />
-    <None Include="Resources\Fire-Pumper-icon_32.png" />
-    <None Include="Resources\Occupations-Firefighter-Male-Light-icon_32.png" />
-    <None Include="Resources\Printer24.png" />
-    <None Include="Resources\printer-icon %285%29.png" />
-    <None Include="Resources\printer-icon %286%29.png" />
-    <None Include="Resources\printer-icon %287%29.png" />
-    <None Include="Resources\ReportWithChart32.png" />
-    <None Include="Resources\printer %286%29.png" />
-    <None Include="Resources\printer %287%29.png" />
-    <None Include="Resources\document-print-preview %286%29.png" />
-    <None Include="Resources\document-print-preview %287%29.png" />
-    <None Include="Resources\Mail-icon %287%29.png" />
-    <None Include="Resources\Mail-icon %286%29.png" />
-    <None Include="Resources\export-icon_16.png" />
-    <None Include="Resources\export-icon_32.png" />
-    <None Include="Resources\Actions-edit-copy-icon_32.png" />
-    <None Include="Resources\KMHYSEO Crossfit Bomberos.jpg" />
-    <None Include="Resources\BOMBEROS %2841%29.png" />
-    <None Include="Resources\shopping-bag_32.png" />
-    <None Include="Resources\Document.png" />
-    <None Include="Resources\Organigrama_Alt_32.png" />
-    <None Include="Resources\cashier2_118191_32.png" />
-    <None Include="Resources\DatabaseSearch48.png" />
-    <None Include="Resources\emergency_32.png" />
-    <None Include="Resources\fender-bender_32.png" />
-    <None Include="Resources\Check-2-icon_32.png" />
-    <None Include="Resources\parade32.png" />
-    <Content Include="Sistema\Application.ico" />
-    <None Include="Resources\Move Previous %28Arrow%29 Red24.png" />
-    <None Include="Resources\Move Next %28Arrow%29 Green24.png" />
-    <None Include="Resources\invoice-icon %2812%29.png" />
-    <None Include="Resources\invoice-icon %2813%29.png" />
-    <None Include="Resources\Search-icon %288%29.png" />
-    <None Include="Resources\Actions-view-pim-contacts-icon %285%29.png" />
-    <None Include="Resources\Actions-dialog-close-icon %286%29.png" />
-    <None Include="Resources\Actions-dialog-cancel-icon %286%29.png" />
-    <None Include="Resources\Actions-dialog-ok-apply-icon %286%29.png" />
-    <None Include="Resources\Actions-dialog-close-icon %288%29.png" />
-    <None Include="Resources\Actions-edit-delete-icon %286%29.png" />
-    <None Include="Resources\Actions-document-edit-icon %286%29.png" />
-    <None Include="Resources\Actions-document-new-icon %286%29.png" />
-    <None Include="Resources\WindowFitToSize16.png" />
-    <None Include="Resources\Window - Close All.png" />
-    <None Include="Resources\Window - Tile Vertically.png" />
-    <None Include="Resources\Window - Tile Horizontally.png" />
-    <None Include="Resources\School2_3211.png" />
-    <None Include="Resources\School2_321.png" />
-    <None Include="Resources\School2_48.png" />
-    <None Include="Resources\School2_32.png" />
+    <None Include="Resources\Modulos\Documentaciones32.png" />
+    <None Include="Resources\Modulos\Jefatura32.png" />
+    <None Include="Resources\Modulos\Guardia32.png" />
+    <Content Include="Resources\Acciones\Aceptar32.png" />
+    <Content Include="Resources\Acciones\Agregar32.png" />
+    <Content Include="Resources\Acciones\Anterior24.png" />
+    <Content Include="Resources\Acciones\Borrar32.png" />
+    <Content Include="Resources\Acciones\Cancelar32.png" />
+    <Content Include="Resources\Acciones\Cerrar16.png" />
+    <Content Include="Resources\Acciones\Cerrar32.png" />
+    <Content Include="Resources\Acciones\Copiar32.png" />
+    <Content Include="Resources\Acciones\Editar32.png" />
+    <Content Include="Resources\Acciones\Imprimir32.png" />
+    <Content Include="Resources\Acciones\Previsualizar32.png" />
+    <Content Include="Resources\Acciones\Siguiente24.png" />
+    <Content Include="Resources\Aplicacion\Aplicacion.ico" />
+    <Content Include="Resources\Aplicacion\Aplicacion300.png" />
+    <Content Include="Resources\Aplicacion\Cardoner Sistemas.gif" />
+    <Content Include="Resources\Aplicacion\Splash.jpg" />
+    <None Include="Resources\Modulos\Tablas32.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

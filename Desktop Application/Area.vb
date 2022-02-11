@@ -28,7 +28,8 @@ Partial Public Class Area
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property Inventario As ICollection(Of Inventario) = New HashSet(Of Inventario)
-    Public Overridable Property CompraDetalles As ICollection(Of CompraDetalle) = New HashSet(Of CompraDetalle)
+    Public Overridable Property CompraOrdenDetalles As ICollection(Of CompraOrdenDetalle) = New HashSet(Of CompraOrdenDetalle)
     Public Overridable Property CajaArqueoDetalle As ICollection(Of CajaArqueoDetalle) = New HashSet(Of CajaArqueoDetalle)
+    Public Overridable Property CompraFacturaDetalles As ICollection(Of CompraFacturaDetalle) = New HashSet(Of CompraFacturaDetalle)
 
 End Class

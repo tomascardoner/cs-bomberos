@@ -46,7 +46,7 @@ Partial Class formCambiarContrasena
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_CANCEL_32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -56,7 +56,7 @@ Partial Class formCambiarContrasena
         'buttonAceptar
         '
         Me.buttonAceptar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonAceptar.Image = Global.CSBomberos.My.Resources.Resources.IMAGE_OK_32
+        Me.buttonAceptar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
         Me.buttonAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAceptar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAceptar.Name = "buttonAceptar"

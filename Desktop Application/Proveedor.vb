@@ -34,9 +34,10 @@ Partial Public Class Proveedor
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Compras As ICollection(Of Compra) = New HashSet(Of Compra)
+    Public Overridable Property CompraOrdens As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
     Public Overridable Property Localidad As Localidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property CompraFacturas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
 
 End Class

@@ -16,6 +16,8 @@
     Friend Const MODULO_DOCUMENTACIONES_NOMBRE As String = "Documentaciones"
     Friend Const MODULO_JEFATURA_ID As Byte = 2
     Friend Const MODULO_JEFATURA_NOMBRE As String = "Jefatura"
+    Friend Const MODULO_COMISIONDIRECTIVA_ID As Byte = 2
+    Friend Const MODULO_COMISIONDIRECTIVA_NOMBRE As String = "Comisión directiva"
 
     '//////////////////
     '    ALARMA

@@ -1,3 +1,7 @@
+2022-02-08
+	- Se agregaron los permisos de Academias
+	- Se agregaron las facturas de compra
+
 2022-01-23
 	- Reporte de puntajes: se agregaron los servicios especiales y se abrió las claves naranjas en 2 (100% y 50%)
 
