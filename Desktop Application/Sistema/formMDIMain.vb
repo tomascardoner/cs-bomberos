@@ -11,6 +11,7 @@
     Private Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageAplicacionIcon300)
         Me.Text = My.Application.Info.Title
+        labelStatus.Text = $"Se licencia el uso a: {pLicensedTo.ToUpper()}"
         Application.DoEvents()
     End Sub
 

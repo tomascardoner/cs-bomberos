@@ -16,12 +16,12 @@ Public NotInheritable Class formAboutBox
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - DataSource"
-        NewItem.SubItems.Add(pDatabaseConfig.Datasource)
+        NewItem.SubItems.Add(pDatabase.Datasource)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem
         NewItem.Text = "DB - Database"
-        NewItem.SubItems.Add(pDatabaseConfig.Database)
+        NewItem.SubItems.Add(pDatabase.InitialCatalog)
         listviewPropiedades.Items.Add(NewItem)
 
         NewItem = New ListViewItem

@@ -22,9 +22,9 @@
 
         Select Case pUsuario.Genero
             Case Constantes.PERSONA_GENERO_MASCULINO
-                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImagenPersonaHombre16
+                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImagePersonaHombre16
             Case Constantes.PERSONA_GENERO_FEMENINO
-                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImagenPersonaMujer16
+                pFormMDIMain.labelUsuarioNombre.Image = My.Resources.Resources.ImagePersonaMujer16
             Case Else
                 pFormMDIMain.labelUsuarioNombre.Image = Nothing
         End Select

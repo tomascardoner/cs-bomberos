@@ -37,11 +37,11 @@ Partial Class formMDIMain
         Me.menuitemSistema_CompletarCuiles = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemSistema_VerificarFamiliares = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentanaCerrarTodas = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemVentanaSeparadorListaVentanas = New System.Windows.Forms.ToolStripSeparator()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemVentanaCerrarTodas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemVentanaSeparadorListaVentanas = New System.Windows.Forms.ToolStripSeparator()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.dropdownbuttonTablas = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemTablas_MenuPersonas = New System.Windows.Forms.ToolStripMenuItem()
@@ -101,11 +101,12 @@ Partial Class formMDIMain
         Me.menuitemJefatura_OrdenesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_ArqueosCaja = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
-        Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonComisionDirectiva = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemComisionDirectiva_FacturasCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemComisionDirectiva_Reportes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
+        Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -205,18 +206,6 @@ Partial Class formMDIMain
         Me.menuitemVentana.Size = New System.Drawing.Size(61, 20)
         Me.menuitemVentana.Text = "&Ventana"
         '
-        'menuitemVentanaCerrarTodas
-        '
-        Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.ImageWindowsCloseAll16
-        Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
-        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
-        '
-        'menuitemVentanaSeparadorListaVentanas
-        '
-        Me.menuitemVentanaSeparadorListaVentanas.Name = "menuitemVentanaSeparadorListaVentanas"
-        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(177, 6)
-        '
         'menuitemDebug
         '
         Me.menuitemDebug.Name = "menuitemDebug"
@@ -237,14 +226,26 @@ Partial Class formMDIMain
         Me.menuitemAyuda_AcercaDe.Size = New System.Drawing.Size(135, 22)
         Me.menuitemAyuda_AcercaDe.Text = "&Acerca de..."
         '
+        'menuitemVentanaCerrarTodas
+        '
+        Me.menuitemVentanaCerrarTodas.Image = Global.CSBomberos.My.Resources.Resources.ImageWindowsCloseAll16
+        Me.menuitemVentanaCerrarTodas.Name = "menuitemVentanaCerrarTodas"
+        Me.menuitemVentanaCerrarTodas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemVentanaCerrarTodas.Text = "Cerrar todas"
+        '
+        'menuitemVentanaSeparadorListaVentanas
+        '
+        Me.menuitemVentanaSeparadorListaVentanas.Name = "menuitemVentanaSeparadorListaVentanas"
+        Me.menuitemVentanaSeparadorListaVentanas.Size = New System.Drawing.Size(177, 6)
+        '
         'toolstripMain
         '
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.dropdownbuttonDocumentaciones, Me.dropdownbuttonJefatura, Me.dropdownbuttonComisionDirectiva, Me.dropdownbuttonGuardia})
         Me.toolstripMain.AllowMerge = False
         Me.toolstripMain.Dock = System.Windows.Forms.DockStyle.Left
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.dropdownbuttonTablas, Me.dropdownbuttonDocumentaciones, Me.dropdownbuttonJefatura, Me.dropdownbuttonComisionDirectiva, Me.dropdownbuttonGuardia})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 24)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(149, 489)
+        Me.toolstripMain.Size = New System.Drawing.Size(152, 489)
         Me.toolstripMain.TabIndex = 1
         Me.toolstripMain.Text = "Principal"
         '
@@ -256,7 +257,7 @@ Partial Class formMDIMain
         Me.dropdownbuttonTablas.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonTablas.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonTablas.Name = "dropdownbuttonTablas"
-        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(146, 36)
+        Me.dropdownbuttonTablas.Size = New System.Drawing.Size(149, 36)
         Me.dropdownbuttonTablas.Text = "Tablas"
         '
         'menuitemTablas_MenuPersonas
@@ -545,27 +546,27 @@ Partial Class formMDIMain
         '
         'dropdownbuttonDocumentaciones
         '
-         Me.dropdownbuttonDocumentaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Personas, Me.menuitemDocumentaciones_Unidades, Me.menuitemDocumentaciones_Inventario, Me.menuitemDocumentaciones_Academias, Me.menuitemDocumentaciones_Reportes})
+        Me.dropdownbuttonDocumentaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Personas, Me.menuitemDocumentaciones_Unidades, Me.menuitemDocumentaciones_Inventario, Me.menuitemDocumentaciones_Academias, Me.menuitemDocumentaciones_Reportes})
         Me.dropdownbuttonDocumentaciones.Image = Global.CSBomberos.My.Resources.Resources.ImageDocumentaciones32
         Me.dropdownbuttonDocumentaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonDocumentaciones.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonDocumentaciones.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonDocumentaciones.Name = "dropdownbuttonDocumentaciones"
-        Me.dropdownbuttonDocumentaciones.Size = New System.Drawing.Size(146, 36)
+        Me.dropdownbuttonDocumentaciones.Size = New System.Drawing.Size(149, 36)
         Me.dropdownbuttonDocumentaciones.Text = "Documentaciones"
         '
         'menuitemDocumentaciones_Personas
         '
         Me.menuitemDocumentaciones_Personas.Image = Global.CSBomberos.My.Resources.Resources.ImagePersona32
         Me.menuitemDocumentaciones_Personas.Name = "menuitemDocumentaciones_Personas"
-        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Personas.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Personas.Text = "Personas"
         '
         'menuitemDocumentaciones_Unidades
         '
         Me.menuitemDocumentaciones_Unidades.Image = Global.CSBomberos.My.Resources.Resources.ImageUnidad32
         Me.menuitemDocumentaciones_Unidades.Name = "menuitemDocumentaciones_Unidades"
-        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Unidades.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Unidades.Text = "Unidades"
         '
         'menuitemDocumentaciones_Inventario
@@ -573,7 +574,7 @@ Partial Class formMDIMain
         Me.menuitemDocumentaciones_Inventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDocumentaciones_Inventario_Elementos})
         Me.menuitemDocumentaciones_Inventario.Image = Global.CSBomberos.My.Resources.Resources.ImageElemento32
         Me.menuitemDocumentaciones_Inventario.Name = "menuitemDocumentaciones_Inventario"
-        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Inventario.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Inventario.Text = "Inventario"
         '
         'menuitemDocumentaciones_Inventario_Elementos
@@ -586,14 +587,14 @@ Partial Class formMDIMain
         '
         Me.menuitemDocumentaciones_Academias.Image = Global.CSBomberos.My.Resources.Resources.ImageAcademia32
         Me.menuitemDocumentaciones_Academias.Name = "menuitemDocumentaciones_Academias"
-        Me.menuitemDocumentaciones_Academias.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Academias.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Academias.Text = "Academias"
         '
         'menuitemDocumentaciones_Reportes
         '
         Me.menuitemDocumentaciones_Reportes.Image = Global.CSBomberos.My.Resources.Resources.ImageReporte32
         Me.menuitemDocumentaciones_Reportes.Name = "menuitemDocumentaciones_Reportes"
-        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDocumentaciones_Reportes.Size = New System.Drawing.Size(132, 22)
         Me.menuitemDocumentaciones_Reportes.Text = "Reportes"
         '
         'dropdownbuttonJefatura
@@ -604,29 +605,54 @@ Partial Class formMDIMain
         Me.dropdownbuttonJefatura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonJefatura.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonJefatura.Name = "dropdownbuttonJefatura"
-        Me.dropdownbuttonJefatura.Size = New System.Drawing.Size(146, 36)
+        Me.dropdownbuttonJefatura.Size = New System.Drawing.Size(149, 36)
         Me.dropdownbuttonJefatura.Text = "Jefatura"
         '
         'menuitemJefatura_OrdenesCompra
         '
         Me.menuitemJefatura_OrdenesCompra.Image = Global.CSBomberos.My.Resources.Resources.ImageOrdenCompra32
         Me.menuitemJefatura_OrdenesCompra.Name = "menuitemJefatura_OrdenesCompra"
-        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_OrdenesCompra.Text = "Órdenes de compra"
         '
         'menuitemJefatura_ArqueosCaja
         '
         Me.menuitemJefatura_ArqueosCaja.Image = Global.CSBomberos.My.Resources.Resources.ImageArqueoCaja32
         Me.menuitemJefatura_ArqueosCaja.Name = "menuitemJefatura_ArqueosCaja"
-        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_ArqueosCaja.Text = "Arqueos de caja"
         '
         'menuitemJefatura_Reportes
         '
         Me.menuitemJefatura_Reportes.Image = Global.CSBomberos.My.Resources.Resources.ImageReporte32
         Me.menuitemJefatura_Reportes.Name = "menuitemJefatura_Reportes"
-        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_Reportes.Text = "Reportes"
+        '
+        'dropdownbuttonComisionDirectiva
+        '
+        Me.dropdownbuttonComisionDirectiva.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemComisionDirectiva_FacturasCompra, Me.menuitemComisionDirectiva_Reportes})
+        Me.dropdownbuttonComisionDirectiva.Image = Global.CSBomberos.My.Resources.Resources.ImageComisionDirectiva32
+        Me.dropdownbuttonComisionDirectiva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.dropdownbuttonComisionDirectiva.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.dropdownbuttonComisionDirectiva.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.dropdownbuttonComisionDirectiva.Name = "dropdownbuttonComisionDirectiva"
+        Me.dropdownbuttonComisionDirectiva.Size = New System.Drawing.Size(149, 36)
+        Me.dropdownbuttonComisionDirectiva.Text = "Comisión directiva"
+        '
+        'menuitemComisionDirectiva_FacturasCompra
+        '
+        Me.menuitemComisionDirectiva_FacturasCompra.Image = Global.CSBomberos.My.Resources.Resources.ImageFacturaCompra32
+        Me.menuitemComisionDirectiva_FacturasCompra.Name = "menuitemComisionDirectiva_FacturasCompra"
+        Me.menuitemComisionDirectiva_FacturasCompra.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemComisionDirectiva_FacturasCompra.Text = "Facturas de compra"
+        '
+        'menuitemComisionDirectiva_Reportes
+        '
+        Me.menuitemComisionDirectiva_Reportes.Image = Global.CSBomberos.My.Resources.Resources.ImageReporte32
+        Me.menuitemComisionDirectiva_Reportes.Name = "menuitemComisionDirectiva_Reportes"
+        Me.menuitemComisionDirectiva_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemComisionDirectiva_Reportes.Text = "Reportes"
         '
         'dropdownbuttonGuardia
         '
@@ -636,37 +662,15 @@ Partial Class formMDIMain
         Me.dropdownbuttonGuardia.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.dropdownbuttonGuardia.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.dropdownbuttonGuardia.Name = "dropdownbuttonGuardia"
-        Me.dropdownbuttonGuardia.Size = New System.Drawing.Size(146, 36)
+        Me.dropdownbuttonGuardia.Size = New System.Drawing.Size(149, 36)
         Me.dropdownbuttonGuardia.Text = "Guardia"
         '
         'menuitemGuardia_Siniestros
         '
         Me.menuitemGuardia_Siniestros.Image = Global.CSBomberos.My.Resources.Resources.ImageSiniestro32
         Me.menuitemGuardia_Siniestros.Name = "menuitemGuardia_Siniestros"
-        Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
-        '
-        'dropdownbuttonComisionDirectiva
-        '
-        Me.dropdownbuttonComisionDirectiva.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemComisionDirectiva_FacturasCompra, Me.menuitemComisionDirectiva_Reportes})
-        Me.dropdownbuttonComisionDirectiva.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.dropdownbuttonComisionDirectiva.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.dropdownbuttonComisionDirectiva.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.dropdownbuttonComisionDirectiva.Name = "dropdownbuttonComisionDirectiva"
-        Me.dropdownbuttonComisionDirectiva.Size = New System.Drawing.Size(146, 19)
-        Me.dropdownbuttonComisionDirectiva.Text = "Comisión directiva"
-        '
-        'menuitemComisionDirectiva_FacturasCompra
-        '
-        Me.menuitemComisionDirectiva_FacturasCompra.Name = "menuitemComisionDirectiva_FacturasCompra"
-        Me.menuitemComisionDirectiva_FacturasCompra.Size = New System.Drawing.Size(178, 22)
-        Me.menuitemComisionDirectiva_FacturasCompra.Text = "Facturas de compra"
-        '
-        'menuitemComisionDirectiva_Reportes
-        '
-        Me.menuitemComisionDirectiva_Reportes.Name = "menuitemComisionDirectiva_Reportes"
-        Me.menuitemComisionDirectiva_Reportes.Size = New System.Drawing.Size(178, 22)
-        Me.menuitemComisionDirectiva_Reportes.Text = "Reportes"
         '
         'formMDIMain
         '
@@ -683,6 +687,8 @@ Partial Class formMDIMain
         Me.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds
         Me.Text = "Title"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        Me.statusstripMain.ResumeLayout(False)
+        Me.statusstripMain.PerformLayout()
         Me.menustripMain.ResumeLayout(False)
         Me.menustripMain.PerformLayout()
         Me.toolstripMain.ResumeLayout(False)

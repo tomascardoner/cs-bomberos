@@ -31,7 +31,9 @@ Partial Class formCambiarContrasena
         Me.textboxPasswordAnterior = New System.Windows.Forms.TextBox()
         Me.labelPassword = New System.Windows.Forms.Label()
         Me.labelPasswordAnterior = New System.Windows.Forms.Label()
+        Me.pictureboxMain = New System.Windows.Forms.PictureBox()
         Me.toolstripMain.SuspendLayout()
+        CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'toolstripMain
@@ -40,7 +42,7 @@ Partial Class formCambiarContrasena
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonAceptar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(310, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(389, 39)
         Me.toolstripMain.TabIndex = 6
         '
         'buttonCancelar
@@ -65,7 +67,7 @@ Partial Class formCambiarContrasena
         '
         'textboxPasswordConfirma
         '
-        Me.textboxPasswordConfirma.Location = New System.Drawing.Point(82, 122)
+        Me.textboxPasswordConfirma.Location = New System.Drawing.Point(166, 122)
         Me.textboxPasswordConfirma.MaxLength = 30
         Me.textboxPasswordConfirma.Name = "textboxPasswordConfirma"
         Me.textboxPasswordConfirma.Size = New System.Drawing.Size(216, 20)
@@ -75,7 +77,7 @@ Partial Class formCambiarContrasena
         'labelPasswordConfirma
         '
         Me.labelPasswordConfirma.AutoSize = True
-        Me.labelPasswordConfirma.Location = New System.Drawing.Point(12, 125)
+        Me.labelPasswordConfirma.Location = New System.Drawing.Point(96, 125)
         Me.labelPasswordConfirma.Name = "labelPasswordConfirma"
         Me.labelPasswordConfirma.Size = New System.Drawing.Size(51, 13)
         Me.labelPasswordConfirma.TabIndex = 4
@@ -83,7 +85,7 @@ Partial Class formCambiarContrasena
         '
         'textboxPasswordNueva
         '
-        Me.textboxPasswordNueva.Location = New System.Drawing.Point(81, 89)
+        Me.textboxPasswordNueva.Location = New System.Drawing.Point(165, 89)
         Me.textboxPasswordNueva.MaxLength = 30
         Me.textboxPasswordNueva.Name = "textboxPasswordNueva"
         Me.textboxPasswordNueva.Size = New System.Drawing.Size(216, 20)
@@ -92,7 +94,7 @@ Partial Class formCambiarContrasena
         '
         'textboxPasswordAnterior
         '
-        Me.textboxPasswordAnterior.Location = New System.Drawing.Point(81, 56)
+        Me.textboxPasswordAnterior.Location = New System.Drawing.Point(165, 56)
         Me.textboxPasswordAnterior.MaxLength = 30
         Me.textboxPasswordAnterior.Name = "textboxPasswordAnterior"
         Me.textboxPasswordAnterior.Size = New System.Drawing.Size(216, 20)
@@ -102,7 +104,7 @@ Partial Class formCambiarContrasena
         'labelPassword
         '
         Me.labelPassword.AutoSize = True
-        Me.labelPassword.Location = New System.Drawing.Point(12, 92)
+        Me.labelPassword.Location = New System.Drawing.Point(96, 92)
         Me.labelPassword.Name = "labelPassword"
         Me.labelPassword.Size = New System.Drawing.Size(42, 13)
         Me.labelPassword.TabIndex = 2
@@ -111,18 +113,29 @@ Partial Class formCambiarContrasena
         'labelPasswordAnterior
         '
         Me.labelPasswordAnterior.AutoSize = True
-        Me.labelPasswordAnterior.Location = New System.Drawing.Point(12, 59)
+        Me.labelPasswordAnterior.Location = New System.Drawing.Point(96, 59)
         Me.labelPasswordAnterior.Name = "labelPasswordAnterior"
         Me.labelPasswordAnterior.Size = New System.Drawing.Size(46, 13)
         Me.labelPasswordAnterior.TabIndex = 0
         Me.labelPasswordAnterior.Text = "Anterior:"
         '
+        'pictureboxMain
+        '
+        Me.pictureboxMain.Image = Global.CSBomberos.My.Resources.Resources.ImageInicioSesion48
+        Me.pictureboxMain.Location = New System.Drawing.Point(24, 73)
+        Me.pictureboxMain.Name = "pictureboxMain"
+        Me.pictureboxMain.Size = New System.Drawing.Size(48, 48)
+        Me.pictureboxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pictureboxMain.TabIndex = 7
+        Me.pictureboxMain.TabStop = False
+        '
         'formCambiarContrasena
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(310, 153)
+        Me.ClientSize = New System.Drawing.Size(389, 153)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pictureboxMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.textboxPasswordConfirma)
         Me.Controls.Add(Me.labelPasswordConfirma)
@@ -137,6 +150,7 @@ Partial Class formCambiarContrasena
         Me.Text = "Cambio de contraseña"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -151,4 +165,5 @@ Partial Class formCambiarContrasena
     Friend WithEvents textboxPasswordAnterior As TextBox
     Friend WithEvents labelPassword As Label
     Friend WithEvents labelPasswordAnterior As Label
+    Friend WithEvents pictureboxMain As PictureBox
 End Class

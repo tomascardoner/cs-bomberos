@@ -74,15 +74,53 @@
 #End Region
 
     Friend Function LoadParameters() As Boolean
-        Try
-            Using dbcontext As New CSBomberosContext(True)
-                pParametros = dbcontext.Parametro.ToList
-            End Using
-            Return True
-        Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
-            Return False
-        End Try
+        Dim newLoginData As Boolean
+
+        Do While True
+            Try
+                Using dbcontext As New CSBomberosContext(True)
+                    pParametros = dbcontext.Parametro.ToList
+                End Using
+                If newLoginData Then
+                    Configuration.SaveFileDatabase()
+                End If
+                Return True
+            Catch ex As Exception
+                If ex.HResult = -2146233087 And ex.InnerException IsNot Nothing Then
+                    If ex.InnerException.HResult = -2146232060 AndAlso ex.InnerException.Message.Contains(My.Resources.STRING_ERROR_DB_LOGIN_MESSAGE) Then
+                        ' Los datos de inicio de sesión en la base de datos son incorrectos.
+                        MessageBox.Show("Los datos de inicio de sesión a la base de datos son incorrectos.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+
+                        ' Pido datos nuevos.
+                        CardonerSistemas.Database.LoginInfo.textboxUsuario.Text = pDatabase.UserId
+                        CardonerSistemas.Database.LoginInfo.textboxPassword.Text = pDatabase.Password
+                        If Not CardonerSistemas.Database.LoginInfo.ShowDialog(formSplashScreen) = DialogResult.OK Then
+                            My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha ingresado los datos de inicio de sesión a la base de datos.", TraceEventType.Warning)
+                            Return False
+                        End If
+                        pDatabase.UserId = CardonerSistemas.Database.LoginInfo.textboxUsuario.Text.TrimAndReduce()
+                        pDatabaseConfig.UserId = CardonerSistemas.Database.LoginInfo.textboxUsuario.Text.TrimAndReduce()
+                        pDatabase.Password = CardonerSistemas.Database.LoginInfo.textboxPassword.Text.Trim()
+                        If pDatabase.Password.Length > 0 Then
+                            Dim PasswordEncrypter As New CS_Encrypt_TripleDES(CardonerSistemas.Constants.PublicEncryptionPassword)
+                            pDatabaseConfig.Password = PasswordEncrypter.Encrypt(pDatabase.Password)
+                        Else
+                            pDatabaseConfig.Password = String.Empty
+                        End If
+                        Database.CreateConnectionString()
+                        CardonerSistemas.Database.LoginInfo.Close()
+                        CardonerSistemas.Database.LoginInfo.Dispose()
+                        newLoginData = True
+                    Else
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+                        Return False
+                    End If
+                Else
+                    CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al conectarse a la base de datos.")
+                    Return False
+                End If
+            End Try
+        Loop
     End Function
 
     Friend Function LoadUsuarioPermisosAndParametros() As Boolean

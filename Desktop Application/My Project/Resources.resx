@@ -235,15 +235,6 @@
   <data name="ImageCerrar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Acciones\Cerrar32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <!--<data name="IMAGE_EMAIL_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mail-icon (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_EMAIL_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Mail-icon (6).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_EXPORT_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\export-icon_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>-->
   <data name="ImageInicioSesion48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Aplicacion\InicioSesion48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -268,18 +259,9 @@
   <data name="ImageAceptar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Acciones\Aceptar32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <!--<data name="IMAGE_PERSONA_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Actions-view-pim-contacts-icon (5).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IMAGE_PRINT_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\printer (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>-->
   <data name="ImageImprimir32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Acciones\Imprimir32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <!--<data name="IMAGE_PRINT_PREVIEW_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\document-print-preview (7).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>-->
   <data name="ImagePrevisualizar32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Acciones\Previsualizar32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -292,10 +274,10 @@
   <data name="ImageTablas32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Modulos\Tablas32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImagenPersonaHombre16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImagePersonaHombre16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Items\PersonaHombre16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImagenPersonaMujer16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ImagePersonaMujer16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Items\PersonaMujer16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ImageOrdenCompra32" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -336,5 +318,17 @@
   </data>
   <data name="STRING_ITEM_NEW_FEMALE" xml:space="preserve">
     <value>«Nueva»</value>
+  </data>
+  <data name="ImageComisionDirectiva32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\modulos\comisiondirectiva32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageFacturaCompra32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\items\facturacompra32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="STRING_ERROR_DB_LOGIN_MESSAGE" xml:space="preserve">
+    <value>Login failed for user</value>
+  </data>
+  <data name="ImageDatabaseLoginInfo48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\framework\databaselogininfo48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

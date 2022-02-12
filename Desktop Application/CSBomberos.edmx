@@ -276,7 +276,7 @@
           <Property Name="IDDetalle" Type="tinyint" Nullable="false" />
           <Property Name="IDArea" Type="smallint" Nullable="false" />
           <Property Name="Detalle" Type="varchar(max)" />
-          <Property Name="Importe" Type="money" />
+          <Property Name="Importe" Type="money" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -11477,7 +11477,7 @@
           <Property Name="IDDetalle" Type="Byte" Nullable="false" />
           <Property Name="IDArea" Type="Int16" Nullable="false" />
           <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />

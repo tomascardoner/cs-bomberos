@@ -4,14 +4,14 @@
 
         ' Si hay más de un Datasource especificado, muestro la ventana de selección
         If pDatabaseConfig.Datasource.Contains(CardonerSistemas.Constants.STRING_LIST_SEPARATOR) Then
-            CS_Database_SelectSource.comboboxDataSource.Items.AddRange(pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
-            If Not CS_Database_SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
+            CardonerSistemas.Database.SelectSource.comboboxDataSource.Items.AddRange(pDatabaseConfig.Datasource.Split(CChar(CardonerSistemas.Constants.STRING_LIST_SEPARATOR)))
+            If Not CardonerSistemas.Database.SelectSource.ShowDialog(formSplashScreen) = DialogResult.OK Then
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha seleccionado el origen de los datos.", TraceEventType.Warning)
                 Return False
             End If
-            dataSourceIndex = CS_Database_SelectSource.comboboxDataSource.SelectedIndex
-            CS_Database_SelectSource.Close()
-            CS_Database_SelectSource.Dispose()
+            dataSourceIndex = CardonerSistemas.Database.SelectSource.comboboxDataSource.SelectedIndex
+            CardonerSistemas.Database.SelectSource.Close()
+            CardonerSistemas.Database.SelectSource.Dispose()
         Else
             dataSourceIndex = -1
         End If
@@ -94,11 +94,16 @@
         End If
         pDatabase.MultipleActiveResultsets = True
         pDatabase.WorkstationID = My.Computer.Name
+
+        CreateConnectionString()
+
+        Return True
+    End Function
+
+    Friend Sub CreateConnectionString()
         pDatabase.CreateConnectionString()
 
         ' Obtengo el Connection String para las conexiones de Entity Framework
         CSBomberosContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "CSBomberos")
-
-        Return True
-    End Function
+    End Sub
 End Module

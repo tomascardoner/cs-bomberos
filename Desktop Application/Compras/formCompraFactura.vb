@@ -85,7 +85,7 @@
     End Sub
 
     Friend Sub SetAppearance()
-        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenCompra32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageFacturaCompra32)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -108,6 +108,7 @@
             maskedTextBoxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero, 8)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxProveedor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDProveedor, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textBoxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
+            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -138,8 +139,8 @@
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .FechaVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(dateTimePickerFechaVencimiento.Value)
             .Tipo = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedTextBoxTipo.Text)
-            .PuntoVenta = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxPuntoVenta.Text).Value
-            .Numero = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxNumero.Text).Value
+            .PuntoVenta = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxPuntoVenta.Text, -1).Value
+            .Numero = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxNumero.Text, -1).Value
             .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
             .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textBoxDescripcion.Text)
             .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
@@ -257,6 +258,8 @@
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
                         MsgBox("No se pueden guardar los cambios porque ya existe una Factura de Compra del mismo Proveedor con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case Else
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
 
@@ -324,7 +327,7 @@
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
         Me.Cursor = Cursors.WaitCursor
 
-        'formCompraFacturaDetalle.LoadAndShow(True, True, Me, mCompraFacturaActual, 0)
+        formCompraFacturaDetalle.LoadAndShow(True, True, Me, mCompraFacturaActual, 0)
 
         Me.Cursor = Cursors.Default
     End Sub
@@ -335,7 +338,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formCompraFacturaDetalle.LoadAndShow(True, True, Me, mCompraFacturaActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formCompraFacturaDetalle.LoadAndShow(True, True, Me, mCompraFacturaActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If
@@ -369,7 +372,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            'formCompraFacturaDetalle.LoadAndShow(mEditMode, False, Me, mCompraFacturaActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+            formCompraFacturaDetalle.LoadAndShow(mEditMode, False, Me, mCompraFacturaActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
 
             Me.Cursor = Cursors.Default
         End If
@@ -394,7 +397,7 @@
         End If
         If currencytextboxImporte.Text = String.Empty Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Importes.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("Debe especificar el Importe.", MsgBoxStyle.Information, My.Application.Info.Title)
             currencytextboxImporte.Focus()
             Return False
         End If

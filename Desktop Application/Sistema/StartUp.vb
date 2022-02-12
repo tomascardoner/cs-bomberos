@@ -7,7 +7,7 @@
     Friend pGeneralConfig As GeneralConfig
 
     ' Database stuff
-    Friend pDatabase As CardonerSistemas.Database.ADO.SQLServer
+    Friend pDatabase As CardonerSistemas.Database.Ado.SQLServer
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
     Friend pFormMDIMain As formMDIMain

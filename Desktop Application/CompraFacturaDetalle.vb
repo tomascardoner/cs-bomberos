@@ -15,7 +15,7 @@ Partial Public Class CompraFacturaDetalle
     Public Property IDDetalle As Byte
     Public Property IDArea As Short
     Public Property Detalle As String
-    Public Property Importe As Nullable(Of Decimal)
+    Public Property Importe As Decimal
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
