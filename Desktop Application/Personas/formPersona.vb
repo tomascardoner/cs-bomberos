@@ -181,7 +181,7 @@
         pFillAndRefreshLists.EstadoCivil(comboboxEstadoCivil, False, True)
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         pFillAndRefreshLists.Persona(comboboxCursoIngresoResponsable, False, False, True, False)
         pFillAndRefreshLists.Persona(comboboxReingresoFormacionResponsable, False, False, True, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)

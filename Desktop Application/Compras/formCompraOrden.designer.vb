@@ -54,6 +54,7 @@ Partial Class formCompraOrden
         Me.labelEsActivo = New System.Windows.Forms.Label()
         Me.tabpageDetalles = New System.Windows.Forms.TabPage()
         Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
+        Me.columnFactura = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -403,8 +404,9 @@ Partial Class formCompraOrden
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewDetalles.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewDetalles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewDetalles.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnArea, Me.columnDetalle, Me.columnImporte})
+        Me.datagridviewDetalles.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFactura, Me.columnArea, Me.columnDetalle, Me.columnImporte})
         Me.datagridviewDetalles.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewDetalles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewDetalles.Location = New System.Drawing.Point(90, 3)
@@ -417,9 +419,16 @@ Partial Class formCompraOrden
         Me.datagridviewDetalles.Size = New System.Drawing.Size(563, 251)
         Me.datagridviewDetalles.TabIndex = 8
         '
+        'columnFactura
+        '
+        Me.columnFactura.DataPropertyName = "Factura"
+        Me.columnFactura.HeaderText = "Factura"
+        Me.columnFactura.Name = "columnFactura"
+        Me.columnFactura.ReadOnly = True
+        Me.columnFactura.Width = 68
+        '
         'columnArea
         '
-        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnArea.DataPropertyName = "AreaNombre"
         Me.columnArea.HeaderText = "Área"
         Me.columnArea.Name = "columnArea"
@@ -428,7 +437,6 @@ Partial Class formCompraOrden
         '
         'columnDetalle
         '
-        Me.columnDetalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnDetalle.DataPropertyName = "Detalle"
         Me.columnDetalle.HeaderText = "Detalle"
         Me.columnDetalle.Name = "columnDetalle"
@@ -437,7 +445,6 @@ Partial Class formCompraOrden
         '
         'columnImporte
         '
-        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnImporte.DataPropertyName = "Importe"
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         DataGridViewCellStyle2.Format = "C2"
@@ -651,9 +658,6 @@ Partial Class formCompraOrden
     Friend WithEvents textboxFacturaNumero As TextBox
     Friend WithEvents tabpageDetalles As TabPage
     Friend WithEvents datagridviewDetalles As DataGridView
-    Friend WithEvents columnArea As DataGridViewTextBoxColumn
-    Friend WithEvents columnDetalle As DataGridViewTextBoxColumn
-    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
     Friend WithEvents toolstripDetalles As ToolStrip
     Friend WithEvents buttonDetallesAgregar As ToolStripButton
     Friend WithEvents buttonDetallesEditar As ToolStripButton
@@ -664,4 +668,8 @@ Partial Class formCompraOrden
     Friend WithEvents textboxIDCompraOrden As TextBox
     Friend WithEvents comboboxCuartel As ComboBox
     Friend WithEvents buttonCodigoSiguiente As Button
+    Friend WithEvents columnFactura As DataGridViewTextBoxColumn
+    Friend WithEvents columnArea As DataGridViewTextBoxColumn
+    Friend WithEvents columnDetalle As DataGridViewTextBoxColumn
+    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
 End Class

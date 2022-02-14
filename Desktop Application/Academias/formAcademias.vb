@@ -38,14 +38,14 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
 
         ' Filtro de período
         InicializarFiltroDeFechas()
         comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
         comboboxPeriodoTipo.SelectedIndex = 3
 
-        Academias.LlenarComboBoxTipos(mdbContext, comboboxAcademiaTipo.ComboBox, True, False)
+        ListasAcademias.LlenarComboBoxTipos(mdbContext, comboboxAcademiaTipo.ComboBox, True, False)
 
         mSkipFilterData = False
 

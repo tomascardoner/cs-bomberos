@@ -30,6 +30,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageElemento32)
 
@@ -41,7 +42,9 @@
 
         mSkipFilterData = True
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
+        Using context As New CSBomberosContext(True)
+            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
+        End Using
 
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1

@@ -54,6 +54,7 @@
         buttonCerrar.Visible = Not mEditMode
 
         ' General
+        comboBoxFactura.Enabled = mEditMode
         comboboxArea.Enabled = mEditMode
         textboxDetalle.ReadOnly = Not mEditMode
         currencytextboxImporte.ReadOnly = Not mEditMode
@@ -63,6 +64,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        ListasCompras.LlenarComboBoxFacturas(mdbContext, comboBoxFactura, mCompraOrdenActual.IDProveedor, False, True, True)
         If mCompraOrdenActual.IDCompraOrden = 0 AndAlso CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedIndex > -1 Then
             pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
         Else
@@ -86,6 +88,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
+            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCompraFactura, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
@@ -103,6 +106,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
+            .IDCompraFactura = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboBoxFactura.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
             .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)
@@ -151,10 +155,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxArea.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el Área.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxArea.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -174,6 +176,25 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If comboBoxFactura.SelectedIndex = -1 Then
+            MsgBox("Debe especificar la Factura.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboBoxFactura.Focus()
+            Return False
+        End If
+        If comboboxArea.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el Área.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxArea.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

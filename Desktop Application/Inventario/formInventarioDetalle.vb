@@ -95,7 +95,9 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        Using context As New CSBomberosContext(True)
+            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
+        End Using
         pFillAndRefreshLists.ElementoFill(comboboxElemento, False, False)
 
         pFillAndRefreshLists.ModoAdquisicion(comboboxModoAdquisicion, False, True)

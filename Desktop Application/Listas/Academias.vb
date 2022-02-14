@@ -1,4 +1,4 @@
-﻿Module Academias
+﻿Module ListasAcademias
     Friend Sub LlenarComboBoxTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim listItems As List(Of AcademiaTipo)
 

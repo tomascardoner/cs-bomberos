@@ -71,7 +71,7 @@
 
         FillAndRefreshLists.Genero(comboboxGenero, False)
         pFillAndRefreshLists.UsuarioGrupo(comboboxUsuarioGrupo, True, False, False)
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, True)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, True)
     End Sub
 
     Friend Sub SetAppearance()

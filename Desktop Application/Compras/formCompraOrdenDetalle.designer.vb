@@ -34,6 +34,8 @@ Partial Class formCompraOrdenDetalle
         Me.comboboxArea = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelFactura = New System.Windows.Forms.Label()
+        Me.comboBoxFactura = New System.Windows.Forms.ComboBox()
         Me.currencytextboxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.textboxDetalle = New System.Windows.Forms.TextBox()
         Me.labelImporte = New System.Windows.Forms.Label()
@@ -51,10 +53,10 @@ Partial Class formCompraOrdenDetalle
         'labelDetalle
         '
         labelDetalle.AutoSize = True
-        labelDetalle.Location = New System.Drawing.Point(3, 36)
+        labelDetalle.Location = New System.Drawing.Point(6, 63)
         labelDetalle.Name = "labelDetalle"
         labelDetalle.Size = New System.Drawing.Size(43, 13)
-        labelDetalle.TabIndex = 2
+        labelDetalle.TabIndex = 4
         labelDetalle.Text = "Detalle:"
         '
         'buttonGuardar
@@ -109,20 +111,23 @@ Partial Class formCompraOrdenDetalle
         'labelArea
         '
         Me.labelArea.AutoSize = True
-        Me.labelArea.Location = New System.Drawing.Point(3, 9)
+        Me.labelArea.Location = New System.Drawing.Point(6, 36)
         Me.labelArea.Name = "labelArea"
         Me.labelArea.Size = New System.Drawing.Size(32, 13)
-        Me.labelArea.TabIndex = 0
+        Me.labelArea.TabIndex = 2
         Me.labelArea.Text = "Área:"
         '
         'textboxNotas
         '
+        Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxNotas.Location = New System.Drawing.Point(50, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(450, 220)
+        Me.textboxNotas.Size = New System.Drawing.Size(454, 220)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -139,10 +144,10 @@ Partial Class formCompraOrdenDetalle
         Me.comboboxArea.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.comboboxArea.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.comboboxArea.FormattingEnabled = True
-        Me.comboboxArea.Location = New System.Drawing.Point(57, 6)
+        Me.comboboxArea.Location = New System.Drawing.Point(58, 33)
         Me.comboboxArea.Name = "comboboxArea"
-        Me.comboboxArea.Size = New System.Drawing.Size(447, 21)
-        Me.comboboxArea.TabIndex = 1
+        Me.comboboxArea.Size = New System.Drawing.Size(446, 21)
+        Me.comboboxArea.TabIndex = 3
         '
         'tabcontrolMain
         '
@@ -157,6 +162,8 @@ Partial Class formCompraOrdenDetalle
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.labelFactura)
+        Me.tabpageGeneral.Controls.Add(Me.comboBoxFactura)
         Me.tabpageGeneral.Controls.Add(Me.currencytextboxImporte)
         Me.tabpageGeneral.Controls.Add(Me.textboxDetalle)
         Me.tabpageGeneral.Controls.Add(Me.labelImporte)
@@ -171,39 +178,62 @@ Partial Class formCompraOrdenDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'labelFactura
+        '
+        Me.labelFactura.AutoSize = True
+        Me.labelFactura.Location = New System.Drawing.Point(6, 9)
+        Me.labelFactura.Name = "labelFactura"
+        Me.labelFactura.Size = New System.Drawing.Size(46, 13)
+        Me.labelFactura.TabIndex = 0
+        Me.labelFactura.Text = "Factura:"
+        '
+        'comboBoxFactura
+        '
+        Me.comboBoxFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboBoxFactura.FormattingEnabled = True
+        Me.comboBoxFactura.Location = New System.Drawing.Point(58, 6)
+        Me.comboBoxFactura.Name = "comboBoxFactura"
+        Me.comboBoxFactura.Size = New System.Drawing.Size(159, 21)
+        Me.comboBoxFactura.TabIndex = 1
+        '
         'currencytextboxImporte
         '
         Me.currencytextboxImporte.AllowNull = True
+        Me.currencytextboxImporte.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.currencytextboxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
         Me.currencytextboxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporte.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.currencytextboxImporte.Location = New System.Drawing.Point(57, 235)
+        Me.currencytextboxImporte.Location = New System.Drawing.Point(58, 235)
         Me.currencytextboxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
         Me.currencytextboxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
         Me.currencytextboxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporte.Name = "currencytextboxImporte"
         Me.currencytextboxImporte.NullString = ""
         Me.currencytextboxImporte.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.TabIndex = 5
+        Me.currencytextboxImporte.TabIndex = 7
         Me.currencytextboxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'textboxDetalle
         '
-        Me.textboxDetalle.Location = New System.Drawing.Point(57, 33)
+        Me.textboxDetalle.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxDetalle.Location = New System.Drawing.Point(58, 60)
         Me.textboxDetalle.MaxLength = 0
         Me.textboxDetalle.Multiline = True
         Me.textboxDetalle.Name = "textboxDetalle"
         Me.textboxDetalle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDetalle.Size = New System.Drawing.Size(447, 196)
-        Me.textboxDetalle.TabIndex = 3
+        Me.textboxDetalle.Size = New System.Drawing.Size(446, 169)
+        Me.textboxDetalle.TabIndex = 5
         '
         'labelImporte
         '
+        Me.labelImporte.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelImporte.AutoSize = True
         Me.labelImporte.Location = New System.Drawing.Point(3, 239)
         Me.labelImporte.Name = "labelImporte"
         Me.labelImporte.Size = New System.Drawing.Size(45, 13)
-        Me.labelImporte.TabIndex = 4
+        Me.labelImporte.TabIndex = 6
         Me.labelImporte.Text = "Importe:"
         '
         'tabpageNotasAuditoria
@@ -284,4 +314,6 @@ Partial Class formCompraOrdenDetalle
     Friend WithEvents labelImporte As Label
     Friend WithEvents textboxDetalle As TextBox
     Friend WithEvents currencytextboxImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents labelFactura As Label
+    Friend WithEvents comboBoxFactura As ComboBox
 End Class

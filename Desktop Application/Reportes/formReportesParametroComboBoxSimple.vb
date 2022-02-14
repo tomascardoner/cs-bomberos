@@ -8,7 +8,9 @@
 
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL
-                pFillAndRefreshLists.Cuartel(comboboxValor, False, False)
+                Using context As New CSBomberosContext(True)
+                    ListasComun.LlenarComboBoxCuarteles(context, comboboxValor, False, False)
+                End Using
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If

@@ -10,13 +10,14 @@ GO
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2020-11-11
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
+--			2022-02-12 - Actualizado a las nuevas tablas
 -- Description:	Devuelve los datos para la Orden de Compra
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Compra_Orden') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE usp_Compra_Orden
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'CompraObtenerOrden') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE CompraObtenerOrden
 GO
 
-CREATE PROCEDURE usp_Compra_Orden
+CREATE PROCEDURE CompraObtenerOrden
 	@IDCompraOrden int,
 	@IDResponsable tinyint
 	AS
@@ -59,14 +60,16 @@ CREATE PROCEDURE usp_Compra_Orden
 				WHERE pa.IDPersona = @ResponsableIDPersona
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		SELECT c.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
-			FROM CompraOrden AS c
-				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
-				LEFT JOIN CompraOrdenDetalle AS cd ON c.IDCompraOrden = cd.IDCompraOrden
-				LEFT JOIN Area AS a ON cd.IDArea = a.IDArea
-				LEFT JOIN Proveedor AS p ON c.IDProveedor = p.IDProveedor
-			WHERE c.IDCompraOrden = @IDCompraOrden
-			GROUP BY c.IDCompraOrden, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero
-			ORDER BY cd.IDDetalle
+		-- Traigo los datos correspondientes
+		SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(cod.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+			FROM CompraOrden AS co
+				INNER JOIN Cuartel AS cu ON co.IDCuartel = cu.IDCuartel
+				LEFT JOIN CompraOrdenDetalle AS cod ON co.IDCompraOrden = cod.IDCompraOrden
+				LEFT JOIN CompraFactura AS cf ON cod.IDCompraFactura = cf.IDCompraFactura
+				LEFT JOIN Area AS a ON cod.IDArea = a.IDArea
+				LEFT JOIN Proveedor AS p ON co.IDProveedor = p.IDProveedor
+			WHERE co.IDCompraOrden = @IDCompraOrden
+			GROUP BY co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, p.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto
+			ORDER BY cod.IDDetalle
 	END
 GO

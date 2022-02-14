@@ -69,7 +69,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
     End Sub
 
     Friend Sub SetAppearance()

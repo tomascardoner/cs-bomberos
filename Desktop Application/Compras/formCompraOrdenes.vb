@@ -47,7 +47,9 @@
         comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
         comboboxPeriodoTipo.SelectedIndex = 3
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
+        Using context As New CSBomberosContext(True)
+            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
+        End Using
         pFillAndRefreshLists.Proveedor(comboboxProveedor.ComboBox, True, True)
 
         comboboxFacturaNumero.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_ITEM_COMPLETE_MALE, My.Resources.STRING_ITEM_EMPTY_MALE})
@@ -182,10 +184,9 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistComprasBase = (From c In dbContext.CompraOrden
                                     Join cu In dbContext.Cuartel On c.IDCuartel Equals cu.IDCuartel
-                                    Group Join p In dbContext.Proveedor On c.IDProveedor Equals p.IDProveedor Into Proveedores_Group = Group
-                                    From pg In Proveedores_Group.DefaultIfEmpty
+                                    Join p In dbContext.Proveedor On c.IDProveedor Equals p.IDProveedor
                                     Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = If(pg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, c.IDProveedor.Value), .ProveedorNombre = If(c.IDProveedor Is Nothing, "", pg.Nombre), .FacturaNumero = c.FacturaNumero, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
+                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = c.IDProveedor, .ProveedorNombre = p.Nombre, .FacturaNumero = c.FacturaNumero, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
             End Using
 
         Catch ex As Exception

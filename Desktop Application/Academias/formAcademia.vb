@@ -81,8 +81,8 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
-        Academias.LlenarComboBoxTipos(mdbContext, comboboxAcademiaTipo, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
+        ListasAcademias.LlenarComboBoxTipos(mdbContext, comboboxAcademiaTipo, False, False)
     End Sub
 
     Friend Sub SetAppearance()

@@ -337,19 +337,10 @@
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__Siniestro" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" />
         <EntityTypeShape EntityType="CSBomberosModel.CompraFactura" Width="1.5" PointX="18.75" PointY="159" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraFacturaDetalle" Width="1.5" PointX="30.25" PointY="146.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraOrdenFactura" Width="1.5" PointX="33" PointY="157.875" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_Area" />
         <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_Proveedor" />
         <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioCreacion" />
         <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioModificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_CompraFactura" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_CompraFactura" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioCreacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioModificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_CompraOrden" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioCreacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioModificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenDetalle_CompraFactura" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -480,9 +480,6 @@
     <Compile Include="CompraFactura.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraFacturaDetalle.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
     <Compile Include="CompraOrden.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -496,12 +493,6 @@
       <DependentUpon>formCompraFactura.vb</DependentUpon>
     </Compile>
     <Compile Include="Compras\formCompraFactura.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Compras\formCompraFacturaDetalle.designer.vb">
-      <DependentUpon>formCompraFacturaDetalle.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Compras\formCompraFacturaDetalle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compras\formCompraFacturas.designer.vb">
@@ -564,6 +555,7 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Listas\Academias.vb" />
+    <Compile Include="Listas\Compras.vb" />
     <Compile Include="Listas\Comun.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Localidad.vb">
@@ -1499,9 +1491,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompraFactura.resx">
       <DependentUpon>formCompraFactura.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompraFacturaDetalle.resx">
-      <DependentUpon>formCompraFacturaDetalle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompraFacturas.resx">
       <DependentUpon>formCompraFacturas.vb</DependentUpon>

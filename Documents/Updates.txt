@@ -1,18 +1,16 @@
 2022-02-04
 	- Crear la funcion udfStringPadLeft
-	- Crear las tablas CompraFactura, CompraFacturaDetalle y CompraOrdenFactura
+	- Crear la tabla CompraFactura y actualizar CompraOrden (IDProveedor obligatorio) y CompraOrdenDetalle
 	- Renombrar tabla Compra a CompraOrden y sus Keys y FKs
 	- Cambiar el número de factura con id 45 a 0009B00000229
 	- Cambiar el número de factura con id 95 a 0009B00000363 y en Notas: SE REALIZO CON OC MANUAL 1616
 	- Cambiar el número de factura con id 96 a 00001C00002844
 	- Cambiar el número de factura con id 118 a 0029B00169952
-	- Importar facturas usando el script 2022-02-06
+	- Importar facturas usando los scripts del 2022-02-06
 	- Avisar de que revisen la factura B-7-1491 del proveedor Electricidad Benitez
-	- Ejecutar stored procedures de Ordenes de Compra
+	- Ejecutar stored procedures de Ordenes de Compra y borrar el stored procedure usp_Compra_Orden y usp_Compra_ListadoPorArea
 	- Copiar reportes
-
-
-
+	- Copiar DLLs actualizadas
 
 2021-12-11
 	- Agregar la tabla SiniestroClave

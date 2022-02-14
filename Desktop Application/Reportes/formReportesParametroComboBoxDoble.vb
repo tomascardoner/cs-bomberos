@@ -16,7 +16,9 @@
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_AREA, Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
-                pFillAndRefreshLists.Cuartel(comboboxPadreValor, False, False)
+                Using context As New CSBomberosContext(True)
+                    ListasComun.LlenarComboBoxCuarteles(context, comboboxPadreValor, False, False)
+                End Using
                 If Not mParametroPadre.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If

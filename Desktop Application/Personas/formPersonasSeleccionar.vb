@@ -32,7 +32,9 @@
         multiseleccion = multiseleccion
         datagridviewMain.MultiSelect = multiseleccion
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel.ComboBox, True, False)
+        Using context As New CSBomberosContext(True)
+            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
+        End Using
         pFillAndRefreshLists.PersonaEstadoActual(comboboxEstadoActual.ComboBox, True)
 
         If idCuartel > 0 Then

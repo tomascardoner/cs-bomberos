@@ -25,8 +25,6 @@ Partial Class formCompraFactura
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelFechaVencimiento As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
@@ -49,15 +47,6 @@ Partial Class formCompraFactura
         Me.labelProveedor = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.labelNumeroCompleto = New System.Windows.Forms.Label()
-        Me.tabpageDetalles = New System.Windows.Forms.TabPage()
-        Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
-        Me.columnArea = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripDetalles = New System.Windows.Forms.ToolStrip()
-        Me.buttonDetallesAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonDetallesEliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelID = New System.Windows.Forms.Label()
         Me.textboxID = New System.Windows.Forms.TextBox()
@@ -74,9 +63,6 @@ Partial Class formCompraFactura
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
         CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.tabpageDetalles.SuspendLayout()
-        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripDetalles.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -186,7 +172,6 @@ Partial Class formCompraFactura
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageDetalles)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
@@ -282,7 +267,7 @@ Partial Class formCompraFactura
         '
         'maskedTextBoxNumero
         '
-        Me.maskedTextBoxNumero.Location = New System.Drawing.Point(235, 66)
+        Me.maskedTextBoxNumero.Location = New System.Drawing.Point(223, 66)
         Me.maskedTextBoxNumero.Mask = "00000000"
         Me.maskedTextBoxNumero.Name = "maskedTextBoxNumero"
         Me.maskedTextBoxNumero.Size = New System.Drawing.Size(63, 20)
@@ -293,7 +278,7 @@ Partial Class formCompraFactura
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(219, 69)
+        Me.Label1.Location = New System.Drawing.Point(210, 69)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(10, 13)
         Me.Label1.TabIndex = 8
@@ -302,7 +287,7 @@ Partial Class formCompraFactura
         'labelSeparadorTipoPuntoVenta
         '
         Me.labelSeparadorTipoPuntoVenta.AutoSize = True
-        Me.labelSeparadorTipoPuntoVenta.Location = New System.Drawing.Point(155, 69)
+        Me.labelSeparadorTipoPuntoVenta.Location = New System.Drawing.Point(152, 69)
         Me.labelSeparadorTipoPuntoVenta.Name = "labelSeparadorTipoPuntoVenta"
         Me.labelSeparadorTipoPuntoVenta.Size = New System.Drawing.Size(10, 13)
         Me.labelSeparadorTipoPuntoVenta.TabIndex = 6
@@ -310,7 +295,7 @@ Partial Class formCompraFactura
         '
         'maskedTextBoxPuntoVenta
         '
-        Me.maskedTextBoxPuntoVenta.Location = New System.Drawing.Point(171, 66)
+        Me.maskedTextBoxPuntoVenta.Location = New System.Drawing.Point(165, 66)
         Me.maskedTextBoxPuntoVenta.Mask = "00000"
         Me.maskedTextBoxPuntoVenta.Name = "maskedTextBoxPuntoVenta"
         Me.maskedTextBoxPuntoVenta.Size = New System.Drawing.Size(42, 20)
@@ -356,115 +341,6 @@ Partial Class formCompraFactura
         Me.labelNumeroCompleto.Size = New System.Drawing.Size(77, 13)
         Me.labelNumeroCompleto.TabIndex = 4
         Me.labelNumeroCompleto.Text = "Tipo y número:"
-        '
-        'tabpageDetalles
-        '
-        Me.tabpageDetalles.Controls.Add(Me.datagridviewDetalles)
-        Me.tabpageDetalles.Controls.Add(Me.toolstripDetalles)
-        Me.tabpageDetalles.Location = New System.Drawing.Point(4, 25)
-        Me.tabpageDetalles.Name = "tabpageDetalles"
-        Me.tabpageDetalles.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDetalles.Size = New System.Drawing.Size(599, 253)
-        Me.tabpageDetalles.TabIndex = 2
-        Me.tabpageDetalles.Text = "Detalles"
-        Me.tabpageDetalles.UseVisualStyleBackColor = True
-        '
-        'datagridviewDetalles
-        '
-        Me.datagridviewDetalles.AllowUserToAddRows = False
-        Me.datagridviewDetalles.AllowUserToDeleteRows = False
-        Me.datagridviewDetalles.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewDetalles.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.datagridviewDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewDetalles.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnArea, Me.columnDetalle, Me.columnImporte})
-        Me.datagridviewDetalles.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.datagridviewDetalles.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewDetalles.Location = New System.Drawing.Point(90, 3)
-        Me.datagridviewDetalles.MultiSelect = False
-        Me.datagridviewDetalles.Name = "datagridviewDetalles"
-        Me.datagridviewDetalles.ReadOnly = True
-        Me.datagridviewDetalles.RowHeadersVisible = False
-        Me.datagridviewDetalles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.datagridviewDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewDetalles.Size = New System.Drawing.Size(506, 247)
-        Me.datagridviewDetalles.TabIndex = 8
-        '
-        'columnArea
-        '
-        Me.columnArea.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnArea.DataPropertyName = "AreaNombre"
-        Me.columnArea.HeaderText = "Área"
-        Me.columnArea.Name = "columnArea"
-        Me.columnArea.ReadOnly = True
-        Me.columnArea.Width = 54
-        '
-        'columnDetalle
-        '
-        Me.columnDetalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnDetalle.DataPropertyName = "Detalle"
-        Me.columnDetalle.HeaderText = "Detalle"
-        Me.columnDetalle.Name = "columnDetalle"
-        Me.columnDetalle.ReadOnly = True
-        Me.columnDetalle.Width = 65
-        '
-        'columnImporte
-        '
-        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnImporte.DataPropertyName = "Importe"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnImporte.HeaderText = "Importe"
-        Me.columnImporte.Name = "columnImporte"
-        Me.columnImporte.ReadOnly = True
-        Me.columnImporte.Width = 67
-        '
-        'toolstripDetalles
-        '
-        Me.toolstripDetalles.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripDetalles.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripDetalles.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripDetalles.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonDetallesAgregar, Me.buttonDetallesEditar, Me.buttonDetallesEliminar})
-        Me.toolstripDetalles.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripDetalles.Location = New System.Drawing.Point(3, 3)
-        Me.toolstripDetalles.Name = "toolstripDetalles"
-        Me.toolstripDetalles.Size = New System.Drawing.Size(87, 247)
-        Me.toolstripDetalles.TabIndex = 9
-        '
-        'buttonDetallesAgregar
-        '
-        Me.buttonDetallesAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
-        Me.buttonDetallesAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesAgregar.Name = "buttonDetallesAgregar"
-        Me.buttonDetallesAgregar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesAgregar.Text = "Agregar"
-        '
-        'buttonDetallesEditar
-        '
-        Me.buttonDetallesEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
-        Me.buttonDetallesEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesEditar.Name = "buttonDetallesEditar"
-        Me.buttonDetallesEditar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesEditar.Text = "Editar"
-        '
-        'buttonDetallesEliminar
-        '
-        Me.buttonDetallesEliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
-        Me.buttonDetallesEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonDetallesEliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonDetallesEliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonDetallesEliminar.Name = "buttonDetallesEliminar"
-        Me.buttonDetallesEliminar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonDetallesEliminar.Text = "Eliminar"
         '
         'tabpageNotasAuditoria
         '
@@ -591,11 +467,6 @@ Partial Class formCompraFactura
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
         CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.tabpageDetalles.ResumeLayout(False)
-        Me.tabpageDetalles.PerformLayout()
-        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripDetalles.ResumeLayout(False)
-        Me.toolstripDetalles.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -620,15 +491,6 @@ Partial Class formCompraFactura
     Friend WithEvents labelFecha As Label
     Friend WithEvents labelProveedor As Label
     Friend WithEvents datetimepickerFecha As DateTimePicker
-    Friend WithEvents tabpageDetalles As TabPage
-    Friend WithEvents datagridviewDetalles As DataGridView
-    Friend WithEvents columnArea As DataGridViewTextBoxColumn
-    Friend WithEvents columnDetalle As DataGridViewTextBoxColumn
-    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
-    Friend WithEvents toolstripDetalles As ToolStrip
-    Friend WithEvents buttonDetallesAgregar As ToolStripButton
-    Friend WithEvents buttonDetallesEditar As ToolStripButton
-    Friend WithEvents buttonDetallesEliminar As ToolStripButton
     Friend WithEvents labelID As Label
     Friend WithEvents textboxID As TextBox
     Friend WithEvents maskedTextBoxTipo As MaskedTextBox

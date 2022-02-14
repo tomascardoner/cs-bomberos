@@ -87,12 +87,16 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         pFillAndRefreshLists.Proveedor(comboboxProveedor, False, True)
     End Sub
 
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenCompra32)
+
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageDetalles.Name)
+        End If
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -151,7 +155,7 @@
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
             .FacturaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFacturaFecha.Value, datetimepickerFacturaFecha.Checked)
             .FacturaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFacturaNumero.Text)
             .Cerrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxCerrada.CheckState)
@@ -334,6 +338,7 @@
 #Region "Detalles"
 
     Friend Class DetallesGridRowData
+        Public Property Factura As String
         Public Property IDDetalle As Byte
         Public Property AreaNombre As String
         Public Property Detalle As String
@@ -356,8 +361,10 @@
         Try
             listDetalles = (From cd In mCompraOrdenActual.CompraOrdenDetalles
                             Join a In mdbContext.Area On cd.IDArea Equals a.IDArea
+                            Group Join cf In mdbContext.CompraFactura On cd.IDCompraFactura Equals cf.IDCompraFactura Into CompraFacturaGroup = Group
+                            From cfg In CompraFacturaGroup.DefaultIfEmpty
                             Order By cd.IDDetalle
-                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
+                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .Factura = If(cfg Is Nothing, String.Empty, cfg.NumeroCompleto), .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
 
             datagridviewDetalles.AutoGenerateColumns = False
             datagridviewDetalles.DataSource = listDetalles
@@ -381,6 +388,14 @@
     End Sub
 
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
+        If comboboxProveedor.SelectedIndex = -1 Then
+            MsgBox("Debe seleccionar un Proveedor.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE_AGREGAR) Then
+            Return
+        End If
+
         Me.Cursor = Cursors.WaitCursor
 
         formCompraOrdenDetalle.LoadAndShow(True, True, Me, mCompraOrdenActual, 0)
@@ -391,47 +406,52 @@
     Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonDetallesEditar.Click
         If datagridviewDetalles.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Detalle para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            formCompraOrdenDetalle.LoadAndShow(True, True, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE_EDITAR) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        formCompraOrdenDetalle.LoadAndShow(True, True, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonDetallesEliminar.Click
         If datagridviewDetalles.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Detalle para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            Dim GridRowDataActual As DetallesGridRowData
-            Dim Mensaje As String
+            Return
+        End If
+        If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE_ELIMINAR) Then
+            Return
+        End If
 
-            GridRowDataActual = CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData)
+        Dim GridRowDataActual As DetallesGridRowData
+        Dim Mensaje As String
 
-            Mensaje = String.Format("Se eliminará el Detalle seleccionado.{0}{0}Área: {1}{0}Detalle: {2}{0}Importe: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AreaNombre, GridRowDataActual.Detalle, FormatCurrency(GridRowDataActual.Importe))
-            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                Me.Cursor = Cursors.WaitCursor
+        GridRowDataActual = CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData)
 
-                mCompraOrdenActual.CompraOrdenDetalles.Remove(mCompraOrdenActual.CompraOrdenDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
+        Mensaje = String.Format("Se eliminará el Detalle seleccionado.{0}{0}Área: {1}{0}Detalle: {2}{0}Importe: {3}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.AreaNombre, GridRowDataActual.Detalle, FormatCurrency(GridRowDataActual.Importe))
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            Me.Cursor = Cursors.WaitCursor
 
-                DetallesRefreshData()
+            mCompraOrdenActual.CompraOrdenDetalles.Remove(mCompraOrdenActual.CompraOrdenDetalles.Single(Function(cd) cd.IDDetalle = GridRowDataActual.IDDetalle))
 
-                Me.Cursor = Cursors.Default
-            End If
+            DetallesRefreshData()
+
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 
     Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewDetalles.DoubleClick
         If datagridviewDetalles.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Detalle para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            formCompraOrdenDetalle.LoadAndShow(mEditMode, False, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+
+        Me.Cursor = Cursors.WaitCursor
+        formCompraOrdenDetalle.LoadAndShow(mEditMode, False, Me, mCompraOrdenActual, CType(datagridviewDetalles.SelectedRows(0).DataBoundItem, DetallesGridRowData).IDDetalle)
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

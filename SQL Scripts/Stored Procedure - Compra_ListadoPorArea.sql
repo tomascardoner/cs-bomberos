@@ -9,13 +9,14 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2020-11-24
+-- Updates: 2022-02-13 - Se cambió el nombre y se adaptó a las nuevas tablas
 -- Description:	Devuelve los datos para el listado de compras por área
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Compra_ListadoPorArea') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE usp_Compra_ListadoPorArea
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'CompraObtenerListadoPorArea') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE CompraObtenerListadoPorArea
 GO
 
-CREATE PROCEDURE usp_Compra_ListadoPorArea
+CREATE PROCEDURE CompraObtenerListadoPorArea
 	@IDCuartel tinyint,
 	@IDArea smallint,
 	@FechaDesde date,
@@ -64,20 +65,21 @@ CREATE PROCEDURE usp_Compra_ListadoPorArea
 				WHERE pa.IDPersona = @ResponsableIDPersona
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		(SELECT c.IDCompra, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, c.Numero, c.Fecha, p.Nombre AS Proveedor, cd.IDArea, a.Nombre AS Area, cd.IDDetalle, cd.Detalle, c.FacturaNumero, SUM(cd.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
-			FROM Compra AS c
-				INNER JOIN Cuartel AS cu ON c.IDCuartel = cu.IDCuartel
-				LEFT JOIN CompraDetalle AS cd ON c.IDCompra = cd.IDCompra
-				LEFT JOIN Area AS a ON cd.IDArea = a.IDArea
-				LEFT JOIN Proveedor AS p ON c.IDProveedor = p.IDProveedor
+		(SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, cod.IDArea, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(cod.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+			FROM CompraOrden AS co
+				INNER JOIN Cuartel AS cu ON co.IDCuartel = cu.IDCuartel
+				LEFT JOIN CompraOrdenDetalle AS cod ON co.IDCompraOrden = cod.IDCompraOrden
+				LEFT JOIN CompraFactura AS cf ON cod.IDCompraFactura = cf.IDCompraFactura
+				LEFT JOIN Area AS a ON cod.IDArea = a.IDArea
+				LEFT JOIN Proveedor AS p ON co.IDProveedor = p.IDProveedor
 			WHERE (@IDCuartel IS NULL OR a.IDCuartel = @IDCuartel)
-				AND (@IDArea IS NULL OR cd.IDArea = @IDArea)
-				AND (@FechaDesde IS NULL OR c.Fecha >= @FechaDesde)
-				AND (@FechaHasta IS NULL OR c.Fecha <= @FechaHasta)
-				AND (@Cerrada IS NULL OR c.Cerrada = @Cerrada)
-				AND (@CierreFechaDesde IS NULL OR c.CierreFecha >= @CierreFechaDesde)
-				AND (@CierreFechaHasta IS NULL OR c.CierreFecha <= @CierreFechaHasta)
-			GROUP BY cd.IDArea, c.IDCompra, cu.Codigo, cu.Nombre, c.Numero, c.Fecha, p.Nombre, a.Nombre, cd.IDDetalle, cd.Detalle, c.FacturaNumero)
+				AND (@IDArea IS NULL OR cod.IDArea = @IDArea)
+				AND (@FechaDesde IS NULL OR co.Fecha >= @FechaDesde)
+				AND (@FechaHasta IS NULL OR co.Fecha <= @FechaHasta)
+				AND (@Cerrada IS NULL OR co.Cerrada = @Cerrada)
+				AND (@CierreFechaDesde IS NULL OR co.CierreFecha >= @CierreFechaDesde)
+				AND (@CierreFechaHasta IS NULL OR co.CierreFecha <= @CierreFechaHasta)
+			GROUP BY cod.IDArea, co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, p.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto)
 		UNION
 		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca

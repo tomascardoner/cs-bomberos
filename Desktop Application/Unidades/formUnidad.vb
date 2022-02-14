@@ -80,7 +80,7 @@
         pFillAndRefreshLists.UnidadTipo(comboboxUnidadTipo, False, False)
         pFillAndRefreshLists.UnidadUso(comboboxUnidadUso, False, False)
         pFillAndRefreshLists.CombustibleTipo(comboboxCombustibleTipo, False, True)
-        pFillAndRefreshLists.Cuartel(comboboxCuartel, False, False)
+        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         pFillAndRefreshLists.UnidadBajaMotivo(comboboxUnidadBajaMotivo, False, True)
     End Sub
 

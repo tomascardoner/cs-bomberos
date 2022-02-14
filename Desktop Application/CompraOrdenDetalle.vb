@@ -17,8 +17,10 @@ Partial Public Class CompraOrdenDetalle
     Public Property Detalle As String
     Public Property Importe As Nullable(Of Decimal)
     Public Property Notas As String
+    Public Property IDCompraFactura As Nullable(Of Integer)
 
     Public Overridable Property Area As Area
     Public Overridable Property CompraOrden As CompraOrden
+    Public Overridable Property CompraFactura As CompraFactura
 
 End Class

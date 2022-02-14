@@ -267,22 +267,6 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="CompraFacturaDetalle">
-          <Key>
-            <PropertyRef Name="IDCompraFactura" />
-            <PropertyRef Name="IDDetalle" />
-          </Key>
-          <Property Name="IDCompraFactura" Type="int" Nullable="false" />
-          <Property Name="IDDetalle" Type="tinyint" Nullable="false" />
-          <Property Name="IDArea" Type="smallint" Nullable="false" />
-          <Property Name="Detalle" Type="varchar(max)" />
-          <Property Name="Importe" Type="money" Nullable="false" />
-          <Property Name="Notas" Type="varchar(max)" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="CompraOrden">
           <Key>
             <PropertyRef Name="IDCompraOrden" />
@@ -291,7 +275,7 @@
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="Numero" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="IDProveedor" Type="smallint" />
+          <Property Name="IDProveedor" Type="smallint" Nullable="false" />
           <Property Name="FacturaFecha" Type="date" />
           <Property Name="FacturaNumero" Type="varchar" MaxLength="200" />
           <Property Name="Cerrada" Type="bit" Nullable="false" />
@@ -309,23 +293,11 @@
           </Key>
           <Property Name="IDCompraOrden" Type="int" Nullable="false" />
           <Property Name="IDDetalle" Type="tinyint" Nullable="false" />
+          <Property Name="IDCompraFactura" Type="int" />
           <Property Name="IDArea" Type="smallint" Nullable="false" />
           <Property Name="Detalle" Type="varchar(max)" />
           <Property Name="Importe" Type="money" />
           <Property Name="Notas" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="CompraOrdenFactura">
-          <Key>
-            <PropertyRef Name="IDCompraOrden" />
-            <PropertyRef Name="IDCompraFactura" />
-          </Key>
-          <Property Name="IDCompraOrden" Type="int" Nullable="false" />
-          <Property Name="IDCompraFactura" Type="int" Nullable="false" />
-          <Property Name="ImporteAplicado" Type="money" Nullable="false" />
-          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Cuartel">
           <Key>
@@ -4309,54 +4281,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CompraFacturaDetalle_Area">
-          <End Role="Area" Type="Self.Area" Multiplicity="1" />
-          <End Role="CompraFacturaDetalle" Type="Self.CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Area">
-              <PropertyRef Name="IDArea" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDArea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraFacturaDetalle_CompraFactura">
-          <End Role="CompraFactura" Type="Self.CompraFactura" Multiplicity="1" />
-          <End Role="CompraFacturaDetalle" Type="Self.CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompraFactura">
-              <PropertyRef Name="IDCompraFactura" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDCompraFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraFacturaDetalle_UsuarioCreacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="CompraFacturaDetalle" Type="Self.CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraFacturaDetalle_UsuarioModificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="CompraFacturaDetalle" Type="Self.CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CompraOrden_Cuartel">
           <End Role="Cuartel" Type="Self.Cuartel" Multiplicity="1" />
           <End Role="CompraOrden" Type="Self.CompraOrden" Multiplicity="*" />
@@ -4370,7 +4294,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CompraOrden_Proveedor">
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="0..1" />
+          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1" />
           <End Role="CompraOrden" Type="Self.CompraOrden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
@@ -4417,51 +4341,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CompraOrdenFactura_CompraFactura">
-          <End Role="CompraFactura" Type="Self.CompraFactura" Multiplicity="1" />
-          <End Role="CompraOrdenFactura" Type="Self.CompraOrdenFactura" Multiplicity="*" />
+        <Association Name="FK_CompraOrdenDetalle_CompraFactura">
+          <End Role="CompraFactura" Type="Self.CompraFactura" Multiplicity="0..1" />
+          <End Role="CompraOrdenDetalle" Type="Self.CompraOrdenDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CompraFactura">
               <PropertyRef Name="IDCompraFactura" />
             </Principal>
-            <Dependent Role="CompraOrdenFactura">
+            <Dependent Role="CompraOrdenDetalle">
               <PropertyRef Name="IDCompraFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_CompraOrden">
-          <End Role="CompraOrden" Type="Self.CompraOrden" Multiplicity="1" />
-          <End Role="CompraOrdenFactura" Type="Self.CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompraOrden">
-              <PropertyRef Name="IDCompraOrden" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDCompraOrden" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_UsuarioCreacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="CompraOrdenFactura" Type="Self.CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_UsuarioModificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="CompraOrdenFactura" Type="Self.CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4495,10 +4383,8 @@
           <EntitySet Name="CargoJerarquia" EntityType="Self.CargoJerarquia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CombustibleTipo" EntityType="Self.CombustibleTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompraFactura" EntityType="Self.CompraFactura" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CompraFacturaDetalle" EntityType="Self.CompraFacturaDetalle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompraOrden" EntityType="Self.CompraOrden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompraOrdenDetalle" EntityType="Self.CompraOrdenDetalle" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CompraOrdenFactura" EntityType="Self.CompraOrdenFactura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuartel" EntityType="Self.Cuartel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentacionTipo" EntityType="Self.DocumentacionTipo" Schema="dbo" store:Type="Tables" />
@@ -5508,22 +5394,6 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CompraFactura" EntitySet="CompraFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_Area" Association="Self.FK_CompraFacturaDetalle_Area">
-            <End Role="Area" EntitySet="Area" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_CompraFactura" Association="Self.FK_CompraFacturaDetalle_CompraFactura">
-            <End Role="CompraFactura" EntitySet="CompraFactura" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_UsuarioCreacion" Association="Self.FK_CompraFacturaDetalle_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_UsuarioModificacion" Association="Self.FK_CompraFacturaDetalle_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_CompraOrden_Cuartel" Association="Self.FK_CompraOrden_Cuartel">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="CompraOrden" EntitySet="CompraOrden" />
@@ -5544,21 +5414,9 @@
             <End Role="Area" EntitySet="Area" />
             <End Role="CompraOrdenDetalle" EntitySet="CompraOrdenDetalle" />
           </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_CompraFactura" Association="Self.FK_CompraOrdenFactura_CompraFactura">
+          <AssociationSet Name="FK_CompraOrdenDetalle_CompraFactura" Association="Self.FK_CompraOrdenDetalle_CompraFactura">
             <End Role="CompraFactura" EntitySet="CompraFactura" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_CompraOrden" Association="Self.FK_CompraOrdenFactura_CompraOrden">
-            <End Role="CompraOrden" EntitySet="CompraOrden" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_UsuarioCreacion" Association="Self.FK_CompraOrdenFactura_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_UsuarioModificacion" Association="Self.FK_CompraOrdenFactura_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
+            <End Role="CompraOrdenDetalle" EntitySet="CompraOrdenDetalle" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -6617,12 +6475,6 @@
             <End Role="SiniestroTipo" EntitySet="SiniestroTipo" />
           </AssociationSet>
           <EntitySet Name="CompraFactura" EntityType="CSBomberosModel.CompraFactura" />
-          <EntitySet Name="CompraFacturaDetalle" EntityType="CSBomberosModel.CompraFacturaDetalle" />
-          <EntitySet Name="CompraOrdenFactura" EntityType="CSBomberosModel.CompraOrdenFactura" />
-          <AssociationSet Name="FK_CompraFacturaDetalle_Area" Association="CSBomberosModel.FK_CompraFacturaDetalle_Area">
-            <End Role="Area" EntitySet="Area" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
           <AssociationSet Name="FK_CompraFactura_Proveedor" Association="CSBomberosModel.FK_CompraFactura_Proveedor">
             <End Role="Proveedor" EntitySet="Proveedor" />
             <End Role="CompraFactura" EntitySet="CompraFactura" />
@@ -6635,33 +6487,9 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CompraFactura" EntitySet="CompraFactura" />
           </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_CompraFactura" Association="CSBomberosModel.FK_CompraFacturaDetalle_CompraFactura">
+          <AssociationSet Name="FK_CompraOrdenDetalle_CompraFactura" Association="CSBomberosModel.FK_CompraOrdenDetalle_CompraFactura">
             <End Role="CompraFactura" EntitySet="CompraFactura" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_CompraFactura" Association="CSBomberosModel.FK_CompraOrdenFactura_CompraFactura">
-            <End Role="CompraFactura" EntitySet="CompraFactura" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_UsuarioCreacion" Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraFacturaDetalle_UsuarioModificacion" Association="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraFacturaDetalle" EntitySet="CompraFacturaDetalle" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_CompraOrden" Association="CSBomberosModel.FK_CompraOrdenFactura_CompraOrden">
-            <End Role="CompraOrden" EntitySet="CompraOrden" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_UsuarioCreacion" Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CompraOrdenFactura_UsuarioModificacion" Association="CSBomberosModel.FK_CompraOrdenFactura_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="CompraOrdenFactura" EntitySet="CompraOrdenFactura" />
+            <End Role="CompraOrdenDetalle" EntitySet="CompraOrdenDetalle" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -6937,10 +6765,6 @@
           <NavigationProperty Name="SiniestrosClavesModificadas" Relationship="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" FromRole="Usuario" ToRole="SiniestroClave" />
           <NavigationProperty Name="CompraFacturasCreadas" Relationship="CSBomberosModel.FK_CompraFactura_UsuarioCreacion" FromRole="Usuario" ToRole="CompraFactura" />
           <NavigationProperty Name="CompraFacturasModificadas" Relationship="CSBomberosModel.FK_CompraFactura_UsuarioModificacion" FromRole="Usuario" ToRole="CompraFactura" />
-          <NavigationProperty Name="CompraFacturaDetallesCreados" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioCreacion" FromRole="Usuario" ToRole="CompraFacturaDetalle" />
-          <NavigationProperty Name="CompraFacturaDetallesModificados" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioModificacion" FromRole="Usuario" ToRole="CompraFacturaDetalle" />
-          <NavigationProperty Name="CompraOrdenFactura" Relationship="CSBomberosModel.FK_CompraOrdenFactura_UsuarioCreacion" FromRole="Usuario" ToRole="CompraOrdenFactura" />
-          <NavigationProperty Name="CompraOrdenFactura1" Relationship="CSBomberosModel.FK_CompraOrdenFactura_UsuarioModificacion" FromRole="Usuario" ToRole="CompraOrdenFactura" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -7449,7 +7273,6 @@
           <NavigationProperty Name="Inventario" Relationship="CSBomberosModel.FK__Area__Inventario" FromRole="Area" ToRole="Inventario" />
           <NavigationProperty Name="CompraOrdenDetalles" Relationship="CSBomberosModel.FK__Area__CompraOrdenDetalle" FromRole="Area" ToRole="CompraOrdenDetalle" />
           <NavigationProperty Name="CajaArqueoDetalle" Relationship="CSBomberosModel.FK__Area__CajaArqueoDetalle" FromRole="Area" ToRole="CajaArqueoDetalle" />
-          <NavigationProperty Name="CompraFacturaDetalles" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_Area" FromRole="Area" ToRole="CompraFacturaDetalle" />
         </EntityType>
         <EntityType Name="Cargo">
           <Key>
@@ -10186,7 +10009,7 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IDProveedor" Type="Int16" />
+          <Property Name="IDProveedor" Type="Int16" Nullable="false" />
           <Property Name="FacturaFecha" Type="DateTime" Precision="0" />
           <Property Name="FacturaNumero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Cerrada" Type="Boolean" Nullable="false" />
@@ -10201,7 +10024,6 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CompraOrden__Creacion" FromRole="CompraOrden" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CompraOrden__Modificacion" FromRole="CompraOrden" ToRole="Usuario" />
           <NavigationProperty Name="Cuartel" Relationship="CSBomberosModel.FK__Cuartel__CompraOrden" FromRole="CompraOrden" ToRole="Cuartel" />
-          <NavigationProperty Name="CompraOrdenFactura" Relationship="CSBomberosModel.FK_CompraOrdenFactura_CompraOrden" FromRole="CompraOrden" ToRole="CompraOrdenFactura" />
         </EntityType>
         <EntityType Name="CompraOrdenDetalle">
           <Key>
@@ -10216,6 +10038,8 @@
           <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK__Area__CompraOrdenDetalle" FromRole="CompraOrdenDetalle" ToRole="Area" />
           <NavigationProperty Name="CompraOrden" Relationship="CSBomberosModel.FK__CompraOrden__CompraOrdenDetalle" FromRole="CompraOrdenDetalle" ToRole="CompraOrden" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDCompraFactura" Type="Int32" />
+          <NavigationProperty Name="CompraFactura" Relationship="CSBomberosModel.FK_CompraOrdenDetalle_CompraFactura" FromRole="CompraOrdenDetalle" ToRole="CompraFactura" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
@@ -10311,7 +10135,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Proveedor__CompraOrden">
-          <End Type="CSBomberosModel.Proveedor" Role="Proveedor" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Proveedor" Role="Proveedor" Multiplicity="1" />
           <End Type="CSBomberosModel.CompraOrden" Role="CompraOrden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
@@ -11465,58 +11289,8 @@
           <NavigationProperty Name="Proveedor" Relationship="CSBomberosModel.FK_CompraFactura_Proveedor" FromRole="CompraFactura" ToRole="Proveedor" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK_CompraFactura_UsuarioCreacion" FromRole="CompraFactura" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK_CompraFactura_UsuarioModificacion" FromRole="CompraFactura" ToRole="Usuario" />
-          <NavigationProperty Name="CompraFacturasDetalles" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_CompraFactura" FromRole="CompraFactura" ToRole="CompraFacturaDetalle" />
-          <NavigationProperty Name="CompraOrdenesFacturas" Relationship="CSBomberosModel.FK_CompraOrdenFactura_CompraFactura" FromRole="CompraFactura" ToRole="CompraOrdenFactura" />
+          <NavigationProperty Name="CompraOrdenDetalles" Relationship="CSBomberosModel.FK_CompraOrdenDetalle_CompraFactura" FromRole="CompraFactura" ToRole="CompraOrdenDetalle" />
         </EntityType>
-        <EntityType Name="CompraFacturaDetalle">
-          <Key>
-            <PropertyRef Name="IDCompraFactura" />
-            <PropertyRef Name="IDDetalle" />
-          </Key>
-          <Property Name="IDCompraFactura" Type="Int32" Nullable="false" />
-          <Property Name="IDDetalle" Type="Byte" Nullable="false" />
-          <Property Name="IDArea" Type="Int16" Nullable="false" />
-          <Property Name="Detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Importe" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_Area" FromRole="CompraFacturaDetalle" ToRole="Area" />
-          <NavigationProperty Name="CompraFactura" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_CompraFactura" FromRole="CompraFacturaDetalle" ToRole="CompraFactura" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioCreacion" FromRole="CompraFacturaDetalle" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK_CompraFacturaDetalle_UsuarioModificacion" FromRole="CompraFacturaDetalle" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="CompraOrdenFactura">
-          <Key>
-            <PropertyRef Name="IDCompraOrden" />
-            <PropertyRef Name="IDCompraFactura" />
-          </Key>
-          <Property Name="IDCompraOrden" Type="Int32" Nullable="false" />
-          <Property Name="IDCompraFactura" Type="Int32" Nullable="false" />
-          <Property Name="ImporteAplicado" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="CompraFactura" Relationship="CSBomberosModel.FK_CompraOrdenFactura_CompraFactura" FromRole="CompraOrdenFactura" ToRole="CompraFactura" />
-          <NavigationProperty Name="CompraOrden" Relationship="CSBomberosModel.FK_CompraOrdenFactura_CompraOrden" FromRole="CompraOrdenFactura" ToRole="CompraOrden" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK_CompraOrdenFactura_UsuarioCreacion" FromRole="CompraOrdenFactura" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK_CompraOrdenFactura_UsuarioModificacion" FromRole="CompraOrdenFactura" ToRole="Usuario" />
-        </EntityType>
-        <Association Name="FK_CompraFacturaDetalle_Area">
-          <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraFacturaDetalle" Role="CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Area">
-              <PropertyRef Name="IDArea" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDArea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CompraFactura_Proveedor">
           <End Type="CSBomberosModel.Proveedor" Role="Proveedor" Multiplicity="1" />
           <End Type="CSBomberosModel.CompraFactura" Role="CompraFactura" Multiplicity="*" />
@@ -11553,87 +11327,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CompraFacturaDetalle_CompraFactura">
-          <End Type="CSBomberosModel.CompraFactura" Role="CompraFactura" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraFacturaDetalle" Role="CompraFacturaDetalle" Multiplicity="*" />
+        <Association Name="FK_CompraOrdenDetalle_CompraFactura">
+          <End Type="CSBomberosModel.CompraFactura" Role="CompraFactura" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.CompraOrdenDetalle" Role="CompraOrdenDetalle" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CompraFactura">
               <PropertyRef Name="IDCompraFactura" />
             </Principal>
-            <Dependent Role="CompraFacturaDetalle">
+            <Dependent Role="CompraOrdenDetalle">
               <PropertyRef Name="IDCompraFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_CompraFactura">
-          <End Type="CSBomberosModel.CompraFactura" Role="CompraFactura" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraOrdenFactura" Role="CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompraFactura">
-              <PropertyRef Name="IDCompraFactura" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDCompraFactura" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraFacturaDetalle_UsuarioCreacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraFacturaDetalle" Role="CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraFacturaDetalle_UsuarioModificacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraFacturaDetalle" Role="CompraFacturaDetalle" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraFacturaDetalle">
-              <PropertyRef Name="IDUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_CompraOrden">
-          <End Type="CSBomberosModel.CompraOrden" Role="CompraOrden" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraOrdenFactura" Role="CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CompraOrden">
-              <PropertyRef Name="IDCompraOrden" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDCompraOrden" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_UsuarioCreacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraOrdenFactura" Role="CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CompraOrdenFactura_UsuarioModificacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.CompraOrdenFactura" Role="CompraOrdenFactura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="CompraOrdenFactura">
-              <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -12758,6 +12460,7 @@
           <EntitySetMapping Name="CompraOrdenDetalle">
             <EntityTypeMapping TypeName="CSBomberosModel.CompraOrdenDetalle">
               <MappingFragment StoreEntitySet="CompraOrdenDetalle">
+                <ScalarProperty Name="IDCompraFactura" ColumnName="IDCompraFactura" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="Detalle" ColumnName="Detalle" />
@@ -13158,35 +12861,6 @@
                 <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IDCompraFactura" ColumnName="IDCompraFactura" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompraFacturaDetalle">
-            <EntityTypeMapping TypeName="CSBomberosModel.CompraFacturaDetalle">
-              <MappingFragment StoreEntitySet="CompraFacturaDetalle">
-                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
-                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
-                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
-                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
-                <ScalarProperty Name="Notas" ColumnName="Notas" />
-                <ScalarProperty Name="Importe" ColumnName="Importe" />
-                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
-                <ScalarProperty Name="IDArea" ColumnName="IDArea" />
-                <ScalarProperty Name="IDDetalle" ColumnName="IDDetalle" />
-                <ScalarProperty Name="IDCompraFactura" ColumnName="IDCompraFactura" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CompraOrdenFactura">
-            <EntityTypeMapping TypeName="CSBomberosModel.CompraOrdenFactura">
-              <MappingFragment StoreEntitySet="CompraOrdenFactura">
-                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
-                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
-                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
-                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
-                <ScalarProperty Name="ImporteAplicado" ColumnName="ImporteAplicado" />
-                <ScalarProperty Name="IDCompraFactura" ColumnName="IDCompraFactura" />
-                <ScalarProperty Name="IDCompraOrden" ColumnName="IDCompraOrden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

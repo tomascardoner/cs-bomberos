@@ -424,40 +424,6 @@
 
 #End Region
 
-    Friend Sub Cuartel(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of Cuartel)
-
-        ComboBoxControl.ValueMember = "IDCuartel"
-        ComboBoxControl.DisplayMember = "Nombre"
-
-        If pUsuario.IDCuartel.HasValue Then
-            ' Tengo que limitar la lista al cuartel que tiene especificado
-            listItems = New List(Of Cuartel)
-
-            listItems.Insert(0, mdbContext.Cuartel.Find(pUsuario.IDCuartel))
-        Else
-            listItems = mdbContext.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
-
-            If AgregarItem_Todos Then
-                Dim Item_Todos As New Cuartel With {
-                    .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                    .Nombre = My.Resources.STRING_ITEM_ALL_MALE
-                }
-                listItems.Insert(0, Item_Todos)
-            End If
-        End If
-
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Cuartel With {
-                .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            }
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
-
     Friend Sub ResponsableTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of ResponsableTipo)
 
