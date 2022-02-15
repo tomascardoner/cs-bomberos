@@ -2,6 +2,9 @@
   "Datasource": "localhost;192.168.123.10",
   "Database": "CSBomberos",
   "UserId": "sa",
-  "Password": "43ubKjbAQCxR+foIcEK/PcLRw0VHFqfd;6FsGI9yIkeJqBoSAukaRPCN0+A9tnD5sBmJ0lsKHT/CQTw9G0oeLIQ==",
-  "Provider": "System.Data.SqlClient"
+  "Password": "hVLmcxr5ifD1xLY/O8lu1akFM1B9h1mTV6AtXlRHzWzAMl8t\u002BA5HpYF3IvowZ\u002BnlNnmP5XSsa07xFG0KThWLjyufpuepCmLiNZ98tHuY3jG8pGV4LCGIH1iHLoaXMrj0;6M3nniG5sBcPaajJ8XzNGSK7z4QOTrjN7ZzBuvufkY5rtWktuDTBrn+ga5oZjOCaIQrpz4uVot1nkd2ZC/+T45OkR/w3/1/V/IvW1hoet2EuXeO2GWKEBRqxzbvrY5g/",
+  "Provider": "System.Data.SqlClient",
+  "ConnectTimeout": 15,
+  "ConnectRetryCount": 1,
+  "ConnectRetryInterval": 10
 }

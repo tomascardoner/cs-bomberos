@@ -29,7 +29,7 @@
             mPersonaHorarioLaboralActual = mdbContext.PersonaHorarioLaboral.Find(IDPersona, DiaSemana)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

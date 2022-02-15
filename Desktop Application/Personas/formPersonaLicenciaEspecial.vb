@@ -35,7 +35,7 @@
             mPersonaLicenciaEspecialActual = mdbContext.PersonaLicenciaEspecial.Find(IDPersona, IDLicenciaEspecial)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         SetDataFromObjectToControls()
 
         mIsLoading = False

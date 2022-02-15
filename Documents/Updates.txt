@@ -11,6 +11,7 @@
 	- Ejecutar stored procedures de Ordenes de Compra y borrar el stored procedure usp_Compra_Orden y usp_Compra_ListadoPorArea
 	- Copiar reportes
 	- Copiar DLLs actualizadas
+	- Copiar el archivo de configuración Database.json - 6M3nniG5sBcPaajJ8XzNGSK7z4QOTrjN7ZzBuvufkY5rtWktuDTBrn+ga5oZjOCaIQrpz4uVot1nkd2ZC/+T45OkR/w3/1/V/IvW1hoet2EuXeO2GWKEBRqxzbvrY5g/
 
 2021-12-11
 	- Agregar la tabla SiniestroClave

@@ -39,7 +39,7 @@
             mCompraFacturaActual = mdbContext.CompraFactura.Find(IDCompraFactura)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -242,8 +242,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCompraFacturas") Then
-                    Dim formCompraFacturas As formCompraFacturas = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCompraFacturas"), formCompraFacturas)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCompraFacturas") Then
+                    Dim formCompraFacturas As formCompraFacturas = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCompraFacturas"), formCompraFacturas)
                     formCompraFacturas.RefreshData(mCompraFacturaActual.IDCompraFactura)
                     formCompraFacturas = Nothing
                 End If

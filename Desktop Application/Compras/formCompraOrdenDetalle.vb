@@ -32,7 +32,7 @@
             mCompraOrdenDetalleActual = mCompraOrdenActual.CompraOrdenDetalles.Single(Function(cd) cd.IDDetalle = IDDetalle)
         End If
 
-        CS_Form.CenterToParent(mParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

@@ -128,7 +128,7 @@
                     If .Orden IsNot Nothing Then
 
                         ParametroListViewItem = New ListViewItem(.Nombre)
-                        ParametroListViewItem.Name = CardonerSistemas.Constants.KEY_STRINGER & .IDParametro
+                        ParametroListViewItem.Name = CardonerSistemas.Constants.KeyStringer & .IDParametro
                         If .Requerido Then
                             ParametroListViewItem.SubItems.Add("Sí")
                         Else
@@ -161,7 +161,7 @@
             MsgBox("No hay ningún Parámetro seleccionado para modificar.", vbInformation, My.Application.Info.Title)
         Else
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
-            ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = listviewParametros.SelectedItems(0).Name.Remove(0, CardonerSistemas.Constants.KEY_STRINGER.Length)).First
+            ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = listviewParametros.SelectedItems(0).Name.Remove(0, CardonerSistemas.Constants.KeyStringer.Length)).First
             ListViewItemActual = listviewParametros.SelectedItems(0)
 
             Select Case ParametroActual.Tipo
@@ -296,7 +296,7 @@
                     If formReportesParametroComboBoxDoble.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                         If ParametroPadre IsNot Nothing Then
-                            listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
+                            listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
                         End If
                     End If
                     formReportesParametroComboBoxDoble.Close()
@@ -322,10 +322,10 @@
                     If formReportesParametroComboBoxTriple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                         If ParametroAbuelo IsNot Nothing Then
-                            listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroAbuelo.IDParametro).SubItems(2).Text = ParametroAbuelo.ValorParaMostrar
+                            listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroAbuelo.IDParametro).SubItems(2).Text = ParametroAbuelo.ValorParaMostrar
                         End If
                         If ParametroPadre IsNot Nothing Then
-                            listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
+                            listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroPadre.IDParametro).SubItems(2).Text = ParametroPadre.ValorParaMostrar
                         End If
                     End If
                     formReportesParametroComboBoxTriple.Close()
@@ -347,7 +347,7 @@
 
         If listviewParametros.SelectedItems.Count > 0 Then
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
-            ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = listviewParametros.SelectedItems(0).Name.Remove(0, CardonerSistemas.Constants.KEY_STRINGER.Length)).First
+            ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro = listviewParametros.SelectedItems(0).Name.Remove(0, CardonerSistemas.Constants.KeyStringer.Length)).First
             If ParametroActual.Valor IsNot Nothing Then
                 ListViewItemActual = listviewParametros.SelectedItems(0)
                 ParametroActual.Valor = Nothing
@@ -373,14 +373,14 @@
                 Dim ParametroHijo As ReporteParametro = currentReporteParametro
                 ParametroHijo.Valor = Nothing
                 ParametroHijo.ValorParaMostrar = ""
-                listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroHijo.IDParametro).SubItems(2).Text = ""
+                listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroHijo.IDParametro).SubItems(2).Text = ""
             End If
 
             If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
                 Dim ParametroNieto As ReporteParametro = currentReporteParametro
                 ParametroNieto.Valor = Nothing
                 ParametroNieto.ValorParaMostrar = ""
-                listviewParametros.Items.Item(CardonerSistemas.Constants.KEY_STRINGER & ParametroNieto.IDParametro).SubItems(2).Text = ""
+                listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroNieto.IDParametro).SubItems(2).Text = ""
             End If
 
         Next

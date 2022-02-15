@@ -45,7 +45,7 @@
             .Text = WindowText
             .CRViewerMain.ReportSource = ReporteActual.CRReportObject
             If modalParent Is Nothing Then
-                CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
+                CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), CType(VisorReporte, Form))
                 .Show()
             Else
                 .WindowState = FormWindowState.Maximized

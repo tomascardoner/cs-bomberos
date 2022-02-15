@@ -34,7 +34,7 @@
             mSiniestroAsistenciaTipoPuntajeActual = mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Single(Function(satp) satp.IDSiniestroAsistenciaTipoPuntaje = idSiniestroAsistenciaTipoPuntaje)
         End If
 
-        CS_Form.CenterToParent(mParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
 
         CreateRows()

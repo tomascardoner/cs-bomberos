@@ -94,8 +94,8 @@ Partial Class formSplashScreen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.DarkOliveGreen
         Me.BackgroundImage = CType(resources.GetObject("$this.BackgroundImage"), System.Drawing.Image)
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(498, 329)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelStatus)
@@ -104,11 +104,9 @@ Partial Class formSplashScreen
         Me.Controls.Add(Me.labelCompanyName)
         Me.Controls.Add(Me.labelAppTitle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "formSplashScreen"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "App.Title"
-        Me.TopMost = True
         Me.ResumeLayout(False)
 
     End Sub

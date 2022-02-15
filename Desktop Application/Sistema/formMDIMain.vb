@@ -15,7 +15,7 @@
         Application.DoEvents()
     End Sub
 
-    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Me_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Cambio el puntero del mouse para indicar que la aplicación está iniciando
         Me.Cursor = Cursors.AppStarting
 
@@ -27,13 +27,16 @@
         menuitemAyuda_AcercaDe.Text = "&Acerca de " & My.Application.Info.Title & "..."
     End Sub
 
-    Private Sub MDIMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+    Private Sub Me_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If Not (e.CloseReason = CloseReason.ApplicationExitCall Or e.CloseReason = CloseReason.TaskManagerClosing Or e.CloseReason = CloseReason.WindowsShutDown) Then
             If MsgBox("¿Desea salir de la aplicación?", CType(MsgBoxStyle.Information + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
                 e.Cancel = True
                 Exit Sub
             End If
         End If
+    End Sub
+
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         TerminateApplication()
     End Sub
 
@@ -188,7 +191,7 @@
 #Region "Menu Ventana"
 
     Private Sub menuitemVentana_CerrarTodas_Click() Handles menuitemVentanaCerrarTodas.Click
-        CS_Form.MDIChild_CloseAll(Me)
+        CardonerSistemas.Forms.MdiChildCloseAll(Me)
     End Sub
 
 #End Region
@@ -401,11 +404,11 @@
 
 #Region "Left Toolbar - Jefatura"
 
-    Private Sub OrdenesCompra() Handles menuitemJefatura_OrdenesCompra.Click
+    Private Sub OrdenesCompra(sender As Object, e As EventArgs) Handles menuitemJefatura_OrdenesCompra.Click
         ShowForm(Permisos.COMPRAORDEN, CType(formCompraOrdenes, Form))
     End Sub
 
-    Private Sub ArqueosCaja() Handles menuitemJefatura_ArqueosCaja.Click
+    Private Sub ArqueosCaja(sender As Object, e As EventArgs) Handles menuitemJefatura_ArqueosCaja.Click
         ShowForm(Permisos.CAJAARQUEO, CType(formCajasArqueos, Form))
     End Sub
 
@@ -447,7 +450,7 @@
         If Permisos.VerificarPermiso(idPermiso) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, form)
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, form)
             form.Show()
             If form.WindowState = FormWindowState.Minimized Then
                 form.WindowState = FormWindowState.Normal
@@ -462,7 +465,7 @@
         If Permisos.VerificarPermiso(idPermiso) Then
             Me.Cursor = Cursors.WaitCursor
 
-            CS_Form.MDIChild_PositionAndSizeToFit(Me, CType(formReportes, Form))
+            CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(Me, CType(formReportes, Form))
             formReportes.SetValues(IDModulo, ModuloNombre)
             formReportes.Show()
             If formReportes.WindowState = FormWindowState.Minimized Then
@@ -476,7 +479,7 @@
 
     Private Sub CerrarSesionUsuario()
         If MsgBox("¿Desea cerrar la sesión del Usuario actual?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-            CS_Form.MDIChild_CloseAll(Me)
+            CardonerSistemas.Forms.MdiChildCloseAll(Me)
             labelUsuarioNombre.Image = Nothing
             labelUsuarioNombre.Text = ""
             pUsuario = Nothing
@@ -488,14 +491,6 @@
             formLogin.Close()
             formLogin.Dispose()
         End If
-    End Sub
-
-    Private Sub Compras(sender As Object, e As EventArgs) Handles menuitemJefatura_OrdenesCompra.Click
-
-    End Sub
-
-    Private Sub CajasArqueos(sender As Object, e As EventArgs) Handles menuitemJefatura_ArqueosCaja.Click
-
     End Sub
 
 #End Region

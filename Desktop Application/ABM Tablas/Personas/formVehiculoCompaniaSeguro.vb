@@ -30,7 +30,7 @@
             mVehiculoCompaniaSeguroActual = mdbContext.VehiculoCompaniaSeguro.Find(IDVehiculoCompaniaSeguro)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

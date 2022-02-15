@@ -34,7 +34,7 @@
             mAcademiaAsistenciaTipoPuntajeActual = mAcademiaAsistenciaTipoActual.AcademiasAsistenciasTipoPuntajes.Single(Function(satp) satp.IDAcademiaAsistenciaTipoPuntaje = idAcademiaAsistenciaTipoPuntaje)
         End If
 
-        CS_Form.CenterToParent(mParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

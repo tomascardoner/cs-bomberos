@@ -52,7 +52,7 @@
             mInventarioActual = mdbContext.Inventario.Find(IDInventario)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -335,8 +335,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formInventario") Then
-                    Dim formInventario As formInventario = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formInventario"), formInventario)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formInventario") Then
+                    Dim formInventario As formInventario = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formInventario"), formInventario)
                     formInventario.RefreshData(mInventarioActual.IDInventario)
                     formInventario = Nothing
                 End If

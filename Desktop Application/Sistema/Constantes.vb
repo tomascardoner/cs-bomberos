@@ -7,7 +7,7 @@
     Friend Const APPLICATION_DATABASE_VERSION As Integer = 1
 
     ' Hex Key - 128 bits
-    Friend Const APPLICATION_LICENSE_PASSWORD As String = "3920586483ee18cb0bdce3a7b20ec72f"
+    Friend Const APPLICATION_LICENSE_PASSWORD As String = "B86F0161DE5AF8FDF45262AB2D805999"
 
     '//////////////////
     '    MODULO

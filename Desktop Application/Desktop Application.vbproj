@@ -186,8 +186,8 @@
     <Compile Include="..\..\..\framework-vbnet\CS_ValueTranslation_Syncfusion.vb">
       <Link>Framework\CS_ValueTranslation_Syncfusion.vb</Link>
     </Compile>
-    <Compile Include="..\..\..\framework-vbnet\Database.ADO.vb">
-      <Link>Framework\Database.ADO.vb</Link>
+    <Compile Include="..\..\..\framework-vbnet\Database.Ado.SqlServer.vb">
+      <Link>Framework\Database.Ado.SqlServer.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Database.EntityFramework.vb">
       <Link>Framework\Database.EntityFramework.vb</Link>
@@ -200,16 +200,19 @@
       <Link>Framework\Database.LoginInfo.vb</Link>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="..\..\..\framework-vbnet\Database.SelectSource.designer.vb">
-      <Link>Framework\Database.SelectSource.designer.vb</Link>
-      <DependentUpon>Database.SelectSource.vb</DependentUpon>
+    <Compile Include="..\..\..\framework-vbnet\Database.SelectDatasource.designer.vb">
+      <Link>Framework\Database.SelectDatasource.designer.vb</Link>
+      <DependentUpon>Database.SelectDatasource.vb</DependentUpon>
     </Compile>
-    <Compile Include="..\..\..\framework-vbnet\Database.SelectSource.vb">
-      <Link>Framework\Database.SelectSource.vb</Link>
+    <Compile Include="..\..\..\framework-vbnet\Database.SelectDatasource.vb">
+      <Link>Framework\Database.SelectDatasource.vb</Link>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\DateTime.vb">
       <Link>Framework\DateTime.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Encrypt.StringCipher.vb">
+      <Link>Framework\Encrypt.StringCipher.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\ErrorHandler.vb">
       <Link>Framework\ErrorHandler.vb</Link>
@@ -224,6 +227,9 @@
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Files.vb">
       <Link>Framework\Files.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Forms.vb">
+      <Link>Framework\Forms.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Graphics.vb">
       <Link>Framework\Graphics.vb</Link>
@@ -531,7 +537,6 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CajaArqueoExtension.vb" />
-    <Compile Include="Database\Database.vb" />
     <Compile Include="DocumentacionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -823,9 +828,6 @@
       <Link>Framework\CS_Control_TabControl.vb</Link>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Encryption_TripleDES.vb">
-      <Link>Framework\CS_Encryption_TripleDES.vb</Link>
-    </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_DataGridView.vb">
       <Link>Framework\CS_DataGridView.vb</Link>
     </Compile>
@@ -834,9 +836,6 @@
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_FileLog.vb">
       <Link>Framework\CS_FileLog.vb</Link>
-    </Compile>
-    <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Form.vb">
-      <Link>Framework\CS_Form.vb</Link>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Instance.vb">
       <Link>Framework\CS_Instance.vb</Link>
@@ -1394,9 +1393,9 @@
       <Link>Framework\Database.LoginInfo.resx</Link>
       <DependentUpon>Database.LoginInfo.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\..\framework-vbnet\Database.SelectSource.resx">
-      <Link>Framework\Database.SelectSource.resx</Link>
-      <DependentUpon>Database.SelectSource.vb</DependentUpon>
+    <EmbeddedResource Include="..\..\..\framework-vbnet\Database.SelectDatasource.resx">
+      <Link>Framework\Database.SelectDatasource.resx</Link>
+      <DependentUpon>Database.SelectDatasource.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="..\..\..\framework-vbnet\ErrorHandlerMessageBox.resx">
       <Link>Framework\ErrorHandlerMessageBox.resx</Link>

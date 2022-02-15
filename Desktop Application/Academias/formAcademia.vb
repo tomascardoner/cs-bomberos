@@ -42,7 +42,7 @@
             mAcademiaActual = mdbContext.Academia.Find(IDAcademia)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -243,8 +243,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formAcademias") Then
-                    Dim formAcademias As formAcademias = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formAcademias"), formAcademias)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formAcademias") Then
+                    Dim formAcademias As formAcademias = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formAcademias"), formAcademias)
                     formAcademias.RefreshData(mAcademiaActual.IDAcademia)
                     formAcademias = Nothing
                 End If

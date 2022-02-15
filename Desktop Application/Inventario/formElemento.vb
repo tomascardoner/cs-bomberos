@@ -18,8 +18,8 @@
             mElementoActual = New Elemento
             With mElementoActual
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formElementos") Then
-                    Dim formElementos As formElementos = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formElementos"), formElementos)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formElementos") Then
+                    Dim formElementos As formElementos = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formElementos"), formElementos)
                     If formElementos.comboboxRubro.SelectedIndex > 0 Then
                         If CShort(formElementos.comboboxRubro.ComboBox.SelectedValue) <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                             .IDRubro = CByte(formElementos.comboboxRubro.ComboBox.SelectedValue)
@@ -45,7 +45,7 @@
         End If
 
         Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         Me.Show()
@@ -213,8 +213,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formElementos") Then
-                    Dim formElementos As formElementos = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formElementos"), formElementos)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formElementos") Then
+                    Dim formElementos As formElementos = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formElementos"), formElementos)
                     formElementos.RefreshData(mElementoActual.IDElemento)
                     formElementos = Nothing
                 End If

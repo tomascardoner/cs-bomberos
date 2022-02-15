@@ -44,7 +44,7 @@
         End If
 
         Me.MdiParent = pFormMDIMain
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         Me.Show()

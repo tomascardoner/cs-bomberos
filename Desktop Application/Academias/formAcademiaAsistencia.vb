@@ -44,7 +44,7 @@
             mAcademiaAsistenciaActual = mAcademiaActual.AcademiasAsistencias.Single(Function(sa) sa.IDPersona = idPersona)
         End If
 
-        CS_Form.CenterToParent(mParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

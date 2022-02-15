@@ -49,7 +49,7 @@
             mSiniestroActual = mdbContext.Siniestro.Find(IDSiniestro)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -348,8 +348,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formSiniestros") Then
-                    Dim formSiniestros As formSiniestros = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formSiniestros"), formSiniestros)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formSiniestros") Then
+                    Dim formSiniestros As formSiniestros = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formSiniestros"), formSiniestros)
                     formSiniestros.RefreshData(mSiniestroActual.IDSiniestro)
                     formSiniestros = Nothing
                 End If

@@ -32,7 +32,7 @@
             mCajaArqueoDetalleActual = mCajaArqueoActual.CajaArqueoDetalles.Single(Function(cad) cad.IDDetalle = IDDetalle)
         End If
 
-        CS_Form.CenterToParent(mParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(mParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

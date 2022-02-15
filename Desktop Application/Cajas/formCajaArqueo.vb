@@ -37,7 +37,7 @@
             mCajaArqueoActual = mdbContext.CajaArqueo.Find(IDCaja, IDArqueo)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
@@ -249,8 +249,8 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CS_Form.MDIChild_IsLoaded(CType(pFormMDIMain, Form), "formCajasArqueos") Then
-                    Dim formCajasArqueos As formCajasArqueos = CType(CS_Form.MDIChild_GetInstance(CType(pFormMDIMain, Form), "formCajasArqueos"), formCajasArqueos)
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCajasArqueos") Then
+                    Dim formCajasArqueos As formCajasArqueos = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCajasArqueos"), formCajasArqueos)
                     formCajasArqueos.RefreshData(mCajaArqueoActual.IDCaja, mCajaArqueoActual.IDArqueo)
                     formCajasArqueos = Nothing
                 End If

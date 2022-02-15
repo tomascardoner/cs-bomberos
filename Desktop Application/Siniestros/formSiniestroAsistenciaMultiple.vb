@@ -24,7 +24,7 @@
         CreateRows()
         FillData()
 
-        CS_Form.MDIChild_PositionAndSizeToFit(CType(pFormMDIMain, Form), CType(Me, Form))
+        CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), CType(Me, Form))
         If Me.WindowState = FormWindowState.Minimized Then
             Me.WindowState = FormWindowState.Normal
         End If

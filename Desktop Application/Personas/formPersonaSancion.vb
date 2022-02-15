@@ -33,7 +33,7 @@
             mPersonaSancionActual = mdbContext.PersonaSancion.Find(IDPersona, IDSancion)
         End If
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 

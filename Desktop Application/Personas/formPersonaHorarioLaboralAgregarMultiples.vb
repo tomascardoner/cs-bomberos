@@ -12,7 +12,7 @@
     Friend Sub LoadAndShow(ByRef ParentForm As Form, ByVal IDPersona As Integer)
         mIDPersona = IDPersona
 
-        CS_Form.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
 
         Me.ShowDialog(ParentForm)

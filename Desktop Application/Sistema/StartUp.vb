@@ -21,7 +21,7 @@
     Friend Sub Main()
         Dim StartupTime As Date
 
-        System.Windows.Forms.Cursor.Current = Cursors.AppStarting
+        Cursor.Current = Cursors.AppStarting
 
         My.Application.Log.WriteEntry("La Aplicación se está iniciando.", TraceEventType.Information)
 
@@ -47,13 +47,30 @@
         formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
-        ' Obtengo los parámetros de conexión a la base de datos
-        If Not Database.ObtenerParametrosDeConexion() Then
-            formSplashScreen.Close()
-            formSplashScreen.Dispose()
+        ' Obtengo el Connection String para las conexiones de ADO .NET
+        pDatabase = New CardonerSistemas.Database.Ado.SqlServer()
+        If Not pDatabase.SetProperties(pDatabaseConfig.Datasource, pDatabaseConfig.Database, pDatabaseConfig.UserId, pDatabaseConfig.Password, pDatabaseConfig.ConnectTimeout, pDatabaseConfig.ConnectRetryCount, pDatabaseConfig.ConnectRetryInterval) Then
             TerminateApplication()
-            Exit Sub
+            Return
         End If
+        If Not pDatabase.PasswordUnencrypt() Then
+            TerminateApplication()
+            Return
+        End If
+        pDatabase.CreateConnectionString()
+
+        ' Verifico que se pueda establecer la conexión a la base de datos
+        Dim newLoginData As Boolean = False
+        If Not pDatabase.Connect(pDatabaseConfig, newLoginData) Then
+            TerminateApplication()
+            Return
+        End If
+        If newLoginData Then
+            Configuration.SaveFileDatabase()
+        End If
+
+        ' Obtengo el Connection String para las conexiones de Entity Framework
+        CSBomberosContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "CSBomberos")
 
         ' Cargos los Parámetros desde la Base de datos
         formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
@@ -91,16 +108,13 @@
         End Select
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
-        Dim LicenseDecrypter As New CS_Encrypt_TripleDES(Constantes.APPLICATION_LICENSE_PASSWORD)
-        If Not LicenseDecrypter.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), pLicensedTo) Then
+        If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), Constantes.APPLICATION_LICENSE_PASSWORD, pLicensedTo) Then
             MsgBox("La Licencia especificada es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
-            LicenseDecrypter = Nothing
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
             Exit Sub
         End If
-        LicenseDecrypter = Nothing
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
 
@@ -158,10 +172,12 @@
 
     Friend Sub TerminateApplication()
         If pFormMDIMain IsNot Nothing Then
-            For Each formCurrent As Form In pFormMDIMain.MdiChildren()
-                formCurrent.Close()
-                formCurrent.Dispose()
-            Next
+            CardonerSistemas.Forms.MdiChildCloseAll(CType(pFormMDIMain, Form))
+            CardonerSistemas.Forms.CloseAll("FormMDIMain")
+        End If
+        If pDatabase IsNot Nothing Then
+            pDatabase.Close()
+            pDatabase = Nothing
         End If
 
         pAppearanceConfig = Nothing
