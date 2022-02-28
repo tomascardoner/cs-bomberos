@@ -13,6 +13,7 @@ Imports System.Collections.Generic
 Partial Public Class SiniestroClave
     Public Property IDSiniestroClave As Byte
     Public Property Nombre As String
+    Public Property Grupo As String
     Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean

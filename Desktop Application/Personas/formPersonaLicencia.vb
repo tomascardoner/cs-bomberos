@@ -11,6 +11,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal IDLicencia As Short)
         mIsLoading = True
         mEditMode = EditMode
@@ -67,21 +68,18 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.LicenciaCausa(comboboxCausa, False, False)
     End Sub
 
-    Friend Sub SetAppearance()
-
-    End Sub
-
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mPersonaLicenciaActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"

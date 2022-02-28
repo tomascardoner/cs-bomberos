@@ -19,8 +19,6 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         datetimepickerTurno1Desde.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
         datetimepickerTurno1Desde.Checked = False
         datetimepickerTurno1Hasta.Value = CardonerSistemas.Constants.DateTimePickerMinimumValue
@@ -31,13 +29,11 @@
         datetimepickerTurno2Hasta.Checked = False
     End Sub
 
-    Friend Sub SetAppearance()
-
-    End Sub
-
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         Me.Dispose()
     End Sub
 

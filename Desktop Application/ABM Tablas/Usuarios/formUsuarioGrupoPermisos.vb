@@ -19,8 +19,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         Me.Dispose()
     End Sub
 

@@ -1,10 +1,13 @@
 ﻿Public Class formPersonaLicenciaConducirCategorias
 
 #Region "Declarations"
+
     Private mlistLicenciaConducirCategorias As List(Of LicenciaConducirCategoria)
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByRef ParentForm As Form, ByRef PersonaActual As Persona)
         RefreshData()
 

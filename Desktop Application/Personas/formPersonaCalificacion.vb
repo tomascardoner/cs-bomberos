@@ -11,12 +11,13 @@
     Private mlistPersonaCalificacion As List(Of PersonaCalificacion)
     Private mlistGridRowData As List(Of GridRowData)
 
-    Private mIsLoading As Boolean = False
+    Private mIsLoading As Boolean
     Private mIsNew As Boolean
-    Private mEditMode As Boolean = False
+    Private mEditMode As Boolean
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDPersona As Integer, ByVal Anio As Short, ByVal InstanciaNumero As Byte)
         mIsNew = (Anio = 0)
         mIsLoading = True
@@ -95,12 +96,15 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mlistPersonaCalificacion = Nothing
         mlistGridRowData = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"

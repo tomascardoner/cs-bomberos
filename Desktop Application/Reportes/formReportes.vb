@@ -20,7 +20,7 @@
         Me.Text = "Reportes - " & mModuloNombre
     End Sub
 
-    Private Sub formReportes_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Me_Load(sender As Object, e As EventArgs) Handles Me.Load
         SetAppearance()
 
         CargarListaReportes()
@@ -29,9 +29,11 @@
         listviewParametros.Font = pAppearanceConfig.ListsFont
     End Sub
 
-    Private Sub formReportes_Unload() Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+    Private Sub Me_Unload() Handles Me.FormClosed
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
     End Sub
 
 #End Region

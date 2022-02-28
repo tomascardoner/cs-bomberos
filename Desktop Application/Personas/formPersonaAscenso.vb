@@ -5,8 +5,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaAscensoActual As PersonaAscenso
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 
 #End Region
 
@@ -69,18 +69,14 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         pFillAndRefreshLists.Cargo(comboboxCargo, False, False)
     End Sub
 
-    Friend Sub SetAppearance()
-
-    End Sub
-
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mPersonaAscensoActual = Nothing
         Me.Dispose()
     End Sub

@@ -12,7 +12,8 @@ GO
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 --			2021-12-07 - Bug fixes
 --          2022-01-23 - Se agregaron los servicios especiales y las claves naranjas al 50%
---			2022-02-03 - Bug fix
+--			2022-02-03 - Bug fixes
+--			2022-02-27 - Bug fixes + agregado de 'En comisión' como un 'Presente'
 -- Description:	Devuelve los puntajes de siniestros y academias de las Personas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerPuntajes') AND type in (N'P', N'PC'))
@@ -29,7 +30,9 @@ BEGIN
 	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, SiniestrosClaveVACantidad int, SiniestrosClaveVAPuntaje decimal(8,2), SiniestrosClaveSPCantidad int, SiniestrosClaveSPPuntaje decimal(8,2), SiniestrosClaveN100Cantidad int, SiniestrosClaveN100Puntaje decimal(8,2), SiniestrosClaveN50Cantidad int, SiniestrosClaveN50Puntaje decimal(8,2), SiniestrosClaveR100Cantidad int, SiniestrosClaveR100Puntaje decimal(8,2), SiniestrosClaveR50Cantidad int, SiniestrosClaveR50Puntaje decimal(8,2), AcademiasPCantidad int, AcademiasPPuntaje decimal(8,2), AcademiasFHCantidad int, AcademiasFHPuntaje decimal(8,2))
 
 	-- Declaraciones para los siniestros
-	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint, @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
+	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint = 1
+	DECLARE @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint = 10
+	DECLARE @IDSiniestroAsistenciaTipoEnComision tinyint = 9
 	DECLARE @SiniestrosPuntajes table (IDSiniestro int not null, IDSiniestroAsistenciaTipo tinyint not null, IDSiniestroAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDSiniestro, IDSiniestroAsistenciaTipo))
 	DECLARE @SiniestrosPorClave table (Clave char(2) not null PRIMARY KEY, Cantidad int not null, Puntaje decimal(8,2) not null)
 	DECLARE @SiniestrosPersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
@@ -37,7 +40,8 @@ BEGIN
 	DECLARE @SiniestrosPuntajeVA decimal(8,2), @SiniestrosPuntajeSP decimal(8,2), @SiniestrosPuntajeN decimal(8,2), @SiniestrosPuntajeR decimal(8,2)
 
 	-- Declaraciones para las academias
-	DECLARE @IDAcademiaAsistenciaTipoPresente tinyint, @IDAcademiaAsistenciaTipoFueraHora tinyint
+	DECLARE @IDAcademiaAsistenciaTipoPresente tinyint = 1
+	DECLARE @IDAcademiaAsistenciaTipoFueraHora tinyint = 12
 	DECLARE @AcademiasPuntajes table (IDAcademia int not null, IDAcademiaAsistenciaTipo tinyint not null, IDAcademiaAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDAcademia, IDAcademiaAsistenciaTipo))
 	DECLARE @AcademiasPersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
 	DECLARE @AcademiasCantidad int
@@ -53,16 +57,6 @@ BEGIN
 				AND p.IDCuartel = @IDCuartel
 				AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, @FechaHasta)
 				AND pab.Tipo = 'A'
-
-	-- Siniestros: obtengo el id del tipo de asistencia "Presente"
-	SELECT @IDSiniestroAsistenciaTipoPresente = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID'
-
-	-- Siniestros: obtengo el id del tipo de asistencia "Salida anticipada"
-	SELECT @IDSiniestroAsistenciaTipoSalidaAnticipada = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID'
 
 	-- Siniestros: agrego el id del puntaje por "Presente" vigente a la fecha de cada siniestro
 	INSERT INTO @SiniestrosPuntajes
@@ -82,6 +76,15 @@ BEGIN
 				AND s.IDCuartel = @IDCuartel
 				AND s.Fecha BETWEEN @FechaDesde AND @FechaHasta
 
+	-- Siniestros: agrego el id del puntaje por "En comisión" vigente a la fecha de cada siniestro
+	INSERT INTO @SiniestrosPuntajes
+		(IDSiniestro, IDSiniestroAsistenciaTipo, IDSiniestroAsistenciaTipoPuntaje)
+		SELECT s.IDSiniestro, @IDSiniestroAsistenciaTipoEnComision, dbo.SiniestroObtenerIdPuntaje(@IDSiniestroAsistenciaTipoEnComision, s.Fecha)
+			FROM Siniestro AS s
+			WHERE s.Anulado = 0
+				AND s.IDCuartel = @IDCuartel
+				AND s.Fecha BETWEEN @FechaDesde AND @FechaHasta
+
 	-- Siniestros: asigno los puntajes correspondientes a cada siniestro
 	UPDATE @SiniestrosPuntajes
 		SET Puntaje = satpc.Puntaje
@@ -92,11 +95,12 @@ BEGIN
 	-- Siniestros: calculo la cantidad de siniestros y el puntaje total de cada clave
 	INSERT INTO @SiniestrosPorClave
 		(Clave, Cantidad, Puntaje)
-		SELECT dbo.SiniestroObtenerClaveAgrupada(s.IDSiniestroClave), COUNT(s.IDSiniestro) AS Cantidad, ISNULL(SUM(sp.Puntaje), 0) AS Puntaje
+		SELECT sc.Grupo, COUNT(s.IDSiniestro) AS Cantidad, ISNULL(SUM(sp.Puntaje), 0) AS Puntaje
 			FROM Siniestro AS s
+				INNER JOIN SiniestroClave AS sc ON s.IDSiniestroClave = sc.IDSiniestroClave
 				INNER JOIN @SiniestrosPuntajes AS sp ON s.IDSiniestro = sp.IDSiniestro
 			WHERE sp.IDSiniestroAsistenciaTipo = @IDSiniestroAsistenciaTipoPresente
-			GROUP BY dbo.SiniestroObtenerClaveAgrupada(s.IDSiniestroClave)
+			GROUP BY sc.Grupo
 
 	-- Siniestros: asigno las cantidades de siniestros por cada clave a las variables
 	SELECT @SiniestrosCantidadVA = AV, @SiniestrosCantidadSP = SP, @SiniestrosCantidadN = N, @SiniestrosCantidadR = R
@@ -121,12 +125,13 @@ BEGIN
 	-- Siniestros: calculo los puntajes de cada persona por cada clave
 	INSERT INTO @SiniestrosPersonasPuntajesPorClave
 		(IDPersona, Clave, Cantidad, Puntaje)
-		SELECT rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.IDSiniestroClave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
+		SELECT rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(sc.Grupo, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada, @IDSiniestroAsistenciaTipoEnComision) AS Clave, COUNT(sa.IDPersona), ISNULL(SUM(sp.Puntaje), 0)
 			FROM @ResultadoFinal AS rf
 				LEFT JOIN (SiniestroAsistencia AS sa
 				INNER JOIN Siniestro AS s ON sa.IDSiniestro = s.IDSiniestro
+				INNER JOIN SiniestroClave AS sc ON s.IDSiniestroClave = sc.IDSiniestroClave
 				INNER JOIN @SiniestrosPuntajes AS sp ON sa.IDSiniestro = sp.IDSiniestro AND sa.IDSiniestroAsistenciaTipo = sp.IDSiniestroAsistenciaTipo) ON rf.IDPersona = sa.IDPersona
-			GROUP BY rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(s.IDSiniestroClave, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada)
+			GROUP BY rf.IDPersona, dbo.SiniestroObtenerClaveAgrupadaYPorcentaje(sc.Grupo, sa.IDSiniestroAsistenciaTipo, @IDSiniestroAsistenciaTipoPresente, @IDSiniestroAsistenciaTipoSalidaAnticipada, @IDSiniestroAsistenciaTipoEnComision)
 
 	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves verdes y azules
 	UPDATE @ResultadoFinal
@@ -156,7 +161,7 @@ BEGIN
 				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
 			WHERE spppc.Clave = 'N5'
 
-	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves rojas con "Presente"
+	-- Siniestros: asigno las cantidades y puntajes de las personas para las claves rojas con "Presente" y "En comisión"
 	UPDATE @ResultadoFinal
 		SET SiniestrosClaveR100Cantidad = Cantidad, SiniestrosClaveR100Puntaje = Puntaje
 			FROM @SiniestrosPersonasPuntajesPorClave AS spppc
@@ -169,16 +174,6 @@ BEGIN
 			FROM @SiniestrosPersonasPuntajesPorClave AS spppc
 				INNER JOIN @ResultadoFinal AS rf ON spppc.IDPersona = rf.IDPersona
 			WHERE spppc.Clave = 'R5'
-
-	-- Academias: obtengo el id del tipo de asistencia "Presente"
-	SELECT @IDAcademiaAsistenciaTipoPresente = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_PRESENTE_ID'
-
-	-- Academias: obtengo el id del tipo de asistencia "Fuera de hora"
-	SELECT @IDAcademiaAsistenciaTipoFueraHora = NumeroEntero
-		FROM Parametro
-		WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_FUERAHORA_ID'
 
 	-- Academias: agrego el id del puntaje por "Presente" vigente a la fecha de cada academia
 	INSERT INTO @AcademiasPuntajes
@@ -234,7 +229,7 @@ BEGIN
 			WHERE apppc.Clave = 'AF'
 
 	-- Común: muestro las personas y los puntajes
-	SELECT ISNULL(@SiniestrosCantidadVA, 0) AS SiniestrosClaveVACantidadTotal, ISNULL(@SiniestrosCantidadSP, 0) AS SiniestrosClaveSPCantidadTotal, ISNULL(@SiniestrosCantidadN, 0) AS SiniestrosClaveNCantidadTotal, ISNULL(@SiniestrosCantidadR, 0) AS SiniestrosClaveRCantidadTotal, @AcademiasCantidad AS AcademiasCantidadTotal, ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0) AS PuntajeMaximo,
+	SELECT ISNULL(@SiniestrosCantidadVA, 0) AS SiniestrosClaveVACantidadTotal, ISNULL(@SiniestrosCantidadSP, 0) AS SiniestrosClaveSPCantidadTotal, ISNULL(@SiniestrosCantidadN, 0) AS SiniestrosClaveNCantidadTotal, ISNULL(@SiniestrosCantidadR, 0) AS SiniestrosClaveRCantidadTotal, @AcademiasCantidad AS AcademiasCantidadTotal, ISNULL(@SiniestrosPuntajeVA, 0) + ISNULL(@SiniestrosPuntajeSP, 0) + ISNULL(@SiniestrosPuntajeN, 0) + ISNULL(@SiniestrosPuntajeR, 0) + ISNULL(@AcademiasPuntaje, 0) AS PuntajeMaximo,
 			ROW_NUMBER() OVER (ORDER BY ISNULL(SiniestrosClaveVAPuntaje, 0) + ISNULL(SiniestrosClaveSPPuntaje, 0) + ISNULL(SiniestrosClaveN100Puntaje, 0) + ISNULL(SiniestrosClaveN50Puntaje, 0) + ISNULL(SiniestrosClaveR100Puntaje, 0) + ISNULL(SiniestrosClaveR50Puntaje, 0) + ISNULL(AcademiasPPuntaje, 0) + ISNULL(AcademiasFHPuntaje, 0) DESC, p.Orden) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
 			ISNULL(SiniestrosClaveVACantidad, 0) AS SiniestrosClaveVACantidad, ISNULL(SiniestrosClaveVAPuntaje, 0) AS SiniestrosClaveVAPuntaje,
 			ISNULL(SiniestrosClaveSPCantidad, 0) AS SiniestrosClaveSPCantidad, ISNULL(SiniestrosClaveSPPuntaje, 0) AS SiniestrosClaveSPPuntaje,

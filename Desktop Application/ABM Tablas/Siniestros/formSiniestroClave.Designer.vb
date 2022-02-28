@@ -46,6 +46,8 @@ Partial Class formSiniestroClave
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.textboxGrupo = New System.Windows.Forms.TextBox()
+        Me.labelGrupo = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -151,6 +153,8 @@ Partial Class formSiniestroClave
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.textboxGrupo)
+        Me.tabpageGeneral.Controls.Add(Me.labelGrupo)
         Me.tabpageGeneral.Controls.Add(Me.updownOrden)
         Me.tabpageGeneral.Controls.Add(Me.labelOrden)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
@@ -165,7 +169,7 @@ Partial Class formSiniestroClave
         '
         'updownOrden
         '
-        Me.updownOrden.Location = New System.Drawing.Point(133, 45)
+        Me.updownOrden.Location = New System.Drawing.Point(59, 71)
         Me.updownOrden.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
         Me.updownOrden.Name = "updownOrden"
         Me.updownOrden.Size = New System.Drawing.Size(46, 20)
@@ -175,7 +179,7 @@ Partial Class formSiniestroClave
         'labelOrden
         '
         Me.labelOrden.AutoSize = True
-        Me.labelOrden.Location = New System.Drawing.Point(6, 48)
+        Me.labelOrden.Location = New System.Drawing.Point(6, 74)
         Me.labelOrden.Name = "labelOrden"
         Me.labelOrden.Size = New System.Drawing.Size(39, 13)
         Me.labelOrden.TabIndex = 4
@@ -183,10 +187,10 @@ Partial Class formSiniestroClave
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(133, 19)
+        Me.textboxNombre.Location = New System.Drawing.Point(59, 19)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(372, 20)
+        Me.textboxNombre.Size = New System.Drawing.Size(446, 20)
         Me.textboxNombre.TabIndex = 1
         '
         'labelNombre
@@ -314,6 +318,24 @@ Partial Class formSiniestroClave
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'textboxGrupo
+        '
+        Me.textboxGrupo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxGrupo.Location = New System.Drawing.Point(59, 45)
+        Me.textboxGrupo.MaxLength = 2
+        Me.textboxGrupo.Name = "textboxGrupo"
+        Me.textboxGrupo.Size = New System.Drawing.Size(30, 20)
+        Me.textboxGrupo.TabIndex = 3
+        '
+        'labelGrupo
+        '
+        Me.labelGrupo.AutoSize = True
+        Me.labelGrupo.Location = New System.Drawing.Point(6, 48)
+        Me.labelGrupo.Name = "labelGrupo"
+        Me.labelGrupo.Size = New System.Drawing.Size(39, 13)
+        Me.labelGrupo.TabIndex = 2
+        Me.labelGrupo.Text = "Grupo:"
+        '
         'formSiniestroClave
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -362,4 +384,6 @@ Partial Class formSiniestroClave
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents labelOrden As Label
     Friend WithEvents updownOrden As NumericUpDown
+    Friend WithEvents textboxGrupo As TextBox
+    Friend WithEvents labelGrupo As Label
 End Class

@@ -55,6 +55,7 @@
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
+        textboxGrupo.ReadOnly = Not mEditMode
         updownOrden.Enabled = mEditMode
 
         ' Notas y auditoría
@@ -71,8 +72,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mSiniestroClaveActual = Nothing
         Me.Dispose()
     End Sub
@@ -84,6 +87,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroClaveActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            textboxGrupo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Grupo)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -112,6 +116,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mSiniestroClaveActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .Grupo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxGrupo.Text)
             .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -140,7 +145,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNotas.GotFocus, textboxNombre.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxGrupo.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -160,11 +165,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxNombre.Text.Trim.Length = 0 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNombre.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -214,6 +216,28 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxNombre.Focus()
+            Return False
+        End If
+
+        If textboxGrupo.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe ingresar el Grupo.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxGrupo.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

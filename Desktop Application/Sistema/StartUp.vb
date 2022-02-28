@@ -128,9 +128,7 @@
         pFormMDIMain = New formMDIMain()
         pFormMDIMain.Show()
 
-        ' pFormMDIMain.Cursor = Cursors.AppStarting
-        ' pFormMDIMain.Enabled = False
-
+        formSplashScreen.Focus()
         formSplashScreen.labelStatus.Text = "Todo completado."
         Application.DoEvents()
 

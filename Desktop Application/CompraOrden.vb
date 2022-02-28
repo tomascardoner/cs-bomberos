@@ -31,6 +31,5 @@ Partial Public Class CompraOrden
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Cuartel As Cuartel
-    Public Overridable Property CompraOrdenFactura As ICollection(Of CompraOrdenFactura) = New HashSet(Of CompraOrdenFactura)
 
 End Class

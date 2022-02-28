@@ -4,8 +4,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaAccidenteActual As PersonaAccidente
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 #End Region
 
 #Region "Form stuff"
@@ -32,7 +32,6 @@
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
-        InitializeFormAndControls()
         SetDataFromObjectToControls()
 
         mIsLoading = False
@@ -67,17 +66,11 @@
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
 
-    Friend Sub InitializeFormAndControls()
-        SetAppearance()
-    End Sub
-
-    Friend Sub SetAppearance()
-
-    End Sub
-
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mPersonaAccidenteActual = Nothing
         Me.Dispose()
     End Sub

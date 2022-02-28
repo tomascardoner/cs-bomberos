@@ -4,11 +4,12 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mParentescoActual As Parentesco
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDParentesco As Byte)
         mIsLoading = True
         mEditMode = EditMode
@@ -65,11 +66,14 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mParentescoActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"

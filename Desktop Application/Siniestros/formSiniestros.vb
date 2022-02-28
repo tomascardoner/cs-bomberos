@@ -24,7 +24,7 @@
     Private mlistSiniestrosBase As List(Of GridRowData)
     Private mlistSiniestrosFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
+    Private mSkipFilterData As Boolean
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
@@ -97,8 +97,10 @@
     End Sub
 
     Private Sub Me_Closed() Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
     End Sub
 
 #End Region

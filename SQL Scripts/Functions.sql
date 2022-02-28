@@ -444,35 +444,6 @@ GO
 
 -- =============================================
 -- Author:		Tomás A. Cardoner
--- Create date: 2021-11-03
--- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules
--- =============================================
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'dbo.SiniestroObtenerClaveAgrupada') AND type = N'FN')
-	DROP FUNCTION dbo.SiniestroObtenerClaveAgrupada
-GO
-
-CREATE FUNCTION SiniestroObtenerClaveAgrupada
-(	
-	@IDSiniestroClave tinyint
-) RETURNS char(2) AS
-BEGIN
-	RETURN (CASE @IDSiniestroClave
-				WHEN 1 THEN 'AV'
-				WHEN 2 THEN 'AV'
-				WHEN 3 THEN 'N'
-				WHEN 4 THEN 'R'
-				WHEN 5 THEN 'SP'
-				WHEN 6 THEN 'AV'
-				WHEN 7 THEN 'AV'
-				WHEN 8 THEN 'AV'
-			END)
-END
-GO
-
-
-
--- =============================================
--- Author:		Tomás A. Cardoner
 -- Create date: 2021-11-26
 -- Description:	Devuelve la Clave de un Siniestro juntando las verdes y azules y separando las Rojas por presente y salida anticipada
 -- =============================================
@@ -482,32 +453,28 @@ GO
 
 CREATE FUNCTION SiniestroObtenerClaveAgrupadaYPorcentaje
 (	
-	@IDSiniestroClave tinyint,
+	@ClaveGrupo varchar(2),
 	@IDSiniestroAsistenciaTipo tinyint,
 	@IDSiniestroAsistenciaTipoPresente tinyint,
-	@IDSiniestroAsistenciaTipoSalidaAnticipada tinyint
+	@IDSiniestroAsistenciaTipoSalidaAnticipada tinyint,
+	@IDSiniestroAsistenciaTipoEnComision tinyint
 ) RETURNS char(2) AS
 BEGIN
-	RETURN (CASE @IDSiniestroClave
-				WHEN 1 THEN 'AV'
-				WHEN 2 THEN 'AV'
-				WHEN 3 THEN
+	RETURN (CASE @ClaveGrupo
+				WHEN 'N' THEN
 					(CASE @IDSiniestroAsistenciaTipo
 						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'N1'
 						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'N5'
 						ELSE ''
 					END)
-				WHEN 4 THEN
+				WHEN 'R' THEN
 					(CASE @IDSiniestroAsistenciaTipo
 						WHEN @IDSiniestroAsistenciaTipoPresente THEN 'R1'
 						WHEN @IDSiniestroAsistenciaTipoSalidaAnticipada THEN 'R5'
+						WHEN @IDSiniestroAsistenciaTipoEnComision THEN 'R1'
 						ELSE ''
 					END)
-				WHEN 5 THEN 'SP'
-				WHEN 6 THEN 'AV'
-				WHEN 7 THEN 'AV'
-				WHEN 8 THEN 'AV'
-				ELSE ''
+				ELSE ISNULL(@ClaveGrupo, '')
 			END)
 END
 GO

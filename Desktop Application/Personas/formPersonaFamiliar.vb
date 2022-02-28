@@ -4,8 +4,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaFamiliarActual As PersonaFamiliar
 
-    Private mIsLoading As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mIsLoading As Boolean
+    Private mEditMode As Boolean
 #End Region
 
 #Region "Form stuff"
@@ -99,8 +99,6 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        SetAppearance()
-
         ' Cargo los ComboBox
         pFillAndRefreshLists.Parentesco(comboboxParentesco, False, True)
         pFillAndRefreshLists.DocumentoTipo(comboboxDocumentoTipo, True)
@@ -112,16 +110,15 @@
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
     End Sub
 
-    Friend Sub SetAppearance()
-
-    End Sub
-
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mPersonaFamiliarActual = Nothing
         Me.Dispose()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"

@@ -81,8 +81,10 @@
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         mParentForm = Nothing
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mAcademiaActual = Nothing
         mAcademiaAsistenciaActual = Nothing
         Me.Dispose()

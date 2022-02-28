@@ -1162,6 +1162,7 @@
           </Key>
           <Property Name="IDSiniestroClave" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -11180,6 +11181,7 @@
           </Key>
           <Property Name="IDSiniestroClave" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Grupo" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -12831,6 +12833,7 @@
           <EntitySetMapping Name="SiniestroClave">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroClave">
               <MappingFragment StoreEntitySet="SiniestroClave">
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

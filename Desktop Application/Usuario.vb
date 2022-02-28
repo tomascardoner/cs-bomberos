@@ -166,7 +166,5 @@ Partial Public Class Usuario
     Public Overridable Property SiniestrosClavesModificadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
     Public Overridable Property CompraFacturasCreadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
     Public Overridable Property CompraFacturasModificadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
-    Public Overridable Property CompraOrdenFactura As ICollection(Of CompraOrdenFactura) = New HashSet(Of CompraOrdenFactura)
-    Public Overridable Property CompraOrdenFactura1 As ICollection(Of CompraOrdenFactura) = New HashSet(Of CompraOrdenFactura)
 
 End Class

@@ -245,8 +245,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mPersonaActual = Nothing
         Me.Dispose()
     End Sub
@@ -895,6 +897,7 @@
 #End Region
 
 #Region "Familiares"
+
     Friend Class Familiares_GridRowData
         Public Property IDFamiliar As Byte
         Public Property ParentescoNombre As String
@@ -1287,11 +1290,11 @@
 
         Try
             listAscensos = (From pa In mdbContext.PersonaAscenso
-                              Join c In mdbContext.Cargo On pa.IDCargo Equals c.IDCargo
-                              Join cj In mdbContext.CargoJerarquia On pa.IDCargo Equals cj.IDCargo And pa.IDJerarquia Equals cj.IDJerarquia
-                              Where pa.IDPersona = mPersonaActual.IDPersona
-                              Order By pa.Fecha Descending
-                              Select New Ascensos_GridRowData With {.IDAscenso = pa.IDAscenso, .Fecha = pa.Fecha, .CargoNombre = c.Nombre, .JerarquiaNombre = cj.Nombre}).ToList
+                            Join c In mdbContext.Cargo On pa.IDCargo Equals c.IDCargo
+                            Join cj In mdbContext.CargoJerarquia On pa.IDCargo Equals cj.IDCargo And pa.IDJerarquia Equals cj.IDJerarquia
+                            Where pa.IDPersona = mPersonaActual.IDPersona
+                            Order By pa.Fecha Descending
+                            Select New Ascensos_GridRowData With {.IDAscenso = pa.IDAscenso, .Fecha = pa.Fecha, .CargoNombre = c.Nombre, .JerarquiaNombre = cj.Nombre}).ToList
 
             datagridviewAscensos.AutoGenerateColumns = False
             datagridviewAscensos.DataSource = listAscensos
@@ -1559,6 +1562,7 @@
 #End Region
 
 #Region "Vehiculos"
+
     Friend Class Vehiculos_GridRowData
         Public Property IDVehiculo As Byte
         Public Property TipoNombre As String
@@ -1828,10 +1832,10 @@
 
         Try
             listLicencias = (From pl In mdbContext.PersonaLicencia
-                              Join lc In mdbContext.LicenciaCausa On pl.IDLicenciaCausa Equals lc.IDLicenciaCausa
-                              Where pl.IDPersona = mPersonaActual.IDPersona
-                              Order By pl.Fecha Descending
-                              Select New Licencias_GridRowData With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
+                             Join lc In mdbContext.LicenciaCausa On pl.IDLicenciaCausa Equals lc.IDLicenciaCausa
+                             Where pl.IDPersona = mPersonaActual.IDPersona
+                             Order By pl.Fecha Descending
+                             Select New Licencias_GridRowData With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
 
             datagridviewLicencias.AutoGenerateColumns = False
             datagridviewLicencias.DataSource = listLicencias
@@ -2074,6 +2078,7 @@
 #End Region
 
 #Region "Sanciones"
+
     Friend Class Sanciones_GridRowData
         Public Property IDSancion As Short
         Public Property SolicitudFecha As Date
@@ -2223,6 +2228,7 @@
 #End Region
 
 #Region "Capacitaciones"
+
     Friend Class Capacitaciones_GridRowData
         Public Property IDCapacitacion As Short
         Public Property Fecha As Date
@@ -2244,10 +2250,10 @@
 
         Try
             listCapacitaciones = (From pc In mdbContext.PersonaCapacitacion
-                              Join c In mdbContext.Curso On pc.IDCurso Equals c.IDCurso
-                              Where pc.IDPersona = mPersonaActual.IDPersona
-                              Order By pc.Fecha Descending
-                              Select New Capacitaciones_GridRowData With {.IDCapacitacion = pc.IDCapacitacion, .Fecha = pc.Fecha, .CursoNombre = c.Nombre}).ToList
+                                  Join c In mdbContext.Curso On pc.IDCurso Equals c.IDCurso
+                                  Where pc.IDPersona = mPersonaActual.IDPersona
+                                  Order By pc.Fecha Descending
+                                  Select New Capacitaciones_GridRowData With {.IDCapacitacion = pc.IDCapacitacion, .Fecha = pc.Fecha, .CursoNombre = c.Nombre}).ToList
 
             datagridviewCapacitaciones.AutoGenerateColumns = False
             datagridviewCapacitaciones.DataSource = listCapacitaciones
@@ -2341,6 +2347,7 @@
 #End Region
 
 #Region "Calificaciones"
+
     Friend Class Calificaciones_ListDataItem
         Public Property Anio As Short
         Public Property InstanciaNumero As Byte
@@ -2551,6 +2558,7 @@
 #End Region
 
 #Region "Exámenes"
+
     Friend Class Examenes_GridRowData
         Public Property Anio As Short
         Public Property InstanciaNumero As Byte

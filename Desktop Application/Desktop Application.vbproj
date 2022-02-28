@@ -492,9 +492,6 @@
     <Compile Include="CompraOrdenDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraOrdenFactura.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Compras\formCompraFactura.designer.vb">
       <DependentUpon>formCompraFactura.vb</DependentUpon>
     </Compile>

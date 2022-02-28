@@ -112,7 +112,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property SiniestroAsistenciaTipoPuntajeClave() As DbSet(Of SiniestroAsistenciaTipoPuntajeClave)
     Public Overridable Property SiniestroClave() As DbSet(Of SiniestroClave)
     Public Overridable Property CompraFactura() As DbSet(Of CompraFactura)
-    Public Overridable Property CompraOrdenFactura() As DbSet(Of CompraOrdenFactura)
 
     Public Overridable Function uspAcademiaObtenerPersonasParaAsistencia(iDAcademia As Nullable(Of Integer), fecha As Nullable(Of Date), iDCuartel As Nullable(Of Byte)) As ObjectResult(Of uspAcademiaObtenerPersonasParaAsistencia_Result)
         Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
