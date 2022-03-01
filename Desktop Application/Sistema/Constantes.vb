@@ -72,6 +72,15 @@
     Friend Const SINIESTRO_CLAVE_VERDE As String = "V"
     Friend Const SINIESTRO_CLAVE_VERDE_NOMBRE As String = "Verde"
 
+    Friend Const SINIESTRO_CLAVEGRUPO_AZULVERDE As String = "AV"
+    Friend Const SINIESTRO_CLAVEGRUPO_AZULVERDE_NOMBRE As String = "Azules y verdes"
+    Friend Const SINIESTRO_CLAVEGRUPO_NARANJA As String = "N"
+    Friend Const SINIESTRO_CLAVEGRUPO_NARANJA_NOMBRE As String = "Naranjas"
+    Friend Const SINIESTRO_CLAVEGRUPO_ROJA As String = "R"
+    Friend Const SINIESTRO_CLAVEGRUPO_ROJA_NOMBRE As String = "Rojas"
+    Friend Const SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO As String = "SP"
+    Friend Const SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO_NOMBRE As String = "Servicios programados"
+
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
     '//////////////

@@ -81,6 +81,60 @@
         control.DataSource = listItems
     End Sub
 
+    Friend Sub LlenarComboBoxGruposDeClaves(ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
+        Dim datatableTable As New DataTable("GruposClave")
+        Dim datarowRow As DataRow
+
+        control.ValueMember = "IDGrupo"
+        control.DisplayMember = "Nombre"
+
+        With datatableTable
+            .Columns.Add("IDGrupo", System.Type.GetType("System.String"))
+            .Columns.Add("Nombre", System.Type.GetType("System.String"))
+
+            If mostrarItemNoEspecifica Then
+                datarowRow = .NewRow
+                datarowRow("IDGrupo") = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING
+                datarowRow("Nombre") = My.Resources.STRING_ITEM_NOT_SPECIFIED
+                .Rows.Add(datarowRow)
+            End If
+
+            If mostrarItemTodos Then
+                datarowRow = .NewRow
+                datarowRow("IDGrupo") = CardonerSistemas.Constants.FIELD_VALUE_ALL_STRING
+                datarowRow("Nombre") = My.Resources.STRING_ITEM_ALL_MALE
+                .Rows.Add(datarowRow)
+            End If
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupo") = Constantes.SINIESTRO_CLAVEGRUPO_AZULVERDE
+            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVEGRUPO_AZULVERDE_NOMBRE
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupo") = Constantes.SINIESTRO_CLAVEGRUPO_NARANJA
+            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVEGRUPO_NARANJA_NOMBRE
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupo") = Constantes.SINIESTRO_CLAVEGRUPO_ROJA
+            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVEGRUPO_ROJA_NOMBRE
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow("IDGrupo") = Constantes.SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO
+            datarowRow("Nombre") = Constantes.SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO_NOMBRE
+            .Rows.Add(datarowRow)
+        End With
+
+        control.DataSource = datatableTable
+        If mostrarItemNoEspecifica Then
+            control.SelectedIndex = 0
+        Else
+            control.SelectedIndex = -1
+        End If
+    End Sub
+
     Friend Sub LlenarComboBoxAsistenciaTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim listItems As List(Of SiniestroAsistenciaTipo)
 

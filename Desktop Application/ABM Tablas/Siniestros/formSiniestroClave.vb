@@ -55,7 +55,7 @@
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
-        textboxGrupo.ReadOnly = Not mEditMode
+        comboboxGrupo.Enabled = mEditMode
         updownOrden.Enabled = mEditMode
 
         ' Notas y auditoría
@@ -65,6 +65,8 @@
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
+
+        ListasSiniestros.LlenarComboBoxGruposDeClaves(comboboxGrupo, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -87,7 +89,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroClaveActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            textboxGrupo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Grupo)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGrupo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Grupo)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -116,7 +118,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mSiniestroClaveActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .Grupo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxGrupo.Text)
+            .Grupo = CS_ValueTranslation.FromControlComboBoxToObjectString(comboboxGrupo.SelectedValue)
             .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -145,7 +147,7 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxGrupo.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -229,10 +231,10 @@
             Return False
         End If
 
-        If textboxGrupo.Text.Trim.Length = 0 Then
+        If comboboxGrupo.SelectedIndex = -1 Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar el Grupo.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxGrupo.Focus()
+            MsgBox("Debe seleccionar el Grupo para puntajes.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxGrupo.Focus()
             Return False
         End If
 
