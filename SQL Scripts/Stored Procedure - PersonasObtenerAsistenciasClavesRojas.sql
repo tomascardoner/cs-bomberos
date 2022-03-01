@@ -9,7 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Creation date: 2022-03-01
--- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
+-- Updates: 
 -- Description:	Devuelve las asistencias e inasistencias a claves rojas
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspPersonasObtenerAsistenciasClavesRojas') AND type in (N'P', N'PC'))
