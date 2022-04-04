@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formCompraFacturas
+Partial Class formComprobantes
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -35,16 +35,22 @@ Partial Class formCompraFacturas
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
         Me.menuitemImprimirOrdenCompra = New System.Windows.Forms.ToolStripMenuItem()
+        Me.toolstripComprobanteTipo = New System.Windows.Forms.ToolStrip()
+        Me.labelComprobanteTipo = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxOperacionTipo = New System.Windows.Forms.ToolStripComboBox()
+        Me.comboboxComprobanteTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripPeriodo = New System.Windows.Forms.ToolStrip()
         Me.labelPeriodo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
         Me.labelPeriodoFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.toolstripProveedor = New System.Windows.Forms.ToolStrip()
-        Me.labelProveedor = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxProveedor = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripEntidad = New System.Windows.Forms.ToolStrip()
+        Me.labelEntidad = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxEntidad = New System.Windows.Forms.ToolStripComboBox()
         Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEntidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnOperacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNumeroCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFechaVencimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,8 +58,9 @@ Partial Class formCompraFacturas
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
+        Me.toolstripComprobanteTipo.SuspendLayout()
         Me.toolstripPeriodo.SuspendLayout()
-        Me.toolstripProveedor.SuspendLayout()
+        Me.toolstripEntidad.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -83,7 +90,7 @@ Partial Class formCompraFacturas
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnProveedor, Me.columnNumeroCompleto, Me.columnFechaVencimiento, Me.columnImporte})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnEntidad, Me.columnOperacion, Me.columnTipo, Me.columnNumeroCompleto, Me.columnFechaVencimiento, Me.columnImporte})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
@@ -101,8 +108,9 @@ Partial Class formCompraFacturas
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripComprobanteTipo)
         Me.panelToolbars.Controls.Add(Me.toolstripPeriodo)
-        Me.panelToolbars.Controls.Add(Me.toolstripProveedor)
+        Me.panelToolbars.Controls.Add(Me.toolstripEntidad)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
@@ -163,62 +171,91 @@ Partial Class formCompraFacturas
         Me.menuitemImprimirOrdenCompra.Size = New System.Drawing.Size(167, 22)
         Me.menuitemImprimirOrdenCompra.Text = "Orden de compra"
         '
+        'toolstripComprobanteTipo
+        '
+        Me.toolstripComprobanteTipo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripComprobanteTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripComprobanteTipo.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.toolstripComprobanteTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelComprobanteTipo, Me.comboboxOperacionTipo, Me.comboboxComprobanteTipo})
+        Me.toolstripComprobanteTipo.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripComprobanteTipo.Name = "toolstripComprobanteTipo"
+        Me.toolstripComprobanteTipo.Size = New System.Drawing.Size(265, 39)
+        Me.toolstripComprobanteTipo.TabIndex = 16
+        '
+        'labelComprobanteTipo
+        '
+        Me.labelComprobanteTipo.Name = "labelComprobanteTipo"
+        Me.labelComprobanteTipo.Size = New System.Drawing.Size(33, 36)
+        Me.labelComprobanteTipo.Text = "Tipo:"
+        '
+        'comboboxOperacionTipo
+        '
+        Me.comboboxOperacionTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxOperacionTipo.Name = "comboboxOperacionTipo"
+        Me.comboboxOperacionTipo.Size = New System.Drawing.Size(75, 39)
+        '
+        'comboboxComprobanteTipo
+        '
+        Me.comboboxComprobanteTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxComprobanteTipo.Name = "comboboxComprobanteTipo"
+        Me.comboboxComprobanteTipo.Size = New System.Drawing.Size(150, 39)
+        '
         'toolstripPeriodo
         '
         Me.toolstripPeriodo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripPeriodo.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPeriodo, Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelPeriodoFechaY})
-        Me.toolstripPeriodo.Location = New System.Drawing.Point(348, 0)
+        Me.toolstripPeriodo.Location = New System.Drawing.Point(0, 39)
         Me.toolstripPeriodo.Name = "toolstripPeriodo"
-        Me.toolstripPeriodo.Size = New System.Drawing.Size(267, 39)
+        Me.toolstripPeriodo.Size = New System.Drawing.Size(267, 25)
         Me.toolstripPeriodo.TabIndex = 15
         '
         'labelPeriodo
         '
         Me.labelPeriodo.Name = "labelPeriodo"
-        Me.labelPeriodo.Size = New System.Drawing.Size(51, 36)
+        Me.labelPeriodo.Size = New System.Drawing.Size(51, 22)
         Me.labelPeriodo.Text = "Período:"
         '
         'comboboxPeriodoTipo
         '
         Me.comboboxPeriodoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxPeriodoTipo.Name = "comboboxPeriodoTipo"
-        Me.comboboxPeriodoTipo.Size = New System.Drawing.Size(75, 39)
+        Me.comboboxPeriodoTipo.Size = New System.Drawing.Size(75, 25)
         '
         'comboboxPeriodoValor
         '
         Me.comboboxPeriodoValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxPeriodoValor.Name = "comboboxPeriodoValor"
-        Me.comboboxPeriodoValor.Size = New System.Drawing.Size(121, 39)
+        Me.comboboxPeriodoValor.Size = New System.Drawing.Size(121, 25)
         '
         'labelPeriodoFechaY
         '
         Me.labelPeriodoFechaY.Name = "labelPeriodoFechaY"
-        Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 36)
+        Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 22)
         Me.labelPeriodoFechaY.Text = "y"
         '
-        'toolstripProveedor
+        'toolstripEntidad
         '
-        Me.toolstripProveedor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripProveedor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripProveedor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelProveedor, Me.comboboxProveedor})
-        Me.toolstripProveedor.Location = New System.Drawing.Point(0, 39)
-        Me.toolstripProveedor.Name = "toolstripProveedor"
-        Me.toolstripProveedor.Size = New System.Drawing.Size(369, 25)
-        Me.toolstripProveedor.TabIndex = 13
+        Me.toolstripEntidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripEntidad.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripEntidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEntidad, Me.comboboxEntidad})
+        Me.toolstripEntidad.Location = New System.Drawing.Point(267, 39)
+        Me.toolstripEntidad.Name = "toolstripEntidad"
+        Me.toolstripEntidad.Size = New System.Drawing.Size(369, 25)
+        Me.toolstripEntidad.TabIndex = 13
         '
-        'labelProveedor
+        'labelEntidad
         '
-        Me.labelProveedor.Name = "labelProveedor"
-        Me.labelProveedor.Size = New System.Drawing.Size(64, 22)
-        Me.labelProveedor.Text = "Proveedor:"
+        Me.labelEntidad.Name = "labelEntidad"
+        Me.labelEntidad.Size = New System.Drawing.Size(64, 22)
+        Me.labelEntidad.Text = "Proveedor:"
         '
-        'comboboxProveedor
+        'comboboxEntidad
         '
-        Me.comboboxProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxProveedor.Name = "comboboxProveedor"
-        Me.comboboxProveedor.Size = New System.Drawing.Size(300, 25)
+        Me.comboboxEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEntidad.Name = "comboboxEntidad"
+        Me.comboboxEntidad.Size = New System.Drawing.Size(300, 25)
         '
         'columnFecha
         '
@@ -228,13 +265,29 @@ Partial Class formCompraFacturas
         Me.columnFecha.ReadOnly = True
         Me.columnFecha.Width = 62
         '
-        'columnProveedor
+        'columnEntidad
         '
-        Me.columnProveedor.DataPropertyName = "ProveedorNombre"
-        Me.columnProveedor.HeaderText = "Proveedor"
-        Me.columnProveedor.Name = "columnProveedor"
-        Me.columnProveedor.ReadOnly = True
-        Me.columnProveedor.Width = 81
+        Me.columnEntidad.DataPropertyName = "EntidadNombre"
+        Me.columnEntidad.HeaderText = "Entidad"
+        Me.columnEntidad.Name = "columnEntidad"
+        Me.columnEntidad.ReadOnly = True
+        Me.columnEntidad.Width = 68
+        '
+        'columnOperacion
+        '
+        Me.columnOperacion.DataPropertyName = "OperacionTipoNombre"
+        Me.columnOperacion.HeaderText = "Operación"
+        Me.columnOperacion.Name = "columnOperacion"
+        Me.columnOperacion.ReadOnly = True
+        Me.columnOperacion.Width = 81
+        '
+        'columnTipo
+        '
+        Me.columnTipo.DataPropertyName = "ComprobanteTipoNombre"
+        Me.columnTipo.HeaderText = "Tipo"
+        Me.columnTipo.Name = "columnTipo"
+        Me.columnTipo.ReadOnly = True
+        Me.columnTipo.Width = 53
         '
         'columnNumeroCompleto
         '
@@ -243,10 +296,10 @@ Partial Class formCompraFacturas
         DataGridViewCellStyle2.Format = "N0"
         DataGridViewCellStyle2.NullValue = Nothing
         Me.columnNumeroCompleto.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNumeroCompleto.HeaderText = "Tipo y Número"
+        Me.columnNumeroCompleto.HeaderText = "Número"
         Me.columnNumeroCompleto.Name = "columnNumeroCompleto"
         Me.columnNumeroCompleto.ReadOnly = True
-        Me.columnNumeroCompleto.Width = 101
+        Me.columnNumeroCompleto.Width = 69
         '
         'columnFechaVencimiento
         '
@@ -268,7 +321,7 @@ Partial Class formCompraFacturas
         Me.columnImporte.ReadOnly = True
         Me.columnImporte.Width = 67
         '
-        'formCompraFacturas
+        'formComprobantes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -278,10 +331,10 @@ Partial Class formCompraFacturas
         Me.Controls.Add(Me.statusstripMain)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formCompraFacturas"
+        Me.Name = "formComprobantes"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Facturas de compra"
+        Me.Text = "Comprobantes"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -289,10 +342,12 @@ Partial Class formCompraFacturas
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
+        Me.toolstripComprobanteTipo.ResumeLayout(False)
+        Me.toolstripComprobanteTipo.PerformLayout()
         Me.toolstripPeriodo.ResumeLayout(False)
         Me.toolstripPeriodo.PerformLayout()
-        Me.toolstripProveedor.ResumeLayout(False)
-        Me.toolstripProveedor.PerformLayout()
+        Me.toolstripEntidad.ResumeLayout(False)
+        Me.toolstripEntidad.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -305,9 +360,9 @@ Partial Class formCompraFacturas
     Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents toolstripProveedor As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelProveedor As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxProveedor As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripEntidad As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelEntidad As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxEntidad As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripPeriodo As ToolStrip
     Friend WithEvents labelPeriodo As ToolStripLabel
     Friend WithEvents comboboxPeriodoTipo As ToolStripComboBox
@@ -315,8 +370,14 @@ Partial Class formCompraFacturas
     Friend WithEvents labelPeriodoFechaY As ToolStripLabel
     Friend WithEvents buttonImprimir As ToolStripSplitButton
     Friend WithEvents menuitemImprimirOrdenCompra As ToolStripMenuItem
+    Friend WithEvents toolstripComprobanteTipo As ToolStrip
+    Friend WithEvents labelComprobanteTipo As ToolStripLabel
+    Friend WithEvents comboboxOperacionTipo As ToolStripComboBox
+    Friend WithEvents comboboxComprobanteTipo As ToolStripComboBox
     Friend WithEvents columnFecha As DataGridViewTextBoxColumn
-    Friend WithEvents columnProveedor As DataGridViewTextBoxColumn
+    Friend WithEvents columnEntidad As DataGridViewTextBoxColumn
+    Friend WithEvents columnOperacion As DataGridViewTextBoxColumn
+    Friend WithEvents columnTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnNumeroCompleto As DataGridViewTextBoxColumn
     Friend WithEvents columnFechaVencimiento As DataGridViewTextBoxColumn
     Friend WithEvents columnImporte As DataGridViewTextBoxColumn

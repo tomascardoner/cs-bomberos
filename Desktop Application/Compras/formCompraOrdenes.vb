@@ -11,8 +11,8 @@
         Public Property CuartelNombre As String
         Public Property Numero As Integer
         Public Property Fecha As Date
-        Public Property IDProveedor As Short
-        Public Property ProveedorNombre As String
+        Public Property IDEntidad As Short
+        Public Property EntidadNombre As String
         Public Property FacturaNumero As String
         Public Property Importe As Decimal?
         Public Property Cerrada As Boolean
@@ -50,7 +50,7 @@
         Using context As New CSBomberosContext(True)
             ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
         End Using
-        pFillAndRefreshLists.Proveedor(comboboxProveedor.ComboBox, True, True)
+        pFillAndRefreshLists.Entidad(comboboxEntidad.ComboBox, True, True)
 
         comboboxFacturaNumero.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_ITEM_COMPLETE_MALE, My.Resources.STRING_ITEM_EMPTY_MALE})
         comboboxFacturaNumero.SelectedIndex = 0
@@ -184,13 +184,13 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistComprasBase = (From c In dbContext.CompraOrden
                                     Join cu In dbContext.Cuartel On c.IDCuartel Equals cu.IDCuartel
-                                    Join p In dbContext.Proveedor On c.IDProveedor Equals p.IDProveedor
+                                    Join p In dbContext.Entidad On c.IDEntidad Equals p.IDEntidad
                                     Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDProveedor = c.IDProveedor, .ProveedorNombre = p.Nombre, .FacturaNumero = c.FacturaNumero, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
+                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = p.Nombre, .FacturaNumero = c.FacturaNumero, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
             End Using
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Órdenes de Compra.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Ordenes de Compra.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -232,9 +232,9 @@
                     mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDCuartel = CByte(comboboxCuartel.ComboBox.SelectedValue)).ToList
                 End If
 
-                ' Filtro por Proveedor
-                If comboboxProveedor.SelectedIndex > 0 Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDProveedor = CShort(comboboxProveedor.ComboBox.SelectedValue)).ToList
+                ' Filtro por Entidad
+                If comboboxEntidad.SelectedIndex > 0 Then
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue)).ToList
                 End If
 
                 ' Filtro por Número de Factura
@@ -299,11 +299,11 @@
                 Else
                     mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Fecha).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
-            Case columnProveedor.Name
+            Case columnEntidad.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.ProveedorNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EntidadNombre).ThenBy(Function(dgrd) dgrd.CuartelNombre).ThenBy(Function(dgrd) dgrd.Numero).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.ProveedorNombre).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.EntidadNombre).ThenByDescending(Function(dgrd) dgrd.CuartelNombre).ThenByDescending(Function(dgrd) dgrd.Numero).ToList
                 End If
             Case columnFacturaNumero.Name
                 If mOrdenTipo = SortOrder.Ascending Then
@@ -359,7 +359,7 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxProveedor.SelectedIndexChanged, comboboxFacturaNumero.SelectedIndexChanged, comboboxCerrada.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxEntidad.SelectedIndexChanged, comboboxFacturaNumero.SelectedIndexChanged, comboboxCerrada.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -452,7 +452,7 @@
                 Dim GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará la Compra seleccionada.{0}{0}Número: {1}{0}Fecha: {2}{0}Proveedor: {3}{0}Importe: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Numero, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.ProveedorNombre, FormatCurrency(GridRowDataActual.Importe))
+                Mensaje = String.Format("Se eliminará la Compra seleccionada.{0}{0}Número: {1}{0}Fecha: {2}{0}Entidad: {3}{0}Importe: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.Numero, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.EntidadNombre, FormatCurrency(GridRowDataActual.Importe))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try

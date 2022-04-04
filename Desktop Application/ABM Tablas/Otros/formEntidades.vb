@@ -1,8 +1,9 @@
-﻿Public Class formProveedores
+﻿Public Class formEntidades
 
 #Region "Declarations"
-    Private mlistProveedoresBase As List(Of Proveedor)
-    Private mlistProveedoresFiltradaYOrdenada As List(Of Proveedor)
+
+    Private mlistEntidadesBase As List(Of Entidad)
+    Private mlistEntidadesFiltradaYOrdenada As List(Of Entidad)
 
     Private mSkipFilterData As Boolean = False
     Private mBusquedaAplicada As Boolean = False
@@ -10,9 +11,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageTablas32)
 
@@ -34,21 +37,23 @@
 
         RefreshData()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
-    Friend Sub RefreshData(Optional ByVal PositionIDProveedor As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+
+    Friend Sub RefreshData(Optional ByVal PositionIDEntidad As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistProveedoresBase = dbContext.Proveedor.ToList
+                mlistEntidadesBase = dbContext.Entidad.ToList
             End Using
 
         Catch ex As Exception
 
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Proveedores.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Entidades.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -57,17 +62,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDProveedor = 0
+                PositionIDEntidad = 0
             Else
-                PositionIDProveedor = CType(datagridviewMain.CurrentRow.DataBoundItem, Proveedor).IDProveedor
+                PositionIDEntidad = CType(datagridviewMain.CurrentRow.DataBoundItem, Entidad).IDEntidad
             End If
         End If
 
         FilterData()
 
-        If PositionIDProveedor <> 0 Then
+        If PositionIDEntidad <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, Proveedor).IDProveedor = PositionIDProveedor Then
+                If CType(CurrentRowChecked.DataBoundItem, Entidad).IDEntidad = PositionIDEntidad Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -83,26 +88,26 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-                mlistProveedoresFiltradaYOrdenada = mlistProveedoresBase.ToList
+                mlistEntidadesFiltradaYOrdenada = mlistEntidadesBase.ToList
 
                 'Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case 0      ' Todos
                     Case 1      ' Sí
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Proveedor.EsActivo} = 1"
-                        mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
                     Case 2      ' No
-                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Proveedor.EsActivo} = 0"
-                        mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
                 End Select
 
-                Select Case mlistProveedoresFiltradaYOrdenada.Count
+                Select Case mlistEntidadesFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Proveedores para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Entidades para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Proveedor.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Entidad.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Proveedores.", mlistProveedoresFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Entidades.", mlistEntidadesFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -122,27 +127,29 @@
         Select Case mOrdenColumna.Name
             Case columnNombre.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
                 Else
-                    mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Nombre).ThenBy(Function(dgrd) dgrd.EsActivo).ToList
                 End If
             Case columnEsActivo.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 Else
-                    mlistProveedoresFiltradaYOrdenada = mlistProveedoresFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.EsActivo).ThenBy(Function(dgrd) dgrd.Nombre).ToList
                 End If
         End Select
 
         datagridviewMain.AutoGenerateColumns = False
-        datagridviewMain.DataSource = mlistProveedoresFiltradaYOrdenada
+        datagridviewMain.DataSource = mlistEntidadesFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -185,14 +192,16 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.PROVEEDOR_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.ENTIDAD_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
-            formProveedor.LoadAndShow(True, Me, 0)
+            formEntidad.LoadAndShow(True, Me, 0)
 
             Me.Cursor = Cursors.Default
         End If
@@ -200,12 +209,12 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Proveedor para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Entidad para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PROVEEDOR_EDITAR) Then
+            If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
-                formProveedor.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Proveedor).IDProveedor)
+                formEntidad.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
 
                 Me.Cursor = Cursors.Default
             End If
@@ -214,37 +223,37 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Proveedor para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Entidad para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Permisos.VerificarPermiso(Permisos.PROVEEDOR_ELIMINAR) Then
+            If Permisos.VerificarPermiso(Permisos.ENTIDAD_ELIMINAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
 
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará el Proveedor seleccionado.{0}{0}Nombre: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Proveedor).Nombre)
+                Mensaje = String.Format("Se eliminará la Entidad seleccionada.{0}{0}Nombre: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).Nombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
                         Using dbContext = New CSBomberosContext(True)
-                            Dim ProveedorEliminar As Proveedor
+                            Dim EntidadEliminar As Entidad
 
-                            ProveedorEliminar = dbContext.Proveedor.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Proveedor).IDProveedor)
-                            dbContext.Proveedor.Remove(ProveedorEliminar)
+                            EntidadEliminar = dbContext.Entidad.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
+                            dbContext.Entidad.Remove(EntidadEliminar)
                             dbContext.SaveChanges()
-                            ProveedorEliminar = Nothing
+                            EntidadEliminar = Nothing
                         End Using
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar el Proveedor porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar la Entidad porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Proveedor.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Entidad.")
                     End Try
 
                     RefreshData()
@@ -258,11 +267,11 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ningún Proveedor para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ninguna Entidad para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
-            formProveedor.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Proveedor).IDProveedor)
+            formEntidad.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, Entidad).IDEntidad)
 
             Me.Cursor = Cursors.Default
         End If

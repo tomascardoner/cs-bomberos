@@ -64,7 +64,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        ListasCompras.LlenarComboBoxFacturas(mdbContext, comboBoxFactura, mCompraOrdenActual.IDProveedor, False, True, True)
+        ListasComprobantes.LlenarComboBoxComprobantes(mdbContext, comboBoxFactura, mCompraOrdenActual.IDEntidad, Constantes.OperacionTipoCompra, Constantes.MovimientoTipoDebito, True, False, False, False, True, True)
         If mCompraOrdenActual.IDCompraOrden = 0 AndAlso CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedIndex > -1 Then
             pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
         Else
@@ -88,7 +88,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
-            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCompraFactura, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDComprobante, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
@@ -106,7 +106,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
-            .IDCompraFactura = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboBoxFactura.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            .IDComprobante = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboBoxFactura.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
             .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)

@@ -1,9 +1,10 @@
-﻿Public Class formCompraFactura
+﻿Public Class formComprobante
 
 #Region "Declarations"
 
     Private mdbContext As New CSBomberosContext(True)
-    Private mCompraFacturaActual As CompraFactura
+    Private mComprobanteActual As Comprobante
+    Private mOperacionTipo As String
 
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
@@ -13,20 +14,21 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDCompraFactura As Integer)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal operacionTipo As String, ByVal IDComprobante As Integer)
         mIsLoading = True
         mEditMode = EditMode
+        mOperacionTipo = operacionTipo
 
-        mIsNew = (IDCompraFactura = 0)
+        mIsNew = (IDComprobante = 0)
         If mIsNew Then
             ' Es Nuevo
-            mCompraFacturaActual = New CompraFactura
-            With mCompraFacturaActual
+            mComprobanteActual = New Comprobante
+            With mComprobanteActual
                 .Fecha = DateTime.Today
 
                 ' Si hay filtros aplicados en el form principal, uso esos valores como predeterminados
-                If formCompraFacturas.comboboxProveedor.SelectedIndex > 0 Then
-                    .IDProveedor = CShort(formCompraFacturas.comboboxProveedor.ComboBox.SelectedValue)
+                If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
+                    .IDEntidad = CShort(formComprobantes.comboboxEntidad.ComboBox.SelectedValue)
                 End If
 
                 .IDUsuarioCreacion = pUsuario.IDUsuario
@@ -34,9 +36,9 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.CompraFactura.Add(mCompraFacturaActual)
+            mdbContext.Comprobante.Add(mComprobanteActual)
         Else
-            mCompraFacturaActual = mdbContext.CompraFactura.Find(IDCompraFactura)
+            mComprobanteActual = mdbContext.Comprobante.Find(IDComprobante)
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
@@ -64,12 +66,12 @@
         ' General
         datetimepickerFecha.Enabled = mEditMode
         dateTimePickerFechaVencimiento.Enabled = mEditMode
-        maskedTextBoxTipo.Enabled = mEditMode
+        comboBoxTipo.Enabled = mEditMode
         maskedTextBoxPuntoVenta.Enabled = mEditMode
         maskedTextBoxNumero.Enabled = mEditMode
-        comboboxProveedor.Enabled = mEditMode
+        comboBoxEntidad.Enabled = mEditMode
         textBoxDescripcion.Enabled = mEditMode
-        currencytextboxImporte.Enabled = mEditMode
+        currencyTextBoxImporte.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -78,11 +80,21 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Proveedor(comboboxProveedor, False, False)
+        ListasComprobantes.LlenarComboBoxComprobanteTipos(mdbContext, comboBoxTipo, mOperacionTipo, False, False)
+        pFillAndRefreshLists.Entidad(comboBoxEntidad, False, False)
     End Sub
 
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageFacturaCompra32)
+        If String.IsNullOrWhiteSpace(mOperacionTipo) Then
+            Me.Text = "Comprobante"
+        ElseIf mOperacionTipo = Constantes.OperacionTipoCompra Then
+            Me.Text = "Comprobante de " & My.Resources.STRING_OPERACIONTIPO_COMPRA
+        ElseIf mOperacionTipo = Constantes.OperacionTipoCompra Then
+            Me.Text = "Comprobante de " & My.Resources.STRING_OPERACIONTIPO_VENTA
+        Else
+            Me.Text = "Comprobante"
+        End If
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -90,7 +102,7 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
-        mCompraFacturaActual = Nothing
+        mComprobanteActual = Nothing
         Me.Dispose()
     End Sub
 
@@ -99,22 +111,22 @@
 #Region "Load and Set Data"
 
     Friend Sub SetDataFromObjectToControls()
-        With mCompraFacturaActual
+        With mComprobanteActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
             dateTimePickerFechaVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaVencimiento, dateTimePickerFechaVencimiento)
-            maskedTextBoxTipo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Tipo)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDComprobanteTipo, CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE)
             maskedTextBoxPuntoVenta.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.PuntoVenta, 5)
             maskedTextBoxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero, 8)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxProveedor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDProveedor, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textBoxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
+            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencyTextBoxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-            If .IDCompraFactura = 0 Then
+            If .IDComprobante = 0 Then
                 textboxID.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxID.Text = String.Format(.IDCompraFactura.ToString, "G")
+                textboxID.Text = String.Format(.IDComprobante.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -132,15 +144,15 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mCompraFacturaActual
+        With mComprobanteActual
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .FechaVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(dateTimePickerFechaVencimiento.Value)
-            .Tipo = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedTextBoxTipo.Text)
+            .IDComprobanteTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboBoxTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE).Value
             .PuntoVenta = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxPuntoVenta.Text, -1).Value
             .Numero = CS_ValueTranslation.FromControlComboBoxToObjectInteger(maskedTextBoxNumero.Text, -1).Value
-            .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
             .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textBoxDescripcion.Text)
-            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
+            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencyTextBoxImporte).Value
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
@@ -167,13 +179,11 @@
         End Select
     End Sub
 
-    Private Sub maskedTextBoxTipo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles maskedTextBoxTipo.KeyPress
-        If Char.IsLetter(e.KeyChar) AndAlso Not Char.IsUpper(e.KeyChar) Then
-            e.KeyChar = CChar(CStr(e.KeyChar).ToUpper())
-        End If
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textBoxDescripcion.GotFocus, textboxNotas.GotFocus
+        CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedTextBoxTipo.GotFocus, maskedTextBoxPuntoVenta.GotFocus, maskedTextBoxNumero.GotFocus
+    Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles maskedTextBoxPuntoVenta.GotFocus, maskedTextBoxNumero.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
     End Sub
 
@@ -185,16 +195,12 @@
         maskedTextBoxNumero.Text = maskedTextBoxNumero.Text.PadLeft(8, "0"c)
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textBoxDescripcion.GotFocus, textboxNotas.GotFocus
-        CType(sender, TextBox).SelectAll()
-    End Sub
-
 #End Region
 
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Not Permisos.VerificarPermiso(Permisos.COMPRAFACTURA_EDITAR) Then
+        If Not Permisos.VerificarPermiso(Permisos.COMPROBANTE_EDITAR) Then
             Exit Sub
         End If
 
@@ -220,10 +226,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.CompraFactura.Any() Then
-                    mCompraFacturaActual.IDCompraFactura = dbcMaxID.CompraFactura.Max(Function(c) c.IDCompraFactura) + 1
+                If dbcMaxID.Comprobante.Any() Then
+                    mComprobanteActual.IDComprobante = dbcMaxID.Comprobante.Max(Function(c) c.IDComprobante) + 1
                 Else
-                    mCompraFacturaActual.IDCompraFactura = 1
+                    mComprobanteActual.IDComprobante = 1
                 End If
             End Using
         End If
@@ -235,8 +241,8 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mCompraFacturaActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mCompraFacturaActual.FechaHoraModificacion = Now
+            mComprobanteActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mComprobanteActual.FechaHoraModificacion = Now
 
             Try
 
@@ -244,17 +250,17 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formCompraFacturas") Then
-                    Dim formCompraFacturas As formCompraFacturas = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formCompraFacturas"), formCompraFacturas)
-                    formCompraFacturas.RefreshData(mCompraFacturaActual.IDCompraFactura)
-                    formCompraFacturas = Nothing
+                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
+                    Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
+                    formComprobantes.RefreshData(mComprobanteActual.IDComprobante)
+                    formComprobantes = Nothing
                 End If
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Factura de Compra del mismo Proveedor con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Comprobante de la misma Entidad, del mismo Tipo y con el mismo Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case Else
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
@@ -275,22 +281,22 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If maskedTextBoxTipo.Text.Length = 0 Then
+        If comboBoxTipo.SelectedIndex = -1 Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Tipo de Factura.", MsgBoxStyle.Information, My.Application.Info.Title)
-            maskedTextBoxTipo.Focus()
+            MsgBox("Debe especificar el Tipo de Comprobante.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboBoxTipo.Focus()
             Return False
         End If
-        If comboboxProveedor.SelectedValue Is Nothing Then
+        If comboBoxEntidad.SelectedValue Is Nothing Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxProveedor.Focus()
+            MsgBox("Debe especificar el Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboBoxEntidad.Focus()
             Return False
         End If
-        If currencytextboxImporte.Text = String.Empty Then
+        If currencyTextBoxImporte.Text = String.Empty Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar el Importe.", MsgBoxStyle.Information, My.Application.Info.Title)
-            currencytextboxImporte.Focus()
+            currencyTextBoxImporte.Focus()
             Return False
         End If
 

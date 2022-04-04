@@ -334,4 +334,10 @@
   <data name="IconAplicacion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\aplicacion\aplicacion.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="STRING_OPERACIONTIPO_COMPRA" xml:space="preserve">
+    <value>Compra</value>
+  </data>
+  <data name="STRING_OPERACIONTIPO_VENTA" xml:space="preserve">
+    <value>Venta</value>
+  </data>
 </root>

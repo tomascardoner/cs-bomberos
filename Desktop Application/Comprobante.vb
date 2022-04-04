@@ -10,26 +10,28 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class CompraOrden
-    Public Property IDCompraOrden As Integer
-    Public Property IDCuartel As Byte
-    Public Property Numero As Integer
+Partial Public Class Comprobante
+    Public Property IDComprobante As Integer
+    Public Property IDComprobanteTipo As Byte
     Public Property Fecha As Date
+    Public Property FechaVencimiento As Nullable(Of Date)
+    Public Property PuntoVenta As Integer
+    Public Property Numero As Integer
+    Public Property NumeroCompleto As String
     Public Property IDEntidad As Short
-    Public Property FacturaFecha As Nullable(Of Date)
-    Public Property FacturaNumero As String
-    Public Property Cerrada As Boolean
-    Public Property CierreFecha As Nullable(Of Date)
+    Public Property Descripcion As String
+    Public Property Importe As Decimal
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property CompraOrdenDetalles As ICollection(Of CompraOrdenDetalle) = New HashSet(Of CompraOrdenDetalle)
+    Public Overridable Property ComprobantesAplicantes As ICollection(Of ComprobanteAplicacion) = New HashSet(Of ComprobanteAplicacion)
+    Public Overridable Property ComprobantesAplicados As ICollection(Of ComprobanteAplicacion) = New HashSet(Of ComprobanteAplicacion)
+    Public Overridable Property Entidad As Entidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property Cuartel As Cuartel
-    Public Overridable Property Entidad As Entidad
+    Public Overridable Property CompraOrdenDetalles As ICollection(Of CompraOrdenDetalle) = New HashSet(Of CompraOrdenDetalle)
 
 End Class

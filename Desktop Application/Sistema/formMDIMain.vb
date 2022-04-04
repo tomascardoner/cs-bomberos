@@ -369,8 +369,8 @@
         ShowForm(Permisos.RESPONSABLE, CType(formResponsables, Form))
     End Sub
 
-    Private Sub Proveedores() Handles menuitemTablas_Proveedores.Click
-        ShowForm(Permisos.PROVEEDOR, CType(formProveedores, Form))
+    Private Sub Entidades() Handles menuitemTablas_Entidades.Click
+        ShowForm(Permisos.ENTIDAD, CType(formEntidades, Form))
     End Sub
 
 #End Region
@@ -420,8 +420,9 @@
 
 #Region "Left Toolbar - Comisión directiva"
 
-    Private Sub FacturasCompra() Handles menuitemComisionDirectiva_FacturasCompra.Click
-        ShowForm(Permisos.COMPRAFACTURA, CType(formCompraFacturas, Form))
+    Private Sub ComprobantesCompra() Handles menuitemComisionDirectiva_ComprobantesCompra.Click
+        formComprobantes.OperacionTipo = Constantes.OperacionTipoCompra
+        ShowForm(Permisos.COMPROBANTE, CType(formComprobantes, Form))
     End Sub
 
     Private Sub ComisionDirectivaReportes(sender As Object, e As EventArgs) Handles menuitemComisionDirectiva_Reportes.Click

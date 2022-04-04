@@ -31,7 +31,7 @@ Partial Class formCompraOrdenes
         Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEntidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFacturaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCerrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
@@ -50,9 +50,9 @@ Partial Class formCompraOrdenes
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
         Me.labelPeriodoFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.toolstripProveedor = New System.Windows.Forms.ToolStrip()
-        Me.labelProveedor = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxProveedor = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripEntidad = New System.Windows.Forms.ToolStrip()
+        Me.labelEntidad = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxEntidad = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripFacturaNumero = New System.Windows.Forms.ToolStrip()
         Me.labelFacturaNumero = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxFacturaNumero = New System.Windows.Forms.ToolStripComboBox()
@@ -65,7 +65,7 @@ Partial Class formCompraOrdenes
         Me.toolstripButtons.SuspendLayout()
         Me.toolstripCuartel.SuspendLayout()
         Me.toolstripPeriodo.SuspendLayout()
-        Me.toolstripProveedor.SuspendLayout()
+        Me.toolstripEntidad.SuspendLayout()
         Me.toolstripFacturaNumero.SuspendLayout()
         Me.toolstripCerrada.SuspendLayout()
         Me.SuspendLayout()
@@ -96,7 +96,7 @@ Partial Class formCompraOrdenes
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnProveedor, Me.columnFacturaNumero, Me.columnImporte, Me.columnCerrada})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnEntidad, Me.columnFacturaNumero, Me.columnImporte, Me.columnCerrada})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
@@ -140,14 +140,14 @@ Partial Class formCompraOrdenes
         Me.columnFecha.ReadOnly = True
         Me.columnFecha.Width = 62
         '
-        'columnProveedor
+        'columnEntidad
         '
-        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnProveedor.DataPropertyName = "ProveedorNombre"
-        Me.columnProveedor.HeaderText = "Proveedor"
-        Me.columnProveedor.Name = "columnProveedor"
-        Me.columnProveedor.ReadOnly = True
-        Me.columnProveedor.Width = 81
+        Me.columnEntidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEntidad.DataPropertyName = "EntidadNombre"
+        Me.columnEntidad.HeaderText = "Entidad"
+        Me.columnEntidad.Name = "columnEntidad"
+        Me.columnEntidad.ReadOnly = True
+        Me.columnEntidad.Width = 81
         '
         'columnFacturaNumero
         '
@@ -187,7 +187,7 @@ Partial Class formCompraOrdenes
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
         Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
         Me.panelToolbars.Controls.Add(Me.toolstripPeriodo)
-        Me.panelToolbars.Controls.Add(Me.toolstripProveedor)
+        Me.panelToolbars.Controls.Add(Me.toolstripEntidad)
         Me.panelToolbars.Controls.Add(Me.toolstripFacturaNumero)
         Me.panelToolbars.Controls.Add(Me.toolstripCerrada)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
@@ -307,27 +307,27 @@ Partial Class formCompraOrdenes
         Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 36)
         Me.labelPeriodoFechaY.Text = "y"
         '
-        'toolstripProveedor
+        'toolstripEntidad
         '
-        Me.toolstripProveedor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripProveedor.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripProveedor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelProveedor, Me.comboboxProveedor})
-        Me.toolstripProveedor.Location = New System.Drawing.Point(0, 39)
-        Me.toolstripProveedor.Name = "toolstripProveedor"
-        Me.toolstripProveedor.Size = New System.Drawing.Size(369, 25)
-        Me.toolstripProveedor.TabIndex = 13
+        Me.toolstripEntidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripEntidad.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripEntidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEntidad, Me.comboboxEntidad})
+        Me.toolstripEntidad.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripEntidad.Name = "toolstripEntidad"
+        Me.toolstripEntidad.Size = New System.Drawing.Size(369, 25)
+        Me.toolstripEntidad.TabIndex = 13
         '
-        'labelProveedor
+        'labelEntidad
         '
-        Me.labelProveedor.Name = "labelProveedor"
-        Me.labelProveedor.Size = New System.Drawing.Size(64, 22)
-        Me.labelProveedor.Text = "Proveedor:"
+        Me.labelEntidad.Name = "labelEntidad"
+        Me.labelEntidad.Size = New System.Drawing.Size(64, 22)
+        Me.labelEntidad.Text = "Entidad:"
         '
-        'comboboxProveedor
+        'comboboxEntidad
         '
-        Me.comboboxProveedor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxProveedor.Name = "comboboxProveedor"
-        Me.comboboxProveedor.Size = New System.Drawing.Size(300, 25)
+        Me.comboboxEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEntidad.Name = "comboboxEntidad"
+        Me.comboboxEntidad.Size = New System.Drawing.Size(300, 25)
         '
         'toolstripFacturaNumero
         '
@@ -398,8 +398,8 @@ Partial Class formCompraOrdenes
         Me.toolstripCuartel.PerformLayout()
         Me.toolstripPeriodo.ResumeLayout(False)
         Me.toolstripPeriodo.PerformLayout()
-        Me.toolstripProveedor.ResumeLayout(False)
-        Me.toolstripProveedor.PerformLayout()
+        Me.toolstripEntidad.ResumeLayout(False)
+        Me.toolstripEntidad.PerformLayout()
         Me.toolstripFacturaNumero.ResumeLayout(False)
         Me.toolstripFacturaNumero.PerformLayout()
         Me.toolstripCerrada.ResumeLayout(False)
@@ -419,9 +419,9 @@ Partial Class formCompraOrdenes
     Friend WithEvents toolstripCerrada As System.Windows.Forms.ToolStrip
     Friend WithEvents labelCerrada As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxCerrada As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripProveedor As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelProveedor As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxProveedor As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripEntidad As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelEntidad As System.Windows.Forms.ToolStripLabel
+    Friend WithEvents comboboxEntidad As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents toolstripFacturaNumero As ToolStrip
     Friend WithEvents labelFacturaNumero As ToolStripLabel
     Friend WithEvents comboboxFacturaNumero As ToolStripComboBox
@@ -438,7 +438,7 @@ Partial Class formCompraOrdenes
     Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
     Friend WithEvents columnNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnFecha As DataGridViewTextBoxColumn
-    Friend WithEvents columnProveedor As DataGridViewTextBoxColumn
+    Friend WithEvents columnEntidad As DataGridViewTextBoxColumn
     Friend WithEvents columnFacturaNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnImporte As DataGridViewTextBoxColumn
     Friend WithEvents columnCerrada As DataGridViewCheckBoxColumn

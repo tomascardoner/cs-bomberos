@@ -279,16 +279,16 @@
     <Compile Include="ABM Tablas\Otros\formResponsables.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\Otros\formProveedor.designer.vb">
-      <DependentUpon>formProveedor.vb</DependentUpon>
+    <Compile Include="ABM Tablas\Otros\formEntidad.designer.vb">
+      <DependentUpon>formEntidad.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\Otros\formProveedor.vb">
+    <Compile Include="ABM Tablas\Otros\formEntidad.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Tablas\Otros\formProveedores.designer.vb">
-      <DependentUpon>formProveedores.vb</DependentUpon>
+    <Compile Include="ABM Tablas\Otros\formEntidades.designer.vb">
+      <DependentUpon>formEntidades.vb</DependentUpon>
     </Compile>
-    <Compile Include="ABM Tablas\Otros\formProveedores.vb">
+    <Compile Include="ABM Tablas\Otros\formEntidades.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\Otros\formResponsableTipo.designer.vb">
@@ -483,25 +483,22 @@
     <Compile Include="CombustibleTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraFactura.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
     <Compile Include="CompraOrden.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="CompraOrdenDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompraFactura.designer.vb">
-      <DependentUpon>formCompraFactura.vb</DependentUpon>
+    <Compile Include="Comprobantes\formComprobante.designer.vb">
+      <DependentUpon>formComprobante.vb</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompraFactura.vb">
+    <Compile Include="Comprobantes\formComprobante.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compras\formCompraFacturas.designer.vb">
-      <DependentUpon>formCompraFacturas.vb</DependentUpon>
+    <Compile Include="Comprobantes\formComprobantes.designer.vb">
+      <DependentUpon>formComprobantes.vb</DependentUpon>
     </Compile>
-    <Compile Include="Compras\formCompraFacturas.vb">
+    <Compile Include="Comprobantes\formComprobantes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Compras\formCompraOrden.designer.vb">
@@ -522,6 +519,15 @@
     <Compile Include="Compras\formCompraOrdenes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Comprobante.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobanteAplicacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobanteTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
     <Compile Include="Config\Configuration.vb" />
     <Compile Include="Config\DatabaseConfig.vb" />
@@ -534,6 +540,7 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CajaArqueoExtension.vb" />
+    <Compile Include="Database\ComprobanteExtension.vb" />
     <Compile Include="DocumentacionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -541,6 +548,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Elemento.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="EstadoCivil.vb">
@@ -557,7 +567,7 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Listas\Academias.vb" />
-    <Compile Include="Listas\Compras.vb" />
+    <Compile Include="Listas\Comprobantes.vb" />
     <Compile Include="Listas\Comun.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Localidad.vb">
@@ -644,9 +654,6 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonaVehiculo.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Proveedor.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Provincia.vb">
@@ -1419,11 +1426,11 @@
     <EmbeddedResource Include="ABM Tablas\Otros\formResponsables.resx">
       <DependentUpon>formResponsables.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\Otros\formProveedor.resx">
-      <DependentUpon>formProveedor.vb</DependentUpon>
+    <EmbeddedResource Include="ABM Tablas\Otros\formEntidad.resx">
+      <DependentUpon>formEntidad.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ABM Tablas\Otros\formProveedores.resx">
-      <DependentUpon>formProveedores.vb</DependentUpon>
+    <EmbeddedResource Include="ABM Tablas\Otros\formEntidades.resx">
+      <DependentUpon>formEntidades.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Otros\formResponsableTipo.resx">
       <DependentUpon>formResponsableTipo.vb</DependentUpon>
@@ -1485,11 +1492,11 @@
     <EmbeddedResource Include="Cajas\formCajasArqueos.resx">
       <DependentUpon>formCajasArqueos.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompraFactura.resx">
-      <DependentUpon>formCompraFactura.vb</DependentUpon>
+    <EmbeddedResource Include="Comprobantes\formComprobante.resx">
+      <DependentUpon>formComprobante.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compras\formCompraFacturas.resx">
-      <DependentUpon>formCompraFacturas.vb</DependentUpon>
+    <EmbeddedResource Include="Comprobantes\formComprobantes.resx">
+      <DependentUpon>formComprobantes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompraOrden.resx">
       <DependentUpon>formCompraOrden.vb</DependentUpon>

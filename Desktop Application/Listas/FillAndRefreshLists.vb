@@ -396,24 +396,24 @@
 
 #Region "Compras"
 
-    Friend Sub Proveedor(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of Proveedor)
+    Friend Sub Entidad(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
+        Dim listItems As List(Of Entidad)
 
-        ComboBoxControl.ValueMember = "IDProveedor"
+        ComboBoxControl.ValueMember = "IDEntidad"
         ComboBoxControl.DisplayMember = "Nombre"
 
-        listItems = mdbContext.Proveedor.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.Nombre).ToList
+        listItems = mdbContext.Entidad.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.Nombre).ToList
 
         If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New Proveedor With {
-                .IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
+            Dim Item_NoEspecifica As New Entidad With {
+                .IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
                 .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             }
             listItems.Insert(0, Item_NoEspecifica)
         End If
         If AgregarItem_Todos Then
-            Dim Item_Todos As New Proveedor With {
-                .IDProveedor = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+            Dim Item_Todos As New Entidad With {
+                .IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
                 .Nombre = My.Resources.STRING_ITEM_ALL_MALE
             }
             listItems.Insert(0, Item_Todos)

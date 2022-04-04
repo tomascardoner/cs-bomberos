@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class formProveedores
+Partial Class formEntidades
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.

@@ -1,3 +1,29 @@
+2022-04-01
+	- Crear la tabla ComprobanteTipo
+	- Copiar los datos a ComprobanteTipo
+	- Tabla CompraFactura
+		- Renombrarla a Comprobante
+		- Renombrar el campo IDCompraFactura a IDComprobante
+		- Renombrar el campo IDProveedor a IDEntidad
+		- Renombrar el PK a PK_Comprobante
+		- Agregar el campo IDComprobanteTipo tinyint null
+		- Actualizar el campo IDComprobanteTipo con el script de update
+		- Sacar el null del campo IDComprobanteTipo
+		- Borrar el campo NumeroCompleto
+		- Renombrar las FK
+	- Tabla CompraOrden
+		- Renombrar el campo IDProveedor a IDEntidad
+		- Renombrar el FK FK_CompraDetalle_CompraOrden a FK_CompraOrdenDetalle_CompraOrden
+	- Tabla Proveedor
+		- Renombrar a Entidad
+		- Renombrar el campo IDProveedor a IDEntidad
+		- Renombrar el campo CUIT a Cuit y cambiar el tipo de datos a bigint
+		- Agregar el campo HabilitarCompra bit not null (default 1 al crear)
+		- Agregar el campo HabilitarVenta bit not null (default 0 al crear)
+		- Renombrar el PK a PK_Entidad
+		- Renombrar el UI a UK_Entidad_Nombre
+		- Renombrar las FK
+
 2022-02-04
 	- Crear la funcion udfStringPadLeft
 	- Crear la tabla CompraFactura y actualizar CompraOrden (IDProveedor obligatorio) y CompraOrdenDetalle

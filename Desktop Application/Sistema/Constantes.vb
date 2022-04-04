@@ -57,6 +57,33 @@
 
     Friend Const ASISTENCIA_METODO_MANUAL_ID As Byte = 1
 
+    '##################
+    '   COMPROBANTES
+    '##################
+    Friend Const OperacionTipoCompra As String = "C"
+    Friend Const OperacionTipoVenta As String = "V"
+
+    Friend Const MovimientoTipoCredito As String = "C"
+    Friend Const MovimientoTipoDebito As String = "D"
+
+    Friend Const ComprobantePuntoVentaLongitud As Byte = 5
+    Friend Const ComprobanteNumeroLongitud As Byte = 8
+
+    Friend Const ComprobanteConceptoProductos As Byte = 1
+    Friend Const ComprobanteConceptoServicios As Byte = 2
+    Friend Const ComprobanteConceptoProductosYServicios As Byte = 3
+    Friend Const ComprobanteConceptoOtros As Byte = 4
+
+    Friend Const ComprobanteCodigoAfipFacturaA As Byte = 1
+    Friend Const ComprobanteCodigoAfipNotaDebitoA As Byte = 2
+    Friend Const ComprobanteCodigoAfipNotaCreditoA As Byte = 3
+    Friend Const ComprobanteCodigoAfipFacturaB As Byte = 6
+    Friend Const ComprobanteCodigoAfipNotaDebitoB As Byte = 7
+    Friend Const ComprobanteCodigoAfipNotaCreditoB As Byte = 8
+    Friend Const ComprobanteCodigoAfipFacturaC As Byte = 11
+    Friend Const ComprobanteCodigoAfipNotaDebitoC As Byte = 12
+    Friend Const ComprobanteCodigoAfipNotaCreditoC As Byte = 13
+
     '//////////////////
     '    SINIESTROS
     '//////////////////

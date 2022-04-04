@@ -711,6 +711,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Compra.
+        '''</summary>
+        Friend ReadOnly Property STRING_OPERACIONTIPO_COMPRA() As String
+            Get
+                Return ResourceManager.GetString("STRING_OPERACIONTIPO_COMPRA", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Venta.
+        '''</summary>
+        Friend ReadOnly Property STRING_OPERACIONTIPO_VENTA() As String
+            Get
+                Return ResourceManager.GetString("STRING_OPERACIONTIPO_VENTA", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Activo.
         '''</summary>
         Friend ReadOnly Property STRING_PERSONA_ESTADO_ACTIVO() As String

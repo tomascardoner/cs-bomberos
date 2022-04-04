@@ -24,6 +24,6 @@ Partial Public Class Localidad
     Public Overridable Property PersonaCapacitacion As ICollection(Of PersonaCapacitacion) = New HashSet(Of PersonaCapacitacion)
     Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
     Public Overridable Property Partido As Partido
-    Public Overridable Property Proveedores As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
+    Public Overridable Property Entidades As ICollection(Of Entidad) = New HashSet(Of Entidad)
 
 End Class

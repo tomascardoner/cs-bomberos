@@ -243,23 +243,18 @@
         <EntityTypeShape EntityType="CSBomberosModel.Partido" Width="1.5" PointX="15" PointY="183" />
         <AssociationConnector Association="CSBomberosModel.FK__Partido__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Partido" />
-        <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_CursoIngresoResponsable" />
-        <AssociationConnector Association="CSBomberosModel.FK_Persona_Persona_ReingresoFormacionResponsable" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__Persona__CursoIngresoResponsable" />
+        <AssociationConnector Association="CSBomberosModel.FK__Persona__Persona__ReingresoFormacionResponsable" />
         <EntityTypeShape EntityType="CSBomberosModel.CompraOrden" Width="1.5" PointX="21.75" PointY="152.375" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraOrdenDetalle" Width="1.5" PointX="27.25" PointY="155" />
-        <EntityTypeShape EntityType="CSBomberosModel.Proveedor" Width="1.5" PointX="16.5" PointY="150.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.CompraOrdenDetalle" Width="1.5" PointX="28.125" PointY="154" />
         <EntityTypeShape EntityType="CSBomberosModel.Responsable" Width="1.5" PointX="24.375" PointY="146.625" />
         <EntityTypeShape EntityType="CSBomberosModel.ResponsableTipo" Width="1.5" PointX="16.5" PointY="96.375" />
         <AssociationConnector Association="CSBomberosModel.FK__Area__CompraOrdenDetalle" />
         <AssociationConnector Association="CSBomberosModel.FK__CompraOrden__CompraOrdenDetalle" />
-        <AssociationConnector Association="CSBomberosModel.FK__Proveedor__CompraOrden" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CompraOrden__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CompraOrden__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Cuartel__Responsable" />
-        <AssociationConnector Association="CSBomberosModel.FK__Localidad__Proveedor" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Responsable" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Proveedor__Creacion" />
-        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Proveedor__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__ResponsableTipo__Responsable" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Responsable__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Responsable__Modificacion" />
@@ -336,11 +331,57 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__SiniestroClave__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__Siniestro" />
         <AssociationConnector Association="CSBomberosModel.FK__SiniestroClave__SiniestroTipo" />
-        <EntityTypeShape EntityType="CSBomberosModel.CompraFactura" Width="1.5" PointX="18.75" PointY="159" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_Proveedor" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioCreacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraFactura_UsuarioModificacion" />
-        <AssociationConnector Association="CSBomberosModel.FK_CompraOrdenDetalle_CompraFactura" />
+        <EntityTypeShape EntityType="CSBomberosModel.Comprobante" Width="1.5" PointX="19.5" PointY="143.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.ComprobanteAplicacion" Width="1.5" PointX="21.75" PointY="142.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.ComprobanteTipo" Width="1.5" PointX="16.5" PointY="165.5" />
+        <EntityTypeShape EntityType="CSBomberosModel.Entidad" Width="1.5" PointX="32.5" PointY="158.375" />
+        <AssociationConnector Association="CSBomberosModel.FK__Entidad__CompraOrden" />
+        <AssociationConnector Association="CSBomberosModel.FK__Comprobante__ComprobanteAplicacion__Aplicado" />
+        <AssociationConnector Association="CSBomberosModel.FK__Comprobante__ComprobanteAplicacion__Aplicante" />
+        <AssociationConnector Association="CSBomberosModel.FK__Entidad__Comprobante" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Comprobante__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Comprobante__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ComprobanteTipo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__ComprobanteTipo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Entidad__Localidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Entidad__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Entidad__Modificacion" ManuallyRouted="true" >
+          <ConnectorPoint PointX="15.75" PointY="154.26162998717553" />
+          <ConnectorPoint PointX="15.885888602436946" PointY="154.24710616739222" />
+          <ConnectorPoint PointX="16.457861397563054" PointY="154.18597352161933" />
+          <ConnectorPoint PointX="18.292138602436946" PointY="153.98992535364633" />
+          <ConnectorPoint PointX="19.020361397563054" PointY="153.91209265503281" />
+          <ConnectorPoint PointX="19.042138602436946" PointY="153.90976510001127" />
+          <ConnectorPoint PointX="19.520361397563054" PointY="153.85865248594274" />
+          <ConnectorPoint PointX="21.323388602436943" PointY="153.66594432853785" />
+          <ConnectorPoint PointX="21.614111397563057" PointY="153.63487177787809" />
+          <ConnectorPoint PointX="23.389793602436946" PointY="153.44508626332078" />
+          <ConnectorPoint PointX="23.614112022563056" PointY="153.42111103471768" />
+          <ConnectorPoint PointX="23.948388602436946" PointY="153.38538344081508" />
+          <ConnectorPoint PointX="24.270361397563054" PointY="153.35097087958718" />
+          <ConnectorPoint PointX="24.448388602436946" PointY="153.33194327172498" />
+          <ConnectorPoint PointX="24.614111397563054" PointY="153.31423076333778" />
+          <ConnectorPoint PointX="26.604638602436946" PointY="153.10148254252414" />
+          <ConnectorPoint PointX="26.770361397563054" PointY="153.08377003413693" />
+          <ConnectorPoint PointX="26.948388602436946" PointY="153.06474242627473" />
+          <ConnectorPoint PointX="27.270361397563054" PointY="153.03032986504684" />
+          <ConnectorPoint PointX="29.698388602436946" PointY="152.77082149627941" />
+          <ConnectorPoint PointX="29.864111397563054" PointY="152.75310898789221" />
+          <ConnectorPoint PointX="31.745263602436943" PointY="152.552050804067" />
+          <ConnectorPoint PointX="31.926611397563057" PointY="152.53266829039569" />
+          <ConnectorPoint PointX="33.04560832465917" PointY="152.41306952040515" />
+          <ConnectorPoint PointX="33.211331119785285" PointY="152.39535701201794" />
+          <ConnectorPoint PointX="33.823388602436943" PointY="152.32994010128644" />
+          <ConnectorPoint PointX="33.989111397563057" PointY="152.31222759289923" />
+          <ConnectorPoint PointX="34.385414166666671" PointY="152.26987061891572" />
+          <ConnectorPoint PointX="33.989583333333336" PointY="152.26987061891572" />
+          <ConnectorPoint PointX="33.822916666666664" PointY="152.26987061891572" />
+          <ConnectorPoint PointX="33.128469722222228" PointY="152.26987061891572" />
+          <ConnectorPoint PointX="33.128469722222228" PointY="156.36030730424218" />
+          <ConnectorPoint PointX="33.8749975" PointY="156.36030730424218" />
+          <ConnectorPoint PointX="33.8749975" PointY="158.375" />
+        </AssociationConnector>
+        <AssociationConnector Association="CSBomberosModel.FK__Comprobante__CompraOrdenDetalle1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

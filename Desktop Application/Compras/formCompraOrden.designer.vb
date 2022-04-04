@@ -37,7 +37,7 @@ Partial Class formCompraOrden
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
-        Me.comboboxProveedor = New System.Windows.Forms.ComboBox()
+        Me.comboboxEntidad = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
@@ -47,7 +47,7 @@ Partial Class formCompraOrden
         Me.textboxFacturaNumero = New System.Windows.Forms.TextBox()
         Me.labelFacturaNumero = New System.Windows.Forms.Label()
         Me.datetimepickerFacturaFecha = New System.Windows.Forms.DateTimePicker()
-        Me.labelProveedor = New System.Windows.Forms.Label()
+        Me.labelEntidad = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.integertextboxNumero = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.checkboxCerrada = New System.Windows.Forms.CheckBox()
@@ -208,15 +208,15 @@ Partial Class formCompraOrden
         Me.buttonImprimir.Size = New System.Drawing.Size(89, 36)
         Me.buttonImprimir.Text = "Imprimir"
         '
-        'comboboxProveedor
+        'comboboxEntidad
         '
-        Me.comboboxProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.comboboxProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.comboboxProveedor.FormattingEnabled = True
-        Me.comboboxProveedor.Location = New System.Drawing.Point(96, 94)
-        Me.comboboxProveedor.Name = "comboboxProveedor"
-        Me.comboboxProveedor.Size = New System.Drawing.Size(416, 21)
-        Me.comboboxProveedor.TabIndex = 8
+        Me.comboboxEntidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxEntidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxEntidad.FormattingEnabled = True
+        Me.comboboxEntidad.Location = New System.Drawing.Point(96, 94)
+        Me.comboboxEntidad.Name = "comboboxEntidad"
+        Me.comboboxEntidad.Size = New System.Drawing.Size(416, 21)
+        Me.comboboxEntidad.TabIndex = 8
         '
         'tabcontrolMain
         '
@@ -241,12 +241,12 @@ Partial Class formCompraOrden
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerCierreFecha)
         Me.tabpageGeneral.Controls.Add(labelCierreFecha)
         Me.tabpageGeneral.Controls.Add(Me.groupboxFactura)
-        Me.tabpageGeneral.Controls.Add(Me.labelProveedor)
+        Me.tabpageGeneral.Controls.Add(Me.labelEntidad)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
         Me.tabpageGeneral.Controls.Add(Me.integertextboxNumero)
         Me.tabpageGeneral.Controls.Add(Me.checkboxCerrada)
         Me.tabpageGeneral.Controls.Add(Me.labelEsActivo)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxProveedor)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxEntidad)
         Me.tabpageGeneral.Controls.Add(Me.labelNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
@@ -328,14 +328,14 @@ Partial Class formCompraOrden
         Me.datetimepickerFacturaFecha.Size = New System.Drawing.Size(138, 20)
         Me.datetimepickerFacturaFecha.TabIndex = 1
         '
-        'labelProveedor
+        'labelEntidad
         '
-        Me.labelProveedor.AutoSize = True
-        Me.labelProveedor.Location = New System.Drawing.Point(6, 97)
-        Me.labelProveedor.Name = "labelProveedor"
-        Me.labelProveedor.Size = New System.Drawing.Size(59, 13)
-        Me.labelProveedor.TabIndex = 7
-        Me.labelProveedor.Text = "Proveedor:"
+        Me.labelEntidad.AutoSize = True
+        Me.labelEntidad.Location = New System.Drawing.Point(6, 97)
+        Me.labelEntidad.Name = "labelEntidad"
+        Me.labelEntidad.Size = New System.Drawing.Size(59, 13)
+        Me.labelEntidad.TabIndex = 7
+        Me.labelEntidad.Text = "Entidad:"
         '
         'datetimepickerFecha
         '
@@ -634,7 +634,7 @@ Partial Class formCompraOrden
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents comboboxProveedor As System.Windows.Forms.ComboBox
+    Friend WithEvents comboboxEntidad As System.Windows.Forms.ComboBox
     Friend WithEvents tabcontrolMain As CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
@@ -651,7 +651,7 @@ Partial Class formCompraOrden
     Friend WithEvents labelFacturaFecha As Label
     Friend WithEvents groupboxFactura As GroupBox
     Friend WithEvents labelFacturaNumero As Label
-    Friend WithEvents labelProveedor As Label
+    Friend WithEvents labelEntidad As Label
     Friend WithEvents datetimepickerFecha As DateTimePicker
     Friend WithEvents integertextboxNumero As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents labelEsActivo As Label

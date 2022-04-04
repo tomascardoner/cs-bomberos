@@ -28,8 +28,8 @@
                 If formCompraOrdenes.comboboxCuartel.SelectedIndex > 0 Then
                     .IDCuartel = CByte(formCompraOrdenes.comboboxCuartel.ComboBox.SelectedValue)
                 End If
-                If formCompraOrdenes.comboboxProveedor.SelectedIndex > 0 Then
-                    .IDProveedor = CShort(formCompraOrdenes.comboboxProveedor.ComboBox.SelectedValue)
+                If formCompraOrdenes.comboboxEntidad.SelectedIndex > 0 Then
+                    .IDEntidad = CShort(formCompraOrdenes.comboboxEntidad.ComboBox.SelectedValue)
                 End If
 
                 .Cerrada = False
@@ -71,7 +71,7 @@
         integertextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
-        comboboxProveedor.Enabled = mEditMode
+        comboboxEntidad.Enabled = mEditMode
         datetimepickerFacturaFecha.Enabled = mEditMode
         textboxFacturaNumero.ReadOnly = Not mEditMode
         checkboxCerrada.Enabled = mEditMode
@@ -88,7 +88,7 @@
         SetAppearance()
 
         ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
-        pFillAndRefreshLists.Proveedor(comboboxProveedor, False, True)
+        pFillAndRefreshLists.Entidad(comboboxEntidad, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -117,7 +117,7 @@
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             integertextboxNumero.IntegerValue = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxProveedor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDProveedor, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             datetimepickerFacturaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FacturaFecha, datetimepickerFacturaFecha)
             textboxFacturaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FacturaNumero)
             checkboxCerrada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Cerrada)
@@ -157,7 +157,7 @@
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .IDProveedor = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxProveedor.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
             .FacturaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFacturaFecha.Value, datetimepickerFacturaFecha.Checked)
             .FacturaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFacturaNumero.Text)
             .Cerrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxCerrada.CheckState)
@@ -228,7 +228,7 @@
         End If
 
         If mCompraOrdenActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_EDITAR) Then
-            MsgBox("La Órden de Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            MsgBox("La Orden de Compra está cerrada y no tiene autorización para editarla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             Exit Sub
         End If
 
@@ -288,7 +288,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Órden de Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Orden de Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -308,7 +308,7 @@
         End If
 
         If mCompraOrdenActual.Cerrada AndAlso Not Permisos.VerificarPermiso(Permisos.COMPRAORDEN_IMPRIMIR_CERRADA, False) Then
-            MsgBox("La Órden de Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            MsgBox("La Orden de Compra está cerrada y no tiene autorización para imprimirla.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             Exit Sub
         End If
 
@@ -363,8 +363,8 @@
         Try
             listDetalles = (From cd In mCompraOrdenActual.CompraOrdenDetalles
                             Join a In mdbContext.Area On cd.IDArea Equals a.IDArea
-                            Group Join cf In mdbContext.CompraFactura On cd.IDCompraFactura Equals cf.IDCompraFactura Into CompraFacturaGroup = Group
-                            From cfg In CompraFacturaGroup.DefaultIfEmpty
+                            Group Join cf In mdbContext.Comprobante On cd.IDComprobante Equals cf.IDComprobante Into ComprobanteGroup = Group
+                            From cfg In ComprobanteGroup.DefaultIfEmpty
                             Order By cd.IDDetalle
                             Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .Factura = If(cfg Is Nothing, String.Empty, cfg.NumeroCompleto), .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
 
@@ -372,7 +372,7 @@
             datagridviewDetalles.DataSource = listDetalles
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles de la Órden de Compra.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Detalles de la Orden de Compra.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -390,8 +390,8 @@
     End Sub
 
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonDetallesAgregar.Click
-        If comboboxProveedor.SelectedIndex = -1 Then
-            MsgBox("Debe seleccionar un Proveedor.", vbInformation, My.Application.Info.Title)
+        If comboboxEntidad.SelectedIndex = -1 Then
+            MsgBox("Debe seleccionar un Entidad.", vbInformation, My.Application.Info.Title)
             Return
         End If
         If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE_AGREGAR) Then
@@ -467,14 +467,14 @@
             Return False
         End If
         If integertextboxNumero.IntegerValue = 0 Then
-            MsgBox("Debe especificar el Número de Órden de Compra.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("Debe especificar el Número de Orden de Compra.", MsgBoxStyle.Information, My.Application.Info.Title)
             integertextboxNumero.Focus()
             Return False
         End If
-        If comboboxProveedor.SelectedValue Is Nothing Then
+        If comboboxEntidad.SelectedValue Is Nothing Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxProveedor.Focus()
+            MsgBox("Debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxEntidad.Focus()
             Return False
         End If
 

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formCompraFactura
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class formComprobante
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formCompraFactura
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
@@ -31,20 +31,20 @@ Partial Class formCompraFactura
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.comboboxProveedor = New System.Windows.Forms.ComboBox()
+        Me.comboBoxEntidad = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.currencytextboxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.comboBoxTipo = New System.Windows.Forms.ComboBox()
+        Me.labelTipo = New System.Windows.Forms.Label()
+        Me.currencyTextBoxImporte = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.labelImporte = New System.Windows.Forms.Label()
         Me.textBoxDescripcion = New System.Windows.Forms.TextBox()
         Me.labelDescripcion = New System.Windows.Forms.Label()
-        Me.maskedTextBoxTipo = New System.Windows.Forms.MaskedTextBox()
         Me.maskedTextBoxNumero = New System.Windows.Forms.MaskedTextBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.labelSeparadorTipoPuntoVenta = New System.Windows.Forms.Label()
         Me.maskedTextBoxPuntoVenta = New System.Windows.Forms.MaskedTextBox()
         Me.dateTimePickerFechaVencimiento = New System.Windows.Forms.DateTimePicker()
-        Me.labelProveedor = New System.Windows.Forms.Label()
+        Me.labelEntidad = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.labelNumeroCompleto = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
@@ -62,7 +62,7 @@ Partial Class formCompraFactura
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencyTextBoxImporte, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -153,17 +153,17 @@ Partial Class formCompraFactura
         Me.toolstripMain.Size = New System.Drawing.Size(627, 39)
         Me.toolstripMain.TabIndex = 1
         '
-        'comboboxProveedor
+        'comboBoxEntidad
         '
-        Me.comboboxProveedor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.comboBoxEntidad.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.comboboxProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.comboboxProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.comboboxProveedor.FormattingEnabled = True
-        Me.comboboxProveedor.Location = New System.Drawing.Point(127, 92)
-        Me.comboboxProveedor.Name = "comboboxProveedor"
-        Me.comboboxProveedor.Size = New System.Drawing.Size(466, 21)
-        Me.comboboxProveedor.TabIndex = 11
+        Me.comboBoxEntidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboBoxEntidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboBoxEntidad.FormattingEnabled = True
+        Me.comboBoxEntidad.Location = New System.Drawing.Point(127, 119)
+        Me.comboBoxEntidad.Name = "comboBoxEntidad"
+        Me.comboBoxEntidad.Size = New System.Drawing.Size(466, 21)
+        Me.comboBoxEntidad.TabIndex = 11
         '
         'tabcontrolMain
         '
@@ -176,57 +176,75 @@ Partial Class formCompraFactura
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(607, 282)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(607, 323)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.currencytextboxImporte)
+        Me.tabpageGeneral.Controls.Add(Me.comboBoxTipo)
+        Me.tabpageGeneral.Controls.Add(Me.labelTipo)
+        Me.tabpageGeneral.Controls.Add(Me.currencyTextBoxImporte)
         Me.tabpageGeneral.Controls.Add(Me.labelImporte)
         Me.tabpageGeneral.Controls.Add(Me.textBoxDescripcion)
         Me.tabpageGeneral.Controls.Add(Me.labelDescripcion)
-        Me.tabpageGeneral.Controls.Add(Me.maskedTextBoxTipo)
         Me.tabpageGeneral.Controls.Add(Me.maskedTextBoxNumero)
         Me.tabpageGeneral.Controls.Add(Me.Label1)
-        Me.tabpageGeneral.Controls.Add(Me.labelSeparadorTipoPuntoVenta)
         Me.tabpageGeneral.Controls.Add(Me.maskedTextBoxPuntoVenta)
         Me.tabpageGeneral.Controls.Add(Me.dateTimePickerFechaVencimiento)
         Me.tabpageGeneral.Controls.Add(labelFechaVencimiento)
-        Me.tabpageGeneral.Controls.Add(Me.labelProveedor)
+        Me.tabpageGeneral.Controls.Add(Me.labelEntidad)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFecha)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxProveedor)
+        Me.tabpageGeneral.Controls.Add(Me.comboBoxEntidad)
         Me.tabpageGeneral.Controls.Add(Me.labelNumeroCompleto)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(599, 253)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(599, 294)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'currencytextboxImporte
+        'comboBoxTipo
         '
-        Me.currencytextboxImporte.AllowNull = True
-        Me.currencytextboxImporte.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.currencytextboxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporte.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.currencytextboxImporte.Location = New System.Drawing.Point(127, 229)
-        Me.currencytextboxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
-        Me.currencytextboxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.currencytextboxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporte.Name = "currencytextboxImporte"
-        Me.currencytextboxImporte.NullString = ""
-        Me.currencytextboxImporte.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporte.TabIndex = 15
-        Me.currencytextboxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.comboBoxTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboBoxTipo.FormattingEnabled = True
+        Me.comboBoxTipo.Location = New System.Drawing.Point(127, 66)
+        Me.comboBoxTipo.Name = "comboBoxTipo"
+        Me.comboBoxTipo.Size = New System.Drawing.Size(215, 21)
+        Me.comboBoxTipo.TabIndex = 5
+        '
+        'labelTipo
+        '
+        Me.labelTipo.AutoSize = True
+        Me.labelTipo.Location = New System.Drawing.Point(6, 69)
+        Me.labelTipo.Name = "labelTipo"
+        Me.labelTipo.Size = New System.Drawing.Size(31, 13)
+        Me.labelTipo.TabIndex = 4
+        Me.labelTipo.Text = "Tipo:"
+        '
+        'currencyTextBoxImporte
+        '
+        Me.currencyTextBoxImporte.AllowNull = True
+        Me.currencyTextBoxImporte.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.currencyTextBoxImporte.BeforeTouchSize = New System.Drawing.Size(119, 20)
+        Me.currencyTextBoxImporte.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencyTextBoxImporte.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.currencyTextBoxImporte.Location = New System.Drawing.Point(127, 270)
+        Me.currencyTextBoxImporte.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
+        Me.currencyTextBoxImporte.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencyTextBoxImporte.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencyTextBoxImporte.Name = "currencyTextBoxImporte"
+        Me.currencyTextBoxImporte.NullString = ""
+        Me.currencyTextBoxImporte.Size = New System.Drawing.Size(119, 20)
+        Me.currencyTextBoxImporte.TabIndex = 15
+        Me.currencyTextBoxImporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'labelImporte
         '
         Me.labelImporte.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelImporte.AutoSize = True
-        Me.labelImporte.Location = New System.Drawing.Point(6, 233)
+        Me.labelImporte.Location = New System.Drawing.Point(6, 274)
         Me.labelImporte.Name = "labelImporte"
         Me.labelImporte.Size = New System.Drawing.Size(45, 13)
         Me.labelImporte.TabIndex = 14
@@ -237,37 +255,26 @@ Partial Class formCompraFactura
         Me.textBoxDescripcion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textBoxDescripcion.Location = New System.Drawing.Point(127, 119)
+        Me.textBoxDescripcion.Location = New System.Drawing.Point(127, 146)
         Me.textBoxDescripcion.MaxLength = 0
         Me.textBoxDescripcion.Multiline = True
         Me.textBoxDescripcion.Name = "textBoxDescripcion"
         Me.textBoxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textBoxDescripcion.Size = New System.Drawing.Size(466, 104)
+        Me.textBoxDescripcion.Size = New System.Drawing.Size(466, 118)
         Me.textBoxDescripcion.TabIndex = 13
         '
         'labelDescripcion
         '
         Me.labelDescripcion.AutoSize = True
-        Me.labelDescripcion.Location = New System.Drawing.Point(6, 122)
+        Me.labelDescripcion.Location = New System.Drawing.Point(6, 149)
         Me.labelDescripcion.Name = "labelDescripcion"
         Me.labelDescripcion.Size = New System.Drawing.Size(66, 13)
         Me.labelDescripcion.TabIndex = 12
         Me.labelDescripcion.Text = "Descripción:"
         '
-        'maskedTextBoxTipo
-        '
-        Me.maskedTextBoxTipo.AsciiOnly = True
-        Me.maskedTextBoxTipo.Location = New System.Drawing.Point(127, 66)
-        Me.maskedTextBoxTipo.Mask = "L"
-        Me.maskedTextBoxTipo.Name = "maskedTextBoxTipo"
-        Me.maskedTextBoxTipo.Size = New System.Drawing.Size(22, 20)
-        Me.maskedTextBoxTipo.TabIndex = 5
-        Me.maskedTextBoxTipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.maskedTextBoxTipo.ValidatingType = GetType(Integer)
-        '
         'maskedTextBoxNumero
         '
-        Me.maskedTextBoxNumero.Location = New System.Drawing.Point(223, 66)
+        Me.maskedTextBoxNumero.Location = New System.Drawing.Point(185, 93)
         Me.maskedTextBoxNumero.Mask = "00000000"
         Me.maskedTextBoxNumero.Name = "maskedTextBoxNumero"
         Me.maskedTextBoxNumero.Size = New System.Drawing.Size(63, 20)
@@ -278,24 +285,15 @@ Partial Class formCompraFactura
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(210, 69)
+        Me.Label1.Location = New System.Drawing.Point(172, 96)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(10, 13)
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "-"
         '
-        'labelSeparadorTipoPuntoVenta
-        '
-        Me.labelSeparadorTipoPuntoVenta.AutoSize = True
-        Me.labelSeparadorTipoPuntoVenta.Location = New System.Drawing.Point(152, 69)
-        Me.labelSeparadorTipoPuntoVenta.Name = "labelSeparadorTipoPuntoVenta"
-        Me.labelSeparadorTipoPuntoVenta.Size = New System.Drawing.Size(10, 13)
-        Me.labelSeparadorTipoPuntoVenta.TabIndex = 6
-        Me.labelSeparadorTipoPuntoVenta.Text = "-"
-        '
         'maskedTextBoxPuntoVenta
         '
-        Me.maskedTextBoxPuntoVenta.Location = New System.Drawing.Point(165, 66)
+        Me.maskedTextBoxPuntoVenta.Location = New System.Drawing.Point(127, 93)
         Me.maskedTextBoxPuntoVenta.Mask = "00000"
         Me.maskedTextBoxPuntoVenta.Name = "maskedTextBoxPuntoVenta"
         Me.maskedTextBoxPuntoVenta.Size = New System.Drawing.Size(42, 20)
@@ -314,14 +312,14 @@ Partial Class formCompraFactura
         Me.dateTimePickerFechaVencimiento.Size = New System.Drawing.Size(139, 20)
         Me.dateTimePickerFechaVencimiento.TabIndex = 3
         '
-        'labelProveedor
+        'labelEntidad
         '
-        Me.labelProveedor.AutoSize = True
-        Me.labelProveedor.Location = New System.Drawing.Point(6, 95)
-        Me.labelProveedor.Name = "labelProveedor"
-        Me.labelProveedor.Size = New System.Drawing.Size(59, 13)
-        Me.labelProveedor.TabIndex = 10
-        Me.labelProveedor.Text = "Proveedor:"
+        Me.labelEntidad.AutoSize = True
+        Me.labelEntidad.Location = New System.Drawing.Point(6, 122)
+        Me.labelEntidad.Name = "labelEntidad"
+        Me.labelEntidad.Size = New System.Drawing.Size(46, 13)
+        Me.labelEntidad.TabIndex = 10
+        Me.labelEntidad.Text = "Entidad:"
         '
         'datetimepickerFecha
         '
@@ -336,11 +334,11 @@ Partial Class formCompraFactura
         'labelNumeroCompleto
         '
         Me.labelNumeroCompleto.AutoSize = True
-        Me.labelNumeroCompleto.Location = New System.Drawing.Point(6, 69)
+        Me.labelNumeroCompleto.Location = New System.Drawing.Point(6, 96)
         Me.labelNumeroCompleto.Name = "labelNumeroCompleto"
-        Me.labelNumeroCompleto.Size = New System.Drawing.Size(77, 13)
-        Me.labelNumeroCompleto.TabIndex = 4
-        Me.labelNumeroCompleto.Text = "Tipo y número:"
+        Me.labelNumeroCompleto.Size = New System.Drawing.Size(47, 13)
+        Me.labelNumeroCompleto.TabIndex = 6
+        Me.labelNumeroCompleto.Text = "Número:"
         '
         'tabpageNotasAuditoria
         '
@@ -357,7 +355,7 @@ Partial Class formCompraFactura
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(599, 253)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(599, 294)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -446,27 +444,27 @@ Partial Class formCompraFactura
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formCompraFactura
+        'formComprobante
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(627, 337)
+        Me.ClientSize = New System.Drawing.Size(627, 378)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formCompraFactura"
+        Me.Name = "formComprobante"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Factura de compra"
+        Me.Text = "Comprobante"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
-        CType(Me.currencytextboxImporte, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencyTextBoxImporte, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -478,7 +476,7 @@ Partial Class formCompraFactura
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents comboboxProveedor As System.Windows.Forms.ComboBox
+    Friend WithEvents comboBoxEntidad As System.Windows.Forms.ComboBox
     Friend WithEvents tabcontrolMain As CS_Control_TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
@@ -489,19 +487,19 @@ Partial Class formCompraFactura
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents labelFecha As Label
-    Friend WithEvents labelProveedor As Label
+    Friend WithEvents labelEntidad As Label
     Friend WithEvents datetimepickerFecha As DateTimePicker
     Friend WithEvents labelID As Label
     Friend WithEvents textboxID As TextBox
-    Friend WithEvents maskedTextBoxTipo As MaskedTextBox
     Friend WithEvents maskedTextBoxNumero As MaskedTextBox
     Friend WithEvents Label1 As Label
-    Friend WithEvents labelSeparadorTipoPuntoVenta As Label
     Friend WithEvents maskedTextBoxPuntoVenta As MaskedTextBox
     Friend WithEvents dateTimePickerFechaVencimiento As DateTimePicker
     Friend WithEvents labelNumeroCompleto As Label
     Friend WithEvents textBoxDescripcion As TextBox
     Friend WithEvents labelDescripcion As Label
-    Friend WithEvents currencytextboxImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
+    Friend WithEvents currencyTextBoxImporte As Syncfusion.Windows.Forms.Tools.CurrencyTextBox
     Friend WithEvents labelImporte As Label
+    Friend WithEvents comboBoxTipo As ComboBox
+    Friend WithEvents labelTipo As Label
 End Class

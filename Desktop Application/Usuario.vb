@@ -132,8 +132,6 @@ Partial Public Class Usuario
     Public Overridable Property EstadosCivilesModificados As ICollection(Of EstadoCivil) = New HashSet(Of EstadoCivil)
     Public Overridable Property CompraOrdensCreadas As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
     Public Overridable Property CompraOrdensModificadas As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
-    Public Overridable Property ProveedoresCreados As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
-    Public Overridable Property ProveedoresModificados As ICollection(Of Proveedor) = New HashSet(Of Proveedor)
     Public Overridable Property ResponsablesCreados As ICollection(Of Responsable) = New HashSet(Of Responsable)
     Public Overridable Property ResponsablesModificados As ICollection(Of Responsable) = New HashSet(Of Responsable)
     Public Overridable Property ResponsableTiposCreados As ICollection(Of ResponsableTipo) = New HashSet(Of ResponsableTipo)
@@ -164,7 +162,11 @@ Partial Public Class Usuario
     Public Overridable Property SiniestrosAsistenciasModificadas As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestrosClavesCreadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
     Public Overridable Property SiniestrosClavesModificadas As ICollection(Of SiniestroClave) = New HashSet(Of SiniestroClave)
-    Public Overridable Property CompraFacturasCreadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
-    Public Overridable Property CompraFacturasModificadas As ICollection(Of CompraFactura) = New HashSet(Of CompraFactura)
+    Public Overridable Property ComprobantesCreados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property ComprobantesModificados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property ComprobanteTiposCreados As ICollection(Of ComprobanteTipo) = New HashSet(Of ComprobanteTipo)
+    Public Overridable Property ComprobanteTiposModificados As ICollection(Of ComprobanteTipo) = New HashSet(Of ComprobanteTipo)
+    Public Overridable Property EntidadesCreadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
+    Public Overridable Property EntidadesModificadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
 
 End Class

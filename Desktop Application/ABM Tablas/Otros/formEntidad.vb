@@ -1,25 +1,27 @@
-﻿Public Class formProveedor
+﻿Public Class formEntidad
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
-    Private mProveedorActual As Proveedor
+    Private mEntidadActual As Entidad
 
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
     Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDProveedor As Short)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDEntidad As Short)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDProveedor = 0)
+        mIsNew = (IDEntidad = 0)
 
         If mIsNew Then
             ' Es Nuevo
-            mProveedorActual = New Proveedor
-            With mProveedorActual
+            mEntidadActual = New Entidad
+            With mEntidadActual
                 .DomicilioIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
                 .DomicilioIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
                 .EsActivo = True
@@ -28,9 +30,9 @@
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Proveedor.Add(mProveedorActual)
+            mdbContext.Entidad.Add(mEntidadActual)
         Else
-            mProveedorActual = mdbContext.Proveedor.Find(IDProveedor)
+            mEntidadActual = mdbContext.Entidad.Find(IDEntidad)
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
@@ -93,18 +95,19 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
-        mProveedorActual = Nothing
+        mEntidadActual = Nothing
         Me.Dispose()
     End Sub
 
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
-        With mProveedorActual
+        With mEntidadActual
             ' Datos de la pestaña General
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            maskedtextboxCUIT.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIT)
+            maskedtextboxCUIT.Text = CS_ValueTranslation.FromObjectLongToControlTextBox(.Cuit)
             textboxTelefono1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono1)
             textboxTelefono2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono2)
             textboxEmail1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Email1)
@@ -125,7 +128,7 @@
             If mIsNew Then
                 textboxID.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxID.Text = String.Format(.IDProveedor.ToString, "G")
+                textboxID.Text = String.Format(.IDEntidad.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -143,10 +146,10 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mProveedorActual
+        With mEntidadActual
             ' Datos de la pestaña General
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .CUIT = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCUIT.Text)
+            .Cuit = CS_ValueTranslation.FromControlTextBoxToObjectLong(maskedtextboxCUIT.Text)
             .Telefono1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefono1.Text)
             .Telefono2 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefono2.Text)
             .Email1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxEmail1.Text)
@@ -216,8 +219,9 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.PROVEEDOR_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.ENTIDAD_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -243,7 +247,7 @@
                 maskedtextboxCUIT.Focus()
                 Exit Sub
             End If
-            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIT.Text) Then
+            If Not CardonerSistemas.Afip.VerificarCuit(maskedtextboxCUIT.Text) Then
                 tabcontrolMain.SelectedTab = tabpageGeneral
                 MsgBox("El CUIT ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIT.Focus()
@@ -272,10 +276,10 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Proveedor.Any() Then
-                    mProveedorActual.IDProveedor = dbcMaxID.Proveedor.Max(Function(a) a.IDProveedor) + CByte(1)
+                If dbcMaxID.Entidad.Any() Then
+                    mEntidadActual.IDEntidad = dbcMaxID.Entidad.Max(Function(a) a.IDEntidad) + CByte(1)
                 Else
-                    mProveedorActual.IDProveedor = 1
+                    mEntidadActual.IDEntidad = 1
                 End If
             End Using
         End If
@@ -287,21 +291,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mProveedorActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mProveedorActual.FechaHoraModificacion = Now
+            mEntidadActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mEntidadActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formProveedores.RefreshData(mProveedorActual.IDProveedor)
+                formEntidades.RefreshData(mEntidadActual.IDEntidad)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Proveedor con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe una Entidad con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -314,6 +318,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

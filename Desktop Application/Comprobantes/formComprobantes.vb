@@ -1,22 +1,28 @@
-﻿Public Class formCompraFacturas
+﻿Public Class formComprobantes
 
 #Region "Declarations"
 
     Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
+    Friend Property OperacionTipo As String
+
     Friend Class GridRowData
-        Public Property IDCompraFactura As Integer
+        Public Property IDComprobante As Integer
+        Public Property OperacionTipo As String
+        Public Property OperacionTipoNombre As String
+        Public Property IDComprobanteTipo As Byte
+        Public Property ComprobanteTipoNombre As String
         Public Property Fecha As Date
-        Public Property IDProveedor As Short
-        Public Property ProveedorNombre As String
+        Public Property IDEntidad As Short
+        Public Property EntidadNombre As String
         Public Property NumeroCompleto As String
         Public Property FechaVencimiento As Date?
         Public Property Importe As Decimal
     End Class
 
-    Private mlistComprasBase As List(Of GridRowData)
-    Private mlistComprasFiltradaYOrdenada As List(Of GridRowData)
+    Private mlistComprobantesBase As List(Of GridRowData)
+    Private mlistComprobantesFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
@@ -30,6 +36,15 @@
 
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageFacturaCompra32)
+        If String.IsNullOrWhiteSpace(OperacionTipo) Then
+            Me.Text = "Comprobantes"
+        ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
+            Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_COMPRA
+        ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
+            Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_VENTA
+        Else
+            Me.Text = "Comprobantes"
+        End If
 
         DataGridSetAppearance(datagridviewMain)
     End Sub
@@ -39,12 +54,16 @@
 
         mSkipFilterData = True
 
+        ' Filtro de Tipos de Comprobantes
+        comboboxOperacionTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA})
+        comboboxOperacionTipo.SelectedIndex = 0
+
         ' Filtro de período
         InicializarFiltroDeFechas()
         comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
         comboboxPeriodoTipo.SelectedIndex = 3
 
-        pFillAndRefreshLists.Proveedor(comboboxProveedor.ComboBox, True, True)
+        pFillAndRefreshLists.Entidad(comboboxEntidad.ComboBox, True, True)
 
         mSkipFilterData = False
 
@@ -90,7 +109,7 @@
 
 #Region "Load and Set Data"
 
-    Friend Sub RefreshData(Optional ByVal PositionIDCompraFactura As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData(Optional ByVal PositionIDComprobante As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim FechaDesde As Date
         Dim FechaHasta As Date
 
@@ -170,14 +189,15 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistComprasBase = (From cf In dbContext.CompraFactura
-                                    Join p In dbContext.Proveedor On cf.IDProveedor Equals p.IDProveedor
-                                    Where cf.Fecha >= FechaDesde And cf.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompraFactura = cf.IDCompraFactura, .Fecha = cf.Fecha, .IDProveedor = cf.IDProveedor, .ProveedorNombre = p.Nombre, .NumeroCompleto = cf.NumeroCompleto, .FechaVencimiento = cf.FechaVencimiento, .Importe = cf.Importe}).ToList
+                mlistComprobantesBase = (From c In dbContext.Comprobante
+                                         Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
+                                         Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
+                                         Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
+                                         Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
             End Using
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Facturas de Compra.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Comprobantes.")
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -186,17 +206,17 @@
 
         If RestoreCurrentPosition Then
             If datagridviewMain.CurrentRow Is Nothing Then
-                PositionIDCompraFactura = 0
+                PositionIDComprobante = 0
             Else
-                PositionIDCompraFactura = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDCompraFactura
+                PositionIDComprobante = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDComprobante
             End If
         End If
 
         FilterData()
 
-        If PositionIDCompraFactura <> 0 Then
+        If PositionIDComprobante <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDCompraFactura = PositionIDCompraFactura Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDComprobante = PositionIDComprobante Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -212,20 +232,20 @@
             Try
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
-                mlistComprasFiltradaYOrdenada = mlistComprasBase.ToList
+                mlistComprobantesFiltradaYOrdenada = mlistComprobantesBase.ToList
 
-                ' Filtro por Proveedor
-                If comboboxProveedor.SelectedIndex > 0 Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDProveedor = CShort(comboboxProveedor.ComboBox.SelectedValue)).ToList
+                ' Filtro por Entidad
+                If comboboxEntidad.SelectedIndex > 0 Then
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue)).ToList
                 End If
 
-                Select Case mlistComprasFiltradaYOrdenada.Count
+                Select Case mlistComprobantesFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Facturas de Compra para mostrar.")
+                        statuslabelMain.Text = String.Format("No hay Comprobantes para mostrar.")
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Factura de Compra.")
+                        statuslabelMain.Text = String.Format("Se muestra 1 Comprobante.")
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Facturas de Compra.", mlistComprasFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = String.Format("Se muestran {0} Comprobante.", mlistComprobantesFiltradaYOrdenada.Count)
                 End Select
 
             Catch ex As Exception
@@ -245,38 +265,38 @@
         Select Case mOrdenColumna.Name
             Case columnFecha.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(c) c.Fecha).ThenBy(Function(c) c.ProveedorNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderBy(Function(c) c.Fecha).ThenBy(Function(c) c.EntidadNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(c) c.Fecha).ThenByDescending(Function(c) c.ProveedorNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderByDescending(Function(c) c.Fecha).ThenByDescending(Function(c) c.EntidadNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
                 End If
-            Case columnProveedor.Name
+            Case columnEntidad.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(c) c.ProveedorNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderBy(Function(c) c.EntidadNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(c) c.ProveedorNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderByDescending(Function(c) c.EntidadNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
                 End If
             Case columnNumeroCompleto.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(c) c.NumeroCompleto).ThenBy(Function(c) c.ProveedorNombre).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderBy(Function(c) c.NumeroCompleto).ThenBy(Function(c) c.EntidadNombre).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(c) c.NumeroCompleto).ThenByDescending(Function(c) c.ProveedorNombre).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderByDescending(Function(c) c.NumeroCompleto).ThenByDescending(Function(c) c.EntidadNombre).ToList
                 End If
             Case columnFechaVencimiento.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(c) c.FechaVencimiento).ThenBy(Function(c) c.ProveedorNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderBy(Function(c) c.FechaVencimiento).ThenBy(Function(c) c.EntidadNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(c) c.FechaVencimiento).ThenByDescending(Function(c) c.ProveedorNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderByDescending(Function(c) c.FechaVencimiento).ThenByDescending(Function(c) c.EntidadNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
                 End If
             Case columnImporte.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderBy(Function(c) c.Importe).ThenBy(Function(c) c.ProveedorNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderBy(Function(c) c.Importe).ThenBy(Function(c) c.EntidadNombre).ThenBy(Function(c) c.NumeroCompleto).ToList
                 Else
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.OrderByDescending(Function(c) c.Importe).ThenByDescending(Function(c) c.ProveedorNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.OrderByDescending(Function(c) c.Importe).ThenByDescending(Function(c) c.EntidadNombre).ThenByDescending(Function(c) c.NumeroCompleto).ToList
                 End If
         End Select
 
         datagridviewMain.AutoGenerateColumns = False
-        datagridviewMain.DataSource = mlistComprasFiltradaYOrdenada
+        datagridviewMain.DataSource = mlistComprobantesFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
@@ -285,6 +305,31 @@
 #End Region
 
 #Region "Controls behavior"
+
+    Private Sub OperacionTipoChanged() Handles comboboxOperacionTipo.SelectedIndexChanged
+        Select Case comboboxOperacionTipo.SelectedIndex
+            Case -1, 0
+                comboboxComprobanteTipo.ComboBox.DataSource = Nothing
+                comboboxComprobanteTipo.Items.Clear()
+                comboboxComprobanteTipo.Enabled = False
+            Case 1
+                Using context As New CSBomberosContext(True)
+                    ListasComprobantes.LlenarComboBoxComprobanteTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoCompra, True, False)
+                End Using
+                comboboxComprobanteTipo.Enabled = True
+                comboboxComprobanteTipo.SelectedIndex = 0
+            Case 2
+                Using context As New CSBomberosContext(True)
+                    ListasComprobantes.LlenarComboBoxComprobanteTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoVenta, True, False)
+                End Using
+                comboboxComprobanteTipo.Enabled = True
+                comboboxComprobanteTipo.SelectedIndex = 0
+        End Select
+    End Sub
+
+    Private Sub ComprobanteTipoChanged() Handles comboboxComprobanteTipo.SelectedIndexChanged
+        FilterData()
+    End Sub
 
     Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
         comboboxPeriodoValor.Items.Clear()
@@ -315,7 +360,7 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxProveedor.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxEntidad.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -351,12 +396,12 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.COMPRAFACTURA_AGREGAR) Then
+        If Permisos.VerificarPermiso(Permisos.COMPROBANTE_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formCompraFactura.LoadAndShow(True, Me, 0)
+            formComprobante.LoadAndShow(True, Me, OperacionTipo, 0)
 
             datagridviewMain.Enabled = True
 
@@ -366,9 +411,9 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Factura de Compra para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Comprobante para editar.", vbInformation, My.Application.Info.Title)
         Else
-            If Not Permisos.VerificarPermiso(Permisos.CompraFactura_EDITAR) Then
+            If Not Permisos.VerificarPermiso(Permisos.COMPROBANTE_EDITAR) Then
                 Exit Sub
             End If
 
@@ -376,7 +421,7 @@
 
             datagridviewMain.Enabled = False
 
-            formCompraFactura.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompraFactura)
+            formComprobante.LoadAndShow(True, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
 
             datagridviewMain.Enabled = True
 
@@ -386,9 +431,9 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Factura de Compra para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Comprobante para eliminar.", vbInformation, My.Application.Info.Title)
         Else
-            If Not Permisos.VerificarPermiso(Permisos.COMPRAFACTURA_ELIMINAR) Then
+            If Not Permisos.VerificarPermiso(Permisos.COMPROBANTE_ELIMINAR) Then
                 Exit Sub
             End If
 
@@ -398,23 +443,23 @@
                 Dim GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará la Factura de Compra seleccionada.{0}{0}Número: {1}{0}Fecha: {2}{0}Proveedor: {3}{0}Importe: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.IDCompraFactura, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.ProveedorNombre, FormatCurrency(GridRowDataActual.Importe))
+                Mensaje = String.Format("Se eliminará el Comprobante seleccionado.{0}{0}Operación: {1}{0}Tipo: {2}{0}Número: {3}{0}Fecha: {4}{0}Entidad: {5}{0}Importe: {6}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.OperacionTipoNombre, GridRowDataActual.ComprobanteTipoNombre, GridRowDataActual.NumeroCompleto, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.EntidadNombre, FormatCurrency(GridRowDataActual.Importe))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
-                        dbContext.CompraFactura.Remove(dbContext.CompraFactura.Find(GridRowDataActual.IDCompraFactura))
+                        dbContext.Comprobante.Remove(dbContext.Comprobante.Find(GridRowDataActual.IDComprobante))
                         dbContext.SaveChanges()
 
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Factura de Compra porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar el Comprobante porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Factura de Compra.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Comprobante.")
                     End Try
 
                     RefreshData()
@@ -427,13 +472,13 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Factura de Compra para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Comprobante para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
             datagridviewMain.Enabled = False
 
-            formCompraFactura.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDCompraFactura)
+            formComprobante.LoadAndShow(False, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
 
             datagridviewMain.Enabled = True
 
