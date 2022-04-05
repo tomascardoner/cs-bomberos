@@ -56,7 +56,19 @@
 
         ' Filtro de Tipos de Comprobantes
         comboboxOperacionTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA})
-        comboboxOperacionTipo.SelectedIndex = 0
+        If String.IsNullOrWhiteSpace(OperacionTipo) Then
+            comboboxOperacionTipo.SelectedIndex = 0
+            comboboxOperacionTipo.Visible = True
+        ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
+            comboboxOperacionTipo.SelectedIndex = 1
+            comboboxOperacionTipo.Visible = False
+        ElseIf OperacionTipo = Constantes.OperacionTipoVenta Then
+            comboboxOperacionTipo.SelectedIndex = 2
+            comboboxOperacionTipo.Visible = False
+        Else
+            comboboxOperacionTipo.SelectedIndex = 0
+            comboboxOperacionTipo.Visible = True
+        End If
 
         ' Filtro de período
         InicializarFiltroDeFechas()
@@ -189,11 +201,21 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistComprobantesBase = (From c In dbContext.Comprobante
-                                         Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
-                                         Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
-                                         Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                         Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
+                If String.IsNullOrWhiteSpace(OperacionTipo) Then
+                    mlistComprobantesBase = (From c In dbContext.Comprobante
+                                             Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
+                                             Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
+                                             Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
+                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
+
+                Else
+                    mlistComprobantesBase = (From c In dbContext.Comprobante
+                                             Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
+                                             Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
+                                             Where ct.OperacionTipo = OperacionTipo And c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
+                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
+                End If
+
             End Using
 
         Catch ex As Exception
@@ -233,6 +255,18 @@
                 ' Inicializo las variables
                 mReportSelectionFormula = ""
                 mlistComprobantesFiltradaYOrdenada = mlistComprobantesBase.ToList
+
+                ' Filtro inicial por Tipos de Comprobante
+                If comboboxOperacionTipo.SelectedIndex = 0 Then
+                    ' Todos los tipos de comprobantes
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesBase.ToList
+                ElseIf comboboxComprobanteTipo.SelectedIndex = 0 Then
+                    ' Todos los comprobantes según la Operación (Compra o Venta)
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesBase.Where(Function(comp) comp.OperacionTipo = Choose(comboboxOperacionTipo.SelectedIndex, Constantes.OperacionTipoCompra, Constantes.OperacionTipoVenta).ToString).ToList
+                Else
+                    ' Tipo de comprobante seleccionado
+                    mlistComprobantesFiltradaYOrdenada = mlistComprobantesBase.Where(Function(comp) comp.IDComprobanteTipo = CByte(comboboxComprobanteTipo.ComboBox.SelectedValue)).ToList
+                End If
 
                 ' Filtro por Entidad
                 If comboboxEntidad.SelectedIndex > 0 Then
