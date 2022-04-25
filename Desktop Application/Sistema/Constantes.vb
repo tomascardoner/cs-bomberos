@@ -85,6 +85,20 @@
     Friend Const ComprobanteCodigoAfipNotaCreditoC As Byte = 13
 
     '//////////////////
+    '    CHEQUES
+    '//////////////////
+    Friend Const ChequeEstadoEnCartera As String = "EC"
+    Friend Const ChequeEstadoEntregado As String = "ET"
+    Friend Const ChequeEstadoEntregadoRechazado As String = "ER"
+    Friend Const ChequeEstadoCobradoPorVentanilla As String = "CV"
+    Friend Const ChequeEstadoNegociado As String = "NE"
+    Friend Const ChequeEstadoDepositadoPendiente As String = "DP"
+    Friend Const ChequeEstadoDepositadoAcreditado As String = "DA"
+    Friend Const ChequeEstadoDepositadoRechazadoEnBanco As String = "DR"
+    Friend Const ChequeEstadoDepositadoRechazadoEnCartera As String = "DC"
+    Friend Const ChequeEstadoDepositadoRechazadoDevuelto As String = "DV"
+
+    '//////////////////
     '    SINIESTROS
     '//////////////////
     Friend Const SINIESTRO_NUMEROPREFIJO_DIGITOS As Byte = 4

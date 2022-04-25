@@ -88,7 +88,7 @@
         SetAppearance()
 
         ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
-        pFillAndRefreshLists.Entidad(comboboxEntidad, False, True)
+        ListasComprobantes.LlenarComboBoxEntidades(mdbContext, comboboxEntidad, Constantes.OperacionTipoCompra, False, True)
     End Sub
 
     Friend Sub SetAppearance()

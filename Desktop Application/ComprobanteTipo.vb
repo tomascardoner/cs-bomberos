@@ -20,9 +20,12 @@ Partial Public Class ComprobanteTipo
     Public Property NombreCompleto As String
     Public Property CodigoAFIP As Byte
     Public Property MovimientoTipo As String
+    Public Property EmisionElectronica As Boolean
+    Public Property UtilizaDetalle As Boolean
     Public Property UtilizaFechaVencimiento As Boolean
     Public Property UtilizaAplicacion As Boolean
     Public Property UtilizaMedioPago As Boolean
+    Public Property ReporteNombre As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
@@ -31,5 +34,9 @@ Partial Public Class ComprobanteTipo
 
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property Comprobantes As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property CategoriasIVAFacturas As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
+    Public Overridable Property CategoriasIVANotasCredito As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
+    Public Overridable Property CategoriaIVANotasDebito As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
 
 End Class

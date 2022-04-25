@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="75">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="57">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="19.5" PointY="193.75" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="17.25" PointY="180.875" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="16.5" PointY="205.25" />
@@ -346,42 +346,74 @@
         <AssociationConnector Association="CSBomberosModel.FK__Entidad__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Entidad__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Entidad__Modificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.75" PointY="154.26162998717553" />
-          <ConnectorPoint PointX="15.885888602436946" PointY="154.24710616739222" />
-          <ConnectorPoint PointX="16.457861397563054" PointY="154.18597352161933" />
-          <ConnectorPoint PointX="18.292138602436946" PointY="153.98992535364633" />
-          <ConnectorPoint PointX="19.020361397563054" PointY="153.91209265503281" />
-          <ConnectorPoint PointX="19.042138602436946" PointY="153.90976510001127" />
-          <ConnectorPoint PointX="19.520361397563054" PointY="153.85865248594274" />
-          <ConnectorPoint PointX="21.323388602436943" PointY="153.66594432853785" />
-          <ConnectorPoint PointX="21.614111397563057" PointY="153.63487177787809" />
-          <ConnectorPoint PointX="23.389793602436946" PointY="153.44508626332078" />
-          <ConnectorPoint PointX="23.614112022563056" PointY="153.42111103471768" />
-          <ConnectorPoint PointX="23.948388602436946" PointY="153.38538344081508" />
-          <ConnectorPoint PointX="24.270361397563054" PointY="153.35097087958718" />
-          <ConnectorPoint PointX="24.448388602436946" PointY="153.33194327172498" />
-          <ConnectorPoint PointX="24.614111397563054" PointY="153.31423076333778" />
-          <ConnectorPoint PointX="26.604638602436946" PointY="153.10148254252414" />
-          <ConnectorPoint PointX="26.770361397563054" PointY="153.08377003413693" />
-          <ConnectorPoint PointX="26.948388602436946" PointY="153.06474242627473" />
-          <ConnectorPoint PointX="27.270361397563054" PointY="153.03032986504684" />
-          <ConnectorPoint PointX="29.698388602436946" PointY="152.77082149627941" />
-          <ConnectorPoint PointX="29.864111397563054" PointY="152.75310898789221" />
-          <ConnectorPoint PointX="31.745263602436943" PointY="152.552050804067" />
-          <ConnectorPoint PointX="31.926611397563057" PointY="152.53266829039569" />
-          <ConnectorPoint PointX="33.04560832465917" PointY="152.41306952040515" />
-          <ConnectorPoint PointX="33.211331119785285" PointY="152.39535701201794" />
-          <ConnectorPoint PointX="33.823388602436943" PointY="152.32994010128644" />
-          <ConnectorPoint PointX="33.989111397563057" PointY="152.31222759289923" />
-          <ConnectorPoint PointX="34.385414166666671" PointY="152.26987061891572" />
-          <ConnectorPoint PointX="33.989583333333336" PointY="152.26987061891572" />
-          <ConnectorPoint PointX="33.822916666666664" PointY="152.26987061891572" />
+          <ConnectorPoint PointX="15.75" PointY="155.12441684254009" />
+          <ConnectorPoint PointX="15.901909252658776" PointY="155.01131106238174" />
+          <ConnectorPoint PointX="16.348090747341224" PointY="154.67910150196988" />
+          <ConnectorPoint PointX="16.354166666666668" PointY="154.67457760639766" />
+          <ConnectorPoint PointX="16.385416666666668" PointY="154.67457760639766" />
+          <ConnectorPoint PointX="16.583333333333332" PointY="154.67457760639766" />
+          <ConnectorPoint PointX="16.768594452406532" PointY="154.67457760639766" />
+          <ConnectorPoint PointX="18.417730866404774" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="18.541666666666668" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="18.833333333333332" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="19.010416666666668" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="19.177083333333332" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="19.269769133595229" PointY="154.28439443150464" />
+          <ConnectorPoint PointX="21.229166666666668" PointY="153.97815766280266" />
+          <ConnectorPoint PointX="21.354166666666668" PointY="153.97815766280266" />
+          <ConnectorPoint PointX="21.520833333333332" PointY="153.97815766280266" />
+          <ConnectorPoint PointX="21.582435935196891" PointY="153.97815766280266" />
+          <ConnectorPoint PointX="23.320156056843633" PointY="153.68692193157341" />
+          <ConnectorPoint PointX="23.550937068156369" PointY="153.64824385232106" />
+          <ConnectorPoint PointX="23.605312931843628" PointY="153.63913065035891" />
+          <ConnectorPoint PointX="23.769687068156372" PointY="153.61158212790824" />
+          <ConnectorPoint PointX="23.917812931843628" PointY="153.58675675834061" />
+          <ConnectorPoint PointX="24.394687068156372" PointY="153.50683434387165" />
+          <ConnectorPoint PointX="24.448847305689778" PointY="153.49775728008842" />
+          <ConnectorPoint PointX="24.769902694310222" PointY="153.49775728008842" />
+          <ConnectorPoint PointX="26.792597305689778" PointY="153.19290601767369" />
+          <ConnectorPoint PointX="27.269902694310222" PointY="153.12096873685056" />
+          <ConnectorPoint PointX="30.417564064803109" PointY="152.64656763989285" />
+          <ConnectorPoint PointX="30.582435935196891" PointY="152.64656763989285" />
           <ConnectorPoint PointX="33.128469722222228" PointY="152.26987061891572" />
           <ConnectorPoint PointX="33.128469722222228" PointY="156.36030730424218" />
           <ConnectorPoint PointX="33.8749975" PointY="156.36030730424218" />
           <ConnectorPoint PointX="33.8749975" PointY="158.375" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK__Comprobante__CompraOrdenDetalle1" />
+        <EntityTypeShape EntityType="CSBomberosModel.Articulo" Width="1.5" PointX="16.5" PointY="171.75" />
+        <EntityTypeShape EntityType="CSBomberosModel.Banco" Width="1.5" PointX="16.5" PointY="148.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Cheque" Width="1.5" PointX="27.75" PointY="139.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.ChequeMotivoRechazo" Width="1.5" PointX="25.5" PointY="139.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.ComprobanteDetalle" Width="1.5" PointX="32.75" PointY="166.375" />
+        <EntityTypeShape EntityType="CSBomberosModel.ComprobanteMedioPago" Width="1.5" PointX="29.75" PointY="148.25" />
+        <EntityTypeShape EntityType="CSBomberosModel.MedioPago" Width="1.5" PointX="16.75" PointY="152.875" />
+        <AssociationConnector Association="CSBomberosModel.FK__Articulo__ComprobanteDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Articulo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Articulo__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Banco__Cheque" />
+        <AssociationConnector Association="CSBomberosModel.FK__Banco__ComprobanteMedioPago" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Banco__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Banco__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__ChequeMotivoRechazo__Cheque" />
+        <AssociationConnector Association="CSBomberosModel.FK__Comprobante__ComprobanteDetalle" />
+        <AssociationConnector Association="CSBomberosModel.FK__Comprobante__ComprobanteMedioPago" />
+        <AssociationConnector Association="CSBomberosModel.FK__MedioPago__ComprobanteMedioPago" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__MedioPago__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__MedioPago__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__ComprobanteTipo__Comprobante" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Comprobante__Anulacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Comprobante__EnvioEmail" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Comprobante__TransmisionAfip" />
+        <EntityTypeShape EntityType="CSBomberosModel.Concepto" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="CSBomberosModel.FK__Concepto__Comprobante" />
+        <EntityTypeShape EntityType="CSBomberosModel.CategoriaIVA" Width="1.5" PointX="18.75" PointY="170" />
+        <AssociationConnector Association="CSBomberosModel.FK__CategoriaIVA__Comprobante" />
+        <AssociationConnector Association="CSBomberosModel.FK__CategoriaIVA__Entidad" />
+        <AssociationConnector Association="CSBomberosModel.FK__ComprobanteTipo__CategoriaIVA__Factura" />
+        <AssociationConnector Association="CSBomberosModel.FK__ComprobanteTipo__CategoriaIVA__NotaCredito" />
+        <AssociationConnector Association="CSBomberosModel.FK__ComprobanteTipo__CategoriaIVA__NotaDebito" />
+        <AssociationConnector Association="CSBomberosModel.FK__Cheque__ComprobanteMedioPago" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

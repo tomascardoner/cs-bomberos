@@ -75,7 +75,9 @@
         comboboxPeriodoTipo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, "Día:", "Semana:", "Mes:", "Fecha"})
         comboboxPeriodoTipo.SelectedIndex = 3
 
-        pFillAndRefreshLists.Entidad(comboboxEntidad.ComboBox, True, True)
+        Using context As New CSBomberosContext(True)
+            ListasComprobantes.LlenarComboBoxEntidades(context, comboboxEntidad.ComboBox, Constantes.OperacionTipoCompra, True, False)
+        End Using
 
         mSkipFilterData = False
 

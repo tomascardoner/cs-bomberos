@@ -168,5 +168,14 @@ Partial Public Class Usuario
     Public Overridable Property ComprobanteTiposModificados As ICollection(Of ComprobanteTipo) = New HashSet(Of ComprobanteTipo)
     Public Overridable Property EntidadesCreadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
     Public Overridable Property EntidadesModificadas As ICollection(Of Entidad) = New HashSet(Of Entidad)
+    Public Overridable Property ArticulosCreados As ICollection(Of Articulo) = New HashSet(Of Articulo)
+    Public Overridable Property ArticulosModificados As ICollection(Of Articulo) = New HashSet(Of Articulo)
+    Public Overridable Property BancosCreados As ICollection(Of Banco) = New HashSet(Of Banco)
+    Public Overridable Property BancosModificados As ICollection(Of Banco) = New HashSet(Of Banco)
+    Public Overridable Property MediosPagoCreados As ICollection(Of MedioPago) = New HashSet(Of MedioPago)
+    Public Overridable Property MediosPagoModificados As ICollection(Of MedioPago) = New HashSet(Of MedioPago)
+    Public Overridable Property ComprobantesAnulados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property ComprobantesEnviadosEmail As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property ComprobantesTransmitidosAfip As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
 
 End Class

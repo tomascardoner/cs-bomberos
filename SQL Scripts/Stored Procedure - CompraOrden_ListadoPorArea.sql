@@ -65,7 +65,7 @@ CREATE PROCEDURE CompraObtenerListadoPorArea
 				WHERE pa.IDPersona = @ResponsableIDPersona
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		(SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, cod.IDArea, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(cod.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, cod.IDArea, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(ISNULL(cod.Importe, 0)) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CompraOrden AS co
 				INNER JOIN Cuartel AS cu ON co.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraOrdenDetalle AS cod ON co.IDCompraOrden = cod.IDCompraOrden
@@ -81,7 +81,7 @@ CREATE PROCEDURE CompraObtenerListadoPorArea
 				AND (@CierreFechaHasta IS NULL OR co.CierreFecha <= @CierreFechaHasta)
 			GROUP BY cod.IDArea, co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, p.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto)
 		UNION
-		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(cad.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(ISNULL(cad.Importe, 0)) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca
 				INNER JOIN CajaArqueoDetalle AS cad ON ca.IDArqueo = cad.IDArqueo
 				LEFT JOIN Area AS a ON a.IDArea = cad.IDArea

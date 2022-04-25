@@ -414,7 +414,13 @@
     <Compile Include="Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Articulo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="AsistenciaMetodo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Banco.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
@@ -480,6 +486,15 @@
     <Compile Include="CargoJerarquia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="CategoriaIVA.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cheque.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChequeMotivoRechazo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="CombustibleTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -489,10 +504,40 @@
     <Compile Include="CompraOrdenDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="ComprobanteDetalle.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ComprobanteMedioPago.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\formCheque.designer.vb">
+      <DependentUpon>formCheque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\formCheque.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Comprobantes\formComprobante.designer.vb">
       <DependentUpon>formComprobante.vb</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\formComprobante.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteAplicacion.Designer.vb">
+      <DependentUpon>formComprobanteAplicacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteAplicacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteDetalle.Designer.vb">
+      <DependentUpon>formComprobanteDetalle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteDetalle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteMedioPago.Designer.vb">
+      <DependentUpon>formComprobanteMedioPago.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Comprobantes\formComprobanteMedioPago.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Comprobantes\formComprobantes.designer.vb">
@@ -526,6 +571,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="ComprobanteTipo.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Concepto.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
@@ -574,6 +622,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Log.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedioPago.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="ModoAdquisicion.vb">
@@ -1485,6 +1536,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cajas\formCajaArqueo.resx">
       <DependentUpon>formCajaArqueo.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cajas\formCajaArqueoDetalle.resx">
       <DependentUpon>formCajaArqueoDetalle.vb</DependentUpon>
@@ -1492,8 +1544,20 @@
     <EmbeddedResource Include="Cajas\formCajasArqueos.resx">
       <DependentUpon>formCajasArqueos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\formCheque.resx">
+      <DependentUpon>formCheque.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\formComprobante.resx">
       <DependentUpon>formComprobante.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\formComprobanteAplicacion.resx">
+      <DependentUpon>formComprobanteAplicacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\formComprobanteDetalle.resx">
+      <DependentUpon>formComprobanteDetalle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Comprobantes\formComprobanteMedioPago.resx">
+      <DependentUpon>formComprobanteMedioPago.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Comprobantes\formComprobantes.resx">
       <DependentUpon>formComprobantes.vb</DependentUpon>
@@ -1854,6 +1918,7 @@
     <Content Include="Resources\Acciones\AsistenciaMultiple32.png" />
     <Content Include="Resources\Acciones\Buscar16.png" />
     <Content Include="Resources\Aplicacion\InicioSesion48.png" />
+    <Content Include="Resources\Externos\ImageAfipChico.png" />
     <Content Include="Resources\Framework\DatabaseLoginInfo48.png" />
     <Content Include="Resources\Framework\DatabaseSelect48.png" />
     <Content Include="Resources\Framework\WindowsCloseAll16.png" />

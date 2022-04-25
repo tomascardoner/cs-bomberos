@@ -24,6 +24,7 @@ Partial Public Class Entidad
     Public Property DomicilioDepartamento As String
     Public Property DomicilioCalle2 As String
     Public Property DomicilioCalle3 As String
+    Public Property DomicilioCalleCompleto As String
     Public Property DomicilioCodigoPostal As String
     Public Property DomicilioIDProvincia As Nullable(Of Byte)
     Public Property DomicilioIDLocalidad As Nullable(Of Short)
@@ -35,11 +36,13 @@ Partial Public Class Entidad
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property IDCategoriaIVA As Nullable(Of Byte)
 
     Public Overridable Property CompraOrdenes As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
     Public Overridable Property Comprobantes As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
     Public Overridable Property Localidad As Localidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property CategoriaIVA As CategoriaIVA
 
 End Class

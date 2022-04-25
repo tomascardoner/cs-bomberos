@@ -1,6 +1,16 @@
 2022-04-01
-	- Crear la tabla ComprobanteTipo
-	- Copiar los datos a ComprobanteTipo
+	- Crear las tablas:
+		- Articulo
+		- Banco
+		- CategoriaIVA
+		- Cheque
+		- ChequeMotivoRechazo
+		- Concepto
+		- ComprobanteTipo
+		- ComprobanteDetalle
+		- ComprobanteMedioPago
+		- MedioPago
+	- Copiar los datos a CategoriaIVA, Concepto, ComprobanteTipo, Banco, ChequeMotivoRechazo, MedioPago
 	- Tabla CompraFactura
 		- Renombrarla a Comprobante
 		- Renombrar el campo IDCompraFactura a IDComprobante

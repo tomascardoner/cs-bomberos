@@ -49,8 +49,8 @@
 
         Using context As New CSBomberosContext(True)
             ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
+            ListasComprobantes.LlenarComboBoxEntidades(context, comboboxEntidad.ComboBox, Constantes.OperacionTipoCompra, True, False)
         End Using
-        pFillAndRefreshLists.Entidad(comboboxEntidad.ComboBox, True, True)
 
         comboboxFacturaNumero.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_ITEM_COMPLETE_MALE, My.Resources.STRING_ITEM_EMPTY_MALE})
         comboboxFacturaNumero.SelectedIndex = 0

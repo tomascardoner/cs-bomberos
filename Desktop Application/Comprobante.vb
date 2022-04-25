@@ -18,14 +18,33 @@ Partial Public Class Comprobante
     Public Property PuntoVenta As Integer
     Public Property Numero As Integer
     Public Property NumeroCompleto As String
+    Public Property IDConcepto As Nullable(Of Byte)
+    Public Property FechaServicioDesde As Nullable(Of Date)
+    Public Property FechaServicioHasta As Nullable(Of Date)
     Public Property IDEntidad As Short
+    Public Property EntidadNombre As String
+    Public Property EntidadCuit As Nullable(Of Long)
+    Public Property EntidadIDCategoriaIVA As Nullable(Of Byte)
+    Public Property EntidadDomicilio As String
+    Public Property EntidadCodigoPostal As String
+    Public Property EntidadIDProvincia As Nullable(Of Byte)
+    Public Property EntidadIDLocalidad As Nullable(Of Short)
     Public Property Descripcion As String
     Public Property Importe As Decimal
     Public Property Notas As String
+    Public Property CAE As Nullable(Of Long)
+    Public Property CAEVencimiento As Nullable(Of Date)
+    Public Property CodigoQR As Byte()
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property IDUsuarioAnulacion As Nullable(Of Short)
+    Public Property FechaHoraAnulacion As Nullable(Of Date)
+    Public Property IDUsuarioTransmisionAfip As Nullable(Of Short)
+    Public Property FechaHoraTransmisionAFIP As Nullable(Of Date)
+    Public Property IDUsuarioEnvioEmail As Nullable(Of Short)
+    Public Property FechaHoraEnvioEmail As Nullable(Of Date)
 
     Public Overridable Property ComprobantesAplicantes As ICollection(Of ComprobanteAplicacion) = New HashSet(Of ComprobanteAplicacion)
     Public Overridable Property ComprobantesAplicados As ICollection(Of ComprobanteAplicacion) = New HashSet(Of ComprobanteAplicacion)
@@ -33,5 +52,13 @@ Partial Public Class Comprobante
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property CompraOrdenDetalles As ICollection(Of CompraOrdenDetalle) = New HashSet(Of CompraOrdenDetalle)
+    Public Overridable Property ComprobanteDetalles As ICollection(Of ComprobanteDetalle) = New HashSet(Of ComprobanteDetalle)
+    Public Overridable Property ComprobanteMediosPago As ICollection(Of ComprobanteMedioPago) = New HashSet(Of ComprobanteMedioPago)
+    Public Overridable Property ComprobanteTipo As ComprobanteTipo
+    Public Overridable Property UsuarioAnulacion As Usuario
+    Public Overridable Property UsuarioEnvioEmail As Usuario
+    Public Overridable Property UsuarioTransmisionAfip As Usuario
+    Public Overridable Property Concepto As Concepto
+    Public Overridable Property CategoriaIVA As CategoriaIVA
 
 End Class
