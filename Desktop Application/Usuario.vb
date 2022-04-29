@@ -177,5 +177,7 @@ Partial Public Class Usuario
     Public Overridable Property ComprobantesAnulados As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
     Public Overridable Property ComprobantesEnviadosEmail As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
     Public Overridable Property ComprobantesTransmitidosAfip As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
+    Public Overridable Property NumeradoresCreados As ICollection(Of Numerador) = New HashSet(Of Numerador)
+    Public Overridable Property NumeradoresModificados As ICollection(Of Numerador) = New HashSet(Of Numerador)
 
 End Class

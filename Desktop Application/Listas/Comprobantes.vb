@@ -12,7 +12,7 @@
         Else
             control.DisplayMember = "NombreConLetra"
 
-            localList = context.ComprobanteTipo.Where(Function(ct) ct.EsActivo).OrderBy(Function(ct) ct.NombreConLetra).ToList()
+            localList = context.ComprobanteTipo.Where(Function(ct) ct.EsActivo And ct.OperacionTipo = operacionTipo).OrderBy(Function(ct) ct.NombreConLetra).ToList()
         End If
 
         If mostrarItemNoEspecifica Then
@@ -110,7 +110,7 @@
         control.DisplayMember = "Nombre"
 
         listMediosPago = (From mp In context.MedioPago
-                          Where mp.EsActivo And (esChequeMostrar And mp.EsCheque) And (noEsChequeMostrar And Not mp.EsCheque)
+                          Where mp.EsActivo And ((esChequeMostrar And mp.EsCheque) Or (noEsChequeMostrar And Not mp.EsCheque))
                           Order By mp.Nombre).ToList
 
         If mostrarItemNoEspecifica Then

@@ -608,6 +608,12 @@
     <Compile Include="Inventario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Inventario\formInventarioAgregarMultiple.designer.vb">
+      <DependentUpon>formInventarioAgregarMultiple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\formInventarioAgregarMultiple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LicenciaCausa.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -639,6 +645,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="NivelEstudio.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Numerador.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Parametro.vb">
@@ -1570,6 +1579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompraOrdenes.resx">
       <DependentUpon>formCompraOrdenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\formInventarioAgregarMultiple.resx">
+      <DependentUpon>formInventarioAgregarMultiple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>

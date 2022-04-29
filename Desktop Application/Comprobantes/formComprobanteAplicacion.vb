@@ -31,17 +31,12 @@
         mComprobanteTipoActual = ComprobanteTipoActual
         mComprobanteAplicacionActual = ComprobanteAplicacionActual
 
-        'Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
         ChangeMode()
 
         Me.ShowDialog(ParentForm)
-        'If Me.WindowState = FormWindowState.Minimized Then
-        '    Me.WindowState = FormWindowState.Normal
-        'End If
-        'Me.Focus()
     End Sub
 
     Private Sub ChangeMode()
@@ -50,7 +45,6 @@
         buttonEditar.Visible = (mParentEditMode And Not mEditMode)
         buttonCerrar.Visible = Not mEditMode
 
-        comboboxMotivo.Enabled = mEditMode
         currencytextboxImporteAplicado.ReadOnly = (mEditMode = False)
     End Sub
 

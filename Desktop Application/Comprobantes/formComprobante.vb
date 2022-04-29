@@ -8,7 +8,6 @@
     Private mOperacionTipo As String
     Private mComprobanteTipoActual As ComprobanteTipo
     Private mUtilizaNumerador As Boolean
-    Private mEntidad As Entidad
 
     Private mIsNew As Boolean
     Private mIsLoading As Boolean
@@ -82,6 +81,7 @@
             Exit Sub
         End If
 
+        ' Main toolbar
         If mComprobanteTipoActual Is Nothing Then
             buttonAFIP.Visible = False
         Else
@@ -94,22 +94,26 @@
         buttonEditar.Visible = (mEditMode = False And mComprobanteActual.CAE Is Nothing And mComprobanteActual.IDUsuarioAnulacion Is Nothing)
         buttonCerrar.Visible = (mEditMode = False)
 
+        ' Datos del comprobante
         comboboxComprobanteTipo.Enabled = (mEditMode And mComprobanteActual.ComprobanteDetalles.Count = 0 And mComprobanteActual.ComprobantesAplicados.Count = 0 And mComprobanteActual.ComprobanteMediosPago.Count = 0)
         MaskedTextBoxPuntoVenta.ReadOnly = (mUtilizaNumerador Or mEditMode = False)
         MaskedTextBoxNumero.ReadOnly = (mUtilizaNumerador Or mEditMode = False)
         datetimepickerFechaEmision.Enabled = mEditMode
 
+        ' Fechas del comprobante
+        datetimepickerFechaVencimiento.Enabled = mEditMode
         datetimepickerFechaServicioDesde.Enabled = mEditMode
         datetimepickerFechaServicioHasta.Enabled = mEditMode
-        datetimepickerFechaVencimiento.Enabled = mEditMode
 
         ComboBoxEntidad.Enabled = (mEditMode And mComprobanteActual.ComprobantesAplicados.Count = 0)
 
+        textboxDescripcion.ReadOnly = (mEditMode = False)
+
+        ' Toolbars de solapas
         toolstripDetalle.Enabled = mEditMode
         toolstripAplicaciones.Enabled = (mEditMode And comboboxComprobanteTipo.SelectedIndex > -1)
         toolstripMediosPago.Enabled = mEditMode
 
-        textboxDescripcion.ReadOnly = (mEditMode = False)
         textboxNotas.ReadOnly = (mEditMode = False)
 
         currencytextboxImporteTotal.ReadOnly = (mEditMode = False Or (comboboxComprobanteTipo.SelectedIndex <> -1 AndAlso (mComprobanteTipoActual.UtilizaDetalle Or mComprobanteTipoActual.UtilizaMedioPago)))
@@ -122,7 +126,7 @@
         MaskedTextBoxNumero.Mask = New String("0"c, Constantes.ComprobanteNumeroLongitud)
 
         ' Cargo los ComboBox
-        ListasComprobantes.LlenarComboBoxComprobanteTipos(mdbContext, comboboxComprobanteTipo, Nothing, False, False)
+        ListasComprobantes.LlenarComboBoxComprobanteTipos(mdbContext, comboboxComprobanteTipo, mOperacionTipo, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -141,7 +145,6 @@
         mdbContext = Nothing
         mComprobanteActual = Nothing
         mComprobanteTipoActual = Nothing
-        mEntidad = Nothing
         Me.Dispose()
     End Sub
 
@@ -170,8 +173,10 @@
             ' Entidad
             CardonerSistemas.ComboBox.SetSelectedValue(ComboBoxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
 
-            ' Datos de la pestaña Notas y Auditoría
+            ' Descripción
             textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
+
+            ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             If .UsuarioCreacion Is Nothing Then
                 textboxFechaHoraCreacion.Text = ""
@@ -221,7 +226,7 @@
             ' Datos de la Identificación
             .IDComprobanteTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxComprobanteTipo.SelectedValue, 0).Value
 
-            .PuntoVenta = CShort(MaskedTextBoxPuntoVenta.Text)
+            .PuntoVenta = CInt(MaskedTextBoxPuntoVenta.Text)
             .Numero = CInt(MaskedTextBoxNumero.Text)
 
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaEmision.Value).Value
@@ -232,17 +237,22 @@
             .FechaServicioHasta = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaServicioHasta.Value, datetimepickerFechaServicioHasta.Checked)
 
             ' Entidad
+            Dim entidad As Entidad
+            entidad = CType(ComboBoxEntidad.SelectedItem, Entidad)
             .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
-            .EntidadNombre = mEntidad.Nombre
-            .EntidadCuit = mEntidad.Cuit
-            .EntidadIDCategoriaIVA = mEntidad.IDCategoriaIVA.Value
-            .EntidadDomicilio = mEntidad.DomicilioCalleCompleto
-            .EntidadCodigoPostal = mEntidad.DomicilioCodigoPostal
-            .EntidadIDProvincia = mEntidad.DomicilioIDProvincia
-            .EntidadIDLocalidad = mEntidad.DomicilioIDLocalidad
+            .EntidadNombre = entidad.Nombre
+            .EntidadCuit = entidad.Cuit
+            .EntidadIDCategoriaIVA = entidad.IDCategoriaIVA
+            .EntidadDomicilio = entidad.DomicilioCalleCompleto
+            .EntidadCodigoPostal = entidad.DomicilioCodigoPostal
+            .EntidadIDProvincia = entidad.DomicilioIDProvincia
+            .EntidadIDLocalidad = entidad.DomicilioIDLocalidad
+            entidad = Nothing
+
+            ' Descripción
+            .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcion.Text)
 
             ' Datos de la pestaña Notas y Aditoría
-            .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcion.Text)
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
 
             ' Datos del Pie - Importes Totales
@@ -262,12 +272,28 @@
         End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDComprobante.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxIDComprobante.GotFocus, textboxDescripcion.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
     Private Sub MaskedTextBoxs_GotFocus(sender As Object, e As EventArgs) Handles MaskedTextBoxPuntoVenta.GotFocus, MaskedTextBoxNumero.GotFocus
         CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
+    Private Sub MaskedTextBoxPuntoVenta_LostFocus(sender As Object, e As EventArgs) Handles MaskedTextBoxPuntoVenta.LostFocus
+        Dim result As Int32
+
+        If Int32.TryParse(MaskedTextBoxPuntoVenta.Text.Trim, result) Then
+            MaskedTextBoxPuntoVenta.Text = result.ToString(New String("0"c, Constantes.ComprobantePuntoVentaLongitud))
+        End If
+    End Sub
+
+    Private Sub MaskedTextBoxNumero_LostFocus(sender As Object, e As EventArgs) Handles MaskedTextBoxNumero.LostFocus
+        Dim result As Int32
+
+        If Int32.TryParse(MaskedTextBoxNumero.Text.Trim, result) Then
+            MaskedTextBoxNumero.Text = result.ToString(New String("0"c, Constantes.ComprobanteNumeroLongitud))
+        End If
     End Sub
 
 #End Region
@@ -393,10 +419,20 @@
             MaskedTextBoxPuntoVenta.Focus()
             Return False
         End If
+        If Not Int32.TryParse(MaskedTextBoxPuntoVenta.Text.Trim, New Int32) Then
+            MsgBox("El Punto de Venta debe ser un valor numérico.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MaskedTextBoxPuntoVenta.Focus()
+            Return False
+        End If
 
         ' Número
         If MaskedTextBoxNumero.Text.Trim.Length = 0 Then
             MsgBox("Debe especificar el Número de Comprobante.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MaskedTextBoxNumero.Focus()
+            Return False
+        End If
+        If Not Int32.TryParse(MaskedTextBoxNumero.Text.Trim, New Int32) Then
+            MsgBox("El Número de Comprobante debe ser un valor numérico.", MsgBoxStyle.Information, My.Application.Info.Title)
             MaskedTextBoxNumero.Focus()
             Return False
         End If
@@ -523,10 +559,10 @@
 
         datagridviewDetalle.Enabled = False
 
-        SetDataFromControlsToObject()
+        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
 
         Dim ComprobanteDetalleNuevo As New ComprobanteDetalle
-        'formComprobanteDetalle.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteDetalleNuevo)
+        formComprobanteDetalle.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteDetalleNuevo)
 
         datagridviewDetalle.Enabled = True
 
@@ -544,7 +580,7 @@
             Dim ComprobanteDetalleActual As ComprobanteDetalle
 
             ComprobanteDetalleActual = CType(datagridviewDetalle.SelectedRows(0).DataBoundItem, ComprobanteDetalle)
-            'formComprobanteDetalle.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteDetalleActual)
+            formComprobanteDetalle.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteDetalleActual)
 
             datagridviewDetalle.Enabled = True
 
@@ -584,7 +620,7 @@
             Dim ComprobanteDetalleActual As ComprobanteDetalle
 
             ComprobanteDetalleActual = CType(datagridviewDetalle.SelectedRows(0).DataBoundItem, ComprobanteDetalle)
-            'formComprobanteDetalle.LoadAndShow(mEditMode, False, Me, mComprobanteActual, ComprobanteDetalleActual)
+            formComprobanteDetalle.LoadAndShow(mEditMode, False, Me, mComprobanteActual, ComprobanteDetalleActual)
 
             datagridviewDetalle.Enabled = True
 
@@ -693,7 +729,7 @@
 
         datagridviewAplicaciones.Enabled = False
 
-        SetDataFromControlsToObject()
+        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
 
         Dim ComprobanteAplicacionNuevo As New ComprobanteAplicacion
         formComprobanteAplicacion.LoadAndShow(True, True, Me, mComprobanteActual, mComprobanteTipoActual, ComprobanteAplicacionNuevo)
@@ -780,8 +816,9 @@
 
         datagridviewMediosPago.Enabled = False
 
-        Dim ComprobanteMedioPagoNuevo As New ComprobanteMedioPago
-        ComprobanteMedioPagoNuevo.FechaHora = DateTime.Now
+        Dim ComprobanteMedioPagoNuevo As New ComprobanteMedioPago With {
+            .FechaHora = DateTime.Now
+        }
         formComprobanteMedioPago.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteMedioPagoNuevo)
 
         datagridviewMediosPago.Enabled = True
@@ -795,9 +832,10 @@
         datagridviewMediosPago.Enabled = False
 
         Dim ComprobanteMedioPagoNuevo As New ComprobanteMedioPago
-        Dim ChequeNuevo As New Cheque
-        ChequeNuevo.FechaEmision = DateTime.Today
-        ChequeNuevo.FechaPago = DateTime.Today
+        Dim ChequeNuevo As New Cheque With {
+            .FechaEmision = DateTime.Today,
+            .FechaPago = DateTime.Today
+        }
         ComprobanteMedioPagoNuevo.Cheque = ChequeNuevo
         formCheque.LoadAndShow(True, True, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoNuevo)
 
@@ -896,8 +934,8 @@
             If True Then ' mComprobanteTipoPuntoVentaActual Is Nothing Then
                 ' No hay un numerador definido, habilito los campos de Punto de Venta y Numero
                 mUtilizaNumerador = False
-                MaskedTextBoxPuntoVenta.Text = ""
-                MaskedTextBoxNumero.Text = ""
+                MaskedTextBoxPuntoVenta.Text = String.Empty
+                MaskedTextBoxNumero.Text = String.Empty
             Else
                 ' Hay un numerador definido, así que si es un comprobante nuevo, busco el siguiente número, como para ir mostrándolo, aunque antes de grabar, puede volver a cambiar
                 mUtilizaNumerador = True
@@ -921,6 +959,23 @@
 
             ' Entidades
             ListasComprobantes.LlenarComboBoxEntidades(mdbContext, ComboBoxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
+            If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
+                Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
+                If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
+                    CardonerSistemas.ComboBox.SetSelectedValue(ComboBoxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                Else
+                    ComboBoxEntidad.SelectedIndex = -1
+                End If
+            Else
+                ComboBoxEntidad.SelectedIndex = -1
+            End If
+
+            ' Utiliza Descripción
+            If mComprobanteTipoActual.UtilizaDescripcion Then
+                tabcontrolMain.ShowTabPageByName(tabpageDescripcion.Name)
+            Else
+                tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
+            End If
 
             ' Utiliza Detalle
             panelFechas.Visible = mComprobanteTipoActual.UtilizaDetalle
@@ -955,6 +1010,7 @@
             End If
         Else
             panelFechas.Visible = False
+            tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
             tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
             panelDetalle_Subtotal.Visible = False
             tabcontrolMain.HideTabPageByName(tabpageAplicaciones.Name)

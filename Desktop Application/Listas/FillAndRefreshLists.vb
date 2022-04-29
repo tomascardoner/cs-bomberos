@@ -15,16 +15,6 @@
         Public Property EsActivo As Boolean
     End Class
 
-    Friend Class ResponsableNombresClass
-        Public Property IDResponsable As Byte
-        Public Property IDResponsableTipo As Byte
-        Public Property ResponsableTipoNombre As String
-        Public Property IDCuartel As Byte?
-        Public Property CuartelNombre As String
-        Public Property IDPersona As Integer?
-        Public Property PersonaApellidoNombre As String
-    End Class
-
     Public Sub New()
         mdbContext = New CSBomberosContext(True)
     End Sub
@@ -393,70 +383,6 @@
     End Sub
 
 #End Region
-
-
-    Friend Sub ResponsableTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
-        Dim listItems As List(Of ResponsableTipo)
-
-        ComboBoxControl.ValueMember = "IDResponsableTipo"
-        ComboBoxControl.DisplayMember = "Nombre"
-
-        listItems = mdbContext.ResponsableTipo.Where(Function(rt) rt.EsActivo).OrderBy(Function(rt) rt.Orden).ThenBy(Function(rt) rt.Nombre).ToList
-
-        If AgregarItemTodos Then
-            Dim Item_Todos As New ResponsableTipo With {
-                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            }
-            listItems.Insert(0, Item_Todos)
-        End If
-
-        If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New ResponsableTipo With {
-                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            }
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
-
-    Friend Sub Responsable(ByRef ComboBoxControl As ComboBox, ByVal DisplayMember As String, ByVal AgregarItemTodos As Boolean, ByVal AgregarItemNoEspecifica As Boolean)
-        Dim listItems As List(Of ResponsableNombresClass)
-
-        ComboBoxControl.ValueMember = "IDResponsable"
-        ComboBoxControl.DisplayMember = DisplayMember
-
-        listItems = (From r In mdbContext.Responsable
-                     Join rt In mdbContext.ResponsableTipo On r.IDResponsableTipo Equals rt.IDResponsableTipo
-                     Group Join p In mdbContext.Persona On r.IDPersona Equals p.IDPersona Into PersonaGroup = Group
-                     From pg In PersonaGroup.DefaultIfEmpty
-                     Group Join c In mdbContext.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
-                     From cg In CuartelGroup.DefaultIfEmpty
-                     Order By rt.Orden, rt.Nombre, pg.ApellidoNombre, r.PersonaOtra
-                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
-
-        If AgregarItemTodos Then
-            Dim Item_Todos As New ResponsableNombresClass With {
-                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                .ResponsableTipoNombre = My.Resources.STRING_ITEM_ALL_MALE,
-                .PersonaApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
-            }
-            listItems.Insert(0, Item_Todos)
-        End If
-
-        If AgregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New ResponsableNombresClass With {
-                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED,
-                .PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            }
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
 
     Friend Sub SancionTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of SancionTipo)

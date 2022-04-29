@@ -78,11 +78,13 @@ Partial Class formCheque
         '
         'comboboxBanco
         '
+        Me.comboboxBanco.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.comboboxBanco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxBanco.FormattingEnabled = True
         Me.comboboxBanco.Location = New System.Drawing.Point(123, 117)
         Me.comboboxBanco.Name = "comboboxBanco"
-        Me.comboboxBanco.Size = New System.Drawing.Size(235, 21)
+        Me.comboboxBanco.Size = New System.Drawing.Size(273, 21)
         Me.comboboxBanco.TabIndex = 5
         '
         'labelBanco
@@ -168,7 +170,7 @@ Partial Class formCheque
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(371, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(409, 39)
         Me.toolstripMain.TabIndex = 28
         '
         'textboxIDCheque
@@ -243,11 +245,13 @@ Partial Class formCheque
         '
         'textboxTitular
         '
+        Me.textboxTitular.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxTitular.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textboxTitular.Location = New System.Drawing.Point(123, 300)
         Me.textboxTitular.MaxLength = 100
         Me.textboxTitular.Name = "textboxTitular"
-        Me.textboxTitular.Size = New System.Drawing.Size(235, 20)
+        Me.textboxTitular.Size = New System.Drawing.Size(273, 20)
         Me.textboxTitular.TabIndex = 19
         '
         'labelTitular
@@ -261,11 +265,13 @@ Partial Class formCheque
         '
         'textboxEstado
         '
+        Me.textboxEstado.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxEstado.Location = New System.Drawing.Point(123, 370)
         Me.textboxEstado.MaxLength = 50
         Me.textboxEstado.Name = "textboxEstado"
         Me.textboxEstado.ReadOnly = True
-        Me.textboxEstado.Size = New System.Drawing.Size(235, 20)
+        Me.textboxEstado.Size = New System.Drawing.Size(273, 20)
         Me.textboxEstado.TabIndex = 25
         Me.textboxEstado.TabStop = False
         Me.textboxEstado.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -290,20 +296,24 @@ Partial Class formCheque
         '
         'comboboxMotivoRechazo
         '
+        Me.comboboxMotivoRechazo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.comboboxMotivoRechazo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxMotivoRechazo.FormattingEnabled = True
         Me.comboboxMotivoRechazo.Location = New System.Drawing.Point(123, 396)
         Me.comboboxMotivoRechazo.Name = "comboboxMotivoRechazo"
-        Me.comboboxMotivoRechazo.Size = New System.Drawing.Size(235, 21)
+        Me.comboboxMotivoRechazo.Size = New System.Drawing.Size(273, 21)
         Me.comboboxMotivoRechazo.TabIndex = 27
         '
         'comboboxMedioPago
         '
+        Me.comboboxMedioPago.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.comboboxMedioPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxMedioPago.FormattingEnabled = True
         Me.comboboxMedioPago.Location = New System.Drawing.Point(123, 50)
         Me.comboboxMedioPago.Name = "comboboxMedioPago"
-        Me.comboboxMedioPago.Size = New System.Drawing.Size(235, 21)
+        Me.comboboxMedioPago.Size = New System.Drawing.Size(273, 21)
         Me.comboboxMedioPago.TabIndex = 1
         '
         'labelMedioPago
@@ -359,7 +369,7 @@ Partial Class formCheque
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(371, 429)
+        Me.ClientSize = New System.Drawing.Size(409, 429)
         Me.Controls.Add(Me.MaskedTextBoxCodigoPostal)
         Me.Controls.Add(Me.MaskedTextBoxCuenta)
         Me.Controls.Add(Me.MaskedTextBoxNumero)

@@ -6,35 +6,25 @@
 
         labelValor.Text = ParametroActual.Nombre & ":"
 
-        Select Case mParametroActual.Tipo
-            Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL
-                Using context As New CSBomberosContext(True)
+        Using context As New CSBomberosContext(True)
+            Select Case mParametroActual.Tipo
+                Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL
                     ListasComun.LlenarComboBoxCuarteles(context, comboboxValor, False, False)
-                End Using
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
-                End If
-            Case Reportes.REPORTE_PARAMETRO_TIPO_CARGO
-                pFillAndRefreshLists.Cargo(comboboxValor, False, False)
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
-                End If
-            Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO
-                pFillAndRefreshLists.PersonaBajaMotivo(comboboxValor, False, False)
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
-                End If
-            Case Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD
-                pFillAndRefreshLists.Unidad(comboboxValor, False, False)
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
-                End If
-            Case Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
-                pFillAndRefreshLists.Responsable(comboboxValor, "ResponsableTipoNombre", False, False)
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
-                End If
-        End Select
+                Case Reportes.REPORTE_PARAMETRO_TIPO_CARGO
+                    pFillAndRefreshLists.Cargo(comboboxValor, False, False)
+                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO
+                    pFillAndRefreshLists.PersonaBajaMotivo(comboboxValor, False, False)
+                Case Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD
+                    pFillAndRefreshLists.Unidad(comboboxValor, False, False)
+                Case Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
+                    ListasComun.LlenarComboBoxResponsables(context, comboboxValor, False, False)
+                Case Reportes.REPORTE_PARAMETRO_TIPO_ENTIDAD
+                    ListasComprobantes.LlenarComboBoxEntidades(context, comboboxValor, Nothing, False, False)
+            End Select
+            If mParametroActual.Valor IsNot Nothing Then
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+            End If
+        End Using
     End Sub
 
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress

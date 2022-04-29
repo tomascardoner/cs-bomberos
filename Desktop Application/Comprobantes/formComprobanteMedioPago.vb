@@ -1,12 +1,14 @@
 ﻿Public Class formComprobanteMedioPago
 
 #Region "Declarations"
+
     Private mComprobanteActual As Comprobante
     Private mComprobanteMedioPagoActual As ComprobanteMedioPago
     Private mMedioPagoCurrent As MedioPago
 
-    Private mParentEditMode As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mParentEditMode As Boolean
+    Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
@@ -18,17 +20,12 @@
         mComprobanteActual = ComprobanteActual
         mComprobanteMedioPagoActual = ComprobanteMedioPagoActual
 
-        'Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
         InitializeFormAndControls()
         SetDataFromObjectToControls()
 
         ChangeMode()
         Me.ShowDialog(ParentForm)
-        'If Me.WindowState = FormWindowState.Minimized Then
-        '    Me.WindowState = FormWindowState.Normal
-        'End If
-        'Me.Focus()
     End Sub
 
     Private Sub ChangeMode()

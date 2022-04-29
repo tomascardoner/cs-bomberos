@@ -321,7 +321,8 @@
 #End Region
 
 #Region "Main Toolbar"
-    Private Sub Agregar_Click() Handles buttonAgregar.Click
+
+    Private Sub Agregar(sender As Object, e As EventArgs) Handles buttonAgregar.ButtonClick
         If Permisos.VerificarPermiso(Permisos.INVENTARIO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
 
@@ -335,7 +336,21 @@
         End If
     End Sub
 
-    Private Sub Editar_Click() Handles buttonEditar.Click
+    Private Sub AgregarMultiples(sender As Object, e As EventArgs) Handles MenuItemAgregarMultiples.Click
+        If Permisos.VerificarPermiso(Permisos.INVENTARIO_AGREGAR) Then
+            Me.Cursor = Cursors.WaitCursor
+
+            datagridviewMain.Enabled = False
+
+            formInventarioAgregarMultiple.LoadAndShow(Me)
+
+            datagridviewMain.Enabled = True
+
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub Editar() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Elemento en el Inventario para editar.", vbInformation, My.Application.Info.Title)
         Else
@@ -353,7 +368,7 @@
         End If
     End Sub
 
-    Private Sub Eliminar_Click() Handles buttonEliminar.Click
+    Private Sub Eliminar() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Elemento en el Inventario para eliminar.", vbInformation, My.Application.Info.Title)
         Else

@@ -67,7 +67,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.ResponsableTipo(comboboxResponsableTipo, False, False)
+        ListasComun.LlenarComboBoxResponsableTipos(mdbContext, comboboxResponsableTipo, False, False)
         ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, True)
         pFillAndRefreshLists.Persona(comboboxPersona, False, False, False, True)
     End Sub

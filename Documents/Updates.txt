@@ -10,6 +10,7 @@
 		- ComprobanteDetalle
 		- ComprobanteMedioPago
 		- MedioPago
+		- Numerador
 	- Copiar los datos a CategoriaIVA, Concepto, ComprobanteTipo, Banco, ChequeMotivoRechazo, MedioPago
 	- Tabla CompraFactura
 		- Renombrarla a Comprobante

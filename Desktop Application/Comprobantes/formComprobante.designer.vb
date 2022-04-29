@@ -24,7 +24,6 @@ Partial Class formComprobante
     Private Sub InitializeComponent()
         Dim labelFechaServicioDesde As System.Windows.Forms.Label
         Dim labelFechaServicioHasta As System.Windows.Forms.Label
-        Dim labelDescripcion As System.Windows.Forms.Label
         Dim labelEnvioEmail As System.Windows.Forms.Label
         Dim labelNotas As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
@@ -44,6 +43,8 @@ Partial Class formComprobante
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formComprobante))
         Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabpageDescripcion = New System.Windows.Forms.TabPage()
+        Me.textboxDescripcion = New System.Windows.Forms.TextBox()
         Me.tabpageDetalle = New System.Windows.Forms.TabPage()
         Me.datagridviewDetalle = New System.Windows.Forms.DataGridView()
         Me.columnDetalle_Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -56,7 +57,6 @@ Partial Class formComprobante
         Me.buttonDetalle_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAplicaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewAplicaciones = New System.Windows.Forms.DataGridView()
-        Me.columnAplicaciones_Motivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnAplicaciones_Tipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnAplicaciones_NumeroCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnAplicaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -69,7 +69,6 @@ Partial Class formComprobante
         Me.tabpageMediosPago = New System.Windows.Forms.TabPage()
         Me.datagridviewMediosPago = New System.Windows.Forms.DataGridView()
         Me.columnMedioPagos_MedioPagoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnMedioPagos_CajaNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMedioPagos_Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMedioPagos_BancoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMedioPagos_Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -80,7 +79,6 @@ Partial Class formComprobante
         Me.buttonMediosPago_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonMediosPago_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.textboxDescripcion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraEnvioEmail = New System.Windows.Forms.TextBox()
         Me.textboxUsuarioEnvioEmail = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
@@ -132,13 +130,13 @@ Partial Class formComprobante
         Me.menuitemAFIP_VerificarDatos = New System.Windows.Forms.ToolStripMenuItem()
         labelFechaServicioDesde = New System.Windows.Forms.Label()
         labelFechaServicioHasta = New System.Windows.Forms.Label()
-        labelDescripcion = New System.Windows.Forms.Label()
         labelEnvioEmail = New System.Windows.Forms.Label()
         labelNotas = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         Me.panelMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
+        Me.tabpageDescripcion.SuspendLayout()
         Me.tabpageDetalle.SuspendLayout()
         CType(Me.datagridviewDetalle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripDetalle.SuspendLayout()
@@ -183,15 +181,6 @@ Partial Class formComprobante
         labelFechaServicioHasta.TabIndex = 4
         labelFechaServicioHasta.Text = "Hasta:"
         '
-        'labelDescripcion
-        '
-        labelDescripcion.AutoSize = True
-        labelDescripcion.Location = New System.Drawing.Point(6, 9)
-        labelDescripcion.Name = "labelDescripcion"
-        labelDescripcion.Size = New System.Drawing.Size(66, 13)
-        labelDescripcion.TabIndex = 0
-        labelDescripcion.Text = "Descripción:"
-        '
         'labelEnvioEmail
         '
         labelEnvioEmail.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
@@ -205,7 +194,7 @@ Partial Class formComprobante
         'labelNotas
         '
         labelNotas.AutoSize = True
-        labelNotas.Location = New System.Drawing.Point(6, 98)
+        labelNotas.Location = New System.Drawing.Point(6, 9)
         labelNotas.Name = "labelNotas"
         labelNotas.Size = New System.Drawing.Size(38, 13)
         labelNotas.TabIndex = 2
@@ -249,10 +238,11 @@ Partial Class formComprobante
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.panelMain.Size = New System.Drawing.Size(852, 415)
-        Me.panelMain.TabIndex = 2
+        Me.panelMain.TabIndex = 0
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Controls.Add(Me.tabpageDescripcion)
         Me.tabcontrolMain.Controls.Add(Me.tabpageDetalle)
         Me.tabcontrolMain.Controls.Add(Me.tabpageAplicaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageMediosPago)
@@ -262,7 +252,28 @@ Partial Class formComprobante
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
         Me.tabcontrolMain.Size = New System.Drawing.Size(846, 248)
-        Me.tabcontrolMain.TabIndex = 0
+        Me.tabcontrolMain.TabIndex = 1
+        '
+        'tabpageDescripcion
+        '
+        Me.tabpageDescripcion.Controls.Add(Me.textboxDescripcion)
+        Me.tabpageDescripcion.Location = New System.Drawing.Point(4, 22)
+        Me.tabpageDescripcion.Name = "tabpageDescripcion"
+        Me.tabpageDescripcion.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageDescripcion.Size = New System.Drawing.Size(838, 222)
+        Me.tabpageDescripcion.TabIndex = 6
+        Me.tabpageDescripcion.Text = "Descripción"
+        '
+        'textboxDescripcion
+        '
+        Me.textboxDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxDescripcion.Location = New System.Drawing.Point(3, 3)
+        Me.textboxDescripcion.MaxLength = 0
+        Me.textboxDescripcion.Multiline = True
+        Me.textboxDescripcion.Name = "textboxDescripcion"
+        Me.textboxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.textboxDescripcion.Size = New System.Drawing.Size(832, 216)
+        Me.textboxDescripcion.TabIndex = 2
         '
         'tabpageDetalle
         '
@@ -405,7 +416,7 @@ Partial Class formComprobante
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewAplicaciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.datagridviewAplicaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewAplicaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAplicaciones_Motivo, Me.columnAplicaciones_Tipo, Me.columnAplicaciones_NumeroCompleto, Me.columnAplicaciones_Fecha, Me.columnAplicaciones_ImporteTotal, Me.columnAplicaciones_ImporteAplicado})
+        Me.datagridviewAplicaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnAplicaciones_Tipo, Me.columnAplicaciones_NumeroCompleto, Me.columnAplicaciones_Fecha, Me.columnAplicaciones_ImporteTotal, Me.columnAplicaciones_ImporteAplicado})
         Me.datagridviewAplicaciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAplicaciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewAplicaciones.Location = New System.Drawing.Point(90, 3)
@@ -417,15 +428,6 @@ Partial Class formComprobante
         Me.datagridviewAplicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewAplicaciones.Size = New System.Drawing.Size(745, 216)
         Me.datagridviewAplicaciones.TabIndex = 9
-        '
-        'columnAplicaciones_Motivo
-        '
-        Me.columnAplicaciones_Motivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAplicaciones_Motivo.DataPropertyName = "Motivo"
-        Me.columnAplicaciones_Motivo.HeaderText = "Motivo"
-        Me.columnAplicaciones_Motivo.Name = "columnAplicaciones_Motivo"
-        Me.columnAplicaciones_Motivo.ReadOnly = True
-        Me.columnAplicaciones_Motivo.Width = 64
         '
         'columnAplicaciones_Tipo
         '
@@ -551,7 +553,7 @@ Partial Class formComprobante
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMediosPago.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
         Me.datagridviewMediosPago.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMediosPago.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMedioPagos_MedioPagoNombre, Me.columnMedioPagos_CajaNombre, Me.columnMedioPagos_Importe, Me.columnMedioPagos_BancoNombre, Me.columnMedioPagos_Numero, Me.columnMedioPagos_FechaVencimiento})
+        Me.datagridviewMediosPago.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMedioPagos_MedioPagoNombre, Me.columnMedioPagos_Importe, Me.columnMedioPagos_BancoNombre, Me.columnMedioPagos_Numero, Me.columnMedioPagos_FechaVencimiento})
         Me.datagridviewMediosPago.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMediosPago.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMediosPago.Location = New System.Drawing.Point(133, 3)
@@ -572,15 +574,6 @@ Partial Class formComprobante
         Me.columnMedioPagos_MedioPagoNombre.Name = "columnMedioPagos_MedioPagoNombre"
         Me.columnMedioPagos_MedioPagoNombre.ReadOnly = True
         Me.columnMedioPagos_MedioPagoNombre.Width = 73
-        '
-        'columnMedioPagos_CajaNombre
-        '
-        Me.columnMedioPagos_CajaNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnMedioPagos_CajaNombre.DataPropertyName = "CajaNombre"
-        Me.columnMedioPagos_CajaNombre.HeaderText = "Caja"
-        Me.columnMedioPagos_CajaNombre.Name = "columnMedioPagos_CajaNombre"
-        Me.columnMedioPagos_CajaNombre.ReadOnly = True
-        Me.columnMedioPagos_CajaNombre.Width = 53
         '
         'columnMedioPagos_Importe
         '
@@ -678,8 +671,6 @@ Partial Class formComprobante
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxDescripcion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelDescripcion)
         Me.tabpageNotasAuditoria.Controls.Add(labelEnvioEmail)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraEnvioEmail)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioEnvioEmail)
@@ -696,19 +687,7 @@ Partial Class formComprobante
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
         Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(838, 222)
         Me.tabpageNotasAuditoria.TabIndex = 5
-        Me.tabpageNotasAuditoria.Text = "Descripción y auditoría"
-        '
-        'textboxDescripcion
-        '
-        Me.textboxDescripcion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxDescripcion.Location = New System.Drawing.Point(127, 6)
-        Me.textboxDescripcion.MaxLength = 0
-        Me.textboxDescripcion.Multiline = True
-        Me.textboxDescripcion.Name = "textboxDescripcion"
-        Me.textboxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDescripcion.Size = New System.Drawing.Size(711, 83)
-        Me.textboxDescripcion.TabIndex = 1
+        Me.tabpageNotasAuditoria.Text = "Notas y auditoría"
         '
         'textboxFechaHoraEnvioEmail
         '
@@ -737,12 +716,12 @@ Partial Class formComprobante
         Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxNotas.Location = New System.Drawing.Point(127, 95)
+        Me.textboxNotas.Location = New System.Drawing.Point(127, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(711, 43)
+        Me.textboxNotas.Size = New System.Drawing.Size(711, 132)
         Me.textboxNotas.TabIndex = 3
         '
         'textboxFechaHoraCreacion
@@ -830,15 +809,15 @@ Partial Class formComprobante
         '
         'MaskedTextBoxPuntoVenta
         '
-        Me.MaskedTextBoxPuntoVenta.Location = New System.Drawing.Point(414, 3)
+        Me.MaskedTextBoxPuntoVenta.Location = New System.Drawing.Point(407, 3)
         Me.MaskedTextBoxPuntoVenta.Name = "MaskedTextBoxPuntoVenta"
-        Me.MaskedTextBoxPuntoVenta.Size = New System.Drawing.Size(38, 20)
+        Me.MaskedTextBoxPuntoVenta.Size = New System.Drawing.Size(40, 20)
         Me.MaskedTextBoxPuntoVenta.TabIndex = 5
         '
         'labelPuntoVenta
         '
         Me.labelPuntoVenta.AutoSize = True
-        Me.labelPuntoVenta.Location = New System.Drawing.Point(326, 6)
+        Me.labelPuntoVenta.Location = New System.Drawing.Point(317, 6)
         Me.labelPuntoVenta.Name = "labelPuntoVenta"
         Me.labelPuntoVenta.Size = New System.Drawing.Size(84, 13)
         Me.labelPuntoVenta.TabIndex = 4
@@ -1268,6 +1247,8 @@ Partial Class formComprobante
         Me.panelMain.ResumeLayout(False)
         Me.panelMain.PerformLayout()
         Me.tabcontrolMain.ResumeLayout(False)
+        Me.tabpageDescripcion.ResumeLayout(False)
+        Me.tabpageDescripcion.PerformLayout()
         Me.tabpageDetalle.ResumeLayout(False)
         Me.tabpageDetalle.PerformLayout()
         CType(Me.datagridviewDetalle, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1343,12 +1324,6 @@ Partial Class formComprobante
     Friend WithEvents buttonDetalle_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonDetalle_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewMediosPago As System.Windows.Forms.DataGridView
-    Friend WithEvents columnMedioPagos_MedioPagoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMedioPagos_CajaNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMedioPagos_Importe As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMedioPagos_BancoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMedioPagos_Numero As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnMedioPagos_FechaVencimiento As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
@@ -1371,7 +1346,6 @@ Partial Class formComprobante
     Friend WithEvents textboxFechaHoraEnvioEmail As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioEnvioEmail As System.Windows.Forms.TextBox
     Friend WithEvents buttonAplicaciones_AplicarTodo As System.Windows.Forms.ToolStripButton
-    Friend WithEvents textboxDescripcion As System.Windows.Forms.TextBox
     Friend WithEvents panelDetalle_Subtotal As System.Windows.Forms.Panel
     Friend WithEvents labelDetalle_Subtotal As System.Windows.Forms.Label
     Friend WithEvents panelAplicaciones_Subtotal As System.Windows.Forms.Panel
@@ -1391,13 +1365,19 @@ Partial Class formComprobante
     Friend WithEvents columnDetalle_Descripcion As DataGridViewTextBoxColumn
     Friend WithEvents columnDetalle_PrecioUnitario As DataGridViewTextBoxColumn
     Friend WithEvents columnDetalle_PrecioTotal As DataGridViewTextBoxColumn
-    Friend WithEvents columnAplicaciones_Motivo As DataGridViewTextBoxColumn
+    Friend WithEvents MaskedTextBoxNumero As MaskedTextBox
+    Friend WithEvents MaskedTextBoxPuntoVenta As MaskedTextBox
+    Friend WithEvents ComboBoxEntidad As ComboBox
+    Friend WithEvents tabpageDescripcion As TabPage
+    Friend WithEvents textboxDescripcion As TextBox
     Friend WithEvents columnAplicaciones_Tipo As DataGridViewTextBoxColumn
     Friend WithEvents columnAplicaciones_NumeroCompleto As DataGridViewTextBoxColumn
     Friend WithEvents columnAplicaciones_Fecha As DataGridViewTextBoxColumn
     Friend WithEvents columnAplicaciones_ImporteTotal As DataGridViewTextBoxColumn
     Friend WithEvents columnAplicaciones_ImporteAplicado As DataGridViewTextBoxColumn
-    Friend WithEvents MaskedTextBoxNumero As MaskedTextBox
-    Friend WithEvents MaskedTextBoxPuntoVenta As MaskedTextBox
-    Friend WithEvents ComboBoxEntidad As ComboBox
+    Friend WithEvents columnMedioPagos_MedioPagoNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnMedioPagos_Importe As DataGridViewTextBoxColumn
+    Friend WithEvents columnMedioPagos_BancoNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnMedioPagos_Numero As DataGridViewTextBoxColumn
+    Friend WithEvents columnMedioPagos_FechaVencimiento As DataGridViewTextBoxColumn
 End Class

@@ -41,7 +41,6 @@ Partial Class formInventarioDetalle
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
         Me.comboboxSubUbicacion = New System.Windows.Forms.ComboBox()
         Me.comboboxArea = New System.Windows.Forms.ComboBox()
-        Me.textboxCodigo = New System.Windows.Forms.TextBox()
         Me.labelCodigo = New System.Windows.Forms.Label()
         Me.comboboxModoAdquisicion = New System.Windows.Forms.ComboBox()
         Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
@@ -63,6 +62,7 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.MaskedTextBoxCodigo = New System.Windows.Forms.MaskedTextBox()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -254,14 +254,6 @@ Partial Class formInventarioDetalle
         Me.comboboxArea.Size = New System.Drawing.Size(267, 21)
         Me.comboboxArea.TabIndex = 3
         '
-        'textboxCodigo
-        '
-        Me.textboxCodigo.Location = New System.Drawing.Point(124, 60)
-        Me.textboxCodigo.MaxLength = 5
-        Me.textboxCodigo.Name = "textboxCodigo"
-        Me.textboxCodigo.Size = New System.Drawing.Size(74, 20)
-        Me.textboxCodigo.TabIndex = 5
-        '
         'labelCodigo
         '
         Me.labelCodigo.AutoSize = True
@@ -291,7 +283,7 @@ Partial Class formInventarioDetalle
         '
         'buttonCodigoSiguiente
         '
-        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(204, 59)
+        Me.buttonCodigoSiguiente.Location = New System.Drawing.Point(175, 58)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
         Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(103, 22)
         Me.buttonCodigoSiguiente.TabIndex = 6
@@ -324,6 +316,7 @@ Partial Class formInventarioDetalle
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.MaskedTextBoxCodigo)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaAdquisicion)
         Me.tabpageGeneral.Controls.Add(labelFechaAdquisicion)
         Me.tabpageGeneral.Controls.Add(Me.labelDescripcionPropia)
@@ -341,7 +334,6 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Controls.Add(labelArea)
         Me.tabpageGeneral.Controls.Add(labelModoAdquisicion)
         Me.tabpageGeneral.Controls.Add(Me.comboboxArea)
-        Me.tabpageGeneral.Controls.Add(Me.textboxCodigo)
         Me.tabpageGeneral.Controls.Add(Me.labelCodigo)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
@@ -498,6 +490,14 @@ Partial Class formInventarioDetalle
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'MaskedTextBoxCodigo
+        '
+        Me.MaskedTextBoxCodigo.Location = New System.Drawing.Point(124, 60)
+        Me.MaskedTextBoxCodigo.Mask = "00000"
+        Me.MaskedTextBoxCodigo.Name = "MaskedTextBoxCodigo"
+        Me.MaskedTextBoxCodigo.Size = New System.Drawing.Size(45, 20)
+        Me.MaskedTextBoxCodigo.TabIndex = 5
+        '
         'formInventarioDetalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -533,7 +533,6 @@ Partial Class formInventarioDetalle
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxSubUbicacion As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxArea As System.Windows.Forms.ComboBox
-    Friend WithEvents textboxCodigo As System.Windows.Forms.TextBox
     Friend WithEvents labelCodigo As System.Windows.Forms.Label
     Friend WithEvents comboboxModoAdquisicion As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxUbicacion As System.Windows.Forms.ComboBox
@@ -555,4 +554,5 @@ Partial Class formInventarioDetalle
     Friend WithEvents labelDescripcionPropia As System.Windows.Forms.Label
     Friend WithEvents textboxDescripcionPropia As System.Windows.Forms.TextBox
     Friend WithEvents datetimepickerFechaAdquisicion As DateTimePicker
+    Friend WithEvents MaskedTextBoxCodigo As MaskedTextBox
 End Class

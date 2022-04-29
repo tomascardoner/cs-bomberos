@@ -21,8 +21,10 @@ Partial Public Class ComprobanteTipo
     Public Property CodigoAFIP As Byte
     Public Property MovimientoTipo As String
     Public Property EmisionElectronica As Boolean
-    Public Property UtilizaDetalle As Boolean
+    Public Property IDNumerador As Nullable(Of Short)
     Public Property UtilizaFechaVencimiento As Boolean
+    Public Property UtilizaDescripcion As Boolean
+    Public Property UtilizaDetalle As Boolean
     Public Property UtilizaAplicacion As Boolean
     Public Property UtilizaMedioPago As Boolean
     Public Property ReporteNombre As String
@@ -38,5 +40,6 @@ Partial Public Class ComprobanteTipo
     Public Overridable Property CategoriasIVAFacturas As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
     Public Overridable Property CategoriasIVANotasCredito As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
     Public Overridable Property CategoriaIVANotasDebito As ICollection(Of CategoriaIVA) = New HashSet(Of CategoriaIVA)
+    Public Overridable Property Numerador As Numerador
 
 End Class

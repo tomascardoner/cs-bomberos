@@ -43,8 +43,6 @@ Partial Class formComprobanteAplicacion
         Me.columnImporteTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporteAplicado = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporteSinAplicar = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.comboboxMotivo = New System.Windows.Forms.ComboBox()
-        Me.labelMotivo = New System.Windows.Forms.Label()
         Me.currencytextboxImporteAplicado = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.toolstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,7 +61,7 @@ Partial Class formComprobanteAplicacion
         'buttonCerrar
         '
         Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.ImageCerrar32
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar32
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
@@ -73,7 +71,7 @@ Partial Class formComprobanteAplicacion
         'buttonEditar
         '
         Me.buttonEditar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.ImageEditar32
+        Me.buttonEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
@@ -83,7 +81,7 @@ Partial Class formComprobanteAplicacion
         'buttonCancelar
         '
         Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.ImageCancelar32
+        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
@@ -93,7 +91,7 @@ Partial Class formComprobanteAplicacion
         'buttonGuardar
         '
         Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.ImageAceptar32
+        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
@@ -138,7 +136,7 @@ Partial Class formComprobanteAplicacion
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(539, 215)
+        Me.datagridviewMain.Size = New System.Drawing.Size(539, 242)
         Me.datagridviewMain.TabIndex = 1
         '
         'columnTipoNombre
@@ -218,24 +216,6 @@ Partial Class formComprobanteAplicacion
         Me.columnImporteSinAplicar.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.columnImporteSinAplicar.Width = 107
         '
-        'comboboxMotivo
-        '
-        Me.comboboxMotivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxMotivo.FormattingEnabled = True
-        Me.comboboxMotivo.Location = New System.Drawing.Point(103, 290)
-        Me.comboboxMotivo.Name = "comboboxMotivo"
-        Me.comboboxMotivo.Size = New System.Drawing.Size(291, 21)
-        Me.comboboxMotivo.TabIndex = 3
-        '
-        'labelMotivo
-        '
-        Me.labelMotivo.AutoSize = True
-        Me.labelMotivo.Location = New System.Drawing.Point(9, 293)
-        Me.labelMotivo.Name = "labelMotivo"
-        Me.labelMotivo.Size = New System.Drawing.Size(42, 13)
-        Me.labelMotivo.TabIndex = 2
-        Me.labelMotivo.Text = "Motivo:"
-        '
         'currencytextboxImporteAplicado
         '
         Me.currencytextboxImporteAplicado.BeforeTouchSize = New System.Drawing.Size(69, 20)
@@ -258,8 +238,6 @@ Partial Class formComprobanteAplicacion
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(563, 346)
         Me.Controls.Add(Me.currencytextboxImporteAplicado)
-        Me.Controls.Add(Me.comboboxMotivo)
-        Me.Controls.Add(Me.labelMotivo)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.labelImporteAplicado)
         Me.Controls.Add(Me.labelComprobanteAplicado)
@@ -288,8 +266,6 @@ Partial Class formComprobanteAplicacion
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewMain As System.Windows.Forms.DataGridView
-    Friend WithEvents comboboxMotivo As System.Windows.Forms.ComboBox
-    Friend WithEvents labelMotivo As System.Windows.Forms.Label
     Friend WithEvents columnTipoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnNumeroCompleto As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnFechaEmision As System.Windows.Forms.DataGridViewTextBoxColumn

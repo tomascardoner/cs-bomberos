@@ -28,13 +28,19 @@ Partial Class formComprobantes
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEntidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnOperacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNumeroCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaVencimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
-        Me.menuitemImprimirOrdenCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolstripComprobanteTipo = New System.Windows.Forms.ToolStrip()
         Me.labelComprobanteTipo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxOperacionTipo = New System.Windows.Forms.ToolStripComboBox()
@@ -47,13 +53,6 @@ Partial Class formComprobantes
         Me.toolstripEntidad = New System.Windows.Forms.ToolStrip()
         Me.labelEntidad = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxEntidad = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEntidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnOperacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNumeroCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaVencimiento = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -102,6 +101,70 @@ Partial Class formComprobantes
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
+        '
+        'columnFecha
+        '
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnEntidad
+        '
+        Me.columnEntidad.DataPropertyName = "EntidadNombre"
+        Me.columnEntidad.HeaderText = "Entidad"
+        Me.columnEntidad.Name = "columnEntidad"
+        Me.columnEntidad.ReadOnly = True
+        Me.columnEntidad.Width = 68
+        '
+        'columnOperacion
+        '
+        Me.columnOperacion.DataPropertyName = "OperacionTipoNombre"
+        Me.columnOperacion.HeaderText = "Operación"
+        Me.columnOperacion.Name = "columnOperacion"
+        Me.columnOperacion.ReadOnly = True
+        Me.columnOperacion.Width = 81
+        '
+        'columnTipo
+        '
+        Me.columnTipo.DataPropertyName = "ComprobanteTipoNombre"
+        Me.columnTipo.HeaderText = "Tipo"
+        Me.columnTipo.Name = "columnTipo"
+        Me.columnTipo.ReadOnly = True
+        Me.columnTipo.Width = 53
+        '
+        'columnNumeroCompleto
+        '
+        Me.columnNumeroCompleto.DataPropertyName = "NumeroCompleto"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnNumeroCompleto.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNumeroCompleto.HeaderText = "Número"
+        Me.columnNumeroCompleto.Name = "columnNumeroCompleto"
+        Me.columnNumeroCompleto.ReadOnly = True
+        Me.columnNumeroCompleto.Width = 69
+        '
+        'columnFechaVencimiento
+        '
+        Me.columnFechaVencimiento.DataPropertyName = "FechaVencimiento"
+        Me.columnFechaVencimiento.HeaderText = "Vencimiento"
+        Me.columnFechaVencimiento.Name = "columnFechaVencimiento"
+        Me.columnFechaVencimiento.ReadOnly = True
+        Me.columnFechaVencimiento.Width = 90
+        '
+        'columnImporte
+        '
+        Me.columnImporte.DataPropertyName = "Importe"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnImporte.HeaderText = "Importe"
+        Me.columnImporte.Name = "columnImporte"
+        Me.columnImporte.ReadOnly = True
+        Me.columnImporte.Width = 67
         '
         'panelToolbars
         '
@@ -156,20 +219,12 @@ Partial Class formComprobantes
         '
         'buttonImprimir
         '
-        Me.buttonImprimir.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemImprimirOrdenCompra})
         Me.buttonImprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
         Me.buttonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonImprimir.Name = "buttonImprimir"
         Me.buttonImprimir.Size = New System.Drawing.Size(101, 36)
         Me.buttonImprimir.Text = "Imprimir"
-        '
-        'menuitemImprimirOrdenCompra
-        '
-        Me.menuitemImprimirOrdenCompra.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.menuitemImprimirOrdenCompra.Name = "menuitemImprimirOrdenCompra"
-        Me.menuitemImprimirOrdenCompra.Size = New System.Drawing.Size(167, 22)
-        Me.menuitemImprimirOrdenCompra.Text = "Orden de compra"
         '
         'toolstripComprobanteTipo
         '
@@ -257,70 +312,6 @@ Partial Class formComprobantes
         Me.comboboxEntidad.Name = "comboboxEntidad"
         Me.comboboxEntidad.Size = New System.Drawing.Size(300, 25)
         '
-        'columnFecha
-        '
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnEntidad
-        '
-        Me.columnEntidad.DataPropertyName = "EntidadNombre"
-        Me.columnEntidad.HeaderText = "Entidad"
-        Me.columnEntidad.Name = "columnEntidad"
-        Me.columnEntidad.ReadOnly = True
-        Me.columnEntidad.Width = 68
-        '
-        'columnOperacion
-        '
-        Me.columnOperacion.DataPropertyName = "OperacionTipoNombre"
-        Me.columnOperacion.HeaderText = "Operación"
-        Me.columnOperacion.Name = "columnOperacion"
-        Me.columnOperacion.ReadOnly = True
-        Me.columnOperacion.Width = 81
-        '
-        'columnTipo
-        '
-        Me.columnTipo.DataPropertyName = "ComprobanteTipoNombre"
-        Me.columnTipo.HeaderText = "Tipo"
-        Me.columnTipo.Name = "columnTipo"
-        Me.columnTipo.ReadOnly = True
-        Me.columnTipo.Width = 53
-        '
-        'columnNumeroCompleto
-        '
-        Me.columnNumeroCompleto.DataPropertyName = "NumeroCompleto"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnNumeroCompleto.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNumeroCompleto.HeaderText = "Número"
-        Me.columnNumeroCompleto.Name = "columnNumeroCompleto"
-        Me.columnNumeroCompleto.ReadOnly = True
-        Me.columnNumeroCompleto.Width = 69
-        '
-        'columnFechaVencimiento
-        '
-        Me.columnFechaVencimiento.DataPropertyName = "FechaVencimiento"
-        Me.columnFechaVencimiento.HeaderText = "Vencimiento"
-        Me.columnFechaVencimiento.Name = "columnFechaVencimiento"
-        Me.columnFechaVencimiento.ReadOnly = True
-        Me.columnFechaVencimiento.Width = 90
-        '
-        'columnImporte
-        '
-        Me.columnImporte.DataPropertyName = "Importe"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnImporte.HeaderText = "Importe"
-        Me.columnImporte.Name = "columnImporte"
-        Me.columnImporte.ReadOnly = True
-        Me.columnImporte.Width = 67
-        '
         'formComprobantes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -369,7 +360,6 @@ Partial Class formComprobantes
     Friend WithEvents comboboxPeriodoValor As ToolStripComboBox
     Friend WithEvents labelPeriodoFechaY As ToolStripLabel
     Friend WithEvents buttonImprimir As ToolStripSplitButton
-    Friend WithEvents menuitemImprimirOrdenCompra As ToolStripMenuItem
     Friend WithEvents toolstripComprobanteTipo As ToolStrip
     Friend WithEvents labelComprobanteTipo As ToolStripLabel
     Friend WithEvents comboboxOperacionTipo As ToolStripComboBox

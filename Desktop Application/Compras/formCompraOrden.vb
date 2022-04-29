@@ -72,8 +72,10 @@
         buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
         comboboxEntidad.Enabled = mEditMode
-        datetimepickerFacturaFecha.Enabled = mEditMode
-        textboxFacturaNumero.ReadOnly = Not mEditMode
+
+        datetimepickerFacturaFecha.Enabled = (mEditMode And Not mIsNew)
+        textboxFacturaNumero.ReadOnly = ((Not mEditMode) Or mIsNew)
+
         checkboxCerrada.Enabled = mEditMode
         datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
 

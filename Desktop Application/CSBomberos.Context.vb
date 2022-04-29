@@ -123,6 +123,7 @@ Partial Public Class CSBomberosContext
     Public Overridable Property MedioPago() As DbSet(Of MedioPago)
     Public Overridable Property Concepto() As DbSet(Of Concepto)
     Public Overridable Property CategoriaIVA() As DbSet(Of CategoriaIVA)
+    Public Overridable Property Numerador() As DbSet(Of Numerador)
 
     Public Overridable Function uspAcademiaObtenerPersonasParaAsistencia(iDAcademia As Nullable(Of Integer), fecha As Nullable(Of Date), iDCuartel As Nullable(Of Byte)) As ObjectResult(Of uspAcademiaObtenerPersonasParaAsistencia_Result)
         Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
