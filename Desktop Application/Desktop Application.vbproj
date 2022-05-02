@@ -589,6 +589,7 @@
     </Compile>
     <Compile Include="Database\CajaArqueoExtension.vb" />
     <Compile Include="Database\ComprobanteExtension.vb" />
+    <Compile Include="Database\NumeradorExtension.vb" />
     <Compile Include="DocumentacionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

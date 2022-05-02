@@ -356,7 +356,7 @@
           <Property Name="FechaVencimiento" Type="date" />
           <Property Name="PuntoVenta" Type="int" Nullable="false" />
           <Property Name="Numero" Type="int" Nullable="false" />
-          <Property Name="NumeroCompleto" Type="varchar" MaxLength="18" StoreGeneratedPattern="Computed" />
+          <Property Name="NumeroCompleto" Type="varchar" MaxLength="14" StoreGeneratedPattern="Computed" />
           <Property Name="IDConcepto" Type="tinyint" />
           <Property Name="FechaServicioDesde" Type="date" />
           <Property Name="FechaServicioHasta" Type="date" />
@@ -12087,7 +12087,7 @@
           <Property Name="FechaVencimiento" Type="DateTime" Precision="0" />
           <Property Name="PuntoVenta" Type="Int32" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
-          <Property Name="NumeroCompleto" Type="String" MaxLength="18" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NumeroCompleto" Type="String" MaxLength="14" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IDConcepto" Type="Byte" />
           <Property Name="FechaServicioDesde" Type="DateTime" Precision="0" />
           <Property Name="FechaServicioHasta" Type="DateTime" Precision="0" />

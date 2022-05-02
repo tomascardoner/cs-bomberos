@@ -7,7 +7,7 @@
 
     Private mOperacionTipo As String
     Private mComprobanteTipoActual As ComprobanteTipo
-    Private mUtilizaNumerador As Boolean
+    Private mNumerador As Numerador
 
     Private mIsNew As Boolean
     Private mIsLoading As Boolean
@@ -96,8 +96,8 @@
 
         ' Datos del comprobante
         comboboxComprobanteTipo.Enabled = (mEditMode And mComprobanteActual.ComprobanteDetalles.Count = 0 And mComprobanteActual.ComprobantesAplicados.Count = 0 And mComprobanteActual.ComprobanteMediosPago.Count = 0)
-        MaskedTextBoxPuntoVenta.ReadOnly = (mUtilizaNumerador Or mEditMode = False)
-        MaskedTextBoxNumero.ReadOnly = (mUtilizaNumerador Or mEditMode = False)
+        MaskedTextBoxPuntoVenta.ReadOnly = ((mNumerador IsNot Nothing) Or (Not mEditMode))
+        MaskedTextBoxNumero.ReadOnly = ((mNumerador IsNot Nothing) Or (Not mEditMode))
         datetimepickerFechaEmision.Enabled = mEditMode
 
         ' Fechas del comprobante
@@ -929,33 +929,25 @@
             mComprobanteTipoActual = CType(comboboxComprobanteTipo.SelectedItem, ComprobanteTipo)
 
             ' Verifico la asignación del número de comprobante
-            ' TODO: Poder especificar el punto de venta para cada comprobante
-            'mComprobanteTipoPuntoVentaActual = mComprobanteTipoActual.ComprobanteTipoPuntoVenta.Where(Function(ctpv) ctpv.IDPuntoVenta = pGeneralConfig.IdPuntoVenta).FirstOrDefault()
-            If True Then ' mComprobanteTipoPuntoVentaActual Is Nothing Then
+            If Not mComprobanteTipoActual.IDNumerador.HasValue Then
                 ' No hay un numerador definido, habilito los campos de Punto de Venta y Numero
-                mUtilizaNumerador = False
+                mNumerador = Nothing
                 MaskedTextBoxPuntoVenta.Text = String.Empty
                 MaskedTextBoxNumero.Text = String.Empty
             Else
-                ' Hay un numerador definido, así que si es un comprobante nuevo, busco el siguiente número, como para ir mostrándolo, aunque antes de grabar, puede volver a cambiar
-                mUtilizaNumerador = True
-                If mComprobanteActual.IDComprobante = 0 Then
-                    'MaskedTextBoxPuntoVenta.Text = mComprobanteTipoPuntoVentaActual.PuntoVenta.Numero
-                    ' Busco si ya hay un comprobante creado de este tipo para obtener el último número
-                    'NextComprobanteNumero = mdbContext.Comprobante.Where(Function(cc) cc.IDComprobanteTipo = mComprobanteTipoActual.IDComprobanteTipo And cc.PuntoVenta = mComprobanteTipoPuntoVentaActual.PuntoVenta.Numero).Max(Function(cc) cc.Numero)
-                    If NextComprobanteNumero Is Nothing Then
-                        ' No hay ningún comprobante creado de este tipo, así que tomo el número inicial 
-                        'NextComprobanteNumero = mComprobanteTipoPuntoVentaActual.NumeroInicio.ToString.PadLeft(Constantes.ComprobanteNumeroLongitud, "0"c)
-                    Else
-                        NextComprobanteNumero = CStr(CInt(NextComprobanteNumero) + 1).PadLeft(Constantes.ComprobanteNumeroLongitud, "0"c)
-                    End If
-                    MaskedTextBoxNumero.Text = NextComprobanteNumero
+                ' Hay un numerador definido, así que si es un comprobante nuevo, establezco el número, como para ir mostrándolo, aunque antes de grabar, puede volver a cambiar
+                Using context As New CSBomberosContext(True)
+                    mNumerador = context.Numerador.Find(mComprobanteTipoActual.IDNumerador.Value)
+                End Using
+                If mIsNew Then
+                    MaskedTextBoxPuntoVenta.Text = mNumerador.PuntoVentaConFormato
+                    MaskedTextBoxNumero.Text = mNumerador.NumeroConFormato
                 End If
             End If
 
             ' Habilito los Controles según corresponda
-            MaskedTextBoxPuntoVenta.TabStop = Not mUtilizaNumerador
-            MaskedTextBoxNumero.TabStop = Not mUtilizaNumerador
+            MaskedTextBoxPuntoVenta.TabStop = mNumerador Is Nothing
+            MaskedTextBoxNumero.TabStop = mNumerador Is Nothing
 
             ' Entidades
             ListasComprobantes.LlenarComboBoxEntidades(mdbContext, ComboBoxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
@@ -1022,30 +1014,28 @@
     End Sub
 
     Private Function EstablecerValoresNuevoComprobante() As Boolean
-        Dim comprobanteNumeroSiguiente As String
-
         Try
-            ' Calculo el nuevo ID
-            Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Comprobante.Any() Then
-                    mComprobanteActual.IDComprobante = dbcMaxID.Comprobante.Max(Function(c) c.IDComprobante) + 1
+            Using context As New CSBomberosContext(True)
+                ' Calculo el nuevo ID
+                If context.Comprobante.Any() Then
+                    mComprobanteActual.IDComprobante = context.Comprobante.Max(Function(c) c.IDComprobante) + 1
                 Else
                     mComprobanteActual.IDComprobante = 1
                 End If
-            End Using
 
-            ' Si corresponde, recalculo el Número del Comprobante
-            If mUtilizaNumerador Then
-                ' El Número de Comprobante es calculado automáticamente, así que lo verifico por si alguien agregó uno antes de grabar este
-                'comprobanteNumeroSiguiente = mdbContext.Comprobante.Where(Function(cc) cc.IDComprobanteTipo = mComprobanteTipoActual.IDComprobanteTipo And cc.PuntoVenta = mComprobanteTipoPuntoVentaActual.PuntoVenta.Numero).Max(Function(cc) cc.Numero)
-                If comprobanteNumeroSiguiente Is Nothing Then
-                    ' No hay ningún comprobante creado de este tipo, así que tomo el número inicial 
-                    'comprobanteNumeroSiguiente = mComprobanteTipoPuntoVentaActual.NumeroInicio.ToString.PadLeft(Constantes.ComprobanteNumeroLongitud, "0"c)
-                Else
-                    comprobanteNumeroSiguiente = CStr(CInt(comprobanteNumeroSiguiente) + 1).PadLeft(Constantes.ComprobanteNumeroLongitud, "0"c)
+                ' Si corresponde, recalculo el Número del Comprobante por si otro usuario o proceso agregó un comprobante
+                If mNumerador IsNot Nothing Then
+                    Dim nuevoNumerador As Numerador
+                    nuevoNumerador = context.Numerador.Find(mComprobanteTipoActual.IDNumerador.Value)
+                    If nuevoNumerador.PuntoVenta <> mNumerador.PuntoVenta Or nuevoNumerador.Numero <> mNumerador.Numero Then
+                        mNumerador = nuevoNumerador
+                        MaskedTextBoxPuntoVenta.Text = mNumerador.PuntoVentaConFormato
+                        MaskedTextBoxNumero.Text = mNumerador.NumeroConFormato
+                    End If
+                    ' Actualizo el numerador para que incremente el número anterior en 1
+                    mdbContext.Numerador.Find(mNumerador.IDNumerador).Numero = mNumerador.Numero + 1
                 End If
-                MaskedTextBoxNumero.Text = comprobanteNumeroSiguiente
-            End If
+            End Using
 
             mComprobanteActual.IDUsuarioCreacion = pUsuario.IDUsuario
             mComprobanteActual.FechaHoraCreacion = Now
