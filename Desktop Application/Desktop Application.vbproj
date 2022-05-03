@@ -171,6 +171,9 @@
     <Compile Include="..\..\..\framework-vbnet\AFIP.vb">
       <Link>Framework\AFIP.vb</Link>
     </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Bank.vb">
+      <Link>Framework\Bank.vb</Link>
+    </Compile>
     <Compile Include="..\..\..\framework-vbnet\ComboBox.vb">
       <Link>Framework\ComboBox.vb</Link>
     </Compile>
@@ -582,6 +585,9 @@
     <Compile Include="Config\EmailConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
     <Compile Include="Cuartel.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CuentaBancariaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Curso.vb">

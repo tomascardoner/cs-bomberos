@@ -1,6 +1,6 @@
 ﻿Module ListasComprobantes
 
-    Friend Sub LlenarComboBoxComprobanteTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal operacionTipo As String, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
+    Friend Sub LlenarComboBoxComprobantesTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal operacionTipo As String, ByVal mostrarItemTodos As Boolean, ByVal mostrarItemNoEspecifica As Boolean)
         Dim localList As List(Of ComprobanteTipo)
 
         control.ValueMember = "IDComprobanteTipo"
@@ -52,6 +52,7 @@
                 .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
             })
         End If
+
         If mostrarItemTodos Then
             listItems.Insert(0, New Entidad With {
                 .IDEntidad = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
@@ -79,20 +80,18 @@
             listItems = listItems.OrderBy(Function(cf) cf.NumeroCompleto).ToList
         End If
 
-        If mostrarItemTodos Then
-            Dim todos As New Comprobante With {
-                .IDComprobante = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER,
-                .NumeroCompleto = My.Resources.STRING_ITEM_ALL_FEMALE
-            }
-            listItems.Insert(0, todos)
-        End If
-
         If mostrarItemNoEspecifica Then
-            Dim noEspecifica As New Comprobante With {
+            listItems.Insert(0, New Comprobante With {
                 .IDComprobante = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER,
                 .NumeroCompleto = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            }
-            listItems.Insert(0, noEspecifica)
+            })
+        End If
+
+        If mostrarItemTodos Then
+            listItems.Insert(0, New Comprobante With {
+                .IDComprobante = CardonerSistemas.Constants.FIELD_VALUE_ALL_INTEGER,
+                .NumeroCompleto = My.Resources.STRING_ITEM_ALL_FEMALE
+            })
         End If
 
         control.DataSource = listItems
@@ -103,7 +102,7 @@
         LlenarComboBoxComprobantes(context, control, idEntidad, Nothing, Nothing, Nothing, Nothing, Nothing, mostrarItemTodos, mostrarItemNoEspecifica, ordenDescendente)
     End Sub
 
-    Friend Sub LlenarComboBoxMediosPago(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemNoEspecifica As Boolean, ByVal esChequeMostrar As Boolean, ByVal noEsChequeMostrar As Boolean)
+    Friend Sub LlenarComboBoxMediosPago(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean, esChequeMostrar As Boolean, noEsChequeMostrar As Boolean)
         Dim listMediosPago As List(Of MedioPago)
 
         control.ValueMember = "IDMedioPago"
@@ -115,15 +114,22 @@
 
         If mostrarItemNoEspecifica Then
             listMediosPago.Insert(0, New MedioPago With {
-                .IDMedioPago = 0,
+                .IDMedioPago = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
                 .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
+        If mostrarItemTodos Then
+            listMediosPago.Insert(0, New MedioPago With {
+                .IDMedioPago = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
             })
         End If
 
         control.DataSource = listMediosPago
     End Sub
 
-    Friend Sub LlenarComboBoxBancos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarItemNoEspecifica As Boolean)
+    Friend Sub LlenarComboBoxBancos(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
         Dim listBancos As List(Of Banco)
 
         control.ValueMember = "IDBanco"
@@ -133,15 +139,47 @@
 
         If mostrarItemNoEspecifica Then
             listBancos.Insert(0, New Banco With {
-                .IDBanco = 0,
+                .IDBanco = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT,
                 .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
+        If mostrarItemTodos Then
+            listBancos.Insert(0, New Banco With {
+                .IDBanco = CardonerSistemas.Constants.FIELD_VALUE_ALL_SHORT,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
             })
         End If
 
         control.DataSource = listBancos
     End Sub
 
-    Friend Sub LlenarComboBoxChequesMotivosRechazo(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal mostrarNombreCompleto As Boolean, ByVal mostrarItemTodos As Boolean)
+    Friend Sub LlenarComboBoxCuentasBancariasTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim listCuentasBancariasTipos As List(Of CuentaBancariaTipo)
+
+        control.ValueMember = "IDCuentaBancariaTipo"
+        control.DisplayMember = "Nombre"
+
+        listCuentasBancariasTipos = context.CuentaBancariaTipo.Where(Function(cbt) cbt.EsActivo).OrderBy(Function(cbt) cbt.Nombre).ToList
+
+        If mostrarItemNoEspecifica Then
+            listCuentasBancariasTipos.Insert(0, New CuentaBancariaTipo With {
+                .IDCuentaBancariaTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
+        If mostrarItemTodos Then
+            listCuentasBancariasTipos.Insert(0, New CuentaBancariaTipo With {
+                .IDCuentaBancariaTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            })
+        End If
+
+        control.DataSource = listCuentasBancariasTipos
+    End Sub
+
+    Friend Sub LlenarComboBoxChequesMotivosRechazo(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarNombreCompleto As Boolean, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
         Dim listChequeMotivoRechazo As List(Of ChequeMotivoRechazo)
 
         control.ValueMember = "IDChequeMotivoRechazo"
@@ -154,9 +192,17 @@
             listChequeMotivoRechazo = context.ChequeMotivoRechazo.Where(Function(cmr) cmr.EsActivo).OrderBy(Function(cmr) cmr.Nombre).ToList
         End If
 
+        If mostrarItemNoEspecifica Then
+            listChequeMotivoRechazo.Insert(0, New ChequeMotivoRechazo With {
+                .IDChequeMotivoRechazo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED,
+                .NombreCompleto = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
         If mostrarItemTodos Then
             listChequeMotivoRechazo.Insert(0, New ChequeMotivoRechazo With {
-                .IDChequeMotivoRechazo = 0,
+                .IDChequeMotivoRechazo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
                 .Nombre = My.Resources.STRING_ITEM_ALL_MALE,
                 .NombreCompleto = My.Resources.STRING_ITEM_ALL_MALE
             })

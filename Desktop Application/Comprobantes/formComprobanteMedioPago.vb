@@ -47,8 +47,8 @@
     Friend Sub InitializeFormAndControls()
         ' Cargo los ComboBox
         Using context As New CSBomberosContext(True)
-            ListasComprobantes.LlenarComboBoxMediosPago(context, comboboxMedioPago, False, False, True)
-            ListasComprobantes.LlenarComboBoxBancos(context, comboboxBanco, True)
+            ListasComprobantes.LlenarComboBoxMediosPago(context, comboboxMedioPago, False, False, False, True)
+            ListasComprobantes.LlenarComboBoxBancos(context, comboboxBanco, False, True)
         End Using
     End Sub
 

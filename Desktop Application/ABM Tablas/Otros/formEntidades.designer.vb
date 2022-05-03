@@ -24,6 +24,7 @@ Partial Class formEntidades
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formEntidades))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -37,26 +38,30 @@ Partial Class formEntidades
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripCompraVenta = New System.Windows.Forms.ToolStrip()
+        Me.buttonCompras = New System.Windows.Forms.ToolStripButton()
+        Me.buttonVentas = New System.Windows.Forms.ToolStripButton()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
+        Me.toolstripCompraVenta.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(604, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(787, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'statusstripMain
         '
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(0, 223)
+        Me.statusstripMain.Location = New System.Drawing.Point(0, 370)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(619, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(802, 22)
         Me.statusstripMain.TabIndex = 4
         '
         'datagridviewMain
@@ -80,7 +85,7 @@ Partial Class formEntidades
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(619, 184)
+        Me.datagridviewMain.Size = New System.Drawing.Size(802, 331)
         Me.datagridviewMain.TabIndex = 0
         '
         'columnNombre
@@ -111,10 +116,11 @@ Partial Class formEntidades
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
+        Me.panelToolbars.Controls.Add(Me.toolstripCompraVenta)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(619, 39)
+        Me.panelToolbars.Size = New System.Drawing.Size(802, 39)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
@@ -124,7 +130,7 @@ Partial Class formEntidades
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(278, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(247, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -159,7 +165,7 @@ Partial Class formEntidades
         Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
-        Me.toolstripActivo.Location = New System.Drawing.Point(278, 0)
+        Me.toolstripActivo.Location = New System.Drawing.Point(247, 0)
         Me.toolstripActivo.Name = "toolstripActivo"
         Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
         Me.toolstripActivo.TabIndex = 12
@@ -176,11 +182,47 @@ Partial Class formEntidades
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
+        'toolstripCompraVenta
+        '
+        Me.toolstripCompraVenta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCompraVenta.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCompraVenta.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCompras, Me.buttonVentas})
+        Me.toolstripCompraVenta.Location = New System.Drawing.Point(371, 0)
+        Me.toolstripCompraVenta.Name = "toolstripCompraVenta"
+        Me.toolstripCompraVenta.Size = New System.Drawing.Size(133, 39)
+        Me.toolstripCompraVenta.TabIndex = 13
+        '
+        'buttonCompras
+        '
+        Me.buttonCompras.AutoSize = False
+        Me.buttonCompras.Checked = True
+        Me.buttonCompras.CheckOnClick = True
+        Me.buttonCompras.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.buttonCompras.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonCompras.Image = CType(resources.GetObject("buttonCompras.Image"), System.Drawing.Image)
+        Me.buttonCompras.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCompras.Name = "buttonCompras"
+        Me.buttonCompras.Size = New System.Drawing.Size(65, 36)
+        Me.buttonCompras.Text = "Compras"
+        '
+        'buttonVentas
+        '
+        Me.buttonVentas.AutoSize = False
+        Me.buttonVentas.Checked = True
+        Me.buttonVentas.CheckOnClick = True
+        Me.buttonVentas.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.buttonVentas.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.buttonVentas.Image = CType(resources.GetObject("buttonVentas.Image"), System.Drawing.Image)
+        Me.buttonVentas.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonVentas.Name = "buttonVentas"
+        Me.buttonVentas.Size = New System.Drawing.Size(65, 36)
+        Me.buttonVentas.Text = "Ventas"
+        '
         'formEntidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(619, 245)
+        Me.ClientSize = New System.Drawing.Size(802, 392)
         Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.panelToolbars)
         Me.Controls.Add(Me.statusstripMain)
@@ -200,6 +242,8 @@ Partial Class formEntidades
         Me.toolstripButtons.PerformLayout()
         Me.toolstripActivo.ResumeLayout(False)
         Me.toolstripActivo.PerformLayout()
+        Me.toolstripCompraVenta.ResumeLayout(False)
+        Me.toolstripCompraVenta.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -217,4 +261,7 @@ Partial Class formEntidades
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
     Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
+    Friend WithEvents toolstripCompraVenta As ToolStrip
+    Friend WithEvents buttonCompras As ToolStripButton
+    Friend WithEvents buttonVentas As ToolStripButton
 End Class

@@ -39,6 +39,14 @@ Partial Class formEntidad
         Dim labelDomicilioProvincia As System.Windows.Forms.Label
         Dim labelDomicilioNumero As System.Windows.Forms.Label
         Dim labelDomicilioPiso As System.Windows.Forms.Label
+        Dim LabelCategoriaIVA As System.Windows.Forms.Label
+        Dim labelCuentaBancariaCbuAlias As System.Windows.Forms.Label
+        Dim labelCuentaBancariaCbu As System.Windows.Forms.Label
+        Dim labelCuentaBancariaTipo As System.Windows.Forms.Label
+        Dim labelCuentaBancariaBanco As System.Windows.Forms.Label
+        Dim labelCuentaBancariaNumero As System.Windows.Forms.Label
+        Dim labelCuentaBancariaSucursal As System.Windows.Forms.Label
+        Dim labelHabilitar As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -49,6 +57,7 @@ Partial Class formEntidad
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.textboxDomicilioCalle3 = New System.Windows.Forms.TextBox()
         Me.textboxDomicilioCalle2 = New System.Windows.Forms.TextBox()
         Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
@@ -63,6 +72,17 @@ Partial Class formEntidad
         Me.textboxTelefono2 = New System.Windows.Forms.TextBox()
         Me.maskedtextboxCUIT = New System.Windows.Forms.MaskedTextBox()
         Me.textboxTelefono1 = New System.Windows.Forms.TextBox()
+        Me.tabpageDatosBancarios = New System.Windows.Forms.TabPage()
+        Me.textboxCuentaBancariaTitular = New System.Windows.Forms.TextBox()
+        Me.labelCuentaBancariaTitular = New System.Windows.Forms.Label()
+        Me.labelCuentaBancariaCuit = New System.Windows.Forms.Label()
+        Me.maskedtextboxCuentaBancariaCuit = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxCuentaBancariaSucursal = New System.Windows.Forms.MaskedTextBox()
+        Me.maskedtextboxCuentaBancariaCbu = New System.Windows.Forms.MaskedTextBox()
+        Me.textboxCuentaBancariaCbuAlias = New System.Windows.Forms.TextBox()
+        Me.comboboxCuentaBancariaTipo = New System.Windows.Forms.ComboBox()
+        Me.comboboxCuentaBancariaBanco = New System.Windows.Forms.ComboBox()
+        Me.textboxCuentaBancariaNumero = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelID = New System.Windows.Forms.Label()
         Me.textboxID = New System.Windows.Forms.TextBox()
@@ -72,6 +92,8 @@ Partial Class formEntidad
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxHabilitarCompra = New System.Windows.Forms.CheckBox()
+        Me.checkboxHabilitarVenta = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -89,16 +111,26 @@ Partial Class formEntidad
         labelDomicilioProvincia = New System.Windows.Forms.Label()
         labelDomicilioNumero = New System.Windows.Forms.Label()
         labelDomicilioPiso = New System.Windows.Forms.Label()
+        LabelCategoriaIVA = New System.Windows.Forms.Label()
+        labelCuentaBancariaCbuAlias = New System.Windows.Forms.Label()
+        labelCuentaBancariaCbu = New System.Windows.Forms.Label()
+        labelCuentaBancariaTipo = New System.Windows.Forms.Label()
+        labelCuentaBancariaBanco = New System.Windows.Forms.Label()
+        labelCuentaBancariaNumero = New System.Windows.Forms.Label()
+        labelCuentaBancariaSucursal = New System.Windows.Forms.Label()
+        labelHabilitar = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        Me.tabpageDatosBancarios.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
         '
+        labelEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(8, 264)
+        labelEsActivo.Location = New System.Drawing.Point(8, 284)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -106,8 +138,9 @@ Partial Class formEntidad
         '
         'labelModificacion
         '
+        labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(8, 342)
+        labelModificacion.Location = New System.Drawing.Point(8, 362)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 9
@@ -115,8 +148,9 @@ Partial Class formEntidad
         '
         'labelCreacion
         '
+        labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(8, 316)
+        labelCreacion.Location = New System.Drawing.Point(8, 336)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
@@ -137,7 +171,7 @@ Partial Class formEntidad
         labelTelefono1.Location = New System.Drawing.Point(6, 68)
         labelTelefono1.Name = "labelTelefono1"
         labelTelefono1.Size = New System.Drawing.Size(61, 13)
-        labelTelefono1.TabIndex = 4
+        labelTelefono1.TabIndex = 6
         labelTelefono1.Text = "Teléfono 1:"
         '
         'labelTelefono2
@@ -146,7 +180,7 @@ Partial Class formEntidad
         labelTelefono2.Location = New System.Drawing.Point(6, 94)
         labelTelefono2.Name = "labelTelefono2"
         labelTelefono2.Size = New System.Drawing.Size(61, 13)
-        labelTelefono2.TabIndex = 6
+        labelTelefono2.TabIndex = 8
         labelTelefono2.Text = "Teléfono 2:"
         '
         'labelEmail1
@@ -155,7 +189,7 @@ Partial Class formEntidad
         labelEmail1.Location = New System.Drawing.Point(6, 127)
         labelEmail1.Name = "labelEmail1"
         labelEmail1.Size = New System.Drawing.Size(47, 13)
-        labelEmail1.TabIndex = 8
+        labelEmail1.TabIndex = 10
         labelEmail1.Text = "E-mail 1:"
         '
         'labelEmail2
@@ -164,7 +198,7 @@ Partial Class formEntidad
         labelEmail2.Location = New System.Drawing.Point(6, 153)
         labelEmail2.Name = "labelEmail2"
         labelEmail2.Size = New System.Drawing.Size(47, 13)
-        labelEmail2.TabIndex = 10
+        labelEmail2.TabIndex = 12
         labelEmail2.Text = "E-mail 2:"
         '
         'labelDomicilioCalle3
@@ -173,7 +207,7 @@ Partial Class formEntidad
         labelDomicilioCalle3.Location = New System.Drawing.Point(6, 264)
         labelDomicilioCalle3.Name = "labelDomicilioCalle3"
         labelDomicilioCalle3.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioCalle3.TabIndex = 22
+        labelDomicilioCalle3.TabIndex = 24
         labelDomicilioCalle3.Text = "Calle 3:"
         '
         'labelDomicilioCalle2
@@ -182,7 +216,7 @@ Partial Class formEntidad
         labelDomicilioCalle2.Location = New System.Drawing.Point(6, 238)
         labelDomicilioCalle2.Name = "labelDomicilioCalle2"
         labelDomicilioCalle2.Size = New System.Drawing.Size(42, 13)
-        labelDomicilioCalle2.TabIndex = 20
+        labelDomicilioCalle2.TabIndex = 22
         labelDomicilioCalle2.Text = "Calle 2:"
         '
         'labelDomicilioCalle1
@@ -191,7 +225,7 @@ Partial Class formEntidad
         labelDomicilioCalle1.Location = New System.Drawing.Point(6, 186)
         labelDomicilioCalle1.Name = "labelDomicilioCalle1"
         labelDomicilioCalle1.Size = New System.Drawing.Size(33, 13)
-        labelDomicilioCalle1.TabIndex = 12
+        labelDomicilioCalle1.TabIndex = 14
         labelDomicilioCalle1.Text = "Calle:"
         '
         'labelDomicilioCodigoPostal
@@ -200,7 +234,7 @@ Partial Class formEntidad
         labelDomicilioCodigoPostal.Location = New System.Drawing.Point(6, 344)
         labelDomicilioCodigoPostal.Name = "labelDomicilioCodigoPostal"
         labelDomicilioCodigoPostal.Size = New System.Drawing.Size(59, 13)
-        labelDomicilioCodigoPostal.TabIndex = 28
+        labelDomicilioCodigoPostal.TabIndex = 30
         labelDomicilioCodigoPostal.Text = "Cód. Post.:"
         '
         'labelDomicilioDepartamento
@@ -209,7 +243,7 @@ Partial Class formEntidad
         labelDomicilioDepartamento.Location = New System.Drawing.Point(223, 212)
         labelDomicilioDepartamento.Name = "labelDomicilioDepartamento"
         labelDomicilioDepartamento.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioDepartamento.TabIndex = 18
+        labelDomicilioDepartamento.TabIndex = 20
         labelDomicilioDepartamento.Text = "Dto/Ofic.:"
         '
         'labelDomicilioLocalidad
@@ -218,7 +252,7 @@ Partial Class formEntidad
         labelDomicilioLocalidad.Location = New System.Drawing.Point(6, 317)
         labelDomicilioLocalidad.Name = "labelDomicilioLocalidad"
         labelDomicilioLocalidad.Size = New System.Drawing.Size(56, 13)
-        labelDomicilioLocalidad.TabIndex = 26
+        labelDomicilioLocalidad.TabIndex = 28
         labelDomicilioLocalidad.Text = "Localidad:"
         '
         'labelDomicilioProvincia
@@ -227,7 +261,7 @@ Partial Class formEntidad
         labelDomicilioProvincia.Location = New System.Drawing.Point(6, 290)
         labelDomicilioProvincia.Name = "labelDomicilioProvincia"
         labelDomicilioProvincia.Size = New System.Drawing.Size(54, 13)
-        labelDomicilioProvincia.TabIndex = 24
+        labelDomicilioProvincia.TabIndex = 26
         labelDomicilioProvincia.Text = "Provincia:"
         '
         'labelDomicilioNumero
@@ -236,7 +270,7 @@ Partial Class formEntidad
         labelDomicilioNumero.Location = New System.Drawing.Point(6, 212)
         labelDomicilioNumero.Name = "labelDomicilioNumero"
         labelDomicilioNumero.Size = New System.Drawing.Size(47, 13)
-        labelDomicilioNumero.TabIndex = 14
+        labelDomicilioNumero.TabIndex = 16
         labelDomicilioNumero.Text = "Número:"
         '
         'labelDomicilioPiso
@@ -245,11 +279,76 @@ Partial Class formEntidad
         labelDomicilioPiso.Location = New System.Drawing.Point(131, 212)
         labelDomicilioPiso.Name = "labelDomicilioPiso"
         labelDomicilioPiso.Size = New System.Drawing.Size(30, 13)
-        labelDomicilioPiso.TabIndex = 16
+        labelDomicilioPiso.TabIndex = 18
         labelDomicilioPiso.Text = "Piso:"
+        '
+        'LabelCategoriaIVA
+        '
+        LabelCategoriaIVA.AutoSize = True
+        LabelCategoriaIVA.Location = New System.Drawing.Point(195, 35)
+        LabelCategoriaIVA.Name = "LabelCategoriaIVA"
+        LabelCategoriaIVA.Size = New System.Drawing.Size(92, 13)
+        LabelCategoriaIVA.TabIndex = 4
+        LabelCategoriaIVA.Text = "Categoría de IVA:"
+        '
+        'labelCuentaBancariaCbuAlias
+        '
+        labelCuentaBancariaCbuAlias.AutoSize = True
+        labelCuentaBancariaCbuAlias.Location = New System.Drawing.Point(6, 140)
+        labelCuentaBancariaCbuAlias.Name = "labelCuentaBancariaCbuAlias"
+        labelCuentaBancariaCbuAlias.Size = New System.Drawing.Size(57, 13)
+        labelCuentaBancariaCbuAlias.TabIndex = 26
+        labelCuentaBancariaCbuAlias.Text = "CBU Alias:"
+        '
+        'labelCuentaBancariaCbu
+        '
+        labelCuentaBancariaCbu.AutoSize = True
+        labelCuentaBancariaCbu.Location = New System.Drawing.Point(6, 114)
+        labelCuentaBancariaCbu.Name = "labelCuentaBancariaCbu"
+        labelCuentaBancariaCbu.Size = New System.Drawing.Size(32, 13)
+        labelCuentaBancariaCbu.TabIndex = 24
+        labelCuentaBancariaCbu.Text = "CBU:"
+        '
+        'labelCuentaBancariaTipo
+        '
+        labelCuentaBancariaTipo.AutoSize = True
+        labelCuentaBancariaTipo.Location = New System.Drawing.Point(6, 36)
+        labelCuentaBancariaTipo.Name = "labelCuentaBancariaTipo"
+        labelCuentaBancariaTipo.Size = New System.Drawing.Size(31, 13)
+        labelCuentaBancariaTipo.TabIndex = 18
+        labelCuentaBancariaTipo.Text = "Tipo:"
+        '
+        'labelCuentaBancariaBanco
+        '
+        labelCuentaBancariaBanco.AutoSize = True
+        labelCuentaBancariaBanco.Location = New System.Drawing.Point(6, 9)
+        labelCuentaBancariaBanco.Name = "labelCuentaBancariaBanco"
+        labelCuentaBancariaBanco.Size = New System.Drawing.Size(41, 13)
+        labelCuentaBancariaBanco.TabIndex = 16
+        labelCuentaBancariaBanco.Text = "Banco:"
+        '
+        'labelCuentaBancariaNumero
+        '
+        labelCuentaBancariaNumero.AutoSize = True
+        labelCuentaBancariaNumero.Location = New System.Drawing.Point(6, 88)
+        labelCuentaBancariaNumero.Name = "labelCuentaBancariaNumero"
+        labelCuentaBancariaNumero.Size = New System.Drawing.Size(47, 13)
+        labelCuentaBancariaNumero.TabIndex = 22
+        labelCuentaBancariaNumero.Text = "Número:"
+        '
+        'labelCuentaBancariaSucursal
+        '
+        labelCuentaBancariaSucursal.AutoSize = True
+        labelCuentaBancariaSucursal.Location = New System.Drawing.Point(6, 62)
+        labelCuentaBancariaSucursal.Name = "labelCuentaBancariaSucursal"
+        labelCuentaBancariaSucursal.Size = New System.Drawing.Size(51, 13)
+        labelCuentaBancariaSucursal.TabIndex = 20
+        labelCuentaBancariaSucursal.Text = "Sucursal:"
         '
         'textboxNombre
         '
+        Me.textboxNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxNombre.Location = New System.Drawing.Point(75, 6)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
@@ -316,8 +415,9 @@ Partial Class formEntidad
         '
         'checkboxEsActivo
         '
+        Me.checkboxEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(117, 263)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(117, 283)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -325,17 +425,26 @@ Partial Class formEntidad
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageDatosBancarios)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(519, 394)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(519, 424)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxHabilitarVenta)
+        Me.tabpageGeneral.Controls.Add(Me.checkboxHabilitarCompra)
+        Me.tabpageGeneral.Controls.Add(labelHabilitar)
+        Me.tabpageGeneral.Controls.Add(Me.ComboBox1)
+        Me.tabpageGeneral.Controls.Add(LabelCategoriaIVA)
         Me.tabpageGeneral.Controls.Add(labelDomicilioCalle3)
         Me.tabpageGeneral.Controls.Add(labelDomicilioCalle2)
         Me.tabpageGeneral.Controls.Add(Me.textboxDomicilioCalle3)
@@ -369,10 +478,21 @@ Partial Class formEntidad
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(511, 365)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(511, 395)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(293, 32)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(212, 21)
+        Me.ComboBox1.TabIndex = 5
         '
         'textboxDomicilioCalle3
         '
@@ -380,7 +500,7 @@ Partial Class formEntidad
         Me.textboxDomicilioCalle3.MaxLength = 50
         Me.textboxDomicilioCalle3.Name = "textboxDomicilioCalle3"
         Me.textboxDomicilioCalle3.Size = New System.Drawing.Size(258, 20)
-        Me.textboxDomicilioCalle3.TabIndex = 23
+        Me.textboxDomicilioCalle3.TabIndex = 25
         '
         'textboxDomicilioCalle2
         '
@@ -388,7 +508,7 @@ Partial Class formEntidad
         Me.textboxDomicilioCalle2.MaxLength = 50
         Me.textboxDomicilioCalle2.Name = "textboxDomicilioCalle2"
         Me.textboxDomicilioCalle2.Size = New System.Drawing.Size(258, 20)
-        Me.textboxDomicilioCalle2.TabIndex = 21
+        Me.textboxDomicilioCalle2.TabIndex = 23
         '
         'comboboxDomicilioLocalidad
         '
@@ -397,7 +517,7 @@ Partial Class formEntidad
         Me.comboboxDomicilioLocalidad.Location = New System.Drawing.Point(75, 314)
         Me.comboboxDomicilioLocalidad.Name = "comboboxDomicilioLocalidad"
         Me.comboboxDomicilioLocalidad.Size = New System.Drawing.Size(258, 21)
-        Me.comboboxDomicilioLocalidad.TabIndex = 27
+        Me.comboboxDomicilioLocalidad.TabIndex = 29
         '
         'comboboxDomicilioProvincia
         '
@@ -406,7 +526,7 @@ Partial Class formEntidad
         Me.comboboxDomicilioProvincia.Location = New System.Drawing.Point(75, 287)
         Me.comboboxDomicilioProvincia.Name = "comboboxDomicilioProvincia"
         Me.comboboxDomicilioProvincia.Size = New System.Drawing.Size(258, 21)
-        Me.comboboxDomicilioProvincia.TabIndex = 25
+        Me.comboboxDomicilioProvincia.TabIndex = 27
         '
         'textboxDomicilioCalle1
         '
@@ -414,7 +534,7 @@ Partial Class formEntidad
         Me.textboxDomicilioCalle1.MaxLength = 100
         Me.textboxDomicilioCalle1.Name = "textboxDomicilioCalle1"
         Me.textboxDomicilioCalle1.Size = New System.Drawing.Size(258, 20)
-        Me.textboxDomicilioCalle1.TabIndex = 13
+        Me.textboxDomicilioCalle1.TabIndex = 15
         '
         'textboxDomicilioCodigoPostal
         '
@@ -422,7 +542,7 @@ Partial Class formEntidad
         Me.textboxDomicilioCodigoPostal.MaxLength = 8
         Me.textboxDomicilioCodigoPostal.Name = "textboxDomicilioCodigoPostal"
         Me.textboxDomicilioCodigoPostal.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioCodigoPostal.TabIndex = 29
+        Me.textboxDomicilioCodigoPostal.TabIndex = 31
         '
         'textboxDomicilioDepartamento
         '
@@ -430,7 +550,7 @@ Partial Class formEntidad
         Me.textboxDomicilioDepartamento.MaxLength = 10
         Me.textboxDomicilioDepartamento.Name = "textboxDomicilioDepartamento"
         Me.textboxDomicilioDepartamento.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioDepartamento.TabIndex = 19
+        Me.textboxDomicilioDepartamento.TabIndex = 21
         '
         'textboxDomicilioNumero
         '
@@ -438,7 +558,7 @@ Partial Class formEntidad
         Me.textboxDomicilioNumero.MaxLength = 10
         Me.textboxDomicilioNumero.Name = "textboxDomicilioNumero"
         Me.textboxDomicilioNumero.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioNumero.TabIndex = 15
+        Me.textboxDomicilioNumero.TabIndex = 17
         '
         'textboxDomicilioPiso
         '
@@ -446,7 +566,7 @@ Partial Class formEntidad
         Me.textboxDomicilioPiso.MaxLength = 10
         Me.textboxDomicilioPiso.Name = "textboxDomicilioPiso"
         Me.textboxDomicilioPiso.Size = New System.Drawing.Size(50, 20)
-        Me.textboxDomicilioPiso.TabIndex = 17
+        Me.textboxDomicilioPiso.TabIndex = 19
         '
         'textboxEmail2
         '
@@ -454,7 +574,7 @@ Partial Class formEntidad
         Me.textboxEmail2.MaxLength = 50
         Me.textboxEmail2.Name = "textboxEmail2"
         Me.textboxEmail2.Size = New System.Drawing.Size(306, 20)
-        Me.textboxEmail2.TabIndex = 11
+        Me.textboxEmail2.TabIndex = 13
         '
         'textboxEmail1
         '
@@ -462,7 +582,7 @@ Partial Class formEntidad
         Me.textboxEmail1.MaxLength = 50
         Me.textboxEmail1.Name = "textboxEmail1"
         Me.textboxEmail1.Size = New System.Drawing.Size(306, 20)
-        Me.textboxEmail1.TabIndex = 9
+        Me.textboxEmail1.TabIndex = 11
         '
         'textboxTelefono2
         '
@@ -470,7 +590,7 @@ Partial Class formEntidad
         Me.textboxTelefono2.MaxLength = 50
         Me.textboxTelefono2.Name = "textboxTelefono2"
         Me.textboxTelefono2.Size = New System.Drawing.Size(170, 20)
-        Me.textboxTelefono2.TabIndex = 7
+        Me.textboxTelefono2.TabIndex = 9
         '
         'maskedtextboxCUIT
         '
@@ -491,7 +611,138 @@ Partial Class formEntidad
         Me.textboxTelefono1.MaxLength = 50
         Me.textboxTelefono1.Name = "textboxTelefono1"
         Me.textboxTelefono1.Size = New System.Drawing.Size(170, 20)
-        Me.textboxTelefono1.TabIndex = 5
+        Me.textboxTelefono1.TabIndex = 7
+        '
+        'tabpageDatosBancarios
+        '
+        Me.tabpageDatosBancarios.Controls.Add(Me.textboxCuentaBancariaTitular)
+        Me.tabpageDatosBancarios.Controls.Add(Me.labelCuentaBancariaTitular)
+        Me.tabpageDatosBancarios.Controls.Add(Me.labelCuentaBancariaCuit)
+        Me.tabpageDatosBancarios.Controls.Add(Me.maskedtextboxCuentaBancariaCuit)
+        Me.tabpageDatosBancarios.Controls.Add(Me.maskedtextboxCuentaBancariaSucursal)
+        Me.tabpageDatosBancarios.Controls.Add(Me.maskedtextboxCuentaBancariaCbu)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaCbuAlias)
+        Me.tabpageDatosBancarios.Controls.Add(Me.textboxCuentaBancariaCbuAlias)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaCbu)
+        Me.tabpageDatosBancarios.Controls.Add(Me.comboboxCuentaBancariaTipo)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaTipo)
+        Me.tabpageDatosBancarios.Controls.Add(Me.comboboxCuentaBancariaBanco)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaBanco)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaNumero)
+        Me.tabpageDatosBancarios.Controls.Add(Me.textboxCuentaBancariaNumero)
+        Me.tabpageDatosBancarios.Controls.Add(labelCuentaBancariaSucursal)
+        Me.tabpageDatosBancarios.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageDatosBancarios.Name = "tabpageDatosBancarios"
+        Me.tabpageDatosBancarios.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageDatosBancarios.Size = New System.Drawing.Size(511, 385)
+        Me.tabpageDatosBancarios.TabIndex = 2
+        Me.tabpageDatosBancarios.Text = "Datos bancarios"
+        Me.tabpageDatosBancarios.UseVisualStyleBackColor = True
+        '
+        'textboxCuentaBancariaTitular
+        '
+        Me.textboxCuentaBancariaTitular.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxCuentaBancariaTitular.Location = New System.Drawing.Point(69, 189)
+        Me.textboxCuentaBancariaTitular.MaxLength = 50
+        Me.textboxCuentaBancariaTitular.Name = "textboxCuentaBancariaTitular"
+        Me.textboxCuentaBancariaTitular.Size = New System.Drawing.Size(436, 20)
+        Me.textboxCuentaBancariaTitular.TabIndex = 31
+        '
+        'labelCuentaBancariaTitular
+        '
+        Me.labelCuentaBancariaTitular.AutoSize = True
+        Me.labelCuentaBancariaTitular.Location = New System.Drawing.Point(6, 192)
+        Me.labelCuentaBancariaTitular.Name = "labelCuentaBancariaTitular"
+        Me.labelCuentaBancariaTitular.Size = New System.Drawing.Size(39, 13)
+        Me.labelCuentaBancariaTitular.TabIndex = 30
+        Me.labelCuentaBancariaTitular.Text = "Titular:"
+        '
+        'labelCuentaBancariaCuit
+        '
+        Me.labelCuentaBancariaCuit.AutoSize = True
+        Me.labelCuentaBancariaCuit.Location = New System.Drawing.Point(6, 166)
+        Me.labelCuentaBancariaCuit.Name = "labelCuentaBancariaCuit"
+        Me.labelCuentaBancariaCuit.Size = New System.Drawing.Size(35, 13)
+        Me.labelCuentaBancariaCuit.TabIndex = 28
+        Me.labelCuentaBancariaCuit.Text = "CUIT:"
+        '
+        'maskedtextboxCuentaBancariaCuit
+        '
+        Me.maskedtextboxCuentaBancariaCuit.AllowPromptAsInput = False
+        Me.maskedtextboxCuentaBancariaCuit.AsciiOnly = True
+        Me.maskedtextboxCuentaBancariaCuit.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCuentaBancariaCuit.HidePromptOnLeave = True
+        Me.maskedtextboxCuentaBancariaCuit.Location = New System.Drawing.Point(69, 163)
+        Me.maskedtextboxCuentaBancariaCuit.Mask = "00-00000000-0"
+        Me.maskedtextboxCuentaBancariaCuit.Name = "maskedtextboxCuentaBancariaCuit"
+        Me.maskedtextboxCuentaBancariaCuit.Size = New System.Drawing.Size(94, 20)
+        Me.maskedtextboxCuentaBancariaCuit.TabIndex = 29
+        Me.maskedtextboxCuentaBancariaCuit.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxCuentaBancariaSucursal
+        '
+        Me.maskedtextboxCuentaBancariaSucursal.AllowPromptAsInput = False
+        Me.maskedtextboxCuentaBancariaSucursal.AsciiOnly = True
+        Me.maskedtextboxCuentaBancariaSucursal.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCuentaBancariaSucursal.HidePromptOnLeave = True
+        Me.maskedtextboxCuentaBancariaSucursal.Location = New System.Drawing.Point(69, 59)
+        Me.maskedtextboxCuentaBancariaSucursal.Mask = "9999"
+        Me.maskedtextboxCuentaBancariaSucursal.Name = "maskedtextboxCuentaBancariaSucursal"
+        Me.maskedtextboxCuentaBancariaSucursal.Size = New System.Drawing.Size(40, 20)
+        Me.maskedtextboxCuentaBancariaSucursal.TabIndex = 21
+        Me.maskedtextboxCuentaBancariaSucursal.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'maskedtextboxCuentaBancariaCbu
+        '
+        Me.maskedtextboxCuentaBancariaCbu.AllowPromptAsInput = False
+        Me.maskedtextboxCuentaBancariaCbu.AsciiOnly = True
+        Me.maskedtextboxCuentaBancariaCbu.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        Me.maskedtextboxCuentaBancariaCbu.HidePromptOnLeave = True
+        Me.maskedtextboxCuentaBancariaCbu.Location = New System.Drawing.Point(69, 111)
+        Me.maskedtextboxCuentaBancariaCbu.Margin = New System.Windows.Forms.Padding(2)
+        Me.maskedtextboxCuentaBancariaCbu.Mask = "0000000-0 0000000000000-0"
+        Me.maskedtextboxCuentaBancariaCbu.Name = "maskedtextboxCuentaBancariaCbu"
+        Me.maskedtextboxCuentaBancariaCbu.Size = New System.Drawing.Size(153, 20)
+        Me.maskedtextboxCuentaBancariaCbu.TabIndex = 25
+        Me.maskedtextboxCuentaBancariaCbu.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
+        '
+        'textboxCuentaBancariaCbuAlias
+        '
+        Me.textboxCuentaBancariaCbuAlias.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.textboxCuentaBancariaCbuAlias.Location = New System.Drawing.Point(69, 137)
+        Me.textboxCuentaBancariaCbuAlias.MaxLength = 50
+        Me.textboxCuentaBancariaCbuAlias.Name = "textboxCuentaBancariaCbuAlias"
+        Me.textboxCuentaBancariaCbuAlias.Size = New System.Drawing.Size(150, 20)
+        Me.textboxCuentaBancariaCbuAlias.TabIndex = 27
+        '
+        'comboboxCuentaBancariaTipo
+        '
+        Me.comboboxCuentaBancariaTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCuentaBancariaTipo.FormattingEnabled = True
+        Me.comboboxCuentaBancariaTipo.Location = New System.Drawing.Point(69, 32)
+        Me.comboboxCuentaBancariaTipo.Name = "comboboxCuentaBancariaTipo"
+        Me.comboboxCuentaBancariaTipo.Size = New System.Drawing.Size(150, 21)
+        Me.comboboxCuentaBancariaTipo.TabIndex = 19
+        '
+        'comboboxCuentaBancariaBanco
+        '
+        Me.comboboxCuentaBancariaBanco.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.comboboxCuentaBancariaBanco.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCuentaBancariaBanco.FormattingEnabled = True
+        Me.comboboxCuentaBancariaBanco.Location = New System.Drawing.Point(69, 5)
+        Me.comboboxCuentaBancariaBanco.Name = "comboboxCuentaBancariaBanco"
+        Me.comboboxCuentaBancariaBanco.Size = New System.Drawing.Size(436, 21)
+        Me.comboboxCuentaBancariaBanco.TabIndex = 17
+        '
+        'textboxCuentaBancariaNumero
+        '
+        Me.textboxCuentaBancariaNumero.Location = New System.Drawing.Point(69, 85)
+        Me.textboxCuentaBancariaNumero.MaxLength = 50
+        Me.textboxCuentaBancariaNumero.Name = "textboxCuentaBancariaNumero"
+        Me.textboxCuentaBancariaNumero.Size = New System.Drawing.Size(150, 20)
+        Me.textboxCuentaBancariaNumero.TabIndex = 23
         '
         'tabpageNotasAuditoria
         '
@@ -510,15 +761,16 @@ Partial Class formEntidad
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(511, 365)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(511, 385)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
         'labelID
         '
+        Me.labelID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelID.AutoSize = True
-        Me.labelID.Location = New System.Drawing.Point(8, 290)
+        Me.labelID.Location = New System.Drawing.Point(8, 310)
         Me.labelID.Name = "labelID"
         Me.labelID.Size = New System.Drawing.Size(21, 13)
         Me.labelID.TabIndex = 4
@@ -526,7 +778,8 @@ Partial Class formEntidad
         '
         'textboxID
         '
-        Me.textboxID.Location = New System.Drawing.Point(116, 287)
+        Me.textboxID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxID.Location = New System.Drawing.Point(116, 307)
         Me.textboxID.MaxLength = 10
         Me.textboxID.Name = "textboxID"
         Me.textboxID.ReadOnly = True
@@ -537,7 +790,9 @@ Partial Class formEntidad
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(243, 339)
+        Me.textboxUsuarioModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(243, 359)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -546,7 +801,9 @@ Partial Class formEntidad
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(243, 313)
+        Me.textboxUsuarioCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(243, 333)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -555,7 +812,8 @@ Partial Class formEntidad
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(116, 339)
+        Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(116, 359)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -564,7 +822,8 @@ Partial Class formEntidad
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(116, 313)
+        Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(116, 333)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -573,12 +832,15 @@ Partial Class formEntidad
         '
         'textboxNotas
         '
+        Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.textboxNotas.Location = New System.Drawing.Point(116, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 251)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 271)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -590,18 +852,47 @@ Partial Class formEntidad
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'formProveedor
+        'labelHabilitar
+        '
+        labelHabilitar.AutoSize = True
+        labelHabilitar.Location = New System.Drawing.Point(6, 371)
+        labelHabilitar.Name = "labelHabilitar"
+        labelHabilitar.Size = New System.Drawing.Size(48, 13)
+        labelHabilitar.TabIndex = 32
+        labelHabilitar.Text = "Habilitar:"
+        '
+        'checkboxHabilitarCompra
+        '
+        Me.checkboxHabilitarCompra.AutoSize = True
+        Me.checkboxHabilitarCompra.Location = New System.Drawing.Point(75, 370)
+        Me.checkboxHabilitarCompra.Name = "checkboxHabilitarCompra"
+        Me.checkboxHabilitarCompra.Size = New System.Drawing.Size(67, 17)
+        Me.checkboxHabilitarCompra.TabIndex = 33
+        Me.checkboxHabilitarCompra.Text = "Compras"
+        Me.checkboxHabilitarCompra.UseVisualStyleBackColor = True
+        '
+        'checkboxHabilitarVenta
+        '
+        Me.checkboxHabilitarVenta.AutoSize = True
+        Me.checkboxHabilitarVenta.Location = New System.Drawing.Point(150, 370)
+        Me.checkboxHabilitarVenta.Name = "checkboxHabilitarVenta"
+        Me.checkboxHabilitarVenta.Size = New System.Drawing.Size(59, 17)
+        Me.checkboxHabilitarVenta.TabIndex = 34
+        Me.checkboxHabilitarVenta.Text = "Ventas"
+        Me.checkboxHabilitarVenta.UseVisualStyleBackColor = True
+        '
+        'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(541, 448)
+        Me.ClientSize = New System.Drawing.Size(541, 478)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formProveedor"
+        Me.Name = "formEntidad"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Proveedor"
@@ -610,6 +901,8 @@ Partial Class formEntidad
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        Me.tabpageDatosBancarios.ResumeLayout(False)
+        Me.tabpageDatosBancarios.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -649,4 +942,18 @@ Partial Class formEntidad
     Friend WithEvents textboxDomicilioDepartamento As TextBox
     Friend WithEvents textboxDomicilioNumero As TextBox
     Friend WithEvents textboxDomicilioPiso As TextBox
+    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents tabpageDatosBancarios As TabPage
+    Private WithEvents textboxCuentaBancariaTitular As TextBox
+    Private WithEvents labelCuentaBancariaTitular As Label
+    Private WithEvents labelCuentaBancariaCuit As Label
+    Friend WithEvents maskedtextboxCuentaBancariaCuit As MaskedTextBox
+    Private WithEvents maskedtextboxCuentaBancariaSucursal As MaskedTextBox
+    Friend WithEvents maskedtextboxCuentaBancariaCbu As MaskedTextBox
+    Friend WithEvents textboxCuentaBancariaCbuAlias As TextBox
+    Friend WithEvents comboboxCuentaBancariaTipo As ComboBox
+    Friend WithEvents comboboxCuentaBancariaBanco As ComboBox
+    Friend WithEvents textboxCuentaBancariaNumero As TextBox
+    Friend WithEvents checkboxHabilitarVenta As CheckBox
+    Friend WithEvents checkboxHabilitarCompra As CheckBox
 End Class

@@ -491,6 +491,19 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="CuentaBancariaTipo">
+          <Key>
+            <PropertyRef Name="IDCuentaBancariaTipo" />
+          </Key>
+          <Property Name="IDCuentaBancariaTipo" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Curso">
           <Key>
             <PropertyRef Name="IDCurso" />
@@ -549,6 +562,7 @@
           <Property Name="IDEntidad" Type="smallint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Cuit" Type="bigint" />
+          <Property Name="IDCategoriaIVA" Type="tinyint" />
           <Property Name="Telefono1" Type="varchar" MaxLength="50" />
           <Property Name="Telefono2" Type="varchar" MaxLength="50" />
           <Property Name="Email1" Type="varchar" MaxLength="50" />
@@ -563,9 +577,16 @@
           <Property Name="DomicilioCodigoPostal" Type="varchar" MaxLength="8" />
           <Property Name="DomicilioIDProvincia" Type="tinyint" />
           <Property Name="DomicilioIDLocalidad" Type="smallint" />
-          <Property Name="IDCategoriaIVA" Type="tinyint" />
           <Property Name="HabilitarCompra" Type="bit" Nullable="false" />
           <Property Name="HabilitarVenta" Type="bit" Nullable="false" />
+          <Property Name="CuentaBancariaIDBanco" Type="smallint" />
+          <Property Name="CuentaBancariaIDTipo" Type="tinyint" />
+          <Property Name="CuentaBancariaSucursal" Type="smallint" />
+          <Property Name="CuentaBancariaNumero" Type="varchar" MaxLength="20" />
+          <Property Name="CuentaBancariaCbu" Type="char" MaxLength="22" />
+          <Property Name="CuentaBancariaCbuAlias" Type="varchar" MaxLength="20" />
+          <Property Name="CuentaBancariaCuit" Type="bigint" />
+          <Property Name="CuentaBancariaTitular" Type="varchar" MaxLength="50" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -2173,6 +2194,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__CuentaBancariaTipo__Entidad">
+          <End Role="CuentaBancariaTipo" Type="Self.CuentaBancariaTipo" Multiplicity="0..1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDCuentaBancariaTipo" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="CuentaBancariaIDTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Curso__PersonaCapacitacion">
           <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
           <End Role="PersonaCapacitacion" Type="Self.PersonaCapacitacion" Multiplicity="*" />
@@ -3579,6 +3612,30 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="Cuartel">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CuentaBancariaTipo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaBancariaTipo" Type="Self.CuentaBancariaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CuentaBancariaTipo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="CuentaBancariaTipo" Type="Self.CuentaBancariaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CuentaBancariaTipo">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -4994,6 +5051,7 @@
           <EntitySet Name="ComprobanteTipo" EntityType="Self.ComprobanteTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Concepto" EntityType="Self.Concepto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cuartel" EntityType="Self.Cuartel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentaBancariaTipo" EntityType="Self.CuentaBancariaTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentacionTipo" EntityType="Self.DocumentacionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DocumentoTipo" EntityType="Self.DocumentoTipo" Schema="dbo" store:Type="Tables" />
@@ -5239,6 +5297,10 @@
           <AssociationSet Name="FK__Cuartel__Usuario" Association="Self.FK__Cuartel__Usuario">
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaBancariaTipo__Entidad" Association="Self.FK__CuentaBancariaTipo__Entidad">
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+            <End Role="Entidad" EntitySet="Entidad" />
           </AssociationSet>
           <AssociationSet Name="FK__Curso__PersonaCapacitacion" Association="Self.FK__Curso__PersonaCapacitacion">
             <End Role="Curso" EntitySet="Curso" />
@@ -5703,6 +5765,14 @@
           <AssociationSet Name="FK__Usuario__Cuartel__Modificacion" Association="Self.FK__Usuario__Cuartel__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Cuartel" EntitySet="Cuartel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CuentaBancariaTipo__Creacion" Association="Self.FK__Usuario__CuentaBancariaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CuentaBancariaTipo__Modificacion" Association="Self.FK__Usuario__CuentaBancariaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Curso__Creacion" Association="Self.FK__Usuario__Curso__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -7369,6 +7439,19 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Numerador" EntitySet="Numerador" />
           </AssociationSet>
+          <EntitySet Name="CuentaBancariaTipo" EntityType="CSBomberosModel.CuentaBancariaTipo" />
+          <AssociationSet Name="FK__Usuario__CuentaBancariaTipo__Creacion" Association="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__CuentaBancariaTipo__Modificacion" Association="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaBancariaTipo__Entidad" Association="CSBomberosModel.FK__CuentaBancariaTipo__Entidad">
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+            <End Role="Entidad" EntitySet="Entidad" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -7656,6 +7739,8 @@
           <NavigationProperty Name="ComprobantesTransmitidosAfip" Relationship="CSBomberosModel.FK__Usuario__Comprobante__TransmisionAfip" FromRole="Usuario" ToRole="Comprobante" />
           <NavigationProperty Name="NumeradoresCreados" Relationship="CSBomberosModel.FK__Usuario__Numerador__Creacion" FromRole="Usuario" ToRole="Numerador" />
           <NavigationProperty Name="NumeradoresModificados" Relationship="CSBomberosModel.FK__Usuario__Numerador__Modificacion" FromRole="Usuario" ToRole="Numerador" />
+          <NavigationProperty Name="CuentasBancariasTiposCreadas" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion" FromRole="Usuario" ToRole="CuentaBancariaTipo" />
+          <NavigationProperty Name="CuentasBancariasTiposModificados" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" FromRole="Usuario" ToRole="CuentaBancariaTipo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -12182,6 +12267,7 @@
           <Property Name="IDEntidad" Type="Int16" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Cuit" Type="Int64" />
+          <Property Name="IDCategoriaIVA" Type="Byte" />
           <Property Name="Telefono1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -12198,6 +12284,14 @@
           <Property Name="DomicilioIDLocalidad" Type="Int16" />
           <Property Name="HabilitarCompra" Type="Boolean" Nullable="false" />
           <Property Name="HabilitarVenta" Type="Boolean" Nullable="false" />
+          <Property Name="CuentaBancariaIDBanco" Type="Int16" />
+          <Property Name="CuentaBancariaIDTipo" Type="Byte" />
+          <Property Name="CuentaBancariaSucursal" Type="Int16" />
+          <Property Name="CuentaBancariaNumero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaBancariaCbu" Type="String" MaxLength="22" FixedLength="true" Unicode="false" />
+          <Property Name="CuentaBancariaCbuAlias" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CuentaBancariaCuit" Type="Int64" />
+          <Property Name="CuentaBancariaTitular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -12209,8 +12303,8 @@
           <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK__Localidad__Entidad" FromRole="Entidad" ToRole="Localidad" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Entidad__Creacion" FromRole="Entidad" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Entidad__Modificacion" FromRole="Entidad" ToRole="Usuario" />
-          <Property Name="IDCategoriaIVA" Type="Byte" />
           <NavigationProperty Name="CategoriaIVA" Relationship="CSBomberosModel.FK__CategoriaIVA__Entidad" FromRole="Entidad" ToRole="CategoriaIVA" />
+          <NavigationProperty Name="CuentaBancariaTipo" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__Entidad" FromRole="Entidad" ToRole="CuentaBancariaTipo" />
         </EntityType>
         <Association Name="FK__Entidad__CompraOrden">
           <End Type="CSBomberosModel.Entidad" Role="Entidad" Multiplicity="1" />
@@ -12850,6 +12944,58 @@
             </Principal>
             <Dependent Role="Numerador">
               <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CuentaBancariaTipo">
+          <Key>
+            <PropertyRef Name="IDCuentaBancariaTipo" />
+          </Key>
+          <Property Name="IDCuentaBancariaTipo" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion" FromRole="CuentaBancariaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" FromRole="CuentaBancariaTipo" ToRole="Usuario" />
+          <NavigationProperty Name="Entidades" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__Entidad" FromRole="CuentaBancariaTipo" ToRole="Entidad" />
+        </EntityType>
+        <Association Name="FK__Usuario__CuentaBancariaTipo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CuentaBancariaTipo" Role="CuentaBancariaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__CuentaBancariaTipo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.CuentaBancariaTipo" Role="CuentaBancariaTipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaBancariaTipo__Entidad">
+          <End Type="CSBomberosModel.CuentaBancariaTipo" Role="CuentaBancariaTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Entidad" Role="Entidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDCuentaBancariaTipo" />
+            </Principal>
+            <Dependent Role="Entidad">
+              <PropertyRef Name="CuentaBancariaIDTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14410,6 +14556,14 @@
           <EntitySetMapping Name="Entidad">
             <EntityTypeMapping TypeName="CSBomberosModel.Entidad">
               <MappingFragment StoreEntitySet="Entidad">
+                <ScalarProperty Name="CuentaBancariaCuit" ColumnName="CuentaBancariaCuit" />
+                <ScalarProperty Name="CuentaBancariaTitular" ColumnName="CuentaBancariaTitular" />
+                <ScalarProperty Name="CuentaBancariaCbuAlias" ColumnName="CuentaBancariaCbuAlias" />
+                <ScalarProperty Name="CuentaBancariaCbu" ColumnName="CuentaBancariaCbu" />
+                <ScalarProperty Name="CuentaBancariaNumero" ColumnName="CuentaBancariaNumero" />
+                <ScalarProperty Name="CuentaBancariaSucursal" ColumnName="CuentaBancariaSucursal" />
+                <ScalarProperty Name="CuentaBancariaIDTipo" ColumnName="CuentaBancariaIDTipo" />
+                <ScalarProperty Name="CuentaBancariaIDBanco" ColumnName="CuentaBancariaIDBanco" />
                 <ScalarProperty Name="DomicilioCalleCompleto" ColumnName="DomicilioCalleCompleto" />
                 <ScalarProperty Name="IDCategoriaIVA" ColumnName="IDCategoriaIVA" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
@@ -14586,6 +14740,20 @@
                 <ScalarProperty Name="PuntoVenta" ColumnName="PuntoVenta" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDNumerador" ColumnName="IDNumerador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentaBancariaTipo">
+            <EntityTypeMapping TypeName="CSBomberosModel.CuentaBancariaTipo">
+              <MappingFragment StoreEntitySet="CuentaBancariaTipo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCuentaBancariaTipo" ColumnName="IDCuentaBancariaTipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

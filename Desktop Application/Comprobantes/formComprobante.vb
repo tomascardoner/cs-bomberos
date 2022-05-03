@@ -126,7 +126,7 @@
         MaskedTextBoxNumero.Mask = New String("0"c, Constantes.ComprobanteNumeroLongitud)
 
         ' Cargo los ComboBox
-        ListasComprobantes.LlenarComboBoxComprobanteTipos(mdbContext, comboboxComprobanteTipo, mOperacionTipo, False, False)
+        ListasComprobantes.LlenarComboBoxComprobantesTipos(mdbContext, comboboxComprobanteTipo, mOperacionTipo, False, False)
     End Sub
 
     Friend Sub SetAppearance()

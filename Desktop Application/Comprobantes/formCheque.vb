@@ -48,9 +48,9 @@
 
     Friend Sub InitializeFormAndControls()
         ' Cargo los ComboBox
-        ListasComprobantes.LlenarComboBoxMediosPago(mdbContext, comboboxMedioPago, False, True, False)
-        ListasComprobantes.LlenarComboBoxBancos(mdbContext, comboboxBanco, False)
-        ListasComprobantes.LlenarComboBoxChequesMotivosRechazo(mdbContext, comboboxMotivoRechazo, True, False)
+        ListasComprobantes.LlenarComboBoxMediosPago(mdbContext, comboboxMedioPago, False, True, False, False)
+        ListasComprobantes.LlenarComboBoxBancos(mdbContext, comboboxBanco, False, True)
+        ListasComprobantes.LlenarComboBoxChequesMotivosRechazo(mdbContext, comboboxMotivoRechazo, True, False, True)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

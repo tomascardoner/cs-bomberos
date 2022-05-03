@@ -90,16 +90,28 @@
                 mReportSelectionFormula = ""
                 mlistEntidadesFiltradaYOrdenada = mlistEntidadesBase.ToList
 
-                'Filtro por Activo
+                ' Filtro por Activo
                 Select Case comboboxActivo.SelectedIndex
                     Case 0      ' Todos
                     Case 1      ' Sí
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 1"
-                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(a) a.EsActivo).ToList
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.EsActivo).ToList
                     Case 2      ' No
                         mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.EsActivo} = 0"
-                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(a) Not a.EsActivo).ToList
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) Not e.EsActivo).ToList
                 End Select
+
+                ' Filtro por Tipo
+                If Not (buttonCompras.Checked And buttonVentas.Checked) Then
+                    If buttonCompras.Checked Then
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.HabilitarCompra} = 1"
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.HabilitarCompra).ToList
+                    End If
+                    If buttonVentas.Checked Then
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.HabilitarVenta} = 1"
+                        mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.HabilitarVenta).ToList
+                    End If
+                End If
 
                 Select Case mlistEntidadesFiltradaYOrdenada.Count
                     Case 0
@@ -162,7 +174,7 @@
         End If
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged, buttonCompras.Click, buttonVentas.Click
         FilterData()
     End Sub
 

@@ -14,6 +14,7 @@ Partial Public Class Entidad
     Public Property IDEntidad As Short
     Public Property Nombre As String
     Public Property Cuit As Nullable(Of Long)
+    Public Property IDCategoriaIVA As Nullable(Of Byte)
     Public Property Telefono1 As String
     Public Property Telefono2 As String
     Public Property Email1 As String
@@ -30,13 +31,20 @@ Partial Public Class Entidad
     Public Property DomicilioIDLocalidad As Nullable(Of Short)
     Public Property HabilitarCompra As Boolean
     Public Property HabilitarVenta As Boolean
+    Public Property CuentaBancariaIDBanco As Nullable(Of Short)
+    Public Property CuentaBancariaIDTipo As Nullable(Of Byte)
+    Public Property CuentaBancariaSucursal As Nullable(Of Short)
+    Public Property CuentaBancariaNumero As String
+    Public Property CuentaBancariaCbu As String
+    Public Property CuentaBancariaCbuAlias As String
+    Public Property CuentaBancariaCuit As Nullable(Of Long)
+    Public Property CuentaBancariaTitular As String
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
-    Public Property IDCategoriaIVA As Nullable(Of Byte)
 
     Public Overridable Property CompraOrdenes As ICollection(Of CompraOrden) = New HashSet(Of CompraOrden)
     Public Overridable Property Comprobantes As ICollection(Of Comprobante) = New HashSet(Of Comprobante)
@@ -44,5 +52,6 @@ Partial Public Class Entidad
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property CategoriaIVA As CategoriaIVA
+    Public Overridable Property CuentaBancariaTipo As CuentaBancariaTipo
 
 End Class

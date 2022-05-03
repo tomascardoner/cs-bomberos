@@ -350,13 +350,13 @@
                 comboboxComprobanteTipo.Enabled = False
             Case 1
                 Using context As New CSBomberosContext(True)
-                    ListasComprobantes.LlenarComboBoxComprobanteTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoCompra, True, False)
+                    ListasComprobantes.LlenarComboBoxComprobantesTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoCompra, True, False)
                 End Using
                 comboboxComprobanteTipo.Enabled = True
                 comboboxComprobanteTipo.SelectedIndex = 0
             Case 2
                 Using context As New CSBomberosContext(True)
-                    ListasComprobantes.LlenarComboBoxComprobanteTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoVenta, True, False)
+                    ListasComprobantes.LlenarComboBoxComprobantesTipos(context, comboboxComprobanteTipo.ComboBox, Constantes.OperacionTipoVenta, True, False)
                 End Using
                 comboboxComprobanteTipo.Enabled = True
                 comboboxComprobanteTipo.SelectedIndex = 0
