@@ -235,4 +235,29 @@
         control.DataSource = listArticulos
     End Sub
 
+    Friend Sub LlenarComboBoxCategoriasIva(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim listCategoriasIVA As List(Of CategoriaIVA)
+
+        control.ValueMember = "IDCategoriaIVA"
+        control.DisplayMember = "Nombre"
+
+        listCategoriasIVA = context.CategoriaIVA.Where(Function(cbt) cbt.EsActivo).OrderBy(Function(cbt) cbt.Nombre).ToList
+
+        If mostrarItemNoEspecifica Then
+            listCategoriasIVA.Insert(0, New CategoriaIVA With {
+                .IDCategoriaIVA = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+
+        If mostrarItemTodos Then
+            listCategoriasIVA.Insert(0, New CategoriaIVA With {
+                .IDCategoriaIVA = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            })
+        End If
+
+        control.DataSource = listCategoriasIVA
+    End Sub
+
 End Module

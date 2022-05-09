@@ -95,7 +95,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
+        ListasComprobantes.LlenarComboBoxCategoriasIva(mdbContext, comboboxCategoriaIVA, False, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioProvincia, True)
         ListasComprobantes.LlenarComboBoxBancos(mdbContext, comboboxCuentaBancariaBanco, False, True)
         ListasComprobantes.LlenarComboBoxCuentasBancariasTipos(mdbContext, comboboxCuentaBancariaTipo, False, True)
@@ -123,6 +123,7 @@
             ' Datos de la pestaña General
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             maskedtextboxCUIT.Text = CS_ValueTranslation.FromObjectLongToControlTextBox(.Cuit)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCategoriaIVA, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDCategoriaIVA, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             textboxTelefono1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono1)
             textboxTelefono2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono2)
             textboxEmail1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Email1)
@@ -177,6 +178,7 @@
             ' Datos de la pestaña General
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
             .Cuit = CS_ValueTranslation.FromControlTextBoxToObjectLong(maskedtextboxCUIT.Text)
+            .IDCategoriaIVA = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCategoriaIVA.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             .Telefono1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefono1.Text)
             .Telefono2 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTelefono2.Text)
             .Email1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxEmail1.Text)
@@ -196,7 +198,7 @@
             ' Datos de la pestaña Datos bancarios
             .CuentaBancariaIDBanco = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxCuentaBancariaBanco.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .CuentaBancariaIDTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuentaBancariaTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .CuentaBancariaSucursal = CS_ValueTranslation.FromControlComboBoxToObjectShort(maskedtextboxCuentaBancariaSucursal.Text)
+            .CuentaBancariaSucursal = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxCuentaBancariaSucursal.Text)
             .CuentaBancariaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCuentaBancariaNumero.Text)
             .CuentaBancariaCbu = CS_ValueTranslation.FromControlTextBoxToObjectString(maskedtextboxCuentaBancariaCbu.Text)
             .CuentaBancariaCbuAlias = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCuentaBancariaCbuAlias.Text)

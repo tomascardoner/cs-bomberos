@@ -39,7 +39,7 @@ Partial Class formEntidad
         Dim labelDomicilioProvincia As System.Windows.Forms.Label
         Dim labelDomicilioNumero As System.Windows.Forms.Label
         Dim labelDomicilioPiso As System.Windows.Forms.Label
-        Dim LabelCategoriaIVA As System.Windows.Forms.Label
+        Dim labelCategoriaIVA As System.Windows.Forms.Label
         Dim labelCuentaBancariaCbuAlias As System.Windows.Forms.Label
         Dim labelCuentaBancariaCbu As System.Windows.Forms.Label
         Dim labelCuentaBancariaTipo As System.Windows.Forms.Label
@@ -57,7 +57,9 @@ Partial Class formEntidad
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.checkboxHabilitarVenta = New System.Windows.Forms.CheckBox()
+        Me.checkboxHabilitarCompra = New System.Windows.Forms.CheckBox()
+        Me.comboboxCategoriaIVA = New System.Windows.Forms.ComboBox()
         Me.textboxDomicilioCalle3 = New System.Windows.Forms.TextBox()
         Me.textboxDomicilioCalle2 = New System.Windows.Forms.TextBox()
         Me.comboboxDomicilioLocalidad = New System.Windows.Forms.ComboBox()
@@ -92,8 +94,6 @@ Partial Class formEntidad
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.checkboxHabilitarCompra = New System.Windows.Forms.CheckBox()
-        Me.checkboxHabilitarVenta = New System.Windows.Forms.CheckBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -111,7 +111,7 @@ Partial Class formEntidad
         labelDomicilioProvincia = New System.Windows.Forms.Label()
         labelDomicilioNumero = New System.Windows.Forms.Label()
         labelDomicilioPiso = New System.Windows.Forms.Label()
-        LabelCategoriaIVA = New System.Windows.Forms.Label()
+        labelCategoriaIVA = New System.Windows.Forms.Label()
         labelCuentaBancariaCbuAlias = New System.Windows.Forms.Label()
         labelCuentaBancariaCbu = New System.Windows.Forms.Label()
         labelCuentaBancariaTipo = New System.Windows.Forms.Label()
@@ -282,14 +282,14 @@ Partial Class formEntidad
         labelDomicilioPiso.TabIndex = 18
         labelDomicilioPiso.Text = "Piso:"
         '
-        'LabelCategoriaIVA
+        'labelCategoriaIVA
         '
-        LabelCategoriaIVA.AutoSize = True
-        LabelCategoriaIVA.Location = New System.Drawing.Point(195, 35)
-        LabelCategoriaIVA.Name = "LabelCategoriaIVA"
-        LabelCategoriaIVA.Size = New System.Drawing.Size(92, 13)
-        LabelCategoriaIVA.TabIndex = 4
-        LabelCategoriaIVA.Text = "Categoría de IVA:"
+        labelCategoriaIVA.AutoSize = True
+        labelCategoriaIVA.Location = New System.Drawing.Point(195, 35)
+        labelCategoriaIVA.Name = "labelCategoriaIVA"
+        labelCategoriaIVA.Size = New System.Drawing.Size(92, 13)
+        labelCategoriaIVA.TabIndex = 4
+        labelCategoriaIVA.Text = "Categoría de IVA:"
         '
         'labelCuentaBancariaCbuAlias
         '
@@ -344,6 +344,15 @@ Partial Class formEntidad
         labelCuentaBancariaSucursal.Size = New System.Drawing.Size(51, 13)
         labelCuentaBancariaSucursal.TabIndex = 20
         labelCuentaBancariaSucursal.Text = "Sucursal:"
+        '
+        'labelHabilitar
+        '
+        labelHabilitar.AutoSize = True
+        labelHabilitar.Location = New System.Drawing.Point(6, 371)
+        labelHabilitar.Name = "labelHabilitar"
+        labelHabilitar.Size = New System.Drawing.Size(48, 13)
+        labelHabilitar.TabIndex = 32
+        labelHabilitar.Text = "Habilitar:"
         '
         'textboxNombre
         '
@@ -443,8 +452,8 @@ Partial Class formEntidad
         Me.tabpageGeneral.Controls.Add(Me.checkboxHabilitarVenta)
         Me.tabpageGeneral.Controls.Add(Me.checkboxHabilitarCompra)
         Me.tabpageGeneral.Controls.Add(labelHabilitar)
-        Me.tabpageGeneral.Controls.Add(Me.ComboBox1)
-        Me.tabpageGeneral.Controls.Add(LabelCategoriaIVA)
+        Me.tabpageGeneral.Controls.Add(Me.comboboxCategoriaIVA)
+        Me.tabpageGeneral.Controls.Add(labelCategoriaIVA)
         Me.tabpageGeneral.Controls.Add(labelDomicilioCalle3)
         Me.tabpageGeneral.Controls.Add(labelDomicilioCalle2)
         Me.tabpageGeneral.Controls.Add(Me.textboxDomicilioCalle3)
@@ -483,16 +492,36 @@ Partial Class formEntidad
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'checkboxHabilitarVenta
         '
-        Me.ComboBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.checkboxHabilitarVenta.AutoSize = True
+        Me.checkboxHabilitarVenta.Location = New System.Drawing.Point(150, 370)
+        Me.checkboxHabilitarVenta.Name = "checkboxHabilitarVenta"
+        Me.checkboxHabilitarVenta.Size = New System.Drawing.Size(59, 17)
+        Me.checkboxHabilitarVenta.TabIndex = 34
+        Me.checkboxHabilitarVenta.Text = "Ventas"
+        Me.checkboxHabilitarVenta.UseVisualStyleBackColor = True
+        '
+        'checkboxHabilitarCompra
+        '
+        Me.checkboxHabilitarCompra.AutoSize = True
+        Me.checkboxHabilitarCompra.Location = New System.Drawing.Point(75, 370)
+        Me.checkboxHabilitarCompra.Name = "checkboxHabilitarCompra"
+        Me.checkboxHabilitarCompra.Size = New System.Drawing.Size(67, 17)
+        Me.checkboxHabilitarCompra.TabIndex = 33
+        Me.checkboxHabilitarCompra.Text = "Compras"
+        Me.checkboxHabilitarCompra.UseVisualStyleBackColor = True
+        '
+        'comboboxCategoriaIVA
+        '
+        Me.comboboxCategoriaIVA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(293, 32)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(212, 21)
-        Me.ComboBox1.TabIndex = 5
+        Me.comboboxCategoriaIVA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCategoriaIVA.FormattingEnabled = True
+        Me.comboboxCategoriaIVA.Location = New System.Drawing.Point(293, 32)
+        Me.comboboxCategoriaIVA.Name = "comboboxCategoriaIVA"
+        Me.comboboxCategoriaIVA.Size = New System.Drawing.Size(212, 21)
+        Me.comboboxCategoriaIVA.TabIndex = 5
         '
         'textboxDomicilioCalle3
         '
@@ -634,7 +663,7 @@ Partial Class formEntidad
         Me.tabpageDatosBancarios.Location = New System.Drawing.Point(4, 25)
         Me.tabpageDatosBancarios.Name = "tabpageDatosBancarios"
         Me.tabpageDatosBancarios.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDatosBancarios.Size = New System.Drawing.Size(511, 385)
+        Me.tabpageDatosBancarios.Size = New System.Drawing.Size(511, 395)
         Me.tabpageDatosBancarios.TabIndex = 2
         Me.tabpageDatosBancarios.Text = "Datos bancarios"
         Me.tabpageDatosBancarios.UseVisualStyleBackColor = True
@@ -761,7 +790,7 @@ Partial Class formEntidad
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(511, 385)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(511, 395)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -852,35 +881,6 @@ Partial Class formEntidad
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'labelHabilitar
-        '
-        labelHabilitar.AutoSize = True
-        labelHabilitar.Location = New System.Drawing.Point(6, 371)
-        labelHabilitar.Name = "labelHabilitar"
-        labelHabilitar.Size = New System.Drawing.Size(48, 13)
-        labelHabilitar.TabIndex = 32
-        labelHabilitar.Text = "Habilitar:"
-        '
-        'checkboxHabilitarCompra
-        '
-        Me.checkboxHabilitarCompra.AutoSize = True
-        Me.checkboxHabilitarCompra.Location = New System.Drawing.Point(75, 370)
-        Me.checkboxHabilitarCompra.Name = "checkboxHabilitarCompra"
-        Me.checkboxHabilitarCompra.Size = New System.Drawing.Size(67, 17)
-        Me.checkboxHabilitarCompra.TabIndex = 33
-        Me.checkboxHabilitarCompra.Text = "Compras"
-        Me.checkboxHabilitarCompra.UseVisualStyleBackColor = True
-        '
-        'checkboxHabilitarVenta
-        '
-        Me.checkboxHabilitarVenta.AutoSize = True
-        Me.checkboxHabilitarVenta.Location = New System.Drawing.Point(150, 370)
-        Me.checkboxHabilitarVenta.Name = "checkboxHabilitarVenta"
-        Me.checkboxHabilitarVenta.Size = New System.Drawing.Size(59, 17)
-        Me.checkboxHabilitarVenta.TabIndex = 34
-        Me.checkboxHabilitarVenta.Text = "Ventas"
-        Me.checkboxHabilitarVenta.UseVisualStyleBackColor = True
-        '
         'formEntidad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -942,7 +942,7 @@ Partial Class formEntidad
     Friend WithEvents textboxDomicilioDepartamento As TextBox
     Friend WithEvents textboxDomicilioNumero As TextBox
     Friend WithEvents textboxDomicilioPiso As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents comboboxCategoriaIVA As ComboBox
     Friend WithEvents tabpageDatosBancarios As TabPage
     Private WithEvents textboxCuentaBancariaTitular As TextBox
     Private WithEvents labelCuentaBancariaTitular As Label

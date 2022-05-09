@@ -131,4 +131,5 @@
         control.Visible = tipoControl.SelectedIndex <> 0
         control.SelectedIndex = 0
     End Sub
+
 End Module
