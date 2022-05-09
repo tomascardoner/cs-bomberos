@@ -1,27 +1,27 @@
 ﻿Module Constantes
 
-    '//////////////////
+    '##################
     '    APLICACIÓN
-    '//////////////////
-    Friend Const APPLICATION_DATABASE_GUID As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
-    Friend Const APPLICATION_DATABASE_VERSION As Integer = 1
+    '##################
+    Friend Const ApplicationDatabaseGuid As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
+    Friend Const ApplicationDatabaseVersion As Integer = 1
 
     ' Hex Key - 128 bits
-    Friend Const APPLICATION_LICENSE_PASSWORD As String = "B86F0161DE5AF8FDF45262AB2D805999"
+    Friend Const ApplicationLicensePassword As String = "B86F0161DE5AF8FDF45262AB2D805999"
 
-    '//////////////////
+    '##################
     '    MODULO
-    '//////////////////
-    Friend Const MODULO_DOCUMENTACIONES_ID As Byte = 1
-    Friend Const MODULO_DOCUMENTACIONES_NOMBRE As String = "Documentaciones"
-    Friend Const MODULO_JEFATURA_ID As Byte = 2
-    Friend Const MODULO_JEFATURA_NOMBRE As String = "Jefatura"
-    Friend Const MODULO_COMISIONDIRECTIVA_ID As Byte = 3
-    Friend Const MODULO_COMISIONDIRECTIVA_NOMBRE As String = "Comisión directiva"
+    '##################
+    Friend Const ModuloDocumentacionesId As Byte = 1
+    Friend Const ModuloDocumentacionesNombre As String = "Documentaciones"
+    Friend Const ModuloJefaturaId As Byte = 2
+    Friend Const ModuloJefaturaNombre As String = "Jefatura"
+    Friend Const ModulocomisionDirectivaId As Byte = 3
+    Friend Const ModulocomisionDirectivaNombre As String = "Comisión directiva"
 
-    '//////////////////
+    '##################
     '    ALARMA
-    '//////////////////
+    '##################
     Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA As String = "PN"
     Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA_LISTINDEX As Integer = 0
     Friend Const ALARMA_FECHATIPO_FECHANACIMIENTOPERSONA_NOMBRE As String = "Fecha de Nacimiento de la Persona"
@@ -38,9 +38,9 @@
     Friend Const ALARMA_FECHATIPO_FECHAALARMA_LISTINDEX As Integer = 3
     Friend Const ALARMA_FECHATIPO_FECHAALARMA_NOMBRE As String = "Fecha de Alarma"
 
-    '//////////////////
+    '##################
     '    PERSONA
-    '//////////////////
+    '##################
     Friend Const PERSONA_GENERO_NOESPECIFICA As String = "-"
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
@@ -55,7 +55,14 @@
     Friend Const PERSONA_ALTABAJA_TIPO_ALTA As String = "A"
     Friend Const PERSONA_ALTABAJA_TIPO_BAJA As String = "B"
 
-    Friend Const ASISTENCIA_METODO_MANUAL_ID As Byte = 1
+    Friend Const AsistenciaMetodoManualId As Byte = 1
+
+    Friend Const PersonaSancionEstadoEnProceso As String = "P"
+    Friend Const PersonaSancionEstadoEnProcesoNombre As String = "En proceso"
+    Friend Const PersonaSancionEstadoAprobada As String = "A"
+    Friend Const PersonaSancionEstadoAprobadaNombre As String = "Aprobada"
+    Friend Const PersonaSancionEstadoDesaprobada As String = "D"
+    Friend Const PersonaSancionEstadoDesaprobadaNombre As String = "Desaprobada"
 
     '##################
     '   COMPROBANTES
@@ -84,9 +91,9 @@
     Friend Const ComprobanteCodigoAfipNotaDebitoC As Byte = 12
     Friend Const ComprobanteCodigoAfipNotaCreditoC As Byte = 13
 
-    '//////////////////
+    '##################
     '    CHEQUES
-    '//////////////////
+    '##################
     Friend Const ChequeEstadoEnCartera As String = "EC"
     Friend Const ChequeEstadoEntregado As String = "ET"
     Friend Const ChequeEstadoEntregadoRechazado As String = "ER"
@@ -98,9 +105,9 @@
     Friend Const ChequeEstadoDepositadoRechazadoEnCartera As String = "DC"
     Friend Const ChequeEstadoDepositadoRechazadoDevuelto As String = "DV"
 
-    '//////////////////
+    '##################
     '    SINIESTROS
-    '//////////////////
+    '##################
     Friend Const SINIESTRO_NUMEROPREFIJO_DIGITOS As Byte = 4
     Friend Const SINIESTRO_NUMERO_DIGITOS As Byte = 8
 
@@ -124,9 +131,9 @@
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
 
-    '//////////////
+    '##################
     '    CAMPOS
-    '//////////////
+    '##################
     ' Nota: para los campos de fecha, se debe especificar el formato con los siguientes sufijos:
     '   _LITTLEENDIAN_SLASH => fecha en formato "dd/MM/yyyy"
     Friend Const CAMPOS_PERSONA_NUMEROAFILIADO As String = "[PERSONA_NUMEROAFILIADO]"

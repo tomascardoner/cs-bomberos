@@ -57,6 +57,7 @@ Partial Class formMDIMain
         Me.menuitemTablas_TiposVacuna = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_CausalesLicenciaPersonas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_TiposSancion = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemTablas_MotivosSancion = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_MenuCapacitaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_Cursos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemTablas_NivelesCapacitacion = New System.Windows.Forms.ToolStripMenuItem()
@@ -106,6 +107,7 @@ Partial Class formMDIMain
         Me.menuitemComisionDirectiva_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemJefatura_Sanciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -262,9 +264,9 @@ Partial Class formMDIMain
         '
         'menuitemTablas_MenuPersonas
         '
-        Me.menuitemTablas_MenuPersonas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_EstadosCiviles, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_TiposVehiculo, Me.menuitemTablas_MarcasVehiculo, Me.menuitemTablas_CompaniasSegurosVehiculo, Me.menuitemTablas_TiposVacuna, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion})
+        Me.menuitemTablas_MenuPersonas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_NivelesEstudio, Me.menuitemTablas_EstadosCiviles, Me.menuitemTablas_Parentescos, Me.menuitemTablas_MotivosBajaPersonas, Me.menuitemTablas_Cargos, Me.menuitemTablas_CargosJerarquias, Me.menuitemTablas_TiposVehiculo, Me.menuitemTablas_MarcasVehiculo, Me.menuitemTablas_CompaniasSegurosVehiculo, Me.menuitemTablas_TiposVacuna, Me.menuitemTablas_CausalesLicenciaPersonas, Me.menuitemTablas_TiposSancion, Me.menuitemTablas_MotivosSancion})
         Me.menuitemTablas_MenuPersonas.Name = "menuitemTablas_MenuPersonas"
-        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuPersonas.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuPersonas.Text = "Personas"
         '
         'menuitemTablas_NivelesEstudio
@@ -339,11 +341,17 @@ Partial Class formMDIMain
         Me.menuitemTablas_TiposSancion.Size = New System.Drawing.Size(194, 22)
         Me.menuitemTablas_TiposSancion.Text = "Tipos de sanciones"
         '
+        'menuitemTablas_MotivosSancion
+        '
+        Me.menuitemTablas_MotivosSancion.Name = "menuitemTablas_MotivosSancion"
+        Me.menuitemTablas_MotivosSancion.Size = New System.Drawing.Size(194, 22)
+        Me.menuitemTablas_MotivosSancion.Text = "Motivos de sanciones"
+        '
         'menuitemTablas_MenuCapacitaciones
         '
         Me.menuitemTablas_MenuCapacitaciones.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cursos, Me.menuitemTablas_NivelesCapacitacion, Me.menuitemTablas_TiposCapacitacion, Me.menuitemTablas_ConceptosCalificacion})
         Me.menuitemTablas_MenuCapacitaciones.Name = "menuitemTablas_MenuCapacitaciones"
-        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuCapacitaciones.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuCapacitaciones.Text = "Capacitaciones"
         '
         'menuitemTablas_Cursos
@@ -374,7 +382,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUnidades.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_TiposUnidad, Me.menuitemTablas_UsosUnidad, Me.menuitemTablas_MotivosBajaUnidad})
         Me.menuitemTablas_MenuUnidades.Name = "menuitemTablas_MenuUnidades"
-        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuUnidades.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuUnidades.Text = "Unidades"
         '
         'menuitemTablas_TiposUnidad
@@ -399,7 +407,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuInventario.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Rubros, Me.menuitemTablas_SubRubros, Me.menuitemTablas_Ubicaciones, Me.menuitemTablas_SubUbicaciones})
         Me.menuitemTablas_MenuInventario.Name = "menuitemTablas_MenuInventario"
-        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuInventario.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuInventario.Text = "Inventario"
         '
         'menuitemTablas_Rubros
@@ -430,7 +438,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuAcademias.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_AcademiasTipos, Me.menuitemTablas_AcademiasAsistenciasTipos})
         Me.menuitemTablas_MenuAcademias.Name = "menuitemTablas_MenuAcademias"
-        Me.menuitemTablas_MenuAcademias.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuAcademias.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuAcademias.Text = "Academias"
         '
         'menuitemTablas_AcademiasTipos
@@ -449,7 +457,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuSiniestros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_SiniestrosRubros, Me.menuitemTablas_SiniestrosTipos, Me.menuitemTablas_SiniestrosClaves, Me.menuitemTablas_SiniestrosAsistenciasTipos})
         Me.menuitemTablas_MenuSiniestros.Name = "menuitemTablas_MenuSiniestros"
-        Me.menuitemTablas_MenuSiniestros.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuSiniestros.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuSiniestros.Text = "Siniestros"
         '
         'menuitemTablas_SiniestrosRubros
@@ -480,7 +488,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuUsuarios.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_GruposUsuario, Me.menuitemTablas_Usuarios, Me.menuitemTablas_Permisos})
         Me.menuitemTablas_MenuUsuarios.Name = "menuitemTablas_MenuUsuarios"
-        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuUsuarios.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuUsuarios.Text = "Usuarios"
         '
         'menuitemTablas_GruposUsuario
@@ -505,7 +513,7 @@ Partial Class formMDIMain
         '
         Me.menuitemTablas_MenuOtros.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemTablas_Cuarteles, Me.menuitemTablas_Areas, Me.menuitemTablas_Alarmas, Me.menuitemTablas_TiposResponsables, Me.menuitemTablas_Responsables, Me.menuitemTablas_Entidades})
         Me.menuitemTablas_MenuOtros.Name = "menuitemTablas_MenuOtros"
-        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemTablas_MenuOtros.Size = New System.Drawing.Size(154, 22)
         Me.menuitemTablas_MenuOtros.Text = "Otros"
         '
         'menuitemTablas_Cuarteles
@@ -599,7 +607,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonJefatura
         '
-        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_OrdenesCompra, Me.menuitemJefatura_ArqueosCaja, Me.menuitemJefatura_Reportes})
+        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_Sanciones, Me.menuitemJefatura_OrdenesCompra, Me.menuitemJefatura_ArqueosCaja, Me.menuitemJefatura_Reportes})
         Me.dropdownbuttonJefatura.Image = Global.CSBomberos.My.Resources.Resources.ImageJefatura32
         Me.dropdownbuttonJefatura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonJefatura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -612,21 +620,21 @@ Partial Class formMDIMain
         '
         Me.menuitemJefatura_OrdenesCompra.Image = Global.CSBomberos.My.Resources.Resources.ImageOrdenCompra32
         Me.menuitemJefatura_OrdenesCompra.Name = "menuitemJefatura_OrdenesCompra"
-        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(178, 22)
+        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(180, 22)
         Me.menuitemJefatura_OrdenesCompra.Text = "Órdenes de compra"
         '
         'menuitemJefatura_ArqueosCaja
         '
         Me.menuitemJefatura_ArqueosCaja.Image = Global.CSBomberos.My.Resources.Resources.ImageArqueoCaja32
         Me.menuitemJefatura_ArqueosCaja.Name = "menuitemJefatura_ArqueosCaja"
-        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(178, 22)
+        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(180, 22)
         Me.menuitemJefatura_ArqueosCaja.Text = "Arqueos de caja"
         '
         'menuitemJefatura_Reportes
         '
         Me.menuitemJefatura_Reportes.Image = Global.CSBomberos.My.Resources.Resources.ImageReporte32
         Me.menuitemJefatura_Reportes.Name = "menuitemJefatura_Reportes"
-        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(178, 22)
+        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(180, 22)
         Me.menuitemJefatura_Reportes.Text = "Reportes"
         '
         'dropdownbuttonComisionDirectiva
@@ -671,6 +679,13 @@ Partial Class formMDIMain
         Me.menuitemGuardia_Siniestros.Name = "menuitemGuardia_Siniestros"
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
+        '
+        'menuitemJefatura_Sanciones
+        '
+        Me.menuitemJefatura_Sanciones.Image = Global.CSBomberos.My.Resources.Resources.ImageSancion32
+        Me.menuitemJefatura_Sanciones.Name = "menuitemJefatura_Sanciones"
+        Me.menuitemJefatura_Sanciones.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_Sanciones.Text = "Sanciones"
         '
         'formMDIMain
         '
@@ -781,4 +796,6 @@ Partial Class formMDIMain
     Friend WithEvents dropdownbuttonComisionDirectiva As ToolStripDropDownButton
     Friend WithEvents menuitemComisionDirectiva_ComprobantesCompra As ToolStripMenuItem
     Friend WithEvents menuitemComisionDirectiva_Reportes As ToolStripMenuItem
+    Friend WithEvents menuitemTablas_MotivosSancion As ToolStripMenuItem
+    Friend WithEvents menuitemJefatura_Sanciones As ToolStripMenuItem
 End Class

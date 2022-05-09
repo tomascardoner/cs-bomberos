@@ -96,7 +96,7 @@
         SetAppearance()
 
         Using context As New CSBomberosContext(True)
-            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
+            ListasComunes.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
         End Using
         pFillAndRefreshLists.ElementoFill(comboboxElemento, False, False)
 

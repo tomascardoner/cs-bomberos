@@ -96,7 +96,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
+        ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave, False, False)
     End Sub

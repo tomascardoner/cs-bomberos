@@ -253,7 +253,7 @@
                     .IDSiniestro = mSiniestroActual.IDSiniestro,
                     .IDPersona = idPersona,
                     .IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo,
-                    .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                    .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
                     .IDUsuarioCreacion = pUsuario.IDUsuario,
                     .FechaHoraCreacion = Now,
                     .IDUsuarioModificacion = pUsuario.IDUsuario,
@@ -263,7 +263,7 @@
                 mdbContext.SaveChanges()
             ElseIf sa.IDSiniestroAsistenciaTipo <> idSiniestroAsistenciaTipo Then
                 sa.IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo
-                sa.IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID
+                sa.IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId
                 sa.IDUsuarioModificacion = pUsuario.IDUsuario
                 sa.FechaHoraModificacion = Now
                 mdbContext.SaveChanges()

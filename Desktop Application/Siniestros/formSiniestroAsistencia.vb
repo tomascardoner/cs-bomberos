@@ -35,7 +35,7 @@
         If mIsNew Then
             ' Es Nuevo
             mSiniestroAsistenciaActual = New SiniestroAsistencia With {
-                .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
                 .IDUsuarioCreacion = pUsuario.IDUsuario,
                 .FechaHoraCreacion = Now,
                 .IDUsuarioModificacion = pUsuario.IDUsuario,

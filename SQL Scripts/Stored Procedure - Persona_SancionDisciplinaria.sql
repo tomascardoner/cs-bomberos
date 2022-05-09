@@ -10,6 +10,7 @@ GO
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-22
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
+--			2022-05-08 - Se agregaron las columnas Estado, EstadoNombre, DesaprobadaCausa, TestimonioTexto y TestimonioFecha
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_SancionDisciplinaria') AND type in (N'P', N'PC'))
@@ -27,7 +28,7 @@ CREATE PROCEDURE usp_Persona_SancionDisciplinaria
 
 		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, cj.Nombre AS Jerarquia, sp.Apellido AS SolicitudPersonaApellido,
 				sp.Nombre AS SolicitudPersonaNombre, scj.Nombre AS SolicitudJerarquia, ps.SolicitudMotivo, ps.SolicitudFecha, ps.EncuadreTexto, ps.EncuadreFecha,
-				st.Nombre AS ResolucionSancionTipoNombre, ps.ResolucionFecha, ps.NotificacionFecha
+				ps.Estado, ps.EstadoNombre, ps.DesaprobadaCausa, st.Nombre AS ResolucionSancionTipoNombre, ps.ResolucionFecha, ps.NotificacionFecha, ps.TestimonioTexto, ps.TestimonioFecha
 			FROM PersonaSancion AS ps
 				INNER JOIN Persona AS p ON ps.IDPersona = p.IDPersona
 				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona

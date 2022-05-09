@@ -89,7 +89,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
+        ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         ListasComprobantes.LlenarComboBoxEntidades(mdbContext, comboboxEntidad, Constantes.OperacionTipoCompra, False, True)
     End Sub
 

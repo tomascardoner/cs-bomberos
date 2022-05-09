@@ -83,7 +83,7 @@
         End If
 
         ' Verifico que la Base de Datos corresponda a esta Aplicación a través del GUID guardado en los Parámetros
-        If CS_Parameter_System.GetString(Parametros.APPLICATION_DATABASE_GUID) <> Constantes.APPLICATION_DATABASE_GUID Then
+        If CS_Parameter_System.GetString(Parametros.APPLICATION_DATABASE_GUID) <> Constantes.ApplicationDatabaseGuid Then
             MsgBox("La Base de Datos especificada no corresponde a esta aplicación.", MsgBoxStyle.Critical, My.Application.Info.Title)
             formSplashScreen.Close()
             formSplashScreen.Dispose()
@@ -93,13 +93,13 @@
 
         ' Verifico que la versión de la Base de Datos se igual a la de esta versión de la Aplicación
         Select Case CS_Parameter_System.GetIntegerAsInteger(Parametros.APPLICATION_DATABASE_VERSION)
-            Case Is < Constantes.APPLICATION_DATABASE_VERSION
+            Case Is < Constantes.ApplicationDatabaseVersion
                 MsgBox("La versión de la Base de Datos es anterior a la versión de la Aplicación.", MsgBoxStyle.Critical, My.Application.Info.Title)
                 formSplashScreen.Close()
                 formSplashScreen.Dispose()
                 TerminateApplication()
                 Exit Sub
-            Case Is > Constantes.APPLICATION_DATABASE_VERSION
+            Case Is > Constantes.ApplicationDatabaseVersion
                 MsgBox("La versión de la Aplicación está desactualizada.", MsgBoxStyle.Critical, My.Application.Info.Title)
                 formSplashScreen.Close()
                 formSplashScreen.Dispose()
@@ -108,7 +108,7 @@
         End Select
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
-        If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), Constantes.APPLICATION_LICENSE_PASSWORD, pLicensedTo) Then
+        If Not CardonerSistemas.Encrypt.StringCipher.Decrypt(CS_Parameter_System.GetString(Parametros.LICENSE_COMPANY_NAME, "EMPTY"), Constantes.ApplicationLicensePassword, pLicensedTo) Then
             MsgBox("La Licencia especificada es incorrecta.", MsgBoxStyle.Critical, My.Application.Info.Title)
             formSplashScreen.Close()
             formSplashScreen.Dispose()

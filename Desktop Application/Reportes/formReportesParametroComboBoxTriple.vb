@@ -15,7 +15,7 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 Using context As New CSBomberosContext(True)
-                    ListasComun.LlenarComboBoxCuarteles(context, comboboxAbueloValor, False, False)
+                    ListasComunes.LlenarComboBoxCuarteles(context, comboboxAbueloValor, False, False)
                 End Using
                 If Not mParametroAbuelo.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxAbueloValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroAbuelo.Valor)

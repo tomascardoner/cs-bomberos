@@ -255,6 +255,10 @@
         ShowForm(Permisos.SANCIONTIPO, CType(formSancionTipos, Form))
     End Sub
 
+    Private Sub SancionMotivos() Handles menuitemTablas_MotivosSancion.Click
+        ShowForm(Permisos.SANCIONMOTIVO, CType(formSancionMotivos, Form))
+    End Sub
+
     ' CAPACITACIONES
 
     Private Sub Cursos() Handles menuitemTablas_Cursos.Click
@@ -398,11 +402,15 @@
     End Sub
 
     Private Sub DocumentacionesReportes(sender As Object, e As EventArgs) Handles menuitemDocumentaciones_Reportes.Click
-        ShowFormReportes(Permisos.REPORTE_DOCUMENTACIONES, Constantes.MODULO_DOCUMENTACIONES_ID, Constantes.MODULO_DOCUMENTACIONES_NOMBRE)
+        ShowFormReportes(Permisos.REPORTE_DOCUMENTACIONES, Constantes.ModuloDocumentacionesId, Constantes.ModuloDocumentacionesNombre)
     End Sub
 #End Region
 
 #Region "Left Toolbar - Jefatura"
+
+    Private Sub Sanciones(sender As Object, e As EventArgs) Handles menuitemJefatura_Sanciones.Click
+        ShowForm(Permisos.SANCION, CType(formSanciones, Form))
+    End Sub
 
     Private Sub OrdenesCompra(sender As Object, e As EventArgs) Handles menuitemJefatura_OrdenesCompra.Click
         ShowForm(Permisos.COMPRAORDEN, CType(formCompraOrdenes, Form))
@@ -413,7 +421,7 @@
     End Sub
 
     Private Sub JefaturaReportes(sender As Object, e As EventArgs) Handles menuitemJefatura_Reportes.Click
-        ShowFormReportes(Permisos.REPORTE_JEFATURA, Constantes.MODULO_JEFATURA_ID, Constantes.MODULO_JEFATURA_NOMBRE)
+        ShowFormReportes(Permisos.REPORTE_JEFATURA, Constantes.ModuloJefaturaId, Constantes.ModuloJefaturaNombre)
     End Sub
 
 #End Region
@@ -426,7 +434,7 @@
     End Sub
 
     Private Sub ComisionDirectivaReportes(sender As Object, e As EventArgs) Handles menuitemComisionDirectiva_Reportes.Click
-        ShowFormReportes(Permisos.REPORTE_COMISIONDIRECTIVA, Constantes.MODULO_COMISIONDIRECTIVA_ID, Constantes.MODULO_COMISIONDIRECTIVA_NOMBRE)
+        ShowFormReportes(Permisos.REPORTE_COMISIONDIRECTIVA, Constantes.ModulocomisionDirectivaId, Constantes.ModulocomisionDirectivaNombre)
     End Sub
 
 #End Region

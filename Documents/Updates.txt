@@ -1,3 +1,15 @@
+2022-05-03
+	- Tabla PersonaSancion
+		- Agregar columna Estado char(1) not null (default 'A') después de EncuadreFecha
+		- Agregar columna DesaprobadaCausa varchar(MAX) null
+		- Agregar columna TestimonioTexto varchar(MAX) null antes de Notas
+		- Agregar columna TestimonioFecha date null
+		- Eliminar el default de la columna Estado
+	- Ejecutar script de update y sp de Persona_Sanciones y Persona_SancionDisciplinaria
+	- Cambiar el orden del columna EstadoNombre en la tabla PersonaSancion
+	- Copiar el EXE
+	- Copiar reportes
+
 2022-04-01
 	- Crear las tablas:
 		- Articulo

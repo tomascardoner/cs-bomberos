@@ -389,6 +389,9 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__CuentaBancariaTipo__Entidad" />
+        <EntityTypeShape EntityType="CSBomberosModel.SancionMotivo" Width="1.5" PointX="16.5" PointY="181" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionMotivo__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

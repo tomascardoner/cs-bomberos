@@ -1126,10 +1126,15 @@
           <Property Name="SolicitudFecha" Type="date" Nullable="false" />
           <Property Name="EncuadreTexto" Type="varchar(max)" />
           <Property Name="EncuadreFecha" Type="date" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="EstadoNombre" Type="varchar" MaxLength="11" StoreGeneratedPattern="Computed" />
+          <Property Name="DesaprobadaCausa" Type="varchar(max)" />
           <Property Name="ResolucionIDSancionTipo" Type="tinyint" />
           <Property Name="ResolucionFecha" Type="date" />
           <Property Name="ResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="NotificacionFecha" Type="date" />
+          <Property Name="TestimonioTexto" Type="varchar(max)" />
+          <Property Name="TestimonioFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -1284,6 +1289,20 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SancionMotivo">
+          <Key>
+            <PropertyRef Name="IDSancionMotivo" />
+          </Key>
+          <Property Name="IDSancionMotivo" Type="smallint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Encuadre" Type="varchar(max)" />
+          <Property Name="Testimonio" Type="varchar(max)" />
+          <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
@@ -4432,6 +4451,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__SancionMotivo__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SancionMotivo" Type="Self.SancionMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionMotivo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionMotivo__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SancionMotivo" Type="Self.SancionMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionMotivo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__SancionTipo__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="SancionTipo" Type="Self.SancionTipo" Multiplicity="*" />
@@ -5096,6 +5139,7 @@
           <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsableTipo" EntityType="Self.ResponsableTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SancionMotivo" EntityType="Self.SancionMotivo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SancionTipo" EntityType="Self.SancionTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Siniestro" EntityType="Self.Siniestro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroAsistencia" EntityType="Self.SiniestroAsistencia" Schema="dbo" store:Type="Tables" />
@@ -6037,6 +6081,14 @@
           <AssociationSet Name="FK__Usuario__Rubro__Modificacion" Association="Self.FK__Usuario__Rubro__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Rubro" EntitySet="Rubro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionMotivo__Creacion" Association="Self.FK__Usuario__SancionMotivo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionMotivo" EntitySet="SancionMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionMotivo__Modificacion" Association="Self.FK__Usuario__SancionMotivo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionMotivo" EntitySet="SancionMotivo" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__SancionTipo__Creacion" Association="Self.FK__Usuario__SancionTipo__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -7452,6 +7504,15 @@
             <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
             <End Role="Entidad" EntitySet="Entidad" />
           </AssociationSet>
+          <EntitySet Name="SancionMotivo" EntityType="CSBomberosModel.SancionMotivo" />
+          <AssociationSet Name="FK__Usuario__SancionMotivo__Creacion" Association="CSBomberosModel.FK__Usuario__SancionMotivo__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionMotivo" EntitySet="SancionMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__SancionMotivo__Modificacion" Association="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SancionMotivo" EntitySet="SancionMotivo" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -7741,6 +7802,8 @@
           <NavigationProperty Name="NumeradoresModificados" Relationship="CSBomberosModel.FK__Usuario__Numerador__Modificacion" FromRole="Usuario" ToRole="Numerador" />
           <NavigationProperty Name="CuentasBancariasTiposCreadas" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion" FromRole="Usuario" ToRole="CuentaBancariaTipo" />
           <NavigationProperty Name="CuentasBancariasTiposModificados" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" FromRole="Usuario" ToRole="CuentaBancariaTipo" />
+          <NavigationProperty Name="SancionesMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Creacion" FromRole="Usuario" ToRole="SancionMotivo" />
+          <NavigationProperty Name="SancionesMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion" FromRole="Usuario" ToRole="SancionMotivo" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -9628,10 +9691,15 @@
           <Property Name="SolicitudFecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EncuadreTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EncuadreFecha" Type="DateTime" Precision="0" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EstadoNombre" Type="String" MaxLength="11" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="DesaprobadaCausa" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ResolucionIDSancionTipo" Type="Byte" />
           <Property Name="ResolucionFecha" Type="DateTime" Precision="0" />
           <Property Name="ResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NotificacionFecha" Type="DateTime" Precision="0" />
+          <Property Name="TestimonioTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="TestimonioFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -12999,6 +13067,46 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SancionMotivo">
+          <Key>
+            <PropertyRef Name="IDSancionMotivo" />
+          </Key>
+          <Property Name="IDSancionMotivo" Type="Int16" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Encuadre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Testimonio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Creacion" FromRole="SancionMotivo" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion" FromRole="SancionMotivo" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__Usuario__SancionMotivo__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SancionMotivo" Role="SancionMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionMotivo">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__SancionMotivo__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SancionMotivo" Role="SancionMotivo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SancionMotivo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13819,6 +13927,11 @@
           <EntitySetMapping Name="PersonaSancion">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaSancion">
               <MappingFragment StoreEntitySet="PersonaSancion">
+                <ScalarProperty Name="TestimonioFecha" ColumnName="TestimonioFecha" />
+                <ScalarProperty Name="TestimonioTexto" ColumnName="TestimonioTexto" />
+                <ScalarProperty Name="DesaprobadaCausa" ColumnName="DesaprobadaCausa" />
+                <ScalarProperty Name="EstadoNombre" ColumnName="EstadoNombre" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="ResolucionNumero" ColumnName="ResolucionNumero" />
                 <ScalarProperty Name="SolicitudIDPersona" ColumnName="SolicitudIDPersona" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
@@ -14754,6 +14867,21 @@
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDCuentaBancariaTipo" ColumnName="IDCuentaBancariaTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SancionMotivo">
+            <EntityTypeMapping TypeName="CSBomberosModel.SancionMotivo">
+              <MappingFragment StoreEntitySet="SancionMotivo">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Testimonio" ColumnName="Testimonio" />
+                <ScalarProperty Name="Encuadre" ColumnName="Encuadre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDSancionMotivo" ColumnName="IDSancionMotivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

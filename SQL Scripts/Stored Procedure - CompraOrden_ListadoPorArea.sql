@@ -65,13 +65,13 @@ CREATE PROCEDURE CompraObtenerListadoPorArea
 				WHERE pa.IDPersona = @ResponsableIDPersona
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
-		(SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, cod.IDArea, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(ISNULL(cod.Importe, 0)) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		(SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, e.Nombre AS Proveedor, cod.IDArea, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cm.NumeroCompleto AS FacturaNumero, SUM(ISNULL(cod.Importe, 0)) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CompraOrden AS co
 				INNER JOIN Cuartel AS cu ON co.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraOrdenDetalle AS cod ON co.IDCompraOrden = cod.IDCompraOrden
-				LEFT JOIN CompraFactura AS cf ON cod.IDCompraFactura = cf.IDCompraFactura
+				LEFT JOIN Comprobante AS cm ON cod.IDComprobante = cm.IDComprobante
 				LEFT JOIN Area AS a ON cod.IDArea = a.IDArea
-				LEFT JOIN Proveedor AS p ON co.IDProveedor = p.IDProveedor
+				LEFT JOIN Entidad AS e ON co.IDEntidad = e.IDEntidad
 			WHERE (@IDCuartel IS NULL OR a.IDCuartel = @IDCuartel)
 				AND (@IDArea IS NULL OR cod.IDArea = @IDArea)
 				AND (@FechaDesde IS NULL OR co.Fecha >= @FechaDesde)
@@ -79,7 +79,7 @@ CREATE PROCEDURE CompraObtenerListadoPorArea
 				AND (@Cerrada IS NULL OR co.Cerrada = @Cerrada)
 				AND (@CierreFechaDesde IS NULL OR co.CierreFecha >= @CierreFechaDesde)
 				AND (@CierreFechaHasta IS NULL OR co.CierreFecha <= @CierreFechaHasta)
-			GROUP BY cod.IDArea, co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, p.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto)
+			GROUP BY cod.IDArea, co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, e.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cm.NumeroCompleto)
 		UNION
 		(SELECT 0 AS IDCompra, c.Codigo AS CuartelCodigo, c.Nombre AS CuartelNombre, 0 AS Numero, cad.Fecha AS Fecha, cad.Proveedor, cad.IDArea, a.Nombre AS Area, cad.IDDetalle, cad.Detalle, cad.NumeroComprobante AS FacturaNumero, SUM(ISNULL(cad.Importe, 0)) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CajaArqueo AS ca

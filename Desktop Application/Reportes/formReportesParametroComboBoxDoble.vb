@@ -17,7 +17,7 @@
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_AREA, Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                 Using context As New CSBomberosContext(True)
-                    ListasComun.LlenarComboBoxCuarteles(context, comboboxPadreValor, False, False)
+                    ListasComunes.LlenarComboBoxCuarteles(context, comboboxPadreValor, False, False)
                 End Using
                 If Not mParametroPadre.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)

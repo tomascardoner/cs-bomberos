@@ -33,7 +33,7 @@
         If mIsNew Then
             ' Es Nuevo
             mAcademiaAsistenciaActual = New AcademiaAsistencia With {
-                .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
                 .IDUsuarioCreacion = pUsuario.IDUsuario,
                 .FechaHoraCreacion = Now,
                 .IDUsuarioModificacion = pUsuario.IDUsuario,

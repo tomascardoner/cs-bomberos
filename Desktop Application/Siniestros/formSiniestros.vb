@@ -44,7 +44,7 @@
 
         mSkipFilterData = True
 
-        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
+        ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave.ComboBox, True, False)
 

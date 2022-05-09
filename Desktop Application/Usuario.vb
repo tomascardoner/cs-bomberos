@@ -181,5 +181,7 @@ Partial Public Class Usuario
     Public Overridable Property NumeradoresModificados As ICollection(Of Numerador) = New HashSet(Of Numerador)
     Public Overridable Property CuentasBancariasTiposCreadas As ICollection(Of CuentaBancariaTipo) = New HashSet(Of CuentaBancariaTipo)
     Public Overridable Property CuentasBancariasTiposModificados As ICollection(Of CuentaBancariaTipo) = New HashSet(Of CuentaBancariaTipo)
+    Public Overridable Property SancionesMotivosCreados As ICollection(Of SancionMotivo) = New HashSet(Of SancionMotivo)
+    Public Overridable Property SancionesMotivosModificados As ICollection(Of SancionMotivo) = New HashSet(Of SancionMotivo)
 
 End Class

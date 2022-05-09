@@ -168,19 +168,14 @@
 
             Select Case ParametroActual.Tipo
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
-                    Dim fps As New formPersonasSeleccionar(False, 0, False)
+                    Dim personaSeleccionada As ListasPersonas.PersonaSeleccionada
 
-                    If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                        Dim PersonaSeleccionada As uspPersonasObtenerConEstado_Result
-
-                        PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
-                        ParametroActual.Valor = PersonaSeleccionada.IDPersona
-                        ParametroActual.ValorParaMostrar = PersonaSeleccionada.ApellidoNombre
+                    personaSeleccionada = ListasPersonas.SeleccionarPersona(Me)
+                    If personaSeleccionada IsNot Nothing Then
+                        ParametroActual.Valor = personaSeleccionada.IDPersona
+                        ParametroActual.ValorParaMostrar = personaSeleccionada.ApellidoNombre
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
-
-                        PersonaSeleccionada = Nothing
                     End If
-                    fps.Dispose()
 
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 

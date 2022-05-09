@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formCompraOrdenes
+Partial Class formSanciones
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,46 +23,43 @@ Partial Class formCompraOrdenes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEntidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFacturaNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCerrada = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaSolicitud = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEstado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripSplitButton()
-        Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
-        Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripPeriodo = New System.Windows.Forms.ToolStrip()
         Me.labelPeriodo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
         Me.labelPeriodoFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.toolstripEntidad = New System.Windows.Forms.ToolStrip()
-        Me.labelEntidad = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxEntidad = New System.Windows.Forms.ToolStripComboBox()
-        Me.toolstripCerrada = New System.Windows.Forms.ToolStrip()
-        Me.labelCerrada = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxCerrada = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
+        Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripPersona = New System.Windows.Forms.ToolStrip()
+        Me.labelPersona = New System.Windows.Forms.ToolStripLabel()
+        Me.textboxPersona = New System.Windows.Forms.ToolStripTextBox()
+        Me.buttonPersona = New System.Windows.Forms.ToolStripButton()
+        Me.buttonPersonaBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripEstado = New System.Windows.Forms.ToolStrip()
+        Me.labelEstado = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxEstado = New System.Windows.Forms.ToolStripComboBox()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
-        Me.toolstripCuartel.SuspendLayout()
         Me.toolstripPeriodo.SuspendLayout()
-        Me.toolstripEntidad.SuspendLayout()
-        Me.toolstripCerrada.SuspendLayout()
+        Me.toolstripCuartel.SuspendLayout()
+        Me.toolstripPersona.SuspendLayout()
+        Me.toolstripEstado.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -90,8 +87,9 @@ Partial Class formCompraOrdenes
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnEntidad, Me.columnFacturaNumero, Me.columnImporte, Me.columnCerrada})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnFechaSolicitud, Me.columnEstado, Me.columnMotivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
@@ -104,86 +102,47 @@ Partial Class formCompraOrdenes
         Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
         Me.datagridviewMain.TabIndex = 0
         '
-        'columnCuartel
+        'columnPersona
         '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
+        Me.columnPersona.DataPropertyName = "ApellidoNombre"
+        Me.columnPersona.HeaderText = "Persona"
+        Me.columnPersona.Name = "columnPersona"
+        Me.columnPersona.ReadOnly = True
+        Me.columnPersona.Width = 71
         '
-        'columnNumero
+        'columnFechaSolicitud
         '
-        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNumero.DataPropertyName = "Numero"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.Format = "N0"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNumero.HeaderText = "Número"
-        Me.columnNumero.Name = "columnNumero"
-        Me.columnNumero.ReadOnly = True
-        Me.columnNumero.Width = 69
+        Me.columnFechaSolicitud.DataPropertyName = "SolicitudFecha"
+        Me.columnFechaSolicitud.HeaderText = "Fecha solicitud"
+        Me.columnFechaSolicitud.Name = "columnFechaSolicitud"
+        Me.columnFechaSolicitud.ReadOnly = True
+        Me.columnFechaSolicitud.Width = 95
         '
-        'columnFecha
+        'columnEstado
         '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
+        Me.columnEstado.DataPropertyName = "EstadoNombre"
+        Me.columnEstado.HeaderText = "Estado"
+        Me.columnEstado.Name = "columnEstado"
+        Me.columnEstado.ReadOnly = True
+        Me.columnEstado.Width = 65
         '
-        'columnEntidad
+        'columnMotivo
         '
-        Me.columnEntidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEntidad.DataPropertyName = "EntidadNombre"
-        Me.columnEntidad.HeaderText = "Entidad"
-        Me.columnEntidad.Name = "columnEntidad"
-        Me.columnEntidad.ReadOnly = True
-        Me.columnEntidad.Width = 68
-        '
-        'columnFacturaNumero
-        '
-        Me.columnFacturaNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFacturaNumero.DataPropertyName = "FacturaNumero"
-        Me.columnFacturaNumero.HeaderText = "Nº factura"
-        Me.columnFacturaNumero.Name = "columnFacturaNumero"
-        Me.columnFacturaNumero.ReadOnly = True
-        Me.columnFacturaNumero.Width = 80
-        '
-        'columnImporte
-        '
-        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnImporte.DataPropertyName = "Importe"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnImporte.HeaderText = "Importe"
-        Me.columnImporte.Name = "columnImporte"
-        Me.columnImporte.ReadOnly = True
-        Me.columnImporte.Width = 67
-        '
-        'columnCerrada
-        '
-        Me.columnCerrada.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCerrada.DataPropertyName = "Cerrada"
-        Me.columnCerrada.HeaderText = "Cerrada"
-        Me.columnCerrada.Name = "columnCerrada"
-        Me.columnCerrada.ReadOnly = True
-        Me.columnCerrada.Width = 50
+        Me.columnMotivo.DataPropertyName = "Motivo"
+        Me.columnMotivo.HeaderText = "Motivo"
+        Me.columnMotivo.Name = "columnMotivo"
+        Me.columnMotivo.ReadOnly = True
+        Me.columnMotivo.Width = 64
         '
         'panelToolbars
         '
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
-        Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
         Me.panelToolbars.Controls.Add(Me.toolstripPeriodo)
-        Me.panelToolbars.Controls.Add(Me.toolstripEntidad)
-        Me.panelToolbars.Controls.Add(Me.toolstripCerrada)
+        Me.panelToolbars.Controls.Add(Me.toolstripCuartel)
+        Me.panelToolbars.Controls.Add(Me.toolstripPersona)
+        Me.panelToolbars.Controls.Add(Me.toolstripEstado)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
@@ -197,7 +156,7 @@ Partial Class formCompraOrdenes
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.buttonImprimir})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(379, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(348, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -236,35 +195,13 @@ Partial Class formCompraOrdenes
         Me.buttonImprimir.Size = New System.Drawing.Size(101, 36)
         Me.buttonImprimir.Text = "Imprimir"
         '
-        'toolstripCuartel
-        '
-        Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(379, 0)
-        Me.toolstripCuartel.Name = "toolstripCuartel"
-        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
-        Me.toolstripCuartel.TabIndex = 16
-        '
-        'labelCuartel
-        '
-        Me.labelCuartel.Name = "labelCuartel"
-        Me.labelCuartel.Size = New System.Drawing.Size(48, 36)
-        Me.labelCuartel.Text = "Cuartel:"
-        '
-        'comboboxCuartel
-        '
-        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCuartel.Name = "comboboxCuartel"
-        Me.comboboxCuartel.Size = New System.Drawing.Size(130, 39)
-        '
         'toolstripPeriodo
         '
         Me.toolstripPeriodo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripPeriodo.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPeriodo, Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelPeriodoFechaY})
-        Me.toolstripPeriodo.Location = New System.Drawing.Point(562, 0)
+        Me.toolstripPeriodo.Location = New System.Drawing.Point(348, 0)
         Me.toolstripPeriodo.Name = "toolstripPeriodo"
         Me.toolstripPeriodo.Size = New System.Drawing.Size(267, 39)
         Me.toolstripPeriodo.TabIndex = 15
@@ -293,51 +230,89 @@ Partial Class formCompraOrdenes
         Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 36)
         Me.labelPeriodoFechaY.Text = "y"
         '
-        'toolstripEntidad
+        'toolstripCuartel
         '
-        Me.toolstripEntidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripEntidad.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripEntidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEntidad, Me.comboboxEntidad})
-        Me.toolstripEntidad.Location = New System.Drawing.Point(0, 39)
-        Me.toolstripEntidad.Name = "toolstripEntidad"
-        Me.toolstripEntidad.Size = New System.Drawing.Size(355, 25)
-        Me.toolstripEntidad.TabIndex = 13
+        Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
+        Me.toolstripCuartel.Location = New System.Drawing.Point(615, 0)
+        Me.toolstripCuartel.Name = "toolstripCuartel"
+        Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
+        Me.toolstripCuartel.TabIndex = 16
         '
-        'labelEntidad
+        'labelCuartel
         '
-        Me.labelEntidad.Name = "labelEntidad"
-        Me.labelEntidad.Size = New System.Drawing.Size(50, 22)
-        Me.labelEntidad.Text = "Entidad:"
+        Me.labelCuartel.Name = "labelCuartel"
+        Me.labelCuartel.Size = New System.Drawing.Size(48, 36)
+        Me.labelCuartel.Text = "Cuartel:"
         '
-        'comboboxEntidad
+        'comboboxCuartel
         '
-        Me.comboboxEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxEntidad.Name = "comboboxEntidad"
-        Me.comboboxEntidad.Size = New System.Drawing.Size(300, 25)
+        Me.comboboxCuartel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCuartel.Name = "comboboxCuartel"
+        Me.comboboxCuartel.Size = New System.Drawing.Size(130, 39)
         '
-        'toolstripCerrada
+        'toolstripPersona
         '
-        Me.toolstripCerrada.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripCerrada.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCerrada.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCerrada, Me.comboboxCerrada})
-        Me.toolstripCerrada.Location = New System.Drawing.Point(355, 39)
-        Me.toolstripCerrada.Name = "toolstripCerrada"
-        Me.toolstripCerrada.Size = New System.Drawing.Size(131, 25)
-        Me.toolstripCerrada.TabIndex = 12
+        Me.toolstripPersona.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripPersona.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripPersona.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPersona, Me.textboxPersona, Me.buttonPersona, Me.buttonPersonaBorrar})
+        Me.toolstripPersona.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripPersona.Name = "toolstripPersona"
+        Me.toolstripPersona.Size = New System.Drawing.Size(353, 25)
+        Me.toolstripPersona.TabIndex = 13
         '
-        'labelCerrada
+        'labelPersona
         '
-        Me.labelCerrada.Name = "labelCerrada"
-        Me.labelCerrada.Size = New System.Drawing.Size(51, 22)
-        Me.labelCerrada.Text = "Cerrada:"
+        Me.labelPersona.Name = "labelPersona"
+        Me.labelPersona.Size = New System.Drawing.Size(52, 22)
+        Me.labelPersona.Text = "Persona:"
         '
-        'comboboxCerrada
+        'textboxPersona
         '
-        Me.comboboxCerrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCerrada.Name = "comboboxCerrada"
-        Me.comboboxCerrada.Size = New System.Drawing.Size(75, 25)
+        Me.textboxPersona.Name = "textboxPersona"
+        Me.textboxPersona.ReadOnly = True
+        Me.textboxPersona.Size = New System.Drawing.Size(250, 25)
         '
-        'formCompraOrdenes
+        'buttonPersona
+        '
+        Me.buttonPersona.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
+        Me.buttonPersona.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonPersona.Name = "buttonPersona"
+        Me.buttonPersona.Size = New System.Drawing.Size(23, 22)
+        '
+        'buttonPersonaBorrar
+        '
+        Me.buttonPersonaBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
+        Me.buttonPersonaBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonPersonaBorrar.Name = "buttonPersonaBorrar"
+        Me.buttonPersonaBorrar.Size = New System.Drawing.Size(23, 22)
+        '
+        'toolstripEstado
+        '
+        Me.toolstripEstado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripEstado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripEstado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEstado, Me.comboboxEstado})
+        Me.toolstripEstado.Location = New System.Drawing.Point(353, 39)
+        Me.toolstripEstado.Name = "toolstripEstado"
+        Me.toolstripEstado.Size = New System.Drawing.Size(160, 25)
+        Me.toolstripEstado.TabIndex = 18
+        '
+        'labelEstado
+        '
+        Me.labelEstado.Name = "labelEstado"
+        Me.labelEstado.Size = New System.Drawing.Size(45, 22)
+        Me.labelEstado.Text = "Estado:"
+        '
+        'comboboxEstado
+        '
+        Me.comboboxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEstado.Name = "comboboxEstado"
+        Me.comboboxEstado.Size = New System.Drawing.Size(110, 25)
+        '
+        'formSanciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -347,10 +322,10 @@ Partial Class formCompraOrdenes
         Me.Controls.Add(Me.statusstripMain)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formCompraOrdenes"
+        Me.Name = "formSanciones"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
-        Me.Text = "Órdenes de compra"
+        Me.Text = "Sanciones"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -358,14 +333,14 @@ Partial Class formCompraOrdenes
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
-        Me.toolstripCuartel.ResumeLayout(False)
-        Me.toolstripCuartel.PerformLayout()
         Me.toolstripPeriodo.ResumeLayout(False)
         Me.toolstripPeriodo.PerformLayout()
-        Me.toolstripEntidad.ResumeLayout(False)
-        Me.toolstripEntidad.PerformLayout()
-        Me.toolstripCerrada.ResumeLayout(False)
-        Me.toolstripCerrada.PerformLayout()
+        Me.toolstripCuartel.ResumeLayout(False)
+        Me.toolstripCuartel.PerformLayout()
+        Me.toolstripPersona.ResumeLayout(False)
+        Me.toolstripPersona.PerformLayout()
+        Me.toolstripEstado.ResumeLayout(False)
+        Me.toolstripEstado.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -378,12 +353,8 @@ Partial Class formCompraOrdenes
     Friend WithEvents buttonAgregar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents toolstripCerrada As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelCerrada As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxCerrada As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents toolstripEntidad As System.Windows.Forms.ToolStrip
-    Friend WithEvents labelEntidad As System.Windows.Forms.ToolStripLabel
-    Friend WithEvents comboboxEntidad As System.Windows.Forms.ToolStripComboBox
+    Friend WithEvents toolstripPersona As System.Windows.Forms.ToolStrip
+    Friend WithEvents labelPersona As System.Windows.Forms.ToolStripLabel
     Friend WithEvents toolstripPeriodo As ToolStrip
     Friend WithEvents labelPeriodo As ToolStripLabel
     Friend WithEvents comboboxPeriodoTipo As ToolStripComboBox
@@ -393,11 +364,14 @@ Partial Class formCompraOrdenes
     Friend WithEvents toolstripCuartel As ToolStrip
     Friend WithEvents labelCuartel As ToolStripLabel
     Friend WithEvents comboboxCuartel As ToolStripComboBox
-    Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
-    Friend WithEvents columnNumero As DataGridViewTextBoxColumn
-    Friend WithEvents columnFecha As DataGridViewTextBoxColumn
-    Friend WithEvents columnEntidad As DataGridViewTextBoxColumn
-    Friend WithEvents columnFacturaNumero As DataGridViewTextBoxColumn
-    Friend WithEvents columnImporte As DataGridViewTextBoxColumn
-    Friend WithEvents columnCerrada As DataGridViewCheckBoxColumn
+    Friend WithEvents textboxPersona As ToolStripTextBox
+    Friend WithEvents buttonPersona As ToolStripButton
+    Friend WithEvents buttonPersonaBorrar As ToolStripButton
+    Friend WithEvents toolstripEstado As ToolStrip
+    Friend WithEvents labelEstado As ToolStripLabel
+    Friend WithEvents comboboxEstado As ToolStripComboBox
+    Friend WithEvents columnPersona As DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaSolicitud As DataGridViewTextBoxColumn
+    Friend WithEvents columnEstado As DataGridViewTextBoxColumn
+    Friend WithEvents columnMotivo As DataGridViewTextBoxColumn
 End Class

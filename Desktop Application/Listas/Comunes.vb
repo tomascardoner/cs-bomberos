@@ -1,4 +1,4 @@
-﻿Module ListasComun
+﻿Module ListasComunes
 
     Friend Class ResponsableNombresClass
         Public Property IDResponsable As Byte
@@ -10,7 +10,7 @@
         Public Property PersonaApellidoNombre As String
     End Class
 
-    Friend Sub LlenarComboBoxCuarteles(ByRef dbContext As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+    Friend Sub LlenarComboBoxCuarteles(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of Cuartel)
 
         control.ValueMember = "IDCuartel"
@@ -20,9 +20,9 @@
             ' Tengo que limitar la lista al cuartel que tiene especificado
             listItems = New List(Of Cuartel)
 
-            listItems.Insert(0, dbContext.Cuartel.Find(pUsuario.IDCuartel))
+            listItems.Insert(0, context.Cuartel.Find(pUsuario.IDCuartel))
         Else
-            listItems = dbContext.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
+            listItems = context.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
             If agregarItemTodos Then
                 Dim Item_Todos As New Cuartel
@@ -101,4 +101,34 @@
         control.DataSource = listItems
     End Sub
 
+    Friend Sub LlenarComboBoxPeriodosTipos(ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+
+        If agregarItemTodos Then
+            control.Items.Add(My.Resources.STRING_ITEM_ALL_MALE)
+        End If
+
+        If agregarItemNoEspecifica Then
+            control.Items.Add(My.Resources.STRING_ITEM_NOT_SPECIFIED)
+        End If
+
+        control.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
+    End Sub
+
+    Friend Sub LlenarComboBoxPeriodosValores(ByRef control As ComboBox, ByRef tipoControl As ComboBox)
+        control.Items.Clear()
+        Select Case tipoControl.SelectedIndex
+            Case 0  ' Todas
+                control.Items.Add(String.Empty)
+            Case 1  ' Día
+                control.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3", "Últimos 4"})
+            Case 2  ' Semana
+                control.Items.AddRange({"Actual", "Anterior", "Últimas 2", "Últimas 3"})
+            Case 3  ' Mes
+                control.Items.AddRange({"Actual", "Anterior", "Últimos 2", "Últimos 3"})
+            Case 4  ' Fecha
+                control.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
+        End Select
+        control.Visible = tipoControl.SelectedIndex <> 0
+        control.SelectedIndex = 0
+    End Sub
 End Module

@@ -38,7 +38,7 @@ CREATE PROCEDURE usp_Persona_Sanciones
 				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
 				LEFT JOIN Cargo AS ca ON pa.IDCargo = ca.IDCargo
 				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
-			WHERE p.EsActivo = 1
+			WHERE p.EsActivo = 1 AND ps.Estado = 'A'
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
 				AND (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, NULL))

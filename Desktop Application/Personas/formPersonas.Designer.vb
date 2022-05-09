@@ -22,7 +22,6 @@ Partial Class formPersonas
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -40,7 +39,6 @@ Partial Class formPersonas
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnCuartelNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEstadoActual = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.bindingsourceMain = New System.Windows.Forms.BindingSource(Me.components)
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
         Me.labelBuscar = New System.Windows.Forms.ToolStripLabel()
@@ -55,7 +53,6 @@ Partial Class formPersonas
         Me.toolstripButtons.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripBuscar.SuspendLayout()
         Me.toolstripCuartel.SuspendLayout()
@@ -143,10 +140,8 @@ Partial Class formPersonas
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
-        Me.datagridviewMain.AutoGenerateColumns = False
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnMatriculaNumero, Me.columnApellido, Me.columnNombre, Me.columnCuartelNombre, Me.columnEstadoActual})
-        Me.datagridviewMain.DataSource = Me.bindingsourceMain
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
         Me.datagridviewMain.MultiSelect = False
@@ -317,7 +312,6 @@ Partial Class formPersonas
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.bindingsourceMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panelToolbars.ResumeLayout(False)
         Me.panelToolbars.PerformLayout()
         Me.toolstripBuscar.ResumeLayout(False)
@@ -337,7 +331,6 @@ Partial Class formPersonas
     Friend WithEvents statusstripMain As System.Windows.Forms.StatusStrip
     Friend WithEvents statuslabelMain As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents datagridviewMain As System.Windows.Forms.DataGridView
-    Friend WithEvents bindingsourceMain As System.Windows.Forms.BindingSource
     Friend WithEvents panelToolbars As System.Windows.Forms.FlowLayoutPanel
     Friend WithEvents toolstripBuscar As System.Windows.Forms.ToolStrip
     Friend WithEvents toolstripEstado As System.Windows.Forms.ToolStrip

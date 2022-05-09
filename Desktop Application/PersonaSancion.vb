@@ -18,10 +18,15 @@ Partial Public Class PersonaSancion
     Public Property SolicitudFecha As Date
     Public Property EncuadreTexto As String
     Public Property EncuadreFecha As Nullable(Of Date)
+    Public Property Estado As String
+    Public Property EstadoNombre As String
+    Public Property DesaprobadaCausa As String
     Public Property ResolucionIDSancionTipo As Nullable(Of Byte)
     Public Property ResolucionFecha As Nullable(Of Date)
     Public Property ResolucionNumero As String
     Public Property NotificacionFecha As Nullable(Of Date)
+    Public Property TestimonioTexto As String
+    Public Property TestimonioFecha As Nullable(Of Date)
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date

@@ -9,7 +9,7 @@
         Using context As New CSBomberosContext(True)
             Select Case mParametroActual.Tipo
                 Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL
-                    ListasComun.LlenarComboBoxCuarteles(context, comboboxValor, False, False)
+                    ListasComunes.LlenarComboBoxCuarteles(context, comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_CARGO
                     pFillAndRefreshLists.Cargo(comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO
@@ -17,7 +17,7 @@
                 Case Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD
                     pFillAndRefreshLists.Unidad(comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
-                    ListasComun.LlenarComboBoxResponsables(context, comboboxValor, False, False)
+                    ListasComunes.LlenarComboBoxResponsables(context, comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_ENTIDAD
                     ListasComprobantes.LlenarComboBoxEntidades(context, comboboxValor, Nothing, False, False)
             End Select

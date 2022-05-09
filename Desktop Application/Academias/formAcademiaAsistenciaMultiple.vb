@@ -251,7 +251,7 @@
                     .IDAcademia = mAcademiaActual.IDAcademia,
                     .IDPersona = idPersona,
                     .IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo,
-                    .IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID,
+                    .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
                     .IDUsuarioCreacion = pUsuario.IDUsuario,
                     .FechaHoraCreacion = Now,
                     .IDUsuarioModificacion = pUsuario.IDUsuario,
@@ -261,7 +261,7 @@
                 mdbContext.SaveChanges()
             ElseIf sa.IDAcademiaAsistenciaTipo <> idAcademiaAsistenciaTipo Then
                 sa.IDAcademiaAsistenciaTipo = idAcademiaAsistenciaTipo
-                sa.IDAsistenciaMetodo = Constantes.ASISTENCIA_METODO_MANUAL_ID
+                sa.IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId
                 sa.IDUsuarioModificacion = pUsuario.IDUsuario
                 sa.FechaHoraModificacion = Now
                 mdbContext.SaveChanges()

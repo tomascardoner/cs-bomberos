@@ -1,34 +1,35 @@
-﻿Public Class formArea
+﻿Public Class formSancionMotivo
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
-    Private mAreaActual As Area
+    Private mSancionMotivoActual As SancionMotivo
 
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
     Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDArea As Short)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSancionMotivo As Short)
         mIsLoading = True
         mEditMode = EditMode
-        mIsNew = (IDArea = 0)
+        mIsNew = (IDSancionMotivo = 0)
 
         If mIsNew Then
             ' Es Nuevo
-            mAreaActual = New Area
-            With mAreaActual
-                .EsActivo = True
+            mSancionMotivoActual = New SancionMotivo
+            With mSancionMotivoActual
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
                 .FechaHoraModificacion = .FechaHoraCreacion
             End With
-            mdbContext.Area.Add(mAreaActual)
+            mdbContext.SancionMotivo.Add(mSancionMotivoActual)
         Else
-            mAreaActual = mdbContext.Area.Find(IDArea)
+            mSancionMotivoActual = mdbContext.SancionMotivo.Find(IDSancionMotivo)
         End If
 
         CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
@@ -54,21 +55,16 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         ' General
-        textboxCodigo.ReadOnly = Not mEditMode
         textboxNombre.ReadOnly = Not mEditMode
-        comboboxCuartel.Enabled = mEditMode
-        checkboxMostrarEnInventario.Enabled = mEditMode
-        checkboxMostrarEnCompras.Enabled = mEditMode
+        textboxEncuadre.ReadOnly = Not mEditMode
+        textboxTestimonio.ReadOnly = Not mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
-        checkboxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
-
-        ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
     End Sub
 
     Friend Sub SetAppearance()
@@ -80,28 +76,26 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
-        mAreaActual = Nothing
+        mSancionMotivoActual = Nothing
         Me.Dispose()
     End Sub
 
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
-        With mAreaActual
-            textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
+        With mSancionMotivoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            checkboxMostrarEnInventario.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnInventario)
-            checkboxMostrarEnCompras.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnCompras)
+            textboxEncuadre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Encuadre)
+            textboxTestimonio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Testimonio)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
-            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If mIsNew Then
-                textboxIDArea.Text = My.Resources.STRING_ITEM_NEW_MALE
+                textboxIDSancionMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
-                textboxIDArea.Text = String.Format(.IDArea.ToString, "G")
+                textboxIDSancionMotivo.Text = String.Format(.IDSancionMotivo.ToString, "G")
             End If
             textboxFechaHoraCreacion.Text = .FechaHoraCreacion.ToShortDateString & " " & .FechaHoraCreacion.ToShortTimeString
             If .UsuarioCreacion Is Nothing Then
@@ -119,20 +113,19 @@
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        With mAreaActual
-            .Codigo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxCodigo.Text)
+        With mSancionMotivoActual
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
-            .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
-            .MostrarEnInventario = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMostrarEnInventario.CheckState)
-            .MostrarEnCompras = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMostrarEnCompras.CheckState)
+            .Encuadre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxEncuadre.Text)
+            .Testimonio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTestimonio.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
-            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -150,15 +143,16 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxCodigo.GotFocus, textboxNombre.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxEncuadre.GotFocus, textboxTestimonio.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.AREA_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SancionMotivo_EDITAR) Then
             mEditMode = True
             ChangeMode()
         End If
@@ -171,41 +165,18 @@
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If textboxNombre.Text.Trim.Length = 0 Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("Debe ingresar el Nombre del Motivo de Sanción.", MsgBoxStyle.Information, My.Application.Info.Title)
             textboxNombre.Focus()
             Exit Sub
-        End If
-        If comboboxCuartel.SelectedIndex = -1 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-
-        If Not mIsNew Then
-            ' Si se cambió la opción de Mostrar en Inventario, se debe verificar que no haya Items con este Área
-            If mAreaActual.MostrarEnInventario AndAlso checkboxMostrarEnInventario.Checked = False Then
-                If mAreaActual.Inventario.Any() Then
-                    MsgBox("No se puede dejar de Mostrar en Inventario porque hay ítems que hacen referencia a este Área.", MsgBoxStyle.Information, My.Application.Info.Title)
-                    Exit Sub
-                End If
-            End If
-            ' Si se cambió la opción de Mostrar en Compras, se debe verificar que no haya Compras con este Área
-            If mAreaActual.MostrarEnCompras AndAlso checkboxMostrarEnCompras.Checked = False Then
-                If mAreaActual.CompraOrdenDetalles.Any() Then
-                    MsgBox("No se puede dejar de Mostrar en Compras porque hay Detalles que hacen referencia a este Área.", MsgBoxStyle.Information, My.Application.Info.Title)
-                    Exit Sub
-                End If
-            End If
         End If
 
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Area.Any() Then
-                    mAreaActual.IDArea = dbcMaxID.Area.Max(Function(a) a.IDArea) + CByte(1)
+                If dbcMaxID.SancionMotivo.Any() Then
+                    mSancionMotivoActual.IDSancionMotivo = dbcMaxID.SancionMotivo.Max(Function(a) a.IDSancionMotivo) + CByte(1)
                 Else
-                    mAreaActual.IDArea = 1
+                    mSancionMotivoActual.IDSancionMotivo = 1
                 End If
             End Using
         End If
@@ -217,21 +188,21 @@
 
             Me.Cursor = Cursors.WaitCursor
 
-            mAreaActual.IDUsuarioModificacion = pUsuario.IDUsuario
-            mAreaActual.FechaHoraModificacion = Now
+            mSancionMotivoActual.IDUsuarioModificacion = pUsuario.IDUsuario
+            mSancionMotivoActual.FechaHoraModificacion = Now
 
             Try
                 ' Guardo los cambios
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                formAreas.RefreshData(mAreaActual.IDArea)
+                formSancionMotivos.RefreshData(mSancionMotivoActual.IDSancionMotivo)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Área con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Tipo de Sanción con el mismo Nombre.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 

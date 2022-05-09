@@ -27,7 +27,7 @@
         mSkipFilterData = True
 
         Using context As New CSBomberosContext(True)
-            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
+            ListasComunes.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
         End Using
         pFillAndRefreshLists.PersonaEstadoActual(comboboxEstadoActual.ComboBox, True)
 
@@ -139,6 +139,7 @@
     End Sub
 
     Private Sub OrderData()
+
         ' Realizo las rutinas de ordenamiento
         Select Case OrdenColumna.Name
             Case columnMatriculaNumero.Name
@@ -166,7 +167,9 @@
                     mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.OrderByDescending(Function(col) col.CuartelNombre).ThenByDescending(Function(col) col.Apellido).ThenByDescending(Function(col) col.Nombre).ToList
                 End If
         End Select
-        bindingsourceMain.DataSource = mlistPersonasFiltradaYOrdenada
+
+        datagridviewMain.AutoGenerateColumns = False
+        datagridviewMain.DataSource = mlistPersonasFiltradaYOrdenada
 
         ' Muestro el ícono de orden en la columna correspondiente
         OrdenColumna.HeaderCell.SortGlyphDirection = OrdenTipo

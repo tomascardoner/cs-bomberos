@@ -384,31 +384,6 @@
 
 #End Region
 
-    Friend Sub SancionTipo(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
-        Dim listItems As List(Of SancionTipo)
-
-        ComboBoxControl.ValueMember = "IDSancionTipo"
-        ComboBoxControl.DisplayMember = "Nombre"
-
-        listItems = mdbContext.SancionTipo.Where(Function(st) st.EsActivo).OrderBy(Function(st) st.Nombre).ToList
-
-        If AgregarItem_NoEspecifica Then
-            Dim Item_NoEspecifica As New SancionTipo With {
-                .IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            }
-            listItems.Insert(0, Item_NoEspecifica)
-        End If
-        If AgregarItem_Todos Then
-            Dim Item_Todos As New SancionTipo With {
-                .IDSancionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            }
-            listItems.Insert(0, Item_Todos)
-        End If
-
-        ComboBoxControl.DataSource = listItems
-    End Sub
 
     Friend Sub Parentesco(ByRef ComboBoxControl As ComboBox, ByVal AgregarItem_Todos As Boolean, ByVal AgregarItem_NoEspecifica As Boolean)
         Dim listItems As List(Of Parentesco)

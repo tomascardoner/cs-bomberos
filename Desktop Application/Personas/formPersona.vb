@@ -160,7 +160,6 @@
         toolstripVacunas.Enabled = Not mEditMode
         toolstripLicencias.Enabled = Not mEditMode
         toolstripLicenciasEspeciales.Enabled = Not mEditMode
-        toolstripSanciones.Enabled = Not mEditMode
         toolstripCapacitaciones.Enabled = Not mEditMode
         toolstripCalificaciones.Enabled = Not mEditMode
         toolstripExamenes.Enabled = Not mEditMode
@@ -181,7 +180,7 @@
         pFillAndRefreshLists.EstadoCivil(comboboxEstadoCivil, False, True)
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
-        ListasComun.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
+        ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         pFillAndRefreshLists.Persona(comboboxCursoIngresoResponsable, False, False, True, False)
         pFillAndRefreshLists.Persona(comboboxReingresoFormacionResponsable, False, False, True, False)
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
@@ -2102,7 +2101,7 @@
             listSancions = (From ps In mdbContext.PersonaSancion
                             Group Join st In mdbContext.SancionTipo On ps.ResolucionIDSancionTipo Equals st.IDSancionTipo Into SancionTipo_Group = Group
                             From stg In SancionTipo_Group.DefaultIfEmpty
-                            Where ps.IDPersona = mPersonaActual.IDPersona
+                            Where ps.IDPersona = mPersonaActual.IDPersona And ps.Estado = Constantes.PersonaSancionEstadoAprobada
                             Order By ps.SolicitudFecha Descending
                             Select New Sanciones_GridRowData With {.IDSancion = ps.IDSancion, .SolicitudFecha = ps.SolicitudFecha, .SancionTipoNombre = If(stg Is Nothing, "", stg.Nombre)}).ToList
 
@@ -2127,102 +2126,21 @@
         End If
     End Sub
 
-    Private Sub Sanciones_Agregar(sender As Object, e As EventArgs) Handles buttonSanciones_Agregar.Click
-        If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_AGREGAR) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, 0)
-
-            Me.Cursor = Cursors.Default
-        End If
-    End Sub
-
-    Private Sub Sanciones_Editar(sender As Object, e As EventArgs) Handles buttonSanciones_Editar.Click
-        If datagridviewSanciones.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Sanción para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_EDITAR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                formPersonaSancion.LoadAndShow(True, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
-
-                Me.Cursor = Cursors.Default
-            End If
-        End If
-    End Sub
-
-    Private Sub Sanciones_Eliminar(sender As Object, e As EventArgs) Handles buttonSanciones_Eliminar.Click
-        If datagridviewSanciones.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Sanción para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_ELIMINAR) Then
-                Dim GridRowDataActual As Sanciones_GridRowData
-                Dim Mensaje As String
-
-                GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData)
-
-                Mensaje = String.Format("Se eliminará la Sanción seleccionada.{0}{0}Fecha de solicitud: {1}{0}Tipo: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.SolicitudFecha, GridRowDataActual.SancionTipoNombre)
-                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                    Me.Cursor = Cursors.WaitCursor
-
-                    Dim PersonaSancionEliminar As PersonaSancion
-                    PersonaSancionEliminar = mdbContext.PersonaSancion.Find(mPersonaActual.IDPersona, GridRowDataActual.IDSancion)
-                    mdbContext.PersonaSancion.Remove(PersonaSancionEliminar)
-                    mdbContext.SaveChanges()
-                    PersonaSancionEliminar = Nothing
-
-                    Sanciones_RefreshData()
-
-                    Me.Cursor = Cursors.Default
-                End If
-            End If
-        End If
-    End Sub
-
     Private Sub Sanciones_Ver(sender As Object, e As EventArgs) Handles datagridviewSanciones.DoubleClick
         If mEditMode Then
             ' La Persona está en modo Edición, por lo tanto no permito abrir la sub-ventana
             Exit Sub
         End If
+
         If datagridviewSanciones.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Sanción para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            formPersonaSancion.LoadAndShow(False, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
-
-            Me.Cursor = Cursors.Default
         End If
-    End Sub
 
-    Private Sub Sanciones_Imprimir(sender As Object, e As EventArgs) Handles buttonSanciones_Imprimir.Click
-        Dim GridRowDataActual As Sanciones_GridRowData
+        Me.Cursor = Cursors.WaitCursor
 
-        If datagridviewSanciones.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Sanción para imprimir.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_SANCION_IMPRIMIR) Then
-                GridRowDataActual = CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData)
+        formSancion.LoadAndShow(True, False, Me, mPersonaActual.IDPersona, CType(datagridviewSanciones.SelectedRows(0).DataBoundItem, Sanciones_GridRowData).IDSancion)
 
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewSanciones.Enabled = False
-
-                Using dbContext As New CSBomberosContext(True)
-                    Dim ReporteActual As New Reporte
-
-                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_SANCIONDISCIPLINARIA))
-                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDPersona").Single.Valor = mPersonaActual.IDPersona
-                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.TrimEnd = "IDSancion").Single.Valor = GridRowDataActual.IDSancion
-                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & mPersonaActual.ApellidoNombre & " - " & GridRowDataActual.SancionTipoNombre) Then
-                    End If
-                End Using
-
-                datagridviewSanciones.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
-        End If
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

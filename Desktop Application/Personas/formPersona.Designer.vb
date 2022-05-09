@@ -206,6 +206,9 @@ Partial Class formPersona
         Me.buttonFamiliares_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageAltasBajas = New System.Windows.Forms.TabPage()
         Me.datagridviewAltasBajas = New System.Windows.Forms.DataGridView()
+        Me.columnAltasBajas_TipoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnAltasBajas_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnaltasBajas_BajaMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripAltasBajas = New System.Windows.Forms.ToolStrip()
         Me.buttonAltasBajas_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAltasBajas_Editar = New System.Windows.Forms.ToolStripButton()
@@ -298,11 +301,6 @@ Partial Class formPersona
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
         Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.toolstripSanciones = New System.Windows.Forms.ToolStrip()
-        Me.buttonSanciones_Agregar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonSanciones_Editar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonSanciones_Eliminar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonSanciones_Imprimir = New System.Windows.Forms.ToolStripButton()
         Me.tabpageCapacitaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCapacitaciones = New System.Windows.Forms.DataGridView()
         Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -337,9 +335,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.columnAltasBajas_TipoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnAltasBajas_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnaltasBajas_BajaMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -455,7 +450,6 @@ Partial Class formPersona
         Me.toolstripLicenciasEspeciales.SuspendLayout()
         Me.tabpageSanciones.SuspendLayout()
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripSanciones.SuspendLayout()
         Me.tabpageCapacitaciones.SuspendLayout()
         CType(Me.datagridviewCapacitaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripCapacitaciones.SuspendLayout()
@@ -2133,6 +2127,33 @@ Partial Class formPersona
         Me.datagridviewAltasBajas.Size = New System.Drawing.Size(565, 408)
         Me.datagridviewAltasBajas.TabIndex = 8
         '
+        'columnAltasBajas_TipoNombre
+        '
+        Me.columnAltasBajas_TipoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAltasBajas_TipoNombre.DataPropertyName = "TipoNombre"
+        Me.columnAltasBajas_TipoNombre.HeaderText = "Tipo"
+        Me.columnAltasBajas_TipoNombre.Name = "columnAltasBajas_TipoNombre"
+        Me.columnAltasBajas_TipoNombre.ReadOnly = True
+        Me.columnAltasBajas_TipoNombre.Width = 53
+        '
+        'columnAltasBajas_Fecha
+        '
+        Me.columnAltasBajas_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnAltasBajas_Fecha.DataPropertyName = "Fecha"
+        Me.columnAltasBajas_Fecha.HeaderText = "Fecha"
+        Me.columnAltasBajas_Fecha.Name = "columnAltasBajas_Fecha"
+        Me.columnAltasBajas_Fecha.ReadOnly = True
+        Me.columnAltasBajas_Fecha.Width = 62
+        '
+        'columnaltasBajas_BajaMotivo
+        '
+        Me.columnaltasBajas_BajaMotivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnaltasBajas_BajaMotivo.DataPropertyName = "BajaMotivoNombre"
+        Me.columnaltasBajas_BajaMotivo.HeaderText = "Motivo de baja"
+        Me.columnaltasBajas_BajaMotivo.Name = "columnaltasBajas_BajaMotivo"
+        Me.columnaltasBajas_BajaMotivo.ReadOnly = True
+        Me.columnaltasBajas_BajaMotivo.Width = 102
+        '
         'toolstripAltasBajas
         '
         Me.toolstripAltasBajas.Dock = System.Windows.Forms.DockStyle.Left
@@ -3150,7 +3171,6 @@ Partial Class formPersona
         'tabpageSanciones
         '
         Me.tabpageSanciones.Controls.Add(Me.datagridviewSanciones)
-        Me.tabpageSanciones.Controls.Add(Me.toolstripSanciones)
         Me.tabpageSanciones.Location = New System.Drawing.Point(4, 25)
         Me.tabpageSanciones.Margin = New System.Windows.Forms.Padding(0)
         Me.tabpageSanciones.Name = "tabpageSanciones"
@@ -3173,14 +3193,14 @@ Partial Class formPersona
         Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
         Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewSanciones.Location = New System.Drawing.Point(90, 0)
+        Me.datagridviewSanciones.Location = New System.Drawing.Point(0, 0)
         Me.datagridviewSanciones.MultiSelect = False
         Me.datagridviewSanciones.Name = "datagridviewSanciones"
         Me.datagridviewSanciones.ReadOnly = True
         Me.datagridviewSanciones.RowHeadersVisible = False
         Me.datagridviewSanciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewSanciones.Size = New System.Drawing.Size(562, 408)
+        Me.datagridviewSanciones.Size = New System.Drawing.Size(652, 408)
         Me.datagridviewSanciones.TabIndex = 6
         '
         'columnSanciones_SolicitudFecha
@@ -3200,57 +3220,6 @@ Partial Class formPersona
         Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
         Me.columnSanciones_SancionTipo.ReadOnly = True
         Me.columnSanciones_SancionTipo.Width = 99
-        '
-        'toolstripSanciones
-        '
-        Me.toolstripSanciones.Dock = System.Windows.Forms.DockStyle.Left
-        Me.toolstripSanciones.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripSanciones.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.toolstripSanciones.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonSanciones_Agregar, Me.buttonSanciones_Editar, Me.buttonSanciones_Eliminar, Me.buttonSanciones_Imprimir})
-        Me.toolstripSanciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripSanciones.Location = New System.Drawing.Point(0, 0)
-        Me.toolstripSanciones.Name = "toolstripSanciones"
-        Me.toolstripSanciones.Size = New System.Drawing.Size(90, 408)
-        Me.toolstripSanciones.TabIndex = 7
-        '
-        'buttonSanciones_Agregar
-        '
-        Me.buttonSanciones_Agregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
-        Me.buttonSanciones_Agregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Agregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Agregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Agregar.Name = "buttonSanciones_Agregar"
-        Me.buttonSanciones_Agregar.Size = New System.Drawing.Size(87, 36)
-        Me.buttonSanciones_Agregar.Text = "Agregar"
-        '
-        'buttonSanciones_Editar
-        '
-        Me.buttonSanciones_Editar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
-        Me.buttonSanciones_Editar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Editar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Editar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Editar.Name = "buttonSanciones_Editar"
-        Me.buttonSanciones_Editar.Size = New System.Drawing.Size(87, 36)
-        Me.buttonSanciones_Editar.Text = "Editar"
-        '
-        'buttonSanciones_Eliminar
-        '
-        Me.buttonSanciones_Eliminar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
-        Me.buttonSanciones_Eliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.buttonSanciones_Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Eliminar.Name = "buttonSanciones_Eliminar"
-        Me.buttonSanciones_Eliminar.Size = New System.Drawing.Size(87, 36)
-        Me.buttonSanciones_Eliminar.Text = "Eliminar"
-        '
-        'buttonSanciones_Imprimir
-        '
-        Me.buttonSanciones_Imprimir.Image = Global.CSBomberos.My.Resources.Resources.ImageImprimir32
-        Me.buttonSanciones_Imprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonSanciones_Imprimir.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonSanciones_Imprimir.Name = "buttonSanciones_Imprimir"
-        Me.buttonSanciones_Imprimir.Size = New System.Drawing.Size(87, 36)
-        Me.buttonSanciones_Imprimir.Text = "Imprimir"
         '
         'tabpageCapacitaciones
         '
@@ -3668,33 +3637,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'columnAltasBajas_TipoNombre
-        '
-        Me.columnAltasBajas_TipoNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAltasBajas_TipoNombre.DataPropertyName = "TipoNombre"
-        Me.columnAltasBajas_TipoNombre.HeaderText = "Tipo"
-        Me.columnAltasBajas_TipoNombre.Name = "columnAltasBajas_TipoNombre"
-        Me.columnAltasBajas_TipoNombre.ReadOnly = True
-        Me.columnAltasBajas_TipoNombre.Width = 53
-        '
-        'columnAltasBajas_Fecha
-        '
-        Me.columnAltasBajas_Fecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnAltasBajas_Fecha.DataPropertyName = "Fecha"
-        Me.columnAltasBajas_Fecha.HeaderText = "Fecha"
-        Me.columnAltasBajas_Fecha.Name = "columnAltasBajas_Fecha"
-        Me.columnAltasBajas_Fecha.ReadOnly = True
-        Me.columnAltasBajas_Fecha.Width = 62
-        '
-        'columnaltasBajas_BajaMotivo
-        '
-        Me.columnaltasBajas_BajaMotivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnaltasBajas_BajaMotivo.DataPropertyName = "BajaMotivoNombre"
-        Me.columnaltasBajas_BajaMotivo.HeaderText = "Motivo de baja"
-        Me.columnaltasBajas_BajaMotivo.Name = "columnaltasBajas_BajaMotivo"
-        Me.columnaltasBajas_BajaMotivo.ReadOnly = True
-        Me.columnaltasBajas_BajaMotivo.Width = 102
-        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3796,10 +3738,7 @@ Partial Class formPersona
         Me.toolstripLicenciasEspeciales.ResumeLayout(False)
         Me.toolstripLicenciasEspeciales.PerformLayout()
         Me.tabpageSanciones.ResumeLayout(False)
-        Me.tabpageSanciones.PerformLayout()
         CType(Me.datagridviewSanciones, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripSanciones.ResumeLayout(False)
-        Me.toolstripSanciones.PerformLayout()
         Me.tabpageCapacitaciones.ResumeLayout(False)
         Me.tabpageCapacitaciones.PerformLayout()
         CType(Me.datagridviewCapacitaciones, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3919,10 +3858,6 @@ Partial Class formPersona
     Friend WithEvents buttonLicencias_Editar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonLicencias_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewSanciones As System.Windows.Forms.DataGridView
-    Friend WithEvents toolstripSanciones As System.Windows.Forms.ToolStrip
-    Friend WithEvents buttonSanciones_Agregar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonSanciones_Editar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonSanciones_Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents datagridviewCapacitaciones As System.Windows.Forms.DataGridView
     Friend WithEvents toolstripCapacitaciones As System.Windows.Forms.ToolStrip
     Friend WithEvents buttonCapacitaciones_Agregar As System.Windows.Forms.ToolStripButton
@@ -3955,7 +3890,6 @@ Partial Class formPersona
     Friend WithEvents buttonCalificaciones_Imprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents doubletextboxAltura As Syncfusion.Windows.Forms.Tools.DoubleTextBox
     Friend WithEvents integertextboxPeso As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents buttonSanciones_Imprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonLicencias_Imprimir As System.Windows.Forms.ToolStripButton
     Friend WithEvents tabpageHorarioLaboral As TabPage
     Friend WithEvents panelHorarioLaboral As TableLayoutPanel

@@ -306,6 +306,18 @@
     <Compile Include="ABM Tablas\Otros\formResponsableTipos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM Tablas\Personas\formSancionMotivo.designer.vb">
+      <DependentUpon>formSancionMotivo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Personas\formSancionMotivo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Tablas\Personas\formSancionMotivos.designer.vb">
+      <DependentUpon>formSancionMotivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Tablas\Personas\formSancionMotivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.designer.vb">
       <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
     </Compile>
@@ -629,7 +641,9 @@
     </Compile>
     <Compile Include="Listas\Academias.vb" />
     <Compile Include="Listas\Comprobantes.vb" />
-    <Compile Include="Listas\Comun.vb" />
+    <Compile Include="Listas\Comunes.vb" />
+    <Compile Include="Listas\Personas.vb" />
+    <Compile Include="Listas\Sanciones.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Localidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -838,6 +852,15 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Rubro.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sanciones\formSanciones.designer.vb">
+      <DependentUpon>formSanciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sanciones\formSanciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SancionMotivo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="SancionTipo.vb">
@@ -1212,10 +1235,10 @@
     <Compile Include="Personas\formPersonaLicenciaConducirCategorias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Personas\formPersonaSancion.designer.vb">
-      <DependentUpon>formPersonaSancion.vb</DependentUpon>
+    <Compile Include="Sanciones\formSancion.designer.vb">
+      <DependentUpon>formSancion.vb</DependentUpon>
     </Compile>
-    <Compile Include="Personas\formPersonaSancion.vb">
+    <Compile Include="Sanciones\formSancion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reportes\formReportesParametroComboBoxSimple.Designer.vb">
@@ -1505,6 +1528,12 @@
     <EmbeddedResource Include="ABM Tablas\Otros\formResponsableTipos.resx">
       <DependentUpon>formResponsableTipos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Personas\formSancionMotivo.resx">
+      <DependentUpon>formSancionMotivo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Tablas\Personas\formSancionMotivos.resx">
+      <DependentUpon>formSancionMotivos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Tablas\Siniestros\formSiniestroAsistenciaTipo.resx">
       <DependentUpon>formSiniestroAsistenciaTipo.vb</DependentUpon>
     </EmbeddedResource>
@@ -1592,6 +1621,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sanciones\formSanciones.resx">
+      <DependentUpon>formSanciones.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestro.resx">
       <DependentUpon>formSiniestro.vb</DependentUpon>
@@ -1788,8 +1820,8 @@
     <EmbeddedResource Include="Personas\formPersonaLicenciaConducirCategorias.resx">
       <DependentUpon>formPersonaLicenciaConducirCategorias.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Personas\formPersonaSancion.resx">
-      <DependentUpon>formPersonaSancion.vb</DependentUpon>
+    <EmbeddedResource Include="Sanciones\formSancion.resx">
+      <DependentUpon>formSancion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\formReportesParametroComboBoxSimple.resx">
       <DependentUpon>formReportesParametroComboBoxSimple.vb</DependentUpon>
@@ -1945,6 +1977,7 @@
     <Content Include="Resources\Items\ArqueoCaja32.png" />
     <Content Include="Resources\Items\Elemento32.png" />
     <None Include="Resources\Items\FacturaCompra32.png" />
+    <Content Include="Resources\Items\Sancion32.png" />
     <Content Include="Resources\Items\OrdenCompra32.png" />
     <Content Include="Resources\Items\Persona32.png" />
     <Content Include="Resources\Items\PersonaHombre16.png" />

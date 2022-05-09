@@ -30,7 +30,7 @@
         SetAppearance()
 
         Using context As New CSBomberosContext(True)
-            ListasComun.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
+            ListasComunes.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
         End Using
         CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
         pFillAndRefreshLists.ElementoFill(comboboxElemento, False, False)

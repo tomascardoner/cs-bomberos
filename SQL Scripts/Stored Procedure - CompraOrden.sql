@@ -61,15 +61,15 @@ CREATE PROCEDURE CompraObtenerOrden
 					AND pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(@ResponsableIDPersona, GETDATE())
 
 		-- Traigo los datos correspondientes
-		SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, p.Nombre AS Proveedor, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto AS FacturaNumero, SUM(cod.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
+		SELECT co.IDCompraOrden, cu.Codigo AS CuartelCodigo, cu.Nombre AS CuartelNombre, co.Numero, co.Fecha, e.Nombre AS Proveedor, a.Nombre AS Area, cod.IDDetalle, cod.Detalle, cm.NumeroCompleto AS FacturaNumero, SUM(cod.Importe) AS Importe, @ResponsableApellidoNombre AS FirmanteApellidoNombre, @ResponsableEstadoActivo AS FirmanteEstadoActivo, @ResponsableJerarquia AS FirmanteJerarquia, @ResponsableTipo AS FirmanteCargo
 			FROM CompraOrden AS co
 				INNER JOIN Cuartel AS cu ON co.IDCuartel = cu.IDCuartel
 				LEFT JOIN CompraOrdenDetalle AS cod ON co.IDCompraOrden = cod.IDCompraOrden
-				LEFT JOIN CompraFactura AS cf ON cod.IDCompraFactura = cf.IDCompraFactura
+				LEFT JOIN Comprobante AS cm ON cod.IDComprobante = cm.IDComprobante
 				LEFT JOIN Area AS a ON cod.IDArea = a.IDArea
-				LEFT JOIN Proveedor AS p ON co.IDProveedor = p.IDProveedor
+				LEFT JOIN Entidad AS e ON co.IDEntidad = e.IDEntidad
 			WHERE co.IDCompraOrden = @IDCompraOrden
-			GROUP BY co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, p.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cf.NumeroCompleto
+			GROUP BY co.IDCompraOrden, cu.Codigo, cu.Nombre, co.Numero, co.Fecha, e.Nombre, a.Nombre, cod.IDDetalle, cod.Detalle, cm.NumeroCompleto
 			ORDER BY cod.IDDetalle
 	END
 GO
