@@ -531,9 +531,9 @@
         nodeRoot = Arbol.Nodes.Add("JEFATURA", Constantes.ModuloJefaturaNombre)
 
         ' Jefatura - sanciones
-        nodeCurrent = AgregarNodos(nodeParent, SANCION, "Sanciones", SANCION_AGREGAR, DESCRIPCION_AGREGAR, SANCION_EDITAR, DESCRIPCION_EDITAR, SANCION_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeRoot, SANCION, "Sanciones", SANCION_AGREGAR, DESCRIPCION_AGREGAR, SANCION_EDITAR, DESCRIPCION_EDITAR, SANCION_ELIMINAR, DESCRIPCION_ELIMINAR)
         nodeCurrent.Nodes.Add(SANCION_IMPRIMIR, DESCRIPCION_IMPRIMIR)
-        nodeCurrent.Nodes.Add(SANCION_CAMBIARESTADO, " Cambiar estado")
+        nodeCurrent.Nodes.Add(SANCION_CAMBIARESTADO, "Cambiar estado")
         nodeCurrent.Nodes.Add(SANCION_EDITAR_FINALIZADA, DESCRIPCION_EDITAR & " sanción finalizada")
         nodeCurrent.Nodes.Add(SANCION_ELIMINAR_FINALIZADA, DESCRIPCION_ELIMINAR & " sanción finalizada")
 
@@ -559,7 +559,7 @@
         nodeCurrent.Nodes.Add(COMPRAORDEN_EDITAR_CERRADA, DESCRIPCION_EDITAR & " compra cerrada")
         nodeCurrent.Nodes.Add(COMPRAORDEN_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " compra cerrada")
         nodeCurrent.Nodes.Add(COMPRAORDEN_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " compra cerrada")
-        AgregarNodos(nodeRoot, COMPRAORDENDETALLE, "Detalles de órdenes de compra.", COMPRAORDENDETALLE_AGREGAR, DESCRIPCION_AGREGAR, COMPRAORDENDETALLE_EDITAR, DESCRIPCION_EDITAR, COMPRAORDENDETALLE_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeRoot, COMPRAORDENDETALLE, "Detalles de órdenes de compra", COMPRAORDENDETALLE_AGREGAR, DESCRIPCION_AGREGAR, COMPRAORDENDETALLE_EDITAR, DESCRIPCION_EDITAR, COMPRAORDENDETALLE_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' Comisión directiva - reportes
         nodeParent = nodeRoot.Nodes.Add(REPORTE_COMISIONDIRECTIVA, "Reportes")
