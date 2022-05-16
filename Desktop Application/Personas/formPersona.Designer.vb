@@ -299,8 +299,6 @@ Partial Class formPersona
         Me.buttonLicenciasEspeciales_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
-        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabpageCapacitaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCapacitaciones = New System.Windows.Forms.DataGridView()
         Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -335,6 +333,10 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -3189,8 +3191,9 @@ Partial Class formPersona
         DataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewSanciones.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle18
+        Me.datagridviewSanciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewSanciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo})
+        Me.datagridviewSanciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnSanciones_SolicitudFecha, Me.columnSanciones_SancionTipo, Me.columnFechaInicio, Me.columnFechaFin})
         Me.datagridviewSanciones.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewSanciones.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewSanciones.Location = New System.Drawing.Point(0, 0)
@@ -3202,24 +3205,6 @@ Partial Class formPersona
         Me.datagridviewSanciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewSanciones.Size = New System.Drawing.Size(652, 408)
         Me.datagridviewSanciones.TabIndex = 6
-        '
-        'columnSanciones_SolicitudFecha
-        '
-        Me.columnSanciones_SolicitudFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
-        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.ReadOnly = True
-        Me.columnSanciones_SolicitudFecha.Width = 108
-        '
-        'columnSanciones_SancionTipo
-        '
-        Me.columnSanciones_SancionTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
-        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
-        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
-        Me.columnSanciones_SancionTipo.ReadOnly = True
-        Me.columnSanciones_SancionTipo.Width = 99
         '
         'tabpageCapacitaciones
         '
@@ -3637,6 +3622,38 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
+        'columnSanciones_SolicitudFecha
+        '
+        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
+        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.ReadOnly = True
+        Me.columnSanciones_SolicitudFecha.Width = 108
+        '
+        'columnSanciones_SancionTipo
+        '
+        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
+        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
+        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
+        Me.columnSanciones_SancionTipo.ReadOnly = True
+        Me.columnSanciones_SancionTipo.Width = 99
+        '
+        'columnFechaInicio
+        '
+        Me.columnFechaInicio.DataPropertyName = "FechaInicio"
+        Me.columnFechaInicio.HeaderText = "Inicio"
+        Me.columnFechaInicio.Name = "columnFechaInicio"
+        Me.columnFechaInicio.ReadOnly = True
+        Me.columnFechaInicio.Width = 57
+        '
+        'columnFechaFin
+        '
+        Me.columnFechaFin.DataPropertyName = "FechaFin"
+        Me.columnFechaFin.HeaderText = "Fin"
+        Me.columnFechaFin.Name = "columnFechaFin"
+        Me.columnFechaFin.ReadOnly = True
+        Me.columnFechaFin.Width = 46
+        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -3875,8 +3892,6 @@ Partial Class formPersona
     Friend WithEvents columnLicencias_Causa As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnLicencias_FechaDesde As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnLicencias_FechaHasta As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnSanciones_SolicitudFecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnSanciones_SancionTipo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCapacitaciones_Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnCapacitaciones_CursoNombre As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents columnExamenes_AnioInstancia As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -3985,4 +4000,8 @@ Partial Class formPersona
     Friend WithEvents columnAltasBajas_TipoNombre As DataGridViewTextBoxColumn
     Friend WithEvents columnAltasBajas_Fecha As DataGridViewTextBoxColumn
     Friend WithEvents columnaltasBajas_BajaMotivo As DataGridViewTextBoxColumn
+    Friend WithEvents columnSanciones_SolicitudFecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnSanciones_SancionTipo As DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaInicio As DataGridViewTextBoxColumn
+    Friend WithEvents columnFechaFin As DataGridViewTextBoxColumn
 End Class

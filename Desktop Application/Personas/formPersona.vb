@@ -2082,10 +2082,14 @@
         Public Property IDSancion As Short
         Public Property SolicitudFecha As Date
         Public Property SancionTipoNombre As String
+        Public Property SancionTipoCantidadDias As Short?
+        Public Property NotificacionFechaEfectiva As Date?
+        Public Property FechaInicio As Date?
+        Public Property FechaFin As Date?
     End Class
 
     Friend Sub Sanciones_RefreshData(Optional ByVal PositionIDSancion As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
-        Dim listSancions As List(Of Sanciones_GridRowData)
+        Dim listSanciones As List(Of Sanciones_GridRowData)
 
         If RestoreCurrentPosition Then
             If datagridviewSanciones.CurrentRow Is Nothing Then
@@ -2098,15 +2102,24 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            listSancions = (From ps In mdbContext.PersonaSancion
-                            Group Join st In mdbContext.SancionTipo On ps.ResolucionIDSancionTipo Equals st.IDSancionTipo Into SancionTipo_Group = Group
-                            From stg In SancionTipo_Group.DefaultIfEmpty
-                            Where ps.IDPersona = mPersonaActual.IDPersona And ps.Estado = Constantes.PersonaSancionEstadoAprobada
-                            Order By ps.SolicitudFecha Descending
-                            Select New Sanciones_GridRowData With {.IDSancion = ps.IDSancion, .SolicitudFecha = ps.SolicitudFecha, .SancionTipoNombre = If(stg Is Nothing, "", stg.Nombre)}).ToList
+            listSanciones = (From ps In mdbContext.PersonaSancion
+                             Group Join st In mdbContext.SancionTipo On ps.ResolucionIDSancionTipo Equals st.IDSancionTipo Into SancionTipo_Group = Group
+                             From stg In SancionTipo_Group.DefaultIfEmpty
+                             Where ps.IDPersona = mPersonaActual.IDPersona And ps.Estado = Constantes.PersonaSancionEstadoAprobada
+                             Order By ps.SolicitudFecha Descending
+                             Select New Sanciones_GridRowData With {.IDSancion = ps.IDSancion, .SolicitudFecha = ps.SolicitudFecha, .SancionTipoNombre = If(stg Is Nothing, String.Empty, stg.Nombre), .SancionTipoCantidadDias = If(stg Is Nothing, Nothing, stg.CantidadDias), .NotificacionFechaEfectiva = ps.NotificacionFechaEfectiva}).ToList
+
+            For Each row As Sanciones_GridRowData In listSanciones
+                If row.NotificacionFechaEfectiva.HasValue Then
+                    row.FechaInicio = row.NotificacionFechaEfectiva.Value.AddDays(1)
+                    If row.SancionTipoCantidadDias.HasValue Then
+                        row.FechaFin = row.FechaInicio.Value.AddDays(row.SancionTipoCantidadDias.Value - 1)
+                    End If
+                End If
+            Next
 
             datagridviewSanciones.AutoGenerateColumns = False
-            datagridviewSanciones.DataSource = listSancions
+            datagridviewSanciones.DataSource = listSanciones
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Sanciones.")

@@ -11,6 +11,7 @@ GO
 -- Create date: 2018-09-22
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 --			2022-05-08 - Se agregaron las columnas Estado, EstadoNombre, DesaprobadaCausa, TestimonioTexto y TestimonioFecha
+--			2022-05-15 - Se agregó el Responsable
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_SancionDisciplinaria') AND type in (N'P', N'PC'))
@@ -26,8 +27,9 @@ CREATE PROCEDURE usp_Persona_SancionDisciplinaria
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, cj.Nombre AS Jerarquia, sp.Apellido AS SolicitudPersonaApellido,
-				sp.Nombre AS SolicitudPersonaNombre, scj.Nombre AS SolicitudJerarquia, ps.SolicitudMotivo, ps.SolicitudFecha, ps.EncuadreTexto, ps.EncuadreFecha,
+		SELECT p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, cj.Nombre AS Jerarquia,
+				rt.Nombre AS SolicitudResponsableTipo, sp.Apellido AS SolicitudPersonaApellido, sp.Nombre AS SolicitudPersonaNombre, scj.Nombre AS SolicitudJerarquia, ps.SolicitudPersonaTexto,
+				ps.SolicitudMotivo, ps.SolicitudFecha, ps.EncuadreTexto, ps.EncuadreFecha,
 				ps.Estado, ps.EstadoNombre, ps.DesaprobadaCausa, st.Nombre AS ResolucionSancionTipoNombre, ps.ResolucionFecha, ps.NotificacionFecha, ps.TestimonioTexto, ps.TestimonioFecha
 			FROM PersonaSancion AS ps
 				INNER JOIN Persona AS p ON ps.IDPersona = p.IDPersona
@@ -39,6 +41,7 @@ CREATE PROCEDURE usp_Persona_SancionDisciplinaria
 				LEFT JOIN Cargo AS sca ON spa.IDCargo = sca.IDCargo
 				LEFT JOIN CargoJerarquia AS scj ON spa.IDCargo = scj.IDCargo AND spa.IDJerarquia = scj.IDJerarquia
 				LEFT JOIN SancionTipo AS st ON ps.ResolucionIDSancionTipo = st.IDSancionTipo
+				LEFT JOIN ResponsableTipo AS rt ON ps.SolicitudIDResponsableTipo = rt.IDResponsableTipo
 			WHERE ps.IDPersona = @IDPersona AND ps.IDSancion = @IDSancion
 				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, ps.SolicitudFecha))
 				AND (spa.Fecha IS NULL OR spa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(sp.IDPersona, ps.SolicitudFecha))

@@ -34,7 +34,13 @@ Partial Class formResponsable
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.comboboxPersona = New System.Windows.Forms.ComboBox()
+        Me.radiobuttonPersonaOtra = New System.Windows.Forms.RadioButton()
+        Me.radiobuttonPersona = New System.Windows.Forms.RadioButton()
+        Me.buttonPersonaBorrar = New System.Windows.Forms.Button()
+        Me.buttonPersona = New System.Windows.Forms.Button()
+        Me.textboxPersona = New System.Windows.Forms.TextBox()
+        Me.labelPersonaOtra = New System.Windows.Forms.Label()
+        Me.textboxPersonaOtra = New System.Windows.Forms.TextBox()
         Me.comboboxResponsableTipo = New System.Windows.Forms.ComboBox()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
@@ -46,8 +52,6 @@ Partial Class formResponsable
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.labelPersonaOtra = New System.Windows.Forms.Label()
-        Me.textboxPersonaOtra = New System.Windows.Forms.TextBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
@@ -165,9 +169,13 @@ Partial Class formResponsable
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.radiobuttonPersonaOtra)
+        Me.tabpageGeneral.Controls.Add(Me.radiobuttonPersona)
+        Me.tabpageGeneral.Controls.Add(Me.buttonPersonaBorrar)
+        Me.tabpageGeneral.Controls.Add(Me.buttonPersona)
+        Me.tabpageGeneral.Controls.Add(Me.textboxPersona)
         Me.tabpageGeneral.Controls.Add(Me.labelPersonaOtra)
         Me.tabpageGeneral.Controls.Add(Me.textboxPersonaOtra)
-        Me.tabpageGeneral.Controls.Add(Me.comboboxPersona)
         Me.tabpageGeneral.Controls.Add(Label1)
         Me.tabpageGeneral.Controls.Add(Me.comboboxResponsableTipo)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
@@ -181,14 +189,74 @@ Partial Class formResponsable
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'comboboxPersona
+        'radiobuttonPersonaOtra
         '
-        Me.comboboxPersona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxPersona.FormattingEnabled = True
-        Me.comboboxPersona.Location = New System.Drawing.Point(61, 89)
-        Me.comboboxPersona.Name = "comboboxPersona"
-        Me.comboboxPersona.Size = New System.Drawing.Size(444, 21)
-        Me.comboboxPersona.TabIndex = 5
+        Me.radiobuttonPersonaOtra.AutoSize = True
+        Me.radiobuttonPersonaOtra.Location = New System.Drawing.Point(61, 119)
+        Me.radiobuttonPersonaOtra.Name = "radiobuttonPersonaOtra"
+        Me.radiobuttonPersonaOtra.Size = New System.Drawing.Size(14, 13)
+        Me.radiobuttonPersonaOtra.TabIndex = 10
+        Me.radiobuttonPersonaOtra.UseVisualStyleBackColor = True
+        '
+        'radiobuttonPersona
+        '
+        Me.radiobuttonPersona.AutoSize = True
+        Me.radiobuttonPersona.Checked = True
+        Me.radiobuttonPersona.Location = New System.Drawing.Point(61, 92)
+        Me.radiobuttonPersona.Name = "radiobuttonPersona"
+        Me.radiobuttonPersona.Size = New System.Drawing.Size(14, 13)
+        Me.radiobuttonPersona.TabIndex = 5
+        Me.radiobuttonPersona.TabStop = True
+        Me.radiobuttonPersona.UseVisualStyleBackColor = True
+        '
+        'buttonPersonaBorrar
+        '
+        Me.buttonPersonaBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.buttonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
+        Me.buttonPersonaBorrar.Location = New System.Drawing.Point(483, 88)
+        Me.buttonPersonaBorrar.Name = "buttonPersonaBorrar"
+        Me.buttonPersonaBorrar.Size = New System.Drawing.Size(22, 22)
+        Me.buttonPersonaBorrar.TabIndex = 8
+        Me.buttonPersonaBorrar.UseVisualStyleBackColor = True
+        '
+        'buttonPersona
+        '
+        Me.buttonPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.buttonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
+        Me.buttonPersona.Location = New System.Drawing.Point(460, 88)
+        Me.buttonPersona.Name = "buttonPersona"
+        Me.buttonPersona.Size = New System.Drawing.Size(22, 22)
+        Me.buttonPersona.TabIndex = 7
+        Me.buttonPersona.UseVisualStyleBackColor = True
+        '
+        'textboxPersona
+        '
+        Me.textboxPersona.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxPersona.Location = New System.Drawing.Point(87, 89)
+        Me.textboxPersona.Name = "textboxPersona"
+        Me.textboxPersona.ReadOnly = True
+        Me.textboxPersona.Size = New System.Drawing.Size(370, 20)
+        Me.textboxPersona.TabIndex = 6
+        Me.textboxPersona.TabStop = False
+        '
+        'labelPersonaOtra
+        '
+        Me.labelPersonaOtra.AutoSize = True
+        Me.labelPersonaOtra.Location = New System.Drawing.Point(6, 119)
+        Me.labelPersonaOtra.Name = "labelPersonaOtra"
+        Me.labelPersonaOtra.Size = New System.Drawing.Size(30, 13)
+        Me.labelPersonaOtra.TabIndex = 9
+        Me.labelPersonaOtra.Text = "Otra:"
+        '
+        'textboxPersonaOtra
+        '
+        Me.textboxPersonaOtra.Location = New System.Drawing.Point(87, 116)
+        Me.textboxPersonaOtra.MaxLength = 100
+        Me.textboxPersonaOtra.Name = "textboxPersonaOtra"
+        Me.textboxPersonaOtra.Size = New System.Drawing.Size(418, 20)
+        Me.textboxPersonaOtra.TabIndex = 11
+        Me.textboxPersonaOtra.Visible = False
         '
         'comboboxResponsableTipo
         '
@@ -303,25 +371,6 @@ Partial Class formResponsable
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'labelPersonaOtra
-        '
-        Me.labelPersonaOtra.AutoSize = True
-        Me.labelPersonaOtra.Location = New System.Drawing.Point(6, 119)
-        Me.labelPersonaOtra.Name = "labelPersonaOtra"
-        Me.labelPersonaOtra.Size = New System.Drawing.Size(30, 13)
-        Me.labelPersonaOtra.TabIndex = 6
-        Me.labelPersonaOtra.Text = "Otra:"
-        Me.labelPersonaOtra.Visible = False
-        '
-        'textboxPersonaOtra
-        '
-        Me.textboxPersonaOtra.Location = New System.Drawing.Point(61, 116)
-        Me.textboxPersonaOtra.MaxLength = 100
-        Me.textboxPersonaOtra.Name = "textboxPersonaOtra"
-        Me.textboxPersonaOtra.Size = New System.Drawing.Size(444, 20)
-        Me.textboxPersonaOtra.TabIndex = 7
-        Me.textboxPersonaOtra.Visible = False
-        '
         'formResponsable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -367,7 +416,11 @@ Partial Class formResponsable
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents comboboxCuartel As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxResponsableTipo As ComboBox
-    Friend WithEvents comboboxPersona As ComboBox
     Friend WithEvents labelPersonaOtra As Label
     Friend WithEvents textboxPersonaOtra As TextBox
+    Friend WithEvents buttonPersonaBorrar As Button
+    Friend WithEvents buttonPersona As Button
+    Friend WithEvents textboxPersona As TextBox
+    Friend WithEvents radiobuttonPersonaOtra As RadioButton
+    Friend WithEvents radiobuttonPersona As RadioButton
 End Class

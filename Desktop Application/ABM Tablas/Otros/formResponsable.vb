@@ -57,8 +57,10 @@
         ' General
         comboboxResponsableTipo.Enabled = mEditMode
         comboboxCuartel.Enabled = mEditMode
-        comboboxPersona.Enabled = mEditMode
+        radiobuttonPersona.Visible = mEditMode
+        radiobuttonPersonaOtra.Visible = mEditMode
         textboxPersonaOtra.ReadOnly = Not mEditMode
+        MostrarControlesPersonas()
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -69,7 +71,6 @@
 
         ListasComunes.LlenarComboBoxResponsableTipos(mdbContext, comboboxResponsableTipo, False, False)
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, True)
-        pFillAndRefreshLists.Persona(comboboxPersona, False, False, False, True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -93,11 +94,22 @@
         With mResponsableActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDResponsableTipo)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxPersona, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDPersona)
-            If .IDPersona Is Nothing Then
-                textboxPersonaOtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.PersonaOtra)
+
+            ' Personas
+            If mIsNew Then
+                radiobuttonPersona.Checked = True
             Else
-                textboxPersonaOtra.Text = ""
+                radiobuttonPersona.Checked = .IDPersona.HasValue
+                radiobuttonPersonaOtra.Checked = Not .IDPersona.HasValue
+            End If
+            If .IDPersona IsNot Nothing Then
+                textboxPersona.Tag = .IDPersona
+                textboxPersona.Text = .Persona.ApellidoNombre
+                textboxPersonaOtra.Text = String.Empty
+            Else
+                textboxPersona.Tag = Nothing
+                textboxPersona.Text = String.Empty
+                textboxPersonaOtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.PersonaOtra)
             End If
 
             ' Datos de la pestaña Notas y Auditoría
@@ -126,12 +138,14 @@
         With mResponsableActual
             .IDResponsableTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxResponsableTipo.SelectedValue).Value
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            If CInt(comboboxPersona.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
-                .IDPersona = Nothing
-                .PersonaOtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxPersonaOtra.Text)
-            Else
-                .IDPersona = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxPersona.SelectedValue).Value
+
+            ' Personas
+            If radiobuttonPersona.Checked Then
+                .IDPersona = CInt(textboxPersona.Tag)
                 .PersonaOtra = Nothing
+            Else
+                .IDPersona = Nothing
+                .PersonaOtra = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxPersonaOtra.Text.TrimAndReduce)
             End If
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -159,21 +173,19 @@
         End Select
     End Sub
 
-    Private Sub PersonaCambio(sender As Object, e As EventArgs) Handles comboboxPersona.SelectedIndexChanged
-        If comboboxPersona.SelectedIndex > -1 Then
-            Dim personaActual As Persona
-
-            personaActual = CType(comboboxPersona.SelectedItem, Persona)
-
-            labelPersonaOtra.Visible = (personaActual.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER)
-            textboxPersonaOtra.Visible = (personaActual.IDPersona = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER)
-        Else
-            labelPersonaOtra.Visible = False
-            textboxPersonaOtra.Visible = False
-        End If
+    Private Sub PersonaOtraCheckedChanged(sender As Object, e As EventArgs) Handles radiobuttonPersona.CheckedChanged, radiobuttonPersonaOtra.CheckedChanged
+        MostrarControlesPersonas()
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxPersonaOtra.GotFocus, textboxNotas.GotFocus
+    Private Sub BuscarPersona(sender As Object, e As EventArgs) Handles buttonPersona.Click
+        ListasPersonas.SeleccionarPersona(Me, textboxPersona)
+    End Sub
+
+    Private Sub BorrarPersona(sender As Object, e As EventArgs) Handles buttonPersonaBorrar.Click
+        ListasPersonas.SeleccionarPersonaBorrar(textboxPersona)
+    End Sub
+
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxPersona.GotFocus, textboxPersonaOtra.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -193,31 +205,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxResponsableTipo.SelectedIndex = -1 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Tipo de Responsable.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxResponsableTipo.Focus()
-            Exit Sub
-        End If
-        If comboboxCuartel.SelectedIndex = -1 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-        If comboboxPersona.SelectedIndex = -1 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxPersona.Focus()
-            Exit Sub
-        End If
-        If CInt(comboboxPersona.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_INTEGER Then
-            If textboxPersonaOtra.Text.Trim.Length = 0 Then
-                tabcontrolMain.SelectedTab = tabpageGeneral
-                MsgBox("Debe especificar la Persona Otra.", MsgBoxStyle.Information, My.Application.Info.Title)
-                textboxPersonaOtra.Focus()
-                Exit Sub
-            End If
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -252,7 +241,7 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        MsgBox("No se pueden guardar los cambios porque ya existe un Responsable.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Responsable con el mismo Tipo.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End Select
                 Exit Sub
 
@@ -265,6 +254,47 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Sub MostrarControlesPersonas()
+        textboxPersona.Visible = radiobuttonPersona.Checked
+        buttonPersona.Visible = radiobuttonPersona.Checked And mEditMode
+        buttonPersonaBorrar.Visible = radiobuttonPersona.Checked And mEditMode
+        textboxPersonaOtra.Visible = radiobuttonPersonaOtra.Checked
+    End Sub
+
+    Private Function VerificarDatos() As Boolean
+        If comboboxResponsableTipo.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Tipo de Responsable.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxResponsableTipo.Focus()
+            Return False
+        End If
+        If comboboxCuartel.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Return False
+        End If
+        If radiobuttonPersona.Checked AndAlso textboxPersona.Tag Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
+            Return False
+        End If
+        If radiobuttonPersonaOtra.Checked AndAlso String.IsNullOrWhiteSpace(textboxPersonaOtra.Text.TrimAndReduce) Then
+            If textboxPersonaOtra.Text.Trim.Length = 0 Then
+                tabcontrolMain.SelectedTab = tabpageGeneral
+                MsgBox("Debe especificar la Persona Otra.", MsgBoxStyle.Information, My.Application.Info.Title)
+                textboxPersonaOtra.Focus()
+                Return False
+            End If
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

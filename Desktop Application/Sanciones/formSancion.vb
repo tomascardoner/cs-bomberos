@@ -73,8 +73,10 @@
         buttonPersona.Visible = mEditMode
         buttonPersonaBorrar.Visible = mEditMode
 
+        comboboxSolicitudResponsableTipo.Enabled = mEditMode
         buttonSolicitudPersona.Visible = mEditMode
         buttonSolicitudPersonaBorrar.Visible = mEditMode
+        textboxSolicitudPersonaTexto.ReadOnly = Not mEditMode
         checkboxObtenerTextos.Visible = mEditMode
         textboxSolicitudMotivo.ReadOnly = Not mEditMode
         datetimepickerSolicitudFecha.Enabled = mEditMode
@@ -98,6 +100,7 @@
         textboxResolucionNumero.Enabled = mEditMode
 
         datetimepickerNotificacionFecha.Enabled = mEditMode
+        datetimepickerNotificacionFechaEfectiva.Enabled = mEditMode
 
         textboxTestimonioTexto.ReadOnly = Not mEditMode
         datetimepickerTestimonioFecha.Enabled = mEditMode
@@ -107,6 +110,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        ListasComunes.LlenarComboBoxResponsables(mdbContext, comboboxSolicitudResponsableTipo, False, True)
         ListasSanciones.LlenarComboBoxMotivosSanciones(mdbContext, comboboxSancionMotivo, False, False)
         ListasSanciones.LlenarComboBoxTiposSanciones(mdbContext, comboboxResolucionSancionTipo, False, True)
     End Sub
@@ -138,6 +142,7 @@
                 textboxPersona.Text = String.Empty
             End If
 
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSolicitudResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .SolicitudIDResponsableTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If mIsNew Then
                 textboxSolicitudPersona.Tag = Nothing
                 textboxSolicitudPersona.Text = String.Empty
@@ -145,6 +150,7 @@
                 textboxSolicitudPersona.Tag = .SolicitudIDPersona
                 textboxSolicitudPersona.Text = .PersonaSolicita.ApellidoNombre
             End If
+            textboxSolicitudPersonaTexto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitudPersonaTexto)
 
             textboxSolicitudMotivo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitudMotivo)
             datetimepickerSolicitudFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.SolicitudFecha)
@@ -168,6 +174,7 @@
             textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
 
             datetimepickerNotificacionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.NotificacionFecha, datetimepickerNotificacionFecha)
+            datetimepickerNotificacionFechaEfectiva.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.NotificacionFechaEfectiva, datetimepickerNotificacionFechaEfectiva)
 
             textboxTestimonioTexto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TestimonioTexto)
             datetimepickerTestimonioFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.TestimonioFecha, datetimepickerTestimonioFecha)
@@ -199,7 +206,9 @@
             ' Datos de la pestaña General
             .IDPersona = CInt(textboxPersona.Tag)
 
+            .SolicitudIDResponsableTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSolicitudResponsableTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             .SolicitudIDPersona = CInt(textboxSolicitudPersona.Tag)
+            .SolicitudPersonaTexto = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSolicitudPersonaTexto.Text.TrimAndReduce)
             .SolicitudMotivo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSolicitudMotivo.Text)
             .SolicitudFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerSolicitudFecha.Value).Value
 
@@ -220,6 +229,7 @@
             .ResolucionNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxResolucionNumero.Text)
 
             .NotificacionFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerNotificacionFecha.Value, datetimepickerNotificacionFecha.Checked)
+            .NotificacionFechaEfectiva = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerNotificacionFechaEfectiva.Value, datetimepickerNotificacionFechaEfectiva.Checked)
 
             .TestimonioTexto = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTestimonioTexto.Text)
             .TestimonioFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerTestimonioFecha.Value, datetimepickerTestimonioFecha.Checked)
@@ -258,6 +268,22 @@
         ListasPersonas.SeleccionarPersonaBorrar(textboxPersona)
     End Sub
 
+    Private Sub SolicitudResponsableTipoChanged(sender As Object, e As EventArgs) Handles comboboxSolicitudResponsableTipo.SelectedIndexChanged
+        If comboboxSolicitudResponsableTipo.SelectedIndex > 0 Then
+            Dim selectedItem As ListasComunes.ResponsableNombresClass
+
+            selectedItem = CType(comboboxSolicitudResponsableTipo.SelectedItem, ListasComunes.ResponsableNombresClass)
+            If selectedItem.IDResponsableTipo <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+                If selectedItem.IDPersona.HasValue Then
+                    textboxSolicitudPersona.Tag = selectedItem.IDPersona
+                    textboxSolicitudPersona.Text = selectedItem.PersonaApellidoNombre
+                Else
+                    textboxSolicitudPersonaTexto.Text = selectedItem.PersonaApellidoNombre
+                End If
+            End If
+        End If
+    End Sub
+
     Private Sub BuscarPersonaSolicitante(sender As Object, e As EventArgs) Handles buttonSolicitudPersona.Click
         ListasPersonas.SeleccionarPersona(Me, textboxSolicitudPersona)
     End Sub
@@ -285,7 +311,7 @@
         End If
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSolicitudMotivo.GotFocus, textboxEncuadreTexto.GotFocus, textboxTestimonioTexto.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSolicitudPersonaTexto.GotFocus, textboxSolicitudMotivo.GotFocus, textboxEncuadreTexto.GotFocus, textboxTestimonioTexto.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 

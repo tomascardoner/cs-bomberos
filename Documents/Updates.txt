@@ -1,3 +1,11 @@
+2022-05-15
+	- Tabla Responsable
+		- Renombrar PK a PK__Responsable
+		- Agregar Unique Index AK__Responsable__ResponsableTipo
+	- Tabla PersonaSancion
+		- Agregar SolicitudIDResponsableTipo tinyint null antes de SolicitudIDPersona
+		- Agregar SolicitudPersonaTexto varchar(MAX) null después de SolicitudIDPersona
+
 2022-05-03
 	- Tabla PersonaSancion
 		- Agregar columna Estado char(1) not null (default 'A') después de EncuadreFecha

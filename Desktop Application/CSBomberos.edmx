@@ -1121,7 +1121,9 @@
           </Key>
           <Property Name="IDPersona" Type="int" Nullable="false" />
           <Property Name="IDSancion" Type="smallint" Nullable="false" />
+          <Property Name="SolicitudIDResponsableTipo" Type="tinyint" />
           <Property Name="SolicitudIDPersona" Type="int" Nullable="false" />
+          <Property Name="SolicitudPersonaTexto" Type="varchar(max)" />
           <Property Name="SolicitudMotivo" Type="varchar(max)" Nullable="false" />
           <Property Name="SolicitudFecha" Type="date" Nullable="false" />
           <Property Name="EncuadreTexto" Type="varchar(max)" />
@@ -1133,6 +1135,7 @@
           <Property Name="ResolucionFecha" Type="date" />
           <Property Name="ResolucionNumero" Type="varchar" MaxLength="10" />
           <Property Name="NotificacionFecha" Type="date" />
+          <Property Name="NotificacionFechaEfectiva" Type="date" />
           <Property Name="TestimonioTexto" Type="varchar(max)" />
           <Property Name="TestimonioFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -2836,6 +2839,18 @@
             </Principal>
             <Dependent Role="Reporte">
               <PropertyRef Name="IDReporteGrupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ResponsableTipo__PersonaSancion">
+          <End Role="ResponsableTipo" Type="Self.ResponsableTipo" Multiplicity="0..1" />
+          <End Role="PersonaSancion" Type="Self.PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponsableTipo">
+              <PropertyRef Name="IDResponsableTipo" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDResponsableTipo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5546,6 +5561,10 @@
             <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
             <End Role="Reporte" EntitySet="Reporte" />
           </AssociationSet>
+          <AssociationSet Name="FK__ResponsableTipo__PersonaSancion" Association="Self.FK__ResponsableTipo__PersonaSancion">
+            <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
+          </AssociationSet>
           <AssociationSet Name="FK__ResponsableTipo__Responsable" Association="Self.FK__ResponsableTipo__Responsable">
             <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
             <End Role="Responsable" EntitySet="Responsable" />
@@ -7512,6 +7531,10 @@
           <AssociationSet Name="FK__Usuario__SancionMotivo__Modificacion" Association="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="SancionMotivo" EntitySet="SancionMotivo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ResponsableTipo__PersonaSancion" Association="CSBomberosModel.FK__ResponsableTipo__PersonaSancion">
+            <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
+            <End Role="PersonaSancion" EntitySet="PersonaSancion" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -9686,7 +9709,9 @@
           </Key>
           <Property Name="IDPersona" Type="Int32" Nullable="false" />
           <Property Name="IDSancion" Type="Int16" Nullable="false" />
+          <Property Name="SolicitudIDResponsableTipo" Type="Byte" />
           <Property Name="SolicitudIDPersona" Type="Int32" Nullable="false" />
+          <Property Name="SolicitudPersonaTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SolicitudMotivo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="SolicitudFecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EncuadreTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -9698,6 +9723,7 @@
           <Property Name="ResolucionFecha" Type="DateTime" Precision="0" />
           <Property Name="ResolucionNumero" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="NotificacionFecha" Type="DateTime" Precision="0" />
+          <Property Name="NotificacionFechaEfectiva" Type="DateTime" Precision="0" />
           <Property Name="TestimonioTexto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="TestimonioFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -9710,6 +9736,7 @@
           <NavigationProperty Name="SancionTipo" Relationship="CSBomberosModel.FK__SancionTipo__PersonaSancion" FromRole="PersonaSancion" ToRole="SancionTipo" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Creacion" FromRole="PersonaSancion" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__PersonaSancion__Modificacion" FromRole="PersonaSancion" ToRole="Usuario" />
+          <NavigationProperty Name="ResponsableTipo" Relationship="CSBomberosModel.FK__ResponsableTipo__PersonaSancion" FromRole="PersonaSancion" ToRole="ResponsableTipo" />
         </EntityType>
         <EntityType Name="SancionTipo">
           <Key>
@@ -11121,6 +11148,7 @@
           <NavigationProperty Name="Responsables" Relationship="CSBomberosModel.FK__ResponsableTipo__Responsable" FromRole="ResponsableTipo" ToRole="Responsable" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__ResponsableTipo__Creacion" FromRole="ResponsableTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__ResponsableTipo__Modificacion" FromRole="ResponsableTipo" ToRole="Usuario" />
+          <NavigationProperty Name="PersonasSanciones" Relationship="CSBomberosModel.FK__ResponsableTipo__PersonaSancion" FromRole="ResponsableTipo" ToRole="PersonaSancion" />
         </EntityType>
         <Association Name="FK__Area__CompraOrdenDetalle">
           <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="1" />
@@ -13107,6 +13135,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ResponsableTipo__PersonaSancion">
+          <End Type="CSBomberosModel.ResponsableTipo" Role="ResponsableTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.PersonaSancion" Role="PersonaSancion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResponsableTipo">
+              <PropertyRef Name="IDResponsableTipo" />
+            </Principal>
+            <Dependent Role="PersonaSancion">
+              <PropertyRef Name="SolicitudIDResponsableTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13927,6 +13967,9 @@
           <EntitySetMapping Name="PersonaSancion">
             <EntityTypeMapping TypeName="CSBomberosModel.PersonaSancion">
               <MappingFragment StoreEntitySet="PersonaSancion">
+                <ScalarProperty Name="NotificacionFechaEfectiva" ColumnName="NotificacionFechaEfectiva" />
+                <ScalarProperty Name="SolicitudPersonaTexto" ColumnName="SolicitudPersonaTexto" />
+                <ScalarProperty Name="SolicitudIDResponsableTipo" ColumnName="SolicitudIDResponsableTipo" />
                 <ScalarProperty Name="TestimonioFecha" ColumnName="TestimonioFecha" />
                 <ScalarProperty Name="TestimonioTexto" ColumnName="TestimonioTexto" />
                 <ScalarProperty Name="DesaprobadaCausa" ColumnName="DesaprobadaCausa" />

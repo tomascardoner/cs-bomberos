@@ -13,7 +13,9 @@ Imports System.Collections.Generic
 Partial Public Class PersonaSancion
     Public Property IDPersona As Integer
     Public Property IDSancion As Short
+    Public Property SolicitudIDResponsableTipo As Nullable(Of Byte)
     Public Property SolicitudIDPersona As Integer
+    Public Property SolicitudPersonaTexto As String
     Public Property SolicitudMotivo As String
     Public Property SolicitudFecha As Date
     Public Property EncuadreTexto As String
@@ -25,6 +27,7 @@ Partial Public Class PersonaSancion
     Public Property ResolucionFecha As Nullable(Of Date)
     Public Property ResolucionNumero As String
     Public Property NotificacionFecha As Nullable(Of Date)
+    Public Property NotificacionFechaEfectiva As Nullable(Of Date)
     Public Property TestimonioTexto As String
     Public Property TestimonioFecha As Nullable(Of Date)
     Public Property Notas As String
@@ -38,5 +41,6 @@ Partial Public Class PersonaSancion
     Public Overridable Property SancionTipo As SancionTipo
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property ResponsableTipo As ResponsableTipo
 
 End Class
