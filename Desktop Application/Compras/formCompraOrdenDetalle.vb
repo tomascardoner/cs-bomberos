@@ -64,12 +64,8 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        ListasComprobantes.LlenarComboBoxComprobantes(mdbContext, comboBoxFactura, mCompraOrdenActual.IDEntidad, Constantes.OperacionTipoCompra, Constantes.MovimientoTipoDebito, True, False, False, False, True, True)
-        If mCompraOrdenActual.IDCompraOrden = 0 AndAlso CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedIndex > -1 Then
-            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
-        Else
-            pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, mCompraOrdenActual.IDCuartel)
-        End If
+        ListasComprobantes.LlenarComboBoxComprobantes(mdbContext, comboBoxFactura, CShort(CType(mParentForm, formCompraOrden).comboboxEntidad.SelectedValue), Constantes.OperacionTipoCompra, Constantes.MovimientoTipoDebito, True, False, Nothing, False, False, True, True)
+        pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -139,6 +135,16 @@
 
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxDetalle.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
+    End Sub
+
+    Private Sub FacturaChanged(sender As Object, e As EventArgs) Handles comboBoxFactura.SelectedIndexChanged
+        If comboBoxFactura.SelectedIndex > -1 AndAlso CType(comboBoxFactura.SelectedItem, Comprobante).IDComprobante <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
+            textboxDetalle.Text = CType(comboBoxFactura.SelectedItem, Comprobante).Descripcion
+            textboxDetalle.ReadOnly = True
+        Else
+            textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(mCompraOrdenDetalleActual.Detalle)
+            textboxDetalle.ReadOnly = Not mEditMode
+        End If
     End Sub
 
 #End Region

@@ -25,7 +25,8 @@ Partial Public Class ComprobanteTipo
     Public Property UtilizaFechaVencimiento As Boolean
     Public Property UtilizaDescripcion As Boolean
     Public Property UtilizaDetalle As Boolean
-    Public Property UtilizaAplicacion As Boolean
+    Public Property UtilizaAplicado As Boolean
+    Public Property UtilizaAplicante As Boolean
     Public Property UtilizaMedioPago As Boolean
     Public Property ReporteNombre As String
     Public Property EsActivo As Boolean

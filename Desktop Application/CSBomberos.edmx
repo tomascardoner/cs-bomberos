@@ -445,7 +445,8 @@
           <Property Name="UtilizaFechaVencimiento" Type="bit" Nullable="false" />
           <Property Name="UtilizaDescripcion" Type="bit" Nullable="false" />
           <Property Name="UtilizaDetalle" Type="bit" Nullable="false" />
-          <Property Name="UtilizaAplicacion" Type="bit" Nullable="false" />
+          <Property Name="UtilizaAplicado" Type="bit" Nullable="false" />
+          <Property Name="UtilizaAplicante" Type="bit" Nullable="false" />
           <Property Name="UtilizaMedioPago" Type="bit" Nullable="false" />
           <Property Name="ReporteNombre" Type="varchar" MaxLength="100" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -863,6 +864,7 @@
           <Property Name="CelularLaboral" Type="varchar" MaxLength="50" />
           <Property Name="EmailLaboral" Type="varchar" MaxLength="50" />
           <Property Name="HorarioLaboralObservaciones" Type="varchar(max)" />
+          <Property Name="IdentificacionPin" Type="smallint" />
           <Property Name="Orden" Type="smallint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -1068,6 +1070,15 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonaHuellaDigital">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IndiceDedo" />
+          </Key>
+          <Property Name="IDPersona" Type="int" Nullable="false" />
+          <Property Name="IndiceDedo" Type="tinyint" Nullable="false" />
+          <Property Name="Template" Type="binary" MaxLength="1632" Nullable="false" />
         </EntityType>
         <EntityType Name="PersonaLicencia">
           <Key>
@@ -2644,6 +2655,18 @@
               <PropertyRef Name="IDPersona" />
             </Principal>
             <Dependent Role="PersonaHorarioLaboral">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__PersonaHuellaDigital">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="PersonaHuellaDigital" Type="Self.PersonaHuellaDigital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaHuellaDigital">
               <PropertyRef Name="IDPersona" />
             </Dependent>
           </ReferentialConstraint>
@@ -5140,6 +5163,7 @@
           <EntitySet Name="PersonaExamen" EntityType="Self.PersonaExamen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaFamiliar" EntityType="Self.PersonaFamiliar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaHorarioLaboral" EntityType="Self.PersonaHorarioLaboral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonaHuellaDigital" EntityType="Self.PersonaHuellaDigital" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicencia" EntityType="Self.PersonaLicencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicenciaConducirCategoria" EntityType="Self.PersonaLicenciaConducirCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PersonaLicenciaEspecial" EntityType="Self.PersonaLicenciaEspecial" Schema="dbo" store:Type="Tables" />
@@ -5496,6 +5520,10 @@
           <AssociationSet Name="FK__Persona__PersonaHorarioLaboral" Association="Self.FK__Persona__PersonaHorarioLaboral">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaHorarioLaboral" EntitySet="PersonaHorarioLaboral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Persona__PersonaHuellaDigital" Association="Self.FK__Persona__PersonaHuellaDigital">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaHuellaDigital" EntitySet="PersonaHuellaDigital" />
           </AssociationSet>
           <AssociationSet Name="FK__Persona__PersonaLicencia" Association="Self.FK__Persona__PersonaLicencia">
             <End Role="Persona" EntitySet="Persona" />
@@ -7536,6 +7564,11 @@
             <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
             <End Role="PersonaSancion" EntitySet="PersonaSancion" />
           </AssociationSet>
+          <EntitySet Name="PersonaHuellaDigital" EntityType="CSBomberosModel.PersonaHuellaDigital" />
+          <AssociationSet Name="FK__Persona__PersonaHuellaDigital" Association="CSBomberosModel.FK__Persona__PersonaHuellaDigital">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="PersonaHuellaDigital" EntitySet="PersonaHuellaDigital" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -8049,6 +8082,7 @@
           <Property Name="CelularLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EmailLaboral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HorarioLaboralObservaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdentificacionPin" Type="Int16" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="Orden" Type="Int16" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -8086,6 +8120,7 @@
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Persona__SiniestroAsistencia" FromRole="Persona" ToRole="SiniestroAsistencia" />
           <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="PersonasLicenciasEspeciales" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="Persona" ToRole="PersonaLicenciaEspecial" />
+          <NavigationProperty Name="HuellasDigitales" Relationship="CSBomberosModel.FK__Persona__PersonaHuellaDigital" FromRole="Persona" ToRole="PersonaHuellaDigital" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -12340,7 +12375,8 @@
           <Property Name="UtilizaFechaVencimiento" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaDescripcion" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaDetalle" Type="Boolean" Nullable="false" />
-          <Property Name="UtilizaAplicacion" Type="Boolean" Nullable="false" />
+          <Property Name="UtilizaAplicado" Type="Boolean" Nullable="false" />
+          <Property Name="UtilizaAplicante" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaMedioPago" Type="Boolean" Nullable="false" />
           <Property Name="ReporteNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -13147,6 +13183,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PersonaHuellaDigital">
+          <Key>
+            <PropertyRef Name="IDPersona" />
+            <PropertyRef Name="IndiceDedo" />
+          </Key>
+          <Property Name="IDPersona" Type="Int32" Nullable="false" />
+          <Property Name="IndiceDedo" Type="Byte" Nullable="false" />
+          <Property Name="Template" Type="Binary" Nullable="false" MaxLength="1632" FixedLength="true" />
+          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__PersonaHuellaDigital" FromRole="PersonaHuellaDigital" ToRole="Persona" />
+        </EntityType>
+        <Association Name="FK__Persona__PersonaHuellaDigital">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="CSBomberosModel.PersonaHuellaDigital" Role="PersonaHuellaDigital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="PersonaHuellaDigital">
+              <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13342,6 +13400,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="CSBomberosModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="IdentificacionPin" ColumnName="IdentificacionPin" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="TituloObtenido" ColumnName="TituloObtenido" />
                 <ScalarProperty Name="ReingresoFormacionRealizada" ColumnName="ReingresoFormacionRealizada" />
@@ -14684,6 +14743,8 @@
           <EntitySetMapping Name="ComprobanteTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.ComprobanteTipo">
               <MappingFragment StoreEntitySet="ComprobanteTipo">
+                <ScalarProperty Name="UtilizaAplicante" ColumnName="UtilizaAplicante" />
+                <ScalarProperty Name="UtilizaAplicado" ColumnName="UtilizaAplicado" />
                 <ScalarProperty Name="IDNumerador" ColumnName="IDNumerador" />
                 <ScalarProperty Name="UtilizaDescripcion" ColumnName="UtilizaDescripcion" />
                 <ScalarProperty Name="ReporteNombre" ColumnName="ReporteNombre" />
@@ -14695,7 +14756,6 @@
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="UtilizaMedioPago" ColumnName="UtilizaMedioPago" />
-                <ScalarProperty Name="UtilizaAplicacion" ColumnName="UtilizaAplicacion" />
                 <ScalarProperty Name="UtilizaFechaVencimiento" ColumnName="UtilizaFechaVencimiento" />
                 <ScalarProperty Name="MovimientoTipo" ColumnName="MovimientoTipo" />
                 <ScalarProperty Name="CodigoAFIP" ColumnName="CodigoAFIP" />
@@ -14925,6 +14985,15 @@
                 <ScalarProperty Name="Encuadre" ColumnName="Encuadre" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IDSancionMotivo" ColumnName="IDSancionMotivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PersonaHuellaDigital">
+            <EntityTypeMapping TypeName="CSBomberosModel.PersonaHuellaDigital">
+              <MappingFragment StoreEntitySet="PersonaHuellaDigital">
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="IndiceDedo" ColumnName="IndiceDedo" />
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

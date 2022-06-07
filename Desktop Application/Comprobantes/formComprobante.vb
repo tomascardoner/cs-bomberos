@@ -111,12 +111,13 @@
 
         ' Toolbars de solapas
         toolstripDetalle.Enabled = mEditMode
-        toolstripAplicaciones.Enabled = (mEditMode And comboboxComprobanteTipo.SelectedIndex > -1)
+        toolstripAplicaciones.Enabled = (mEditMode And mComprobanteTipoActual IsNot Nothing)
+        toolstripAplicaciones.Visible = (mComprobanteTipoActual IsNot Nothing AndAlso mComprobanteTipoActual.UtilizaAplicado)
         toolstripMediosPago.Enabled = mEditMode
 
         textboxNotas.ReadOnly = (mEditMode = False)
 
-        currencytextboxImporteTotal.ReadOnly = (mEditMode = False Or (comboboxComprobanteTipo.SelectedIndex <> -1 AndAlso (mComprobanteTipoActual.UtilizaDetalle Or mComprobanteTipoActual.UtilizaMedioPago)))
+        currencytextboxImporteTotal.ReadOnly = (mEditMode = False Or (mComprobanteTipoActual IsNot Nothing AndAlso (mComprobanteTipoActual.UtilizaDetalle Or mComprobanteTipoActual.UtilizaMedioPago)))
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -209,7 +210,7 @@
 
             If Not mIsNew Then
                 RefreshDataDetalle()
-                If mComprobanteActual.ComprobanteTipo.UtilizaAplicacion Then
+                If mComprobanteActual.ComprobanteTipo.UtilizaAplicado Or mComprobanteActual.ComprobanteTipo.UtilizaAplicante Then
                     RefreshData_Aplicaciones()
                 End If
                 If mComprobanteActual.ComprobanteTipo.UtilizaMedioPago Then
@@ -489,7 +490,7 @@
         End If
 
         ' Subtotales de cada solapa
-        If mComprobanteTipoActual.UtilizaAplicacion Then
+        If mComprobanteTipoActual.UtilizaAplicado Then
             If currencytextboxAplicaciones_Subtotal.DecimalValue > 0 AndAlso currencytextboxAplicaciones_Subtotal.DecimalValue > currencytextboxImporteTotal.DecimalValue Then
                 MsgBox("El Subtotal de los Comprobantes aplicados no puede ser mayor al Total del Comprobante actual.", MsgBoxStyle.Information, My.Application.Info.Title)
                 Return False
@@ -632,15 +633,19 @@
 
 #Region "Aplicaciones"
 
-    Friend Sub RefreshData_Aplicaciones(Optional ByVal PositionIDComprobanteAplicado As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
+    Friend Sub RefreshData_Aplicaciones(Optional ByVal PositionIDComprobanteAplica As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
         Dim listAplicaciones As List(Of GridRowDataAplicacion)
         Dim Total As Decimal = 0
 
         If RestoreCurrentPosition Then
             If datagridviewAplicaciones.CurrentRow Is Nothing Then
-                PositionIDComprobanteAplicado = 0
+                PositionIDComprobanteAplica = 0
             Else
-                PositionIDComprobanteAplicado = CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicado
+                If mComprobanteTipoActual.UtilizaAplicado Then
+                    PositionIDComprobanteAplica = CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicado
+                Else
+                    PositionIDComprobanteAplica = CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicante
+                End If
             End If
         End If
 
@@ -649,33 +654,40 @@
         Try
             listAplicaciones = New List(Of GridRowDataAplicacion)
 
-            If mComprobanteActual.ComprobantesAplicados.Count > 0 Then
+            If (mComprobanteTipoActual.UtilizaAplicado AndAlso mComprobanteActual.ComprobantesAplicados.Count > 0) OrElse (mComprobanteTipoActual.UtilizaAplicante AndAlso mComprobanteActual.ComprobantesAplicantes.Count > 0) Then
 
                 Using dbContext As New CSBomberosContext(True)
 
-                    For Each ca As ComprobanteAplicacion In mComprobanteActual.ComprobantesAplicados
+                    Dim ComprobantesAplica As ICollection(Of ComprobanteAplicacion)
+                    If mComprobanteTipoActual.UtilizaAplicado Then
+                        ComprobantesAplica = mComprobanteActual.ComprobantesAplicados
+                    Else
+                        ComprobantesAplica = mComprobanteActual.ComprobantesAplicantes
+                    End If
+
+                    For Each ca As ComprobanteAplicacion In ComprobantesAplica
                         Dim GridRowData As New GridRowDataAplicacion
-                        Dim ComprobanteAplicado As Comprobante
+                        Dim ComprobanteAplica As Comprobante
 
                         With GridRowData
                             .ComprobanteAplicacion = ca
 
-                            ComprobanteAplicado = dbContext.Comprobante.Find(ca.IDComprobanteAplicado)
-                            .ComprobanteTipoNombre = ComprobanteAplicado.ComprobanteTipo.Nombre
-                            .MovimientoTipo = ComprobanteAplicado.ComprobanteTipo.MovimientoTipo
+                            ComprobanteAplica = dbContext.Comprobante.Find(IIf(mComprobanteTipoActual.UtilizaAplicado, ca.IDComprobanteAplicado, ca.IDComprobanteAplicante))
+                            .ComprobanteTipoNombre = ComprobanteAplica.ComprobanteTipo.Nombre
+                            .MovimientoTipo = ComprobanteAplica.ComprobanteTipo.MovimientoTipo
 
-                            .NumeroCompleto = ComprobanteAplicado.NumeroCompleto
-                            .FechaEmision = ComprobanteAplicado.Fecha
-                            .ImporteTotal = ComprobanteAplicado.Importe
+                            .NumeroCompleto = ComprobanteAplica.NumeroCompleto
+                            .FechaEmision = ComprobanteAplica.Fecha
+                            .ImporteTotal = ComprobanteAplica.Importe
                             .ImporteAplicado = ca.Importe
                         End With
 
                         listAplicaciones.Add(GridRowData)
 
-                        ComprobanteAplicado = Nothing
+                        ComprobanteAplica = Nothing
                         GridRowData = Nothing
                     Next
-
+                    ComprobantesAplica = Nothing
                 End Using
 
             End If
@@ -684,7 +696,7 @@
             datagridviewAplicaciones.DataSource = listAplicaciones
 
         Catch ex As Exception
-            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Comprobantes aplicados.")
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Comprobantes " & CStr(IIf(mComprobanteTipoActual.UtilizaAplicado, "aplicados.", "aplicantes.")))
             Me.Cursor = Cursors.Default
             Exit Sub
         End Try
@@ -706,9 +718,9 @@
 
         Me.Cursor = Cursors.Default
 
-        If PositionIDComprobanteAplicado <> 0 Then
+        If PositionIDComprobanteAplica <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewAplicaciones.Rows
-                If CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicado = PositionIDComprobanteAplicado Then
+                If (mComprobanteTipoActual.UtilizaAplicado AndAlso CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicado = PositionIDComprobanteAplica) OrElse (mComprobanteTipoActual.UtilizaAplicante AndAlso CType(datagridviewAplicaciones.CurrentRow.DataBoundItem, GridRowDataAplicacion).ComprobanteAplicacion.IDComprobanteAplicante = PositionIDComprobanteAplica) Then
                     datagridviewAplicaciones.CurrentCell = CurrentRowChecked.Cells(0)
                     Exit For
                 End If
@@ -980,7 +992,7 @@
             End If
 
             ' Utiliza Alicación
-            If mComprobanteTipoActual.UtilizaAplicacion Then
+            If mComprobanteTipoActual.UtilizaAplicado Or mComprobanteTipoActual.UtilizaAplicante Then
                 tabcontrolMain.ShowTabPageByName(tabpageAplicaciones.Name)
                 panelAplicaciones_Subtotal.Visible = True
             Else

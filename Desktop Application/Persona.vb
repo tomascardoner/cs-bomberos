@@ -71,6 +71,7 @@ Partial Public Class Persona
     Public Property CelularLaboral As String
     Public Property EmailLaboral As String
     Public Property HorarioLaboralObservaciones As String
+    Public Property IdentificacionPin As Nullable(Of Short)
     Public Property EsActivo As Boolean
     Public Property Orden As Nullable(Of Short)
     Public Property Notas As String
@@ -109,5 +110,6 @@ Partial Public Class Persona
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property AcademiasAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
     Public Overridable Property PersonasLicenciasEspeciales As ICollection(Of PersonaLicenciaEspecial) = New HashSet(Of PersonaLicenciaEspecial)
+    Public Overridable Property HuellasDigitales As ICollection(Of PersonaHuellaDigital) = New HashSet(Of PersonaHuellaDigital)
 
 End Class

@@ -157,7 +157,7 @@
     <value>False</value>
   </metadata>
   <metadata name="tooltipMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>147, 18</value>
+    <value>1145, 10</value>
   </metadata>
   <metadata name="labelNacionalidad.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -310,13 +310,13 @@
     <value>False</value>
   </metadata>
   <metadata name="menustripFoto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>413, 18</value>
+    <value>319, 49</value>
   </metadata>
   <metadata name="toolstripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 18</value>
+    <value>842, 10</value>
   </metadata>
   <metadata name="openfiledialogFoto.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>544, 18</value>
+    <value>450, 49</value>
   </metadata>
   <metadata name="datagridviewFamiliares.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -331,7 +331,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripFamiliares.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>262, 18</value>
+    <value>168, 49</value>
   </metadata>
   <metadata name="toolstripFamiliares.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -349,7 +349,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripAltasBajas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>699, 18</value>
+    <value>605, 49</value>
   </metadata>
   <metadata name="toolstripAltasBajas.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -385,7 +385,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripAscensos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>851, 18</value>
+    <value>757, 49</value>
   </metadata>
   <metadata name="toolstripAscensos.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -409,7 +409,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripHorarioLaboral.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 10</value>
+    <value>173, 10</value>
   </metadata>
   <metadata name="toolstripHorarioLaboral.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -433,7 +433,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripVehiculos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 10</value>
+    <value>351, 10</value>
   </metadata>
   <metadata name="toolstripVehiculos.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -457,7 +457,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripVacunas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 10</value>
+    <value>500, 10</value>
   </metadata>
   <metadata name="toolstripVacunas.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -478,7 +478,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripLicencias.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1129, 18</value>
+    <value>1075, 49</value>
   </metadata>
   <metadata name="toolstripLicencias.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -499,7 +499,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripLicenciasEspeciales.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 21</value>
+    <value>642, 10</value>
   </metadata>
   <metadata name="toolstripLicenciasEspeciales.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -529,7 +529,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripCapacitaciones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>124, 27</value>
+    <value>967, 10</value>
   </metadata>
   <metadata name="toolstripCapacitaciones.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -544,7 +544,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripCalificaciones.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>958, 18</value>
+    <value>904, 49</value>
   </metadata>
   <metadata name="toolstripCalificaciones.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -559,7 +559,7 @@
     <value>True</value>
   </metadata>
   <metadata name="toolstripExamenes.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>231, 27</value>
+    <value>17, 49</value>
   </metadata>
   <metadata name="toolstripExamenes.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

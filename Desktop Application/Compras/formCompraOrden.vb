@@ -73,8 +73,8 @@
         datetimepickerFecha.Enabled = mEditMode
         comboboxEntidad.Enabled = mEditMode
 
-        datetimepickerFacturaFecha.Enabled = (mEditMode And Not mIsNew)
-        textboxFacturaNumero.ReadOnly = ((Not mEditMode) Or mIsNew)
+        datetimepickerFacturaFecha.Enabled = False
+        textboxFacturaNumero.ReadOnly = True
 
         checkboxCerrada.Enabled = mEditMode
         datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
@@ -291,6 +291,8 @@
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
                         MsgBox("No se pueden guardar los cambios porque ya existe una Orden de Compra con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    Case CardonerSistemas.Database.EntityFramework.Errors.Unknown
+                        CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
                 End Select
                 Exit Sub
 
@@ -368,7 +370,7 @@
                             Group Join cf In mdbContext.Comprobante On cd.IDComprobante Equals cf.IDComprobante Into ComprobanteGroup = Group
                             From cfg In ComprobanteGroup.DefaultIfEmpty
                             Order By cd.IDDetalle
-                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .Factura = If(cfg Is Nothing, String.Empty, cfg.NumeroCompleto), .AreaNombre = a.Nombre + " (" + a.Cuartel.Nombre + ")", .Detalle = cd.Detalle, .Importe = cd.Importe}).ToList
+                            Select New DetallesGridRowData With {.IDDetalle = cd.IDDetalle, .Factura = If(cfg Is Nothing, String.Empty, cfg.NumeroCompleto), .AreaNombre = a.Nombre + $" ({a.Cuartel.Nombre})", .Detalle = If(cfg Is Nothing, cd.Detalle, cfg.Descripcion), .Importe = cd.Importe}).ToList
 
             datagridviewDetalles.AutoGenerateColumns = False
             datagridviewDetalles.DataSource = listDetalles

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formPersona
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formPersona
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim labelApellido As System.Windows.Forms.Label
@@ -299,6 +299,10 @@ Partial Class formPersona
         Me.buttonLicenciasEspeciales_Eliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageSanciones = New System.Windows.Forms.TabPage()
         Me.datagridviewSanciones = New System.Windows.Forms.DataGridView()
+        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFechaFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tabpageCapacitaciones = New System.Windows.Forms.TabPage()
         Me.datagridviewCapacitaciones = New System.Windows.Forms.DataGridView()
         Me.columnCapacitaciones_Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -324,6 +328,13 @@ Partial Class formPersona
         Me.buttonExamenes_Agregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonExamenes_Editar = New System.Windows.Forms.ToolStripButton()
         Me.buttonExamenes_Eliminar = New System.Windows.Forms.ToolStripButton()
+        Me.tabpageIdentificacion = New System.Windows.Forms.TabPage()
+        Me.labelIdentificacionPinEstado = New System.Windows.Forms.Label()
+        Me.labelIdentificacionHuellasDigitalesEstado = New System.Windows.Forms.Label()
+        Me.buttonIdentificacionHuellasDigitales = New System.Windows.Forms.Button()
+        Me.labelIdentificacionHuellasDigitales = New System.Windows.Forms.Label()
+        Me.buttonIdentificacionPin = New System.Windows.Forms.Button()
+        Me.labelIdentificacionPin = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
@@ -333,10 +344,6 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.columnSanciones_SolicitudFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSanciones_SancionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFechaFin = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -461,6 +468,7 @@ Partial Class formPersona
         Me.tabpageExamenes.SuspendLayout()
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripExamenes.SuspendLayout()
+        Me.tabpageIdentificacion.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -1241,6 +1249,7 @@ Partial Class formPersona
         Me.tabcontrolMain.Controls.Add(Me.tabpageCapacitaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageCalificaciones)
         Me.tabcontrolMain.Controls.Add(Me.tabpageExamenes)
+        Me.tabcontrolMain.Controls.Add(Me.tabpageIdentificacion)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 138)
         Me.tabcontrolMain.Name = "tabcontrolMain"
@@ -3206,6 +3215,38 @@ Partial Class formPersona
         Me.datagridviewSanciones.Size = New System.Drawing.Size(652, 408)
         Me.datagridviewSanciones.TabIndex = 6
         '
+        'columnSanciones_SolicitudFecha
+        '
+        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
+        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
+        Me.columnSanciones_SolicitudFecha.ReadOnly = True
+        Me.columnSanciones_SolicitudFecha.Width = 108
+        '
+        'columnSanciones_SancionTipo
+        '
+        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
+        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
+        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
+        Me.columnSanciones_SancionTipo.ReadOnly = True
+        Me.columnSanciones_SancionTipo.Width = 99
+        '
+        'columnFechaInicio
+        '
+        Me.columnFechaInicio.DataPropertyName = "FechaInicio"
+        Me.columnFechaInicio.HeaderText = "Inicio"
+        Me.columnFechaInicio.Name = "columnFechaInicio"
+        Me.columnFechaInicio.ReadOnly = True
+        Me.columnFechaInicio.Width = 57
+        '
+        'columnFechaFin
+        '
+        Me.columnFechaFin.DataPropertyName = "FechaFin"
+        Me.columnFechaFin.HeaderText = "Fin"
+        Me.columnFechaFin.Name = "columnFechaFin"
+        Me.columnFechaFin.ReadOnly = True
+        Me.columnFechaFin.Width = 46
+        '
         'tabpageCapacitaciones
         '
         Me.tabpageCapacitaciones.Controls.Add(Me.datagridviewCapacitaciones)
@@ -3509,6 +3550,77 @@ Partial Class formPersona
         Me.buttonExamenes_Eliminar.Size = New System.Drawing.Size(84, 36)
         Me.buttonExamenes_Eliminar.Text = "Eliminar"
         '
+        'tabpageIdentificacion
+        '
+        Me.tabpageIdentificacion.Controls.Add(Me.labelIdentificacionPinEstado)
+        Me.tabpageIdentificacion.Controls.Add(Me.labelIdentificacionHuellasDigitalesEstado)
+        Me.tabpageIdentificacion.Controls.Add(Me.buttonIdentificacionHuellasDigitales)
+        Me.tabpageIdentificacion.Controls.Add(Me.labelIdentificacionHuellasDigitales)
+        Me.tabpageIdentificacion.Controls.Add(Me.buttonIdentificacionPin)
+        Me.tabpageIdentificacion.Controls.Add(Me.labelIdentificacionPin)
+        Me.tabpageIdentificacion.Location = New System.Drawing.Point(4, 25)
+        Me.tabpageIdentificacion.Name = "tabpageIdentificacion"
+        Me.tabpageIdentificacion.Size = New System.Drawing.Size(652, 408)
+        Me.tabpageIdentificacion.TabIndex = 24
+        Me.tabpageIdentificacion.Text = "Identificación"
+        Me.tabpageIdentificacion.UseVisualStyleBackColor = True
+        '
+        'labelIdentificacionPinEstado
+        '
+        Me.labelIdentificacionPinEstado.AutoSize = True
+        Me.labelIdentificacionPinEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelIdentificacionPinEstado.Location = New System.Drawing.Point(95, 15)
+        Me.labelIdentificacionPinEstado.Name = "labelIdentificacionPinEstado"
+        Me.labelIdentificacionPinEstado.Size = New System.Drawing.Size(46, 13)
+        Me.labelIdentificacionPinEstado.TabIndex = 1
+        Me.labelIdentificacionPinEstado.Text = "Estado"
+        '
+        'labelIdentificacionHuellasDigitalesEstado
+        '
+        Me.labelIdentificacionHuellasDigitalesEstado.AutoSize = True
+        Me.labelIdentificacionHuellasDigitalesEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.labelIdentificacionHuellasDigitalesEstado.Location = New System.Drawing.Point(95, 45)
+        Me.labelIdentificacionHuellasDigitalesEstado.Name = "labelIdentificacionHuellasDigitalesEstado"
+        Me.labelIdentificacionHuellasDigitalesEstado.Size = New System.Drawing.Size(46, 13)
+        Me.labelIdentificacionHuellasDigitalesEstado.TabIndex = 4
+        Me.labelIdentificacionHuellasDigitalesEstado.Text = "Estado"
+        '
+        'buttonIdentificacionHuellasDigitales
+        '
+        Me.buttonIdentificacionHuellasDigitales.Location = New System.Drawing.Point(239, 39)
+        Me.buttonIdentificacionHuellasDigitales.Name = "buttonIdentificacionHuellasDigitales"
+        Me.buttonIdentificacionHuellasDigitales.Size = New System.Drawing.Size(68, 24)
+        Me.buttonIdentificacionHuellasDigitales.TabIndex = 5
+        Me.buttonIdentificacionHuellasDigitales.Text = "Establecer"
+        Me.buttonIdentificacionHuellasDigitales.UseVisualStyleBackColor = True
+        '
+        'labelIdentificacionHuellasDigitales
+        '
+        Me.labelIdentificacionHuellasDigitales.AutoSize = True
+        Me.labelIdentificacionHuellasDigitales.Location = New System.Drawing.Point(3, 45)
+        Me.labelIdentificacionHuellasDigitales.Name = "labelIdentificacionHuellasDigitales"
+        Me.labelIdentificacionHuellasDigitales.Size = New System.Drawing.Size(86, 13)
+        Me.labelIdentificacionHuellasDigitales.TabIndex = 3
+        Me.labelIdentificacionHuellasDigitales.Text = "Huellas digitales:"
+        '
+        'buttonIdentificacionPin
+        '
+        Me.buttonIdentificacionPin.Location = New System.Drawing.Point(239, 9)
+        Me.buttonIdentificacionPin.Name = "buttonIdentificacionPin"
+        Me.buttonIdentificacionPin.Size = New System.Drawing.Size(68, 24)
+        Me.buttonIdentificacionPin.TabIndex = 2
+        Me.buttonIdentificacionPin.Text = "Establecer"
+        Me.buttonIdentificacionPin.UseVisualStyleBackColor = True
+        '
+        'labelIdentificacionPin
+        '
+        Me.labelIdentificacionPin.AutoSize = True
+        Me.labelIdentificacionPin.Location = New System.Drawing.Point(3, 15)
+        Me.labelIdentificacionPin.Name = "labelIdentificacionPin"
+        Me.labelIdentificacionPin.Size = New System.Drawing.Size(78, 13)
+        Me.labelIdentificacionPin.TabIndex = 0
+        Me.labelIdentificacionPin.Text = "PIN (4 dígitos):"
+        '
         'tabpageNotasAuditoria
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
@@ -3621,38 +3733,6 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.ReadOnly = True
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
-        '
-        'columnSanciones_SolicitudFecha
-        '
-        Me.columnSanciones_SolicitudFecha.DataPropertyName = "SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.HeaderText = "Fecha de solicitud"
-        Me.columnSanciones_SolicitudFecha.Name = "columnSanciones_SolicitudFecha"
-        Me.columnSanciones_SolicitudFecha.ReadOnly = True
-        Me.columnSanciones_SolicitudFecha.Width = 108
-        '
-        'columnSanciones_SancionTipo
-        '
-        Me.columnSanciones_SancionTipo.DataPropertyName = "SancionTipoNombre"
-        Me.columnSanciones_SancionTipo.HeaderText = "Tipo de sanción"
-        Me.columnSanciones_SancionTipo.Name = "columnSanciones_SancionTipo"
-        Me.columnSanciones_SancionTipo.ReadOnly = True
-        Me.columnSanciones_SancionTipo.Width = 99
-        '
-        'columnFechaInicio
-        '
-        Me.columnFechaInicio.DataPropertyName = "FechaInicio"
-        Me.columnFechaInicio.HeaderText = "Inicio"
-        Me.columnFechaInicio.Name = "columnFechaInicio"
-        Me.columnFechaInicio.ReadOnly = True
-        Me.columnFechaInicio.Width = 57
-        '
-        'columnFechaFin
-        '
-        Me.columnFechaFin.DataPropertyName = "FechaFin"
-        Me.columnFechaFin.HeaderText = "Fin"
-        Me.columnFechaFin.Name = "columnFechaFin"
-        Me.columnFechaFin.ReadOnly = True
-        Me.columnFechaFin.Width = 46
         '
         'formPersona
         '
@@ -3771,6 +3851,8 @@ Partial Class formPersona
         CType(Me.datagridviewExamenes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripExamenes.ResumeLayout(False)
         Me.toolstripExamenes.PerformLayout()
+        Me.tabpageIdentificacion.ResumeLayout(False)
+        Me.tabpageIdentificacion.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -4004,4 +4086,11 @@ Partial Class formPersona
     Friend WithEvents columnSanciones_SancionTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnFechaInicio As DataGridViewTextBoxColumn
     Friend WithEvents columnFechaFin As DataGridViewTextBoxColumn
+    Friend WithEvents tabpageIdentificacion As TabPage
+    Friend WithEvents labelIdentificacionPin As Label
+    Friend WithEvents labelIdentificacionHuellasDigitalesEstado As Label
+    Friend WithEvents buttonIdentificacionHuellasDigitales As Button
+    Friend WithEvents labelIdentificacionHuellasDigitales As Label
+    Friend WithEvents buttonIdentificacionPin As Button
+    Friend WithEvents labelIdentificacionPinEstado As Label
 End Class

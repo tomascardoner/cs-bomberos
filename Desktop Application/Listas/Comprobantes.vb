@@ -63,7 +63,7 @@
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxComprobantes(ByRef context As CSBomberosContext, ByRef control As ComboBox, idEntidad As Short, operacionTipo As String, movimientoTipo As String, utilizaFechaVencimiento As Boolean?, utilizaAplicacion As Boolean?, utilizaMedioPago As Boolean?, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean, Optional ordenDescendente As Boolean = False)
+    Friend Sub LlenarComboBoxComprobantes(ByRef context As CSBomberosContext, ByRef control As ComboBox, idEntidad As Short, operacionTipo As String, movimientoTipo As String, utilizaFechaVencimiento As Boolean?, utilizaAplicado As Boolean?, utilizaAplicante As Boolean?, utilizaMedioPago As Boolean?, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean, Optional ordenDescendente As Boolean = False)
         Dim listItems As List(Of Comprobante)
 
         control.ValueMember = "IDComprobante"
@@ -71,7 +71,7 @@
 
         listItems = (From c In context.Comprobante
                      Join ct In context.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
-                     Where c.IDEntidad = idEntidad And (operacionTipo Is Nothing Or ct.OperacionTipo = operacionTipo) And (movimientoTipo Is Nothing Or ct.MovimientoTipo = movimientoTipo) And (utilizaFechaVencimiento Is Nothing Or ct.UtilizaFechaVencimiento = utilizaFechaVencimiento) And (utilizaAplicacion Is Nothing Or ct.UtilizaAplicacion = utilizaAplicacion) And (utilizaMedioPago Is Nothing Or ct.UtilizaMedioPago = utilizaMedioPago)
+                     Where c.IDEntidad = idEntidad And (operacionTipo Is Nothing Or ct.OperacionTipo = operacionTipo) And (movimientoTipo Is Nothing Or ct.MovimientoTipo = movimientoTipo) And (utilizaFechaVencimiento Is Nothing Or ct.UtilizaFechaVencimiento = utilizaFechaVencimiento) And (utilizaAplicado Is Nothing Or ct.UtilizaAplicado = utilizaAplicado) And (utilizaAplicante Is Nothing Or ct.UtilizaAplicante = utilizaAplicante) And (utilizaMedioPago Is Nothing Or ct.UtilizaMedioPago = utilizaMedioPago)
                      Select c).ToList()
 
         If ordenDescendente Then
@@ -99,7 +99,7 @@
     End Sub
 
     Friend Sub LlenarComboBoxComprobantes(ByRef context As CSBomberosContext, ByRef control As ComboBox, idEntidad As Short, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean, Optional ordenDescendente As Boolean = False)
-        LlenarComboBoxComprobantes(context, control, idEntidad, Nothing, Nothing, Nothing, Nothing, Nothing, mostrarItemTodos, mostrarItemNoEspecifica, ordenDescendente)
+        LlenarComboBoxComprobantes(context, control, idEntidad, Nothing, Nothing, Nothing, Nothing, Nothing, Nothing, mostrarItemTodos, mostrarItemNoEspecifica, ordenDescendente)
     End Sub
 
     Friend Sub LlenarComboBoxMediosPago(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean, esChequeMostrar As Boolean, noEsChequeMostrar As Boolean)

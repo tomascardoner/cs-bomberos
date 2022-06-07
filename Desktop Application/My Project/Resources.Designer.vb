@@ -776,6 +776,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to «Sin establecer».
+        '''</summary>
+        Friend ReadOnly Property STRING_VALOR_ESTABLECIDO_NO() As String
+            Get
+                Return ResourceManager.GetString("STRING_VALOR_ESTABLECIDO_NO", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to «Establecido».
+        '''</summary>
+        Friend ReadOnly Property STRING_VALOR_ESTABLECIDO_SI() As String
+            Get
+                Return ResourceManager.GetString("STRING_VALOR_ESTABLECIDO_SI", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Sí.
         '''</summary>
         Friend ReadOnly Property STRING_YES() As String

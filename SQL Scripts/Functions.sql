@@ -327,6 +327,9 @@ BEGIN
 
 		FETCH NEXT FROM CursorAltasBajas INTO @TipoActual, @FechaActual, @IDPersonaBajaMotivoActual
 		END
+    
+    CLOSE CursorAltasBajas
+    DEALLOCATE CursorAltasBajas
 
 	-- Si el último registro es un Alta, sumo los días transcurridos hasta la Fecha Hasta
 	IF @TipoAnterior = 'A' OR @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoReserva

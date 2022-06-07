@@ -108,6 +108,14 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Windows.Forms.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DPFPGuiNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=d4f4a0bd9c559145, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPGuiNET.dll</HintPath>
+    </Reference>
+    <Reference Include="DPFPShrNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=d902fe275a8d6cf2, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPShrNET.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -230,6 +238,9 @@
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Files.vb">
       <Link>Framework\Files.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Fingerprint.vb">
+      <Link>Framework\Fingerprint.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\Forms.vb">
       <Link>Framework\Forms.vb</Link>
@@ -713,6 +724,9 @@
     <Compile Include="PersonaHorarioLaboral.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonaHuellaDigital.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonaLicencia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -724,6 +738,18 @@
     </Compile>
     <Compile Include="PersonaSancion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaIdentificacionHuellasDigitales.Designer.vb">
+      <DependentUpon>formPersonaIdentificacionHuellasDigitales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaIdentificacionHuellasDigitales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personas\formPersonaIdentificacionPin.Designer.vb">
+      <DependentUpon>formPersonaIdentificacionPin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Personas\formPersonaIdentificacionPin.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Personas\formPersonaLicenciaEspecial.designer.vb">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
@@ -1618,6 +1644,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\formInventarioAgregarMultiple.resx">
       <DependentUpon>formInventarioAgregarMultiple.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\formPersonaIdentificacionHuellasDigitales.resx">
+      <DependentUpon>formPersonaIdentificacionHuellasDigitales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personas\formPersonaIdentificacionPin.resx">
+      <DependentUpon>formPersonaIdentificacionPin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>

@@ -1,4 +1,6 @@
-﻿Public Class formPersona
+﻿Option Strict On
+
+Public Class formPersona
 
 #Region "Declarations"
 
@@ -164,6 +166,10 @@
         toolstripCalificaciones.Enabled = Not mEditMode
         toolstripExamenes.Enabled = Not mEditMode
 
+        ' Identificación
+        buttonIdentificacionPin.Visible = mEditMode
+        buttonIdentificacionHuellasDigitales.Visible = mEditMode
+
         ' Notas y Auditoría
         textboxNotas.ReadOnly = (mEditMode = False)
         checkboxEsActivo.Enabled = mEditMode
@@ -259,15 +265,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaActual
             ' Foto
-            If .Foto Is Nothing Then
-                pictureboxFoto.Image = Nothing
-            Else
-                Dim aFoto As Byte()
-                aFoto = .Foto
-                Dim memstr As New IO.MemoryStream(aFoto, 0, aFoto.Length)
-                memstr.Write(aFoto, 0, aFoto.Length)
-                pictureboxFoto.Image = Image.FromStream(memstr, True)
-            End If
+            pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(.Foto)
 
             ' Datos del Encabezado
             textboxMatriculaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.MatriculaNumero).TrimEnd
@@ -356,6 +354,9 @@
             datetimepickerLicenciaConducirVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.LicenciaConducirVencimiento, datetimepickerLicenciaConducirVencimiento)
             textboxLicenciaConducirCategoria.Text = .LicenciaConducirCategoriasDisplay
 
+            ' Datos de la pestaña Identificación
+            SetDataFromObjectToControlsIdentificacion()
+
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
@@ -379,17 +380,25 @@
         End With
     End Sub
 
+    Friend Sub SetDataFromObjectToControlsIdentificacion()
+        With mPersonaActual
+            If .IdentificacionPin.HasValue Then
+                labelIdentificacionPinEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_SI
+            Else
+                labelIdentificacionPinEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_NO
+            End If
+            If .HuellasDigitales.Any() Then
+                labelIdentificacionHuellasDigitalesEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_SI & $" ({ .HuellasDigitales.Count()} dedos)"
+            Else
+                labelIdentificacionHuellasDigitalesEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_NO
+            End If
+        End With
+    End Sub
+
     Friend Sub SetDataFromControlsToObject()
         With mPersonaActual
             ' Foto
-            If pictureboxFoto.Image Is Nothing Then
-                .Foto = Nothing
-            Else
-                Dim memstr As New System.IO.MemoryStream()
-                pictureboxFoto.Image.Save(memstr, pictureboxFoto.Image.RawFormat)
-                Dim aFoto As Byte() = memstr.GetBuffer()
-                .Foto = aFoto
-            End If
+            .Foto = CS_ValueTranslation.FromControlPictureBoxToObjectImage(pictureboxFoto.Image)
 
             ' Datos del Encabezado
             .MatriculaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxMatriculaNumero.Text)
@@ -475,6 +484,13 @@
             ' Datos de la pestaña Vehículos
             .LicenciaConducirNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxLicenciaConducirNumero.Text)
             .LicenciaConducirVencimiento = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerLicenciaConducirVencimiento.Value, datetimepickerLicenciaConducirVencimiento.Checked)
+
+            ' Datos de la pestaña Identificación
+            If .IdentificacionPin.HasValue Then
+                labelIdentificacionPinEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_SI
+            Else
+                labelIdentificacionPinEstado.Text = My.Resources.STRING_VALOR_ESTABLECIDO_NO
+            End If
 
             ' Datos de la pestaña Notas y Aditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -708,6 +724,24 @@
         formPersonaLicenciaConducirCategorias.Close()
     End Sub
 
+    Private Sub IdentificacionPin(sender As Object, e As EventArgs) Handles buttonIdentificacionPin.Click
+        formPersonaIdentificacionPin.LoadAndShow(Me, mPersonaActual)
+        If formPersonaIdentificacionPin.DialogResult = DialogResult.OK Then
+            SetDataFromObjectToControlsIdentificacion()
+        End If
+        formPersonaIdentificacionPin.Close()
+        formPersonaIdentificacionPin = Nothing
+    End Sub
+
+    Private Sub IdentificacionHuellasDigitales(sender As Object, e As EventArgs) Handles buttonIdentificacionHuellasDigitales.Click
+        formPersonaIdentificacionHuellasDigitales.LoadAndShow(Me, mPersonaActual)
+        If formPersonaIdentificacionHuellasDigitales.DialogResult = DialogResult.OK Then
+            SetDataFromObjectToControlsIdentificacion()
+        End If
+        formPersonaIdentificacionHuellasDigitales.Close()
+        formPersonaIdentificacionHuellasDigitales = Nothing
+    End Sub
+
 #End Region
 
 #Region "Main Toolbar"
@@ -756,7 +790,7 @@
                     maskedtextboxDocumentoNumero.Focus()
                     Exit Sub
                 End If
-                If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxDocumentoNumero.Text) Then
+                If Not CardonerSistemas.Afip.VerificarCuit(maskedtextboxDocumentoNumero.Text) Then
                     tabcontrolMain.SelectedTab = tabpageGeneral
                     MsgBox("El Número de " & CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).Nombre & " ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                     maskedtextboxDocumentoNumero.Focus()
@@ -780,7 +814,7 @@
                 maskedtextboxCUIL.Focus()
                 Exit Sub
             End If
-            If Not CardonerSistemas.AFIP.VerificarCUIT(maskedtextboxCUIL.Text) Then
+            If Not CardonerSistemas.Afip.VerificarCuit(maskedtextboxCUIL.Text) Then
                 tabcontrolMain.SelectedTab = tabpageGeneral
                 MsgBox("El CUIL ingresado es incorrecto.", MsgBoxStyle.Information, My.Application.Info.Title)
                 maskedtextboxCUIL.Focus()
