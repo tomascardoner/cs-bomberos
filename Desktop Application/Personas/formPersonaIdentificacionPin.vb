@@ -48,6 +48,10 @@
         End Select
     End Sub
 
+    Private Sub MaskedTextBoxes_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxIdentificacionPin.GotFocus, maskedtextboxIdentificacionPinConfirma.GotFocus
+        CType(sender, MaskedTextBox).SelectAll()
+    End Sub
+
     Private Sub Guardar() Handles buttonGuardar.Click
         If Not VerificarDatos() Then
             Return

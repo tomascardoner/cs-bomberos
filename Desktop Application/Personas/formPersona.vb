@@ -734,12 +734,18 @@ Public Class formPersona
     End Sub
 
     Private Sub IdentificacionHuellasDigitales(sender As Object, e As EventArgs) Handles buttonIdentificacionHuellasDigitales.Click
-        formPersonaIdentificacionHuellasDigitales.LoadAndShow(Me, mPersonaActual)
-        If formPersonaIdentificacionHuellasDigitales.DialogResult = DialogResult.OK Then
-            SetDataFromObjectToControlsIdentificacion()
-        End If
-        formPersonaIdentificacionHuellasDigitales.Close()
-        formPersonaIdentificacionHuellasDigitales = Nothing
+        Try
+            formPersonaIdentificacionHuellasDigitales.LoadAndShow(Me, mPersonaActual)
+            If formPersonaIdentificacionHuellasDigitales.DialogResult = DialogResult.OK Then
+                SetDataFromObjectToControlsIdentificacion()
+            End If
+            formPersonaIdentificacionHuellasDigitales.Close()
+            formPersonaIdentificacionHuellasDigitales = Nothing
+
+        Catch ex As Exception
+
+            MessageBox.Show("No se pudo crear una instancia del componente de huellas digitales. Probablemente se deba a que no están instaladas las librerías necesarias.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 #End Region
