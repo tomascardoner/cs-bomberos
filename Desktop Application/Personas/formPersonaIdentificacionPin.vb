@@ -1,5 +1,12 @@
 ﻿Public Class formPersonaIdentificacionPin
+
+#Region "Declarations"
+
     Private mPersona As Persona
+
+#End Region
+
+#Region "Form stuff"
 
     Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef persona As Persona)
         mPersona = persona
@@ -9,20 +16,28 @@
         Me.ShowDialog(parentForm)
     End Sub
 
+#End Region
+
+#Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         If mPersona.IdentificacionPin.HasValue Then
-            integertextboxIdentificacionPin.IntegerValue = mPersona.IdentificacionPin.Value
-            integertextboxIdentificacionPinConfirma.IntegerValue = mPersona.IdentificacionPin.Value
+            maskedtextboxIdentificacionPin.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(mPersona.IdentificacionPin)
+            maskedtextboxIdentificacionPinConfirma.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(mPersona.IdentificacionPin.Value)
         End If
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
-        If integertextboxIdentificacionPin.TextLength > 0 Then
-            mPersona.IdentificacionPin = CShort(integertextboxIdentificacionPin.IntegerValue)
+        If maskedtextboxIdentificacionPin.TextLength > 0 Then
+            mPersona.IdentificacionPin = CS_ValueTranslation.FromControlTextBoxToObjectShort(maskedtextboxIdentificacionPin.Text)
         Else
             mPersona.IdentificacionPin = Nothing
         End If
     End Sub
+
+#End Region
+
+#Region "Controls behavior"
 
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
@@ -49,25 +64,32 @@
         Me.Hide()
     End Sub
 
+#End Region
+
+#Region "Extra stuff"
+
     Private Function VerificarDatos() As Boolean
-        If integertextboxIdentificacionPin.TextLength > 0 Then
-            If integertextboxIdentificacionPin.TextLength < 4 Then
+        If maskedtextboxIdentificacionPin.TextLength > 0 Then
+            If maskedtextboxIdentificacionPin.TextLength < 4 Then
                 MessageBox.Show("Debe especificar los 4 dígitos del PIN.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                integertextboxIdentificacionPin.Focus()
+                maskedtextboxIdentificacionPin.Focus()
                 Return False
             End If
-            If integertextboxIdentificacionPinConfirma.TextLength < 4 Then
+            If maskedtextboxIdentificacionPinConfirma.TextLength < 4 Then
                 MessageBox.Show("Debe especificar los 4 dígitos de la confirmación del PIN.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                integertextboxIdentificacionPinConfirma.Focus()
+                maskedtextboxIdentificacionPinConfirma.Focus()
                 Return False
             End If
         End If
-        If integertextboxIdentificacionPin.IntegerValue <> integertextboxIdentificacionPinConfirma.IntegerValue Then
+        If maskedtextboxIdentificacionPin.Text <> maskedtextboxIdentificacionPinConfirma.Text Then
             MessageBox.Show("El PIN y la confirmación del PIN no coinciden.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            integertextboxIdentificacionPin.Focus()
+            maskedtextboxIdentificacionPin.Focus()
             Return False
         End If
 
         Return True
     End Function
+
+#End Region
+
 End Class

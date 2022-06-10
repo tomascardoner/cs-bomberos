@@ -11,7 +11,6 @@
 
     Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef persona As Persona)
         mPersona = persona
-
         SetDataFromObjectToControls()
 
         Me.ShowDialog(parentForm)
