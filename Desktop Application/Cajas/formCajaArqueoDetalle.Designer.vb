@@ -35,6 +35,8 @@ Partial Class formCajaArqueoDetalle
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelArea = New System.Windows.Forms.Label()
+        Me.comboboxArea = New System.Windows.Forms.ComboBox()
         Me.textboxDetalle = New System.Windows.Forms.TextBox()
         Me.textboxProveedor = New System.Windows.Forms.TextBox()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
@@ -44,8 +46,6 @@ Partial Class formCajaArqueoDetalle
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelID = New System.Windows.Forms.Label()
         Me.textboxID = New System.Windows.Forms.TextBox()
-        Me.labelArea = New System.Windows.Forms.Label()
-        Me.comboboxArea = New System.Windows.Forms.ComboBox()
         labelFecha = New System.Windows.Forms.Label()
         Label1 = New System.Windows.Forms.Label()
         labelDetalle = New System.Windows.Forms.Label()
@@ -199,6 +199,25 @@ Partial Class formCajaArqueoDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'labelArea
+        '
+        Me.labelArea.AutoSize = True
+        Me.labelArea.Location = New System.Drawing.Point(3, 87)
+        Me.labelArea.Name = "labelArea"
+        Me.labelArea.Size = New System.Drawing.Size(32, 13)
+        Me.labelArea.TabIndex = 6
+        Me.labelArea.Text = "Área:"
+        '
+        'comboboxArea
+        '
+        Me.comboboxArea.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxArea.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxArea.FormattingEnabled = True
+        Me.comboboxArea.Location = New System.Drawing.Point(111, 84)
+        Me.comboboxArea.Name = "comboboxArea"
+        Me.comboboxArea.Size = New System.Drawing.Size(447, 21)
+        Me.comboboxArea.TabIndex = 7
+        '
         'textboxDetalle
         '
         Me.textboxDetalle.Location = New System.Drawing.Point(111, 111)
@@ -226,9 +245,9 @@ Partial Class formCajaArqueoDetalle
         'textboxNumeroComprobante
         '
         Me.textboxNumeroComprobante.Location = New System.Drawing.Point(111, 6)
-        Me.textboxNumeroComprobante.MaxLength = 20
+        Me.textboxNumeroComprobante.MaxLength = 100
         Me.textboxNumeroComprobante.Name = "textboxNumeroComprobante"
-        Me.textboxNumeroComprobante.Size = New System.Drawing.Size(127, 20)
+        Me.textboxNumeroComprobante.Size = New System.Drawing.Size(447, 20)
         Me.textboxNumeroComprobante.TabIndex = 1
         '
         'currencytextboxImporte
@@ -291,25 +310,6 @@ Partial Class formCajaArqueoDetalle
         Me.textboxID.TabIndex = 3
         Me.textboxID.TabStop = False
         Me.textboxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelArea
-        '
-        Me.labelArea.AutoSize = True
-        Me.labelArea.Location = New System.Drawing.Point(3, 87)
-        Me.labelArea.Name = "labelArea"
-        Me.labelArea.Size = New System.Drawing.Size(32, 13)
-        Me.labelArea.TabIndex = 6
-        Me.labelArea.Text = "Área:"
-        '
-        'comboboxArea
-        '
-        Me.comboboxArea.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.comboboxArea.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.comboboxArea.FormattingEnabled = True
-        Me.comboboxArea.Location = New System.Drawing.Point(111, 84)
-        Me.comboboxArea.Name = "comboboxArea"
-        Me.comboboxArea.Size = New System.Drawing.Size(447, 21)
-        Me.comboboxArea.TabIndex = 7
         '
         'formCajaArqueoDetalle
         '

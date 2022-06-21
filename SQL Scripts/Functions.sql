@@ -276,6 +276,7 @@ GO
 -- Create date: 2018-10-04
 -- Updates: 2021-11-21 - Se adaptó a la nueva estructura de la tabla de Altas y Bajas
 --			2021-11-22 - Se actualizó para que tome en cuenta el tiempo en Reserva
+--			2022-06-21 - Se actualizó porque tomaba mal las bajas por reserva
 -- Description:	Devuelve la antigüedad expresada en días,
 --				de una Persona desde la FechaDesde hasta FechaHasta
 -- =============================================
@@ -309,6 +310,7 @@ BEGIN
 		SELECT Tipo, Fecha, IDPersonaBajaMotivo
 			FROM PersonaAltaBaja
 			WHERE IDPersona = @IDPersona
+				AND (NOT (Tipo = 'B' AND IDPersonaBajaMotivo = @IDPersonaBajaMotivoReserva))
 				AND (@FechaDesde IS NULL OR Fecha >= @FechaDesde)
 				AND (@FechaHasta IS NULL OR Fecha <= @FechaHasta)
 			ORDER BY Fecha, Tipo DESC
@@ -318,7 +320,7 @@ BEGIN
 
 	WHILE @@FETCH_STATUS = 0
 		BEGIN
-		IF @TipoActual = 'B' AND (@TipoAnterior = 'A' OR @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoReserva)
+		IF @TipoAnterior = 'A'
 			SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, @FechaActual)
 
 		SET @TipoAnterior = @TipoActual
@@ -332,7 +334,7 @@ BEGIN
     DEALLOCATE CursorAltasBajas
 
 	-- Si el último registro es un Alta, sumo los días transcurridos hasta la Fecha Hasta
-	IF @TipoAnterior = 'A' OR @IDPersonaBajaMotivoAnterior = @IDPersonaBajaMotivoReserva
+	IF @TipoAnterior = 'A'
 		SET @Dias = @Dias + DATEDIFF(DAY, @FechaAnterior, ISNULL(@FechaHasta, GETDATE()))
 
 	RETURN @Dias

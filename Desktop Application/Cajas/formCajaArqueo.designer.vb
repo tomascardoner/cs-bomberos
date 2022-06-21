@@ -25,8 +25,8 @@ Partial Class formCajaArqueo
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCaja As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim labelCierreFecha As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelSaldoInicial = New System.Windows.Forms.Label()
         Me.labelImporteAsignado = New System.Windows.Forms.Label()
@@ -38,12 +38,20 @@ Partial Class formCajaArqueo
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.currencytextboxImporteAsignado = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
+        Me.currencytextboxSaldoInicial = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.buttonSaldoInicial = New System.Windows.Forms.Button()
         Me.comboboxCaja = New System.Windows.Forms.ComboBox()
+        Me.datetimepickerCierreFecha = New System.Windows.Forms.DateTimePicker()
         Me.tabpageDetalles = New System.Windows.Forms.TabPage()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
+        Me.columnNumeroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripDetalles = New System.Windows.Forms.ToolStrip()
         Me.buttonDetallesAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
@@ -57,14 +65,6 @@ Partial Class formCajaArqueo
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.currencytextboxSaldoInicial = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
-        Me.datetimepickerCierreFecha = New System.Windows.Forms.DateTimePicker()
-        Me.currencytextboxImporteAsignado = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
-        Me.columnNumeroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCaja = New System.Windows.Forms.Label()
@@ -72,13 +72,13 @@ Partial Class formCajaArqueo
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.currencytextboxImporteAsignado, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageDetalles.SuspendLayout()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripDetalles.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
-        CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.currencytextboxImporteAsignado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelModificacion
@@ -107,6 +107,15 @@ Partial Class formCajaArqueo
         labelCaja.Size = New System.Drawing.Size(31, 13)
         labelCaja.TabIndex = 0
         labelCaja.Text = "Caja:"
+        '
+        'labelCierreFecha
+        '
+        labelCierreFecha.AutoSize = True
+        labelCierreFecha.Location = New System.Drawing.Point(6, 97)
+        labelCierreFecha.Name = "labelCierreFecha"
+        labelCierreFecha.Size = New System.Drawing.Size(84, 13)
+        labelCierreFecha.TabIndex = 12
+        labelCierreFecha.Text = "Fecha de cierre:"
         '
         'labelSaldoInicial
         '
@@ -219,6 +228,38 @@ Partial Class formCajaArqueo
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'currencytextboxImporteAsignado
+        '
+        Me.currencytextboxImporteAsignado.AllowNull = True
+        Me.currencytextboxImporteAsignado.BeforeTouchSize = New System.Drawing.Size(119, 20)
+        Me.currencytextboxImporteAsignado.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxImporteAsignado.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.currencytextboxImporteAsignado.Location = New System.Drawing.Point(103, 68)
+        Me.currencytextboxImporteAsignado.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
+        Me.currencytextboxImporteAsignado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxImporteAsignado.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxImporteAsignado.Name = "currencytextboxImporteAsignado"
+        Me.currencytextboxImporteAsignado.NullString = ""
+        Me.currencytextboxImporteAsignado.Size = New System.Drawing.Size(119, 20)
+        Me.currencytextboxImporteAsignado.TabIndex = 15
+        Me.currencytextboxImporteAsignado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'currencytextboxSaldoInicial
+        '
+        Me.currencytextboxSaldoInicial.AllowNull = True
+        Me.currencytextboxSaldoInicial.BeforeTouchSize = New System.Drawing.Size(119, 20)
+        Me.currencytextboxSaldoInicial.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxSaldoInicial.ForeColor = System.Drawing.SystemColors.WindowText
+        Me.currencytextboxSaldoInicial.Location = New System.Drawing.Point(103, 42)
+        Me.currencytextboxSaldoInicial.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
+        Me.currencytextboxSaldoInicial.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
+        Me.currencytextboxSaldoInicial.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.currencytextboxSaldoInicial.Name = "currencytextboxSaldoInicial"
+        Me.currencytextboxSaldoInicial.NullString = ""
+        Me.currencytextboxSaldoInicial.Size = New System.Drawing.Size(119, 20)
+        Me.currencytextboxSaldoInicial.TabIndex = 14
+        Me.currencytextboxSaldoInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'buttonSaldoInicial
         '
         Me.buttonSaldoInicial.Location = New System.Drawing.Point(228, 42)
@@ -237,10 +278,21 @@ Partial Class formCajaArqueo
         Me.comboboxCaja.Size = New System.Drawing.Size(267, 21)
         Me.comboboxCaja.TabIndex = 1
         '
+        'datetimepickerCierreFecha
+        '
+        Me.datetimepickerCierreFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerCierreFecha.Location = New System.Drawing.Point(103, 94)
+        Me.datetimepickerCierreFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerCierreFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerCierreFecha.Name = "datetimepickerCierreFecha"
+        Me.datetimepickerCierreFecha.ShowCheckBox = True
+        Me.datetimepickerCierreFecha.Size = New System.Drawing.Size(148, 20)
+        Me.datetimepickerCierreFecha.TabIndex = 13
+        '
         'tabpageDetalles
         '
-        Me.tabpageDetalles.Controls.Add(Me.statusstripMain)
         Me.tabpageDetalles.Controls.Add(Me.datagridviewDetalles)
+        Me.tabpageDetalles.Controls.Add(Me.statusstripMain)
         Me.tabpageDetalles.Controls.Add(Me.toolstripDetalles)
         Me.tabpageDetalles.Location = New System.Drawing.Point(4, 25)
         Me.tabpageDetalles.Name = "tabpageDetalles"
@@ -287,8 +339,56 @@ Partial Class formCajaArqueo
         Me.datagridviewDetalles.RowHeadersVisible = False
         Me.datagridviewDetalles.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewDetalles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewDetalles.Size = New System.Drawing.Size(563, 251)
+        Me.datagridviewDetalles.Size = New System.Drawing.Size(563, 229)
         Me.datagridviewDetalles.TabIndex = 8
+        '
+        'columnNumeroComprobante
+        '
+        Me.columnNumeroComprobante.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNumeroComprobante.DataPropertyName = "NumeroComprobante"
+        Me.columnNumeroComprobante.HeaderText = "Nº comprobante"
+        Me.columnNumeroComprobante.Name = "columnNumeroComprobante"
+        Me.columnNumeroComprobante.ReadOnly = True
+        '
+        'columnFecha
+        '
+        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnProveedor
+        '
+        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnProveedor.DataPropertyName = "Proveedor"
+        Me.columnProveedor.HeaderText = "Proveedor"
+        Me.columnProveedor.Name = "columnProveedor"
+        Me.columnProveedor.ReadOnly = True
+        Me.columnProveedor.Width = 81
+        '
+        'columnDetalle
+        '
+        Me.columnDetalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnDetalle.DataPropertyName = "Detalle"
+        Me.columnDetalle.HeaderText = "Detalle"
+        Me.columnDetalle.Name = "columnDetalle"
+        Me.columnDetalle.ReadOnly = True
+        Me.columnDetalle.Width = 65
+        '
+        'columnImporte
+        '
+        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnImporte.DataPropertyName = "Importe"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Format = "C2"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnImporte.HeaderText = "Importe"
+        Me.columnImporte.Name = "columnImporte"
+        Me.columnImporte.ReadOnly = True
+        Me.columnImporte.Width = 67
         '
         'toolstripDetalles
         '
@@ -427,106 +527,6 @@ Partial Class formCajaArqueo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'currencytextboxSaldoInicial
-        '
-        Me.currencytextboxSaldoInicial.AllowNull = True
-        Me.currencytextboxSaldoInicial.BeforeTouchSize = New System.Drawing.Size(119, 20)
-        Me.currencytextboxSaldoInicial.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxSaldoInicial.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.currencytextboxSaldoInicial.Location = New System.Drawing.Point(103, 42)
-        Me.currencytextboxSaldoInicial.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
-        Me.currencytextboxSaldoInicial.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.currencytextboxSaldoInicial.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxSaldoInicial.Name = "currencytextboxSaldoInicial"
-        Me.currencytextboxSaldoInicial.NullString = ""
-        Me.currencytextboxSaldoInicial.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxSaldoInicial.TabIndex = 14
-        Me.currencytextboxSaldoInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'labelCierreFecha
-        '
-        labelCierreFecha.AutoSize = True
-        labelCierreFecha.Location = New System.Drawing.Point(6, 97)
-        labelCierreFecha.Name = "labelCierreFecha"
-        labelCierreFecha.Size = New System.Drawing.Size(84, 13)
-        labelCierreFecha.TabIndex = 12
-        labelCierreFecha.Text = "Fecha de cierre:"
-        '
-        'datetimepickerCierreFecha
-        '
-        Me.datetimepickerCierreFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerCierreFecha.Location = New System.Drawing.Point(103, 94)
-        Me.datetimepickerCierreFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerCierreFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerCierreFecha.Name = "datetimepickerCierreFecha"
-        Me.datetimepickerCierreFecha.ShowCheckBox = True
-        Me.datetimepickerCierreFecha.Size = New System.Drawing.Size(148, 20)
-        Me.datetimepickerCierreFecha.TabIndex = 13
-        '
-        'currencytextboxImporteAsignado
-        '
-        Me.currencytextboxImporteAsignado.AllowNull = True
-        Me.currencytextboxImporteAsignado.BeforeTouchSize = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporteAsignado.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporteAsignado.ForeColor = System.Drawing.SystemColors.WindowText
-        Me.currencytextboxImporteAsignado.Location = New System.Drawing.Point(103, 68)
-        Me.currencytextboxImporteAsignado.MaxValue = New Decimal(New Integer() {1410065407, 2, 0, 131072})
-        Me.currencytextboxImporteAsignado.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.currencytextboxImporteAsignado.MinValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.currencytextboxImporteAsignado.Name = "currencytextboxImporteAsignado"
-        Me.currencytextboxImporteAsignado.NullString = ""
-        Me.currencytextboxImporteAsignado.Size = New System.Drawing.Size(119, 20)
-        Me.currencytextboxImporteAsignado.TabIndex = 15
-        Me.currencytextboxImporteAsignado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'columnNumeroComprobante
-        '
-        Me.columnNumeroComprobante.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNumeroComprobante.DataPropertyName = "NumeroComprobante"
-        Me.columnNumeroComprobante.HeaderText = "Nº comprobante"
-        Me.columnNumeroComprobante.Name = "columnNumeroComprobante"
-        Me.columnNumeroComprobante.ReadOnly = True
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnProveedor
-        '
-        Me.columnProveedor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnProveedor.DataPropertyName = "Proveedor"
-        Me.columnProveedor.HeaderText = "Proveedor"
-        Me.columnProveedor.Name = "columnProveedor"
-        Me.columnProveedor.ReadOnly = True
-        Me.columnProveedor.Width = 81
-        '
-        'columnDetalle
-        '
-        Me.columnDetalle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnDetalle.DataPropertyName = "Detalle"
-        Me.columnDetalle.HeaderText = "Detalle"
-        Me.columnDetalle.Name = "columnDetalle"
-        Me.columnDetalle.ReadOnly = True
-        Me.columnDetalle.Width = 65
-        '
-        'columnImporte
-        '
-        Me.columnImporte.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnImporte.DataPropertyName = "Importe"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Format = "C2"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnImporte.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnImporte.HeaderText = "Importe"
-        Me.columnImporte.Name = "columnImporte"
-        Me.columnImporte.ReadOnly = True
-        Me.columnImporte.Width = 67
-        '
         'formCajaArqueo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -547,6 +547,8 @@ Partial Class formCajaArqueo
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.currencytextboxImporteAsignado, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageDetalles.ResumeLayout(False)
         Me.tabpageDetalles.PerformLayout()
         Me.statusstripMain.ResumeLayout(False)
@@ -556,8 +558,6 @@ Partial Class formCajaArqueo
         Me.toolstripDetalles.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.currencytextboxImporteAsignado, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

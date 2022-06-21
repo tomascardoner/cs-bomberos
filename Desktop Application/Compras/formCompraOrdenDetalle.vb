@@ -137,16 +137,6 @@
         CType(sender, TextBox).SelectAll()
     End Sub
 
-    Private Sub FacturaChanged(sender As Object, e As EventArgs) Handles comboBoxFactura.SelectedIndexChanged
-        If comboBoxFactura.SelectedIndex > -1 AndAlso CType(comboBoxFactura.SelectedItem, Comprobante).IDComprobante <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER Then
-            textboxDetalle.Text = CType(comboBoxFactura.SelectedItem, Comprobante).Descripcion
-            textboxDetalle.ReadOnly = True
-        Else
-            textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(mCompraOrdenDetalleActual.Detalle)
-            textboxDetalle.ReadOnly = Not mEditMode
-        End If
-    End Sub
-
 #End Region
 
 #Region "Main Toolbar"

@@ -1,6 +1,9 @@
 2022-06-04
 	- Tabla Persona
 		- Agregar el campo IdentificacionPin smallint null, antes de Orden
+	- Agregar tabla PersonaHuellaDigital
+	- Tabla CajaArqueoDetalle
+		- Agrandar el campo NumeroComprobante de varchar(20) a varchar(100)
 
 2022-05-15
 	- Tabla Responsable
