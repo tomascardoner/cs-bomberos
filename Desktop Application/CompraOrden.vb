@@ -16,8 +16,6 @@ Partial Public Class CompraOrden
     Public Property Numero As Integer
     Public Property Fecha As Date
     Public Property IDEntidad As Short
-    Public Property FacturaFecha As Nullable(Of Date)
-    Public Property FacturaNumero As String
     Public Property Cerrada As Boolean
     Public Property CierreFecha As Nullable(Of Date)
     Public Property Notas As String

@@ -4,6 +4,8 @@
 	- Agregar tabla PersonaHuellaDigital
 	- Tabla CajaArqueoDetalle
 		- Agrandar el campo NumeroComprobante de varchar(20) a varchar(100)
+	- Tabla CompraOrden
+		- Eliminar los campos FacturaFecha y FacturaNumero
 
 2022-05-15
 	- Tabla Responsable

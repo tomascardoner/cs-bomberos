@@ -73,9 +73,6 @@
         datetimepickerFecha.Enabled = mEditMode
         comboboxEntidad.Enabled = mEditMode
 
-        datetimepickerFacturaFecha.Enabled = False
-        textboxFacturaNumero.ReadOnly = True
-
         checkboxCerrada.Enabled = mEditMode
         datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
 
@@ -120,8 +117,6 @@
             integertextboxNumero.IntegerValue = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
-            datetimepickerFacturaFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FacturaFecha, datetimepickerFacturaFecha)
-            textboxFacturaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FacturaNumero)
             checkboxCerrada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Cerrada)
             If checkboxCerrada.Checked Then
                 datetimepickerCierreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.CierreFecha, datetimepickerCierreFecha)
@@ -160,8 +155,6 @@
             .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
             .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
-            .FacturaFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFacturaFecha.Value, datetimepickerFacturaFecha.Checked)
-            .FacturaNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxFacturaNumero.Text)
             .Cerrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxCerrada.CheckState)
             If checkboxCerrada.Checked Then
                 .CierreFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCierreFecha.Value, datetimepickerCierreFecha.Checked)

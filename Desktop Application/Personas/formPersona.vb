@@ -167,8 +167,8 @@ Public Class formPersona
         toolstripExamenes.Enabled = Not mEditMode
 
         ' Identificación
-        buttonIdentificacionPin.Visible = mEditMode
-        buttonIdentificacionHuellasDigitales.Visible = mEditMode
+        buttonIdentificacionPin.Visible = (mEditMode AndAlso Permisos.VerificarPermiso(Permisos.PERSONA_IDENTIFICACION_EDITAR, False))
+        buttonIdentificacionHuellasDigitales.Visible = (mEditMode AndAlso Permisos.VerificarPermiso(Permisos.PERSONA_IDENTIFICACION_EDITAR, False))
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = (mEditMode = False)
@@ -232,6 +232,9 @@ Public Class formPersona
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN, False) Then
             tabcontrolMain.HideTabPageByName(tabpageExamenes.Name)
+        End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_IDENTIFICACION, False) Then
+            tabcontrolMain.HideTabPageByName(tabpageIdentificacion.Name)
         End If
 
         DataGridSetAppearance(datagridviewFamiliares)

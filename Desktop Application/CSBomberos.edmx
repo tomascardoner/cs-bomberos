@@ -11116,8 +11116,6 @@
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDEntidad" Type="Int16" Nullable="false" />
-          <Property Name="FacturaFecha" Type="DateTime" Precision="0" />
-          <Property Name="FacturaNumero" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Cerrada" Type="Boolean" Nullable="false" />
           <Property Name="CierreFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -14325,8 +14323,6 @@
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Cerrada" ColumnName="Cerrada" />
-                <ScalarProperty Name="FacturaNumero" ColumnName="FacturaNumero" />
-                <ScalarProperty Name="FacturaFecha" ColumnName="FacturaFecha" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="IDCompraOrden" ColumnName="IDCompraOrden" />
               </MappingFragment>

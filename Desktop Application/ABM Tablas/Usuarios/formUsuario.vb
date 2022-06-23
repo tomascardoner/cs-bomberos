@@ -176,17 +176,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If textboxNombre.Text.Trim.Length = 0 Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxNombre.Focus()
-            Exit Sub
-        End If
-        If comboboxUsuarioGrupo.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxUsuarioGrupo.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -244,6 +235,53 @@
             e.SuppressKeyPress = True
         End If
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        ' Nombre
+        If textboxNombre.Text.Trim.Length = 0 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe ingresar el Nombre.", MsgBoxStyle.Information, My.Application.Info.Title)
+            textboxNombre.Focus()
+            Return False
+        End If
+        If textboxNombre.TextLength < 4 Then
+            MsgBox("El Nombre debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
+            textboxNombre.Focus()
+            Return False
+        End If
+        If comboboxUsuarioGrupo.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUsuarioGrupo.Focus()
+            Return False
+        End If
+
+        ' Contraseña
+        If textboxPassword.TextLength = 0 Then
+            MsgBox("Debe ingresar la Contraseña.", vbInformation, My.Application.Info.Title)
+            textboxPassword.Focus()
+            Return False
+        End If
+        If CS_Parameter_System.GetBoolean(Parametros.USER_PASSWORD_SECURE_REQUIRED, True) Then
+            If textboxPassword.TextLength < CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8) Then
+                MsgBox(String.Format("La Contraseña debe contener al menos {0} caracteres.", CS_Parameter_System.GetIntegerAsByte(Parametros.USER_PASSWORD_MINIMUM_LENGHT, 8)), vbInformation, My.Application.Info.Title)
+                textboxPassword.Focus()
+                Return False
+            End If
+        Else
+            If textboxPassword.TextLength < 4 Then
+                MsgBox("La Contraseña debe contener al menos 4 caracteres.", vbInformation, My.Application.Info.Title)
+                textboxPassword.Focus()
+                Return False
+            End If
+        End If
+
+        Return True
+    End Function
 
 #End Region
 
