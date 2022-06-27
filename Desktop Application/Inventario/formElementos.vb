@@ -1,6 +1,7 @@
 ﻿Public Class formElementos
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDElemento As Integer
         Public Property Nombre As String
@@ -14,15 +15,17 @@
     Private mlistElementosBase As List(Of GridRowData)
     Private mlistElementosFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
+    Private mBusquedaAplicada As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageTablas32)
 
@@ -46,9 +49,11 @@
 
         RefreshData()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDElemento As Integer = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -60,7 +65,7 @@
                                       From rg In Rubros_Group.DefaultIfEmpty
                                       Group Join sr In dbContext.SubRubro On e.IDSubRubro Equals sr.IDSubRubro Into SubRubro_Group = Group
                                       From srg In SubRubro_Group.DefaultIfEmpty
-                                      Select New GridRowData With {.IDElemento = e.IDElemento, .Nombre = e.Nombre, .IDRubro = If(rg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, rg.IDRubro), .RubroNombre = If(rg Is Nothing, "", rg.Nombre), .IDSubRubro = If(srg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, srg.IDSubRubro), .SubRubroNombre = If(srg Is Nothing, "", srg.Nombre), .EsActivo = e.EsActivo}).ToList
+                                      Select New GridRowData With {.IDElemento = e.IDElemento, .Nombre = e.Nombre, .IDRubro = If(rg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, rg.IDRubro), .RubroNombre = If(rg Is Nothing, String.Empty, rg.Nombre), .IDSubRubro = If(srg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT, srg.IDSubRubro), .SubRubroNombre = If(srg Is Nothing, "", srg.Nombre), .EsActivo = e.EsActivo}).ToList
             End Using
 
         Catch ex As Exception
@@ -191,6 +196,7 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

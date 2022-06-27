@@ -959,7 +959,8 @@ Partial Class formComprobante
         '
         'ComboBoxEntidad
         '
-        Me.ComboBoxEntidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxEntidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.ComboBoxEntidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxEntidad.FormattingEnabled = True
         Me.ComboBoxEntidad.Location = New System.Drawing.Point(55, 3)
         Me.ComboBoxEntidad.Name = "ComboBoxEntidad"
@@ -1006,7 +1007,7 @@ Partial Class formComprobante
         'currencytextboxImporteTotal
         '
         Me.currencytextboxImporteTotal.AllowNull = True
-        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
+        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
         Me.currencytextboxImporteTotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporteTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.currencytextboxImporteTotal.ForeColor = System.Drawing.SystemColors.WindowText
@@ -1047,7 +1048,7 @@ Partial Class formComprobante
         'currencytextboxMediosPago_Subtotal
         '
         Me.currencytextboxMediosPago_Subtotal.AllowNull = True
-        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
+        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
         Me.currencytextboxMediosPago_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxMediosPago_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxMediosPago_Subtotal.Location = New System.Drawing.Point(96, 4)
@@ -1086,7 +1087,7 @@ Partial Class formComprobante
         'currencytextboxAplicaciones_Subtotal
         '
         Me.currencytextboxAplicaciones_Subtotal.AllowNull = True
-        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
+        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
         Me.currencytextboxAplicaciones_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxAplicaciones_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxAplicaciones_Subtotal.Location = New System.Drawing.Point(79, 4)
@@ -1125,7 +1126,7 @@ Partial Class formComprobante
         'currencytextboxDetalle_Subtotal
         '
         Me.currencytextboxDetalle_Subtotal.AllowNull = True
-        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
+        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
         Me.currencytextboxDetalle_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxDetalle_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxDetalle_Subtotal.Location = New System.Drawing.Point(52, 4)

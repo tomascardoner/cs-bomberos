@@ -11,7 +11,7 @@
         Public Property CuartelNombre As String
         Public Property Numero As Integer
         Public Property Fecha As Date
-        Public Property IDEntidad As Short
+        Public Property IDEntidad As Short?
         Public Property EntidadNombre As String
         Public Property FacturaNumero As String
         Public Property Importe As Decimal?
@@ -181,9 +181,10 @@
             Using dbContext As New CSBomberosContext(True)
                 mlistComprasBase = (From c In dbContext.CompraOrden
                                     Join cu In dbContext.Cuartel On c.IDCuartel Equals cu.IDCuartel
-                                    Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
+                                    Group Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad Into EntidadesGroup = Group
+                                    From eg In EntidadesGroup.DefaultIfEmpty
                                     Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
+                                    Select New GridRowData With {.IDCompraOrden = c.IDCompraOrden, .IDCuartel = c.IDCuartel, .CuartelNombre = cu.Nombre, .Numero = c.Numero, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = If(eg Is Nothing, String.Empty, eg.Nombre), .Importe = c.CompraOrdenDetalles.Sum(Function(cd) cd.Importe), .Cerrada = c.Cerrada}).ToList
             End Using
 
         Catch ex As Exception
@@ -231,7 +232,7 @@
 
                 ' Filtro por Entidad
                 If comboboxEntidad.SelectedIndex > 0 Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue)).ToList
+                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) CBool(c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue))).ToList
                 End If
 
                 ' Filtro por Cerrada

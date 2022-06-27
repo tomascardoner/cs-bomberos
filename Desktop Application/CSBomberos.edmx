@@ -322,9 +322,7 @@
           <Property Name="IDCuartel" Type="tinyint" Nullable="false" />
           <Property Name="Numero" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="IDEntidad" Type="smallint" Nullable="false" />
-          <Property Name="FacturaFecha" Type="date" />
-          <Property Name="FacturaNumero" Type="varchar" MaxLength="200" />
+          <Property Name="IDEntidad" Type="smallint" />
           <Property Name="Cerrada" Type="bit" Nullable="false" />
           <Property Name="CierreFecha" Type="date" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -2288,7 +2286,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Entidad__CompraOrden">
-          <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+          <End Role="Entidad" Type="Self.Entidad" Multiplicity="0..1" />
           <End Role="CompraOrden" Type="Self.CompraOrden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">
@@ -11115,7 +11113,7 @@
           <Property Name="IDCuartel" Type="Byte" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IDEntidad" Type="Int16" Nullable="false" />
+          <Property Name="IDEntidad" Type="Int16" />
           <Property Name="Cerrada" Type="Boolean" Nullable="false" />
           <Property Name="CierreFecha" Type="DateTime" Precision="0" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -12437,7 +12435,7 @@
           <NavigationProperty Name="CuentaBancariaTipo" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__Entidad" FromRole="Entidad" ToRole="CuentaBancariaTipo" />
         </EntityType>
         <Association Name="FK__Entidad__CompraOrden">
-          <End Type="CSBomberosModel.Entidad" Role="Entidad" Multiplicity="1" />
+          <End Type="CSBomberosModel.Entidad" Role="Entidad" Multiplicity="0..1" />
           <End Type="CSBomberosModel.CompraOrden" Role="CompraOrden" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Entidad">

@@ -154,7 +154,7 @@
             .IDCuartel = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCuartel.SelectedValue).Value
             .Numero = CInt(integertextboxNumero.IntegerValue)
             .Fecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFecha.Value).Value
-            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             .Cerrada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxCerrada.CheckState)
             If checkboxCerrada.Checked Then
                 .CierreFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCierreFecha.Value, datetimepickerCierreFecha.Checked)

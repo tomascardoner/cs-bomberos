@@ -15,7 +15,7 @@ Partial Public Class CompraOrden
     Public Property IDCuartel As Byte
     Public Property Numero As Integer
     Public Property Fecha As Date
-    Public Property IDEntidad As Short
+    Public Property IDEntidad As Nullable(Of Short)
     Public Property Cerrada As Boolean
     Public Property CierreFecha As Nullable(Of Date)
     Public Property Notas As String
