@@ -12,7 +12,6 @@ Imports System.Collections.Generic
 
 Partial Public Class Reporte
     Public Property IDReporte As Short
-    Public Property IDReporteGrupo As Byte
     Public Property Nombre As String
     Public Property Archivo As String
     Public Property OrigenDatos As String
@@ -23,7 +22,6 @@ Partial Public Class Reporte
     Public Property Orden As Nullable(Of Byte)
 
     Public Overridable Property ReporteParametros As ICollection(Of ReporteParametro) = New HashSet(Of ReporteParametro)
-    Public Overridable Property ReporteGrupo As ReporteGrupo
     Public Overridable Property ReporteCampos As ICollection(Of ReporteCampo) = New HashSet(Of ReporteCampo)
     Public Overridable Property TipografiaEstilo As TipografiaEstilo
     Public Overridable Property UsuarioGrupo As ICollection(Of UsuarioGrupo) = New HashSet(Of UsuarioGrupo)

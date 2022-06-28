@@ -181,7 +181,7 @@
           <Property Name="IDCaja" Type="tinyint" Nullable="false" />
           <Property Name="IDArqueo" Type="int" Nullable="false" />
           <Property Name="IDDetalle" Type="smallint" Nullable="false" />
-          <Property Name="NumeroComprobante" Type="varchar" MaxLength="20" />
+          <Property Name="NumeroComprobante" Type="varchar" MaxLength="100" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Proveedor" Type="varchar" MaxLength="100" />
           <Property Name="IDArea" Type="smallint" Nullable="false" />
@@ -1208,7 +1208,6 @@
             <PropertyRef Name="IDReporte" />
           </Key>
           <Property Name="IDReporte" Type="smallint" Nullable="false" />
-          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Archivo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="OrigenDatos" Type="varchar" MaxLength="100" />
@@ -2848,18 +2847,6 @@
             </Principal>
             <Dependent Role="UsuarioGrupoPermisoReporte">
               <PropertyRef Name="IDReporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ReporteGrupo__Reporte">
-          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
-          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReporteGrupo">
-              <PropertyRef Name="IDReporteGrupo" />
-            </Principal>
-            <Dependent Role="Reporte">
-              <PropertyRef Name="IDReporteGrupo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5583,10 +5570,6 @@
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="UsuarioGrupoPermisoReporte" EntitySet="UsuarioGrupoPermisoReporte" />
           </AssociationSet>
-          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="Self.FK__ReporteGrupo__Reporte">
-            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
-            <End Role="Reporte" EntitySet="Reporte" />
-          </AssociationSet>
           <AssociationSet Name="FK__ResponsableTipo__PersonaSancion" Association="Self.FK__ResponsableTipo__PersonaSancion">
             <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
             <End Role="PersonaSancion" EntitySet="PersonaSancion" />
@@ -6355,10 +6338,6 @@
           <AssociationSet Name="FK__Reporte__ReporteParametro" Association="CSBomberosModel.FK__Reporte__ReporteParametro">
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ReporteGrupo__Reporte" Association="CSBomberosModel.FK__ReporteGrupo__Reporte">
-            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
-            <End Role="Reporte" EntitySet="Reporte" />
           </AssociationSet>
           <AssociationSet Name="FK__UsuarioGrupo__Usuario" Association="CSBomberosModel.FK__UsuarioGrupo__Usuario">
             <End Role="UsuarioGrupo" EntitySet="UsuarioGrupo" />
@@ -7636,7 +7615,6 @@
             <PropertyRef Name="IDReporte" />
           </Key>
           <Property Name="IDReporte" Type="Int16" Nullable="false" />
-          <Property Name="IDReporteGrupo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Archivo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="OrigenDatos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -7645,7 +7623,6 @@
           <Property Name="AgruparPorCampo" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Name="MostrarEnVisor" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ReporteParametros" Relationship="CSBomberosModel.FK__Reporte__ReporteParametro" FromRole="Reporte" ToRole="ReporteParametro" />
-          <NavigationProperty Name="ReporteGrupo" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="Reporte" ToRole="ReporteGrupo" />
           <Property Name="Orden" Type="Byte" />
           <NavigationProperty Name="ReporteCampos" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="Reporte" ToRole="ReporteCampo" />
           <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__Reporte" FromRole="Reporte" ToRole="TipografiaEstilo" />
@@ -7659,7 +7636,6 @@
           <Property Name="IDModulo" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.FK__ReporteGrupo__Reporte" FromRole="ReporteGrupo" ToRole="Reporte" />
           <Property Name="Orden" Type="Byte" />
           <NavigationProperty Name="Modulo" Relationship="CSBomberosModel.FK__Modulo__ReporteGrupo" FromRole="ReporteGrupo" ToRole="Modulo" />
         </EntityType>
@@ -7919,18 +7895,6 @@
             </Principal>
             <Dependent Role="ReporteParametro">
               <PropertyRef Name="IDReporte" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ReporteGrupo__Reporte">
-          <End Type="CSBomberosModel.ReporteGrupo" Role="ReporteGrupo" Multiplicity="1" />
-          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ReporteGrupo">
-              <PropertyRef Name="IDReporteGrupo" />
-            </Principal>
-            <Dependent Role="Reporte">
-              <PropertyRef Name="IDReporteGrupo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -13272,7 +13236,6 @@
                 <ScalarProperty Name="MostrarEnVisor" ColumnName="MostrarEnVisor" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
                 <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
               </MappingFragment>
             </EntityTypeMapping>

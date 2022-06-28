@@ -19,7 +19,6 @@
         <AssociationConnector Association="CSBomberosModel.FK__Provincia__Localidad" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Log" />
         <AssociationConnector Association="CSBomberosModel.FK__Reporte__ReporteParametro" />
-        <AssociationConnector Association="CSBomberosModel.FK__ReporteGrupo__Reporte" />
         <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__Usuario" />
         <AssociationConnector Association="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" />
         <EntityTypeShape EntityType="CSBomberosModel.Cuartel" Width="1.5" PointX="16.5" PointY="172.5" />
