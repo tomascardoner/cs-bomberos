@@ -12,6 +12,7 @@ GO
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
 --			2022-05-08 - Se agregaron las columnas Estado, EstadoNombre, DesaprobadaCausa, TestimonioTexto y TestimonioFecha
 --			2022-05-15 - Se agregó el Responsable
+--			2022-06-27 - Se arregló un bug que no mostraba registros si el primer ascenso de las personas era posterior a la fecha de solicitud de la sanción
 -- Description:	Devuelve los datos para la Solicitud de Sanción Disciplinaria
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_SancionDisciplinaria') AND type in (N'P', N'PC'))
@@ -43,7 +44,7 @@ CREATE PROCEDURE usp_Persona_SancionDisciplinaria
 				LEFT JOIN SancionTipo AS st ON ps.ResolucionIDSancionTipo = st.IDSancionTipo
 				LEFT JOIN ResponsableTipo AS rt ON ps.SolicitudIDResponsableTipo = rt.IDResponsableTipo
 			WHERE ps.IDPersona = @IDPersona AND ps.IDSancion = @IDSancion
-				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, ps.SolicitudFecha))
-				AND (spa.Fecha IS NULL OR spa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(sp.IDPersona, ps.SolicitudFecha))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, ps.SolicitudFecha) OR dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, ps.SolicitudFecha) IS NULL)
+				AND (spa.Fecha IS NULL OR spa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(sp.IDPersona, ps.SolicitudFecha) OR dbo.PersonaObtenerFechaUltimoAscenso(sp.IDPersona, ps.SolicitudFecha) IS NULL)
 	END
 GO
