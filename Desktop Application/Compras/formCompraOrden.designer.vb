@@ -277,9 +277,9 @@ Partial Class formCompraOrden
         Me.labelEntidad.AutoSize = True
         Me.labelEntidad.Location = New System.Drawing.Point(6, 97)
         Me.labelEntidad.Name = "labelEntidad"
-        Me.labelEntidad.Size = New System.Drawing.Size(46, 13)
+        Me.labelEntidad.Size = New System.Drawing.Size(59, 13)
         Me.labelEntidad.TabIndex = 7
-        Me.labelEntidad.Text = "Entidad:"
+        Me.labelEntidad.Text = "Proveedor:"
         '
         'datetimepickerFecha
         '

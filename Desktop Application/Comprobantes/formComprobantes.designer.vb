@@ -307,14 +307,14 @@ Partial Class formComprobantes
         Me.toolstripEntidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEntidad, Me.comboboxEntidad})
         Me.toolstripEntidad.Location = New System.Drawing.Point(267, 39)
         Me.toolstripEntidad.Name = "toolstripEntidad"
-        Me.toolstripEntidad.Size = New System.Drawing.Size(369, 25)
+        Me.toolstripEntidad.Size = New System.Drawing.Size(355, 25)
         Me.toolstripEntidad.TabIndex = 13
         '
         'labelEntidad
         '
         Me.labelEntidad.Name = "labelEntidad"
-        Me.labelEntidad.Size = New System.Drawing.Size(64, 22)
-        Me.labelEntidad.Text = "Proveedor:"
+        Me.labelEntidad.Size = New System.Drawing.Size(50, 22)
+        Me.labelEntidad.Text = "Entidad:"
         '
         'comboboxEntidad
         '

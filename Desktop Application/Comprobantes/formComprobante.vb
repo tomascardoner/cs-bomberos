@@ -136,6 +136,14 @@
     End Sub
 
     Friend Sub SetAppearance()
+        If mOperacionTipo = Constantes.OperacionTipoCompra Then
+            labelEntidad.Text = "Proveedor:"
+        ElseIf mOperacionTipo = Constantes.OperacionTipoCompra Then
+            labelEntidad.Text = "Cliente:"
+        Else
+            labelEntidad.Text = "Entidad:"
+        End If
+
         datagridviewDetalle.DefaultCellStyle.Font = pAppearanceConfig.ListsFont
         datagridviewDetalle.ColumnHeadersDefaultCellStyle.Font = pAppearanceConfig.ListsFont
 
@@ -479,9 +487,18 @@
 
     Private Function VerificarEntidad() As Boolean
         Dim entidadActual As Entidad
+        Dim leyenda As String
+
+        If mOperacionTipo = Constantes.OperacionTipoCompra Then
+            leyenda = "el Proveedor"
+        ElseIf mOperacionTipo = Constantes.OperacionTipoCompra Then
+            leyenda = "el Cliente"
+        Else
+            leyenda = "la Entidad"
+        End If
 
         If comboboxEntidad.SelectedIndex = -1 Then
-            MsgBox("Debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox($"Debe especificar {leyenda}.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxEntidad.Focus()
             Return False
         End If
@@ -490,12 +507,12 @@
 
         If CType(comboboxComprobanteTipo.SelectedItem, ComprobanteTipo).OperacionTipo = Constantes.OperacionTipoVenta Then
             If entidadActual.IDCategoriaIVA Is Nothing Then
-                MsgBox("La Entidad no tiene especificada la Categoría de IVA.", MsgBoxStyle.Information, My.Application.Info.Title)
+                MsgBox($"{CS_String.ToTitleCase(leyenda)} no tiene especificada la Categoría de IVA.", MsgBoxStyle.Information, My.Application.Info.Title)
                 comboboxEntidad.Focus()
                 Return False
             End If
             If Not entidadActual.Cuit.HasValue Then
-                MsgBox("La Entidad no tiene especificado el CUIT.", MsgBoxStyle.Information, My.Application.Info.Title)
+                MsgBox($"{CS_String.ToTitleCase(leyenda)} no tiene especificado el CUIT.", MsgBoxStyle.Information, My.Application.Info.Title)
                 comboboxEntidad.Focus()
                 Return False
             End If

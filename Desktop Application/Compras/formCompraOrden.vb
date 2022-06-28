@@ -470,7 +470,7 @@
         End If
         If comboboxEntidad.SelectedValue Is Nothing Then
             tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MsgBox("Debe especificar el Proveedor.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxEntidad.Focus()
             Return False
         End If

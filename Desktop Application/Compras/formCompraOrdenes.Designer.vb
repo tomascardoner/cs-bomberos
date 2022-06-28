@@ -228,14 +228,14 @@ Partial Class formCompraOrdenes
         Me.toolstripEntidad.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEntidad, Me.comboboxEntidad})
         Me.toolstripEntidad.Location = New System.Drawing.Point(0, 39)
         Me.toolstripEntidad.Name = "toolstripEntidad"
-        Me.toolstripEntidad.Size = New System.Drawing.Size(355, 25)
+        Me.toolstripEntidad.Size = New System.Drawing.Size(369, 25)
         Me.toolstripEntidad.TabIndex = 13
         '
         'labelEntidad
         '
         Me.labelEntidad.Name = "labelEntidad"
-        Me.labelEntidad.Size = New System.Drawing.Size(50, 22)
-        Me.labelEntidad.Text = "Entidad:"
+        Me.labelEntidad.Size = New System.Drawing.Size(64, 22)
+        Me.labelEntidad.Text = "Proveedor:"
         '
         'comboboxEntidad
         '
@@ -248,7 +248,7 @@ Partial Class formCompraOrdenes
         Me.toolstripCerrada.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCerrada.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCerrada.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCerrada, Me.comboboxCerrada})
-        Me.toolstripCerrada.Location = New System.Drawing.Point(355, 39)
+        Me.toolstripCerrada.Location = New System.Drawing.Point(369, 39)
         Me.toolstripCerrada.Name = "toolstripCerrada"
         Me.toolstripCerrada.Size = New System.Drawing.Size(131, 25)
         Me.toolstripCerrada.TabIndex = 12
@@ -300,10 +300,10 @@ Partial Class formCompraOrdenes
         '
         Me.columnEntidad.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnEntidad.DataPropertyName = "EntidadNombre"
-        Me.columnEntidad.HeaderText = "Entidad"
+        Me.columnEntidad.HeaderText = "Proveedor"
         Me.columnEntidad.Name = "columnEntidad"
         Me.columnEntidad.ReadOnly = True
-        Me.columnEntidad.Width = 68
+        Me.columnEntidad.Width = 81
         '
         'columnImporte
         '

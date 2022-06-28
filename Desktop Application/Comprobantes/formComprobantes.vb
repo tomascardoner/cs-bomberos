@@ -38,14 +38,18 @@
 
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageFacturaCompra32)
-        If String.IsNullOrWhiteSpace(OperacionTipo) Then
-            Me.Text = "Comprobantes"
-        ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
+        If OperacionTipo = Constantes.OperacionTipoCompra Then
             Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_COMPRA
+            labelEntidad.Text = "Proveedor:"
+            columnEntidad.HeaderText = "Proveedor"
         ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
             Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_VENTA
+            labelEntidad.Text = "Cliente:"
+            columnEntidad.HeaderText = "Cliente"
         Else
             Me.Text = "Comprobantes"
+            labelEntidad.Text = "Entidad:"
+            columnEntidad.HeaderText = "Entidad"
         End If
 
         DataGridSetAppearance(datagridviewMain)
