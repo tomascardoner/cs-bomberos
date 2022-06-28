@@ -65,7 +65,7 @@
 
     Friend Sub InitializeFormAndControls()
         ListasComprobantes.LlenarComboBoxComprobantes(mdbContext, comboBoxFactura, CShort(CType(mParentForm, formCompraOrden).comboboxEntidad.SelectedValue), Constantes.OperacionTipoCompra, Constantes.MovimientoTipoDebito, True, False, Nothing, False, False, True, True)
-        pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue))
+        ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxArea, False, False, CByte(CType(mParentForm, formCompraOrden).comboboxCuartel.SelectedValue), , True)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

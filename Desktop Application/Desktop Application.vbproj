@@ -656,6 +656,7 @@
     <Compile Include="Listas\Comprobantes.vb" />
     <Compile Include="Listas\Comunes.vb" />
     <Compile Include="Listas\Personas.vb" />
+    <Compile Include="Listas\Responsables.vb" />
     <Compile Include="Listas\Sanciones.vb" />
     <Compile Include="Listas\Siniestros.vb" />
     <Compile Include="Localidad.vb">

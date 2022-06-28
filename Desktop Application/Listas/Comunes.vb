@@ -1,14 +1,128 @@
 ﻿Module ListasComunes
 
-    Friend Class ResponsableNombresClass
-        Public Property IDResponsable As Byte
-        Public Property IDResponsableTipo As Byte
-        Public Property ResponsableTipoNombre As String
-        Public Property IDCuartel As Byte?
+#Region "Períodos para filtros"
+
+    Friend Sub LlenarComboBoxPeriodosTipos(ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+
+        If agregarItemTodos Then
+            control.Items.Add(My.Resources.STRING_ITEM_ALL_MALE)
+        End If
+
+        If agregarItemNoEspecifica Then
+            control.Items.Add(My.Resources.STRING_ITEM_NOT_SPECIFIED)
+        End If
+
+        control.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
+    End Sub
+
+    Friend Sub LlenarComboBoxPeriodosValores(ByRef control As ComboBox, ByRef tipoControl As ComboBox)
+        control.Items.Clear()
+        Select Case tipoControl.SelectedIndex
+            Case 0  ' Todas
+                control.Items.Add(String.Empty)
+            Case 1  ' Día
+                control.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3", "Últimos 4"})
+            Case 2  ' Semana
+                control.Items.AddRange({"Actual", "Anterior", "Últimas 2", "Últimas 3"})
+            Case 3  ' Mes
+                control.Items.AddRange({"Actual", "Anterior", "Últimos 2", "Últimos 3"})
+            Case 4  ' Fecha
+                control.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
+        End Select
+        control.Visible = tipoControl.SelectedIndex <> 0
+        control.SelectedIndex = 0
+    End Sub
+
+#End Region
+
+#Region "Áreas"
+
+    Friend Class AreaConCuartelClass
+        Public Property IDArea As Short
+        Public Property IDCuartel As Byte
+        Public Property Codigo As String
+        Public Property Nombre As String
         Public Property CuartelNombre As String
-        Public Property IDPersona As Integer?
-        Public Property PersonaApellidoNombre As String
+        Public Property NombreYCuartel As String
+        Public Property MostrarEnInventario As Boolean
+        Public Property MostrarEnCompras As Boolean
     End Class
+
+    Friend Sub LlenarComboBoxAreas(ByRef context As CSBomberosContext, ByRef control As ComboBox, agregarItemTodos As Boolean, agregarItemNoEspecifica As Boolean, Optional filtrarIDCuartel As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional filtrarMostrarEnInventario As Boolean = False, Optional filtrarMostrarEnCompras As Boolean = False)
+        Dim listItems As List(Of Area)
+
+        control.ValueMember = "IDArea"
+        control.DisplayMember = "Nombre"
+
+        listItems = context.Area.Where(Function(a) a.EsActivo).OrderBy(Function(a) a.Nombre).ToList
+
+        If filtrarIDCuartel <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = listItems.Where(Function(a) a.IDCuartel = filtrarIDCuartel).ToList()
+        End If
+        If filtrarMostrarEnInventario Then
+            listItems = listItems.Where(Function(a) a.MostrarEnInventario).ToList()
+        End If
+        If filtrarMostrarEnCompras Then
+            listItems = listItems.Where(Function(a) a.MostrarEnCompras).ToList()
+        End If
+
+        If agregarItemNoEspecifica Then
+            listItems.Insert(0, New Area With {
+                .IDArea = Short.MinValue,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+        If agregarItemTodos Then
+            listItems.Insert(0, New Area With {
+                .IDArea = 0,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            })
+        End If
+
+        control.DataSource = listItems
+    End Sub
+
+    Friend Sub LlenarComboBoxAreasConCuartel(ByRef context As CSBomberosContext, ByRef control As ComboBox, agregarItemTodos As Boolean, agregarItemNoEspecifica As Boolean, Optional filtrarIDCuartel As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional filtrarMostrarEnInventario As Boolean = False, Optional filtrarMostrarEnCompras As Boolean = False)
+        Dim listItems As List(Of AreaConCuartelClass)
+
+        control.ValueMember = "IDArea"
+        control.DisplayMember = "NombreYCuartel"
+
+        listItems = (From a In context.Area
+                     Join c In context.Cuartel On a.IDCuartel Equals c.IDCuartel
+                     Where a.EsActivo AndAlso c.EsActivo
+                     Order By a.Nombre, c.Nombre
+                     Select New AreaConCuartelClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .MostrarEnInventario = a.MostrarEnInventario, .MostrarEnCompras = a.MostrarEnCompras}).ToList()
+
+        If filtrarIDCuartel <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            listItems = listItems.Where(Function(acc) acc.IDCuartel = filtrarIDCuartel).ToList()
+        End If
+        If filtrarMostrarEnInventario Then
+            listItems = listItems.Where(Function(acc) acc.MostrarEnInventario).ToList()
+        End If
+        If filtrarMostrarEnCompras Then
+            listItems = listItems.Where(Function(acc) acc.MostrarEnCompras).ToList()
+        End If
+
+        If agregarItemNoEspecifica Then
+            listItems.Insert(0, New AreaConCuartelClass With {
+                .IDArea = Short.MinValue,
+                .NombreYCuartel = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            })
+        End If
+        If agregarItemTodos Then
+            listItems.Insert(0, New AreaConCuartelClass With {
+                .IDArea = 0,
+                .NombreYCuartel = My.Resources.STRING_ITEM_ALL_FEMALE
+            })
+        End If
+
+        control.DataSource = listItems
+    End Sub
+
+
+
+#End Region
 
     Friend Sub LlenarComboBoxCuarteles(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of Cuartel)
@@ -40,96 +154,6 @@
         End If
 
         control.DataSource = listItems
-    End Sub
-
-    Friend Sub LlenarComboBoxResponsableTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
-        Dim listItems As List(Of ResponsableTipo)
-
-        control.ValueMember = "IDResponsableTipo"
-        control.DisplayMember = "Nombre"
-
-        listItems = context.ResponsableTipo.Where(Function(rt) rt.EsActivo).OrderBy(Function(rt) rt.Orden).ThenBy(Function(rt) rt.Nombre).ToList
-
-        If agregarItemNoEspecifica Then
-            listItems.Insert(0, New ResponsableTipo With {
-                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            })
-        End If
-
-        If agregarItemTodos Then
-            listItems.Insert(0, New ResponsableTipo With {
-                .IDResponsableTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
-            })
-        End If
-
-        control.DataSource = listItems
-    End Sub
-
-    Friend Sub LlenarComboBoxResponsables(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
-        Dim listItems As List(Of ResponsableNombresClass)
-
-        control.ValueMember = "IDResponsable"
-        control.DisplayMember = "ResponsableTipoNombre"
-
-        listItems = (From r In context.Responsable
-                     Join rt In context.ResponsableTipo On r.IDResponsableTipo Equals rt.IDResponsableTipo
-                     Group Join p In context.Persona On r.IDPersona Equals p.IDPersona Into PersonaGroup = Group
-                     From pg In PersonaGroup.DefaultIfEmpty
-                     Group Join c In context.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
-                     From cg In CuartelGroup.DefaultIfEmpty
-                     Order By rt.Orden, rt.Nombre, pg.ApellidoNombre, r.PersonaOtra
-                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
-
-        If agregarItemNoEspecifica Then
-            listItems.Insert(0, New ResponsableNombresClass With {
-                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
-                .ResponsableTipoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED,
-                .PersonaApellidoNombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
-            })
-        End If
-
-        If agregarItemTodos Then
-            listItems.Insert(0, New ResponsableNombresClass With {
-                .IDResponsable = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
-                .ResponsableTipoNombre = My.Resources.STRING_ITEM_ALL_MALE,
-                .PersonaApellidoNombre = My.Resources.STRING_ITEM_ALL_MALE
-            })
-        End If
-
-        control.DataSource = listItems
-    End Sub
-
-    Friend Sub LlenarComboBoxPeriodosTipos(ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
-
-        If agregarItemTodos Then
-            control.Items.Add(My.Resources.STRING_ITEM_ALL_MALE)
-        End If
-
-        If agregarItemNoEspecifica Then
-            control.Items.Add(My.Resources.STRING_ITEM_NOT_SPECIFIED)
-        End If
-
-        control.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
-    End Sub
-
-    Friend Sub LlenarComboBoxPeriodosValores(ByRef control As ComboBox, ByRef tipoControl As ComboBox)
-        control.Items.Clear()
-        Select Case tipoControl.SelectedIndex
-            Case 0  ' Todas
-                control.Items.Add(String.Empty)
-            Case 1  ' Día
-                control.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3", "Últimos 4"})
-            Case 2  ' Semana
-                control.Items.AddRange({"Actual", "Anterior", "Últimas 2", "Últimas 3"})
-            Case 3  ' Mes
-                control.Items.AddRange({"Actual", "Anterior", "Últimos 2", "Últimos 3"})
-            Case 4  ' Fecha
-                control.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
-        End Select
-        control.Visible = tipoControl.SelectedIndex <> 0
-        control.SelectedIndex = 0
     End Sub
 
 End Module

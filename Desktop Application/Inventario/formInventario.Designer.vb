@@ -37,6 +37,8 @@ Partial Class formInventario
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
+        Me.buttonAgregar = New System.Windows.Forms.ToolStripSplitButton()
+        Me.MenuItemAgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripBuscar = New System.Windows.Forms.ToolStrip()
@@ -58,8 +60,6 @@ Partial Class formInventario
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
-        Me.buttonAgregar = New System.Windows.Forms.ToolStripSplitButton()
-        Me.MenuItemAgregarMultiples = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -211,8 +211,24 @@ Partial Class formInventario
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(290, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(259, 39)
         Me.toolstripButtons.TabIndex = 1
+        '
+        'buttonAgregar
+        '
+        Me.buttonAgregar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuItemAgregarMultiples})
+        Me.buttonAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
+        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAgregar.Name = "buttonAgregar"
+        Me.buttonAgregar.Size = New System.Drawing.Size(97, 36)
+        Me.buttonAgregar.Text = "Agregar"
+        '
+        'MenuItemAgregarMultiples
+        '
+        Me.MenuItemAgregarMultiples.Name = "MenuItemAgregarMultiples"
+        Me.MenuItemAgregarMultiples.Size = New System.Drawing.Size(123, 22)
+        Me.MenuItemAgregarMultiples.Text = "Múltiples"
         '
         'buttonEditar
         '
@@ -237,7 +253,7 @@ Partial Class formInventario
         Me.toolstripBuscar.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripBuscar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripBuscar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelBuscar, Me.textboxBuscar, Me.buttonBuscarBorrar})
-        Me.toolstripBuscar.Location = New System.Drawing.Point(290, 0)
+        Me.toolstripBuscar.Location = New System.Drawing.Point(259, 0)
         Me.toolstripBuscar.Name = "toolstripBuscar"
         Me.toolstripBuscar.Size = New System.Drawing.Size(193, 39)
         Me.toolstripBuscar.TabIndex = 17
@@ -269,7 +285,7 @@ Partial Class formInventario
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(483, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(452, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
@@ -291,9 +307,9 @@ Partial Class formInventario
         Me.toolstripArea.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
-        Me.toolstripArea.Location = New System.Drawing.Point(666, 0)
+        Me.toolstripArea.Location = New System.Drawing.Point(635, 0)
         Me.toolstripArea.Name = "toolstripArea"
-        Me.toolstripArea.Size = New System.Drawing.Size(189, 39)
+        Me.toolstripArea.Size = New System.Drawing.Size(222, 39)
         Me.toolstripArea.TabIndex = 14
         '
         'labelArea
@@ -373,22 +389,6 @@ Partial Class formInventario
         Me.comboboxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 25)
-        '
-        'buttonAgregar
-        '
-        Me.buttonAgregar.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuItemAgregarMultiples})
-        Me.buttonAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
-        Me.buttonAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAgregar.Name = "buttonAgregar"
-        Me.buttonAgregar.Size = New System.Drawing.Size(97, 36)
-        Me.buttonAgregar.Text = "Agregar"
-        '
-        'MenuItemAgregarMultiples
-        '
-        Me.MenuItemAgregarMultiples.Name = "MenuItemAgregarMultiples"
-        Me.MenuItemAgregarMultiples.Size = New System.Drawing.Size(180, 22)
-        Me.MenuItemAgregarMultiples.Text = "Múltiples"
         '
         'formInventario
         '

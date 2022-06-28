@@ -18,5 +18,6 @@ Partial Public Class ReporteGrupo
     Public Property Orden As Nullable(Of Byte)
 
     Public Overridable Property Modulo As Modulo
+    Public Overridable Property Reportes As ICollection(Of Reporte) = New HashSet(Of Reporte)
 
 End Class

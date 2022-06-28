@@ -2,8 +2,8 @@
 
 #Region "Declarations"
 
+    Private mdbContext As New CSBomberosContext(True)
     Private mIDCuartel As Byte
-
     Private mIsLoading As Boolean
 
 #End Region
@@ -42,6 +42,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         Me.Dispose()
     End Sub
 
@@ -96,7 +100,7 @@
     End Sub
 
     Private Sub CuartelCambio(ender As Object, e As EventArgs) Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.AreaEnInventario(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue))
+        ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue), True)
         comboboxArea.SelectedItem = Nothing
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, True, CByte(comboboxCuartel.SelectedValue))
         MaskedTextBoxCodigo.Text = String.Empty
@@ -168,7 +172,7 @@
             Return False
         End If
         If Not comboboxModoAdquisicion.SelectedValue Is Nothing Then
-            If Convert.ToByte(comboboxModoAdquisicion.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+            If CByte(comboboxModoAdquisicion.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                 MsgBox("Debe especificar el Modo de Adquisición.", MsgBoxStyle.Information, My.Application.Info.Title)
                 comboboxModoAdquisicion.Focus()
                 Return False
@@ -186,19 +190,18 @@
         Me.Cursor = Cursors.WaitCursor
 
         Try
-            Using context As New CSBomberosContext(True)
-                ' Obtener el ID nuevo
-                If context.Inventario.Any() Then
-                    idInventarioNuevoInicial = context.Inventario.Max(Function(i) i.IDInventario) + 1
-                Else
-                    idInventarioNuevoInicial = 1
-                End If
+            ' Obtener el ID nuevo
+            If mdbContext.Inventario.Any() Then
+                idInventarioNuevoInicial = mdbContext.Inventario.Max(Function(i) i.IDInventario) + 1
+            Else
+                idInventarioNuevoInicial = 1
+            End If
 
-                idInventarioNuevo = idInventarioNuevoInicial
-                Int32.TryParse(MaskedTextBoxCodigo.Text.Trim, codigoNuevo)
+            idInventarioNuevo = idInventarioNuevoInicial
+            Int32.TryParse(MaskedTextBoxCodigo.Text.Trim, codigoNuevo)
 
-                For index = 1 To NumericUpDownCantidad.Value
-                    context.Inventario.Add(New Inventario With {
+            For index = 1 To NumericUpDownCantidad.Value
+                mdbContext.Inventario.Add(New Inventario With {
                         .IDInventario = idInventarioNuevo,
                         .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value,
                         .Codigo = codigoNuevo.ToString(New String("0"c, 5)),
@@ -214,13 +217,12 @@
                         .IDUsuarioModificacion = pUsuario.IDUsuario,
                         .FechaHoraModificacion = .FechaHoraCreacion})
 
-                    idInventarioNuevo += 1
-                    codigoNuevo += 1
-                Next
+                idInventarioNuevo += 1
+                codigoNuevo += 1
+            Next
 
-                ' Guardo los cambios
-                context.SaveChanges()
-            End Using
+            ' Guardo los cambios
+            mdbContext.SaveChanges()
 
             ' Refresco la lista para mostrar los cambios
             If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formInventario") Then

@@ -96,7 +96,7 @@
         Try
             Using dbcontext As New CSBomberosContext(True)
                 pPermisos = dbcontext.UsuarioGrupoPermiso.Where(Function(p) p.IDUsuarioGrupo = pUsuario.IDUsuarioGrupo).ToList
-                pPermisosReportes = dbcontext.UsuarioGrupo.Find(pUsuario.IDUsuarioGrupo).Reporte.ToList
+                pPermisosReportes = dbcontext.UsuarioGrupo.Find(pUsuario.IDUsuarioGrupo).Reportes.ToList
                 pUsuarioParametros = dbcontext.UsuarioParametro.Where(Function(up) up.IDUsuario = pUsuario.IDUsuario).ToList
             End Using
             Return True

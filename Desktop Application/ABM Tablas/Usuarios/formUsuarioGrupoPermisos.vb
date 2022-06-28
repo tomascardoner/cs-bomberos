@@ -97,7 +97,7 @@
             ' Agregar permiso
             reporteCurrent.IDReporte = idReporte
             Try
-                mdbContext.UsuarioGrupo.Find(CByte(comboboxUsuarioGrupo.SelectedValue)).Reporte.Add(reporteCurrent)
+                mdbContext.UsuarioGrupo.Find(CByte(comboboxUsuarioGrupo.SelectedValue)).Reportes.Add(reporteCurrent)
                 mdbContext.SaveChanges()
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer el permiso del reporte.")
@@ -105,7 +105,7 @@
         Else
             ' Quitar permiso
             Try
-                mdbContext.UsuarioGrupo.Find(CByte(comboboxUsuarioGrupo.SelectedValue)).Reporte.Remove(reporteCurrent)
+                mdbContext.UsuarioGrupo.Find(CByte(comboboxUsuarioGrupo.SelectedValue)).Reportes.Remove(reporteCurrent)
                 mdbContext.SaveChanges()
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al quitar el permiso del reporte.")

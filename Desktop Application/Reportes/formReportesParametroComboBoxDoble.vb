@@ -1,6 +1,14 @@
 ﻿Public Class formReportesParametroComboBoxDoble
+
+#Region "Declarations"
+
+    Private mdbContext As New CSBomberosContext(True)
     Private mParametroPadre As ReporteParametro
     Private mParametroActual As ReporteParametro
+
+#End Region
+
+#Region "Form stuff"
 
     Friend Sub SetAppearance(ByRef ParametroPadre As ReporteParametro, ByRef ParametroActual As ReporteParametro, ByVal Title As String)
         mParametroPadre = ParametroPadre
@@ -25,6 +33,20 @@
         End Select
     End Sub
 
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
+        mParametroPadre = Nothing
+        mParametroActual = Nothing
+        Me.Dispose()
+    End Sub
+
+#End Region
+
+#Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -40,22 +62,26 @@
         End If
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA
-                pFillAndRefreshLists.CargoJerarquia(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
+                pFillAndRefreshLists.CargoJerarquia(comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_AREA
-                pFillAndRefreshLists.Area(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
+                ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
-                pFillAndRefreshLists.Ubicacion(comboboxValor, False, False, Convert.ToByte(comboboxPadreValor.SelectedValue))
+                pFillAndRefreshLists.Ubicacion(comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
                 If Not mParametroActual.Valor Is Nothing Then
                     CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
         End Select
     End Sub
+
+#End Region
+
+#Region "Main Toolbar"
 
     Private Sub Aceptar(sender As Object, e As EventArgs) Handles buttonAceptar.Click
         mParametroPadre.Valor = comboboxPadreValor.SelectedValue
@@ -70,8 +96,6 @@
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
 
-    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mParametroPadre = Nothing
-        mParametroActual = Nothing
-    End Sub
+#End Region
+
 End Class

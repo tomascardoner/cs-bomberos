@@ -18,6 +18,8 @@
         Public Property EntidadNombre As String
         Public Property NumeroCompleto As String
         Public Property FechaVencimiento As Date?
+        Public Property IDArea As Short?
+        Public Property EsBienUso As Boolean
         Public Property Importe As Decimal
     End Class
 
@@ -77,7 +79,10 @@
 
         Using context As New CSBomberosContext(True)
             ListasComprobantes.LlenarComboBoxEntidades(context, comboboxEntidad.ComboBox, Constantes.OperacionTipoCompra, True, False)
+            ListasComunes.LlenarComboBoxAreasConCuartel(context, comboboxArea.ComboBox, True, True, , , True)
         End Using
+        comboboxEsBienUso.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        comboboxEsBienUso.SelectedIndex = 0
 
         mSkipFilterData = False
 
@@ -208,14 +213,14 @@
                                              Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
                                              Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
                                              Where c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
+                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .IDArea = c.IDArea, .EsBienUso = c.EsBienUso, .Importe = c.Importe}).ToList
 
                 Else
                     mlistComprobantesBase = (From c In dbContext.Comprobante
                                              Join ct In dbContext.ComprobanteTipo On c.IDComprobanteTipo Equals ct.IDComprobanteTipo
                                              Join e In dbContext.Entidad On c.IDEntidad Equals e.IDEntidad
                                              Where ct.OperacionTipo = OperacionTipo And c.Fecha >= FechaDesde And c.Fecha <= FechaHasta
-                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .Importe = c.Importe}).ToList
+                                             Select New GridRowData With {.IDComprobante = c.IDComprobante, .OperacionTipo = ct.OperacionTipo, .OperacionTipoNombre = CStr(If(ct.OperacionTipo = Constantes.OperacionTipoCompra, My.Resources.STRING_OPERACIONTIPO_COMPRA, My.Resources.STRING_OPERACIONTIPO_VENTA)), .IDComprobanteTipo = c.IDComprobanteTipo, .ComprobanteTipoNombre = ct.Nombre, .Fecha = c.Fecha, .IDEntidad = c.IDEntidad, .EntidadNombre = e.Nombre, .NumeroCompleto = CStr(If(ct.Letra Is Nothing, c.NumeroCompleto, ct.Letra + "-" + c.NumeroCompleto)), .FechaVencimiento = c.FechaVencimiento, .IDArea = c.IDArea, .EsBienUso = c.EsBienUso, .Importe = c.Importe}).ToList
                 End If
 
             End Using
@@ -275,13 +280,31 @@
                     mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue)).ToList
                 End If
 
+                ' Filtro por Áreas
+                Select Case comboboxArea.SelectedIndex
+                    Case 0
+                    Case 1
+                        mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) c.IDArea Is Nothing).ToList
+                    Case Else
+                        mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) c.IDArea.HasValue AndAlso c.IDArea.Value = CShort(comboboxArea.ComboBox.SelectedValue)).ToList
+                End Select
+
+                ' Filtro por Bien de uso
+                Select Case comboboxEsBienUso.SelectedIndex
+                    Case 0
+                    Case 1
+                        mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) c.EsBienUso).ToList
+                    Case 2
+                        mlistComprobantesFiltradaYOrdenada = mlistComprobantesFiltradaYOrdenada.Where(Function(c) Not c.EsBienUso).ToList
+                End Select
+
                 Select Case mlistComprobantesFiltradaYOrdenada.Count
                     Case 0
-                        statuslabelMain.Text = String.Format("No hay Comprobantes para mostrar.")
+                        statuslabelMain.Text = "No hay Comprobantes para mostrar."
                     Case 1
-                        statuslabelMain.Text = String.Format("Se muestra 1 Comprobante.")
+                        statuslabelMain.Text = "Se muestra 1 Comprobante."
                     Case Else
-                        statuslabelMain.Text = String.Format("Se muestran {0} Comprobante.", mlistComprobantesFiltradaYOrdenada.Count)
+                        statuslabelMain.Text = $"Se muestran {mlistComprobantesFiltradaYOrdenada.Count} Comprobante."
                 End Select
 
             Catch ex As Exception
@@ -396,7 +419,7 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxEntidad.SelectedIndexChanged
+    Private Sub CambioFiltros() Handles comboboxEntidad.SelectedIndexChanged, comboboxArea.SelectedIndexChanged, comboboxEsBienUso.SelectedIndexChanged
         FilterData()
     End Sub
 

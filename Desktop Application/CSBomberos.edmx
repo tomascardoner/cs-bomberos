@@ -366,6 +366,8 @@
           <Property Name="EntidadCodigoPostal" Type="varchar" MaxLength="8" />
           <Property Name="EntidadIDProvincia" Type="tinyint" />
           <Property Name="EntidadIDLocalidad" Type="smallint" />
+          <Property Name="IDArea" Type="smallint" />
+          <Property Name="EsBienUso" Type="bit" Nullable="false" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Importe" Type="money" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
@@ -441,6 +443,7 @@
           <Property Name="EmisionElectronica" Type="bit" Nullable="false" />
           <Property Name="IDNumerador" Type="smallint" />
           <Property Name="UtilizaFechaVencimiento" Type="bit" Nullable="false" />
+          <Property Name="UtilizaDatoGasto" Type="bit" Nullable="false" />
           <Property Name="UtilizaDescripcion" Type="bit" Nullable="false" />
           <Property Name="UtilizaDetalle" Type="bit" Nullable="false" />
           <Property Name="UtilizaAplicado" Type="bit" Nullable="false" />
@@ -1263,6 +1266,14 @@
           <Property Name="ValorPredeterminadoSiNo" Type="bit" />
           <Property Name="Orden" Type="tinyint" />
         </EntityType>
+        <EntityType Name="ReporteReporteGrupo">
+          <Key>
+            <PropertyRef Name="IDReporte" />
+            <PropertyRef Name="IDReporteGrupo" />
+          </Key>
+          <Property Name="IDReporte" Type="smallint" Nullable="false" />
+          <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Responsable">
           <Key>
             <PropertyRef Name="IDResponsable" />
@@ -1760,6 +1771,18 @@
               <PropertyRef Name="IDArea" />
             </Principal>
             <Dependent Role="CompraOrdenDetalle">
+              <PropertyRef Name="IDArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Area__Comprobante">
+          <End Role="Area" Type="Self.Area" Multiplicity="0..1" />
+          <End Role="Comprobante" Type="Self.Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="IDArea" />
+            </Principal>
+            <Dependent Role="Comprobante">
               <PropertyRef Name="IDArea" />
             </Dependent>
           </ReferentialConstraint>
@@ -2838,6 +2861,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Reporte__ReporteReporteGrupo">
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
+          <End Role="ReporteReporteGrupo" Type="Self.ReporteReporteGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reporte">
+              <PropertyRef Name="IDReporte" />
+            </Principal>
+            <Dependent Role="ReporteReporteGrupo">
+              <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Reporte__UsuarioGrupoPermisoReporte">
           <End Role="Reporte" Type="Self.Reporte" Multiplicity="1" />
           <End Role="UsuarioGrupoPermisoReporte" Type="Self.UsuarioGrupoPermisoReporte" Multiplicity="*" />
@@ -2847,6 +2882,18 @@
             </Principal>
             <Dependent Role="UsuarioGrupoPermisoReporte">
               <PropertyRef Name="IDReporte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteGrupo__ReporteReporteGrupo">
+          <End Role="ReporteGrupo" Type="Self.ReporteGrupo" Multiplicity="1" />
+          <End Role="ReporteReporteGrupo" Type="Self.ReporteReporteGrupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
+            </Principal>
+            <Dependent Role="ReporteReporteGrupo">
+              <PropertyRef Name="IDReporteGrupo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5160,6 +5207,7 @@
           <EntitySet Name="ReporteCampo" EntityType="Self.ReporteCampo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteReporteGrupo" EntityType="Self.ReporteReporteGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsableTipo" EntityType="Self.ResponsableTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -5213,6 +5261,10 @@
           <AssociationSet Name="FK__Area__CompraOrdenDetalle" Association="Self.FK__Area__CompraOrdenDetalle">
             <End Role="Area" EntitySet="Area" />
             <End Role="CompraOrdenDetalle" EntitySet="CompraOrdenDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Area__Comprobante" Association="Self.FK__Area__Comprobante">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
           </AssociationSet>
           <AssociationSet Name="FK__Area__Inventario" Association="Self.FK__Area__Inventario">
             <End Role="Area" EntitySet="Area" />
@@ -5566,9 +5618,17 @@
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="ReporteParametro" EntitySet="ReporteParametro" />
           </AssociationSet>
+          <AssociationSet Name="FK__Reporte__ReporteReporteGrupo" Association="Self.FK__Reporte__ReporteReporteGrupo">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteReporteGrupo" EntitySet="ReporteReporteGrupo" />
+          </AssociationSet>
           <AssociationSet Name="FK__Reporte__UsuarioGrupoPermisoReporte" Association="Self.FK__Reporte__UsuarioGrupoPermisoReporte">
             <End Role="Reporte" EntitySet="Reporte" />
             <End Role="UsuarioGrupoPermisoReporte" EntitySet="UsuarioGrupoPermisoReporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteGrupo__ReporteReporteGrupo" Association="Self.FK__ReporteGrupo__ReporteReporteGrupo">
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+            <End Role="ReporteReporteGrupo" EntitySet="ReporteReporteGrupo" />
           </AssociationSet>
           <AssociationSet Name="FK__ResponsableTipo__PersonaSancion" Association="Self.FK__ResponsableTipo__PersonaSancion">
             <End Role="ResponsableTipo" EntitySet="ResponsableTipo" />
@@ -7546,6 +7606,14 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="PersonaHuellaDigital" EntitySet="PersonaHuellaDigital" />
           </AssociationSet>
+          <AssociationSet Name="ReporteReporteGrupo" Association="CSBomberosModel.ReporteReporteGrupo">
+            <End Role="Reporte" EntitySet="Reporte" />
+            <End Role="ReporteGrupo" EntitySet="ReporteGrupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Area__Comprobante" Association="CSBomberosModel.FK__Area__Comprobante">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Comprobante" EntitySet="Comprobante" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -7626,7 +7694,8 @@
           <Property Name="Orden" Type="Byte" />
           <NavigationProperty Name="ReporteCampos" Relationship="CSBomberosModel.FK__Reporte__ReporteCampo" FromRole="Reporte" ToRole="ReporteCampo" />
           <NavigationProperty Name="TipografiaEstilo" Relationship="CSBomberosModel.FK__TipografiaEstilo__Reporte" FromRole="Reporte" ToRole="TipografiaEstilo" />
-          <NavigationProperty Name="UsuarioGrupo" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="Reporte" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="UsuarioGrupos" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="Reporte" ToRole="UsuarioGrupo" />
+          <NavigationProperty Name="ReporteGrupos" Relationship="CSBomberosModel.ReporteReporteGrupo" FromRole="Reporte" ToRole="ReporteGrupo" />
         </EntityType>
         <EntityType Name="ReporteGrupo">
           <Key>
@@ -7638,6 +7707,7 @@
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="Orden" Type="Byte" />
           <NavigationProperty Name="Modulo" Relationship="CSBomberosModel.FK__Modulo__ReporteGrupo" FromRole="ReporteGrupo" ToRole="Modulo" />
+          <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.ReporteReporteGrupo" FromRole="ReporteGrupo" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="ReporteParametro">
           <Key>
@@ -7851,7 +7921,7 @@
           <NavigationProperty Name="UsuarioGrupoPermisos" Relationship="CSBomberosModel.FK__UsuarioGrupo__UsuarioGrupoPermiso" FromRole="UsuarioGrupo" ToRole="UsuarioGrupoPermiso" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Creacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__UsuarioGrupo__Modificacion" FromRole="UsuarioGrupo" ToRole="Usuario" />
-          <NavigationProperty Name="Reporte" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="UsuarioGrupo" ToRole="Reporte" />
+          <NavigationProperty Name="Reportes" Relationship="CSBomberosModel.UsuarioGrupoPermisoReporte" FromRole="UsuarioGrupo" ToRole="Reporte" />
         </EntityType>
         <EntityType Name="UsuarioGrupoPermiso">
           <Key>
@@ -8332,6 +8402,7 @@
           <NavigationProperty Name="Inventario" Relationship="CSBomberosModel.FK__Area__Inventario" FromRole="Area" ToRole="Inventario" />
           <NavigationProperty Name="CompraOrdenDetalles" Relationship="CSBomberosModel.FK__Area__CompraOrdenDetalle" FromRole="Area" ToRole="CompraOrdenDetalle" />
           <NavigationProperty Name="CajaArqueoDetalle" Relationship="CSBomberosModel.FK__Area__CajaArqueoDetalle" FromRole="Area" ToRole="CajaArqueoDetalle" />
+          <NavigationProperty Name="Comprobantes" Relationship="CSBomberosModel.FK__Area__Comprobante" FromRole="Area" ToRole="Comprobante" />
         </EntityType>
         <EntityType Name="Cargo">
           <Key>
@@ -12275,6 +12346,8 @@
           <Property Name="EntidadCodigoPostal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="EntidadIDProvincia" Type="Byte" />
           <Property Name="EntidadIDLocalidad" Type="Int16" />
+          <Property Name="IDArea" Type="Int16" />
+          <Property Name="EsBienUso" Type="Boolean" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -12305,6 +12378,7 @@
           <NavigationProperty Name="UsuarioTransmisionAfip" Relationship="CSBomberosModel.FK__Usuario__Comprobante__TransmisionAfip" FromRole="Comprobante" ToRole="Usuario" />
           <NavigationProperty Name="Concepto" Relationship="CSBomberosModel.FK__Concepto__Comprobante" FromRole="Comprobante" ToRole="Concepto" />
           <NavigationProperty Name="CategoriaIVA" Relationship="CSBomberosModel.FK__CategoriaIVA__Comprobante" FromRole="Comprobante" ToRole="CategoriaIVA" />
+          <NavigationProperty Name="Area" Relationship="CSBomberosModel.FK__Area__Comprobante" FromRole="Comprobante" ToRole="Area" />
         </EntityType>
         <EntityType Name="ComprobanteAplicacion">
           <Key>
@@ -12333,6 +12407,7 @@
           <Property Name="EmisionElectronica" Type="Boolean" Nullable="false" />
           <Property Name="IDNumerador" Type="Int16" />
           <Property Name="UtilizaFechaVencimiento" Type="Boolean" Nullable="false" />
+          <Property Name="UtilizaDatoGasto" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaDescripcion" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaDetalle" Type="Boolean" Nullable="false" />
           <Property Name="UtilizaAplicado" Type="Boolean" Nullable="false" />
@@ -13162,6 +13237,22 @@
             </Principal>
             <Dependent Role="PersonaHuellaDigital">
               <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReporteReporteGrupo">
+          <End Type="CSBomberosModel.Reporte" Role="Reporte" Multiplicity="*" />
+          <End Type="CSBomberosModel.ReporteGrupo" Role="ReporteGrupo" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Area__Comprobante">
+          <End Type="CSBomberosModel.Area" Role="Area" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Comprobante" Role="Comprobante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="IDArea" />
+            </Principal>
+            <Dependent Role="Comprobante">
+              <PropertyRef Name="IDArea" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14651,6 +14742,8 @@
           <EntitySetMapping Name="Comprobante">
             <EntityTypeMapping TypeName="CSBomberosModel.Comprobante">
               <MappingFragment StoreEntitySet="Comprobante">
+                <ScalarProperty Name="EsBienUso" ColumnName="EsBienUso" />
+                <ScalarProperty Name="IDArea" ColumnName="IDArea" />
                 <ScalarProperty Name="EntidadIDLocalidad" ColumnName="EntidadIDLocalidad" />
                 <ScalarProperty Name="EntidadIDProvincia" ColumnName="EntidadIDProvincia" />
                 <ScalarProperty Name="EntidadCodigoPostal" ColumnName="EntidadCodigoPostal" />
@@ -14700,6 +14793,7 @@
           <EntitySetMapping Name="ComprobanteTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.ComprobanteTipo">
               <MappingFragment StoreEntitySet="ComprobanteTipo">
+                <ScalarProperty Name="UtilizaDatoGasto" ColumnName="UtilizaDatoGasto" />
                 <ScalarProperty Name="UtilizaAplicante" ColumnName="UtilizaAplicante" />
                 <ScalarProperty Name="UtilizaAplicado" ColumnName="UtilizaAplicado" />
                 <ScalarProperty Name="IDNumerador" ColumnName="IDNumerador" />
@@ -14954,6 +15048,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ReporteReporteGrupo" TypeName="CSBomberosModel.ReporteReporteGrupo" StoreEntitySet="ReporteReporteGrupo">
+            <EndProperty Name="ReporteGrupo">
+              <ScalarProperty Name="IDReporteGrupo" ColumnName="IDReporteGrupo" />
+            </EndProperty>
+            <EndProperty Name="Reporte">
+              <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

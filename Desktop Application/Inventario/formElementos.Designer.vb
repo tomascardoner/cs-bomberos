@@ -274,7 +274,7 @@ Partial Class formElementos
         Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
         Me.toolstripActivo.Location = New System.Drawing.Point(272, 39)
         Me.toolstripActivo.Name = "toolstripActivo"
-        Me.toolstripActivo.Size = New System.Drawing.Size(124, 25)
+        Me.toolstripActivo.Size = New System.Drawing.Size(157, 25)
         Me.toolstripActivo.TabIndex = 12
         '
         'labelActivo

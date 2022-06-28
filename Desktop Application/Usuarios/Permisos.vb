@@ -659,7 +659,7 @@
 
         ' Obtengo la lista de permisos de reportes para el Grupo de Usuarios
         Try
-            listReportes = context.UsuarioGrupo.Find(idUsuarioGrupo).Reporte.OrderBy(Function(r) r.IDReporte).ToList()
+            listReportes = context.UsuarioGrupo.Find(idUsuarioGrupo).Reportes.OrderBy(Function(r) r.IDReporte).ToList()
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer la lista de permisos de reportes efectivos.")
             Exit Sub
@@ -667,7 +667,9 @@
 
         ' Marco los items del Tree View que tienen asignado el permiso
         For Each reporte As Reporte In listReportes
-            arbol.Nodes.Find("REPORTE_" & reporte.IDReporte, True).First.Checked = True
+            For Each node As TreeNode In arbol.Nodes.Find("REPORTE_" & reporte.IDReporte, True)
+                node.Checked = True
+            Next
         Next
 
         listReportes = Nothing

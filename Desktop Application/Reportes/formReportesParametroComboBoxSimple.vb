@@ -17,7 +17,7 @@
                 Case Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD
                     pFillAndRefreshLists.Unidad(comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE
-                    ListasComunes.LlenarComboBoxResponsables(context, comboboxValor, False, False)
+                    ListasResponsables.LlenarComboBoxResponsables(context, comboboxValor, False, False)
                 Case Reportes.REPORTE_PARAMETRO_TIPO_ENTIDAD
                     ListasComprobantes.LlenarComboBoxEntidades(context, comboboxValor, Nothing, False, False)
             End Select

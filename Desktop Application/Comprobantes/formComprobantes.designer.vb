@@ -53,6 +53,12 @@ Partial Class formComprobantes
         Me.toolstripEntidad = New System.Windows.Forms.ToolStrip()
         Me.labelEntidad = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxEntidad = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripArea = New System.Windows.Forms.ToolStrip()
+        Me.labelArea = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxArea = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripEsBienUso = New System.Windows.Forms.ToolStrip()
+        Me.labelEsBienUso = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxEsBienUso = New System.Windows.Forms.ToolStripComboBox()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -60,6 +66,8 @@ Partial Class formComprobantes
         Me.toolstripComprobanteTipo.SuspendLayout()
         Me.toolstripPeriodo.SuspendLayout()
         Me.toolstripEntidad.SuspendLayout()
+        Me.toolstripArea.SuspendLayout()
+        Me.toolstripEsBienUso.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -92,14 +100,14 @@ Partial Class formComprobantes
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnFecha, Me.columnEntidad, Me.columnOperacion, Me.columnTipo, Me.columnNumeroCompleto, Me.columnFechaVencimiento, Me.columnImporte})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
+        Me.datagridviewMain.Location = New System.Drawing.Point(0, 89)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(860, 325)
+        Me.datagridviewMain.Size = New System.Drawing.Size(860, 300)
         Me.datagridviewMain.TabIndex = 0
         '
         'columnFecha
@@ -174,10 +182,12 @@ Partial Class formComprobantes
         Me.panelToolbars.Controls.Add(Me.toolstripComprobanteTipo)
         Me.panelToolbars.Controls.Add(Me.toolstripPeriodo)
         Me.panelToolbars.Controls.Add(Me.toolstripEntidad)
+        Me.panelToolbars.Controls.Add(Me.toolstripArea)
+        Me.panelToolbars.Controls.Add(Me.toolstripEsBienUso)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(860, 64)
+        Me.panelToolbars.Size = New System.Drawing.Size(860, 89)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
@@ -312,6 +322,50 @@ Partial Class formComprobantes
         Me.comboboxEntidad.Name = "comboboxEntidad"
         Me.comboboxEntidad.Size = New System.Drawing.Size(300, 25)
         '
+        'toolstripArea
+        '
+        Me.toolstripArea.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripArea.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
+        Me.toolstripArea.Location = New System.Drawing.Point(0, 64)
+        Me.toolstripArea.Name = "toolstripArea"
+        Me.toolstripArea.Size = New System.Drawing.Size(289, 25)
+        Me.toolstripArea.TabIndex = 17
+        '
+        'labelArea
+        '
+        Me.labelArea.Name = "labelArea"
+        Me.labelArea.Size = New System.Drawing.Size(34, 22)
+        Me.labelArea.Text = "Area:"
+        '
+        'comboboxArea
+        '
+        Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxArea.Name = "comboboxArea"
+        Me.comboboxArea.Size = New System.Drawing.Size(250, 25)
+        '
+        'toolstripEsBienUso
+        '
+        Me.toolstripEsBienUso.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripEsBienUso.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripEsBienUso.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEsBienUso, Me.comboboxEsBienUso})
+        Me.toolstripEsBienUso.Location = New System.Drawing.Point(289, 64)
+        Me.toolstripEsBienUso.Name = "toolstripEsBienUso"
+        Me.toolstripEsBienUso.Size = New System.Drawing.Size(151, 25)
+        Me.toolstripEsBienUso.TabIndex = 18
+        '
+        'labelEsBienUso
+        '
+        Me.labelEsBienUso.Name = "labelEsBienUso"
+        Me.labelEsBienUso.Size = New System.Drawing.Size(71, 22)
+        Me.labelEsBienUso.Text = "Bien de uso:"
+        '
+        'comboboxEsBienUso
+        '
+        Me.comboboxEsBienUso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxEsBienUso.Name = "comboboxEsBienUso"
+        Me.comboboxEsBienUso.Size = New System.Drawing.Size(75, 25)
+        '
         'formComprobantes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -339,6 +393,10 @@ Partial Class formComprobantes
         Me.toolstripPeriodo.PerformLayout()
         Me.toolstripEntidad.ResumeLayout(False)
         Me.toolstripEntidad.PerformLayout()
+        Me.toolstripArea.ResumeLayout(False)
+        Me.toolstripArea.PerformLayout()
+        Me.toolstripEsBienUso.ResumeLayout(False)
+        Me.toolstripEsBienUso.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -371,4 +429,10 @@ Partial Class formComprobantes
     Friend WithEvents columnNumeroCompleto As DataGridViewTextBoxColumn
     Friend WithEvents columnFechaVencimiento As DataGridViewTextBoxColumn
     Friend WithEvents columnImporte As DataGridViewTextBoxColumn
+    Friend WithEvents toolstripArea As ToolStrip
+    Friend WithEvents labelArea As ToolStripLabel
+    Friend WithEvents comboboxArea As ToolStripComboBox
+    Friend WithEvents toolstripEsBienUso As ToolStrip
+    Friend WithEvents labelEsBienUso As ToolStripLabel
+    Friend WithEvents comboboxEsBienUso As ToolStripComboBox
 End Class

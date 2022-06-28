@@ -18,15 +18,17 @@
         Public Property EsActivo As Boolean
     End Class
 
+    Private mdbContext As New CSBomberosContext(True)
     Private mlistInventarioBase As List(Of GridRowData)
     Private mlistInventarioFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
+    Private mBusquedaAplicada As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -56,6 +58,17 @@
 
         RefreshData()
     End Sub
+
+    Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
+        mlistInventarioBase = Nothing
+        mlistInventarioFiltradaYOrdenada = Nothing
+        Me.Dispose()
+    End Sub
+
 #End Region
 
 #Region "Load and Set Data"
@@ -242,6 +255,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub textboxBuscar_GotFocus() Handles textboxBuscar.GotFocus
         textboxBuscar.SelectAll()
     End Sub
@@ -268,7 +282,7 @@
     End Sub
 
     Private Sub comboboxCuartel_SelectedIndexChanged() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.AreaEnInventario(comboboxArea.ComboBox, True, False, CByte(comboboxCuartel.ComboBox.SelectedValue))
+        ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxArea.ComboBox, True, False, CByte(comboboxCuartel.ComboBox.SelectedValue), True)
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion.ComboBox, True, True, CByte(comboboxCuartel.ComboBox.SelectedValue))
 
         FilterData()
@@ -318,6 +332,7 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"

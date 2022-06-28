@@ -40,6 +40,8 @@ Partial Class formComprobante
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim labelArea As System.Windows.Forms.Label
+        Dim labelEsBienUso As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formComprobante))
         Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
@@ -104,7 +106,7 @@ Partial Class formComprobante
         Me.datetimepickerFechaVencimiento = New System.Windows.Forms.DateTimePicker()
         Me.labelFechaVencimiento = New System.Windows.Forms.Label()
         Me.panelEntidad = New System.Windows.Forms.Panel()
-        Me.ComboBoxEntidad = New System.Windows.Forms.ComboBox()
+        Me.comboboxEntidad = New System.Windows.Forms.ComboBox()
         Me.labelEntidad = New System.Windows.Forms.Label()
         Me.panelPie = New System.Windows.Forms.FlowLayoutPanel()
         Me.panelImporteTotal = New System.Windows.Forms.Panel()
@@ -128,12 +130,17 @@ Partial Class formComprobante
         Me.menuitemAFIP_ObtenerCAE = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAFIP_ObtenerQR = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAFIP_VerificarDatos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.panelDatoGasto = New System.Windows.Forms.Panel()
+        Me.comboboxArea = New System.Windows.Forms.ComboBox()
+        Me.checkboxEsBienUso = New System.Windows.Forms.CheckBox()
         labelFechaServicioDesde = New System.Windows.Forms.Label()
         labelFechaServicioHasta = New System.Windows.Forms.Label()
         labelEnvioEmail = New System.Windows.Forms.Label()
         labelNotas = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
+        labelArea = New System.Windows.Forms.Label()
+        labelEsBienUso = New System.Windows.Forms.Label()
         Me.panelMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageDescripcion.SuspendLayout()
@@ -161,6 +168,7 @@ Partial Class formComprobante
         Me.panelDetalle_Subtotal.SuspendLayout()
         CType(Me.currencytextboxDetalle_Subtotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
+        Me.panelDatoGasto.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelFechaServicioDesde
@@ -248,10 +256,10 @@ Partial Class formComprobante
         Me.tabcontrolMain.Controls.Add(Me.tabpageMediosPago)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
         Me.tabcontrolMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tabcontrolMain.Location = New System.Drawing.Point(3, 114)
+        Me.tabcontrolMain.Location = New System.Drawing.Point(3, 149)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(846, 248)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(846, 213)
         Me.tabcontrolMain.TabIndex = 1
         '
         'tabpageDescripcion
@@ -260,7 +268,7 @@ Partial Class formComprobante
         Me.tabpageDescripcion.Location = New System.Drawing.Point(4, 22)
         Me.tabpageDescripcion.Name = "tabpageDescripcion"
         Me.tabpageDescripcion.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDescripcion.Size = New System.Drawing.Size(838, 222)
+        Me.tabpageDescripcion.Size = New System.Drawing.Size(838, 187)
         Me.tabpageDescripcion.TabIndex = 6
         Me.tabpageDescripcion.Text = "Descripción"
         '
@@ -272,7 +280,7 @@ Partial Class formComprobante
         Me.textboxDescripcion.Multiline = True
         Me.textboxDescripcion.Name = "textboxDescripcion"
         Me.textboxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDescripcion.Size = New System.Drawing.Size(832, 216)
+        Me.textboxDescripcion.Size = New System.Drawing.Size(832, 181)
         Me.textboxDescripcion.TabIndex = 2
         '
         'tabpageDetalle
@@ -775,10 +783,11 @@ Partial Class formComprobante
         Me.panelCabecera.Controls.Add(Me.panelIdentificacion)
         Me.panelCabecera.Controls.Add(Me.panelFechas)
         Me.panelCabecera.Controls.Add(Me.panelEntidad)
+        Me.panelCabecera.Controls.Add(Me.panelDatoGasto)
         Me.panelCabecera.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelCabecera.Location = New System.Drawing.Point(3, 3)
         Me.panelCabecera.Name = "panelCabecera"
-        Me.panelCabecera.Size = New System.Drawing.Size(846, 105)
+        Me.panelCabecera.Size = New System.Drawing.Size(846, 140)
         Me.panelCabecera.TabIndex = 0
         '
         'panelIdentificacion
@@ -950,22 +959,22 @@ Partial Class formComprobante
         '
         Me.panelEntidad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelEntidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.panelEntidad.Controls.Add(Me.ComboBoxEntidad)
+        Me.panelEntidad.Controls.Add(Me.comboboxEntidad)
         Me.panelEntidad.Controls.Add(Me.labelEntidad)
         Me.panelEntidad.Location = New System.Drawing.Point(3, 73)
         Me.panelEntidad.Name = "panelEntidad"
         Me.panelEntidad.Size = New System.Drawing.Size(630, 29)
         Me.panelEntidad.TabIndex = 2
         '
-        'ComboBoxEntidad
+        'comboboxEntidad
         '
-        Me.ComboBoxEntidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.ComboBoxEntidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ComboBoxEntidad.FormattingEnabled = True
-        Me.ComboBoxEntidad.Location = New System.Drawing.Point(55, 3)
-        Me.ComboBoxEntidad.Name = "ComboBoxEntidad"
-        Me.ComboBoxEntidad.Size = New System.Drawing.Size(570, 21)
-        Me.ComboBoxEntidad.TabIndex = 1
+        Me.comboboxEntidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.comboboxEntidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.comboboxEntidad.FormattingEnabled = True
+        Me.comboboxEntidad.Location = New System.Drawing.Point(55, 3)
+        Me.comboboxEntidad.Name = "comboboxEntidad"
+        Me.comboboxEntidad.Size = New System.Drawing.Size(570, 21)
+        Me.comboboxEntidad.TabIndex = 1
         '
         'labelEntidad
         '
@@ -1007,7 +1016,7 @@ Partial Class formComprobante
         'currencytextboxImporteTotal
         '
         Me.currencytextboxImporteTotal.AllowNull = True
-        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxImporteTotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporteTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.currencytextboxImporteTotal.ForeColor = System.Drawing.SystemColors.WindowText
@@ -1048,7 +1057,7 @@ Partial Class formComprobante
         'currencytextboxMediosPago_Subtotal
         '
         Me.currencytextboxMediosPago_Subtotal.AllowNull = True
-        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxMediosPago_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxMediosPago_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxMediosPago_Subtotal.Location = New System.Drawing.Point(96, 4)
@@ -1087,7 +1096,7 @@ Partial Class formComprobante
         'currencytextboxAplicaciones_Subtotal
         '
         Me.currencytextboxAplicaciones_Subtotal.AllowNull = True
-        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxAplicaciones_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxAplicaciones_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxAplicaciones_Subtotal.Location = New System.Drawing.Point(79, 4)
@@ -1126,7 +1135,7 @@ Partial Class formComprobante
         'currencytextboxDetalle_Subtotal
         '
         Me.currencytextboxDetalle_Subtotal.AllowNull = True
-        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxDetalle_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxDetalle_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxDetalle_Subtotal.Location = New System.Drawing.Point(52, 4)
@@ -1231,6 +1240,54 @@ Partial Class formComprobante
         Me.menuitemAFIP_VerificarDatos.Size = New System.Drawing.Size(178, 22)
         Me.menuitemAFIP_VerificarDatos.Text = "Verificar datos"
         '
+        'panelDatoGasto
+        '
+        Me.panelDatoGasto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panelDatoGasto.Controls.Add(Me.checkboxEsBienUso)
+        Me.panelDatoGasto.Controls.Add(labelEsBienUso)
+        Me.panelDatoGasto.Controls.Add(labelArea)
+        Me.panelDatoGasto.Controls.Add(Me.comboboxArea)
+        Me.panelDatoGasto.Location = New System.Drawing.Point(3, 108)
+        Me.panelDatoGasto.Name = "panelDatoGasto"
+        Me.panelDatoGasto.Size = New System.Drawing.Size(428, 29)
+        Me.panelDatoGasto.TabIndex = 3
+        '
+        'labelArea
+        '
+        labelArea.AutoSize = True
+        labelArea.Location = New System.Drawing.Point(3, 6)
+        labelArea.Name = "labelArea"
+        labelArea.Size = New System.Drawing.Size(32, 13)
+        labelArea.TabIndex = 0
+        labelArea.Text = "Area:"
+        '
+        'comboboxArea
+        '
+        Me.comboboxArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxArea.FormattingEnabled = True
+        Me.comboboxArea.Location = New System.Drawing.Point(41, 3)
+        Me.comboboxArea.Name = "comboboxArea"
+        Me.comboboxArea.Size = New System.Drawing.Size(270, 21)
+        Me.comboboxArea.TabIndex = 1
+        '
+        'labelEsBienUso
+        '
+        labelEsBienUso.AutoSize = True
+        labelEsBienUso.Location = New System.Drawing.Point(317, 6)
+        labelEsBienUso.Name = "labelEsBienUso"
+        labelEsBienUso.Size = New System.Drawing.Size(80, 13)
+        labelEsBienUso.TabIndex = 2
+        labelEsBienUso.Text = "Es bien de uso:"
+        '
+        'checkboxEsBienUso
+        '
+        Me.checkboxEsBienUso.AutoSize = True
+        Me.checkboxEsBienUso.Location = New System.Drawing.Point(403, 6)
+        Me.checkboxEsBienUso.Name = "checkboxEsBienUso"
+        Me.checkboxEsBienUso.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsBienUso.TabIndex = 3
+        Me.checkboxEsBienUso.UseVisualStyleBackColor = True
+        '
         'formComprobante
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1290,6 +1347,8 @@ Partial Class formComprobante
         CType(Me.currencytextboxDetalle_Subtotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
+        Me.panelDatoGasto.ResumeLayout(False)
+        Me.panelDatoGasto.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1368,7 +1427,7 @@ Partial Class formComprobante
     Friend WithEvents columnDetalle_PrecioTotal As DataGridViewTextBoxColumn
     Friend WithEvents MaskedTextBoxNumero As MaskedTextBox
     Friend WithEvents MaskedTextBoxPuntoVenta As MaskedTextBox
-    Friend WithEvents ComboBoxEntidad As ComboBox
+    Friend WithEvents comboboxEntidad As ComboBox
     Friend WithEvents tabpageDescripcion As TabPage
     Friend WithEvents textboxDescripcion As TextBox
     Friend WithEvents columnAplicaciones_Tipo As DataGridViewTextBoxColumn
@@ -1381,4 +1440,7 @@ Partial Class formComprobante
     Friend WithEvents columnMedioPagos_BancoNombre As DataGridViewTextBoxColumn
     Friend WithEvents columnMedioPagos_Numero As DataGridViewTextBoxColumn
     Friend WithEvents columnMedioPagos_FechaVencimiento As DataGridViewTextBoxColumn
+    Friend WithEvents panelDatoGasto As Panel
+    Friend WithEvents checkboxEsBienUso As CheckBox
+    Friend WithEvents comboboxArea As ComboBox
 End Class

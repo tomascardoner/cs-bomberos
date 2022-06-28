@@ -1,3 +1,12 @@
+2022-06-28
+	- Tabla Comprobante:
+		- Agregar el campo IDArea smallint null antes de Descripcion
+		- Agregar el campo EsBienUso bit not null
+		- Agregar la foreign key de Area FK__Area__Comprobante
+	- Tabla ComprobanteTipo
+		- Agregar el campo UtilizaDatoGasto bit not null antes de UtilizaDescripcion
+	- Ejecutar el script de update
+
 2022-06-04
 	- Tabla Persona
 		- Agregar el campo IdentificacionPin smallint null, antes de Orden

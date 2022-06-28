@@ -49,7 +49,7 @@
 
         Using context As New CSBomberosContext(True)
             ListasComunes.LlenarComboBoxCuarteles(context, comboboxCuartel.ComboBox, True, False)
-            ListasComprobantes.LlenarComboBoxEntidades(context, comboboxEntidad.ComboBox, Constantes.OperacionTipoCompra, True, False)
+            ListasComprobantes.LlenarComboBoxEntidades(context, comboboxEntidad.ComboBox, Constantes.OperacionTipoCompra, True, True)
         End Using
 
         comboboxCerrada.Items.AddRange({My.Resources.STRING_ITEM_ALL_FEMALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
@@ -231,9 +231,13 @@
                 End If
 
                 ' Filtro por Entidad
-                If comboboxEntidad.SelectedIndex > 0 Then
-                    mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) CBool(c.IDEntidad = CShort(comboboxEntidad.ComboBox.SelectedValue))).ToList
-                End If
+                Select Case comboboxEntidad.SelectedIndex
+                    Case 0
+                    Case 1
+                        mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDEntidad Is Nothing).ToList
+                    Case Else
+                        mlistComprasFiltradaYOrdenada = mlistComprasFiltradaYOrdenada.Where(Function(c) c.IDEntidad.HasValue AndAlso c.IDEntidad.Value = CShort(comboboxEntidad.ComboBox.SelectedValue)).ToList
+                End Select
 
                 ' Filtro por Cerrada
                 Select Case comboboxCerrada.SelectedIndex

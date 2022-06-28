@@ -245,7 +245,7 @@
     End Sub
 
     Private Sub CuartelCambio() Handles comboboxCuartel.SelectedIndexChanged
-        pFillAndRefreshLists.AreaEnInventario(comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue))
+        ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxArea, False, False, CByte(comboboxCuartel.SelectedValue), True)
         comboboxArea.SelectedItem = Nothing
         pFillAndRefreshLists.Ubicacion(comboboxUbicacion, False, True, CByte(comboboxCuartel.SelectedValue))
         MaskedTextBoxCodigo.Text = String.Empty

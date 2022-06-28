@@ -23,6 +23,7 @@ Partial Public Class ComprobanteTipo
     Public Property EmisionElectronica As Boolean
     Public Property IDNumerador As Nullable(Of Short)
     Public Property UtilizaFechaVencimiento As Boolean
+    Public Property UtilizaDatoGasto As Boolean
     Public Property UtilizaDescripcion As Boolean
     Public Property UtilizaDetalle As Boolean
     Public Property UtilizaAplicado As Boolean

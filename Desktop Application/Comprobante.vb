@@ -29,6 +29,8 @@ Partial Public Class Comprobante
     Public Property EntidadCodigoPostal As String
     Public Property EntidadIDProvincia As Nullable(Of Byte)
     Public Property EntidadIDLocalidad As Nullable(Of Short)
+    Public Property IDArea As Nullable(Of Short)
+    Public Property EsBienUso As Boolean
     Public Property Descripcion As String
     Public Property Importe As Decimal
     Public Property Notas As String
@@ -60,5 +62,6 @@ Partial Public Class Comprobante
     Public Overridable Property UsuarioTransmisionAfip As Usuario
     Public Overridable Property Concepto As Concepto
     Public Overridable Property CategoriaIVA As CategoriaIVA
+    Public Overridable Property Area As Area
 
 End Class

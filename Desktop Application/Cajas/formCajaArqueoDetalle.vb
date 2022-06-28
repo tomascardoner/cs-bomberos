@@ -66,7 +66,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        pFillAndRefreshLists.AreaEnCompras(comboboxArea, False, False, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+        ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxArea, False, False, , , True)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

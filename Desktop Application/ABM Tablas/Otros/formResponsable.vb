@@ -69,7 +69,7 @@
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
-        ListasComunes.LlenarComboBoxResponsableTipos(mdbContext, comboboxResponsableTipo, False, False)
+        ListasResponsables.LlenarComboBoxResponsableTipos(mdbContext, comboboxResponsableTipo, False, False)
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, True)
     End Sub
 

@@ -105,7 +105,11 @@
         datetimepickerFechaServicioDesde.Enabled = mEditMode
         datetimepickerFechaServicioHasta.Enabled = mEditMode
 
-        ComboBoxEntidad.Enabled = (mEditMode And mComprobanteActual.ComprobantesAplicados.Count = 0)
+        comboboxEntidad.Enabled = (mEditMode And mComprobanteActual.ComprobantesAplicados.Count = 0)
+
+        ' Datos del gasto
+        comboboxArea.Enabled = mEditMode
+        checkboxEsBienUso.Enabled = mEditMode
 
         textboxDescripcion.ReadOnly = (mEditMode = False)
 
@@ -128,6 +132,7 @@
 
         ' Cargo los ComboBox
         ListasComprobantes.LlenarComboBoxComprobantesTipos(mdbContext, comboboxComprobanteTipo, mOperacionTipo, False, False)
+        ListasComunes.LlenarComboBoxAreasConCuartel(mdbContext, comboboxArea, False, True, , , True)
     End Sub
 
     Friend Sub SetAppearance()
@@ -142,8 +147,10 @@
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        mdbContext.Dispose()
-        mdbContext = Nothing
+        If mdbContext IsNot Nothing Then
+            mdbContext.Dispose()
+            mdbContext = Nothing
+        End If
         mComprobanteActual = Nothing
         mComprobanteTipoActual = Nothing
         Me.Dispose()
@@ -172,7 +179,16 @@
             datetimepickerFechaServicioHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaServicioHasta, datetimepickerFechaServicioHasta)
 
             ' Entidad
-            CardonerSistemas.ComboBox.SetSelectedValue(ComboBoxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+
+            ' Datos de gasto
+            If mComprobanteTipoActual IsNot Nothing AndAlso mComprobanteTipoActual.UtilizaDatoGasto Then
+                CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDArea, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                checkboxEsBienUso.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsBienUso)
+            Else
+                comboboxArea.SelectedIndex = 0
+                checkboxEsBienUso.Checked = False
+            End If
 
             ' Descripción
             textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
@@ -225,7 +241,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mComprobanteActual
             ' Datos de la Identificación
-            .IDComprobanteTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxComprobanteTipo.SelectedValue, 0).Value
+            .IDComprobanteTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxComprobanteTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE).Value
 
             .PuntoVenta = CInt(MaskedTextBoxPuntoVenta.Text)
             .Numero = CInt(MaskedTextBoxNumero.Text)
@@ -239,8 +255,8 @@
 
             ' Entidad
             Dim entidad As Entidad
-            entidad = CType(ComboBoxEntidad.SelectedItem, Entidad)
-            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+            entidad = CType(comboboxEntidad.SelectedItem, Entidad)
+            .IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
             .EntidadNombre = entidad.Nombre
             .EntidadCuit = entidad.Cuit
             .EntidadIDCategoriaIVA = entidad.IDCategoriaIVA
@@ -249,6 +265,15 @@
             .EntidadIDProvincia = entidad.DomicilioIDProvincia
             .EntidadIDLocalidad = entidad.DomicilioIDLocalidad
             entidad = Nothing
+
+            ' Datos de gasto
+            If mComprobanteTipoActual.UtilizaDatoGasto Then
+                .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                .EsBienUso = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsBienUso.CheckState)
+            Else
+                .IDArea = Nothing
+                .EsBienUso = False
+            End If
 
             ' Descripción
             .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDescripcion.Text)
@@ -455,23 +480,23 @@
     Private Function VerificarEntidad() As Boolean
         Dim entidadActual As Entidad
 
-        If ComboBoxEntidad.SelectedIndex = -1 Then
+        If comboboxEntidad.SelectedIndex = -1 Then
             MsgBox("Debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
-            ComboBoxEntidad.Focus()
+            comboboxEntidad.Focus()
             Return False
         End If
 
-        entidadActual = CType(ComboBoxEntidad.SelectedItem, Entidad)
+        entidadActual = CType(comboboxEntidad.SelectedItem, Entidad)
 
         If CType(comboboxComprobanteTipo.SelectedItem, ComprobanteTipo).OperacionTipo = Constantes.OperacionTipoVenta Then
             If entidadActual.IDCategoriaIVA Is Nothing Then
                 MsgBox("La Entidad no tiene especificada la Categoría de IVA.", MsgBoxStyle.Information, My.Application.Info.Title)
-                ComboBoxEntidad.Focus()
+                comboboxEntidad.Focus()
                 Return False
             End If
             If Not entidadActual.Cuit.HasValue Then
                 MsgBox("La Entidad no tiene especificado el CUIT.", MsgBoxStyle.Information, My.Application.Info.Title)
-                ComboBoxEntidad.Focus()
+                comboboxEntidad.Focus()
                 Return False
             End If
         End If
@@ -550,9 +575,9 @@
     End Sub
 
     Private Sub DetalleAgregar(sender As Object, e As EventArgs) Handles buttonDetalle_Agregar.ButtonClick
-        If ComboBoxEntidad.SelectedIndex = -1 Then
+        If comboboxEntidad.SelectedIndex = -1 Then
             MsgBox("Antes de poder agregar Detalles, debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
-            ComboBoxEntidad.Focus()
+            comboboxEntidad.Focus()
             Exit Sub
         End If
 
@@ -560,7 +585,7 @@
 
         datagridviewDetalle.Enabled = False
 
-        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
 
         Dim ComprobanteDetalleNuevo As New ComprobanteDetalle
         formComprobanteDetalle.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteDetalleNuevo)
@@ -731,9 +756,9 @@
     End Sub
 
     Private Sub AplicacionAgregar(sender As Object, e As EventArgs) Handles buttonAplicaciones_Agregar.Click
-        If ComboBoxEntidad.SelectedIndex = -1 Then
+        If comboboxEntidad.SelectedIndex = -1 Then
             MsgBox("Antes de poder agregar Aplicaciones, debe especificar la Entidad.", MsgBoxStyle.Information, My.Application.Info.Title)
-            ComboBoxEntidad.Focus()
+            comboboxEntidad.Focus()
             Exit Sub
         End If
 
@@ -741,7 +766,7 @@
 
         datagridviewAplicaciones.Enabled = False
 
-        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
+        mComprobanteActual.IDEntidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxEntidad.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT).Value
 
         Dim ComprobanteAplicacionNuevo As New ComprobanteAplicacion
         formComprobanteAplicacion.LoadAndShow(True, True, Me, mComprobanteActual, mComprobanteTipoActual, ComprobanteAplicacionNuevo)
@@ -962,58 +987,61 @@
             MaskedTextBoxNumero.TabStop = mNumerador Is Nothing
 
             ' Entidades
-            ListasComprobantes.LlenarComboBoxEntidades(mdbContext, ComboBoxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
+            ListasComprobantes.LlenarComboBoxEntidades(mdbContext, comboboxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
             If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
                 Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
                 If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(ComboBoxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
                 Else
-                    ComboBoxEntidad.SelectedIndex = -1
+                    comboboxEntidad.SelectedIndex = -1
                 End If
             Else
-                ComboBoxEntidad.SelectedIndex = -1
+                comboboxEntidad.SelectedIndex = -1
             End If
+
+            ' Utiliza datos de gasto
+            panelDatoGasto.Visible = mComprobanteTipoActual.UtilizaDatoGasto
 
             ' Utiliza Descripción
             If mComprobanteTipoActual.UtilizaDescripcion Then
-                tabcontrolMain.ShowTabPageByName(tabpageDescripcion.Name)
-            Else
-                tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
-            End If
+                    tabcontrolMain.ShowTabPageByName(tabpageDescripcion.Name)
+                Else
+                    tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
+                End If
 
-            ' Utiliza Detalle
-            panelFechas.Visible = mComprobanteTipoActual.UtilizaDetalle
-            If mComprobanteTipoActual.UtilizaDetalle Then
-                tabcontrolMain.ShowTabPageByName(tabpageDetalle.Name)
-                panelDetalle_Subtotal.Visible = True
-            Else
-                tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
-                panelDetalle_Subtotal.Visible = False
-            End If
+                ' Utiliza Detalle
+                panelFechas.Visible = mComprobanteTipoActual.UtilizaDetalle
+                If mComprobanteTipoActual.UtilizaDetalle Then
+                    tabcontrolMain.ShowTabPageByName(tabpageDetalle.Name)
+                    panelDetalle_Subtotal.Visible = True
+                Else
+                    tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
+                    panelDetalle_Subtotal.Visible = False
+                End If
 
-            ' Utiliza Alicación
-            If mComprobanteTipoActual.UtilizaAplicado Or mComprobanteTipoActual.UtilizaAplicante Then
-                tabcontrolMain.ShowTabPageByName(tabpageAplicaciones.Name)
-                panelAplicaciones_Subtotal.Visible = True
-            Else
-                tabcontrolMain.HideTabPageByName(tabpageAplicaciones.Name)
-                panelAplicaciones_Subtotal.Visible = False
-            End If
+                ' Utiliza Alicación
+                If mComprobanteTipoActual.UtilizaAplicado Or mComprobanteTipoActual.UtilizaAplicante Then
+                    tabcontrolMain.ShowTabPageByName(tabpageAplicaciones.Name)
+                    panelAplicaciones_Subtotal.Visible = True
+                Else
+                    tabcontrolMain.HideTabPageByName(tabpageAplicaciones.Name)
+                    panelAplicaciones_Subtotal.Visible = False
+                End If
 
-            ' Utiliza Medio de Pago
-            If mComprobanteTipoActual.UtilizaMedioPago Then
-                tabcontrolMain.ShowTabPageByName(tabpageMediosPago.Name)
-                panelMediosPago_Subtotal.Visible = True
-            Else
-                tabcontrolMain.HideTabPageByName(tabpageMediosPago.Name)
-                panelMediosPago_Subtotal.Visible = False
-            End If
+                ' Utiliza Medio de Pago
+                If mComprobanteTipoActual.UtilizaMedioPago Then
+                    tabcontrolMain.ShowTabPageByName(tabpageMediosPago.Name)
+                    panelMediosPago_Subtotal.Visible = True
+                Else
+                    tabcontrolMain.HideTabPageByName(tabpageMediosPago.Name)
+                    panelMediosPago_Subtotal.Visible = False
+                End If
 
-            If mComprobanteTipoActual.UtilizaDetalle = False And mComprobanteTipoActual.UtilizaMedioPago = False Then
-                currencytextboxImporteTotal.ReadOnly = Not mEditMode
-            End If
-        Else
-            panelFechas.Visible = False
+                If mComprobanteTipoActual.UtilizaDetalle = False And mComprobanteTipoActual.UtilizaMedioPago = False Then
+                    currencytextboxImporteTotal.ReadOnly = Not mEditMode
+                End If
+            Else
+                panelFechas.Visible = False
             tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
             tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
             panelDetalle_Subtotal.Visible = False

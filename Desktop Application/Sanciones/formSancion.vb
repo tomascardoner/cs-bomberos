@@ -110,7 +110,7 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        ListasComunes.LlenarComboBoxResponsables(mdbContext, comboboxSolicitudResponsableTipo, False, True)
+        ListasResponsables.LlenarComboBoxResponsables(mdbContext, comboboxSolicitudResponsableTipo, False, True)
         ListasSanciones.LlenarComboBoxMotivosSanciones(mdbContext, comboboxSancionMotivo, False, False)
         ListasSanciones.LlenarComboBoxTiposSanciones(mdbContext, comboboxResolucionSancionTipo, False, True)
     End Sub
@@ -270,9 +270,9 @@
 
     Private Sub SolicitudResponsableTipoChanged(sender As Object, e As EventArgs) Handles comboboxSolicitudResponsableTipo.SelectedIndexChanged
         If comboboxSolicitudResponsableTipo.SelectedIndex > 0 Then
-            Dim selectedItem As ListasComunes.ResponsableNombresClass
+            Dim selectedItem As ListasResponsables.ResponsableNombresClass
 
-            selectedItem = CType(comboboxSolicitudResponsableTipo.SelectedItem, ListasComunes.ResponsableNombresClass)
+            selectedItem = CType(comboboxSolicitudResponsableTipo.SelectedItem, ListasResponsables.ResponsableNombresClass)
             If selectedItem.IDResponsableTipo <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                 If selectedItem.IDPersona.HasValue Then
                     textboxSolicitudPersona.Tag = selectedItem.IDPersona
