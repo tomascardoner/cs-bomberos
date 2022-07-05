@@ -293,7 +293,7 @@ Partial Class formCompraOrden
         '
         'integertextboxNumero
         '
-        Me.integertextboxNumero.BeforeTouchSize = New System.Drawing.Size(86, 20)
+        Me.integertextboxNumero.BeforeTouchSize = New System.Drawing.Size(119, 20)
         Me.integertextboxNumero.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.integertextboxNumero.ForeColor = System.Drawing.SystemColors.WindowText
         Me.integertextboxNumero.IntegerValue = CType(0, Long)
@@ -560,7 +560,7 @@ Partial Class formCompraOrden
         Me.MinimizeBox = False
         Me.Name = "formCompraOrden"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Órden de compra"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

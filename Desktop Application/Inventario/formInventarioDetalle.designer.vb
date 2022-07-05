@@ -48,6 +48,7 @@ Partial Class formInventarioDetalle
         Me.comboboxElemento = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.MaskedTextBoxCodigo = New System.Windows.Forms.MaskedTextBox()
         Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
         Me.labelDescripcionPropia = New System.Windows.Forms.Label()
         Me.textboxDescripcionPropia = New System.Windows.Forms.TextBox()
@@ -62,7 +63,6 @@ Partial Class formInventarioDetalle
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.MaskedTextBoxCodigo = New System.Windows.Forms.MaskedTextBox()
         labelCuartel = New System.Windows.Forms.Label()
         labelSubUbicacion = New System.Windows.Forms.Label()
         labelArea = New System.Windows.Forms.Label()
@@ -343,6 +343,14 @@ Partial Class formInventarioDetalle
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'MaskedTextBoxCodigo
+        '
+        Me.MaskedTextBoxCodigo.Location = New System.Drawing.Point(124, 60)
+        Me.MaskedTextBoxCodigo.Mask = "00000"
+        Me.MaskedTextBoxCodigo.Name = "MaskedTextBoxCodigo"
+        Me.MaskedTextBoxCodigo.Size = New System.Drawing.Size(45, 20)
+        Me.MaskedTextBoxCodigo.TabIndex = 5
+        '
         'datetimepickerFechaAdquisicion
         '
         Me.datetimepickerFechaAdquisicion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -490,14 +498,6 @@ Partial Class formInventarioDetalle
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'MaskedTextBoxCodigo
-        '
-        Me.MaskedTextBoxCodigo.Location = New System.Drawing.Point(124, 60)
-        Me.MaskedTextBoxCodigo.Mask = "00000"
-        Me.MaskedTextBoxCodigo.Name = "MaskedTextBoxCodigo"
-        Me.MaskedTextBoxCodigo.Size = New System.Drawing.Size(45, 20)
-        Me.MaskedTextBoxCodigo.TabIndex = 5
-        '
         'formInventarioDetalle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -511,7 +511,7 @@ Partial Class formInventarioDetalle
         Me.MinimizeBox = False
         Me.Name = "formInventarioDetalle"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Detalle de Inventario"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

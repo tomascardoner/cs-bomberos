@@ -1,4 +1,4 @@
-﻿Public Class formSiniestroAsistenciaMultiple
+﻿Public Class formSiniestroAsistenciaManual
 
 #Region "Declarations"
 

@@ -24,6 +24,7 @@ Partial Class formSiniestros
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formSiniestros))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
@@ -39,7 +40,8 @@ Partial Class formSiniestros
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonAsistenciaMultiple = New System.Windows.Forms.ToolStripButton()
+        Me.buttonAsistenciaPresencial = New System.Windows.Forms.ToolStripButton()
+        Me.buttonAsistenciaManual = New System.Windows.Forms.ToolStripButton()
         Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
         Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
@@ -75,7 +77,7 @@ Partial Class formSiniestros
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(845, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(876, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -102,14 +104,14 @@ Partial Class formSiniestros
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnSiniestroRubro, Me.columnSiniestroTipo, Me.columnClave, Me.columnAnulado})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewMain.Location = New System.Drawing.Point(0, 64)
+        Me.datagridviewMain.Location = New System.Drawing.Point(0, 89)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
         Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMain.Size = New System.Drawing.Size(891, 325)
+        Me.datagridviewMain.Size = New System.Drawing.Size(891, 300)
         Me.datagridviewMain.TabIndex = 0
         '
         'columnCuartel
@@ -195,17 +197,17 @@ Partial Class formSiniestros
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
-        Me.panelToolbars.Size = New System.Drawing.Size(891, 64)
+        Me.panelToolbars.Size = New System.Drawing.Size(891, 89)
         Me.panelToolbars.TabIndex = 0
         '
         'toolstripButtons
         '
         Me.toolstripButtons.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripButtons.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.buttonAsistenciaMultiple})
+        Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.buttonAsistenciaPresencial, Me.buttonAsistenciaManual})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(343, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(553, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -235,21 +237,30 @@ Partial Class formSiniestros
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'buttonAsistenciaMultiple
+        'buttonAsistenciaPresencial
         '
-        Me.buttonAsistenciaMultiple.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaMultiple32
-        Me.buttonAsistenciaMultiple.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAsistenciaMultiple.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAsistenciaMultiple.Name = "buttonAsistenciaMultiple"
-        Me.buttonAsistenciaMultiple.Size = New System.Drawing.Size(96, 36)
-        Me.buttonAsistenciaMultiple.Text = "Asistencia"
+        Me.buttonAsistenciaPresencial.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaPresencial32
+        Me.buttonAsistenciaPresencial.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciaPresencial.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciaPresencial.Name = "buttonAsistenciaPresencial"
+        Me.buttonAsistenciaPresencial.Size = New System.Drawing.Size(136, 36)
+        Me.buttonAsistenciaPresencial.Text = "Asistencia presencial"
+        '
+        'buttonAsistenciaManual
+        '
+        Me.buttonAsistenciaManual.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaManual32
+        Me.buttonAsistenciaManual.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciaManual.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciaManual.Name = "buttonAsistenciaManual"
+        Me.buttonAsistenciaManual.Size = New System.Drawing.Size(139, 36)
+        Me.buttonAsistenciaManual.Text = "Asistencia manual"
         '
         'toolstripCuartel
         '
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(343, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(553, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
@@ -271,29 +282,29 @@ Partial Class formSiniestros
         Me.toolstripSiniestroRubro.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripSiniestroRubro.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripSiniestroRubro.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSiniestroRubro, Me.comboboxSiniestroRubro})
-        Me.toolstripSiniestroRubro.Location = New System.Drawing.Point(526, 0)
+        Me.toolstripSiniestroRubro.Location = New System.Drawing.Point(0, 39)
         Me.toolstripSiniestroRubro.Name = "toolstripSiniestroRubro"
-        Me.toolstripSiniestroRubro.Size = New System.Drawing.Size(227, 39)
+        Me.toolstripSiniestroRubro.Size = New System.Drawing.Size(227, 25)
         Me.toolstripSiniestroRubro.TabIndex = 14
         '
         'labelSiniestroRubro
         '
         Me.labelSiniestroRubro.Name = "labelSiniestroRubro"
-        Me.labelSiniestroRubro.Size = New System.Drawing.Size(42, 36)
+        Me.labelSiniestroRubro.Size = New System.Drawing.Size(42, 22)
         Me.labelSiniestroRubro.Text = "Rubro:"
         '
         'comboboxSiniestroRubro
         '
         Me.comboboxSiniestroRubro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
-        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(180, 39)
+        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(180, 25)
         '
         'toolstripSiniestroTipo
         '
         Me.toolstripSiniestroTipo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripSiniestroTipo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripSiniestroTipo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelSiniestroTipo, Me.comboboxSiniestroTipo})
-        Me.toolstripSiniestroTipo.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripSiniestroTipo.Location = New System.Drawing.Point(227, 39)
         Me.toolstripSiniestroTipo.Name = "toolstripSiniestroTipo"
         Me.toolstripSiniestroTipo.Size = New System.Drawing.Size(218, 25)
         Me.toolstripSiniestroTipo.TabIndex = 15
@@ -315,7 +326,7 @@ Partial Class formSiniestros
         Me.toolstripClave.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripClave.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripClave.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelClave, Me.comboboxClave})
-        Me.toolstripClave.Location = New System.Drawing.Point(218, 39)
+        Me.toolstripClave.Location = New System.Drawing.Point(445, 39)
         Me.toolstripClave.Name = "toolstripClave"
         Me.toolstripClave.Size = New System.Drawing.Size(244, 25)
         Me.toolstripClave.TabIndex = 16
@@ -339,7 +350,7 @@ Partial Class formSiniestros
         Me.toolstripPeriodo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripPeriodo.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripPeriodo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPeriodo, Me.comboboxPeriodoTipo, Me.comboboxPeriodoValor, Me.labelPeriodoFechaY})
-        Me.toolstripPeriodo.Location = New System.Drawing.Point(462, 39)
+        Me.toolstripPeriodo.Location = New System.Drawing.Point(0, 64)
         Me.toolstripPeriodo.Name = "toolstripPeriodo"
         Me.toolstripPeriodo.Size = New System.Drawing.Size(267, 25)
         Me.toolstripPeriodo.TabIndex = 17
@@ -373,7 +384,7 @@ Partial Class formSiniestros
         Me.toolstripAnulado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripAnulado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripAnulado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelAnulado, Me.comboboxAnulado})
-        Me.toolstripAnulado.Location = New System.Drawing.Point(729, 39)
+        Me.toolstripAnulado.Location = New System.Drawing.Point(267, 64)
         Me.toolstripAnulado.Name = "toolstripAnulado"
         Me.toolstripAnulado.Size = New System.Drawing.Size(135, 25)
         Me.toolstripAnulado.TabIndex = 12
@@ -462,5 +473,6 @@ Partial Class formSiniestros
     Friend WithEvents columnSiniestroTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnClave As DataGridViewTextBoxColumn
     Friend WithEvents columnAnulado As DataGridViewCheckBoxColumn
-    Friend WithEvents buttonAsistenciaMultiple As ToolStripButton
+    Friend WithEvents buttonAsistenciaManual As ToolStripButton
+    Friend WithEvents buttonAsistenciaPresencial As ToolStripButton
 End Class

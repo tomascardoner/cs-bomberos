@@ -310,7 +310,7 @@ Partial Class formInventarioAgregarMultiple
         Me.MinimizeBox = False
         Me.Name = "formInventarioAgregarMultiple"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Agregar múltiples elementos al inventario"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

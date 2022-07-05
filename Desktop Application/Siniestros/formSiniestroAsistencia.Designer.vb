@@ -212,7 +212,7 @@ Partial Class formSiniestroAsistencia
         Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistencia"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Asistencia a Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

@@ -35,6 +35,8 @@ Partial Class formPersonaLicenciaEspecial
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.checkboxPresentaCertificado = New System.Windows.Forms.CheckBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.datetimepickerFechaHasta = New System.Windows.Forms.DateTimePicker()
         Me.labelFechaHasta = New System.Windows.Forms.Label()
         Me.datetimepickerFechaDesde = New System.Windows.Forms.DateTimePicker()
@@ -46,8 +48,6 @@ Partial Class formPersonaLicenciaEspecial
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.checkboxPresentaCertificado = New System.Windows.Forms.CheckBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -198,6 +198,24 @@ Partial Class formPersonaLicenciaEspecial
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'checkboxPresentaCertificado
+        '
+        Me.checkboxPresentaCertificado.AutoSize = True
+        Me.checkboxPresentaCertificado.Location = New System.Drawing.Point(125, 107)
+        Me.checkboxPresentaCertificado.Name = "checkboxPresentaCertificado"
+        Me.checkboxPresentaCertificado.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxPresentaCertificado.TabIndex = 7
+        Me.checkboxPresentaCertificado.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 106)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(104, 13)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "Presenta certificado:"
+        '
         'datetimepickerFechaHasta
         '
         Me.datetimepickerFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -320,24 +338,6 @@ Partial Class formPersonaLicenciaEspecial
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 106)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(104, 13)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Presenta certificado:"
-        '
-        'checkboxPresentaCertificado
-        '
-        Me.checkboxPresentaCertificado.AutoSize = True
-        Me.checkboxPresentaCertificado.Location = New System.Drawing.Point(125, 107)
-        Me.checkboxPresentaCertificado.Name = "checkboxPresentaCertificado"
-        Me.checkboxPresentaCertificado.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxPresentaCertificado.TabIndex = 7
-        Me.checkboxPresentaCertificado.UseVisualStyleBackColor = True
-        '
         'formPersonaLicenciaEspecial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -351,7 +351,7 @@ Partial Class formPersonaLicenciaEspecial
         Me.MinimizeBox = False
         Me.Name = "formPersonaLicenciaEspecial"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Licencia Especial de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

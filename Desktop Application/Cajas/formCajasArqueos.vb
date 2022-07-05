@@ -1,6 +1,7 @@
 ﻿Public Class formCajasArqueos
 
 #Region "Declarations"
+
     Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
@@ -17,12 +18,12 @@
     Private mlistCajasArqueosBase As List(Of GridRowData)
     Private mlistCajasArqueosFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -298,6 +299,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
         comboboxPeriodoValor.Items.Clear()
         Select Case comboboxPeriodoTipo.SelectedIndex
@@ -346,7 +348,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
@@ -360,6 +362,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.CAJAARQUEO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -493,7 +496,7 @@
 
                 ' Solicito que se especifique el Responsable de firmar
                 ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
-                formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
+                formReportesParametroComboBoxSimple.SetAppearance(ParametroActual)
                 formReportesParametroComboBoxSimple.Text = "Especifique el el firmante"
                 If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                     ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & CurrentRow.IDArqueo)

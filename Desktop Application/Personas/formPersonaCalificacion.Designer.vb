@@ -200,7 +200,7 @@ Partial Class formPersonaCalificacion
         Me.MinimizeBox = False
         Me.Name = "formPersonaCalificacion"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Instancia de Calificación de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

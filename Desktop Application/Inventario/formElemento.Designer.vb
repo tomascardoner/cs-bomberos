@@ -36,7 +36,7 @@ Partial Class formElemento
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.comboboxSubRubro = New System.Windows.Forms.ComboBox()
         Me.comboboxRubro = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDElemento = New System.Windows.Forms.Label()
@@ -334,7 +334,7 @@ Partial Class formElemento
         Me.MinimizeBox = False
         Me.Name = "formElemento"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Elemento"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

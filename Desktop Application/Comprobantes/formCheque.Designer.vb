@@ -403,7 +403,7 @@ Partial Class formCheque
         Me.MinimizeBox = False
         Me.Name = "formCheque"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Cheque"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

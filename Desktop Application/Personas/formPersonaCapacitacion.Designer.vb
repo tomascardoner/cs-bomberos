@@ -35,8 +35,15 @@ Partial Class formPersonaCapacitacion
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.comboboxCurso = New System.Windows.Forms.ComboBox()
         Me.textboxCapacitacionNivelOtro = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelCapacitacionTipoOtro = New System.Windows.Forms.Label()
+        Me.labelCapacitacionTipo = New System.Windows.Forms.Label()
+        Me.labelCapacitacionNivelOtro = New System.Windows.Forms.Label()
+        Me.labelCapacitacionNivel = New System.Windows.Forms.Label()
+        Me.labelLocalidad = New System.Windows.Forms.Label()
+        Me.labelProvincia = New System.Windows.Forms.Label()
+        Me.labelCurso = New System.Windows.Forms.Label()
         Me.maskedtextboxCantidadDias = New System.Windows.Forms.MaskedTextBox()
         Me.labelCantidadDias = New System.Windows.Forms.Label()
         Me.maskedtextboxCantidadHoras = New System.Windows.Forms.MaskedTextBox()
@@ -53,13 +60,6 @@ Partial Class formPersonaCapacitacion
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.labelCurso = New System.Windows.Forms.Label()
-        Me.labelProvincia = New System.Windows.Forms.Label()
-        Me.labelLocalidad = New System.Windows.Forms.Label()
-        Me.labelCapacitacionNivel = New System.Windows.Forms.Label()
-        Me.labelCapacitacionNivelOtro = New System.Windows.Forms.Label()
-        Me.labelCapacitacionTipo = New System.Windows.Forms.Label()
-        Me.labelCapacitacionTipoOtro = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -231,6 +231,69 @@ Partial Class formPersonaCapacitacion
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'labelCapacitacionTipoOtro
+        '
+        Me.labelCapacitacionTipoOtro.AutoSize = True
+        Me.labelCapacitacionTipoOtro.Location = New System.Drawing.Point(6, 240)
+        Me.labelCapacitacionTipoOtro.Name = "labelCapacitacionTipoOtro"
+        Me.labelCapacitacionTipoOtro.Size = New System.Drawing.Size(30, 13)
+        Me.labelCapacitacionTipoOtro.TabIndex = 26
+        Me.labelCapacitacionTipoOtro.Text = "Otro:"
+        '
+        'labelCapacitacionTipo
+        '
+        Me.labelCapacitacionTipo.AutoSize = True
+        Me.labelCapacitacionTipo.Location = New System.Drawing.Point(6, 213)
+        Me.labelCapacitacionTipo.Name = "labelCapacitacionTipo"
+        Me.labelCapacitacionTipo.Size = New System.Drawing.Size(31, 13)
+        Me.labelCapacitacionTipo.TabIndex = 25
+        Me.labelCapacitacionTipo.Text = "Tipo:"
+        '
+        'labelCapacitacionNivelOtro
+        '
+        Me.labelCapacitacionNivelOtro.AutoSize = True
+        Me.labelCapacitacionNivelOtro.Location = New System.Drawing.Point(6, 177)
+        Me.labelCapacitacionNivelOtro.Name = "labelCapacitacionNivelOtro"
+        Me.labelCapacitacionNivelOtro.Size = New System.Drawing.Size(30, 13)
+        Me.labelCapacitacionNivelOtro.TabIndex = 24
+        Me.labelCapacitacionNivelOtro.Text = "Otro:"
+        '
+        'labelCapacitacionNivel
+        '
+        Me.labelCapacitacionNivel.AutoSize = True
+        Me.labelCapacitacionNivel.Location = New System.Drawing.Point(6, 150)
+        Me.labelCapacitacionNivel.Name = "labelCapacitacionNivel"
+        Me.labelCapacitacionNivel.Size = New System.Drawing.Size(34, 13)
+        Me.labelCapacitacionNivel.TabIndex = 23
+        Me.labelCapacitacionNivel.Text = "Nivel:"
+        '
+        'labelLocalidad
+        '
+        Me.labelLocalidad.AutoSize = True
+        Me.labelLocalidad.Location = New System.Drawing.Point(6, 113)
+        Me.labelLocalidad.Name = "labelLocalidad"
+        Me.labelLocalidad.Size = New System.Drawing.Size(56, 13)
+        Me.labelLocalidad.TabIndex = 22
+        Me.labelLocalidad.Text = "Localidad:"
+        '
+        'labelProvincia
+        '
+        Me.labelProvincia.AutoSize = True
+        Me.labelProvincia.Location = New System.Drawing.Point(6, 86)
+        Me.labelProvincia.Name = "labelProvincia"
+        Me.labelProvincia.Size = New System.Drawing.Size(54, 13)
+        Me.labelProvincia.TabIndex = 21
+        Me.labelProvincia.Text = "Provincia:"
+        '
+        'labelCurso
+        '
+        Me.labelCurso.AutoSize = True
+        Me.labelCurso.Location = New System.Drawing.Point(6, 49)
+        Me.labelCurso.Name = "labelCurso"
+        Me.labelCurso.Size = New System.Drawing.Size(37, 13)
+        Me.labelCurso.TabIndex = 20
+        Me.labelCurso.Text = "Curso:"
+        '
         'maskedtextboxCantidadDias
         '
         Me.maskedtextboxCantidadDias.CutCopyMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals
@@ -391,69 +454,6 @@ Partial Class formPersonaCapacitacion
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'labelCurso
-        '
-        Me.labelCurso.AutoSize = True
-        Me.labelCurso.Location = New System.Drawing.Point(6, 49)
-        Me.labelCurso.Name = "labelCurso"
-        Me.labelCurso.Size = New System.Drawing.Size(37, 13)
-        Me.labelCurso.TabIndex = 20
-        Me.labelCurso.Text = "Curso:"
-        '
-        'labelProvincia
-        '
-        Me.labelProvincia.AutoSize = True
-        Me.labelProvincia.Location = New System.Drawing.Point(6, 86)
-        Me.labelProvincia.Name = "labelProvincia"
-        Me.labelProvincia.Size = New System.Drawing.Size(54, 13)
-        Me.labelProvincia.TabIndex = 21
-        Me.labelProvincia.Text = "Provincia:"
-        '
-        'labelLocalidad
-        '
-        Me.labelLocalidad.AutoSize = True
-        Me.labelLocalidad.Location = New System.Drawing.Point(6, 113)
-        Me.labelLocalidad.Name = "labelLocalidad"
-        Me.labelLocalidad.Size = New System.Drawing.Size(56, 13)
-        Me.labelLocalidad.TabIndex = 22
-        Me.labelLocalidad.Text = "Localidad:"
-        '
-        'labelCapacitacionNivel
-        '
-        Me.labelCapacitacionNivel.AutoSize = True
-        Me.labelCapacitacionNivel.Location = New System.Drawing.Point(6, 150)
-        Me.labelCapacitacionNivel.Name = "labelCapacitacionNivel"
-        Me.labelCapacitacionNivel.Size = New System.Drawing.Size(34, 13)
-        Me.labelCapacitacionNivel.TabIndex = 23
-        Me.labelCapacitacionNivel.Text = "Nivel:"
-        '
-        'labelCapacitacionNivelOtro
-        '
-        Me.labelCapacitacionNivelOtro.AutoSize = True
-        Me.labelCapacitacionNivelOtro.Location = New System.Drawing.Point(6, 177)
-        Me.labelCapacitacionNivelOtro.Name = "labelCapacitacionNivelOtro"
-        Me.labelCapacitacionNivelOtro.Size = New System.Drawing.Size(30, 13)
-        Me.labelCapacitacionNivelOtro.TabIndex = 24
-        Me.labelCapacitacionNivelOtro.Text = "Otro:"
-        '
-        'labelCapacitacionTipo
-        '
-        Me.labelCapacitacionTipo.AutoSize = True
-        Me.labelCapacitacionTipo.Location = New System.Drawing.Point(6, 213)
-        Me.labelCapacitacionTipo.Name = "labelCapacitacionTipo"
-        Me.labelCapacitacionTipo.Size = New System.Drawing.Size(31, 13)
-        Me.labelCapacitacionTipo.TabIndex = 25
-        Me.labelCapacitacionTipo.Text = "Tipo:"
-        '
-        'labelCapacitacionTipoOtro
-        '
-        Me.labelCapacitacionTipoOtro.AutoSize = True
-        Me.labelCapacitacionTipoOtro.Location = New System.Drawing.Point(6, 240)
-        Me.labelCapacitacionTipoOtro.Name = "labelCapacitacionTipoOtro"
-        Me.labelCapacitacionTipoOtro.Size = New System.Drawing.Size(30, 13)
-        Me.labelCapacitacionTipoOtro.TabIndex = 26
-        Me.labelCapacitacionTipoOtro.Text = "Otro:"
-        '
         'formPersonaCapacitacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -467,7 +467,7 @@ Partial Class formPersonaCapacitacion
         Me.MinimizeBox = False
         Me.Name = "formPersonaCapacitacion"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Capacitación de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

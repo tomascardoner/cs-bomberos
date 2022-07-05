@@ -217,7 +217,7 @@
         Dim result As Int32
 
         If Int32.TryParse(MaskedTextBoxCodigo.Text.Trim, result) Then
-            MaskedTextBoxCodigo.Text = result.ToString(New String("0"c, 5))
+            MaskedTextBoxCodigo.Text = result.ToString.PadLeft(5, "0"c)
         End If
     End Sub
 
@@ -236,10 +236,10 @@
         Using dbcMaxCodigo As New CSBomberosContext(True)
             Dim IDArea As Short = CShort(comboboxArea.SelectedValue)
 
-            If dbcMaxCodigo.Inventario.Where(Function(e) e.IDArea = IDArea).Count = 0 Then
-                MaskedTextBoxCodigo.Text = CStr(1).PadLeft(5, "0"c)
-            Else
+            If dbcMaxCodigo.Inventario.Where(Function(e) e.IDArea = IDArea).Any() Then
                 MaskedTextBoxCodigo.Text = CStr(CInt(dbcMaxCodigo.Inventario.Where(Function(e) e.IDArea = IDArea).Max(Function(e) e.Codigo)) + 1).PadLeft(5, "0"c)
+            Else
+                MaskedTextBoxCodigo.Text = CStr(1).PadLeft(5, "0"c)
             End If
         End Using
     End Sub
@@ -372,7 +372,7 @@
             comboboxElemento.Focus()
             Return False
         End If
-        If Not comboboxModoAdquisicion.SelectedValue Is Nothing Then
+        If comboboxModoAdquisicion.SelectedValue IsNot Nothing Then
             If Convert.ToByte(comboboxModoAdquisicion.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                 MsgBox("Debe especificar el Modo de Adquisición.", MsgBoxStyle.Information, My.Application.Info.Title)
                 comboboxModoAdquisicion.Focus()

@@ -175,7 +175,7 @@ Partial Class formAcademias
         '
         'buttonAsistenciaMultiple
         '
-        Me.buttonAsistenciaMultiple.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaMultiple32
+        Me.buttonAsistenciaMultiple.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaManual32
         Me.buttonAsistenciaMultiple.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonAsistenciaMultiple.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonAsistenciaMultiple.Name = "buttonAsistenciaMultiple"

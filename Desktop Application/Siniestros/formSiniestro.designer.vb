@@ -55,11 +55,11 @@ Partial Class formSiniestro
         Me.labelSiniestroRubro = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
         Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
-        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
-        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnSiniestroAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.toolstripAsistencias = New System.Windows.Forms.ToolStrip()
         Me.buttonAsistenciasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAsistenciasEditar = New System.Windows.Forms.ToolStripButton()
@@ -84,8 +84,8 @@ Partial Class formSiniestro
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
         Me.tabpageAsistencias.SuspendLayout()
-        Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.statusstripMain.SuspendLayout()
         Me.toolstripAsistencias.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
@@ -433,22 +433,6 @@ Partial Class formSiniestro
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
         '
-        'statusstripMain
-        '
-        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(90, 301)
-        Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
-        Me.statusstripMain.SizingGrip = False
-        Me.statusstripMain.TabIndex = 10
-        '
-        'statuslabelMain
-        '
-        Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
-        Me.statuslabelMain.Spring = True
-        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'datagridviewAsistencias
         '
         Me.datagridviewAsistencias.AllowUserToAddRows = False
@@ -490,6 +474,22 @@ Partial Class formSiniestro
         Me.columnSiniestroAsistenciaTipo.Name = "columnSiniestroAsistenciaTipo"
         Me.columnSiniestroAsistenciaTipo.ReadOnly = True
         Me.columnSiniestroAsistenciaTipo.Width = 80
+        '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(90, 301)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
+        Me.statusstripMain.SizingGrip = False
+        Me.statusstripMain.TabIndex = 10
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'toolstripAsistencias
         '
@@ -672,7 +672,7 @@ Partial Class formSiniestro
         Me.MinimizeBox = False
         Me.Name = "formSiniestro"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
@@ -681,9 +681,9 @@ Partial Class formSiniestro
         Me.tabpageGeneral.PerformLayout()
         Me.tabpageAsistencias.ResumeLayout(False)
         Me.tabpageAsistencias.PerformLayout()
+        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
-        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripAsistencias.ResumeLayout(False)
         Me.toolstripAsistencias.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)

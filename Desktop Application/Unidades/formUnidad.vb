@@ -184,6 +184,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -211,10 +212,10 @@
 
     Private Sub buttonNumeroSiguiente_Click() Handles buttonNumeroSiguiente.Click
         Using dbcMaxNumero As New CSBomberosContext(True)
-            If dbcMaxNumero.Unidad.Count = 0 Then
-                maskedtextboxNumero.Text = CStr(1)
-            Else
+            If dbcMaxNumero.Unidad.Any() Then
                 maskedtextboxNumero.Text = CStr(CInt(dbcMaxNumero.Unidad.Max(Function(a) a.Numero)) + 1)
+            Else
+                maskedtextboxNumero.Text = CStr(1)
             End If
         End Using
     End Sub
@@ -223,9 +224,11 @@
         labelUnidadBajaMotivo.Visible = Not checkboxEsActivo.Checked
         comboboxUnidadBajaMotivo.Visible = Not checkboxEsActivo.Checked
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.Unidad_EDITAR) Then
             mEditMode = True
@@ -332,10 +335,10 @@
         ' Generar el ID nuevo
         If mUnidadActual.IDUnidad = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.Unidad.Count = 0 Then
-                    mUnidadActual.IDUnidad = 1
-                Else
+                If dbcMaxID.Unidad.Any() Then
                     mUnidadActual.IDUnidad = dbcMaxID.Unidad.Max(Function(a) a.IDUnidad) + CByte(1)
+                Else
+                    mUnidadActual.IDUnidad = 1
                 End If
             End Using
         End If
@@ -375,6 +378,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

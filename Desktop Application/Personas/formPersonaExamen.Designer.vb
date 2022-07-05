@@ -31,7 +31,7 @@ Partial Class formPersonaExamen
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.doubletextboxCalificacion = New Syncfusion.Windows.Forms.Tools.DoubleTextBox()
         Me.labelCalificacion = New System.Windows.Forms.Label()
@@ -169,20 +169,19 @@ Partial Class formPersonaExamen
         'doubletextboxCalificacion
         '
         Me.doubletextboxCalificacion.AllowNull = True
-        Me.doubletextboxCalificacion.BackGroundColor = System.Drawing.SystemColors.Window
         Me.doubletextboxCalificacion.BeforeTouchSize = New System.Drawing.Size(38, 20)
         Me.doubletextboxCalificacion.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.doubletextboxCalificacion.DoubleValue = 0.0R
+        Me.doubletextboxCalificacion.DoubleValue = 0R
+        Me.doubletextboxCalificacion.ForeColor = System.Drawing.SystemColors.WindowText
         Me.doubletextboxCalificacion.Location = New System.Drawing.Point(128, 83)
         Me.doubletextboxCalificacion.MaxValue = 10.0R
         Me.doubletextboxCalificacion.Metrocolor = System.Drawing.Color.FromArgb(CType(CType(209, Byte), Integer), CType(CType(211, Byte), Integer), CType(CType(212, Byte), Integer))
-        Me.doubletextboxCalificacion.MinValue = 0.0R
+        Me.doubletextboxCalificacion.MinValue = 0R
         Me.doubletextboxCalificacion.Name = "doubletextboxCalificacion"
         Me.doubletextboxCalificacion.NullString = ""
         Me.doubletextboxCalificacion.NumberNegativePattern = 0
         Me.doubletextboxCalificacion.OnValidationFailed = Syncfusion.Windows.Forms.Tools.OnValidationFailed.SetNullString
         Me.doubletextboxCalificacion.Size = New System.Drawing.Size(38, 20)
-        Me.doubletextboxCalificacion.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.[Default]
         Me.doubletextboxCalificacion.TabIndex = 10
         Me.doubletextboxCalificacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.doubletextboxCalificacion.WordWrap = False
@@ -303,7 +302,7 @@ Partial Class formPersonaExamen
         Me.MinimizeBox = False
         Me.Name = "formPersonaExamen"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Examen de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

@@ -2380,9 +2380,9 @@ Public Class formPersona
                         GridRowDataActual.ConceptosCalificaciones &= vbCrLf
                     End If
                     If .ConceptoAbreviatura Is Nothing Then
-                        GridRowDataActual.ConceptosCalificaciones &= String.Format("{1}: {2}", .ConceptoAbreviatura, .ConceptoNombre, .Calificacion)
+                        GridRowDataActual.ConceptosCalificaciones &= $"{ .ConceptoNombre}: { .Calificacion}"
                     Else
-                        GridRowDataActual.ConceptosCalificaciones &= String.Format("{0} - {1}: {2}", .ConceptoAbreviatura, .ConceptoNombre, .Calificacion)
+                        GridRowDataActual.ConceptosCalificaciones &= $"{ .ConceptoAbreviatura} - { .ConceptoNombre}: { .Calificacion}"
                     End If
                 End With
             Next

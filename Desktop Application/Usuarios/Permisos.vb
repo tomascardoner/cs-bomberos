@@ -337,6 +337,8 @@
     Friend Const SINIESTRO_AGREGAR As String = "SINIESTRO_AGREGAR"
     Friend Const SINIESTRO_EDITAR As String = "SINIESTRO_EDITAR"
     Friend Const SINIESTRO_ELIMINAR As String = "SINIESTRO_ELIMINAR"
+    Friend Const SINIESTRO_ASISTIR_MANUAL As String = "SINIESTRO_ASISTIR_MANUAL"
+    Friend Const SINIESTRO_ASISTIR_PRESENCIAL As String = "SINIESTRO_ASISTIR_PRESENCIAL"
 
     ' Academias
 
@@ -354,6 +356,7 @@
     Friend Const ACADEMIA_AGREGAR As String = "ACADEMIA_AGREGAR"
     Friend Const ACADEMIA_EDITAR As String = "ACADEMIA_EDITAR"
     Friend Const ACADEMIA_ELIMINAR As String = "ACADEMIA_ELIMINAR"
+    Friend Const ACADEMIA_ASISTIR_MANUAL As String = "ACADEMIA_ASISTIR_MANUAL"
 
     ' Reportes
 
@@ -527,7 +530,8 @@
         AgregarNodos(nodeParent, ELEMENTO, "Elementos", ELEMENTO_AGREGAR, DESCRIPCION_AGREGAR, ELEMENTO_EDITAR, DESCRIPCION_EDITAR, ELEMENTO_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' Documentaciones - Academias
-        AgregarNodos(nodeRoot, ACADEMIA, "Academias", ACADEMIA_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIA_EDITAR, DESCRIPCION_EDITAR, ACADEMIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeRoot, ACADEMIA, "Academias", ACADEMIA_AGREGAR, DESCRIPCION_AGREGAR, ACADEMIA_EDITAR, DESCRIPCION_EDITAR, ACADEMIA_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(ACADEMIA_ASISTIR_MANUAL, "Asistir manualmente")
 
         ' Documentaciones - Reportes
         nodeParent = nodeRoot.Nodes.Add(REPORTE_DOCUMENTACIONES, "Reportes")
@@ -573,7 +577,9 @@
         nodeRoot = Arbol.Nodes.Add("GUARDIA", "Guardia")
 
         ' Guardia - siniestros
-        AgregarNodos(nodeRoot, SINIESTRO, "Siniestros", SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = AgregarNodos(nodeRoot, SINIESTRO, "Siniestros", SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent.Nodes.Add(SINIESTRO_ASISTIR_PRESENCIAL, "Asistir presencialmente")
+        nodeCurrent.Nodes.Add(SINIESTRO_ASISTIR_MANUAL, "Asistir manualmente")
 
         Arbol.TopNode = Arbol.Nodes(0)
 

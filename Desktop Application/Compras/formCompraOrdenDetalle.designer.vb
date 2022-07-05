@@ -283,7 +283,7 @@ Partial Class formCompraOrdenDetalle
         Me.MinimizeBox = False
         Me.Name = "formCompraOrdenDetalle"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Detalle de la órden de compra"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

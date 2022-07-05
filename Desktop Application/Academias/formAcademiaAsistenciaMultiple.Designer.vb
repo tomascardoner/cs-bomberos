@@ -162,7 +162,7 @@ Partial Class formAcademiaAsistenciaMultiple
         Me.MinimizeBox = False
         Me.Name = "formAcademiaAsistenciaMultiple"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Asistencia múltiple a Academia"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

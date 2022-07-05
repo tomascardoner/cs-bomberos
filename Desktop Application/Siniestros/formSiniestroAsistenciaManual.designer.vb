@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formSiniestroAsistenciaMultiple
+Partial Class formSiniestroAsistenciaManual
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -184,7 +184,7 @@ Partial Class formSiniestroAsistenciaMultiple
         Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistenciaMultiple"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Asistencia múltiple a Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

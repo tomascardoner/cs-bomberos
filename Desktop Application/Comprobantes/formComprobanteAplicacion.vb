@@ -126,7 +126,7 @@
     End Sub
 
     Private Sub AplicarComprobante() Handles datagridviewMain.DoubleClick
-        If Not datagridviewMain.CurrentRow Is Nothing Then
+        If datagridviewMain.CurrentRow IsNot Nothing Then
             currencytextboxImporteAplicado.DecimalValue = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData_Comprobante).ImporteSinAplicar.Value
         End If
     End Sub

@@ -928,10 +928,16 @@
     <Compile Include="Siniestros\formSiniestroAsistencia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Siniestros\formSiniestroAsistenciaMultiple.designer.vb">
-      <DependentUpon>formSiniestroAsistenciaMultiple.vb</DependentUpon>
+    <Compile Include="Siniestros\formSiniestroAsistenciaManual.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaManual.vb</DependentUpon>
     </Compile>
-    <Compile Include="Siniestros\formSiniestroAsistenciaMultiple.vb">
+    <Compile Include="Siniestros\formSiniestroAsistenciaManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencial.Designer.vb">
+      <DependentUpon>formSiniestroAsistenciaPresencial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencial.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
@@ -1666,8 +1672,11 @@
     <EmbeddedResource Include="Siniestros\formSiniestroAsistencia.resx">
       <DependentUpon>formSiniestroAsistencia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaMultiple.resx">
-      <DependentUpon>formSiniestroAsistenciaMultiple.vb</DependentUpon>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaManual.resx">
+      <DependentUpon>formSiniestroAsistenciaManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencial.resx">
+      <DependentUpon>formSiniestroAsistenciaPresencial.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>
@@ -2001,7 +2010,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Acciones\AsistenciaMultiple32.png" />
+    <Content Include="Resources\Acciones\AsistenciaManual32.png" />
+    <Content Include="Resources\Acciones\AsistenciaPresencial32.png" />
     <Content Include="Resources\Acciones\Buscar16.png" />
     <Content Include="Resources\Aplicacion\InicioSesion48.png" />
     <Content Include="Resources\Externos\ImageAfipChico.png" />

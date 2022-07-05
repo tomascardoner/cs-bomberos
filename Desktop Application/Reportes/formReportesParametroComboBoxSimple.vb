@@ -1,10 +1,11 @@
 ﻿Public Class formReportesParametroComboBoxSimple
     Private mParametroActual As ReporteParametro
 
-    Friend Sub SetAppearance(ByRef ParametroActual As ReporteParametro, ByVal Title As String)
-        mParametroActual = ParametroActual
+    Friend Sub SetAppearance(ByRef parametroActual As ReporteParametro)
+        mParametroActual = parametroActual
+        Me.Text = $"Seleccione el/la {parametroActual.Nombre}"
 
-        labelValor.Text = ParametroActual.Nombre & ":"
+        labelValor.Text = parametroActual.Nombre & ":"
 
         Using context As New CSBomberosContext(True)
             Select Case mParametroActual.Tipo

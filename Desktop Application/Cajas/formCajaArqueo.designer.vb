@@ -44,14 +44,14 @@ Partial Class formCajaArqueo
         Me.comboboxCaja = New System.Windows.Forms.ComboBox()
         Me.datetimepickerCierreFecha = New System.Windows.Forms.DateTimePicker()
         Me.tabpageDetalles = New System.Windows.Forms.TabPage()
-        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
-        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.datagridviewDetalles = New System.Windows.Forms.DataGridView()
         Me.columnNumeroComprobante = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnProveedor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnDetalle = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnImporte = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
+        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.toolstripDetalles = New System.Windows.Forms.ToolStrip()
         Me.buttonDetallesAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonDetallesEditar = New System.Windows.Forms.ToolStripButton()
@@ -75,8 +75,8 @@ Partial Class formCajaArqueo
         CType(Me.currencytextboxImporteAsignado, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageDetalles.SuspendLayout()
-        Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.statusstripMain.SuspendLayout()
         Me.toolstripDetalles.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
@@ -302,22 +302,6 @@ Partial Class formCajaArqueo
         Me.tabpageDetalles.Text = "Detalles"
         Me.tabpageDetalles.UseVisualStyleBackColor = True
         '
-        'statusstripMain
-        '
-        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(90, 232)
-        Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
-        Me.statusstripMain.SizingGrip = False
-        Me.statusstripMain.TabIndex = 10
-        '
-        'statuslabelMain
-        '
-        Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
-        Me.statuslabelMain.Spring = True
-        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'datagridviewDetalles
         '
         Me.datagridviewDetalles.AllowUserToAddRows = False
@@ -389,6 +373,22 @@ Partial Class formCajaArqueo
         Me.columnImporte.Name = "columnImporte"
         Me.columnImporte.ReadOnly = True
         Me.columnImporte.Width = 67
+        '
+        'statusstripMain
+        '
+        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
+        Me.statusstripMain.Location = New System.Drawing.Point(90, 232)
+        Me.statusstripMain.Name = "statusstripMain"
+        Me.statusstripMain.Size = New System.Drawing.Size(563, 22)
+        Me.statusstripMain.SizingGrip = False
+        Me.statusstripMain.TabIndex = 10
+        '
+        'statuslabelMain
+        '
+        Me.statuslabelMain.Name = "statuslabelMain"
+        Me.statuslabelMain.Size = New System.Drawing.Size(548, 17)
+        Me.statuslabelMain.Spring = True
+        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'toolstripDetalles
         '
@@ -540,7 +540,7 @@ Partial Class formCajaArqueo
         Me.MinimizeBox = False
         Me.Name = "formCajaArqueo"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Arqueo de caja"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
@@ -551,9 +551,9 @@ Partial Class formCajaArqueo
         CType(Me.currencytextboxSaldoInicial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageDetalles.ResumeLayout(False)
         Me.tabpageDetalles.PerformLayout()
+        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()
-        CType(Me.datagridviewDetalles, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripDetalles.ResumeLayout(False)
         Me.toolstripDetalles.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)

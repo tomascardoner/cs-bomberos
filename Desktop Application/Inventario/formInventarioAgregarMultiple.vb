@@ -171,7 +171,7 @@
             comboboxElemento.Focus()
             Return False
         End If
-        If Not comboboxModoAdquisicion.SelectedValue Is Nothing Then
+        If comboboxModoAdquisicion.SelectedValue IsNot Nothing Then
             If CByte(comboboxModoAdquisicion.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                 MsgBox("Debe especificar el Modo de Adquisición.", MsgBoxStyle.Information, My.Application.Info.Title)
                 comboboxModoAdquisicion.Focus()
@@ -198,7 +198,10 @@
             End If
 
             idInventarioNuevo = idInventarioNuevoInicial
-            Int32.TryParse(MaskedTextBoxCodigo.Text.Trim, codigoNuevo)
+            If Not Integer.TryParse(MaskedTextBoxCodigo.Text.Trim, codigoNuevo) Then
+                MsgBox("El Primer Código debe ser un valor numérico.", MsgBoxStyle.Information, My.Application.Info.Title)
+                Return False
+            End If
 
             For index = 1 To NumericUpDownCantidad.Value
                 mdbContext.Inventario.Add(New Inventario With {

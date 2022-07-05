@@ -360,7 +360,7 @@ Partial Class formPersonaLicencia
         Me.MinimizeBox = False
         Me.Name = "formPersonaLicencia"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Licencia de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

@@ -46,6 +46,8 @@ Partial Class formPersonaAscenso
         Me.textboxActaNumero = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelOrdenGeneralNumero = New System.Windows.Forms.Label()
+        Me.textboxOrdenGeneralNumero = New System.Windows.Forms.TextBox()
         Me.textboxResolucionNumero = New System.Windows.Forms.TextBox()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDAscenso = New System.Windows.Forms.Label()
@@ -54,8 +56,6 @@ Partial Class formPersonaAscenso
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.labelOrdenGeneralNumero = New System.Windows.Forms.Label()
-        Me.textboxOrdenGeneralNumero = New System.Windows.Forms.TextBox()
         labelCargo = New System.Windows.Forms.Label()
         labelCargoJerarquia = New System.Windows.Forms.Label()
         labelFolioNumero = New System.Windows.Forms.Label()
@@ -308,6 +308,23 @@ Partial Class formPersonaAscenso
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'labelOrdenGeneralNumero
+        '
+        Me.labelOrdenGeneralNumero.AutoSize = True
+        Me.labelOrdenGeneralNumero.Location = New System.Drawing.Point(6, 140)
+        Me.labelOrdenGeneralNumero.Name = "labelOrdenGeneralNumero"
+        Me.labelOrdenGeneralNumero.Size = New System.Drawing.Size(94, 13)
+        Me.labelOrdenGeneralNumero.TabIndex = 12
+        Me.labelOrdenGeneralNumero.Text = "Orden General Nº:"
+        '
+        'textboxOrdenGeneralNumero
+        '
+        Me.textboxOrdenGeneralNumero.Location = New System.Drawing.Point(106, 137)
+        Me.textboxOrdenGeneralNumero.MaxLength = 10
+        Me.textboxOrdenGeneralNumero.Name = "textboxOrdenGeneralNumero"
+        Me.textboxOrdenGeneralNumero.Size = New System.Drawing.Size(74, 20)
+        Me.textboxOrdenGeneralNumero.TabIndex = 13
+        '
         'textboxResolucionNumero
         '
         Me.textboxResolucionNumero.Location = New System.Drawing.Point(270, 137)
@@ -392,23 +409,6 @@ Partial Class formPersonaAscenso
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'labelOrdenGeneralNumero
-        '
-        Me.labelOrdenGeneralNumero.AutoSize = True
-        Me.labelOrdenGeneralNumero.Location = New System.Drawing.Point(6, 140)
-        Me.labelOrdenGeneralNumero.Name = "labelOrdenGeneralNumero"
-        Me.labelOrdenGeneralNumero.Size = New System.Drawing.Size(94, 13)
-        Me.labelOrdenGeneralNumero.TabIndex = 12
-        Me.labelOrdenGeneralNumero.Text = "Orden General Nº:"
-        '
-        'textboxOrdenGeneralNumero
-        '
-        Me.textboxOrdenGeneralNumero.Location = New System.Drawing.Point(106, 137)
-        Me.textboxOrdenGeneralNumero.MaxLength = 10
-        Me.textboxOrdenGeneralNumero.Name = "textboxOrdenGeneralNumero"
-        Me.textboxOrdenGeneralNumero.Size = New System.Drawing.Size(74, 20)
-        Me.textboxOrdenGeneralNumero.TabIndex = 13
-        '
         'formPersonaAscenso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -422,7 +422,7 @@ Partial Class formPersonaAscenso
         Me.MinimizeBox = False
         Me.Name = "formPersonaAscenso"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Ascenso - Promoción de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

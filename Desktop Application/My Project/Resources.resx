@@ -301,9 +301,6 @@
   <data name="ImageSiniestro32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Items\Siniestro32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ImageAsistenciaMultiple32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Acciones\AsistenciaMultiple32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ImageAcademia32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Items\Academia32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -351,5 +348,11 @@
   </data>
   <data name="STRING_VALOR_ESTABLECIDO_SI" xml:space="preserve">
     <value>«Establecido»</value>
+  </data>
+  <data name="ImageAsistenciaManual32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\acciones\asistenciamanual32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ImageAsistenciaPresencial32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\acciones\asistenciapresencial32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

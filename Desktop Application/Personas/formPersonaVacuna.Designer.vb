@@ -36,7 +36,7 @@ Partial Class formPersonaVacuna
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxTipo = New System.Windows.Forms.ComboBox()
         Me.datetimepickerFechaVencimiento = New System.Windows.Forms.DateTimePicker()
@@ -360,7 +360,7 @@ Partial Class formPersonaVacuna
         Me.MinimizeBox = False
         Me.Name = "formPersonaVacuna"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Vacuna de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

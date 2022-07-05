@@ -320,7 +320,7 @@
 
             ' Solicito que se especifique el Responsable de firmar
             ParametroActual = ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDResponsable").Single
-            formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ParametroActual.Nombre)
+            formReportesParametroComboBoxSimple.SetAppearance(ParametroActual)
             formReportesParametroComboBoxSimple.Text = "Especifique el firmante"
             If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                 ReporteActual.Open(True, ReporteActual.Nombre & " - Nº " & mCompraOrdenActual.IDCompraOrden, Me)

@@ -121,7 +121,7 @@
             listviewParametros.BeginUpdate()
             ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
 
-            labelParametrosTitulo.Text = String.Format("Parámetros del Reporte: ""{0} - {1}""", treeviewReportes.SelectedNode.Parent.Text, ReporteActual.Nombre)
+            labelParametrosTitulo.Text = $"Parámetros del Reporte: ""{treeviewReportes.SelectedNode.Parent.Text} - {ReporteActual.Nombre}"""
 
             For Each ParametroActual As ReporteParametro In ReporteActual.ReporteParametros.OrderBy(Function(rp) rp.Orden)
 
@@ -268,7 +268,7 @@
                     formReportesParametroSiNo.Dispose()
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL, Reportes.REPORTE_PARAMETRO_TIPO_CARGO, Reportes.REPORTE_PARAMETRO_TIPO_PERSONABAJAMOTIVO, Reportes.REPORTE_PARAMETRO_TIPO_UNIDAD, Reportes.REPORTE_PARAMETRO_TIPO_RESPONSABLE, Reportes.REPORTE_PARAMETRO_TIPO_ENTIDAD
-                    formReportesParametroComboBoxSimple.SetAppearance(ParametroActual, ListViewItemActual.Text)
+                    formReportesParametroComboBoxSimple.SetAppearance(ParametroActual)
                     If formReportesParametroComboBoxSimple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                     End If

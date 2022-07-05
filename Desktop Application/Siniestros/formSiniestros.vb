@@ -449,7 +449,7 @@
                 Dim siniestroActual As Siniestro = mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará el Siniestro seleccionado.{0}{0}Número: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, siniestroActual.NumeroCompleto)
+                Mensaje = $"Se eliminará el Siniestro seleccionado.{vbCrLf}{vbCrLf}Número: {siniestroActual.NumeroCompleto}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
@@ -492,21 +492,33 @@
         End If
     End Sub
 
-    Private Sub Asistencia_Click() Handles buttonAsistenciaMultiple.Click
+    Private Sub AsistenciaPresencial(sender As Object, e As EventArgs) Handles buttonAsistenciaPresencial.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
-                Me.Cursor = Cursors.WaitCursor
+            Return
+        End If
 
-                datagridviewMain.Enabled = False
+        If Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_PRESENCIAL) Then
+            Me.Cursor = Cursors.WaitCursor
+            datagridviewMain.Enabled = False
+            formSiniestroAsistenciaPresencial.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
+            datagridviewMain.Enabled = True
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
 
-                formSiniestroAsistenciaMultiple.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
+    Private Sub AsistenciaManual(sender As Object, e As EventArgs) Handles buttonAsistenciaManual.Click
+        If datagridviewMain.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
 
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+        If Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_MANUAL) Then
+            Me.Cursor = Cursors.WaitCursor
+            datagridviewMain.Enabled = False
+            formSiniestroAsistenciaManual.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
+            datagridviewMain.Enabled = True
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 

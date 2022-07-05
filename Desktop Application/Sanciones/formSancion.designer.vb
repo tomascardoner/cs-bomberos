@@ -65,6 +65,8 @@ Partial Class formSancion
         Me.labelTestimonioTexto = New System.Windows.Forms.Label()
         Me.textboxTestimonioTexto = New System.Windows.Forms.TextBox()
         Me.groupboxNotificacion = New System.Windows.Forms.GroupBox()
+        Me.datetimepickerNotificacionFechaEfectiva = New System.Windows.Forms.DateTimePicker()
+        Me.labelNotificacionFechaEfectiva = New System.Windows.Forms.Label()
         Me.datetimepickerNotificacionFecha = New System.Windows.Forms.DateTimePicker()
         Me.labelNotificacionFecha = New System.Windows.Forms.Label()
         Me.groupboxResolucion = New System.Windows.Forms.GroupBox()
@@ -84,8 +86,6 @@ Partial Class formSancion
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.datetimepickerNotificacionFechaEfectiva = New System.Windows.Forms.DateTimePicker()
-        Me.labelNotificacionFechaEfectiva = New System.Windows.Forms.Label()
         labelSolicitudMotivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -593,6 +593,26 @@ Partial Class formSancion
         Me.groupboxNotificacion.TabStop = False
         Me.groupboxNotificacion.Text = "Notificación:"
         '
+        'datetimepickerNotificacionFechaEfectiva
+        '
+        Me.datetimepickerNotificacionFechaEfectiva.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.datetimepickerNotificacionFechaEfectiva.Location = New System.Drawing.Point(317, 19)
+        Me.datetimepickerNotificacionFechaEfectiva.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
+        Me.datetimepickerNotificacionFechaEfectiva.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
+        Me.datetimepickerNotificacionFechaEfectiva.Name = "datetimepickerNotificacionFechaEfectiva"
+        Me.datetimepickerNotificacionFechaEfectiva.ShowCheckBox = True
+        Me.datetimepickerNotificacionFechaEfectiva.Size = New System.Drawing.Size(138, 20)
+        Me.datetimepickerNotificacionFechaEfectiva.TabIndex = 3
+        '
+        'labelNotificacionFechaEfectiva
+        '
+        Me.labelNotificacionFechaEfectiva.AutoSize = True
+        Me.labelNotificacionFechaEfectiva.Location = New System.Drawing.Point(230, 22)
+        Me.labelNotificacionFechaEfectiva.Name = "labelNotificacionFechaEfectiva"
+        Me.labelNotificacionFechaEfectiva.Size = New System.Drawing.Size(81, 13)
+        Me.labelNotificacionFechaEfectiva.TabIndex = 2
+        Me.labelNotificacionFechaEfectiva.Text = "Fecha efectiva:"
+        '
         'datetimepickerNotificacionFecha
         '
         Me.datetimepickerNotificacionFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
@@ -818,26 +838,6 @@ Partial Class formSancion
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
-        'datetimepickerNotificacionFechaEfectiva
-        '
-        Me.datetimepickerNotificacionFechaEfectiva.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.datetimepickerNotificacionFechaEfectiva.Location = New System.Drawing.Point(317, 19)
-        Me.datetimepickerNotificacionFechaEfectiva.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
-        Me.datetimepickerNotificacionFechaEfectiva.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
-        Me.datetimepickerNotificacionFechaEfectiva.Name = "datetimepickerNotificacionFechaEfectiva"
-        Me.datetimepickerNotificacionFechaEfectiva.ShowCheckBox = True
-        Me.datetimepickerNotificacionFechaEfectiva.Size = New System.Drawing.Size(138, 20)
-        Me.datetimepickerNotificacionFechaEfectiva.TabIndex = 3
-        '
-        'labelNotificacionFechaEfectiva
-        '
-        Me.labelNotificacionFechaEfectiva.AutoSize = True
-        Me.labelNotificacionFechaEfectiva.Location = New System.Drawing.Point(230, 22)
-        Me.labelNotificacionFechaEfectiva.Name = "labelNotificacionFechaEfectiva"
-        Me.labelNotificacionFechaEfectiva.Size = New System.Drawing.Size(81, 13)
-        Me.labelNotificacionFechaEfectiva.TabIndex = 2
-        Me.labelNotificacionFechaEfectiva.Text = "Fecha efectiva:"
-        '
         'formSancion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -851,7 +851,7 @@ Partial Class formSancion
         Me.MinimizeBox = False
         Me.Name = "formSancion"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Sanción"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

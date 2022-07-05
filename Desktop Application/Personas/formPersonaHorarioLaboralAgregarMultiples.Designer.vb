@@ -32,7 +32,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.labelDiaSemana = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.checkboxDiaSemana1 = New System.Windows.Forms.CheckBox()
         Me.checkboxDiaSemana7 = New System.Windows.Forms.CheckBox()
@@ -329,7 +329,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.MinimizeBox = False
         Me.Name = "formPersonaHorarioLaboralAgregarMultiples"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Agregar Múltiples Horarios Laborales de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

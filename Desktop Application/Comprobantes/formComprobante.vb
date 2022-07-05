@@ -52,8 +52,9 @@
 
         If mIsNew Then
             ' Es Nuevo
-            mComprobanteActual = New Comprobante
-            mComprobanteActual.Fecha = DateAndTime.Today
+            mComprobanteActual = New Comprobante With {
+                .Fecha = DateAndTime.Today
+            }
             mdbContext.Comprobante.Add(mComprobanteActual)
         Else
             mComprobanteActual = mdbContext.Comprobante.Find(IDComprobante)
@@ -87,7 +88,7 @@
         Else
             buttonAFIP.Visible = (mEditMode = False And mComprobanteTipoActual.EmisionElectronica And mComprobanteActual.IDUsuarioAnulacion Is Nothing)
             menuitemAFIP_ObtenerCAE.Enabled = (mComprobanteActual.CAE Is Nothing)
-            menuitemAFIP_VerificarDatos.Enabled = (Not mComprobanteActual.CAE Is Nothing)
+            menuitemAFIP_VerificarDatos.Enabled = (mComprobanteActual.CAE IsNot Nothing)
         End If
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
@@ -221,7 +222,7 @@
                 textboxFechaHoraEnvioEmail.Text = ""
                 textboxUsuarioEnvioEmail.Text = ""
             Else
-                If Not .FechaHoraEnvioEmail Is Nothing Then
+                If .FechaHoraEnvioEmail IsNot Nothing Then
                     textboxFechaHoraEnvioEmail.Text = .FechaHoraEnvioEmail.Value.ToShortDateString & " " & .FechaHoraEnvioEmail.Value.ToShortTimeString
                 End If
                 textboxUsuarioEnvioEmail.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioEnvioEmail.Descripcion)

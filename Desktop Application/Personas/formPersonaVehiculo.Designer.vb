@@ -42,7 +42,7 @@ Partial Class formPersonaVehiculo
         Me.comboboxTipo = New System.Windows.Forms.ComboBox()
         Me.comboboxMarca = New System.Windows.Forms.ComboBox()
         Me.textboxDominio = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.groupboxSeguro = New System.Windows.Forms.GroupBox()
         Me.datetimepickerSeguroVencimiento = New System.Windows.Forms.DateTimePicker()
@@ -464,7 +464,7 @@ Partial Class formPersonaVehiculo
         Me.MinimizeBox = False
         Me.Name = "formPersonaVehiculo"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Vehículo de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

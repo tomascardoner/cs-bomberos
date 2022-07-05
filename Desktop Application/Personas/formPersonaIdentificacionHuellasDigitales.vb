@@ -3,7 +3,7 @@
 #Region "Declarations"
 
     Private mPersona As Persona
-    Private mDedos(9) As DPFP.Template
+    Private ReadOnly mDedos(9) As DPFP.Template
 
 #End Region
 
@@ -67,19 +67,15 @@
         End Select
     End Sub
 
-    Sub controlHuellas_OnEnroll(ByVal Control As Object, ByVal Finger As Integer, ByVal Template As DPFP.Template, ByRef EventHandlerStatus As DPFP.Gui.EventHandlerStatus) Handles controlHuellas.OnEnroll
+    Sub controlHuellasOnEnroll(ByVal Control As Object, ByVal Finger As Integer, ByVal Template As DPFP.Template, ByRef EventHandlerStatus As DPFP.Gui.EventHandlerStatus) Handles controlHuellas.OnEnroll
         mDedos(Finger - 1) = Template
     End Sub
 
-    Sub controlHuellas_OnDelete(ByVal Control As Object, ByVal Finger As Integer, ByRef EventHandlerStatus As DPFP.Gui.EventHandlerStatus) Handles controlHuellas.OnDelete
+    Sub controlHuellasOnDelete(ByVal Control As Object, ByVal Finger As Integer, ByRef EventHandlerStatus As DPFP.Gui.EventHandlerStatus) Handles controlHuellas.OnDelete
         mDedos(Finger - 1) = Nothing
     End Sub
 
     Private Sub Guardar() Handles buttonGuardar.Click
-        If Not VerificarDatos() Then
-            Return
-        End If
-
         SetDataFromControlsToObject()
 
         Me.DialogResult = DialogResult.OK
@@ -90,15 +86,6 @@
         Me.DialogResult = DialogResult.Cancel
         Me.Hide()
     End Sub
-
-#End Region
-
-#Region "Extra stuff"
-
-    Private Function VerificarDatos() As Boolean
-
-        Return True
-    End Function
 
 #End Region
 

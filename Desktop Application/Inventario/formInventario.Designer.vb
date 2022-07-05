@@ -309,7 +309,7 @@ Partial Class formInventario
         Me.toolstripArea.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelArea, Me.comboboxArea})
         Me.toolstripArea.Location = New System.Drawing.Point(635, 0)
         Me.toolstripArea.Name = "toolstripArea"
-        Me.toolstripArea.Size = New System.Drawing.Size(222, 39)
+        Me.toolstripArea.Size = New System.Drawing.Size(189, 39)
         Me.toolstripArea.TabIndex = 14
         '
         'labelArea
@@ -402,7 +402,7 @@ Partial Class formInventario
         Me.MinimizeBox = False
         Me.Name = "formInventario"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Inventario"
         Me.statusstripMain.ResumeLayout(False)
         Me.statusstripMain.PerformLayout()

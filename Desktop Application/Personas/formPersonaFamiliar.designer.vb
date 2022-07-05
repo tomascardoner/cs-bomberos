@@ -64,6 +64,7 @@ Partial Class formPersonaFamiliar
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.textboxParentescoOtro = New System.Windows.Forms.TextBox()
         Me.checkboxEsEmergencia = New System.Windows.Forms.CheckBox()
         Me.comboboxEstadoCivil = New System.Windows.Forms.ComboBox()
         Me.groupboxIOMA = New System.Windows.Forms.GroupBox()
@@ -105,7 +106,6 @@ Partial Class formPersonaFamiliar
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxParentescoOtro = New System.Windows.Forms.TextBox()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelFactorRH = New System.Windows.Forms.Label()
@@ -563,6 +563,14 @@ Partial Class formPersonaFamiliar
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'textboxParentescoOtro
+        '
+        Me.textboxParentescoOtro.Location = New System.Drawing.Point(309, 10)
+        Me.textboxParentescoOtro.MaxLength = 50
+        Me.textboxParentescoOtro.Name = "textboxParentescoOtro"
+        Me.textboxParentescoOtro.Size = New System.Drawing.Size(191, 20)
+        Me.textboxParentescoOtro.TabIndex = 2
+        '
         'checkboxEsEmergencia
         '
         Me.checkboxEsEmergencia.AutoSize = True
@@ -996,14 +1004,6 @@ Partial Class formPersonaFamiliar
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
-        'textboxParentescoOtro
-        '
-        Me.textboxParentescoOtro.Location = New System.Drawing.Point(309, 10)
-        Me.textboxParentescoOtro.MaxLength = 50
-        Me.textboxParentescoOtro.Name = "textboxParentescoOtro"
-        Me.textboxParentescoOtro.Size = New System.Drawing.Size(191, 20)
-        Me.textboxParentescoOtro.TabIndex = 2
-        '
         'formPersonaFamiliar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1021,7 +1021,7 @@ Partial Class formPersonaFamiliar
         Me.MinimizeBox = False
         Me.Name = "formPersonaFamiliar"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Familiar de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

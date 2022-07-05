@@ -37,7 +37,7 @@ Partial Class formPersonaHorarioLaboral
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.comboboxDiaSemana = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.datetimepickerTurno2Hasta = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerTurno2Desde = New System.Windows.Forms.DateTimePicker()
@@ -346,7 +346,7 @@ Partial Class formPersonaHorarioLaboral
         Me.MinimizeBox = False
         Me.Name = "formPersonaHorarioLaboral"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Horario Laboral de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

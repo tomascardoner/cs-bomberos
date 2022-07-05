@@ -14,7 +14,7 @@
 
     Private mCambiandoDescuento As Boolean
 
-    Private mLoading As Boolean
+    Private ReadOnly mLoading As Boolean
     Private mIsNew As Boolean
 
 #End Region
@@ -97,12 +97,6 @@
             .PrecioUnitarioFinal = currencytextboxPrecioUnitarioFinal.DecimalValue
             .PrecioTotal = currencytextboxPrecioTotal.DecimalValue
         End With
-    End Sub
-
-    Private Sub EstablecerDescripcion()
-    End Sub
-
-    Private Sub EstablecerPrecioUnitario()
     End Sub
 
     Private Sub CalcularPrecioFinal()

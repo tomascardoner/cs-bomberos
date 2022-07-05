@@ -186,7 +186,7 @@
             Dim CausaActual As LicenciaCausa
             CausaActual = CType(comboboxCausa.SelectedItem, LicenciaCausa)
 
-            If Not CausaActual.CantidadDias Is Nothing Then
+            If CausaActual.CantidadDias IsNot Nothing Then
                 If DateDiff(DateInterval.Day, datetimepickerFechaDesde.Value, datetimepickerFechaHasta.Value) <> CausaActual.CantidadDias Then
                     If MsgBox(String.Format("La cantidad de días de la Licencia debe ser igual a {1}.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                         datetimepickerFechaHasta.Focus()
@@ -196,7 +196,7 @@
             End If
 
             ' Si corresponde, controlo la cantidad de días y veces anuales
-            If Not (CausaActual.CantidadDiasMaximoAnual Is Nothing And Not CausaActual.CantidadVecesMaximoAnual Is Nothing) Then
+            If Not (CausaActual.CantidadDiasMaximoAnual Is Nothing And CausaActual.CantidadVecesMaximoAnual IsNot Nothing) Then
                 Dim dictPersonaLicenciaAniosDias As New Dictionary(Of Integer, Short)
                 Dim dictPersonaLicenciaAniosVeces As New Dictionary(Of Integer, Byte)
 
@@ -220,20 +220,20 @@
                     CalcularDiasYVecesAnuales(PersonaLicenciaActual.FechaDesde, PersonaLicenciaActual.FechaHasta, dictPersonaLicenciaAniosDias, dictPersonaLicenciaAniosVeces)
                 Next
 
-                If Not CausaActual.CantidadDiasMaximoAnual Is Nothing Then
+                If CausaActual.CantidadDiasMaximoAnual IsNot Nothing Then
                     For Each AnioDias As KeyValuePair(Of Integer, Short) In dictPersonaLicenciaAniosDias
                         If AnioDias.Value > CausaActual.CantidadDiasMaximoAnual Then
-                            If MsgBox(String.Format("La cantidad de días excede al máximo anual para el tipo de Licencia.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                            If MsgBox($"La cantidad de días excede al máximo anual para el tipo de Licencia.{vbCrLf}{vbCrLf}¿Desea corregir las fechas?", CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                                 Exit Sub
                             End If
                         End If
                     Next
                 End If
 
-                If Not CausaActual.CantidadVecesMaximoAnual Is Nothing Then
+                If CausaActual.CantidadVecesMaximoAnual IsNot Nothing Then
                     For Each AnioDias As KeyValuePair(Of Integer, Byte) In dictPersonaLicenciaAniosVeces
                         If AnioDias.Value > CausaActual.CantidadVecesMaximoAnual Then
-                            If MsgBox(String.Format("La cantidad de veces excede al máximo anual para el tipo de Licencia.{0}{0}¿Desea corregir las fechas?", ControlChars.CrLf, CausaActual.CantidadDias), CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+                            If MsgBox($"La cantidad de veces excede al máximo anual para el tipo de Licencia.{vbCrLf}{vbCrLf}¿Desea corregir las fechas?", CType(MsgBoxStyle.YesNo + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                                 Exit Sub
                             End If
                         End If
@@ -295,7 +295,8 @@
 #End Region
 
 #Region "Extra stuff"
-    Private Sub CalcularDiasYVecesAnuales(ByVal FechaDesde As Date, ByVal FechaHasta As Date, ByRef dictPersonaLicenciaAniosDias As Dictionary(Of Integer, Short), ByRef dictPersonaLicenciaAniosVeces As Dictionary(Of Integer, Byte))
+
+    Private Shared Sub CalcularDiasYVecesAnuales(ByVal FechaDesde As Date, ByVal FechaHasta As Date, ByRef dictPersonaLicenciaAniosDias As Dictionary(Of Integer, Short), ByRef dictPersonaLicenciaAniosVeces As Dictionary(Of Integer, Byte))
         Select Case FechaDesde.Year - FechaHasta.Year
             Case 0
                 ' Ambas fechas son del mismo año
@@ -340,6 +341,7 @@
                 End If
         End Select
     End Sub
+
 #End Region
 
 End Class

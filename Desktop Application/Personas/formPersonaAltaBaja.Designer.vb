@@ -486,7 +486,7 @@ Partial Class formPersonaAltaBaja
         Me.MinimizeBox = False
         Me.Name = "formPersonaAltaBaja"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Alta-Baja de la Persona"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

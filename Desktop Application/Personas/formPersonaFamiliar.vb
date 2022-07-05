@@ -291,7 +291,7 @@
     End Sub
 
     Private Sub Parentesco_Cambio(sender As Object, e As EventArgs) Handles comboboxParentesco.SelectedIndexChanged
-        If Not comboboxParentesco.SelectedItem Is Nothing Then
+        If comboboxParentesco.SelectedItem IsNot Nothing Then
             textboxParentescoOtro.Visible = (CByte(comboboxParentesco.SelectedValue) = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
         End If
     End Sub
@@ -305,7 +305,7 @@
     End Sub
 
     Private Sub DocumentoTipo_Cambio(sender As Object, e As EventArgs) Handles comboboxDocumentoTipo.SelectedIndexChanged
-        If Not comboboxDocumentoTipo.SelectedItem Is Nothing Then
+        If comboboxDocumentoTipo.SelectedItem IsNot Nothing Then
             textboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11)
             maskedtextboxDocumentoNumero.Visible = (CByte(comboboxDocumentoTipo.SelectedValue) > 0 AndAlso Not textboxDocumentoNumero.Visible)
         End If
@@ -328,7 +328,7 @@
     End Sub
 
     Private Sub DomicilioLocalidad_Cambio(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
+        If comboboxDomicilioLocalidad.SelectedValue IsNot Nothing Then
             textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
