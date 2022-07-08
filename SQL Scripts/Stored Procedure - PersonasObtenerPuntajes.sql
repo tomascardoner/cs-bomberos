@@ -30,9 +30,9 @@ BEGIN
 	DECLARE @ResultadoFinal table (IDPersona int not null PRIMARY KEY, SiniestrosClaveVACantidad int, SiniestrosClaveVAPuntaje decimal(8,2), SiniestrosClaveSPCantidad int, SiniestrosClaveSPPuntaje decimal(8,2), SiniestrosClaveN100Cantidad int, SiniestrosClaveN100Puntaje decimal(8,2), SiniestrosClaveN50Cantidad int, SiniestrosClaveN50Puntaje decimal(8,2), SiniestrosClaveR100Cantidad int, SiniestrosClaveR100Puntaje decimal(8,2), SiniestrosClaveR50Cantidad int, SiniestrosClaveR50Puntaje decimal(8,2), AcademiasPCantidad int, AcademiasPPuntaje decimal(8,2), AcademiasFHCantidad int, AcademiasFHPuntaje decimal(8,2))
 
 	-- Declaraciones para los siniestros
-	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint = 1
-	DECLARE @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint = 10
-	DECLARE @IDSiniestroAsistenciaTipoEnComision tinyint = 9
+	DECLARE @IDSiniestroAsistenciaTipoPresente tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_PRESENTE_ID')
+	DECLARE @IDSiniestroAsistenciaTipoSalidaAnticipada tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID')
+	DECLARE @IDSiniestroAsistenciaTipoEnComision tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'SINIESTRO_ASISTENCIATIPO_ENCOMISION_ID')
 	DECLARE @SiniestrosPuntajes table (IDSiniestro int not null, IDSiniestroAsistenciaTipo tinyint not null, IDSiniestroAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDSiniestro, IDSiniestroAsistenciaTipo))
 	DECLARE @SiniestrosPorClave table (Clave char(2) not null PRIMARY KEY, Cantidad int not null, Puntaje decimal(8,2) not null)
 	DECLARE @SiniestrosPersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
@@ -40,8 +40,8 @@ BEGIN
 	DECLARE @SiniestrosPuntajeVA decimal(8,2), @SiniestrosPuntajeSP decimal(8,2), @SiniestrosPuntajeN decimal(8,2), @SiniestrosPuntajeR decimal(8,2)
 
 	-- Declaraciones para las academias
-	DECLARE @IDAcademiaAsistenciaTipoPresente tinyint = 1
-	DECLARE @IDAcademiaAsistenciaTipoFueraHora tinyint = 12
+	DECLARE @IDAcademiaAsistenciaTipoPresente tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_PRESENTE_ID')
+	DECLARE @IDAcademiaAsistenciaTipoFueraHora tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_FUERAHORA_ID')
 	DECLARE @AcademiasPuntajes table (IDAcademia int not null, IDAcademiaAsistenciaTipo tinyint not null, IDAcademiaAsistenciaTipoPuntaje tinyint null, Puntaje decimal(4,2) null, PRIMARY KEY (IDAcademia, IDAcademiaAsistenciaTipo))
 	DECLARE @AcademiasPersonasPuntajesPorClave table (IDPersona int not null, Clave char(2) not null, Cantidad int not null, Puntaje decimal(8,2) not null, PRIMARY KEY (IDPersona, Clave))
 	DECLARE @AcademiasCantidad int

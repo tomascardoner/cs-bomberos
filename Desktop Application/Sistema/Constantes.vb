@@ -56,6 +56,8 @@
     Friend Const PERSONA_ALTABAJA_TIPO_BAJA As String = "B"
 
     Friend Const AsistenciaMetodoManualId As Byte = 1
+    Friend Const AsistenciaMetodoHuellaDigitalId As Byte = 2
+    Friend Const AsistenciaMetodoCodigoNumericoId As Byte = 3
 
     Friend Const PersonaSancionEstadoEnProceso As String = "P"
     Friend Const PersonaSancionEstadoEnProcesoNombre As String = "En proceso"

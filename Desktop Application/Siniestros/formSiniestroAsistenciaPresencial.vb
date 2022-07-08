@@ -14,12 +14,7 @@
 
         InitializeFormAndControls()
 
-        CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), CType(Me, Form))
-        If Me.WindowState = FormWindowState.Minimized Then
-            Me.WindowState = FormWindowState.Normal
-        End If
-
-        Me.Show()
+        Me.ShowDialog(ParentForm)
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -38,6 +33,26 @@
         End If
         mSiniestroActual = Nothing
         Me.Dispose()
+    End Sub
+
+#End Region
+
+#Region "Controls behavior"
+
+    Private Sub LeerHuellasChanged(sender As Object, e As EventArgs) Handles chechkboxLeerHuellas.CheckedChanged
+        If chechkboxLeerHuellas.Checked Then
+            chechkboxLeerHuellas.Image = My.Resources.ImageDetener64
+            chechkboxLeerHuellas.Text = "Detener lectura de huellas digitales"
+        Else
+            chechkboxLeerHuellas.Image = My.Resources.ImageIniciar64
+            chechkboxLeerHuellas.Text = "Iniciar lectura de huellas digitales"
+        End If
+    End Sub
+
+    Private Sub buttonAsistirConPin_Click(sender As Object, e As EventArgs) Handles buttonAsistirConPin.Click
+        Dim fmapcp = New formSiniestroAsistenciaPresencialConPin()
+        fmapcp.LoadAndShow(Me, mSiniestroActual.IDSiniestro)
+        fmapcp.Dispose()
     End Sub
 
 #End Region

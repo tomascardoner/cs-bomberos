@@ -940,6 +940,12 @@
     <Compile Include="Siniestros\formSiniestroAsistenciaPresencial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencialConPin.Designer.vb">
+      <DependentUpon>formSiniestroAsistenciaPresencialConPin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencialConPin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </Compile>
@@ -1678,6 +1684,9 @@
     <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencial.resx">
       <DependentUpon>formSiniestroAsistenciaPresencial.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencialConPin.resx">
+      <DependentUpon>formSiniestroAsistenciaPresencialConPin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>
     </EmbeddedResource>
@@ -2013,6 +2022,9 @@
     <Content Include="Resources\Acciones\AsistenciaManual32.png" />
     <Content Include="Resources\Acciones\AsistenciaPresencial32.png" />
     <Content Include="Resources\Acciones\Buscar16.png" />
+    <Content Include="Resources\Acciones\Iniciar64.png" />
+    <Content Include="Resources\Acciones\Detener64.png" />
+    <Content Include="Resources\Acciones\PinCode64.png" />
     <Content Include="Resources\Aplicacion\InicioSesion48.png" />
     <Content Include="Resources\Externos\ImageAfipChico.png" />
     <Content Include="Resources\Framework\DatabaseLoginInfo48.png" />

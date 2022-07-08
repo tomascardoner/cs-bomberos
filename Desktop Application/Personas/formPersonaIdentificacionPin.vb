@@ -73,13 +73,13 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If maskedtextboxIdentificacionPin.TextLength > 0 Then
-            If maskedtextboxIdentificacionPin.TextLength < 4 Then
+        If maskedtextboxIdentificacionPin.Text.Length > 0 Then
+            If maskedtextboxIdentificacionPin.Text.Length < 4 Then
                 MessageBox.Show("Debe especificar los 4 dígitos del PIN.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 maskedtextboxIdentificacionPin.Focus()
                 Return False
             End If
-            If maskedtextboxIdentificacionPinConfirma.TextLength < 4 Then
+            If maskedtextboxIdentificacionPinConfirma.Text.Length < 4 Then
                 MessageBox.Show("Debe especificar los 4 dígitos de la confirmación del PIN.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 maskedtextboxIdentificacionPinConfirma.Focus()
                 Return False
