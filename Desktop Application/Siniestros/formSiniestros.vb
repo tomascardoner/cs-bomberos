@@ -17,6 +17,8 @@
         Public Property IDSiniestroClave As Byte
         Public Property ClaveNombre As String
         Public Property Fecha As Date
+        Public Property HoraSalida As TimeSpan?
+        Public Property HoraFin As TimeSpan?
         Public Property Anulado As Boolean
     End Class
 
@@ -192,7 +194,7 @@
                                    Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
                                    Join sc In mdbContext.SiniestroClave On s.IDSiniestroClave Equals sc.IDSiniestroClave
                                    Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
-                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .Anulado = s.Anulado}).ToList
+                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .HoraSalida = s.HoraSalida, .HoraFin = s.HoraFin, .Anulado = s.Anulado}).ToList
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Siniestros.")
@@ -407,104 +409,117 @@
 #Region "Main Toolbar"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.SINIESTRO_AGREGAR) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formSiniestro.LoadAndShow(True, Me, 0)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_AGREGAR) Then
+            Return
         End If
+
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formSiniestro.LoadAndShow(True, Me, 0)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
+        Dim siniestroActual As Siniestro
+        Dim Mensaje As String
+
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.SINIESTRO_ELIMINAR) Then
-
-                Me.Cursor = Cursors.WaitCursor
-
-                Dim siniestroActual As Siniestro = mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
-                Dim Mensaje As String
-
-                Mensaje = $"Se eliminará el Siniestro seleccionado.{vbCrLf}{vbCrLf}Número: {siniestroActual.NumeroCompleto}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
-                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-
-                    Try
-                        mdbContext.Siniestro.Remove(siniestroActual)
-                        mdbContext.SaveChanges()
-
-                    Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                        End Select
-                        Me.Cursor = Cursors.Default
-                        Exit Sub
-
-                    Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
-                    End Try
-
-                    RefreshData()
-                End If
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_ELIMINAR) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        siniestroActual = mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        Me.Cursor = Cursors.Default
+        Mensaje = $"Se eliminará el Siniestro seleccionado.{vbCrLf}{vbCrLf}Número: {siniestroActual.NumeroCompleto}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
+            Return
+        End If
+
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            mdbContext.Siniestro.Remove(siniestroActual)
+            mdbContext.SaveChanges()
+
+        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                    MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            End Select
+            Me.Cursor = Cursors.Default
+            Exit Sub
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
+        End Try
+
+        RefreshData()
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub AsistenciaPresencial(sender As Object, e As EventArgs) Handles buttonAsistenciaPresencial.Click
+        Dim rowData As GridRowData
+
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
             Return
         End If
-
-        If Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_PRESENCIAL) Then
-            Me.Cursor = Cursors.WaitCursor
-            datagridviewMain.Enabled = False
-            formSiniestroAsistenciaPresencial.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
-            datagridviewMain.Enabled = True
-            Me.Cursor = Cursors.Default
+        rowData = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
+        If rowData.Anulado Then
+            MessageBox.Show("El Siniestro está anulado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
         End If
+        If rowData.HoraSalida.HasValue AndAlso rowData.HoraFin.HasValue Then
+            MessageBox.Show("El Siniestro está finalizado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_PRESENCIAL) Then
+            Return
+        End If
+
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            formSiniestroAsistenciaPresencial.LoadAndShow(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+            Me.Cursor = Cursors.Default
+        Catch ex As Exception
+            Me.Cursor = Cursors.Default
+            MessageBox.Show("No se pudo crear una instancia del componente de huellas digitales. Probablemente se deba a que no están instaladas las librerías necesarias.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub AsistenciaManual(sender As Object, e As EventArgs) Handles buttonAsistenciaManual.Click
@@ -512,14 +527,18 @@
             MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
             Return
         End If
-
-        If Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_MANUAL) Then
-            Me.Cursor = Cursors.WaitCursor
-            datagridviewMain.Enabled = False
-            formSiniestroAsistenciaManual.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
-            datagridviewMain.Enabled = True
-            Me.Cursor = Cursors.Default
+        If CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Anulado Then
+            MessageBox.Show("El Siniestro está anulado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
         End If
+
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_MANUAL) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistenciaManual.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

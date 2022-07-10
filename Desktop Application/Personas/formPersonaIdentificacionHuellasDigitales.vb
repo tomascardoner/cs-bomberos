@@ -16,9 +16,6 @@
         Me.ShowDialog(parentForm)
     End Sub
 
-    Private Sub Me_Load(sender As Object, e As EventArgs) Handles Me.Load
-    End Sub
-
 #End Region
 
 #Region "Load and Set Data"

@@ -2,7 +2,7 @@
 
 #Region "Declarations"
 
-    Private mdbContext As New CSBomberosContext(True)
+    Private mdbContext As CSBomberosContext
     Private mSiniestro As Siniestro
     Private mPersona As Persona
 
@@ -10,17 +10,11 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef idSiniestro As Integer)
-        mSiniestro = mdbContext.Siniestro.Find(idSiniestro)
+    Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef dbContext As CSBomberosContext, ByRef siniestro As Siniestro)
+        mdbContext = dbContext
+        mSiniestro = siniestro
 
         Me.ShowDialog(parentForm)
-    End Sub
-
-    Private Sub formSiniestroAsistenciaPresencialConPin_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        If mdbContext IsNot Nothing Then
-            mdbContext.Dispose()
-            mdbContext = Nothing
-        End If
     End Sub
 
 #End Region
@@ -129,6 +123,7 @@
 
         Try
             mdbContext.SaveChanges()
+            Return True
 
         Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
             Me.Cursor = Cursors.Default
@@ -148,7 +143,6 @@
             Return False
         End Try
 
-        Return True
     End Function
 
 #End Region

@@ -744,9 +744,7 @@ Public Class formPersona
             End If
             formPersonaIdentificacionHuellasDigitales.Close()
             formPersonaIdentificacionHuellasDigitales = Nothing
-
         Catch ex As Exception
-
             MessageBox.Show("No se pudo crear una instancia del componente de huellas digitales. Probablemente se deba a que no están instaladas las librerías necesarias.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub

@@ -118,6 +118,10 @@
       <HintPath>..\..\..\..\..\..\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPShrNET.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="DPFPVerNET, Version=1.6.1.0, Culture=neutral, PublicKeyToken=4de0a9c4dcc83984, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files\DigitalPersona\One Touch SDK\.NET\Bin\DPFPVerNET.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -2022,8 +2026,6 @@
     <Content Include="Resources\Acciones\AsistenciaManual32.png" />
     <Content Include="Resources\Acciones\AsistenciaPresencial32.png" />
     <Content Include="Resources\Acciones\Buscar16.png" />
-    <Content Include="Resources\Acciones\Iniciar64.png" />
-    <Content Include="Resources\Acciones\Detener64.png" />
     <Content Include="Resources\Acciones\PinCode64.png" />
     <Content Include="Resources\Aplicacion\InicioSesion48.png" />
     <Content Include="Resources\Externos\ImageAfipChico.png" />
