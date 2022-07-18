@@ -1,3 +1,7 @@
+2022-07-15
+	- Al guardar una nueva Academia o un nuevo Siniestro, se agregan las asistencias de las personas con licencias y sanciones
+
+
 2022-02-08
 	- Se agregaron los permisos de Academias
 	- Se agregaron las facturas de compra

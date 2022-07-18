@@ -128,14 +128,6 @@ Partial Public Class CSBomberosContext
     Public Overridable Property SancionMotivo() As DbSet(Of SancionMotivo)
     Public Overridable Property PersonaHuellaDigital() As DbSet(Of PersonaHuellaDigital)
 
-    Public Overridable Function AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion(iDAcademia As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
-        Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
-
-        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion", iDAcademiaParameter, iDUsuarioParameter)
-    End Function
-
     Public Overridable Function AcademiaObtenerPersonasParaAsistencia(iDAcademia As Nullable(Of Integer)) As ObjectResult(Of AcademiaObtenerPersonasParaAsistencia_Result)
         Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
 
@@ -146,18 +138,26 @@ Partial Public Class CSBomberosContext
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerConEstado_Result)("PersonasObtenerConEstado")
     End Function
 
+    Public Overridable Function SiniestroObtenerPersonasParaAsistencia(iDSiniestro As Nullable(Of Integer)) As ObjectResult(Of SiniestroObtenerPersonasParaAsistencia_Result)
+        Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of SiniestroObtenerPersonasParaAsistencia_Result)("SiniestroObtenerPersonasParaAsistencia", iDSiniestroParameter)
+    End Function
+
+    Public Overridable Function AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion(iDAcademia As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
+        Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
+
+        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion", iDAcademiaParameter, iDUsuarioParameter)
+    End Function
+
     Public Overridable Function SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion(iDSiniestro As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
         Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
 
         Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion", iDSiniestroParameter, iDUsuarioParameter)
-    End Function
-
-    Public Overridable Function SiniestroObtenerPersonasParaAsistencia(iDSiniestro As Nullable(Of Integer)) As ObjectResult(Of SiniestroObtenerPersonasParaAsistencia_Result)
-        Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of SiniestroObtenerPersonasParaAsistencia_Result)("SiniestroObtenerPersonasParaAsistencia", iDSiniestroParameter)
     End Function
 
 End Class

@@ -22,6 +22,9 @@ CREATE PROCEDURE AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion
 
 BEGIN
 
+	-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
+	SET NOCOUNT ON;
+
 	DECLARE @IDAcademiaAsistenciaTipoLicencia tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_LICENCIA_ID')
 	DECLARE @IDAcademiaAsistenciaTipoSuspension tinyint = (SELECT NumeroEntero FROM Parametro WHERE IDParametro = 'ACADEMIA_ASISTENCIATIPO_SUSPENSION_ID')
 
@@ -48,7 +51,7 @@ BEGIN
 			FROM PersonaLicencia AS pl
 				INNER JOIN @Personas AS p ON pl.IDPersona = p.IDPersona
 			WHERE pl.FechaDesde <= @Fecha
-				AND ((pl.FechaInterrupcion IS NOT NULL AND pl.FechaInterrupcion >= @Fecha) OR pl.FechaHasta >= @Fecha)
+				AND ((pl.FechaInterrupcion IS NOT NULL AND pl.FechaInterrupcion >= @Fecha) OR (pl.FechaInterrupcion IS NULL AND pl.FechaHasta >= @Fecha))
 				AND p.IDPersona NOT IN (SELECT IDPersona FROM AcademiaAsistencia WHERE IDAcademia = @IDAcademia)
 
 	-- Inserto las asistencias de las personas con Licencias especiales

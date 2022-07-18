@@ -7607,20 +7607,20 @@
             <End Role="Area" EntitySet="Area" />
             <End Role="Comprobante" EntitySet="Comprobante" />
           </AssociationSet>
+          <FunctionImport Name="AcademiaObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.AcademiaObtenerPersonasParaAsistencia_Result)">
+          <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PersonasObtenerConEstado" ReturnType="Collection(CSBomberosModel.PersonasObtenerConEstado_Result)" />
+          <FunctionImport Name="SiniestroObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.SiniestroObtenerPersonasParaAsistencia_Result)">
+          <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion">
             <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
             <Parameter Name="IDUsuario" Mode="In" Type="Int16" />
           </FunctionImport>
-          <FunctionImport Name="AcademiaObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.AcademiaObtenerPersonasParaAsistencia_Result)">
-            <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="PersonasObtenerConEstado" ReturnType="Collection(CSBomberosModel.PersonasObtenerConEstado_Result)" />
           <FunctionImport Name="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion">
             <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
             <Parameter Name="IDUsuario" Mode="In" Type="Int16" />
-          </FunctionImport>
-          <FunctionImport Name="SiniestroObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.SiniestroObtenerPersonasParaAsistencia_Result)">
-            <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -15033,7 +15033,6 @@
               <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" />
           <FunctionImportMapping FunctionImportName="AcademiaObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.AcademiaObtenerPersonasParaAsistencia">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CSBomberosModel.AcademiaObtenerPersonasParaAsistencia_Result">
@@ -15057,7 +15056,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" />
           <FunctionImportMapping FunctionImportName="SiniestroObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.SiniestroObtenerPersonasParaAsistencia">
             <ResultMapping>
               <ComplexTypeMapping TypeName="CSBomberosModel.SiniestroObtenerPersonasParaAsistencia_Result">
@@ -15066,6 +15064,8 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" />
+          <FunctionImportMapping FunctionImportName="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
