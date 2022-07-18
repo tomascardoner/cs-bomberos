@@ -187,16 +187,16 @@
 
 #Region "Main Toolbar"
 
-    Private Sub buttonEditar_Click() Handles buttonEditar.Click
+    Private Sub Editar() Handles buttonEditar.Click
         If Not Permisos.VerificarPermiso(Permisos.ACADEMIA_EDITAR) Then
-            Exit Sub
+            Return
         End If
 
         mEditMode = True
         ChangeMode()
     End Sub
 
-    Private Sub buttonCerrarOCancelar_Click() Handles buttonCerrar.Click, buttonCancelar.Click
+    Private Sub CerrarOCancelar() Handles buttonCerrar.Click, buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
             If MsgBox(String.Format("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
@@ -206,18 +206,9 @@
         End If
     End Sub
 
-    Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If comboboxCuartel.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxCuartel.Focus()
-            Exit Sub
-        End If
-        If comboboxAcademiaTipo.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = tabpageGeneral
-            MsgBox("Debe especificar el Tipo de Academia.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAcademiaTipo.Focus()
-            Exit Sub
+    Private Sub Guardar() Handles buttonGuardar.Click
+        If Not VerificarDatos() Then
+            Return
         End If
 
         ' Generar el ID nuevo
@@ -269,6 +260,15 @@
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
                 Exit Sub
+            End Try
+        End If
+
+        If mIsNew Then
+            Try
+                mdbContext.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion(mAcademiaActual.IDAcademia, pUsuario.IDUsuario)
+            Catch ex As Exception
+                Me.Cursor = Cursors.Default
+                CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al agregar las asistencias de Licencias y Sanciones a la Academia.")
             End Try
         End If
 
@@ -389,6 +389,27 @@
             Me.Cursor = Cursors.Default
         End If
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If comboboxCuartel.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxCuartel.Focus()
+            Return False
+        End If
+        If comboboxAcademiaTipo.SelectedValue Is Nothing Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe especificar el Tipo de Academia.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxAcademiaTipo.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

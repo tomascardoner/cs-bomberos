@@ -10,9 +10,9 @@
         Dim personaSeleccionada As PersonaSeleccionada
 
         If fps.ShowDialog(parent) = Windows.Forms.DialogResult.OK Then
-            Dim rowSelected As uspPersonasObtenerConEstado_Result
+            Dim rowSelected As PersonasObtenerConEstado_Result
 
-            rowSelected = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
+            rowSelected = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result)
             personaSeleccionada = New PersonaSeleccionada() With {.IDPersona = rowSelected.IDPersona, .ApellidoNombre = rowSelected.ApellidoNombre}
         End If
         fps.Dispose()

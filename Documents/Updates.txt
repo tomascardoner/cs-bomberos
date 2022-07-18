@@ -1,3 +1,17 @@
+2022-07-15
+	- Ejecutar stored procedures:
+		- SiniestroObtenerPersonasParaAsistencia
+		- SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion
+		- AcademiaObtenerPersonasParaAsistencia
+		- AcademiaObtenerPersonasParaAsistenciaConLicenciaOSancion
+		- PersonasObtenerConEstado
+	- Ejecutar script de update
+
+
+2022-07-08
+	- Ejecutar script de update
+	- Actualizar stored procedure de puntajes
+
 2022-06-28
 	- Tabla Comprobante:
 		- Agregar el campo IDArea smallint null antes de Descripcion

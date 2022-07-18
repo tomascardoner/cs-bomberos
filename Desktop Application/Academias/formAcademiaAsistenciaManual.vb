@@ -1,4 +1,4 @@
-﻿Public Class formAcademiaAsistenciaMultiple
+﻿Public Class formAcademiaAsistenciaManual
 
 #Region "Declarations"
 
@@ -96,14 +96,14 @@
     End Function
 
     Friend Function CreateRows() As Boolean
-        Dim listPersonas As List(Of uspAcademiaObtenerPersonasParaAsistencia_Result)
+        Dim listPersonas As List(Of AcademiaObtenerPersonasParaAsistencia_Result)
 
         datagridviewMain.Visible = False
 
         Try
-            listPersonas = mdbContext.uspAcademiaObtenerPersonasParaAsistencia(mAcademiaActual.IDAcademia, mAcademiaActual.Fecha, mAcademiaActual.IDCuartel).ToList()
+            listPersonas = mdbContext.AcademiaObtenerPersonasParaAsistencia(mAcademiaActual.IDAcademia).ToList()
 
-            For Each persona As uspAcademiaObtenerPersonasParaAsistencia_Result In listPersonas
+            For Each persona As AcademiaObtenerPersonasParaAsistencia_Result In listPersonas
                 Dim newRowId As Integer
                 Dim newRow As New DataGridViewRow()
 

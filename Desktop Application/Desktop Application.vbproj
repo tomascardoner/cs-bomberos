@@ -413,6 +413,9 @@
     <Compile Include="AcademiaAsistenciaTipoPuntaje.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="AcademiaObtenerPersonasParaAsistencia_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Academias\formAcademia.designer.vb">
       <DependentUpon>formAcademia.vb</DependentUpon>
     </Compile>
@@ -425,10 +428,10 @@
     <Compile Include="Academias\formAcademiaAsistencia.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Academias\formAcademiaAsistenciaMultiple.Designer.vb">
-      <DependentUpon>formAcademiaAsistenciaMultiple.vb</DependentUpon>
+    <Compile Include="Academias\formAcademiaAsistenciaManual.Designer.vb">
+      <DependentUpon>formAcademiaAsistenciaManual.vb</DependentUpon>
     </Compile>
-    <Compile Include="Academias\formAcademiaAsistenciaMultiple.vb">
+    <Compile Include="Academias\formAcademiaAsistenciaManual.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Academias\formAcademias.Designer.vb">
@@ -746,6 +749,9 @@
     <Compile Include="PersonaSancion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonasObtenerConEstado_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Personas\formPersonaIdentificacionHuellasDigitales.Designer.vb">
       <DependentUpon>formPersonaIdentificacionHuellasDigitales.vb</DependentUpon>
     </Compile>
@@ -915,6 +921,9 @@
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="SiniestroClave.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SiniestroObtenerPersonasParaAsistencia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="SiniestroRubro.vb">
@@ -1430,15 +1439,6 @@
     <Compile Include="UnidadUso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="uspAcademiaObtenerPersonasParaAsistencia_Result.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspPersonasObtenerConEstado_Result.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="uspSiniestroObtenerPersonasParaAsistencia_Result.vb">
-      <DependentUpon>CSBomberos.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -1618,8 +1618,8 @@
     <EmbeddedResource Include="Academias\formAcademiaAsistencia.resx">
       <DependentUpon>formAcademiaAsistencia.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Academias\formAcademiaAsistenciaMultiple.resx">
-      <DependentUpon>formAcademiaAsistenciaMultiple.vb</DependentUpon>
+    <EmbeddedResource Include="Academias\formAcademiaAsistenciaManual.resx">
+      <DependentUpon>formAcademiaAsistenciaManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Academias\formAcademias.resx">
       <DependentUpon>formAcademias.vb</DependentUpon>

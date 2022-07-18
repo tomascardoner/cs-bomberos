@@ -7,24 +7,28 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 -- =============================================
--- Author:		Tomás A. Cardoner
+-- Author: Tomás A. Cardoner
 -- Creation date: 2021-11-23
--- Description:	Devuelve las personas activas para asistir a un siniestro
+-- Modifications: 2022-07-16 - Se eliminaron los parámetros Fecha y IDCuartel. Se cambió el nombre.
+-- Description:	Devuelve las personas activas para asistir a un siniestro.
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspSiniestroObtenerPersonasParaAsistencia') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE uspSiniestroObtenerPersonasParaAsistencia
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'SiniestroObtenerPersonasParaAsistencia') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE SiniestroObtenerPersonasParaAsistencia
 GO
 
-CREATE PROCEDURE uspSiniestroObtenerPersonasParaAsistencia
-	@IDSiniestro int,
-	@Fecha date,
-	@IDCuartel tinyint
+CREATE PROCEDURE SiniestroObtenerPersonasParaAsistencia
+	@IDSiniestro int
 	AS
 
 	BEGIN
 
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
+
+		DECLARE @Fecha date
+		DECLARE @IDCuartel tinyint
+
+		SELECT @Fecha = Fecha, @IDCuartel = IDCuartel FROM Siniestro WHERE IDSiniestro = @IDSiniestro
 
 		-- Personas activas al momento del siniestro
 		(SELECT p.IDPersona, p.ApellidoNombre

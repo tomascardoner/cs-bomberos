@@ -2,8 +2,8 @@
 
 #Region "Declarations"
 
-    Private listPersonasBase As List(Of uspPersonasObtenerConEstado_Result)
-    Private listPersonasFiltradaYOrdenada As List(Of uspPersonasObtenerConEstado_Result)
+    Private listPersonasBase As List(Of PersonasObtenerConEstado_Result)
+    Private listPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstado_Result)
 
     Private ReadOnly SkipFilterData As Boolean
     Private BusquedaAplicada As Boolean
@@ -65,7 +65,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                listPersonasBase = dbContext.uspPersonasObtenerConEstado().ToList
+                listPersonasBase = dbContext.PersonasObtenerConEstado().ToList
             End Using
 
         Catch ex As Exception
@@ -163,7 +163,7 @@
         End If
     End Sub
 
-    Private Sub textboxBuscar_GotFocus() Handles textboxBuscar.GotFocus
+    Private Sub textboxBuscar_GotFocus(sender As Object, e As EventArgs) Handles textboxBuscar.GotFocus
         textboxBuscar.SelectAll()
     End Sub
 
@@ -180,7 +180,7 @@
         End If
     End Sub
 
-    Private Sub buttonBuscarBorrar_Click() Handles buttonBuscarBorrar.Click
+    Private Sub buttonBuscarBorrar_Click(sender As Object, e As EventArgs) Handles buttonBuscarBorrar.Click
         If BusquedaAplicada Then
             textboxBuscar.Clear()
             BusquedaAplicada = False
@@ -229,43 +229,27 @@
 
 #Region "Main Toolbar"
 
-    Private Sub Seleccionar() Handles datagridviewMain.DoubleClick, buttonSeleccionar.Click
-        If Multiseleccion And datagridviewMain.SelectedRows.Count = 0 Then
+    Private Sub Seleccionar(sender As Object, e As EventArgs) Handles datagridviewMain.DoubleClick, buttonSeleccionar.Click
+        If MultiSeleccion And datagridviewMain.SelectedRows.Count = 0 Then
             MsgBox("No se seleccionó ninguna Persona.", vbInformation, My.Application.Info.Title)
-        ElseIf Multiseleccion = False And datagridviewMain.CurrentRow Is Nothing Then
+        ElseIf MultiSeleccion = False And datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para seleccionar.", vbInformation, My.Application.Info.Title)
         Else
             Me.DialogResult = Windows.Forms.DialogResult.OK
         End If
     End Sub
 
-    Private Sub Cancelar() Handles buttonCancelar.Click
+    Private Sub Cancelar(sender As Object, e As EventArgs) Handles buttonCancelar.Click
         Me.DialogResult = Windows.Forms.DialogResult.Cancel
     End Sub
 
     Private Sub datagridviewMain_KeyDown(sender As Object, e As KeyEventArgs) Handles datagridviewMain.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Seleccionar()
+            buttonSeleccionar.PerformClick()
             e.SuppressKeyPress = True
         ElseIf e.KeyCode = Keys.Escape Then
-            Cancelar()
+            buttonCancelar.PerformClick()
         End If
-    End Sub
-
-    Private Sub textboxBuscar_GotFocus(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub buttonBuscarBorrar_Click(sender As Object, e As EventArgs)
-
-    End Sub
-
-    Private Sub Seleccionar(sender As Object, e As EventArgs) Handles datagridviewMain.DoubleClick
-
-    End Sub
-
-    Private Sub Cancelar(sender As Object, e As EventArgs)
-
     End Sub
 
 #End Region

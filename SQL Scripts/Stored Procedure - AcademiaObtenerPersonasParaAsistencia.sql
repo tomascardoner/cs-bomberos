@@ -7,24 +7,28 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 -- =============================================
--- Author:		Tomás A. Cardoner
+-- Author: Tomás A. Cardoner
 -- Creation date: 2021-11-23
--- Description:	Devuelve las personas activas para asistir a una academia
+-- Modifications: 2022-07-16 - Se eliminaron los parámetros Fecha y IDCuartel. Se cambió el nombre.
+-- Description:	Devuelve las personas activas para asistir a una academia.
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'uspAcademiaObtenerPersonasParaAsistencia') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE uspAcademiaObtenerPersonasParaAsistencia
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'AcademiaObtenerPersonasParaAsistencia') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE AcademiaObtenerPersonasParaAsistencia
 GO
 
-CREATE PROCEDURE uspAcademiaObtenerPersonasParaAsistencia
-	@IDAcademia int,
-	@Fecha date,
-	@IDCuartel tinyint
+CREATE PROCEDURE AcademiaObtenerPersonasParaAsistencia
+	@IDAcademia int
 	AS
 
 	BEGIN
 
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
+
+		DECLARE @Fecha date
+		DECLARE @IDCuartel tinyint
+
+		SELECT @Fecha = Fecha, @IDCuartel = IDCuartel FROM Academia WHERE IDAcademia = @IDAcademia
 
 		-- Personas activas al momento de la academia
 		(SELECT p.IDPersona, p.ApellidoNombre

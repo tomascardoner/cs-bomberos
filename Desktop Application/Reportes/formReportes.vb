@@ -186,12 +186,12 @@
                         Const IDPersonaDelimiter As String = "@"
                         Const PersonaNombreDelimiter As String = " - "
 
-                        Dim PersonaSeleccionada As uspPersonasObtenerConEstado_Result
-                        Dim Valores As String = ""
-                        Dim ValorParaMostrar As String = ""
+                        Dim PersonaSeleccionada As PersonasObtenerConEstado_Result
+                        Dim Valores As String = String.Empty
+                        Dim ValorParaMostrar As String = String.Empty
 
                         For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
-                            PersonaSeleccionada = CType(dataRow.DataBoundItem, uspPersonasObtenerConEstado_Result)
+                            PersonaSeleccionada = CType(dataRow.DataBoundItem, PersonasObtenerConEstado_Result)
                             Valores = (PersonaSeleccionada.IDPersona & IDPersonaDelimiter & Valores)
                             ValorParaMostrar = (PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre & ValorParaMostrar)
                         Next

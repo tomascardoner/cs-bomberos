@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formSiniestro
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formSiniestro
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
@@ -116,7 +116,7 @@ Partial Class formSiniestro
         labelHoraSalida.Location = New System.Drawing.Point(6, 205)
         labelHoraSalida.Name = "labelHoraSalida"
         labelHoraSalida.Size = New System.Drawing.Size(78, 13)
-        labelHoraSalida.TabIndex = 17
+        labelHoraSalida.TabIndex = 18
         labelHoraSalida.Text = "Hora de salida:"
         '
         'labelCuartel
@@ -134,7 +134,7 @@ Partial Class formSiniestro
         labelHoraFin.Location = New System.Drawing.Point(6, 231)
         labelHoraFin.Name = "labelHoraFin"
         labelHoraFin.Size = New System.Drawing.Size(62, 13)
-        labelHoraFin.TabIndex = 19
+        labelHoraFin.TabIndex = 20
         labelHoraFin.Text = "Hora de fin:"
         '
         'labelNumero
@@ -152,7 +152,7 @@ Partial Class formSiniestro
         Me.labelFecha.Location = New System.Drawing.Point(6, 71)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 7
+        Me.labelFecha.TabIndex = 8
         Me.labelFecha.Text = "Fecha:"
         '
         'buttonGuardar
@@ -223,7 +223,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro.Location = New System.Drawing.Point(96, 94)
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
         Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroRubro.TabIndex = 10
+        Me.comboboxSiniestroRubro.TabIndex = 11
         '
         'tabcontrolMain
         '
@@ -310,7 +310,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowCheckBox = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraFin.TabIndex = 20
+        Me.datetimepickerHoraFin.TabIndex = 21
         '
         'labelClave
         '
@@ -318,7 +318,7 @@ Partial Class formSiniestro
         Me.labelClave.Location = New System.Drawing.Point(6, 177)
         Me.labelClave.Name = "labelClave"
         Me.labelClave.Size = New System.Drawing.Size(37, 13)
-        Me.labelClave.TabIndex = 15
+        Me.labelClave.TabIndex = 16
         Me.labelClave.Text = "Clave:"
         '
         'comboboxClave
@@ -330,7 +330,7 @@ Partial Class formSiniestro
         Me.comboboxClave.Location = New System.Drawing.Point(96, 174)
         Me.comboboxClave.Name = "comboboxClave"
         Me.comboboxClave.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxClave.TabIndex = 16
+        Me.comboboxClave.TabIndex = 17
         '
         'labelSiniestroTipoOtro
         '
@@ -338,7 +338,7 @@ Partial Class formSiniestro
         Me.labelSiniestroTipoOtro.Location = New System.Drawing.Point(6, 151)
         Me.labelSiniestroTipoOtro.Name = "labelSiniestroTipoOtro"
         Me.labelSiniestroTipoOtro.Size = New System.Drawing.Size(30, 13)
-        Me.labelSiniestroTipoOtro.TabIndex = 13
+        Me.labelSiniestroTipoOtro.TabIndex = 14
         Me.labelSiniestroTipoOtro.Text = "Otro:"
         Me.labelSiniestroTipoOtro.Visible = False
         '
@@ -348,7 +348,7 @@ Partial Class formSiniestro
         Me.textboxSiniestroTipoOtro.MaxLength = 50
         Me.textboxSiniestroTipoOtro.Name = "textboxSiniestroTipoOtro"
         Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(267, 20)
-        Me.textboxSiniestroTipoOtro.TabIndex = 14
+        Me.textboxSiniestroTipoOtro.TabIndex = 15
         Me.textboxSiniestroTipoOtro.Visible = False
         '
         'labelSiniestroTipo
@@ -357,7 +357,7 @@ Partial Class formSiniestro
         Me.labelSiniestroTipo.Location = New System.Drawing.Point(6, 124)
         Me.labelSiniestroTipo.Name = "labelSiniestroTipo"
         Me.labelSiniestroTipo.Size = New System.Drawing.Size(31, 13)
-        Me.labelSiniestroTipo.TabIndex = 11
+        Me.labelSiniestroTipo.TabIndex = 12
         Me.labelSiniestroTipo.Text = "Tipo:"
         '
         'comboboxSiniestroTipo
@@ -369,7 +369,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroTipo.Location = New System.Drawing.Point(96, 121)
         Me.comboboxSiniestroTipo.Name = "comboboxSiniestroTipo"
         Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroTipo.TabIndex = 12
+        Me.comboboxSiniestroTipo.TabIndex = 13
         '
         'buttonCodigoSiguiente
         '
@@ -399,7 +399,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraSalida.Name = "datetimepickerHoraSalida"
         Me.datetimepickerHoraSalida.ShowCheckBox = True
         Me.datetimepickerHoraSalida.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraSalida.TabIndex = 18
+        Me.datetimepickerHoraSalida.TabIndex = 19
         '
         'labelSiniestroRubro
         '
@@ -407,7 +407,7 @@ Partial Class formSiniestro
         Me.labelSiniestroRubro.Location = New System.Drawing.Point(6, 97)
         Me.labelSiniestroRubro.Name = "labelSiniestroRubro"
         Me.labelSiniestroRubro.Size = New System.Drawing.Size(39, 13)
-        Me.labelSiniestroRubro.TabIndex = 9
+        Me.labelSiniestroRubro.TabIndex = 10
         Me.labelSiniestroRubro.Text = "Rubro:"
         '
         'datetimepickerFecha
@@ -418,7 +418,7 @@ Partial Class formSiniestro
         Me.datetimepickerFecha.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(113, 20)
-        Me.datetimepickerFecha.TabIndex = 8
+        Me.datetimepickerFecha.TabIndex = 9
         '
         'tabpageAsistencias
         '

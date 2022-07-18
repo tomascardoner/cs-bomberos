@@ -2,8 +2,8 @@
 
 #Region "Declarations"
 
-    Private mlistPersonasBase As List(Of uspPersonasObtenerConEstado_Result)
-    Private mlistPersonasFiltradaYOrdenada As List(Of uspPersonasObtenerConEstado_Result)
+    Private mlistPersonasBase As List(Of PersonasObtenerConEstado_Result)
+    Private mlistPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstado_Result)
 
     Private mSkipFilterData As Boolean
     Private mBusquedaAplicada As Boolean
@@ -53,7 +53,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistPersonasBase = dbContext.uspPersonasObtenerConEstado().ToList
+                mlistPersonasBase = dbContext.PersonasObtenerConEstado().ToList
             End Using
 
         Catch ex As Exception
@@ -68,7 +68,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona
+                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona
             End If
         End If
 
@@ -76,7 +76,7 @@
 
         If PositionIDPersona <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona = PositionIDPersona Then
+                If CType(CurrentRowChecked.DataBoundItem, PersonasObtenerConEstado_Result).IDPersona = PositionIDPersona Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnMatriculaNumero.Name)
                     Exit For
                 End If
@@ -259,122 +259,106 @@
 
 #Region "Main Toolbar"
 
-    Private Sub Agregar_Click() Handles buttonAgregar.Click
-        If Permisos.VerificarPermiso(Permisos.Persona_AGREGAR) Then
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formPersona.LoadAndShow(True, Me, 0)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+    Private Sub Agregar() Handles buttonAgregar.Click
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_AGREGAR) Then
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formPersona.LoadAndShow(True, Me, 0)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub Editar_Click() Handles buttonEditar.Click
+    Private Sub Editar() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.Persona_EDITAR) Then
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_EDITAR) Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub Eliminar_Click() Handles buttonEliminar.Click
+    Private Sub Eliminar() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_ELIMINAR) Then
-                Dim Mensaje As String
-
-                Mensaje = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).ApellidoNombre)
-                If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                    Me.Cursor = Cursors.WaitCursor
-
-                    Try
-                        Using dbContext = New CSBomberosContext(True)
-                            Dim PersonaActual As Persona
-                            PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
-
-                            dbContext.Persona.Attach(PersonaActual)
-                            dbContext.Persona.Remove(PersonaActual)
-                            dbContext.SaveChanges()
-                        End Using
-
-                    Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-                        Me.Cursor = Cursors.Default
-                        Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                            Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Persona porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                        End Select
-                        Exit Sub
-
-                    Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Persona.")
-                    End Try
-
-                    RefreshData()
-
-                    Me.Cursor = Cursors.Default
-                End If
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_ELIMINAR) Then
+            Return
+        End If
+
+        Dim Mensaje As String = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).ApellidoNombre)
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
+            Return
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+        Try
+            Using dbContext = New CSBomberosContext(True)
+                Dim PersonaActual As Persona
+                PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+
+                dbContext.Persona.Attach(PersonaActual)
+                dbContext.Persona.Remove(PersonaActual)
+                dbContext.SaveChanges()
+            End Using
+        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
+            Me.Cursor = Cursors.Default
+            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
+                Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
+                    MsgBox("No se puede eliminar la Persona porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            End Select
+            Exit Sub
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Persona.")
+        End Try
+
+        RefreshData()
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            datagridviewMain.Enabled = False
-
-            formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result).IDPersona)
-
-            datagridviewMain.Enabled = True
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirFichaPersonal.Click
-        Dim CurrentRow As uspPersonasObtenerConEstado_Result
+        Dim CurrentRow As PersonasObtenerConEstado_Result
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
-        Else
-            If Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
-                CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, uspPersonasObtenerConEstado_Result)
-
-                Me.Cursor = Cursors.WaitCursor
-
-                datagridviewMain.Enabled = False
-
-                Using dbContext As New CSBomberosContext(True)
-                    Dim ReporteActual As New Reporte
-
-                    ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_FICHA))
-                    ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDPersona").Single.Valor = CurrentRow.IDPersona
-                    If ReporteActual.Open(True, ReporteActual.Nombre & " - " & CurrentRow.ApellidoNombre) Then
-                    End If
-                End Using
-
-                datagridviewMain.Enabled = True
-
-                Me.Cursor = Cursors.Default
-            End If
+            Return
         End If
+        If Not Permisos.VerificarPermiso(Permisos.PERSONA_IMPRIMIR) Then
+            Return
+        End If
+
+        CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result)
+        Me.Cursor = Cursors.WaitCursor
+        datagridviewMain.Enabled = False
+        Using dbContext As New CSBomberosContext(True)
+            Dim ReporteActual As New Reporte
+            ReporteActual = dbContext.Reporte.Find(CS_Parameter_System.GetIntegerAsShort(Parametros.REPORTE_ID_PERSONA_FICHA))
+            ReporteActual.ReporteParametros.Where(Function(rp) rp.IDParametro.Trim() = "IDPersona").Single.Valor = CurrentRow.IDPersona
+            ReporteActual.Open(True, ReporteActual.Nombre & " - " & CurrentRow.ApellidoNombre)
+        End Using
+        datagridviewMain.Enabled = True
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

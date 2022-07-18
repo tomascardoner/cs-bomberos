@@ -5121,16 +5121,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="uspAcademiaObtenerPersonasParaAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDAcademia" Type="int" Mode="In" />
-          <Parameter Name="Fecha" Type="date" Mode="In" />
-          <Parameter Name="IDCuartel" Type="tinyint" Mode="In" />
+          <Parameter Name="IDUsuario" Type="smallint" Mode="In" />
         </Function>
-        <Function Name="uspPersonasObtenerConEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="uspSiniestroObtenerPersonasParaAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="AcademiaObtenerPersonasParaAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDAcademia" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PersonasObtenerConEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDSiniestro" Type="int" Mode="In" />
-          <Parameter Name="Fecha" Type="date" Mode="In" />
-          <Parameter Name="IDCuartel" Type="tinyint" Mode="In" />
+          <Parameter Name="IDUsuario" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="SiniestroObtenerPersonasParaAsistencia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDSiniestro" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="CSBomberosModelStoreContainer">
           <EntitySet Name="Academia" EntityType="Self.Academia" Schema="dbo" store:Type="Tables" />
@@ -7339,17 +7343,6 @@
             <End Role="SiniestroAsistenciaTipo" EntitySet="SiniestroAsistenciaTipo" />
             <End Role="SiniestroAsistenciaTipoPuntaje" EntitySet="SiniestroAsistenciaTipoPuntaje" />
           </AssociationSet>
-          <FunctionImport Name="uspAcademiaObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.uspAcademiaObtenerPersonasParaAsistencia_Result)">
-            <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
-            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="IDCuartel" Mode="In" Type="Byte" />
-          </FunctionImport>
-          <FunctionImport Name="uspPersonasObtenerConEstado" ReturnType="Collection(CSBomberosModel.uspPersonasObtenerConEstado_Result)" />
-          <FunctionImport Name="uspSiniestroObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.uspSiniestroObtenerPersonasParaAsistencia_Result)">
-            <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
-            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
-            <Parameter Name="IDCuartel" Mode="In" Type="Byte" />
-          </FunctionImport>
           <EntitySet Name="AsistenciaMetodo" EntityType="CSBomberosModel.AsistenciaMetodo" />
           <AssociationSet Name="FK__AsistenciaMetodo__AcademiaAsistencia" Association="CSBomberosModel.FK__AsistenciaMetodo__AcademiaAsistencia">
             <End Role="AsistenciaMetodo" EntitySet="AsistenciaMetodo" />
@@ -7614,6 +7607,21 @@
             <End Role="Area" EntitySet="Area" />
             <End Role="Comprobante" EntitySet="Comprobante" />
           </AssociationSet>
+          <FunctionImport Name="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion">
+            <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
+            <Parameter Name="IDUsuario" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="AcademiaObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.AcademiaObtenerPersonasParaAsistencia_Result)">
+            <Parameter Name="IDAcademia" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PersonasObtenerConEstado" ReturnType="Collection(CSBomberosModel.PersonasObtenerConEstado_Result)" />
+          <FunctionImport Name="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion">
+            <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
+            <Parameter Name="IDUsuario" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="SiniestroObtenerPersonasParaAsistencia" ReturnType="Collection(CSBomberosModel.SiniestroObtenerPersonasParaAsistencia_Result)">
+            <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -12111,25 +12119,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="uspAcademiaObtenerPersonasParaAsistencia_Result">
-          <Property Type="Int32" Name="IDPersona" Nullable="false" />
-          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
-        </ComplexType>
-        <ComplexType Name="uspPersonasObtenerConEstado_Result">
-          <Property Type="Int32" Name="IDPersona" Nullable="false" />
-          <Property Type="String" Name="MatriculaNumero" Nullable="false" MaxLength="6" />
-          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
-          <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
-          <Property Type="Byte" Name="IDCuartel" Nullable="false" />
-          <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
-          <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="uspSiniestroObtenerPersonasParaAsistencia_Result">
-          <Property Type="Int32" Name="IDPersona" Nullable="false" />
-          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
-        </ComplexType>
         <EntityType Name="AsistenciaMetodo">
           <Key>
             <PropertyRef Name="IDAsistenciaMetodo" />
@@ -13256,6 +13245,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="AcademiaObtenerPersonasParaAsistencia_Result">
+          <Property Type="Int32" Name="IDPersona" Nullable="false" />
+          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
+        </ComplexType>
+        <ComplexType Name="PersonasObtenerConEstado_Result">
+          <Property Type="Int32" Name="IDPersona" Nullable="false" />
+          <Property Type="String" Name="MatriculaNumero" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
+          <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="IDCuartel" Nullable="false" />
+          <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
+          <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SiniestroObtenerPersonasParaAsistencia_Result">
+          <Property Type="Int32" Name="IDPersona" Nullable="false" />
+          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14664,37 +14672,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="uspAcademiaObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.uspAcademiaObtenerPersonasParaAsistencia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CSBomberosModel.uspAcademiaObtenerPersonasParaAsistencia_Result">
-                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
-                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspPersonasObtenerConEstado" FunctionName="CSBomberosModel.Store.uspPersonasObtenerConEstado">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CSBomberosModel.uspPersonasObtenerConEstado_Result">
-                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
-                <ScalarProperty Name="MatriculaNumero" ColumnName="MatriculaNumero" />
-                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
-                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
-                <ScalarProperty Name="CuartelNombre" ColumnName="CuartelNombre" />
-                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
-                <ScalarProperty Name="IDBajaMotivo" ColumnName="IDBajaMotivo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="uspSiniestroObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.uspSiniestroObtenerPersonasParaAsistencia">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="CSBomberosModel.uspSiniestroObtenerPersonasParaAsistencia_Result">
-                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
-                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="AsistenciaMetodo">
             <EntityTypeMapping TypeName="CSBomberosModel.AsistenciaMetodo">
               <MappingFragment StoreEntitySet="AsistenciaMetodo">
@@ -15056,6 +15033,39 @@
               <ScalarProperty Name="IDReporte" ColumnName="IDReporte" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" />
+          <FunctionImportMapping FunctionImportName="AcademiaObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.AcademiaObtenerPersonasParaAsistencia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSBomberosModel.AcademiaObtenerPersonasParaAsistencia_Result">
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PersonasObtenerConEstado" FunctionName="CSBomberosModel.Store.PersonasObtenerConEstado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSBomberosModel.PersonasObtenerConEstado_Result">
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="MatriculaNumero" ColumnName="MatriculaNumero" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+                <ScalarProperty Name="CuartelNombre" ColumnName="CuartelNombre" />
+                <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
+                <ScalarProperty Name="IDBajaMotivo" ColumnName="IDBajaMotivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" />
+          <FunctionImportMapping FunctionImportName="SiniestroObtenerPersonasParaAsistencia" FunctionName="CSBomberosModel.Store.SiniestroObtenerPersonasParaAsistencia">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSBomberosModel.SiniestroObtenerPersonasParaAsistencia_Result">
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

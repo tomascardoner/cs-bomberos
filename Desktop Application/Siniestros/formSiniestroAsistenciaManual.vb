@@ -96,15 +96,15 @@
     End Function
 
     Friend Function CreateRows() As Boolean
-        Dim listPersonas As List(Of uspSiniestroObtenerPersonasParaAsistencia_Result)
+        Dim listPersonas As List(Of SiniestroObtenerPersonasParaAsistencia_Result)
 
         datagridviewMain.Visible = False
 
         Try
             ' Obtengo las personas que están activas (campo EsActivo) y que a la fecha del siniestro, están activas en el cuerpo
-            listPersonas = mdbContext.uspSiniestroObtenerPersonasParaAsistencia(mSiniestroActual.IDSiniestro, mSiniestroActual.Fecha, mSiniestroActual.IDCuartel).ToList()
+            listPersonas = mdbContext.SiniestroObtenerPersonasParaAsistencia(mSiniestroActual.IDSiniestro).ToList()
 
-            For Each persona As uspSiniestroObtenerPersonasParaAsistencia_Result In listPersonas
+            For Each persona As SiniestroObtenerPersonasParaAsistencia_Result In listPersonas
                 Dim newRowId As Integer
                 Dim newRow As New DataGridViewRow()
 
