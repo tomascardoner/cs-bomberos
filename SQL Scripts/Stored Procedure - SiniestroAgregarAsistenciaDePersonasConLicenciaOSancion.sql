@@ -70,7 +70,8 @@ BEGIN
 			FROM PersonaSancion AS ps
 				INNER JOIN @Personas AS p ON ps.IDPersona = p.IDPersona
 				INNER JOIN SancionTipo AS st ON ps.ResolucionIDSancionTipo = st.IDSancionTipo
-			WHERE ps.NotificacionFechaEfectiva <= @Fecha
+			WHERE ps.Estado = 'A'
+				AND ps.NotificacionFechaEfectiva <= @Fecha
 				AND (st.CantidadDias IS NOT NULL)
 				AND DATEADD(day, st.CantidadDias, ps.NotificacionFechaEfectiva) >= @Fecha
 				AND p.IDPersona NOT IN (SELECT IDPersona FROM SiniestroAsistencia WHERE IDSiniestro = @IDSiniestro)

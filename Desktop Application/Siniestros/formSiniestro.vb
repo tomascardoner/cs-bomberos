@@ -343,7 +343,7 @@
             End Try
         End If
 
-        If mIsNew Then
+        If mIsNew AndAlso mSiniestroActual.SiniestroClave.Grupo = Constantes.SINIESTRO_CLAVEGRUPO_ROJA Then
             Try
                 mdbContext.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion(mSiniestroActual.IDSiniestro, pUsuario.IDUsuario)
             Catch ex As Exception

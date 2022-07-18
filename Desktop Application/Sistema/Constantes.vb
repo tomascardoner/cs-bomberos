@@ -114,15 +114,6 @@
     Friend Const SINIESTRO_NUMEROPREFIJO_DIGITOS As Byte = 4
     Friend Const SINIESTRO_NUMERO_DIGITOS As Byte = 8
 
-    Friend Const SINIESTRO_CLAVE_ROJA As String = "R"
-    Friend Const SINIESTRO_CLAVE_ROJA_NOMBRE As String = "Roja"
-    Friend Const SINIESTRO_CLAVE_NARANJA As String = "N"
-    Friend Const SINIESTRO_CLAVE_NARANJA_NOMBRE As String = "Naranja"
-    Friend Const SINIESTRO_CLAVE_AZUL As String = "A"
-    Friend Const SINIESTRO_CLAVE_AZUL_NOMBRE As String = "Azul"
-    Friend Const SINIESTRO_CLAVE_VERDE As String = "V"
-    Friend Const SINIESTRO_CLAVE_VERDE_NOMBRE As String = "Verde"
-
     Friend Const SINIESTRO_CLAVEGRUPO_AZULVERDE As String = "AV"
     Friend Const SINIESTRO_CLAVEGRUPO_AZULVERDE_NOMBRE As String = "Azules y verdes"
     Friend Const SINIESTRO_CLAVEGRUPO_NARANJA As String = "N"
