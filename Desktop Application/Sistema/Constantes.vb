@@ -4,7 +4,7 @@
     '    APLICACIÓN
     '##################
     Friend Const ApplicationDatabaseGuid As String = "{221CD8DA-7B56-44BA-9B49-AD9AA761A6EC}"
-    Friend Const ApplicationDatabaseVersion As Integer = 3
+    Friend Const ApplicationDatabaseVersion As Integer = 4
 
     ' Hex Key - 128 bits
     Friend Const ApplicationLicensePassword As String = "B86F0161DE5AF8FDF45262AB2D805999"
