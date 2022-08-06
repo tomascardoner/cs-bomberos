@@ -2,6 +2,8 @@
 
 #Region "Declarations"
 
+    Private WithEvents maskedtextboxCuitHost As ToolStripControlHost
+
     Private mlistEntidadesBase As List(Of Entidad)
     Private mlistEntidadesFiltradaYOrdenada As List(Of Entidad)
 
@@ -30,12 +32,23 @@
         comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxActivo.SelectedIndex = 1
 
+        InicializarFiltroDeCuit()
+
         mSkipFilterData = False
 
         mOrdenColumna = columnNombre
         mOrdenTipo = SortOrder.Ascending
 
         RefreshData()
+    End Sub
+
+    Private Sub InicializarFiltroDeCuit()
+        maskedtextboxCuitHost = New ToolStripControlHost(New MaskedTextBox())
+
+        maskedtextboxCuitHost.Width = 99
+        CType(maskedtextboxCuitHost.Control, MaskedTextBox).Mask = "00-00000000-0"
+
+        toolstripCuit.Items.Insert(1, maskedtextboxCuitHost)
     End Sub
 
 #End Region
@@ -113,6 +126,12 @@
                     End If
                 End If
 
+                ' Filtro por CUIT
+                If maskedtextboxCuitHost.Text.CleanNotNumericChars() <> String.Empty Then
+                    mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.Cuit} LIKE """ & maskedtextboxCuitHost.Text & """"
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.Cuit.HasValue AndAlso e.Cuit.Value.ToString.Contains(maskedtextboxCuitHost.Text.CleanNotNumericChars())).ToList
+                End If
+
                 Select Case mlistEntidadesFiltradaYOrdenada.Count
                     Case 0
                         statuslabelMain.Text = String.Format("No hay Entidades para mostrar.")
@@ -176,6 +195,25 @@
 
     Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxActivo.SelectedIndexChanged, buttonCompras.Click, buttonVentas.Click
         FilterData()
+    End Sub
+
+    Private Sub CambioCuitEnter(sender As Object, e As KeyPressEventArgs) Handles maskedtextboxCuitHost.KeyPress
+        If e.KeyChar = Microsoft.VisualBasic.ChrW(Keys.Return) Then
+            FilterData()
+        End If
+    End Sub
+
+    Private Sub CambioCuitCompleto(sender As Object, e As KeyEventArgs) Handles maskedtextboxCuitHost.KeyUp
+        If maskedtextboxCuitHost.Text.CleanNotNumericChars.Length = 11 Then
+            FilterData()
+        End If
+    End Sub
+
+    Private Sub BorrarCuit(sender As Object, e As EventArgs) Handles buttonCuitBorrar.Click
+        If maskedtextboxCuitHost.Text.CleanNotNumericChars() <> String.Empty Then
+            maskedtextboxCuitHost.Text = String.Empty
+            FilterData()
+        End If
     End Sub
 
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick

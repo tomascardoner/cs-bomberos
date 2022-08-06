@@ -24,11 +24,13 @@ Partial Class formEntidades
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formEntidades))
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
         Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCuit = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
@@ -41,12 +43,16 @@ Partial Class formEntidades
         Me.toolstripCompraVenta = New System.Windows.Forms.ToolStrip()
         Me.buttonCompras = New System.Windows.Forms.ToolStripButton()
         Me.buttonVentas = New System.Windows.Forms.ToolStripButton()
+        Me.toolstripCuit = New System.Windows.Forms.ToolStrip()
+        Me.labelCuit = New System.Windows.Forms.ToolStripLabel()
+        Me.buttonCuitBorrar = New System.Windows.Forms.ToolStripButton()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
         Me.toolstripActivo.SuspendLayout()
         Me.toolstripCompraVenta.SuspendLayout()
+        Me.toolstripCuit.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -74,8 +80,9 @@ Partial Class formEntidades
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCuit, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -90,7 +97,6 @@ Partial Class formEntidades
         '
         'columnNombre
         '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnNombre.DataPropertyName = "Nombre"
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
@@ -99,9 +105,18 @@ Partial Class formEntidades
         Me.columnNombre.ReadOnly = True
         Me.columnNombre.Width = 69
         '
+        'columnCuit
+        '
+        Me.columnCuit.DataPropertyName = "Cuit"
+        DataGridViewCellStyle3.Format = "00-00000000-0"
+        Me.columnCuit.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnCuit.HeaderText = "CUIT"
+        Me.columnCuit.Name = "columnCuit"
+        Me.columnCuit.ReadOnly = True
+        Me.columnCuit.Width = 57
+        '
         'columnEsActivo
         '
-        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.columnEsActivo.DataPropertyName = "EsActivo"
         Me.columnEsActivo.HeaderText = "Activo"
         Me.columnEsActivo.Name = "columnEsActivo"
@@ -117,6 +132,7 @@ Partial Class formEntidades
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
         Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Controls.Add(Me.toolstripCompraVenta)
+        Me.panelToolbars.Controls.Add(Me.toolstripCuit)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
@@ -218,6 +234,30 @@ Partial Class formEntidades
         Me.buttonVentas.Size = New System.Drawing.Size(65, 36)
         Me.buttonVentas.Text = "Ventas"
         '
+        'toolstripCuit
+        '
+        Me.toolstripCuit.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCuit.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCuit.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuit, Me.buttonCuitBorrar})
+        Me.toolstripCuit.Location = New System.Drawing.Point(504, 0)
+        Me.toolstripCuit.Name = "toolstripCuit"
+        Me.toolstripCuit.Size = New System.Drawing.Size(61, 39)
+        Me.toolstripCuit.TabIndex = 14
+        '
+        'labelCuit
+        '
+        Me.labelCuit.Name = "labelCuit"
+        Me.labelCuit.Size = New System.Drawing.Size(35, 36)
+        Me.labelCuit.Text = "CUIT:"
+        '
+        'buttonCuitBorrar
+        '
+        Me.buttonCuitBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.buttonCuitBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
+        Me.buttonCuitBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCuitBorrar.Name = "buttonCuitBorrar"
+        Me.buttonCuitBorrar.Size = New System.Drawing.Size(23, 36)
+        '
         'formEntidades
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -244,6 +284,8 @@ Partial Class formEntidades
         Me.toolstripActivo.PerformLayout()
         Me.toolstripCompraVenta.ResumeLayout(False)
         Me.toolstripCompraVenta.PerformLayout()
+        Me.toolstripCuit.ResumeLayout(False)
+        Me.toolstripCuit.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -259,9 +301,13 @@ Partial Class formEntidades
     Friend WithEvents toolstripActivo As System.Windows.Forms.ToolStrip
     Friend WithEvents labelActivo As System.Windows.Forms.ToolStripLabel
     Friend WithEvents comboboxActivo As System.Windows.Forms.ToolStripComboBox
-    Friend WithEvents columnNombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents columnEsActivo As System.Windows.Forms.DataGridViewCheckBoxColumn
     Friend WithEvents toolstripCompraVenta As ToolStrip
     Friend WithEvents buttonCompras As ToolStripButton
     Friend WithEvents buttonVentas As ToolStripButton
+    Friend WithEvents toolstripCuit As ToolStrip
+    Friend WithEvents labelCuit As ToolStripLabel
+    Friend WithEvents buttonCuitBorrar As ToolStripButton
+    Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents columnCuit As DataGridViewTextBoxColumn
+    Friend WithEvents columnEsActivo As DataGridViewCheckBoxColumn
 End Class
