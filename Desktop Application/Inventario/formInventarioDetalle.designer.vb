@@ -511,7 +511,7 @@ Partial Class formInventarioDetalle
         Me.MinimizeBox = False
         Me.Name = "formInventarioDetalle"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de Inventario"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

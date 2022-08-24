@@ -461,13 +461,9 @@
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.COMPROBANTE_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
-
             datagridviewMain.Enabled = False
-
             formComprobante.LoadAndShow(True, Me, OperacionTipo, 0)
-
             datagridviewMain.Enabled = True
-
             Me.Cursor = Cursors.Default
         End If
     End Sub
@@ -479,15 +475,10 @@
             If Not Permisos.VerificarPermiso(Permisos.COMPROBANTE_EDITAR) Then
                 Exit Sub
             End If
-
             Me.Cursor = Cursors.WaitCursor
-
             datagridviewMain.Enabled = False
-
             formComprobante.LoadAndShow(True, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
-
             datagridviewMain.Enabled = True
-
             Me.Cursor = Cursors.Default
         End If
     End Sub
@@ -501,18 +492,15 @@
             End If
 
             Me.Cursor = Cursors.WaitCursor
-
             Using dbContext = New CSBomberosContext(True)
                 Dim GridRowDataActual = CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData)
                 Dim Mensaje As String
 
                 Mensaje = String.Format("Se eliminará el Comprobante seleccionado.{0}{0}Operación: {1}{0}Tipo: {2}{0}Número: {3}{0}Fecha: {4}{0}Entidad: {5}{0}Importe: {6}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.OperacionTipoNombre, GridRowDataActual.ComprobanteTipoNombre, GridRowDataActual.NumeroCompleto, GridRowDataActual.Fecha.ToShortDateString(), GridRowDataActual.EntidadNombre, FormatCurrency(GridRowDataActual.Importe))
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-
                     Try
                         dbContext.Comprobante.Remove(dbContext.Comprobante.Find(GridRowDataActual.IDComprobante))
                         dbContext.SaveChanges()
-
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
@@ -520,15 +508,12 @@
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
-
                     Catch ex As Exception
                         CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Comprobante.")
                     End Try
-
                     RefreshData()
                 End If
             End Using
-
             Me.Cursor = Cursors.Default
         End If
     End Sub
@@ -538,13 +523,9 @@
             MsgBox("No hay ningún Comprobante para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
-
             datagridviewMain.Enabled = False
-
             formComprobante.LoadAndShow(False, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
-
             datagridviewMain.Enabled = True
-
             Me.Cursor = Cursors.Default
         End If
     End Sub

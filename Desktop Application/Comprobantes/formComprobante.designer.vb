@@ -193,7 +193,7 @@ Partial Class formComprobante
         '
         labelEnvioEmail.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEnvioEmail.AutoSize = True
-        labelEnvioEmail.Location = New System.Drawing.Point(6, 199)
+        labelEnvioEmail.Location = New System.Drawing.Point(6, 207)
         labelEnvioEmail.Name = "labelEnvioEmail"
         labelEnvioEmail.Size = New System.Drawing.Size(115, 13)
         labelEnvioEmail.TabIndex = 10
@@ -212,7 +212,7 @@ Partial Class formComprobante
         '
         labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 147)
+        labelCreacion.Location = New System.Drawing.Point(6, 146)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 4
@@ -222,7 +222,7 @@ Partial Class formComprobante
         '
         labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 173)
+        labelModificacion.Location = New System.Drawing.Point(6, 172)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 7
@@ -263,7 +263,7 @@ Partial Class formComprobante
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
         Me.panelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.panelMain.Size = New System.Drawing.Size(852, 415)
+        Me.panelMain.Size = New System.Drawing.Size(852, 423)
         Me.panelMain.TabIndex = 0
         '
         'tabcontrolMain
@@ -277,7 +277,7 @@ Partial Class formComprobante
         Me.tabcontrolMain.Location = New System.Drawing.Point(3, 149)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(846, 213)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(846, 221)
         Me.tabcontrolMain.TabIndex = 1
         '
         'tabpageDescripcion
@@ -286,7 +286,7 @@ Partial Class formComprobante
         Me.tabpageDescripcion.Location = New System.Drawing.Point(4, 22)
         Me.tabpageDescripcion.Name = "tabpageDescripcion"
         Me.tabpageDescripcion.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDescripcion.Size = New System.Drawing.Size(838, 187)
+        Me.tabpageDescripcion.Size = New System.Drawing.Size(838, 195)
         Me.tabpageDescripcion.TabIndex = 6
         Me.tabpageDescripcion.Text = "Descripción"
         '
@@ -298,7 +298,7 @@ Partial Class formComprobante
         Me.textboxDescripcion.Multiline = True
         Me.textboxDescripcion.Name = "textboxDescripcion"
         Me.textboxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxDescripcion.Size = New System.Drawing.Size(832, 181)
+        Me.textboxDescripcion.Size = New System.Drawing.Size(832, 189)
         Me.textboxDescripcion.TabIndex = 2
         '
         'tabpageDetalle
@@ -711,14 +711,14 @@ Partial Class formComprobante
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 22)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(838, 187)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(838, 195)
         Me.tabpageNotasAuditoria.TabIndex = 5
         Me.tabpageNotasAuditoria.Text = "Notas y auditoría"
         '
         'textboxFechaHoraEnvioEmail
         '
         Me.textboxFechaHoraEnvioEmail.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraEnvioEmail.Location = New System.Drawing.Point(127, 196)
+        Me.textboxFechaHoraEnvioEmail.Location = New System.Drawing.Point(127, 204)
         Me.textboxFechaHoraEnvioEmail.MaxLength = 0
         Me.textboxFechaHoraEnvioEmail.Name = "textboxFechaHoraEnvioEmail"
         Me.textboxFechaHoraEnvioEmail.ReadOnly = True
@@ -729,7 +729,7 @@ Partial Class formComprobante
         'textboxUsuarioEnvioEmail
         '
         Me.textboxUsuarioEnvioEmail.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioEnvioEmail.Location = New System.Drawing.Point(254, 196)
+        Me.textboxUsuarioEnvioEmail.Location = New System.Drawing.Point(254, 204)
         Me.textboxUsuarioEnvioEmail.MaxLength = 50
         Me.textboxUsuarioEnvioEmail.Name = "textboxUsuarioEnvioEmail"
         Me.textboxUsuarioEnvioEmail.ReadOnly = True
@@ -747,13 +747,13 @@ Partial Class formComprobante
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(711, 132)
+        Me.textboxNotas.Size = New System.Drawing.Size(711, 131)
         Me.textboxNotas.TabIndex = 3
         '
         'textboxFechaHoraCreacion
         '
         Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(127, 144)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(127, 143)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -764,7 +764,7 @@ Partial Class formComprobante
         'textboxUsuarioCreacion
         '
         Me.textboxUsuarioCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(254, 144)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(254, 143)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -775,7 +775,7 @@ Partial Class formComprobante
         'textboxFechaHoraModificacion
         '
         Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(127, 170)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(127, 169)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -786,7 +786,7 @@ Partial Class formComprobante
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(254, 170)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(254, 169)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -1043,7 +1043,7 @@ Partial Class formComprobante
         Me.panelPie.Controls.Add(Me.panelDetalle_Subtotal)
         Me.panelPie.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panelPie.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft
-        Me.panelPie.Location = New System.Drawing.Point(3, 368)
+        Me.panelPie.Location = New System.Drawing.Point(3, 376)
         Me.panelPie.Name = "panelPie"
         Me.panelPie.Padding = New System.Windows.Forms.Padding(4)
         Me.panelPie.Size = New System.Drawing.Size(846, 44)
@@ -1064,7 +1064,7 @@ Partial Class formComprobante
         'currencytextboxImporteTotal
         '
         Me.currencytextboxImporteTotal.AllowNull = True
-        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.currencytextboxImporteTotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxImporteTotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxImporteTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.currencytextboxImporteTotal.ForeColor = System.Drawing.SystemColors.WindowText
@@ -1105,7 +1105,7 @@ Partial Class formComprobante
         'currencytextboxMediosPago_Subtotal
         '
         Me.currencytextboxMediosPago_Subtotal.AllowNull = True
-        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.currencytextboxMediosPago_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxMediosPago_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxMediosPago_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxMediosPago_Subtotal.Location = New System.Drawing.Point(96, 4)
@@ -1144,7 +1144,7 @@ Partial Class formComprobante
         'currencytextboxAplicaciones_Subtotal
         '
         Me.currencytextboxAplicaciones_Subtotal.AllowNull = True
-        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.currencytextboxAplicaciones_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxAplicaciones_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxAplicaciones_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxAplicaciones_Subtotal.Location = New System.Drawing.Point(79, 4)
@@ -1183,7 +1183,7 @@ Partial Class formComprobante
         'currencytextboxDetalle_Subtotal
         '
         Me.currencytextboxDetalle_Subtotal.AllowNull = True
-        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(69, 20)
+        Me.currencytextboxDetalle_Subtotal.BeforeTouchSize = New System.Drawing.Size(80, 20)
         Me.currencytextboxDetalle_Subtotal.DecimalValue = New Decimal(New Integer() {0, 0, 0, 0})
         Me.currencytextboxDetalle_Subtotal.ForeColor = System.Drawing.SystemColors.WindowText
         Me.currencytextboxDetalle_Subtotal.Location = New System.Drawing.Point(52, 4)
@@ -1292,7 +1292,7 @@ Partial Class formComprobante
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(852, 454)
+        Me.ClientSize = New System.Drawing.Size(852, 462)
         Me.Controls.Add(Me.panelMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -1300,7 +1300,7 @@ Partial Class formComprobante
         Me.MinimumSize = New System.Drawing.Size(690, 45)
         Me.Name = "formComprobante"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle del comprobante"
         Me.panelMain.ResumeLayout(False)
         Me.panelMain.PerformLayout()

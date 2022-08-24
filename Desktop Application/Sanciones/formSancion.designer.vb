@@ -851,7 +851,7 @@ Partial Class formSancion
         Me.MinimizeBox = False
         Me.Name = "formSancion"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Sanción"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

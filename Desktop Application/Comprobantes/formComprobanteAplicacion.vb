@@ -71,7 +71,7 @@
                 listComprobantes = (From c In dbContext.Comprobante
                                     Group Join ca In dbContext.ComprobanteAplicacion On c.IDComprobante Equals ca.IDComprobanteAplicado Into ComprobanteAplicacion_join = Group
                                     From ca In ComprobanteAplicacion_join.DefaultIfEmpty()
-                                    Where c.IDEntidad = mComprobanteActual.IDEntidad And c.IDUsuarioAnulacion Is Nothing And c.IDComprobanteTipo <> mComprobanteActual.IDComprobanteTipo And c.ComprobanteTipo.OperacionTipo = mComprobanteTipoActual.OperacionTipo
+                                    Where c.IDEntidad = mComprobanteActual.IDEntidad And c.IDUsuarioAnulacion Is Nothing And c.IDComprobanteTipo <> mComprobanteTipoActual.IDComprobanteTipo And c.ComprobanteTipo.OperacionTipo = mComprobanteTipoActual.OperacionTipo
                                     Group New With {c, c.ComprobanteTipo, ca} By c.IDComprobante, c.ComprobanteTipo.NombreConLetra, c.NumeroCompleto, c.Fecha, c.Importe Into g = Group
                                     Order By Fecha Descending, NumeroCompleto Descending
                                     Select New GridRowData_Comprobante With {.IDComprobante = IDComprobante, .TipoNombre = NombreConLetra, .NumeroCompleto = NumeroCompleto, .FechaEmision = Fecha, .ImporteTotal = Importe, .ImporteAplicado = If(CType(g.Sum(Function(p) p.ca.Importe), Decimal?) Is Nothing, 0, g.Sum(Function(p) p.ca.Importe)), .ImporteSinAplicar = (Importe - If(CType(g.Sum(Function(p) p.ca.Importe), Decimal?) Is Nothing, 0, g.Sum(Function(p) p.ca.Importe)))}).ToList
@@ -79,7 +79,7 @@
                 listComprobantes = (From c In dbContext.Comprobante
                                     Group Join ca In dbContext.ComprobanteAplicacion On c.IDComprobante Equals ca.IDComprobanteAplicado Into ComprobanteAplicacion_join = Group
                                     From ca In ComprobanteAplicacion_join.DefaultIfEmpty()
-                                    Where c.IDEntidad = mComprobanteActual.IDEntidad And c.IDUsuarioAnulacion Is Nothing And c.IDComprobanteTipo <> mComprobanteActual.IDComprobanteTipo And c.ComprobanteTipo.OperacionTipo = mComprobanteTipoActual.OperacionTipo
+                                    Where c.IDEntidad = mComprobanteActual.IDEntidad And c.IDUsuarioAnulacion Is Nothing And c.IDComprobanteTipo <> mComprobanteTipoActual.IDComprobanteTipo And c.ComprobanteTipo.OperacionTipo = mComprobanteTipoActual.OperacionTipo
                                     Group New With {c, c.ComprobanteTipo, ca} By c.IDComprobante, c.ComprobanteTipo.NombreConLetra, c.NumeroCompleto, c.Fecha, c.Importe Into g = Group
                                     Where (Importe - If(CType(g.Sum(Function(p) p.ca.Importe), Decimal?) Is Nothing, 0, g.Sum(Function(p) p.ca.Importe))) > 0
                                     Order By Fecha Descending, NumeroCompleto Descending

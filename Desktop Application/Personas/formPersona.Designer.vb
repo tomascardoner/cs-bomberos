@@ -3755,7 +3755,7 @@ Partial Class formPersona
         Me.Name = "formPersona"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Detalle de la Persona"
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.menustripFoto.ResumeLayout(False)

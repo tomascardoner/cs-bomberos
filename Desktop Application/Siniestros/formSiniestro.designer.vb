@@ -672,7 +672,7 @@ Partial Class formSiniestro
         Me.MinimizeBox = False
         Me.Name = "formSiniestro"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

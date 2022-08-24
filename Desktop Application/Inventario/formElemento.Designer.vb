@@ -334,7 +334,7 @@ Partial Class formElemento
         Me.MinimizeBox = False
         Me.Name = "formElemento"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Elemento"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

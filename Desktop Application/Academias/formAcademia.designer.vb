@@ -491,7 +491,7 @@ Partial Class formAcademia
         Me.MinimizeBox = False
         Me.Name = "formAcademia"
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Academia"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()

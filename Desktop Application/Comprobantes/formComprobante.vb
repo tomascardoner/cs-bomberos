@@ -61,7 +61,7 @@
         End If
 
         Me.MdiParent = pFormMDIMain
-        CardonerSistemas.Forms.CenterToParent(ParentForm, Me)
+        CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), Me)
         InitializeFormAndControls()
         CardonerSistemas.ComboBox.SetSelectedValue(comboboxComprobanteTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, mComprobanteActual.IDComprobanteTipo)
         CambiarTipoComprobante()
