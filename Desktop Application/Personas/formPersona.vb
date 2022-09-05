@@ -107,11 +107,11 @@ Public Class formPersona
         datetimepickerCursoIngresoFecha.Enabled = mEditMode
         integertextboxCursoIngresoMeses.ReadOnly = (mEditMode = False)
         integertextboxCursoIngresoHoras.ReadOnly = (mEditMode = False)
-        comboboxCursoIngresoResponsable.Enabled = mEditMode
+        controlpersonaCursoIngresoResponsable.ReadOnlyText = (mEditMode = False)
         checkboxReingresoFormacionRealizada.Enabled = mEditMode
         integertextboxReingresoFormacionMeses.ReadOnly = (mEditMode = False)
         integertextboxReingresoFormacionHoras.ReadOnly = (mEditMode = False)
-        comboboxReingresoFormacionResponsable.Enabled = mEditMode
+        controlpersonaReingresoFormacionResponsable.ReadOnlyText = (mEditMode = False)
 
         ' Contacto Particular
         textboxDomicilioParticularCalle1.ReadOnly = (mEditMode = False)
@@ -187,8 +187,8 @@ Public Class formPersona
         comboboxIOMATiene.Items.AddRange({My.Resources.STRING_ITEM_NOT_SPECIFIED, PERSONA_TIENEIOMA_NOTIENE_NOMBRE, PERSONA_TIENEIOMA_PORBOMBEROS_NOMBRE, PERSONA_TIENEIOMA_PORTRABAJO_NOMBRE})
         pFillAndRefreshLists.NivelEstudio(comboboxNivelEstudio, False, True)
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
-        pFillAndRefreshLists.Persona(comboboxCursoIngresoResponsable, False, False, True, False)
-        pFillAndRefreshLists.Persona(comboboxReingresoFormacionResponsable, False, False, True, False)
+        controlpersonaCursoIngresoResponsable.dbContext = mdbContext
+        controlpersonaReingresoFormacionResponsable.dbContext = mdbContext
         pFillAndRefreshLists.Provincia(comboboxDomicilioParticularProvincia, True)
         pFillAndRefreshLists.Provincia(comboboxDomicilioLaboralProvincia, True)
     End Sub
@@ -315,11 +315,11 @@ Public Class formPersona
             datetimepickerCursoIngresoFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.CursoIngresoFecha, datetimepickerCursoIngresoFecha)
             integertextboxCursoIngresoMeses.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CursoIngresoMeses)
             integertextboxCursoIngresoHoras.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CursoIngresoHoras)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCursoIngresoResponsable, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .CursoIngresoResponsableIDPersona, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            controlpersonaCursoIngresoResponsable.BuscarPersona(.CursoIngresoResponsableIDPersona)
             checkboxReingresoFormacionRealizada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ReingresoFormacionRealizada)
             integertextboxReingresoFormacionMeses.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.ReingresoFormacionMeses)
             integertextboxReingresoFormacionHoras.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.ReingresoFormacionHoras)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxReingresoFormacionResponsable, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ReingresoFormacionResponsableIDPersona, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            controlpersonaReingresoFormacionResponsable.BuscarPersona(.ReingresoFormacionResponsableIDPersona)
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)
@@ -447,11 +447,11 @@ Public Class formPersona
             .CursoIngresoFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCursoIngresoFecha.Value, datetimepickerCursoIngresoFecha.Checked)
             .CursoIngresoMeses = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueByte(integertextboxCursoIngresoMeses)
             .CursoIngresoHoras = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxCursoIngresoHoras)
-            .CursoIngresoResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxCursoIngresoResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            .CursoIngresoResponsableIDPersona = controlpersonaCursoIngresoResponsable.IDPersona
             .ReingresoFormacionRealizada = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxReingresoFormacionRealizada.CheckState)
             .ReingresoFormacionMeses = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueByte(integertextboxReingresoFormacionMeses)
             .ReingresoFormacionHoras = CS_ValueTranslation_Syncfusion.FromControlIntegerTextBoxToValueShort(integertextboxReingresoFormacionHoras)
-            .ReingresoFormacionResponsableIDPersona = CS_ValueTranslation.FromControlComboBoxToObjectInteger(comboboxReingresoFormacionResponsable.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            .ReingresoFormacionResponsableIDPersona = controlpersonaReingresoFormacionResponsable.IDPersona
 
             ' Datos de la pestaña Contacto Particular
             .DomicilioParticularCalle1 = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDomicilioParticularCalle1.Text)

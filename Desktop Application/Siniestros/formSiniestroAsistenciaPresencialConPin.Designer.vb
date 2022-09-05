@@ -22,34 +22,15 @@ Partial Class formSiniestroAsistenciaPresencialConPin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.buttonPersona = New System.Windows.Forms.Button()
-        Me.textboxPersona = New System.Windows.Forms.TextBox()
         Me.labelPersona = New System.Windows.Forms.Label()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.maskedtextboxIdentificacionPin = New System.Windows.Forms.MaskedTextBox()
         Me.labelIdentificacionPin = New System.Windows.Forms.Label()
+        Me.controlpersonaPersona = New CSBomberos.ControlPersona()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'buttonPersona
-        '
-        Me.buttonPersona.Location = New System.Drawing.Point(427, 46)
-        Me.buttonPersona.Name = "buttonPersona"
-        Me.buttonPersona.Size = New System.Drawing.Size(21, 22)
-        Me.buttonPersona.TabIndex = 2
-        Me.buttonPersona.Text = "…"
-        Me.buttonPersona.UseVisualStyleBackColor = True
-        '
-        'textboxPersona
-        '
-        Me.textboxPersona.Location = New System.Drawing.Point(74, 47)
-        Me.textboxPersona.Name = "textboxPersona"
-        Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(353, 20)
-        Me.textboxPersona.TabIndex = 1
-        Me.textboxPersona.TabStop = False
         '
         'labelPersona
         '
@@ -67,7 +48,7 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(460, 39)
-        Me.toolstripMain.TabIndex = 5
+        Me.toolstripMain.TabIndex = 4
         '
         'buttonCancelar
         '
@@ -95,7 +76,7 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.maskedtextboxIdentificacionPin.Mask = "0000"
         Me.maskedtextboxIdentificacionPin.Name = "maskedtextboxIdentificacionPin"
         Me.maskedtextboxIdentificacionPin.Size = New System.Drawing.Size(44, 20)
-        Me.maskedtextboxIdentificacionPin.TabIndex = 4
+        Me.maskedtextboxIdentificacionPin.TabIndex = 3
         Me.maskedtextboxIdentificacionPin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.maskedtextboxIdentificacionPin.UseSystemPasswordChar = True
         '
@@ -105,19 +86,32 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.labelIdentificacionPin.Location = New System.Drawing.Point(12, 76)
         Me.labelIdentificacionPin.Name = "labelIdentificacionPin"
         Me.labelIdentificacionPin.Size = New System.Drawing.Size(28, 13)
-        Me.labelIdentificacionPin.TabIndex = 3
+        Me.labelIdentificacionPin.TabIndex = 2
         Me.labelIdentificacionPin.Text = "PIN:"
+        '
+        'controlpersonaPersona
+        '
+        Me.controlpersonaPersona.ApellidoNombre = Nothing
+        Me.controlpersonaPersona.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaPersona.IDPersona = Nothing
+        Me.controlpersonaPersona.Location = New System.Drawing.Point(74, 47)
+        Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.Name = "controlpersonaPersona"
+        Me.controlpersonaPersona.ReadOnlyText = False
+        Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.TabIndex = 1
         '
         'formSiniestroAsistenciaPresencialConPin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(460, 108)
+        Me.Controls.Add(Me.controlpersonaPersona)
         Me.Controls.Add(Me.labelIdentificacionPin)
         Me.Controls.Add(Me.maskedtextboxIdentificacionPin)
         Me.Controls.Add(Me.toolstripMain)
-        Me.Controls.Add(Me.buttonPersona)
-        Me.Controls.Add(Me.textboxPersona)
         Me.Controls.Add(Me.labelPersona)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
@@ -132,13 +126,11 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents buttonPersona As Button
-    Friend WithEvents textboxPersona As TextBox
     Friend WithEvents labelPersona As Label
     Friend WithEvents toolstripMain As ToolStrip
     Friend WithEvents buttonCancelar As ToolStripButton
     Friend WithEvents buttonGuardar As ToolStripButton
     Friend WithEvents maskedtextboxIdentificacionPin As MaskedTextBox
     Friend WithEvents labelIdentificacionPin As Label
+    Friend WithEvents controlpersonaPersona As ControlPersona
 End Class

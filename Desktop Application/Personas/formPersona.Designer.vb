@@ -161,11 +161,9 @@ Partial Class formPersona
         Me.tabpageIngresoReingreso = New System.Windows.Forms.TabPage()
         Me.groupboxReingresoFormacion = New System.Windows.Forms.GroupBox()
         Me.checkboxReingresoFormacionRealizada = New System.Windows.Forms.CheckBox()
-        Me.comboboxReingresoFormacionResponsable = New System.Windows.Forms.ComboBox()
         Me.integertextboxReingresoFormacionHoras = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.integertextboxReingresoFormacionMeses = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.groupboxCursoIngreso = New System.Windows.Forms.GroupBox()
-        Me.comboboxCursoIngresoResponsable = New System.Windows.Forms.ComboBox()
         Me.integertextboxCursoIngresoHoras = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.integertextboxCursoIngresoMeses = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.datetimepickerCursoIngresoFecha = New System.Windows.Forms.DateTimePicker()
@@ -344,6 +342,8 @@ Partial Class formPersona
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.controlpersonaCursoIngresoResponsable = New CSBomberos.ControlPersona()
+        Me.controlpersonaReingresoFormacionResponsable = New CSBomberos.ControlPersona()
         labelApellido = New System.Windows.Forms.Label()
         labelNombre = New System.Windows.Forms.Label()
         labelMatriculaNumero = New System.Windows.Forms.Label()
@@ -1595,8 +1595,8 @@ Partial Class formPersona
         '
         'groupboxReingresoFormacion
         '
+        Me.groupboxReingresoFormacion.Controls.Add(Me.controlpersonaReingresoFormacionResponsable)
         Me.groupboxReingresoFormacion.Controls.Add(Me.checkboxReingresoFormacionRealizada)
-        Me.groupboxReingresoFormacion.Controls.Add(Me.comboboxReingresoFormacionResponsable)
         Me.groupboxReingresoFormacion.Controls.Add(labelReingresoFormacionResponsable)
         Me.groupboxReingresoFormacion.Controls.Add(labelReingresoFormacionHoras)
         Me.groupboxReingresoFormacion.Controls.Add(Me.integertextboxReingresoFormacionHoras)
@@ -1618,15 +1618,6 @@ Partial Class formPersona
         Me.checkboxReingresoFormacionRealizada.Size = New System.Drawing.Size(15, 14)
         Me.checkboxReingresoFormacionRealizada.TabIndex = 1
         Me.checkboxReingresoFormacionRealizada.UseVisualStyleBackColor = True
-        '
-        'comboboxReingresoFormacionResponsable
-        '
-        Me.comboboxReingresoFormacionResponsable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxReingresoFormacionResponsable.FormattingEnabled = True
-        Me.comboboxReingresoFormacionResponsable.Location = New System.Drawing.Point(92, 102)
-        Me.comboboxReingresoFormacionResponsable.Name = "comboboxReingresoFormacionResponsable"
-        Me.comboboxReingresoFormacionResponsable.Size = New System.Drawing.Size(430, 21)
-        Me.comboboxReingresoFormacionResponsable.TabIndex = 7
         '
         'integertextboxReingresoFormacionHoras
         '
@@ -1664,7 +1655,7 @@ Partial Class formPersona
         '
         'groupboxCursoIngreso
         '
-        Me.groupboxCursoIngreso.Controls.Add(Me.comboboxCursoIngresoResponsable)
+        Me.groupboxCursoIngreso.Controls.Add(Me.controlpersonaCursoIngresoResponsable)
         Me.groupboxCursoIngreso.Controls.Add(labelCursoIngresoResponsable)
         Me.groupboxCursoIngreso.Controls.Add(labelCursoIngresoHoras)
         Me.groupboxCursoIngreso.Controls.Add(Me.integertextboxCursoIngresoHoras)
@@ -1678,15 +1669,6 @@ Partial Class formPersona
         Me.groupboxCursoIngreso.TabIndex = 0
         Me.groupboxCursoIngreso.TabStop = False
         Me.groupboxCursoIngreso.Text = "Curso de Ingreso:"
-        '
-        'comboboxCursoIngresoResponsable
-        '
-        Me.comboboxCursoIngresoResponsable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCursoIngresoResponsable.FormattingEnabled = True
-        Me.comboboxCursoIngresoResponsable.Location = New System.Drawing.Point(92, 102)
-        Me.comboboxCursoIngresoResponsable.Name = "comboboxCursoIngresoResponsable"
-        Me.comboboxCursoIngresoResponsable.Size = New System.Drawing.Size(430, 21)
-        Me.comboboxCursoIngresoResponsable.TabIndex = 7
         '
         'integertextboxCursoIngresoHoras
         '
@@ -3734,6 +3716,38 @@ Partial Class formPersona
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 5
         '
+        'controlpersonaCursoIngresoResponsable
+        '
+        Me.controlpersonaCursoIngresoResponsable.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.controlpersonaCursoIngresoResponsable.ApellidoNombre = Nothing
+        Me.controlpersonaCursoIngresoResponsable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaCursoIngresoResponsable.IDPersona = Nothing
+        Me.controlpersonaCursoIngresoResponsable.Location = New System.Drawing.Point(92, 102)
+        Me.controlpersonaCursoIngresoResponsable.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaCursoIngresoResponsable.MaximumSize = New System.Drawing.Size(1000, 20)
+        Me.controlpersonaCursoIngresoResponsable.MinimumSize = New System.Drawing.Size(150, 20)
+        Me.controlpersonaCursoIngresoResponsable.Name = "controlpersonaCursoIngresoResponsable"
+        Me.controlpersonaCursoIngresoResponsable.ReadOnlyText = False
+        Me.controlpersonaCursoIngresoResponsable.Size = New System.Drawing.Size(437, 20)
+        Me.controlpersonaCursoIngresoResponsable.TabIndex = 7
+        '
+        'controlpersonaReingresoFormacionResponsable
+        '
+        Me.controlpersonaReingresoFormacionResponsable.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.controlpersonaReingresoFormacionResponsable.ApellidoNombre = Nothing
+        Me.controlpersonaReingresoFormacionResponsable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaReingresoFormacionResponsable.IDPersona = Nothing
+        Me.controlpersonaReingresoFormacionResponsable.Location = New System.Drawing.Point(92, 102)
+        Me.controlpersonaReingresoFormacionResponsable.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaReingresoFormacionResponsable.MaximumSize = New System.Drawing.Size(1000, 20)
+        Me.controlpersonaReingresoFormacionResponsable.MinimumSize = New System.Drawing.Size(150, 20)
+        Me.controlpersonaReingresoFormacionResponsable.Name = "controlpersonaReingresoFormacionResponsable"
+        Me.controlpersonaReingresoFormacionResponsable.ReadOnlyText = False
+        Me.controlpersonaReingresoFormacionResponsable.Size = New System.Drawing.Size(437, 20)
+        Me.controlpersonaReingresoFormacionResponsable.TabIndex = 7
+        '
         'formPersona
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -4062,10 +4076,8 @@ Partial Class formPersona
     Friend WithEvents integertextboxCursoIngresoMeses As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents datetimepickerCursoIngresoFecha As DateTimePicker
     Friend WithEvents integertextboxCursoIngresoHoras As Syncfusion.Windows.Forms.Tools.IntegerTextBox
-    Friend WithEvents comboboxCursoIngresoResponsable As ComboBox
     Friend WithEvents groupboxReingresoFormacion As GroupBox
     Friend WithEvents checkboxReingresoFormacionRealizada As CheckBox
-    Friend WithEvents comboboxReingresoFormacionResponsable As ComboBox
     Friend WithEvents integertextboxReingresoFormacionHoras As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents integertextboxReingresoFormacionMeses As Syncfusion.Windows.Forms.Tools.IntegerTextBox
     Friend WithEvents textboxTituloObtenido As TextBox
@@ -4093,4 +4105,6 @@ Partial Class formPersona
     Friend WithEvents labelIdentificacionHuellasDigitales As Label
     Friend WithEvents buttonIdentificacionPin As Button
     Friend WithEvents labelIdentificacionPinEstado As Label
+    Friend WithEvents controlpersonaReingresoFormacionResponsable As ControlPersona
+    Friend WithEvents controlpersonaCursoIngresoResponsable As ControlPersona
 End Class

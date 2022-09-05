@@ -40,20 +40,16 @@ Partial Class formSancion
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.buttonPersonaBorrar = New System.Windows.Forms.Button()
-        Me.buttonPersona = New System.Windows.Forms.Button()
-        Me.textboxPersona = New System.Windows.Forms.TextBox()
+        Me.controlpersonaAplicar = New CSBomberos.ControlPersona()
         Me.groupboxEncuadre = New System.Windows.Forms.GroupBox()
         Me.datetimepickerEncuadreFecha = New System.Windows.Forms.DateTimePicker()
         Me.labelEncuadreTexto = New System.Windows.Forms.Label()
         Me.textboxEncuadreTexto = New System.Windows.Forms.TextBox()
         Me.labelEncuadreFecha = New System.Windows.Forms.Label()
         Me.groupboxSolicitud = New System.Windows.Forms.GroupBox()
-        Me.buttonSolicitudPersonaBorrar = New System.Windows.Forms.Button()
+        Me.controlpersonaSolicitud = New CSBomberos.ControlPersona()
         Me.textboxSolicitudPersonaTexto = New System.Windows.Forms.TextBox()
-        Me.buttonSolicitudPersona = New System.Windows.Forms.Button()
         Me.comboboxSolicitudResponsableTipo = New System.Windows.Forms.ComboBox()
-        Me.textboxSolicitudPersona = New System.Windows.Forms.TextBox()
         Me.comboboxSancionMotivo = New System.Windows.Forms.ComboBox()
         Me.checkboxObtenerTextos = New System.Windows.Forms.CheckBox()
         Me.buttonAplicarTextos = New System.Windows.Forms.Button()
@@ -281,9 +277,7 @@ Partial Class formSancion
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.buttonPersonaBorrar)
-        Me.tabpageGeneral.Controls.Add(Me.buttonPersona)
-        Me.tabpageGeneral.Controls.Add(Me.textboxPersona)
+        Me.tabpageGeneral.Controls.Add(Me.controlpersonaAplicar)
         Me.tabpageGeneral.Controls.Add(labelPersona)
         Me.tabpageGeneral.Controls.Add(Me.groupboxEncuadre)
         Me.tabpageGeneral.Controls.Add(Me.groupboxSolicitud)
@@ -295,36 +289,19 @@ Partial Class formSancion
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'buttonPersonaBorrar
+        'controlpersonaAplicar
         '
-        Me.buttonPersonaBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
-        Me.buttonPersonaBorrar.Location = New System.Drawing.Point(476, 5)
-        Me.buttonPersonaBorrar.Name = "buttonPersonaBorrar"
-        Me.buttonPersonaBorrar.Size = New System.Drawing.Size(22, 22)
-        Me.buttonPersonaBorrar.TabIndex = 3
-        Me.buttonPersonaBorrar.UseVisualStyleBackColor = True
-        '
-        'buttonPersona
-        '
-        Me.buttonPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
-        Me.buttonPersona.Location = New System.Drawing.Point(453, 5)
-        Me.buttonPersona.Name = "buttonPersona"
-        Me.buttonPersona.Size = New System.Drawing.Size(22, 22)
-        Me.buttonPersona.TabIndex = 2
-        Me.buttonPersona.UseVisualStyleBackColor = True
-        '
-        'textboxPersona
-        '
-        Me.textboxPersona.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxPersona.Location = New System.Drawing.Point(68, 6)
-        Me.textboxPersona.Name = "textboxPersona"
-        Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(382, 20)
-        Me.textboxPersona.TabIndex = 1
-        Me.textboxPersona.TabStop = False
+        Me.controlpersonaAplicar.ApellidoNombre = Nothing
+        Me.controlpersonaAplicar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaAplicar.IDPersona = Nothing
+        Me.controlpersonaAplicar.Location = New System.Drawing.Point(68, 6)
+        Me.controlpersonaAplicar.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaAplicar.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlpersonaAplicar.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaAplicar.Name = "controlpersonaAplicar"
+        Me.controlpersonaAplicar.ReadOnlyText = False
+        Me.controlpersonaAplicar.Size = New System.Drawing.Size(430, 21)
+        Me.controlpersonaAplicar.TabIndex = 1
         '
         'groupboxEncuadre
         '
@@ -389,11 +366,9 @@ Partial Class formSancion
         '
         Me.groupboxSolicitud.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.groupboxSolicitud.Controls.Add(Me.buttonSolicitudPersonaBorrar)
+        Me.groupboxSolicitud.Controls.Add(Me.controlpersonaSolicitud)
         Me.groupboxSolicitud.Controls.Add(Me.textboxSolicitudPersonaTexto)
-        Me.groupboxSolicitud.Controls.Add(Me.buttonSolicitudPersona)
         Me.groupboxSolicitud.Controls.Add(Me.comboboxSolicitudResponsableTipo)
-        Me.groupboxSolicitud.Controls.Add(Me.textboxSolicitudPersona)
         Me.groupboxSolicitud.Controls.Add(Me.comboboxSancionMotivo)
         Me.groupboxSolicitud.Controls.Add(Me.checkboxObtenerTextos)
         Me.groupboxSolicitud.Controls.Add(Me.buttonAplicarTextos)
@@ -409,15 +384,19 @@ Partial Class formSancion
         Me.groupboxSolicitud.TabStop = False
         Me.groupboxSolicitud.Text = "Solicitud:"
         '
-        'buttonSolicitudPersonaBorrar
+        'controlpersonaSolicitud
         '
-        Me.buttonSolicitudPersonaBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonSolicitudPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
-        Me.buttonSolicitudPersonaBorrar.Location = New System.Drawing.Point(470, 45)
-        Me.buttonSolicitudPersonaBorrar.Name = "buttonSolicitudPersonaBorrar"
-        Me.buttonSolicitudPersonaBorrar.Size = New System.Drawing.Size(22, 22)
-        Me.buttonSolicitudPersonaBorrar.TabIndex = 4
-        Me.buttonSolicitudPersonaBorrar.UseVisualStyleBackColor = True
+        Me.controlpersonaSolicitud.ApellidoNombre = Nothing
+        Me.controlpersonaSolicitud.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaSolicitud.IDPersona = Nothing
+        Me.controlpersonaSolicitud.Location = New System.Drawing.Point(62, 46)
+        Me.controlpersonaSolicitud.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaSolicitud.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlpersonaSolicitud.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaSolicitud.Name = "controlpersonaSolicitud"
+        Me.controlpersonaSolicitud.ReadOnlyText = False
+        Me.controlpersonaSolicitud.Size = New System.Drawing.Size(430, 21)
+        Me.controlpersonaSolicitud.TabIndex = 2
         '
         'textboxSolicitudPersonaTexto
         '
@@ -431,16 +410,6 @@ Partial Class formSancion
         Me.textboxSolicitudPersonaTexto.Size = New System.Drawing.Size(430, 39)
         Me.textboxSolicitudPersonaTexto.TabIndex = 5
         '
-        'buttonSolicitudPersona
-        '
-        Me.buttonSolicitudPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonSolicitudPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
-        Me.buttonSolicitudPersona.Location = New System.Drawing.Point(447, 45)
-        Me.buttonSolicitudPersona.Name = "buttonSolicitudPersona"
-        Me.buttonSolicitudPersona.Size = New System.Drawing.Size(22, 22)
-        Me.buttonSolicitudPersona.TabIndex = 3
-        Me.buttonSolicitudPersona.UseVisualStyleBackColor = True
-        '
         'comboboxSolicitudResponsableTipo
         '
         Me.comboboxSolicitudResponsableTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -450,17 +419,6 @@ Partial Class formSancion
         Me.comboboxSolicitudResponsableTipo.Name = "comboboxSolicitudResponsableTipo"
         Me.comboboxSolicitudResponsableTipo.Size = New System.Drawing.Size(430, 21)
         Me.comboboxSolicitudResponsableTipo.TabIndex = 1
-        '
-        'textboxSolicitudPersona
-        '
-        Me.textboxSolicitudPersona.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxSolicitudPersona.Location = New System.Drawing.Point(62, 46)
-        Me.textboxSolicitudPersona.Name = "textboxSolicitudPersona"
-        Me.textboxSolicitudPersona.ReadOnly = True
-        Me.textboxSolicitudPersona.Size = New System.Drawing.Size(382, 20)
-        Me.textboxSolicitudPersona.TabIndex = 2
-        Me.textboxSolicitudPersona.TabStop = False
         '
         'comboboxSancionMotivo
         '
@@ -912,9 +870,6 @@ Partial Class formSancion
     Friend WithEvents groupboxTestimonio As GroupBox
     Friend WithEvents labelTestimonioTexto As Label
     Friend WithEvents textboxTestimonioTexto As TextBox
-    Friend WithEvents buttonPersonaBorrar As Button
-    Friend WithEvents buttonPersona As Button
-    Friend WithEvents textboxPersona As TextBox
     Friend WithEvents datetimepickerTestimonioFecha As DateTimePicker
     Friend WithEvents labelTestimonioFecha As Label
     Friend WithEvents labelDesaprobadaCausa As Label
@@ -927,9 +882,8 @@ Partial Class formSancion
     Friend WithEvents comboboxSancionMotivo As ComboBox
     Friend WithEvents comboboxSolicitudResponsableTipo As ComboBox
     Friend WithEvents textboxSolicitudPersonaTexto As TextBox
-    Friend WithEvents buttonSolicitudPersonaBorrar As Button
-    Friend WithEvents buttonSolicitudPersona As Button
-    Friend WithEvents textboxSolicitudPersona As TextBox
     Friend WithEvents datetimepickerNotificacionFechaEfectiva As DateTimePicker
     Friend WithEvents labelNotificacionFechaEfectiva As Label
+    Friend WithEvents controlpersonaAplicar As ControlPersona
+    Friend WithEvents controlpersonaSolicitud As ControlPersona
 End Class

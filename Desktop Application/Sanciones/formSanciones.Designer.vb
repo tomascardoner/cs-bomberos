@@ -46,9 +46,6 @@ Partial Class formSanciones
         Me.comboboxCuartel = New System.Windows.Forms.ToolStripComboBox()
         Me.toolstripPersona = New System.Windows.Forms.ToolStrip()
         Me.labelPersona = New System.Windows.Forms.ToolStripLabel()
-        Me.textboxPersona = New System.Windows.Forms.ToolStripTextBox()
-        Me.buttonPersona = New System.Windows.Forms.ToolStripButton()
-        Me.buttonPersonaBorrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripEstado = New System.Windows.Forms.ToolStrip()
         Me.labelEstado = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxEstado = New System.Windows.Forms.ToolStripComboBox()
@@ -256,46 +253,24 @@ Partial Class formSanciones
         '
         Me.toolstripPersona.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripPersona.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripPersona.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPersona, Me.textboxPersona, Me.buttonPersona, Me.buttonPersonaBorrar})
-        Me.toolstripPersona.Location = New System.Drawing.Point(0, 39)
+        Me.toolstripPersona.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelPersona})
+        Me.toolstripPersona.Location = New System.Drawing.Point(798, 0)
         Me.toolstripPersona.Name = "toolstripPersona"
-        Me.toolstripPersona.Size = New System.Drawing.Size(353, 25)
+        Me.toolstripPersona.Size = New System.Drawing.Size(55, 39)
         Me.toolstripPersona.TabIndex = 13
         '
         'labelPersona
         '
         Me.labelPersona.Name = "labelPersona"
-        Me.labelPersona.Size = New System.Drawing.Size(52, 22)
+        Me.labelPersona.Size = New System.Drawing.Size(52, 36)
         Me.labelPersona.Text = "Persona:"
-        '
-        'textboxPersona
-        '
-        Me.textboxPersona.Name = "textboxPersona"
-        Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(250, 25)
-        '
-        'buttonPersona
-        '
-        Me.buttonPersona.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
-        Me.buttonPersona.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonPersona.Name = "buttonPersona"
-        Me.buttonPersona.Size = New System.Drawing.Size(23, 22)
-        '
-        'buttonPersonaBorrar
-        '
-        Me.buttonPersonaBorrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.buttonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
-        Me.buttonPersonaBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonPersonaBorrar.Name = "buttonPersonaBorrar"
-        Me.buttonPersonaBorrar.Size = New System.Drawing.Size(23, 22)
         '
         'toolstripEstado
         '
         Me.toolstripEstado.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripEstado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripEstado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelEstado, Me.comboboxEstado})
-        Me.toolstripEstado.Location = New System.Drawing.Point(353, 39)
+        Me.toolstripEstado.Location = New System.Drawing.Point(0, 39)
         Me.toolstripEstado.Name = "toolstripEstado"
         Me.toolstripEstado.Size = New System.Drawing.Size(160, 25)
         Me.toolstripEstado.TabIndex = 18
@@ -364,9 +339,6 @@ Partial Class formSanciones
     Friend WithEvents toolstripCuartel As ToolStrip
     Friend WithEvents labelCuartel As ToolStripLabel
     Friend WithEvents comboboxCuartel As ToolStripComboBox
-    Friend WithEvents textboxPersona As ToolStripTextBox
-    Friend WithEvents buttonPersona As ToolStripButton
-    Friend WithEvents buttonPersonaBorrar As ToolStripButton
     Friend WithEvents toolstripEstado As ToolStrip
     Friend WithEvents labelEstado As ToolStripLabel
     Friend WithEvents comboboxEstado As ToolStripComboBox

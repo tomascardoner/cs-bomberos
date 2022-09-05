@@ -13,6 +13,7 @@
     Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef dbContext As CSBomberosContext, ByRef siniestro As Siniestro)
         mdbContext = dbContext
         mSiniestro = siniestro
+        controlpersonaPersona.dbContext = mdbContext
 
         Me.ShowDialog(parentForm)
     End Sub
@@ -30,21 +31,9 @@
         End Select
     End Sub
 
-    Private Sub SeleccionarPersona() Handles buttonPersona.Click
-        Dim fps As New formPersonasSeleccionar(False)
-
-        If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-            Dim PersonaSeleccionada As PersonasObtenerConEstado_Result
-
-            PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result)
-            textboxPersona.Tag = PersonaSeleccionada.IDPersona
-            textboxPersona.Text = PersonaSeleccionada.ApellidoNombre
-
-            mPersona = mdbContext.Persona.Find(PersonaSeleccionada.IDPersona)
-
-            maskedtextboxIdentificacionPin.Focus()
-        End If
-        fps.Dispose()
+    Private Sub controlpersonaPersona_TextChanged(sender As Object, e As EventArgs) Handles controlpersonaPersona.TextChanged
+        maskedtextboxIdentificacionPin.Focus()
+        mPersona = controlpersonaPersona.Persona
     End Sub
 
     Private Sub MaskedTextBoxes_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxIdentificacionPin.GotFocus
@@ -74,19 +63,19 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If textboxPersona.Tag Is Nothing Then
+        If Not controlpersonaPersona.IDPersona.HasValue Then
             MessageBox.Show("Debe seleccionar una persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            buttonPersona.Focus()
+            controlpersonaPersona.Focus()
             Return False
         End If
         If mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = mPersona.IDPersona).Any() Then
             MessageBox.Show("La persona seleccionada ya tiene asistencia al siniestro.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            buttonPersona.Focus()
+            controlpersonaPersona.Focus()
             Return False
         End If
         If Not mPersona.IdentificacionPin.HasValue Then
             MessageBox.Show("La persona seleccionada no tiene especificado un PIN.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            buttonPersona.Focus()
+            controlpersonaPersona.Focus()
             Return False
         End If
         If maskedtextboxIdentificacionPin.Text.Length < 4 Then

@@ -28,8 +28,8 @@
                 ' Establezco la Persona si corresponde
                 If mVistaDesdeUnaPersona Then
                     .IDPersona = IDPersona
-                Else
-                    .IDPersona = CInt(formSanciones.textboxPersona.TextBox.Tag)
+                ElseIf CType(formSanciones.controlpersonaPersonaHost.Control, ControlPersona).IDPersona.HasValue Then
+                    .IDPersona = CType(formSanciones.controlpersonaPersonaHost.Control, ControlPersona).IDPersona.Value
                 End If
 
                 .SolicitudFecha = DateTime.Today
@@ -70,12 +70,10 @@
         buttonCerrar.Visible = (Not mEditMode) Or mVistaDesdeUnaPersona
 
         ' General
-        buttonPersona.Visible = mEditMode
-        buttonPersonaBorrar.Visible = mEditMode
+        controlpersonaAplicar.ReadOnlyText = Not mEditMode
 
         comboboxSolicitudResponsableTipo.Enabled = mEditMode
-        buttonSolicitudPersona.Visible = mEditMode
-        buttonSolicitudPersonaBorrar.Visible = mEditMode
+        controlpersonaSolicitud.ReadOnlyText = Not mEditMode
         textboxSolicitudPersonaTexto.ReadOnly = Not mEditMode
         checkboxObtenerTextos.Visible = mEditMode
         textboxSolicitudMotivo.ReadOnly = Not mEditMode
@@ -110,6 +108,8 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        controlpersonaAplicar.dbContext = mdbContext
+        controlpersonaSolicitud.dbContext = mdbContext
         ListasResponsables.LlenarComboBoxResponsables(mdbContext, comboboxSolicitudResponsableTipo, False, True)
         ListasSanciones.LlenarComboBoxMotivosSanciones(mdbContext, comboboxSancionMotivo, False, False)
         ListasSanciones.LlenarComboBoxTiposSanciones(mdbContext, comboboxResolucionSancionTipo, False, True)
@@ -132,23 +132,18 @@
         With mPersonaSancionActual
             ' Datos de la pestaña General
             If mVistaDesdeUnaPersona Or Not mIsNew Then
-                textboxPersona.Tag = .IDPersona
-                textboxPersona.Text = .Persona.ApellidoNombre
-            ElseIf formSanciones.textboxPersona.TextBox.Tag IsNot Nothing Then
-                textboxPersona.Tag = .IDPersona
-                textboxPersona.Text = formSanciones.textboxPersona.TextBox.Text
+                controlpersonaAplicar.AsignarValores(.Persona)
+            ElseIf CType(formSanciones.controlpersonaPersonaHost.Control, ControlPersona).IDPersona.HasValue Then
+                controlpersonaAplicar.CopiarValores(CType(formSanciones.controlpersonaPersonaHost.Control, ControlPersona))
             Else
-                textboxPersona.Tag = Nothing
-                textboxPersona.Text = String.Empty
+                controlpersonaAplicar.ResetText()
             End If
 
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxSolicitudResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .SolicitudIDResponsableTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If mIsNew Then
-                textboxSolicitudPersona.Tag = Nothing
-                textboxSolicitudPersona.Text = String.Empty
+                controlpersonaSolicitud.ResetText()
             Else
-                textboxSolicitudPersona.Tag = .SolicitudIDPersona
-                textboxSolicitudPersona.Text = .PersonaSolicita.ApellidoNombre
+                controlpersonaSolicitud.AsignarValores(.PersonaSolicita)
             End If
             textboxSolicitudPersonaTexto.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitudPersonaTexto)
 
@@ -204,10 +199,10 @@
     Friend Sub SetDataFromControlsToObject()
         With mPersonaSancionActual
             ' Datos de la pestaña General
-            .IDPersona = CInt(textboxPersona.Tag)
+            .IDPersona = controlpersonaAplicar.IDPersona.Value
 
             .SolicitudIDResponsableTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxSolicitudResponsableTipo.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            .SolicitudIDPersona = CInt(textboxSolicitudPersona.Tag)
+            .SolicitudIDPersona = controlpersonaSolicitud.IDPersona.Value
             .SolicitudPersonaTexto = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSolicitudPersonaTexto.Text.TrimAndReduce)
             .SolicitudMotivo = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxSolicitudMotivo.Text)
             .SolicitudFecha = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerSolicitudFecha.Value).Value
@@ -260,14 +255,6 @@
         End Select
     End Sub
 
-    Private Sub BuscarPersona(sender As Object, e As EventArgs) Handles buttonPersona.Click
-        ListasPersonas.SeleccionarPersona(Me, textboxPersona)
-    End Sub
-
-    Private Sub BorrarPersona(sender As Object, e As EventArgs) Handles buttonPersonaBorrar.Click
-        ListasPersonas.SeleccionarPersonaBorrar(textboxPersona)
-    End Sub
-
     Private Sub SolicitudResponsableTipoChanged(sender As Object, e As EventArgs) Handles comboboxSolicitudResponsableTipo.SelectedIndexChanged
         If comboboxSolicitudResponsableTipo.SelectedIndex > 0 Then
             Dim selectedItem As ListasResponsables.ResponsableNombresClass
@@ -275,21 +262,12 @@
             selectedItem = CType(comboboxSolicitudResponsableTipo.SelectedItem, ListasResponsables.ResponsableNombresClass)
             If selectedItem.IDResponsableTipo <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
                 If selectedItem.IDPersona.HasValue Then
-                    textboxSolicitudPersona.Tag = selectedItem.IDPersona
-                    textboxSolicitudPersona.Text = selectedItem.PersonaApellidoNombre
+                    controlpersonaSolicitud.AsignarValores(selectedItem.IDPersona.Value, selectedItem.PersonaMatriculaNumero, selectedItem.PersonaApellidoNombre)
                 Else
                     textboxSolicitudPersonaTexto.Text = selectedItem.PersonaApellidoNombre
                 End If
             End If
         End If
-    End Sub
-
-    Private Sub BuscarPersonaSolicitante(sender As Object, e As EventArgs) Handles buttonSolicitudPersona.Click
-        ListasPersonas.SeleccionarPersona(Me, textboxSolicitudPersona)
-    End Sub
-
-    Private Sub BorrarPersonaSolicitante(sender As Object, e As EventArgs) Handles buttonSolicitudPersonaBorrar.Click
-        ListasPersonas.SeleccionarPersonaBorrar(textboxSolicitudPersona)
     End Sub
 
     Private Sub HabilitarObtenerTextos(sender As Object, e As EventArgs) Handles checkboxObtenerTextos.CheckedChanged
@@ -346,7 +324,7 @@
         If mPersonaSancionActual.IDSancion = 0 Then
             Using dbcMaxID As New CSBomberosContext(True)
                 Dim PersonaActual As Persona
-                PersonaActual = dbcMaxID.Persona.Find(CInt(textboxPersona.Tag))
+                PersonaActual = dbcMaxID.Persona.Find(controlpersonaAplicar.IDPersona.Value)
                 If PersonaActual.PersonaSanciones.Any() Then
                     mPersonaSancionActual.IDSancion = PersonaActual.PersonaSanciones.Max(Function(pl) pl.IDSancion) + CByte(1)
                 Else
@@ -404,16 +382,16 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If textboxPersona.Tag Is Nothing Then
+        If Not controlpersonaAplicar.IDPersona.HasValue Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar a quién aplica la Sanción.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxPersona.Focus()
+            controlpersonaAplicar.Focus()
             Return False
         End If
-        If textboxSolicitudPersona.Tag Is Nothing Then
+        If Not controlpersonaSolicitud.IDPersona.HasValue Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar quién solicita la Sanción.", MsgBoxStyle.Information, My.Application.Info.Title)
-            textboxSolicitudPersona.Focus()
+            controlpersonaSolicitud.Focus()
             Return False
         End If
         If textboxSolicitudMotivo.Text.Trim.Length = 0 Then
@@ -429,11 +407,9 @@
         End If
 
         ' Verifico que la Persona que solicita la Sanción tenga especificado el Cargo y la Jerarquía
-        Dim SolicitudIDPersonaActual As Integer
-        SolicitudIDPersonaActual = CInt(textboxSolicitudPersona.Tag)
-        If mIsNew Or mPersonaSancionActual.SolicitudIDPersona <> SolicitudIDPersonaActual Then
+        If mIsNew Or mPersonaSancionActual.SolicitudIDPersona <> controlpersonaSolicitud.IDPersona.Value Then
             Dim PersonaAscensoUltimo As PersonaAscenso
-            PersonaAscensoUltimo = mdbContext.PersonaAscenso.Where(Function(pa) pa.IDPersona = SolicitudIDPersonaActual).OrderByDescending(Function(pa) pa.Fecha).FirstOrDefault()
+            PersonaAscensoUltimo = mdbContext.PersonaAscenso.Where(Function(pa) pa.IDPersona = controlpersonaSolicitud.IDPersona.Value).OrderByDescending(Function(pa) pa.Fecha).FirstOrDefault()
             If PersonaAscensoUltimo Is Nothing Then
                 Me.Cursor = Cursors.Default
                 MsgBox("La Persona que solicita la Sanción no tiene especificado el Cargo y la Jerarquía.", MsgBoxStyle.Exclamation, My.Application.Info.Title)

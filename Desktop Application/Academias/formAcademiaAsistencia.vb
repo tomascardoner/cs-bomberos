@@ -65,13 +65,14 @@
         buttonEditar.Visible = (mParentEditMode And mEditMode = False)
         buttonCerrar.Visible = (mEditMode = False)
 
-        buttonPersona.Visible = mIsNew
+        controlpersonaPersona.ReadOnlyText = Not mIsNew
         comboboxAsistenciaTipo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
         SetAppearance()
 
+        controlpersonaPersona.dbContext = mdbContext
         ListasAcademias.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
     End Sub
 
@@ -100,11 +101,9 @@
             textboxFecha.Text = mFecha
 
             If mIsNew Then
-                textboxPersona.Text = ""
-                textboxPersona.Tag = 0
+                controlpersonaPersona.ResetText()
             Else
-                textboxPersona.Text = mAcademiaAsistenciaActual.Persona.ApellidoNombre
-                textboxPersona.Tag = mAcademiaAsistenciaActual.IDPersona
+                controlpersonaPersona.AsignarValores(mAcademiaAsistenciaActual.Persona)
             End If
 
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxAsistenciaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDAcademiaAsistenciaTipo)
@@ -114,7 +113,7 @@
     Friend Sub SetDataFromControlsToObject()
         With mAcademiaAsistenciaActual
             If mIsNew Then
-                .IDPersona = CInt(textboxPersona.Tag)
+                .IDPersona = controlpersonaPersona.IDPersona.Value
             End If
             .IDAcademiaAsistenciaTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAsistenciaTipo.SelectedValue).Value
         End With
@@ -141,21 +140,6 @@
         End Select
     End Sub
 
-    Private Sub SeleccionarPersona() Handles buttonPersona.Click
-        If mIsNew Then
-            Dim fps As New formPersonasSeleccionar(False, mIDCuartel, True)
-
-            If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                Dim PersonaSeleccionada As PersonasObtenerConEstado_Result
-
-                PersonaSeleccionada = CType(fps.datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result)
-                textboxPersona.Tag = PersonaSeleccionada.IDPersona
-                textboxPersona.Text = PersonaSeleccionada.ApellidoNombre
-            End If
-            fps.Dispose()
-        End If
-    End Sub
-
 #End Region
 
 #Region "Main Toolbar"
@@ -176,9 +160,9 @@
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
         If mIsNew Then
-            If CInt(textboxPersona.Tag) = 0 Then
+            If Not controlpersonaPersona.IDPersona.HasValue Then
                 MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
-                buttonPersona.Focus()
+                controlpersonaPersona.Focus()
                 Exit Sub
             End If
         End If

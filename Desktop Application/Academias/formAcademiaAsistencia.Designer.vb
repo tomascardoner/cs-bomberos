@@ -35,9 +35,8 @@ Partial Class formAcademiaAsistencia
         Me.textboxFecha = New System.Windows.Forms.TextBox()
         Me.labelAsistenciaTipo = New System.Windows.Forms.Label()
         Me.comboboxAsistenciaTipo = New System.Windows.Forms.ComboBox()
-        Me.textboxPersona = New System.Windows.Forms.TextBox()
-        Me.buttonPersona = New System.Windows.Forms.Button()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.controlpersonaPersona = New CSBomberos.ControlPersona()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -48,7 +47,7 @@ Partial Class formAcademiaAsistencia
         labelCuartel.Location = New System.Drawing.Point(12, 54)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 3
+        labelCuartel.TabIndex = 5
         labelCuartel.Text = "Cuartel:"
         '
         'buttonGuardar
@@ -98,7 +97,7 @@ Partial Class formAcademiaAsistencia
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(462, 39)
-        Me.toolstripMain.TabIndex = 2
+        Me.toolstripMain.TabIndex = 4
         '
         'labelPersona
         '
@@ -106,7 +105,7 @@ Partial Class formAcademiaAsistencia
         Me.labelPersona.Location = New System.Drawing.Point(12, 117)
         Me.labelPersona.Name = "labelPersona"
         Me.labelPersona.Size = New System.Drawing.Size(49, 13)
-        Me.labelPersona.TabIndex = 9
+        Me.labelPersona.TabIndex = 0
         Me.labelPersona.Text = "Persona:"
         '
         'labelFecha
@@ -124,7 +123,7 @@ Partial Class formAcademiaAsistencia
         Me.textboxCuartel.Name = "textboxCuartel"
         Me.textboxCuartel.ReadOnly = True
         Me.textboxCuartel.Size = New System.Drawing.Size(275, 20)
-        Me.textboxCuartel.TabIndex = 4
+        Me.textboxCuartel.TabIndex = 6
         '
         'textboxFecha
         '
@@ -140,7 +139,7 @@ Partial Class formAcademiaAsistencia
         Me.labelAsistenciaTipo.Location = New System.Drawing.Point(12, 160)
         Me.labelAsistenciaTipo.Name = "labelAsistenciaTipo"
         Me.labelAsistenciaTipo.Size = New System.Drawing.Size(58, 13)
-        Me.labelAsistenciaTipo.TabIndex = 0
+        Me.labelAsistenciaTipo.TabIndex = 2
         Me.labelAsistenciaTipo.Text = "Asistencia:"
         '
         'comboboxAsistenciaTipo
@@ -150,35 +149,30 @@ Partial Class formAcademiaAsistencia
         Me.comboboxAsistenciaTipo.Location = New System.Drawing.Point(76, 157)
         Me.comboboxAsistenciaTipo.Name = "comboboxAsistenciaTipo"
         Me.comboboxAsistenciaTipo.Size = New System.Drawing.Size(220, 21)
-        Me.comboboxAsistenciaTipo.TabIndex = 1
+        Me.comboboxAsistenciaTipo.TabIndex = 3
         '
-        'textboxPersona
+        'controlpersonaPersona
         '
-        Me.textboxPersona.Location = New System.Drawing.Point(76, 114)
-        Me.textboxPersona.Name = "textboxPersona"
-        Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(353, 20)
-        Me.textboxPersona.TabIndex = 10
-        '
-        'buttonPersona
-        '
-        Me.buttonPersona.Location = New System.Drawing.Point(429, 113)
-        Me.buttonPersona.Name = "buttonPersona"
-        Me.buttonPersona.Size = New System.Drawing.Size(21, 22)
-        Me.buttonPersona.TabIndex = 11
-        Me.buttonPersona.Text = "…"
-        Me.tooltipMain.SetToolTip(Me.buttonPersona, "Seleccionar Persona")
-        Me.buttonPersona.UseVisualStyleBackColor = True
+        Me.controlpersonaPersona.ApellidoNombre = Nothing
+        Me.controlpersonaPersona.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaPersona.IDPersona = Nothing
+        Me.controlpersonaPersona.Location = New System.Drawing.Point(76, 114)
+        Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.Name = "controlpersonaPersona"
+        Me.controlpersonaPersona.ReadOnlyText = False
+        Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.TabIndex = 1
         '
         'formAcademiaAsistencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(462, 192)
-        Me.Controls.Add(Me.buttonPersona)
+        Me.Controls.Add(Me.controlpersonaPersona)
         Me.Controls.Add(Me.comboboxAsistenciaTipo)
         Me.Controls.Add(Me.labelAsistenciaTipo)
-        Me.Controls.Add(Me.textboxPersona)
         Me.Controls.Add(Me.textboxFecha)
         Me.Controls.Add(Me.textboxCuartel)
         Me.Controls.Add(labelCuartel)
@@ -210,7 +204,6 @@ Partial Class formAcademiaAsistencia
     Friend WithEvents textboxFecha As TextBox
     Friend WithEvents labelAsistenciaTipo As Label
     Friend WithEvents comboboxAsistenciaTipo As ComboBox
-    Friend WithEvents textboxPersona As TextBox
-    Friend WithEvents buttonPersona As Button
     Friend WithEvents tooltipMain As ToolTip
+    Friend WithEvents controlpersonaPersona As ControlPersona
 End Class

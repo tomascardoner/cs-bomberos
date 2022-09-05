@@ -616,6 +616,12 @@
     <Compile Include="Config\DatabaseConfig.vb" />
     <Compile Include="Config\EmailConfig.vb" />
     <Compile Include="Config\GeneralConfig.vb" />
+    <Compile Include="Controles\ControlPersona.Designer.vb">
+      <DependentUpon>ControlPersona.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controles\ControlPersona.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Cuartel.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -1660,6 +1666,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Compras\formCompraOrdenes.resx">
       <DependentUpon>formCompraOrdenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controles\ControlPersona.resx">
+      <DependentUpon>ControlPersona.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\formInventarioAgregarMultiple.resx">
       <DependentUpon>formInventarioAgregarMultiple.vb</DependentUpon>

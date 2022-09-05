@@ -7,6 +7,7 @@
         Public Property IDCuartel As Byte?
         Public Property CuartelNombre As String
         Public Property IDPersona As Integer?
+        Public Property PersonaMatriculaNumero As String
         Public Property PersonaApellidoNombre As String
     End Class
 
@@ -48,7 +49,7 @@
                      Group Join c In context.Cuartel On r.IDCuartel Equals c.IDCuartel Into CuartelGroup = Group
                      From cg In CuartelGroup.DefaultIfEmpty
                      Order By rt.Orden, rt.Nombre, pg.ApellidoNombre, r.PersonaOtra
-                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
+                     Select New ResponsableNombresClass With {.IDResponsable = r.IDResponsable, .IDResponsableTipo = r.IDResponsableTipo, .ResponsableTipoNombre = rt.Nombre, .IDCuartel = If(cg Is Nothing, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, r.IDCuartel), .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .IDPersona = r.IDPersona, .PersonaMatriculaNumero = If(pg Is Nothing, String.Empty, pg.MatriculaNumero), .PersonaApellidoNombre = If(pg Is Nothing, r.PersonaOtra, pg.ApellidoNombre)}).ToList()
 
         If agregarItemNoEspecifica Then
             listItems.Insert(0, New ResponsableNombresClass With {

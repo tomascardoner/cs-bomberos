@@ -59,6 +59,7 @@
         comboboxCuartel.Enabled = mEditMode
         radiobuttonPersona.Visible = mEditMode
         radiobuttonPersonaOtra.Visible = mEditMode
+        controlpersonaPersona.ReadOnlyText = Not mEditMode
         textboxPersonaOtra.ReadOnly = Not mEditMode
         MostrarControlesPersonas()
 
@@ -71,6 +72,7 @@
 
         ListasResponsables.LlenarComboBoxResponsableTipos(mdbContext, comboboxResponsableTipo, False, False)
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, True)
+        controlpersonaPersona.dbContext = mdbContext
     End Sub
 
     Friend Sub SetAppearance()
@@ -103,12 +105,10 @@
                 radiobuttonPersonaOtra.Checked = Not .IDPersona.HasValue
             End If
             If .IDPersona IsNot Nothing Then
-                textboxPersona.Tag = .IDPersona
-                textboxPersona.Text = .Persona.ApellidoNombre
+                controlpersonaPersona.AsignarValores(.Persona)
                 textboxPersonaOtra.Text = String.Empty
             Else
-                textboxPersona.Tag = Nothing
-                textboxPersona.Text = String.Empty
+                controlpersonaPersona.ResetText()
                 textboxPersonaOtra.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.PersonaOtra)
             End If
 
@@ -141,7 +141,7 @@
 
             ' Personas
             If radiobuttonPersona.Checked Then
-                .IDPersona = CInt(textboxPersona.Tag)
+                .IDPersona = controlpersonaPersona.IDPersona.Value
                 .PersonaOtra = Nothing
             Else
                 .IDPersona = Nothing
@@ -177,15 +177,7 @@
         MostrarControlesPersonas()
     End Sub
 
-    Private Sub BuscarPersona(sender As Object, e As EventArgs) Handles buttonPersona.Click
-        ListasPersonas.SeleccionarPersona(Me, textboxPersona)
-    End Sub
-
-    Private Sub BorrarPersona(sender As Object, e As EventArgs) Handles buttonPersonaBorrar.Click
-        ListasPersonas.SeleccionarPersonaBorrar(textboxPersona)
-    End Sub
-
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxPersona.GotFocus, textboxPersonaOtra.GotFocus, textboxNotas.GotFocus
+    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxPersonaOtra.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
 
@@ -260,9 +252,7 @@
 #Region "Extra stuff"
 
     Private Sub MostrarControlesPersonas()
-        textboxPersona.Visible = radiobuttonPersona.Checked
-        buttonPersona.Visible = radiobuttonPersona.Checked And mEditMode
-        buttonPersonaBorrar.Visible = radiobuttonPersona.Checked And mEditMode
+        controlpersonaPersona.Visible = radiobuttonPersona.Checked
         textboxPersonaOtra.Visible = radiobuttonPersonaOtra.Checked
     End Sub
 
@@ -279,7 +269,7 @@
             comboboxCuartel.Focus()
             Return False
         End If
-        If radiobuttonPersona.Checked AndAlso textboxPersona.Tag Is Nothing Then
+        If radiobuttonPersona.Checked AndAlso Not controlpersonaPersona.IDPersona.HasValue Then
             tabcontrolMain.SelectedTab = tabpageGeneral
             MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
             Return False

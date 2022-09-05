@@ -7,8 +7,7 @@
     Private mlistEntidadesBase As List(Of Entidad)
     Private mlistEntidadesFiltradaYOrdenada As List(Of Entidad)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
@@ -43,11 +42,8 @@
     End Sub
 
     Private Sub InicializarFiltroDeCuit()
-        maskedtextboxCuitHost = New ToolStripControlHost(New MaskedTextBox())
-
-        maskedtextboxCuitHost.Width = 99
+        maskedtextboxCuitHost = New ToolStripControlHost(New MaskedTextBox()) With {.Width = 99}
         CType(maskedtextboxCuitHost.Control, MaskedTextBox).Mask = "00-00000000-0"
-
         toolstripCuit.Items.Insert(1, maskedtextboxCuitHost)
     End Sub
 
@@ -127,9 +123,9 @@
                 End If
 
                 ' Filtro por CUIT
-                If maskedtextboxCuitHost.Text.CleanNotNumericChars() <> String.Empty Then
+                If maskedtextboxCuitHost.Text.RemoveNotNumbers() <> String.Empty Then
                     mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{Entidad.Cuit} LIKE """ & maskedtextboxCuitHost.Text & """"
-                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.Cuit.HasValue AndAlso e.Cuit.Value.ToString.Contains(maskedtextboxCuitHost.Text.CleanNotNumericChars())).ToList
+                    mlistEntidadesFiltradaYOrdenada = mlistEntidadesFiltradaYOrdenada.Where(Function(e) e.Cuit.HasValue AndAlso e.Cuit.Value.ToString.Contains(maskedtextboxCuitHost.Text.RemoveNotNumbers())).ToList
                 End If
 
                 Select Case mlistEntidadesFiltradaYOrdenada.Count
@@ -204,13 +200,13 @@
     End Sub
 
     Private Sub CambioCuitCompleto(sender As Object, e As KeyEventArgs) Handles maskedtextboxCuitHost.KeyUp
-        If maskedtextboxCuitHost.Text.CleanNotNumericChars.Length = 11 Then
+        If maskedtextboxCuitHost.Text.RemoveNotNumbers().Length = 11 Then
             FilterData()
         End If
     End Sub
 
     Private Sub BorrarCuit(sender As Object, e As EventArgs) Handles buttonCuitBorrar.Click
-        If maskedtextboxCuitHost.Text.CleanNotNumericChars() <> String.Empty Then
+        If maskedtextboxCuitHost.Text.RemoveNotNumbers() <> String.Empty Then
             maskedtextboxCuitHost.Text = String.Empty
             FilterData()
         End If
@@ -231,7 +227,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 

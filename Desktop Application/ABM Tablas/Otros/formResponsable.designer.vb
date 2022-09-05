@@ -25,7 +25,7 @@ Partial Class formResponsable
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCuartel As System.Windows.Forms.Label
-        Dim Label1 As System.Windows.Forms.Label
+        Dim labelPersona As System.Windows.Forms.Label
         Me.labelResponsableTipo = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
@@ -34,11 +34,9 @@ Partial Class formResponsable
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.controlpersonaPersona = New CSBomberos.ControlPersona()
         Me.radiobuttonPersonaOtra = New System.Windows.Forms.RadioButton()
         Me.radiobuttonPersona = New System.Windows.Forms.RadioButton()
-        Me.buttonPersonaBorrar = New System.Windows.Forms.Button()
-        Me.buttonPersona = New System.Windows.Forms.Button()
-        Me.textboxPersona = New System.Windows.Forms.TextBox()
         Me.labelPersonaOtra = New System.Windows.Forms.Label()
         Me.textboxPersonaOtra = New System.Windows.Forms.TextBox()
         Me.comboboxResponsableTipo = New System.Windows.Forms.ComboBox()
@@ -55,7 +53,7 @@ Partial Class formResponsable
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
-        Label1 = New System.Windows.Forms.Label()
+        labelPersona = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -89,14 +87,14 @@ Partial Class formResponsable
         labelCuartel.TabIndex = 2
         labelCuartel.Text = "Cuartel:"
         '
-        'Label1
+        'labelPersona
         '
-        Label1.AutoSize = True
-        Label1.Location = New System.Drawing.Point(6, 92)
-        Label1.Name = "Label1"
-        Label1.Size = New System.Drawing.Size(49, 13)
-        Label1.TabIndex = 4
-        Label1.Text = "Persona:"
+        labelPersona.AutoSize = True
+        labelPersona.Location = New System.Drawing.Point(6, 92)
+        labelPersona.Name = "labelPersona"
+        labelPersona.Size = New System.Drawing.Size(49, 13)
+        labelPersona.TabIndex = 4
+        labelPersona.Text = "Persona:"
         '
         'labelResponsableTipo
         '
@@ -169,14 +167,12 @@ Partial Class formResponsable
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.controlpersonaPersona)
         Me.tabpageGeneral.Controls.Add(Me.radiobuttonPersonaOtra)
         Me.tabpageGeneral.Controls.Add(Me.radiobuttonPersona)
-        Me.tabpageGeneral.Controls.Add(Me.buttonPersonaBorrar)
-        Me.tabpageGeneral.Controls.Add(Me.buttonPersona)
-        Me.tabpageGeneral.Controls.Add(Me.textboxPersona)
         Me.tabpageGeneral.Controls.Add(Me.labelPersonaOtra)
         Me.tabpageGeneral.Controls.Add(Me.textboxPersonaOtra)
-        Me.tabpageGeneral.Controls.Add(Label1)
+        Me.tabpageGeneral.Controls.Add(labelPersona)
         Me.tabpageGeneral.Controls.Add(Me.comboboxResponsableTipo)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCuartel)
         Me.tabpageGeneral.Controls.Add(labelCuartel)
@@ -188,6 +184,20 @@ Partial Class formResponsable
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'controlpersonaPersona
+        '
+        Me.controlpersonaPersona.ApellidoNombre = Nothing
+        Me.controlpersonaPersona.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaPersona.IDPersona = Nothing
+        Me.controlpersonaPersona.Location = New System.Drawing.Point(87, 88)
+        Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
+        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.Name = "controlpersonaPersona"
+        Me.controlpersonaPersona.ReadOnlyText = False
+        Me.controlpersonaPersona.Size = New System.Drawing.Size(418, 21)
+        Me.controlpersonaPersona.TabIndex = 6
         '
         'radiobuttonPersonaOtra
         '
@@ -208,37 +218,6 @@ Partial Class formResponsable
         Me.radiobuttonPersona.TabIndex = 5
         Me.radiobuttonPersona.TabStop = True
         Me.radiobuttonPersona.UseVisualStyleBackColor = True
-        '
-        'buttonPersonaBorrar
-        '
-        Me.buttonPersonaBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
-        Me.buttonPersonaBorrar.Location = New System.Drawing.Point(483, 88)
-        Me.buttonPersonaBorrar.Name = "buttonPersonaBorrar"
-        Me.buttonPersonaBorrar.Size = New System.Drawing.Size(22, 22)
-        Me.buttonPersonaBorrar.TabIndex = 8
-        Me.buttonPersonaBorrar.UseVisualStyleBackColor = True
-        '
-        'buttonPersona
-        '
-        Me.buttonPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
-        Me.buttonPersona.Location = New System.Drawing.Point(460, 88)
-        Me.buttonPersona.Name = "buttonPersona"
-        Me.buttonPersona.Size = New System.Drawing.Size(22, 22)
-        Me.buttonPersona.TabIndex = 7
-        Me.buttonPersona.UseVisualStyleBackColor = True
-        '
-        'textboxPersona
-        '
-        Me.textboxPersona.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxPersona.Location = New System.Drawing.Point(87, 89)
-        Me.textboxPersona.Name = "textboxPersona"
-        Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(370, 20)
-        Me.textboxPersona.TabIndex = 6
-        Me.textboxPersona.TabStop = False
         '
         'labelPersonaOtra
         '
@@ -418,9 +397,7 @@ Partial Class formResponsable
     Friend WithEvents comboboxResponsableTipo As ComboBox
     Friend WithEvents labelPersonaOtra As Label
     Friend WithEvents textboxPersonaOtra As TextBox
-    Friend WithEvents buttonPersonaBorrar As Button
-    Friend WithEvents buttonPersona As Button
-    Friend WithEvents textboxPersona As TextBox
     Friend WithEvents radiobuttonPersonaOtra As RadioButton
     Friend WithEvents radiobuttonPersona As RadioButton
+    Friend WithEvents controlpersonaPersona As ControlPersona
 End Class

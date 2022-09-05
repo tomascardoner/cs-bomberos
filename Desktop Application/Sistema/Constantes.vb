@@ -41,6 +41,9 @@
     '##################
     '    PERSONA
     '##################
+    Friend Const PersonaMatriculaLongitudMaxima As Byte = 6
+    Friend Const PersonaMatriculaCantidadDigitos As Byte = 3
+
     Friend Const PERSONA_GENERO_NOESPECIFICA As String = "-"
     Friend Const PERSONA_GENERO_MASCULINO As String = "M"
     Friend Const PERSONA_GENERO_FEMENINO As String = "F"
