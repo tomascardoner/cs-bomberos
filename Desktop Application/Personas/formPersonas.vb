@@ -94,9 +94,16 @@
                 ' Inicializo las variables
                 mlistPersonasFiltradaYOrdenada = mlistPersonasBase
 
-                ' Filtro por Búsqueda en Apellido y Nombre
+                ' Filtro por Búsqueda en Matrícula o Apellido y Nombre
                 If mBusquedaAplicada Then
-                    mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(textboxBuscar.Text.ToLower.Trim)).ToList
+                    Dim valorBusqueda As String = textboxBuscar.Text.ToLower.Trim
+                    If valorBusqueda.Length = 3 AndAlso valorBusqueda.IsAllDigits Then
+                        ' Matrícula
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(p) p.MatriculaNumero.TrimEnd().EndsWith(valorBusqueda)).ToList
+                    Else
+                        ' Apellido y Nombre
+                        mlistPersonasFiltradaYOrdenada = mlistPersonasFiltradaYOrdenada.Where(Function(p) p.ApellidoNombre.ToLower.Contains(valorBusqueda)).ToList
+                    End If
                 End If
 
                 ' Filtro por Cuartel
