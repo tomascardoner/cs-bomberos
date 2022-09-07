@@ -170,7 +170,7 @@
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Dim personaSeleccionada As ListasPersonas.PersonaSeleccionada
 
-                    personaSeleccionada = ListasPersonas.SeleccionarPersona(Me)
+                    personaSeleccionada = ListasPersonas.SeleccionarPersona(Me, False, Nothing, False)
                     If personaSeleccionada IsNot Nothing Then
                         ParametroActual.Valor = personaSeleccionada.IDPersona
                         ParametroActual.ValorParaMostrar = personaSeleccionada.ApellidoNombre

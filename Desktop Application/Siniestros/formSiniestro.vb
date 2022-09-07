@@ -418,56 +418,46 @@
 
     Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
-
         formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
-
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonAsistenciasEditar.Click
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para editar.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonAsistenciasEliminar.Click
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para eliminar.", vbInformation, My.Application.Info.Title)
-        Else
-            Dim GridRowDataActual As AsistenciasGridRowData
-            Dim Mensaje As String
+            Return
+        End If
+        Dim GridRowDataActual As AsistenciasGridRowData
+        Dim Mensaje As String
 
-            GridRowDataActual = CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData)
-
-            Mensaje = String.Format("Se eliminará la Asistencia. Si está por eliminar una Asistencia duplicada de una Persona, tenga en cuenta que se eliminará la primera de la lista, y no necesariemente la que usted seleccionó. Verifique los datos luego de eliminar.{0}{0}Persona: {1}{0}Asistencia: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.ApellidoNombre, GridRowDataActual.SiniestroAsistenciaTipoNombre)
-            If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
-                Me.Cursor = Cursors.WaitCursor
-
-                mSiniestroActual.SiniestrosAsistencias.Remove(mSiniestroActual.SiniestrosAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
-
-                AsistenciasRefreshData()
-
-                Me.Cursor = Cursors.Default
-            End If
+        GridRowDataActual = CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData)
+        Mensaje = String.Format("Se eliminará la Asistencia. Si está por eliminar una Asistencia duplicada de una Persona, tenga en cuenta que se eliminará la primera de la lista, y no necesariemente la que usted seleccionó. Verifique los datos luego de eliminar.{0}{0}Persona: {1}{0}Asistencia: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, GridRowDataActual.ApellidoNombre, GridRowDataActual.SiniestroAsistenciaTipoNombre)
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            Me.Cursor = Cursors.WaitCursor
+            mSiniestroActual.SiniestrosAsistencias.Remove(mSiniestroActual.SiniestrosAsistencias.First(Function(sa) sa.IDPersona = GridRowDataActual.IDPersona))
+            AsistenciasRefreshData()
+            Me.Cursor = Cursors.Default
         End If
     End Sub
 
     Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewAsistencias.DoubleClick
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para ver.", vbInformation, My.Application.Info.Title)
-        Else
-            Me.Cursor = Cursors.WaitCursor
-
-            formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
-
-            Me.Cursor = Cursors.Default
+            Return
         End If
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
     End Sub
 
 #End Region

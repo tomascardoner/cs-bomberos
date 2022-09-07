@@ -75,6 +75,7 @@
         SetAppearance()
 
         controlpersonaPersona.dbContext = mdbContext
+        controlpersonaPersona.IDCuartel = mIDCuartel
         ListasSiniestros.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
     End Sub
 
@@ -162,17 +163,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If mIsNew Then
-            If Not controlpersonaPersona.IDPersona.HasValue Then
-                MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
-                controlpersonaPersona.Focus()
-                Exit Sub
-            End If
-        End If
-        If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar la Asistencia.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAsistenciaTipo.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         mSiniestroAsistenciaActual.IDUsuarioModificacion = pUsuario.IDUsuario
@@ -186,6 +178,32 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If mIsNew Then
+            If Not controlpersonaPersona.IDPersona.HasValue Then
+                MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
+                controlpersonaPersona.Focus()
+                Return False
+            End If
+        End If
+        If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
+            MsgBox("Debe especificar el tipo de Asistencia.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxAsistenciaTipo.Focus()
+            Return False
+        End If
+        If mSiniestroActual.SiniestrosAsistencias.Any(Function(sa) sa.IDPersona = controlpersonaPersona.IDPersona.Value) Then
+            MessageBox.Show("La Persona ya tiene cargada la Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            controlpersonaPersona.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

@@ -6,8 +6,8 @@
         Friend ApellidoNombre As String
     End Class
 
-    Friend Function SeleccionarPersona(ByRef parent As Form) As PersonaSeleccionada
-        Dim fps As New formPersonasSeleccionar(False, 0, False)
+    Friend Function SeleccionarPersona(ByRef parent As Form, multiseleccion As Boolean, idCuartel As Byte?, mostrarSoloActivos As Boolean) As PersonaSeleccionada
+        Dim fps As New formPersonasSeleccionar(multiseleccion, idCuartel, mostrarSoloActivos)
         Dim personaSeleccionada As PersonaSeleccionada
 
         If fps.ShowDialog(parent) = Windows.Forms.DialogResult.OK Then
@@ -24,10 +24,10 @@
     Friend Function SeleccionarPersona(ByRef parent As Form, ByRef control As ControlPersona) As Boolean
         Dim personaSeleccionada As PersonaSeleccionada
 
-        personaSeleccionada = SeleccionarPersona(parent)
+        personaSeleccionada = SeleccionarPersona(parent, False, control.IDCuartel, control.MostrarSoloEstadoActivo)
         If personaSeleccionada IsNot Nothing Then
             control.IDPersona = personaSeleccionada.IDPersona
-            control.MatriculaNumero = personaSeleccionada.MatriculaNumero
+            control.SetMatriculaNumero(personaSeleccionada.MatriculaNumero)
             control.ApellidoNombre = personaSeleccionada.ApellidoNombre
             Return True
         Else

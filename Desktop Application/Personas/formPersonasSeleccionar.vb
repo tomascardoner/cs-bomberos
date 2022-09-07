@@ -21,7 +21,7 @@
         DataGridSetAppearance(datagridviewMain)
     End Sub
 
-    Public Sub New(multiseleccion As Boolean, Optional idCuartel As Byte = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE, Optional mostrarSoloActivos As Boolean = True)
+    Public Sub New(multiseleccion As Boolean, idCuartel As Byte?, mostrarSoloActivos As Boolean)
         InitializeComponent()
 
         SetAppearance()
@@ -37,7 +37,7 @@
         End Using
         pFillAndRefreshLists.PersonaEstadoActual(comboboxEstadoActual.ComboBox, True)
 
-        If idCuartel > CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
+        If idCuartel.HasValue Then
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel.ComboBox, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, idCuartel)
         End If
         If mostrarSoloActivos Then

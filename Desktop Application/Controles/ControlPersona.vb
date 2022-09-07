@@ -2,15 +2,16 @@
 
 #Region "Declarations - properties"
 
-    Private listPersonas As List(Of Persona)
+    Private listPersonas As List(Of PersonasObtenerPorCuartelYEstado_Result)
     Private _IDPersona As Integer?
     Private _MatriculaNumeroDigitos As Short?
     Private _ApellidoNombre As String
-    Private _Persona As Persona
     Private _ReadOnlyText As Boolean
     Private dbContextLocal As Boolean
 
-    Public dbContext As CSBomberosContext
+    Public Property dbContext As CSBomberosContext
+    Public Property IDCuartel As Byte?
+    Public Property MostrarSoloEstadoActivo As Boolean = True
 
     Public Property IDPersona As Integer?
         Get
@@ -22,23 +23,21 @@
         End Set
     End Property
 
-    Public WriteOnly Property MatriculaNumero As String
-        Set(value As String)
-            If value IsNot Nothing Then
-                value = value.Trim()
-                If value.Length >= Constantes.PersonaMatriculaCantidadDigitos Then
-                    value = value.Substring(value.Length - Constantes.PersonaMatriculaCantidadDigitos).RemoveNotNumbers()
-                    If value.Length = Constantes.PersonaMatriculaCantidadDigitos Then
-                        MatriculaNumeroDigitos = CShort(value)
-                    End If
-                Else
-                    MatriculaNumeroDigitos = Nothing
+    Public Sub SetMatriculaNumero(value As String)
+        If value IsNot Nothing Then
+            value = value.Trim()
+            If value.Length >= Constantes.PersonaMatriculaCantidadDigitos Then
+                value = value.Substring(value.Length - Constantes.PersonaMatriculaCantidadDigitos).RemoveNotNumbers()
+                If value.Length = Constantes.PersonaMatriculaCantidadDigitos Then
+                    MatriculaNumeroDigitos = CShort(value)
                 End If
             Else
                 MatriculaNumeroDigitos = Nothing
             End If
-        End Set
-    End Property
+        Else
+            MatriculaNumeroDigitos = Nothing
+        End If
+    End Sub
 
     Public Property MatriculaNumeroDigitos As Short?
         Get
@@ -66,12 +65,6 @@
                 TextBoxApellidoNombre.Text = String.Empty
             End If
         End Set
-    End Property
-
-    Public ReadOnly Property Persona As Persona
-        Get
-            Return _Persona
-        End Get
     End Property
 
     Public Property ReadOnlyText As Boolean
@@ -111,7 +104,14 @@
         IDPersona = Nothing
         MatriculaNumeroDigitos = Nothing
         ApellidoNombre = Nothing
-        _Persona = Nothing
+    End Sub
+
+    Public Sub AsignarValores(persona As PersonasObtenerPorCuartelYEstado_Result)
+        If persona Is Nothing Then
+            ResetText()
+        Else
+            AsignarValores(persona.IDPersona, persona.MatriculaNumero, persona.ApellidoNombre)
+        End If
     End Sub
 
     Public Sub AsignarValores(persona As Persona)
@@ -119,14 +119,13 @@
             ResetText()
         Else
             AsignarValores(persona.IDPersona, persona.MatriculaNumero, persona.ApellidoNombre)
-            _Persona = persona
         End If
     End Sub
 
     Public Sub AsignarValores(valorIDPersona As Integer, valorMatriculaNumero As String, valorApellidoNombre As String)
         MostrarUnaPersona()
         IDPersona = valorIDPersona
-        MatriculaNumero = valorMatriculaNumero
+        SetMatriculaNumero(valorMatriculaNumero)
         ApellidoNombre = valorApellidoNombre
     End Sub
 
@@ -135,7 +134,6 @@
         IDPersona = origen.IDPersona
         MatriculaNumeroDigitos = origen.MatriculaNumeroDigitos
         ApellidoNombre = origen.ApellidoNombre
-        _Persona = origen.Persona
     End Sub
 
     Public Sub BuscarPersona(valorIDPersona As Integer?)
@@ -149,8 +147,8 @@
 
     Public Sub BuscarPersona(valorMatriculaNumeroDigitos As Short)
         CargarListaDePersonas()
-        Dim listPersonasEncontradas As List(Of Persona)
-        listPersonasEncontradas = listPersonas.Where(Function(p) p.EsActivo And p.MatriculaNumero.TrimEnd().EndsWith(valorMatriculaNumeroDigitos.ToString(New String("0"c, Constantes.PersonaMatriculaCantidadDigitos)))).ToList()
+        Dim listPersonasEncontradas As List(Of PersonasObtenerPorCuartelYEstado_Result)
+        listPersonasEncontradas = listPersonas.Where(Function(p) p.MatriculaNumero.TrimEnd().EndsWith(valorMatriculaNumeroDigitos.ToString(New String("0"c, Constantes.PersonaMatriculaCantidadDigitos)))).ToList()
         Select Case listPersonasEncontradas.Count
             Case 0
                 ResetText()
@@ -212,7 +210,7 @@
 
     Private Sub ComboBoxApellidoNombre_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxApellidoNombre.SelectedIndexChanged
         If ComboBoxApellidoNombre.SelectedIndex > -1 Then
-            AsignarValores(CType(ComboBoxApellidoNombre.SelectedItem, Persona))
+            AsignarValores(CType(ComboBoxApellidoNombre.SelectedItem, PersonasObtenerPorCuartelYEstado_Result))
             MostrarMultiplesPersonas()
         End If
     End Sub
@@ -250,7 +248,7 @@
                 End If
             End If
             Try
-                listPersonas = dbContext.Persona.Where(Function(p) p.EsActivo).OrderBy(Function(p) p.ApellidoNombre).ToList()
+                listPersonas = dbContext.PersonasObtenerPorCuartelYEstado(IDCuartel, MostrarSoloEstadoActivo).ToList()
                 Return True
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener la lista de Personas de la base de datos.")

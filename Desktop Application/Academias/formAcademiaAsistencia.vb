@@ -73,6 +73,7 @@
         SetAppearance()
 
         controlpersonaPersona.dbContext = mdbContext
+        controlpersonaPersona.IDCuartel = mIDCuartel
         ListasAcademias.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
     End Sub
 
@@ -159,17 +160,8 @@
     End Sub
 
     Private Sub buttonGuardar_Click() Handles buttonGuardar.Click
-        If mIsNew Then
-            If Not controlpersonaPersona.IDPersona.HasValue Then
-                MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
-                controlpersonaPersona.Focus()
-                Exit Sub
-            End If
-        End If
-        If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar la Asistencia.", MsgBoxStyle.Information, My.Application.Info.Title)
-            comboboxAsistenciaTipo.Focus()
-            Exit Sub
+        If Not VerificarDatos() Then
+            Return
         End If
 
         mAcademiaAsistenciaActual.IDUsuarioModificacion = pUsuario.IDUsuario
@@ -183,6 +175,32 @@
 
         Me.Close()
     End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Function VerificarDatos() As Boolean
+        If mIsNew Then
+            If Not controlpersonaPersona.IDPersona.HasValue Then
+                MessageBox.Show("Debe especificar la Persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                controlpersonaPersona.Focus()
+                Return False
+            End If
+        End If
+        If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
+            MessageBox.Show("Debe especificar el tipo de Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            comboboxAsistenciaTipo.Focus()
+            Return False
+        End If
+        If mAcademiaActual.AcademiasAsistencias.Any(Function(aa) aa.IDPersona = controlpersonaPersona.IDPersona.Value) Then
+            MessageBox.Show("La Persona ya tiene cargada la Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            controlpersonaPersona.Focus()
+            Return False
+        End If
+
+        Return True
+    End Function
 
 #End Region
 

@@ -160,4 +160,12 @@ Partial Public Class CSBomberosContext
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion", iDSiniestroParameter, iDUsuarioParameter)
     End Function
 
+    Public Overridable Function PersonasObtenerPorCuartelYEstado(iDCuartel As Nullable(Of Byte), soloEstadoActivo As Nullable(Of Boolean)) As ObjectResult(Of PersonasObtenerPorCuartelYEstado_Result)
+        Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))
+
+        Dim soloEstadoActivoParameter As ObjectParameter = If(soloEstadoActivo.HasValue, New ObjectParameter("SoloEstadoActivo", soloEstadoActivo), New ObjectParameter("SoloEstadoActivo", GetType(Boolean)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerPorCuartelYEstado_Result)("PersonasObtenerPorCuartelYEstado", iDCuartelParameter, soloEstadoActivoParameter)
+    End Function
+
 End Class

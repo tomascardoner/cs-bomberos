@@ -5129,6 +5129,10 @@
           <Parameter Name="IDAcademia" Type="int" Mode="In" />
         </Function>
         <Function Name="PersonasObtenerConEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PersonasObtenerPorCuartelYEstado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IDCuartel" Type="tinyint" Mode="In" />
+          <Parameter Name="SoloEstadoActivo" Type="bit" Mode="In" />
+        </Function>
         <Function Name="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IDSiniestro" Type="int" Mode="In" />
           <Parameter Name="IDUsuario" Type="smallint" Mode="In" />
@@ -7621,6 +7625,10 @@
           <FunctionImport Name="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion">
             <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
             <Parameter Name="IDUsuario" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="PersonasObtenerPorCuartelYEstado" ReturnType="Collection(CSBomberosModel.PersonasObtenerPorCuartelYEstado_Result)">
+            <Parameter Name="IDCuartel" Mode="In" Type="Byte" />
+            <Parameter Name="SoloEstadoActivo" Mode="In" Type="Boolean" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -13264,6 +13272,16 @@
           <Property Type="Int32" Name="IDPersona" Nullable="false" />
           <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
         </ComplexType>
+        <ComplexType Name="PersonasObtenerPorCuartelYEstado_Result">
+          <Property Type="Int32" Name="IDPersona" Nullable="false" />
+          <Property Type="String" Name="MatriculaNumero" Nullable="false" MaxLength="6" />
+          <Property Type="String" Name="ApellidoNombre" Nullable="false" MaxLength="102" />
+          <Property Type="String" Name="Apellido" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="IDCuartel" Nullable="false" />
+          <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
+          <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15066,6 +15084,20 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion" />
           <FunctionImportMapping FunctionImportName="SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" FunctionName="CSBomberosModel.Store.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion" />
+          <FunctionImportMapping FunctionImportName="PersonasObtenerPorCuartelYEstado" FunctionName="CSBomberosModel.Store.PersonasObtenerPorCuartelYEstado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CSBomberosModel.PersonasObtenerPorCuartelYEstado_Result">
+                <ScalarProperty Name="IDPersona" ColumnName="IDPersona" />
+                <ScalarProperty Name="MatriculaNumero" ColumnName="MatriculaNumero" />
+                <ScalarProperty Name="ApellidoNombre" ColumnName="ApellidoNombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDCuartel" ColumnName="IDCuartel" />
+                <ScalarProperty Name="CuartelNombre" ColumnName="CuartelNombre" />
+                <ScalarProperty Name="IDBajaMotivo" ColumnName="IDBajaMotivo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -758,6 +758,9 @@
     <Compile Include="PersonasObtenerConEstado_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonasObtenerPorCuartelYEstado_Result.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Personas\formPersonaIdentificacionHuellasDigitales.Designer.vb">
       <DependentUpon>formPersonaIdentificacionHuellasDigitales.vb</DependentUpon>
     </Compile>

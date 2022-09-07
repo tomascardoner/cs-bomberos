@@ -33,7 +33,9 @@
 
     Private Sub controlpersonaPersona_TextChanged(sender As Object, e As EventArgs) Handles controlpersonaPersona.TextChanged
         maskedtextboxIdentificacionPin.Focus()
-        mPersona = controlpersonaPersona.Persona
+        If controlpersonaPersona.IDPersona.HasValue Then
+            mPersona = mdbContext.Persona.Find(controlpersonaPersona.IDPersona.Value)
+        End If
     End Sub
 
     Private Sub MaskedTextBoxes_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxIdentificacionPin.GotFocus
