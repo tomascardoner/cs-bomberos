@@ -38,6 +38,7 @@ Partial Class formMDIMain
         Me.menuitemSistema_VerificarFamiliares = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentana = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemDebug = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemDebug_DebugMode = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemAyuda_AcercaDe = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemVentanaCerrarTodas = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,6 +100,7 @@ Partial Class formMDIMain
         Me.menuitemDocumentaciones_Academias = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemDocumentaciones_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonJefatura = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.menuitemJefatura_Sanciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_OrdenesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_ArqueosCaja = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
@@ -107,7 +109,6 @@ Partial Class formMDIMain
         Me.menuitemComisionDirectiva_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonGuardia = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemGuardia_Siniestros = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuitemJefatura_Sanciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         Me.menustripMain.SuspendLayout()
         Me.toolstripMain.SuspendLayout()
@@ -210,10 +211,18 @@ Partial Class formMDIMain
         '
         'menuitemDebug
         '
+        Me.menuitemDebug.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemDebug_DebugMode})
         Me.menuitemDebug.Name = "menuitemDebug"
         Me.menuitemDebug.Size = New System.Drawing.Size(54, 20)
         Me.menuitemDebug.Text = "Debug"
         Me.menuitemDebug.Visible = False
+        '
+        'menuitemDebug_DebugMode
+        '
+        Me.menuitemDebug_DebugMode.CheckOnClick = True
+        Me.menuitemDebug_DebugMode.Name = "menuitemDebug_DebugMode"
+        Me.menuitemDebug_DebugMode.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemDebug_DebugMode.Text = "Debug mode"
         '
         'menuitemAyuda
         '
@@ -616,25 +625,32 @@ Partial Class formMDIMain
         Me.dropdownbuttonJefatura.Size = New System.Drawing.Size(149, 36)
         Me.dropdownbuttonJefatura.Text = "Jefatura"
         '
+        'menuitemJefatura_Sanciones
+        '
+        Me.menuitemJefatura_Sanciones.Image = Global.CSBomberos.My.Resources.Resources.ImageSancion32
+        Me.menuitemJefatura_Sanciones.Name = "menuitemJefatura_Sanciones"
+        Me.menuitemJefatura_Sanciones.Size = New System.Drawing.Size(178, 22)
+        Me.menuitemJefatura_Sanciones.Text = "Sanciones"
+        '
         'menuitemJefatura_OrdenesCompra
         '
         Me.menuitemJefatura_OrdenesCompra.Image = Global.CSBomberos.My.Resources.Resources.ImageOrdenCompra32
         Me.menuitemJefatura_OrdenesCompra.Name = "menuitemJefatura_OrdenesCompra"
-        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_OrdenesCompra.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_OrdenesCompra.Text = "Órdenes de compra"
         '
         'menuitemJefatura_ArqueosCaja
         '
         Me.menuitemJefatura_ArqueosCaja.Image = Global.CSBomberos.My.Resources.Resources.ImageArqueoCaja32
         Me.menuitemJefatura_ArqueosCaja.Name = "menuitemJefatura_ArqueosCaja"
-        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_ArqueosCaja.Text = "Arqueos de caja"
         '
         'menuitemJefatura_Reportes
         '
         Me.menuitemJefatura_Reportes.Image = Global.CSBomberos.My.Resources.Resources.ImageReporte32
         Me.menuitemJefatura_Reportes.Name = "menuitemJefatura_Reportes"
-        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_Reportes.Size = New System.Drawing.Size(178, 22)
         Me.menuitemJefatura_Reportes.Text = "Reportes"
         '
         'dropdownbuttonComisionDirectiva
@@ -679,13 +695,6 @@ Partial Class formMDIMain
         Me.menuitemGuardia_Siniestros.Name = "menuitemGuardia_Siniestros"
         Me.menuitemGuardia_Siniestros.Size = New System.Drawing.Size(124, 22)
         Me.menuitemGuardia_Siniestros.Text = "Siniestros"
-        '
-        'menuitemJefatura_Sanciones
-        '
-        Me.menuitemJefatura_Sanciones.Image = Global.CSBomberos.My.Resources.Resources.ImageSancion32
-        Me.menuitemJefatura_Sanciones.Name = "menuitemJefatura_Sanciones"
-        Me.menuitemJefatura_Sanciones.Size = New System.Drawing.Size(180, 22)
-        Me.menuitemJefatura_Sanciones.Text = "Sanciones"
         '
         'formMDIMain
         '
@@ -798,4 +807,5 @@ Partial Class formMDIMain
     Friend WithEvents menuitemComisionDirectiva_Reportes As ToolStripMenuItem
     Friend WithEvents menuitemTablas_MotivosSancion As ToolStripMenuItem
     Friend WithEvents menuitemJefatura_Sanciones As ToolStripMenuItem
+    Friend WithEvents menuitemDebug_DebugMode As ToolStripMenuItem
 End Class

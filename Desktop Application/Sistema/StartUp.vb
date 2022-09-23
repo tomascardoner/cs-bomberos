@@ -10,6 +10,7 @@
     Friend pDatabase As CardonerSistemas.Database.Ado.SQLServer
     Friend pFillAndRefreshLists As FillAndRefreshLists
 
+    Friend pDebugMode As Boolean
     Friend pFormMDIMain As formMDIMain
     Friend pPermisos As List(Of UsuarioGrupoPermiso)
     Friend pPermisosReportes As List(Of Reporte)

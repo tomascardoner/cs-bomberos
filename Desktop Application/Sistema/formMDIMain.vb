@@ -44,19 +44,19 @@
 
 #Region "Menu Archivo"
 
-    Private Sub Opciones() Handles menuitemArchivo_Opciones.Click
+    Private Sub Opciones(sender As Object, e As EventArgs) Handles menuitemArchivo_Opciones.Click
         formOpciones.ShowDialog(Me)
     End Sub
 
-    Private Sub UsuarioCerrarSesion() Handles menuitemArchivo_CerrarSesion.Click
+    Private Sub UsuarioCerrarSesion(sender As Object, e As EventArgs) Handles menuitemArchivo_CerrarSesion.Click
         CerrarSesionUsuario()
     End Sub
 
-    Private Sub UsuarioCambiarContrasena() Handles menuitemArchivo_CambiarContrasena.Click
+    Private Sub UsuarioCambiarContrasena(sender As Object, e As EventArgs) Handles menuitemArchivo_CambiarContrasena.Click
         formCambiarContrasena.ShowDialog(Me)
     End Sub
 
-    Private Sub ApplicacionSalir() Handles menuitemArchivo_Salir.Click
+    Private Sub ApplicacionSalir(sender As Object, e As EventArgs) Handles menuitemArchivo_Salir.Click
         Me.Close()
     End Sub
 
@@ -64,7 +64,7 @@
 
 #Region "Menú Sistema"
 
-    Private Shared Sub CompletarCUILes() Handles menuitemSistema_CompletarCuiles.Click
+    Private Sub CompletarCUILes(sender As Object, e As EventArgs) Handles menuitemSistema_CompletarCuiles.Click
         If Not Permisos.VerificarPermiso(Permisos.SISTEMA_COMPLETAR_CUIL) Then
             Exit Sub
         End If
@@ -119,7 +119,7 @@
         End Try
     End Sub
 
-    Private Shared Sub VerificarEdadFamiliares() Handles menuitemSistema_VerificarFamiliares.Click
+    Private Sub VerificarEdadFamiliares(sender As Object, e As EventArgs) Handles menuitemSistema_VerificarFamiliares.Click
         If Not Permisos.VerificarPermiso(Permisos.SISTEMA_VERIFICAR_FAMILIARACARGO) Then
             Exit Sub
         End If
@@ -185,6 +185,9 @@
 
 #Region "Menu Debug"
 
+    Private Sub ChangeDebugMode(sender As Object, e As EventArgs) Handles menuitemDebug_DebugMode.CheckedChanged
+        pDebugMode = menuitemDebug_DebugMode.Checked
+    End Sub
 
 #End Region
 

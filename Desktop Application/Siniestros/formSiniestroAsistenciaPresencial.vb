@@ -48,6 +48,12 @@ Public Class formSiniestroAsistenciaPresencial
         If mIdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+
+        If pDebugMode Then
+            controlPersonaAsignar.dbContext = mdbContext
+            controlPersonaAsignar.Show()
+            buttonAsignar.Show()
+        End If
     End Sub
 
     Friend Sub SetAppearance()
@@ -82,15 +88,7 @@ Public Class formSiniestroAsistenciaPresencial
         For Each huellaDigital As HuellaDigital In mlistHuellasDigitales
             verifier.Verify(FeatureSet, huellaDigital.Template, result)
             If result.Verified Then
-                Dim persona As Persona = mdbContext.Persona.Find(huellaDigital.IDPersona)
-                pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)
-                textboxPersona.Text = persona.ApellidoNombre
-                If VerificarDatos(huellaDigital.IDPersona) Then
-                    If GuardarDatos(huellaDigital.IDPersona) Then
-                        textboxEstado.ForeColor = Color.Black
-                        textboxEstado.Text = "Se ha registrado la asistencia."
-                    End If
-                End If
+                VerificarYGuardarDatos(huellaDigital.IDPersona)
                 Return
             End If
         Next
@@ -102,23 +100,46 @@ Public Class formSiniestroAsistenciaPresencial
         textboxEstado.Text = "La huella no coincide con ninguna de las registradas."
     End Sub
 
+    Private Sub buttonAsignar_Click(sender As Object, e As EventArgs) Handles buttonAsignar.Click
+        If controlPersonaAsignar.IDPersona.HasValue Then
+            VerificarYGuardarDatos(controlPersonaAsignar.IDPersona.Value)
+        End If
+    End Sub
+
 #End Region
 
 #Region "Extra stuff"
 
-    Private Function VerificarDatos(idPersona As Integer) As Boolean
-        If mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = idPersona).Any() Then
-            textboxEstado.ForeColor = Color.Red
-            textboxEstado.Text = "La persona ya tiene una asistencia al siniestro."
-            Return False
-        End If
+    Private Sub VerificarYGuardarDatos(idPersona As Integer)
+        Dim persona As Persona
+        Dim siniestroAsistencia As SiniestroAsistencia
+        Dim mensaje As String
 
-        Return True
-    End Function
+        persona = mdbContext.Persona.Find(idPersona)
+        pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)
+        textboxPersona.Text = persona.ApellidoNombre
 
-    Private Function GuardarDatos(idPersona As Integer) As Boolean
-
-        mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
+        siniestroAsistencia = mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = idPersona).FirstOrDefault()
+        If siniestroAsistencia IsNot Nothing Then
+            ' Ya hay una asistencia cargada
+            If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
+                ' Es una asistencia de presente, se muestra advertencia y no se actualiza
+                textboxEstado.ForeColor = Color.Red
+                ' Debido a que el textbox está en ReadOnly, no cambia el color del texto sólo con ForeColor,
+                ' sino que hay que agregar esta línea absurda para que funcione
+                textboxEstado.BackColor = textboxEstado.BackColor
+                textboxEstado.Text = "La persona ya tiene una asistencia al siniestro."
+                Return
+            Else
+                ' Es una asistencia de ausente, se actualiza a Presente
+                siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
+                siniestroAsistencia.FechaHoraModificacion = Now()
+                mensaje = "Se actualizó la asistencia a Presente."
+            End If
+        Else
+            ' No existe, así que la agrego
+            mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
                                              .IDPersona = idPersona,
                                              .IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente,
                                              .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
@@ -126,10 +147,13 @@ Public Class formSiniestroAsistenciaPresencial
                                              .FechaHoraCreacion = Now(),
                                              .IDUsuarioModificacion = pUsuario.IDUsuario,
                                              .FechaHoraModificacion = Now()})
+            mensaje = "Se registró la asistencia."
 
+        End If
+
+        ' Guardo los cambios
         Try
             mdbContext.SaveChanges()
-            Return True
 
         Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
             Me.Cursor = Cursors.Default
@@ -141,15 +165,18 @@ Public Class formSiniestroAsistenciaPresencial
                 Case Else
                     CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
             End Select
-            Return False
+            Return
 
         Catch ex As Exception
             Me.Cursor = Cursors.Default
             CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-            Return False
+            Return
+
         End Try
 
-    End Function
+        textboxEstado.ForeColor = Color.Black
+        textboxEstado.Text = mensaje
+    End Sub
 
 #End Region
 

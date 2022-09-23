@@ -34,6 +34,8 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
         Me.pictureboxFlecha = New System.Windows.Forms.PictureBox()
         Me.textboxEstado = New System.Windows.Forms.TextBox()
+        Me.buttonAsignar = New System.Windows.Forms.Button()
+        Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
         labelCuartel = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,11 +158,41 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.textboxEstado.TabIndex = 3
         Me.textboxEstado.TabStop = False
         '
+        'buttonAsignar
+        '
+        Me.buttonAsignar.Location = New System.Drawing.Point(549, 141)
+        Me.buttonAsignar.Name = "buttonAsignar"
+        Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
+        Me.buttonAsignar.TabIndex = 96
+        Me.buttonAsignar.Text = "Asignar"
+        Me.buttonAsignar.UseVisualStyleBackColor = True
+        Me.buttonAsignar.Visible = False
+        '
+        'controlPersonaAsignar
+        '
+        Me.controlPersonaAsignar.ApellidoNombre = Nothing
+        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlPersonaAsignar.dbContext = Nothing
+        Me.controlPersonaAsignar.IDCuartel = Nothing
+        Me.controlPersonaAsignar.IDPersona = Nothing
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(227, 141)
+        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
+        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlPersonaAsignar.MostrarSoloEstadoActivo = True
+        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
+        Me.controlPersonaAsignar.ReadOnlyText = False
+        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
+        Me.controlPersonaAsignar.TabIndex = 97
+        Me.controlPersonaAsignar.Visible = False
+        '
         'formSiniestroAsistenciaPresencial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(627, 289)
+        Me.Controls.Add(Me.controlPersonaAsignar)
+        Me.Controls.Add(Me.buttonAsignar)
         Me.Controls.Add(Me.textboxEstado)
         Me.Controls.Add(Me.pictureboxFlecha)
         Me.Controls.Add(Me.pictureboxFoto)
@@ -198,4 +230,6 @@ Partial Class formSiniestroAsistenciaPresencial
     Friend WithEvents pictureboxFoto As PictureBox
     Friend WithEvents pictureboxFlecha As PictureBox
     Friend WithEvents textboxEstado As TextBox
+    Friend WithEvents buttonAsignar As Button
+    Friend WithEvents controlPersonaAsignar As ControlPersona
 End Class

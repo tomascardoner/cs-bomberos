@@ -6,3 +6,4 @@
 Imports System.Diagnostics.CodeAnalysis
 
 <Assembly: SuppressMessage("Security", "CA2119:Seal methods that satisfy private interfaces", Justification:="It's Visual Studio generated code", Scope:="namespaceanddescendants", Target:="~N:CSBomberos")>
+<Assembly: SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification:="This application will not be localized", Scope:="namespaceanddescendants", Target:="~N:CSBomberos")>
