@@ -38,7 +38,7 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal OperacionTipo As String, ByVal IDComprobante As Integer)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByVal OperacionTipo As String, ByVal IDComprobante As Integer)
         mIsNew = (IDComprobante = 0)
         mIsLoading = True
         mEditMode = EditMode
@@ -868,16 +868,13 @@
 
     Private Sub MedioPagoAgregarOtro(sender As Object, e As EventArgs) Handles buttonMediosPago_AgregarOtro.Click
         Me.Cursor = Cursors.WaitCursor
-
         datagridviewMediosPago.Enabled = False
-
-        Dim ComprobanteMedioPagoNuevo As New ComprobanteMedioPago With {
-            .FechaHora = DateTime.Now
-        }
+        If comboboxEntidad.SelectedIndex > -1 AndAlso mComprobanteActual.IDEntidad <> CType(comboboxEntidad.SelectedItem, Entidad).IDEntidad Then
+            mComprobanteActual.IDEntidad = CType(comboboxEntidad.SelectedItem, Entidad).IDEntidad
+        End If
+        Dim ComprobanteMedioPagoNuevo As New ComprobanteMedioPago With {.FechaHora = DateTime.Now}
         formComprobanteMedioPago.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteMedioPagoNuevo)
-
         datagridviewMediosPago.Enabled = True
-
         Me.Cursor = Cursors.Default
     End Sub
 

@@ -17,7 +17,12 @@ Partial Public Class ComprobanteMedioPago
     Public Property FechaHora As Nullable(Of Date)
     Public Property Numero As String
     Public Property IDBanco As Nullable(Of Short)
+    Public Property IDTipo As Nullable(Of Byte)
+    Public Property Sucursal As Nullable(Of Short)
     Public Property Cuenta As String
+    Public Property Cbu As String
+    Public Property CbuAlias As String
+    Public Property Cuit As Nullable(Of Long)
     Public Property Titular As String
     Public Property IDCheque As Nullable(Of Integer)
     Public Property Importe As Decimal

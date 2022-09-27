@@ -462,7 +462,7 @@
         If Permisos.VerificarPermiso(Permisos.COMPROBANTE_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
             datagridviewMain.Enabled = False
-            formComprobante.LoadAndShow(True, Me, OperacionTipo, 0)
+            formComprobante.LoadAndShow(True, OperacionTipo, 0)
             datagridviewMain.Enabled = True
             Me.Cursor = Cursors.Default
         End If
@@ -477,7 +477,7 @@
             End If
             Me.Cursor = Cursors.WaitCursor
             datagridviewMain.Enabled = False
-            formComprobante.LoadAndShow(True, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
+            formComprobante.LoadAndShow(True, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
             datagridviewMain.Enabled = True
             Me.Cursor = Cursors.Default
         End If
@@ -524,7 +524,7 @@
         Else
             Me.Cursor = Cursors.WaitCursor
             datagridviewMain.Enabled = False
-            formComprobante.LoadAndShow(False, Me, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
+            formComprobante.LoadAndShow(False, OperacionTipo, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDComprobante)
             datagridviewMain.Enabled = True
             Me.Cursor = Cursors.Default
         End If

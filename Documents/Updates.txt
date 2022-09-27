@@ -1,3 +1,8 @@
+2022-09-26
+	- Tabla ComprobanteMedioPago
+		- Agregar y modificar campos nuevos
+	- Tabla MedioPago, modificar débito de tarjeta de crédito. Poner false en UtilizaCuenta
+
 2022-07-15
 	- Ejecutar stored procedures:
 		- SiniestroObtenerPersonasParaAsistencia

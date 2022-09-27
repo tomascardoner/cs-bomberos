@@ -422,8 +422,13 @@
           <Property Name="FechaHora" Type="datetime2" Precision="0" />
           <Property Name="Numero" Type="varchar" MaxLength="20" />
           <Property Name="IDBanco" Type="smallint" />
-          <Property Name="Cuenta" Type="varchar" MaxLength="30" />
-          <Property Name="Titular" Type="varchar" MaxLength="100" />
+          <Property Name="IDTipo" Type="tinyint" />
+          <Property Name="Sucursal" Type="smallint" />
+          <Property Name="Cuenta" Type="varchar" MaxLength="20" />
+          <Property Name="Cbu" Type="char" MaxLength="22" />
+          <Property Name="CbuAlias" Type="varchar" MaxLength="20" />
+          <Property Name="Cuit" Type="bigint" />
+          <Property Name="Titular" Type="varchar" MaxLength="50" />
           <Property Name="IDCheque" Type="int" />
           <Property Name="Importe" Type="money" Nullable="false" />
         </EntityType>
@@ -12713,14 +12718,19 @@
           <Property Name="FechaHora" Type="DateTime" Precision="0" />
           <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="IDBanco" Type="Int16" />
-          <Property Name="Cuenta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Titular" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="IDCheque" Type="Int32" />
-          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="IDTipo" Type="Byte" />
+          <Property Name="Sucursal" Type="Int16" />
+          <Property Name="Cuenta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Banco" Relationship="CSBomberosModel.FK__Banco__ComprobanteMedioPago" FromRole="ComprobanteMedioPago" ToRole="Banco" />
           <NavigationProperty Name="Comprobante" Relationship="CSBomberosModel.FK__Comprobante__ComprobanteMedioPago" FromRole="ComprobanteMedioPago" ToRole="Comprobante" />
           <NavigationProperty Name="MedioPago" Relationship="CSBomberosModel.FK__MedioPago__ComprobanteMedioPago" FromRole="ComprobanteMedioPago" ToRole="MedioPago" />
           <NavigationProperty Name="Cheque" Relationship="CSBomberosModel.FK__Cheque__ComprobanteMedioPago" FromRole="ComprobanteMedioPago" ToRole="Cheque" />
+          <Property Name="Cbu" Type="String" MaxLength="22" FixedLength="true" Unicode="false" />
+          <Property Name="CbuAlias" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Cuit" Type="Int64" />
+          <Property Name="Titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IDCheque" Type="Int32" />
+          <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="MedioPago">
           <Key>
@@ -14935,6 +14945,11 @@
           <EntitySetMapping Name="ComprobanteMedioPago">
             <EntityTypeMapping TypeName="CSBomberosModel.ComprobanteMedioPago">
               <MappingFragment StoreEntitySet="ComprobanteMedioPago">
+                <ScalarProperty Name="Cuit" ColumnName="Cuit" />
+                <ScalarProperty Name="CbuAlias" ColumnName="CbuAlias" />
+                <ScalarProperty Name="Cbu" ColumnName="Cbu" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="IDTipo" ColumnName="IDTipo" />
                 <ScalarProperty Name="Importe" ColumnName="Importe" />
                 <ScalarProperty Name="IDCheque" ColumnName="IDCheque" />
                 <ScalarProperty Name="Titular" ColumnName="Titular" />

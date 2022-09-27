@@ -308,7 +308,7 @@ Partial Class formComprobante
         Me.tabpageDetalle.Location = New System.Drawing.Point(4, 22)
         Me.tabpageDetalle.Name = "tabpageDetalle"
         Me.tabpageDetalle.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageDetalle.Size = New System.Drawing.Size(838, 187)
+        Me.tabpageDetalle.Size = New System.Drawing.Size(838, 195)
         Me.tabpageDetalle.TabIndex = 0
         Me.tabpageDetalle.Text = "Detalle"
         '
@@ -333,7 +333,7 @@ Partial Class formComprobante
         Me.datagridviewDetalle.RowHeadersVisible = False
         Me.datagridviewDetalle.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewDetalle.Size = New System.Drawing.Size(734, 181)
+        Me.datagridviewDetalle.Size = New System.Drawing.Size(734, 189)
         Me.datagridviewDetalle.TabIndex = 4
         '
         'columnDetalle_Descripcion
@@ -380,7 +380,7 @@ Partial Class formComprobante
         Me.toolstripDetalle.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripDetalle.Location = New System.Drawing.Point(3, 3)
         Me.toolstripDetalle.Name = "toolstripDetalle"
-        Me.toolstripDetalle.Size = New System.Drawing.Size(98, 181)
+        Me.toolstripDetalle.Size = New System.Drawing.Size(98, 189)
         Me.toolstripDetalle.TabIndex = 5
         '
         'buttonDetalle_Agregar
@@ -427,7 +427,7 @@ Partial Class formComprobante
         Me.tabpageAplicaciones.Location = New System.Drawing.Point(4, 22)
         Me.tabpageAplicaciones.Name = "tabpageAplicaciones"
         Me.tabpageAplicaciones.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAplicaciones.Size = New System.Drawing.Size(838, 187)
+        Me.tabpageAplicaciones.Size = New System.Drawing.Size(838, 195)
         Me.tabpageAplicaciones.TabIndex = 2
         Me.tabpageAplicaciones.Text = "Aplicaciones"
         '
@@ -452,7 +452,7 @@ Partial Class formComprobante
         Me.datagridviewAplicaciones.RowHeadersVisible = False
         Me.datagridviewAplicaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAplicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAplicaciones.Size = New System.Drawing.Size(745, 181)
+        Me.datagridviewAplicaciones.Size = New System.Drawing.Size(745, 189)
         Me.datagridviewAplicaciones.TabIndex = 9
         '
         'columnAplicaciones_Tipo
@@ -523,7 +523,7 @@ Partial Class formComprobante
         Me.toolstripAplicaciones.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAplicaciones.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAplicaciones.Name = "toolstripAplicaciones"
-        Me.toolstripAplicaciones.Size = New System.Drawing.Size(87, 181)
+        Me.toolstripAplicaciones.Size = New System.Drawing.Size(87, 189)
         Me.toolstripAplicaciones.TabIndex = 8
         '
         'buttonAplicaciones_AplicarTodo
@@ -564,7 +564,7 @@ Partial Class formComprobante
         Me.tabpageMediosPago.Location = New System.Drawing.Point(4, 22)
         Me.tabpageMediosPago.Name = "tabpageMediosPago"
         Me.tabpageMediosPago.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageMediosPago.Size = New System.Drawing.Size(838, 187)
+        Me.tabpageMediosPago.Size = New System.Drawing.Size(838, 195)
         Me.tabpageMediosPago.TabIndex = 4
         Me.tabpageMediosPago.Text = "Medios de pago"
         '
@@ -589,7 +589,7 @@ Partial Class formComprobante
         Me.datagridviewMediosPago.RowHeadersVisible = False
         Me.datagridviewMediosPago.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMediosPago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewMediosPago.Size = New System.Drawing.Size(702, 181)
+        Me.datagridviewMediosPago.Size = New System.Drawing.Size(702, 189)
         Me.datagridviewMediosPago.TabIndex = 3
         '
         'columnMedioPagos_MedioPagoNombre
@@ -652,7 +652,7 @@ Partial Class formComprobante
         Me.toolstripMediosPago.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripMediosPago.Location = New System.Drawing.Point(3, 3)
         Me.toolstripMediosPago.Name = "toolstripMediosPago"
-        Me.toolstripMediosPago.Size = New System.Drawing.Size(130, 181)
+        Me.toolstripMediosPago.Size = New System.Drawing.Size(130, 189)
         Me.toolstripMediosPago.TabIndex = 4
         '
         'buttonMediosPago_AgregarOtro

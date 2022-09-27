@@ -61,6 +61,7 @@
         ' General
         textboxNombre.ReadOnly = Not mEditMode
         maskedtextboxCUIT.ReadOnly = Not mEditMode
+        comboboxCategoriaIVA.Enabled = mEditMode
         textboxTelefono1.ReadOnly = Not mEditMode
         textboxTelefono2.ReadOnly = Not mEditMode
         textboxEmail1.ReadOnly = Not mEditMode
@@ -253,7 +254,7 @@
     End Sub
 
     Private Sub DomicilioLocalidad_Cambiar(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
+        If comboboxDomicilioLocalidad.SelectedValue IsNot Nothing Then
             textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
