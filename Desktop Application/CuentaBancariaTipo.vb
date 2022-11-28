@@ -23,5 +23,6 @@ Partial Public Class CuentaBancariaTipo
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property Entidades As ICollection(Of Entidad) = New HashSet(Of Entidad)
+    Public Overridable Property ComprobanteMediosPago As ICollection(Of ComprobanteMedioPago) = New HashSet(Of ComprobanteMedioPago)
 
 End Class

@@ -2252,6 +2252,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__CuentaBancariaTipo__ComprobanteMedioPago">
+          <End Role="CuentaBancariaTipo" Type="Self.CuentaBancariaTipo" Multiplicity="0..1" />
+          <End Role="ComprobanteMedioPago" Type="Self.ComprobanteMedioPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDCuentaBancariaTipo" />
+            </Principal>
+            <Dependent Role="ComprobanteMedioPago">
+              <PropertyRef Name="IDTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__CuentaBancariaTipo__Entidad">
           <End Role="CuentaBancariaTipo" Type="Self.CuentaBancariaTipo" Multiplicity="0..1" />
           <End Role="Entidad" Type="Self.Entidad" Multiplicity="*" />
@@ -5431,6 +5443,10 @@
             <End Role="Cuartel" EntitySet="Cuartel" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK__CuentaBancariaTipo__ComprobanteMedioPago" Association="Self.FK__CuentaBancariaTipo__ComprobanteMedioPago">
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+            <End Role="ComprobanteMedioPago" EntitySet="ComprobanteMedioPago" />
+          </AssociationSet>
           <AssociationSet Name="FK__CuentaBancariaTipo__Entidad" Association="Self.FK__CuentaBancariaTipo__Entidad">
             <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
             <End Role="Entidad" EntitySet="Entidad" />
@@ -7635,6 +7651,10 @@
             <Parameter Name="IDCuartel" Mode="In" Type="Byte" />
             <Parameter Name="SoloEstadoActivo" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <AssociationSet Name="FK__CuentaBancariaTipo__ComprobanteMedioPago" Association="CSBomberosModel.FK__CuentaBancariaTipo__ComprobanteMedioPago">
+            <End Role="CuentaBancariaTipo" EntitySet="CuentaBancariaTipo" />
+            <End Role="ComprobanteMedioPago" EntitySet="ComprobanteMedioPago" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -12731,6 +12751,7 @@
           <Property Name="Titular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IDCheque" Type="Int32" />
           <Property Name="Importe" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="CuentaBancariaTipo" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__ComprobanteMedioPago" FromRole="ComprobanteMedioPago" ToRole="CuentaBancariaTipo" />
         </EntityType>
         <EntityType Name="MedioPago">
           <Key>
@@ -13136,6 +13157,7 @@
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Creacion" FromRole="CuentaBancariaTipo" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" FromRole="CuentaBancariaTipo" ToRole="Usuario" />
           <NavigationProperty Name="Entidades" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__Entidad" FromRole="CuentaBancariaTipo" ToRole="Entidad" />
+          <NavigationProperty Name="ComprobanteMediosPago" Relationship="CSBomberosModel.FK__CuentaBancariaTipo__ComprobanteMedioPago" FromRole="CuentaBancariaTipo" ToRole="ComprobanteMedioPago" />
         </EntityType>
         <Association Name="FK__Usuario__CuentaBancariaTipo__Creacion">
           <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
@@ -13292,6 +13314,18 @@
           <Property Type="String" Name="CuartelNombre" Nullable="false" MaxLength="50" />
           <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
         </ComplexType>
+        <Association Name="FK__CuentaBancariaTipo__ComprobanteMedioPago">
+          <End Type="CSBomberosModel.CuentaBancariaTipo" Role="CuentaBancariaTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.ComprobanteMedioPago" Role="ComprobanteMedioPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentaBancariaTipo">
+              <PropertyRef Name="IDCuentaBancariaTipo" />
+            </Principal>
+            <Dependent Role="ComprobanteMedioPago">
+              <PropertyRef Name="IDTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

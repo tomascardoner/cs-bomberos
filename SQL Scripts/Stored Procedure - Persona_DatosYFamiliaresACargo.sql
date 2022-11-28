@@ -10,6 +10,7 @@ GO
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-09-18
 -- Updates: 2021-11-21 - Actualizado a las nuevas funciones y tablas
+--			2022-11-14 - BUG fix: A la función PersonaObtenerEstado se le pasaba como segundo parámetro el IDBajaMotivo en lugar del nombre del motivo de baja
 -- Description:	Devuelve los datos de la Persona con sus familiares a cargo
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Persona_DatosYFamiliaresACargo') AND type in (N'P', N'PC'))
@@ -34,7 +35,7 @@ CREATE PROCEDURE usp_Persona_DatosYFamiliaresACargo
 				c.Nombre AS CuartelNombre, c.Descripcion AS CuartelDescripcion, p.IDPersona, p.MatriculaNumero, p.Genero, p.Apellido, p.Nombre, p.ApellidoNombre, p.Nombre + ' ' + p.Apellido AS NombreApellido,
 				dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, ec.Nombre AS EstadoCivil, CONVERT(varchar(10), p.FechaNacimiento, 103) AS FechaNacimiento,
 				CONVERT(varchar(10), p.FechaCasamiento, 103) AS FechaCasamiento, p.Profesion, p.Nacionalidad, ca.Nombre AS Cargo, cj.Nombre AS Jerarquia,
-				dbo.PersonaObtenerEstado(pab.Tipo, pab.IDPersonaBajaMotivo) AS Estado,
+				dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS Estado,
 				dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS Domicilio,
 				l.Nombre AS LocalidadNombre, p.IOMANumeroAfiliado, CONVERT(varchar(10), dbo.PersonaObtenerFechaUltimaAlta(p.IDPersona, NULL), 103) AS AltaFecha,
 				par.Orden AS ParentescoOrden, par.Nombre AS ParentescoNombre, pf.Apellido AS FamiliarApellido, pf.Nombre AS FamiliarNombre, pf.ApellidoNombre AS FamiliarApellidoNombre, pf.Nombre + ' ' + pf.Apellido AS FamiliarNombreApellido,

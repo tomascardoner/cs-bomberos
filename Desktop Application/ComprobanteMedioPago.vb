@@ -31,5 +31,6 @@ Partial Public Class ComprobanteMedioPago
     Public Overridable Property Comprobante As Comprobante
     Public Overridable Property MedioPago As MedioPago
     Public Overridable Property Cheque As Cheque
+    Public Overridable Property CuentaBancariaTipo As CuentaBancariaTipo
 
 End Class
