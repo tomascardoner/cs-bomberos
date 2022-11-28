@@ -1,3 +1,7 @@
+2022-11-27
+	- Ejecutar el stored procedure PersonaObtenerSeguroSepelio
+	- Ejecutar el script de update
+
 2022-09-26
 	- Tabla ComprobanteMedioPago
 		- Agregar y modificar campos nuevos

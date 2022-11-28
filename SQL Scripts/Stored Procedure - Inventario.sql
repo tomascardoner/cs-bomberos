@@ -9,6 +9,7 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-12-01
+-- Updates: 2022-11-28 - se cabió el parámetro FechaBaja a FechaBajaDesde y se agregaron los parámetros FechaBajaHasta, FechaAdquisionDesde, FechaAdquisionHasta
 -- Description:	Devuelve los Elementos del Inventario
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Inventario') AND type in (N'P', N'PC'))
@@ -21,7 +22,10 @@ CREATE PROCEDURE usp_Inventario
 	@IDUbicacion smallint,
 	@IDSubUbicacion smallint,
 	@Baja bit,
-	@FechaBaja date
+	@FechaBajaDesde date,
+	@FechaBajaHasta date,
+	@FechaAdquisicionDesde date,
+	@FechaAdquisicionHasta date
 	AS
 
 	BEGIN
@@ -48,6 +52,9 @@ CREATE PROCEDURE usp_Inventario
 				AND (@IDUbicacion IS NULL OR Inventario.IDUbicacion = @IDUbicacion)
 				AND (@IDSubUbicacion IS NULL OR Inventario.IDSubUbicacion = @IDSubUbicacion)
 				AND (@Baja IS NULL OR Inventario.EsActivo <> @Baja)
-				AND (@FechaBaja IS NULL OR Inventario.FechaBaja = @FechaBaja)
+				AND (@FechaBajaDesde IS NULL OR Inventario.FechaBaja >= @FechaBajaDesde)
+				AND (@FechaBajaHasta IS NULL OR Inventario.FechaBaja <= @FechaBajaHasta)
+				AND (@FechaAdquisicionDesde IS NULL OR Inventario.FechaAdquicision >= @FechaAdquisicionDesde)
+				AND (@FechaAdquisicionHasta IS NULL OR Inventario.FechaAdquicision <= @FechaAdquisicionHasta)
 	END
 GO
