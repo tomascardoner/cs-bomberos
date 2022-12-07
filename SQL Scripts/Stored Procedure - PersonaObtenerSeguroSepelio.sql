@@ -52,8 +52,8 @@ CREATE PROCEDURE PersonaObtenerSeguroSepelio
 				LEFT JOIN (SELECT * FROM PersonaFamiliar WHERE ACargo = 1 AND (IDParentesco <> @IDParentescoHijo OR dbo.udf_GetElapsedCompleteYearsFromDates(FechaNacimiento, GETDATE()) < 21)) AS pf ON p.IDPersona = pf.IDPersona
 				LEFT JOIN Parentesco AS par ON pf.IDParentesco = par.IDParentesco
 				LEFT JOIN DocumentoTipo AS fdt ON pf.IDDocumentoTipo = fdt.IDDocumentoTipo
-			WHERE p.EsActivo = 1 AND pf.IDPersona IS NOT NULL
-				AND pf.IDParentesco < 254
+			WHERE p.EsActivo = 1
+				AND (pf.IDPersona IS NULL OR pf.IDParentesco < 254)
 				AND (@IDPersona IS NULL OR p.IDPersona = @IDPersona)
 				AND (@IDCuartel IS NULL OR p.IDCuartel = @IDCuartel)
 				AND (@IDCargo IS NULL OR (pa.IDCargo = @IDCargo AND (@IDJerarquia IS NULL OR pa.IDJerarquia = @IDJerarquia)))
