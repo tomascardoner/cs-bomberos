@@ -36,6 +36,7 @@ CREATE PROCEDURE usp_Inventario
 				Inventario.Codigo AS InventarioCodigo, Area.Codigo + Inventario.Codigo AS AreaInventarioCodigo, Elemento.Nombre AS ElementoNombre,
 				Inventario.DescripcionPropia AS InventarioDescripcionPropia, 
 				Elemento.Nombre + ISNULL(' ' + Inventario.DescripcionPropia, '') AS ElementoNombreInventarioDescripcionPropia, 
+				Inventario.FechaAdquicision, 
 				Rubro.Nombre AS Rubro, SubRubro.Nombre AS SubRubro, 
 				Ubicacion.IDUbicacion, Ubicacion.Nombre AS UbicacionNombre, SubUbicacion.IDSubUbicacion, SubUbicacion.Nombre AS SubUbicacionNombre, 
 				ModoAdquisicion.IDModoAdquisicion, ModoAdquisicion.Nombre AS ModoAdquisicionNombre, ISNULL(Inventario.Cantidad, 1) AS Cantidad, Inventario.FechaBaja
