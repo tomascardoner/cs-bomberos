@@ -29,7 +29,7 @@ CREATE PROCEDURE usp_Persona_Datos
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
-		SELECT p.IDPersona, p.MatriculaNumero, c.Nombre AS CuartelNombre, p.Genero, p.Apellido, p.Nombre, p.ApellidoNombre,
+		SELECT p.IDPersona, p.MatriculaNumero, c.Nombre AS CuartelNombre, c.Descripcion AS CuartelDescripcion, p.Genero, p.Apellido, p.Nombre, p.ApellidoNombre,
 				dt.Nombre AS DocumentoTipoNombre, p.DocumentoNumero, p.FechaNacimiento, ca.Nombre AS Cargo, cj.Nombre AS Jerarquia,
 				dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS Estado,
 				dbo.udf_GetDomicilioCalleCompleto(p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularPiso, p.DomicilioParticularDepartamento, p.DomicilioParticularCalle2, p.DomicilioParticularCalle3) AS Domicilio,
