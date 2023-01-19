@@ -9,7 +9,8 @@ GO
 -- =============================================
 -- Author:		Tomás A. Cardoner
 -- Create date: 2018-12-01
--- Updates: 2022-11-28 - se cabió el parámetro FechaBaja a FechaBajaDesde y se agregaron los parámetros FechaBajaHasta, FechaAdquisionDesde, FechaAdquisionHasta
+-- Updates: 2022-11-28 - se cambió el parámetro FechaBaja a FechaBajaDesde y se agregaron los parámetros FechaBajaHasta, FechaAdquisionDesde, FechaAdquisionHasta
+--			2023-01-19 - se agregó el campo FechaAdquisición
 -- Description:	Devuelve los Elementos del Inventario
 -- =============================================
 IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'usp_Inventario') AND type in (N'P', N'PC'))
