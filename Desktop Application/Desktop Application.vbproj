@@ -755,7 +755,7 @@
     <Compile Include="PersonaSancion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonasObtenerConEstado_Result.vb">
+    <Compile Include="PersonasObtenerConEstadoYJerarquia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonasObtenerPorCuartelYEstado_Result.vb">

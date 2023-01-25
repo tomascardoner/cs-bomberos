@@ -26,6 +26,7 @@ Partial Class formCargoJerarquia
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCargo As System.Windows.Forms.Label
+        Dim labelMostrarEnAsistencia As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -34,8 +35,12 @@ Partial Class formCargoJerarquia
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.checkboxMostrarEnAsistencia = New System.Windows.Forms.CheckBox()
+        Me.comboboxCargo = New System.Windows.Forms.ComboBox()
+        Me.updownOrden = New System.Windows.Forms.NumericUpDown()
+        Me.labelOrden = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDJerarquia = New System.Windows.Forms.Label()
         Me.textboxIDJerarquia = New System.Windows.Forms.TextBox()
@@ -45,18 +50,16 @@ Partial Class formCargoJerarquia
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.updownOrden = New System.Windows.Forms.NumericUpDown()
-        Me.labelOrden = New System.Windows.Forms.Label()
-        Me.comboboxCargo = New System.Windows.Forms.ComboBox()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCargo = New System.Windows.Forms.Label()
+        labelMostrarEnAsistencia = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         CType(Me.updownOrden, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
@@ -86,9 +89,27 @@ Partial Class formCargoJerarquia
         labelCreacion.TabIndex = 6
         labelCreacion.Text = "Creación:"
         '
+        'labelCargo
+        '
+        labelCargo.AutoSize = True
+        labelCargo.Location = New System.Drawing.Point(6, 19)
+        labelCargo.Name = "labelCargo"
+        labelCargo.Size = New System.Drawing.Size(38, 13)
+        labelCargo.TabIndex = 0
+        labelCargo.Text = "Cargo:"
+        '
+        'labelMostrarEnAsistencia
+        '
+        labelMostrarEnAsistencia.AutoSize = True
+        labelMostrarEnAsistencia.Location = New System.Drawing.Point(6, 93)
+        labelMostrarEnAsistencia.Name = "labelMostrarEnAsistencia"
+        labelMostrarEnAsistencia.Size = New System.Drawing.Size(115, 13)
+        labelMostrarEnAsistencia.TabIndex = 4
+        labelMostrarEnAsistencia.Text = "Mostrar en asistencias:"
+        '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(59, 53)
+        Me.textboxNombre.Location = New System.Drawing.Point(137, 53)
         Me.textboxNombre.MaxLength = 50
         Me.textboxNombre.Name = "textboxNombre"
         Me.textboxNombre.Size = New System.Drawing.Size(340, 20)
@@ -174,6 +195,8 @@ Partial Class formCargoJerarquia
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.checkboxMostrarEnAsistencia)
+        Me.tabpageGeneral.Controls.Add(labelMostrarEnAsistencia)
         Me.tabpageGeneral.Controls.Add(labelCargo)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCargo)
         Me.tabpageGeneral.Controls.Add(Me.updownOrden)
@@ -187,6 +210,42 @@ Partial Class formCargoJerarquia
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'checkboxMostrarEnAsistencia
+        '
+        Me.checkboxMostrarEnAsistencia.AutoSize = True
+        Me.checkboxMostrarEnAsistencia.Location = New System.Drawing.Point(137, 93)
+        Me.checkboxMostrarEnAsistencia.Name = "checkboxMostrarEnAsistencia"
+        Me.checkboxMostrarEnAsistencia.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxMostrarEnAsistencia.TabIndex = 5
+        Me.checkboxMostrarEnAsistencia.UseVisualStyleBackColor = True
+        '
+        'comboboxCargo
+        '
+        Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCargo.FormattingEnabled = True
+        Me.comboboxCargo.Location = New System.Drawing.Point(137, 16)
+        Me.comboboxCargo.Name = "comboboxCargo"
+        Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
+        Me.comboboxCargo.TabIndex = 1
+        '
+        'updownOrden
+        '
+        Me.updownOrden.Location = New System.Drawing.Point(137, 128)
+        Me.updownOrden.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
+        Me.updownOrden.Name = "updownOrden"
+        Me.updownOrden.Size = New System.Drawing.Size(46, 20)
+        Me.updownOrden.TabIndex = 7
+        Me.updownOrden.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'labelOrden
+        '
+        Me.labelOrden.AutoSize = True
+        Me.labelOrden.Location = New System.Drawing.Point(6, 130)
+        Me.labelOrden.Name = "labelOrden"
+        Me.labelOrden.Size = New System.Drawing.Size(39, 13)
+        Me.labelOrden.TabIndex = 6
+        Me.labelOrden.Text = "Orden:"
         '
         'tabpageNotasAuditoria
         '
@@ -285,42 +344,6 @@ Partial Class formCargoJerarquia
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'updownOrden
-        '
-        Me.updownOrden.Location = New System.Drawing.Point(59, 89)
-        Me.updownOrden.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
-        Me.updownOrden.Name = "updownOrden"
-        Me.updownOrden.Size = New System.Drawing.Size(46, 20)
-        Me.updownOrden.TabIndex = 5
-        Me.updownOrden.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelOrden
-        '
-        Me.labelOrden.AutoSize = True
-        Me.labelOrden.Location = New System.Drawing.Point(6, 91)
-        Me.labelOrden.Name = "labelOrden"
-        Me.labelOrden.Size = New System.Drawing.Size(39, 13)
-        Me.labelOrden.TabIndex = 4
-        Me.labelOrden.Text = "Orden:"
-        '
-        'labelCargo
-        '
-        labelCargo.AutoSize = True
-        labelCargo.Location = New System.Drawing.Point(6, 19)
-        labelCargo.Name = "labelCargo"
-        labelCargo.Size = New System.Drawing.Size(38, 13)
-        labelCargo.TabIndex = 0
-        labelCargo.Text = "Cargo:"
-        '
-        'comboboxCargo
-        '
-        Me.comboboxCargo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCargo.FormattingEnabled = True
-        Me.comboboxCargo.Location = New System.Drawing.Point(59, 16)
-        Me.comboboxCargo.Name = "comboboxCargo"
-        Me.comboboxCargo.Size = New System.Drawing.Size(340, 21)
-        Me.comboboxCargo.TabIndex = 1
-        '
         'formCargoJerarquia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -341,9 +364,9 @@ Partial Class formCargoJerarquia
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.updownOrden, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.updownOrden, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -370,4 +393,5 @@ Partial Class formCargoJerarquia
     Friend WithEvents updownOrden As System.Windows.Forms.NumericUpDown
     Friend WithEvents labelOrden As System.Windows.Forms.Label
     Friend WithEvents comboboxCargo As System.Windows.Forms.ComboBox
+    Friend WithEvents checkboxMostrarEnAsistencia As CheckBox
 End Class

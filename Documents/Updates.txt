@@ -1,3 +1,20 @@
+2023-01-24
+	- Agregar el campo EsActivo a la tabla SancionMotivo (default = 1)
+	- Agregar el campo MostrarEnAsistencia a la tabla CargoJerarquia (default = 1)
+	- Modificar las Jerarquias Cadetes y Aspirantes poniendo MostrarEnAsistencia en 0
+	- Eliminar los stored procedures
+		- DROP PROCEDURE AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion
+		- DROP PROCEDURE SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion
+		- DROP PROCEDURE PersonasObtenerConEstado
+	- Agregar los stored procedures
+		- AcademiaAgregarAsistenciaDePersonas
+		- SiniestroAgregarAsistenciaDePersonas
+		- PersonasObtenerConEstadoYJerarquia
+	- Agregar los parámetros
+		- ACADEMIA_ASISTENCIATIPO_AUSENTE_ID	7
+		- SINIESTRO_ASISTENCIATIPO_AUSENTE_ID	7
+
+
 2022-11-27
 	- Ejecutar el stored procedure PersonaObtenerSeguroSepelio
 	- Ejecutar el script de update

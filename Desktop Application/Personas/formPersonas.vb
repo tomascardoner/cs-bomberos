@@ -2,8 +2,8 @@
 
 #Region "Declarations"
 
-    Private mlistPersonasBase As List(Of PersonasObtenerConEstado_Result)
-    Private mlistPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstado_Result)
+    Private mlistPersonasBase As List(Of PersonasObtenerConEstadoYJerarquia_Result)
+    Private mlistPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstadoYJerarquia_Result)
 
     Private mSkipFilterData As Boolean
     Private mBusquedaAplicada As Boolean
@@ -53,7 +53,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                mlistPersonasBase = dbContext.PersonasObtenerConEstado().ToList
+                mlistPersonasBase = dbContext.PersonasObtenerConEstadoYJerarquia().ToList
             End Using
 
         Catch ex As Exception
@@ -68,7 +68,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDPersona = 0
             Else
-                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona
+                PositionIDPersona = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).IDPersona
             End If
         End If
 
@@ -76,7 +76,7 @@
 
         If PositionIDPersona <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, PersonasObtenerConEstado_Result).IDPersona = PositionIDPersona Then
+                If CType(CurrentRowChecked.DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).IDPersona = PositionIDPersona Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(columnMatriculaNumero.Name)
                     Exit For
                 End If
@@ -288,7 +288,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+        formPersona.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).IDPersona)
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub
@@ -302,7 +302,7 @@
             Return
         End If
 
-        Dim Mensaje As String = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).ApellidoNombre)
+        Dim Mensaje As String = String.Format("Se eliminará la Persona seleccionada.{0}{0}Matrícula Nº: {1}{0}Apellido y nombre: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).MatriculaNumero, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).ApellidoNombre)
         If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
             Return
         End If
@@ -311,7 +311,7 @@
         Try
             Using dbContext = New CSBomberosContext(True)
                 Dim PersonaActual As Persona
-                PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+                PersonaActual = dbContext.Persona.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).IDPersona)
 
                 dbContext.Persona.Attach(PersonaActual)
                 dbContext.Persona.Remove(PersonaActual)
@@ -339,13 +339,13 @@
         End If
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result).IDPersona)
+        formPersona.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result).IDPersona)
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub Imprimir_FichaPersonal(sender As Object, e As EventArgs) Handles buttonImprimir.ButtonClick, menuitemImprimirFichaPersonal.Click
-        Dim CurrentRow As PersonasObtenerConEstado_Result
+        Dim CurrentRow As PersonasObtenerConEstadoYJerarquia_Result
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Persona para imprimir la Ficha.", vbInformation, My.Application.Info.Title)
@@ -355,7 +355,7 @@
             Return
         End If
 
-        CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstado_Result)
+        CurrentRow = CType(datagridviewMain.SelectedRows(0).DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result)
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
         Using dbContext As New CSBomberosContext(True)

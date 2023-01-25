@@ -170,7 +170,7 @@
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Dim personaSeleccionada As ListasPersonas.PersonaSeleccionada
 
-                    personaSeleccionada = ListasPersonas.SeleccionarPersona(Me, False, Nothing, False)
+                    personaSeleccionada = ListasPersonas.SeleccionarPersona(Me, False, Nothing, False, False)
                     If personaSeleccionada IsNot Nothing Then
                         ParametroActual.Valor = personaSeleccionada.IDPersona
                         ParametroActual.ValorParaMostrar = personaSeleccionada.ApellidoNombre
@@ -180,18 +180,18 @@
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAMULTIPLE
-                    Dim fps As New formPersonasSeleccionar(True, 0, False)
+                    Dim fps As New formPersonasSeleccionar(True, 0, False, False)
 
                     If fps.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         Const IDPersonaDelimiter As String = "@"
                         Const PersonaNombreDelimiter As String = " - "
 
-                        Dim PersonaSeleccionada As PersonasObtenerConEstado_Result
+                        Dim PersonaSeleccionada As PersonasObtenerConEstadoYJerarquia_Result
                         Dim Valores As String = String.Empty
                         Dim ValorParaMostrar As String = String.Empty
 
                         For Each dataRow As DataGridViewRow In fps.datagridviewMain.SelectedRows
-                            PersonaSeleccionada = CType(dataRow.DataBoundItem, PersonasObtenerConEstado_Result)
+                            PersonaSeleccionada = CType(dataRow.DataBoundItem, PersonasObtenerConEstadoYJerarquia_Result)
                             Valores = (PersonaSeleccionada.IDPersona & IDPersonaDelimiter & Valores)
                             ValorParaMostrar = (PersonaNombreDelimiter & PersonaSeleccionada.ApellidoNombre & ValorParaMostrar)
                         Next

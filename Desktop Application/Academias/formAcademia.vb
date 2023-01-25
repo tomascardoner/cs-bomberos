@@ -265,7 +265,7 @@
 
         If mIsNew Then
             Try
-                mdbContext.AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion(mAcademiaActual.IDAcademia, pUsuario.IDUsuario)
+                mdbContext.AcademiaAgregarAsistenciaDePersonas(mAcademiaActual.IDAcademia, pUsuario.IDUsuario)
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al agregar las asistencias de Licencias y Sanciones a la Academia.")

@@ -33,8 +33,10 @@ Partial Class formSancionTipo
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.updownCantidadDias = New System.Windows.Forms.NumericUpDown()
+        Me.labelOrden = New System.Windows.Forms.Label()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDSancionTipo = New System.Windows.Forms.Label()
         Me.textboxIDSancionTipo = New System.Windows.Forms.TextBox()
@@ -44,16 +46,14 @@ Partial Class formSancionTipo
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.updownCantidadDias = New System.Windows.Forms.NumericUpDown()
-        Me.labelOrden = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelEsActivo
@@ -183,6 +183,24 @@ Partial Class formSancionTipo
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'updownCantidadDias
+        '
+        Me.updownCantidadDias.Location = New System.Drawing.Point(88, 55)
+        Me.updownCantidadDias.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
+        Me.updownCantidadDias.Name = "updownCantidadDias"
+        Me.updownCantidadDias.Size = New System.Drawing.Size(55, 20)
+        Me.updownCantidadDias.TabIndex = 7
+        Me.updownCantidadDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'labelOrden
+        '
+        Me.labelOrden.AutoSize = True
+        Me.labelOrden.Location = New System.Drawing.Point(6, 57)
+        Me.labelOrden.Name = "labelOrden"
+        Me.labelOrden.Size = New System.Drawing.Size(76, 13)
+        Me.labelOrden.TabIndex = 6
+        Me.labelOrden.Text = "Cantidad días:"
+        '
         'tabpageNotasAuditoria
         '
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDSancionTipo)
@@ -210,9 +228,9 @@ Partial Class formSancionTipo
         Me.labelIDSancionTipo.AutoSize = True
         Me.labelIDSancionTipo.Location = New System.Drawing.Point(7, 111)
         Me.labelIDSancionTipo.Name = "labelIDSancionTipo"
-        Me.labelIDSancionTipo.Size = New System.Drawing.Size(117, 13)
+        Me.labelIDSancionTipo.Size = New System.Drawing.Size(21, 13)
         Me.labelIDSancionTipo.TabIndex = 4
-        Me.labelIDSancionTipo.Text = "ID de Tipo de Sanción:"
+        Me.labelIDSancionTipo.Text = "ID:"
         '
         'textboxIDSancionTipo
         '
@@ -280,24 +298,6 @@ Partial Class formSancionTipo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'updownCantidadDias
-        '
-        Me.updownCantidadDias.Location = New System.Drawing.Point(88, 55)
-        Me.updownCantidadDias.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
-        Me.updownCantidadDias.Name = "updownCantidadDias"
-        Me.updownCantidadDias.Size = New System.Drawing.Size(55, 20)
-        Me.updownCantidadDias.TabIndex = 7
-        Me.updownCantidadDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelOrden
-        '
-        Me.labelOrden.AutoSize = True
-        Me.labelOrden.Location = New System.Drawing.Point(6, 57)
-        Me.labelOrden.Name = "labelOrden"
-        Me.labelOrden.Size = New System.Drawing.Size(76, 13)
-        Me.labelOrden.TabIndex = 6
-        Me.labelOrden.Text = "Cantidad días:"
-        '
         'formSancionTipo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -318,9 +318,9 @@ Partial Class formSancionTipo
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

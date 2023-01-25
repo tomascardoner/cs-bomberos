@@ -27,16 +27,20 @@ Partial Class formSancionMotivos
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
+        Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
         Me.toolstripButtons.SuspendLayout()
+        Me.toolstripActivo.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -78,11 +82,23 @@ Partial Class formSancionMotivos
         Me.datagridviewMain.Size = New System.Drawing.Size(562, 219)
         Me.datagridviewMain.TabIndex = 0
         '
+        'columnNombre
+        '
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
+        '
         'panelToolbars
         '
         Me.panelToolbars.AutoSize = True
         Me.panelToolbars.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.panelToolbars.Controls.Add(Me.toolstripButtons)
+        Me.panelToolbars.Controls.Add(Me.toolstripActivo)
         Me.panelToolbars.Dock = System.Windows.Forms.DockStyle.Top
         Me.panelToolbars.Location = New System.Drawing.Point(0, 0)
         Me.panelToolbars.Name = "panelToolbars"
@@ -126,16 +142,27 @@ Partial Class formSancionMotivos
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'columnNombre
+        'toolstripActivo
         '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNombre.HeaderText = "Nombre"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
+        Me.toolstripActivo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripActivo.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripActivo.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelActivo, Me.comboboxActivo})
+        Me.toolstripActivo.Location = New System.Drawing.Point(247, 0)
+        Me.toolstripActivo.Name = "toolstripActivo"
+        Me.toolstripActivo.Size = New System.Drawing.Size(124, 39)
+        Me.toolstripActivo.TabIndex = 13
+        '
+        'labelActivo
+        '
+        Me.labelActivo.Name = "labelActivo"
+        Me.labelActivo.Size = New System.Drawing.Size(44, 36)
+        Me.labelActivo.Text = "Activo:"
+        '
+        'comboboxActivo
+        '
+        Me.comboboxActivo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxActivo.Name = "comboboxActivo"
+        Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
         'formSancionMotivos
         '
@@ -159,6 +186,8 @@ Partial Class formSancionMotivos
         Me.panelToolbars.PerformLayout()
         Me.toolstripButtons.ResumeLayout(False)
         Me.toolstripButtons.PerformLayout()
+        Me.toolstripActivo.ResumeLayout(False)
+        Me.toolstripActivo.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -172,4 +201,7 @@ Partial Class formSancionMotivos
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonEliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents columnNombre As DataGridViewTextBoxColumn
+    Friend WithEvents toolstripActivo As ToolStrip
+    Friend WithEvents labelActivo As ToolStripLabel
+    Friend WithEvents comboboxActivo As ToolStripComboBox
 End Class

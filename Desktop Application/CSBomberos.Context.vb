@@ -128,14 +128,34 @@ Partial Public Class CSBomberosContext
     Public Overridable Property SancionMotivo() As DbSet(Of SancionMotivo)
     Public Overridable Property PersonaHuellaDigital() As DbSet(Of PersonaHuellaDigital)
 
+    Public Overridable Function PersonasObtenerPorCuartelYEstado(iDCuartel As Nullable(Of Byte), soloEstadoActivo As Nullable(Of Boolean)) As ObjectResult(Of PersonasObtenerPorCuartelYEstado_Result)
+        Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))
+
+        Dim soloEstadoActivoParameter As ObjectParameter = If(soloEstadoActivo.HasValue, New ObjectParameter("SoloEstadoActivo", soloEstadoActivo), New ObjectParameter("SoloEstadoActivo", GetType(Boolean)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerPorCuartelYEstado_Result)("PersonasObtenerPorCuartelYEstado", iDCuartelParameter, soloEstadoActivoParameter)
+    End Function
+
+    Public Overridable Function AcademiaAgregarAsistenciaDePersonas(iDAcademia As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
+        Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
+
+        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("AcademiaAgregarAsistenciaDePersonas", iDAcademiaParameter, iDUsuarioParameter)
+    End Function
+
     Public Overridable Function AcademiaObtenerPersonasParaAsistencia(iDAcademia As Nullable(Of Integer)) As ObjectResult(Of AcademiaObtenerPersonasParaAsistencia_Result)
         Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of AcademiaObtenerPersonasParaAsistencia_Result)("AcademiaObtenerPersonasParaAsistencia", iDAcademiaParameter)
     End Function
 
-    Public Overridable Function PersonasObtenerConEstado() As ObjectResult(Of PersonasObtenerConEstado_Result)
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerConEstado_Result)("PersonasObtenerConEstado")
+    Public Overridable Function SiniestroAgregarAsistenciaDePersonas(iDSiniestro As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
+        Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
+
+        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("SiniestroAgregarAsistenciaDePersonas", iDSiniestroParameter, iDUsuarioParameter)
     End Function
 
     Public Overridable Function SiniestroObtenerPersonasParaAsistencia(iDSiniestro As Nullable(Of Integer)) As ObjectResult(Of SiniestroObtenerPersonasParaAsistencia_Result)
@@ -144,28 +164,8 @@ Partial Public Class CSBomberosContext
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of SiniestroObtenerPersonasParaAsistencia_Result)("SiniestroObtenerPersonasParaAsistencia", iDSiniestroParameter)
     End Function
 
-    Public Overridable Function AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion(iDAcademia As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
-        Dim iDAcademiaParameter As ObjectParameter = If(iDAcademia.HasValue, New ObjectParameter("IDAcademia", iDAcademia), New ObjectParameter("IDAcademia", GetType(Integer)))
-
-        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("AcademiaAgregarAsistenciaDePersonasConLicenciaOSancion", iDAcademiaParameter, iDUsuarioParameter)
-    End Function
-
-    Public Overridable Function SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion(iDSiniestro As Nullable(Of Integer), iDUsuario As Nullable(Of Short)) As Integer
-        Dim iDSiniestroParameter As ObjectParameter = If(iDSiniestro.HasValue, New ObjectParameter("IDSiniestro", iDSiniestro), New ObjectParameter("IDSiniestro", GetType(Integer)))
-
-        Dim iDUsuarioParameter As ObjectParameter = If(iDUsuario.HasValue, New ObjectParameter("IDUsuario", iDUsuario), New ObjectParameter("IDUsuario", GetType(Short)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion", iDSiniestroParameter, iDUsuarioParameter)
-    End Function
-
-    Public Overridable Function PersonasObtenerPorCuartelYEstado(iDCuartel As Nullable(Of Byte), soloEstadoActivo As Nullable(Of Boolean)) As ObjectResult(Of PersonasObtenerPorCuartelYEstado_Result)
-        Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))
-
-        Dim soloEstadoActivoParameter As ObjectParameter = If(soloEstadoActivo.HasValue, New ObjectParameter("SoloEstadoActivo", soloEstadoActivo), New ObjectParameter("SoloEstadoActivo", GetType(Boolean)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerPorCuartelYEstado_Result)("PersonasObtenerPorCuartelYEstado", iDCuartelParameter, soloEstadoActivoParameter)
+    Public Overridable Function PersonasObtenerConEstadoYJerarquia() As ObjectResult(Of PersonasObtenerConEstadoYJerarquia_Result)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of PersonasObtenerConEstadoYJerarquia_Result)("PersonasObtenerConEstadoYJerarquia")
     End Function
 
 End Class

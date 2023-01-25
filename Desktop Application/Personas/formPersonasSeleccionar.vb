@@ -2,11 +2,12 @@
 
 #Region "Declarations"
 
-    Private listPersonasBase As List(Of PersonasObtenerConEstado_Result)
-    Private listPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstado_Result)
+    Private listPersonasBase As List(Of PersonasObtenerConEstadoYJerarquia_Result)
+    Private listPersonasFiltradaYOrdenada As List(Of PersonasObtenerConEstadoYJerarquia_Result)
 
     Private ReadOnly SkipFilterData As Boolean
     Private BusquedaAplicada As Boolean
+    Private ReadOnly FiltroSoloMostrarEnAsistencia As Boolean
 
     Private OrdenColumna As DataGridViewColumn
     Private OrdenTipo As SortOrder
@@ -21,7 +22,7 @@
         DataGridSetAppearance(datagridviewMain)
     End Sub
 
-    Public Sub New(multiseleccion As Boolean, idCuartel As Byte?, mostrarSoloActivos As Boolean)
+    Public Sub New(multiseleccion As Boolean, idCuartel As Byte?, soloMostrarActivos As Boolean, soloMostrarEnAsistencia As Boolean)
         InitializeComponent()
 
         SetAppearance()
@@ -40,9 +41,10 @@
         If idCuartel.HasValue Then
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel.ComboBox, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, idCuartel)
         End If
-        If mostrarSoloActivos Then
+        If soloMostrarActivos Then
             comboboxEstadoActual.SelectedIndex = 2
         End If
+        FiltroSoloMostrarEnAsistencia = soloMostrarEnAsistencia
 
         SkipFilterData = False
 
@@ -65,7 +67,7 @@
 
         Try
             Using dbContext As New CSBomberosContext(True)
-                listPersonasBase = dbContext.PersonasObtenerConEstado().ToList
+                listPersonasBase = dbContext.PersonasObtenerConEstadoYJerarquia().ToList
             End Using
 
         Catch ex As Exception
@@ -118,6 +120,11 @@
                     Case Else
                         listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
                 End Select
+
+                ' Filtro por Mostrar en Asistencia
+                If FiltroSoloMostrarEnAsistencia Then
+                    listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(p) p.MostrarEnAsistencia.Value).ToList
+                End If
 
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")

@@ -345,7 +345,7 @@
 
         If mIsNew AndAlso mSiniestroActual.SiniestroClave.Grupo = Constantes.SINIESTRO_CLAVEGRUPO_ROJA Then
             Try
-                mdbContext.SiniestroAgregarAsistenciaDePersonasConLicenciaOSancion(mSiniestroActual.IDSiniestro, pUsuario.IDUsuario)
+                mdbContext.SiniestroAgregarAsistenciaDePersonas(mSiniestroActual.IDSiniestro, pUsuario.IDUsuario)
             Catch ex As Exception
                 Me.Cursor = Cursors.Default
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al agregar las asistencias de Licencias y Sanciones al Siniestro.")

@@ -93,6 +93,8 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         '
         Me.controlpersonaPersona.ApellidoNombre = Nothing
         Me.controlpersonaPersona.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaPersona.dbContext = Nothing
+        Me.controlpersonaPersona.IDCuartel = Nothing
         Me.controlpersonaPersona.IDPersona = Nothing
         Me.controlpersonaPersona.Location = New System.Drawing.Point(74, 47)
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
@@ -101,6 +103,8 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
         Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
+        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.TabIndex = 1
         '
         'formSiniestroAsistenciaPresencialConPin

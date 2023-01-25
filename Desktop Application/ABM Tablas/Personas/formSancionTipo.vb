@@ -82,6 +82,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mSancionTipoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
@@ -119,6 +120,7 @@
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

@@ -14,6 +14,7 @@ Partial Public Class CargoJerarquia
     Public Property IDCargo As Byte
     Public Property IDJerarquia As Byte
     Public Property Nombre As String
+    Public Property MostrarEnAsistencia As Boolean
     Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean

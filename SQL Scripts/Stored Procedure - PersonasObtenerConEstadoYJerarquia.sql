@@ -12,13 +12,14 @@ GO
 -- Updates: 2021-11-22 - Actualización para nuevo formato de Altas y Bajas
 --			2021-11-23 - Se renombró de usp_Personas a uspPersonasObtenerConEstado
 --			2022-07-17 - Se renombró de uspPersonasObtenerConEstado a PersonasObtenerConEstado
+--			2023-01-24 - Se renombró a PersonasObtenerConEstadoYJerarquia y se agregó la jerarquía
 -- Description:	Devuelve las personas con su estado actual
 -- =============================================
-IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'PersonasObtenerConEstado') AND type in (N'P', N'PC'))
-	 DROP PROCEDURE PersonasObtenerConEstado
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'PersonasObtenerConEstadoYJerarquia') AND type in (N'P', N'PC'))
+	 DROP PROCEDURE PersonasObtenerConEstadoYJerarquia
 GO
 
-CREATE PROCEDURE PersonasObtenerConEstado
+CREATE PROCEDURE PersonasObtenerConEstadoYJerarquia
 	AS
 
 	BEGIN
@@ -27,10 +28,14 @@ CREATE PROCEDURE PersonasObtenerConEstado
 
 		SELECT p.IDPersona, p.MatriculaNumero, p.ApellidoNombre, p.Apellido, p.Nombre, p.IDCuartel, c.Nombre AS CuartelNombre,
 				dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS EstadoActual,
-				dbo.PersonaObtenerIdBajaMotivo(pab.Tipo, pab.IDPersonaBajaMotivo) AS IDBajaMotivo
+				dbo.PersonaObtenerIdBajaMotivo(pab.Tipo, pab.IDPersonaBajaMotivo) AS IDBajaMotivo,
+				cj.Nombre AS Jerarquia, cj.MostrarEnAsistencia
 			FROM Persona AS p
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
 				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
 				LEFT JOIN PersonaBajaMotivo AS pbm ON pab.IDPersonaBajaMotivo = pbm.IDPersonaBajaMotivo
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
 			WHERE (pab.IDAltaBaja IS NULL OR pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, NULL))
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
 	END

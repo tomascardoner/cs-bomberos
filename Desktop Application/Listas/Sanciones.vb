@@ -30,7 +30,7 @@
         control.ValueMember = "IDSancionMotivo"
         control.DisplayMember = "Nombre"
 
-        listItems = context.SancionMotivo.OrderBy(Function(sm) sm.Nombre).ToList
+        listItems = context.SancionMotivo.Where(Function(sm) sm.EsActivo).OrderBy(Function(sm) sm.Nombre).ToList
 
         If agregarItemNoEspecifica Then
             listItems.Insert(0, New SancionMotivo With {

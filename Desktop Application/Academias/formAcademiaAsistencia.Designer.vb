@@ -155,14 +155,18 @@ Partial Class formAcademiaAsistencia
         '
         Me.controlpersonaPersona.ApellidoNombre = Nothing
         Me.controlpersonaPersona.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaPersona.dbContext = Nothing
+        Me.controlpersonaPersona.IDCuartel = Nothing
         Me.controlpersonaPersona.IDPersona = Nothing
         Me.controlpersonaPersona.Location = New System.Drawing.Point(76, 114)
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
         Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
         Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
         Me.controlpersonaPersona.TabIndex = 1
         '
         'formAcademiaAsistencia

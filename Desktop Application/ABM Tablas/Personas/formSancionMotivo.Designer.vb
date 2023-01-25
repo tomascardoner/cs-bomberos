@@ -24,6 +24,7 @@ Partial Class formSancionMotivo
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelEsActivo As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -46,8 +47,10 @@ Partial Class formSancionMotivo
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelEsActivo = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -215,6 +218,8 @@ Partial Class formSancionMotivo
         '
         'tabpageNotasAuditoria
         '
+        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxEsActivo)
+        Me.tabpageNotasAuditoria.Controls.Add(labelEsActivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDSancionMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDSancionMotivo)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
@@ -307,7 +312,7 @@ Partial Class formSancionMotivo
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(414, 151)
+        Me.textboxNotas.Size = New System.Drawing.Size(414, 131)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -318,6 +323,24 @@ Partial Class formSancionMotivo
         Me.labelNotas.Size = New System.Drawing.Size(38, 13)
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
+        '
+        'checkboxEsActivo
+        '
+        Me.checkboxEsActivo.AutoSize = True
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(116, 143)
+        Me.checkboxEsActivo.Name = "checkboxEsActivo"
+        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxEsActivo.TabIndex = 3
+        Me.checkboxEsActivo.UseVisualStyleBackColor = True
+        '
+        'labelEsActivo
+        '
+        labelEsActivo.AutoSize = True
+        labelEsActivo.Location = New System.Drawing.Point(7, 144)
+        labelEsActivo.Name = "labelEsActivo"
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
+        labelEsActivo.TabIndex = 2
+        labelEsActivo.Text = "Activo:"
         '
         'formSancionMotivo
         '
@@ -367,4 +390,5 @@ Partial Class formSancionMotivo
     Friend WithEvents textboxTestimonio As TextBox
     Friend WithEvents labelTestimonio As Label
     Friend WithEvents textboxEncuadre As TextBox
+    Friend WithEvents checkboxEsActivo As CheckBox
 End Class

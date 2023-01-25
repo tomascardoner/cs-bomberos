@@ -20,6 +20,7 @@
             ' Es Nuevo
             mCargoJerarquiaActual = New CargoJerarquia
             With mCargoJerarquiaActual
+                .MostrarEnAsistencia = True
                 .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -56,6 +57,7 @@
         ' General
         comboboxCargo.Enabled = mIsNew
         textboxNombre.ReadOnly = Not mEditMode
+        checkboxMostrarEnAsistencia.Enabled = mEditMode
         updownOrden.Enabled = mEditMode
 
         ' Notas y Auditoría
@@ -85,10 +87,12 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mCargoJerarquiaActual
             CardonerSistemas.ComboBox.SetSelectedValue(comboboxCargo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
+            checkboxMostrarEnAsistencia.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnAsistencia)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -120,12 +124,14 @@
                 .IDCargo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCargo.SelectedValue).Value
             End If
             .Nombre = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNombre.Text)
+            .MostrarEnAsistencia = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxMostrarEnAsistencia.CheckState)
             .Orden = CS_ValueTranslation.FromControlUpDownToObjectByte(updownOrden.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

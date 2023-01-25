@@ -179,7 +179,7 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
         Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlPersonaAsignar.MostrarSoloEstadoActivo = True
+        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
         Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
         Me.controlPersonaAsignar.ReadOnlyText = False
         Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)

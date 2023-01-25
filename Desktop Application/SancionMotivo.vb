@@ -16,6 +16,7 @@ Partial Public Class SancionMotivo
     Public Property Encuadre As String
     Public Property Testimonio As String
     Public Property Notas As String
+    Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short

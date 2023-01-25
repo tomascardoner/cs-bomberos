@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class PersonasObtenerConEstado_Result
+Partial Public Class PersonasObtenerConEstadoYJerarquia_Result
     Public Property IDPersona As Integer
     Public Property MatriculaNumero As String
     Public Property ApellidoNombre As String
@@ -20,5 +20,7 @@ Partial Public Class PersonasObtenerConEstado_Result
     Public Property CuartelNombre As String
     Public Property EstadoActual As String
     Public Property IDBajaMotivo As Nullable(Of Byte)
+    Public Property Jerarquia As String
+    Public Property MostrarEnAsistencia As Nullable(Of Boolean)
 
 End Class

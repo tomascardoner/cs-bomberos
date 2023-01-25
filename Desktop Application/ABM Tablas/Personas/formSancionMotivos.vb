@@ -26,6 +26,9 @@
 
         mSkipFilterData = True
 
+        comboboxActivo.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        comboboxActivo.SelectedIndex = 1
+
         mSkipFilterData = False
 
         mOrdenColumna = columnNombre
@@ -86,6 +89,17 @@
                 mReportSelectionFormula = ""
                 mlistSancionMotivosFiltradaYOrdenada = mlistSancionMotivosBase.ToList
 
+                'Filtro por Activo
+                Select Case comboboxActivo.SelectedIndex
+                    Case 0      ' Todos
+                    Case 1      ' Sí
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{SancionMotivo.EsActivo} = 1"
+                        mlistSancionMotivosFiltradaYOrdenada = mlistSancionMotivosFiltradaYOrdenada.Where(Function(sm) sm.EsActivo).ToList
+                    Case 2      ' No
+                        mReportSelectionFormula &= IIf(mReportSelectionFormula.Length = 0, "", " AND ").ToString & "{SancionMotivo.EsActivo} = 0"
+                        mlistSancionMotivosFiltradaYOrdenada = mlistSancionMotivosFiltradaYOrdenada.Where(Function(sm) Not sm.EsActivo).ToList
+                End Select
+
                 Select Case mlistSancionMotivosFiltradaYOrdenada.Count
                     Case 0
                         statuslabelMain.Text = String.Format("No hay Motivos de Sanción para mostrar.")
@@ -141,6 +155,10 @@
         End If
     End Sub
 
+    Private Sub CambioFiltros() Handles comboboxActivo.SelectedIndexChanged
+        FilterData()
+    End Sub
+
     Private Sub GridChangeOrder(sender As Object, e As DataGridViewCellMouseEventArgs) Handles datagridviewMain.ColumnHeaderMouseClick
         Dim ClickedColumn As DataGridViewColumn
 
@@ -156,7 +174,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 

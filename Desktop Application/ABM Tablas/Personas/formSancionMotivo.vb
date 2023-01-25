@@ -22,6 +22,7 @@
             ' Es Nuevo
             mSancionMotivoActual = New SancionMotivo
             With mSancionMotivoActual
+                .EsActivo = True
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
                 .IDUsuarioModificacion = pUsuario.IDUsuario
@@ -61,6 +62,7 @@
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
+        checkboxEsActivo.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -92,6 +94,7 @@
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
             If mIsNew Then
                 textboxIDSancionMotivo.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
@@ -119,6 +122,7 @@
             .Testimonio = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxTestimonio.Text)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+            .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
 

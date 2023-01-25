@@ -11,7 +11,8 @@
 
     Public Property dbContext As CSBomberosContext
     Public Property IDCuartel As Byte?
-    Public Property MostrarSoloEstadoActivo As Boolean = True
+    Public Property SoloMostrarEstadoActivo As Boolean = True
+    Public Property SoloMostrarEnAsistencia As Boolean = False
 
     Public Property IDPersona As Integer?
         Get
@@ -248,7 +249,7 @@
                 End If
             End If
             Try
-                listPersonas = dbContext.PersonasObtenerPorCuartelYEstado(IDCuartel, MostrarSoloEstadoActivo).ToList()
+                listPersonas = dbContext.PersonasObtenerPorCuartelYEstado(IDCuartel, SoloMostrarEstadoActivo).ToList()
                 Return True
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener la lista de Personas de la base de datos.")
