@@ -5,6 +5,7 @@
     Private mdbContext As CSBomberosContext
     Private mSiniestro As Siniestro
     Private mPersona As Persona
+    Private mIdSiniestroAsistenciaTipoPresente As Byte
 
 #End Region
 
@@ -14,6 +15,11 @@
         mdbContext = dbContext
         mSiniestro = siniestro
         controlpersonaPersona.dbContext = mdbContext
+
+        mIdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
+        If mIdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
 
         Me.ShowDialog(parentForm)
     End Sub
@@ -65,13 +71,12 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If Not controlpersonaPersona.IDPersona.HasValue Then
-            MessageBox.Show("Debe seleccionar una persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            controlpersonaPersona.Focus()
+        If mIdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return False
         End If
-        If mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = mPersona.IDPersona).Any() Then
-            MessageBox.Show("La persona seleccionada ya tiene asistencia al siniestro.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If Not controlpersonaPersona.IDPersona.HasValue Then
+            MessageBox.Show("Debe seleccionar una persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             controlpersonaPersona.Focus()
             Return False
         End If
@@ -95,22 +100,31 @@
     End Function
 
     Private Function GuardarDatos() As Boolean
-        Dim idSiniestroAsistenciaTipo As Byte
+        Dim siniestroAsistencia As SiniestroAsistencia
 
-        idSiniestroAsistenciaTipo = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
-        If idSiniestroAsistenciaTipo = 0 Then
-            MessageBox.Show("No se puedieron guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return False
-        End If
-
-        mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
+        siniestroAsistencia = mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = mPersona.IDPersona).FirstOrDefault()
+        If siniestroAsistencia IsNot Nothing Then
+            ' Ya hay una asistencia cargada
+            If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
+                ' Es una asistencia de presente, se muestra advertencia y no se actualiza
+                MessageBox.Show($"No se puede cargar la asistencia porque la persona ya tiene una asistencia al siniestro ({siniestroAsistencia.SiniestroAsistenciaTipo.Nombre}).", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return False
+            Else
+                ' Es una asistencia de ausente, se actualiza a Presente
+                siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
+                siniestroAsistencia.FechaHoraModificacion = Now()
+            End If
+        Else
+            mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
                                              .IDPersona = mPersona.IDPersona,
-                                             .IDSiniestroAsistenciaTipo = idSiniestroAsistenciaTipo,
+                                             .IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente,
                                              .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
                                              .IDUsuarioCreacion = pUsuario.IDUsuario,
                                              .FechaHoraCreacion = Now(),
                                              .IDUsuarioModificacion = pUsuario.IDUsuario,
                                              .FechaHoraModificacion = Now()})
+        End If
 
         Try
             mdbContext.SaveChanges()

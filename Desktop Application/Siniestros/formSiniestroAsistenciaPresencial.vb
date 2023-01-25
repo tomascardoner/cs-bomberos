@@ -115,6 +115,11 @@ Public Class formSiniestroAsistenciaPresencial
         Dim siniestroAsistencia As SiniestroAsistencia
         Dim mensaje As String
 
+        If mIdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         persona = mdbContext.Persona.Find(idPersona)
         pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)
         textboxPersona.Text = persona.ApellidoNombre

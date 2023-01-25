@@ -184,6 +184,8 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
+        Dim siniestroAsistencia As SiniestroAsistencia
+
         If mIsNew Then
             If Not controlpersonaPersona.IDPersona.HasValue Then
                 MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
@@ -196,10 +198,23 @@
             comboboxAsistenciaTipo.Focus()
             Return False
         End If
-        If mSiniestroActual.SiniestrosAsistencias.Any(Function(sa) sa.IDPersona = controlpersonaPersona.IDPersona.Value) Then
-            MessageBox.Show("La Persona ya tiene cargada la Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            controlpersonaPersona.Focus()
-            Return False
+
+        ' Verifico si ya tiene una asistencia cargada
+        If mIsNew Then
+            siniestroAsistencia = mSiniestroActual.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = controlpersonaPersona.IDPersona.Value).FirstOrDefault()
+
+            If siniestroAsistencia IsNot Nothing Then
+                ' Ya hay una asistencia cargada
+                If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
+                    ' Es una asistencia de presente, se muestra advertencia y no se actualiza
+                    MessageBox.Show($"No se puede cargar la asistencia porque la persona ya tiene una asistencia al siniestro ({siniestroAsistencia.SiniestroAsistenciaTipo.Nombre}).", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    Return False
+                Else
+                    ' Es una asistencia de ausente, así que reemplazo la nueva por la existente
+                    mSiniestroActual.SiniestrosAsistencias.Remove(mSiniestroAsistenciaActual)
+                    mSiniestroAsistenciaActual = siniestroAsistencia
+                End If
+            End If
         End If
 
         Return True
