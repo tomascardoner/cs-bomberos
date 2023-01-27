@@ -188,13 +188,13 @@
 
         If mIsNew Then
             If Not controlpersonaPersona.IDPersona.HasValue Then
-                MsgBox("Debe especificar la Persona.", MsgBoxStyle.Information, My.Application.Info.Title)
+                MessageBox.Show("Debe especificar la Persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 controlpersonaPersona.Focus()
                 Return False
             End If
         End If
         If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
-            MsgBox("Debe especificar el tipo de Asistencia.", MsgBoxStyle.Information, My.Application.Info.Title)
+            MessageBox.Show("Debe especificar el tipo de Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             comboboxAsistenciaTipo.Focus()
             Return False
         End If

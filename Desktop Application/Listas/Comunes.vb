@@ -1,40 +1,5 @@
 ﻿Module ListasComunes
 
-#Region "Períodos para filtros"
-
-    Friend Sub LlenarComboBoxPeriodosTipos(ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
-
-        If agregarItemTodos Then
-            control.Items.Add(My.Resources.STRING_ITEM_ALL_MALE)
-        End If
-
-        If agregarItemNoEspecifica Then
-            control.Items.Add(My.Resources.STRING_ITEM_NOT_SPECIFIED)
-        End If
-
-        control.Items.AddRange({"Día:", "Semana:", "Mes:", "Fecha"})
-    End Sub
-
-    Friend Sub LlenarComboBoxPeriodosValores(ByRef control As ComboBox, ByRef tipoControl As ComboBox)
-        control.Items.Clear()
-        Select Case tipoControl.SelectedIndex
-            Case 0  ' Todas
-                control.Items.Add(String.Empty)
-            Case 1  ' Día
-                control.Items.AddRange({"Hoy", "Ayer", "Anteayer", "Últimos 2", "Últimos 3", "Últimos 4"})
-            Case 2  ' Semana
-                control.Items.AddRange({"Actual", "Anterior", "Últimas 2", "Últimas 3"})
-            Case 3  ' Mes
-                control.Items.AddRange({"Actual", "Anterior", "Últimos 2", "Últimos 3"})
-            Case 4  ' Fecha
-                control.Items.AddRange({"es igual a:", "es posterior a:", "es anterior a:", "está entre:"})
-        End Select
-        control.Visible = tipoControl.SelectedIndex <> 0
-        control.SelectedIndex = 0
-    End Sub
-
-#End Region
-
 #Region "Áreas"
 
     Friend Class AreaConCuartelClass
