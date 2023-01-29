@@ -63,7 +63,7 @@
         Me.MdiParent = pFormMDIMain
         CardonerSistemas.Forms.MdiChildPositionAndSizeToFit(CType(pFormMDIMain, Form), Me)
         InitializeFormAndControls()
-        CardonerSistemas.ComboBox.SetSelectedValue(comboboxComprobanteTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, mComprobanteActual.IDComprobanteTipo)
+        CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxComprobanteTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, mComprobanteActual.IDComprobanteTipo)
         CambiarTipoComprobante()
         SetDataFromObjectToControls()
         Me.Show()
@@ -177,7 +177,7 @@
             Else
                 textboxIDComprobante.Text = String.Format(.IDComprobante.ToString, "G")
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxComprobanteTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDComprobanteTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxComprobanteTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDComprobanteTipo)
             MaskedTextBoxPuntoVenta.Text = .PuntoVenta.ToString(New String("0"c, Constantes.ComprobantePuntoVentaLongitud))
             MaskedTextBoxNumero.Text = .Numero.ToString(New String("0"c, Constantes.ComprobanteNumeroLongitud))
             datetimepickerFechaEmision.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.Fecha, datetimepickerFechaEmision)
@@ -188,11 +188,11 @@
             datetimepickerFechaServicioHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaServicioHasta, datetimepickerFechaServicioHasta)
 
             ' Entidad
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             ' Datos de gasto
             If mComprobanteTipoActual IsNot Nothing AndAlso mComprobanteTipoActual.UtilizaDatoGasto Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDArea, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDArea, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
                 checkboxEsBienUso.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsBienUso)
             Else
                 comboboxArea.SelectedIndex = 0
@@ -889,7 +889,7 @@
             .FechaPago = DateTime.Today
         }
         ComprobanteMedioPagoNuevo.Cheque = ChequeNuevo
-        formCheque.LoadAndShow(True, True, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoNuevo)
+        formCheque.LoadAndShow(True, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoNuevo)
 
         datagridviewMediosPago.Enabled = True
 
@@ -911,7 +911,7 @@
             MedioPagoActual = CType(datagridviewMediosPago.SelectedRows(0).DataBoundItem, GridRowDataMedioPago).MedioPago
 
             If MedioPagoActual.EsCheque Then
-                formCheque.LoadAndShow(True, True, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoActual)
+                formCheque.LoadAndShow(True, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoActual)
             Else
                 formComprobanteMedioPago.LoadAndShow(True, True, Me, mComprobanteActual, ComprobanteMedioPagoActual)
             End If
@@ -958,7 +958,7 @@
             MedioPagoActual = CType(datagridviewMediosPago.SelectedRows(0).DataBoundItem, GridRowDataMedioPago).MedioPago
 
             If MedioPagoActual.EsCheque Then
-                formCheque.LoadAndShow(mEditMode, False, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoActual)
+                formCheque.LoadAndShow(mEditMode, Me, mdbContext, mComprobanteActual, ComprobanteMedioPagoActual)
             Else
                 formComprobanteMedioPago.LoadAndShow(mEditMode, False, Me, mComprobanteActual, ComprobanteMedioPagoActual)
             End If
@@ -1006,7 +1006,7 @@
             If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
                 Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
                 If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
                 Else
                     comboboxEntidad.SelectedIndex = -1
                 End If

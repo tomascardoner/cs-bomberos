@@ -90,16 +90,16 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaCapacitacionActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCurso, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCurso)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCapacitacionNivel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCapacitacionNivel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCurso, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCurso)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCapacitacionNivel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCapacitacionNivel)
             If .IDCapacitacionNivel = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
                 textboxCapacitacionNivelOtro.Text = .CapacitacionNivelOtro
             Else
                 textboxCapacitacionNivelOtro.Text = ""
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCapacitacionTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCapacitacionTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCapacitacionTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCapacitacionTipo)
             If .IDCapacitacionTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
                 textboxCapacitacionTipoOtro.Text = .CapacitacionTipoOtro
             Else
@@ -185,7 +185,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxLocalidad, CByte(comboboxProvincia.SelectedValue), True)
             If CByte(comboboxProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub

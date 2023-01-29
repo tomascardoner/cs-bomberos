@@ -90,7 +90,7 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mCargoJerarquiaActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCargo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCargo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             checkboxMostrarEnAsistencia.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnAsistencia)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)

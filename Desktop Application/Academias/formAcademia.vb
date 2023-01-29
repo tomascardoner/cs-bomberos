@@ -104,9 +104,9 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mAcademiaActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxAcademiaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDAcademiaTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxAcademiaTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDAcademiaTipo)
             textboxAcademiaTipoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.AcademiaTipoOtro)
 
             ' Datos de la pestaña Notas y Auditoría

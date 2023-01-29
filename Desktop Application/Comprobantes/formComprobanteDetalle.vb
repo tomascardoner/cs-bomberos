@@ -72,7 +72,7 @@
     Friend Sub SetDataFromObjectToControls()
 
         With mComprobanteDetalleActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArticulo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDArticulo, CShort(0))
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArticulo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDArticulo, CShort(0))
             doubletextboxCantidad.DoubleValue = .Cantidad
             textboxUnidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Unidad)
 

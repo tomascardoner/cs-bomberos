@@ -39,7 +39,7 @@
         pFillAndRefreshLists.PersonaEstadoActual(comboboxEstadoActual.ComboBox, True)
 
         If idCuartel.HasValue Then
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel.ComboBox, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, idCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel.ComboBox, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, idCuartel)
         End If
         If soloMostrarActivos Then
             comboboxEstadoActual.SelectedIndex = 2

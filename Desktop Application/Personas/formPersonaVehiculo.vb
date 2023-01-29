@@ -90,9 +90,9 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaVehiculoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDVehiculoTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDVehiculoTipo)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxMarca, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDVehiculoMarca, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxMarca, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDVehiculoMarca, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxModelo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Modelo)
             maskedtextboxAnio.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Anio)
             If mIsNew Then
@@ -101,7 +101,7 @@
             Else
                 datetimepickerVerificacionVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.VerificacionVencimiento)
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCompaniaSeguro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDVehiculoCompaniaSeguro, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCompaniaSeguro, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDVehiculoCompaniaSeguro, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxSeguroPolizaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SeguroPolizaNumero)
             If mIsNew Then
                 datetimepickerSeguroVencimiento.Value = Date.Today

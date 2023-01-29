@@ -91,7 +91,7 @@
         With mAreaActual
             textboxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             checkboxMostrarEnInventario.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnInventario)
             checkboxMostrarEnCompras.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.MostrarEnCompras)
 

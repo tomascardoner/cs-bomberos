@@ -113,8 +113,8 @@
             textboxDomicilioDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioDepartamento)
             textboxDomicilioCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle2)
             textboxDomicilioCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle3)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCodigoPostal)
             textboxTelefono.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono)
             textboxCelular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Celular)
@@ -176,6 +176,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -204,16 +205,17 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
 
     Private Sub DomicilioLocalidad_Cambio(sender As Object, e As EventArgs) Handles comboboxDomicilioLocalidad.SelectedValueChanged
-        If Not comboboxDomicilioLocalidad.SelectedValue Is Nothing Then
+        If comboboxDomicilioLocalidad.SelectedValue IsNot Nothing Then
             textboxDomicilioCodigoPostal.Text = CType(comboboxDomicilioLocalidad.SelectedItem, Localidad).CodigoPostal.ToString()
         End If
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"

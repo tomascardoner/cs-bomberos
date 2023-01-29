@@ -120,14 +120,14 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             maskedtextboxNumeroPrefijo.Text = .NumeroPrefijo
             maskedtextboxNumero.Text = .Numero
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroRubro)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSiniestroTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxSiniestroRubro, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroRubro)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxSiniestroTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroTipo)
             textboxSiniestroTipoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SiniestroTipoOtro)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDSiniestroClave)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDSiniestroClave)
             datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
             checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
@@ -256,7 +256,7 @@
             labelSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
             textboxSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
             If siniestroTipoActual.IDSiniestroClave.HasValue Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.IDSiniestroClave)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.IDSiniestroClave)
             End If
         Else
             labelSiniestroTipoOtro.Visible = False

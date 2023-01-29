@@ -88,8 +88,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaAscensoActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCargo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCargoJerarquia, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCargo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCargo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCargoJerarquia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDJerarquia)
             textboxLibroNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.LibroNumero)
             textboxFolioNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.FolioNumero)
             textboxActaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ActaNumero)

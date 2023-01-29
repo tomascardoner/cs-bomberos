@@ -23,7 +23,7 @@
                     ListasComprobantes.LlenarComboBoxEntidades(context, comboboxValor, Nothing, False, False)
             End Select
             If mParametroActual.Valor IsNot Nothing Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
             End If
         End Using
     End Sub

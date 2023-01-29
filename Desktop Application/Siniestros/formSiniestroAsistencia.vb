@@ -68,7 +68,7 @@
         buttonCerrar.Visible = (mEditMode = False)
 
         controlpersonaPersona.ReadOnlyText = Not mIsNew
-        comboboxAsistenciaTipo.Enabled = mEditMode
+        panelAsistencia.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -76,7 +76,13 @@
 
         controlpersonaPersona.dbContext = mdbContext
         controlpersonaPersona.IDCuartel = mIDCuartel
-        ListasSiniestros.LlenarComboBoxAsistenciaTipos(mdbContext, comboboxAsistenciaTipo, False, False)
+
+        Dim listSiniestroAsistenciaTipo As List(Of CardonerSistemas.Controls.RadioButton.ValueForList)
+        listSiniestroAsistenciaTipo = (From sat In mdbContext.SiniestroAsistenciaTipo
+                                       Where sat.EsActivo
+                                       Order By sat.Orden, sat.Nombre
+                                       Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(sat.IDSiniestroAsistenciaTipo), .DisplayValue = sat.Nombre}).ToList()
+        CardonerSistemas.Controls.RadioButton.CreateArray(Me, CType(panelAsistencia, Panel), 250, listSiniestroAsistenciaTipo, Nothing, CardonerSistemas.Controls.RadioButton.WidthSizeModes.AutoSizeByTextIndividually, 50, 30, Windows.Forms.Appearance.Button)
     End Sub
 
     Friend Sub SetAppearance()
@@ -110,7 +116,7 @@
                 controlpersonaPersona.AsignarValores(mSiniestroAsistenciaActual.Persona)
             End If
 
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxAsistenciaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDSiniestroAsistenciaTipo)
+            CS_ValueTranslation.FromObjectIdValueToControlsArray(panelAsistencia.Controls, .IDSiniestroAsistenciaTipo)
         End With
     End Sub
 
@@ -119,7 +125,7 @@
             If mIsNew Then
                 .IDPersona = controlpersonaPersona.IDPersona.Value
             End If
-            .IDSiniestroAsistenciaTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxAsistenciaTipo.SelectedValue).Value
+            .IDSiniestroAsistenciaTipo = CS_ValueTranslation.FromControlArrayToByte(panelAsistencia.Controls)
         End With
     End Sub
 
@@ -193,9 +199,16 @@
                 Return False
             End If
         End If
-        If comboboxAsistenciaTipo.SelectedValue Is Nothing Then
+
+        Dim AsistenciaTipoEstablecida As Boolean
+        For Each control As Control In panelAsistencia.Controls
+            AsistenciaTipoEstablecida = CType(control, RadioButton).Checked
+            If AsistenciaTipoEstablecida Then
+                Exit For
+            End If
+        Next
+        If Not AsistenciaTipoEstablecida Then
             MessageBox.Show("Debe especificar el tipo de Asistencia.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            comboboxAsistenciaTipo.Focus()
             Return False
         End If
 

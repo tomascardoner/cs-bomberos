@@ -84,7 +84,7 @@
 #Region "Load and Set Data"
     Friend Sub SetDataFromObjectToControls()
         With mPersonaVacunaActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDVacunaTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDVacunaTipo)
             textboxLote.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Lote)
             updownDosisNumero.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.DosisNumero)
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)

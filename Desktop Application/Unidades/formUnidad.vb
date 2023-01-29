@@ -118,20 +118,20 @@
             textboxNumeroMotor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroMotor)
             textboxNumeroChasis.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroChasis)
             textboxDominio.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Dominio)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUnidadTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadTipo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUnidadUso, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadUso)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCombustibleTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUnidadTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUnidadUso, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidadUso)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCombustibleTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCombustibleTipo)
             datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquisicion, datetimepickerFechaAdquisicion)
             maskedtextboxKilometrajeInicial.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.KilometrajeInicial)
             maskedtextboxCapacidadAguaLitros.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.CapacidadAguaLitros)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             checkboxEsPropio.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsPropio)
             datetimepickerVerificacionVencimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.VerificacionVencimiento, datetimepickerVerificacionVencimiento)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
             checkboxEsActivo.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.EsActivo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUnidadBajaMotivo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUnidadBajaMotivo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUnidadBajaMotivo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUnidadBajaMotivo)
             If .IDUnidad = 0 Then
                 textboxIDUnidad.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else

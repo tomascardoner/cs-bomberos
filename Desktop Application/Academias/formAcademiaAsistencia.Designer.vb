@@ -33,10 +33,10 @@ Partial Class formAcademiaAsistencia
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxCuartel = New System.Windows.Forms.TextBox()
         Me.textboxFecha = New System.Windows.Forms.TextBox()
-        Me.labelAsistenciaTipo = New System.Windows.Forms.Label()
-        Me.comboboxAsistenciaTipo = New System.Windows.Forms.ComboBox()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
         Me.controlpersonaPersona = New CSBomberos.ControlPersona()
+        Me.panelAsistencia = New System.Windows.Forms.FlowLayoutPanel()
+        Me.labelAsistenciaTipo = New System.Windows.Forms.Label()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -133,24 +133,6 @@ Partial Class formAcademiaAsistencia
         Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
         Me.textboxFecha.TabIndex = 8
         '
-        'labelAsistenciaTipo
-        '
-        Me.labelAsistenciaTipo.AutoSize = True
-        Me.labelAsistenciaTipo.Location = New System.Drawing.Point(12, 160)
-        Me.labelAsistenciaTipo.Name = "labelAsistenciaTipo"
-        Me.labelAsistenciaTipo.Size = New System.Drawing.Size(58, 13)
-        Me.labelAsistenciaTipo.TabIndex = 2
-        Me.labelAsistenciaTipo.Text = "Asistencia:"
-        '
-        'comboboxAsistenciaTipo
-        '
-        Me.comboboxAsistenciaTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAsistenciaTipo.FormattingEnabled = True
-        Me.comboboxAsistenciaTipo.Location = New System.Drawing.Point(76, 157)
-        Me.comboboxAsistenciaTipo.Name = "comboboxAsistenciaTipo"
-        Me.comboboxAsistenciaTipo.Size = New System.Drawing.Size(220, 21)
-        Me.comboboxAsistenciaTipo.TabIndex = 3
-        '
         'controlpersonaPersona
         '
         Me.controlpersonaPersona.ApellidoNombre = Nothing
@@ -162,21 +144,37 @@ Partial Class formAcademiaAsistencia
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
         Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
         Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
         Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
+        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.TabIndex = 1
+        '
+        'panelAsistencia
+        '
+        Me.panelAsistencia.Location = New System.Drawing.Point(76, 153)
+        Me.panelAsistencia.Name = "panelAsistencia"
+        Me.panelAsistencia.Size = New System.Drawing.Size(374, 36)
+        Me.panelAsistencia.TabIndex = 3
+        '
+        'labelAsistenciaTipo
+        '
+        Me.labelAsistenciaTipo.AutoSize = True
+        Me.labelAsistenciaTipo.Location = New System.Drawing.Point(12, 161)
+        Me.labelAsistenciaTipo.Name = "labelAsistenciaTipo"
+        Me.labelAsistenciaTipo.Size = New System.Drawing.Size(58, 13)
+        Me.labelAsistenciaTipo.TabIndex = 2
+        Me.labelAsistenciaTipo.Text = "Asistencia:"
         '
         'formAcademiaAsistencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(462, 192)
-        Me.Controls.Add(Me.controlpersonaPersona)
-        Me.Controls.Add(Me.comboboxAsistenciaTipo)
+        Me.ClientSize = New System.Drawing.Size(462, 201)
+        Me.Controls.Add(Me.panelAsistencia)
         Me.Controls.Add(Me.labelAsistenciaTipo)
+        Me.Controls.Add(Me.controlpersonaPersona)
         Me.Controls.Add(Me.textboxFecha)
         Me.Controls.Add(Me.textboxCuartel)
         Me.Controls.Add(labelCuartel)
@@ -206,8 +204,8 @@ Partial Class formAcademiaAsistencia
     Friend WithEvents labelFecha As Label
     Friend WithEvents textboxCuartel As TextBox
     Friend WithEvents textboxFecha As TextBox
-    Friend WithEvents labelAsistenciaTipo As Label
-    Friend WithEvents comboboxAsistenciaTipo As ComboBox
     Friend WithEvents tooltipMain As ToolTip
     Friend WithEvents controlpersonaPersona As ControlPersona
+    Friend WithEvents panelAsistencia As FlowLayoutPanel
+    Friend WithEvents labelAsistenciaTipo As Label
 End Class

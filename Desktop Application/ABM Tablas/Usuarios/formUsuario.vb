@@ -96,9 +96,9 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             textboxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
             textboxPassword.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Password)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUsuarioGrupo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUsuarioGrupo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUsuarioGrupo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUsuarioGrupo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

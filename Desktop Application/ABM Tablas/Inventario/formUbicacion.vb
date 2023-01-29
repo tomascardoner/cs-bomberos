@@ -92,8 +92,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUnidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUnidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDUnidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

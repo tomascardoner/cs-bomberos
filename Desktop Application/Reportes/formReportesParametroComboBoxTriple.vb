@@ -3,7 +3,7 @@
     Private mParametroPadre As ReporteParametro
     Private mParametroActual As ReporteParametro
 
-    Friend Sub SetAppearance(ByRef ParametroAbuelo As ReporteParametro, ByRef ParametroPadre As ReporteParametro, ByRef ParametroActual As ReporteParametro, ByVal Title As String)
+    Friend Sub SetAppearance(ByRef ParametroAbuelo As ReporteParametro, ByRef ParametroPadre As ReporteParametro, ByRef ParametroActual As ReporteParametro)
         mParametroAbuelo = ParametroAbuelo
         mParametroPadre = ParametroPadre
         mParametroActual = ParametroActual
@@ -17,8 +17,8 @@
                 Using context As New CSBomberosContext(True)
                     ListasComunes.LlenarComboBoxCuarteles(context, comboboxAbueloValor, False, False)
                 End Using
-                If Not mParametroAbuelo.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxAbueloValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroAbuelo.Valor)
+                If mParametroAbuelo.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxAbueloValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroAbuelo.Valor)
                 End If
         End Select
     End Sub
@@ -40,8 +40,8 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 pFillAndRefreshLists.Ubicacion(comboboxPadreValor, False, False, Convert.ToByte(comboboxAbueloValor.SelectedValue))
-                If Not mParametroPadre.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
+                If mParametroPadre.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If
         End Select
     End Sub
@@ -53,8 +53,8 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION
                 pFillAndRefreshLists.SubUbicacion(comboboxValor, False, False, Convert.ToInt16(comboboxPadreValor.SelectedValue))
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+                If mParametroActual.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
         End Select
     End Sub

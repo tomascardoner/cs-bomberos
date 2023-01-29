@@ -86,7 +86,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mPersonaLicenciaActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCausa, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDLicenciaCausa)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCausa, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDLicenciaCausa)
             datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde)
             datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta)
             datetimepickerFechaInterrupcion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInterrupcion, datetimepickerFechaInterrupcion)

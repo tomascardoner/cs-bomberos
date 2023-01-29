@@ -101,7 +101,7 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mComprobanteMedioPagoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxMedioPago, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDMedioPago, CByte(0))
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxMedioPago, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDMedioPago, CByte(0))
 
             If mMedioPagoCurrent.UtilizaFechaHora Then
                 datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaHora)
@@ -116,12 +116,12 @@
                 textboxNumero.Text = String.Empty
             End If
             If mMedioPagoCurrent.UtilizaBanco Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             Else
                 comboboxBanco.SelectedIndex = 0
             End If
             If mMedioPagoCurrent.UtilizaCuenta Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
                 maskedtextboxCuentaBancariaSucursal.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(.Sucursal)
                 textboxCuentaBancariaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Cuenta)
                 maskedtextboxCuentaBancariaCbu.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Cbu)
@@ -270,8 +270,8 @@
 
                 entidad = context.Entidad.Find(mComprobanteActual.IDEntidad)
 
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.ComboBox.SelectedItemOptions.Value, entidad.CuentaBancariaIDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, entidad.CuentaBancariaIDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, entidad.CuentaBancariaIDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, entidad.CuentaBancariaIDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
                 maskedtextboxCuentaBancariaSucursal.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(entidad.CuentaBancariaSucursal)
                 textboxCuentaBancariaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(entidad.CuentaBancariaNumero)
                 maskedtextboxCuentaBancariaCbu.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(entidad.CuentaBancariaCbu)

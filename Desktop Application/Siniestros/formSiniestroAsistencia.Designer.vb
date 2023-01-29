@@ -36,8 +36,8 @@ Partial Class formSiniestroAsistencia
         Me.textboxCuartel = New System.Windows.Forms.TextBox()
         Me.textboxFecha = New System.Windows.Forms.TextBox()
         Me.labelAsistenciaTipo = New System.Windows.Forms.Label()
-        Me.comboboxAsistenciaTipo = New System.Windows.Forms.ComboBox()
         Me.tooltipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.panelAsistencia = New System.Windows.Forms.FlowLayoutPanel()
         Me.controlpersonaPersona = New CSBomberos.ControlPersona()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -113,7 +113,7 @@ Partial Class formSiniestroAsistencia
         'labelNumero
         '
         Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(12, 83)
+        Me.labelNumero.Location = New System.Drawing.Point(12, 80)
         Me.labelNumero.Name = "labelNumero"
         Me.labelNumero.Size = New System.Drawing.Size(47, 13)
         Me.labelNumero.TabIndex = 7
@@ -122,7 +122,7 @@ Partial Class formSiniestroAsistencia
         'labelFecha
         '
         Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(12, 109)
+        Me.labelFecha.Location = New System.Drawing.Point(12, 106)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
         Me.labelFecha.TabIndex = 9
@@ -130,7 +130,7 @@ Partial Class formSiniestroAsistencia
         '
         'textboxNumeroCompleto
         '
-        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(76, 80)
+        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(76, 77)
         Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
         Me.textboxNumeroCompleto.ReadOnly = True
         Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
@@ -146,7 +146,7 @@ Partial Class formSiniestroAsistencia
         '
         'textboxFecha
         '
-        Me.textboxFecha.Location = New System.Drawing.Point(76, 106)
+        Me.textboxFecha.Location = New System.Drawing.Point(76, 103)
         Me.textboxFecha.Name = "textboxFecha"
         Me.textboxFecha.ReadOnly = True
         Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
@@ -161,14 +161,12 @@ Partial Class formSiniestroAsistencia
         Me.labelAsistenciaTipo.TabIndex = 2
         Me.labelAsistenciaTipo.Text = "Asistencia:"
         '
-        'comboboxAsistenciaTipo
+        'panelAsistencia
         '
-        Me.comboboxAsistenciaTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxAsistenciaTipo.FormattingEnabled = True
-        Me.comboboxAsistenciaTipo.Location = New System.Drawing.Point(76, 186)
-        Me.comboboxAsistenciaTipo.Name = "comboboxAsistenciaTipo"
-        Me.comboboxAsistenciaTipo.Size = New System.Drawing.Size(220, 21)
-        Me.comboboxAsistenciaTipo.TabIndex = 3
+        Me.panelAsistencia.Location = New System.Drawing.Point(76, 181)
+        Me.panelAsistencia.Name = "panelAsistencia"
+        Me.panelAsistencia.Size = New System.Drawing.Size(374, 36)
+        Me.panelAsistencia.TabIndex = 3
         '
         'controlpersonaPersona
         '
@@ -181,20 +179,20 @@ Partial Class formSiniestroAsistencia
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
         Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
         Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
         Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
+        Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.TabIndex = 1
         '
         'formSiniestroAsistencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(462, 218)
+        Me.ClientSize = New System.Drawing.Size(462, 231)
+        Me.Controls.Add(Me.panelAsistencia)
         Me.Controls.Add(Me.controlpersonaPersona)
-        Me.Controls.Add(Me.comboboxAsistenciaTipo)
         Me.Controls.Add(Me.labelAsistenciaTipo)
         Me.Controls.Add(Me.textboxFecha)
         Me.Controls.Add(Me.textboxCuartel)
@@ -230,7 +228,7 @@ Partial Class formSiniestroAsistencia
     Friend WithEvents textboxCuartel As TextBox
     Friend WithEvents textboxFecha As TextBox
     Friend WithEvents labelAsistenciaTipo As Label
-    Friend WithEvents comboboxAsistenciaTipo As ComboBox
     Friend WithEvents tooltipMain As ToolTip
     Friend WithEvents controlpersonaPersona As ControlPersona
+    Friend WithEvents panelAsistencia As FlowLayoutPanel
 End Class

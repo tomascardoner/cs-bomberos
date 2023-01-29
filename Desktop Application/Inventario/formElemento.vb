@@ -106,8 +106,8 @@
         With mElementoActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSubRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSubRubro, 0)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDRubro, 0)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxSubRubro, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSubRubro, 0)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

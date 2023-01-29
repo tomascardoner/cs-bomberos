@@ -99,7 +99,7 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mCajaArqueoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCaja, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCaja)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCaja, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCaja)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.SaldoInicial, currencytextboxSaldoInicial)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.ImporteAsignado, currencytextboxImporteAsignado)
             datetimepickerCierreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaCierre, datetimepickerCierreFecha)

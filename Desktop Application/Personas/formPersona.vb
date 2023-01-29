@@ -276,7 +276,7 @@ Public Class formPersona
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDocumentoTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDocumentoTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             Else
@@ -284,12 +284,12 @@ Public Class formPersona
             End If
             maskedtextboxCUIL.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CUIL)
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
             doubletextboxAltura.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Altura)
             integertextboxPeso.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Peso)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGrupoSanguineo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .GrupoSanguineo, "")
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxFactorRH, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .FactorRH, "")
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEstadoCivil, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGrupoSanguineo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxFactorRH, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .FactorRH, "")
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEstadoCivil, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             datetimepickerFechaCasamiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaCasamiento, datetimepickerFechaCasamiento)
             Select Case .IOMATiene
                 Case ""
@@ -303,11 +303,11 @@ Public Class formPersona
             End Select
             textboxIOMANumeroAfiliado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.IOMANumeroAfiliado)
             datetimepickerIOMAVencimientoCredencial.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.IOMAVencimientoCredencial, datetimepickerIOMAVencimientoCredencial)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxNivelEstudio, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxNivelEstudio, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDNivelEstudio)
             textboxTituloObtenido.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TituloObtenido)
             textboxProfesion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Profesion)
             textboxNacionalidad.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nacionalidad)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             MostrarCantidadHijos()
             MostrarUltimoCargoJerarquia()
 
@@ -328,8 +328,8 @@ Public Class formPersona
             textboxDomicilioParticularDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularDepartamento)
             textboxDomicilioParticularCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle2)
             textboxDomicilioParticularCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle3)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioParticularIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioParticularProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioParticularIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioParticularIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioParticularCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCodigoPostal)
             textboxTelefonoParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoParticular)
             textboxCelularParticular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularParticular)
@@ -342,8 +342,8 @@ Public Class formPersona
             textboxDomicilioLaboralDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralDepartamento)
             textboxDomicilioLaboralCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle2)
             textboxDomicilioLaboralCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCalle3)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLaboralProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioLaboralIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioLaboralIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioLaboralCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioLaboralCodigoPostal)
             textboxTelefonoLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.TelefonoLaboral)
             textboxCelularLaboral.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CelularLaboral)
@@ -646,7 +646,7 @@ Public Class formPersona
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioParticularLocalidad, CByte(comboboxDomicilioParticularProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioParticularProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioParticularLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
@@ -664,7 +664,7 @@ Public Class formPersona
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLaboralLocalidad, CByte(comboboxDomicilioLaboralProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioLaboralProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLaboralLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub

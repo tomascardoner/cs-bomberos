@@ -289,7 +289,7 @@
                         End If
                     Next
 
-                    formReportesParametroComboBoxDoble.SetAppearance(ParametroPadre, ParametroActual, ListViewItemActual.Text)
+                    formReportesParametroComboBoxDoble.SetAppearance(ParametroPadre, ParametroActual)
                     If formReportesParametroComboBoxDoble.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                         If ParametroPadre IsNot Nothing Then
@@ -315,7 +315,7 @@
                         End If
                     Next
 
-                    formReportesParametroComboBoxTriple.SetAppearance(ParametroAbuelo, ParametroPadre, ParametroActual, ListViewItemActual.Text)
+                    formReportesParametroComboBoxTriple.SetAppearance(ParametroAbuelo, ParametroPadre, ParametroActual)
                     If formReportesParametroComboBoxTriple.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                         If ParametroAbuelo IsNot Nothing Then

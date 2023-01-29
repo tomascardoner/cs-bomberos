@@ -90,7 +90,7 @@
             textboxNumeroComprobante.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.NumeroComprobante)
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.Fecha)
             textboxProveedor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Proveedor)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 

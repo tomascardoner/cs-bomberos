@@ -12,7 +12,7 @@
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal parentEditMode As Boolean, ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef dbContext As CSBomberosContext, ByRef ComprobanteActual As Comprobante, ByRef ComprobanteMedioPagoActual As ComprobanteMedioPago)
+    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByRef dbContext As CSBomberosContext, ByRef ComprobanteActual As Comprobante, ByRef ComprobanteMedioPagoActual As ComprobanteMedioPago)
         mEditMode = EditMode
 
         mdbContext = dbContext
@@ -65,7 +65,7 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mComprobanteMedioPagoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxMedioPago, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDMedioPago, CByte(0))
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxMedioPago, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDMedioPago, CByte(0))
         End With
         With mComprobanteMedioPagoActual.Cheque
             If .IDCheque = 0 Then
@@ -73,7 +73,7 @@
             Else
                 textboxIDCheque.Text = String.Format(.IDCheque.ToString, "G")
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDBanco, CShort(0))
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxBanco, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDBanco, CShort(0))
             datetimepickerFechaEmision.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaEmision)
             datetimepickerFechaPago.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaPago)
             MaskedTextBoxNumero.Text = CS_ValueTranslation.FromObjectIntegerToControlTextBox(.Numero)
@@ -84,7 +84,7 @@
             MaskedTextBoxCodigoPostal.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(.CodigoPostal)
 
             'textboxEstado.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Estado)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxMotivoRechazo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDChequeMotivoRechazo, CShort(0))
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxMotivoRechazo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDChequeMotivoRechazo, CShort(0))
         End With
     End Sub
 

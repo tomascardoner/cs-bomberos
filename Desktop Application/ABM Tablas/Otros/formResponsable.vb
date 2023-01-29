@@ -94,8 +94,8 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mResponsableActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDResponsableTipo)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxResponsableTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDResponsableTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDCuartel, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Personas
             If mIsNew Then

@@ -91,9 +91,9 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroTipoActual
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDSiniestroRubro)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxRubro, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDSiniestroRubro)
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxClavePredeterminada, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroClave, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClavePredeterminada, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSiniestroClave, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

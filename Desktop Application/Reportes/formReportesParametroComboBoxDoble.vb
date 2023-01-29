@@ -10,7 +10,7 @@
 
 #Region "Form stuff"
 
-    Friend Sub SetAppearance(ByRef ParametroPadre As ReporteParametro, ByRef ParametroActual As ReporteParametro, ByVal Title As String)
+    Friend Sub SetAppearance(ByRef ParametroPadre As ReporteParametro, ByRef ParametroActual As ReporteParametro)
         mParametroPadre = ParametroPadre
         mParametroActual = ParametroActual
 
@@ -20,15 +20,15 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA
                 pFillAndRefreshLists.Cargo(comboboxPadreValor, False, False)
-                If Not mParametroPadre.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
+                If mParametroPadre.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_AREA, Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                 Using context As New CSBomberosContext(True)
                     ListasComunes.LlenarComboBoxCuarteles(context, comboboxPadreValor, False, False)
                 End Using
-                If Not mParametroPadre.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
+                If mParametroPadre.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxPadreValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroPadre.Valor)
                 End If
         End Select
     End Sub
@@ -63,18 +63,18 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA
                 pFillAndRefreshLists.CargoJerarquia(comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+                If mParametroActual.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_AREA
                 ListasComunes.LlenarComboBoxAreas(mdbContext, comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+                If mParametroActual.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_UBICACION
                 pFillAndRefreshLists.Ubicacion(comboboxValor, False, False, CByte(comboboxPadreValor.SelectedValue))
-                If Not mParametroActual.Valor Is Nothing Then
-                    CardonerSistemas.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
+                If mParametroActual.Valor IsNot Nothing Then
+                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxValor, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mParametroActual.Valor)
                 End If
         End Select
     End Sub

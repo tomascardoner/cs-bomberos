@@ -107,7 +107,7 @@
                 comboboxBajaMotivo.SelectedIndex = -1
                 textboxBajaUnidadDestino.Text = String.Empty
             Else
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxBajaMotivo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxBajaMotivo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDPersonaBajaMotivo, CByte(0))
                 If (mPersonaBajaMotivo IsNot Nothing) AndAlso mPersonaBajaMotivo.EspecificaDestino Then
                     textboxBajaUnidadDestino.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.BajaUnidadDestino)
                 Else

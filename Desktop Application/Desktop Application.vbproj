@@ -188,9 +188,6 @@
     <Compile Include="..\..\..\framework-vbnet\Bank.vb">
       <Link>Framework\Bank.vb</Link>
     </Compile>
-    <Compile Include="..\..\..\framework-vbnet\ComboBox.vb">
-      <Link>Framework\ComboBox.vb</Link>
-    </Compile>
     <Compile Include="..\..\..\framework-vbnet\ConfigurationJson.vb">
       <Link>Framework\ConfigurationJson.vb</Link>
     </Compile>
@@ -199,6 +196,12 @@
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\ConstantsKeys.vb">
       <Link>Framework\ConstantsKeys.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Controls.ComboBox.vb">
+      <Link>Framework\Controls.ComboBox.vb</Link>
+    </Compile>
+    <Compile Include="..\..\..\framework-vbnet\Controls.RadioButton.vb">
+      <Link>Framework\Controls.RadioButton.vb</Link>
     </Compile>
     <Compile Include="..\..\..\framework-vbnet\CS_ValueTranslation_Syncfusion.vb">
       <Link>Framework\CS_ValueTranslation_Syncfusion.vb</Link>

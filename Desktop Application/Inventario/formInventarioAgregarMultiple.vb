@@ -32,7 +32,7 @@
         Using context As New CSBomberosContext(True)
             ListasComunes.LlenarComboBoxCuarteles(context, comboboxCuartel, False, False)
         End Using
-        CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
+        CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
         pFillAndRefreshLists.ElementoFill(comboboxElemento, False, False)
         pFillAndRefreshLists.ModoAdquisicion(comboboxModoAdquisicion, False, True)
     End Sub

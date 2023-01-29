@@ -129,23 +129,23 @@
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
 
             ' Datos de la pestaña General
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxParentesco, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxParentesco, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDParentesco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If .IDParentesco = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE Then
                 textboxParentescoOtro.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ParentescoOtro)
             Else
                 textboxParentescoOtro.Text = ""
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDocumentoTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDocumentoTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDDocumentoTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If CType(comboboxDocumentoTipo.SelectedItem, DocumentoTipo).VerificaModulo11 Then
                 maskedtextboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             Else
                 textboxDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DocumentoNumero)
             End If
             datetimepickerFechaNacimiento.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.FechaNacimiento, datetimepickerFechaNacimiento)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGrupoSanguineo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .GrupoSanguineo, "")
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxFactorRH, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .FactorRH, "")
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxEstadoCivil, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGenero, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .Genero, Constantes.PERSONA_GENERO_NOESPECIFICA)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGrupoSanguineo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .GrupoSanguineo, "")
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxFactorRH, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .FactorRH, "")
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEstadoCivil, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDEstadoCivil, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             Select Case .IOMATiene
                 Case ""
                     comboboxIOMATiene.SelectedIndex = 0
@@ -170,8 +170,8 @@
             textboxDomicilioDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioDepartamento)
             textboxDomicilioCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle2)
             textboxDomicilioCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle3)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCodigoPostal)
             textboxTelefono.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono)
             textboxCelular.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Celular)
@@ -322,7 +322,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub

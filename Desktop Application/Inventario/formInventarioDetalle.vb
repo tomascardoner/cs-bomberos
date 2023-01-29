@@ -123,19 +123,19 @@
     Friend Sub SetDataFromObjectToControls()
         With mInventarioActual
             If mIsNew Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, mIDCuartel)
             Else
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .Area.IDCuartel)
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             MaskedTextBoxCodigo.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Codigo).TrimEnd
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxElemento, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDElemento)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxElemento, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDElemento)
             textboxDescripcionPropia.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DescripcionPropia)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxModoAdquisicion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxModoAdquisicion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDModoAdquisicion, 0)
             datetimepickerFechaAdquisicion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaAdquicision, datetimepickerFechaAdquisicion)
 
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUbicacion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSubUbicacion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUbicacion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUbicacion, 0)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxSubUbicacion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDSubUbicacion, 0)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

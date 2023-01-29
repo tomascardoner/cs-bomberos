@@ -89,7 +89,7 @@
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroClaveActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxGrupo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .Grupo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxGrupo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .Grupo)
             updownOrden.Value = CS_ValueTranslation.FromObjectByteToControlUpDown(.Orden)
 
             ' Datos de la pestaña Notas y Auditoría

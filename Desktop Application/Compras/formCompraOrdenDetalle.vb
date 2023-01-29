@@ -84,8 +84,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mCompraOrdenDetalleActual
             ' Datos de la pestaña General
-            CardonerSistemas.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDComprobante, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDComprobante, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
             CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
 

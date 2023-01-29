@@ -104,17 +104,19 @@
             listItems = context.Cuartel.Where(Function(c) c.EsActivo).OrderBy(Function(cl) cl.Nombre).ToList
 
             If agregarItemTodos Then
-                Dim Item_Todos As New Cuartel
-                Item_Todos.IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE
-                Item_Todos.Nombre = My.Resources.STRING_ITEM_ALL_MALE
+                Dim Item_Todos As New Cuartel With {
+                    .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                    .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+                }
                 listItems.Insert(0, Item_Todos)
             End If
         End If
 
         If agregarItemNoEspecifica Then
-            Dim Item_NoEspecifica As New Cuartel
-            Item_NoEspecifica.IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE
-            Item_NoEspecifica.Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            Dim Item_NoEspecifica As New Cuartel With {
+                .IDCuartel = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
             listItems.Insert(0, Item_NoEspecifica)
         End If
 

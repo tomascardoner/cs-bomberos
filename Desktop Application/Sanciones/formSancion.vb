@@ -139,7 +139,7 @@
                 controlpersonaAplicar.ResetText()
             End If
 
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxSolicitudResponsableTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .SolicitudIDResponsableTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxSolicitudResponsableTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .SolicitudIDResponsableTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             If mIsNew Then
                 controlpersonaSolicitud.ResetText()
             Else
@@ -164,7 +164,7 @@
                 textboxDesaprobadaCausa.Text = String.Empty
             End If
 
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxResolucionSancionTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .ResolucionIDSancionTipo)
             datetimepickerResolucionFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.ResolucionFecha, datetimepickerResolucionFecha)
             textboxResolucionNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.ResolucionNumero)
 

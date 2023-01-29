@@ -95,11 +95,11 @@
         With mSubUbicacionActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             If mIsNew Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, mIDCuartel)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, mIDCuartel)
             Else
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .Ubicacion.IDCuartel)
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .Ubicacion.IDCuartel)
             End If
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxUbicacion, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUbicacion)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxUbicacion, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDUbicacion)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)

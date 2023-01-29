@@ -124,7 +124,7 @@
             ' Datos de la pestaña General
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
             maskedtextboxCUIT.Text = CS_ValueTranslation.FromObjectLongToControlTextBox(.Cuit)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCategoriaIVA, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .IDCategoriaIVA, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCategoriaIVA, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDCategoriaIVA, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             textboxTelefono1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono1)
             textboxTelefono2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Telefono2)
             textboxEmail1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Email1)
@@ -135,15 +135,15 @@
             textboxDomicilioDepartamento.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioDepartamento)
             textboxDomicilioCalle2.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle2)
             textboxDomicilioCalle3.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCalle3)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDProvincia, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .DomicilioIDLocalidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             textboxDomicilioCodigoPostal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioCodigoPostal)
             checkboxHabilitarCompra.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.HabilitarCompra)
             checkboxHabilitarVenta.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.HabilitarVenta)
 
             ' Datos de la pestaña Datos bancarios
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuentaBancariaBanco, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .CuentaBancariaIDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
-            CardonerSistemas.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.ComboBox.SelectedItemOptions.Value, .CuentaBancariaIDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuentaBancariaBanco, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .CuentaBancariaIDBanco, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCuentaBancariaTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .CuentaBancariaIDTipo, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
             maskedtextboxCuentaBancariaSucursal.Text = CS_ValueTranslation.FromObjectShortToControlTextBox(.CuentaBancariaSucursal)
             textboxCuentaBancariaNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CuentaBancariaNumero)
             maskedtextboxCuentaBancariaCbu.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.CuentaBancariaCbu)
@@ -248,7 +248,7 @@
         Else
             pFillAndRefreshLists.Localidad(comboboxDomicilioLocalidad, CByte(comboboxDomicilioProvincia.SelectedValue), True)
             If CByte(comboboxDomicilioProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
-                CardonerSistemas.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxDomicilioLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
             End If
         End If
     End Sub
