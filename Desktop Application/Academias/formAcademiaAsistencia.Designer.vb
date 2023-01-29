@@ -37,6 +37,7 @@ Partial Class formAcademiaAsistencia
         Me.controlpersonaPersona = New CSBomberos.ControlPersona()
         Me.panelAsistencia = New System.Windows.Forms.FlowLayoutPanel()
         Me.labelAsistenciaTipo = New System.Windows.Forms.Label()
+        Me.checkBoxContinuarAlta = New System.Windows.Forms.CheckBox()
         labelCuartel = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
@@ -167,11 +168,24 @@ Partial Class formAcademiaAsistencia
         Me.labelAsistenciaTipo.TabIndex = 2
         Me.labelAsistenciaTipo.Text = "Asistencia:"
         '
+        'checkBoxContinuarAlta
+        '
+        Me.checkBoxContinuarAlta.AutoSize = True
+        Me.checkBoxContinuarAlta.Checked = True
+        Me.checkBoxContinuarAlta.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.checkBoxContinuarAlta.Location = New System.Drawing.Point(12, 12)
+        Me.checkBoxContinuarAlta.Name = "checkBoxContinuarAlta"
+        Me.checkBoxContinuarAlta.Size = New System.Drawing.Size(70, 17)
+        Me.checkBoxContinuarAlta.TabIndex = 12
+        Me.checkBoxContinuarAlta.Text = "No cerrar"
+        Me.checkBoxContinuarAlta.UseVisualStyleBackColor = True
+        '
         'formAcademiaAsistencia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(462, 201)
+        Me.Controls.Add(Me.checkBoxContinuarAlta)
         Me.Controls.Add(Me.panelAsistencia)
         Me.Controls.Add(Me.labelAsistenciaTipo)
         Me.Controls.Add(Me.controlpersonaPersona)
@@ -208,4 +222,5 @@ Partial Class formAcademiaAsistencia
     Friend WithEvents controlpersonaPersona As ControlPersona
     Friend WithEvents panelAsistencia As FlowLayoutPanel
     Friend WithEvents labelAsistenciaTipo As Label
+    Friend WithEvents checkBoxContinuarAlta As CheckBox
 End Class

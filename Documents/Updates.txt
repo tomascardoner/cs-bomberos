@@ -1,3 +1,6 @@
+2023-01-29
+	- Agregar el campo MostrarSegunPermiso en las tablas AcademiaAsistenciaTipo y SiniestroAsistenciaTipo
+
 2023-01-24
 	- Agregar el campo EsActivo a la tabla SancionMotivo (default = 1)
 	- Agregar el campo MostrarEnAsistencia a la tabla CargoJerarquia (default = 1)

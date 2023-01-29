@@ -33,15 +33,7 @@
         mNumeroCompleto = NumeroCompleto
         mFecha = Fecha
         If mIsNew Then
-            ' Es Nuevo
-            mSiniestroAsistenciaActual = New SiniestroAsistencia With {
-                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
-                .IDUsuarioCreacion = pUsuario.IDUsuario,
-                .FechaHoraCreacion = Now,
-                .IDUsuarioModificacion = pUsuario.IDUsuario,
-                .FechaHoraModificacion = Now
-                }
-            mSiniestroActual.SiniestrosAsistencias.Add(mSiniestroAsistenciaActual)
+            CrearNuevoObjeto()
         Else
             mSiniestroAsistenciaActual = mSiniestroActual.SiniestrosAsistencias.Single(Function(sa) sa.IDPersona = idPersona)
         End If
@@ -55,6 +47,17 @@
         ChangeMode()
 
         Me.ShowDialog(mParentForm)
+    End Sub
+
+    Private Sub CrearNuevoObjeto()
+        mSiniestroAsistenciaActual = New SiniestroAsistencia With {
+                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
+                .IDUsuarioCreacion = pUsuario.IDUsuario,
+                .FechaHoraCreacion = Now,
+                .IDUsuarioModificacion = pUsuario.IDUsuario,
+                .FechaHoraModificacion = Now
+                }
+        mSiniestroActual.SiniestrosAsistencias.Add(mSiniestroAsistenciaActual)
     End Sub
 
     Private Sub ChangeMode()
@@ -77,11 +80,20 @@
         controlpersonaPersona.dbContext = mdbContext
         controlpersonaPersona.IDCuartel = mIDCuartel
 
+        checkBoxContinuarAlta.Visible = mIsNew
+
         Dim listSiniestroAsistenciaTipo As List(Of CardonerSistemas.Controls.RadioButton.ValueForList)
-        listSiniestroAsistenciaTipo = (From sat In mdbContext.SiniestroAsistenciaTipo
-                                       Where sat.EsActivo
-                                       Order By sat.Orden, sat.Nombre
-                                       Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(sat.IDSiniestroAsistenciaTipo), .DisplayValue = sat.Nombre}).ToList()
+        If Permisos.VerificarPermiso(Permisos.SINIESTROASISTENCIATIPO_MOSTRARTODOS, False) Then
+            listSiniestroAsistenciaTipo = (From sat In mdbContext.SiniestroAsistenciaTipo
+                                           Where sat.EsActivo
+                                           Order By sat.Orden, sat.Nombre
+                                           Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(sat.IDSiniestroAsistenciaTipo), .DisplayValue = sat.Nombre}).ToList()
+        Else
+            listSiniestroAsistenciaTipo = (From sat In mdbContext.SiniestroAsistenciaTipo
+                                           Where sat.EsActivo And Not sat.MostrarSegunPermiso
+                                           Order By sat.Orden, sat.Nombre
+                                           Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(sat.IDSiniestroAsistenciaTipo), .DisplayValue = sat.Nombre}).ToList()
+        End If
         CardonerSistemas.Controls.RadioButton.CreateArray(Me, CType(panelAsistencia, Panel), 250, listSiniestroAsistenciaTipo, Nothing, CardonerSistemas.Controls.RadioButton.WidthSizeModes.AutoSizeByTextIndividually, 50, 30, Windows.Forms.Appearance.Button)
     End Sub
 
@@ -182,7 +194,12 @@
         ' Refresco la lista para mostrar los cambios
         CType(mParentForm, formSiniestro).AsistenciasRefreshData(mSiniestroAsistenciaActual.IDPersona)
 
-        Me.Close()
+        If mIsNew AndAlso checkBoxContinuarAlta.Checked Then
+            CrearNuevoObjeto()
+            SetDataFromObjectToControls()
+        Else
+            Me.Close()
+        End If
     End Sub
 
 #End Region

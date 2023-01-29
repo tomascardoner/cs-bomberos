@@ -15,6 +15,7 @@ Partial Public Class AcademiaAsistenciaTipo
     Public Property Nombre As String
     Public Property Abreviatura As String
     Public Property EsPresente As Boolean
+    Public Property MostrarSegunPermiso As Boolean
     Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean

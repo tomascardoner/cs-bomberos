@@ -42,6 +42,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Abreviatura" Type="varchar" MaxLength="5" />
           <Property Name="EsPresente" Type="bit" Nullable="false" />
+          <Property Name="MostrarSegunPermiso" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -1398,6 +1399,7 @@
           <Property Name="EsPresente" Type="bit" Nullable="false" />
           <Property Name="EsAusenciaJustificada" Type="bit" Nullable="false" />
           <Property Name="ExcluyeDelTotal" Type="bit" Nullable="false" />
+          <Property Name="MostrarSegunPermiso" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -11626,6 +11628,7 @@
           <Property Name="EsPresente" Type="Boolean" Nullable="false" />
           <Property Name="EsAusenciaJustificada" Type="Boolean" Nullable="false" />
           <Property Name="ExcluyeDelTotal" Type="Boolean" Nullable="false" />
+          <Property Name="MostrarSegunPermiso" Type="Boolean" Nullable="false" />
           <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -11893,6 +11896,7 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Abreviatura" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="EsPresente" Type="Boolean" Nullable="false" />
+          <Property Name="MostrarSegunPermiso" Type="Boolean" Nullable="false" />
           <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -14598,6 +14602,7 @@
           <EntitySetMapping Name="SiniestroAsistenciaTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroAsistenciaTipo">
               <MappingFragment StoreEntitySet="SiniestroAsistenciaTipo">
+                <ScalarProperty Name="MostrarSegunPermiso" ColumnName="MostrarSegunPermiso" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
@@ -14677,6 +14682,7 @@
           <EntitySetMapping Name="AcademiaAsistenciaTipo">
             <EntityTypeMapping TypeName="CSBomberosModel.AcademiaAsistenciaTipo">
               <MappingFragment StoreEntitySet="AcademiaAsistenciaTipo">
+                <ScalarProperty Name="MostrarSegunPermiso" ColumnName="MostrarSegunPermiso" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
                 <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />

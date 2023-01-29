@@ -17,6 +17,7 @@ Partial Public Class SiniestroAsistenciaTipo
     Public Property EsPresente As Boolean
     Public Property EsAusenciaJustificada As Boolean
     Public Property ExcluyeDelTotal As Boolean
+    Public Property MostrarSegunPermiso As Boolean
     Public Property Orden As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean

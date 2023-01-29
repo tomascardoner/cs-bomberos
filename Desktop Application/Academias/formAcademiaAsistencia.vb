@@ -31,15 +31,7 @@
         mCuartelNombre = CuartelNombre
         mFecha = Fecha
         If mIsNew Then
-            ' Es Nuevo
-            mAcademiaAsistenciaActual = New AcademiaAsistencia With {
-                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
-                .IDUsuarioCreacion = pUsuario.IDUsuario,
-                .FechaHoraCreacion = Now,
-                .IDUsuarioModificacion = pUsuario.IDUsuario,
-                .FechaHoraModificacion = Now
-                }
-            mAcademiaActual.AcademiasAsistencias.Add(mAcademiaAsistenciaActual)
+            CrearNuevoObjeto()
         Else
             mAcademiaAsistenciaActual = mAcademiaActual.AcademiasAsistencias.Single(Function(sa) sa.IDPersona = idPersona)
         End If
@@ -53,6 +45,17 @@
         ChangeMode()
 
         Me.ShowDialog(mParentForm)
+    End Sub
+
+    Private Sub CrearNuevoObjeto()
+        mAcademiaAsistenciaActual = New AcademiaAsistencia With {
+                .IDAsistenciaMetodo = Constantes.AsistenciaMetodoManualId,
+                .IDUsuarioCreacion = pUsuario.IDUsuario,
+                .FechaHoraCreacion = Now,
+                .IDUsuarioModificacion = pUsuario.IDUsuario,
+                .FechaHoraModificacion = Now
+                }
+        mAcademiaActual.AcademiasAsistencias.Add(mAcademiaAsistenciaActual)
     End Sub
 
     Private Sub ChangeMode()
@@ -75,11 +78,20 @@
         controlpersonaPersona.dbContext = mdbContext
         controlpersonaPersona.IDCuartel = mIDCuartel
 
+        checkBoxContinuarAlta.Visible = mIsNew
+
         Dim listAcademiaAsistenciaTipo As List(Of CardonerSistemas.Controls.RadioButton.ValueForList)
-        listAcademiaAsistenciaTipo = (From aat In mdbContext.AcademiaAsistenciaTipo
-                                      Where aat.EsActivo
-                                      Order By aat.Orden, aat.Nombre
-                                      Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(aat.IDAcademiaAsistenciaTipo), .DisplayValue = aat.Nombre}).ToList()
+        If Permisos.VerificarPermiso(Permisos.ACADEMIAASISTENCIATIPO_MOSTRARTODOS, False) Then
+            listAcademiaAsistenciaTipo = (From aat In mdbContext.AcademiaAsistenciaTipo
+                                          Where aat.EsActivo
+                                          Order By aat.Orden, aat.Nombre
+                                          Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(aat.IDAcademiaAsistenciaTipo), .DisplayValue = aat.Nombre}).ToList()
+        Else
+            listAcademiaAsistenciaTipo = (From aat In mdbContext.AcademiaAsistenciaTipo
+                                          Where aat.EsActivo And Not aat.MostrarSegunPermiso
+                                          Order By aat.Orden, aat.Nombre
+                                          Select New CardonerSistemas.Controls.RadioButton.ValueForList With {.IdValue = CStr(aat.IDAcademiaAsistenciaTipo), .DisplayValue = aat.Nombre}).ToList()
+        End If
         CardonerSistemas.Controls.RadioButton.CreateArray(Me, CType(panelAsistencia, Panel), 250, listAcademiaAsistenciaTipo, Nothing, CardonerSistemas.Controls.RadioButton.WidthSizeModes.AutoSizeByTextIndividually, 50, 30, Windows.Forms.Appearance.Button)
     End Sub
 
@@ -179,7 +191,12 @@
         ' Refresco la lista para mostrar los cambios
         CType(mParentForm, formAcademia).AsistenciasRefreshData(mAcademiaAsistenciaActual.IDPersona)
 
-        Me.Close()
+        If mIsNew AndAlso checkBoxContinuarAlta.Checked Then
+            CrearNuevoObjeto()
+            SetDataFromObjectToControls()
+        Else
+            Me.Close()
+        End If
     End Sub
 
 #End Region
