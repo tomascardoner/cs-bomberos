@@ -26,7 +26,7 @@ Partial Class formCargoJerarquia
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
         Dim labelCargo As System.Windows.Forms.Label
-        Dim labelMostrarEnAsistencia As System.Windows.Forms.Label
+        Dim labelJerarquiaInferior As System.Windows.Forms.Label
         Me.textboxNombre = New System.Windows.Forms.TextBox()
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -37,7 +37,7 @@ Partial Class formCargoJerarquia
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.checkboxMostrarEnAsistencia = New System.Windows.Forms.CheckBox()
+        Me.checkboxJerarquiaInferior = New System.Windows.Forms.CheckBox()
         Me.comboboxCargo = New System.Windows.Forms.ComboBox()
         Me.updownOrden = New System.Windows.Forms.NumericUpDown()
         Me.labelOrden = New System.Windows.Forms.Label()
@@ -54,7 +54,7 @@ Partial Class formCargoJerarquia
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelCargo = New System.Windows.Forms.Label()
-        labelMostrarEnAsistencia = New System.Windows.Forms.Label()
+        labelJerarquiaInferior = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
@@ -98,14 +98,14 @@ Partial Class formCargoJerarquia
         labelCargo.TabIndex = 0
         labelCargo.Text = "Cargo:"
         '
-        'labelMostrarEnAsistencia
+        'labelJerarquiaInferior
         '
-        labelMostrarEnAsistencia.AutoSize = True
-        labelMostrarEnAsistencia.Location = New System.Drawing.Point(6, 93)
-        labelMostrarEnAsistencia.Name = "labelMostrarEnAsistencia"
-        labelMostrarEnAsistencia.Size = New System.Drawing.Size(115, 13)
-        labelMostrarEnAsistencia.TabIndex = 4
-        labelMostrarEnAsistencia.Text = "Mostrar en asistencias:"
+        labelJerarquiaInferior.AutoSize = True
+        labelJerarquiaInferior.Location = New System.Drawing.Point(6, 93)
+        labelJerarquiaInferior.Name = "labelJerarquiaInferior"
+        labelJerarquiaInferior.Size = New System.Drawing.Size(101, 13)
+        labelJerarquiaInferior.TabIndex = 4
+        labelJerarquiaInferior.Text = "Es jerarquía inferior:"
         '
         'textboxNombre
         '
@@ -195,8 +195,8 @@ Partial Class formCargoJerarquia
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.checkboxMostrarEnAsistencia)
-        Me.tabpageGeneral.Controls.Add(labelMostrarEnAsistencia)
+        Me.tabpageGeneral.Controls.Add(Me.checkboxJerarquiaInferior)
+        Me.tabpageGeneral.Controls.Add(labelJerarquiaInferior)
         Me.tabpageGeneral.Controls.Add(labelCargo)
         Me.tabpageGeneral.Controls.Add(Me.comboboxCargo)
         Me.tabpageGeneral.Controls.Add(Me.updownOrden)
@@ -211,14 +211,14 @@ Partial Class formCargoJerarquia
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'checkboxMostrarEnAsistencia
+        'checkboxJerarquiaInferior
         '
-        Me.checkboxMostrarEnAsistencia.AutoSize = True
-        Me.checkboxMostrarEnAsistencia.Location = New System.Drawing.Point(137, 93)
-        Me.checkboxMostrarEnAsistencia.Name = "checkboxMostrarEnAsistencia"
-        Me.checkboxMostrarEnAsistencia.Size = New System.Drawing.Size(15, 14)
-        Me.checkboxMostrarEnAsistencia.TabIndex = 5
-        Me.checkboxMostrarEnAsistencia.UseVisualStyleBackColor = True
+        Me.checkboxJerarquiaInferior.AutoSize = True
+        Me.checkboxJerarquiaInferior.Location = New System.Drawing.Point(137, 93)
+        Me.checkboxJerarquiaInferior.Name = "checkboxJerarquiaInferior"
+        Me.checkboxJerarquiaInferior.Size = New System.Drawing.Size(15, 14)
+        Me.checkboxJerarquiaInferior.TabIndex = 5
+        Me.checkboxJerarquiaInferior.UseVisualStyleBackColor = True
         '
         'comboboxCargo
         '
@@ -393,5 +393,5 @@ Partial Class formCargoJerarquia
     Friend WithEvents updownOrden As System.Windows.Forms.NumericUpDown
     Friend WithEvents labelOrden As System.Windows.Forms.Label
     Friend WithEvents comboboxCargo As System.Windows.Forms.ComboBox
-    Friend WithEvents checkboxMostrarEnAsistencia As CheckBox
+    Friend WithEvents checkboxJerarquiaInferior As CheckBox
 End Class

@@ -1,3 +1,6 @@
+2023-02-07
+	- Renombrar el campo MostrarEnAsistencia a JerarquiaInferior
+
 2023-01-29
 	- Agregar el campo MostrarSegunPermiso en las tablas AcademiaAsistenciaTipo y SiniestroAsistenciaTipo
 

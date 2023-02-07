@@ -121,9 +121,9 @@
                         listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(a) a.IDBajaMotivo.HasValue AndAlso a.IDBajaMotivo.Value = CByte(comboboxEstadoActual.ComboBox.SelectedValue)).ToList
                 End Select
 
-                ' Filtro por Mostrar en Asistencia
+                ' Filtro por no Jerarquia Inferior
                 If FiltroSoloMostrarEnAsistencia Then
-                    listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(p) p.MostrarEnAsistencia.Value).ToList
+                    listPersonasFiltradaYOrdenada = listPersonasFiltradaYOrdenada.Where(Function(p) Not p.JerarquiaInferior.Value).ToList
                 End If
 
             Catch ex As Exception

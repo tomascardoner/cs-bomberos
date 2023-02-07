@@ -47,7 +47,7 @@ BEGIN
 				AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, @Fecha)
 				AND pab.Tipo = 'A'
 				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
-				AND cj.MostrarEnAsistencia = 1
+				AND cj.JerarquiaInferior = 0
 
 	-- Inserto las asistencias de las personas con Licencias
 	INSERT INTO SiniestroAsistencia

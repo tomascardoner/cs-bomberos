@@ -29,7 +29,7 @@ CREATE PROCEDURE PersonasObtenerConEstadoYJerarquia
 		SELECT p.IDPersona, p.MatriculaNumero, p.ApellidoNombre, p.Apellido, p.Nombre, p.IDCuartel, c.Nombre AS CuartelNombre,
 				dbo.PersonaObtenerEstado(pab.Tipo, pbm.Nombre) AS EstadoActual,
 				dbo.PersonaObtenerIdBajaMotivo(pab.Tipo, pab.IDPersonaBajaMotivo) AS IDBajaMotivo,
-				cj.Nombre AS Jerarquia, cj.MostrarEnAsistencia
+				cj.Nombre AS Jerarquia, cj.JerarquiaInferior
 			FROM Persona AS p
 				INNER JOIN Cuartel AS c ON p.IDCuartel = c.IDCuartel
 				LEFT JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona

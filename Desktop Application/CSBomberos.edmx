@@ -255,7 +255,7 @@
           <Property Name="IDCargo" Type="tinyint" Nullable="false" />
           <Property Name="IDJerarquia" Type="tinyint" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="MostrarEnAsistencia" Type="bit" Nullable="false" />
+          <Property Name="JerarquiaInferior" Type="bit" Nullable="false" />
           <Property Name="Orden" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
@@ -8474,7 +8474,7 @@
           <Property Name="IDCargo" Type="Byte" Nullable="false" />
           <Property Name="IDJerarquia" Type="Byte" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MostrarEnAsistencia" Type="Boolean" Nullable="false" />
+          <Property Name="JerarquiaInferior" Type="Boolean" Nullable="false" />
           <Property Name="Orden" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
@@ -13334,7 +13334,7 @@
           <Property Type="String" Name="EstadoActual" Nullable="true" MaxLength="50" />
           <Property Type="Byte" Name="IDBajaMotivo" Nullable="true" />
           <Property Type="String" Name="Jerarquia" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="MostrarEnAsistencia" Nullable="true" />
+          <Property Type="Boolean" Name="JerarquiaInferior" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -13682,7 +13682,7 @@
           <EntitySetMapping Name="CargoJerarquia">
             <EntityTypeMapping TypeName="CSBomberosModel.CargoJerarquia">
               <MappingFragment StoreEntitySet="CargoJerarquia">
-                <ScalarProperty Name="MostrarEnAsistencia" ColumnName="MostrarEnAsistencia" />
+                <ScalarProperty Name="JerarquiaInferior" ColumnName="JerarquiaInferior" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
@@ -15159,7 +15159,7 @@
                 <ScalarProperty Name="EstadoActual" ColumnName="EstadoActual" />
                 <ScalarProperty Name="IDBajaMotivo" ColumnName="IDBajaMotivo" />
                 <ScalarProperty Name="Jerarquia" ColumnName="Jerarquia" />
-                <ScalarProperty Name="MostrarEnAsistencia" ColumnName="MostrarEnAsistencia" />
+                <ScalarProperty Name="JerarquiaInferior" ColumnName="JerarquiaInferior" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

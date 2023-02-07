@@ -21,6 +21,6 @@ Partial Public Class PersonasObtenerConEstadoYJerarquia_Result
     Public Property EstadoActual As String
     Public Property IDBajaMotivo As Nullable(Of Byte)
     Public Property Jerarquia As String
-    Public Property MostrarEnAsistencia As Nullable(Of Boolean)
+    Public Property JerarquiaInferior As Nullable(Of Boolean)
 
 End Class
