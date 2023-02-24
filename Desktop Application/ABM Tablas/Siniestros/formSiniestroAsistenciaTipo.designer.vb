@@ -48,6 +48,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.labelNombre = New System.Windows.Forms.Label()
         Me.tabpagePuntajes = New System.Windows.Forms.TabPage()
         Me.datagridviewPuntajes = New System.Windows.Forms.DataGridView()
+        Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripPuntajes = New System.Windows.Forms.ToolStrip()
         Me.buttonPuntajesAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonPuntajesEditar = New System.Windows.Forms.ToolStripButton()
@@ -62,7 +63,6 @@ Partial Class formSiniestroAsistenciaTipo
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.columnFechaInicio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -80,7 +80,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         labelEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(6, 90)
+        labelEsActivo.Location = New System.Drawing.Point(10, 79)
         labelEsActivo.Name = "labelEsActivo"
         labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
@@ -90,7 +90,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 168)
+        labelModificacion.Location = New System.Drawing.Point(10, 157)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 9
@@ -100,7 +100,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 142)
+        labelCreacion.Location = New System.Drawing.Point(10, 131)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
@@ -167,7 +167,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(522, 207)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(522, 209)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -187,7 +187,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(514, 178)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(514, 180)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -334,6 +334,18 @@ Partial Class formSiniestroAsistenciaTipo
         Me.datagridviewPuntajes.Size = New System.Drawing.Size(421, 172)
         Me.datagridviewPuntajes.TabIndex = 10
         '
+        'columnFechaInicio
+        '
+        Me.columnFechaInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFechaInicio.DataPropertyName = "FechaInicio"
+        DataGridViewCellStyle2.Format = "d"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnFechaInicio.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnFechaInicio.HeaderText = "Fecha de inicio"
+        Me.columnFechaInicio.Name = "columnFechaInicio"
+        Me.columnFechaInicio.ReadOnly = True
+        Me.columnFechaInicio.Width = 74
+        '
         'toolstripPuntajes
         '
         Me.toolstripPuntajes.Dock = System.Windows.Forms.DockStyle.Left
@@ -393,7 +405,7 @@ Partial Class formSiniestroAsistenciaTipo
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(514, 178)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(514, 180)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -402,7 +414,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.labelID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelID.AutoSize = True
-        Me.labelID.Location = New System.Drawing.Point(6, 116)
+        Me.labelID.Location = New System.Drawing.Point(10, 105)
         Me.labelID.Name = "labelID"
         Me.labelID.Size = New System.Drawing.Size(21, 13)
         Me.labelID.TabIndex = 4
@@ -412,7 +424,7 @@ Partial Class formSiniestroAsistenciaTipo
         '
         Me.checkboxEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(116, 89)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(118, 79)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
         Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
@@ -421,11 +433,11 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxID
         '
         Me.textboxID.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxID.Location = New System.Drawing.Point(115, 113)
+        Me.textboxID.Location = New System.Drawing.Point(118, 102)
         Me.textboxID.MaxLength = 10
         Me.textboxID.Name = "textboxID"
         Me.textboxID.ReadOnly = True
-        Me.textboxID.Size = New System.Drawing.Size(72, 20)
+        Me.textboxID.Size = New System.Drawing.Size(75, 20)
         Me.textboxID.TabIndex = 5
         Me.textboxID.TabStop = False
         Me.textboxID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -433,7 +445,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(242, 165)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(246, 154)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -443,7 +455,7 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxUsuarioCreacion
         '
         Me.textboxUsuarioCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(242, 139)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(246, 128)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -453,21 +465,21 @@ Partial Class formSiniestroAsistenciaTipo
         'textboxFechaHoraModificacion
         '
         Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(115, 165)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(118, 154)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(122, 20)
         Me.textboxFechaHoraModificacion.TabIndex = 10
         '
         'textboxFechaHoraCreacion
         '
         Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(115, 139)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(118, 128)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(122, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 7
         '
         'textboxNotas
@@ -475,12 +487,12 @@ Partial Class formSiniestroAsistenciaTipo
         Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxNotas.Location = New System.Drawing.Point(116, 6)
+        Me.textboxNotas.Location = New System.Drawing.Point(118, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(389, 77)
+        Me.textboxNotas.Size = New System.Drawing.Size(387, 67)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -492,23 +504,11 @@ Partial Class formSiniestroAsistenciaTipo
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'columnFechaInicio
-        '
-        Me.columnFechaInicio.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFechaInicio.DataPropertyName = "FechaInicio"
-        DataGridViewCellStyle2.Format = "d"
-        DataGridViewCellStyle2.NullValue = Nothing
-        Me.columnFechaInicio.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnFechaInicio.HeaderText = "Fecha de inicio"
-        Me.columnFechaInicio.Name = "columnFechaInicio"
-        Me.columnFechaInicio.ReadOnly = True
-        Me.columnFechaInicio.Width = 74
-        '
         'formSiniestroAsistenciaTipo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(544, 261)
+        Me.ClientSize = New System.Drawing.Size(544, 263)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

@@ -188,6 +188,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -200,7 +201,7 @@
         End If
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxUsuarioGrupo.SelectedIndexChanged, comboboxCuartel.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxUsuarioGrupo.SelectedIndexChanged, comboboxCuartel.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged
         FilterData()
     End Sub
 
@@ -230,9 +231,11 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.USUARIO_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor
@@ -245,7 +248,7 @@
 
     Private Sub Editar_Click() Handles buttonEditar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Usuario para editar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Usuario para editar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.USUARIO_EDITAR) Then
                 Me.Cursor = Cursors.WaitCursor
@@ -259,14 +262,14 @@
 
     Private Sub Eliminar_Click() Handles buttonEliminar.Click
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Usuario para eliminar.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Usuario para eliminar.", vbInformation, My.Application.Info.Title)
         Else
             If Permisos.VerificarPermiso(Permisos.USUARIO_ELIMINAR) Then
                 Me.Cursor = Cursors.WaitCursor
 
                 Dim Mensaje As String
 
-                Mensaje = String.Format("Se eliminará la Usuario seleccionada.{0}{0}Nombre: {1}{0}Cuartel: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Nombre, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).CuartelNombre)
+                Mensaje = String.Format("Se eliminará el Usuario seleccionado.{0}{0}Nombre: {1}{0}Cuartel: {2}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).Nombre, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).CuartelNombre)
                 If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
 
                     Try
@@ -282,13 +285,13 @@
                     Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                         Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                             Case CardonerSistemas.Database.EntityFramework.Errors.RelatedEntity
-                                MsgBox("No se puede eliminar la Usuario porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                                MsgBox("No se puede eliminar el Usuario porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                         End Select
                         Me.Cursor = Cursors.Default
                         Exit Sub
 
                     Catch ex As Exception
-                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar la Usuario.")
+                        CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Usuario.")
                     End Try
 
                     RefreshData()
@@ -302,7 +305,7 @@
 
     Private Sub Ver() Handles datagridviewMain.DoubleClick
         If datagridviewMain.CurrentRow Is Nothing Then
-            MsgBox("No hay ninguna Usuario para ver.", vbInformation, My.Application.Info.Title)
+            MsgBox("No hay ningún Usuario para ver.", vbInformation, My.Application.Info.Title)
         Else
             Me.Cursor = Cursors.WaitCursor
 
@@ -310,10 +313,6 @@
 
             Me.Cursor = Cursors.Default
         End If
-    End Sub
-
-    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxCuartel.SelectedIndexChanged, comboboxActivo.SelectedIndexChanged, comboboxUsuarioGrupo.SelectedIndexChanged
-
     End Sub
 
 #End Region

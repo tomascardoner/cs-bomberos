@@ -769,6 +769,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to No tiene autorización para realizar esta acción..
+        '''</summary>
+        Friend ReadOnly Property STRING_PERMISO_MENSAJE() As String
+            Get
+                Return ResourceManager.GetString("STRING_PERMISO_MENSAJE", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Activo.
         '''</summary>
         Friend ReadOnly Property STRING_PERSONA_ESTADO_ACTIVO() As String

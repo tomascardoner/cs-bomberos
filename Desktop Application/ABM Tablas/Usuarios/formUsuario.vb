@@ -164,6 +164,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.USUARIO_EDITAR) Then
             mEditMode = True
@@ -278,6 +279,20 @@
                 textboxPassword.Focus()
                 Return False
             End If
+        End If
+
+        If comboboxGenero.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe seleccionar el Género.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxGenero.Focus()
+            Return False
+        End If
+
+        If comboboxUsuarioGrupo.SelectedIndex = -1 Then
+            tabcontrolMain.SelectedTab = tabpageGeneral
+            MsgBox("Debe seleccionar el Grupo de Usuarios.", MsgBoxStyle.Information, My.Application.Info.Title)
+            comboboxUsuarioGrupo.Focus()
+            Return False
         End If
 
         Return True

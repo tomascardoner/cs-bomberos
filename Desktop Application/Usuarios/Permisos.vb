@@ -383,7 +383,7 @@
         Else
             If pPermisos.Find(Function(p) p.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
                 If MostrarAviso Then
-                    MsgBox("No tiene autorización para realizar esta acción.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                    MsgBox(My.Resources.STRING_PERMISO_MENSAJE, MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 End If
                 Return False
             Else
