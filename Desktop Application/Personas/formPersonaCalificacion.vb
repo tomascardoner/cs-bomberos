@@ -108,6 +108,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         mlistGridRowData = (From pc In mlistPersonaCalificacion
                             Join cc In mdbContext.CalificacionConcepto On pc.IDCalificacionConcepto Equals cc.IDCalificacionConcepto
@@ -141,6 +142,7 @@
             End With
         Next
     End Sub
+
 #End Region
 
 #Region "Controls behavior"

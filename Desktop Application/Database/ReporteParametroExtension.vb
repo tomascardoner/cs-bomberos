@@ -9,28 +9,28 @@
                 Select Case Me.Tipo
                     Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONA
                     Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE, Reportes.REPORTE_PARAMETRO_TIPO_TEXT
-                        If Not Me.ValorPredeterminadoTexto Is Nothing Then
+                        If Me.ValorPredeterminadoTexto IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoTexto
                         End If
                     Case Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Reportes.REPORTE_PARAMETRO_TIPO_YEAR
-                        If Not Me.ValorPredeterminadoNumeroEntero Is Nothing Then
+                        If Me.ValorPredeterminadoNumeroEntero IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoNumeroEntero
                         End If
                     Case Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
-                        If Not Me.ValorPredeterminadoNumeroDecimal Is Nothing Then
+                        If Me.ValorPredeterminadoNumeroDecimal IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoNumeroDecimal
                         End If
                     Case Reportes.REPORTE_PARAMETRO_TIPO_MONEY
-                        If Not Me.ValorPredeterminadoMoneda Is Nothing Then
+                        If Me.ValorPredeterminadoMoneda IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoMoneda
                         End If
                     Case Reportes.REPORTE_PARAMETRO_TIPO_DATETIME, Reportes.REPORTE_PARAMETRO_TIPO_DATE, Reportes.REPORTE_PARAMETRO_TIPO_TIME
-                        If Not Me.ValorPredeterminadoFechaHora Is Nothing Then
+                        If Me.ValorPredeterminadoFechaHora IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoFechaHora
                         End If
                     Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
                     Case Reportes.REPORTE_PARAMETRO_TIPO_SINO, Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW
-                        If Not Me.ValorPredeterminadoSiNo Is Nothing Then
+                        If Me.ValorPredeterminadoSiNo IsNot Nothing Then
                             _Valor = Me.ValorPredeterminadoSiNo
                         End If
                     Case Else

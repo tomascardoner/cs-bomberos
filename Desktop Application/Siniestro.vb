@@ -23,6 +23,7 @@ Partial Public Class Siniestro
     Public Property Fecha As Date
     Public Property HoraSalida As Nullable(Of System.TimeSpan)
     Public Property HoraFin As Nullable(Of System.TimeSpan)
+    Public Property HoraLlegadaUltimoCamion As Nullable(Of System.TimeSpan)
     Public Property Anulado As Boolean
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short

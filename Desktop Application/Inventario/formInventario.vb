@@ -1,6 +1,7 @@
 ﻿Public Class formInventario
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDInventario As Integer
         Public Property IDElemento As Integer

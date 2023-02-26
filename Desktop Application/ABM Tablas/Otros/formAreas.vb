@@ -1,6 +1,7 @@
 ﻿Public Class formAreas
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDArea As Short
         Public Property Codigo As String
@@ -15,12 +16,12 @@
     Private mlistAreasBase As List(Of GridRowData)
     Private mlistAreasFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -53,6 +54,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDArea As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -210,7 +212,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 

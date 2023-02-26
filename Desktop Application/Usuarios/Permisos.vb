@@ -336,7 +336,8 @@
 
     Friend Const SINIESTRO As String = "SINIESTRO"
     Friend Const SINIESTRO_AGREGAR As String = "SINIESTRO_AGREGAR"
-    Friend Const SINIESTRO_EDITAR As String = "SINIESTRO_EDITAR"
+    Friend Const SINIESTRO_EDITAR_BASICO As String = "SINIESTRO_EDITAR_BASICO"
+    Friend Const SINIESTRO_EDITAR_COMPLETO As String = "SINIESTRO_EDITAR_COMPLETO"
     Friend Const SINIESTRO_ELIMINAR As String = "SINIESTRO_ELIMINAR"
     Friend Const SINIESTRO_ASISTIR_MANUAL As String = "SINIESTRO_ASISTIR_MANUAL"
     Friend Const SINIESTRO_ASISTIR_PRESENCIAL As String = "SINIESTRO_ASISTIR_PRESENCIAL"
@@ -377,13 +378,17 @@
 
 #Region "Verificación de permisos"
 
-    Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal MostrarAviso As Boolean = True) As Boolean
+    Friend Sub MostrarMensajeDeAviso()
+        MessageBox.Show(My.Resources.STRING_PERMISO_MENSAJE, My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End Sub
+
+    Friend Function VerificarPermiso(ByVal IDPermiso As String, Optional ByVal mostrarAviso As Boolean = True) As Boolean
         If pUsuario.IDUsuarioGrupo = USUARIOGRUPO_ADMINISTRADORES_ID Then
             Return True
         Else
             If pPermisos.Find(Function(p) p.IDPermiso.TrimEnd = IDPermiso) Is Nothing Then
-                If MostrarAviso Then
-                    MsgBox(My.Resources.STRING_PERMISO_MENSAJE, MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                If mostrarAviso Then
+                    MostrarMensajeDeAviso()
                 End If
                 Return False
             Else
@@ -581,7 +586,11 @@
         nodeRoot = Arbol.Nodes.Add("GUARDIA", "Guardia")
 
         ' Guardia - siniestros
-        nodeCurrent = AgregarNodos(nodeRoot, SINIESTRO, "Siniestros", SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR, SINIESTRO_EDITAR, DESCRIPCION_EDITAR, SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
+        nodeCurrent = nodeRoot.Nodes.Add(SINIESTRO, "Siniestros")
+        nodeCurrent.Nodes.Add(SINIESTRO_AGREGAR, DESCRIPCION_AGREGAR)
+        nodeCurrent.Nodes.Add(SINIESTRO_EDITAR_BASICO, "Editar datos básicos")
+        nodeCurrent.Nodes.Add(SINIESTRO_EDITAR_COMPLETO, "Editar siniestro completo")
+        nodeCurrent.Nodes.Add(SINIESTRO_ELIMINAR, DESCRIPCION_ELIMINAR)
         nodeCurrent.Nodes.Add(SINIESTRO_ASISTIR_PRESENCIAL, "Asistir presencialmente")
         nodeCurrent.Nodes.Add(SINIESTRO_ASISTIR_MANUAL, "Asistir manualmente")
 

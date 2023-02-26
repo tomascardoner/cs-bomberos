@@ -87,7 +87,7 @@
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboBoxFactura, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDComprobante, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -105,7 +105,7 @@
             .IDComprobante = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboBoxFactura.SelectedValue, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
-            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte)
+            .Importe = CS_ValueTranslation_Syncfusion.FromControlToDecimal(currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

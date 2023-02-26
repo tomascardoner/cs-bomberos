@@ -102,6 +102,17 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
+
+        If datetimepickerFechaDesdeHost IsNot Nothing Then
+            datetimepickerFechaDesdeHost.Control.Dispose()
+            datetimepickerFechaDesdeHost.Dispose()
+            datetimepickerFechaDesdeHost = Nothing
+        End If
+        If datetimepickerFechaHastaHost IsNot Nothing Then
+            datetimepickerFechaHastaHost.Control.Dispose()
+            datetimepickerFechaHastaHost.Dispose()
+            datetimepickerFechaHastaHost = Nothing
+        End If
     End Sub
 
 #End Region
@@ -340,8 +351,9 @@
             MsgBox("No hay ningún Siniestro para editar.", vbInformation, My.Application.Info.Title)
             Return
         End If
-        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
-            Return
+        If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
+            Permisos.MostrarMensajeDeAviso()
+            Exit Sub
         End If
 
         Me.Cursor = Cursors.WaitCursor

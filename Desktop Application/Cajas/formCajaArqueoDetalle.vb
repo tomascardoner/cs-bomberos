@@ -92,7 +92,7 @@
             textboxProveedor.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Proveedor)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxArea, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDArea)
             textboxDetalle.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Detalle)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.Importe, currencytextboxImporte)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.Importe, currencytextboxImporte)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -112,7 +112,7 @@
             .Proveedor = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxProveedor.Text)
             .IDArea = CS_ValueTranslation.FromControlComboBoxToObjectShort(comboboxArea.SelectedValue).Value
             .Detalle = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxDetalle.Text)
-            .Importe = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporte).Value
+            .Importe = CS_ValueTranslation_Syncfusion.FromControlToDecimal(currencytextboxImporte).Value
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

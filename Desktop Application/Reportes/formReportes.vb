@@ -244,7 +244,7 @@
                     frpf.Dispose()
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE, Reportes.REPORTE_PARAMETRO_TIPO_TEXT
-                    formReportesParametroTextBox.SetAppearance(ParametroActual, ListViewItemActual.Text)
+                    formReportesParametroTextBox.SetAppearance(ParametroActual)
                     If formReportesParametroTextBox.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                     End If
@@ -252,7 +252,7 @@
                     formReportesParametroTextBox.Dispose()
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL, Reportes.REPORTE_PARAMETRO_TIPO_MONEY, Reportes.REPORTE_PARAMETRO_TIPO_DATETIME, Reportes.REPORTE_PARAMETRO_TIPO_DATE, Reportes.REPORTE_PARAMETRO_TIPO_TIME, Reportes.REPORTE_PARAMETRO_TIPO_YEAR
-                    formReportesParametroVarios.SetAppearance(ParametroActual, ListViewItemActual.Text)
+                    formReportesParametroVarios.SetAppearance(ParametroActual)
                     If formReportesParametroVarios.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
                         ListViewItemActual.SubItems(2).Text = ParametroActual.ValorParaMostrar
                     End If

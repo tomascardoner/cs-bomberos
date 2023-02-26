@@ -1368,6 +1368,7 @@
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="0" />
           <Property Name="HoraFin" Type="time" Precision="0" />
+          <Property Name="HoraLlegadaUltimoCamion" Type="time" Precision="7" />
           <Property Name="Anulado" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -11585,6 +11586,7 @@
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HoraSalida" Type="Time" Precision="0" Nullable="true" />
           <Property Name="HoraFin" Type="Time" Precision="0" Nullable="true" />
+          <Property Name="HoraLlegadaUltimoCamion" Type="Time" Precision="0" />
           <Property Name="Anulado" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -14564,6 +14566,7 @@
           <EntitySetMapping Name="Siniestro">
             <EntityTypeMapping TypeName="CSBomberosModel.Siniestro">
               <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="HoraLlegadaUltimoCamion" ColumnName="HoraLlegadaUltimoCamion" />
                 <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
                 <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />

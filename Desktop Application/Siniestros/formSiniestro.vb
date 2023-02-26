@@ -8,6 +8,7 @@
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
     Private mEditMode As Boolean
+    Private mEditFull As Boolean
 
 #End Region
 
@@ -84,13 +85,16 @@
         comboboxClave.Enabled = mEditMode
         datetimepickerHoraSalida.Enabled = mEditMode
         datetimepickerHoraFin.Enabled = mEditMode
-        checkboxAnulado.Enabled = mEditMode
+        datetimepickerHoraLlegadaUltimoCamion.Enabled = (mEditMode And mEditFull)
+        labelResumenAsistencias.Visible = Not mEditMode
+        datagridviewResumenAsistencias.Visible = Not mEditMode
 
         ' Asistencias
-        toolstripAsistencias.Enabled = mEditMode
+        toolstripAsistencias.Enabled = (mEditMode And mEditFull)
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
+        checkboxAnulado.Enabled = mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
@@ -99,6 +103,12 @@
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel, False, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave, False, False)
+
+        mEditFull = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
+
+        If Not mEditMode Then
+            ResumenAsistenciasRefreshData()
+        End If
     End Sub
 
     Friend Sub SetAppearance()
@@ -130,10 +140,11 @@
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDSiniestroClave)
             datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
-            checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
+            datetimepickerHoraLlegadaUltimoCamion.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraLlegadaUltimoCamion, datetimepickerHoraLlegadaUltimoCamion)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
+            checkboxAnulado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Anulado)
             If .IDSiniestro = 0 Then
                 textboxIDSiniestro.Text = My.Resources.STRING_ITEM_NEW_MALE
             Else
@@ -168,9 +179,10 @@
             .IDSiniestroClave = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxClave.SelectedValue).Value
             .HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraSalida.Value, datetimepickerHoraSalida.Checked)
             .HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraFin.Value, datetimepickerHoraFin.Checked)
-            .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
+            .HoraLlegadaUltimoCamion = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraLlegadaUltimoCamion.Value, datetimepickerHoraLlegadaUltimoCamion.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
+            .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
         End With
     End Sub
 
@@ -269,7 +281,8 @@
 #Region "Main Toolbar"
 
     Private Sub Editar() Handles buttonEditar.Click
-        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+        If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
+            Permisos.MostrarMensajeDeAviso()
             Exit Sub
         End If
 
@@ -457,6 +470,39 @@
         End If
         Me.Cursor = Cursors.WaitCursor
         formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(comboboxCuartel.SelectedValue), comboboxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
+    End Sub
+
+#End Region
+
+#Region "Resumen"
+
+    Public Class ResumenAsistenciasGridRowData
+        Public Property AsistenciaTipoNombre As String
+        Public Property Cantidad As Integer
+    End Class
+
+    Private Sub ResumenAsistenciasRefreshData()
+        Dim listResumen As List(Of ResumenAsistenciasGridRowData)
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            listResumen = (From sa In mdbContext.SiniestroAsistencia
+                           Join sat In mdbContext.SiniestroAsistenciaTipo On sa.IDSiniestroAsistenciaTipo Equals sat.IDSiniestroAsistenciaTipo
+                           Where sa.IDSiniestro = mSiniestroActual.IDSiniestro
+                           Group By AsistenciaTipoNombre = sat.Nombre Into sa_group = Group, Count()
+                           Select New ResumenAsistenciasGridRowData With {.AsistenciaTipoNombre = AsistenciaTipoNombre, .Cantidad = sa_group.Count}).ToList
+
+            datagridviewResumenAsistencias.AutoGenerateColumns = False
+            datagridviewResumenAsistencias.DataSource = listResumen
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Cantidades de Asistencias al Siniestro.")
+            Me.Cursor = Cursors.Default
+            Exit Sub
+        End Try
+
         Me.Cursor = Cursors.Default
     End Sub
 

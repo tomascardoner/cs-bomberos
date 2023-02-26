@@ -1,7 +1,7 @@
 ﻿Public Class formReportesParametroTextBox
     Private mParametroActual As ReporteParametro
 
-    Friend Sub SetAppearance(ByRef ParametroActual As ReporteParametro, ByVal Title As String)
+    Friend Sub SetAppearance(ByRef ParametroActual As ReporteParametro)
         mParametroActual = ParametroActual
 
         labelValor.Text = mParametroActual.Nombre & ":"
@@ -9,12 +9,12 @@
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE
                 textboxText.MaxLength = 100
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     textboxText.Text = CStr(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_TEXT
                 textboxText.MaxLength = 32767
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     textboxText.Text = CStr(mParametroActual.Valor)
                 End If
         End Select

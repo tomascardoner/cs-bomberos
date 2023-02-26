@@ -1,15 +1,16 @@
 ﻿Public Class formCalificacionConceptos
 
 #Region "Declarations"
+
     Private mlistCalificacionConceptosBase As List(Of CalificacionConcepto)
     Private mlistCalificacionConceptosFiltradaYOrdenada As List(Of CalificacionConcepto)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenConcepto As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -150,6 +151,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -181,7 +183,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
@@ -192,6 +194,7 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"

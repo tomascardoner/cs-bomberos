@@ -27,6 +27,7 @@
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageArqueoCaja32)
 
@@ -85,6 +86,19 @@
 
         datetimepickerFechaDesdeHost.Visible = False
         datetimepickerFechaHastaHost.Visible = False
+    End Sub
+
+    Private Sub Me_FormClosed() Handles Me.FormClosed
+        If datetimepickerFechaDesdeHost IsNot Nothing Then
+            datetimepickerFechaDesdeHost.Control.Dispose()
+            datetimepickerFechaDesdeHost.Dispose()
+            datetimepickerFechaDesdeHost = Nothing
+        End If
+        If datetimepickerFechaHastaHost IsNot Nothing Then
+            datetimepickerFechaHastaHost.Control.Dispose()
+            datetimepickerFechaHastaHost.Dispose()
+            datetimepickerFechaHastaHost = Nothing
+        End If
     End Sub
 
 #End Region

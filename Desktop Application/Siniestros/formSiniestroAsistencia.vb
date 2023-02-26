@@ -167,7 +167,7 @@
 #Region "Main Toolbar"
 
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
-        If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR) Then
+        If Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO) Then
             mEditMode = True
             ChangeMode()
         End If

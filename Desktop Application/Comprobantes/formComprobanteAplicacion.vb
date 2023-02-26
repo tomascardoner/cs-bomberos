@@ -6,8 +6,8 @@
     Private mComprobanteTipoActual As ComprobanteTipo
     Private mComprobanteAplicacionActual As ComprobanteAplicacion
 
-    Private mParentEditMode As Boolean = False
-    Private mEditMode As Boolean = False
+    Private mParentEditMode As Boolean
+    Private mEditMode As Boolean
 
     Public Class GridRowData_Comprobante
         Public Property IDComprobante As Integer

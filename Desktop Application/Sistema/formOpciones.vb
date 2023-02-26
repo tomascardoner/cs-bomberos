@@ -13,8 +13,6 @@
     End Sub
 
     Private Sub Guardar_Click(sender As Object, e As EventArgs) Handles buttonGuardar.Click
-        CS_Parameter_User.UsuarioSaveBoolean(Parametros.USUARIO_INICIOSESION_ALARMA_AVISO_MOSTRAR, checkboxMostrarAvisosAlarmas.Checked)
-
         Me.Close()
         Me.Dispose()
     End Sub

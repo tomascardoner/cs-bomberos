@@ -85,14 +85,14 @@
     Friend Sub SetDataFromObjectToControls()
         With mAcademiaAsistenciaTipoPuntajeActual
             datetimepickerFechaInicio.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInicio)
-            doubletextboxPuntaje.Text = CS_ValueTranslation.FromObjectDecimalToControlDoubleTextBox(.Puntaje)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.Puntaje, doubletextboxPuntaje)
         End With
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
         With mAcademiaAsistenciaTipoPuntajeActual
             .FechaInicio = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerFechaInicio.Value).Value
-            .Puntaje = CS_ValueTranslation_Syncfusion.FromControlDoubleTextBoxToObjectDecimal(doubletextboxPuntaje.Text).Value
+            .Puntaje = CS_ValueTranslation_Syncfusion.FromControlToDecimal(doubletextboxPuntaje).Value
         End With
     End Sub
 

@@ -100,8 +100,8 @@
     Friend Sub SetDataFromObjectToControls()
         With mCajaArqueoActual
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCaja, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCaja)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.SaldoInicial, currencytextboxSaldoInicial)
-            CS_ValueTranslation_Syncfusion.FromValueDecimalToControlCurrencyTextBox(.ImporteAsignado, currencytextboxImporteAsignado)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.SaldoInicial, currencytextboxSaldoInicial)
+            CS_ValueTranslation_Syncfusion.FromValueToControl(.ImporteAsignado, currencytextboxImporteAsignado)
             datetimepickerCierreFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaCierre, datetimepickerCierreFecha)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -131,8 +131,8 @@
     Friend Sub SetDataFromControlsToObject()
         With mCajaArqueoActual
             .IDCaja = CS_ValueTranslation.FromControlComboBoxToObjectByte(comboboxCaja.SelectedValue).Value
-            .SaldoInicial = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxSaldoInicial).Value
-            .ImporteAsignado = CS_ValueTranslation_Syncfusion.FromControlCurrencyTextBoxToObjectDecimal(currencytextboxImporteAsignado).Value
+            .SaldoInicial = CS_ValueTranslation_Syncfusion.FromControlToDecimal(currencytextboxSaldoInicial).Value
+            .ImporteAsignado = CS_ValueTranslation_Syncfusion.FromControlToDecimal(currencytextboxImporteAsignado).Value
             .FechaCierre = CS_ValueTranslation.FromControlDateTimePickerToObjectDate(datetimepickerCierreFecha.Value, datetimepickerCierreFecha.Checked)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

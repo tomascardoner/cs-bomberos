@@ -1,7 +1,7 @@
 ﻿Public Class formReportesParametroVarios
     Private mParametroActual As ReporteParametro
 
-    Friend Sub SetAppearance(ByRef ParametroActual As ReporteParametro, ByVal Title As String)
+    Friend Sub SetAppearance(ByRef ParametroActual As ReporteParametro)
         mParametroActual = ParametroActual
 
         labelValor.Text = mParametroActual.Nombre & ":"
@@ -14,24 +14,24 @@
 
         Select Case mParametroActual.Tipo
             Case Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_INTEGER, Reportes.REPORTE_PARAMETRO_TIPO_NUMBER_DECIMAL
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     doubletextboxValor.Text = Convert.ToString(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_MONEY
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     currencytextboxValor.Text = Convert.ToString(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_DATE
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     datetimepickerValorFecha.Value = Convert.ToDateTime(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_TIME
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     datetimepickerValorHora.Value = Convert.ToDateTime(mParametroActual.Valor)
                 End If
             Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR
                 FillAndRefreshLists.Anio(comboboxValor, False, False)
-                If Not mParametroActual.Valor Is Nothing Then
+                If mParametroActual.Valor IsNot Nothing Then
                     comboboxValor.Text = mParametroActual.Valor.ToString()
                 End If
         End Select

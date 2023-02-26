@@ -91,6 +91,17 @@
             mdbContext.Dispose()
             mdbContext = Nothing
         End If
+
+        If datetimepickerFechaDesdeHost IsNot Nothing Then
+            datetimepickerFechaDesdeHost.Control.Dispose()
+            datetimepickerFechaDesdeHost.Dispose()
+            datetimepickerFechaDesdeHost = Nothing
+        End If
+        If datetimepickerFechaHastaHost IsNot Nothing Then
+            datetimepickerFechaHastaHost.Control.Dispose()
+            datetimepickerFechaHastaHost.Dispose()
+            datetimepickerFechaHastaHost = Nothing
+        End If
     End Sub
 
 #End Region

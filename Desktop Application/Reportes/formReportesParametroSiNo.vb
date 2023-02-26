@@ -11,7 +11,7 @@
         radiobuttonNo.Visible = (mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SINO Or mParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_FILTER_TEXT_SHOW)
         radiobuttonNo.Text = My.Resources.STRING_NO
 
-        If Not mParametroActual.Valor Is Nothing Then
+        If mParametroActual.Valor IsNot Nothing Then
             radiobuttonSi.Checked = CBool(mParametroActual.Valor)
             radiobuttonNo.Checked = Not CBool(mParametroActual.Valor)
         End If

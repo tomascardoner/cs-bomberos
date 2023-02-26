@@ -127,6 +127,19 @@
         datetimepickerFechaHastaHost.Visible = False
     End Sub
 
+    Private Sub Me_FormClosed() Handles Me.FormClosed
+        If datetimepickerFechaDesdeHost IsNot Nothing Then
+            datetimepickerFechaDesdeHost.Control.Dispose()
+            datetimepickerFechaDesdeHost.Dispose()
+            datetimepickerFechaDesdeHost = Nothing
+        End If
+        If datetimepickerFechaHastaHost IsNot Nothing Then
+            datetimepickerFechaHastaHost.Control.Dispose()
+            datetimepickerFechaHastaHost.Dispose()
+            datetimepickerFechaHastaHost = Nothing
+        End If
+    End Sub
+
 #End Region
 
 #Region "Load and Set Data"

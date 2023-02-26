@@ -387,14 +387,12 @@ Partial Public Class Reporte
                     espaciadoY = 0
                 End If
 
-                PdfEscribirCampo(pdfContentByte, baseFont, TipografiaEstilo.Tamanio, campo, espaciadoY, valorCampoActual)
+                PdfEscribirCampo(pdfContentByte, baseFont, campo, espaciadoY, valorCampoActual)
             End If
         Next
     End Sub
 
-#Disable Warning CA1801 ' Review unused parameters
-    Private Sub PdfEscribirCampo(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByVal fontSize As Decimal, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
-#Enable Warning CA1801 ' Review unused parameters
+    Private Sub PdfEscribirCampo(ByRef content As PdfContentByte, ByVal baseFont As BaseFont, ByRef campo As ReporteCampo, ByVal espaciadoY As Decimal, ByVal valor As Object)
         If campo.AlineadoDerecha.HasValue AndAlso campo.AlineadoDerecha AndAlso campo.CantidadCaracter.HasValue AndAlso valor.ToString().Length < campo.CantidadCaracter.Value Then
             ' Intenta alinear a la derecha agregando espacios a la izquierda,
             ' aunque debido a las tipografías de ancho variable, el efecto no es el esperado

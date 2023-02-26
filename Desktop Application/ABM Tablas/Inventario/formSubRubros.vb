@@ -1,6 +1,7 @@
 ﻿Public Class formSubRubros
 
 #Region "Declarations"
+
     Friend Class GridRowData
         Public Property IDSubRubro As Short
         Public Property RubroNombre As String
@@ -11,12 +12,12 @@
     Private mlistSubRubrosBase As List(Of GridRowData)
     Private mlistSubRubrosFiltradaYOrdenada As List(Of GridRowData)
 
-    Private mSkipFilterData As Boolean = False
-    Private mBusquedaAplicada As Boolean = False
+    Private mSkipFilterData As Boolean
     Private mReportSelectionFormula As String
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
@@ -44,6 +45,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDSubRubro As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -158,6 +160,7 @@
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -189,7 +192,7 @@
         Else
             ' La columna clickeada es diferencte a la que ya estaba ordenada.
             ' En primer lugar saco el ícono de orden de la columna vieja
-            If Not mOrdenColumna Is Nothing Then
+            If mOrdenColumna IsNot Nothing Then
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
@@ -200,6 +203,7 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
