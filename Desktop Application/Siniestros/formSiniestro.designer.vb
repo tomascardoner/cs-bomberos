@@ -41,6 +41,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.labelResumenAsistencias = New System.Windows.Forms.Label()
         Me.datagridviewResumenAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnResumenAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnResumenCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -81,7 +82,6 @@ Partial Class formSiniestro
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.labelResumenAsistencias = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelHoraSalida = New System.Windows.Forms.Label()
@@ -219,7 +219,7 @@ Partial Class formSiniestro
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonImprimir})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(697, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(734, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'buttonImprimir
@@ -255,7 +255,7 @@ Partial Class formSiniestro
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(677, 355)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(714, 355)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -288,10 +288,19 @@ Partial Class formSiniestro
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(669, 326)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(706, 326)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'labelResumenAsistencias
+        '
+        Me.labelResumenAsistencias.AutoSize = True
+        Me.labelResumenAsistencias.Location = New System.Drawing.Point(457, 76)
+        Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
+        Me.labelResumenAsistencias.Size = New System.Drawing.Size(125, 13)
+        Me.labelResumenAsistencias.TabIndex = 25
+        Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
         '
         'datagridviewResumenAsistencias
         '
@@ -310,7 +319,7 @@ Partial Class formSiniestro
         Me.datagridviewResumenAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewResumenAsistencias.ShowEditingIcon = False
-        Me.datagridviewResumenAsistencias.Size = New System.Drawing.Size(212, 232)
+        Me.datagridviewResumenAsistencias.Size = New System.Drawing.Size(248, 232)
         Me.datagridviewResumenAsistencias.TabIndex = 24
         '
         'columnResumenAsistenciaTipo
@@ -504,7 +513,7 @@ Partial Class formSiniestro
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 25)
         Me.tabpageAsistencias.Name = "tabpageAsistencias"
         Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAsistencias.Size = New System.Drawing.Size(669, 326)
+        Me.tabpageAsistencias.Size = New System.Drawing.Size(706, 326)
         Me.tabpageAsistencias.TabIndex = 2
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
@@ -530,7 +539,7 @@ Partial Class formSiniestro
         Me.datagridviewAsistencias.RowHeadersVisible = False
         Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAsistencias.Size = New System.Drawing.Size(576, 298)
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(613, 298)
         Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
@@ -556,14 +565,14 @@ Partial Class formSiniestro
         Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
         Me.statusstripMain.Location = New System.Drawing.Point(90, 301)
         Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Size = New System.Drawing.Size(576, 22)
+        Me.statusstripMain.Size = New System.Drawing.Size(613, 22)
         Me.statusstripMain.SizingGrip = False
         Me.statusstripMain.TabIndex = 10
         '
         'statuslabelMain
         '
         Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(561, 17)
+        Me.statuslabelMain.Size = New System.Drawing.Size(598, 17)
         Me.statuslabelMain.Spring = True
         Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -626,7 +635,7 @@ Partial Class formSiniestro
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(669, 326)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(706, 326)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -723,7 +732,7 @@ Partial Class formSiniestro
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(555, 219)
+        Me.textboxNotas.Size = New System.Drawing.Size(592, 219)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -735,20 +744,11 @@ Partial Class formSiniestro
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'labelResumenAsistencias
-        '
-        Me.labelResumenAsistencias.AutoSize = True
-        Me.labelResumenAsistencias.Location = New System.Drawing.Point(457, 78)
-        Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
-        Me.labelResumenAsistencias.Size = New System.Drawing.Size(125, 13)
-        Me.labelResumenAsistencias.TabIndex = 25
-        Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
-        '
         'formSiniestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(697, 410)
+        Me.ClientSize = New System.Drawing.Size(734, 410)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

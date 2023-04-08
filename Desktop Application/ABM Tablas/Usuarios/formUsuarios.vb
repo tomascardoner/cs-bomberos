@@ -63,6 +63,7 @@
                                      Join ug In dbContext.UsuarioGrupo On u.IDUsuarioGrupo Equals ug.IDUsuarioGrupo
                                      Group Join c In dbContext.Cuartel On u.IDCuartel Equals c.IDCuartel Into Cuartel_Group = Group
                                      From cg In Cuartel_Group.DefaultIfEmpty
+                                     Where u.IDUsuario <> Constantes.USUARIO_ADMINISTRADOR_ID
                                      Select New GridRowData With {.IDUsuario = u.IDUsuario, .Nombre = u.Nombre, .Descripcion = u.Descripcion, .IDUsuarioGrupo = u.IDUsuarioGrupo, .UsuarioGrupoNombre = ug.Nombre, .IDCuartel = cg.IDCuartel, .CuartelNombre = If(cg Is Nothing, "", cg.Nombre), .EsActivo = u.EsActivo}).ToList
             End Using
 

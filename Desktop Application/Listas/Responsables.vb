@@ -14,8 +14,8 @@
     Friend Sub LlenarComboBoxResponsableTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of ResponsableTipo)
 
-        control.ValueMember = "IDResponsableTipo"
         control.DisplayMember = "Nombre"
+        control.ValueMember = "IDResponsableTipo"
 
         listItems = context.ResponsableTipo.Where(Function(rt) rt.EsActivo).OrderBy(Function(rt) rt.Orden).ThenBy(Function(rt) rt.Nombre).ToList
 
@@ -36,10 +36,9 @@
         control.DataSource = listItems
     End Sub
 
-    Friend Sub LlenarComboBoxResponsables(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+    Private Sub LlenarComboBoxResponsables(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
         Dim listItems As List(Of ResponsableNombresClass)
 
-        control.ValueMember = "IDResponsable"
         control.DisplayMember = "ResponsableTipoNombre"
 
         listItems = (From r In context.Responsable
@@ -68,6 +67,18 @@
         End If
 
         control.DataSource = listItems
+    End Sub
+
+    Friend Sub LlenarComboBoxResponsableTiposConIDResponsable(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+        control.ValueMember = "IDResponsable"
+
+        LlenarComboBoxResponsables(context, control, agregarItemTodos, agregarItemNoEspecifica)
+    End Sub
+
+    Friend Sub LlenarComboBoxResponsableTiposConIDResponsableTipo(ByRef context As CSBomberosContext, ByRef control As ComboBox, ByVal agregarItemTodos As Boolean, ByVal agregarItemNoEspecifica As Boolean)
+        control.ValueMember = "IDResponsableTipo"
+
+        LlenarComboBoxResponsables(context, control, agregarItemTodos, agregarItemNoEspecifica)
     End Sub
 
 End Module

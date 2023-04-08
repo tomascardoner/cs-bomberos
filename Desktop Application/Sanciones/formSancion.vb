@@ -73,7 +73,6 @@
         controlpersonaAplicar.ReadOnlyText = Not mEditMode
 
         comboboxSolicitudResponsableTipo.Enabled = mEditMode
-        controlpersonaSolicitud.ReadOnlyText = Not mEditMode
         textboxSolicitudPersonaTexto.ReadOnly = Not mEditMode
         checkboxObtenerTextos.Visible = mEditMode
         textboxSolicitudMotivo.ReadOnly = Not mEditMode
@@ -110,7 +109,7 @@
     Friend Sub InitializeFormAndControls()
         controlpersonaAplicar.dbContext = mdbContext
         controlpersonaSolicitud.dbContext = mdbContext
-        ListasResponsables.LlenarComboBoxResponsables(mdbContext, comboboxSolicitudResponsableTipo, False, True)
+        ListasResponsables.LlenarComboBoxResponsableTiposConIDResponsableTipo(mdbContext, comboboxSolicitudResponsableTipo, False, True)
         ListasSanciones.LlenarComboBoxMotivosSanciones(mdbContext, comboboxSancionMotivo, False, False)
         ListasSanciones.LlenarComboBoxTiposSanciones(mdbContext, comboboxResolucionSancionTipo, False, True)
     End Sub

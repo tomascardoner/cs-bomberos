@@ -113,6 +113,9 @@
 
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageSiniestro32)
+
+        DataGridSetAppearance(datagridviewResumenAsistencias)
+        DataGridSetAppearance(datagridviewAsistencias)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed

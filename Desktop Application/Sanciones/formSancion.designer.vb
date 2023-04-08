@@ -293,6 +293,8 @@ Partial Class formSancion
         '
         Me.controlpersonaAplicar.ApellidoNombre = Nothing
         Me.controlpersonaAplicar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaAplicar.dbContext = Nothing
+        Me.controlpersonaAplicar.IDCuartel = Nothing
         Me.controlpersonaAplicar.IDPersona = Nothing
         Me.controlpersonaAplicar.Location = New System.Drawing.Point(68, 6)
         Me.controlpersonaAplicar.MatriculaNumeroDigitos = Nothing
@@ -301,6 +303,8 @@ Partial Class formSancion
         Me.controlpersonaAplicar.Name = "controlpersonaAplicar"
         Me.controlpersonaAplicar.ReadOnlyText = False
         Me.controlpersonaAplicar.Size = New System.Drawing.Size(430, 21)
+        Me.controlpersonaAplicar.SoloMostrarEnAsistencia = False
+        Me.controlpersonaAplicar.SoloMostrarEstadoActivo = True
         Me.controlpersonaAplicar.TabIndex = 1
         '
         'groupboxEncuadre
@@ -388,14 +392,18 @@ Partial Class formSancion
         '
         Me.controlpersonaSolicitud.ApellidoNombre = Nothing
         Me.controlpersonaSolicitud.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlpersonaSolicitud.dbContext = Nothing
+        Me.controlpersonaSolicitud.IDCuartel = Nothing
         Me.controlpersonaSolicitud.IDPersona = Nothing
         Me.controlpersonaSolicitud.Location = New System.Drawing.Point(62, 46)
         Me.controlpersonaSolicitud.MatriculaNumeroDigitos = Nothing
         Me.controlpersonaSolicitud.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlpersonaSolicitud.MinimumSize = New System.Drawing.Size(150, 21)
         Me.controlpersonaSolicitud.Name = "controlpersonaSolicitud"
-        Me.controlpersonaSolicitud.ReadOnlyText = False
+        Me.controlpersonaSolicitud.ReadOnlyText = True
         Me.controlpersonaSolicitud.Size = New System.Drawing.Size(430, 21)
+        Me.controlpersonaSolicitud.SoloMostrarEnAsistencia = False
+        Me.controlpersonaSolicitud.SoloMostrarEstadoActivo = True
         Me.controlpersonaSolicitud.TabIndex = 2
         '
         'textboxSolicitudPersonaTexto

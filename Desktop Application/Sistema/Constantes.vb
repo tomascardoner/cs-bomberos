@@ -127,6 +127,7 @@
     Friend Const SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO_NOMBRE As String = "Servicios programados"
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
+    Friend Const USUARIO_ADMINISTRADOR_ID As Short = 1
 
     '##################
     '    CAMPOS
