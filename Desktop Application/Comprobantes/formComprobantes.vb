@@ -42,7 +42,7 @@
             Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_COMPRA
             labelEntidad.Text = "Proveedor:"
             columnEntidad.HeaderText = "Proveedor"
-        ElseIf OperacionTipo = Constantes.OperacionTipoCompra Then
+        ElseIf OperacionTipo = Constantes.OperacionTipoVenta Then
             Me.Text = "Comprobantes de " & My.Resources.STRING_OPERACIONTIPO_VENTA
             labelEntidad.Text = "Cliente:"
             columnEntidad.HeaderText = "Cliente"
