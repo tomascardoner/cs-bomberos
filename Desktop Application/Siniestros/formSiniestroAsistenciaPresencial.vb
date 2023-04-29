@@ -14,6 +14,7 @@ Public Class formSiniestroAsistenciaPresencial
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestro As Siniestro
     Private mlistHuellasDigitales As List(Of HuellaDigital)
+    Private mIdSiniestroAsistenciaTipoSalidaAnticipada As Byte
     Private mIdSiniestroAsistenciaTipoPresente As Byte
 
 #End Region
@@ -44,6 +45,10 @@ Public Class formSiniestroAsistenciaPresencial
             huellaDigital.Template = New DPFP.Template(New IO.MemoryStream(huellaDigital.TemplateInDB))
         Next
 
+        mIdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
+        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
         mIdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
         If mIdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -115,6 +120,10 @@ Public Class formSiniestroAsistenciaPresencial
         Dim siniestroAsistencia As SiniestroAsistencia
         Dim mensaje As String
 
+        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
         If mIdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -137,7 +146,11 @@ Public Class formSiniestroAsistenciaPresencial
                 Return
             Else
                 ' Es una asistencia de ausente, se actualiza a Presente
-                siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                If mSiniestro.HoraLlegadaUltimoCamion.HasValue Then
+                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                Else
+                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoSalidaAnticipada
+                End If
                 siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
                 siniestroAsistencia.FechaHoraModificacion = Now()
                 mensaje = "Se actualizó la asistencia a Presente."
@@ -146,7 +159,7 @@ Public Class formSiniestroAsistenciaPresencial
             ' No existe, así que la agrego
             mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
                                              .IDPersona = idPersona,
-                                             .IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente,
+                                             .IDSiniestroAsistenciaTipo = CByte(IIf(mSiniestro.HoraLlegadaUltimoCamion.HasValue, mIdSiniestroAsistenciaTipoPresente, mIdSiniestroAsistenciaTipoSalidaAnticipada)),
                                              .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
                                              .IDUsuarioCreacion = pUsuario.IDUsuario,
                                              .FechaHoraCreacion = Now(),

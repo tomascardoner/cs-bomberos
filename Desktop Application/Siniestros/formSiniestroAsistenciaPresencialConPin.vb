@@ -5,6 +5,7 @@
     Private mdbContext As CSBomberosContext
     Private mSiniestro As Siniestro
     Private mPersona As Persona
+    Private mIdSiniestroAsistenciaTipoSalidaAnticipada As Byte
     Private mIdSiniestroAsistenciaTipoPresente As Byte
 
 #End Region
@@ -16,6 +17,10 @@
         mSiniestro = siniestro
         controlpersonaPersona.dbContext = mdbContext
 
+        mIdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
+        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
         mIdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
         If mIdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -111,14 +116,18 @@
                 Return False
             Else
                 ' Es una asistencia de ausente, se actualiza a Presente
-                siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                If mSiniestro.HoraLlegadaUltimoCamion.HasValue Then
+                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
+                Else
+                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoSalidaAnticipada
+                End If
                 siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
                 siniestroAsistencia.FechaHoraModificacion = Now()
             End If
         Else
             mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
                                              .IDPersona = mPersona.IDPersona,
-                                             .IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente,
+                                             .IDSiniestroAsistenciaTipo = CByte(IIf(mSiniestro.HoraLlegadaUltimoCamion.HasValue, mIdSiniestroAsistenciaTipoPresente, mIdSiniestroAsistenciaTipoSalidaAnticipada)),
                                              .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
                                              .IDUsuarioCreacion = pUsuario.IDUsuario,
                                              .FechaHoraCreacion = Now(),

@@ -311,7 +311,7 @@
 
 #Region "Controls behavior"
 
-    Private Sub OperacionTipoChanged() Handles comboboxOperacionTipo.SelectedIndexChanged
+    Private Sub OperacionTipoChanged(sender As Object, e As EventArgs) Handles comboboxOperacionTipo.SelectedIndexChanged
         Select Case comboboxOperacionTipo.SelectedIndex
             Case -1, 0
                 comboboxComprobanteTipo.ComboBox.DataSource = Nothing
@@ -332,26 +332,26 @@
         End Select
     End Sub
 
-    Private Sub ComprobanteTipoChanged() Handles comboboxComprobanteTipo.SelectedIndexChanged
+    Private Sub ComprobanteTipoChanged(sender As Object, e As EventArgs) Handles comboboxComprobanteTipo.SelectedIndexChanged
         FilterData()
     End Sub
 
-    Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
+    Private Sub PeriodoTipoSeleccionar(sender As Object, e As EventArgs) Handles comboboxPeriodoTipo.SelectedIndexChanged
         CardonerSistemas.DateTime.FillPeriodValuesComboBox(comboboxPeriodoValor.ComboBox, CType(comboboxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes))
     End Sub
 
-    Private Sub PeriodoValorSeleccionar() Handles comboboxPeriodoValor.SelectedIndexChanged
+    Private Sub PeriodoValorSeleccionar(sender As Object, e As EventArgs) Handles comboboxPeriodoValor.SelectedIndexChanged
         datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range))
         labelPeriodoFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) And comboboxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
         datetimepickerFechaHastaHost.Visible = labelPeriodoFechaY.Visible
         RefreshData()
     End Sub
 
-    Private Sub FechaCambiar() Handles datetimepickerFechaDesdeHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
+    Private Sub FechaCambiar(sender As Object, e As EventArgs) Handles datetimepickerFechaDesdeHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxEntidad.SelectedIndexChanged, comboboxArea.SelectedIndexChanged, comboboxEsBienUso.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxEntidad.SelectedIndexChanged, comboboxArea.SelectedIndexChanged, comboboxEsBienUso.SelectedIndexChanged
         FilterData()
     End Sub
 
