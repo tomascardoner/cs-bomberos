@@ -19,7 +19,7 @@ GO
 
 CREATE PROCEDURE CompraObtenerOrden
 	@IDCompraOrden int,
-	@IDResponsable tinyint
+	@IDResponsableTipo tinyint
 	AS
 
 	BEGIN
@@ -37,7 +37,7 @@ CREATE PROCEDURE CompraObtenerOrden
 			FROM Responsable AS r
 				INNER JOIN ResponsableTipo AS rt ON r.IDResponsableTipo = rt.IDResponsableTipo
 				LEFT JOIN Persona AS p ON r.IDPersona = p.IDPersona
-			WHERE r.IDResponsable = @IDResponsable
+			WHERE r.IDResponsableTipo = @IDResponsableTipo
 
 		-- Obtengo el Estado actual del Responsable
 		IF @ResponsableIDPersona IS NULL
