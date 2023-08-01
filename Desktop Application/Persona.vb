@@ -111,5 +111,6 @@ Partial Public Class Persona
     Public Overridable Property AcademiasAsistencias As ICollection(Of AcademiaAsistencia) = New HashSet(Of AcademiaAsistencia)
     Public Overridable Property PersonasLicenciasEspeciales As ICollection(Of PersonaLicenciaEspecial) = New HashSet(Of PersonaLicenciaEspecial)
     Public Overridable Property HuellasDigitales As ICollection(Of PersonaHuellaDigital) = New HashSet(Of PersonaHuellaDigital)
+    Public Overridable Property SiniestrosFinalizados As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
 
 End Class

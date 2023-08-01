@@ -99,7 +99,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         Me.buttonAsistirConPin.Image = Global.CSBomberos.My.Resources.Resources.ImagePinCode64
         Me.buttonAsistirConPin.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.buttonAsistirConPin.Location = New System.Drawing.Point(271, 190)
+        Me.buttonAsistirConPin.Location = New System.Drawing.Point(272, 165)
         Me.buttonAsistirConPin.Name = "buttonAsistirConPin"
         Me.buttonAsistirConPin.Size = New System.Drawing.Size(85, 87)
         Me.buttonAsistirConPin.TabIndex = 1
@@ -111,7 +111,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'textboxPersona
         '
         Me.textboxPersona.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxPersona.Location = New System.Drawing.Point(227, 87)
+        Me.textboxPersona.Location = New System.Drawing.Point(227, 75)
         Me.textboxPersona.Name = "textboxPersona"
         Me.textboxPersona.ReadOnly = True
         Me.textboxPersona.Size = New System.Drawing.Size(388, 22)
@@ -151,7 +151,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'textboxEstado
         '
         Me.textboxEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxEstado.Location = New System.Drawing.Point(227, 113)
+        Me.textboxEstado.Location = New System.Drawing.Point(227, 101)
         Me.textboxEstado.Name = "textboxEstado"
         Me.textboxEstado.ReadOnly = True
         Me.textboxEstado.Size = New System.Drawing.Size(388, 22)
@@ -160,7 +160,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'buttonAsignar
         '
-        Me.buttonAsignar.Location = New System.Drawing.Point(549, 141)
+        Me.buttonAsignar.Location = New System.Drawing.Point(549, 129)
         Me.buttonAsignar.Name = "buttonAsignar"
         Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
         Me.buttonAsignar.TabIndex = 96
@@ -175,14 +175,15 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.controlPersonaAsignar.dbContext = Nothing
         Me.controlPersonaAsignar.IDCuartel = Nothing
         Me.controlPersonaAsignar.IDPersona = Nothing
-        Me.controlPersonaAsignar.Location = New System.Drawing.Point(227, 141)
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(227, 129)
         Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
         Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
         Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
         Me.controlPersonaAsignar.ReadOnlyText = False
         Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
+        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
+        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
         Me.controlPersonaAsignar.TabIndex = 97
         Me.controlPersonaAsignar.Visible = False
         '
@@ -190,7 +191,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(627, 289)
+        Me.ClientSize = New System.Drawing.Size(627, 261)
         Me.Controls.Add(Me.controlPersonaAsignar)
         Me.Controls.Add(Me.buttonAsignar)
         Me.Controls.Add(Me.textboxEstado)

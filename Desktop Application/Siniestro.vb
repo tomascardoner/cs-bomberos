@@ -23,6 +23,7 @@ Partial Public Class Siniestro
     Public Property Fecha As Date
     Public Property HoraSalida As Nullable(Of System.TimeSpan)
     Public Property HoraFin As Nullable(Of System.TimeSpan)
+    Public Property IDPersonaFin As Nullable(Of Integer)
     Public Property HoraLlegadaUltimoCamion As Nullable(Of System.TimeSpan)
     Public Property Anulado As Boolean
     Public Property Notas As String
@@ -37,5 +38,6 @@ Partial Public Class Siniestro
     Public Overridable Property UsuarioModificacion As Usuario
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestroClave As SiniestroClave
+    Public Overridable Property PersonaFin As Persona
 
 End Class

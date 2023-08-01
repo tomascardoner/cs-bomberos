@@ -84,8 +84,10 @@
         textboxSiniestroTipoOtro.ReadOnly = Not mEditMode
         comboboxClave.Enabled = mEditMode
         datetimepickerHoraSalida.Enabled = mEditMode
-        datetimepickerHoraFin.Enabled = mEditMode
-        datetimepickerHoraLlegadaUltimoCamion.Enabled = (mEditMode And mEditFull)
+        datetimepickerHoraFin.Enabled = (mEditMode And mEditFull)
+        buttonHoraFinHabilitar.Visible = (mEditMode And Not (mEditFull Or mSiniestroActual.HoraFin.HasValue))
+        textboxPersonaFin.Visible = mSiniestroActual.HoraFin.HasValue
+        datetimepickerHoraLlegadaUltimoCamion.Enabled = mEditMode
         labelResumenAsistencias.Visible = Not mEditMode
         datagridviewResumenAsistencias.Visible = Not mEditMode
 
@@ -143,6 +145,11 @@
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, .IDSiniestroClave)
             datetimepickerHoraSalida.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraSalida, datetimepickerHoraSalida)
             datetimepickerHoraFin.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraFin, datetimepickerHoraFin)
+            If .HoraFin.HasValue And .IDPersonaFin.HasValue Then
+                textboxPersonaFin.Text = .PersonaFin.ApellidoNombre
+            Else
+                textboxPersonaFin.Text = String.Empty
+            End If
             datetimepickerHoraLlegadaUltimoCamion.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraLlegadaUltimoCamion, datetimepickerHoraLlegadaUltimoCamion)
 
             ' Datos de la pestaña Notas y Auditoría
@@ -276,6 +283,17 @@
         Else
             labelSiniestroTipoOtro.Visible = False
             textboxSiniestroTipoOtro.Visible = False
+        End If
+    End Sub
+
+    Private Sub HabilitarHoraFin(sender As Object, e As EventArgs) Handles buttonHoraFinHabilitar.Click
+        If formSiniestroHabilitarFin.ShowDialog(Me) = DialogResult.OK Then
+            mSiniestroActual.IDPersonaFin = formSiniestroHabilitarFin.Persona.IDPersona
+            datetimepickerHoraFin.Enabled = True
+            datetimepickerHoraFin.Focus()
+            buttonHoraFinHabilitar.Visible = False
+            textboxPersonaFin.Text = formSiniestroHabilitarFin.Persona.ApellidoNombre
+            textboxPersonaFin.Visible = True
         End If
     End Sub
 

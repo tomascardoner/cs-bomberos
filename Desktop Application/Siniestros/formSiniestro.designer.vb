@@ -41,6 +41,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.buttonHoraFinHabilitar = New System.Windows.Forms.Button()
         Me.labelResumenAsistencias = New System.Windows.Forms.Label()
         Me.datagridviewResumenAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnResumenAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -82,6 +83,7 @@ Partial Class formSiniestro
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.textboxPersonaFin = New System.Windows.Forms.TextBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelHoraSalida = New System.Windows.Forms.Label()
@@ -260,6 +262,7 @@ Partial Class formSiniestro
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.buttonHoraFinHabilitar)
         Me.tabpageGeneral.Controls.Add(Me.labelResumenAsistencias)
         Me.tabpageGeneral.Controls.Add(Me.datagridviewResumenAsistencias)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerHoraLlegadaUltimoCamion)
@@ -285,6 +288,7 @@ Partial Class formSiniestro
         Me.tabpageGeneral.Controls.Add(Me.comboboxSiniestroRubro)
         Me.tabpageGeneral.Controls.Add(Me.labelNumero)
         Me.tabpageGeneral.Controls.Add(Me.labelFecha)
+        Me.tabpageGeneral.Controls.Add(Me.textboxPersonaFin)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
@@ -292,6 +296,15 @@ Partial Class formSiniestro
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
+        '
+        'buttonHoraFinHabilitar
+        '
+        Me.buttonHoraFinHabilitar.Location = New System.Drawing.Point(276, 227)
+        Me.buttonHoraFinHabilitar.Name = "buttonHoraFinHabilitar"
+        Me.buttonHoraFinHabilitar.Size = New System.Drawing.Size(83, 22)
+        Me.buttonHoraFinHabilitar.TabIndex = 26
+        Me.buttonHoraFinHabilitar.Text = "<-- Habilitar"
+        Me.buttonHoraFinHabilitar.UseVisualStyleBackColor = True
         '
         'labelResumenAsistencias
         '
@@ -348,7 +361,7 @@ Partial Class formSiniestro
         '
         Me.datetimepickerHoraLlegadaUltimoCamion.CustomFormat = "HH:mm"
         Me.datetimepickerHoraLlegadaUltimoCamion.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(184, 253)
+        Me.datetimepickerHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(184, 254)
         Me.datetimepickerHoraLlegadaUltimoCamion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerHoraLlegadaUltimoCamion.MinDate = New Date(2021, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraLlegadaUltimoCamion.Name = "datetimepickerHoraLlegadaUltimoCamion"
@@ -389,7 +402,7 @@ Partial Class formSiniestro
         '
         Me.datetimepickerHoraFin.CustomFormat = "HH:mm"
         Me.datetimepickerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerHoraFin.Location = New System.Drawing.Point(184, 227)
+        Me.datetimepickerHoraFin.Location = New System.Drawing.Point(184, 228)
         Me.datetimepickerHoraFin.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerHoraFin.MinDate = New Date(2021, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
@@ -478,7 +491,7 @@ Partial Class formSiniestro
         '
         Me.datetimepickerHoraSalida.CustomFormat = "HH:mm"
         Me.datetimepickerHoraSalida.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerHoraSalida.Location = New System.Drawing.Point(184, 201)
+        Me.datetimepickerHoraSalida.Location = New System.Drawing.Point(184, 202)
         Me.datetimepickerHoraSalida.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerHoraSalida.MinDate = New Date(2021, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraSalida.Name = "datetimepickerHoraSalida"
@@ -744,6 +757,15 @@ Partial Class formSiniestro
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'textboxPersonaFin
+        '
+        Me.textboxPersonaFin.Location = New System.Drawing.Point(276, 228)
+        Me.textboxPersonaFin.Name = "textboxPersonaFin"
+        Me.textboxPersonaFin.ReadOnly = True
+        Me.textboxPersonaFin.Size = New System.Drawing.Size(175, 20)
+        Me.textboxPersonaFin.TabIndex = 27
+        Me.textboxPersonaFin.TabStop = False
+        '
         'formSiniestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -830,4 +852,6 @@ Partial Class formSiniestro
     Friend WithEvents columnResumenAsistenciaTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnResumenCantidad As DataGridViewTextBoxColumn
     Friend WithEvents labelResumenAsistencias As Label
+    Friend WithEvents buttonHoraFinHabilitar As Button
+    Friend WithEvents textboxPersonaFin As TextBox
 End Class

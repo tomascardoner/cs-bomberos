@@ -19,6 +19,7 @@
         Public Property Fecha As Date
         Public Property HoraSalida As TimeSpan?
         Public Property HoraFin As TimeSpan?
+        Public Property Cerrado As Boolean
         Public Property Anulado As Boolean
     End Class
 
@@ -53,6 +54,9 @@
         ' Filtro de período
         InicializarFiltroDeFechas()
         CardonerSistemas.DateTime.FillPeriodTypesComboBox(comboboxPeriodoTipo.ComboBox, CardonerSistemas.DateTime.PeriodTypes.Month)
+
+        comboboxCerrado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        comboboxCerrado.SelectedIndex = 0
 
         comboboxAnulado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxAnulado.SelectedIndex = 2
@@ -134,7 +138,7 @@
                                    Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
                                    Join sc In mdbContext.SiniestroClave On s.IDSiniestroClave Equals sc.IDSiniestroClave
                                    Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
-                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .HoraSalida = s.HoraSalida, .HoraFin = s.HoraFin, .Anulado = s.Anulado}).ToList
+                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .HoraSalida = s.HoraSalida, .HoraFin = s.HoraFin, .Cerrado = s.HoraFin.HasValue, .Anulado = s.Anulado}).ToList
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Siniestros.")
@@ -192,6 +196,15 @@
                 If comboboxClave.SelectedIndex > 0 Then
                     mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.IDSiniestroClave = CByte(comboboxClave.ComboBox.SelectedValue)).ToList
                 End If
+
+                ' Filtro por Cerrado
+                Select Case comboboxCerrado.SelectedIndex
+                    Case 0      ' Todos
+                    Case 1      ' Sí
+                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Cerrado).ToList
+                    Case 2      ' No
+                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) Not s.Cerrado).ToList
+                End Select
 
                 ' Filtro por Anulado
                 Select Case comboboxAnulado.SelectedIndex
@@ -262,11 +275,11 @@
                 Else
                     mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.ClaveNombre).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
                 End If
-            Case columnAnulado.Name
+            Case columnCerrado.Name
                 If mOrdenTipo = SortOrder.Ascending Then
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Anulado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderBy(Function(dgrd) dgrd.Cerrado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
                 Else
-                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Anulado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
+                    mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.OrderByDescending(Function(dgrd) dgrd.Cerrado).ThenBy(Function(dgrd) dgrd.NumeroCompleto).ToList
                 End If
         End Select
 
@@ -295,11 +308,11 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros() Handles comboboxCuartel.SelectedIndexChanged, comboboxSiniestroTipo.SelectedIndexChanged, comboboxClave.SelectedIndexChanged, comboboxAnulado.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxCuartel.SelectedIndexChanged, comboboxSiniestroTipo.SelectedIndexChanged, comboboxClave.SelectedIndexChanged, comboboxCerrado.SelectedIndexChanged, comboboxAnulado.SelectedIndexChanged
         FilterData()
     End Sub
 
-    Private Sub CambioRubro() Handles comboboxSiniestroRubro.SelectedIndexChanged
+    Private Sub CambioRubro(sender As Object, e As EventArgs) Handles comboboxSiniestroRubro.SelectedIndexChanged
         ListasSiniestros.LlenarComboBoxTipos(mdbContext, comboboxSiniestroTipo.ComboBox, CByte(comboboxSiniestroRubro.ComboBox.SelectedValue), True, False)
     End Sub
 
@@ -466,6 +479,22 @@
         Me.Cursor = Cursors.WaitCursor
         formSiniestroAsistenciaManual.LoadAndShow(mdbContext.Siniestro.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro))
         Me.Cursor = Cursors.Default
+    End Sub
+
+#End Region
+
+#Region "Extra stuff"
+
+    Private Sub CambiarColorAFilaAnulada(sender As Object, e As DataGridViewRowPostPaintEventArgs) Handles datagridviewMain.RowPostPaint
+        If e.RowIndex < datagridviewMain.RowCount - 1 Then
+            Dim DataGridViewRowActual As DataGridViewRow
+
+            DataGridViewRowActual = datagridviewMain.Rows(e.RowIndex)
+            If CType(DataGridViewRowActual.DataBoundItem, GridRowData).Anulado Then
+                DataGridViewRowActual.DefaultCellStyle.ForeColor = Color.DarkGray
+                DataGridViewRowActual.DefaultCellStyle.Font = New System.Drawing.Font(pAppearanceConfig.ListsFont, FontStyle.Strikeout)
+            End If
+        End If
     End Sub
 
 #End Region

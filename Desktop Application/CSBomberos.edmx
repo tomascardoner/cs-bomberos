@@ -1368,7 +1368,8 @@
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="HoraSalida" Type="time" Precision="0" />
           <Property Name="HoraFin" Type="time" Precision="0" />
-          <Property Name="HoraLlegadaUltimoCamion" Type="time" Precision="7" />
+          <Property Name="IDPersonaFin" Type="int" />
+          <Property Name="HoraLlegadaUltimoCamion" Type="time" Precision="0" />
           <Property Name="Anulado" Type="bit" Nullable="false" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -2808,6 +2809,18 @@
             </Principal>
             <Dependent Role="Responsable">
               <PropertyRef Name="IDPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Persona__Siniestro">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+          <End Role="Siniestro" Type="Self.Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="IDPersonaFin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5628,6 +5641,10 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Responsable" EntitySet="Responsable" />
           </AssociationSet>
+          <AssociationSet Name="FK__Persona__Siniestro" Association="Self.FK__Persona__Siniestro">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
           <AssociationSet Name="FK__Persona__SiniestroAsistencia" Association="Self.FK__Persona__SiniestroAsistencia">
             <End Role="Persona" EntitySet="Persona" />
             <End Role="SiniestroAsistencia" EntitySet="SiniestroAsistencia" />
@@ -7660,6 +7677,10 @@
           <Parameter Name="IDSiniestro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PersonasObtenerConEstadoYJerarquia" ReturnType="Collection(CSBomberosModel.PersonasObtenerConEstadoYJerarquia_Result)" />
+          <AssociationSet Name="FK__Persona__Siniestro" Association="CSBomberosModel.FK__Persona__Siniestro">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -8199,6 +8220,7 @@
           <NavigationProperty Name="AcademiasAsistencias" Relationship="CSBomberosModel.FK__Persona__AcademiaAsistencia" FromRole="Persona" ToRole="AcademiaAsistencia" />
           <NavigationProperty Name="PersonasLicenciasEspeciales" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="Persona" ToRole="PersonaLicenciaEspecial" />
           <NavigationProperty Name="HuellasDigitales" Relationship="CSBomberosModel.FK__Persona__PersonaHuellaDigital" FromRole="Persona" ToRole="PersonaHuellaDigital" />
+          <NavigationProperty Name="SiniestrosFinalizados" Relationship="CSBomberosModel.FK__Persona__Siniestro" FromRole="Persona" ToRole="Siniestro" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -11586,6 +11608,7 @@
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="HoraSalida" Type="Time" Precision="0" Nullable="true" />
           <Property Name="HoraFin" Type="Time" Precision="0" Nullable="true" />
+          <Property Name="IDPersonaFin" Type="Int32" />
           <Property Name="HoraLlegadaUltimoCamion" Type="Time" Precision="0" />
           <Property Name="Anulado" Type="Boolean" Nullable="false" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
@@ -11599,6 +11622,7 @@
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Siniestro__Modificacion" FromRole="Siniestro" ToRole="Usuario" />
           <NavigationProperty Name="SiniestrosAsistencias" Relationship="CSBomberosModel.FK__Siniestro__SiniestroAsistencia" FromRole="Siniestro" ToRole="SiniestroAsistencia" />
           <NavigationProperty Name="SiniestroClave" Relationship="CSBomberosModel.FK__SiniestroClave__Siniestro" FromRole="Siniestro" ToRole="SiniestroClave" />
+          <NavigationProperty Name="PersonaFin" Relationship="CSBomberosModel.FK__Persona__Siniestro" FromRole="Siniestro" ToRole="Persona" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -13338,6 +13362,18 @@
           <Property Type="String" Name="Jerarquia" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="JerarquiaInferior" Nullable="true" />
         </ComplexType>
+        <Association Name="FK__Persona__Siniestro">
+          <End Type="CSBomberosModel.Persona" Role="Persona" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="IDPersona" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="IDPersonaFin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14566,6 +14602,7 @@
           <EntitySetMapping Name="Siniestro">
             <EntityTypeMapping TypeName="CSBomberosModel.Siniestro">
               <MappingFragment StoreEntitySet="Siniestro">
+                <ScalarProperty Name="IDPersonaFin" ColumnName="IDPersonaFin" />
                 <ScalarProperty Name="HoraLlegadaUltimoCamion" ColumnName="HoraLlegadaUltimoCamion" />
                 <ScalarProperty Name="IDSiniestroClave" ColumnName="IDSiniestroClave" />
                 <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
