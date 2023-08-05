@@ -977,10 +977,10 @@
     <Compile Include="Siniestros\formSiniestroAsistenciaPresencialConPin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Siniestros\formSiniestroHabilitarFin.designer.vb">
-      <DependentUpon>formSiniestroHabilitarFin.vb</DependentUpon>
+    <Compile Include="Siniestros\formSiniestroFinalizar.designer.vb">
+      <DependentUpon>formSiniestroFinalizar.vb</DependentUpon>
     </Compile>
-    <Compile Include="Siniestros\formSiniestroHabilitarFin.vb">
+    <Compile Include="Siniestros\formSiniestroFinalizar.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Siniestros\formSiniestros.designer.vb">
@@ -989,6 +989,7 @@
     <Compile Include="Siniestros\formSiniestros.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\Siniestros.vb" />
     <Compile Include="SiniestroTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
@@ -1718,8 +1719,8 @@
     <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencialConPin.resx">
       <DependentUpon>formSiniestroAsistenciaPresencialConPin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Siniestros\formSiniestroHabilitarFin.resx">
-      <DependentUpon>formSiniestroHabilitarFin.vb</DependentUpon>
+    <EmbeddedResource Include="Siniestros\formSiniestroFinalizar.resx">
+      <DependentUpon>formSiniestroFinalizar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestros.resx">
       <DependentUpon>formSiniestros.vb</DependentUpon>

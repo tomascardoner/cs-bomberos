@@ -3,7 +3,7 @@ Imports DPFP.Gui
 
 Public Class formSiniestroAsistenciaPresencial
 
-#Region "Declarations"
+#Region "Declaraciones"
 
     Private Class HuellaDigital
         Friend Property IDPersona As Integer
@@ -14,14 +14,18 @@ Public Class formSiniestroAsistenciaPresencial
     Private mdbContext As New CSBomberosContext(True)
     Private mSiniestro As Siniestro
     Private mlistHuellasDigitales As List(Of HuellaDigital)
-    Private mIdSiniestroAsistenciaTipoSalidaAnticipada As Byte
-    Private mIdSiniestroAsistenciaTipoPresente As Byte
+    Private mIdTipoSalidaAnticipada As Byte
+    Private mTipoSalidaAnticipadaNombre As String
+    Private mIdTipoPresente As Byte
+    Private mTipoPresenteNombre As String
 
 #End Region
 
-#Region "Form stuff"
+#Region "Cosas del form"
 
-    Friend Sub LoadAndShow(idSiniestro As Integer)
+    Friend Sub LoadAndShow(idTipoSalidaAnticipada As Byte, idTipoPresente As Byte, idSiniestro As Integer)
+        mIdTipoSalidaAnticipada = idTipoSalidaAnticipada
+        mIdTipoPresente = idTipoPresente
         mSiniestro = mdbContext.Siniestro.Find(idSiniestro)
 
         InitializeFormAndControls()
@@ -45,14 +49,8 @@ Public Class formSiniestroAsistenciaPresencial
             huellaDigital.Template = New DPFP.Template(New IO.MemoryStream(huellaDigital.TemplateInDB))
         Next
 
-        mIdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
-        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
-            MessageBox.Show("No está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-        mIdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
-        If mIdSiniestroAsistenciaTipoPresente = 0 Then
-            MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        mTipoSalidaAnticipadaNombre = mdbContext.SiniestroAsistenciaTipo.Find(mIdTipoSalidaAnticipada).Nombre
+        mTipoPresenteNombre = mdbContext.SiniestroAsistenciaTipo.Find(mIdTipoPresente).Nombre
 
         If pDebugMode Then
             controlPersonaAsignar.dbContext = mdbContext
@@ -81,7 +79,7 @@ Public Class formSiniestroAsistenciaPresencial
 
     Private Sub AsistirConPin(sender As Object, e As EventArgs) Handles buttonAsistirConPin.Click
         Dim fmapcp = New formSiniestroAsistenciaPresencialConPin()
-        fmapcp.LoadAndShow(Me, mdbContext, mSiniestro)
+        fmapcp.LoadAndShow(Me, mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre)
         fmapcp.Dispose()
     End Sub
 
@@ -93,7 +91,7 @@ Public Class formSiniestroAsistenciaPresencial
         For Each huellaDigital As HuellaDigital In mlistHuellasDigitales
             verifier.Verify(FeatureSet, huellaDigital.Template, result)
             If result.Verified Then
-                VerificarYGuardarDatos(huellaDigital.IDPersona)
+                AsistirPersona(huellaDigital.IDPersona)
                 Return
             End If
         Next
@@ -107,93 +105,36 @@ Public Class formSiniestroAsistenciaPresencial
 
     Private Sub buttonAsignar_Click(sender As Object, e As EventArgs) Handles buttonAsignar.Click
         If controlPersonaAsignar.IDPersona.HasValue Then
-            VerificarYGuardarDatos(controlPersonaAsignar.IDPersona.Value)
+            AsistirPersona(controlPersonaAsignar.IDPersona.Value)
         End If
     End Sub
 
 #End Region
 
-#Region "Extra stuff"
+#Region "Cosas extras"
 
-    Private Sub VerificarYGuardarDatos(idPersona As Integer)
+    Private Sub AsistirPersona(idPersona As Integer)
         Dim persona As Persona
-        Dim siniestroAsistencia As SiniestroAsistencia
-        Dim mensaje As String
-
-        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
-            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-        If mIdSiniestroAsistenciaTipoPresente = 0 Then
-            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
+        Dim mensajeResultado As String
 
         persona = mdbContext.Persona.Find(idPersona)
         pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)
         textboxPersona.Text = persona.ApellidoNombre
-
-        siniestroAsistencia = mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = idPersona).FirstOrDefault()
-        If siniestroAsistencia IsNot Nothing Then
-            ' Ya hay una asistencia cargada
-            If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
-                ' Es una asistencia de presente, se muestra advertencia y no se actualiza
+        Select Case Siniestros.AsistirPersona(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, idPersona, mensajeResultado)
+            Case 0
+                ' Se asistió a la Persona
+                textboxEstado.ForeColor = Color.Black
+            Case 1
+                ' Ya tiene una asistencia al siniestro
                 textboxEstado.ForeColor = Color.Red
-                ' Debido a que el textbox está en ReadOnly, no cambia el color del texto sólo con ForeColor,
-                ' sino que hay que agregar esta línea absurda para que funcione
-                textboxEstado.BackColor = textboxEstado.BackColor
-                textboxEstado.Text = "La persona ya tiene una asistencia al siniestro."
-                Return
-            Else
-                ' Es una asistencia de ausente, se actualiza a Presente
-                If mSiniestro.HoraLlegadaUltimoCamion.HasValue Then
-                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
-                Else
-                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoSalidaAnticipada
-                End If
-                siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
-                siniestroAsistencia.FechaHoraModificacion = Now()
-                mensaje = "Se actualizó la asistencia a Presente."
-            End If
-        Else
-            ' No existe, así que la agrego
-            mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
-                                             .IDPersona = idPersona,
-                                             .IDSiniestroAsistenciaTipo = CByte(IIf(mSiniestro.HoraLlegadaUltimoCamion.HasValue, mIdSiniestroAsistenciaTipoPresente, mIdSiniestroAsistenciaTipoSalidaAnticipada)),
-                                             .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
-                                             .IDUsuarioCreacion = pUsuario.IDUsuario,
-                                             .FechaHoraCreacion = Now(),
-                                             .IDUsuarioModificacion = pUsuario.IDUsuario,
-                                             .FechaHoraModificacion = Now()})
-            mensaje = "Se registró la asistencia."
-
-        End If
-
-        ' Guardo los cambios
-        Try
-            mdbContext.SaveChanges()
-
-        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-            Me.Cursor = Cursors.Default
-            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                    MsgBox("No se pueden agregar la Asistencia porque ya existe.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
-                    MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                Case Else
-                    CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-            End Select
-            Return
-
-        Catch ex As Exception
-            Me.Cursor = Cursors.Default
-            CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-            Return
-
-        End Try
-
-        textboxEstado.ForeColor = Color.Black
-        textboxEstado.Text = mensaje
+            Case 2
+                ' Error al guardar los datos
+                textboxEstado.ForeColor = Color.Black
+        End Select
+        ' Debido a que el textbox está en ReadOnly, no cambia el color del texto sólo con ForeColor,
+        ' sino que hay que agregar esta línea absurda para que funcione
+        textboxEstado.BackColor = textboxEstado.BackColor
+        textboxEstado.Text = mensajeResultado
     End Sub
 
 #End Region

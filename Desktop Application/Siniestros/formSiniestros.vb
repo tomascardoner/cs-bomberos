@@ -432,6 +432,8 @@
 
     Private Sub AsistenciaPresencial(sender As Object, e As EventArgs) Handles buttonAsistenciaPresencial.Click
         Dim rowData As GridRowData
+        Dim IdSiniestroAsistenciaTipoSalidaAnticipada As Byte
+        Dim IdSiniestroAsistenciaTipoPresente As Byte
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
@@ -446,6 +448,16 @@
             MessageBox.Show("El Siniestro está finalizado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
+        IdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
+        If IdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+        IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
+        If IdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
         If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_PRESENCIAL) Then
             Return
@@ -453,7 +465,7 @@
 
         Try
             Me.Cursor = Cursors.WaitCursor
-            formSiniestroAsistenciaPresencial.LoadAndShow(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+            formSiniestroAsistenciaPresencial.LoadAndShow(IdSiniestroAsistenciaTipoSalidaAnticipada, IdSiniestroAsistenciaTipoPresente, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
             Me.Cursor = Cursors.Default
         Catch ex As Exception
             Me.Cursor = Cursors.Default

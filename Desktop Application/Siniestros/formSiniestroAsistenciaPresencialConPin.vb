@@ -5,26 +5,25 @@
     Private mdbContext As CSBomberosContext
     Private mSiniestro As Siniestro
     Private mPersona As Persona
-    Private mIdSiniestroAsistenciaTipoSalidaAnticipada As Byte
-    Private mIdSiniestroAsistenciaTipoPresente As Byte
+
+    Private mIdTipoSalidaAnticipada As Byte
+    Private mTipoSalidaAnticipadaNombre As String
+    Private mIdTipoPresente As Byte
+    Private mTipoPresenteNombre As String
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef dbContext As CSBomberosContext, ByRef siniestro As Siniestro)
+    Friend Sub LoadAndShow(ByRef parentForm As Form, ByRef dbContext As CSBomberosContext, ByRef siniestro As Siniestro, idTipoSalidaAnticipada As Byte, TipoSalidaAnticipadaNombre As String, idTipoPresente As Byte, TipoPresenteNombre As String)
         mdbContext = dbContext
         mSiniestro = siniestro
         controlpersonaPersona.dbContext = mdbContext
 
-        mIdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
-        If mIdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
-            MessageBox.Show("No está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-        mIdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
-        If mIdSiniestroAsistenciaTipoPresente = 0 Then
-            MessageBox.Show("No está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        mIdTipoSalidaAnticipada = idTipoSalidaAnticipada
+        mTipoSalidaAnticipadaNombre = TipoSalidaAnticipadaNombre
+        mIdTipoPresente = idTipoPresente
+        mTipoPresenteNombre = TipoPresenteNombre
 
         Me.ShowDialog(parentForm)
     End Sub
@@ -54,15 +53,17 @@
     End Sub
 
     Private Sub Guardar() Handles buttonGuardar.Click
+        Dim mensajeResultado As String
+
         If Not VerificarDatos() Then
             Return
         End If
 
-        If Not GuardarDatos() Then
+        If Siniestros.AsistirPersona(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, controlpersonaPersona.IDPersona.Value, mensajeResultado) = 2 Then
             Return
         End If
 
-        MessageBox.Show($"Se cargó la asistencia de: {mPersona.ApellidoNombre}.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show(mensajeResultado, My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Me.Close()
     End Sub
@@ -76,10 +77,6 @@
 #Region "Extra stuff"
 
     Private Function VerificarDatos() As Boolean
-        If mIdSiniestroAsistenciaTipoPresente = 0 Then
-            MessageBox.Show("No se pueden guardar los datos porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return False
-        End If
         If Not controlpersonaPersona.IDPersona.HasValue Then
             MessageBox.Show("Debe seleccionar una persona.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             controlpersonaPersona.Focus()
@@ -102,61 +99,6 @@
         End If
 
         Return True
-    End Function
-
-    Private Function GuardarDatos() As Boolean
-        Dim siniestroAsistencia As SiniestroAsistencia
-
-        siniestroAsistencia = mSiniestro.SiniestrosAsistencias.Where(Function(sa) sa.IDPersona = mPersona.IDPersona).FirstOrDefault()
-        If siniestroAsistencia IsNot Nothing Then
-            ' Ya hay una asistencia cargada
-            If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
-                ' Es una asistencia de presente, se muestra advertencia y no se actualiza
-                MessageBox.Show($"No se puede cargar la asistencia porque la persona ya tiene una asistencia al siniestro ({siniestroAsistencia.SiniestroAsistenciaTipo.Nombre}).", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Return False
-            Else
-                ' Es una asistencia de ausente, se actualiza a Presente
-                If mSiniestro.HoraLlegadaUltimoCamion.HasValue Then
-                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoPresente
-                Else
-                    siniestroAsistencia.IDSiniestroAsistenciaTipo = mIdSiniestroAsistenciaTipoSalidaAnticipada
-                End If
-                siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
-                siniestroAsistencia.FechaHoraModificacion = Now()
-            End If
-        Else
-            mSiniestro.SiniestrosAsistencias.Add(New SiniestroAsistencia() With {
-                                             .IDPersona = mPersona.IDPersona,
-                                             .IDSiniestroAsistenciaTipo = CByte(IIf(mSiniestro.HoraLlegadaUltimoCamion.HasValue, mIdSiniestroAsistenciaTipoPresente, mIdSiniestroAsistenciaTipoSalidaAnticipada)),
-                                             .IDAsistenciaMetodo = Constantes.AsistenciaMetodoCodigoNumericoId,
-                                             .IDUsuarioCreacion = pUsuario.IDUsuario,
-                                             .FechaHoraCreacion = Now(),
-                                             .IDUsuarioModificacion = pUsuario.IDUsuario,
-                                             .FechaHoraModificacion = Now()})
-        End If
-
-        Try
-            mdbContext.SaveChanges()
-            Return True
-
-        Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
-            Me.Cursor = Cursors.Default
-            Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
-                Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                    MsgBox("No se pueden agregar la Asistencia porque ya existe.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
-                    MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
-                Case Else
-                    CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
-            End Select
-            Return False
-
-        Catch ex As Exception
-            Me.Cursor = Cursors.Default
-            CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-            Return False
-        End Try
-
     End Function
 
 #End Region

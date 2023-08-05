@@ -28,8 +28,8 @@ Partial Class formSiniestro
         Dim labelCuartel As System.Windows.Forms.Label
         Dim labelHoraFin As System.Windows.Forms.Label
         Dim labelHoraLlegadaUltimoCamion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNumero = New System.Windows.Forms.Label()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -41,7 +41,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
-        Me.buttonHoraFinHabilitar = New System.Windows.Forms.Button()
+        Me.buttonHoraFinFinalizar = New System.Windows.Forms.Button()
         Me.labelResumenAsistencias = New System.Windows.Forms.Label()
         Me.datagridviewResumenAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnResumenAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -62,6 +62,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraSalida = New System.Windows.Forms.DateTimePicker()
         Me.labelSiniestroRubro = New System.Windows.Forms.Label()
         Me.datetimepickerFecha = New System.Windows.Forms.DateTimePicker()
+        Me.textboxPersonaFin = New System.Windows.Forms.TextBox()
         Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
         Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -83,7 +84,6 @@ Partial Class formSiniestro
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.textboxPersonaFin = New System.Windows.Forms.TextBox()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelHoraSalida = New System.Windows.Forms.Label()
@@ -127,7 +127,7 @@ Partial Class formSiniestro
         labelHoraSalida.Location = New System.Drawing.Point(6, 205)
         labelHoraSalida.Name = "labelHoraSalida"
         labelHoraSalida.Size = New System.Drawing.Size(78, 13)
-        labelHoraSalida.TabIndex = 18
+        labelHoraSalida.TabIndex = 17
         labelHoraSalida.Text = "Hora de salida:"
         '
         'labelCuartel
@@ -142,19 +142,19 @@ Partial Class formSiniestro
         'labelHoraFin
         '
         labelHoraFin.AutoSize = True
-        labelHoraFin.Location = New System.Drawing.Point(6, 231)
+        labelHoraFin.Location = New System.Drawing.Point(6, 257)
         labelHoraFin.Name = "labelHoraFin"
         labelHoraFin.Size = New System.Drawing.Size(62, 13)
-        labelHoraFin.TabIndex = 20
+        labelHoraFin.TabIndex = 21
         labelHoraFin.Text = "Hora de fin:"
         '
         'labelHoraLlegadaUltimoCamion
         '
         labelHoraLlegadaUltimoCamion.AutoSize = True
-        labelHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(6, 257)
+        labelHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(6, 231)
         labelHoraLlegadaUltimoCamion.Name = "labelHoraLlegadaUltimoCamion"
         labelHoraLlegadaUltimoCamion.Size = New System.Drawing.Size(167, 13)
-        labelHoraLlegadaUltimoCamion.TabIndex = 22
+        labelHoraLlegadaUltimoCamion.TabIndex = 19
         labelHoraLlegadaUltimoCamion.Text = "Hora de llegada de último camión:"
         '
         'labelNumero
@@ -172,7 +172,7 @@ Partial Class formSiniestro
         Me.labelFecha.Location = New System.Drawing.Point(6, 71)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 8
+        Me.labelFecha.TabIndex = 7
         Me.labelFecha.Text = "Fecha:"
         '
         'buttonGuardar
@@ -243,7 +243,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroRubro.Location = New System.Drawing.Point(184, 94)
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
         Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroRubro.TabIndex = 11
+        Me.comboboxSiniestroRubro.TabIndex = 10
         '
         'tabcontrolMain
         '
@@ -262,7 +262,7 @@ Partial Class formSiniestro
         '
         'tabpageGeneral
         '
-        Me.tabpageGeneral.Controls.Add(Me.buttonHoraFinHabilitar)
+        Me.tabpageGeneral.Controls.Add(Me.buttonHoraFinFinalizar)
         Me.tabpageGeneral.Controls.Add(Me.labelResumenAsistencias)
         Me.tabpageGeneral.Controls.Add(Me.datagridviewResumenAsistencias)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerHoraLlegadaUltimoCamion)
@@ -297,14 +297,14 @@ Partial Class formSiniestro
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
-        'buttonHoraFinHabilitar
+        'buttonHoraFinFinalizar
         '
-        Me.buttonHoraFinHabilitar.Location = New System.Drawing.Point(276, 227)
-        Me.buttonHoraFinHabilitar.Name = "buttonHoraFinHabilitar"
-        Me.buttonHoraFinHabilitar.Size = New System.Drawing.Size(83, 22)
-        Me.buttonHoraFinHabilitar.TabIndex = 26
-        Me.buttonHoraFinHabilitar.Text = "<-- Habilitar"
-        Me.buttonHoraFinHabilitar.UseVisualStyleBackColor = True
+        Me.buttonHoraFinFinalizar.Location = New System.Drawing.Point(184, 253)
+        Me.buttonHoraFinFinalizar.Name = "buttonHoraFinFinalizar"
+        Me.buttonHoraFinFinalizar.Size = New System.Drawing.Size(86, 22)
+        Me.buttonHoraFinFinalizar.TabIndex = 22
+        Me.buttonHoraFinFinalizar.Text = "Finalizar"
+        Me.buttonHoraFinFinalizar.UseVisualStyleBackColor = True
         '
         'labelResumenAsistencias
         '
@@ -333,7 +333,7 @@ Partial Class formSiniestro
         Me.datagridviewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewResumenAsistencias.ShowEditingIcon = False
         Me.datagridviewResumenAsistencias.Size = New System.Drawing.Size(248, 232)
-        Me.datagridviewResumenAsistencias.TabIndex = 24
+        Me.datagridviewResumenAsistencias.TabIndex = 26
         '
         'columnResumenAsistenciaTipo
         '
@@ -347,10 +347,10 @@ Partial Class formSiniestro
         'columnResumenCantidad
         '
         Me.columnResumenCantidad.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Format = "N0"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N0"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle3
         Me.columnResumenCantidad.HeaderText = "Cantidad"
         Me.columnResumenCantidad.Name = "columnResumenCantidad"
         Me.columnResumenCantidad.ReadOnly = True
@@ -361,13 +361,13 @@ Partial Class formSiniestro
         '
         Me.datetimepickerHoraLlegadaUltimoCamion.CustomFormat = "HH:mm"
         Me.datetimepickerHoraLlegadaUltimoCamion.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(184, 254)
+        Me.datetimepickerHoraLlegadaUltimoCamion.Location = New System.Drawing.Point(184, 228)
         Me.datetimepickerHoraLlegadaUltimoCamion.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerHoraLlegadaUltimoCamion.MinDate = New Date(2021, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraLlegadaUltimoCamion.Name = "datetimepickerHoraLlegadaUltimoCamion"
         Me.datetimepickerHoraLlegadaUltimoCamion.ShowCheckBox = True
         Me.datetimepickerHoraLlegadaUltimoCamion.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraLlegadaUltimoCamion.TabIndex = 23
+        Me.datetimepickerHoraLlegadaUltimoCamion.TabIndex = 20
         '
         'labelNumeroSeparador
         '
@@ -402,13 +402,13 @@ Partial Class formSiniestro
         '
         Me.datetimepickerHoraFin.CustomFormat = "HH:mm"
         Me.datetimepickerHoraFin.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.datetimepickerHoraFin.Location = New System.Drawing.Point(184, 228)
+        Me.datetimepickerHoraFin.Location = New System.Drawing.Point(184, 254)
         Me.datetimepickerHoraFin.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.datetimepickerHoraFin.MinDate = New Date(2021, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowCheckBox = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraFin.TabIndex = 21
+        Me.datetimepickerHoraFin.TabIndex = 23
         '
         'labelClave
         '
@@ -416,7 +416,7 @@ Partial Class formSiniestro
         Me.labelClave.Location = New System.Drawing.Point(6, 177)
         Me.labelClave.Name = "labelClave"
         Me.labelClave.Size = New System.Drawing.Size(37, 13)
-        Me.labelClave.TabIndex = 16
+        Me.labelClave.TabIndex = 15
         Me.labelClave.Text = "Clave:"
         '
         'comboboxClave
@@ -428,7 +428,7 @@ Partial Class formSiniestro
         Me.comboboxClave.Location = New System.Drawing.Point(184, 174)
         Me.comboboxClave.Name = "comboboxClave"
         Me.comboboxClave.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxClave.TabIndex = 17
+        Me.comboboxClave.TabIndex = 16
         '
         'labelSiniestroTipoOtro
         '
@@ -436,7 +436,7 @@ Partial Class formSiniestro
         Me.labelSiniestroTipoOtro.Location = New System.Drawing.Point(6, 151)
         Me.labelSiniestroTipoOtro.Name = "labelSiniestroTipoOtro"
         Me.labelSiniestroTipoOtro.Size = New System.Drawing.Size(30, 13)
-        Me.labelSiniestroTipoOtro.TabIndex = 14
+        Me.labelSiniestroTipoOtro.TabIndex = 13
         Me.labelSiniestroTipoOtro.Text = "Otro:"
         Me.labelSiniestroTipoOtro.Visible = False
         '
@@ -446,7 +446,7 @@ Partial Class formSiniestro
         Me.textboxSiniestroTipoOtro.MaxLength = 50
         Me.textboxSiniestroTipoOtro.Name = "textboxSiniestroTipoOtro"
         Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(267, 20)
-        Me.textboxSiniestroTipoOtro.TabIndex = 15
+        Me.textboxSiniestroTipoOtro.TabIndex = 14
         Me.textboxSiniestroTipoOtro.Visible = False
         '
         'labelSiniestroTipo
@@ -455,7 +455,7 @@ Partial Class formSiniestro
         Me.labelSiniestroTipo.Location = New System.Drawing.Point(6, 124)
         Me.labelSiniestroTipo.Name = "labelSiniestroTipo"
         Me.labelSiniestroTipo.Size = New System.Drawing.Size(31, 13)
-        Me.labelSiniestroTipo.TabIndex = 12
+        Me.labelSiniestroTipo.TabIndex = 11
         Me.labelSiniestroTipo.Text = "Tipo:"
         '
         'comboboxSiniestroTipo
@@ -467,7 +467,7 @@ Partial Class formSiniestro
         Me.comboboxSiniestroTipo.Location = New System.Drawing.Point(184, 121)
         Me.comboboxSiniestroTipo.Name = "comboboxSiniestroTipo"
         Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(267, 21)
-        Me.comboboxSiniestroTipo.TabIndex = 13
+        Me.comboboxSiniestroTipo.TabIndex = 12
         '
         'buttonCodigoSiguiente
         '
@@ -497,7 +497,7 @@ Partial Class formSiniestro
         Me.datetimepickerHoraSalida.Name = "datetimepickerHoraSalida"
         Me.datetimepickerHoraSalida.ShowCheckBox = True
         Me.datetimepickerHoraSalida.Size = New System.Drawing.Size(86, 20)
-        Me.datetimepickerHoraSalida.TabIndex = 19
+        Me.datetimepickerHoraSalida.TabIndex = 18
         '
         'labelSiniestroRubro
         '
@@ -505,7 +505,7 @@ Partial Class formSiniestro
         Me.labelSiniestroRubro.Location = New System.Drawing.Point(6, 97)
         Me.labelSiniestroRubro.Name = "labelSiniestroRubro"
         Me.labelSiniestroRubro.Size = New System.Drawing.Size(39, 13)
-        Me.labelSiniestroRubro.TabIndex = 10
+        Me.labelSiniestroRubro.TabIndex = 9
         Me.labelSiniestroRubro.Text = "Rubro:"
         '
         'datetimepickerFecha
@@ -516,7 +516,16 @@ Partial Class formSiniestro
         Me.datetimepickerFecha.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(113, 20)
-        Me.datetimepickerFecha.TabIndex = 9
+        Me.datetimepickerFecha.TabIndex = 8
+        '
+        'textboxPersonaFin
+        '
+        Me.textboxPersonaFin.Location = New System.Drawing.Point(276, 254)
+        Me.textboxPersonaFin.Name = "textboxPersonaFin"
+        Me.textboxPersonaFin.ReadOnly = True
+        Me.textboxPersonaFin.Size = New System.Drawing.Size(175, 20)
+        Me.textboxPersonaFin.TabIndex = 24
+        Me.textboxPersonaFin.TabStop = False
         '
         'tabpageAsistencias
         '
@@ -536,11 +545,11 @@ Partial Class formSiniestro
         Me.datagridviewAsistencias.AllowUserToAddRows = False
         Me.datagridviewAsistencias.AllowUserToDeleteRows = False
         Me.datagridviewAsistencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -757,15 +766,6 @@ Partial Class formSiniestro
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'textboxPersonaFin
-        '
-        Me.textboxPersonaFin.Location = New System.Drawing.Point(276, 228)
-        Me.textboxPersonaFin.Name = "textboxPersonaFin"
-        Me.textboxPersonaFin.ReadOnly = True
-        Me.textboxPersonaFin.Size = New System.Drawing.Size(175, 20)
-        Me.textboxPersonaFin.TabIndex = 27
-        Me.textboxPersonaFin.TabStop = False
-        '
         'formSiniestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -852,6 +852,6 @@ Partial Class formSiniestro
     Friend WithEvents columnResumenAsistenciaTipo As DataGridViewTextBoxColumn
     Friend WithEvents columnResumenCantidad As DataGridViewTextBoxColumn
     Friend WithEvents labelResumenAsistencias As Label
-    Friend WithEvents buttonHoraFinHabilitar As Button
+    Friend WithEvents buttonHoraFinFinalizar As Button
     Friend WithEvents textboxPersonaFin As TextBox
 End Class

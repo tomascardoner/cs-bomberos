@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class formSiniestroHabilitarFin
+Partial Class formSiniestroFinalizar
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -27,8 +27,9 @@ Partial Class formSiniestroHabilitarFin
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
         Me.pictureboxFlecha = New System.Windows.Forms.PictureBox()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
+        Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
+        Me.buttonAsignar = New System.Windows.Forms.Button()
+        Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
@@ -77,37 +78,58 @@ Partial Class formSiniestroHabilitarFin
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonGuardar})
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
         Me.toolstripMain.Size = New System.Drawing.Size(627, 39)
         Me.toolstripMain.TabIndex = 96
         '
-        'buttonCancelar
+        'controlPersonaAsignar
         '
-        Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
-        Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCancelar.Name = "buttonCancelar"
-        Me.buttonCancelar.Size = New System.Drawing.Size(89, 36)
-        Me.buttonCancelar.Text = "Cancelar"
+        Me.controlPersonaAsignar.ApellidoNombre = Nothing
+        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlPersonaAsignar.dbContext = Nothing
+        Me.controlPersonaAsignar.IDCuartel = Nothing
+        Me.controlPersonaAsignar.IDPersona = Nothing
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(226, 123)
+        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
+        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
+        Me.controlPersonaAsignar.ReadOnlyText = False
+        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
+        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
+        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
+        Me.controlPersonaAsignar.TabIndex = 99
+        Me.controlPersonaAsignar.Visible = False
         '
-        'buttonGuardar
+        'buttonAsignar
         '
-        Me.buttonGuardar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonGuardar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
-        Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonGuardar.Name = "buttonGuardar"
-        Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
-        Me.buttonGuardar.Text = "Guardar"
+        Me.buttonAsignar.Location = New System.Drawing.Point(548, 123)
+        Me.buttonAsignar.Name = "buttonAsignar"
+        Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
+        Me.buttonAsignar.TabIndex = 98
+        Me.buttonAsignar.Text = "Asignar"
+        Me.buttonAsignar.UseVisualStyleBackColor = True
+        Me.buttonAsignar.Visible = False
         '
-        'formSiniestroHabilitarFin
+        'buttonCerrar
+        '
+        Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar32
+        Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCerrar.Name = "buttonCerrar"
+        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
+        Me.buttonCerrar.Text = "Cerrar"
+        '
+        'formSiniestroFinalizar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(627, 166)
+        Me.Controls.Add(Me.controlPersonaAsignar)
+        Me.Controls.Add(Me.buttonAsignar)
         Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.pictureboxFlecha)
         Me.Controls.Add(Me.pictureboxFoto)
@@ -116,10 +138,10 @@ Partial Class formSiniestroHabilitarFin
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formSiniestroHabilitarFin"
+        Me.Name = "formSiniestroFinalizar"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Habilitar finalización de Siniestro"
+        Me.Text = "Finalizar siniestro"
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolstripMain.ResumeLayout(False)
@@ -133,6 +155,7 @@ Partial Class formSiniestroHabilitarFin
     Friend WithEvents pictureboxFoto As PictureBox
     Friend WithEvents pictureboxFlecha As PictureBox
     Friend WithEvents toolstripMain As ToolStrip
-    Friend WithEvents buttonCancelar As ToolStripButton
-    Friend WithEvents buttonGuardar As ToolStripButton
+    Friend WithEvents controlPersonaAsignar As ControlPersona
+    Friend WithEvents buttonAsignar As Button
+    Friend WithEvents buttonCerrar As ToolStripButton
 End Class

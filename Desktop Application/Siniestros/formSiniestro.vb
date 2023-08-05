@@ -8,13 +8,14 @@
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
     Private mEditMode As Boolean
-    Private mEditFull As Boolean
+    Private mPermisoEditarBasico As Boolean
+    Private mPermisoEditarCompleto As Boolean
 
 #End Region
 
 #Region "Form stuff"
 
-    Friend Sub LoadAndShow(ByVal EditMode As Boolean, ByRef ParentForm As Form, ByVal IDSiniestro As Integer)
+    Friend Sub LoadAndShow(EditMode As Boolean, ByRef ParentForm As Form, IDSiniestro As Integer)
         mIsLoading = True
         mEditMode = EditMode
 
@@ -84,15 +85,15 @@
         textboxSiniestroTipoOtro.ReadOnly = Not mEditMode
         comboboxClave.Enabled = mEditMode
         datetimepickerHoraSalida.Enabled = mEditMode
-        datetimepickerHoraFin.Enabled = (mEditMode And mEditFull)
-        buttonHoraFinHabilitar.Visible = (mEditMode And Not (mEditFull Or mSiniestroActual.HoraFin.HasValue))
+        buttonHoraFinFinalizar.Visible = (Not mEditMode) And Not (mPermisoEditarCompleto Or mSiniestroActual.HoraFin.HasValue)
+        datetimepickerHoraFin.Enabled = (mEditMode And mPermisoEditarCompleto)
         textboxPersonaFin.Visible = mSiniestroActual.HoraFin.HasValue
         datetimepickerHoraLlegadaUltimoCamion.Enabled = mEditMode
         labelResumenAsistencias.Visible = Not mEditMode
         datagridviewResumenAsistencias.Visible = Not mEditMode
 
         ' Asistencias
-        toolstripAsistencias.Enabled = (mEditMode And mEditFull)
+        toolstripAsistencias.Enabled = (mEditMode And mPermisoEditarCompleto)
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -106,7 +107,8 @@
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave, False, False)
 
-        mEditFull = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
+        mPermisoEditarBasico = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False)
+        mPermisoEditarCompleto = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
 
         If Not mEditMode Then
             ResumenAsistenciasRefreshData()
@@ -286,15 +288,30 @@
         End If
     End Sub
 
-    Private Sub HabilitarHoraFin(sender As Object, e As EventArgs) Handles buttonHoraFinHabilitar.Click
-        If formSiniestroHabilitarFin.ShowDialog(Me) = DialogResult.OK Then
-            mSiniestroActual.IDPersonaFin = formSiniestroHabilitarFin.Persona.IDPersona
-            datetimepickerHoraFin.Enabled = True
-            datetimepickerHoraFin.Focus()
-            buttonHoraFinHabilitar.Visible = False
-            textboxPersonaFin.Text = formSiniestroHabilitarFin.Persona.ApellidoNombre
-            textboxPersonaFin.Visible = True
+    Private Sub FinalizarSiniestro(sender As Object, e As EventArgs) Handles buttonHoraFinFinalizar.Click
+        Dim IdSiniestroAsistenciaTipoSalidaAnticipada As Byte
+        Dim IdSiniestroAsistenciaTipoPresente As Byte
+
+        IdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
+        If IdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No se puede finalizar y asistir porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
+        IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
+        If IdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No se puede finalizar y asistir porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim finalizar As New formSiniestroFinalizar()
+        finalizar.SetInitData(IdSiniestroAsistenciaTipoSalidaAnticipada, IdSiniestroAsistenciaTipoPresente, mdbContext, mSiniestroActual)
+        If finalizar.ShowDialog(Me) = DialogResult.Yes Then
+            ChangeMode()
+            SetDataFromObjectToControls()
+        End If
+        Threading.Thread.Sleep(1000)
+        finalizar.Close()
+        finalizar = Nothing
     End Sub
 
 #End Region
