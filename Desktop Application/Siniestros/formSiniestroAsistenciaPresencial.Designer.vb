@@ -36,15 +36,18 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.textboxEstado = New System.Windows.Forms.TextBox()
         Me.buttonAsignar = New System.Windows.Forms.Button()
         Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
+        Me.toolstripMain = New System.Windows.Forms.ToolStrip()
+        Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         labelCuartel = New System.Windows.Forms.Label()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolstripMain.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(10, 15)
+        labelCuartel.Location = New System.Drawing.Point(10, 59)
         labelCuartel.Name = "labelCuartel"
         labelCuartel.Size = New System.Drawing.Size(43, 13)
         labelCuartel.TabIndex = 3
@@ -52,7 +55,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'textboxFecha
         '
-        Me.textboxFecha.Location = New System.Drawing.Point(512, 12)
+        Me.textboxFecha.Location = New System.Drawing.Point(512, 56)
         Me.textboxFecha.Name = "textboxFecha"
         Me.textboxFecha.ReadOnly = True
         Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
@@ -61,7 +64,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'textboxCuartel
         '
-        Me.textboxCuartel.Location = New System.Drawing.Point(59, 12)
+        Me.textboxCuartel.Location = New System.Drawing.Point(59, 56)
         Me.textboxCuartel.Name = "textboxCuartel"
         Me.textboxCuartel.ReadOnly = True
         Me.textboxCuartel.Size = New System.Drawing.Size(212, 20)
@@ -70,7 +73,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'textboxNumeroCompleto
         '
-        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(343, 12)
+        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(343, 56)
         Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
         Me.textboxNumeroCompleto.ReadOnly = True
         Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
@@ -80,7 +83,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'labelNumero
         '
         Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(290, 15)
+        Me.labelNumero.Location = New System.Drawing.Point(290, 59)
         Me.labelNumero.Name = "labelNumero"
         Me.labelNumero.Size = New System.Drawing.Size(47, 13)
         Me.labelNumero.TabIndex = 5
@@ -89,7 +92,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'labelFecha
         '
         Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(466, 15)
+        Me.labelFecha.Location = New System.Drawing.Point(466, 59)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(40, 13)
         Me.labelFecha.TabIndex = 7
@@ -99,7 +102,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         Me.buttonAsistirConPin.Image = Global.CSBomberos.My.Resources.Resources.ImagePinCode64
         Me.buttonAsistirConPin.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.buttonAsistirConPin.Location = New System.Drawing.Point(272, 165)
+        Me.buttonAsistirConPin.Location = New System.Drawing.Point(272, 209)
         Me.buttonAsistirConPin.Name = "buttonAsistirConPin"
         Me.buttonAsistirConPin.Size = New System.Drawing.Size(85, 87)
         Me.buttonAsistirConPin.TabIndex = 1
@@ -111,7 +114,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'textboxPersona
         '
         Me.textboxPersona.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxPersona.Location = New System.Drawing.Point(227, 75)
+        Me.textboxPersona.Location = New System.Drawing.Point(227, 119)
         Me.textboxPersona.Name = "textboxPersona"
         Me.textboxPersona.ReadOnly = True
         Me.textboxPersona.Size = New System.Drawing.Size(388, 22)
@@ -122,7 +125,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         Me.verificationcontrolHuellas.Active = True
         Me.verificationcontrolHuellas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(13, 87)
+        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(13, 131)
         Me.verificationcontrolHuellas.Name = "verificationcontrolHuellas"
         Me.verificationcontrolHuellas.ReaderSerialNumber = "00000000-0000-0000-0000-000000000000"
         Me.verificationcontrolHuellas.Size = New System.Drawing.Size(48, 48)
@@ -131,7 +134,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'pictureboxFoto
         '
         Me.pictureboxFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pictureboxFoto.Location = New System.Drawing.Point(131, 66)
+        Me.pictureboxFoto.Location = New System.Drawing.Point(131, 110)
         Me.pictureboxFoto.Name = "pictureboxFoto"
         Me.pictureboxFoto.Size = New System.Drawing.Size(90, 90)
         Me.pictureboxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -141,7 +144,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'pictureboxFlecha
         '
         Me.pictureboxFlecha.Image = Global.CSBomberos.My.Resources.Resources.ImageSiguiente24
-        Me.pictureboxFlecha.Location = New System.Drawing.Point(80, 101)
+        Me.pictureboxFlecha.Location = New System.Drawing.Point(80, 145)
         Me.pictureboxFlecha.Name = "pictureboxFlecha"
         Me.pictureboxFlecha.Size = New System.Drawing.Size(24, 24)
         Me.pictureboxFlecha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -151,7 +154,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'textboxEstado
         '
         Me.textboxEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxEstado.Location = New System.Drawing.Point(227, 101)
+        Me.textboxEstado.Location = New System.Drawing.Point(227, 145)
         Me.textboxEstado.Name = "textboxEstado"
         Me.textboxEstado.ReadOnly = True
         Me.textboxEstado.Size = New System.Drawing.Size(388, 22)
@@ -160,7 +163,7 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'buttonAsignar
         '
-        Me.buttonAsignar.Location = New System.Drawing.Point(549, 129)
+        Me.buttonAsignar.Location = New System.Drawing.Point(549, 173)
         Me.buttonAsignar.Name = "buttonAsignar"
         Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
         Me.buttonAsignar.TabIndex = 96
@@ -175,7 +178,7 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.controlPersonaAsignar.dbContext = Nothing
         Me.controlPersonaAsignar.IDCuartel = Nothing
         Me.controlPersonaAsignar.IDPersona = Nothing
-        Me.controlPersonaAsignar.Location = New System.Drawing.Point(227, 129)
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(227, 173)
         Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
         Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
         Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
@@ -187,11 +190,31 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.controlPersonaAsignar.TabIndex = 97
         Me.controlPersonaAsignar.Visible = False
         '
+        'toolstripMain
+        '
+        Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar})
+        Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
+        Me.toolstripMain.Name = "toolstripMain"
+        Me.toolstripMain.Size = New System.Drawing.Size(627, 39)
+        Me.toolstripMain.TabIndex = 98
+        '
+        'buttonCerrar
+        '
+        Me.buttonCerrar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.buttonCerrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar32
+        Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonCerrar.Name = "buttonCerrar"
+        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
+        Me.buttonCerrar.Text = "Cerrar"
+        '
         'formSiniestroAsistenciaPresencial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(627, 261)
+        Me.ClientSize = New System.Drawing.Size(627, 310)
+        Me.Controls.Add(Me.toolstripMain)
         Me.Controls.Add(Me.controlPersonaAsignar)
         Me.Controls.Add(Me.buttonAsignar)
         Me.Controls.Add(Me.textboxEstado)
@@ -215,6 +238,8 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.Text = "Asistencia presencial a Siniestro"
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.toolstripMain.ResumeLayout(False)
+        Me.toolstripMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -233,4 +258,6 @@ Partial Class formSiniestroAsistenciaPresencial
     Friend WithEvents textboxEstado As TextBox
     Friend WithEvents buttonAsignar As Button
     Friend WithEvents controlPersonaAsignar As ControlPersona
+    Friend WithEvents toolstripMain As ToolStrip
+    Friend WithEvents buttonCerrar As ToolStripButton
 End Class

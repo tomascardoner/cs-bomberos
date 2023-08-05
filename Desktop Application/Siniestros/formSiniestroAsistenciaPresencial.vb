@@ -109,6 +109,10 @@ Public Class formSiniestroAsistenciaPresencial
         End If
     End Sub
 
+    Private Sub Cerrar(control As Object, e As EventArgs) Handles buttonCerrar.Click
+        Me.Close()
+    End Sub
+
 #End Region
 
 #Region "Cosas extras"

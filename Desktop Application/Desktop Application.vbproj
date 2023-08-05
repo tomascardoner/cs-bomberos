@@ -1188,6 +1188,7 @@
     <Compile Include="Inventario\formElemento.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Sistema\RefreshLists.vb" />
     <Compile Include="SubRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

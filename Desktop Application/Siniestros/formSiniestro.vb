@@ -308,8 +308,8 @@
         If finalizar.ShowDialog(Me) = DialogResult.Yes Then
             ChangeMode()
             SetDataFromObjectToControls()
+            RefreshLists.Siniestros(mSiniestroActual.IDSiniestro)
         End If
-        Threading.Thread.Sleep(1000)
         finalizar.Close()
         finalizar = Nothing
     End Sub
@@ -367,11 +367,7 @@
                 mdbContext.SaveChanges()
 
                 ' Refresco la lista para mostrar los cambios
-                If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formSiniestros") Then
-                    Dim formSiniestros As formSiniestros = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formSiniestros"), formSiniestros)
-                    formSiniestros.RefreshData(mSiniestroActual.IDSiniestro)
-                    formSiniestros = Nothing
-                End If
+                RefreshLists.Siniestros(mSiniestroActual.IDSiniestro)
 
             Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
                 Me.Cursor = Cursors.Default

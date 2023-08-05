@@ -444,7 +444,7 @@
             MessageBox.Show("El Siniestro está anulado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
-        If rowData.HoraSalida.HasValue AndAlso rowData.HoraFin.HasValue Then
+        If rowData.HoraFin.HasValue Then
             MessageBox.Show("El Siniestro está finalizado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
