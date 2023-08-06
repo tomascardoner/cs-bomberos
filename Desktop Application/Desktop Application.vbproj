@@ -977,6 +977,12 @@
     <Compile Include="Siniestros\formSiniestroAsistenciaPresencialConPin.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencialMultiple.designer.vb">
+      <DependentUpon>formSiniestroAsistenciaPresencialMultiple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\formSiniestroAsistenciaPresencialMultiple.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestroFinalizar.designer.vb">
       <DependentUpon>formSiniestroFinalizar.vb</DependentUpon>
     </Compile>
@@ -1719,6 +1725,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencialConPin.resx">
       <DependentUpon>formSiniestroAsistenciaPresencialConPin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\formSiniestroAsistenciaPresencialMultiple.resx">
+      <DependentUpon>formSiniestroAsistenciaPresencialMultiple.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestroFinalizar.resx">
       <DependentUpon>formSiniestroFinalizar.vb</DependentUpon>

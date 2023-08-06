@@ -26,6 +26,8 @@
     Private mdbContext As New CSBomberosContext(True)
     Private mlistSiniestrosBase As List(Of GridRowData)
     Private mlistSiniestrosFiltradaYOrdenada As List(Of GridRowData)
+    Private IdSiniestroAsistenciaTipoSalidaAnticipada As Byte
+    Private IdSiniestroAsistenciaTipoPresente As Byte
 
     Private mSkipFilterData As Boolean
 
@@ -60,6 +62,9 @@
 
         comboboxAnulado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxAnulado.SelectedIndex = 2
+
+        IdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
+        IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
 
         mSkipFilterData = False
 
@@ -430,10 +435,32 @@
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub AsistenciaPresencial(sender As Object, e As EventArgs) Handles buttonAsistenciaPresencial.Click
+    Private Sub AsistenciaPresencialMultiple(sender As Object, e As EventArgs) Handles buttonAsistenciaPresencial.ButtonClick
+        If IdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
+            MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+        If IdSiniestroAsistenciaTipoPresente = 0 Then
+            MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_ASISTIR_PRESENCIAL) Then
+            Return
+        End If
+
+        Try
+            Me.Cursor = Cursors.WaitCursor
+            formSiniestroAsistenciaPresencialMultiple.LoadAndShow(IdSiniestroAsistenciaTipoSalidaAnticipada, IdSiniestroAsistenciaTipoPresente)
+            Me.Cursor = Cursors.Default
+        Catch ex As Exception
+            Me.Cursor = Cursors.Default
+            MessageBox.Show("No se pudo crear una instancia del componente de huellas digitales. Probablemente se deba a que no están instaladas las librerías necesarias.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub AsistenciaPresencialIndividual(sender As Object, e As EventArgs) Handles menuitemAsistenciaPresencialIndividual.Click
         Dim rowData As GridRowData
-        Dim IdSiniestroAsistenciaTipoSalidaAnticipada As Byte
-        Dim IdSiniestroAsistenciaTipoPresente As Byte
 
         If datagridviewMain.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Siniestro para asistir.", vbInformation, My.Application.Info.Title)
@@ -448,12 +475,10 @@
             MessageBox.Show("El Siniestro está finalizado.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return
         End If
-        IdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
         If IdSiniestroAsistenciaTipoSalidaAnticipada = 0 Then
             MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Salida Anticipada.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
-        IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
         If IdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No se puede asistir porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -471,7 +496,6 @@
             Me.Cursor = Cursors.Default
             MessageBox.Show("No se pudo crear una instancia del componente de huellas digitales. Probablemente se deba a que no están instaladas las librerías necesarias.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
 
     Private Sub AsistenciaManual(sender As Object, e As EventArgs) Handles buttonAsistenciaManual.Click

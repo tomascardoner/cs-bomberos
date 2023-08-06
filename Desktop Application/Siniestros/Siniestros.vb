@@ -1,6 +1,18 @@
 ﻿Module Siniestros
 
-    Friend Function AsistirPersona(ByRef context As CSBomberosContext, ByRef siniestro As Siniestro, idTipoSalidaAnticipada As Byte, tipoSalidaAnticipadaNombre As String, idTipoPresente As Byte, tipoPresenteNombre As String, idPersona As Integer, ByRef mensajeResultado As String) As Byte
+    Friend Function AsistirPersonaYGuardar(ByRef context As CSBomberosContext, ByRef siniestro As Siniestro, idTipoSalidaAnticipada As Byte, tipoSalidaAnticipadaNombre As String, idTipoPresente As Byte, tipoPresenteNombre As String, idPersona As Integer, ByRef mensajeResultado As String) As Byte
+        If AsistirPersona(siniestro, idTipoSalidaAnticipada, tipoSalidaAnticipadaNombre, idTipoPresente, tipoPresenteNombre, idPersona, mensajeResultado) Then
+            If GuardarAsistencia(context) Then
+                Return 0
+            Else
+                Return 2
+            End If
+        Else
+            Return 1
+        End If
+    End Function
+
+    Friend Function AsistirPersona(ByRef siniestro As Siniestro, idTipoSalidaAnticipada As Byte, tipoSalidaAnticipadaNombre As String, idTipoPresente As Byte, tipoPresenteNombre As String, idPersona As Integer, ByRef mensajeResultado As String) As Boolean
         Dim idTipo As Byte
         Dim tipoNombre As String
         Dim siniestroAsistencia As SiniestroAsistencia
@@ -20,13 +32,14 @@
             If siniestroAsistencia.SiniestroAsistenciaTipo.EsPresente Then
                 ' Es una asistencia de presente, no se actualiza
                 mensajeResultado = "La persona ya tiene una asistencia al siniestro."
-                Return 1
+                Return False
             Else
                 ' Es una asistencia de ausente, se actualiza a 50% o Presente, según corresponda
                 siniestroAsistencia.IDSiniestroAsistenciaTipo = idTipo
                 mensajeResultado = $"Se actualizó la asistencia a ""{tipoNombre}""."
                 siniestroAsistencia.IDUsuarioModificacion = pUsuario.IDUsuario
                 siniestroAsistencia.FechaHoraModificacion = Now()
+                Return True
             End If
         Else
             ' No existe, así que la agrego
@@ -39,13 +52,19 @@
                                              .IDUsuarioModificacion = pUsuario.IDUsuario,
                                              .FechaHoraModificacion = Now()})
             mensajeResultado = $"Se registró la asistencia ""{tipoNombre}""."
+            Return True
+        End If
+    End Function
 
+    Friend Function GuardarAsistencia(ByRef context As CSBomberosContext) As Boolean
+
+        If Not context.ChangeTracker.HasChanges Then
+            Return True
         End If
 
-        ' Guardo los cambios
         Try
             context.SaveChanges()
-            Return 0
+            Return True
 
         Catch dbuex As System.Data.Entity.Infrastructure.DbUpdateException
             Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
@@ -56,13 +75,12 @@
                 Case Else
                     CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
             End Select
-            Return 2
+            Return False
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, My.Resources.STRING_ERROR_SAVING_CHANGES)
-            Return 2
+            Return False
 
         End Try
-
     End Function
 End Module

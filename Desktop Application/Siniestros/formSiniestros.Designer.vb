@@ -22,17 +22,23 @@ Partial Class formSiniestros
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSiniestroRubro = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnSiniestroTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnClave = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCerrado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEliminar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonAsistenciaPresencial = New System.Windows.Forms.ToolStripButton()
         Me.buttonAsistenciaManual = New System.Windows.Forms.ToolStripButton()
         Me.toolstripCuartel = New System.Windows.Forms.ToolStrip()
         Me.labelCuartel = New System.Windows.Forms.ToolStripLabel()
@@ -51,19 +57,14 @@ Partial Class formSiniestros
         Me.comboboxPeriodoTipo = New System.Windows.Forms.ToolStripComboBox()
         Me.comboboxPeriodoValor = New System.Windows.Forms.ToolStripComboBox()
         Me.labelPeriodoFechaY = New System.Windows.Forms.ToolStripLabel()
-        Me.toolstripAnulado = New System.Windows.Forms.ToolStrip()
-        Me.labelAnulado = New System.Windows.Forms.ToolStripLabel()
-        Me.comboboxAnulado = New System.Windows.Forms.ToolStripComboBox()
-        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSiniestroRubro = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnSiniestroTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnClave = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCerrado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.toolstripCerrado = New System.Windows.Forms.ToolStrip()
         Me.labelCerrado = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxCerrado = New System.Windows.Forms.ToolStripComboBox()
+        Me.toolstripAnulado = New System.Windows.Forms.ToolStrip()
+        Me.labelAnulado = New System.Windows.Forms.ToolStripLabel()
+        Me.comboboxAnulado = New System.Windows.Forms.ToolStripComboBox()
+        Me.buttonAsistenciaPresencial = New System.Windows.Forms.ToolStripSplitButton()
+        Me.menuitemAsistenciaPresencialIndividual = New System.Windows.Forms.ToolStripMenuItem()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -73,8 +74,8 @@ Partial Class formSiniestros
         Me.toolstripSiniestroTipo.SuspendLayout()
         Me.toolstripClave.SuspendLayout()
         Me.toolstripPeriodo.SuspendLayout()
-        Me.toolstripAnulado.SuspendLayout()
         Me.toolstripCerrado.SuspendLayout()
+        Me.toolstripAnulado.SuspendLayout()
         Me.SuspendLayout()
         '
         'statuslabelMain
@@ -98,11 +99,11 @@ Partial Class formSiniestros
         Me.datagridviewMain.AllowUserToAddRows = False
         Me.datagridviewMain.AllowUserToDeleteRows = False
         Me.datagridviewMain.AllowUserToResizeRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnSiniestroRubro, Me.columnSiniestroTipo, Me.columnClave, Me.columnCerrado})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
@@ -116,6 +117,74 @@ Partial Class formSiniestros
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(891, 300)
         Me.datagridviewMain.TabIndex = 0
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnNumero
+        '
+        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNumero.DataPropertyName = "NumeroCompleto"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNumero.HeaderText = "Número"
+        Me.columnNumero.Name = "columnNumero"
+        Me.columnNumero.ReadOnly = True
+        Me.columnNumero.Width = 69
+        '
+        'columnFecha
+        '
+        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnSiniestroRubro
+        '
+        Me.columnSiniestroRubro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSiniestroRubro.DataPropertyName = "SiniestroRubroNombre"
+        Me.columnSiniestroRubro.HeaderText = "Rubro"
+        Me.columnSiniestroRubro.Name = "columnSiniestroRubro"
+        Me.columnSiniestroRubro.ReadOnly = True
+        Me.columnSiniestroRubro.Width = 61
+        '
+        'columnSiniestroTipo
+        '
+        Me.columnSiniestroTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnSiniestroTipo.DataPropertyName = "SiniestroTipoNombre"
+        Me.columnSiniestroTipo.HeaderText = "Tipo"
+        Me.columnSiniestroTipo.Name = "columnSiniestroTipo"
+        Me.columnSiniestroTipo.ReadOnly = True
+        Me.columnSiniestroTipo.Width = 53
+        '
+        'columnClave
+        '
+        Me.columnClave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnClave.DataPropertyName = "ClaveNombre"
+        Me.columnClave.HeaderText = "Clave"
+        Me.columnClave.Name = "columnClave"
+        Me.columnClave.ReadOnly = True
+        Me.columnClave.Width = 59
+        '
+        'columnCerrado
+        '
+        Me.columnCerrado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCerrado.DataPropertyName = "Cerrado"
+        Me.columnCerrado.HeaderText = "Cerrado"
+        Me.columnCerrado.Name = "columnCerrado"
+        Me.columnCerrado.ReadOnly = True
+        Me.columnCerrado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnCerrado.Width = 69
         '
         'panelToolbars
         '
@@ -142,7 +211,7 @@ Partial Class formSiniestros
         Me.toolstripButtons.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAgregar, Me.buttonEditar, Me.buttonEliminar, Me.buttonAsistenciaPresencial, Me.buttonAsistenciaManual})
         Me.toolstripButtons.Location = New System.Drawing.Point(0, 0)
         Me.toolstripButtons.Name = "toolstripButtons"
-        Me.toolstripButtons.Size = New System.Drawing.Size(538, 39)
+        Me.toolstripButtons.Size = New System.Drawing.Size(550, 39)
         Me.toolstripButtons.TabIndex = 1
         '
         'buttonAgregar
@@ -172,15 +241,6 @@ Partial Class formSiniestros
         Me.buttonEliminar.Size = New System.Drawing.Size(86, 36)
         Me.buttonEliminar.Text = "Eliminar"
         '
-        'buttonAsistenciaPresencial
-        '
-        Me.buttonAsistenciaPresencial.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaPresencial32
-        Me.buttonAsistenciaPresencial.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAsistenciaPresencial.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAsistenciaPresencial.Name = "buttonAsistenciaPresencial"
-        Me.buttonAsistenciaPresencial.Size = New System.Drawing.Size(152, 36)
-        Me.buttonAsistenciaPresencial.Text = "Asistencia presencial"
-        '
         'buttonAsistenciaManual
         '
         Me.buttonAsistenciaManual.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaManual32
@@ -195,7 +255,7 @@ Partial Class formSiniestros
         Me.toolstripCuartel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.toolstripCuartel.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolstripCuartel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCuartel, Me.comboboxCuartel})
-        Me.toolstripCuartel.Location = New System.Drawing.Point(538, 0)
+        Me.toolstripCuartel.Location = New System.Drawing.Point(550, 0)
         Me.toolstripCuartel.Name = "toolstripCuartel"
         Me.toolstripCuartel.Size = New System.Drawing.Size(183, 39)
         Me.toolstripCuartel.TabIndex = 13
@@ -314,6 +374,28 @@ Partial Class formSiniestros
         Me.labelPeriodoFechaY.Size = New System.Drawing.Size(13, 22)
         Me.labelPeriodoFechaY.Text = "y"
         '
+        'toolstripCerrado
+        '
+        Me.toolstripCerrado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.toolstripCerrado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripCerrado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCerrado, Me.comboboxCerrado})
+        Me.toolstripCerrado.Location = New System.Drawing.Point(267, 64)
+        Me.toolstripCerrado.Name = "toolstripCerrado"
+        Me.toolstripCerrado.Size = New System.Drawing.Size(132, 25)
+        Me.toolstripCerrado.TabIndex = 18
+        '
+        'labelCerrado
+        '
+        Me.labelCerrado.Name = "labelCerrado"
+        Me.labelCerrado.Size = New System.Drawing.Size(52, 22)
+        Me.labelCerrado.Text = "Cerrado:"
+        '
+        'comboboxCerrado
+        '
+        Me.comboboxCerrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.comboboxCerrado.Name = "comboboxCerrado"
+        Me.comboboxCerrado.Size = New System.Drawing.Size(75, 25)
+        '
         'toolstripAnulado
         '
         Me.toolstripAnulado.Dock = System.Windows.Forms.DockStyle.Fill
@@ -336,95 +418,21 @@ Partial Class formSiniestros
         Me.comboboxAnulado.Name = "comboboxAnulado"
         Me.comboboxAnulado.Size = New System.Drawing.Size(75, 25)
         '
-        'columnCuartel
+        'buttonAsistenciaPresencial
         '
-        Me.columnCuartel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCuartel.DataPropertyName = "CuartelNombre"
-        Me.columnCuartel.HeaderText = "Cuartel"
-        Me.columnCuartel.Name = "columnCuartel"
-        Me.columnCuartel.ReadOnly = True
-        Me.columnCuartel.Width = 65
+        Me.buttonAsistenciaPresencial.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemAsistenciaPresencialIndividual})
+        Me.buttonAsistenciaPresencial.Image = Global.CSBomberos.My.Resources.Resources.ImageAsistenciaPresencial32
+        Me.buttonAsistenciaPresencial.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.buttonAsistenciaPresencial.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.buttonAsistenciaPresencial.Name = "buttonAsistenciaPresencial"
+        Me.buttonAsistenciaPresencial.Size = New System.Drawing.Size(164, 36)
+        Me.buttonAsistenciaPresencial.Text = "Asistencia presencial"
         '
-        'columnNumero
+        'menuitemAsistenciaPresencialIndividual
         '
-        Me.columnNumero.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNumero.DataPropertyName = "NumeroCompleto"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle4.Format = "N0"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle4
-        Me.columnNumero.HeaderText = "Número"
-        Me.columnNumero.Name = "columnNumero"
-        Me.columnNumero.ReadOnly = True
-        Me.columnNumero.Width = 69
-        '
-        'columnFecha
-        '
-        Me.columnFecha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnFecha.DataPropertyName = "Fecha"
-        Me.columnFecha.HeaderText = "Fecha"
-        Me.columnFecha.Name = "columnFecha"
-        Me.columnFecha.ReadOnly = True
-        Me.columnFecha.Width = 62
-        '
-        'columnSiniestroRubro
-        '
-        Me.columnSiniestroRubro.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSiniestroRubro.DataPropertyName = "SiniestroRubroNombre"
-        Me.columnSiniestroRubro.HeaderText = "Rubro"
-        Me.columnSiniestroRubro.Name = "columnSiniestroRubro"
-        Me.columnSiniestroRubro.ReadOnly = True
-        Me.columnSiniestroRubro.Width = 61
-        '
-        'columnSiniestroTipo
-        '
-        Me.columnSiniestroTipo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnSiniestroTipo.DataPropertyName = "SiniestroTipoNombre"
-        Me.columnSiniestroTipo.HeaderText = "Tipo"
-        Me.columnSiniestroTipo.Name = "columnSiniestroTipo"
-        Me.columnSiniestroTipo.ReadOnly = True
-        Me.columnSiniestroTipo.Width = 53
-        '
-        'columnClave
-        '
-        Me.columnClave.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnClave.DataPropertyName = "ClaveNombre"
-        Me.columnClave.HeaderText = "Clave"
-        Me.columnClave.Name = "columnClave"
-        Me.columnClave.ReadOnly = True
-        Me.columnClave.Width = 59
-        '
-        'columnCerrado
-        '
-        Me.columnCerrado.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCerrado.DataPropertyName = "Cerrado"
-        Me.columnCerrado.HeaderText = "Cerrado"
-        Me.columnCerrado.Name = "columnCerrado"
-        Me.columnCerrado.ReadOnly = True
-        Me.columnCerrado.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnCerrado.Width = 69
-        '
-        'toolstripCerrado
-        '
-        Me.toolstripCerrado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.toolstripCerrado.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripCerrado.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.labelCerrado, Me.comboboxCerrado})
-        Me.toolstripCerrado.Location = New System.Drawing.Point(267, 64)
-        Me.toolstripCerrado.Name = "toolstripCerrado"
-        Me.toolstripCerrado.Size = New System.Drawing.Size(132, 25)
-        Me.toolstripCerrado.TabIndex = 18
-        '
-        'labelCerrado
-        '
-        Me.labelCerrado.Name = "labelCerrado"
-        Me.labelCerrado.Size = New System.Drawing.Size(52, 22)
-        Me.labelCerrado.Text = "Cerrado:"
-        '
-        'comboboxCerrado
-        '
-        Me.comboboxCerrado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.comboboxCerrado.Name = "comboboxCerrado"
-        Me.comboboxCerrado.Size = New System.Drawing.Size(75, 25)
+        Me.menuitemAsistenciaPresencialIndividual.Name = "menuitemAsistenciaPresencialIndividual"
+        Me.menuitemAsistenciaPresencialIndividual.Size = New System.Drawing.Size(204, 22)
+        Me.menuitemAsistenciaPresencialIndividual.Text = "Al siniestro seleccionado"
         '
         'formSiniestros
         '
@@ -457,10 +465,10 @@ Partial Class formSiniestros
         Me.toolstripClave.PerformLayout()
         Me.toolstripPeriodo.ResumeLayout(False)
         Me.toolstripPeriodo.PerformLayout()
-        Me.toolstripAnulado.ResumeLayout(False)
-        Me.toolstripAnulado.PerformLayout()
         Me.toolstripCerrado.ResumeLayout(False)
         Me.toolstripCerrado.PerformLayout()
+        Me.toolstripAnulado.ResumeLayout(False)
+        Me.toolstripAnulado.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -494,7 +502,6 @@ Partial Class formSiniestros
     Friend WithEvents comboboxPeriodoValor As ToolStripComboBox
     Friend WithEvents labelPeriodoFechaY As ToolStripLabel
     Friend WithEvents buttonAsistenciaManual As ToolStripButton
-    Friend WithEvents buttonAsistenciaPresencial As ToolStripButton
     Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
     Friend WithEvents columnNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnFecha As DataGridViewTextBoxColumn
@@ -505,4 +512,6 @@ Partial Class formSiniestros
     Friend WithEvents toolstripCerrado As ToolStrip
     Friend WithEvents labelCerrado As ToolStripLabel
     Friend WithEvents comboboxCerrado As ToolStripComboBox
+    Friend WithEvents buttonAsistenciaPresencial As ToolStripSplitButton
+    Friend WithEvents menuitemAsistenciaPresencialIndividual As ToolStripMenuItem
 End Class

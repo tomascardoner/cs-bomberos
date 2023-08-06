@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class formSiniestroAsistenciaPresencial
+Partial Class formSiniestroAsistenciaPresencialMultiple
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,15 +22,11 @@ Partial Class formSiniestroAsistenciaPresencial
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim labelCuartel As System.Windows.Forms.Label
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
-        Me.GroupBoxSiniestro = New System.Windows.Forms.GroupBox()
-        Me.textboxFecha = New System.Windows.Forms.TextBox()
-        Me.textboxCuartel = New System.Windows.Forms.TextBox()
-        Me.textboxNumeroCompleto = New System.Windows.Forms.TextBox()
-        Me.labelNumero = New System.Windows.Forms.Label()
-        Me.labelFecha = New System.Windows.Forms.Label()
         Me.GroupBoxHuellaDigital = New System.Windows.Forms.GroupBox()
         Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
         Me.buttonAsignar = New System.Windows.Forms.Button()
@@ -41,23 +37,20 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.textboxPersona = New System.Windows.Forms.TextBox()
         Me.GroupBoxPin = New System.Windows.Forms.GroupBox()
         Me.buttonAsistirConPin = New System.Windows.Forms.Button()
-        labelCuartel = New System.Windows.Forms.Label()
+        Me.datagridviewMain = New System.Windows.Forms.DataGridView()
+        Me.TimerMain = New System.Windows.Forms.Timer(Me.components)
+        Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnClave = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnMensaje = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.toolstripMain.SuspendLayout()
-        Me.GroupBoxSiniestro.SuspendLayout()
         Me.GroupBoxHuellaDigital.SuspendLayout()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxPin.SuspendLayout()
+        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'labelCuartel
-        '
-        labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 28)
-        labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 0
-        labelCuartel.Text = "Cuartel:"
         '
         'toolstripMain
         '
@@ -78,70 +71,6 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
         Me.buttonCerrar.Text = "Cerrar"
         '
-        'GroupBoxSiniestro
-        '
-        Me.GroupBoxSiniestro.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GroupBoxSiniestro.Controls.Add(Me.textboxFecha)
-        Me.GroupBoxSiniestro.Controls.Add(Me.textboxCuartel)
-        Me.GroupBoxSiniestro.Controls.Add(Me.textboxNumeroCompleto)
-        Me.GroupBoxSiniestro.Controls.Add(labelCuartel)
-        Me.GroupBoxSiniestro.Controls.Add(Me.labelNumero)
-        Me.GroupBoxSiniestro.Controls.Add(Me.labelFecha)
-        Me.GroupBoxSiniestro.Location = New System.Drawing.Point(12, 42)
-        Me.GroupBoxSiniestro.Name = "GroupBoxSiniestro"
-        Me.GroupBoxSiniestro.Size = New System.Drawing.Size(621, 57)
-        Me.GroupBoxSiniestro.TabIndex = 0
-        Me.GroupBoxSiniestro.TabStop = False
-        Me.GroupBoxSiniestro.Text = "Siniestro:"
-        '
-        'textboxFecha
-        '
-        Me.textboxFecha.Location = New System.Drawing.Point(508, 25)
-        Me.textboxFecha.Name = "textboxFecha"
-        Me.textboxFecha.ReadOnly = True
-        Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
-        Me.textboxFecha.TabIndex = 5
-        Me.textboxFecha.TabStop = False
-        Me.textboxFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'textboxCuartel
-        '
-        Me.textboxCuartel.Location = New System.Drawing.Point(55, 25)
-        Me.textboxCuartel.Name = "textboxCuartel"
-        Me.textboxCuartel.ReadOnly = True
-        Me.textboxCuartel.Size = New System.Drawing.Size(212, 20)
-        Me.textboxCuartel.TabIndex = 1
-        Me.textboxCuartel.TabStop = False
-        '
-        'textboxNumeroCompleto
-        '
-        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(339, 25)
-        Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
-        Me.textboxNumeroCompleto.ReadOnly = True
-        Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
-        Me.textboxNumeroCompleto.TabIndex = 3
-        Me.textboxNumeroCompleto.TabStop = False
-        Me.textboxNumeroCompleto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelNumero
-        '
-        Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(286, 28)
-        Me.labelNumero.Name = "labelNumero"
-        Me.labelNumero.Size = New System.Drawing.Size(47, 13)
-        Me.labelNumero.TabIndex = 2
-        Me.labelNumero.Text = "Número:"
-        '
-        'labelFecha
-        '
-        Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(462, 28)
-        Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 4
-        Me.labelFecha.Text = "Fecha:"
-        '
         'GroupBoxHuellaDigital
         '
         Me.GroupBoxHuellaDigital.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -153,7 +82,7 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.GroupBoxHuellaDigital.Controls.Add(Me.pictureboxFoto)
         Me.GroupBoxHuellaDigital.Controls.Add(Me.verificationcontrolHuellas)
         Me.GroupBoxHuellaDigital.Controls.Add(Me.textboxPersona)
-        Me.GroupBoxHuellaDigital.Location = New System.Drawing.Point(12, 105)
+        Me.GroupBoxHuellaDigital.Location = New System.Drawing.Point(12, 210)
         Me.GroupBoxHuellaDigital.Name = "GroupBoxHuellaDigital"
         Me.GroupBoxHuellaDigital.Size = New System.Drawing.Size(621, 116)
         Me.GroupBoxHuellaDigital.TabIndex = 1
@@ -242,7 +171,7 @@ Partial Class formSiniestroAsistenciaPresencial
         'GroupBoxPin
         '
         Me.GroupBoxPin.Controls.Add(Me.buttonAsistirConPin)
-        Me.GroupBoxPin.Location = New System.Drawing.Point(12, 227)
+        Me.GroupBoxPin.Location = New System.Drawing.Point(12, 332)
         Me.GroupBoxPin.Name = "GroupBoxPin"
         Me.GroupBoxPin.Size = New System.Drawing.Size(621, 115)
         Me.GroupBoxPin.TabIndex = 2
@@ -258,43 +187,108 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.buttonAsistirConPin.TabIndex = 0
         Me.buttonAsistirConPin.UseVisualStyleBackColor = True
         '
-        'formSiniestroAsistenciaPresencial
+        'datagridviewMain
+        '
+        Me.datagridviewMain.AllowUserToAddRows = False
+        Me.datagridviewMain.AllowUserToDeleteRows = False
+        Me.datagridviewMain.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.datagridviewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnClave, Me.columnMensaje})
+        Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewMain.Location = New System.Drawing.Point(12, 42)
+        Me.datagridviewMain.MultiSelect = False
+        Me.datagridviewMain.Name = "datagridviewMain"
+        Me.datagridviewMain.ReadOnly = True
+        Me.datagridviewMain.RowHeadersVisible = False
+        Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datagridviewMain.Size = New System.Drawing.Size(621, 162)
+        Me.datagridviewMain.TabIndex = 4
+        '
+        'TimerMain
+        '
+        Me.TimerMain.Interval = 30000
+        '
+        'columnCuartel
+        '
+        Me.columnCuartel.DataPropertyName = "CuartelNombre"
+        Me.columnCuartel.HeaderText = "Cuartel"
+        Me.columnCuartel.Name = "columnCuartel"
+        Me.columnCuartel.ReadOnly = True
+        Me.columnCuartel.Width = 65
+        '
+        'columnNumero
+        '
+        Me.columnNumero.DataPropertyName = "NumeroCompleto"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.columnNumero.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNumero.HeaderText = "Número"
+        Me.columnNumero.Name = "columnNumero"
+        Me.columnNumero.ReadOnly = True
+        Me.columnNumero.Width = 69
+        '
+        'columnFecha
+        '
+        Me.columnFecha.DataPropertyName = "Fecha"
+        Me.columnFecha.HeaderText = "Fecha"
+        Me.columnFecha.Name = "columnFecha"
+        Me.columnFecha.ReadOnly = True
+        Me.columnFecha.Width = 62
+        '
+        'columnClave
+        '
+        Me.columnClave.DataPropertyName = "ClaveNombre"
+        Me.columnClave.HeaderText = "Clave"
+        Me.columnClave.Name = "columnClave"
+        Me.columnClave.ReadOnly = True
+        Me.columnClave.Width = 59
+        '
+        'columnMensaje
+        '
+        Me.columnMensaje.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.columnMensaje.DataPropertyName = "Mensaje"
+        Me.columnMensaje.HeaderText = "Mensaje"
+        Me.columnMensaje.Name = "columnMensaje"
+        Me.columnMensaje.ReadOnly = True
+        '
+        'formSiniestroAsistenciaPresencialMultiple
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(645, 353)
+        Me.ClientSize = New System.Drawing.Size(645, 459)
+        Me.Controls.Add(Me.datagridviewMain)
         Me.Controls.Add(Me.GroupBoxPin)
         Me.Controls.Add(Me.GroupBoxHuellaDigital)
-        Me.Controls.Add(Me.GroupBoxSiniestro)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "formSiniestroAsistenciaPresencial"
+        Me.Name = "formSiniestroAsistenciaPresencialMultiple"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Asistencia presencial a Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        Me.GroupBoxSiniestro.ResumeLayout(False)
-        Me.GroupBoxSiniestro.PerformLayout()
         Me.GroupBoxHuellaDigital.ResumeLayout(False)
         Me.GroupBoxHuellaDigital.PerformLayout()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxPin.ResumeLayout(False)
+        CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents toolstripMain As ToolStrip
     Friend WithEvents buttonCerrar As ToolStripButton
-    Friend WithEvents GroupBoxSiniestro As GroupBox
-    Friend WithEvents textboxFecha As TextBox
-    Friend WithEvents textboxCuartel As TextBox
-    Friend WithEvents textboxNumeroCompleto As TextBox
-    Friend WithEvents labelNumero As Label
-    Friend WithEvents labelFecha As Label
     Friend WithEvents GroupBoxHuellaDigital As GroupBox
     Friend WithEvents controlPersonaAsignar As ControlPersona
     Friend WithEvents buttonAsignar As Button
@@ -305,4 +299,11 @@ Partial Class formSiniestroAsistenciaPresencial
     Friend WithEvents textboxPersona As TextBox
     Friend WithEvents GroupBoxPin As GroupBox
     Friend WithEvents buttonAsistirConPin As Button
+    Friend WithEvents datagridviewMain As DataGridView
+    Friend WithEvents TimerMain As Timer
+    Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
+    Friend WithEvents columnNumero As DataGridViewTextBoxColumn
+    Friend WithEvents columnFecha As DataGridViewTextBoxColumn
+    Friend WithEvents columnClave As DataGridViewTextBoxColumn
+    Friend WithEvents columnMensaje As DataGridViewTextBoxColumn
 End Class
