@@ -231,7 +231,7 @@
         maskedtextboxNumero.Text = maskedtextboxNumero.Text.PadLeft(Constantes.SINIESTRO_NUMERO_DIGITOS, "0"c)
     End Sub
 
-    Private Sub buttonCodigoSiguiente_Click(sender As Object, e As EventArgs) Handles buttonCodigoSiguiente.Click
+    Private Sub CodigoSiguiente_Click(sender As Object, e As EventArgs) Handles buttonCodigoSiguiente.Click
         If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
@@ -300,6 +300,11 @@
         IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
         If IdSiniestroAsistenciaTipoPresente = 0 Then
             MessageBox.Show("No se puede finalizar y asistir porque no está especificado el ID de asistencia para Presente.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
+            Permisos.MostrarMensajeDeAviso()
             Return
         End If
 
