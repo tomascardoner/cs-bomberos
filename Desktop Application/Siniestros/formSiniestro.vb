@@ -379,7 +379,7 @@
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
                         tabcontrolMain.SelectedTab = tabpageGeneral
-                        MsgBox("No se pueden guardar los cambios porque ya existe una Siniestro con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
+                        MsgBox("No se pueden guardar los cambios porque ya existe un Siniestro con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
                         tabcontrolMain.SelectedTab = tabpageAsistencias
                         MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
