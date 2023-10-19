@@ -34,10 +34,15 @@ CREATE PROCEDURE AcademiaObtenerPersonasParaAsistencia
 		(SELECT p.IDPersona, p.ApellidoNombre
 			FROM Persona AS p
 				INNER JOIN PersonaAltaBaja AS pab ON p.IDPersona = pab.IDPersona
+				LEFT JOIN PersonaAscenso AS pa ON p.IDPersona = pa.IDPersona
+				LEFT JOIN CargoJerarquia AS cj ON pa.IDCargo = cj.IDCargo AND pa.IDJerarquia = cj.IDJerarquia
 			WHERE p.EsActivo = 1
 				AND p.IDCuartel = @IDCuartel
 				AND pab.IDAltaBaja = dbo.PersonaObtenerIdUltimaAltaBaja(p.IDPersona, @Fecha)
-				AND pab.Tipo = 'A')
+				AND pab.Tipo = 'A'
+				AND (pa.Fecha IS NULL OR pa.Fecha = dbo.PersonaObtenerFechaUltimoAscenso(p.IDPersona, GETDATE()))
+				AND cj.JerarquiaInferior = 0
+		)
 		UNION
 		-- Personas que ya están cargadas en la academia
 		(SELECT p.IDPersona, p.ApellidoNombre
