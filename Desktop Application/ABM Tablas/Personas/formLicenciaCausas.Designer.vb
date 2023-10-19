@@ -27,14 +27,10 @@ Partial Class formLicenciaCausas
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
         Me.statusstripMain = New System.Windows.Forms.StatusStrip()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
-        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadDias = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadDiasMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnCantidadVecesMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.panelToolbars = New System.Windows.Forms.FlowLayoutPanel()
         Me.toolstripButtons = New System.Windows.Forms.ToolStrip()
         Me.buttonAgregar = New System.Windows.Forms.ToolStripButton()
@@ -43,6 +39,12 @@ Partial Class formLicenciaCausas
         Me.toolstripActivo = New System.Windows.Forms.ToolStrip()
         Me.labelActivo = New System.Windows.Forms.ToolStripLabel()
         Me.comboboxActivo = New System.Windows.Forms.ToolStripComboBox()
+        Me.columnNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadDias = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadDiasMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadVecesMaximoAnual = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnCantidadVecesTotal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnEsActivo = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.statusstripMain.SuspendLayout()
         CType(Me.datagridviewMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panelToolbars.SuspendLayout()
@@ -77,7 +79,7 @@ Partial Class formLicenciaCausas
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCantidadDias, Me.columnCantidadDiasMaximoAnual, Me.columnCantidadVecesMaximoAnual, Me.columnEsActivo})
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnNombre, Me.columnCantidadDias, Me.columnCantidadDiasMaximoAnual, Me.columnCantidadVecesMaximoAnual, Me.columnCantidadVecesTotal, Me.columnEsActivo})
         Me.datagridviewMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.datagridviewMain.Location = New System.Drawing.Point(0, 39)
@@ -89,57 +91,6 @@ Partial Class formLicenciaCausas
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewMain.Size = New System.Drawing.Size(634, 186)
         Me.datagridviewMain.TabIndex = 0
-        '
-        'columnNombre
-        '
-        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnNombre.DataPropertyName = "Nombre"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
-        Me.columnNombre.HeaderText = "Nombre"
-        Me.columnNombre.Name = "columnNombre"
-        Me.columnNombre.ReadOnly = True
-        Me.columnNombre.Width = 69
-        '
-        'columnCantidadDias
-        '
-        Me.columnCantidadDias.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnCantidadDias.DataPropertyName = "CantidadDias"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCantidadDias.DefaultCellStyle = DataGridViewCellStyle3
-        Me.columnCantidadDias.HeaderText = "Cantidad de Días"
-        Me.columnCantidadDias.Name = "columnCantidadDias"
-        Me.columnCantidadDias.ReadOnly = True
-        Me.columnCantidadDias.Width = 85
-        '
-        'columnCantidadDiasMaximoAnual
-        '
-        Me.columnCantidadDiasMaximoAnual.DataPropertyName = "CantidadDiasMaximoAnual"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCantidadDiasMaximoAnual.DefaultCellStyle = DataGridViewCellStyle4
-        Me.columnCantidadDiasMaximoAnual.HeaderText = "Máxima cantidad de días por año"
-        Me.columnCantidadDiasMaximoAnual.Name = "columnCantidadDiasMaximoAnual"
-        Me.columnCantidadDiasMaximoAnual.ReadOnly = True
-        '
-        'columnCantidadVecesMaximoAnual
-        '
-        Me.columnCantidadVecesMaximoAnual.DataPropertyName = "CantidadVecesMaximoAnual"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.columnCantidadVecesMaximoAnual.DefaultCellStyle = DataGridViewCellStyle5
-        Me.columnCantidadVecesMaximoAnual.HeaderText = "Máxima cantidad de veces por año"
-        Me.columnCantidadVecesMaximoAnual.Name = "columnCantidadVecesMaximoAnual"
-        Me.columnCantidadVecesMaximoAnual.ReadOnly = True
-        '
-        'columnEsActivo
-        '
-        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.columnEsActivo.DataPropertyName = "EsActivo"
-        Me.columnEsActivo.HeaderText = "Activo"
-        Me.columnEsActivo.Name = "columnEsActivo"
-        Me.columnEsActivo.ReadOnly = True
-        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.columnEsActivo.Width = 62
         '
         'panelToolbars
         '
@@ -214,6 +165,66 @@ Partial Class formLicenciaCausas
         Me.comboboxActivo.Name = "comboboxActivo"
         Me.comboboxActivo.Size = New System.Drawing.Size(75, 39)
         '
+        'columnNombre
+        '
+        Me.columnNombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnNombre.DataPropertyName = "Nombre"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.columnNombre.DefaultCellStyle = DataGridViewCellStyle2
+        Me.columnNombre.HeaderText = "Nombre"
+        Me.columnNombre.Name = "columnNombre"
+        Me.columnNombre.ReadOnly = True
+        Me.columnNombre.Width = 69
+        '
+        'columnCantidadDias
+        '
+        Me.columnCantidadDias.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnCantidadDias.DataPropertyName = "CantidadDias"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadDias.DefaultCellStyle = DataGridViewCellStyle3
+        Me.columnCantidadDias.HeaderText = "Cantidad de Días"
+        Me.columnCantidadDias.Name = "columnCantidadDias"
+        Me.columnCantidadDias.ReadOnly = True
+        Me.columnCantidadDias.Width = 85
+        '
+        'columnCantidadDiasMaximoAnual
+        '
+        Me.columnCantidadDiasMaximoAnual.DataPropertyName = "CantidadDiasMaximoAnual"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadDiasMaximoAnual.DefaultCellStyle = DataGridViewCellStyle4
+        Me.columnCantidadDiasMaximoAnual.HeaderText = "Máxima cantidad de días por año"
+        Me.columnCantidadDiasMaximoAnual.Name = "columnCantidadDiasMaximoAnual"
+        Me.columnCantidadDiasMaximoAnual.ReadOnly = True
+        '
+        'columnCantidadVecesMaximoAnual
+        '
+        Me.columnCantidadVecesMaximoAnual.DataPropertyName = "CantidadVecesMaximoAnual"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadVecesMaximoAnual.DefaultCellStyle = DataGridViewCellStyle5
+        Me.columnCantidadVecesMaximoAnual.HeaderText = "Máxima cantidad de veces por año"
+        Me.columnCantidadVecesMaximoAnual.Name = "columnCantidadVecesMaximoAnual"
+        Me.columnCantidadVecesMaximoAnual.ReadOnly = True
+        '
+        'columnCantidadVecesTotal
+        '
+        Me.columnCantidadVecesTotal.DataPropertyName = "CantidadVecesMaximoTotal"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.columnCantidadVecesTotal.DefaultCellStyle = DataGridViewCellStyle6
+        Me.columnCantidadVecesTotal.HeaderText = "Máxima cantidad de veces total"
+        Me.columnCantidadVecesTotal.Name = "columnCantidadVecesTotal"
+        Me.columnCantidadVecesTotal.ReadOnly = True
+        '
+        'columnEsActivo
+        '
+        Me.columnEsActivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.columnEsActivo.DataPropertyName = "EsActivo"
+        Me.columnEsActivo.HeaderText = "Activo"
+        Me.columnEsActivo.Name = "columnEsActivo"
+        Me.columnEsActivo.ReadOnly = True
+        Me.columnEsActivo.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.columnEsActivo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.columnEsActivo.Width = 62
+        '
         'formLicenciaCausas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -257,5 +268,6 @@ Partial Class formLicenciaCausas
     Friend WithEvents columnCantidadDias As DataGridViewTextBoxColumn
     Friend WithEvents columnCantidadDiasMaximoAnual As DataGridViewTextBoxColumn
     Friend WithEvents columnCantidadVecesMaximoAnual As DataGridViewTextBoxColumn
+    Friend WithEvents columnCantidadVecesTotal As DataGridViewTextBoxColumn
     Friend WithEvents columnEsActivo As DataGridViewCheckBoxColumn
 End Class

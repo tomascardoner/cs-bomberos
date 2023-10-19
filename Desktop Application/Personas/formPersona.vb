@@ -1,4 +1,5 @@
 ﻿Option Strict On
+Imports System.Data.Entity
 
 Public Class formPersona
 
@@ -1849,12 +1850,14 @@ Public Class formPersona
 #End Region
 
 #Region "Licencias"
+
     Friend Class Licencias_GridRowData
         Public Property IDLicencia As Short
         Public Property Fecha As Date
         Public Property LicenciaCausaNombre As String
         Public Property FechaDesde As Date
         Public Property FechaHasta As Date
+        Public Property Dias As Integer?
     End Class
 
     Friend Sub Licencias_RefreshData(Optional ByVal PositionIDLicencia As Short = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
@@ -1875,7 +1878,7 @@ Public Class formPersona
                              Join lc In mdbContext.LicenciaCausa On pl.IDLicenciaCausa Equals lc.IDLicenciaCausa
                              Where pl.IDPersona = mPersonaActual.IDPersona
                              Order By pl.Fecha Descending
-                             Select New Licencias_GridRowData With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta}).ToList
+                             Select New Licencias_GridRowData With {.IDLicencia = pl.IDLicencia, .Fecha = pl.Fecha, .LicenciaCausaNombre = lc.Nombre, .FechaDesde = pl.FechaDesde, .FechaHasta = pl.FechaHasta, .Dias = DbFunctions.DiffDays(pl.FechaDesde, If(pl.FechaInterrupcion, pl.FechaHasta)) + 1}).ToList
 
             datagridviewLicencias.AutoGenerateColumns = False
             datagridviewLicencias.DataSource = listLicencias
@@ -1995,6 +1998,7 @@ Public Class formPersona
             End If
         End If
     End Sub
+
 #End Region
 
 #Region "Licencias Especiales"

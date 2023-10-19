@@ -648,6 +648,7 @@
           <Property Name="CantidadDias" Type="tinyint" />
           <Property Name="CantidadDiasMaximoAnual" Type="tinyint" />
           <Property Name="CantidadVecesMaximoAnual" Type="tinyint" />
+          <Property Name="CantidadVecesMaximoTotal" Type="tinyint" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="EsActivo" Type="bit" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
@@ -9711,6 +9712,7 @@
           <Property Name="CantidadDias" Type="Byte" />
           <Property Name="CantidadDiasMaximoAnual" Type="Byte" />
           <Property Name="CantidadVecesMaximoAnual" Type="Byte" />
+          <Property Name="CantidadVecesMaximoTotal" Type="Byte" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
@@ -14081,6 +14083,7 @@
           <EntitySetMapping Name="LicenciaCausa">
             <EntityTypeMapping TypeName="CSBomberosModel.LicenciaCausa">
               <MappingFragment StoreEntitySet="LicenciaCausa">
+                <ScalarProperty Name="CantidadVecesMaximoTotal" ColumnName="CantidadVecesMaximoTotal" />
                 <ScalarProperty Name="CantidadVecesMaximoAnual" ColumnName="CantidadVecesMaximoAnual" />
                 <ScalarProperty Name="CantidadDiasMaximoAnual" ColumnName="CantidadDiasMaximoAnual" />
                 <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />

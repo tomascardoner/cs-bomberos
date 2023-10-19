@@ -1,6 +1,7 @@
 ﻿Public Class formLicenciaCausas
 
 #Region "Declarations"
+
     Private mlistLicenciaCausasBase As List(Of LicenciaCausa)
     Private mlistLicenciaCausasFiltradaYOrdenada As List(Of LicenciaCausa)
 
@@ -10,9 +11,11 @@
 
     Private mOrdenColumna As DataGridViewColumn
     Private mOrdenTipo As SortOrder
+
 #End Region
 
 #Region "Form stuff"
+
     Friend Sub SetAppearance()
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageTablas32)
 
@@ -34,9 +37,11 @@
 
         RefreshData()
     End Sub
+
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub RefreshData(Optional ByVal PositionIDLicenciaCausa As Byte = 0, Optional ByVal RestoreCurrentPosition As Boolean = False)
 
         Me.Cursor = Cursors.WaitCursor
@@ -146,9 +151,11 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub Me_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         If Char.IsLetter(e.KeyChar) Then
             For Each RowCurrent As DataGridViewRow In datagridviewMain.Rows
@@ -191,9 +198,11 @@
 
         OrderData()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Permisos.VerificarPermiso(Permisos.LICENCIACAUSA_AGREGAR) Then
             Me.Cursor = Cursors.WaitCursor

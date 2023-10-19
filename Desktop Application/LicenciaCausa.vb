@@ -17,6 +17,7 @@ Partial Public Class LicenciaCausa
     Public Property CantidadDias As Nullable(Of Byte)
     Public Property CantidadDiasMaximoAnual As Nullable(Of Byte)
     Public Property CantidadVecesMaximoAnual As Nullable(Of Byte)
+    Public Property CantidadVecesMaximoTotal As Nullable(Of Byte)
     Public Property Notas As String
     Public Property EsActivo As Boolean
     Public Property IDUsuarioCreacion As Short

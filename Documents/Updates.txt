@@ -1,3 +1,6 @@
+2023-10-18
+	- Tabla LicenciaCausa: agregar campo CantidadVecesMaximoTotal tinyint null
+
 2023-07-31
 	- Agregar el campo IDPersonaFin int null a la tabla Siniestro y el FK FK__Persona__Siniestro
 

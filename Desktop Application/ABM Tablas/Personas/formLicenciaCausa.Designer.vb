@@ -33,7 +33,7 @@ Partial Class formLicenciaCausa
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CS_Control_TabControl()
+        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.updownCantidadVecesMaximoAnual = New System.Windows.Forms.NumericUpDown()
         Me.labelCantidadVecesMaximoAnual = New System.Windows.Forms.Label()
@@ -52,6 +52,8 @@ Partial Class formLicenciaCausa
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.updownCantidadVecesMaximoTotal = New System.Windows.Forms.NumericUpDown()
+        Me.labelCantidadVecesMaximoTotal = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
@@ -62,54 +64,53 @@ Partial Class formLicenciaCausa
         CType(Me.updownCantidadDiasMaximoAnual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelEsActivo
         '
+        labelEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelEsActivo.AutoSize = True
-        labelEsActivo.Location = New System.Drawing.Point(9, 105)
-        labelEsActivo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        labelEsActivo.Location = New System.Drawing.Point(7, 100)
         labelEsActivo.Name = "labelEsActivo"
-        labelEsActivo.Size = New System.Drawing.Size(50, 17)
+        labelEsActivo.Size = New System.Drawing.Size(40, 13)
         labelEsActivo.TabIndex = 2
         labelEsActivo.Text = "Activo:"
         '
         'labelModificacion
         '
+        labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(9, 201)
-        labelModificacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        labelModificacion.Location = New System.Drawing.Point(7, 178)
         labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(133, 17)
+        labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 9
         labelModificacion.Text = "Ultima Modificación:"
         '
         'labelCreacion
         '
+        labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(9, 169)
-        labelCreacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        labelCreacion.Location = New System.Drawing.Point(7, 152)
         labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(68, 17)
+        labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 6
         labelCreacion.Text = "Creación:"
         '
         'textboxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(117, 23)
-        Me.textboxNombre.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxNombre.Location = New System.Drawing.Point(88, 19)
         Me.textboxNombre.MaxLength = 100
         Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(361, 22)
+        Me.textboxNombre.Size = New System.Drawing.Size(272, 20)
         Me.textboxNombre.TabIndex = 1
         '
         'labelNombre
         '
         Me.labelNombre.AutoSize = True
-        Me.labelNombre.Location = New System.Drawing.Point(8, 27)
-        Me.labelNombre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelNombre.Location = New System.Drawing.Point(6, 22)
         Me.labelNombre.Name = "labelNombre"
-        Me.labelNombre.Size = New System.Drawing.Size(62, 17)
+        Me.labelNombre.Size = New System.Drawing.Size(47, 13)
         Me.labelNombre.TabIndex = 0
         Me.labelNombre.Text = "Nombre:"
         '
@@ -120,7 +121,7 @@ Partial Class formLicenciaCausa
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
-        Me.buttonGuardar.Size = New System.Drawing.Size(98, 36)
+        Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
         Me.buttonGuardar.Text = "Guardar"
         '
         'buttonCancelar
@@ -130,7 +131,7 @@ Partial Class formLicenciaCausa
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
-        Me.buttonCancelar.Size = New System.Drawing.Size(102, 36)
+        Me.buttonCancelar.Size = New System.Drawing.Size(89, 36)
         Me.buttonCancelar.Text = "Cancelar"
         '
         'buttonEditar
@@ -140,7 +141,7 @@ Partial Class formLicenciaCausa
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
-        Me.buttonEditar.Size = New System.Drawing.Size(84, 36)
+        Me.buttonEditar.Size = New System.Drawing.Size(73, 36)
         Me.buttonEditar.Text = "Editar"
         '
         'buttonCerrar
@@ -150,7 +151,7 @@ Partial Class formLicenciaCausa
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
-        Me.buttonCerrar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
         Me.buttonCerrar.Text = "Cerrar"
         '
         'toolstripMain
@@ -160,33 +161,37 @@ Partial Class formLicenciaCausa
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(753, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(565, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'checkboxEsActivo
         '
+        Me.checkboxEsActivo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxEsActivo.AutoSize = True
-        Me.checkboxEsActivo.Location = New System.Drawing.Point(188, 103)
-        Me.checkboxEsActivo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.checkboxEsActivo.Location = New System.Drawing.Point(141, 99)
         Me.checkboxEsActivo.Name = "checkboxEsActivo"
-        Me.checkboxEsActivo.Size = New System.Drawing.Size(18, 17)
+        Me.checkboxEsActivo.Size = New System.Drawing.Size(15, 14)
         Me.checkboxEsActivo.TabIndex = 3
         Me.checkboxEsActivo.UseVisualStyleBackColor = True
         '
         'tabcontrolMain
         '
+        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.tabcontrolMain.Controls.Add(Me.tabpageGeneral)
         Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
-        Me.tabcontrolMain.Location = New System.Drawing.Point(16, 52)
-        Me.tabcontrolMain.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(724, 268)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(543, 252)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.updownCantidadVecesMaximoTotal)
+        Me.tabpageGeneral.Controls.Add(Me.labelCantidadVecesMaximoTotal)
         Me.tabpageGeneral.Controls.Add(Me.updownCantidadVecesMaximoAnual)
         Me.tabpageGeneral.Controls.Add(Me.labelCantidadVecesMaximoAnual)
         Me.tabpageGeneral.Controls.Add(Me.updownCantidadDiasMaximoAnual)
@@ -197,91 +202,82 @@ Partial Class formLicenciaCausa
         Me.tabpageGeneral.Controls.Add(Me.labelNombreLegal)
         Me.tabpageGeneral.Controls.Add(Me.textboxNombre)
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
-        Me.tabpageGeneral.Location = New System.Drawing.Point(4, 28)
-        Me.tabpageGeneral.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
-        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(716, 236)
+        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(535, 223)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
         'updownCantidadVecesMaximoAnual
         '
-        Me.updownCantidadVecesMaximoAnual.Location = New System.Drawing.Point(251, 196)
-        Me.updownCantidadVecesMaximoAnual.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.updownCantidadVecesMaximoAnual.Location = New System.Drawing.Point(188, 160)
         Me.updownCantidadVecesMaximoAnual.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
         Me.updownCantidadVecesMaximoAnual.Name = "updownCantidadVecesMaximoAnual"
-        Me.updownCantidadVecesMaximoAnual.Size = New System.Drawing.Size(73, 22)
+        Me.updownCantidadVecesMaximoAnual.Size = New System.Drawing.Size(55, 20)
         Me.updownCantidadVecesMaximoAnual.TabIndex = 9
         Me.updownCantidadVecesMaximoAnual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'labelCantidadVecesMaximoAnual
         '
         Me.labelCantidadVecesMaximoAnual.AutoSize = True
-        Me.labelCantidadVecesMaximoAnual.Location = New System.Drawing.Point(8, 198)
-        Me.labelCantidadVecesMaximoAnual.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelCantidadVecesMaximoAnual.Location = New System.Drawing.Point(6, 162)
         Me.labelCantidadVecesMaximoAnual.Name = "labelCantidadVecesMaximoAnual"
-        Me.labelCantidadVecesMaximoAnual.Size = New System.Drawing.Size(231, 17)
+        Me.labelCantidadVecesMaximoAnual.Size = New System.Drawing.Size(176, 13)
         Me.labelCantidadVecesMaximoAnual.TabIndex = 8
         Me.labelCantidadVecesMaximoAnual.Text = "Máxima cantidad de veces por año:"
         '
         'updownCantidadDiasMaximoAnual
         '
-        Me.updownCantidadDiasMaximoAnual.Location = New System.Drawing.Point(251, 153)
-        Me.updownCantidadDiasMaximoAnual.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.updownCantidadDiasMaximoAnual.Location = New System.Drawing.Point(188, 124)
         Me.updownCantidadDiasMaximoAnual.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
         Me.updownCantidadDiasMaximoAnual.Name = "updownCantidadDiasMaximoAnual"
-        Me.updownCantidadDiasMaximoAnual.Size = New System.Drawing.Size(73, 22)
+        Me.updownCantidadDiasMaximoAnual.Size = New System.Drawing.Size(55, 20)
         Me.updownCantidadDiasMaximoAnual.TabIndex = 7
         Me.updownCantidadDiasMaximoAnual.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'labelCantidadDiasMaximoAnual
         '
         Me.labelCantidadDiasMaximoAnual.AutoSize = True
-        Me.labelCantidadDiasMaximoAnual.Location = New System.Drawing.Point(8, 155)
-        Me.labelCantidadDiasMaximoAnual.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelCantidadDiasMaximoAnual.Location = New System.Drawing.Point(6, 126)
         Me.labelCantidadDiasMaximoAnual.Name = "labelCantidadDiasMaximoAnual"
-        Me.labelCantidadDiasMaximoAnual.Size = New System.Drawing.Size(220, 17)
+        Me.labelCantidadDiasMaximoAnual.Size = New System.Drawing.Size(168, 13)
         Me.labelCantidadDiasMaximoAnual.TabIndex = 6
         Me.labelCantidadDiasMaximoAnual.Text = "Máxima cantidad de días por año:"
         '
         'updownCantidadDias
         '
-        Me.updownCantidadDias.Location = New System.Drawing.Point(251, 108)
-        Me.updownCantidadDias.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.updownCantidadDias.Location = New System.Drawing.Point(188, 88)
         Me.updownCantidadDias.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
         Me.updownCantidadDias.Name = "updownCantidadDias"
-        Me.updownCantidadDias.Size = New System.Drawing.Size(73, 22)
+        Me.updownCantidadDias.Size = New System.Drawing.Size(55, 20)
         Me.updownCantidadDias.TabIndex = 5
         Me.updownCantidadDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'labelCantidadDias
         '
         Me.labelCantidadDias.AutoSize = True
-        Me.labelCantidadDias.Location = New System.Drawing.Point(8, 111)
-        Me.labelCantidadDias.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelCantidadDias.Location = New System.Drawing.Point(6, 90)
         Me.labelCantidadDias.Name = "labelCantidadDias"
-        Me.labelCantidadDias.Size = New System.Drawing.Size(118, 17)
+        Me.labelCantidadDias.Size = New System.Drawing.Size(91, 13)
         Me.labelCantidadDias.TabIndex = 4
         Me.labelCantidadDias.Text = "Cantidad de días:"
         '
         'textboxNombreLegal
         '
-        Me.textboxNombreLegal.Location = New System.Drawing.Point(117, 65)
-        Me.textboxNombreLegal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxNombreLegal.Location = New System.Drawing.Point(88, 53)
         Me.textboxNombreLegal.MaxLength = 200
         Me.textboxNombreLegal.Name = "textboxNombreLegal"
-        Me.textboxNombreLegal.Size = New System.Drawing.Size(587, 22)
+        Me.textboxNombreLegal.Size = New System.Drawing.Size(441, 20)
         Me.textboxNombreLegal.TabIndex = 3
         '
         'labelNombreLegal
         '
         Me.labelNombreLegal.AutoSize = True
-        Me.labelNombreLegal.Location = New System.Drawing.Point(8, 69)
-        Me.labelNombreLegal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelNombreLegal.Location = New System.Drawing.Point(6, 56)
         Me.labelNombreLegal.Name = "labelNombreLegal"
-        Me.labelNombreLegal.Size = New System.Drawing.Size(96, 17)
+        Me.labelNombreLegal.Size = New System.Drawing.Size(72, 13)
         Me.labelNombreLegal.TabIndex = 2
         Me.labelNombreLegal.Text = "Nombre legal:"
         '
@@ -299,108 +295,127 @@ Partial Class formLicenciaCausa
         Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
         Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
-        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 28)
-        Me.tabpageNotasAuditoria.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
-        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(716, 236)
+        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(535, 204)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
         'labelIDLicenciaCausa
         '
+        Me.labelIDLicenciaCausa.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelIDLicenciaCausa.AutoSize = True
-        Me.labelIDLicenciaCausa.Location = New System.Drawing.Point(9, 137)
-        Me.labelIDLicenciaCausa.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelIDLicenciaCausa.Location = New System.Drawing.Point(7, 126)
         Me.labelIDLicenciaCausa.Name = "labelIDLicenciaCausa"
-        Me.labelIDLicenciaCausa.Size = New System.Drawing.Size(165, 17)
+        Me.labelIDLicenciaCausa.Size = New System.Drawing.Size(127, 13)
         Me.labelIDLicenciaCausa.TabIndex = 4
         Me.labelIDLicenciaCausa.Text = "ID de Causa de Licencia:"
         '
         'textboxIDLicenciaCausa
         '
-        Me.textboxIDLicenciaCausa.Location = New System.Drawing.Point(187, 133)
-        Me.textboxIDLicenciaCausa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxIDLicenciaCausa.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxIDLicenciaCausa.Location = New System.Drawing.Point(140, 123)
         Me.textboxIDLicenciaCausa.MaxLength = 10
         Me.textboxIDLicenciaCausa.Name = "textboxIDLicenciaCausa"
         Me.textboxIDLicenciaCausa.ReadOnly = True
-        Me.textboxIDLicenciaCausa.Size = New System.Drawing.Size(95, 22)
+        Me.textboxIDLicenciaCausa.Size = New System.Drawing.Size(72, 20)
         Me.textboxIDLicenciaCausa.TabIndex = 5
         Me.textboxIDLicenciaCausa.TabStop = False
         Me.textboxIDLicenciaCausa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxUsuarioModificacion
         '
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(356, 197)
-        Me.textboxUsuarioModificacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxUsuarioModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(267, 175)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
-        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(344, 22)
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(259, 20)
         Me.textboxUsuarioModificacion.TabIndex = 11
         '
         'textboxUsuarioCreacion
         '
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(356, 165)
-        Me.textboxUsuarioCreacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxUsuarioCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(267, 149)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
-        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(344, 22)
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(259, 20)
         Me.textboxUsuarioCreacion.TabIndex = 8
         '
         'textboxFechaHoraModificacion
         '
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(187, 197)
-        Me.textboxFechaHoraModificacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(140, 175)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(160, 22)
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraModificacion.TabIndex = 10
         '
         'textboxFechaHoraCreacion
         '
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(187, 165)
-        Me.textboxFechaHoraCreacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(140, 149)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(160, 22)
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 7
         '
         'textboxNotas
         '
-        Me.textboxNotas.Location = New System.Drawing.Point(188, 7)
-        Me.textboxNotas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.textboxNotas.Location = New System.Drawing.Point(141, 6)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(513, 88)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 87)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
         '
         Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(8, 11)
-        Me.labelNotas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelNotas.Location = New System.Drawing.Point(6, 9)
         Me.labelNotas.Name = "labelNotas"
-        Me.labelNotas.Size = New System.Drawing.Size(49, 17)
+        Me.labelNotas.Size = New System.Drawing.Size(38, 13)
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'updownCantidadVecesMaximoTotal
+        '
+        Me.updownCantidadVecesMaximoTotal.Location = New System.Drawing.Point(188, 196)
+        Me.updownCantidadVecesMaximoTotal.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
+        Me.updownCantidadVecesMaximoTotal.Name = "updownCantidadVecesMaximoTotal"
+        Me.updownCantidadVecesMaximoTotal.Size = New System.Drawing.Size(55, 20)
+        Me.updownCantidadVecesMaximoTotal.TabIndex = 11
+        Me.updownCantidadVecesMaximoTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'labelCantidadVecesMaximoTotal
+        '
+        Me.labelCantidadVecesMaximoTotal.AutoSize = True
+        Me.labelCantidadVecesMaximoTotal.Location = New System.Drawing.Point(6, 198)
+        Me.labelCantidadVecesMaximoTotal.Name = "labelCantidadVecesMaximoTotal"
+        Me.labelCantidadVecesMaximoTotal.Size = New System.Drawing.Size(166, 13)
+        Me.labelCantidadVecesMaximoTotal.TabIndex = 10
+        Me.labelCantidadVecesMaximoTotal.Text = "Máximo cantidad de veces (total):"
+        '
         'formLicenciaCausa
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(753, 335)
+        Me.ClientSize = New System.Drawing.Size(565, 306)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formLicenciaCausa"
@@ -417,6 +432,7 @@ Partial Class formLicenciaCausa
         CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -448,4 +464,6 @@ Partial Class formLicenciaCausa
     Friend WithEvents labelCantidadVecesMaximoAnual As Label
     Friend WithEvents updownCantidadDiasMaximoAnual As NumericUpDown
     Friend WithEvents labelCantidadDiasMaximoAnual As Label
+    Friend WithEvents updownCantidadVecesMaximoTotal As NumericUpDown
+    Friend WithEvents labelCantidadVecesMaximoTotal As Label
 End Class

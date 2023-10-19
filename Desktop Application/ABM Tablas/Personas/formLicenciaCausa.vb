@@ -1,12 +1,14 @@
 ﻿Public Class formLicenciaCausa
 
 #Region "Declarations"
+
     Private mdbContext As New CSBomberosContext(True)
     Private mLicenciaCausaActual As LicenciaCausa
 
     Private mIsLoading As Boolean
     Private mIsNew As Boolean
     Private mEditMode As Boolean
+
 #End Region
 
 #Region "Form stuff"
@@ -50,8 +52,8 @@
         ' Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         ' General
         textboxNombre.ReadOnly = Not mEditMode
@@ -59,6 +61,7 @@
         updownCantidadDias.Enabled = mEditMode
         updownCantidadDiasMaximoAnual.Enabled = mEditMode
         updownCantidadVecesMaximoAnual.Enabled = mEditMode
+        updownCantidadVecesMaximoTotal.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -85,6 +88,7 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mLicenciaCausaActual
             textboxNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Nombre)
@@ -92,6 +96,7 @@
             updownCantidadDias.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadDias)
             updownCantidadDiasMaximoAnual.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadDiasMaximoAnual)
             updownCantidadVecesMaximoAnual.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadVecesMaximoAnual)
+            updownCantidadVecesMaximoTotal.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.CantidadVecesMaximoTotal)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -123,14 +128,17 @@
             .CantidadDias = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadDias.Value)
             .CantidadDiasMaximoAnual = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadDiasMaximoAnual.Value)
             .CantidadVecesMaximoAnual = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadVecesMaximoAnual.Value)
+            .CantidadVecesMaximoTotal = CS_ValueTranslation.FromControlUpDownToObjectByte(updownCantidadVecesMaximoTotal.Value)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .EsActivo = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxEsActivo.CheckState)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
+
     Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case Microsoft.VisualBasic.ChrW(Keys.Return)
@@ -151,9 +159,11 @@
     Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxNombre.GotFocus, textboxNombreLegal.GotFocus, textboxNotas.GotFocus
         CType(sender, TextBox).SelectAll()
     End Sub
+
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.LICENCIACAUSA_EDITAR) Then
             mEditMode = True
@@ -217,6 +227,7 @@
 
         Me.Close()
     End Sub
+
 #End Region
 
 End Class

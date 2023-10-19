@@ -132,7 +132,7 @@
         <EntityTypeShape EntityType="CSBomberosModel.CapacitacionNivel" Width="1.5" PointX="16.5" PointY="142" />
         <EntityTypeShape EntityType="CSBomberosModel.CapacitacionTipo" Width="1.5" PointX="16.5" PointY="150.125" />
         <EntityTypeShape EntityType="CSBomberosModel.Curso" Width="1.5" PointX="16.5" PointY="133.625" />
-        <EntityTypeShape EntityType="CSBomberosModel.LicenciaCausa" Width="1.5" PointX="16.5" PointY="247.875" />
+        <EntityTypeShape EntityType="CSBomberosModel.LicenciaCausa" Width="1.75" PointX="16.25" PointY="247.875" />
         <EntityTypeShape EntityType="CSBomberosModel.LicenciaConducirCategoria" Width="1.5" PointX="16.5" PointY="267.125" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaBajaMotivo" Width="1.5" PointX="16.5" PointY="271.25" />
         <EntityTypeShape EntityType="CSBomberosModel.PersonaCapacitacion" Width="1.5" PointX="26.375" PointY="188" />
