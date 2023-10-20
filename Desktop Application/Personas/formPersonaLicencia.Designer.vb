@@ -37,6 +37,7 @@ Partial Class formPersonaLicencia
         Me.comboboxCausa = New System.Windows.Forms.ComboBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.NumericUpDownDias = New System.Windows.Forms.NumericUpDown()
         Me.labelDiasEfectivos = New System.Windows.Forms.Label()
         Me.labelLabelDiasEfectivos = New System.Windows.Forms.Label()
         Me.datetimepickerFechaInterrupcion = New System.Windows.Forms.DateTimePicker()
@@ -58,6 +59,7 @@ Partial Class formPersonaLicencia
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.NumericUpDownDias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -205,6 +207,7 @@ Partial Class formPersonaLicencia
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.NumericUpDownDias)
         Me.tabpageGeneral.Controls.Add(Me.labelDiasEfectivos)
         Me.tabpageGeneral.Controls.Add(Me.labelLabelDiasEfectivos)
         Me.tabpageGeneral.Controls.Add(Me.datetimepickerFechaInterrupcion)
@@ -225,6 +228,17 @@ Partial Class formPersonaLicencia
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'NumericUpDownDias
+        '
+        Me.NumericUpDownDias.Location = New System.Drawing.Point(247, 86)
+        Me.NumericUpDownDias.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
+        Me.NumericUpDownDias.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.NumericUpDownDias.Name = "NumericUpDownDias"
+        Me.NumericUpDownDias.Size = New System.Drawing.Size(50, 20)
+        Me.NumericUpDownDias.TabIndex = 6
+        Me.NumericUpDownDias.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NumericUpDownDias.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
         'labelDiasEfectivos
         '
         Me.labelDiasEfectivos.AutoSize = True
@@ -232,7 +246,7 @@ Partial Class formPersonaLicencia
         Me.labelDiasEfectivos.Location = New System.Drawing.Point(122, 187)
         Me.labelDiasEfectivos.Name = "labelDiasEfectivos"
         Me.labelDiasEfectivos.Size = New System.Drawing.Size(0, 13)
-        Me.labelDiasEfectivos.TabIndex = 11
+        Me.labelDiasEfectivos.TabIndex = 12
         '
         'labelLabelDiasEfectivos
         '
@@ -240,7 +254,7 @@ Partial Class formPersonaLicencia
         Me.labelLabelDiasEfectivos.Location = New System.Drawing.Point(6, 187)
         Me.labelLabelDiasEfectivos.Name = "labelLabelDiasEfectivos"
         Me.labelLabelDiasEfectivos.Size = New System.Drawing.Size(79, 13)
-        Me.labelLabelDiasEfectivos.TabIndex = 10
+        Me.labelLabelDiasEfectivos.TabIndex = 11
         Me.labelLabelDiasEfectivos.Text = "Días efectivos:"
         '
         'datetimepickerFechaInterrupcion
@@ -252,7 +266,7 @@ Partial Class formPersonaLicencia
         Me.datetimepickerFechaInterrupcion.Name = "datetimepickerFechaInterrupcion"
         Me.datetimepickerFechaInterrupcion.ShowCheckBox = True
         Me.datetimepickerFechaInterrupcion.Size = New System.Drawing.Size(138, 20)
-        Me.datetimepickerFechaInterrupcion.TabIndex = 9
+        Me.datetimepickerFechaInterrupcion.TabIndex = 10
         '
         'labelFechaInterrupcion
         '
@@ -260,7 +274,7 @@ Partial Class formPersonaLicencia
         Me.labelFechaInterrupcion.Location = New System.Drawing.Point(6, 154)
         Me.labelFechaInterrupcion.Name = "labelFechaInterrupcion"
         Me.labelFechaInterrupcion.Size = New System.Drawing.Size(113, 13)
-        Me.labelFechaInterrupcion.TabIndex = 8
+        Me.labelFechaInterrupcion.TabIndex = 9
         Me.labelFechaInterrupcion.Text = "Fecha de interrupción:"
         '
         'datetimepickerFechaHasta
@@ -271,7 +285,7 @@ Partial Class formPersonaLicencia
         Me.datetimepickerFechaHasta.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFechaHasta.Name = "datetimepickerFechaHasta"
         Me.datetimepickerFechaHasta.Size = New System.Drawing.Size(116, 20)
-        Me.datetimepickerFechaHasta.TabIndex = 7
+        Me.datetimepickerFechaHasta.TabIndex = 8
         '
         'labelFechaHasta
         '
@@ -279,7 +293,7 @@ Partial Class formPersonaLicencia
         Me.labelFechaHasta.Location = New System.Drawing.Point(6, 115)
         Me.labelFechaHasta.Name = "labelFechaHasta"
         Me.labelFechaHasta.Size = New System.Drawing.Size(69, 13)
-        Me.labelFechaHasta.TabIndex = 6
+        Me.labelFechaHasta.TabIndex = 7
         Me.labelFechaHasta.Text = "Fecha hasta:"
         '
         'datetimepickerFechaDesde
@@ -405,6 +419,7 @@ Partial Class formPersonaLicencia
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.NumericUpDownDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -438,4 +453,5 @@ Partial Class formPersonaLicencia
     Friend WithEvents labelFechaInterrupcion As System.Windows.Forms.Label
     Friend WithEvents labelLabelDiasEfectivos As Label
     Friend WithEvents labelDiasEfectivos As Label
+    Friend WithEvents NumericUpDownDias As NumericUpDown
 End Class

@@ -35,6 +35,8 @@ Partial Class formLicenciaCausa
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
         Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
+        Me.updownCantidadVecesMaximoTotal = New System.Windows.Forms.NumericUpDown()
+        Me.labelCantidadVecesMaximoTotal = New System.Windows.Forms.Label()
         Me.updownCantidadVecesMaximoAnual = New System.Windows.Forms.NumericUpDown()
         Me.labelCantidadVecesMaximoAnual = New System.Windows.Forms.Label()
         Me.updownCantidadDiasMaximoAnual = New System.Windows.Forms.NumericUpDown()
@@ -52,19 +54,17 @@ Partial Class formLicenciaCausa
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.updownCantidadVecesMaximoTotal = New System.Windows.Forms.NumericUpDown()
-        Me.labelCantidadVecesMaximoTotal = New System.Windows.Forms.Label()
         labelEsActivo = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.tabcontrolMain.SuspendLayout()
         Me.tabpageGeneral.SuspendLayout()
+        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.updownCantidadVecesMaximoAnual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.updownCantidadDiasMaximoAnual, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabpageNotasAuditoria.SuspendLayout()
-        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelEsActivo
@@ -204,16 +204,34 @@ Partial Class formLicenciaCausa
         Me.tabpageGeneral.Controls.Add(Me.labelNombre)
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
-        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
         Me.tabpageGeneral.Size = New System.Drawing.Size(535, 223)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
         '
+        'updownCantidadVecesMaximoTotal
+        '
+        Me.updownCantidadVecesMaximoTotal.Location = New System.Drawing.Point(188, 196)
+        Me.updownCantidadVecesMaximoTotal.Maximum = New Decimal(New Integer() {40, 0, 0, 0})
+        Me.updownCantidadVecesMaximoTotal.Name = "updownCantidadVecesMaximoTotal"
+        Me.updownCantidadVecesMaximoTotal.Size = New System.Drawing.Size(55, 20)
+        Me.updownCantidadVecesMaximoTotal.TabIndex = 11
+        Me.updownCantidadVecesMaximoTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'labelCantidadVecesMaximoTotal
+        '
+        Me.labelCantidadVecesMaximoTotal.AutoSize = True
+        Me.labelCantidadVecesMaximoTotal.Location = New System.Drawing.Point(6, 198)
+        Me.labelCantidadVecesMaximoTotal.Name = "labelCantidadVecesMaximoTotal"
+        Me.labelCantidadVecesMaximoTotal.Size = New System.Drawing.Size(166, 13)
+        Me.labelCantidadVecesMaximoTotal.TabIndex = 10
+        Me.labelCantidadVecesMaximoTotal.Text = "Máximo cantidad de veces (total):"
+        '
         'updownCantidadVecesMaximoAnual
         '
         Me.updownCantidadVecesMaximoAnual.Location = New System.Drawing.Point(188, 160)
-        Me.updownCantidadVecesMaximoAnual.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
+        Me.updownCantidadVecesMaximoAnual.Maximum = New Decimal(New Integer() {40, 0, 0, 0})
         Me.updownCantidadVecesMaximoAnual.Name = "updownCantidadVecesMaximoAnual"
         Me.updownCantidadVecesMaximoAnual.Size = New System.Drawing.Size(55, 20)
         Me.updownCantidadVecesMaximoAnual.TabIndex = 9
@@ -297,8 +315,8 @@ Partial Class formLicenciaCausa
         Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
-        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(535, 204)
+        Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(535, 223)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -389,24 +407,6 @@ Partial Class formLicenciaCausa
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'updownCantidadVecesMaximoTotal
-        '
-        Me.updownCantidadVecesMaximoTotal.Location = New System.Drawing.Point(188, 196)
-        Me.updownCantidadVecesMaximoTotal.Maximum = New Decimal(New Integer() {400, 0, 0, 0})
-        Me.updownCantidadVecesMaximoTotal.Name = "updownCantidadVecesMaximoTotal"
-        Me.updownCantidadVecesMaximoTotal.Size = New System.Drawing.Size(55, 20)
-        Me.updownCantidadVecesMaximoTotal.TabIndex = 11
-        Me.updownCantidadVecesMaximoTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'labelCantidadVecesMaximoTotal
-        '
-        Me.labelCantidadVecesMaximoTotal.AutoSize = True
-        Me.labelCantidadVecesMaximoTotal.Location = New System.Drawing.Point(6, 198)
-        Me.labelCantidadVecesMaximoTotal.Name = "labelCantidadVecesMaximoTotal"
-        Me.labelCantidadVecesMaximoTotal.Size = New System.Drawing.Size(166, 13)
-        Me.labelCantidadVecesMaximoTotal.TabIndex = 10
-        Me.labelCantidadVecesMaximoTotal.Text = "Máximo cantidad de veces (total):"
-        '
         'formLicenciaCausa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -427,12 +427,12 @@ Partial Class formLicenciaCausa
         Me.tabcontrolMain.ResumeLayout(False)
         Me.tabpageGeneral.ResumeLayout(False)
         Me.tabpageGeneral.PerformLayout()
+        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.updownCantidadVecesMaximoAnual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.updownCantidadDiasMaximoAnual, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.updownCantidadDias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
-        CType(Me.updownCantidadVecesMaximoTotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

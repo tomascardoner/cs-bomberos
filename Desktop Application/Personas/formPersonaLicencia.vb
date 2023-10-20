@@ -60,6 +60,7 @@
         datetimepickerFecha.Enabled = mEditMode
         comboboxCausa.Enabled = mEditMode
         datetimepickerFechaDesde.Enabled = mEditMode
+        NumericUpDownDias.Enabled = mEditMode
         datetimepickerFechaHasta.Enabled = mEditMode
         datetimepickerFechaInterrupcion.Enabled = mEditMode
 
@@ -83,11 +84,13 @@
 #End Region
 
 #Region "Load and Set Data"
+
     Friend Sub SetDataFromObjectToControls()
         With mPersonaLicenciaActual
             datetimepickerFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.Fecha)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxCausa, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDLicenciaCausa)
             datetimepickerFechaDesde.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaDesde)
+            NumericUpDownDias.Value = CalcularDiasEfectivos(.FechaDesde, .FechaHasta)
             datetimepickerFechaHasta.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaHasta)
             datetimepickerFechaInterrupcion.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker_OnlyDate(.FechaInterrupcion, datetimepickerFechaInterrupcion)
 
@@ -124,6 +127,7 @@
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
         End With
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -156,6 +160,10 @@
     Private Sub FechaDesde_ValueChanged(sender As Object, e As EventArgs) Handles datetimepickerFechaDesde.ValueChanged
         CalcularFechaHasta()
         MostrarDiasEfectivos()
+    End Sub
+
+    Private Sub NumericUpDownDias_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownDias.ValueChanged
+        datetimepickerFechaHasta.Value = datetimepickerFechaDesde.Value.AddDays(NumericUpDownDias.Value - 1)
     End Sub
 
     Private Sub Fechas_ValueChanged(sender As Object, e As EventArgs) Handles datetimepickerFechaHasta.ValueChanged, datetimepickerFechaInterrupcion.ValueChanged
@@ -249,6 +257,7 @@
         If comboboxCausa.SelectedIndex > -1 Then
             Dim causa As LicenciaCausa = CType(comboboxCausa.SelectedItem, LicenciaCausa)
             If causa.CantidadDias.HasValue Then
+                NumericUpDownDias.Value = causa.CantidadDias.Value
                 datetimepickerFechaHasta.Value = datetimepickerFechaDesde.Value.AddDays(causa.CantidadDias.Value - 1)
             End If
         End If
