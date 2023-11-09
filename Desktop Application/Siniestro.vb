@@ -25,6 +25,7 @@ Partial Public Class Siniestro
     Public Property HoraFin As Nullable(Of System.TimeSpan)
     Public Property IDPersonaFin As Nullable(Of Integer)
     Public Property HoraLlegadaUltimoCamion As Nullable(Of System.TimeSpan)
+    Public Property Controlado As Boolean
     Public Property Anulado As Boolean
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short

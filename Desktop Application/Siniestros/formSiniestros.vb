@@ -20,6 +20,7 @@
         Public Property HoraSalida As TimeSpan?
         Public Property HoraFin As TimeSpan?
         Public Property Cerrado As Boolean
+        Public Property Controlado As Boolean
         Public Property Anulado As Boolean
     End Class
 
@@ -59,6 +60,11 @@
 
         comboboxCerrado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxCerrado.SelectedIndex = 0
+
+        ToolStripControlado.Visible = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
+        ComboBoxControlado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
+        ComboBoxControlado.SelectedIndex = 0
+        ColumnControlado.Visible = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
 
         comboboxAnulado.Items.AddRange({My.Resources.STRING_ITEM_ALL_MALE, My.Resources.STRING_YES, My.Resources.STRING_NO})
         comboboxAnulado.SelectedIndex = 2
@@ -142,13 +148,13 @@
                                    Join sr In mdbContext.SiniestroRubro On s.IDSiniestroRubro Equals sr.IDSiniestroRubro
                                    Join st In mdbContext.SiniestroTipo On s.IDSiniestroRubro Equals st.IDSiniestroRubro And s.IDSiniestroTipo Equals st.IDSiniestroTipo
                                    Join sc In mdbContext.SiniestroClave On s.IDSiniestroClave Equals sc.IDSiniestroClave
-                                   Where s.Fecha >= FechaDesde And s.Fecha <= FechaHasta
-                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .HoraSalida = s.HoraSalida, .HoraFin = s.HoraFin, .Cerrado = s.HoraFin.HasValue, .Anulado = s.Anulado}).ToList
+                                   Where s.Fecha >= FechaDesde AndAlso s.Fecha <= FechaHasta
+                                   Select New GridRowData With {.IDSiniestro = s.IDSiniestro, .IDCuartel = c.IDCuartel, .CuartelNombre = c.Nombre, .NumeroCompleto = s.NumeroCompleto, .IDSiniestroRubro = s.IDSiniestroRubro, .SiniestroRubroNombre = sr.Nombre, .IDSiniestroTipo = s.IDSiniestroTipo, .SiniestroTipoNombre = st.Nombre, .IDSiniestroClave = s.IDSiniestroClave, .ClaveNombre = sc.Nombre, .Fecha = s.Fecha, .HoraSalida = s.HoraSalida, .HoraFin = s.HoraFin, .Cerrado = s.HoraFin.HasValue, .Controlado = s.Controlado, .Anulado = s.Anulado}).ToList
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Siniestros.")
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
         End Try
 
         Me.Cursor = Cursors.Default
@@ -167,7 +173,7 @@
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
                 If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDSiniestro = PositionIDSiniestro Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
-                    Exit For
+                    Return
                 End If
             Next
         End If
@@ -209,6 +215,15 @@
                         mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Cerrado).ToList
                     Case 2      ' No
                         mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) Not s.Cerrado).ToList
+                End Select
+
+                ' Filtro por Controlado
+                Select Case ComboBoxControlado.SelectedIndex
+                    Case 0      ' Todos
+                    Case 1      ' Sí
+                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) s.Controlado).ToList
+                    Case 2      ' No
+                        mlistSiniestrosFiltradaYOrdenada = mlistSiniestrosFiltradaYOrdenada.Where(Function(s) Not s.Controlado).ToList
                 End Select
 
                 ' Filtro por Anulado
@@ -313,7 +328,7 @@
         RefreshData()
     End Sub
 
-    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxCuartel.SelectedIndexChanged, comboboxSiniestroTipo.SelectedIndexChanged, comboboxClave.SelectedIndexChanged, comboboxCerrado.SelectedIndexChanged, comboboxAnulado.SelectedIndexChanged
+    Private Sub CambioFiltros(sender As Object, e As EventArgs) Handles comboboxCuartel.SelectedIndexChanged, comboboxSiniestroTipo.SelectedIndexChanged, comboboxClave.SelectedIndexChanged, comboboxCerrado.SelectedIndexChanged, ComboBoxControlado.SelectedIndexChanged, comboboxAnulado.SelectedIndexChanged
         FilterData()
     End Sub
 

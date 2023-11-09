@@ -28,8 +28,8 @@ Partial Class formSiniestro
         Dim labelCuartel As System.Windows.Forms.Label
         Dim labelHoraFin As System.Windows.Forms.Label
         Dim labelHoraLlegadaUltimoCamion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelNumero = New System.Windows.Forms.Label()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
@@ -84,6 +84,8 @@ Partial Class formSiniestro
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.CheckBoxControlado = New System.Windows.Forms.CheckBox()
+        Me.LabelControlado = New System.Windows.Forms.Label()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         labelHoraSalida = New System.Windows.Forms.Label()
@@ -262,6 +264,8 @@ Partial Class formSiniestro
         '
         'tabpageGeneral
         '
+        Me.tabpageGeneral.Controls.Add(Me.CheckBoxControlado)
+        Me.tabpageGeneral.Controls.Add(Me.LabelControlado)
         Me.tabpageGeneral.Controls.Add(Me.buttonHoraFinFinalizar)
         Me.tabpageGeneral.Controls.Add(Me.labelResumenAsistencias)
         Me.tabpageGeneral.Controls.Add(Me.datagridviewResumenAsistencias)
@@ -312,7 +316,7 @@ Partial Class formSiniestro
         Me.labelResumenAsistencias.Location = New System.Drawing.Point(457, 76)
         Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
         Me.labelResumenAsistencias.Size = New System.Drawing.Size(125, 13)
-        Me.labelResumenAsistencias.TabIndex = 25
+        Me.labelResumenAsistencias.TabIndex = 27
         Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
         '
         'datagridviewResumenAsistencias
@@ -333,7 +337,7 @@ Partial Class formSiniestro
         Me.datagridviewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datagridviewResumenAsistencias.ShowEditingIcon = False
         Me.datagridviewResumenAsistencias.Size = New System.Drawing.Size(248, 232)
-        Me.datagridviewResumenAsistencias.TabIndex = 26
+        Me.datagridviewResumenAsistencias.TabIndex = 28
         '
         'columnResumenAsistenciaTipo
         '
@@ -347,10 +351,10 @@ Partial Class formSiniestro
         'columnResumenCantidad
         '
         Me.columnResumenCantidad.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N0"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "N0"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle1
         Me.columnResumenCantidad.HeaderText = "Cantidad"
         Me.columnResumenCantidad.Name = "columnResumenCantidad"
         Me.columnResumenCantidad.ReadOnly = True
@@ -545,11 +549,11 @@ Partial Class formSiniestro
         Me.datagridviewAsistencias.AllowUserToAddRows = False
         Me.datagridviewAsistencias.AllowUserToDeleteRows = False
         Me.datagridviewAsistencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -766,6 +770,26 @@ Partial Class formSiniestro
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'CheckBoxControlado
+        '
+        Me.CheckBoxControlado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CheckBoxControlado.AutoSize = True
+        Me.CheckBoxControlado.Location = New System.Drawing.Point(184, 283)
+        Me.CheckBoxControlado.Name = "CheckBoxControlado"
+        Me.CheckBoxControlado.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBoxControlado.TabIndex = 26
+        Me.CheckBoxControlado.UseVisualStyleBackColor = True
+        '
+        'LabelControlado
+        '
+        Me.LabelControlado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.LabelControlado.AutoSize = True
+        Me.LabelControlado.Location = New System.Drawing.Point(6, 283)
+        Me.LabelControlado.Name = "LabelControlado"
+        Me.LabelControlado.Size = New System.Drawing.Size(61, 13)
+        Me.LabelControlado.TabIndex = 25
+        Me.LabelControlado.Text = "Controlado:"
+        '
         'formSiniestro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -854,4 +878,6 @@ Partial Class formSiniestro
     Friend WithEvents labelResumenAsistencias As Label
     Friend WithEvents buttonHoraFinFinalizar As Button
     Friend WithEvents textboxPersonaFin As TextBox
+    Friend WithEvents CheckBoxControlado As CheckBox
+    Friend WithEvents LabelControlado As Label
 End Class

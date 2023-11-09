@@ -64,18 +64,18 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         '  Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
-        buttonImprimir.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
+        buttonImprimir.Visible = Not mEditMode
 
         ' General
-        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mSiniestroActual.SiniestrosAsistencias.Any()))
+        comboboxCuartel.Enabled = (mEditMode AndAlso (mIsNew OrElse Not mSiniestroActual.SiniestrosAsistencias.Any()))
         maskedtextboxNumeroPrefijo.ReadOnly = Not mEditMode
         maskedtextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
@@ -85,15 +85,16 @@
         textboxSiniestroTipoOtro.ReadOnly = Not mEditMode
         comboboxClave.Enabled = mEditMode
         datetimepickerHoraSalida.Enabled = mEditMode
-        buttonHoraFinFinalizar.Visible = (Not mEditMode) And Not (mPermisoEditarCompleto Or mSiniestroActual.HoraFin.HasValue)
-        datetimepickerHoraFin.Enabled = (mEditMode And mPermisoEditarCompleto)
+        buttonHoraFinFinalizar.Visible = (Not mEditMode) AndAlso Not (mPermisoEditarCompleto OrElse mSiniestroActual.HoraFin.HasValue)
+        datetimepickerHoraFin.Enabled = (mEditMode AndAlso mPermisoEditarCompleto)
         textboxPersonaFin.Visible = mSiniestroActual.HoraFin.HasValue
         datetimepickerHoraLlegadaUltimoCamion.Enabled = mEditMode
+        CheckBoxControlado.Enabled = mEditMode
         labelResumenAsistencias.Visible = Not mEditMode
         datagridviewResumenAsistencias.Visible = Not mEditMode
 
         ' Asistencias
-        toolstripAsistencias.Enabled = (mEditMode And mPermisoEditarCompleto)
+        toolstripAsistencias.Enabled = (mEditMode AndAlso mPermisoEditarCompleto)
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -109,6 +110,9 @@
 
         mPermisoEditarBasico = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False)
         mPermisoEditarCompleto = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
+
+        LabelControlado.Visible = mPermisoEditarCompleto
+        CheckBoxControlado.Visible = mPermisoEditarCompleto
 
         If Not mEditMode Then
             ResumenAsistenciasRefreshData()
@@ -153,6 +157,7 @@
                 textboxPersonaFin.Text = String.Empty
             End If
             datetimepickerHoraLlegadaUltimoCamion.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraLlegadaUltimoCamion, datetimepickerHoraLlegadaUltimoCamion)
+            CheckBoxControlado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Controlado)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -192,6 +197,7 @@
             .HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraSalida.Value, datetimepickerHoraSalida.Checked)
             .HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraFin.Value, datetimepickerHoraFin.Checked)
             .HoraLlegadaUltimoCamion = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraLlegadaUltimoCamion.Value, datetimepickerHoraLlegadaUltimoCamion.Checked)
+            .Controlado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
