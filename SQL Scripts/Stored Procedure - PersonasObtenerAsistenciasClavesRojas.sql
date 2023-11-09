@@ -106,7 +106,7 @@ BEGIN
 	-- Muestro las personas y los resultados
 	SELECT ISNULL(@ClavesRojasCantidad, 0) AS ClavesRojasCantidad, ISNULL(@ClavesRojas20PorCientoCantidad, 0) AS ClavesRojas20PorCientoCantidad, ISNULL(@ClavesRojas40PorCientoCantidad, 0) AS ClavesRojas40PorCientoCantidad,
 			ROW_NUMBER() OVER (ORDER BY p.Orden, p.ApellidoNombre) AS Orden, p.MatriculaNumero, UPPER(p.ApellidoNombre) AS ApellidoNombre,
-			ISNULL(rf.AusenciaInjustificadaCantidad, 0) AS AusenciaInjustificadaCantidad, ISNULL(rf.AusenciaCantidad, 0) AS AusenciaCantidad, (CASE WHEN ISNULL(rf.PresenteCantidad, 0) < @ClavesRojas40PorCientoCantidad THEN CAST(ISNULL(rf.PresenteCantidad, 0) AS varchar(10)) ELSE CAST('--' AS varchar(10)) END) AS CantidadInferior40PorCiento
+			ISNULL(rf.AusenciaInjustificadaCantidad, 0) AS AusenciaInjustificadaCantidad, ISNULL(rf.AusenciaCantidad, 0) AS AusenciaCantidad, ISNULL(rf.PresenteCantidad, 0) AS PresenteCantidad
 		FROM @ResultadoFinal AS rf
 			INNER JOIN Persona AS p ON rf.IDPersona = p.IDPersona
 		ORDER BY p.Orden
