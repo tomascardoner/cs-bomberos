@@ -112,7 +112,7 @@ Public Class formSiniestroFinalizar
 
         mSiniestro.HoraFin = New TimeSpan(Now.Hour, Now.Minute, 0)
         mSiniestro.IDPersonaFin = Persona.IDPersona
-        If Siniestros.AsistirPersonaYGuardar(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, idPersona, mensajeResultado) <> 2 Then
+        If FuncionesSiniestros.AsistirPersonaYGuardar(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, idPersona, mensajeResultado) <> 2 Then
             Threading.Thread.Sleep(1000)
             Me.DialogResult = DialogResult.Yes
         Else

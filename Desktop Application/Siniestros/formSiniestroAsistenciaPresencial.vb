@@ -127,7 +127,7 @@ Public Class formSiniestroAsistenciaPresencial
         persona = mdbContext.Persona.Find(idPersona)
         pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)
         textboxPersona.Text = persona.ApellidoNombre
-        Select Case Siniestros.AsistirPersonaYGuardar(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, idPersona, mensajeResultado)
+        Select Case FuncionesSiniestros.AsistirPersonaYGuardar(mdbContext, mSiniestro, mIdTipoSalidaAnticipada, mTipoSalidaAnticipadaNombre, mIdTipoPresente, mTipoPresenteNombre, idPersona, mensajeResultado)
             Case 0
                 ' Se asistió a la Persona
                 textboxEstado.ForeColor = Color.Black

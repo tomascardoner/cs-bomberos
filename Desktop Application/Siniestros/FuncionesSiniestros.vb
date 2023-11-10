@@ -1,4 +1,4 @@
-﻿Module Siniestros
+﻿Module FuncionesSiniestros
 
     Friend Function AsistirPersonaYGuardar(ByRef context As CSBomberosContext, ByRef siniestro As Siniestro, idTipoSalidaAnticipada As Byte, tipoSalidaAnticipadaNombre As String, idTipoPresente As Byte, tipoPresenteNombre As String, idPersona As Integer, ByRef mensajeResultado As String) As Byte
         If AsistirPersona(siniestro, idTipoSalidaAnticipada, tipoSalidaAnticipadaNombre, idTipoPresente, tipoPresenteNombre, idPersona, mensajeResultado) Then

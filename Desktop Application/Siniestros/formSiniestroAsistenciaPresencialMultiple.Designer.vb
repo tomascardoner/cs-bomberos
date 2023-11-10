@@ -28,7 +28,6 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.GroupBoxHuellaDigital = New System.Windows.Forms.GroupBox()
-        Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
         Me.buttonAsignar = New System.Windows.Forms.Button()
         Me.textboxEstado = New System.Windows.Forms.TextBox()
         Me.pictureboxFlecha = New System.Windows.Forms.PictureBox()
@@ -39,11 +38,13 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         Me.buttonAsistirConPin = New System.Windows.Forms.Button()
         Me.datagridviewMain = New System.Windows.Forms.DataGridView()
         Me.TimerMain = New System.Windows.Forms.Timer(Me.components)
+        Me.ColumnSeleccionado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.columnCuartel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnClave = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnMensaje = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
         Me.toolstripMain.SuspendLayout()
         Me.GroupBoxHuellaDigital.SuspendLayout()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,25 +89,6 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         Me.GroupBoxHuellaDigital.TabIndex = 1
         Me.GroupBoxHuellaDigital.TabStop = False
         Me.GroupBoxHuellaDigital.Text = "Con huella digital"
-        '
-        'controlPersonaAsignar
-        '
-        Me.controlPersonaAsignar.ApellidoNombre = Nothing
-        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.controlPersonaAsignar.dbContext = Nothing
-        Me.controlPersonaAsignar.IDCuartel = Nothing
-        Me.controlPersonaAsignar.IDPersona = Nothing
-        Me.controlPersonaAsignar.Location = New System.Drawing.Point(222, 82)
-        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
-        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
-        Me.controlPersonaAsignar.ReadOnlyText = False
-        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
-        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
-        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
-        Me.controlPersonaAsignar.TabIndex = 3
-        Me.controlPersonaAsignar.Visible = False
         '
         'buttonAsignar
         '
@@ -199,12 +181,10 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         Me.datagridviewMain.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.datagridviewMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
         Me.datagridviewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnClave, Me.columnMensaje})
-        Me.datagridviewMain.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.datagridviewMain.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnSeleccionado, Me.columnCuartel, Me.columnNumero, Me.columnFecha, Me.columnClave, Me.columnMensaje})
         Me.datagridviewMain.Location = New System.Drawing.Point(12, 42)
         Me.datagridviewMain.MultiSelect = False
         Me.datagridviewMain.Name = "datagridviewMain"
-        Me.datagridviewMain.ReadOnly = True
         Me.datagridviewMain.RowHeadersVisible = False
         Me.datagridviewMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -214,6 +194,13 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         'TimerMain
         '
         Me.TimerMain.Interval = 30000
+        '
+        'ColumnSeleccionado
+        '
+        Me.ColumnSeleccionado.DataPropertyName = "Seleccionado"
+        Me.ColumnSeleccionado.HeaderText = ""
+        Me.ColumnSeleccionado.Name = "ColumnSeleccionado"
+        Me.ColumnSeleccionado.Width = 5
         '
         'columnCuartel
         '
@@ -259,6 +246,25 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
         Me.columnMensaje.Name = "columnMensaje"
         Me.columnMensaje.ReadOnly = True
         '
+        'controlPersonaAsignar
+        '
+        Me.controlPersonaAsignar.ApellidoNombre = Nothing
+        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlPersonaAsignar.dbContext = Nothing
+        Me.controlPersonaAsignar.IDCuartel = Nothing
+        Me.controlPersonaAsignar.IDPersona = Nothing
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(222, 82)
+        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
+        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
+        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
+        Me.controlPersonaAsignar.ReadOnlyText = False
+        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
+        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
+        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
+        Me.controlPersonaAsignar.TabIndex = 3
+        Me.controlPersonaAsignar.Visible = False
+        '
         'formSiniestroAsistenciaPresencialMultiple
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -301,6 +307,7 @@ Partial Class formSiniestroAsistenciaPresencialMultiple
     Friend WithEvents buttonAsistirConPin As Button
     Friend WithEvents datagridviewMain As DataGridView
     Friend WithEvents TimerMain As Timer
+    Friend WithEvents ColumnSeleccionado As DataGridViewCheckBoxColumn
     Friend WithEvents columnCuartel As DataGridViewTextBoxColumn
     Friend WithEvents columnNumero As DataGridViewTextBoxColumn
     Friend WithEvents columnFecha As DataGridViewTextBoxColumn

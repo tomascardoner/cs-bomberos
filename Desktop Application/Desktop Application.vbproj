@@ -995,7 +995,7 @@
     <Compile Include="Siniestros\formSiniestros.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Siniestros\Siniestros.vb" />
+    <Compile Include="Siniestros\FuncionesSiniestros.vb" />
     <Compile Include="SiniestroTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
