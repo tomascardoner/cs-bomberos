@@ -127,6 +127,9 @@ Partial Public Class CSBomberosContext
     Public Overridable Property CuentaBancariaTipo() As DbSet(Of CuentaBancariaTipo)
     Public Overridable Property SancionMotivo() As DbSet(Of SancionMotivo)
     Public Overridable Property PersonaHuellaDigital() As DbSet(Of PersonaHuellaDigital)
+    Public Overridable Property OrdenGeneral() As DbSet(Of OrdenGeneral)
+    Public Overridable Property OrdenGeneralCategoria() As DbSet(Of OrdenGeneralCategoria)
+    Public Overridable Property Resolucion() As DbSet(Of Resolucion)
 
     Public Overridable Function PersonasObtenerPorCuartelYEstado(iDCuartel As Nullable(Of Byte), soloEstadoActivo As Nullable(Of Boolean)) As ObjectResult(Of PersonasObtenerPorCuartelYEstado_Result)
         Dim iDCuartelParameter As ObjectParameter = If(iDCuartel.HasValue, New ObjectParameter("IDCuartel", iDCuartel), New ObjectParameter("IDCuartel", GetType(Byte)))

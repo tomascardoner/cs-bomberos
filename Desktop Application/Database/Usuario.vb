@@ -183,5 +183,11 @@ Partial Public Class Usuario
     Public Overridable Property CuentasBancariasTiposModificados As ICollection(Of CuentaBancariaTipo) = New HashSet(Of CuentaBancariaTipo)
     Public Overridable Property SancionesMotivosCreados As ICollection(Of SancionMotivo) = New HashSet(Of SancionMotivo)
     Public Overridable Property SancionesMotivosModificados As ICollection(Of SancionMotivo) = New HashSet(Of SancionMotivo)
+    Public Overridable Property OrdenesGeneralesCreadas As ICollection(Of OrdenGeneral) = New HashSet(Of OrdenGeneral)
+    Public Overridable Property OrdenesGeneralesModificadas As ICollection(Of OrdenGeneral) = New HashSet(Of OrdenGeneral)
+    Public Overridable Property OrdenesGeneralesCategoriasCreadas As ICollection(Of OrdenGeneralCategoria) = New HashSet(Of OrdenGeneralCategoria)
+    Public Overridable Property OrdenesGeneralesCategoriasModificadas As ICollection(Of OrdenGeneralCategoria) = New HashSet(Of OrdenGeneralCategoria)
+    Public Overridable Property ResolucionesCreadas As ICollection(Of Resolucion) = New HashSet(Of Resolucion)
+    Public Overridable Property ResolucionesModificadas As ICollection(Of Resolucion) = New HashSet(Of Resolucion)
 
 End Class

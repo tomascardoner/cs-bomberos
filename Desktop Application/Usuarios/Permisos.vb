@@ -361,6 +361,18 @@
     Friend Const ACADEMIA_ELIMINAR As String = "ACADEMIA_ELIMINAR"
     Friend Const ACADEMIA_ASISTIR_MANUAL As String = "ACADEMIA_ASISTIR_MANUAL"
 
+    ' Órdenes generales y resoluciones
+
+    Friend Const ORDENGENERAL As String = "ORDENGENERAL"
+    Friend Const ORDENGENERAL_AGREGAR As String = "ORDENGENERAL_AGREGAR"
+    Friend Const ORDENGENERAL_EDITAR As String = "ORDENGENERAL_EDITAR"
+    Friend Const ORDENGENERAL_ELIMINAR As String = "ORDENGENERAL_ELIMINAR"
+
+    Friend Const RESOLUCION As String = "RESOLUCION"
+    Friend Const RESOLUCION_AGREGAR As String = "RESOLUCION_AGREGAR"
+    Friend Const RESOLUCION_EDITAR As String = "RESOLUCION_EDITAR"
+    Friend Const RESOLUCION_ELIMINAR As String = "RESOLUCION_ELIMINAR"
+
     ' Reportes
 
     Friend Const REPORTE_DOCUMENTACIONES As String = "REPORTE_DOCUMENTACIONES"
@@ -561,6 +573,10 @@
         nodeCurrent.Nodes.Add(CAJAARQUEO_EDITAR_CERRADA, DESCRIPCION_EDITAR & " arqueo de caja cerrado")
         nodeCurrent.Nodes.Add(CAJAARQUEO_ELIMINAR_CERRADA, DESCRIPCION_ELIMINAR & " arqueo de caja cerrado")
         nodeCurrent.Nodes.Add(CAJAARQUEO_IMPRIMIR_CERRADA, DESCRIPCION_IMPRIMIR & " arqueo de caja cerrado")
+
+        ' Jefatura - órdenes generales y resoluciones
+        AgregarNodos(nodeRoot, ORDENGENERAL, "Órdenes generales", ORDENGENERAL_AGREGAR, DESCRIPCION_AGREGAR, ORDENGENERAL_EDITAR, DESCRIPCION_EDITAR, ORDENGENERAL_ELIMINAR, DESCRIPCION_ELIMINAR)
+        AgregarNodos(nodeRoot, RESOLUCION, "Resoluciones", RESOLUCION_AGREGAR, DESCRIPCION_AGREGAR, RESOLUCION_EDITAR, DESCRIPCION_EDITAR, RESOLUCION_ELIMINAR, DESCRIPCION_ELIMINAR)
 
         ' Jefatura - reportes
         nodeParent = nodeRoot.Nodes.Add(REPORTE_JEFATURA, "Reportes")

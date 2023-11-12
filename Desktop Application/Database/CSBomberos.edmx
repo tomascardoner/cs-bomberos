@@ -759,6 +759,38 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrdenGeneral">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneral" />
+          </Key>
+          <Property Name="IDOrdenGeneral" Type="int" Nullable="false" />
+          <Property Name="Numero" Type="smallint" Nullable="false" />
+          <Property Name="SubNumero" Type="tinyint" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="NumeroCompleto" Type="varchar" MaxLength="19" StoreGeneratedPattern="Computed" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Personal" Type="varchar(max)" />
+          <Property Name="IDOrdenGeneralCategoria" Type="tinyint" />
+          <Property Name="DerogaIDOrdenGeneral" Type="int" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrdenGeneralCategoria">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneralCategoria" />
+          </Key>
+          <Property Name="IDOrdenGeneralCategoria" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Parametro">
           <Key>
             <PropertyRef Name="IDParametro" />
@@ -1281,6 +1313,21 @@
           </Key>
           <Property Name="IDReporte" Type="smallint" Nullable="false" />
           <Property Name="IDReporteGrupo" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resolucion">
+          <Key>
+            <PropertyRef Name="IDResolucion" />
+          </Key>
+          <Property Name="IDResolucion" Type="int" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="NumeroCompleto" Type="varchar" MaxLength="10" StoreGeneratedPattern="Computed" />
+          <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Notas" Type="varchar(max)" />
+          <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Responsable">
           <Key>
@@ -2517,6 +2564,18 @@
             </Principal>
             <Dependent Role="ComprobanteTipo">
               <PropertyRef Name="IDNumerador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenGeneralCategoria__OrdenGeneral">
+          <End Role="OrdenGeneralCategoria" Type="Self.OrdenGeneralCategoria" Multiplicity="0..1" />
+          <End Role="OrdenGeneral" Type="Self.OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDOrdenGeneralCategoria" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneralCategoria" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4066,6 +4125,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Usuario__OrdenGeneral__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrdenGeneral" Type="Self.OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneral__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrdenGeneral" Type="Self.OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneralCategoria__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrdenGeneralCategoria" Type="Self.OrdenGeneralCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneralCategoria__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="OrdenGeneralCategoria" Type="Self.OrdenGeneralCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Usuario__Parentesco__Creacion">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Parentesco" Type="Self.Parentesco" Multiplicity="*" />
@@ -4482,6 +4589,30 @@
               <PropertyRef Name="IDUsuario" />
             </Principal>
             <Dependent Role="PersonaVehiculo">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Resolucion__Creacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Resolucion" Type="Self.Resolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Resolucion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Resolucion__Modificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Resolucion" Type="Self.Resolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Resolucion">
               <PropertyRef Name="IDUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
@@ -5226,6 +5357,8 @@
           <EntitySet Name="Modulo" EntityType="Self.Modulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NivelEstudio" EntityType="Self.NivelEstudio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Numerador" EntityType="Self.Numerador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenGeneral" EntityType="Self.OrdenGeneral" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenGeneralCategoria" EntityType="Self.OrdenGeneralCategoria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
@@ -5253,6 +5386,7 @@
           <EntitySet Name="ReporteGrupo" EntityType="Self.ReporteGrupo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteParametro" EntityType="Self.ReporteParametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReporteReporteGrupo" EntityType="Self.ReporteReporteGrupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resolucion" EntityType="Self.Resolucion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Responsable" EntityType="Self.Responsable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ResponsableTipo" EntityType="Self.ResponsableTipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rubro" EntityType="Self.Rubro" Schema="dbo" store:Type="Tables" />
@@ -5546,6 +5680,10 @@
           <AssociationSet Name="FK__Numerador__ComprobanteTipo" Association="Self.FK__Numerador__ComprobanteTipo">
             <End Role="Numerador" EntitySet="Numerador" />
             <End Role="ComprobanteTipo" EntitySet="ComprobanteTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenGeneralCategoria__OrdenGeneral" Association="Self.FK__OrdenGeneralCategoria__OrdenGeneral">
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
           </AssociationSet>
           <AssociationSet Name="FK__Parentesco__PersonaFamiliar" Association="Self.FK__Parentesco__PersonaFamiliar">
             <End Role="Parentesco" EntitySet="Parentesco" />
@@ -6059,6 +6197,22 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Numerador" EntitySet="Numerador" />
           </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneral__Creacion" Association="Self.FK__Usuario__OrdenGeneral__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneral__Modificacion" Association="Self.FK__Usuario__OrdenGeneral__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneralCategoria__Creacion" Association="Self.FK__Usuario__OrdenGeneralCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneralCategoria__Modificacion" Association="Self.FK__Usuario__OrdenGeneralCategoria__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+          </AssociationSet>
           <AssociationSet Name="FK__Usuario__Parentesco__Creacion" Association="Self.FK__Usuario__Parentesco__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Parentesco" EntitySet="Parentesco" />
@@ -6198,6 +6352,14 @@
           <AssociationSet Name="FK__Usuario__PersonaVehiculo__Modificacion" Association="Self.FK__Usuario__PersonaVehiculo__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Resolucion__Creacion" Association="Self.FK__Usuario__Resolucion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Resolucion" EntitySet="Resolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Resolucion__Modificacion" Association="Self.FK__Usuario__Resolucion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Resolucion" EntitySet="Resolucion" />
           </AssociationSet>
           <AssociationSet Name="FK__Usuario__Responsable__Creacion" Association="Self.FK__Usuario__Responsable__Creacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -7683,6 +7845,37 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Siniestro" EntitySet="Siniestro" />
           </AssociationSet>
+          <EntitySet Name="OrdenGeneral" EntityType="CSBomberosModel.OrdenGeneral" />
+          <EntitySet Name="OrdenGeneralCategoria" EntityType="CSBomberosModel.OrdenGeneralCategoria" />
+          <EntitySet Name="Resolucion" EntityType="CSBomberosModel.Resolucion" />
+          <AssociationSet Name="FK__OrdenGeneralCategoria__OrdenGeneral" Association="CSBomberosModel.FK__OrdenGeneralCategoria__OrdenGeneral">
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneral__Creacion" Association="CSBomberosModel.FK__Usuario__OrdenGeneral__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneral__Modificacion" Association="CSBomberosModel.FK__Usuario__OrdenGeneral__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneralCategoria__Creacion" Association="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__OrdenGeneralCategoria__Modificacion" Association="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Resolucion__Creacion" Association="CSBomberosModel.FK__Usuario__Resolucion__Creacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Resolucion" EntitySet="Resolucion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuario__Resolucion__Modificacion" Association="CSBomberosModel.FK__Usuario__Resolucion__Modificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Resolucion" EntitySet="Resolucion" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -7973,6 +8166,12 @@
           <NavigationProperty Name="CuentasBancariasTiposModificados" Relationship="CSBomberosModel.FK__Usuario__CuentaBancariaTipo__Modificacion" FromRole="Usuario" ToRole="CuentaBancariaTipo" />
           <NavigationProperty Name="SancionesMotivosCreados" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Creacion" FromRole="Usuario" ToRole="SancionMotivo" />
           <NavigationProperty Name="SancionesMotivosModificados" Relationship="CSBomberosModel.FK__Usuario__SancionMotivo__Modificacion" FromRole="Usuario" ToRole="SancionMotivo" />
+          <NavigationProperty Name="OrdenesGeneralesCreadas" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Creacion" FromRole="Usuario" ToRole="OrdenGeneral" />
+          <NavigationProperty Name="OrdenesGeneralesModificadas" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Modificacion" FromRole="Usuario" ToRole="OrdenGeneral" />
+          <NavigationProperty Name="OrdenesGeneralesCategoriasCreadas" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Creacion" FromRole="Usuario" ToRole="OrdenGeneralCategoria" />
+          <NavigationProperty Name="OrdenesGeneralesCategoriasModificadas" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion" FromRole="Usuario" ToRole="OrdenGeneralCategoria" />
+          <NavigationProperty Name="ResolucionesCreadas" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Creacion" FromRole="Usuario" ToRole="Resolucion" />
+          <NavigationProperty Name="ResolucionesModificadas" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Modificacion" FromRole="Usuario" ToRole="Resolucion" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -13378,6 +13577,145 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OrdenGeneral">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneral" />
+          </Key>
+          <Property Name="IDOrdenGeneral" Type="Int32" Nullable="false" />
+          <Property Name="Numero" Type="Int16" Nullable="false" />
+          <Property Name="SubNumero" Type="Byte" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="NumeroCompleto" Type="String" MaxLength="19" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Personal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDOrdenGeneralCategoria" Type="Byte" />
+          <Property Name="DerogaIDOrdenGeneral" Type="Int32" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="OrdenGeneralCategoria" Relationship="CSBomberosModel.FK__OrdenGeneralCategoria__OrdenGeneral" FromRole="OrdenGeneral" ToRole="OrdenGeneralCategoria" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Creacion" FromRole="OrdenGeneral" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Modificacion" FromRole="OrdenGeneral" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="OrdenGeneralCategoria">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneralCategoria" />
+          </Key>
+          <Property Name="IDOrdenGeneralCategoria" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="OrdenesGenerales" Relationship="CSBomberosModel.FK__OrdenGeneralCategoria__OrdenGeneral" FromRole="OrdenGeneralCategoria" ToRole="OrdenGeneral" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Creacion" FromRole="OrdenGeneralCategoria" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion" FromRole="OrdenGeneralCategoria" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Resolucion">
+          <Key>
+            <PropertyRef Name="IDResolucion" />
+          </Key>
+          <Property Name="IDResolucion" Type="Int32" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="NumeroCompleto" Type="String" MaxLength="10" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Creacion" FromRole="Resolucion" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Modificacion" FromRole="Resolucion" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK__OrdenGeneralCategoria__OrdenGeneral">
+          <End Type="CSBomberosModel.OrdenGeneralCategoria" Role="OrdenGeneralCategoria" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.OrdenGeneral" Role="OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDOrdenGeneralCategoria" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneralCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneral__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneral" Role="OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneral__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneral" Role="OrdenGeneral" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneral">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneralCategoria__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneralCategoria" Role="OrdenGeneralCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__OrdenGeneralCategoria__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneralCategoria" Role="OrdenGeneralCategoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="OrdenGeneralCategoria">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Resolucion__Creacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Resolucion" Role="Resolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Resolucion">
+              <PropertyRef Name="IDUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuario__Resolucion__Modificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.Resolucion" Role="Resolucion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="Resolucion">
+              <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15209,6 +15547,56 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="OrdenGeneral">
+            <EntityTypeMapping TypeName="CSBomberosModel.OrdenGeneral">
+              <MappingFragment StoreEntitySet="OrdenGeneral">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="DerogaIDOrdenGeneral" ColumnName="DerogaIDOrdenGeneral" />
+                <ScalarProperty Name="IDOrdenGeneralCategoria" ColumnName="IDOrdenGeneralCategoria" />
+                <ScalarProperty Name="Personal" ColumnName="Personal" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SubNumero" ColumnName="SubNumero" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="IDOrdenGeneral" ColumnName="IDOrdenGeneral" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenGeneralCategoria">
+            <EntityTypeMapping TypeName="CSBomberosModel.OrdenGeneralCategoria">
+              <MappingFragment StoreEntitySet="OrdenGeneralCategoria">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IDOrdenGeneralCategoria" ColumnName="IDOrdenGeneralCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resolucion">
+            <EntityTypeMapping TypeName="CSBomberosModel.Resolucion">
+              <MappingFragment StoreEntitySet="Resolucion">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IDUsuarioModificacion" ColumnName="IDUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
+                <ScalarProperty Name="Notas" ColumnName="Notas" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="NumeroCompleto" ColumnName="NumeroCompleto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="IDResolucion" ColumnName="IDResolucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

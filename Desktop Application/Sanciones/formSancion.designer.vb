@@ -114,7 +114,7 @@ Partial Class formSancion
         '
         labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(6, 314)
+        labelModificacion.Location = New System.Drawing.Point(6, 370)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(102, 13)
         labelModificacion.TabIndex = 21
@@ -124,7 +124,7 @@ Partial Class formSancion
         '
         labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(6, 288)
+        labelCreacion.Location = New System.Drawing.Point(6, 344)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(52, 13)
         labelCreacion.TabIndex = 18
@@ -248,7 +248,7 @@ Partial Class formSancion
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(386, 247)
+        Me.textboxNotas.Size = New System.Drawing.Size(386, 303)
         Me.textboxNotas.TabIndex = 15
         '
         'labelNotas
@@ -272,7 +272,7 @@ Partial Class formSancion
         Me.tabcontrolMain.Location = New System.Drawing.Point(12, 42)
         Me.tabcontrolMain.Name = "tabcontrolMain"
         Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(518, 432)
+        Me.tabcontrolMain.Size = New System.Drawing.Size(518, 434)
         Me.tabcontrolMain.TabIndex = 0
         '
         'tabpageGeneral
@@ -284,7 +284,7 @@ Partial Class formSancion
         Me.tabpageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.tabpageGeneral.Name = "tabpageGeneral"
         Me.tabpageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageGeneral.Size = New System.Drawing.Size(510, 403)
+        Me.tabpageGeneral.Size = New System.Drawing.Size(510, 405)
         Me.tabpageGeneral.TabIndex = 0
         Me.tabpageGeneral.Text = "General"
         Me.tabpageGeneral.UseVisualStyleBackColor = True
@@ -480,7 +480,7 @@ Partial Class formSancion
         Me.tabpageResolucion.Controls.Add(Me.groupboxResolucion)
         Me.tabpageResolucion.Location = New System.Drawing.Point(4, 25)
         Me.tabpageResolucion.Name = "tabpageResolucion"
-        Me.tabpageResolucion.Size = New System.Drawing.Size(510, 403)
+        Me.tabpageResolucion.Size = New System.Drawing.Size(510, 405)
         Me.tabpageResolucion.TabIndex = 2
         Me.tabpageResolucion.Text = "Resolución y testimonio"
         Me.tabpageResolucion.UseVisualStyleBackColor = True
@@ -735,7 +735,7 @@ Partial Class formSancion
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(510, 403)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(510, 393)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -744,7 +744,7 @@ Partial Class formSancion
         '
         Me.labelIDSancion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelIDSancion.AutoSize = True
-        Me.labelIDSancion.Location = New System.Drawing.Point(6, 262)
+        Me.labelIDSancion.Location = New System.Drawing.Point(6, 318)
         Me.labelIDSancion.Name = "labelIDSancion"
         Me.labelIDSancion.Size = New System.Drawing.Size(78, 13)
         Me.labelIDSancion.TabIndex = 16
@@ -753,7 +753,7 @@ Partial Class formSancion
         'textboxIDSancion
         '
         Me.textboxIDSancion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxIDSancion.Location = New System.Drawing.Point(114, 259)
+        Me.textboxIDSancion.Location = New System.Drawing.Point(114, 315)
         Me.textboxIDSancion.MaxLength = 10
         Me.textboxIDSancion.Name = "textboxIDSancion"
         Me.textboxIDSancion.ReadOnly = True
@@ -766,7 +766,7 @@ Partial Class formSancion
         '
         Me.textboxUsuarioModificacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 311)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(241, 367)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
         Me.textboxUsuarioModificacion.ReadOnly = True
@@ -777,7 +777,7 @@ Partial Class formSancion
         '
         Me.textboxUsuarioCreacion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 285)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(241, 341)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
         Me.textboxUsuarioCreacion.ReadOnly = True
@@ -787,7 +787,7 @@ Partial Class formSancion
         'textboxFechaHoraModificacion
         '
         Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 311)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(114, 367)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
         Me.textboxFechaHoraModificacion.ReadOnly = True
@@ -797,7 +797,7 @@ Partial Class formSancion
         'textboxFechaHoraCreacion
         '
         Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 285)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(114, 341)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
         Me.textboxFechaHoraCreacion.ReadOnly = True
@@ -808,7 +808,7 @@ Partial Class formSancion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 485)
+        Me.ClientSize = New System.Drawing.Size(542, 487)
         Me.Controls.Add(Me.tabcontrolMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

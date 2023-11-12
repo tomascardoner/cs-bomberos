@@ -398,6 +398,16 @@
         <AssociationConnector Association="CSBomberosModel.FK__Area__Comprobante" />
         <AssociationConnector Association="CSBomberosModel.FK__CuentaBancariaTipo__ComprobanteMedioPago" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Siniestro" />
+        <EntityTypeShape EntityType="CSBomberosModel.OrdenGeneral" Width="1.5" PointX="18.75" PointY="183.125" />
+        <EntityTypeShape EntityType="CSBomberosModel.OrdenGeneralCategoria" Width="1.5" PointX="16.5" PointY="195.625" />
+        <EntityTypeShape EntityType="CSBomberosModel.Resolucion" Width="1.5" PointX="16.5" PointY="164.5" />
+        <AssociationConnector Association="CSBomberosModel.FK__OrdenGeneralCategoria__OrdenGeneral" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__OrdenGeneral__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__OrdenGeneral__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Resolucion__Creacion" />
+        <AssociationConnector Association="CSBomberosModel.FK__Usuario__Resolucion__Modificacion" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

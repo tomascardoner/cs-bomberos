@@ -423,6 +423,10 @@
         ShowForm(Permisos.CAJAARQUEO, CType(formCajasArqueos, Form))
     End Sub
 
+    Private Sub OrdenesGenerales(sender As Object, e As EventArgs) Handles menuitemJefatura_OrdenesGenerales.Click
+        ShowForm(Permisos.ORDENGENERAL, CType(formOrdenesGenerales, Form))
+    End Sub
+
     Private Sub JefaturaReportes(sender As Object, e As EventArgs) Handles menuitemJefatura_Reportes.Click
         ShowFormReportes(Permisos.REPORTE_JEFATURA, Constantes.ModuloJefaturaId, Constantes.ModuloJefaturaNombre)
     End Sub

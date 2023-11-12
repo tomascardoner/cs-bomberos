@@ -97,7 +97,6 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\dotnet\CrystalDecisions.Shared.dll</HintPath>
@@ -410,19 +409,19 @@
     <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Academia.vb">
+    <Compile Include="Database\Academia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AcademiaAsistencia.vb">
+    <Compile Include="Database\AcademiaAsistencia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AcademiaAsistenciaTipo.vb">
+    <Compile Include="Database\AcademiaAsistenciaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AcademiaAsistenciaTipoPuntaje.vb">
+    <Compile Include="Database\AcademiaAsistenciaTipoPuntaje.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AcademiaObtenerPersonasParaAsistencia_Result.vb">
+    <Compile Include="Database\AcademiaObtenerPersonasParaAsistencia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Academias\formAcademia.designer.vb">
@@ -449,22 +448,22 @@
     <Compile Include="Academias\formAcademias.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AcademiaTipo.vb">
+    <Compile Include="Database\AcademiaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Alarma.vb">
+    <Compile Include="Database\Alarma.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Area.vb">
+    <Compile Include="Database\Area.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Articulo.vb">
+    <Compile Include="Database\Articulo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="AsistenciaMetodo.vb">
+    <Compile Include="Database\AsistenciaMetodo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Banco.vb">
+    <Compile Include="Database\Banco.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="C:\Data\Cardoner Sistemas\Development\framework-vbnet\CS_Parameter_System.vb">
@@ -488,13 +487,13 @@
     <Compile Include="ABM Tablas\Otros\formCuartel.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Caja.vb">
+    <Compile Include="Database\Caja.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CajaArqueo.vb">
+    <Compile Include="Database\CajaArqueo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CajaArqueoDetalle.vb">
+    <Compile Include="Database\CajaArqueoDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Cajas\formCajaArqueo.designer.vb">
@@ -515,43 +514,43 @@
     <Compile Include="Cajas\formCajasArqueos.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CalificacionConcepto.vb">
+    <Compile Include="Database\CalificacionConcepto.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CapacitacionNivel.vb">
+    <Compile Include="Database\CapacitacionNivel.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CapacitacionTipo.vb">
+    <Compile Include="Database\CapacitacionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Cargo.vb">
+    <Compile Include="Database\Cargo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CargoJerarquia.vb">
+    <Compile Include="Database\CargoJerarquia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CategoriaIVA.vb">
+    <Compile Include="Database\CategoriaIVA.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Cheque.vb">
+    <Compile Include="Database\Cheque.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ChequeMotivoRechazo.vb">
+    <Compile Include="Database\ChequeMotivoRechazo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CombustibleTipo.vb">
+    <Compile Include="Database\CombustibleTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraOrden.vb">
+    <Compile Include="Database\CompraOrden.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CompraOrdenDetalle.vb">
+    <Compile Include="Database\CompraOrdenDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComprobanteDetalle.vb">
+    <Compile Include="Database\ComprobanteDetalle.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComprobanteMedioPago.vb">
+    <Compile Include="Database\ComprobanteMedioPago.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Comprobantes\formCheque.designer.vb">
@@ -608,16 +607,16 @@
     <Compile Include="Compras\formCompraOrdenes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Comprobante.vb">
+    <Compile Include="Database\Comprobante.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComprobanteAplicacion.vb">
+    <Compile Include="Database\ComprobanteAplicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComprobanteTipo.vb">
+    <Compile Include="Database\ComprobanteTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Concepto.vb">
+    <Compile Include="Database\Concepto.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Config\AppearanceConfig.vb" />
@@ -631,35 +630,44 @@
     <Compile Include="Controles\ControlPersona.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Cuartel.vb">
+    <Compile Include="Database\Cuartel.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="CuentaBancariaTipo.vb">
+    <Compile Include="Database\CuentaBancariaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Curso.vb">
+    <Compile Include="Database\Curso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\CajaArqueoExtension.vb" />
     <Compile Include="Database\ComprobanteExtension.vb" />
     <Compile Include="Database\NumeradorExtension.vb" />
-    <Compile Include="DocumentacionTipo.vb">
+    <Compile Include="Database\DocumentacionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="DocumentoTipo.vb">
+    <Compile Include="Database\DocumentoTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Elemento.vb">
+    <Compile Include="Database\Elemento.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entidad.vb">
+    <Compile Include="Database\Entidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="EstadoCivil.vb">
+    <Compile Include="Database\EstadoCivil.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\OrdenGeneral.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\OrdenGeneralCategoria.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Resolucion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.vb" />
-    <Compile Include="Inventario.vb">
+    <Compile Include="Database\Inventario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Inventario\formInventarioAgregarMultiple.designer.vb">
@@ -668,32 +676,33 @@
     <Compile Include="Inventario\formInventarioAgregarMultiple.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LicenciaCausa.vb">
+    <Compile Include="Database\LicenciaCausa.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="LicenciaConducirCategoria.vb">
+    <Compile Include="Database\LicenciaConducirCategoria.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Listas\Academias.vb" />
     <Compile Include="Listas\Comprobantes.vb" />
     <Compile Include="Listas\Comunes.vb" />
     <Compile Include="Listas\Personas.vb" />
+    <Compile Include="Listas\Resoluciones.vb" />
     <Compile Include="Listas\Responsables.vb" />
     <Compile Include="Listas\Sanciones.vb" />
     <Compile Include="Listas\Siniestros.vb" />
-    <Compile Include="Localidad.vb">
+    <Compile Include="Database\Localidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Log.vb">
+    <Compile Include="Database\Log.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="MedioPago.vb">
+    <Compile Include="Database\MedioPago.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModoAdquisicion.vb">
+    <Compile Include="Database\ModoAdquisicion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modulo.vb">
+    <Compile Include="Database\Modulo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
@@ -701,73 +710,73 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="NivelEstudio.vb">
+    <Compile Include="Database\NivelEstudio.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Numerador.vb">
+    <Compile Include="Database\Numerador.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Parametro.vb">
+    <Compile Include="Database\Parametro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Parentesco.vb">
+    <Compile Include="Database\Parentesco.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Partido.vb">
+    <Compile Include="Database\Partido.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PenaAplicacion.vb">
+    <Compile Include="Database\PenaAplicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Persona.vb">
+    <Compile Include="Database\Persona.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaAccidente.vb">
+    <Compile Include="Database\PersonaAccidente.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaAltaBaja.vb">
+    <Compile Include="Database\PersonaAltaBaja.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaAscenso.vb">
+    <Compile Include="Database\PersonaAscenso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaBajaMotivo.vb">
+    <Compile Include="Database\PersonaBajaMotivo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaCalificacion.vb">
+    <Compile Include="Database\PersonaCalificacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaCapacitacion.vb">
+    <Compile Include="Database\PersonaCapacitacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaExamen.vb">
+    <Compile Include="Database\PersonaExamen.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaFamiliar.vb">
+    <Compile Include="Database\PersonaFamiliar.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaHorarioLaboral.vb">
+    <Compile Include="Database\PersonaHorarioLaboral.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaHuellaDigital.vb">
+    <Compile Include="Database\PersonaHuellaDigital.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaLicencia.vb">
+    <Compile Include="Database\PersonaLicencia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaLicenciaConducirCategoria.vb">
+    <Compile Include="Database\PersonaLicenciaConducirCategoria.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaLicenciaEspecial.vb">
+    <Compile Include="Database\PersonaLicenciaEspecial.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaSancion.vb">
+    <Compile Include="Database\PersonaSancion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonasObtenerConEstadoYJerarquia_Result.vb">
+    <Compile Include="Database\PersonasObtenerConEstadoYJerarquia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonasObtenerPorCuartelYEstado_Result.vb">
+    <Compile Include="Database\PersonasObtenerPorCuartelYEstado_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Personas\formPersonaIdentificacionHuellasDigitales.Designer.vb">
@@ -788,25 +797,25 @@
     <Compile Include="Personas\formPersonaLicenciaEspecial.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PersonaVacuna.vb">
+    <Compile Include="Database\PersonaVacuna.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="PersonaVehiculo.vb">
+    <Compile Include="Database\PersonaVehiculo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Provincia.vb">
+    <Compile Include="Database\Provincia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reporte.vb">
+    <Compile Include="Database\Reporte.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReporteCampo.vb">
+    <Compile Include="Database\ReporteCampo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReporteGrupo.vb">
+    <Compile Include="Database\ReporteGrupo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ReporteParametro.vb">
+    <Compile Include="Database\ReporteParametro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Reportes\formReportesParametroFamiliares.Designer.vb">
@@ -902,14 +911,26 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Database\ReporteParametroExtension.vb" />
-    <Compile Include="Responsable.vb">
+    <Compile Include="Resoluciones\formOrdenesGenerales.designer.vb">
+      <DependentUpon>formOrdenesGenerales.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Resoluciones\formOrdenesGenerales.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Database\Responsable.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="ResponsableTipo.vb">
+    <Compile Include="Database\ResponsableTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Rubro.vb">
+    <Compile Include="Database\Rubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Resoluciones\formOrdenGeneral.designer.vb">
+      <DependentUpon>formOrdenGeneral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Resoluciones\formOrdenGeneral.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sanciones\formSanciones.designer.vb">
       <DependentUpon>formSanciones.vb</DependentUpon>
@@ -917,34 +938,34 @@
     <Compile Include="Sanciones\formSanciones.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SancionMotivo.vb">
+    <Compile Include="Database\SancionMotivo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SancionTipo.vb">
+    <Compile Include="Database\SancionTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Siniestro.vb">
+    <Compile Include="Database\Siniestro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroAsistencia.vb">
+    <Compile Include="Database\SiniestroAsistencia.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroAsistenciaTipo.vb">
+    <Compile Include="Database\SiniestroAsistenciaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroAsistenciaTipoPuntaje.vb">
+    <Compile Include="Database\SiniestroAsistenciaTipoPuntaje.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroAsistenciaTipoPuntajeClave.vb">
+    <Compile Include="Database\SiniestroAsistenciaTipoPuntajeClave.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroClave.vb">
+    <Compile Include="Database\SiniestroClave.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroObtenerPersonasParaAsistencia_Result.vb">
+    <Compile Include="Database\SiniestroObtenerPersonasParaAsistencia_Result.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SiniestroRubro.vb">
+    <Compile Include="Database\SiniestroRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Siniestros\formSiniestro.designer.vb">
@@ -996,7 +1017,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Siniestros\FuncionesSiniestros.vb" />
-    <Compile Include="SiniestroTipo.vb">
+    <Compile Include="Database\SiniestroTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Sistema\Appearance.vb" />
@@ -1026,12 +1047,12 @@
       <Link>Framework\CS_ValueTranslation.vb</Link>
     </Compile>
     <Compile Include="Sistema\Constantes.vb" />
-    <Compile Include="CSBomberos.Context.vb">
+    <Compile Include="Database\CSBomberos.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CSBomberos.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="CSBomberos.vb">
+    <Compile Include="Database\CSBomberos.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CSBomberos.tt</DependentUpon>
@@ -1195,22 +1216,22 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sistema\RefreshLists.vb" />
-    <Compile Include="SubRubro.vb">
+    <Compile Include="Database\SubRubro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="SubUbicacion.vb">
+    <Compile Include="Database\SubUbicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="TipografiaEstilo.vb">
+    <Compile Include="Database\TipografiaEstilo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Ubicacion.vb">
+    <Compile Include="Database\Ubicacion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Unidad.vb">
+    <Compile Include="Database\Unidad.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="UnidadBajaMotivo.vb">
+    <Compile Include="Database\UnidadBajaMotivo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Unidades\formUnidad.Designer.vb">
@@ -1465,22 +1486,22 @@
     <Compile Include="Personas\formPersonasSeleccionar.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UnidadTipo.vb">
+    <Compile Include="Database\UnidadTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="UnidadUso.vb">
+    <Compile Include="Database\UnidadUso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.vb">
+    <Compile Include="Database\Usuario.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGrupo.vb">
+    <Compile Include="Database\UsuarioGrupo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioGrupoPermiso.vb">
+    <Compile Include="Database\UsuarioGrupoPermiso.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="UsuarioParametro.vb">
+    <Compile Include="Database\UsuarioParametro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuarios\formCambiarContrasena.Designer.vb">
@@ -1546,16 +1567,16 @@
     <Compile Include="Sistema\Parametros.vb" />
     <Compile Include="Usuarios\Permisos.vb" />
     <Compile Include="Sistema\StartUp.vb" />
-    <Compile Include="VacunaTipo.vb">
+    <Compile Include="Database\VacunaTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="VehiculoCompaniaSeguro.vb">
+    <Compile Include="Database\VehiculoCompaniaSeguro.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="VehiculoMarca.vb">
+    <Compile Include="Database\VehiculoMarca.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
-    <Compile Include="VehiculoTipo.vb">
+    <Compile Include="Database\VehiculoTipo.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -1707,6 +1728,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Personas\formPersonaLicenciaEspecial.resx">
       <DependentUpon>formPersonaLicenciaEspecial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resoluciones\formOrdenesGenerales.resx">
+      <DependentUpon>formOrdenesGenerales.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resoluciones\formOrdenGeneral.resx">
+      <DependentUpon>formOrdenGeneral.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sanciones\formSanciones.resx">
       <DependentUpon>formSanciones.vb</DependentUpon>
@@ -2026,7 +2053,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="CSBomberos.edmx" />
+    <EntityDeploy Include="Database\CSBomberos.edmx" />
     <None Include="Config\Appearance.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -2039,15 +2066,15 @@
     <None Include="Config\General.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="CSBomberos.Context.tt">
+    <None Include="Database\CSBomberos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CSBomberos.edmx</DependentUpon>
       <LastGenOutput>CSBomberos.Context.vb</LastGenOutput>
     </None>
-    <None Include="CSBomberos.edmx.diagram">
+    <None Include="Database\CSBomberos.edmx.diagram">
       <DependentUpon>CSBomberos.edmx</DependentUpon>
     </None>
-    <None Include="CSBomberos.tt">
+    <None Include="Database\CSBomberos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CSBomberos.edmx</DependentUpon>
       <LastGenOutput>CSBomberos.vb</LastGenOutput>
