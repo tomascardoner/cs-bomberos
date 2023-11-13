@@ -66,13 +66,15 @@
         TextBoxDescripcion.ReadOnly = Not mEditMode
         TextBoxPersonal.ReadOnly = Not mEditMode
         ComboBoxCategoria.Enabled = mEditMode
+        ComboBoxDeroga.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
     End Sub
 
     Friend Sub InitializeFormAndControls()
-        ListasResoluciones.LlenarComboBoxOrdenesGeneralesCategorias(mdbContext, ComboBoxCategoria, False, True)
+        ListasResoluciones.LlenarComboBoxOrdenesGeneralesCategorias(mdbContext, ComboBoxCategoria, False, True, False)
+        ListasResoluciones.LlenarComboBoxOrdenesGenerales(mdbContext, ComboBoxDeroga, False, True)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -97,6 +99,7 @@
             TextBoxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
             TextBoxPersonal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Personal)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxCategoria, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrdenGeneralCategoria, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxDeroga, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .DerogaIDOrdenGeneral, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -129,6 +132,7 @@
             .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxDescripcion.Text.TrimAndReduce)
             .Personal = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxPersonal.Text.TrimAndReduce)
             .IDOrdenGeneralCategoria = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxCategoria.SelectedValue)
+            .DerogaIDOrdenGeneral = CS_ValueTranslation.FromControlComboBoxToObjectInteger(ComboBoxDeroga.SelectedValue)
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class formOrdenGeneral
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class formOrdenGeneral
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
@@ -33,6 +33,8 @@ Partial Class formOrdenGeneral
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.TabControlMain = New CSBomberos.CS_Control_TabControl()
         Me.TabPageGeneral = New System.Windows.Forms.TabPage()
+        Me.ComboBoxDeroga = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBoxCategoria = New System.Windows.Forms.ComboBox()
         Me.LabelCategoria = New System.Windows.Forms.Label()
         Me.LabelPersonal = New System.Windows.Forms.Label()
@@ -165,11 +167,13 @@ Partial Class formOrdenGeneral
         Me.TabControlMain.Location = New System.Drawing.Point(12, 42)
         Me.TabControlMain.Name = "TabControlMain"
         Me.TabControlMain.SelectedIndex = 0
-        Me.TabControlMain.Size = New System.Drawing.Size(518, 288)
+        Me.TabControlMain.Size = New System.Drawing.Size(518, 311)
         Me.TabControlMain.TabIndex = 0
         '
         'TabPageGeneral
         '
+        Me.TabPageGeneral.Controls.Add(Me.ComboBoxDeroga)
+        Me.TabPageGeneral.Controls.Add(Me.Label1)
         Me.TabPageGeneral.Controls.Add(Me.ComboBoxCategoria)
         Me.TabPageGeneral.Controls.Add(Me.LabelCategoria)
         Me.TabPageGeneral.Controls.Add(Me.LabelPersonal)
@@ -186,16 +190,36 @@ Partial Class formOrdenGeneral
         Me.TabPageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.TabPageGeneral.Name = "TabPageGeneral"
         Me.TabPageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageGeneral.Size = New System.Drawing.Size(510, 259)
+        Me.TabPageGeneral.Size = New System.Drawing.Size(510, 282)
         Me.TabPageGeneral.TabIndex = 2
         Me.TabPageGeneral.Text = "General"
         Me.TabPageGeneral.UseVisualStyleBackColor = True
+        '
+        'ComboBoxDeroga
+        '
+        Me.ComboBoxDeroga.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBoxDeroga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxDeroga.FormattingEnabled = True
+        Me.ComboBoxDeroga.Location = New System.Drawing.Point(82, 255)
+        Me.ComboBoxDeroga.Name = "ComboBoxDeroga"
+        Me.ComboBoxDeroga.Size = New System.Drawing.Size(422, 21)
+        Me.ComboBoxDeroga.TabIndex = 14
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(6, 258)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(70, 13)
+        Me.Label1.TabIndex = 13
+        Me.Label1.Text = "Deroga O.G.:"
         '
         'ComboBoxCategoria
         '
         Me.ComboBoxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxCategoria.FormattingEnabled = True
-        Me.ComboBoxCategoria.Location = New System.Drawing.Point(78, 228)
+        Me.ComboBoxCategoria.Location = New System.Drawing.Point(82, 228)
         Me.ComboBoxCategoria.Name = "ComboBoxCategoria"
         Me.ComboBoxCategoria.Size = New System.Drawing.Size(199, 21)
         Me.ComboBoxCategoria.TabIndex = 12
@@ -222,12 +246,12 @@ Partial Class formOrdenGeneral
         '
         Me.TextBoxPersonal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBoxPersonal.Location = New System.Drawing.Point(78, 149)
+        Me.TextBoxPersonal.Location = New System.Drawing.Point(82, 149)
         Me.TextBoxPersonal.MaxLength = 0
         Me.TextBoxPersonal.Multiline = True
         Me.TextBoxPersonal.Name = "TextBoxPersonal"
         Me.TextBoxPersonal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxPersonal.Size = New System.Drawing.Size(426, 73)
+        Me.TextBoxPersonal.Size = New System.Drawing.Size(422, 73)
         Me.TextBoxPersonal.TabIndex = 10
         '
         'LabelDescripcion
@@ -243,18 +267,18 @@ Partial Class formOrdenGeneral
         '
         Me.TextBoxDescripcion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBoxDescripcion.Location = New System.Drawing.Point(78, 70)
+        Me.TextBoxDescripcion.Location = New System.Drawing.Point(82, 70)
         Me.TextBoxDescripcion.MaxLength = 0
         Me.TextBoxDescripcion.Multiline = True
         Me.TextBoxDescripcion.Name = "TextBoxDescripcion"
         Me.TextBoxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxDescripcion.Size = New System.Drawing.Size(426, 73)
+        Me.TextBoxDescripcion.Size = New System.Drawing.Size(422, 73)
         Me.TextBoxDescripcion.TabIndex = 8
         '
         'DateTimePickerFecha
         '
         Me.DateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerFecha.Location = New System.Drawing.Point(78, 44)
+        Me.DateTimePickerFecha.Location = New System.Drawing.Point(82, 44)
         Me.DateTimePickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.DateTimePickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
@@ -273,7 +297,7 @@ Partial Class formOrdenGeneral
         '
         'NumericUpDownSubNumero
         '
-        Me.NumericUpDownSubNumero.Location = New System.Drawing.Point(319, 18)
+        Me.NumericUpDownSubNumero.Location = New System.Drawing.Point(323, 19)
         Me.NumericUpDownSubNumero.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
         Me.NumericUpDownSubNumero.Name = "NumericUpDownSubNumero"
         Me.NumericUpDownSubNumero.Size = New System.Drawing.Size(47, 20)
@@ -283,7 +307,7 @@ Partial Class formOrdenGeneral
         'LabelSubNumero
         '
         Me.LabelSubNumero.AutoSize = True
-        Me.LabelSubNumero.Location = New System.Drawing.Point(246, 21)
+        Me.LabelSubNumero.Location = New System.Drawing.Point(250, 22)
         Me.LabelSubNumero.Name = "LabelSubNumero"
         Me.LabelSubNumero.Size = New System.Drawing.Size(67, 13)
         Me.LabelSubNumero.TabIndex = 3
@@ -293,7 +317,7 @@ Partial Class formOrdenGeneral
         '
         Me.IntegerTextBoxNumero.BeforeTouchSize = New System.Drawing.Size(47, 20)
         Me.IntegerTextBoxNumero.IntegerValue = CType(1, Long)
-        Me.IntegerTextBoxNumero.Location = New System.Drawing.Point(78, 17)
+        Me.IntegerTextBoxNumero.Location = New System.Drawing.Point(82, 18)
         Me.IntegerTextBoxNumero.MaxValue = CType(32767, Long)
         Me.IntegerTextBoxNumero.MinValue = CType(1, Long)
         Me.IntegerTextBoxNumero.Name = "IntegerTextBoxNumero"
@@ -313,7 +337,7 @@ Partial Class formOrdenGeneral
         '
         'ButtonNumeroSiguiente
         '
-        Me.ButtonNumeroSiguiente.Location = New System.Drawing.Point(131, 17)
+        Me.ButtonNumeroSiguiente.Location = New System.Drawing.Point(135, 18)
         Me.ButtonNumeroSiguiente.Name = "ButtonNumeroSiguiente"
         Me.ButtonNumeroSiguiente.Size = New System.Drawing.Size(103, 21)
         Me.ButtonNumeroSiguiente.TabIndex = 2
@@ -335,7 +359,7 @@ Partial Class formOrdenGeneral
         Me.TabPageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.TabPageNotasAuditoria.Name = "TabPageNotasAuditoria"
         Me.TabPageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageNotasAuditoria.Size = New System.Drawing.Size(510, 259)
+        Me.TabPageNotasAuditoria.Size = New System.Drawing.Size(510, 282)
         Me.TabPageNotasAuditoria.TabIndex = 1
         Me.TabPageNotasAuditoria.Text = "Notas y Auditoría"
         Me.TabPageNotasAuditoria.UseVisualStyleBackColor = True
@@ -408,7 +432,7 @@ Partial Class formOrdenGeneral
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 341)
+        Me.ClientSize = New System.Drawing.Size(542, 364)
         Me.Controls.Add(Me.TabControlMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -461,4 +485,6 @@ Partial Class formOrdenGeneral
     Friend WithEvents TextBoxPersonal As TextBox
     Friend WithEvents ComboBoxCategoria As ComboBox
     Friend WithEvents LabelCategoria As Label
+    Friend WithEvents ComboBoxDeroga As ComboBox
+    Friend WithEvents Label1 As Label
 End Class

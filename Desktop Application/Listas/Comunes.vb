@@ -57,7 +57,7 @@
                      Join c In context.Cuartel On a.IDCuartel Equals c.IDCuartel
                      Where a.EsActivo AndAlso c.EsActivo
                      Order By a.Nombre, c.Nombre
-                     Select New AreaConCuartelClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre + " (" + c.Nombre + ")", .MostrarEnInventario = a.MostrarEnInventario, .MostrarEnCompras = a.MostrarEnCompras}).ToList()
+                     Select New AreaConCuartelClass With {.IDArea = a.IDArea, .IDCuartel = a.IDCuartel, .Codigo = a.Codigo, .Nombre = a.Nombre, .CuartelNombre = c.Nombre, .NombreYCuartel = a.Nombre & " (" & c.Nombre & ")", .MostrarEnInventario = a.MostrarEnInventario, .MostrarEnCompras = a.MostrarEnCompras}).ToList()
 
         If filtrarIDCuartel <> CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE Then
             listItems = listItems.Where(Function(acc) acc.IDCuartel = filtrarIDCuartel).ToList()

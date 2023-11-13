@@ -29,7 +29,7 @@
 
         mSkipFilterData = True
 
-        ListasResoluciones.LlenarComboBoxOrdenesGeneralesCategorias(mdbContext, ComboBoxCategoria.ComboBox, True, False)
+        ListasResoluciones.LlenarComboBoxOrdenesGeneralesCategorias(mdbContext, ComboBoxCategoria.ComboBox, True, False, True)
 
         ' Filtro de período
         InicializarFiltroDeFechas()
@@ -149,7 +149,12 @@
 
                 ' Filtro por Categoría
                 If ComboBoxCategoria.SelectedIndex > 0 Then
-                    mlistOrdenesGeneralesFiltradaYOrdenada = mlistOrdenesGeneralesFiltradaYOrdenada.Where(Function(og) og.IDOrdenGeneralCategoria.HasValue AndAlso og.IDOrdenGeneralCategoria.Value = CByte(ComboBoxCategoria.ComboBox.SelectedValue)).ToList
+                    Select Case CType(ComboBoxCategoria.SelectedItem, OrdenGeneralCategoria).IDOrdenGeneralCategoria
+                        Case CardonerSistemas.Constants.FIELD_VALUE_EMPTY_BYTE
+                            mlistOrdenesGeneralesFiltradaYOrdenada = mlistOrdenesGeneralesFiltradaYOrdenada.Where(Function(og) Not og.IDOrdenGeneralCategoria.HasValue).ToList
+                        Case Else
+                            mlistOrdenesGeneralesFiltradaYOrdenada = mlistOrdenesGeneralesFiltradaYOrdenada.Where(Function(og) og.IDOrdenGeneralCategoria.HasValue AndAlso og.IDOrdenGeneralCategoria.Value = CByte(ComboBoxCategoria.ComboBox.SelectedValue)).ToList
+                    End Select
                 End If
 
                 Select Case mlistOrdenesGeneralesFiltradaYOrdenada.Count
