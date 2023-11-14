@@ -19,7 +19,6 @@ Partial Public Class OrdenGeneral
     Public Property Descripcion As String
     Public Property Personal As String
     Public Property IDOrdenGeneralCategoria As Nullable(Of Byte)
-    Public Property DerogaIDOrdenGeneral As Nullable(Of Integer)
     Public Property Notas As String
     Public Property IDUsuarioCreacion As Short
     Public Property FechaHoraCreacion As Date
@@ -29,5 +28,7 @@ Partial Public Class OrdenGeneral
     Public Overridable Property OrdenGeneralCategoria As OrdenGeneralCategoria
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property OrdenesGeneralesRelacionesRelacionadas As ICollection(Of OrdenGeneralRelacion) = New HashSet(Of OrdenGeneralRelacion)
+    Public Overridable Property OrdenesGeneralesRelacionesRelacionantes As ICollection(Of OrdenGeneralRelacion) = New HashSet(Of OrdenGeneralRelacion)
 
 End Class

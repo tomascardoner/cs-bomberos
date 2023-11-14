@@ -663,6 +663,9 @@
     <Compile Include="Database\OrdenGeneralCategoria.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\OrdenGeneralRelacion.vb">
+      <DependentUpon>CSBomberos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Resolucion.vb">
       <DependentUpon>CSBomberos.tt</DependentUpon>
     </Compile>

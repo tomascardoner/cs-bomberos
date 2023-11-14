@@ -66,7 +66,6 @@
         TextBoxDescripcion.ReadOnly = Not mEditMode
         TextBoxPersonal.ReadOnly = Not mEditMode
         ComboBoxCategoria.Enabled = mEditMode
-        ComboBoxDeroga.Enabled = mEditMode
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
@@ -74,7 +73,6 @@
 
     Friend Sub InitializeFormAndControls()
         ListasResoluciones.LlenarComboBoxOrdenesGeneralesCategorias(mdbContext, ComboBoxCategoria, False, True, False)
-        ListasResoluciones.LlenarComboBoxOrdenesGenerales(mdbContext, ComboBoxDeroga, False, True)
     End Sub
 
     Private Sub Me_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
@@ -99,7 +97,6 @@
             TextBoxDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Descripcion)
             TextBoxPersonal.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Personal)
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxCategoria, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IDOrdenGeneralCategoria, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE)
-            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxDeroga, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .DerogaIDOrdenGeneral, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_INTEGER)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -121,6 +118,9 @@
                 textboxUsuarioModificacion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UsuarioModificacion.Descripcion)
             End If
         End With
+
+        RefreshDataRelacionantes()
+        RefreshDataRelacionadas()
     End Sub
 
     Friend Sub SetDataFromControlsToObject()
@@ -132,7 +132,6 @@
             .Descripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxDescripcion.Text.TrimAndReduce)
             .Personal = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxPersonal.Text.TrimAndReduce)
             .IDOrdenGeneralCategoria = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxCategoria.SelectedValue)
-            .DerogaIDOrdenGeneral = CS_ValueTranslation.FromControlComboBoxToObjectInteger(ComboBoxDeroga.SelectedValue)
 
             ' Datos de la pestaña Notas y Auditoría
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
@@ -243,6 +242,34 @@
         End If
 
         Me.Close()
+    End Sub
+
+#End Region
+
+#Region "Relaciones"
+
+    Friend Class GridRowDataRelacion
+        Public Property IDOrdenGeneral As Integer
+        Public Property RelacionTipoNombre As String
+        Public Property NumeroCompleto As String
+        Public Property Fecha As Date?
+        Public Property Motivo As String
+    End Class
+
+    Friend Sub RefreshDataRelacionantes()
+        DataGridViewRelacionantes.AutoGenerateColumns = False
+        DataGridViewRelacionantes.DataSource = (From ogr In mOrdenGeneralActual.OrdenesGeneralesRelacionesRelacionadas
+                                                Join og In mdbContext.OrdenGeneral On ogr.IDOrdenGeneralRelacionante Equals og.IDOrdenGeneral
+                                                Order By og.Numero, og.SubNumero
+                                                Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = If(ogr.RelacionTipo = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA, Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE, ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
+    End Sub
+
+    Friend Sub RefreshDataRelacionadas()
+        DataGridViewRelacionadas.AutoGenerateColumns = False
+        DataGridViewRelacionadas.DataSource = (From ogr In mOrdenGeneralActual.OrdenesGeneralesRelacionesRelacionantes
+                                               Join og In mdbContext.OrdenGeneral On ogr.IDOrdenGeneralRelacionada Equals og.IDOrdenGeneral
+                                               Order By og.Numero, og.SubNumero
+                                               Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = If(ogr.RelacionTipo = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA, Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE, ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
     End Sub
 
 #End Region

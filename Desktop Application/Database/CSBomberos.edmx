@@ -771,7 +771,6 @@
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Personal" Type="varchar(max)" />
           <Property Name="IDOrdenGeneralCategoria" Type="tinyint" />
-          <Property Name="DerogaIDOrdenGeneral" Type="int" />
           <Property Name="Notas" Type="varchar(max)" />
           <Property Name="IDUsuarioCreacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
@@ -790,6 +789,16 @@
           <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrdenGeneralRelacion">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneralRelacionante" />
+            <PropertyRef Name="IDOrdenGeneralRelacionada" />
+          </Key>
+          <Property Name="IDOrdenGeneralRelacionante" Type="int" Nullable="false" />
+          <Property Name="IDOrdenGeneralRelacionada" Type="int" Nullable="false" />
+          <Property Name="RelacionTipo" Type="char" MaxLength="1" />
+          <Property Name="Motivo" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Parametro">
           <Key>
@@ -2564,6 +2573,30 @@
             </Principal>
             <Dependent Role="ComprobanteTipo">
               <PropertyRef Name="IDNumerador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada">
+          <End Role="OrdenGeneral" Type="Self.OrdenGeneral" Multiplicity="1" />
+          <End Role="OrdenGeneralRelacion" Type="Self.OrdenGeneralRelacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneral" />
+            </Principal>
+            <Dependent Role="OrdenGeneralRelacion">
+              <PropertyRef Name="IDOrdenGeneralRelacionada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante">
+          <End Role="OrdenGeneral" Type="Self.OrdenGeneral" Multiplicity="1" />
+          <End Role="OrdenGeneralRelacion" Type="Self.OrdenGeneralRelacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneral" />
+            </Principal>
+            <Dependent Role="OrdenGeneralRelacion">
+              <PropertyRef Name="IDOrdenGeneralRelacionante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5359,6 +5392,7 @@
           <EntitySet Name="Numerador" EntityType="Self.Numerador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrdenGeneral" EntityType="Self.OrdenGeneral" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrdenGeneralCategoria" EntityType="Self.OrdenGeneralCategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdenGeneralRelacion" EntityType="Self.OrdenGeneralRelacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parametro" EntityType="Self.Parametro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parentesco" EntityType="Self.Parentesco" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partido" EntityType="Self.Partido" Schema="dbo" store:Type="Tables" />
@@ -5680,6 +5714,14 @@
           <AssociationSet Name="FK__Numerador__ComprobanteTipo" Association="Self.FK__Numerador__ComprobanteTipo">
             <End Role="Numerador" EntitySet="Numerador" />
             <End Role="ComprobanteTipo" EntitySet="ComprobanteTipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" Association="Self.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada">
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+            <End Role="OrdenGeneralRelacion" EntitySet="OrdenGeneralRelacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" Association="Self.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante">
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+            <End Role="OrdenGeneralRelacion" EntitySet="OrdenGeneralRelacion" />
           </AssociationSet>
           <AssociationSet Name="FK__OrdenGeneralCategoria__OrdenGeneral" Association="Self.FK__OrdenGeneralCategoria__OrdenGeneral">
             <End Role="OrdenGeneralCategoria" EntitySet="OrdenGeneralCategoria" />
@@ -7875,6 +7917,15 @@
           <AssociationSet Name="FK__Usuario__Resolucion__Modificacion" Association="CSBomberosModel.FK__Usuario__Resolucion__Modificacion">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Resolucion" EntitySet="Resolucion" />
+          </AssociationSet>
+          <EntitySet Name="OrdenGeneralRelacion" EntityType="CSBomberosModel.OrdenGeneralRelacion" />
+          <AssociationSet Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada">
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+            <End Role="OrdenGeneralRelacion" EntitySet="OrdenGeneralRelacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante">
+            <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
+            <End Role="OrdenGeneralRelacion" EntitySet="OrdenGeneralRelacion" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -13589,7 +13640,6 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Personal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDOrdenGeneralCategoria" Type="Byte" />
-          <Property Name="DerogaIDOrdenGeneral" Type="Int32" />
           <Property Name="Notas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IDUsuarioCreacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
@@ -13598,7 +13648,9 @@
           <NavigationProperty Name="OrdenGeneralCategoria" Relationship="CSBomberosModel.FK__OrdenGeneralCategoria__OrdenGeneral" FromRole="OrdenGeneral" ToRole="OrdenGeneralCategoria" />
           <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Creacion" FromRole="OrdenGeneral" ToRole="Usuario" />
           <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneral__Modificacion" FromRole="OrdenGeneral" ToRole="Usuario" />
-        </EntityType>
+          <NavigationProperty Name="OrdenesGeneralesRelacionesRelacionadas" Relationship="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" FromRole="OrdenGeneral" ToRole="OrdenGeneralRelacion" />
+          <NavigationProperty Name="OrdenesGeneralesRelacionesRelacionantes" Relationship="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" FromRole="OrdenGeneral" ToRole="OrdenGeneralRelacion" />
+          </EntityType>
         <EntityType Name="OrdenGeneralCategoria">
           <Key>
             <PropertyRef Name="IDOrdenGeneralCategoria" />
@@ -13713,6 +13765,42 @@
             </Principal>
             <Dependent Role="Resolucion">
               <PropertyRef Name="IDUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OrdenGeneralRelacion">
+          <Key>
+            <PropertyRef Name="IDOrdenGeneralRelacionante" />
+            <PropertyRef Name="IDOrdenGeneralRelacionada" />
+          </Key>
+          <Property Name="IDOrdenGeneralRelacionante" Type="Int32" Nullable="false" />
+          <Property Name="IDOrdenGeneralRelacionada" Type="Int32" Nullable="false" />
+          <Property Name="RelacionTipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Motivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="OrdenesGeneralesRelacionadas" Relationship="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" FromRole="OrdenGeneralRelacion" ToRole="OrdenGeneral" />
+          <NavigationProperty Name="OrdenesGeneralesRelacionantes" Relationship="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" FromRole="OrdenGeneralRelacion" ToRole="OrdenGeneral" />
+        </EntityType>
+        <Association Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada">
+          <End Type="CSBomberosModel.OrdenGeneral" Role="OrdenGeneral" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneralRelacion" Role="OrdenGeneralRelacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneral" />
+            </Principal>
+            <Dependent Role="OrdenGeneralRelacion">
+              <PropertyRef Name="IDOrdenGeneralRelacionada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante">
+          <End Type="CSBomberosModel.OrdenGeneral" Role="OrdenGeneral" Multiplicity="1" />
+          <End Type="CSBomberosModel.OrdenGeneralRelacion" Role="OrdenGeneralRelacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenGeneral">
+              <PropertyRef Name="IDOrdenGeneral" />
+            </Principal>
+            <Dependent Role="OrdenGeneralRelacion">
+              <PropertyRef Name="IDOrdenGeneralRelacionante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -15555,7 +15643,6 @@
                 <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
                 <ScalarProperty Name="IDUsuarioCreacion" ColumnName="IDUsuarioCreacion" />
                 <ScalarProperty Name="Notas" ColumnName="Notas" />
-                <ScalarProperty Name="DerogaIDOrdenGeneral" ColumnName="DerogaIDOrdenGeneral" />
                 <ScalarProperty Name="IDOrdenGeneralCategoria" ColumnName="IDOrdenGeneralCategoria" />
                 <ScalarProperty Name="Personal" ColumnName="Personal" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
@@ -15594,6 +15681,16 @@
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="IDResolucion" ColumnName="IDResolucion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenGeneralRelacion">
+            <EntityTypeMapping TypeName="CSBomberosModel.OrdenGeneralRelacion">
+              <MappingFragment StoreEntitySet="OrdenGeneralRelacion">
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="RelacionTipo" ColumnName="RelacionTipo" />
+                <ScalarProperty Name="IDOrdenGeneralRelacionada" ColumnName="IDOrdenGeneralRelacionada" />
+                <ScalarProperty Name="IDOrdenGeneralRelacionante" ColumnName="IDOrdenGeneralRelacionante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -5,9 +5,19 @@
     Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
     Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
 
+    Friend Class GridRowData
+        Public Property IDOrdenGeneral As Integer
+        Public Property Numero As Short
+        Public Property SubNumero As Byte?
+        Public Property Fecha As Date?
+        Public Property NumeroCompleto As String
+        Public Property Descripcion As String
+        Public Property IDOrdenGeneralCategoria As Byte?
+    End Class
+
     Private mdbContext As New CSBomberosContext(True)
-    Private mlistOrdenesGeneralesBase As List(Of OrdenGeneral)
-    Private mlistOrdenesGeneralesFiltradaYOrdenada As List(Of OrdenGeneral)
+    Private mlistOrdenesGeneralesBase As List(Of GridRowData)
+    Private mlistOrdenesGeneralesFiltradaYOrdenada As List(Of GridRowData)
 
     Private mSkipFilterData As Boolean
 
@@ -108,7 +118,7 @@
         Try
             mlistOrdenesGeneralesBase = (From og In mdbContext.OrdenGeneral
                                          Where og.Fecha >= FechaDesde AndAlso og.Fecha <= FechaHasta
-                                         Select og).ToList
+                                         Select New GridRowData With {.IDOrdenGeneral = og.IDOrdenGeneral, .Numero = og.Numero, .SubNumero = og.SubNumero, .Fecha = og.Fecha, .NumeroCompleto = og.NumeroCompleto, .Descripcion = og.Descripcion, .IDOrdenGeneralCategoria = og.IDOrdenGeneralCategoria}).ToList()
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer las Órdenes Generales.")
@@ -122,7 +132,7 @@
             If datagridviewMain.CurrentRow Is Nothing Then
                 PositionIDOrdenGeneral = 0
             Else
-                PositionIDOrdenGeneral = CType(datagridviewMain.CurrentRow.DataBoundItem, OrdenGeneral).IDOrdenGeneral
+                PositionIDOrdenGeneral = CType(datagridviewMain.CurrentRow.DataBoundItem, GridRowData).IDOrdenGeneral
             End If
         End If
 
@@ -130,7 +140,7 @@
 
         If PositionIDOrdenGeneral <> 0 Then
             For Each CurrentRowChecked As DataGridViewRow In datagridviewMain.Rows
-                If CType(CurrentRowChecked.DataBoundItem, OrdenGeneral).IDOrdenGeneral = PositionIDOrdenGeneral Then
+                If CType(CurrentRowChecked.DataBoundItem, GridRowData).IDOrdenGeneral = PositionIDOrdenGeneral Then
                     datagridviewMain.CurrentCell = CurrentRowChecked.Cells(0)
                     Return
                 End If
@@ -145,7 +155,7 @@
 
             Try
                 ' Inicializo las variables
-                mlistOrdenesGeneralesFiltradaYOrdenada = mlistOrdenesGeneralesBase.ToList
+                mlistOrdenesGeneralesFiltradaYOrdenada = mlistOrdenesGeneralesBase
 
                 ' Filtro por Categoría
                 If ComboBoxCategoria.SelectedIndex > 0 Then
@@ -207,6 +217,7 @@
         ' Muestro el ícono de orden en la columna correspondiente
         mOrdenColumna.HeaderCell.SortGlyphDirection = mOrdenTipo
     End Sub
+
 #End Region
 
 #Region "Controls behavior"
@@ -284,7 +295,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formOrdenGeneral.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, OrdenGeneral).IDOrdenGeneral)
+        formOrdenGeneral.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDOrdenGeneral)
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub
@@ -302,7 +313,7 @@
         End If
 
         Me.Cursor = Cursors.WaitCursor
-        ordenGeneralActual = mdbContext.OrdenGeneral.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, OrdenGeneral).IDOrdenGeneral)
+        ordenGeneralActual = mdbContext.OrdenGeneral.Find(CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDOrdenGeneral)
         Me.Cursor = Cursors.Default
         Mensaje = $"Se eliminará la Órden General seleccionada.{vbCrLf}{vbCrLf}Número: {ordenGeneralActual.NumeroCompleto}{vbCrLf}{vbCrLf}¿Confirma la eliminación definitiva?"
         If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
@@ -338,7 +349,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formOrdenGeneral.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, OrdenGeneral).IDOrdenGeneral)
+        formOrdenGeneral.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDOrdenGeneral)
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub

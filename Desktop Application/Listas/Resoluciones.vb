@@ -67,4 +67,50 @@
         control.DataSource = listItems
     End Sub
 
+    Friend Sub LlenarComboBoxMotivoRelacion(ByRef ComboBoxControl As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim datatableMotivos As New DataTable("Motivos")
+        Dim datarowRow As DataRow
+        Const ValueColumn As String = "IDMotivo"
+        Const DisplayColumn As String = "Nombre"
+
+        ComboBoxControl.ValueMember = ValueColumn
+        ComboBoxControl.DisplayMember = DisplayColumn
+
+        With datatableMotivos
+            .Columns.Add(ValueColumn, System.Type.GetType("System.String"))
+            .Columns.Add(DisplayColumn, System.Type.GetType("System.String"))
+
+            If mostrarItemTodos Then
+                datarowRow = .NewRow
+                datarowRow(ValueColumn) = CardonerSistemas.Constants.FIELD_VALUE_ALL_STRING
+                datarowRow(DisplayColumn) = My.Resources.STRING_ITEM_ALL_MALE
+                .Rows.Add(datarowRow)
+            End If
+
+            If mostrarItemNoEspecifica Then
+                datarowRow = .NewRow
+                datarowRow(ValueColumn) = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_STRING
+                datarowRow(DisplayColumn) = My.Resources.STRING_ITEM_NOT_SPECIFIED
+                .Rows.Add(datarowRow)
+            End If
+
+            datarowRow = .NewRow
+            datarowRow(ValueColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA
+            datarowRow(DisplayColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE
+            .Rows.Add(datarowRow)
+
+            datarowRow = .NewRow
+            datarowRow(ValueColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_MODIFICA
+            datarowRow(DisplayColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE
+            .Rows.Add(datarowRow)
+        End With
+
+        ComboBoxControl.DataSource = datatableMotivos
+        If mostrarItemNoEspecifica Then
+            ComboBoxControl.SelectedIndex = 0
+        Else
+            ComboBoxControl.SelectedIndex = -1
+        End If
+    End Sub
+
 End Module

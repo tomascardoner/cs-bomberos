@@ -126,6 +126,15 @@
     Friend Const SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO As String = "SP"
     Friend Const SINIESTRO_CLAVEGRUPO_SERVICIOPROGRAMADO_NOMBRE As String = "Servicios programados"
 
+    '#########################
+    '    ORDENES GENERALES
+    '#########################
+    Friend Const ORDENGENERAL_RELACIONMOTIVO_DEROGA As String = "D"
+    Friend Const ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE As String = "Deroga"
+    Friend Const ORDENGENERAL_RELACIONMOTIVO_MODIFICA As String = "M"
+    Friend Const ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE As String = "Modifica"
+
+
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
     Friend Const USUARIO_ADMINISTRADOR_ID As Short = 1
 

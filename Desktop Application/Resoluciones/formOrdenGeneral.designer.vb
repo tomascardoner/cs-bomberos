@@ -24,6 +24,10 @@ Partial Class formOrdenGeneral
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
         Me.buttonEditar = New System.Windows.Forms.ToolStripButton()
@@ -33,8 +37,6 @@ Partial Class formOrdenGeneral
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.TabControlMain = New CSBomberos.CS_Control_TabControl()
         Me.TabPageGeneral = New System.Windows.Forms.TabPage()
-        Me.ComboBoxDeroga = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.ComboBoxCategoria = New System.Windows.Forms.ComboBox()
         Me.LabelCategoria = New System.Windows.Forms.Label()
         Me.LabelPersonal = New System.Windows.Forms.Label()
@@ -48,6 +50,18 @@ Partial Class formOrdenGeneral
         Me.IntegerTextBoxNumero = New Syncfusion.Windows.Forms.Tools.IntegerTextBox()
         Me.LabelNumero = New System.Windows.Forms.Label()
         Me.ButtonNumeroSiguiente = New System.Windows.Forms.Button()
+        Me.TabPageRelaciones = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanelRelaciones = New System.Windows.Forms.TableLayoutPanel()
+        Me.PanelRelacionadas = New System.Windows.Forms.Panel()
+        Me.DataGridViewRelacionadas = New System.Windows.Forms.DataGridView()
+        Me.LabelRelacionadas = New System.Windows.Forms.Label()
+        Me.PanelRelacionantes = New System.Windows.Forms.Panel()
+        Me.DataGridViewRelacionantes = New System.Windows.Forms.DataGridView()
+        Me.ColumnRelacionantesRelacionTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionantesNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionantesFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionantesMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LabelRelacionantes = New System.Windows.Forms.Label()
         Me.TabPageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.LabelID = New System.Windows.Forms.Label()
         Me.TextBoxID = New System.Windows.Forms.TextBox()
@@ -55,6 +69,10 @@ Partial Class formOrdenGeneral
         Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
+        Me.ColumnRelacionadasTipoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionadasNumero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionadasFecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ColumnRelacionadasMotivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -62,6 +80,12 @@ Partial Class formOrdenGeneral
         Me.TabPageGeneral.SuspendLayout()
         CType(Me.NumericUpDownSubNumero, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.IntegerTextBoxNumero, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPageRelaciones.SuspendLayout()
+        Me.TableLayoutPanelRelaciones.SuspendLayout()
+        Me.PanelRelacionadas.SuspendLayout()
+        CType(Me.DataGridViewRelacionadas, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelRelacionantes.SuspendLayout()
+        CType(Me.DataGridViewRelacionantes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -163,17 +187,17 @@ Partial Class formOrdenGeneral
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControlMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
         Me.TabControlMain.Controls.Add(Me.TabPageGeneral)
+        Me.TabControlMain.Controls.Add(Me.TabPageRelaciones)
         Me.TabControlMain.Controls.Add(Me.TabPageNotasAuditoria)
         Me.TabControlMain.Location = New System.Drawing.Point(12, 42)
+        Me.TabControlMain.Margin = New System.Windows.Forms.Padding(0)
         Me.TabControlMain.Name = "TabControlMain"
         Me.TabControlMain.SelectedIndex = 0
-        Me.TabControlMain.Size = New System.Drawing.Size(518, 311)
+        Me.TabControlMain.Size = New System.Drawing.Size(518, 288)
         Me.TabControlMain.TabIndex = 0
         '
         'TabPageGeneral
         '
-        Me.TabPageGeneral.Controls.Add(Me.ComboBoxDeroga)
-        Me.TabPageGeneral.Controls.Add(Me.Label1)
         Me.TabPageGeneral.Controls.Add(Me.ComboBoxCategoria)
         Me.TabPageGeneral.Controls.Add(Me.LabelCategoria)
         Me.TabPageGeneral.Controls.Add(Me.LabelPersonal)
@@ -190,36 +214,16 @@ Partial Class formOrdenGeneral
         Me.TabPageGeneral.Location = New System.Drawing.Point(4, 25)
         Me.TabPageGeneral.Name = "TabPageGeneral"
         Me.TabPageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageGeneral.Size = New System.Drawing.Size(510, 282)
+        Me.TabPageGeneral.Size = New System.Drawing.Size(510, 259)
         Me.TabPageGeneral.TabIndex = 2
         Me.TabPageGeneral.Text = "General"
         Me.TabPageGeneral.UseVisualStyleBackColor = True
-        '
-        'ComboBoxDeroga
-        '
-        Me.ComboBoxDeroga.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ComboBoxDeroga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxDeroga.FormattingEnabled = True
-        Me.ComboBoxDeroga.Location = New System.Drawing.Point(82, 255)
-        Me.ComboBoxDeroga.Name = "ComboBoxDeroga"
-        Me.ComboBoxDeroga.Size = New System.Drawing.Size(422, 21)
-        Me.ComboBoxDeroga.TabIndex = 14
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(6, 258)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(70, 13)
-        Me.Label1.TabIndex = 13
-        Me.Label1.Text = "Deroga O.G.:"
         '
         'ComboBoxCategoria
         '
         Me.ComboBoxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxCategoria.FormattingEnabled = True
-        Me.ComboBoxCategoria.Location = New System.Drawing.Point(82, 228)
+        Me.ComboBoxCategoria.Location = New System.Drawing.Point(98, 228)
         Me.ComboBoxCategoria.Name = "ComboBoxCategoria"
         Me.ComboBoxCategoria.Size = New System.Drawing.Size(199, 21)
         Me.ComboBoxCategoria.TabIndex = 12
@@ -246,12 +250,12 @@ Partial Class formOrdenGeneral
         '
         Me.TextBoxPersonal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBoxPersonal.Location = New System.Drawing.Point(82, 149)
+        Me.TextBoxPersonal.Location = New System.Drawing.Point(98, 149)
         Me.TextBoxPersonal.MaxLength = 0
         Me.TextBoxPersonal.Multiline = True
         Me.TextBoxPersonal.Name = "TextBoxPersonal"
         Me.TextBoxPersonal.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxPersonal.Size = New System.Drawing.Size(422, 73)
+        Me.TextBoxPersonal.Size = New System.Drawing.Size(406, 73)
         Me.TextBoxPersonal.TabIndex = 10
         '
         'LabelDescripcion
@@ -267,18 +271,18 @@ Partial Class formOrdenGeneral
         '
         Me.TextBoxDescripcion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBoxDescripcion.Location = New System.Drawing.Point(82, 70)
+        Me.TextBoxDescripcion.Location = New System.Drawing.Point(98, 70)
         Me.TextBoxDescripcion.MaxLength = 0
         Me.TextBoxDescripcion.Multiline = True
         Me.TextBoxDescripcion.Name = "TextBoxDescripcion"
         Me.TextBoxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBoxDescripcion.Size = New System.Drawing.Size(422, 73)
+        Me.TextBoxDescripcion.Size = New System.Drawing.Size(406, 73)
         Me.TextBoxDescripcion.TabIndex = 8
         '
         'DateTimePickerFecha
         '
         Me.DateTimePickerFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePickerFecha.Location = New System.Drawing.Point(82, 44)
+        Me.DateTimePickerFecha.Location = New System.Drawing.Point(98, 44)
         Me.DateTimePickerFecha.MaxDate = New Date(2100, 12, 31, 0, 0, 0, 0)
         Me.DateTimePickerFecha.MinDate = New Date(1910, 1, 1, 0, 0, 0, 0)
         Me.DateTimePickerFecha.Name = "DateTimePickerFecha"
@@ -297,7 +301,7 @@ Partial Class formOrdenGeneral
         '
         'NumericUpDownSubNumero
         '
-        Me.NumericUpDownSubNumero.Location = New System.Drawing.Point(323, 19)
+        Me.NumericUpDownSubNumero.Location = New System.Drawing.Point(339, 19)
         Me.NumericUpDownSubNumero.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
         Me.NumericUpDownSubNumero.Name = "NumericUpDownSubNumero"
         Me.NumericUpDownSubNumero.Size = New System.Drawing.Size(47, 20)
@@ -307,7 +311,7 @@ Partial Class formOrdenGeneral
         'LabelSubNumero
         '
         Me.LabelSubNumero.AutoSize = True
-        Me.LabelSubNumero.Location = New System.Drawing.Point(250, 22)
+        Me.LabelSubNumero.Location = New System.Drawing.Point(266, 22)
         Me.LabelSubNumero.Name = "LabelSubNumero"
         Me.LabelSubNumero.Size = New System.Drawing.Size(67, 13)
         Me.LabelSubNumero.TabIndex = 3
@@ -317,7 +321,7 @@ Partial Class formOrdenGeneral
         '
         Me.IntegerTextBoxNumero.BeforeTouchSize = New System.Drawing.Size(47, 20)
         Me.IntegerTextBoxNumero.IntegerValue = CType(1, Long)
-        Me.IntegerTextBoxNumero.Location = New System.Drawing.Point(82, 18)
+        Me.IntegerTextBoxNumero.Location = New System.Drawing.Point(98, 18)
         Me.IntegerTextBoxNumero.MaxValue = CType(32767, Long)
         Me.IntegerTextBoxNumero.MinValue = CType(1, Long)
         Me.IntegerTextBoxNumero.Name = "IntegerTextBoxNumero"
@@ -337,12 +341,168 @@ Partial Class formOrdenGeneral
         '
         'ButtonNumeroSiguiente
         '
-        Me.ButtonNumeroSiguiente.Location = New System.Drawing.Point(135, 18)
+        Me.ButtonNumeroSiguiente.Location = New System.Drawing.Point(151, 18)
         Me.ButtonNumeroSiguiente.Name = "ButtonNumeroSiguiente"
         Me.ButtonNumeroSiguiente.Size = New System.Drawing.Size(103, 21)
         Me.ButtonNumeroSiguiente.TabIndex = 2
         Me.ButtonNumeroSiguiente.Text = "Obtener siguiente"
         Me.ButtonNumeroSiguiente.UseVisualStyleBackColor = True
+        '
+        'TabPageRelaciones
+        '
+        Me.TabPageRelaciones.Controls.Add(Me.TableLayoutPanelRelaciones)
+        Me.TabPageRelaciones.Location = New System.Drawing.Point(4, 25)
+        Me.TabPageRelaciones.Name = "TabPageRelaciones"
+        Me.TabPageRelaciones.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageRelaciones.Size = New System.Drawing.Size(510, 259)
+        Me.TabPageRelaciones.TabIndex = 3
+        Me.TabPageRelaciones.Text = "Relaciones"
+        Me.TabPageRelaciones.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanelRelaciones
+        '
+        Me.TableLayoutPanelRelaciones.ColumnCount = 1
+        Me.TableLayoutPanelRelaciones.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelRelaciones.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelRelaciones.Controls.Add(Me.PanelRelacionadas, 0, 1)
+        Me.TableLayoutPanelRelaciones.Controls.Add(Me.PanelRelacionantes, 0, 0)
+        Me.TableLayoutPanelRelaciones.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelRelaciones.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanelRelaciones.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelRelaciones.Name = "TableLayoutPanelRelaciones"
+        Me.TableLayoutPanelRelaciones.RowCount = 2
+        Me.TableLayoutPanelRelaciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelRelaciones.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelRelaciones.Size = New System.Drawing.Size(504, 253)
+        Me.TableLayoutPanelRelaciones.TabIndex = 0
+        '
+        'PanelRelacionadas
+        '
+        Me.PanelRelacionadas.Controls.Add(Me.DataGridViewRelacionadas)
+        Me.PanelRelacionadas.Controls.Add(Me.LabelRelacionadas)
+        Me.PanelRelacionadas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelRelacionadas.Location = New System.Drawing.Point(0, 126)
+        Me.PanelRelacionadas.Margin = New System.Windows.Forms.Padding(0)
+        Me.PanelRelacionadas.Name = "PanelRelacionadas"
+        Me.PanelRelacionadas.Padding = New System.Windows.Forms.Padding(3)
+        Me.PanelRelacionadas.Size = New System.Drawing.Size(504, 127)
+        Me.PanelRelacionadas.TabIndex = 1
+        '
+        'DataGridViewRelacionadas
+        '
+        Me.DataGridViewRelacionadas.AllowUserToAddRows = False
+        Me.DataGridViewRelacionadas.AllowUserToDeleteRows = False
+        Me.DataGridViewRelacionadas.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewRelacionadas.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridViewRelacionadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewRelacionadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRelacionadas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnRelacionadasTipoNombre, Me.ColumnRelacionadasNumero, Me.ColumnRelacionadasFecha, Me.ColumnRelacionadasMotivo})
+        Me.DataGridViewRelacionadas.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.DataGridViewRelacionadas.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewRelacionadas.Location = New System.Drawing.Point(3, 19)
+        Me.DataGridViewRelacionadas.MultiSelect = False
+        Me.DataGridViewRelacionadas.Name = "DataGridViewRelacionadas"
+        Me.DataGridViewRelacionadas.ReadOnly = True
+        Me.DataGridViewRelacionadas.RowHeadersVisible = False
+        Me.DataGridViewRelacionadas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewRelacionadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewRelacionadas.Size = New System.Drawing.Size(498, 105)
+        Me.DataGridViewRelacionadas.TabIndex = 2
+        '
+        'LabelRelacionadas
+        '
+        Me.LabelRelacionadas.AutoSize = True
+        Me.LabelRelacionadas.Location = New System.Drawing.Point(6, 3)
+        Me.LabelRelacionadas.Name = "LabelRelacionadas"
+        Me.LabelRelacionadas.Size = New System.Drawing.Size(162, 13)
+        Me.LabelRelacionadas.TabIndex = 1
+        Me.LabelRelacionadas.Text = "Órdenes generales relacionadas:"
+        '
+        'PanelRelacionantes
+        '
+        Me.PanelRelacionantes.Controls.Add(Me.DataGridViewRelacionantes)
+        Me.PanelRelacionantes.Controls.Add(Me.LabelRelacionantes)
+        Me.PanelRelacionantes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelRelacionantes.Location = New System.Drawing.Point(0, 0)
+        Me.PanelRelacionantes.Margin = New System.Windows.Forms.Padding(0)
+        Me.PanelRelacionantes.Name = "PanelRelacionantes"
+        Me.PanelRelacionantes.Padding = New System.Windows.Forms.Padding(3)
+        Me.PanelRelacionantes.Size = New System.Drawing.Size(504, 126)
+        Me.PanelRelacionantes.TabIndex = 0
+        '
+        'DataGridViewRelacionantes
+        '
+        Me.DataGridViewRelacionantes.AllowUserToAddRows = False
+        Me.DataGridViewRelacionantes.AllowUserToDeleteRows = False
+        Me.DataGridViewRelacionantes.AllowUserToResizeRows = False
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewRelacionantes.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridViewRelacionantes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewRelacionantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewRelacionantes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ColumnRelacionantesRelacionTipo, Me.ColumnRelacionantesNumero, Me.ColumnRelacionantesFecha, Me.ColumnRelacionantesMotivo})
+        Me.DataGridViewRelacionantes.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.DataGridViewRelacionantes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewRelacionantes.Location = New System.Drawing.Point(3, 19)
+        Me.DataGridViewRelacionantes.MultiSelect = False
+        Me.DataGridViewRelacionantes.Name = "DataGridViewRelacionantes"
+        Me.DataGridViewRelacionantes.ReadOnly = True
+        Me.DataGridViewRelacionantes.RowHeadersVisible = False
+        Me.DataGridViewRelacionantes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewRelacionantes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewRelacionantes.Size = New System.Drawing.Size(498, 104)
+        Me.DataGridViewRelacionantes.TabIndex = 2
+        '
+        'ColumnRelacionantesRelacionTipo
+        '
+        Me.ColumnRelacionantesRelacionTipo.DataPropertyName = "RelacionTipoNombre"
+        Me.ColumnRelacionantesRelacionTipo.HeaderText = "Tipo"
+        Me.ColumnRelacionantesRelacionTipo.Name = "ColumnRelacionantesRelacionTipo"
+        Me.ColumnRelacionantesRelacionTipo.ReadOnly = True
+        Me.ColumnRelacionantesRelacionTipo.Width = 53
+        '
+        'ColumnRelacionantesNumero
+        '
+        Me.ColumnRelacionantesNumero.DataPropertyName = "NumeroCompleto"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.Format = "N0"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.ColumnRelacionantesNumero.DefaultCellStyle = DataGridViewCellStyle4
+        Me.ColumnRelacionantesNumero.HeaderText = "Número"
+        Me.ColumnRelacionantesNumero.Name = "ColumnRelacionantesNumero"
+        Me.ColumnRelacionantesNumero.ReadOnly = True
+        Me.ColumnRelacionantesNumero.Width = 69
+        '
+        'ColumnRelacionantesFecha
+        '
+        Me.ColumnRelacionantesFecha.DataPropertyName = "Fecha"
+        Me.ColumnRelacionantesFecha.HeaderText = "Fecha"
+        Me.ColumnRelacionantesFecha.Name = "ColumnRelacionantesFecha"
+        Me.ColumnRelacionantesFecha.ReadOnly = True
+        Me.ColumnRelacionantesFecha.Width = 62
+        '
+        'ColumnRelacionantesMotivo
+        '
+        Me.ColumnRelacionantesMotivo.DataPropertyName = "Motivo"
+        Me.ColumnRelacionantesMotivo.HeaderText = "Motivo"
+        Me.ColumnRelacionantesMotivo.Name = "ColumnRelacionantesMotivo"
+        Me.ColumnRelacionantesMotivo.ReadOnly = True
+        Me.ColumnRelacionantesMotivo.Width = 64
+        '
+        'LabelRelacionantes
+        '
+        Me.LabelRelacionantes.AutoSize = True
+        Me.LabelRelacionantes.Location = New System.Drawing.Point(6, 3)
+        Me.LabelRelacionantes.Name = "LabelRelacionantes"
+        Me.LabelRelacionantes.Size = New System.Drawing.Size(165, 13)
+        Me.LabelRelacionantes.TabIndex = 1
+        Me.LabelRelacionantes.Text = "Órdenes generales relacionantes:"
         '
         'TabPageNotasAuditoria
         '
@@ -359,7 +519,7 @@ Partial Class formOrdenGeneral
         Me.TabPageNotasAuditoria.Location = New System.Drawing.Point(4, 25)
         Me.TabPageNotasAuditoria.Name = "TabPageNotasAuditoria"
         Me.TabPageNotasAuditoria.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageNotasAuditoria.Size = New System.Drawing.Size(510, 282)
+        Me.TabPageNotasAuditoria.Size = New System.Drawing.Size(510, 259)
         Me.TabPageNotasAuditoria.TabIndex = 1
         Me.TabPageNotasAuditoria.Text = "Notas y Auditoría"
         Me.TabPageNotasAuditoria.UseVisualStyleBackColor = True
@@ -428,11 +588,47 @@ Partial Class formOrdenGeneral
         Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(121, 20)
         Me.textboxFechaHoraCreacion.TabIndex = 19
         '
+        'ColumnRelacionadasTipoNombre
+        '
+        Me.ColumnRelacionadasTipoNombre.DataPropertyName = "RelacionTipoNombre"
+        Me.ColumnRelacionadasTipoNombre.HeaderText = "Tipo"
+        Me.ColumnRelacionadasTipoNombre.Name = "ColumnRelacionadasTipoNombre"
+        Me.ColumnRelacionadasTipoNombre.ReadOnly = True
+        Me.ColumnRelacionadasTipoNombre.Width = 53
+        '
+        'ColumnRelacionadasNumero
+        '
+        Me.ColumnRelacionadasNumero.DataPropertyName = "NumeroCompleto"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Format = "N0"
+        DataGridViewCellStyle2.NullValue = Nothing
+        Me.ColumnRelacionadasNumero.DefaultCellStyle = DataGridViewCellStyle2
+        Me.ColumnRelacionadasNumero.HeaderText = "Número"
+        Me.ColumnRelacionadasNumero.Name = "ColumnRelacionadasNumero"
+        Me.ColumnRelacionadasNumero.ReadOnly = True
+        Me.ColumnRelacionadasNumero.Width = 69
+        '
+        'ColumnRelacionadasFecha
+        '
+        Me.ColumnRelacionadasFecha.DataPropertyName = "Fecha"
+        Me.ColumnRelacionadasFecha.HeaderText = "Fecha"
+        Me.ColumnRelacionadasFecha.Name = "ColumnRelacionadasFecha"
+        Me.ColumnRelacionadasFecha.ReadOnly = True
+        Me.ColumnRelacionadasFecha.Width = 62
+        '
+        'ColumnRelacionadasMotivo
+        '
+        Me.ColumnRelacionadasMotivo.DataPropertyName = "Motivo"
+        Me.ColumnRelacionadasMotivo.HeaderText = "Motivo"
+        Me.ColumnRelacionadasMotivo.Name = "ColumnRelacionadasMotivo"
+        Me.ColumnRelacionadasMotivo.ReadOnly = True
+        Me.ColumnRelacionadasMotivo.Width = 64
+        '
         'formOrdenGeneral
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(542, 364)
+        Me.ClientSize = New System.Drawing.Size(542, 341)
         Me.Controls.Add(Me.TabControlMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -450,6 +646,14 @@ Partial Class formOrdenGeneral
         Me.TabPageGeneral.PerformLayout()
         CType(Me.NumericUpDownSubNumero, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.IntegerTextBoxNumero, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPageRelaciones.ResumeLayout(False)
+        Me.TableLayoutPanelRelaciones.ResumeLayout(False)
+        Me.PanelRelacionadas.ResumeLayout(False)
+        Me.PanelRelacionadas.PerformLayout()
+        CType(Me.DataGridViewRelacionadas, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelRelacionantes.ResumeLayout(False)
+        Me.PanelRelacionantes.PerformLayout()
+        CType(Me.DataGridViewRelacionantes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPageNotasAuditoria.ResumeLayout(False)
         Me.TabPageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
@@ -485,6 +689,20 @@ Partial Class formOrdenGeneral
     Friend WithEvents TextBoxPersonal As TextBox
     Friend WithEvents ComboBoxCategoria As ComboBox
     Friend WithEvents LabelCategoria As Label
-    Friend WithEvents ComboBoxDeroga As ComboBox
-    Friend WithEvents Label1 As Label
+    Friend WithEvents TabPageRelaciones As TabPage
+    Friend WithEvents TableLayoutPanelRelaciones As TableLayoutPanel
+    Friend WithEvents PanelRelacionantes As Panel
+    Friend WithEvents LabelRelacionantes As Label
+    Friend WithEvents PanelRelacionadas As Panel
+    Friend WithEvents LabelRelacionadas As Label
+    Friend WithEvents DataGridViewRelacionantes As DataGridView
+    Friend WithEvents DataGridViewRelacionadas As DataGridView
+    Friend WithEvents ColumnRelacionantesRelacionTipo As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionantesNumero As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionantesFecha As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionantesMotivo As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionadasTipoNombre As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionadasNumero As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionadasFecha As DataGridViewTextBoxColumn
+    Friend WithEvents ColumnRelacionadasMotivo As DataGridViewTextBoxColumn
 End Class

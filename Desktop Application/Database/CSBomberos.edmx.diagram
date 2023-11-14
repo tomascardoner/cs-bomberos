@@ -408,6 +408,9 @@
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Resolucion__Creacion" />
         <AssociationConnector Association="CSBomberosModel.FK__Usuario__Resolucion__Modificacion" />
+        <EntityTypeShape EntityType="CSBomberosModel.OrdenGeneralRelacion" Width="1.5" PointX="21" PointY="183.25" />
+        <AssociationConnector Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" />
+        <AssociationConnector Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
