@@ -129,11 +129,12 @@
     '#########################
     '    ORDENES GENERALES
     '#########################
-    Friend Const ORDENGENERAL_RELACIONMOTIVO_DEROGA As String = "D"
-    Friend Const ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE As String = "Deroga"
-    Friend Const ORDENGENERAL_RELACIONMOTIVO_MODIFICA As String = "M"
-    Friend Const ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE As String = "Modifica"
-
+    Friend Const OrdenGeneralRelacionTipoDeroga As String = "D"
+    Friend Const OrdenGeneralRelacionTipoDerogaNombre As String = "Deroga"
+    Friend Const OrdenGeneralRelacionTipoDerogadaNombre As String = "Derogada por"
+    Friend Const OrdenGeneralRelacionTipoModifica As String = "M"
+    Friend Const OrdenGeneralRelacionTipoModificaNombre As String = "Modifica"
+    Friend Const OrdenGeneralRelacionTipoModificadaNombre As String = "Modifica"
 
     Friend Const USUARIOGRUPO_ADMINISTRADORES_ID As Byte = 1
     Friend Const USUARIO_ADMINISTRADOR_ID As Short = 1

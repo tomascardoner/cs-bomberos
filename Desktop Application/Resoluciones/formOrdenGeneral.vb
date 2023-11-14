@@ -261,7 +261,7 @@
         DataGridViewRelacionantes.DataSource = (From ogr In mOrdenGeneralActual.OrdenesGeneralesRelacionesRelacionadas
                                                 Join og In mdbContext.OrdenGeneral On ogr.IDOrdenGeneralRelacionante Equals og.IDOrdenGeneral
                                                 Order By og.Numero, og.SubNumero
-                                                Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = If(ogr.RelacionTipo = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA, Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE, ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
+                                                Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = ObtenerNombreTipoRelacion(ogr.RelacionTipo, True), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
     End Sub
 
     Friend Sub RefreshDataRelacionadas()
@@ -269,7 +269,7 @@
         DataGridViewRelacionadas.DataSource = (From ogr In mOrdenGeneralActual.OrdenesGeneralesRelacionesRelacionantes
                                                Join og In mdbContext.OrdenGeneral On ogr.IDOrdenGeneralRelacionada Equals og.IDOrdenGeneral
                                                Order By og.Numero, og.SubNumero
-                                               Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = If(ogr.RelacionTipo = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA, Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE, ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
+                                               Select New GridRowDataRelacion With {.IDOrdenGeneral = og.IDOrdenGeneral, .RelacionTipoNombre = ObtenerNombreTipoRelacion(ogr.RelacionTipo, False), .NumeroCompleto = og.NumeroCompleto, .Fecha = og.Fecha, .Motivo = ogr.Motivo}).ToList()
     End Sub
 
 #End Region
@@ -278,6 +278,25 @@
 
     Private Function VerificarDatos() As Boolean
         Return True
+    End Function
+
+    Private Function ObtenerNombreTipoRelacion(tipo As String, relacionante As Boolean) As String
+        Select Case tipo
+            Case Constantes.OrdenGeneralRelacionTipoDeroga
+                If relacionante Then
+                    Return Constantes.OrdenGeneralRelacionTipoDerogadaNombre
+                Else
+                    Return OrdenGeneralRelacionTipoDerogaNombre
+                End If
+            Case Constantes.OrdenGeneralRelacionTipoModifica
+                If relacionante Then
+                    Return Constantes.OrdenGeneralRelacionTipoModificadaNombre
+                Else
+                    Return OrdenGeneralRelacionTipoModificaNombre
+                End If
+            Case Else
+                Return String.Empty
+        End Select
     End Function
 
 #End Region

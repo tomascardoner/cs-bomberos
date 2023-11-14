@@ -95,13 +95,13 @@
             End If
 
             datarowRow = .NewRow
-            datarowRow(ValueColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA
-            datarowRow(DisplayColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_DEROGA_NOMBRE
+            datarowRow(ValueColumn) = Constantes.OrdenGeneralRelacionTipoDeroga
+            datarowRow(DisplayColumn) = Constantes.OrdenGeneralRelacionTipoDerogaNombre
             .Rows.Add(datarowRow)
 
             datarowRow = .NewRow
-            datarowRow(ValueColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_MODIFICA
-            datarowRow(DisplayColumn) = Constantes.ORDENGENERAL_RELACIONMOTIVO_MODIFICA_NOMBRE
+            datarowRow(ValueColumn) = Constantes.OrdenGeneralRelacionTipoModifica
+            datarowRow(DisplayColumn) = Constantes.OrdenGeneralRelacionTipoModificaNombre
             .Rows.Add(datarowRow)
         End With
 
