@@ -2114,6 +2114,7 @@
     <Content Include="Resources\Items\PersonaMujer16.png" />
     <Content Include="Resources\Items\Reporte32.png" />
     <Content Include="Resources\Items\Siniestro32.png" />
+    <Content Include="Resources\Items\OrdenGeneral32.png" />
     <Content Include="Resources\Items\Unidad32.png" />
     <Content Include="Resources\Modulos\ComisionDirectiva32.png" />
     <None Include="packages.config" />

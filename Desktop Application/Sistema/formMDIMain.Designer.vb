@@ -103,6 +103,7 @@ Partial Class formMDIMain
         Me.menuitemJefatura_Sanciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_OrdenesCompra = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_ArqueosCaja = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuitemJefatura_OGResActas = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuitemJefatura_Reportes = New System.Windows.Forms.ToolStripMenuItem()
         Me.dropdownbuttonComisionDirectiva = New System.Windows.Forms.ToolStripDropDownButton()
         Me.menuitemComisionDirectiva_ComprobantesCompra = New System.Windows.Forms.ToolStripMenuItem()
@@ -617,7 +618,7 @@ Partial Class formMDIMain
         '
         'dropdownbuttonJefatura
         '
-        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_Sanciones, Me.menuitemJefatura_OrdenesCompra, Me.menuitemJefatura_ArqueosCaja, Me.menuitemJefatura_OrdenesGenerales, Me.menuitemJefatura_Reportes})
+        Me.dropdownbuttonJefatura.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_Sanciones, Me.menuitemJefatura_OrdenesCompra, Me.menuitemJefatura_ArqueosCaja, Me.menuitemJefatura_OGResActas, Me.menuitemJefatura_Reportes})
         Me.dropdownbuttonJefatura.Image = Global.CSBomberos.My.Resources.Resources.ImageJefatura32
         Me.dropdownbuttonJefatura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.dropdownbuttonJefatura.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -646,6 +647,14 @@ Partial Class formMDIMain
         Me.menuitemJefatura_ArqueosCaja.Name = "menuitemJefatura_ArqueosCaja"
         Me.menuitemJefatura_ArqueosCaja.Size = New System.Drawing.Size(180, 22)
         Me.menuitemJefatura_ArqueosCaja.Text = "Arqueos de caja"
+        '
+        'menuitemJefatura_OGResActas
+        '
+        Me.menuitemJefatura_OGResActas.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuitemJefatura_OrdenesGenerales})
+        Me.menuitemJefatura_OGResActas.Image = Global.CSBomberos.My.Resources.Resources.ImageOrdenGeneral32
+        Me.menuitemJefatura_OGResActas.Name = "menuitemJefatura_OGResActas"
+        Me.menuitemJefatura_OGResActas.Size = New System.Drawing.Size(180, 22)
+        Me.menuitemJefatura_OGResActas.Text = "O.G., Resol. y actas"
         '
         'menuitemJefatura_Reportes
         '
@@ -815,5 +824,6 @@ Partial Class formMDIMain
     Friend WithEvents menuitemTablas_MotivosSancion As ToolStripMenuItem
     Friend WithEvents menuitemJefatura_Sanciones As ToolStripMenuItem
     Friend WithEvents menuitemDebug_DebugMode As ToolStripMenuItem
+    Friend WithEvents menuitemJefatura_OGResActas As ToolStripMenuItem
     Friend WithEvents menuitemJefatura_OrdenesGenerales As ToolStripMenuItem
 End Class

@@ -29,7 +29,7 @@
 #Region "Form stuff"
 
     Friend Sub SetAppearance()
-        'Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenGeneral32)
+        Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenGeneral32)
 
         DataGridSetAppearance(datagridviewMain)
     End Sub
