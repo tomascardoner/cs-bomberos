@@ -25,6 +25,12 @@ CREATE PROCEDURE usp_Persona_DatosParaBaja
 		-- SET NOCOUNT ON added to prevent extra result sets from interfering with SELECT statements.
 		SET NOCOUNT ON;
 
+		DECLARE @IDCargoAspirante tinyint = 8
+		DECLARE @IDJerarquiaAspirante tinyint = 5
+
+		DECLARE @IDCargoCadete tinyint = 7
+		DECLARE @IDJerarquiaCadete tinyint = 4
+
 		DECLARE @IDPersonaBajaMotivoRenuncia tinyint = 1
 		DECLARE @IDPersonaBajaMotivoDisciplinario tinyint = 2
 		DECLARE @IDPersonaBajaMotivoFallecimiento tinyint = 3
@@ -33,11 +39,12 @@ CREATE PROCEDURE usp_Persona_DatosParaBaja
 		SELECT 'SOCIEDAD DE BOMBEROS VOLUNTARIOS DE LOBOS' AS Asociacion, 'LOBOS' AS Partido,
 				p.IDPersona, p.MatriculaNumero, p.Apellido, p.Nombre, p.DocumentoNumero,
 				dbo.udf_StringPadLeft(DAY(p.FechaNacimiento), 2, '0') AS FechaNacimientoDia, dbo.udf_StringPadLeft(MONTH(p.FechaNacimiento), 2, '0') AS FechaNacimientoMes, dbo.udf_StringPadLeft(YEAR(p.FechaNacimiento) % 100, 2, '0') AS FechaNacimientoAnio,
-				dbo.udf_EqualIntegerValuesAsXChar(dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo), 1) AS EstadoActivo,
-				dbo.udf_EqualIntegerValuesAsXChar(pabanterior.IDPersonaBajaMotivo, @IDPersonaBajaMotivoReserva) AS EstadoReserva,
-				c.Nombre AS Cargo,
-				(CASE dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo) WHEN 1 THEN cj.Nombre ELSE '' END) AS JerarquiaActivo,
-				(CASE pabanterior.IDPersonaBajaMotivo WHEN @IDPersonaBajaMotivoReserva THEN cj.Nombre ELSE '' END) AS JerarquiaReserva,
+				(CASE WHEN pa.IDCargo = @IDCargoAspirante AND pa.IDJerarquia = @IDJerarquiaAspirante THEN 'X' ELSE NULL END) AS EstadoAspirante,
+				(CASE WHEN pa.IDCargo = @IDCargoCadete AND pa.IDJerarquia = @IDJerarquiaCadete THEN 'X' ELSE NULL END) AS EstadoCadete,
+				(CASE WHEN pa.IDCargo = @IDCargoAspirante AND pa.IDJerarquia = @IDJerarquiaAspirante THEN NULL WHEN pa.IDCargo = @IDCargoCadete AND pa.IDJerarquia = @IDJerarquiaCadete THEN NULL ELSE dbo.udf_EqualIntegerValuesAsXChar(dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo), 1) END) AS EstadoActivo,
+				(CASE WHEN pa.IDCargo = @IDCargoAspirante AND pa.IDJerarquia = @IDJerarquiaAspirante THEN NULL WHEN pa.IDCargo = @IDCargoCadete AND pa.IDJerarquia = @IDJerarquiaCadete THEN NULL ELSE dbo.udf_EqualIntegerValuesAsXChar(pabanterior.IDPersonaBajaMotivo, @IDPersonaBajaMotivoReserva) END) AS EstadoReserva,
+				(CASE WHEN pa.IDCargo = @IDCargoAspirante AND pa.IDJerarquia = @IDJerarquiaAspirante THEN NULL WHEN pa.IDCargo = @IDCargoCadete AND pa.IDJerarquia = @IDJerarquiaCadete THEN NULL ELSE (CASE dbo.PersonaObtenerSiEstadoEsActivo(pabanterior.Tipo) WHEN 1 THEN cj.Nombre ELSE '' END) END) AS JerarquiaActivo,
+				(CASE WHEN pa.IDCargo = @IDCargoAspirante AND pa.IDJerarquia = @IDJerarquiaAspirante THEN NULL WHEN pa.IDCargo = @IDCargoCadete AND pa.IDJerarquia = @IDJerarquiaCadete THEN NULL ELSE (CASE pabanterior.IDPersonaBajaMotivo WHEN @IDPersonaBajaMotivoReserva THEN cj.Nombre ELSE '' END) END) AS JerarquiaReserva,
 				p.DomicilioParticularCalle1, p.DomicilioParticularNumero, p.DomicilioParticularCodigoPostal, l.Nombre AS Localidad,
 				dbo.udf_EqualStringValuesAsXChar(p.IOMATiene, 'T') AS IomaPorTrabajo, dbo.udf_EqualStringValuesAsXChar(p.IOMATiene, 'B') AS IomaPorBomberos,
 				dbo.udf_EqualIntegerValuesAsXChar(pabbaja.IDPersonaBajaMotivo, @IDPersonaBajaMotivoRenuncia) AS BajaRenuncia,

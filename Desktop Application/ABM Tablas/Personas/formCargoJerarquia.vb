@@ -167,6 +167,7 @@
 #End Region
 
 #Region "Main Toolbar"
+
     Private Sub buttonEditar_Click() Handles buttonEditar.Click
         If Permisos.VerificarPermiso(Permisos.CARGOJERARQUIA_EDITAR) Then
             mEditMode = True
@@ -196,8 +197,8 @@
         ' Generar el ID nuevo
         If mIsNew Then
             Using dbcMaxID As New CSBomberosContext(True)
-                If dbcMaxID.CargoJerarquia.Any() Then
-                    mCargoJerarquiaActual.IDJerarquia = dbcMaxID.CargoJerarquia.Max(Function(a) a.IDJerarquia) + CByte(1)
+                If dbcMaxID.CargoJerarquia.Where(Function(cj) cj.IDCargo = CType(comboboxCargo.SelectedItem, Cargo).IDCargo).Any() Then
+                    mCargoJerarquiaActual.IDJerarquia = dbcMaxID.CargoJerarquia.Where(Function(cj) cj.IDCargo = CType(comboboxCargo.SelectedItem, Cargo).IDCargo).Max(Function(a) a.IDJerarquia) + CByte(1)
                 Else
                     mCargoJerarquiaActual.IDJerarquia = 1
                 End If
