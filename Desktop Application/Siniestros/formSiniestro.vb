@@ -94,7 +94,7 @@
         datagridviewResumenAsistencias.Visible = Not mEditMode
 
         ' Asistencias
-        toolstripAsistencias.Enabled = (mEditMode AndAlso mPermisoEditarCompleto)
+        toolstripAsistencias.Enabled = (mEditMode AndAlso mPermisoEditarBasico)
 
         ' Notas y Auditoría
         textboxNotas.ReadOnly = Not mEditMode
