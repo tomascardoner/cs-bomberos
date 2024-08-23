@@ -5,6 +5,8 @@ Public Class formPersona
 
 #Region "Declarations"
 
+    Private _TabControlExtension As CardonerSistemas.Controls.TabControlExtension
+
     Private mdbContext As New CSBomberosContext(True)
     Private mPersonaActual As Persona
 
@@ -177,6 +179,8 @@ Public Class formPersona
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        _TabControlExtension = New CardonerSistemas.Controls.TabControlExtension(tabcontrolMain)
+
         SetAppearance()
 
         ' Cargo los ComboBox
@@ -196,46 +200,46 @@ Public Class formPersona
 
     Friend Sub SetAppearance()
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_FAMILIAR, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageFamiliares.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageFamiliares)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ALTABAJA, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageAltasBajas.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageAltasBajas)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ACCIDENTE, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageAccidentes.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageAccidentes)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_ASCENSO, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageAscensos.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageAscensos)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_HORARIO, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageHorarioLaboral.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageHorarioLaboral)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_VEHICULO, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageVehiculos.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageVehiculos)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_VACUNA, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageVacunas.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageVacunas)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIA, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageLicencias.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageLicencias)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_LICENCIAESPECIAL, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageLicenciasEspeciales.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageLicenciasEspeciales)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_SANCION, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageSanciones.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageSanciones)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_CAPACITACION, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageCapacitaciones.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageCapacitaciones)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_CALIFICACION, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageCalificaciones.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageCalificaciones)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_EXAMEN, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageExamenes.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageExamenes)
         End If
         If Not Permisos.VerificarPermiso(Permisos.PERSONA_IDENTIFICACION, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageIdentificacion.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageIdentificacion)
         End If
 
         DataGridSetAppearance(datagridviewFamiliares)

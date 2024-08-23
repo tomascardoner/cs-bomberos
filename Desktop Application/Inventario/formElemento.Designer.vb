@@ -36,7 +36,7 @@ Partial Class formElemento
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.comboboxSubRubro = New System.Windows.Forms.ComboBox()
         Me.comboboxRubro = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
         Me.labelIDElemento = New System.Windows.Forms.Label()
@@ -356,7 +356,7 @@ Partial Class formElemento
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents comboboxSubRubro As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxRubro As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDElemento As System.Windows.Forms.Label

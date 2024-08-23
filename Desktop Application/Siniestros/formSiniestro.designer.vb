@@ -39,7 +39,7 @@ Partial Class formSiniestro
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.buttonHoraFinFinalizar = New System.Windows.Forms.Button()
         Me.labelResumenAsistencias = New System.Windows.Forms.Label()
@@ -830,7 +830,7 @@ Partial Class formSiniestro
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents comboboxSiniestroRubro As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox

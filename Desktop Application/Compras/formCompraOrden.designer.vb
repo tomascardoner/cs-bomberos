@@ -37,7 +37,7 @@ Partial Class formCompraOrden
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
         Me.comboboxEntidad = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
         Me.comboboxCuartel = New System.Windows.Forms.ComboBox()
@@ -585,7 +585,7 @@ Partial Class formCompraOrden
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents comboboxEntidad As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox

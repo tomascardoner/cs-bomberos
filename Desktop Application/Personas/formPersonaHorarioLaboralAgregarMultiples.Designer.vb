@@ -32,7 +32,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
         Me.labelDiaSemana = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.checkboxDiaSemana1 = New System.Windows.Forms.CheckBox()
         Me.checkboxDiaSemana7 = New System.Windows.Forms.CheckBox()
@@ -348,7 +348,7 @@ Partial Class formPersonaHorarioLaboralAgregarMultiples
     Friend WithEvents labelDiaSemana As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotas As System.Windows.Forms.TabPage
     Friend WithEvents datetimepickerTurno1Hasta As DateTimePicker

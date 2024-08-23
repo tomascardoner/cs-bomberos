@@ -35,7 +35,7 @@ Partial Class formCargoJerarquia
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.checkboxEsActivo = New System.Windows.Forms.CheckBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.checkboxJerarquiaInferior = New System.Windows.Forms.CheckBox()
         Me.comboboxCargo = New System.Windows.Forms.ComboBox()
@@ -379,7 +379,7 @@ Partial Class formCargoJerarquia
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents checkboxEsActivo As System.Windows.Forms.CheckBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox

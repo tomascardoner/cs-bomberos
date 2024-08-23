@@ -24,7 +24,7 @@ Partial Class formUsuarioGrupoPermisos
     Private Sub InitializeComponent()
         Me.labelUsuarioGrupo = New System.Windows.Forms.Label()
         Me.comboboxUsuarioGrupo = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpagePermisos = New System.Windows.Forms.TabPage()
         Me.tabpageReportes = New System.Windows.Forms.TabPage()
         Me.treeviewPermisos = New System.Windows.Forms.TreeView()
@@ -131,7 +131,7 @@ Partial Class formUsuarioGrupoPermisos
     End Sub
     Friend WithEvents labelUsuarioGrupo As System.Windows.Forms.Label
     Friend WithEvents comboboxUsuarioGrupo As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpagePermisos As TabPage
     Friend WithEvents treeviewPermisos As TreeView
     Friend WithEvents tabpageReportes As TabPage

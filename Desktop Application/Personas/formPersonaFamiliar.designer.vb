@@ -62,7 +62,7 @@ Partial Class formPersonaFamiliar
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.textboxApellido = New System.Windows.Forms.TextBox()
         Me.textboxNombre = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.textboxParentescoOtro = New System.Windows.Forms.TextBox()
         Me.checkboxEsEmergencia = New System.Windows.Forms.CheckBox()
@@ -1043,7 +1043,7 @@ Partial Class formPersonaFamiliar
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCancelar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonGuardar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents checkboxVive As System.Windows.Forms.CheckBox
     Friend WithEvents datetimepickerFechaNacimiento As System.Windows.Forms.DateTimePicker

@@ -37,7 +37,7 @@ Partial Class formPersonaAltaBaja
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.radiobuttonTipoBaja = New System.Windows.Forms.RadioButton()
         Me.radiobuttonTipoAlta = New System.Windows.Forms.RadioButton()
@@ -508,7 +508,7 @@ Partial Class formPersonaAltaBaja
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageExtras As System.Windows.Forms.TabPage
     Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox

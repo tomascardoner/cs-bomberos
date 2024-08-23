@@ -42,7 +42,7 @@ Partial Class formPersonaAccidente
         Me.textboxFolioNumero = New System.Windows.Forms.TextBox()
         Me.textboxLibroNumero = New System.Windows.Forms.TextBox()
         Me.textboxActaNumero = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.textboxDisminucionFisica = New System.Windows.Forms.TextBox()
         Me.datetimepickerFechaAlta = New System.Windows.Forms.DateTimePicker()
@@ -454,7 +454,7 @@ Partial Class formPersonaAccidente
     Friend WithEvents textboxFolioNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxLibroNumero As System.Windows.Forms.TextBox
     Friend WithEvents textboxActaNumero As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDAccidente As System.Windows.Forms.Label

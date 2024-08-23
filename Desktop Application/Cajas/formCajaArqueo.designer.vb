@@ -36,7 +36,7 @@ Partial Class formCajaArqueo
         Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.currencytextboxImporteAsignado = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
         Me.currencytextboxSaldoInicial = New Syncfusion.Windows.Forms.Tools.CurrencyTextBox()
@@ -567,7 +567,7 @@ Partial Class formCajaArqueo
     Friend WithEvents buttonEditar As System.Windows.Forms.ToolStripButton
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox

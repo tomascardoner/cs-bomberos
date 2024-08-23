@@ -131,7 +131,7 @@ Partial Class formPersona
         Me.textboxLicenciaConducirNumero = New System.Windows.Forms.TextBox()
         Me.textboxIOMANumeroAfiliado = New System.Windows.Forms.TextBox()
         Me.openfiledialogFoto = New System.Windows.Forms.OpenFileDialog()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.textboxTituloObtenido = New System.Windows.Forms.TextBox()
         Me.maskedtextboxCUIL = New System.Windows.Forms.MaskedTextBox()
@@ -3899,7 +3899,7 @@ Partial Class formPersona
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents labelIDPersona As System.Windows.Forms.Label
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents datetimepickerFechaNacimiento As System.Windows.Forms.DateTimePicker

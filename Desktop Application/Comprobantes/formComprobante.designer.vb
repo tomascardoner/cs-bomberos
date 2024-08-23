@@ -44,7 +44,7 @@ Partial Class formComprobante
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formComprobante))
         Me.panelMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageDescripcion = New System.Windows.Forms.TabPage()
         Me.textboxDescripcion = New System.Windows.Forms.TextBox()
         Me.tabpageDetalle = New System.Windows.Forms.TabPage()
@@ -1389,7 +1389,7 @@ Partial Class formComprobante
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CSBomberos.CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageDetalle As System.Windows.Forms.TabPage
     Friend WithEvents tabpageAplicaciones As System.Windows.Forms.TabPage
     Friend WithEvents tabpageMediosPago As System.Windows.Forms.TabPage

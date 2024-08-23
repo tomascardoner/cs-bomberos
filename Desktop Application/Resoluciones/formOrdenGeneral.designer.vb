@@ -35,7 +35,7 @@ Partial Class formOrdenGeneral
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.TabControlMain = New CSBomberos.CS_Control_TabControl()
+        Me.TabControlMain = New System.Windows.Forms.TabControl()
         Me.TabPageGeneral = New System.Windows.Forms.TabPage()
         Me.ComboBoxCategoria = New System.Windows.Forms.ComboBox()
         Me.LabelCategoria = New System.Windows.Forms.Label()
@@ -667,7 +667,7 @@ Partial Class formOrdenGeneral
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents TabControlMain As CS_Control_TabControl
+    Friend WithEvents TabControlMain As System.Windows.Forms.TabControl
     Friend WithEvents TabPageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents LabelID As System.Windows.Forms.Label
     Friend WithEvents TextBoxID As System.Windows.Forms.TextBox

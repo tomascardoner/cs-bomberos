@@ -36,7 +36,7 @@ Partial Class formPersonaVacuna
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.comboboxTipo = New System.Windows.Forms.ComboBox()
         Me.datetimepickerFechaVencimiento = New System.Windows.Forms.DateTimePicker()
@@ -383,7 +383,7 @@ Partial Class formPersonaVacuna
     Friend WithEvents labelFecha As System.Windows.Forms.Label
     Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
     Friend WithEvents labelNotas As System.Windows.Forms.Label
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDVacuna As System.Windows.Forms.Label

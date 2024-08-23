@@ -46,7 +46,7 @@ Partial Class formInventarioDetalle
         Me.comboboxUbicacion = New System.Windows.Forms.ComboBox()
         Me.buttonCodigoSiguiente = New System.Windows.Forms.Button()
         Me.comboboxElemento = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.MaskedTextBoxCodigo = New System.Windows.Forms.MaskedTextBox()
         Me.datetimepickerFechaAdquisicion = New System.Windows.Forms.DateTimePicker()
@@ -538,7 +538,7 @@ Partial Class formInventarioDetalle
     Friend WithEvents comboboxUbicacion As System.Windows.Forms.ComboBox
     Friend WithEvents buttonCodigoSiguiente As System.Windows.Forms.Button
     Friend WithEvents comboboxElemento As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents datetimepickerFechaBaja As System.Windows.Forms.DateTimePicker

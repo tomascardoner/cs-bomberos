@@ -2,6 +2,8 @@
 
 #Region "Declarations"
 
+    Private _TabControlExtension As CardonerSistemas.Controls.TabControlExtension
+
     Private mdbContext As New CSBomberosContext(True)
     Private mCompraOrdenActual As CompraOrden
 
@@ -56,25 +58,25 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         '  Toolbar
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
-        buttonImprimir.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
+        buttonImprimir.Visible = Not mEditMode
 
         ' General
-        comboboxCuartel.Enabled = (mEditMode And (mIsNew Or Not mCompraOrdenActual.CompraOrdenDetalles.Any()))
+        comboboxCuartel.Enabled = (mEditMode AndAlso (mIsNew OrElse Not mCompraOrdenActual.CompraOrdenDetalles.Any()))
         integertextboxNumero.ReadOnly = Not mEditMode
         buttonCodigoSiguiente.Visible = mEditMode
         datetimepickerFecha.Enabled = mEditMode
         comboboxEntidad.Enabled = mEditMode
 
         checkboxCerrada.Enabled = mEditMode
-        datetimepickerCierreFecha.Enabled = (mEditMode And checkboxCerrada.Checked)
+        datetimepickerCierreFecha.Enabled = (mEditMode AndAlso checkboxCerrada.Checked)
 
         ' Detalles
         toolstripDetalles.Enabled = mEditMode
@@ -94,7 +96,7 @@
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageOrdenCompra32)
 
         If Not Permisos.VerificarPermiso(Permisos.COMPRAORDENDETALLE, False) Then
-            tabcontrolMain.HideTabPageByName(tabpageDetalles.Name)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageDetalles)
         End If
     End Sub
 
@@ -195,7 +197,7 @@
         If comboboxCuartel.SelectedValue Is Nothing Then
             MsgBox("Debe especificar el Cuartel .", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxCuartel.Focus()
-            Exit Sub
+            Return
         End If
 
         Using dbcMaxCodigo As New CSBomberosContext(True)

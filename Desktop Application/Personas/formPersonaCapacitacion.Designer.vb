@@ -35,7 +35,7 @@ Partial Class formPersonaCapacitacion
         Me.labelNotas = New System.Windows.Forms.Label()
         Me.comboboxCurso = New System.Windows.Forms.ComboBox()
         Me.textboxCapacitacionNivelOtro = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.labelCapacitacionTipoOtro = New System.Windows.Forms.Label()
         Me.labelCapacitacionTipo = New System.Windows.Forms.Label()
@@ -491,7 +491,7 @@ Partial Class formPersonaCapacitacion
     Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents comboboxCurso As System.Windows.Forms.ComboBox
     Friend WithEvents textboxCapacitacionNivelOtro As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDCapacitacion As System.Windows.Forms.Label

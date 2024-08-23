@@ -59,7 +59,7 @@ Partial Class formUnidad
         Me.maskedtextboxKilometrajeInicial = New System.Windows.Forms.MaskedTextBox()
         Me.maskedtextboxCapacidadAguaLitros = New System.Windows.Forms.MaskedTextBox()
         Me.buttonNumeroSiguiente = New System.Windows.Forms.Button()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.datetimepickerVerificacionVencimiento = New System.Windows.Forms.DateTimePicker()
         Me.checkboxEsImportado = New System.Windows.Forms.CheckBox()
@@ -732,7 +732,7 @@ Partial Class formUnidad
     Friend WithEvents maskedtextboxKilometrajeInicial As System.Windows.Forms.MaskedTextBox
     Friend WithEvents maskedtextboxCapacidadAguaLitros As System.Windows.Forms.MaskedTextBox
     Friend WithEvents buttonNumeroSiguiente As System.Windows.Forms.Button
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDUnidad As System.Windows.Forms.Label

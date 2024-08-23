@@ -2,6 +2,8 @@
 
 #Region "Declarations"
 
+    Private _TabControlExtension As CardonerSistemas.Controls.TabControlExtension
+
     Private mdbContext As New CSBomberosContext(True)
     Private mComprobanteActual As Comprobante
 
@@ -126,6 +128,8 @@
     End Sub
 
     Friend Sub InitializeFormAndControls()
+        _TabControlExtension = New CardonerSistemas.Controls.TabControlExtension(tabcontrolMain)
+
         SetAppearance()
 
         MaskedTextBoxPuntoVenta.Mask = New String("0"c, Constantes.ComprobantePuntoVentaLongitud)
@@ -977,94 +981,76 @@
     Private Sub CambiarTipoComprobante()
         Dim NextComprobanteNumero As String
 
-        If comboboxComprobanteTipo.SelectedIndex > -1 Then
-            mComprobanteTipoActual = CType(comboboxComprobanteTipo.SelectedItem, ComprobanteTipo)
+        If comboboxComprobanteTipo.SelectedIndex = -1 Then
+            panelFechas.Visible = False
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageDescripcion)
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageDetalle)
+            panelDetalle_Subtotal.Visible = False
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageAplicaciones)
+            panelAplicaciones_Subtotal.Visible = False
+            _TabControlExtension.HidePage(tabcontrolMain, tabpageMediosPago)
+            panelMediosPago_Subtotal.Visible = False
+            tabcontrolMain.SelectTab(0)
+            Return
+        End If
 
-            ' Verifico la asignación del número de comprobante
-            If Not mComprobanteTipoActual.IDNumerador.HasValue Then
-                ' No hay un numerador definido, habilito los campos de Punto de Venta y Numero
-                mNumerador = Nothing
-                MaskedTextBoxPuntoVenta.Text = String.Empty
-                MaskedTextBoxNumero.Text = String.Empty
-            Else
-                ' Hay un numerador definido, así que si es un comprobante nuevo, establezco el número, como para ir mostrándolo, aunque antes de grabar, puede volver a cambiar
-                Using context As New CSBomberosContext(True)
-                    mNumerador = context.Numerador.Find(mComprobanteTipoActual.IDNumerador.Value)
-                End Using
-                If mIsNew Then
-                    MaskedTextBoxPuntoVenta.Text = mNumerador.PuntoVentaConFormato
-                    MaskedTextBoxNumero.Text = mNumerador.NumeroConFormato
-                End If
+        mComprobanteTipoActual = CType(comboboxComprobanteTipo.SelectedItem, ComprobanteTipo)
+
+        ' Verifico la asignación del número de comprobante
+        If Not mComprobanteTipoActual.IDNumerador.HasValue Then
+            ' No hay un numerador definido, habilito los campos de Punto de Venta y Numero
+            mNumerador = Nothing
+            MaskedTextBoxPuntoVenta.Text = String.Empty
+            MaskedTextBoxNumero.Text = String.Empty
+        Else
+            ' Hay un numerador definido, así que si es un comprobante nuevo, establezco el número, como para ir mostrándolo, aunque antes de grabar, puede volver a cambiar
+            Using context As New CSBomberosContext(True)
+                mNumerador = context.Numerador.Find(mComprobanteTipoActual.IDNumerador.Value)
+            End Using
+            If mIsNew Then
+                MaskedTextBoxPuntoVenta.Text = mNumerador.PuntoVentaConFormato
+                MaskedTextBoxNumero.Text = mNumerador.NumeroConFormato
             End If
+        End If
 
-            ' Habilito los Controles según corresponda
-            MaskedTextBoxPuntoVenta.TabStop = mNumerador Is Nothing
-            MaskedTextBoxNumero.TabStop = mNumerador Is Nothing
+        ' Habilito los Controles según corresponda
+        MaskedTextBoxPuntoVenta.TabStop = mNumerador Is Nothing
+        MaskedTextBoxNumero.TabStop = mNumerador Is Nothing
 
-            ' Entidades
-            ListasComprobantes.LlenarComboBoxEntidades(mdbContext, comboboxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
-            If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
-                Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
-                If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
-                    CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
-                Else
-                    comboboxEntidad.SelectedIndex = -1
-                End If
+        ' Entidades
+        ListasComprobantes.LlenarComboBoxEntidades(mdbContext, comboboxEntidad, mComprobanteTipoActual.OperacionTipo, False, False)
+        If CardonerSistemas.Forms.MdiChildIsLoaded(CType(pFormMDIMain, Form), "formComprobantes") Then
+            Dim formComprobantes As formComprobantes = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), "formComprobantes"), formComprobantes)
+            If formComprobantes.comboboxEntidad.SelectedIndex > 0 Then
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxEntidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, CType(formComprobantes.comboboxEntidad.SelectedItem, Entidad).IDEntidad, CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_SHORT)
             Else
                 comboboxEntidad.SelectedIndex = -1
             End If
-
-            ' Utiliza datos de gasto
-            panelDatoGasto.Visible = mComprobanteTipoActual.UtilizaDatoGasto
-
-            ' Utiliza Descripción
-            If mComprobanteTipoActual.UtilizaDescripcion Then
-                    tabcontrolMain.ShowTabPageByName(tabpageDescripcion.Name)
-                Else
-                    tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
-                End If
-
-                ' Utiliza Detalle
-                panelFechas.Visible = mComprobanteTipoActual.UtilizaDetalle
-                If mComprobanteTipoActual.UtilizaDetalle Then
-                    tabcontrolMain.ShowTabPageByName(tabpageDetalle.Name)
-                    panelDetalle_Subtotal.Visible = True
-                Else
-                    tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
-                    panelDetalle_Subtotal.Visible = False
-                End If
-
-                ' Utiliza Alicación
-                If mComprobanteTipoActual.UtilizaAplicado Or mComprobanteTipoActual.UtilizaAplicante Then
-                    tabcontrolMain.ShowTabPageByName(tabpageAplicaciones.Name)
-                    panelAplicaciones_Subtotal.Visible = True
-                Else
-                    tabcontrolMain.HideTabPageByName(tabpageAplicaciones.Name)
-                    panelAplicaciones_Subtotal.Visible = False
-                End If
-
-                ' Utiliza Medio de Pago
-                If mComprobanteTipoActual.UtilizaMedioPago Then
-                    tabcontrolMain.ShowTabPageByName(tabpageMediosPago.Name)
-                    panelMediosPago_Subtotal.Visible = True
-                Else
-                    tabcontrolMain.HideTabPageByName(tabpageMediosPago.Name)
-                    panelMediosPago_Subtotal.Visible = False
-                End If
-
-                If mComprobanteTipoActual.UtilizaDetalle = False And mComprobanteTipoActual.UtilizaMedioPago = False Then
-                    currencytextboxImporteTotal.ReadOnly = Not mEditMode
-                End If
-            Else
-                panelFechas.Visible = False
-            tabcontrolMain.HideTabPageByName(tabpageDescripcion.Name)
-            tabcontrolMain.HideTabPageByName(tabpageDetalle.Name)
-            panelDetalle_Subtotal.Visible = False
-            tabcontrolMain.HideTabPageByName(tabpageAplicaciones.Name)
-            panelAplicaciones_Subtotal.Visible = False
-            tabcontrolMain.HideTabPageByName(tabpageMediosPago.Name)
-            panelMediosPago_Subtotal.Visible = False
+        Else
+            comboboxEntidad.SelectedIndex = -1
         End If
+
+        ' Utiliza datos de gasto
+        panelDatoGasto.Visible = mComprobanteTipoActual.UtilizaDatoGasto
+
+        ' Utiliza Descripción
+        _TabControlExtension.PageVisible(tabcontrolMain, tabpageDescripcion, mComprobanteTipoActual.UtilizaDescripcion)
+
+        ' Utiliza Detalle
+        panelFechas.Visible = mComprobanteTipoActual.UtilizaDetalle
+        _TabControlExtension.PageVisible(tabcontrolMain, tabpageDetalle, mComprobanteTipoActual.UtilizaDetalle)
+        panelDetalle_Subtotal.Visible = mComprobanteTipoActual.UtilizaDetalle
+
+        ' Utiliza Alicación
+        _TabControlExtension.PageVisible(tabcontrolMain, tabpageAplicaciones, mComprobanteTipoActual.UtilizaAplicado OrElse mComprobanteTipoActual.UtilizaAplicante)
+        panelAplicaciones_Subtotal.Visible = mComprobanteTipoActual.UtilizaAplicado OrElse mComprobanteTipoActual.UtilizaAplicante
+
+        ' Utiliza Medio de Pago
+        _TabControlExtension.PageVisible(tabcontrolMain, tabpageMediosPago, mComprobanteTipoActual.UtilizaMedioPago)
+        panelMediosPago_Subtotal.Visible = mComprobanteTipoActual.UtilizaMedioPago
+
+        ' Importe total
+        currencytextboxImporteTotal.ReadOnly = (mComprobanteTipoActual.UtilizaDetalle OrElse mComprobanteTipoActual.UtilizaMedioPago OrElse Not mEditMode)
         tabcontrolMain.SelectTab(0)
     End Sub
 
@@ -1095,7 +1081,6 @@
             mComprobanteActual.IDUsuarioCreacion = pUsuario.IDUsuario
             mComprobanteActual.FechaHoraCreacion = Now
             Return True
-
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al establecer los valores del Comprobante nuevo.")
             Return False

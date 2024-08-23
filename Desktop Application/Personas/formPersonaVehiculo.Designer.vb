@@ -42,7 +42,7 @@ Partial Class formPersonaVehiculo
         Me.comboboxTipo = New System.Windows.Forms.ComboBox()
         Me.comboboxMarca = New System.Windows.Forms.ComboBox()
         Me.textboxDominio = New System.Windows.Forms.TextBox()
-        Me.tabcontrolMain = New CSBomberos.CS_Control_TabControl()
+        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
         Me.tabpageGeneral = New System.Windows.Forms.TabPage()
         Me.groupboxSeguro = New System.Windows.Forms.GroupBox()
         Me.datetimepickerSeguroVencimiento = New System.Windows.Forms.DateTimePicker()
@@ -491,7 +491,7 @@ Partial Class formPersonaVehiculo
     Friend WithEvents comboboxTipo As System.Windows.Forms.ComboBox
     Friend WithEvents comboboxMarca As System.Windows.Forms.ComboBox
     Friend WithEvents textboxDominio As System.Windows.Forms.TextBox
-    Friend WithEvents tabcontrolMain As CS_Control_TabControl
+    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageGeneral As System.Windows.Forms.TabPage
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents labelIDVehiculo As System.Windows.Forms.Label
