@@ -17,3 +17,4 @@ Imports System.Diagnostics.CodeAnalysis
 <Assembly: SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification:="<Pending>", Scope:="member", Target:="~F:CSBomberos.formAcademiaAsistencia.mdbContext")>
 <Assembly: SuppressMessage("Usage", "CA2213:Disposable fields should be disposed", Justification:="<Pending>", Scope:="module")>
 <Assembly: SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters", Justification:="<Pending>", Scope:="member", Target:="~M:CSBomberos.formComprobantes.SetAppearance")>
+<Assembly: SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification:="<Pending>", Scope:="namespaceanddescendants", Target:="~N:CSBomberos")>

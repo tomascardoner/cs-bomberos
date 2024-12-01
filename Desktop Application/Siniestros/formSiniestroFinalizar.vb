@@ -104,7 +104,7 @@ Public Class formSiniestroFinalizar
 #Region "Cosas extras"
 
     Private Sub CerrarYAsistirPersona(idPersona As Integer)
-        Dim mensajeResultado As String
+        Dim mensajeResultado As String = String.Empty
 
         Persona = mdbContext.Persona.Find(idPersona)
         pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(Persona.Foto)

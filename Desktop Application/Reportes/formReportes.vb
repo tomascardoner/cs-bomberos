@@ -1,4 +1,6 @@
-﻿Public Class formReportes
+﻿Imports System.Text
+
+Public Class formReportes
 
 #Region "Declarations"
 
@@ -204,44 +206,40 @@
                     End If
                     fps.Dispose()
 
-                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE
-                    Dim frpf As New formReportesParametroFamiliares
-                    Dim ParametroPadre As ReporteParametro = Nothing
-
-                    ' Busco si el parámetro actual tiene un parámetro padre
-                    For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-                        If ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA Then
-                            ParametroPadre = currentReporteParametro
-                            If ParametroPadre.Valor Is Nothing Then
-                                MsgBox("Debe seleccionar a la Persona para poder seleccionar los familiares.", MsgBoxStyle.Information, My.Application.Info.Title)
-                                Exit Sub
-                            End If
-                        End If
-                    Next
-
-                    frpf.EstablecerMultiseleccion(True)
-                    frpf.SetAppearance(Convert.ToInt32(ParametroPadre.Valor), ParametroPadre.ValorParaMostrar)
-                    If frpf.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
-                        Const IDFamiliarDelimiter As String = "@"
-                        Const FamiliarNombreDelimiter As String = " - "
-
-                        Dim PersonaFamiliarSeleccionada As formReportesParametroFamiliares.Familiares_GridRowData
-                        Dim Valores As String = ""
-                        Dim ValorParaMostrar As String = ""
-
-                        For Each dataRow As DataGridViewRow In frpf.datagridviewMain.SelectedRows
-                            PersonaFamiliarSeleccionada = CType(dataRow.DataBoundItem, formReportesParametroFamiliares.Familiares_GridRowData)
-                            Valores = (PersonaFamiliarSeleccionada.IDFamiliar & IDFamiliarDelimiter & Valores)
-                            ValorParaMostrar = (FamiliarNombreDelimiter & PersonaFamiliarSeleccionada.Apellido & ", " & PersonaFamiliarSeleccionada.Nombre) & ValorParaMostrar
-                        Next
-                        ValorParaMostrar = ValorParaMostrar.Remove(0, FamiliarNombreDelimiter.Length)
-                        PersonaFamiliarSeleccionada = Nothing
-
-                        ParametroActual.Valor = Valores
-                        ParametroActual.ValorParaMostrar = ValorParaMostrar
-                        ListViewItemActual.SubItems(2).Text = ValorParaMostrar
+                Case Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARHIJOUNICO, Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARHIJOMULTIPLE, Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARUNICO, Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE
+                    ' Chequeo si el parámetro actual tiene un parámetro padre
+                    Dim ParametroPadre As ReporteParametro = ReporteActual.ReporteParametros.FirstOrDefault(Function(rp) rp.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA)
+                    If ParametroPadre Is Nothing Then
+                        Return
                     End If
-                    frpf.Dispose()
+                    If ParametroPadre.Valor Is Nothing Then
+                        MsgBox("Debe seleccionar a la Persona para poder seleccionar los familiares.", MsgBoxStyle.Information, My.Application.Info.Title)
+                        Return
+                    End If
+
+                    Dim multiSeleccion As Boolean = ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE OrElse ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARHIJOMULTIPLE
+                    Dim idParentesco As Byte? = CByte(IIf(ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARHIJOMULTIPLE OrElse ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARHIJOUNICO, CS_Parameter_System.GetIntegerAsByte(Parametros.PARENTESCO_ID_HIJO, 0), Nothing))
+                    Using frpf As New formReportesParametroFamiliares(CInt(ParametroPadre.Valor), ParametroPadre.ValorParaMostrar, multiSeleccion, idParentesco)
+                        If frpf.ShowDialog(Me) = Windows.Forms.DialogResult.OK Then
+                            Const IDFamiliarDelimiter As String = "@"
+                            Const FamiliarNombreDelimiter As String = " - "
+
+                            Dim PersonaFamiliarSeleccionada As formReportesParametroFamiliares.Familiares_GridRowData
+                            Dim Valores As String = String.Empty
+                            Dim ValorParaMostrar As String = String.Empty
+                            For Each dataRow As DataGridViewRow In frpf.datagridviewMain.SelectedRows
+                                PersonaFamiliarSeleccionada = CType(dataRow.DataBoundItem, formReportesParametroFamiliares.Familiares_GridRowData)
+                                Valores = PersonaFamiliarSeleccionada.IDFamiliar & CStr(IIf(multiSeleccion, IDFamiliarDelimiter & Valores, String.Empty))
+                                ValorParaMostrar = $"{FamiliarNombreDelimiter}{PersonaFamiliarSeleccionada.Apellido}, {PersonaFamiliarSeleccionada.Nombre}{ValorParaMostrar}"
+                            Next
+                            ValorParaMostrar = ValorParaMostrar.Remove(0, FamiliarNombreDelimiter.Length)
+                            PersonaFamiliarSeleccionada = Nothing
+
+                            ParametroActual.Valor = Valores
+                            ParametroActual.ValorParaMostrar = ValorParaMostrar
+                            ListViewItemActual.SubItems(2).Text = ValorParaMostrar
+                        End If
+                    End Using
 
                 Case Reportes.REPORTE_PARAMETRO_TIPO_TITLE, Reportes.REPORTE_PARAMETRO_TIPO_TEXT
                     formReportesParametroTextBox.SetAppearance(ParametroActual)
@@ -283,8 +281,8 @@
                     ' Busco si el parámetro actual tiene un parámetro padre
                     For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
                         If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) _
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL) Then
                             ParametroPadre = currentReporteParametro
                         End If
                     Next
@@ -348,10 +346,13 @@
             If ParametroActual.Valor IsNot Nothing Then
                 ListViewItemActual = listviewParametros.SelectedItems(0)
                 ParametroActual.Valor = Nothing
-                ListViewItemActual.SubItems(2).Text = ""
+                ListViewItemActual.SubItems(2).Text = String.Empty
 
                 ' Si el parámetro que se borra es Padre o Abuelo de otro parámetro, hay que borrar el valor del parámetro Hijo y Nieto también
-                If ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION Or ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA Then
+                If ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL _
+                    OrElse ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO _
+                    OrElse ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION _
+                    OrElse ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA Then
                     BorrarValoresDeParametrosHijos(ParametroActual, ReporteActual)
                 End If
             End If
@@ -359,29 +360,25 @@
     End Sub
 
     Private Sub BorrarValoresDeParametrosHijos(ByRef ParametroActual As ReporteParametro, ByRef ReporteActual As Reporte)
-
         For Each currentReporteParametro As ReporteParametro In ReporteActual.ReporteParametros
-
             If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CARGO AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_JERARQUIA) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
-                            Or (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_AREA) _
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION) _
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_UBICACION AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) _
+                            OrElse (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONA AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_PERSONAFAMILIARMULTIPLE) Then
                 Dim ParametroHijo As ReporteParametro = currentReporteParametro
                 ParametroHijo.Valor = Nothing
-                ParametroHijo.ValorParaMostrar = ""
+                ParametroHijo.ValorParaMostrar = String.Empty
                 listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroHijo.IDParametro).SubItems(2).Text = ""
             End If
 
             If (ParametroActual.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_CUARTEL AndAlso currentReporteParametro.Tipo = Reportes.REPORTE_PARAMETRO_TIPO_SUBUBICACION) Then
                 Dim ParametroNieto As ReporteParametro = currentReporteParametro
                 ParametroNieto.Valor = Nothing
-                ParametroNieto.ValorParaMostrar = ""
+                ParametroNieto.ValorParaMostrar = String.Empty
                 listviewParametros.Items.Item(CardonerSistemas.Constants.KeyStringer & ParametroNieto.IDParametro).SubItems(2).Text = ""
             End If
-
         Next
-
     End Sub
 
     Private Sub Anterior() Handles buttonAnterior.Click
@@ -396,10 +393,8 @@
     Private Sub MostrarReporte(sender As Object, e As EventArgs) Handles buttonImprimir.Click, buttonPrevisualizar.Click
         Dim ReporteActual As Reporte
 
-        If sender.Equals(buttonImprimir) Then
-            If MsgBox("Se va a imprimir directamente el Reporte seleccionado." & vbCrLf & vbCrLf & "¿Desea continuar?", CType(MsgBoxStyle.Question + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.No Then
-                Exit Sub
-            End If
+        If sender.Equals(buttonImprimir) AndAlso MessageBox.Show($"Se va a imprimir directamente el Reporte seleccionado.{Environment.NewLine}{Environment.NewLine}¿Desea continuar?", My.Application.Info.Title, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Return
         End If
 
         ReporteActual = CType(treeviewReportes.SelectedNode.Tag, Reporte)
@@ -407,15 +402,12 @@
             If ParametroActual.Requerido AndAlso ParametroActual.Valor Is Nothing Then
                 MsgBox(ParametroActual.RequeridoLeyenda, MsgBoxStyle.Information, My.Application.Info.Title)
                 listviewParametros.Focus()
-                Exit Sub
+                Return
             End If
         Next
 
         Me.Cursor = Cursors.WaitCursor
-
-        If ReporteActual.Open(Not sender.Equals(buttonImprimir), ReporteActual.Nombre) Then
-        End If
-
+        ReporteActual.Open(Not sender.Equals(buttonImprimir), ReporteActual.Nombre)
         Me.Cursor = Cursors.Default
     End Sub
 

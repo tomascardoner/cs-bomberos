@@ -26,39 +26,30 @@ Partial Public Class Reporte
         End Get
     End Property
 
-    Friend Function Open(ByVal preview As Boolean, Optional ByVal titulo As String = "", Optional ByRef modalParent As Form = Nothing) As Boolean
-        _PathAndFileName = pGeneralConfig.ReportsPath & "\" & Archivo
+    Friend Function Open(preview As Boolean, Optional titulo As String = "", Optional ByRef modalParent As Form = Nothing) As Boolean
+        _PathAndFileName = Path.Combine(pGeneralConfig.ReportsPath, Archivo)
 
         If Not My.Computer.FileSystem.FileExists(_PathAndFileName) Then
-            MsgBox(String.Format("No se encontró el archivo del Reporte.{0}{0}Carpeta: {1}{0}Archivo: {2}", vbCrLf, pGeneralConfig.ReportsPath, Archivo), MsgBoxStyle.Exclamation, My.Application.Info.Title)
+            MessageBox.Show($"No se encontró el archivo del Reporte.{Environment.NewLine}{Environment.NewLine}Carpeta: {pGeneralConfig.ReportsPath}{Environment.NewLine}Archivo: {Archivo}", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Return False
         End If
 
         Cursor.Current = Cursors.WaitCursor
 
         If IsPdf Then
-            If OpenPdf() Then
-                If PdfSetParametersAndGetData() Then
-                    Dim destinationFileName As String = CardonerSistemas.Files.GetTempFileName("pdf")
-
-                    If PdfProcess(destinationFileName) Then
-                        Process.Start(destinationFileName)
-                        Return True
-                    End If
-                End If
+            Dim destinationFileName As String = CardonerSistemas.Files.GetTempFileName("pdf")
+            If OpenPdf() AndAlso PdfSetParametersAndGetData() AndAlso PdfProcess(destinationFileName) Then
+                Process.Start(destinationFileName)
+                Return True
             End If
         Else
-            If OpenCR() Then
-                If CRSetParameters() Then
-                    If CRSetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
-                        If preview Then
-                            Reportes.PreviewCrystalReport(Me, titulo, modalParent)
-                        Else
-                            CRReportObject.PrintToPrinter(1, False, 1, 1000)
-                        End If
-                        Return True
-                    End If
+            If OpenCR() AndAlso CRSetParameters() AndAlso CRSetDatabaseConnection(pDatabase.Datasource, pDatabase.InitialCatalog, pDatabase.UserId, pDatabase.Password) Then
+                If preview Then
+                    Reportes.PreviewCrystalReport(Me, titulo, modalParent)
+                Else
+                    CRReportObject.PrintToPrinter(1, False, 1, 1000)
                 End If
+                Return True
             End If
         End If
         Return False
@@ -144,21 +135,14 @@ Partial Public Class Reporte
                                             If ParametroActual.Valor Is Nothing Then
                                                 Select Case .ParameterType
                                                     Case ParameterType.ReportParameter
+#Disable Warning S6562 ' Always set the "DateTimeKind" when creating new "DateTime" instances
                                                         .CurrentValues.AddValue(New Date(9999, 1, 1))
+#Enable Warning S6562 ' Always set the "DateTimeKind" when creating new "DateTime" instances
                                                     Case ParameterType.StoreProcedureParameter
                                                         .CurrentValues.AddValue(Nothing)
                                                 End Select
                                             Else
-                                                Select Case ParametroActual.Tipo
-                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_DATETIME
-                                                        .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_DATE
-                                                        .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_TIME
-                                                        .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                    Case Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_FROM, Reportes.REPORTE_PARAMETRO_TIPO_YEAR_MONTH_TO
-                                                        .CurrentValues.AddValue(CDate(ParametroActual.Valor))
-                                                End Select
+                                                .CurrentValues.AddValue(CDate(ParametroActual.Valor))
                                             End If
                                         Case ParameterValueKind.StringParameter
                                             If ParametroActual.Valor IsNot Nothing Then
@@ -188,7 +172,6 @@ Partial Public Class Reporte
     End Function
 
     Friend Function CRSetDatabaseConnection(ByVal ServerName As String, ByVal DatabaseName As String, ByVal UserID As String, ByVal Password As String) As Boolean
-        Dim crtableLogoninfos As New TableLogOnInfos
         Dim crtableLogoninfo As New TableLogOnInfo
         Dim crConnectionInfo As New ConnectionInfo
         Dim CrTables As Tables
@@ -223,7 +206,7 @@ Partial Public Class Reporte
     Friend Function OpenPdf() As Boolean
 
         Try
-            If OrigenDatos = "" Then
+            If String.IsNullOrWhiteSpace(OrigenDatos) Then
                 MsgBox("No se ha especificado el Origen de los Datos del Reporte.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                 Return False
             End If
@@ -240,10 +223,8 @@ Partial Public Class Reporte
     Friend Function PdfSetParametersAndGetData() As Boolean
         Using command As New SqlCommand()
             Try
-                If Not pDatabase.IsConnected Then
-                    If Not pDatabase.Connect() Then
-                        Return False
-                    End If
+                If Not pDatabase.IsConnected AndAlso Not pDatabase.Connect() Then
+                    Return False
                 End If
 
                 command.Connection = pDatabase.Connection
@@ -288,70 +269,70 @@ Partial Public Class Reporte
             Dim pdfReader As PdfReader
             Dim document As New Document
 
-            Dim fileStream = New FileStream(destinationFileName, FileMode.Create)
-            Dim instance As PdfWriter = PdfWriter.GetInstance(document, fileStream)
+            Using fileStream = New FileStream(destinationFileName, FileMode.Create)
+                Dim instance As PdfWriter = PdfWriter.GetInstance(document, fileStream)
 
-            document.Open()
+                document.Open()
 
-            Dim pdfContentByte As PdfContentByte = instance.DirectContent
+                Dim pdfContentByte As PdfContentByte = instance.DirectContent
 
-            pdfReader = New PdfReader(_PathAndFileName)
+                pdfReader = New PdfReader(_PathAndFileName)
 
-            Dim pdfImportedPage As PdfImportedPage
+                Dim pdfImportedPage As PdfImportedPage
 
-            Dim font As Font
-            Dim baseFont As BaseFont
+                Dim font As Font
+                Dim baseFont As BaseFont
 
-            ' Si el reporte lo especifica, cargo la tipografía
-            If IDTipografiaEstilo.HasValue AndAlso FontFactory.IsRegistered(TipografiaEstilo.Nombre) Then
-                font = FontFactory.GetFont(TipografiaEstilo.Nombre, BaseFont.WINANSI, False, TipografiaEstilo.Tamanio, TipografiaEstilo.Estilo)
-            Else
-                font = FontFactory.GetFont(FontFactory.HELVETICA, FontFactory.DefaultEncoding, False)
-            End If
-            baseFont = font.BaseFont
-
-            Dim valorCampoParaAgrupar As Object = Nothing
-            Dim ordinalCampoParaAgrupar As Integer = -2
-            Dim cantidadRegistros As Integer = 0
-            Dim cantidadRegistrosGrupo As Integer = 0
-            Dim cantidadPaginas As Integer = 0
-            Dim crearPaginaNueva As Boolean
-
-            Do While _DataReader.Read()
-                If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
-                    ordinalCampoParaAgrupar = CardonerSistemas.Database.ADO.SQLServer.GetOrdinalSafe(_DataReader, AgruparPorCampo)
-                End If
-
-                ' Determino si hay que empezar una página nueva
-                If String.IsNullOrEmpty(AgruparPorCampo) AndAlso (cantidadRegistrosGrupo = 0 Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle)) Then
-                    crearPaginaNueva = True
-                End If
-                If (ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar))) Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle) Then
-                    crearPaginaNueva = True
-                    valorCampoParaAgrupar = _DataReader.GetValue(ordinalCampoParaAgrupar)
-                End If
-
-                If crearPaginaNueva Then
-                    ' Agregar una nueva página
-                    document.NewPage()
-                    pdfImportedPage = instance.GetImportedPage(pdfReader, 1)
-                    pdfContentByte.AddTemplate(pdfImportedPage, 1.0F, 0F, 0F, 1.0F, 0F, 0F)
-                    cantidadPaginas += 1
-                    cantidadRegistrosGrupo = 1
-                    crearPaginaNueva = False
-
-                    ' Escribir todos los campos
-                    PdfEscribirCampos(ReporteCampos.AsEnumerable, pdfContentByte, baseFont, cantidadRegistrosGrupo)
+                ' Si el reporte lo especifica, cargo la tipografía
+                If IDTipografiaEstilo.HasValue AndAlso FontFactory.IsRegistered(TipografiaEstilo.Nombre) Then
+                    font = FontFactory.GetFont(TipografiaEstilo.Nombre, BaseFont.WINANSI, False, TipografiaEstilo.Tamanio, TipografiaEstilo.Estilo)
                 Else
-                    ' Escribir solo los campos que se repiten
-                    PdfEscribirCampos(ReporteCampos.Where(Function(rc) rc.EspaciadoY.HasValue), pdfContentByte, baseFont, cantidadRegistrosGrupo)
+                    font = FontFactory.GetFont(FontFactory.HELVETICA, FontFactory.DefaultEncoding, False)
                 End If
-                cantidadRegistros += 1
-                cantidadRegistrosGrupo += 1
-            Loop
+                baseFont = font.BaseFont
 
-            document.Close()
-            pdfReader.Close()
+                Dim valorCampoParaAgrupar As Object = Nothing
+                Dim ordinalCampoParaAgrupar As Integer = -2
+                Dim cantidadRegistros As Integer = 0
+                Dim cantidadRegistrosGrupo As Integer = 0
+                Dim cantidadPaginas As Integer = 0
+                Dim crearPaginaNueva As Boolean
+
+                Do While _DataReader.Read()
+                    If Not String.IsNullOrEmpty(AgruparPorCampo) And ordinalCampoParaAgrupar = -2 Then
+                        ordinalCampoParaAgrupar = CardonerSistemas.Database.Ado.SqlServer.GetOrdinalSafe(_DataReader, AgruparPorCampo)
+                    End If
+
+                    ' Determino si hay que empezar una página nueva
+                    If String.IsNullOrEmpty(AgruparPorCampo) AndAlso (cantidadRegistrosGrupo = 0 Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle)) Then
+                        crearPaginaNueva = True
+                    End If
+                    If (ordinalCampoParaAgrupar > -1 AndAlso Not Object.Equals(valorCampoParaAgrupar, _DataReader.GetValue(ordinalCampoParaAgrupar))) Or (MaximoRegistrosDetalle.HasValue AndAlso cantidadRegistrosGrupo > MaximoRegistrosDetalle) Then
+                        crearPaginaNueva = True
+                        valorCampoParaAgrupar = _DataReader.GetValue(ordinalCampoParaAgrupar)
+                    End If
+
+                    If crearPaginaNueva Then
+                        ' Agregar una nueva página
+                        document.NewPage()
+                        pdfImportedPage = instance.GetImportedPage(pdfReader, 1)
+                        pdfContentByte.AddTemplate(pdfImportedPage, 1.0F, 0F, 0F, 1.0F, 0F, 0F)
+                        cantidadPaginas += 1
+                        cantidadRegistrosGrupo = 1
+                        crearPaginaNueva = False
+
+                        ' Escribir todos los campos
+                        PdfEscribirCampos(ReporteCampos.AsEnumerable, pdfContentByte, baseFont, cantidadRegistrosGrupo)
+                    Else
+                        ' Escribir solo los campos que se repiten
+                        PdfEscribirCampos(ReporteCampos.Where(Function(rc) rc.EspaciadoY.HasValue), pdfContentByte, baseFont, cantidadRegistrosGrupo)
+                    End If
+                    cantidadRegistros += 1
+                    cantidadRegistrosGrupo += 1
+                Loop
+                document.Close()
+                pdfReader.Close()
+            End Using
             Return True
 
         Catch ex As Exception

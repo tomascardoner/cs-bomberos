@@ -214,7 +214,7 @@ Public Class formSiniestroAsistenciaPresencialMultiple
     Private Sub AsistirPersona(idPersona As Integer)
         Dim persona As Persona
         Dim siniestro As Siniestro
-        Dim mensajeResultado As String
+        Dim mensajeResultado As String = String.Empty
 
         persona = dbContext.Persona.Find(idPersona)
         pictureboxFoto.Image = CS_ValueTranslation.FromObjectImageToPictureBox(persona.Foto)

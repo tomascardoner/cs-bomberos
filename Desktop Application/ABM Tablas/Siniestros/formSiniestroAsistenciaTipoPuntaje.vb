@@ -131,7 +131,6 @@
                             Select satpc).ToList()
 
             Dim startRowIndex As Integer = 0
-            Dim columnName As String
 
             For Each puntaje As SiniestroAsistenciaTipoPuntajeClave In listPuntajes
                 For rowIndex As Integer = startRowIndex To datagridviewPuntajes.RowCount - 1
@@ -228,7 +227,7 @@
 
         ' Si es nuevo, asigno un id
         If mIsNew Then
-            If mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Any() Then
+            If mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Count <> 0 Then
                 mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipoPuntaje = CByte(mSiniestroAsistenciaTipoActual.SiniestrosAsistenciasTipoPuntajes.Max(Function(satp) satp.IDSiniestroAsistenciaTipoPuntaje) + 1)
             Else
                 mSiniestroAsistenciaTipoPuntajeActual.IDSiniestroAsistenciaTipoPuntaje = 1

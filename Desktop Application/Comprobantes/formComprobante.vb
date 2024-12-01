@@ -979,8 +979,6 @@
 #Region "Extra stuff"
 
     Private Sub CambiarTipoComprobante()
-        Dim NextComprobanteNumero As String
-
         If comboboxComprobanteTipo.SelectedIndex = -1 Then
             panelFechas.Visible = False
             _TabControlExtension.HidePage(tabcontrolMain, tabpageDescripcion)
