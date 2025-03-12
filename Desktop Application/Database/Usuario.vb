@@ -189,5 +189,15 @@ Partial Public Class Usuario
     Public Overridable Property OrdenesGeneralesCategoriasModificadas As ICollection(Of OrdenGeneralCategoria) = New HashSet(Of OrdenGeneralCategoria)
     Public Overridable Property ResolucionesCreadas As ICollection(Of Resolucion) = New HashSet(Of Resolucion)
     Public Overridable Property ResolucionesModificadas As ICollection(Of Resolucion) = New HashSet(Of Resolucion)
+    Public Overridable Property SiniestroDaminificadoEstadosCreados As ICollection(Of SiniestroDaminificadoEstado) = New HashSet(Of SiniestroDaminificadoEstado)
+    Public Overridable Property SiniestroDaminificadoEstadosModificados As ICollection(Of SiniestroDaminificadoEstado) = New HashSet(Of SiniestroDaminificadoEstado)
+    Public Overridable Property SiniestroSolicitudForma As ICollection(Of SiniestroSolicitudForma) = New HashSet(Of SiniestroSolicitudForma)
+    Public Overridable Property SiniestroSolicitudForma1 As ICollection(Of SiniestroSolicitudForma) = New HashSet(Of SiniestroSolicitudForma)
+    Public Overridable Property SiniestroUbicacionTiposCreados As ICollection(Of SiniestroUbicacionTipo) = New HashSet(Of SiniestroUbicacionTipo)
+    Public Overridable Property SiniestroUbicacionTiposModificados As ICollection(Of SiniestroUbicacionTipo) = New HashSet(Of SiniestroUbicacionTipo)
+    Public Overridable Property SiniestroVehiculoMarca As ICollection(Of SiniestroVehiculoMarca) = New HashSet(Of SiniestroVehiculoMarca)
+    Public Overridable Property SiniestroVehiculoMarca1 As ICollection(Of SiniestroVehiculoMarca) = New HashSet(Of SiniestroVehiculoMarca)
+    Public Overridable Property SiniestroVehiculoTiposCreados As ICollection(Of SiniestroVehiculoTipo) = New HashSet(Of SiniestroVehiculoTipo)
+    Public Overridable Property SiniestroVehiculoTiposModificados As ICollection(Of SiniestroVehiculoTipo) = New HashSet(Of SiniestroVehiculoTipo)
 
 End Class

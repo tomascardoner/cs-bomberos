@@ -10,14 +10,17 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class DocumentoTipo
-    Public Property IDDocumentoTipo As Byte
+Partial Public Class SiniestroDaminificadoEstado
+    Public Property IdSiniestroDaminificadoEstado As Byte
     Public Property Nombre As String
-    Public Property VerificaModulo11 As Boolean
     Public Property EsActivo As Boolean
+    Public Property IdUsuarioCreacion As Short
+    Public Property FechaHoraCreacion As Date
+    Public Property IdUsuarioModificacion As Short
+    Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
-    Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
-    Public Overridable Property SiniestroDamnificado1 As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
+    Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
 
 End Class

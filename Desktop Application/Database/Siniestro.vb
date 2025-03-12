@@ -32,6 +32,26 @@ Partial Public Class Siniestro
     Public Property FechaHoraCreacion As Date
     Public Property IDUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
+    Public Property IdSiniestroSolicitudForma As Nullable(Of Byte)
+    Public Property SolicitanteNombre As String
+    Public Property SolicitanteDireccion As String
+    Public Property SolicitanteIDDocumentoTipo As Nullable(Of Byte)
+    Public Property SolicitanteDocumentoNumero As String
+    Public Property SolicitanteTelefono As String
+    Public Property IdSiniestroUbicacionTipo As Nullable(Of Byte)
+    Public Property UbicacionDescripcion As String
+    Public Property UbicacionIDProvincia As Nullable(Of Byte)
+    Public Property UbicacionIDLocalidad As Nullable(Of Short)
+    Public Property TrasladoPorOtro As Nullable(Of Boolean)
+    Public Property TrasladoPorOtroCantidad As Nullable(Of Byte)
+    Public Property IncendioForestalCantidadHa As Nullable(Of Short)
+    Public Property IncendioForestalCantidadPlanta As Nullable(Of Short)
+    Public Property IncendioForestalLargoMetro As Nullable(Of Short)
+    Public Property IncendioForestalAnchoMetro As Nullable(Of Short)
+    Public Property IncendioForestalSuperficieMetro As Nullable(Of Short)
+    Public Property EncargadoCuartelIDPersona As Nullable(Of Integer)
+    Public Property JefeGuardiaIDPersona As Nullable(Of Integer)
+    Public Property RadioTelefonistaIDPersona As Nullable(Of Integer)
 
     Public Overridable Property Cuartel As Cuartel
     Public Overridable Property SiniestroTipo As SiniestroTipo
@@ -40,5 +60,12 @@ Partial Public Class Siniestro
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestroClave As SiniestroClave
     Public Overridable Property PersonaFin As Persona
+    Public Overridable Property Persona As Persona
+    Public Overridable Property Persona1 As Persona
+    Public Overridable Property Persona2 As Persona
+    Public Overridable Property SiniestroVehiculo As ICollection(Of SiniestroVehiculo) = New HashSet(Of SiniestroVehiculo)
+    Public Overridable Property SiniestroSolicitudForma As SiniestroSolicitudForma
+    Public Overridable Property SiniestroUbicacionTipo As SiniestroUbicacionTipo
+    Public Overridable Property SiniestroDamnificado1 As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
 
 End Class
