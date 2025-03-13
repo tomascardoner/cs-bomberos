@@ -1,9 +1,9 @@
-﻿Public Class formSiniestros
+﻿Public Class FormSiniestros
 
 #Region "Declarations"
 
-    Private WithEvents datetimepickerFechaDesdeHost As ToolStripControlHost
-    Private WithEvents datetimepickerFechaHastaHost As ToolStripControlHost
+    Private WithEvents DateTimePickerFechaDesdeHost As ToolStripControlHost
+    Private WithEvents DateTimePickerFechaHastaHost As ToolStripControlHost
 
     Friend Class GridRowData
         Public Property IDSiniestro As Integer
@@ -82,34 +82,34 @@
 
     Private Sub InicializarFiltroDeFechas()
         ' Create a new ToolStripControlHost, passing in a control.
-        datetimepickerFechaDesdeHost = New ToolStripControlHost(New DateTimePicker())
-        datetimepickerFechaHastaHost = New ToolStripControlHost(New DateTimePicker())
+        DateTimePickerFechaDesdeHost = New ToolStripControlHost(New DateTimePicker())
+        DateTimePickerFechaHastaHost = New ToolStripControlHost(New DateTimePicker())
 
         ' Set the font on the ToolStripControlHost, this will affect the hosted control.
         'dateTimePickerHost.Font = New Font("Arial", 7.0F, FontStyle.Italic)
 
         ' Set the Width property, this will also affect the hosted control.
-        datetimepickerFechaDesdeHost.Width = 100
-        datetimepickerFechaDesdeHost.DisplayStyle = ToolStripItemDisplayStyle.Text
-        datetimepickerFechaHastaHost.Width = 100
-        datetimepickerFechaHastaHost.DisplayStyle = ToolStripItemDisplayStyle.Text
+        DateTimePickerFechaDesdeHost.Width = 100
+        DateTimePickerFechaDesdeHost.DisplayStyle = ToolStripItemDisplayStyle.Text
+        DateTimePickerFechaHastaHost.Width = 100
+        DateTimePickerFechaHastaHost.DisplayStyle = ToolStripItemDisplayStyle.Text
 
         ' Setting the Text property requires a string that converts to a  
         ' DateTime type since that is what the hosted control requires.
-        datetimepickerFechaDesdeHost.Text = DateTime.Today.ToShortDateString
-        datetimepickerFechaHastaHost.Text = DateTime.Today.ToShortDateString
+        DateTimePickerFechaDesdeHost.Text = DateTime.Today.ToShortDateString
+        DateTimePickerFechaHastaHost.Text = DateTime.Today.ToShortDateString
 
         ' Cast the Control property back to the original type to set a  
         ' type-specific property. 
-        CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
-        CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+        CType(DateTimePickerFechaDesdeHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
+        CType(DateTimePickerFechaHastaHost.Control, DateTimePicker).Format = DateTimePickerFormat.Short
 
         ' Add the control host to the ToolStrip.
-        toolstripPeriodo.Items.Insert(3, datetimepickerFechaDesdeHost)
-        toolstripPeriodo.Items.Add(datetimepickerFechaHastaHost)
+        toolstripPeriodo.Items.Insert(3, DateTimePickerFechaDesdeHost)
+        toolstripPeriodo.Items.Add(DateTimePickerFechaHastaHost)
 
-        datetimepickerFechaDesdeHost.Visible = False
-        datetimepickerFechaHastaHost.Visible = False
+        DateTimePickerFechaDesdeHost.Visible = False
+        DateTimePickerFechaHastaHost.Visible = False
     End Sub
 
     Private Sub Me_Closed() Handles Me.FormClosed
@@ -118,15 +118,15 @@
             mdbContext = Nothing
         End If
 
-        If datetimepickerFechaDesdeHost IsNot Nothing Then
-            datetimepickerFechaDesdeHost.Control.Dispose()
-            datetimepickerFechaDesdeHost.Dispose()
-            datetimepickerFechaDesdeHost = Nothing
+        If DateTimePickerFechaDesdeHost IsNot Nothing Then
+            DateTimePickerFechaDesdeHost.Control.Dispose()
+            DateTimePickerFechaDesdeHost.Dispose()
+            DateTimePickerFechaDesdeHost = Nothing
         End If
-        If datetimepickerFechaHastaHost IsNot Nothing Then
-            datetimepickerFechaHastaHost.Control.Dispose()
-            datetimepickerFechaHastaHost.Dispose()
-            datetimepickerFechaHastaHost = Nothing
+        If DateTimePickerFechaHastaHost IsNot Nothing Then
+            DateTimePickerFechaHastaHost.Control.Dispose()
+            DateTimePickerFechaHastaHost.Dispose()
+            DateTimePickerFechaHastaHost = Nothing
         End If
     End Sub
 
@@ -140,7 +140,7 @@
 
         Me.Cursor = Cursors.WaitCursor
 
-        CardonerSistemas.DateTime.GetDatesFromPeriodTypeAndValue(CType(comboboxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes), CByte(comboboxPeriodoValor.SelectedIndex), FechaDesde, FechaHasta, CType(datetimepickerFechaDesdeHost.Control, DateTimePicker).Value, CType(datetimepickerFechaHastaHost.Control, DateTimePicker).Value)
+        CardonerSistemas.DateTime.GetDatesFromPeriodTypeAndValue(CType(comboboxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes), CByte(comboboxPeriodoValor.SelectedIndex), FechaDesde, FechaHasta, CType(DateTimePickerFechaDesdeHost.Control, DateTimePicker).Value, CType(DateTimePickerFechaHastaHost.Control, DateTimePicker).Value)
 
         Try
             mlistSiniestrosBase = (From s In mdbContext.Siniestro
@@ -247,7 +247,7 @@
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al filtrar los datos.")
                 Me.Cursor = Cursors.Default
-                Exit Sub
+                Return
             End Try
 
             OrderData()
@@ -318,13 +318,13 @@
     End Sub
 
     Private Sub PeriodoValorSeleccionar() Handles comboboxPeriodoValor.SelectedIndexChanged
-        datetimepickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range))
-        labelPeriodoFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) And comboboxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
-        datetimepickerFechaHastaHost.Visible = labelPeriodoFechaY.Visible
+        DateTimePickerFechaDesdeHost.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range))
+        labelPeriodoFechaY.Visible = (comboboxPeriodoTipo.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodTypes.Range) AndAlso comboboxPeriodoValor.SelectedIndex = CInt(CardonerSistemas.DateTime.PeriodRangeValues.DateBetween))
+        DateTimePickerFechaHastaHost.Visible = labelPeriodoFechaY.Visible
         RefreshData()
     End Sub
 
-    Private Sub FechaCambiar() Handles datetimepickerFechaDesdeHost.TextChanged, datetimepickerFechaHastaHost.TextChanged
+    Private Sub FechaCambiar() Handles DateTimePickerFechaDesdeHost.TextChanged, DateTimePickerFechaHastaHost.TextChanged
         RefreshData()
     End Sub
 
@@ -355,7 +355,6 @@
                 mOrdenColumna.HeaderCell.SortGlyphDirection = SortOrder.None
             End If
 
-            ' Ahora preparo todo para la nueva columna
             mOrdenTipo = SortOrder.Ascending
             mOrdenColumna = ClickedColumn
         End If
@@ -374,7 +373,11 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formSiniestro.LoadAndShow(True, Me, 0)
+        If pUsuario.IDUsuario = 4 Then
+            FormSiniestroV2.LoadAndShow(True, Me, 0)
+        Else
+            formSiniestro.LoadAndShow(True, Me, 0)
+        End If
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub
@@ -386,12 +389,16 @@
         End If
         If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
             Permisos.MostrarMensajeDeAviso()
-            Exit Sub
+            Return
         End If
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        If pUsuario.IDUsuario = 4 Then
+            FormSiniestroV2.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        Else
+            formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        End If
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub
@@ -427,7 +434,7 @@
                     MsgBox("No se puede eliminar el Siniestro porque tiene datos relacionados.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
             End Select
             Me.Cursor = Cursors.Default
-            Exit Sub
+            Return
 
         Catch ex As Exception
             CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al eliminar el Siniestro.")
@@ -445,7 +452,11 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        If pUsuario.IDUsuario = 4 Then
+            FormSiniestroV2.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        Else
+            formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
+        End If
         datagridviewMain.Enabled = True
         Me.Cursor = Cursors.Default
     End Sub

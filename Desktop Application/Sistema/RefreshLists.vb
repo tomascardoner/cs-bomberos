@@ -1,7 +1,7 @@
 ﻿Module RefreshLists
 
     Friend Sub Siniestros(idSiniestro As Integer)
-        Dim fs As formSiniestros = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), formSiniestros.Name), formSiniestros)
+        Dim fs As FormSiniestros = CType(CardonerSistemas.Forms.MdiChildGetInstance(CType(pFormMDIMain, Form), formSiniestros.Name), FormSiniestros)
         fs?.RefreshData(idSiniestro)
     End Sub
 End Module

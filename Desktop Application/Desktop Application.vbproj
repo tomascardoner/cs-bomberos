@@ -1047,6 +1047,12 @@
     <Compile Include="Sanciones\formSanciones.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Siniestros\FormSiniestroV2.designer.vb">
+      <DependentUpon>FormSiniestroV2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Siniestros\FormSiniestroV2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Siniestros\formSiniestro.designer.vb">
       <DependentUpon>formSiniestro.vb</DependentUpon>
     </Compile>
@@ -1762,6 +1768,9 @@
     <EmbeddedResource Include="Sanciones\formSanciones.resx">
       <DependentUpon>formSanciones.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Siniestros\FormSiniestroV2.resx">
+      <DependentUpon>FormSiniestroV2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Siniestros\formSiniestro.resx">
       <DependentUpon>formSiniestro.vb</DependentUpon>
     </EmbeddedResource>
@@ -2073,7 +2082,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include=".editorconfig" />
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>

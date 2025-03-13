@@ -62,13 +62,13 @@
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mParentEditMode And mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = mParentEditMode AndAlso Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         controlpersonaPersona.ReadOnlyText = Not mIsNew
         panelAsistencia.Enabled = mEditMode
