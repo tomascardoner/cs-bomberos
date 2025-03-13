@@ -47,10 +47,11 @@ Partial Class formSiniestroAsistencia
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(12, 54)
+        labelCuartel.Location = New System.Drawing.Point(16, 66)
+        labelCuartel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
-        labelCuartel.TabIndex = 5
+        labelCuartel.Size = New System.Drawing.Size(52, 16)
+        labelCuartel.TabIndex = 6
         labelCuartel.Text = "Cuartel:"
         '
         'buttonGuardar
@@ -60,7 +61,7 @@ Partial Class formSiniestroAsistencia
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
-        Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonGuardar.Size = New System.Drawing.Size(98, 36)
         Me.buttonGuardar.Text = "Guardar"
         '
         'buttonCancelar
@@ -70,7 +71,7 @@ Partial Class formSiniestroAsistencia
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
-        Me.buttonCancelar.Size = New System.Drawing.Size(89, 36)
+        Me.buttonCancelar.Size = New System.Drawing.Size(102, 36)
         Me.buttonCancelar.Text = "Cancelar"
         '
         'buttonEditar
@@ -80,7 +81,7 @@ Partial Class formSiniestroAsistencia
         Me.buttonEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonEditar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonEditar.Name = "buttonEditar"
-        Me.buttonEditar.Size = New System.Drawing.Size(73, 36)
+        Me.buttonEditar.Size = New System.Drawing.Size(84, 36)
         Me.buttonEditar.Text = "Editar"
         '
         'buttonCerrar
@@ -90,83 +91,92 @@ Partial Class formSiniestroAsistencia
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
-        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
+        Me.buttonCerrar.Size = New System.Drawing.Size(85, 36)
         Me.buttonCerrar.Text = "Cerrar"
         '
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(462, 39)
-        Me.toolstripMain.TabIndex = 4
+        Me.toolstripMain.Size = New System.Drawing.Size(616, 39)
+        Me.toolstripMain.TabIndex = 5
         '
         'labelPersona
         '
         Me.labelPersona.AutoSize = True
-        Me.labelPersona.Location = New System.Drawing.Point(12, 146)
+        Me.labelPersona.Location = New System.Drawing.Point(16, 180)
+        Me.labelPersona.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelPersona.Name = "labelPersona"
-        Me.labelPersona.Size = New System.Drawing.Size(49, 13)
+        Me.labelPersona.Size = New System.Drawing.Size(61, 16)
         Me.labelPersona.TabIndex = 0
         Me.labelPersona.Text = "Persona:"
         '
         'labelNumero
         '
         Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(12, 80)
+        Me.labelNumero.Location = New System.Drawing.Point(16, 98)
+        Me.labelNumero.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelNumero.Name = "labelNumero"
-        Me.labelNumero.Size = New System.Drawing.Size(47, 13)
-        Me.labelNumero.TabIndex = 7
+        Me.labelNumero.Size = New System.Drawing.Size(58, 16)
+        Me.labelNumero.TabIndex = 8
         Me.labelNumero.Text = "Número:"
         '
         'labelFecha
         '
         Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(12, 106)
+        Me.labelFecha.Location = New System.Drawing.Point(16, 130)
+        Me.labelFecha.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(40, 13)
-        Me.labelFecha.TabIndex = 9
+        Me.labelFecha.Size = New System.Drawing.Size(48, 16)
+        Me.labelFecha.TabIndex = 10
         Me.labelFecha.Text = "Fecha:"
         '
         'textboxNumeroCompleto
         '
-        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(76, 77)
+        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(101, 95)
+        Me.textboxNumeroCompleto.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
         Me.textboxNumeroCompleto.ReadOnly = True
-        Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
-        Me.textboxNumeroCompleto.TabIndex = 8
+        Me.textboxNumeroCompleto.Size = New System.Drawing.Size(132, 22)
+        Me.textboxNumeroCompleto.TabIndex = 9
         '
         'textboxCuartel
         '
-        Me.textboxCuartel.Location = New System.Drawing.Point(76, 51)
+        Me.textboxCuartel.Location = New System.Drawing.Point(101, 63)
+        Me.textboxCuartel.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxCuartel.Name = "textboxCuartel"
         Me.textboxCuartel.ReadOnly = True
-        Me.textboxCuartel.Size = New System.Drawing.Size(275, 20)
-        Me.textboxCuartel.TabIndex = 6
+        Me.textboxCuartel.Size = New System.Drawing.Size(365, 22)
+        Me.textboxCuartel.TabIndex = 7
         '
         'textboxFecha
         '
-        Me.textboxFecha.Location = New System.Drawing.Point(76, 103)
+        Me.textboxFecha.Location = New System.Drawing.Point(101, 127)
+        Me.textboxFecha.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxFecha.Name = "textboxFecha"
         Me.textboxFecha.ReadOnly = True
-        Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
-        Me.textboxFecha.TabIndex = 10
+        Me.textboxFecha.Size = New System.Drawing.Size(132, 22)
+        Me.textboxFecha.TabIndex = 11
         '
         'labelAsistenciaTipo
         '
         Me.labelAsistenciaTipo.AutoSize = True
-        Me.labelAsistenciaTipo.Location = New System.Drawing.Point(12, 189)
+        Me.labelAsistenciaTipo.Location = New System.Drawing.Point(16, 233)
+        Me.labelAsistenciaTipo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelAsistenciaTipo.Name = "labelAsistenciaTipo"
-        Me.labelAsistenciaTipo.Size = New System.Drawing.Size(58, 13)
+        Me.labelAsistenciaTipo.Size = New System.Drawing.Size(72, 16)
         Me.labelAsistenciaTipo.TabIndex = 2
         Me.labelAsistenciaTipo.Text = "Asistencia:"
         '
         'panelAsistencia
         '
-        Me.panelAsistencia.Location = New System.Drawing.Point(76, 181)
+        Me.panelAsistencia.Location = New System.Drawing.Point(101, 223)
+        Me.panelAsistencia.Margin = New System.Windows.Forms.Padding(4)
         Me.panelAsistencia.Name = "panelAsistencia"
-        Me.panelAsistencia.Size = New System.Drawing.Size(374, 36)
+        Me.panelAsistencia.Size = New System.Drawing.Size(499, 44)
         Me.panelAsistencia.TabIndex = 3
         '
         'controlpersonaPersona
@@ -176,13 +186,14 @@ Partial Class formSiniestroAsistencia
         Me.controlpersonaPersona.dbContext = Nothing
         Me.controlpersonaPersona.IDCuartel = Nothing
         Me.controlpersonaPersona.IDPersona = Nothing
-        Me.controlpersonaPersona.Location = New System.Drawing.Point(76, 142)
+        Me.controlpersonaPersona.Location = New System.Drawing.Point(101, 175)
+        Me.controlpersonaPersona.Margin = New System.Windows.Forms.Padding(5)
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
-        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(200, 26)
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
-        Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.Size = New System.Drawing.Size(501, 26)
         Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
         Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.TabIndex = 1
@@ -192,18 +203,19 @@ Partial Class formSiniestroAsistencia
         Me.checkBoxContinuarAlta.AutoSize = True
         Me.checkBoxContinuarAlta.Checked = True
         Me.checkBoxContinuarAlta.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.checkBoxContinuarAlta.Location = New System.Drawing.Point(12, 12)
+        Me.checkBoxContinuarAlta.Location = New System.Drawing.Point(16, 15)
+        Me.checkBoxContinuarAlta.Margin = New System.Windows.Forms.Padding(4)
         Me.checkBoxContinuarAlta.Name = "checkBoxContinuarAlta"
-        Me.checkBoxContinuarAlta.Size = New System.Drawing.Size(70, 17)
-        Me.checkBoxContinuarAlta.TabIndex = 11
+        Me.checkBoxContinuarAlta.Size = New System.Drawing.Size(85, 20)
+        Me.checkBoxContinuarAlta.TabIndex = 4
         Me.checkBoxContinuarAlta.Text = "No cerrar"
         Me.checkBoxContinuarAlta.UseVisualStyleBackColor = True
         '
         'formSiniestroAsistencia
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(462, 231)
+        Me.ClientSize = New System.Drawing.Size(616, 284)
         Me.Controls.Add(Me.checkBoxContinuarAlta)
         Me.Controls.Add(Me.panelAsistencia)
         Me.Controls.Add(Me.controlpersonaPersona)
@@ -218,6 +230,7 @@ Partial Class formSiniestroAsistencia
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistencia"

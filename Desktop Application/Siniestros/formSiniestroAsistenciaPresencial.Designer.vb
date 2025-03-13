@@ -53,19 +53,21 @@ Partial Class formSiniestroAsistenciaPresencial
         'labelCuartel
         '
         labelCuartel.AutoSize = True
-        labelCuartel.Location = New System.Drawing.Point(6, 28)
+        labelCuartel.Location = New System.Drawing.Point(8, 34)
+        labelCuartel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         labelCuartel.Name = "labelCuartel"
-        labelCuartel.Size = New System.Drawing.Size(43, 13)
+        labelCuartel.Size = New System.Drawing.Size(52, 16)
         labelCuartel.TabIndex = 0
         labelCuartel.Text = "Cuartel:"
         '
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(645, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(860, 39)
         Me.toolstripMain.TabIndex = 3
         '
         'buttonCerrar
@@ -75,7 +77,7 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
-        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
+        Me.buttonCerrar.Size = New System.Drawing.Size(85, 36)
         Me.buttonCerrar.Text = "Cerrar"
         '
         'GroupBoxSiniestro
@@ -88,38 +90,43 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.GroupBoxSiniestro.Controls.Add(labelCuartel)
         Me.GroupBoxSiniestro.Controls.Add(Me.labelNumero)
         Me.GroupBoxSiniestro.Controls.Add(Me.labelFecha)
-        Me.GroupBoxSiniestro.Location = New System.Drawing.Point(12, 42)
+        Me.GroupBoxSiniestro.Location = New System.Drawing.Point(16, 52)
+        Me.GroupBoxSiniestro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBoxSiniestro.Name = "GroupBoxSiniestro"
-        Me.GroupBoxSiniestro.Size = New System.Drawing.Size(621, 57)
+        Me.GroupBoxSiniestro.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxSiniestro.Size = New System.Drawing.Size(828, 70)
         Me.GroupBoxSiniestro.TabIndex = 0
         Me.GroupBoxSiniestro.TabStop = False
         Me.GroupBoxSiniestro.Text = "Siniestro:"
         '
         'textboxFecha
         '
-        Me.textboxFecha.Location = New System.Drawing.Point(508, 25)
+        Me.textboxFecha.Location = New System.Drawing.Point(677, 31)
+        Me.textboxFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxFecha.Name = "textboxFecha"
         Me.textboxFecha.ReadOnly = True
-        Me.textboxFecha.Size = New System.Drawing.Size(100, 20)
+        Me.textboxFecha.Size = New System.Drawing.Size(132, 22)
         Me.textboxFecha.TabIndex = 5
         Me.textboxFecha.TabStop = False
         Me.textboxFecha.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'textboxCuartel
         '
-        Me.textboxCuartel.Location = New System.Drawing.Point(55, 25)
+        Me.textboxCuartel.Location = New System.Drawing.Point(73, 31)
+        Me.textboxCuartel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxCuartel.Name = "textboxCuartel"
         Me.textboxCuartel.ReadOnly = True
-        Me.textboxCuartel.Size = New System.Drawing.Size(212, 20)
+        Me.textboxCuartel.Size = New System.Drawing.Size(281, 22)
         Me.textboxCuartel.TabIndex = 1
         Me.textboxCuartel.TabStop = False
         '
         'textboxNumeroCompleto
         '
-        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(339, 25)
+        Me.textboxNumeroCompleto.Location = New System.Drawing.Point(452, 31)
+        Me.textboxNumeroCompleto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxNumeroCompleto.Name = "textboxNumeroCompleto"
         Me.textboxNumeroCompleto.ReadOnly = True
-        Me.textboxNumeroCompleto.Size = New System.Drawing.Size(100, 20)
+        Me.textboxNumeroCompleto.Size = New System.Drawing.Size(132, 22)
         Me.textboxNumeroCompleto.TabIndex = 3
         Me.textboxNumeroCompleto.TabStop = False
         Me.textboxNumeroCompleto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -127,18 +134,20 @@ Partial Class formSiniestroAsistenciaPresencial
         'labelNumero
         '
         Me.labelNumero.AutoSize = True
-        Me.labelNumero.Location = New System.Drawing.Point(286, 28)
+        Me.labelNumero.Location = New System.Drawing.Point(381, 34)
+        Me.labelNumero.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelNumero.Name = "labelNumero"
-        Me.labelNumero.Size = New System.Drawing.Size(47, 13)
+        Me.labelNumero.Size = New System.Drawing.Size(58, 16)
         Me.labelNumero.TabIndex = 2
         Me.labelNumero.Text = "Número:"
         '
         'labelFecha
         '
         Me.labelFecha.AutoSize = True
-        Me.labelFecha.Location = New System.Drawing.Point(462, 28)
+        Me.labelFecha.Location = New System.Drawing.Point(616, 34)
+        Me.labelFecha.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelFecha.Name = "labelFecha"
-        Me.labelFecha.Size = New System.Drawing.Size(40, 13)
+        Me.labelFecha.Size = New System.Drawing.Size(48, 16)
         Me.labelFecha.TabIndex = 4
         Me.labelFecha.Text = "Fecha:"
         '
@@ -153,9 +162,11 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.GroupBoxHuellaDigital.Controls.Add(Me.pictureboxFoto)
         Me.GroupBoxHuellaDigital.Controls.Add(Me.verificationcontrolHuellas)
         Me.GroupBoxHuellaDigital.Controls.Add(Me.textboxPersona)
-        Me.GroupBoxHuellaDigital.Location = New System.Drawing.Point(12, 105)
+        Me.GroupBoxHuellaDigital.Location = New System.Drawing.Point(16, 129)
+        Me.GroupBoxHuellaDigital.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBoxHuellaDigital.Name = "GroupBoxHuellaDigital"
-        Me.GroupBoxHuellaDigital.Size = New System.Drawing.Size(621, 116)
+        Me.GroupBoxHuellaDigital.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxHuellaDigital.Size = New System.Drawing.Size(828, 143)
         Me.GroupBoxHuellaDigital.TabIndex = 1
         Me.GroupBoxHuellaDigital.TabStop = False
         Me.GroupBoxHuellaDigital.Text = "Con huella digital"
@@ -167,13 +178,14 @@ Partial Class formSiniestroAsistenciaPresencial
         Me.controlPersonaAsignar.dbContext = Nothing
         Me.controlPersonaAsignar.IDCuartel = Nothing
         Me.controlPersonaAsignar.IDPersona = Nothing
-        Me.controlPersonaAsignar.Location = New System.Drawing.Point(222, 82)
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(296, 101)
+        Me.controlPersonaAsignar.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
-        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(200, 26)
         Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
         Me.controlPersonaAsignar.ReadOnlyText = False
-        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
+        Me.controlPersonaAsignar.Size = New System.Drawing.Size(420, 26)
         Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
         Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
         Me.controlPersonaAsignar.TabIndex = 3
@@ -181,9 +193,10 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         'buttonAsignar
         '
-        Me.buttonAsignar.Location = New System.Drawing.Point(544, 82)
+        Me.buttonAsignar.Location = New System.Drawing.Point(725, 101)
+        Me.buttonAsignar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.buttonAsignar.Name = "buttonAsignar"
-        Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
+        Me.buttonAsignar.Size = New System.Drawing.Size(88, 26)
         Me.buttonAsignar.TabIndex = 4
         Me.buttonAsignar.Text = "Asignar"
         Me.buttonAsignar.UseVisualStyleBackColor = True
@@ -192,17 +205,19 @@ Partial Class formSiniestroAsistenciaPresencial
         'textboxEstado
         '
         Me.textboxEstado.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxEstado.Location = New System.Drawing.Point(222, 54)
+        Me.textboxEstado.Location = New System.Drawing.Point(296, 66)
+        Me.textboxEstado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxEstado.Name = "textboxEstado"
         Me.textboxEstado.ReadOnly = True
-        Me.textboxEstado.Size = New System.Drawing.Size(388, 22)
+        Me.textboxEstado.Size = New System.Drawing.Size(516, 26)
         Me.textboxEstado.TabIndex = 2
         Me.textboxEstado.TabStop = False
         '
         'pictureboxFlecha
         '
         Me.pictureboxFlecha.Image = Global.CSBomberos.My.Resources.Resources.ImageSiguiente24
-        Me.pictureboxFlecha.Location = New System.Drawing.Point(75, 54)
+        Me.pictureboxFlecha.Location = New System.Drawing.Point(100, 66)
+        Me.pictureboxFlecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pictureboxFlecha.Name = "pictureboxFlecha"
         Me.pictureboxFlecha.Size = New System.Drawing.Size(24, 24)
         Me.pictureboxFlecha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -212,9 +227,10 @@ Partial Class formSiniestroAsistenciaPresencial
         'pictureboxFoto
         '
         Me.pictureboxFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pictureboxFoto.Location = New System.Drawing.Point(126, 19)
+        Me.pictureboxFoto.Location = New System.Drawing.Point(168, 23)
+        Me.pictureboxFoto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pictureboxFoto.Name = "pictureboxFoto"
-        Me.pictureboxFoto.Size = New System.Drawing.Size(90, 90)
+        Me.pictureboxFoto.Size = New System.Drawing.Size(119, 110)
         Me.pictureboxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pictureboxFoto.TabIndex = 101
         Me.pictureboxFoto.TabStop = False
@@ -223,28 +239,32 @@ Partial Class formSiniestroAsistenciaPresencial
         '
         Me.verificationcontrolHuellas.Active = True
         Me.verificationcontrolHuellas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(8, 40)
+        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(11, 49)
+        Me.verificationcontrolHuellas.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.verificationcontrolHuellas.Name = "verificationcontrolHuellas"
         Me.verificationcontrolHuellas.ReaderSerialNumber = "00000000-0000-0000-0000-000000000000"
-        Me.verificationcontrolHuellas.Size = New System.Drawing.Size(48, 48)
+        Me.verificationcontrolHuellas.Size = New System.Drawing.Size(64, 59)
         Me.verificationcontrolHuellas.TabIndex = 0
         '
         'textboxPersona
         '
         Me.textboxPersona.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxPersona.Location = New System.Drawing.Point(222, 28)
+        Me.textboxPersona.Location = New System.Drawing.Point(296, 34)
+        Me.textboxPersona.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxPersona.Name = "textboxPersona"
         Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(388, 22)
+        Me.textboxPersona.Size = New System.Drawing.Size(516, 26)
         Me.textboxPersona.TabIndex = 1
         Me.textboxPersona.TabStop = False
         '
         'GroupBoxPin
         '
         Me.GroupBoxPin.Controls.Add(Me.buttonAsistirConPin)
-        Me.GroupBoxPin.Location = New System.Drawing.Point(12, 227)
+        Me.GroupBoxPin.Location = New System.Drawing.Point(16, 279)
+        Me.GroupBoxPin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBoxPin.Name = "GroupBoxPin"
-        Me.GroupBoxPin.Size = New System.Drawing.Size(621, 115)
+        Me.GroupBoxPin.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBoxPin.Size = New System.Drawing.Size(828, 142)
         Me.GroupBoxPin.TabIndex = 2
         Me.GroupBoxPin.TabStop = False
         Me.GroupBoxPin.Text = "Con PIN"
@@ -252,22 +272,24 @@ Partial Class formSiniestroAsistenciaPresencial
         'buttonAsistirConPin
         '
         Me.buttonAsistirConPin.Image = Global.CSBomberos.My.Resources.Resources.ImagePinCode64
-        Me.buttonAsistirConPin.Location = New System.Drawing.Point(9, 23)
+        Me.buttonAsistirConPin.Location = New System.Drawing.Point(12, 28)
+        Me.buttonAsistirConPin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.buttonAsistirConPin.Name = "buttonAsistirConPin"
-        Me.buttonAsistirConPin.Size = New System.Drawing.Size(80, 80)
+        Me.buttonAsistirConPin.Size = New System.Drawing.Size(107, 98)
         Me.buttonAsistirConPin.TabIndex = 0
         Me.buttonAsistirConPin.UseVisualStyleBackColor = True
         '
         'formSiniestroAsistenciaPresencial
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(645, 353)
+        Me.ClientSize = New System.Drawing.Size(860, 434)
         Me.Controls.Add(Me.GroupBoxPin)
         Me.Controls.Add(Me.GroupBoxHuellaDigital)
         Me.Controls.Add(Me.GroupBoxSiniestro)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistenciaPresencial"

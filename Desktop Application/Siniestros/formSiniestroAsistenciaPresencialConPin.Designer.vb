@@ -35,19 +35,21 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         'labelPersona
         '
         Me.labelPersona.AutoSize = True
-        Me.labelPersona.Location = New System.Drawing.Point(10, 50)
+        Me.labelPersona.Location = New System.Drawing.Point(13, 62)
+        Me.labelPersona.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelPersona.Name = "labelPersona"
-        Me.labelPersona.Size = New System.Drawing.Size(49, 13)
+        Me.labelPersona.Size = New System.Drawing.Size(61, 16)
         Me.labelPersona.TabIndex = 0
         Me.labelPersona.Text = "Persona:"
         '
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonGuardar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(460, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(613, 39)
         Me.toolstripMain.TabIndex = 4
         '
         'buttonCancelar
@@ -57,7 +59,7 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCancelar.Name = "buttonCancelar"
-        Me.buttonCancelar.Size = New System.Drawing.Size(89, 36)
+        Me.buttonCancelar.Size = New System.Drawing.Size(102, 36)
         Me.buttonCancelar.Text = "Cancelar"
         '
         'buttonGuardar
@@ -67,15 +69,16 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.buttonGuardar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonGuardar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonGuardar.Name = "buttonGuardar"
-        Me.buttonGuardar.Size = New System.Drawing.Size(85, 36)
+        Me.buttonGuardar.Size = New System.Drawing.Size(98, 36)
         Me.buttonGuardar.Text = "Guardar"
         '
         'maskedtextboxIdentificacionPin
         '
-        Me.maskedtextboxIdentificacionPin.Location = New System.Drawing.Point(74, 73)
+        Me.maskedtextboxIdentificacionPin.Location = New System.Drawing.Point(99, 90)
+        Me.maskedtextboxIdentificacionPin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.maskedtextboxIdentificacionPin.Mask = "0000"
         Me.maskedtextboxIdentificacionPin.Name = "maskedtextboxIdentificacionPin"
-        Me.maskedtextboxIdentificacionPin.Size = New System.Drawing.Size(44, 20)
+        Me.maskedtextboxIdentificacionPin.Size = New System.Drawing.Size(57, 22)
         Me.maskedtextboxIdentificacionPin.TabIndex = 3
         Me.maskedtextboxIdentificacionPin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.maskedtextboxIdentificacionPin.UseSystemPasswordChar = True
@@ -83,9 +86,10 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         'labelIdentificacionPin
         '
         Me.labelIdentificacionPin.AutoSize = True
-        Me.labelIdentificacionPin.Location = New System.Drawing.Point(12, 76)
+        Me.labelIdentificacionPin.Location = New System.Drawing.Point(16, 94)
+        Me.labelIdentificacionPin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelIdentificacionPin.Name = "labelIdentificacionPin"
-        Me.labelIdentificacionPin.Size = New System.Drawing.Size(28, 13)
+        Me.labelIdentificacionPin.Size = New System.Drawing.Size(32, 16)
         Me.labelIdentificacionPin.TabIndex = 2
         Me.labelIdentificacionPin.Text = "PIN:"
         '
@@ -96,22 +100,23 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.controlpersonaPersona.dbContext = Nothing
         Me.controlpersonaPersona.IDCuartel = Nothing
         Me.controlpersonaPersona.IDPersona = Nothing
-        Me.controlpersonaPersona.Location = New System.Drawing.Point(74, 47)
+        Me.controlpersonaPersona.Location = New System.Drawing.Point(99, 58)
+        Me.controlpersonaPersona.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.controlpersonaPersona.MatriculaNumeroDigitos = Nothing
-        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(150, 21)
+        Me.controlpersonaPersona.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.controlpersonaPersona.MinimumSize = New System.Drawing.Size(200, 26)
         Me.controlpersonaPersona.Name = "controlpersonaPersona"
         Me.controlpersonaPersona.ReadOnlyText = False
-        Me.controlpersonaPersona.Size = New System.Drawing.Size(374, 21)
+        Me.controlpersonaPersona.Size = New System.Drawing.Size(499, 26)
         Me.controlpersonaPersona.SoloMostrarEnAsistencia = True
         Me.controlpersonaPersona.SoloMostrarEstadoActivo = True
         Me.controlpersonaPersona.TabIndex = 1
         '
         'formSiniestroAsistenciaPresencialConPin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 108)
+        Me.ClientSize = New System.Drawing.Size(613, 133)
         Me.Controls.Add(Me.controlpersonaPersona)
         Me.Controls.Add(Me.labelIdentificacionPin)
         Me.Controls.Add(Me.maskedtextboxIdentificacionPin)
@@ -119,6 +124,7 @@ Partial Class formSiniestroAsistenciaPresencialConPin
         Me.Controls.Add(Me.labelPersona)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSiniestroAsistenciaPresencialConPin"

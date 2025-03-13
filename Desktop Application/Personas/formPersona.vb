@@ -320,11 +320,11 @@ Public Class formPersona
             datetimepickerCursoIngresoFecha.Value = CS_ValueTranslation.FromObjectDateToControlDateTimePicker(.CursoIngresoFecha, datetimepickerCursoIngresoFecha)
             CS_ValueTranslation_Syncfusion.FromValueToControl(.CursoIngresoMeses, integertextboxCursoIngresoMeses)
             CS_ValueTranslation_Syncfusion.FromValueToControl(.CursoIngresoHoras, integertextboxCursoIngresoHoras)
-            controlpersonaCursoIngresoResponsable.BuscarPersona(.CursoIngresoResponsableIDPersona)
+            controlpersonaCursoIngresoResponsable.BuscarPersonaPorId(.CursoIngresoResponsableIDPersona)
             checkboxReingresoFormacionRealizada.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.ReingresoFormacionRealizada)
             CS_ValueTranslation_Syncfusion.FromValueToControl(.ReingresoFormacionMeses, integertextboxReingresoFormacionMeses)
             CS_ValueTranslation_Syncfusion.FromValueToControl(.ReingresoFormacionHoras, integertextboxReingresoFormacionHoras)
-            controlpersonaReingresoFormacionResponsable.BuscarPersona(.ReingresoFormacionResponsableIDPersona)
+            controlpersonaReingresoFormacionResponsable.BuscarPersonaPorId(.ReingresoFormacionResponsableIDPersona)
 
             ' Datos de la pestaña Contacto Particular
             textboxDomicilioParticularCalle1.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.DomicilioParticularCalle1)

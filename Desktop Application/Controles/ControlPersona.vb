@@ -2,7 +2,7 @@
 
 #Region "Declarations - properties"
 
-    Private listPersonas As List(Of PersonasObtenerPorCuartelYEstado_Result)
+    Private _personas As IEnumerable(Of PersonasObtenerPorCuartelYEstado_Result)
     Private _IDPersona As Integer?
     Private _MatriculaNumeroDigitos As Short?
     Private _ApellidoNombre As String
@@ -12,7 +12,7 @@
     Public Property dbContext As CSBomberosContext
     Public Property IDCuartel As Byte?
     Public Property SoloMostrarEstadoActivo As Boolean = True
-    Public Property SoloMostrarEnAsistencia As Boolean = False
+    Public Property SoloMostrarEnAsistencia As Boolean
 
     Public Property IDPersona As Integer?
         Get
@@ -75,12 +75,6 @@
         Set(value As Boolean)
             _ReadOnlyText = value
             MaskedTextBoxMatriculaNumeroDigitos.ReadOnly = value
-            If value Then
-                TextBoxApellidoNombre.Width = Me.Width - TextBoxApellidoNombre.Left
-            Else
-                TextBoxApellidoNombre.Width = ButtonPersona.Left - TextBoxApellidoNombre.Left + 2
-            End If
-            ComboBoxApellidoNombre.Width = TextBoxApellidoNombre.Width
             ButtonPersona.Visible = Not value
             ButtonPersonaBorrar.Visible = Not value
         End Set
@@ -91,12 +85,16 @@
 #Region "Declarations - methods"
 
     Public Sub MostrarUnaPersona()
-        TextBoxApellidoNombre.Visible = True
         ComboBoxApellidoNombre.Visible = False
+        TableLayoutPanelMain.Controls.Remove(ComboBoxApellidoNombre)
+        TableLayoutPanelMain.Controls.Add(TextBoxApellidoNombre, 1, 0)
+        TextBoxApellidoNombre.Visible = True
     End Sub
 
     Public Sub MostrarMultiplesPersonas()
         TextBoxApellidoNombre.Visible = False
+        TableLayoutPanelMain.Controls.Remove(TextBoxApellidoNombre)
+        TableLayoutPanelMain.Controls.Add(ComboBoxApellidoNombre, 1, 0)
         ComboBoxApellidoNombre.Visible = True
     End Sub
 
@@ -137,26 +135,26 @@
         ApellidoNombre = origen.ApellidoNombre
     End Sub
 
-    Public Sub BuscarPersona(valorIDPersona As Integer?)
-        If valorIDPersona.HasValue Then
+    Public Sub BuscarPersonaPorId(idPersona As Integer?)
+        If idPersona.HasValue Then
             CargarListaDePersonas()
-            AsignarValores(listPersonas.Find(Function(p) p.IDPersona = valorIDPersona.Value))
+            AsignarValores(_personas.FirstOrDefault(Function(p) p.IDPersona = idPersona.Value))
         Else
             ResetText()
         End If
     End Sub
 
-    Public Sub BuscarPersona(valorMatriculaNumeroDigitos As Short)
+    Public Sub BuscarPersonaPorMatricula(matriculaNumero As String)
         CargarListaDePersonas()
-        Dim listPersonasEncontradas As List(Of PersonasObtenerPorCuartelYEstado_Result)
-        listPersonasEncontradas = listPersonas.Where(Function(p) p.MatriculaNumero.TrimEnd().EndsWith(valorMatriculaNumeroDigitos.ToString(New String("0"c, Constantes.PersonaMatriculaCantidadDigitos)))).ToList()
-        Select Case listPersonasEncontradas.Count
+        Dim _personasEncontradas As List(Of PersonasObtenerPorCuartelYEstado_Result)
+        _personasEncontradas = _personas.Where(Function(p) p.MatriculaNumero.TrimEnd().EndsWith(matriculaNumero)).ToList()
+        Select Case _personasEncontradas.Count
             Case 0
                 ResetText()
             Case 1
-                AsignarValores(listPersonasEncontradas.First)
+                AsignarValores(_personasEncontradas.First)
             Case Else
-                ComboBoxApellidoNombre.DataSource = listPersonasEncontradas
+                ComboBoxApellidoNombre.DataSource = _personasEncontradas
                 ComboBoxApellidoNombre.SelectedIndex = -1
                 _IDPersona = Nothing
                 ApellidoNombre = Nothing
@@ -174,8 +172,8 @@
     End Sub
 
     Private Sub ControlPersona_Disposed(sender As Object, e As EventArgs) Handles Me.Disposed
-        If listPersonas IsNot Nothing Then
-            listPersonas = Nothing
+        If _personas IsNot Nothing Then
+            _personas = Nothing
         End If
         If dbContext IsNot Nothing AndAlso dbContextLocal Then
             dbContext.Dispose()
@@ -192,19 +190,19 @@
     End Sub
 
     Private Sub MaskedTextBoxMatriculaNumeroDigitos_LostFocus(sender As Object, e As EventArgs) Handles MaskedTextBoxMatriculaNumeroDigitos.LostFocus
-        If _ReadOnlyText = False AndAlso MaskedTextBoxMatriculaNumeroDigitos.Text.Trim.Length = 3 Then
-            BuscarPersona(CShort(MaskedTextBoxMatriculaNumeroDigitos.Text.Trim()))
+        If Not _ReadOnlyText AndAlso MaskedTextBoxMatriculaNumeroDigitos.Text.Trim.Length = 3 Then
+            BuscarPersonaPorMatricula(MaskedTextBoxMatriculaNumeroDigitos.Text.Trim())
         End If
     End Sub
 
     Private Sub MaskedTextBoxMatriculaNumeroDigitos_KeyPress(sender As Object, e As KeyPressEventArgs) Handles MaskedTextBoxMatriculaNumeroDigitos.KeyPress
-        If _ReadOnlyText = False AndAlso e.KeyChar = ChrW(Keys.Return) Then
+        If Not _ReadOnlyText AndAlso e.KeyChar = ChrW(Keys.Return) Then
             e.Handled = True
-            If MaskedTextBoxMatriculaNumeroDigitos.Text.Trim.Length < 3 Then
+            If MaskedTextBoxMatriculaNumeroDigitos.Text.Trim.Length < Constantes.PersonaMatriculaCantidadDigitos Then
                 MessageBox.Show($"Se deben especificar {Constantes.PersonaMatriculaCantidadDigitos} dígitos para buscar la matrícula.", My.Application.Info.Title, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 MaskedTextBoxMatriculaNumeroDigitos.Focus()
             Else
-                BuscarPersona(CShort(MaskedTextBoxMatriculaNumeroDigitos.Text.Trim()))
+                BuscarPersonaPorMatricula(MaskedTextBoxMatriculaNumeroDigitos.Text.Trim())
             End If
         End If
     End Sub
@@ -242,14 +240,12 @@
     End Function
 
     Private Function CargarListaDePersonas() As Boolean
-        If listPersonas Is Nothing Then
-            If dbContext Is Nothing Then
-                If Not AbrirDBContext() Then
-                    Return False
-                End If
+        If _personas Is Nothing Then
+            If dbContext Is Nothing AndAlso Not AbrirDBContext() Then
+                Return False
             End If
             Try
-                listPersonas = dbContext.PersonasObtenerPorCuartelYEstado(IDCuartel, SoloMostrarEstadoActivo).ToList()
+                _personas = dbContext.PersonasObtenerPorCuartelYEstado(IDCuartel, SoloMostrarEstadoActivo).ToList()
                 Return True
             Catch ex As Exception
                 CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al obtener la lista de Personas de la base de datos.")

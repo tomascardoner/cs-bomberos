@@ -27,9 +27,9 @@ Partial Class formSiniestroFinalizar
         Me.pictureboxFoto = New System.Windows.Forms.PictureBox()
         Me.pictureboxFlecha = New System.Windows.Forms.PictureBox()
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
+        Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         Me.controlPersonaAsignar = New CSBomberos.ControlPersona()
         Me.buttonAsignar = New System.Windows.Forms.Button()
-        Me.buttonCerrar = New System.Windows.Forms.ToolStripButton()
         CType(Me.pictureboxFoto, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pictureboxFlecha, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.toolstripMain.SuspendLayout()
@@ -38,10 +38,11 @@ Partial Class formSiniestroFinalizar
         'textboxPersona
         '
         Me.textboxPersona.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textboxPersona.Location = New System.Drawing.Point(226, 95)
+        Me.textboxPersona.Location = New System.Drawing.Point(301, 117)
+        Me.textboxPersona.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.textboxPersona.Name = "textboxPersona"
         Me.textboxPersona.ReadOnly = True
-        Me.textboxPersona.Size = New System.Drawing.Size(388, 22)
+        Me.textboxPersona.Size = New System.Drawing.Size(516, 26)
         Me.textboxPersona.TabIndex = 2
         Me.textboxPersona.TabStop = False
         '
@@ -49,18 +50,20 @@ Partial Class formSiniestroFinalizar
         '
         Me.verificationcontrolHuellas.Active = True
         Me.verificationcontrolHuellas.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(12, 82)
+        Me.verificationcontrolHuellas.Location = New System.Drawing.Point(16, 101)
+        Me.verificationcontrolHuellas.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.verificationcontrolHuellas.Name = "verificationcontrolHuellas"
         Me.verificationcontrolHuellas.ReaderSerialNumber = "00000000-0000-0000-0000-000000000000"
-        Me.verificationcontrolHuellas.Size = New System.Drawing.Size(48, 48)
+        Me.verificationcontrolHuellas.Size = New System.Drawing.Size(64, 59)
         Me.verificationcontrolHuellas.TabIndex = 9
         '
         'pictureboxFoto
         '
         Me.pictureboxFoto.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pictureboxFoto.Location = New System.Drawing.Point(130, 61)
+        Me.pictureboxFoto.Location = New System.Drawing.Point(173, 75)
+        Me.pictureboxFoto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pictureboxFoto.Name = "pictureboxFoto"
-        Me.pictureboxFoto.Size = New System.Drawing.Size(90, 90)
+        Me.pictureboxFoto.Size = New System.Drawing.Size(119, 110)
         Me.pictureboxFoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pictureboxFoto.TabIndex = 94
         Me.pictureboxFoto.TabStop = False
@@ -68,7 +71,8 @@ Partial Class formSiniestroFinalizar
         'pictureboxFlecha
         '
         Me.pictureboxFlecha.Image = Global.CSBomberos.My.Resources.Resources.ImageSiguiente24
-        Me.pictureboxFlecha.Location = New System.Drawing.Point(79, 96)
+        Me.pictureboxFlecha.Location = New System.Drawing.Point(105, 118)
+        Me.pictureboxFlecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pictureboxFlecha.Name = "pictureboxFlecha"
         Me.pictureboxFlecha.Size = New System.Drawing.Size(24, 24)
         Me.pictureboxFlecha.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
@@ -78,40 +82,12 @@ Partial Class formSiniestroFinalizar
         'toolstripMain
         '
         Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.toolstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(627, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(836, 39)
         Me.toolstripMain.TabIndex = 96
-        '
-        'controlPersonaAsignar
-        '
-        Me.controlPersonaAsignar.ApellidoNombre = Nothing
-        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.controlPersonaAsignar.dbContext = Nothing
-        Me.controlPersonaAsignar.IDCuartel = Nothing
-        Me.controlPersonaAsignar.IDPersona = Nothing
-        Me.controlPersonaAsignar.Location = New System.Drawing.Point(226, 123)
-        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
-        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1000, 21)
-        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(150, 21)
-        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
-        Me.controlPersonaAsignar.ReadOnlyText = False
-        Me.controlPersonaAsignar.Size = New System.Drawing.Size(316, 21)
-        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
-        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
-        Me.controlPersonaAsignar.TabIndex = 99
-        Me.controlPersonaAsignar.Visible = False
-        '
-        'buttonAsignar
-        '
-        Me.buttonAsignar.Location = New System.Drawing.Point(548, 123)
-        Me.buttonAsignar.Name = "buttonAsignar"
-        Me.buttonAsignar.Size = New System.Drawing.Size(66, 21)
-        Me.buttonAsignar.TabIndex = 98
-        Me.buttonAsignar.Text = "Asignar"
-        Me.buttonAsignar.UseVisualStyleBackColor = True
-        Me.buttonAsignar.Visible = False
         '
         'buttonCerrar
         '
@@ -120,14 +96,45 @@ Partial Class formSiniestroFinalizar
         Me.buttonCerrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.buttonCerrar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.buttonCerrar.Name = "buttonCerrar"
-        Me.buttonCerrar.Size = New System.Drawing.Size(75, 36)
+        Me.buttonCerrar.Size = New System.Drawing.Size(85, 36)
         Me.buttonCerrar.Text = "Cerrar"
+        '
+        'controlPersonaAsignar
+        '
+        Me.controlPersonaAsignar.ApellidoNombre = Nothing
+        Me.controlPersonaAsignar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.controlPersonaAsignar.dbContext = Nothing
+        Me.controlPersonaAsignar.IDCuartel = Nothing
+        Me.controlPersonaAsignar.IDPersona = Nothing
+        Me.controlPersonaAsignar.Location = New System.Drawing.Point(301, 151)
+        Me.controlPersonaAsignar.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.controlPersonaAsignar.MatriculaNumeroDigitos = Nothing
+        Me.controlPersonaAsignar.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.controlPersonaAsignar.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.controlPersonaAsignar.Name = "controlPersonaAsignar"
+        Me.controlPersonaAsignar.ReadOnlyText = False
+        Me.controlPersonaAsignar.Size = New System.Drawing.Size(421, 26)
+        Me.controlPersonaAsignar.SoloMostrarEnAsistencia = False
+        Me.controlPersonaAsignar.SoloMostrarEstadoActivo = True
+        Me.controlPersonaAsignar.TabIndex = 99
+        Me.controlPersonaAsignar.Visible = False
+        '
+        'buttonAsignar
+        '
+        Me.buttonAsignar.Location = New System.Drawing.Point(731, 151)
+        Me.buttonAsignar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.buttonAsignar.Name = "buttonAsignar"
+        Me.buttonAsignar.Size = New System.Drawing.Size(88, 26)
+        Me.buttonAsignar.TabIndex = 98
+        Me.buttonAsignar.Text = "Asignar"
+        Me.buttonAsignar.UseVisualStyleBackColor = True
+        Me.buttonAsignar.Visible = False
         '
         'formSiniestroFinalizar
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(627, 166)
+        Me.ClientSize = New System.Drawing.Size(836, 204)
         Me.Controls.Add(Me.controlPersonaAsignar)
         Me.Controls.Add(Me.buttonAsignar)
         Me.Controls.Add(Me.toolstripMain)
@@ -136,6 +143,7 @@ Partial Class formSiniestroFinalizar
         Me.Controls.Add(Me.verificationcontrolHuellas)
         Me.Controls.Add(Me.textboxPersona)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "formSiniestroFinalizar"
