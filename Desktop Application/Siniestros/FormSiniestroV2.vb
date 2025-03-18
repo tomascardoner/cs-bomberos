@@ -40,6 +40,9 @@
                     .IDSiniestroClave = CByte(formSiniestros.comboboxClave.ComboBox.SelectedValue)
                 End If
 
+                .UbicacionIDProvincia = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID)
+                .UbicacionIDLocalidad = CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID)
+
                 .Anulado = False
                 .IDUsuarioCreacion = pUsuario.IDUsuario
                 .FechaHoraCreacion = Now
@@ -97,7 +100,7 @@
         NumericUpDownIncendioForestalCantidadPlanta.Enabled = mEditMode
         NumericUpDownIncendioForestalLargoMetro.Enabled = mEditMode
         NumericUpDownIncendioForestalAnchoMetro.Enabled = mEditMode
-        NumericUpDownIncendioForestalSuperficie.Enabled = mEditMode
+        NumericUpDownIncendioForestalSuperficieMetro.Enabled = mEditMode
 
         ControlPersonaEncargadoCuartel.ReadOnlyText = Not mEditMode
         ControlPersonaJefeGuardia.ReadOnlyText = Not mEditMode
@@ -134,12 +137,24 @@
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, ComboBoxCuartel, False, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro, False, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave, False, False)
+        ListasSiniestros.LlenarComboBoxSolicitudFormas(mdbContext, ComboBoxSolicitudForma, False, True)
+        pFillAndRefreshLists.DocumentoTipo(ComboBoxSolicitanteDocumentoTipo, True)
+        ListasSiniestros.LlenarComboBoxUbicacionTipos(mdbContext, ComboBoxUbicacionTipo, False, True)
+        pFillAndRefreshLists.Provincia(ComboBoxUbicacionProvincia, True)
 
         mPermisoEditarBasico = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False)
         mPermisoEditarCompleto = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
 
+        LabelIncendioForestal.Font = New Font(LabelIncendioForestal.Font, FontStyle.Bold)
+        LabelDamnificados.Font = LabelIncendioForestal.Font
+        LabelVehiculos.Font = LabelIncendioForestal.Font
+
         LabelControlado.Visible = mPermisoEditarCompleto
         CheckBoxControlado.Visible = mPermisoEditarCompleto
+
+        ControlPersonaEncargadoCuartel.dbContext = mdbContext
+        ControlPersonaJefeGuardia.dbContext = mdbContext
+        ControlPersonaRadioTelefonista.dbContext = mdbContext
 
         If Not mEditMode Then
             ResumenAsistenciasRefreshData()
@@ -168,6 +183,7 @@
 
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroActual
+            ' General
             CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxCuartel, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirstIfUnique, .IDCuartel)
             maskedtextboxNumeroPrefijo.Text = .NumeroPrefijo
             maskedtextboxNumero.Text = .Numero
@@ -184,7 +200,37 @@
                 textboxPersonaFin.Text = String.Empty
             End If
             datetimepickerHoraLlegadaUltimoCamion.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraLlegadaUltimoCamion, datetimepickerHoraLlegadaUltimoCamion)
+
+            CheckBoxTrasladoPorOtro.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.TrasladoPorOtro)
+            If .TrasladoPorOtro.HasValue AndAlso .TrasladoPorOtro.Value AndAlso .TrasladoPorOtroCantidad.HasValue Then
+                NumericUpDownTrasladoPorOtroCantidad.Value = .TrasladoPorOtroCantidad.Value
+            Else
+                NumericUpDownTrasladoPorOtroCantidad.Value = 0
+            End If
+
+            NumericUpDownIncendioForestalCantidadHa.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.IncendioForestalCantidadHa)
+            NumericUpDownIncendioForestalCantidadPlanta.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.IncendioForestalCantidadPlanta)
+            NumericUpDownIncendioForestalLargoMetro.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.IncendioForestalLargoMetro)
+            NumericUpDownIncendioForestalAnchoMetro.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.IncendioForestalAnchoMetro)
+            NumericUpDownIncendioForestalSuperficieMetro.Value = CS_ValueTranslation.FromObjectShortToControlUpDown(.IncendioForestalSuperficieMetro)
+
+            ControlPersonaEncargadoCuartel.AsignarValores(.PersonaEncargadoCuartel)
+            ControlPersonaJefeGuardia.AsignarValores(.PersonaJefeGuardia)
+            ControlPersonaRadioTelefonista.AsignarValores(.PersonaRadioTelefonista)
+
             CheckBoxControlado.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.Controlado)
+
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxSolicitudForma, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IdSiniestroSolicitudForma)
+            TextBoxSolicitanteNombre.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitanteNombre)
+            TextBoxSolicitanteDireccion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitanteDireccion)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxSolicitanteDocumentoTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .SolicitanteIDDocumentoTipo)
+            TextBoxSolicitanteDocumentoNumero.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitanteDocumentoNumero)
+            TextBoxSolicitanteTelefono.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.SolicitanteTelefono)
+
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxUbicacionTipo, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .IdSiniestroUbicacionTipo)
+            TextBoxUbicacionDescripcion.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.UbicacionDescripcion)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxUbicacionProvincia, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .UbicacionIDProvincia)
+            CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxUbicacionLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, .UbicacionIDLocalidad)
 
             ' Datos de la pestaña Notas y Auditoría
             textboxNotas.Text = CS_ValueTranslation.FromObjectStringToControlTextBox(.Notas)
@@ -224,7 +270,37 @@
             .HoraSalida = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraSalida.Value, datetimepickerHoraSalida.Checked)
             .HoraFin = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraFin.Value, datetimepickerHoraFin.Checked)
             .HoraLlegadaUltimoCamion = CS_ValueTranslation.FromControlDateTimePickerToObjectTimeSpan(datetimepickerHoraLlegadaUltimoCamion.Value, datetimepickerHoraLlegadaUltimoCamion.Checked)
+
+            .TrasladoPorOtro = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxTrasladoPorOtro.CheckState)
+            If CheckBoxTrasladoPorOtro.CheckState = CheckState.Checked Then
+                .TrasladoPorOtroCantidad = CS_ValueTranslation.FromControlUpDownToObjectByte(NumericUpDownTrasladoPorOtroCantidad.Value)
+            Else
+                .TrasladoPorOtroCantidad = Nothing
+            End If
+
+            .IncendioForestalCantidadHa = CS_ValueTranslation.FromControlUpDownToObjectShort(NumericUpDownIncendioForestalCantidadHa.Value)
+            .IncendioForestalCantidadPlanta = CS_ValueTranslation.FromControlUpDownToObjectShort(NumericUpDownIncendioForestalCantidadPlanta.Value)
+            .IncendioForestalLargoMetro = CS_ValueTranslation.FromControlUpDownToObjectShort(NumericUpDownIncendioForestalLargoMetro.Value)
+            .IncendioForestalAnchoMetro = CS_ValueTranslation.FromControlUpDownToObjectShort(NumericUpDownIncendioForestalAnchoMetro.Value)
+            .IncendioForestalSuperficieMetro = CS_ValueTranslation.FromControlUpDownToObjectShort(NumericUpDownIncendioForestalSuperficieMetro.Value)
+
+            .EncargadoCuartelIDPersona = ControlPersonaEncargadoCuartel.IDPersona
+            .JefeGuardiaIDPersona = ControlPersonaJefeGuardia.IDPersona
+            .RadioTelefonistaIDPersona = ControlPersonaRadioTelefonista.IDPersona
+
             .Controlado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(CheckBoxControlado.CheckState)
+
+            .IdSiniestroSolicitudForma = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxSolicitudForma.SelectedValue)
+            .SolicitanteNombre = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxSolicitanteNombre.Text)
+            .SolicitanteDireccion = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxSolicitanteDireccion.Text)
+            .SolicitanteIDDocumentoTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxSolicitanteDocumentoTipo.SelectedValue)
+            .SolicitanteDocumentoNumero = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxSolicitanteDocumentoNumero.Text)
+            .SolicitanteTelefono = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxSolicitanteTelefono.Text)
+
+            .IdSiniestroUbicacionTipo = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxUbicacionTipo.SelectedValue)
+            .UbicacionDescripcion = CS_ValueTranslation.FromControlTextBoxToObjectString(TextBoxUbicacionDescripcion.Text)
+            .UbicacionIDProvincia = CS_ValueTranslation.FromControlComboBoxToObjectByte(ComboBoxUbicacionProvincia.SelectedValue)
+            .UbicacionIDLocalidad = CS_ValueTranslation.FromControlComboBoxToObjectShort(ComboBoxUbicacionLocalidad.SelectedValue)
 
             .Notas = CS_ValueTranslation.FromControlTextBoxToObjectString(textboxNotas.Text)
             .Anulado = CS_ValueTranslation.FromControlCheckBoxToObjectBoolean(checkboxAnulado.CheckState)
@@ -233,9 +309,9 @@
 
 #End Region
 
-#Region "Controls behavior"
+#Region "Controls events"
 
-    Private Sub FormKeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+    Private Sub Form_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
         Select Case e.KeyChar
             Case ChrW(Keys.Return)
                 If mEditMode Then
@@ -252,16 +328,31 @@
         End Select
     End Sub
 
-    Private Sub TextBoxs_GotFocus(sender As Object, e As EventArgs) Handles textboxSiniestroTipoOtro.GotFocus, textboxNotas.GotFocus
-        CType(sender, TextBox).SelectAll()
+    Private Sub Controls_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.GotFocus, maskedtextboxNumero.GotFocus, textboxSiniestroTipoOtro.GotFocus, NumericUpDownTrasladoPorOtroCantidad.GotFocus, NumericUpDownIncendioForestalCantidadHa.GotFocus, NumericUpDownIncendioForestalCantidadPlanta.GotFocus, NumericUpDownIncendioForestalLargoMetro.GotFocus, NumericUpDownIncendioForestalAnchoMetro.GotFocus, NumericUpDownIncendioForestalSuperficieMetro.GotFocus, TextBoxSolicitanteNombre.GotFocus, TextBoxSolicitanteDireccion.GotFocus, TextBoxSolicitanteDocumentoNumero.GotFocus, TextBoxSolicitanteTelefono.GotFocus, TextBoxUbicacionDescripcion.GotFocus, textboxNotas.GotFocus
+        Select Case sender.GetType()
+            Case GetType(TextBox)
+                CType(sender, TextBox).SelectAll()
+            Case GetType(MaskedTextBox)
+                CType(sender, MaskedTextBox).SelectAll()
+            Case GetType(NumericUpDown)
+                CType(sender, NumericUpDown).Select(0, CType(sender, NumericUpDown).Text.Length)
+        End Select
     End Sub
 
-    Private Sub maskedtextboxNumeroPrefijo_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.LostFocus
+    Private Sub MaskedtextboxNumeroPrefijo_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.LostFocus
         maskedtextboxNumeroPrefijo.Text = maskedtextboxNumeroPrefijo.Text.PadLeft(Constantes.SINIESTRO_NUMEROPREFIJO_DIGITOS, "0"c)
     End Sub
 
-    Private Sub maskedtextboxNumero_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumero.LostFocus
+    Private Sub MaskedtextboxNumero_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumero.LostFocus
         maskedtextboxNumero.Text = maskedtextboxNumero.Text.PadLeft(Constantes.SINIESTRO_NUMERO_DIGITOS, "0"c)
+    End Sub
+
+    Private Sub Cuartel_Cambio(sender As Object, e As EventArgs) Handles ComboBoxCuartel.SelectedValueChanged
+        If ComboBoxCuartel.SelectedValue IsNot Nothing Then
+            ControlPersonaEncargadoCuartel.IDCuartel = CType(ComboBoxCuartel.SelectedItem, Cuartel).IDCuartel
+            ControlPersonaJefeGuardia.IDCuartel = CType(ComboBoxCuartel.SelectedItem, Cuartel).IDCuartel
+            ControlPersonaRadioTelefonista.IDCuartel = CType(ComboBoxCuartel.SelectedItem, Cuartel).IDCuartel
+        End If
     End Sub
 
     Private Sub CodigoSiguiente_Click(sender As Object, e As EventArgs) Handles buttonCodigoSiguiente.Click
@@ -306,15 +397,29 @@
 
     Private Sub SiniestroTipoCambio(sender As Object, e As EventArgs) Handles comboboxSiniestroTipo.SelectedIndexChanged
         If comboboxSiniestroTipo.SelectedIndex > -1 Then
-            Dim siniestroTipoActual As SiniestroTipo
-
-            siniestroTipoActual = CType(comboboxSiniestroTipo.SelectedItem, SiniestroTipo)
+            Dim siniestroTipoActual As SiniestroTipo = CType(comboboxSiniestroTipo.SelectedItem, SiniestroTipo)
+            Dim siniestroTipoIncendioForestal As Boolean
 
             labelSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
             textboxSiniestroTipoOtro.Visible = (siniestroTipoActual.IDSiniestroTipo = CardonerSistemas.Constants.FIELD_VALUE_OTHER_BYTE)
             If siniestroTipoActual.IDSiniestroClave.HasValue Then
                 CardonerSistemas.Controls.ComboBox.SetSelectedValue(comboboxClave, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.Value, siniestroTipoActual.IDSiniestroClave)
             End If
+
+            siniestroTipoIncendioForestal = siniestroTipoActual.IDSiniestroRubro = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_RUBRO_ID_INCENDIO) AndAlso siniestroTipoActual.IDSiniestroTipo = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_TIPO_ID_INCENDIO_FORESTAL)
+            LabelIncendioForestal.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalCantidad.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalCantidadHa.Visible = siniestroTipoIncendioForestal
+            NumericUpDownIncendioForestalCantidadHa.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalCantidadPlanta.Visible = siniestroTipoIncendioForestal
+            NumericUpDownIncendioForestalCantidadPlanta.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalMedida.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalLargoMetro.Visible = siniestroTipoIncendioForestal
+            NumericUpDownIncendioForestalLargoMetro.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalAnchoMetro.Visible = siniestroTipoIncendioForestal
+            NumericUpDownIncendioForestalAnchoMetro.Visible = siniestroTipoIncendioForestal
+            LabelIncendioForestalSuperficieMetro.Visible = siniestroTipoIncendioForestal
+            NumericUpDownIncendioForestalSuperficieMetro.Visible = siniestroTipoIncendioForestal
         Else
             labelSiniestroTipoOtro.Visible = False
             textboxSiniestroTipoOtro.Visible = False
@@ -350,6 +455,22 @@
         End If
         finalizar.Close()
         finalizar = Nothing
+    End Sub
+
+    Private Sub CheckBoxTrasladoPorOtro_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxTrasladoPorOtro.CheckedChanged
+        NumericUpDownTrasladoPorOtroCantidad.Visible = CheckBoxTrasladoPorOtro.CheckState = CheckState.Checked
+    End Sub
+
+    Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles ComboBoxUbicacionProvincia.SelectedValueChanged
+        If ComboBoxUbicacionProvincia.SelectedValue Is Nothing Then
+            pFillAndRefreshLists.Localidad(ComboBoxUbicacionLocalidad, 0, True)
+            ComboBoxUbicacionLocalidad.SelectedIndex = 0
+        Else
+            pFillAndRefreshLists.Localidad(ComboBoxUbicacionLocalidad, CByte(ComboBoxUbicacionProvincia.SelectedValue), True)
+            If CByte(ComboBoxUbicacionProvincia.SelectedValue) = CS_Parameter_System.GetIntegerAsByte(Parametros.DEFAULT_PROVINCIA_ID) Then
+                CardonerSistemas.Controls.ComboBox.SetSelectedValue(ComboBoxUbicacionLocalidad, CardonerSistemas.Controls.ComboBox.SelectedItemOptions.ValueOrFirst, CS_Parameter_System.GetIntegerAsShort(Parametros.DEFAULT_LOCALIDAD_ID))
+            End If
+        End If
     End Sub
 
 #End Region

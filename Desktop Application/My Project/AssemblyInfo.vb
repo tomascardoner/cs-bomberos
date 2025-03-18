@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Sistema de Gestión para Cuarteles de Bomberos")>
 <Assembly: AssemblyCompany("Cardoner Sistemas")>
 <Assembly: AssemblyProduct("CS-Bomberos")>
-<Assembly: AssemblyCopyright("© 2016-2024 Cardoner Sistemas. Reservados todos los derechos.")>
+<Assembly: AssemblyCopyright("© 2016-2025 Cardoner Sistemas. Reservados todos los derechos.")>
 <Assembly: AssemblyTrademark("® CS-Bomberos 2016")>
 
 <Assembly: ComVisible(False)>

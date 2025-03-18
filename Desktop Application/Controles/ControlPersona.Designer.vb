@@ -45,10 +45,10 @@ Partial Class ControlPersona
         '
         Me.ButtonPersonaBorrar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonPersonaBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageCerrar16
-        Me.ButtonPersonaBorrar.Location = New System.Drawing.Point(171, 0)
+        Me.ButtonPersonaBorrar.Location = New System.Drawing.Point(174, 0)
         Me.ButtonPersonaBorrar.Margin = New System.Windows.Forms.Padding(0)
         Me.ButtonPersonaBorrar.Name = "ButtonPersonaBorrar"
-        Me.ButtonPersonaBorrar.Size = New System.Drawing.Size(29, 24)
+        Me.ButtonPersonaBorrar.Size = New System.Drawing.Size(26, 26)
         Me.ButtonPersonaBorrar.TabIndex = 3
         Me.ButtonPersonaBorrar.UseVisualStyleBackColor = True
         '
@@ -56,10 +56,10 @@ Partial Class ControlPersona
         '
         Me.ButtonPersona.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ButtonPersona.Image = Global.CSBomberos.My.Resources.Resources.ImageBuscar16
-        Me.ButtonPersona.Location = New System.Drawing.Point(142, 0)
+        Me.ButtonPersona.Location = New System.Drawing.Point(148, 0)
         Me.ButtonPersona.Margin = New System.Windows.Forms.Padding(0)
         Me.ButtonPersona.Name = "ButtonPersona"
-        Me.ButtonPersona.Size = New System.Drawing.Size(29, 24)
+        Me.ButtonPersona.Size = New System.Drawing.Size(26, 26)
         Me.ButtonPersona.TabIndex = 2
         Me.ButtonPersona.UseVisualStyleBackColor = True
         '
@@ -84,7 +84,7 @@ Partial Class ControlPersona
         Me.TextBoxApellidoNombre.Margin = New System.Windows.Forms.Padding(0)
         Me.TextBoxApellidoNombre.Name = "TextBoxApellidoNombre"
         Me.TextBoxApellidoNombre.ReadOnly = True
-        Me.TextBoxApellidoNombre.Size = New System.Drawing.Size(102, 22)
+        Me.TextBoxApellidoNombre.Size = New System.Drawing.Size(108, 22)
         Me.TextBoxApellidoNombre.TabIndex = 1
         '
         'TableLayoutPanelMain
@@ -107,7 +107,7 @@ Partial Class ControlPersona
         Me.TableLayoutPanelMain.Name = "TableLayoutPanelMain"
         Me.TableLayoutPanelMain.RowCount = 1
         Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelMain.Size = New System.Drawing.Size(200, 24)
+        Me.TableLayoutPanelMain.Size = New System.Drawing.Size(200, 26)
         Me.TableLayoutPanelMain.TabIndex = 0
         '
         'ControlPersona

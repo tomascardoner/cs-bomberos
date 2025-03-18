@@ -20,7 +20,7 @@ Partial Public Class SiniestroSolicitudForma
     Public Property IdUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property Siniestro As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
+    Public Overridable Property Siniestros As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
     Public Overridable Property Usuario As Usuario
     Public Overridable Property Usuario1 As Usuario
 

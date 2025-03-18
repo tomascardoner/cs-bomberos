@@ -61,88 +61,88 @@ Public Class formPersona
 
     Private Sub ChangeMode()
         If mIsLoading Then
-            Exit Sub
+            Return
         End If
 
         buttonGuardar.Visible = mEditMode
         buttonCancelar.Visible = mEditMode
-        buttonEditar.Visible = (mEditMode = False)
-        buttonCerrar.Visible = (mEditMode = False)
+        buttonEditar.Visible = Not mEditMode
+        buttonCerrar.Visible = Not mEditMode
 
         If mEditMode Then
             pictureboxFoto.ContextMenuStrip = menustripFoto
         Else
             pictureboxFoto.ContextMenuStrip = Nothing
         End If
-        textboxMatriculaNumero.ReadOnly = (mEditMode = False)
-        textboxApellido.ReadOnly = (mEditMode = False)
-        textboxNombre.ReadOnly = (mEditMode = False)
+        textboxMatriculaNumero.ReadOnly = Not mEditMode
+        textboxApellido.ReadOnly = Not mEditMode
+        textboxNombre.ReadOnly = Not mEditMode
 
         ' General
         comboboxDocumentoTipo.Enabled = mEditMode
-        textboxDocumentoNumero.ReadOnly = (mEditMode = False)
-        maskedtextboxDocumentoNumero.ReadOnly = (mEditMode = False)
-        maskedtextboxCUIL.ReadOnly = (mEditMode = False)
+        textboxDocumentoNumero.ReadOnly = Not mEditMode
+        maskedtextboxDocumentoNumero.ReadOnly = Not mEditMode
+        maskedtextboxCUIL.ReadOnly = Not mEditMode
         datetimepickerFechaNacimiento.Enabled = mEditMode
         comboboxGenero.Enabled = mEditMode
-        doubletextboxAltura.ReadOnly = (mEditMode = False)
-        integertextboxPeso.ReadOnly = (mEditMode = False)
+        doubletextboxAltura.ReadOnly = Not mEditMode
+        integertextboxPeso.ReadOnly = Not mEditMode
         comboboxGrupoSanguineo.Enabled = mEditMode
         comboboxFactorRH.Enabled = mEditMode
         comboboxEstadoCivil.Enabled = mEditMode
         datetimepickerFechaCasamiento.Enabled = mEditMode
         comboboxIOMATiene.Enabled = mEditMode
-        textboxIOMANumeroAfiliado.ReadOnly = (mEditMode = False)
+        textboxIOMANumeroAfiliado.ReadOnly = Not mEditMode
         datetimepickerIOMAVencimientoCredencial.Enabled = mEditMode
-        labelIOMACertificacion.Visible = (mEditMode = False)
-        buttonIOMACertificacionAbrir.Visible = (mEditMode = False)
-        buttonIOMACertificacionCompletar.Visible = (mEditMode = False)
-        'labelIOMAPadron.Visible = (mEditMode = False)
-        'buttonIOMAPadronAbrir.Visible = (mEditMode = False)
-        'buttonIOMAPadronCompletar.Visible = (mEditMode = False)
+        labelIOMACertificacion.Visible = Not mEditMode
+        buttonIOMACertificacionAbrir.Visible = Not mEditMode
+        buttonIOMACertificacionCompletar.Visible = Not mEditMode
+        'labelIOMAPadron.Visible = Not mEditMode
+        'buttonIOMAPadronAbrir.Visible = Not mEditMode
+        'buttonIOMAPadronCompletar.Visible = Not mEditMode
         comboboxNivelEstudio.Enabled = mEditMode
-        textboxTituloObtenido.ReadOnly = (mEditMode = False)
-        textboxProfesion.ReadOnly = (mEditMode = False)
-        textboxNacionalidad.ReadOnly = (mEditMode = False)
+        textboxTituloObtenido.ReadOnly = Not mEditMode
+        textboxProfesion.ReadOnly = Not mEditMode
+        textboxNacionalidad.ReadOnly = Not mEditMode
         comboboxCuartel.Enabled = mEditMode
 
         ' Ingreso / Reingreso
         datetimepickerCursoIngresoFecha.Enabled = mEditMode
-        integertextboxCursoIngresoMeses.ReadOnly = (mEditMode = False)
-        integertextboxCursoIngresoHoras.ReadOnly = (mEditMode = False)
-        controlpersonaCursoIngresoResponsable.ReadOnlyText = (mEditMode = False)
+        integertextboxCursoIngresoMeses.ReadOnly = Not mEditMode
+        integertextboxCursoIngresoHoras.ReadOnly = Not mEditMode
+        controlpersonaCursoIngresoResponsable.ReadOnlyText = Not mEditMode
         checkboxReingresoFormacionRealizada.Enabled = mEditMode
-        integertextboxReingresoFormacionMeses.ReadOnly = (mEditMode = False)
-        integertextboxReingresoFormacionHoras.ReadOnly = (mEditMode = False)
-        controlpersonaReingresoFormacionResponsable.ReadOnlyText = (mEditMode = False)
+        integertextboxReingresoFormacionMeses.ReadOnly = Not mEditMode
+        integertextboxReingresoFormacionHoras.ReadOnly = Not mEditMode
+        controlpersonaReingresoFormacionResponsable.ReadOnlyText = Not mEditMode
 
         ' Contacto Particular
-        textboxDomicilioParticularCalle1.ReadOnly = (mEditMode = False)
-        textboxDomicilioParticularNumero.ReadOnly = (mEditMode = False)
-        textboxDomicilioParticularPiso.ReadOnly = (mEditMode = False)
-        textboxDomicilioParticularDepartamento.ReadOnly = (mEditMode = False)
-        textboxDomicilioParticularCalle2.ReadOnly = (mEditMode = False)
-        textboxDomicilioParticularCalle3.ReadOnly = (mEditMode = False)
+        textboxDomicilioParticularCalle1.ReadOnly = Not mEditMode
+        textboxDomicilioParticularNumero.ReadOnly = Not mEditMode
+        textboxDomicilioParticularPiso.ReadOnly = Not mEditMode
+        textboxDomicilioParticularDepartamento.ReadOnly = Not mEditMode
+        textboxDomicilioParticularCalle2.ReadOnly = Not mEditMode
+        textboxDomicilioParticularCalle3.ReadOnly = Not mEditMode
         comboboxDomicilioParticularProvincia.Enabled = mEditMode
         comboboxDomicilioParticularLocalidad.Enabled = mEditMode
-        textboxDomicilioParticularCodigoPostal.ReadOnly = (mEditMode = False)
-        textboxTelefonoParticular.ReadOnly = (mEditMode = False)
-        textboxCelularParticular.ReadOnly = (mEditMode = False)
-        textboxEmailParticular.ReadOnly = (mEditMode = False)
+        textboxDomicilioParticularCodigoPostal.ReadOnly = Not mEditMode
+        textboxTelefonoParticular.ReadOnly = Not mEditMode
+        textboxCelularParticular.ReadOnly = Not mEditMode
+        textboxEmailParticular.ReadOnly = Not mEditMode
 
         ' Contacto Laboral
-        textboxDomicilioLaboralCalle1.ReadOnly = (mEditMode = False)
-        textboxDomicilioLaboralNumero.ReadOnly = (mEditMode = False)
-        textboxDomicilioLaboralPiso.ReadOnly = (mEditMode = False)
-        textboxDomicilioLaboralDepartamento.ReadOnly = (mEditMode = False)
-        textboxDomicilioLaboralCalle2.ReadOnly = (mEditMode = False)
-        textboxDomicilioLaboralCalle3.ReadOnly = (mEditMode = False)
+        textboxDomicilioLaboralCalle1.ReadOnly = Not mEditMode
+        textboxDomicilioLaboralNumero.ReadOnly = Not mEditMode
+        textboxDomicilioLaboralPiso.ReadOnly = Not mEditMode
+        textboxDomicilioLaboralDepartamento.ReadOnly = Not mEditMode
+        textboxDomicilioLaboralCalle2.ReadOnly = Not mEditMode
+        textboxDomicilioLaboralCalle3.ReadOnly = Not mEditMode
         comboboxDomicilioLaboralProvincia.Enabled = mEditMode
         comboboxDomicilioLaboralLocalidad.Enabled = mEditMode
-        textboxDomicilioLaboralCodigoPostal.ReadOnly = (mEditMode = False)
-        textboxTelefonoLaboral.ReadOnly = (mEditMode = False)
-        textboxCelularLaboral.ReadOnly = (mEditMode = False)
-        textboxEmailLaboral.ReadOnly = (mEditMode = False)
+        textboxDomicilioLaboralCodigoPostal.ReadOnly = Not mEditMode
+        textboxTelefonoLaboral.ReadOnly = Not mEditMode
+        textboxCelularLaboral.ReadOnly = Not mEditMode
+        textboxEmailLaboral.ReadOnly = Not mEditMode
 
         ' Solapas grillas 1
         toolstripFamiliares.Enabled = Not mEditMode
@@ -152,11 +152,11 @@ Public Class formPersona
 
         ' Horarios
         toolstripHorarioLaboral.Enabled = Not mEditMode
-        textboxHorarioLaboralObservaciones.ReadOnly = (mEditMode = False)
+        textboxHorarioLaboralObservaciones.ReadOnly = Not mEditMode
 
         ' Vehículos
         buttonLicenciaConducirNumero.Visible = mEditMode
-        textboxLicenciaConducirNumero.ReadOnly = (mEditMode = False)
+        textboxLicenciaConducirNumero.ReadOnly = Not mEditMode
         datetimepickerLicenciaConducirVencimiento.Enabled = mEditMode
         buttonLicenciaConducirCategoria.Visible = mEditMode
         toolstripVehiculos.Enabled = Not mEditMode
@@ -174,7 +174,7 @@ Public Class formPersona
         buttonIdentificacionHuellasDigitales.Visible = (mEditMode AndAlso Permisos.VerificarPermiso(Permisos.PERSONA_IDENTIFICACION_EDITAR, False))
 
         ' Notas y Auditoría
-        textboxNotas.ReadOnly = (mEditMode = False)
+        textboxNotas.ReadOnly = Not mEditMode
         checkboxEsActivo.Enabled = mEditMode
     End Sub
 

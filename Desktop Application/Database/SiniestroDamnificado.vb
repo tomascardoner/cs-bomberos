@@ -24,7 +24,7 @@ Partial Public Class SiniestroDamnificado
     Public Property IdSiniestroDaminificadoEstado As Byte
 
     Public Overridable Property DocumentoTipo1 As DocumentoTipo
-    Public Overridable Property Siniestro1 As Siniestro
+    Public Overridable Property Siniestro As Siniestro
     Public Overridable Property SiniestroDaminificadoEstado As SiniestroDaminificadoEstado
 
 End Class

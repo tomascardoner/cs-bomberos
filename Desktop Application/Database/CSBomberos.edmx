@@ -9029,9 +9029,9 @@
           <NavigationProperty Name="PersonasLicenciasEspeciales" Relationship="CSBomberosModel.FK__Persona__PersonaLicenciaEspecial" FromRole="Persona" ToRole="PersonaLicenciaEspecial" />
           <NavigationProperty Name="HuellasDigitales" Relationship="CSBomberosModel.FK__Persona__PersonaHuellaDigital" FromRole="Persona" ToRole="PersonaHuellaDigital" />
           <NavigationProperty Name="SiniestrosFinalizados" Relationship="CSBomberosModel.FK__Persona__Siniestro" FromRole="Persona" ToRole="Siniestro" />
-          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" FromRole="Persona" ToRole="Siniestro" />
-          <NavigationProperty Name="Siniestro1" Relationship="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" FromRole="Persona" ToRole="Siniestro" />
-          <NavigationProperty Name="Siniestro2" Relationship="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" FromRole="Persona" ToRole="Siniestro" />
+          <NavigationProperty Name="SiniestrosComoEncargadoCuartel" Relationship="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" FromRole="Persona" ToRole="Siniestro" />
+          <NavigationProperty Name="SiniestrosComoJefeGuardia" Relationship="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" FromRole="Persona" ToRole="Siniestro" />
+          <NavigationProperty Name="SiniestrosComoRadioTelefonista" Relationship="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" FromRole="Persona" ToRole="Siniestro" />
         </EntityType>
         <Association Name="FK__Cuartel__Persona">
           <End Type="CSBomberosModel.Cuartel" Role="Cuartel" Multiplicity="1" />
@@ -12456,13 +12456,13 @@
           <Property Name="EncargadoCuartelIDPersona" Type="Int32" />
           <Property Name="JefeGuardiaIDPersona" Type="Int32" />
           <Property Name="RadioTelefonistaIDPersona" Type="Int32" />
-          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" FromRole="Siniestro" ToRole="Persona" />
-          <NavigationProperty Name="Persona1" Relationship="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" FromRole="Siniestro" ToRole="Persona" />
-          <NavigationProperty Name="Persona2" Relationship="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" FromRole="Siniestro" ToRole="Persona" />
+          <NavigationProperty Name="PersonaEncargadoCuartel" Relationship="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" FromRole="Siniestro" ToRole="Persona" />
+          <NavigationProperty Name="PersonaJefeGuardia" Relationship="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" FromRole="Siniestro" ToRole="Persona" />
+          <NavigationProperty Name="PersonaRadioTelefonista" Relationship="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" FromRole="Siniestro" ToRole="Persona" />
           <NavigationProperty Name="SiniestroVehiculo" Relationship="CSBomberosModel.FK__Siniestro__SiniestroVehiculo" FromRole="Siniestro" ToRole="SiniestroVehiculo" />
           <NavigationProperty Name="SiniestroSolicitudForma" Relationship="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma" FromRole="Siniestro" ToRole="SiniestroSolicitudForma" />
           <NavigationProperty Name="SiniestroUbicacionTipo" Relationship="CSBomberosModel.FK_Siniestro_SiniestroUbicacionTipo" FromRole="Siniestro" ToRole="SiniestroUbicacionTipo" />
-          <NavigationProperty Name="SiniestroDamnificado1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="Siniestro" ToRole="SiniestroDamnificado" />
+          <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="Siniestro" ToRole="SiniestroDamnificado" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -14421,7 +14421,7 @@
           <Property Name="EsMenor" Type="Boolean" />
           <Property Name="Trasladado" Type="Boolean" />
           <NavigationProperty Name="DocumentoTipo1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="SiniestroDamnificado" ToRole="DocumentoTipo" />
-          <NavigationProperty Name="Siniestro1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="SiniestroDamnificado" ToRole="Siniestro" />
+          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="SiniestroDamnificado" ToRole="Siniestro" />
           <Property Name="IdSiniestroDaminificadoEstado" Type="Byte" Nullable="false" />
           <NavigationProperty Name="SiniestroDaminificadoEstado" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDaminificadoEstado" FromRole="SiniestroDamnificado" ToRole="SiniestroDaminificadoEstado" />
         </EntityType>
@@ -14437,7 +14437,7 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma" FromRole="SiniestroSolicitudForma" ToRole="Siniestro" />
+          <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma" FromRole="SiniestroSolicitudForma" ToRole="Siniestro" />
           <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioCreacion" FromRole="SiniestroSolicitudForma" ToRole="Usuario" />
           <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioModificacion" FromRole="SiniestroSolicitudForma" ToRole="Usuario" />
         </EntityType>

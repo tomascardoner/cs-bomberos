@@ -60,12 +60,12 @@ Partial Public Class Siniestro
     Public Overridable Property SiniestrosAsistencias As ICollection(Of SiniestroAsistencia) = New HashSet(Of SiniestroAsistencia)
     Public Overridable Property SiniestroClave As SiniestroClave
     Public Overridable Property PersonaFin As Persona
-    Public Overridable Property Persona As Persona
-    Public Overridable Property Persona1 As Persona
-    Public Overridable Property Persona2 As Persona
+    Public Overridable Property PersonaEncargadoCuartel As Persona
+    Public Overridable Property PersonaJefeGuardia As Persona
+    Public Overridable Property PersonaRadioTelefonista As Persona
     Public Overridable Property SiniestroVehiculo As ICollection(Of SiniestroVehiculo) = New HashSet(Of SiniestroVehiculo)
     Public Overridable Property SiniestroSolicitudForma As SiniestroSolicitudForma
     Public Overridable Property SiniestroUbicacionTipo As SiniestroUbicacionTipo
-    Public Overridable Property SiniestroDamnificado1 As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
+    Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
 
 End Class

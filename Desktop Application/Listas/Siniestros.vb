@@ -162,4 +162,58 @@
         control.DataSource = listItems
     End Sub
 
+    Friend Sub LlenarComboBoxSolicitudFormas(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of SiniestroSolicitudForma)
+
+        control.ValueMember = "IdSiniestroSolicitudForma"
+        control.DisplayMember = "Nombre"
+
+        listItems = context.SiniestroSolicitudForma.Where(Function(ssf) ssf.EsActivo).OrderBy(Function(ssf) ssf.Nombre).ToList
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroSolicitudForma With {
+                .IdSiniestroSolicitudForma = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
+            listItems.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroSolicitudForma With {
+                .IdSiniestroSolicitudForma = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            listItems.Insert(0, noEspecifica)
+        End If
+
+        control.DataSource = listItems
+    End Sub
+
+    Friend Sub LlenarComboBoxUbicacionTipos(ByRef context As CSBomberosContext, ByRef control As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim listItems As List(Of SiniestroUbicacionTipo)
+
+        control.ValueMember = "IdSiniestroUbicacionTipo"
+        control.DisplayMember = "Nombre"
+
+        listItems = context.SiniestroUbicacionTipo.Where(Function(sut) sut.EsActivo).OrderBy(Function(sut) sut.Nombre).ToList
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroUbicacionTipo With {
+                .IdSiniestroUbicacionTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_FEMALE
+            }
+            listItems.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroUbicacionTipo With {
+                .IdSiniestroUbicacionTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            listItems.Insert(0, noEspecifica)
+        End If
+
+        control.DataSource = listItems
+    End Sub
+
 End Module
