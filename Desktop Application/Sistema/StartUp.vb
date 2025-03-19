@@ -19,6 +19,7 @@
     Friend pUsuarioParametros As List(Of UsuarioParametro)
     Friend pLicensedTo As String
 
+    <STAThread()>
     Friend Sub Main()
         Dim StartupTime As Date
 
@@ -29,16 +30,11 @@
         ' Cargo los archivos de configuración de la aplicación
         If Not Configuration.LoadFiles() Then
             TerminateApplication()
-            Exit Sub
+            Return
         End If
 
         ' Register Syncfusion License
         Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(CardonerSistemas.ConstantsSyncfusion.LicenseKey)
-
-        ' Verifico si ya hay una instancia ejecutandose, si permite iniciar otra, o de lo contrario, muestro la instancia original
-        If pGeneralConfig.SingleInstanceApplication Then
-
-        End If
 
         ' Realizo la inicialización de la Aplicación
         If pAppearanceConfig.EnableVisualStyles Then
@@ -83,7 +79,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
 
         ' Verifico que la Base de Datos corresponda a esta Aplicación a través del GUID guardado en los Parámetros
@@ -92,7 +88,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
 
         ' Verifico que la versión de la Base de Datos se igual a la de esta versión de la Aplicación
@@ -102,13 +98,13 @@
                 formSplashScreen.Close()
                 formSplashScreen.Dispose()
                 TerminateApplication()
-                Exit Sub
+                Return
             Case Is > Constantes.ApplicationDatabaseVersion
                 MsgBox("La versión de la Aplicación está desactualizada.", MsgBoxStyle.Critical, My.Application.Info.Title)
                 formSplashScreen.Close()
                 formSplashScreen.Dispose()
                 TerminateApplication()
-                Exit Sub
+                Return
         End Select
 
         ' Muestro el Nombre de la Compañía a la que está licenciada la Aplicación
@@ -117,7 +113,7 @@
             formSplashScreen.Close()
             formSplashScreen.Dispose()
             TerminateApplication()
-            Exit Sub
+            Return
         End If
         formSplashScreen.labelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
@@ -152,20 +148,19 @@
                 Appearance.UserLoggedIn()
             End Using
         Else
-            If Not formLogin.ShowDialog(pFormMDIMain) = DialogResult.OK Then
+            If formLogin.ShowDialog(pFormMDIMain) = DialogResult.Cancel Then
                 Application.Exit()
                 My.Application.Log.WriteEntry("La Aplicación ha finalizado porque el Usuario no ha iniciado sesión.", TraceEventType.Warning)
-                Exit Sub
+                Return
             End If
             formLogin.Close()
             formLogin.Dispose()
         End If
 
-        ' Está todo listo. Cambio el puntero del mouse a modo normal y habilito el form MDI principal
         pFormMDIMain.Cursor = Cursors.Default
         pFormMDIMain.Enabled = True
 
-        System.Windows.Forms.Cursor.Current = Cursors.Default
+        Cursor.Current = Cursors.Default
 
         ' Inicio el loop sobre el form MDI principal
         My.Application.Log.WriteEntry("La Aplicación se ha iniciado correctamente.", TraceEventType.Information)

@@ -23,122 +23,166 @@ Partial Class formLogin
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(formLogin))
-        Me.pictureboxMain = New System.Windows.Forms.PictureBox()
-        Me.labelNombre = New System.Windows.Forms.Label()
-        Me.labelPassword = New System.Windows.Forms.Label()
-        Me.textboxNombre = New System.Windows.Forms.TextBox()
-        Me.textboxPassword = New System.Windows.Forms.TextBox()
-        Me.toolstripMain = New System.Windows.Forms.ToolStrip()
-        Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
-        Me.buttonAceptar = New System.Windows.Forms.ToolStripButton()
-        CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.toolstripMain.SuspendLayout()
+        Me.PictureBoxMain = New System.Windows.Forms.PictureBox()
+        Me.LabelNombre = New System.Windows.Forms.Label()
+        Me.LabelPassword = New System.Windows.Forms.Label()
+        Me.TextBoxNombre = New System.Windows.Forms.TextBox()
+        Me.TextBoxPassword = New System.Windows.Forms.TextBox()
+        Me.ToolStripMain = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonCancelar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonAceptar = New System.Windows.Forms.ToolStripButton()
+        Me.TableLayoutPanelMain = New System.Windows.Forms.TableLayoutPanel()
+        CType(Me.PictureBoxMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStripMain.SuspendLayout()
+        Me.TableLayoutPanelMain.SuspendLayout()
         Me.SuspendLayout()
         '
-        'pictureboxMain
+        'PictureBoxMain
         '
-        Me.pictureboxMain.Image = Global.CSBomberos.My.Resources.Resources.ImageInicioSesion48
-        Me.pictureboxMain.Location = New System.Drawing.Point(12, 42)
-        Me.pictureboxMain.Name = "pictureboxMain"
-        Me.pictureboxMain.Size = New System.Drawing.Size(48, 48)
-        Me.pictureboxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.pictureboxMain.TabIndex = 0
-        Me.pictureboxMain.TabStop = False
+        Me.PictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PictureBoxMain.Image = Global.CSBomberos.My.Resources.Resources.ImageInicioSesion48
+        Me.PictureBoxMain.Location = New System.Drawing.Point(24, 33)
+        Me.PictureBoxMain.Margin = New System.Windows.Forms.Padding(4)
+        Me.PictureBoxMain.Name = "PictureBoxMain"
+        Me.TableLayoutPanelMain.SetRowSpan(Me.PictureBoxMain, 3)
+        Me.PictureBoxMain.Size = New System.Drawing.Size(60, 72)
+        Me.PictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxMain.TabIndex = 0
+        Me.PictureBoxMain.TabStop = False
         '
-        'labelNombre
+        'LabelNombre
         '
-        Me.labelNombre.AutoSize = True
-        Me.labelNombre.Location = New System.Drawing.Point(65, 61)
-        Me.labelNombre.Name = "labelNombre"
-        Me.labelNombre.Size = New System.Drawing.Size(46, 13)
-        Me.labelNombre.TabIndex = 0
-        Me.labelNombre.Text = "Usuario:"
+        Me.LabelNombre.AutoSize = True
+        Me.LabelNombre.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelNombre.Location = New System.Drawing.Point(112, 29)
+        Me.LabelNombre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelNombre.Name = "LabelNombre"
+        Me.LabelNombre.Size = New System.Drawing.Size(79, 30)
+        Me.LabelNombre.TabIndex = 0
+        Me.LabelNombre.Text = "Usuario:"
+        Me.LabelNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'labelPassword
+        'LabelPassword
         '
-        Me.labelPassword.AutoSize = True
-        Me.labelPassword.Location = New System.Drawing.Point(65, 94)
-        Me.labelPassword.Name = "labelPassword"
-        Me.labelPassword.Size = New System.Drawing.Size(64, 13)
-        Me.labelPassword.TabIndex = 2
-        Me.labelPassword.Text = "Contraseña:"
+        Me.LabelPassword.AutoSize = True
+        Me.LabelPassword.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelPassword.Location = New System.Drawing.Point(112, 74)
+        Me.LabelPassword.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelPassword.Name = "LabelPassword"
+        Me.LabelPassword.Size = New System.Drawing.Size(79, 35)
+        Me.LabelPassword.TabIndex = 2
+        Me.LabelPassword.Text = "Contraseña:"
+        Me.LabelPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'textboxNombre
+        'TextBoxNombre
         '
-        Me.textboxNombre.Location = New System.Drawing.Point(139, 58)
-        Me.textboxNombre.MaxLength = 30
-        Me.textboxNombre.Name = "textboxNombre"
-        Me.textboxNombre.Size = New System.Drawing.Size(158, 20)
-        Me.textboxNombre.TabIndex = 1
+        Me.TextBoxNombre.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBoxNombre.Location = New System.Drawing.Point(199, 33)
+        Me.TextBoxNombre.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxNombre.MaxLength = 30
+        Me.TextBoxNombre.Name = "TextBoxNombre"
+        Me.TextBoxNombre.Size = New System.Drawing.Size(283, 22)
+        Me.TextBoxNombre.TabIndex = 1
         '
-        'textboxPassword
+        'TextBoxPassword
         '
-        Me.textboxPassword.Location = New System.Drawing.Point(139, 91)
-        Me.textboxPassword.Name = "textboxPassword"
-        Me.textboxPassword.Size = New System.Drawing.Size(158, 20)
-        Me.textboxPassword.TabIndex = 3
-        Me.textboxPassword.UseSystemPasswordChar = True
+        Me.TextBoxPassword.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBoxPassword.Location = New System.Drawing.Point(199, 78)
+        Me.TextBoxPassword.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxPassword.Name = "TextBoxPassword"
+        Me.TextBoxPassword.Size = New System.Drawing.Size(283, 22)
+        Me.TextBoxPassword.TabIndex = 3
+        Me.TextBoxPassword.UseSystemPasswordChar = True
         '
-        'toolstripMain
+        'ToolStripMain
         '
-        Me.toolstripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCancelar, Me.buttonAceptar})
-        Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
-        Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(310, 39)
-        Me.toolstripMain.TabIndex = 4
+        Me.ToolStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonCancelar, Me.ToolStripButtonAceptar})
+        Me.ToolStripMain.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripMain.Name = "ToolStripMain"
+        Me.ToolStripMain.Size = New System.Drawing.Size(506, 39)
+        Me.ToolStripMain.TabIndex = 1
         '
-        'buttonCancelar
+        'ToolStripButtonCancelar
         '
-        Me.buttonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
-        Me.buttonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonCancelar.Name = "buttonCancelar"
-        Me.buttonCancelar.Size = New System.Drawing.Size(89, 36)
-        Me.buttonCancelar.Text = "Cancelar"
+        Me.ToolStripButtonCancelar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButtonCancelar.Image = Global.CSBomberos.My.Resources.Resources.ImageCancelar32
+        Me.ToolStripButtonCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonCancelar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonCancelar.Name = "ToolStripButtonCancelar"
+        Me.ToolStripButtonCancelar.Size = New System.Drawing.Size(102, 36)
+        Me.ToolStripButtonCancelar.Text = "Cancelar"
         '
-        'buttonAceptar
+        'ToolStripButtonAceptar
         '
-        Me.buttonAceptar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
-        Me.buttonAceptar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
-        Me.buttonAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.buttonAceptar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.buttonAceptar.Name = "buttonAceptar"
-        Me.buttonAceptar.Size = New System.Drawing.Size(84, 36)
-        Me.buttonAceptar.Text = "Aceptar"
+        Me.ToolStripButtonAceptar.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+        Me.ToolStripButtonAceptar.Image = Global.CSBomberos.My.Resources.Resources.ImageAceptar32
+        Me.ToolStripButtonAceptar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonAceptar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonAceptar.Name = "ToolStripButtonAceptar"
+        Me.ToolStripButtonAceptar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonAceptar.Text = "Aceptar"
+        '
+        'TableLayoutPanelMain
+        '
+        Me.TableLayoutPanelMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelMain.ColumnCount = 6
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelMain.Controls.Add(Me.PictureBoxMain, 1, 1)
+        Me.TableLayoutPanelMain.Controls.Add(Me.LabelNombre, 3, 1)
+        Me.TableLayoutPanelMain.Controls.Add(Me.TextBoxNombre, 4, 1)
+        Me.TableLayoutPanelMain.Controls.Add(Me.LabelPassword, 3, 3)
+        Me.TableLayoutPanelMain.Controls.Add(Me.TextBoxPassword, 4, 3)
+        Me.TableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelMain.Location = New System.Drawing.Point(0, 39)
+        Me.TableLayoutPanelMain.Name = "TableLayoutPanelMain"
+        Me.TableLayoutPanelMain.RowCount = 5
+        Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
+        Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelMain.Size = New System.Drawing.Size(506, 138)
+        Me.TableLayoutPanelMain.TabIndex = 0
         '
         'formLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(310, 125)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(120.0!, 120.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.ClientSize = New System.Drawing.Size(506, 177)
         Me.ControlBox = False
-        Me.Controls.Add(Me.toolstripMain)
-        Me.Controls.Add(Me.textboxPassword)
-        Me.Controls.Add(Me.textboxNombre)
-        Me.Controls.Add(Me.labelPassword)
-        Me.Controls.Add(Me.labelNombre)
-        Me.Controls.Add(Me.pictureboxMain)
+        Me.Controls.Add(Me.TableLayoutPanelMain)
+        Me.Controls.Add(Me.ToolStripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "formLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Inicio de sesión"
-        CType(Me.pictureboxMain, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.toolstripMain.ResumeLayout(False)
-        Me.toolstripMain.PerformLayout()
+        CType(Me.PictureBoxMain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStripMain.ResumeLayout(False)
+        Me.ToolStripMain.PerformLayout()
+        Me.TableLayoutPanelMain.ResumeLayout(False)
+        Me.TableLayoutPanelMain.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents pictureboxMain As System.Windows.Forms.PictureBox
-    Friend WithEvents labelNombre As System.Windows.Forms.Label
-    Friend WithEvents labelPassword As System.Windows.Forms.Label
-    Friend WithEvents textboxNombre As System.Windows.Forms.TextBox
-    Friend WithEvents textboxPassword As System.Windows.Forms.TextBox
-    Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
-    Friend WithEvents buttonCancelar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents buttonAceptar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents PictureBoxMain As System.Windows.Forms.PictureBox
+    Friend WithEvents LabelNombre As System.Windows.Forms.Label
+    Friend WithEvents LabelPassword As System.Windows.Forms.Label
+    Friend WithEvents TextBoxNombre As System.Windows.Forms.TextBox
+    Friend WithEvents TextBoxPassword As System.Windows.Forms.TextBox
+    Friend WithEvents ToolStripMain As System.Windows.Forms.ToolStrip
+    Friend WithEvents ToolStripButtonCancelar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButtonAceptar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TableLayoutPanelMain As TableLayoutPanel
 End Class
