@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="303">
+      <Diagram DiagramId="d421cb0e5a4745b6815723ebaf9d9670" Name="Diagram1" ZoomLevel="35">
         <EntityTypeShape EntityType="CSBomberosModel.DocumentoTipo" Width="1.5" PointX="16.5" PointY="227" />
         <EntityTypeShape EntityType="CSBomberosModel.Localidad" Width="1.5" PointX="14.25" PointY="154.625" />
         <EntityTypeShape EntityType="CSBomberosModel.Log" Width="1.5" PointX="16.5" PointY="252.5" />
@@ -411,7 +411,6 @@
         <EntityTypeShape EntityType="CSBomberosModel.OrdenGeneralRelacion" Width="1.5" PointX="21" PointY="183.25" />
         <AssociationConnector Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionada" />
         <AssociationConnector Association="CSBomberosModel.FK__OrdenGeneral__OrdenGeneralRelacion__Relacionante" />
-        <EntityTypeShape EntityType="CSBomberosModel.SiniestroDaminificadoEstado" Width="1.5" PointX="16.5" PointY="85.375" />
         <EntityTypeShape EntityType="CSBomberosModel.SiniestroDamnificado" Width="1.5" PointX="31.25" PointY="207.25" />
         <EntityTypeShape EntityType="CSBomberosModel.SiniestroSolicitudForma" Width="1.5" PointX="16.5" PointY="211.875" />
         <EntityTypeShape EntityType="CSBomberosModel.SiniestroUbicacionTipo" Width="1.5" PointX="17.625" PointY="93.375" />
@@ -421,47 +420,21 @@
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" />
         <AssociationConnector Association="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" />
-        <AssociationConnector Association="CSBomberosModel.FK__Siniestro__SiniestroVehiculo" />
         <AssociationConnector Association="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma" />
         <AssociationConnector Association="CSBomberosModel.FK_Siniestro_SiniestroUbicacionTipo" />
-        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioCreacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.75" PointY="159.65096053846153" />
-          <ConnectorPoint PointX="15.87857443490112" PointY="159.52238610356042" />
-          <ConnectorPoint PointX="16.183925565098878" PointY="159.21703497336264" />
-          <ConnectorPoint PointX="16.234375" PointY="159.16658553846153" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="159.16658553846153" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="159.16658553846153" />
-          <ConnectorPoint PointX="16.022412777257451" PointY="159.16658553846153" />
-          <ConnectorPoint PointX="16.022412777257451" PointY="86.749746093749991" />
-          <ConnectorPoint PointX="16.5" PointY="86.749746093749991" />
-        </AssociationConnector>
-        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioModificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.743076923076927" PointY="159.625" />
-          <ConnectorPoint PointX="15.87857443490112" PointY="159.48950248817582" />
-          <ConnectorPoint PointX="16.058925565098878" PointY="159.30915135797804" />
-          <ConnectorPoint PointX="16.066074434901122" PointY="159.30200248817582" />
-          <ConnectorPoint PointX="16.183925565098878" PointY="159.18415135797804" />
-          <ConnectorPoint PointX="16.21875" PointY="159.14932692307693" />
-          <ConnectorPoint PointX="16.208333333333332" PointY="159.14932692307693" />
-          <ConnectorPoint PointX="16.041666666666668" PointY="159.14932692307693" />
-          <ConnectorPoint PointX="15.807924130310603" PointY="159.14932692307693" />
-          <ConnectorPoint PointX="15.807924130310603" PointY="86.749746093749991" />
-          <ConnectorPoint PointX="16.5" PointY="86.749746093749991" />
-        </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioCreacion" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioModificacion" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroUbicacionTipo_UsuarioCreacion" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroUbicacionTipo_UsuarioModificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.743076923076927" PointY="159.625" />
-          <ConnectorPoint PointX="15.87857443490112" PointY="159.48950248817582" />
-          <ConnectorPoint PointX="16.058925565098878" PointY="159.30915135797804" />
+          <ConnectorPoint PointX="15.743076923076927" PointY="159.62500000000003" />
           <ConnectorPoint PointX="16.066074434901122" PointY="159.30200248817582" />
           <ConnectorPoint PointX="16.183925565098878" PointY="159.18415135797804" />
           <ConnectorPoint PointX="16.1875" PointY="159.18057692307693" />
           <ConnectorPoint PointX="16.1875" PointY="95.3921779831471" />
+          <ConnectorPoint PointX="16.366065620419249" PointY="95.3921779831471" />
+          <ConnectorPoint PointX="16.532732287085913" PointY="95.3921779831471" />
           <ConnectorPoint PointX="17.150625" PointY="95.3921779831471" />
-          <ConnectorPoint PointX="17.150625" PointY="94.942047526041662" />
-          <ConnectorPoint PointX="17.625" PointY="94.942047526041662" />
+          <ConnectorPoint PointX="17.625" PointY="96.509095052083325" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoMarca" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoTipo" />
@@ -469,19 +442,45 @@
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioModificacion" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculoTipo_UsuarioCreacion" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculoTipo_UsuarioModificacion" ManuallyRouted="true" >
-          <ConnectorPoint PointX="15.694615384615387" PointY="159.625" />
+          <ConnectorPoint PointX="15.694615384615387" PointY="159.62500000000003" />
           <ConnectorPoint PointX="16.15625" PointY="159.16336538461539" />
           <ConnectorPoint PointX="15.307292823058852" PointY="159.16336538461539" />
-          <ConnectorPoint PointX="15.307292823058852" PointY="91.095896809895834" />
-          <ConnectorPoint PointX="15.724590796977269" PointY="91.095896809895834" />
-          <ConnectorPoint PointX="15.891257463643937" PointY="91.095896809895834" />
-          <ConnectorPoint PointX="15.939079443924117" PointY="91.095896809895834" />
-          <ConnectorPoint PointX="16.105746110590783" PointY="91.095896809895834" />
-          <ConnectorPoint PointX="16.5" PointY="91.095896809895834" />
+          <ConnectorPoint PointX="16.139132786121547" PointY="112.71634899369583" />
+          <ConnectorPoint PointX="16.142117213878453" PointY="112.54970904959855" />
+          <ConnectorPoint PointX="16.154757786121547" PointY="111.84390397622379" />
+          <ConnectorPoint PointX="16.157742213878453" PointY="111.6772640321265" />
+          <ConnectorPoint PointX="16.170382786121547" PointY="110.97145895875185" />
+          <ConnectorPoint PointX="16.173367213878453" PointY="110.80481901465457" />
+          <ConnectorPoint PointX="16.186007786121547" PointY="110.09901394127981" />
+          <ConnectorPoint PointX="16.188992213878453" PointY="109.93237399718252" />
+          <ConnectorPoint PointX="16.201632786121547" PointY="109.22656892380787" />
+          <ConnectorPoint PointX="16.204617213878453" PointY="109.05992897971059" />
+          <ConnectorPoint PointX="16.217257786121547" PointY="108.35412390633594" />
+          <ConnectorPoint PointX="16.220242213878453" PointY="108.18748396223866" />
+          <ConnectorPoint PointX="16.232882786121547" PointY="107.4816788888639" />
+          <ConnectorPoint PointX="16.235867213878453" PointY="107.31503894476661" />
+          <ConnectorPoint PointX="16.5" PointY="92.566793619791667" />
         </AssociationConnector>
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" />
         <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" />
-        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDaminificadoEstado" />
+        <AssociationConnector Association="CSBomberosModel.FK_SiniestroVehiculo_Siniestro" ManuallyRouted="true" >
+          <ConnectorPoint PointX="22.5" PointY="188.51406901041668" />
+          <ConnectorPoint PointX="22.979166666666668" PointY="188.51406901041668" />
+          <ConnectorPoint PointX="23.520833333333332" PointY="188.51406901041668" />
+          <ConnectorPoint PointX="23.578125" PointY="188.51406901041668" />
+          <ConnectorPoint PointX="23.578125" PointY="147.74949218749998" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="CSBomberosModel.SiniestroDamnificadoEstado" Width="1.5" PointX="16.5" PointY="85.625" />
+        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDamnificadoEstado" />
+        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioCreacion" />
+        <AssociationConnector Association="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioModificacion" ManuallyRouted="true" >
+          <ConnectorPoint PointX="15.701538461538464" PointY="159.625" />
+          <ConnectorPoint PointX="16.15625" PointY="159.17028846153846" />
+          <ConnectorPoint PointX="16.15625" PointY="87.375212604285124" />
+          <ConnectorPoint PointX="16.3865625" PointY="87.375212604285124" />
+          <ConnectorPoint PointX="16.3865625" PointY="87.095896809895834" />
+          <ConnectorPoint PointX="16.5" PointY="87.095896809895834" />
+        </AssociationConnector>
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

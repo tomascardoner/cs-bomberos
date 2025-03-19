@@ -216,4 +216,84 @@
         control.DataSource = listItems
     End Sub
 
+    Friend Sub LlenarComboBoxDamnificadoEstados(ByRef context As CSBomberosContext, ByRef comboBox As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim items As List(Of SiniestroDamnificadoEstado)
+
+        comboBox.ValueMember = "IdSiniestroDamnificadoEstado"
+        comboBox.DisplayMember = "Nombre"
+
+        items = context.SiniestroDamnificadoEstado.Where(Function(sde) sde.EsActivo).OrderBy(Function(sde) sde.Nombre).ToList()
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroDamnificadoEstado With {
+                .IdSiniestroDamnificadoEstado = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
+            items.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroDamnificadoEstado With {
+                .IdSiniestroDamnificadoEstado = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            items.Insert(0, noEspecifica)
+        End If
+
+        comboBox.DataSource = items
+    End Sub
+
+    Friend Sub LlenarComboBoxVehiculoTipos(ByRef context As CSBomberosContext, ByRef comboBox As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim items As List(Of SiniestroVehiculoTipo)
+
+        comboBox.ValueMember = "IdSiniestroVehiculoTipo"
+        comboBox.DisplayMember = "Nombre"
+
+        items = context.SiniestroVehiculoTipo.Where(Function(sde) sde.EsActivo).OrderBy(Function(sde) sde.Nombre).ToList()
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroVehiculoTipo With {
+                .IdSiniestroVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
+            items.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroVehiculoTipo With {
+                .IdSiniestroVehiculoTipo = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            items.Insert(0, noEspecifica)
+        End If
+
+        comboBox.DataSource = items
+    End Sub
+
+    Friend Sub LlenarComboBoxVehiculoMarcas(ByRef context As CSBomberosContext, ByRef comboBox As ComboBox, mostrarItemTodos As Boolean, mostrarItemNoEspecifica As Boolean)
+        Dim items As List(Of SiniestroVehiculoMarca)
+
+        comboBox.ValueMember = "IdSiniestroVehiculoMarca"
+        comboBox.DisplayMember = "Nombre"
+
+        items = context.SiniestroVehiculoMarca.Where(Function(sde) sde.EsActivo).OrderBy(Function(sde) sde.Nombre).ToList()
+
+        If mostrarItemTodos Then
+            Dim todos As New SiniestroVehiculoMarca With {
+                .IdSiniestroVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_ALL_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_ALL_MALE
+            }
+            items.Insert(0, todos)
+        End If
+
+        If mostrarItemNoEspecifica Then
+            Dim noEspecifica As New SiniestroVehiculoMarca With {
+                .IdSiniestroVehiculoMarca = CardonerSistemas.Constants.FIELD_VALUE_NOTSPECIFIED_BYTE,
+                .Nombre = My.Resources.STRING_ITEM_NOT_SPECIFIED
+            }
+            items.Insert(0, noEspecifica)
+        End If
+
+        comboBox.DataSource = items
+    End Sub
 End Module

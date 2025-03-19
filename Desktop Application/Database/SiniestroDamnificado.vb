@@ -19,12 +19,12 @@ Partial Public Class SiniestroDamnificado
     Public Property IdDocumentoTipo As Nullable(Of Byte)
     Public Property DocumentoNumero As String
     Public Property Edad As Nullable(Of Byte)
-    Public Property EsMenor As Nullable(Of Boolean)
-    Public Property Trasladado As Nullable(Of Boolean)
+    Public Property EsMenor As Boolean
+    Public Property Trasladado As Boolean
     Public Property IdSiniestroDaminificadoEstado As Byte
 
     Public Overridable Property DocumentoTipo1 As DocumentoTipo
     Public Overridable Property Siniestro As Siniestro
-    Public Overridable Property SiniestroDaminificadoEstado As SiniestroDaminificadoEstado
+    Public Overridable Property SiniestroDamnificadoEstado As SiniestroDamnificadoEstado
 
 End Class

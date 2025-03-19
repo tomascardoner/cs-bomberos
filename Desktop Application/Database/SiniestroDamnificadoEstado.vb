@@ -10,8 +10,8 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class SiniestroDaminificadoEstado
-    Public Property IdSiniestroDaminificadoEstado As Byte
+Partial Public Class SiniestroDamnificadoEstado
+    Public Property IdSiniestroDamnificadoEstado As Byte
     Public Property Nombre As String
     Public Property EsActivo As Boolean
     Public Property IdUsuarioCreacion As Short
@@ -19,8 +19,8 @@ Partial Public Class SiniestroDaminificadoEstado
     Public Property IdUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
+    Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
     Public Overridable Property UsuarioCreacion As Usuario
     Public Overridable Property UsuarioModificacion As Usuario
-    Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
 
 End Class

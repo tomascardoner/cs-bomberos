@@ -24,11 +24,11 @@ Partial Class FormSiniestroV2
     Private Sub InitializeComponent()
         Dim labelModificacion As System.Windows.Forms.Label
         Dim labelCreacion As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.labelHoraSalida = New System.Windows.Forms.Label()
         Me.labelHoraFin = New System.Windows.Forms.Label()
         Me.labelHoraLlegadaUltimoCamion = New System.Windows.Forms.Label()
@@ -68,6 +68,9 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralMain = New System.Windows.Forms.TableLayoutPanel()
         Me.TableLayoutPanelGeneralIzquierda = New System.Windows.Forms.TableLayoutPanel()
         Me.CheckBoxControlado = New System.Windows.Forms.CheckBox()
+        Me.ControlPersonaRadioTelefonista = New CSBomberos.ControlPersona()
+        Me.ControlPersonaJefeGuardia = New CSBomberos.ControlPersona()
+        Me.ControlPersonaEncargadoCuartel = New CSBomberos.ControlPersona()
         Me.NumericUpDownIncendioForestalSuperficieMetro = New System.Windows.Forms.NumericUpDown()
         Me.TableLayoutPanelGeneralIncendioForestalSuperficie = New System.Windows.Forms.TableLayoutPanel()
         Me.NumericUpDownIncendioForestalAnchoMetro = New System.Windows.Forms.NumericUpDown()
@@ -115,12 +118,39 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralSolicitanteDocumento = New System.Windows.Forms.TableLayoutPanel()
         Me.TextBoxSolicitanteDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.ComboBoxSolicitanteDocumentoTipo = New System.Windows.Forms.ComboBox()
+        Me.TabPageDamnificadoVehiculo = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanelDamnificadoVehiculoMain = New System.Windows.Forms.TableLayoutPanel()
+        Me.LabelVehiculos = New System.Windows.Forms.Label()
+        Me.PanelDaminificado = New System.Windows.Forms.Panel()
+        Me.DataGridViewDamnificados = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnDamnificadosEdad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnDamnificadosEstado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusStripDamnificados = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabelDamnificados = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripDaminificados = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonDamnificadosAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonDamnificadosEditar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonDamnificadosBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.PanelVehiculo = New System.Windows.Forms.Panel()
+        Me.DataGridViewVehiculos = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumnVehiculosTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnVehiculosModelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumnVehiculosDominio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.StatusStripVehiculos = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabelVehiculos = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripVehiculos = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonVehiculosAgregar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonVehiculosEditar = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonVehiculosBorrar = New System.Windows.Forms.ToolStripButton()
+        Me.LabelDamnificados = New System.Windows.Forms.Label()
         Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
         Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.columnSiniestroAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.statusstripMain = New System.Windows.Forms.StatusStrip()
-        Me.statuslabelMain = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.StatusStripAsistencias = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabelAsistencias = New System.Windows.Forms.ToolStripStatusLabel()
         Me.toolstripAsistencias = New System.Windows.Forms.ToolStrip()
         Me.buttonAsistenciasAgregar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAsistenciasEditar = New System.Windows.Forms.ToolStripButton()
@@ -136,32 +166,6 @@ Partial Class FormSiniestroV2
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
-        Me.ControlPersonaRadioTelefonista = New CSBomberos.ControlPersona()
-        Me.ControlPersonaJefeGuardia = New CSBomberos.ControlPersona()
-        Me.ControlPersonaEncargadoCuartel = New CSBomberos.ControlPersona()
-        Me.TabPageDamnificadoVehiculo = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanelDamnificadoVehiculoMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.PanelDaminificado = New System.Windows.Forms.Panel()
-        Me.ToolStripDaminificados = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButtonDamnificadosAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonDamnificadosEditar = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonDamnificadosBorrar = New System.Windows.Forms.ToolStripButton()
-        Me.DataGridViewDamnificados = New System.Windows.Forms.DataGridView()
-        Me.PanelVehiculo = New System.Windows.Forms.Panel()
-        Me.ToolStripVehiculos = New System.Windows.Forms.ToolStrip()
-        Me.ToolStripButtonVehiculosAgregar = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonVehiculosEditar = New System.Windows.Forms.ToolStripButton()
-        Me.ToolStripButtonVehiculosBorrar = New System.Windows.Forms.ToolStripButton()
-        Me.DataGridViewVehiculos = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnDamnificadosEdad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnDamnificadosEstado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.LabelDamnificados = New System.Windows.Forms.Label()
-        Me.LabelVehiculos = New System.Windows.Forms.Label()
-        Me.DataGridViewTextBoxColumnVehiculosTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnVehiculosModelo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumnVehiculosDominio = New System.Windows.Forms.DataGridViewTextBoxColumn()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
@@ -183,19 +187,21 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralDerecha.SuspendLayout()
         CType(Me.DataGridViewResumenAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanelGeneralSolicitanteDocumento.SuspendLayout()
-        Me.tabpageAsistencias.SuspendLayout()
-        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.statusstripMain.SuspendLayout()
-        Me.toolstripAsistencias.SuspendLayout()
-        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.TabPageDamnificadoVehiculo.SuspendLayout()
         Me.TableLayoutPanelDamnificadoVehiculoMain.SuspendLayout()
         Me.PanelDaminificado.SuspendLayout()
-        Me.ToolStripDaminificados.SuspendLayout()
         CType(Me.DataGridViewDamnificados, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStripDamnificados.SuspendLayout()
+        Me.ToolStripDaminificados.SuspendLayout()
         Me.PanelVehiculo.SuspendLayout()
-        Me.ToolStripVehiculos.SuspendLayout()
         CType(Me.DataGridViewVehiculos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStripVehiculos.SuspendLayout()
+        Me.ToolStripVehiculos.SuspendLayout()
+        Me.tabpageAsistencias.SuspendLayout()
+        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStripAsistencias.SuspendLayout()
+        Me.toolstripAsistencias.SuspendLayout()
+        Me.tabpageNotasAuditoria.SuspendLayout()
         Me.SuspendLayout()
         '
         'labelModificacion
@@ -749,6 +755,66 @@ Partial Class FormSiniestroV2
         Me.CheckBoxControlado.TabIndex = 39
         Me.CheckBoxControlado.UseVisualStyleBackColor = True
         '
+        'ControlPersonaRadioTelefonista
+        '
+        Me.ControlPersonaRadioTelefonista.ApellidoNombre = Nothing
+        Me.ControlPersonaRadioTelefonista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaRadioTelefonista.dbContext = Nothing
+        Me.ControlPersonaRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaRadioTelefonista.IDCuartel = Nothing
+        Me.ControlPersonaRadioTelefonista.IDPersona = Nothing
+        Me.ControlPersonaRadioTelefonista.Location = New System.Drawing.Point(158, 587)
+        Me.ControlPersonaRadioTelefonista.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaRadioTelefonista.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaRadioTelefonista.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaRadioTelefonista.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaRadioTelefonista.Name = "ControlPersonaRadioTelefonista"
+        Me.ControlPersonaRadioTelefonista.ReadOnlyText = False
+        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(383, 26)
+        Me.ControlPersonaRadioTelefonista.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaRadioTelefonista.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaRadioTelefonista.TabIndex = 37
+        '
+        'ControlPersonaJefeGuardia
+        '
+        Me.ControlPersonaJefeGuardia.ApellidoNombre = Nothing
+        Me.ControlPersonaJefeGuardia.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaJefeGuardia.dbContext = Nothing
+        Me.ControlPersonaJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaJefeGuardia.IDCuartel = Nothing
+        Me.ControlPersonaJefeGuardia.IDPersona = Nothing
+        Me.ControlPersonaJefeGuardia.Location = New System.Drawing.Point(158, 551)
+        Me.ControlPersonaJefeGuardia.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaJefeGuardia.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaJefeGuardia.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaJefeGuardia.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaJefeGuardia.Name = "ControlPersonaJefeGuardia"
+        Me.ControlPersonaJefeGuardia.ReadOnlyText = False
+        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(383, 26)
+        Me.ControlPersonaJefeGuardia.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaJefeGuardia.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaJefeGuardia.TabIndex = 35
+        '
+        'ControlPersonaEncargadoCuartel
+        '
+        Me.ControlPersonaEncargadoCuartel.ApellidoNombre = Nothing
+        Me.ControlPersonaEncargadoCuartel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaEncargadoCuartel.dbContext = Nothing
+        Me.ControlPersonaEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaEncargadoCuartel.IDCuartel = Nothing
+        Me.ControlPersonaEncargadoCuartel.IDPersona = Nothing
+        Me.ControlPersonaEncargadoCuartel.Location = New System.Drawing.Point(158, 515)
+        Me.ControlPersonaEncargadoCuartel.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaEncargadoCuartel.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaEncargadoCuartel.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaEncargadoCuartel.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaEncargadoCuartel.Name = "ControlPersonaEncargadoCuartel"
+        Me.ControlPersonaEncargadoCuartel.ReadOnlyText = False
+        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(383, 26)
+        Me.ControlPersonaEncargadoCuartel.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaEncargadoCuartel.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaEncargadoCuartel.TabIndex = 33
+        '
         'NumericUpDownIncendioForestalSuperficieMetro
         '
         Me.NumericUpDownIncendioForestalSuperficieMetro.Location = New System.Drawing.Point(156, 465)
@@ -1249,10 +1315,10 @@ Partial Class FormSiniestroV2
         'columnResumenCantidad
         '
         Me.columnResumenCantidad.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N0"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "N0"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle1
         Me.columnResumenCantidad.HeaderText = "Cantidad"
         Me.columnResumenCantidad.MinimumWidth = 6
         Me.columnResumenCantidad.Name = "columnResumenCantidad"
@@ -1383,10 +1449,327 @@ Partial Class FormSiniestroV2
         Me.ComboBoxSolicitanteDocumentoTipo.Size = New System.Drawing.Size(135, 24)
         Me.ComboBoxSolicitanteDocumentoTipo.TabIndex = 5
         '
+        'TabPageDamnificadoVehiculo
+        '
+        Me.TabPageDamnificadoVehiculo.Controls.Add(Me.TableLayoutPanelDamnificadoVehiculoMain)
+        Me.TabPageDamnificadoVehiculo.Location = New System.Drawing.Point(4, 28)
+        Me.TabPageDamnificadoVehiculo.Name = "TabPageDamnificadoVehiculo"
+        Me.TabPageDamnificadoVehiculo.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageDamnificadoVehiculo.Size = New System.Drawing.Size(1150, 697)
+        Me.TabPageDamnificadoVehiculo.TabIndex = 4
+        Me.TabPageDamnificadoVehiculo.Text = "Daminificados y vehículos"
+        Me.TabPageDamnificadoVehiculo.UseVisualStyleBackColor = True
+        '
+        'TableLayoutPanelDamnificadoVehiculoMain
+        '
+        Me.TableLayoutPanelDamnificadoVehiculoMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnCount = 1
+        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelVehiculos, 0, 3)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelDaminificado, 0, 1)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelVehiculo, 0, 4)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelDamnificados, 0, 0)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelDamnificadoVehiculoMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Name = "TableLayoutPanelDamnificadoVehiculoMain"
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowCount = 5
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelDamnificadoVehiculoMain.Size = New System.Drawing.Size(1144, 691)
+        Me.TableLayoutPanelDamnificadoVehiculoMain.TabIndex = 0
+        '
+        'LabelVehiculos
+        '
+        Me.LabelVehiculos.AutoSize = True
+        Me.LabelVehiculos.Location = New System.Drawing.Point(3, 355)
+        Me.LabelVehiculos.Name = "LabelVehiculos"
+        Me.LabelVehiculos.Size = New System.Drawing.Size(69, 16)
+        Me.LabelVehiculos.TabIndex = 3
+        Me.LabelVehiculos.Text = "Vehículos:"
+        '
+        'PanelDaminificado
+        '
+        Me.PanelDaminificado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanelDaminificado.Controls.Add(Me.DataGridViewDamnificados)
+        Me.PanelDaminificado.Controls.Add(Me.StatusStripDamnificados)
+        Me.PanelDaminificado.Controls.Add(Me.ToolStripDaminificados)
+        Me.PanelDaminificado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelDaminificado.Location = New System.Drawing.Point(3, 19)
+        Me.PanelDaminificado.Name = "PanelDaminificado"
+        Me.PanelDaminificado.Size = New System.Drawing.Size(1138, 313)
+        Me.PanelDaminificado.TabIndex = 0
+        '
+        'DataGridViewDamnificados
+        '
+        Me.DataGridViewDamnificados.AllowUserToAddRows = False
+        Me.DataGridViewDamnificados.AllowUserToDeleteRows = False
+        Me.DataGridViewDamnificados.AllowUserToResizeColumns = False
+        Me.DataGridViewDamnificados.AllowUserToResizeRows = False
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewDamnificados.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewDamnificados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewDamnificados.ColumnHeadersHeight = 29
+        Me.DataGridViewDamnificados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DataGridViewDamnificados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre, Me.DataGridViewTextBoxColumnDamnificadosEdad, Me.DataGridViewTextBoxColumnDamnificadosEstado})
+        Me.DataGridViewDamnificados.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewDamnificados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewDamnificados.Location = New System.Drawing.Point(100, 0)
+        Me.DataGridViewDamnificados.Margin = New System.Windows.Forms.Padding(4)
+        Me.DataGridViewDamnificados.MultiSelect = False
+        Me.DataGridViewDamnificados.Name = "DataGridViewDamnificados"
+        Me.DataGridViewDamnificados.ReadOnly = True
+        Me.DataGridViewDamnificados.RowHeadersVisible = False
+        Me.DataGridViewDamnificados.RowHeadersWidth = 51
+        Me.DataGridViewDamnificados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewDamnificados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(1038, 291)
+        Me.DataGridViewDamnificados.TabIndex = 11
+        '
+        'DataGridViewTextBoxColumnDamnificadosApellidoNombre
+        '
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.DataPropertyName = "ApellidoNombre"
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.HeaderText = "Apellido y nombre"
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Name = "DataGridViewTextBoxColumnDamnificadosApellidoNombre"
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.ReadOnly = True
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Width = 145
+        '
+        'DataGridViewTextBoxColumnDamnificadosEdad
+        '
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.DataPropertyName = "Edad"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.HeaderText = "Edad"
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.Name = "DataGridViewTextBoxColumnDamnificadosEdad"
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.ReadOnly = True
+        Me.DataGridViewTextBoxColumnDamnificadosEdad.Width = 69
+        '
+        'DataGridViewTextBoxColumnDamnificadosEstado
+        '
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.DataPropertyName = "EstadoNombre"
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.HeaderText = "Estado"
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.Name = "DataGridViewTextBoxColumnDamnificadosEstado"
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.ReadOnly = True
+        Me.DataGridViewTextBoxColumnDamnificadosEstado.Width = 79
+        '
+        'StatusStripDamnificados
+        '
+        Me.StatusStripDamnificados.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStripDamnificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelDamnificados})
+        Me.StatusStripDamnificados.Location = New System.Drawing.Point(100, 291)
+        Me.StatusStripDamnificados.Name = "StatusStripDamnificados"
+        Me.StatusStripDamnificados.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStripDamnificados.Size = New System.Drawing.Size(1038, 22)
+        Me.StatusStripDamnificados.SizingGrip = False
+        Me.StatusStripDamnificados.TabIndex = 12
+        '
+        'ToolStripStatusLabelDamnificados
+        '
+        Me.ToolStripStatusLabelDamnificados.Name = "ToolStripStatusLabelDamnificados"
+        Me.ToolStripStatusLabelDamnificados.Size = New System.Drawing.Size(1018, 16)
+        Me.ToolStripStatusLabelDamnificados.Spring = True
+        Me.ToolStripStatusLabelDamnificados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'ToolStripDaminificados
+        '
+        Me.ToolStripDaminificados.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripDaminificados.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripDaminificados.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStripDaminificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonDamnificadosAgregar, Me.ToolStripButtonDamnificadosEditar, Me.ToolStripButtonDamnificadosBorrar})
+        Me.ToolStripDaminificados.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripDaminificados.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripDaminificados.Name = "ToolStripDaminificados"
+        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 313)
+        Me.ToolStripDaminificados.TabIndex = 10
+        '
+        'ToolStripButtonDamnificadosAgregar
+        '
+        Me.ToolStripButtonDamnificadosAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
+        Me.ToolStripButtonDamnificadosAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonDamnificadosAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonDamnificadosAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonDamnificadosAgregar.Name = "ToolStripButtonDamnificadosAgregar"
+        Me.ToolStripButtonDamnificadosAgregar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonDamnificadosAgregar.Text = "Agregar"
+        '
+        'ToolStripButtonDamnificadosEditar
+        '
+        Me.ToolStripButtonDamnificadosEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
+        Me.ToolStripButtonDamnificadosEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonDamnificadosEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonDamnificadosEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonDamnificadosEditar.Name = "ToolStripButtonDamnificadosEditar"
+        Me.ToolStripButtonDamnificadosEditar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonDamnificadosEditar.Text = "Editar"
+        '
+        'ToolStripButtonDamnificadosBorrar
+        '
+        Me.ToolStripButtonDamnificadosBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
+        Me.ToolStripButtonDamnificadosBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonDamnificadosBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonDamnificadosBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonDamnificadosBorrar.Name = "ToolStripButtonDamnificadosBorrar"
+        Me.ToolStripButtonDamnificadosBorrar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonDamnificadosBorrar.Text = "Eliminar"
+        '
+        'PanelVehiculo
+        '
+        Me.PanelVehiculo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PanelVehiculo.Controls.Add(Me.DataGridViewVehiculos)
+        Me.PanelVehiculo.Controls.Add(Me.StatusStripVehiculos)
+        Me.PanelVehiculo.Controls.Add(Me.ToolStripVehiculos)
+        Me.PanelVehiculo.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PanelVehiculo.Location = New System.Drawing.Point(3, 374)
+        Me.PanelVehiculo.Name = "PanelVehiculo"
+        Me.PanelVehiculo.Size = New System.Drawing.Size(1138, 314)
+        Me.PanelVehiculo.TabIndex = 1
+        '
+        'DataGridViewVehiculos
+        '
+        Me.DataGridViewVehiculos.AllowUserToAddRows = False
+        Me.DataGridViewVehiculos.AllowUserToDeleteRows = False
+        Me.DataGridViewVehiculos.AllowUserToResizeRows = False
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.DataGridViewVehiculos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewVehiculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewVehiculos.ColumnHeadersHeight = 29
+        Me.DataGridViewVehiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DataGridViewVehiculos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnVehiculosTipo, Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca, Me.DataGridViewTextBoxColumnVehiculosModelo, Me.DataGridViewTextBoxColumnVehiculosDominio})
+        Me.DataGridViewVehiculos.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewVehiculos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridViewVehiculos.Location = New System.Drawing.Point(100, 0)
+        Me.DataGridViewVehiculos.Margin = New System.Windows.Forms.Padding(4)
+        Me.DataGridViewVehiculos.MultiSelect = False
+        Me.DataGridViewVehiculos.Name = "DataGridViewVehiculos"
+        Me.DataGridViewVehiculos.ReadOnly = True
+        Me.DataGridViewVehiculos.RowHeadersVisible = False
+        Me.DataGridViewVehiculos.RowHeadersWidth = 51
+        Me.DataGridViewVehiculos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(1038, 292)
+        Me.DataGridViewVehiculos.TabIndex = 12
+        '
+        'DataGridViewTextBoxColumnVehiculosTipo
+        '
+        Me.DataGridViewTextBoxColumnVehiculosTipo.DataPropertyName = "TipoNombre"
+        Me.DataGridViewTextBoxColumnVehiculosTipo.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumnVehiculosTipo.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnVehiculosTipo.Name = "DataGridViewTextBoxColumnVehiculosTipo"
+        Me.DataGridViewTextBoxColumnVehiculosTipo.ReadOnly = True
+        Me.DataGridViewTextBoxColumnVehiculosTipo.Width = 64
+        '
+        'DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca
+        '
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.DataPropertyName = "MarcaNombre"
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.HeaderText = "Marca"
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.Name = "DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca"
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.ReadOnly = True
+        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.Width = 74
+        '
+        'DataGridViewTextBoxColumnVehiculosModelo
+        '
+        Me.DataGridViewTextBoxColumnVehiculosModelo.DataPropertyName = "Modelo"
+        Me.DataGridViewTextBoxColumnVehiculosModelo.HeaderText = "Modelo"
+        Me.DataGridViewTextBoxColumnVehiculosModelo.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnVehiculosModelo.Name = "DataGridViewTextBoxColumnVehiculosModelo"
+        Me.DataGridViewTextBoxColumnVehiculosModelo.ReadOnly = True
+        Me.DataGridViewTextBoxColumnVehiculosModelo.Width = 82
+        '
+        'DataGridViewTextBoxColumnVehiculosDominio
+        '
+        Me.DataGridViewTextBoxColumnVehiculosDominio.DataPropertyName = "Dominio"
+        Me.DataGridViewTextBoxColumnVehiculosDominio.HeaderText = "Dominio"
+        Me.DataGridViewTextBoxColumnVehiculosDominio.MinimumWidth = 6
+        Me.DataGridViewTextBoxColumnVehiculosDominio.Name = "DataGridViewTextBoxColumnVehiculosDominio"
+        Me.DataGridViewTextBoxColumnVehiculosDominio.ReadOnly = True
+        Me.DataGridViewTextBoxColumnVehiculosDominio.Width = 86
+        '
+        'StatusStripVehiculos
+        '
+        Me.StatusStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelVehiculos})
+        Me.StatusStripVehiculos.Location = New System.Drawing.Point(100, 292)
+        Me.StatusStripVehiculos.Name = "StatusStripVehiculos"
+        Me.StatusStripVehiculos.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStripVehiculos.Size = New System.Drawing.Size(1038, 22)
+        Me.StatusStripVehiculos.SizingGrip = False
+        Me.StatusStripVehiculos.TabIndex = 13
+        '
+        'ToolStripStatusLabelVehiculos
+        '
+        Me.ToolStripStatusLabelVehiculos.Name = "ToolStripStatusLabelVehiculos"
+        Me.ToolStripStatusLabelVehiculos.Size = New System.Drawing.Size(1018, 16)
+        Me.ToolStripStatusLabelVehiculos.Spring = True
+        Me.ToolStripStatusLabelVehiculos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'ToolStripVehiculos
+        '
+        Me.ToolStripVehiculos.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ToolStripVehiculos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonVehiculosAgregar, Me.ToolStripButtonVehiculosEditar, Me.ToolStripButtonVehiculosBorrar})
+        Me.ToolStripVehiculos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ToolStripVehiculos.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripVehiculos.Name = "ToolStripVehiculos"
+        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 314)
+        Me.ToolStripVehiculos.TabIndex = 11
+        '
+        'ToolStripButtonVehiculosAgregar
+        '
+        Me.ToolStripButtonVehiculosAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
+        Me.ToolStripButtonVehiculosAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonVehiculosAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonVehiculosAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonVehiculosAgregar.Name = "ToolStripButtonVehiculosAgregar"
+        Me.ToolStripButtonVehiculosAgregar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonVehiculosAgregar.Text = "Agregar"
+        '
+        'ToolStripButtonVehiculosEditar
+        '
+        Me.ToolStripButtonVehiculosEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
+        Me.ToolStripButtonVehiculosEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonVehiculosEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonVehiculosEditar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonVehiculosEditar.Name = "ToolStripButtonVehiculosEditar"
+        Me.ToolStripButtonVehiculosEditar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonVehiculosEditar.Text = "Editar"
+        '
+        'ToolStripButtonVehiculosBorrar
+        '
+        Me.ToolStripButtonVehiculosBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
+        Me.ToolStripButtonVehiculosBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripButtonVehiculosBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonVehiculosBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonVehiculosBorrar.Name = "ToolStripButtonVehiculosBorrar"
+        Me.ToolStripButtonVehiculosBorrar.Size = New System.Drawing.Size(97, 36)
+        Me.ToolStripButtonVehiculosBorrar.Text = "Eliminar"
+        '
+        'LabelDamnificados
+        '
+        Me.LabelDamnificados.AutoSize = True
+        Me.LabelDamnificados.Location = New System.Drawing.Point(3, 0)
+        Me.LabelDamnificados.Name = "LabelDamnificados"
+        Me.LabelDamnificados.Size = New System.Drawing.Size(93, 16)
+        Me.LabelDamnificados.TabIndex = 2
+        Me.LabelDamnificados.Text = "Damnificados:"
+        '
         'tabpageAsistencias
         '
         Me.tabpageAsistencias.Controls.Add(Me.datagridviewAsistencias)
-        Me.tabpageAsistencias.Controls.Add(Me.statusstripMain)
+        Me.tabpageAsistencias.Controls.Add(Me.StatusStripAsistencias)
         Me.tabpageAsistencias.Controls.Add(Me.toolstripAsistencias)
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 28)
         Me.tabpageAsistencias.Margin = New System.Windows.Forms.Padding(4)
@@ -1402,11 +1785,11 @@ Partial Class FormSiniestroV2
         Me.datagridviewAsistencias.AllowUserToAddRows = False
         Me.datagridviewAsistencias.AllowUserToDeleteRows = False
         Me.datagridviewAsistencias.AllowUserToResizeRows = False
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
+        Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
         Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1443,23 +1826,23 @@ Partial Class FormSiniestroV2
         Me.columnSiniestroAsistenciaTipo.ReadOnly = True
         Me.columnSiniestroAsistenciaTipo.Width = 98
         '
-        'statusstripMain
+        'StatusStripAsistencias
         '
-        Me.statusstripMain.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.statusstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statuslabelMain})
-        Me.statusstripMain.Location = New System.Drawing.Point(104, 671)
-        Me.statusstripMain.Name = "statusstripMain"
-        Me.statusstripMain.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.statusstripMain.Size = New System.Drawing.Size(1042, 22)
-        Me.statusstripMain.SizingGrip = False
-        Me.statusstripMain.TabIndex = 10
+        Me.StatusStripAsistencias.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.StatusStripAsistencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelAsistencias})
+        Me.StatusStripAsistencias.Location = New System.Drawing.Point(104, 671)
+        Me.StatusStripAsistencias.Name = "StatusStripAsistencias"
+        Me.StatusStripAsistencias.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
+        Me.StatusStripAsistencias.Size = New System.Drawing.Size(1042, 22)
+        Me.StatusStripAsistencias.SizingGrip = False
+        Me.StatusStripAsistencias.TabIndex = 10
         '
-        'statuslabelMain
+        'ToolStripStatusLabelAsistencias
         '
-        Me.statuslabelMain.Name = "statuslabelMain"
-        Me.statuslabelMain.Size = New System.Drawing.Size(1022, 16)
-        Me.statuslabelMain.Spring = True
-        Me.statuslabelMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ToolStripStatusLabelAsistencias.Name = "ToolStripStatusLabelAsistencias"
+        Me.ToolStripStatusLabelAsistencias.Size = New System.Drawing.Size(1022, 16)
+        Me.ToolStripStatusLabelAsistencias.Spring = True
+        Me.ToolStripStatusLabelAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'toolstripAsistencias
         '
@@ -1640,345 +2023,6 @@ Partial Class FormSiniestroV2
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
-        'ControlPersonaRadioTelefonista
-        '
-        Me.ControlPersonaRadioTelefonista.ApellidoNombre = Nothing
-        Me.ControlPersonaRadioTelefonista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaRadioTelefonista.dbContext = Nothing
-        Me.ControlPersonaRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaRadioTelefonista.IDCuartel = Nothing
-        Me.ControlPersonaRadioTelefonista.IDPersona = Nothing
-        Me.ControlPersonaRadioTelefonista.Location = New System.Drawing.Point(158, 587)
-        Me.ControlPersonaRadioTelefonista.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaRadioTelefonista.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaRadioTelefonista.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaRadioTelefonista.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaRadioTelefonista.Name = "ControlPersonaRadioTelefonista"
-        Me.ControlPersonaRadioTelefonista.ReadOnlyText = False
-        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaRadioTelefonista.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaRadioTelefonista.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaRadioTelefonista.TabIndex = 37
-        '
-        'ControlPersonaJefeGuardia
-        '
-        Me.ControlPersonaJefeGuardia.ApellidoNombre = Nothing
-        Me.ControlPersonaJefeGuardia.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaJefeGuardia.dbContext = Nothing
-        Me.ControlPersonaJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaJefeGuardia.IDCuartel = Nothing
-        Me.ControlPersonaJefeGuardia.IDPersona = Nothing
-        Me.ControlPersonaJefeGuardia.Location = New System.Drawing.Point(158, 551)
-        Me.ControlPersonaJefeGuardia.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaJefeGuardia.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaJefeGuardia.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaJefeGuardia.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaJefeGuardia.Name = "ControlPersonaJefeGuardia"
-        Me.ControlPersonaJefeGuardia.ReadOnlyText = False
-        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaJefeGuardia.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaJefeGuardia.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaJefeGuardia.TabIndex = 35
-        '
-        'ControlPersonaEncargadoCuartel
-        '
-        Me.ControlPersonaEncargadoCuartel.ApellidoNombre = Nothing
-        Me.ControlPersonaEncargadoCuartel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaEncargadoCuartel.dbContext = Nothing
-        Me.ControlPersonaEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaEncargadoCuartel.IDCuartel = Nothing
-        Me.ControlPersonaEncargadoCuartel.IDPersona = Nothing
-        Me.ControlPersonaEncargadoCuartel.Location = New System.Drawing.Point(158, 515)
-        Me.ControlPersonaEncargadoCuartel.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaEncargadoCuartel.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaEncargadoCuartel.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaEncargadoCuartel.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaEncargadoCuartel.Name = "ControlPersonaEncargadoCuartel"
-        Me.ControlPersonaEncargadoCuartel.ReadOnlyText = False
-        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaEncargadoCuartel.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaEncargadoCuartel.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaEncargadoCuartel.TabIndex = 33
-        '
-        'TabPageDamnificadoVehiculo
-        '
-        Me.TabPageDamnificadoVehiculo.Controls.Add(Me.TableLayoutPanelDamnificadoVehiculoMain)
-        Me.TabPageDamnificadoVehiculo.Location = New System.Drawing.Point(4, 28)
-        Me.TabPageDamnificadoVehiculo.Name = "TabPageDamnificadoVehiculo"
-        Me.TabPageDamnificadoVehiculo.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageDamnificadoVehiculo.Size = New System.Drawing.Size(1150, 697)
-        Me.TabPageDamnificadoVehiculo.TabIndex = 4
-        Me.TabPageDamnificadoVehiculo.Text = "Daminificados y vehículos"
-        Me.TabPageDamnificadoVehiculo.UseVisualStyleBackColor = True
-        '
-        'TableLayoutPanelDamnificadoVehiculoMain
-        '
-        Me.TableLayoutPanelDamnificadoVehiculoMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnCount = 1
-        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelVehiculos, 0, 3)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelDaminificado, 0, 1)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelVehiculo, 0, 4)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelDamnificados, 0, 0)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelDamnificadoVehiculoMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Name = "TableLayoutPanelDamnificadoVehiculoMain"
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowCount = 5
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Size = New System.Drawing.Size(1144, 691)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.TabIndex = 0
-        '
-        'PanelDaminificado
-        '
-        Me.PanelDaminificado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanelDaminificado.Controls.Add(Me.DataGridViewDamnificados)
-        Me.PanelDaminificado.Controls.Add(Me.ToolStripDaminificados)
-        Me.PanelDaminificado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelDaminificado.Location = New System.Drawing.Point(3, 19)
-        Me.PanelDaminificado.Name = "PanelDaminificado"
-        Me.PanelDaminificado.Size = New System.Drawing.Size(1138, 313)
-        Me.PanelDaminificado.TabIndex = 0
-        '
-        'ToolStripDaminificados
-        '
-        Me.ToolStripDaminificados.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ToolStripDaminificados.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStripDaminificados.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStripDaminificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonDamnificadosAgregar, Me.ToolStripButtonDamnificadosEditar, Me.ToolStripButtonDamnificadosBorrar})
-        Me.ToolStripDaminificados.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ToolStripDaminificados.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStripDaminificados.Name = "ToolStripDaminificados"
-        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 313)
-        Me.ToolStripDaminificados.TabIndex = 10
-        '
-        'ToolStripButtonDamnificadosAgregar
-        '
-        Me.ToolStripButtonDamnificadosAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
-        Me.ToolStripButtonDamnificadosAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonDamnificadosAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonDamnificadosAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonDamnificadosAgregar.Name = "ToolStripButtonDamnificadosAgregar"
-        Me.ToolStripButtonDamnificadosAgregar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonDamnificadosAgregar.Text = "Agregar"
-        '
-        'ToolStripButtonDamnificadosEditar
-        '
-        Me.ToolStripButtonDamnificadosEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
-        Me.ToolStripButtonDamnificadosEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonDamnificadosEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonDamnificadosEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonDamnificadosEditar.Name = "ToolStripButtonDamnificadosEditar"
-        Me.ToolStripButtonDamnificadosEditar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonDamnificadosEditar.Text = "Editar"
-        '
-        'ToolStripButtonDamnificadosBorrar
-        '
-        Me.ToolStripButtonDamnificadosBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
-        Me.ToolStripButtonDamnificadosBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonDamnificadosBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonDamnificadosBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonDamnificadosBorrar.Name = "ToolStripButtonDamnificadosBorrar"
-        Me.ToolStripButtonDamnificadosBorrar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonDamnificadosBorrar.Text = "Eliminar"
-        '
-        'DataGridViewDamnificados
-        '
-        Me.DataGridViewDamnificados.AllowUserToAddRows = False
-        Me.DataGridViewDamnificados.AllowUserToDeleteRows = False
-        Me.DataGridViewDamnificados.AllowUserToResizeColumns = False
-        Me.DataGridViewDamnificados.AllowUserToResizeRows = False
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewDamnificados.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle8
-        Me.DataGridViewDamnificados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridViewDamnificados.ColumnHeadersHeight = 29
-        Me.DataGridViewDamnificados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.DataGridViewDamnificados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre, Me.DataGridViewTextBoxColumnDamnificadosEdad, Me.DataGridViewTextBoxColumnDamnificadosEstado})
-        Me.DataGridViewDamnificados.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewDamnificados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewDamnificados.Location = New System.Drawing.Point(100, 0)
-        Me.DataGridViewDamnificados.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewDamnificados.MultiSelect = False
-        Me.DataGridViewDamnificados.Name = "DataGridViewDamnificados"
-        Me.DataGridViewDamnificados.ReadOnly = True
-        Me.DataGridViewDamnificados.RowHeadersVisible = False
-        Me.DataGridViewDamnificados.RowHeadersWidth = 51
-        Me.DataGridViewDamnificados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DataGridViewDamnificados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(1038, 313)
-        Me.DataGridViewDamnificados.TabIndex = 11
-        '
-        'PanelVehiculo
-        '
-        Me.PanelVehiculo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanelVehiculo.Controls.Add(Me.DataGridViewVehiculos)
-        Me.PanelVehiculo.Controls.Add(Me.ToolStripVehiculos)
-        Me.PanelVehiculo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelVehiculo.Location = New System.Drawing.Point(3, 374)
-        Me.PanelVehiculo.Name = "PanelVehiculo"
-        Me.PanelVehiculo.Size = New System.Drawing.Size(1138, 314)
-        Me.PanelVehiculo.TabIndex = 1
-        '
-        'ToolStripVehiculos
-        '
-        Me.ToolStripVehiculos.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ToolStripVehiculos.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonVehiculosAgregar, Me.ToolStripButtonVehiculosEditar, Me.ToolStripButtonVehiculosBorrar})
-        Me.ToolStripVehiculos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ToolStripVehiculos.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStripVehiculos.Name = "ToolStripVehiculos"
-        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 314)
-        Me.ToolStripVehiculos.TabIndex = 11
-        '
-        'ToolStripButtonVehiculosAgregar
-        '
-        Me.ToolStripButtonVehiculosAgregar.Image = Global.CSBomberos.My.Resources.Resources.ImageAgregar32
-        Me.ToolStripButtonVehiculosAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonVehiculosAgregar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonVehiculosAgregar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonVehiculosAgregar.Name = "ToolStripButtonVehiculosAgregar"
-        Me.ToolStripButtonVehiculosAgregar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonVehiculosAgregar.Text = "Agregar"
-        '
-        'ToolStripButtonVehiculosEditar
-        '
-        Me.ToolStripButtonVehiculosEditar.Image = Global.CSBomberos.My.Resources.Resources.ImageEditar32
-        Me.ToolStripButtonVehiculosEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonVehiculosEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonVehiculosEditar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonVehiculosEditar.Name = "ToolStripButtonVehiculosEditar"
-        Me.ToolStripButtonVehiculosEditar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonVehiculosEditar.Text = "Editar"
-        '
-        'ToolStripButtonVehiculosBorrar
-        '
-        Me.ToolStripButtonVehiculosBorrar.Image = Global.CSBomberos.My.Resources.Resources.ImageBorrar32
-        Me.ToolStripButtonVehiculosBorrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ToolStripButtonVehiculosBorrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonVehiculosBorrar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonVehiculosBorrar.Name = "ToolStripButtonVehiculosBorrar"
-        Me.ToolStripButtonVehiculosBorrar.Size = New System.Drawing.Size(97, 36)
-        Me.ToolStripButtonVehiculosBorrar.Text = "Eliminar"
-        '
-        'DataGridViewVehiculos
-        '
-        Me.DataGridViewVehiculos.AllowUserToAddRows = False
-        Me.DataGridViewVehiculos.AllowUserToDeleteRows = False
-        Me.DataGridViewVehiculos.AllowUserToResizeRows = False
-        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        DataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
-        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText
-        Me.DataGridViewVehiculos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle10
-        Me.DataGridViewVehiculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridViewVehiculos.ColumnHeadersHeight = 29
-        Me.DataGridViewVehiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.DataGridViewVehiculos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnVehiculosTipo, Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca, Me.DataGridViewTextBoxColumnVehiculosModelo, Me.DataGridViewTextBoxColumnVehiculosDominio})
-        Me.DataGridViewVehiculos.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewVehiculos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewVehiculos.Location = New System.Drawing.Point(100, 0)
-        Me.DataGridViewVehiculos.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewVehiculos.MultiSelect = False
-        Me.DataGridViewVehiculos.Name = "DataGridViewVehiculos"
-        Me.DataGridViewVehiculos.ReadOnly = True
-        Me.DataGridViewVehiculos.RowHeadersVisible = False
-        Me.DataGridViewVehiculos.RowHeadersWidth = 51
-        Me.DataGridViewVehiculos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DataGridViewVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(1038, 314)
-        Me.DataGridViewVehiculos.TabIndex = 12
-        '
-        'DataGridViewTextBoxColumnDamnificadosApellidoNombre
-        '
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.DataPropertyName = "ApellidoNombre"
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.HeaderText = "Apellido y nombre"
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Name = "DataGridViewTextBoxColumnDamnificadosApellidoNombre"
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.ReadOnly = True
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Width = 145
-        '
-        'DataGridViewTextBoxColumnDamnificadosEdad
-        '
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.DataPropertyName = "Edad"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.DefaultCellStyle = DataGridViewCellStyle9
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.HeaderText = "Edad"
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.Name = "DataGridViewTextBoxColumnDamnificadosEdad"
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.ReadOnly = True
-        Me.DataGridViewTextBoxColumnDamnificadosEdad.Width = 69
-        '
-        'DataGridViewTextBoxColumnDamnificadosEstado
-        '
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.DataPropertyName = "EstadoNombre"
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.HeaderText = "Estado"
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.Name = "DataGridViewTextBoxColumnDamnificadosEstado"
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.ReadOnly = True
-        Me.DataGridViewTextBoxColumnDamnificadosEstado.Width = 79
-        '
-        'LabelDamnificados
-        '
-        Me.LabelDamnificados.AutoSize = True
-        Me.LabelDamnificados.Location = New System.Drawing.Point(3, 0)
-        Me.LabelDamnificados.Name = "LabelDamnificados"
-        Me.LabelDamnificados.Size = New System.Drawing.Size(93, 16)
-        Me.LabelDamnificados.TabIndex = 2
-        Me.LabelDamnificados.Text = "Damnificados:"
-        '
-        'LabelVehiculos
-        '
-        Me.LabelVehiculos.AutoSize = True
-        Me.LabelVehiculos.Location = New System.Drawing.Point(3, 355)
-        Me.LabelVehiculos.Name = "LabelVehiculos"
-        Me.LabelVehiculos.Size = New System.Drawing.Size(69, 16)
-        Me.LabelVehiculos.TabIndex = 3
-        Me.LabelVehiculos.Text = "Vehículos:"
-        '
-        'DataGridViewTextBoxColumnVehiculosTipo
-        '
-        Me.DataGridViewTextBoxColumnVehiculosTipo.DataPropertyName = "TipoNombre"
-        Me.DataGridViewTextBoxColumnVehiculosTipo.HeaderText = "Tipo"
-        Me.DataGridViewTextBoxColumnVehiculosTipo.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnVehiculosTipo.Name = "DataGridViewTextBoxColumnVehiculosTipo"
-        Me.DataGridViewTextBoxColumnVehiculosTipo.ReadOnly = True
-        Me.DataGridViewTextBoxColumnVehiculosTipo.Width = 64
-        '
-        'DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca
-        '
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.DataPropertyName = "MarcaNombre"
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.HeaderText = "Marca"
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.Name = "DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca"
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.ReadOnly = True
-        Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca.Width = 74
-        '
-        'DataGridViewTextBoxColumnVehiculosModelo
-        '
-        Me.DataGridViewTextBoxColumnVehiculosModelo.DataPropertyName = "Modelo"
-        Me.DataGridViewTextBoxColumnVehiculosModelo.HeaderText = "Modelo"
-        Me.DataGridViewTextBoxColumnVehiculosModelo.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnVehiculosModelo.Name = "DataGridViewTextBoxColumnVehiculosModelo"
-        Me.DataGridViewTextBoxColumnVehiculosModelo.ReadOnly = True
-        Me.DataGridViewTextBoxColumnVehiculosModelo.Width = 82
-        '
-        'DataGridViewTextBoxColumnVehiculosDominio
-        '
-        Me.DataGridViewTextBoxColumnVehiculosDominio.DataPropertyName = "Dominio"
-        Me.DataGridViewTextBoxColumnVehiculosDominio.HeaderText = "Dominio"
-        Me.DataGridViewTextBoxColumnVehiculosDominio.MinimumWidth = 6
-        Me.DataGridViewTextBoxColumnVehiculosDominio.Name = "DataGridViewTextBoxColumnVehiculosDominio"
-        Me.DataGridViewTextBoxColumnVehiculosDominio.ReadOnly = True
-        Me.DataGridViewTextBoxColumnVehiculosDominio.Width = 86
-        '
         'FormSiniestroV2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2024,28 +2068,32 @@ Partial Class FormSiniestroV2
         CType(Me.DataGridViewResumenAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanelGeneralSolicitanteDocumento.ResumeLayout(False)
         Me.TableLayoutPanelGeneralSolicitanteDocumento.PerformLayout()
-        Me.tabpageAsistencias.ResumeLayout(False)
-        Me.tabpageAsistencias.PerformLayout()
-        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.statusstripMain.ResumeLayout(False)
-        Me.statusstripMain.PerformLayout()
-        Me.toolstripAsistencias.ResumeLayout(False)
-        Me.toolstripAsistencias.PerformLayout()
-        Me.tabpageNotasAuditoria.ResumeLayout(False)
-        Me.tabpageNotasAuditoria.PerformLayout()
         Me.TabPageDamnificadoVehiculo.ResumeLayout(False)
         Me.TableLayoutPanelDamnificadoVehiculoMain.ResumeLayout(False)
         Me.TableLayoutPanelDamnificadoVehiculoMain.PerformLayout()
         Me.PanelDaminificado.ResumeLayout(False)
         Me.PanelDaminificado.PerformLayout()
+        CType(Me.DataGridViewDamnificados, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStripDamnificados.ResumeLayout(False)
+        Me.StatusStripDamnificados.PerformLayout()
         Me.ToolStripDaminificados.ResumeLayout(False)
         Me.ToolStripDaminificados.PerformLayout()
-        CType(Me.DataGridViewDamnificados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelVehiculo.ResumeLayout(False)
         Me.PanelVehiculo.PerformLayout()
+        CType(Me.DataGridViewVehiculos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStripVehiculos.ResumeLayout(False)
+        Me.StatusStripVehiculos.PerformLayout()
         Me.ToolStripVehiculos.ResumeLayout(False)
         Me.ToolStripVehiculos.PerformLayout()
-        CType(Me.DataGridViewVehiculos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.tabpageAsistencias.ResumeLayout(False)
+        Me.tabpageAsistencias.PerformLayout()
+        CType(Me.datagridviewAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStripAsistencias.ResumeLayout(False)
+        Me.StatusStripAsistencias.PerformLayout()
+        Me.toolstripAsistencias.ResumeLayout(False)
+        Me.toolstripAsistencias.PerformLayout()
+        Me.tabpageNotasAuditoria.ResumeLayout(False)
+        Me.tabpageNotasAuditoria.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2085,8 +2133,8 @@ Partial Class FormSiniestroV2
     Friend WithEvents columnSiniestroAsistenciaTipo As DataGridViewTextBoxColumn
     Friend WithEvents maskedtextboxNumero As MaskedTextBox
     Friend WithEvents maskedtextboxNumeroPrefijo As MaskedTextBox
-    Friend WithEvents statusstripMain As StatusStrip
-    Friend WithEvents statuslabelMain As ToolStripStatusLabel
+    Friend WithEvents StatusStripAsistencias As StatusStrip
+    Friend WithEvents ToolStripStatusLabelAsistencias As ToolStripStatusLabel
     Friend WithEvents datetimepickerHoraLlegadaUltimoCamion As DateTimePicker
     Friend WithEvents DataGridViewResumenAsistencias As DataGridView
     Friend WithEvents columnResumenAsistenciaTipo As DataGridViewTextBoxColumn
@@ -2183,4 +2231,8 @@ Partial Class FormSiniestroV2
     Friend WithEvents DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnVehiculosModelo As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnVehiculosDominio As DataGridViewTextBoxColumn
+    Friend WithEvents StatusStripDamnificados As StatusStrip
+    Friend WithEvents ToolStripStatusLabelDamnificados As ToolStripStatusLabel
+    Friend WithEvents StatusStripVehiculos As StatusStrip
+    Friend WithEvents ToolStripStatusLabelVehiculos As ToolStripStatusLabel
 End Class

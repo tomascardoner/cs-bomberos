@@ -8,7 +8,7 @@
 
     Friend Function SeleccionarPersona(ByRef parent As Form, multiseleccion As Boolean, idCuartel As Byte?, soloMostrarActivos As Boolean, soloMostrarEnAsistencia As Boolean) As PersonaSeleccionada
         Dim fps As New formPersonasSeleccionar(multiseleccion, idCuartel, soloMostrarActivos, soloMostrarEnAsistencia)
-        Dim personaSeleccionada As PersonaSeleccionada
+        Dim personaSeleccionada As PersonaSeleccionada = Nothing
 
         If fps.ShowDialog(parent) = Windows.Forms.DialogResult.OK Then
             Dim rowSelected As PersonasObtenerConEstadoYJerarquia_Result

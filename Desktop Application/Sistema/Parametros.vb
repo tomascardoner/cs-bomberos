@@ -105,6 +105,7 @@
                 Return False
             End Try
         Loop
+        Return False
     End Function
 
     Friend Function LoadUsuarioPermisosAndParametros() As Boolean

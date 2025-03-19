@@ -1523,18 +1523,6 @@
           <Property Name="IDUsuarioModificacion" Type="smallint" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="SiniestroDaminificadoEstado">
-          <Key>
-            <PropertyRef Name="IdSiniestroDaminificadoEstado" />
-          </Key>
-          <Property Name="IdSiniestroDaminificadoEstado" Type="tinyint" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="EsActivo" Type="bit" Nullable="false" />
-          <Property Name="IdUsuarioCreacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
-          <Property Name="IdUsuarioModificacion" Type="smallint" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="SiniestroDamnificado">
           <Key>
             <PropertyRef Name="IdSiniestro" />
@@ -1548,9 +1536,21 @@
           <Property Name="IdDocumentoTipo" Type="tinyint" />
           <Property Name="DocumentoNumero" Type="varchar" MaxLength="12" />
           <Property Name="Edad" Type="tinyint" />
-          <Property Name="EsMenor" Type="bit" />
-          <Property Name="Trasladado" Type="bit" />
+          <Property Name="EsMenor" Type="bit" Nullable="false" />
+          <Property Name="Trasladado" Type="bit" Nullable="false" />
           <Property Name="IdSiniestroDaminificadoEstado" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SiniestroDamnificadoEstado">
+          <Key>
+            <PropertyRef Name="IdSiniestroDamnificadoEstado" />
+          </Key>
+          <Property Name="IdSiniestroDamnificadoEstado" Type="tinyint" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EsActivo" Type="bit" Nullable="false" />
+          <Property Name="IdUsuarioCreacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="smalldatetime" Nullable="false" />
+          <Property Name="IdUsuarioModificacion" Type="smallint" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="smalldatetime" Nullable="false" />
         </EntityType>
         <EntityType Name="SiniestroRubro">
           <Key>
@@ -1609,11 +1609,11 @@
         </EntityType>
         <EntityType Name="SiniestroVehiculo">
           <Key>
-            <PropertyRef Name="IDSiniestro" />
-            <PropertyRef Name="IDVehiculo" />
+            <PropertyRef Name="IdSiniestro" />
+            <PropertyRef Name="IdVehiculo" />
           </Key>
-          <Property Name="IDSiniestro" Type="int" Nullable="false" />
-          <Property Name="IDVehiculo" Type="tinyint" Nullable="false" />
+          <Property Name="IdSiniestro" Type="int" Nullable="false" />
+          <Property Name="IdVehiculo" Type="tinyint" Nullable="false" />
           <Property Name="IdSiniestroVehiculoTipo" Type="tinyint" Nullable="false" />
           <Property Name="IdSiniestroVehiculoMarca" Type="smallint" Nullable="false" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" />
@@ -5493,30 +5493,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SiniestroDaminificadoEstado_UsuarioCreacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="SiniestroDaminificadoEstado" Type="Self.SiniestroDaminificadoEstado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SiniestroDaminificadoEstado_UsuarioModificacion">
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
-          <End Role="SiniestroDaminificadoEstado" Type="Self.SiniestroDaminificadoEstado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdUsuarioModificacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SiniestroDamnificado_DocumentoTipo">
           <End Role="DocumentoTipo" Type="Self.DocumentoTipo" Multiplicity="0..1" />
           <End Role="SiniestroDamnificado" Type="Self.SiniestroDamnificado" Multiplicity="*" />
@@ -5541,15 +5517,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SiniestroDamnificado_SiniestroDaminificadoEstado">
-          <End Role="SiniestroDaminificadoEstado" Type="Self.SiniestroDaminificadoEstado" Multiplicity="1" />
+        <Association Name="FK_SiniestroDamnificado_SiniestroDamnificadoEstado">
+          <End Role="SiniestroDamnificadoEstado" Type="Self.SiniestroDamnificadoEstado" Multiplicity="1" />
           <End Role="SiniestroDamnificado" Type="Self.SiniestroDamnificado" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdSiniestroDaminificadoEstado" />
+            <Principal Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdSiniestroDamnificadoEstado" />
             </Principal>
             <Dependent Role="SiniestroDamnificado">
               <PropertyRef Name="IdSiniestroDaminificadoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiniestroDamnificadoEstado_UsuarioCreacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroDamnificadoEstado" Type="Self.SiniestroDamnificadoEstado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiniestroDamnificadoEstado_UsuarioModificacion">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="SiniestroDamnificadoEstado" Type="Self.SiniestroDamnificadoEstado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5609,7 +5609,7 @@
               <PropertyRef Name="IDSiniestro" />
             </Principal>
             <Dependent Role="SiniestroVehiculo">
-              <PropertyRef Name="IDSiniestro" />
+              <PropertyRef Name="IdSiniestro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5795,8 +5795,8 @@
           <EntitySet Name="SiniestroAsistenciaTipoPuntaje" EntityType="Self.SiniestroAsistenciaTipoPuntaje" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroAsistenciaTipoPuntajeClave" EntityType="Self.SiniestroAsistenciaTipoPuntajeClave" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroClave" EntityType="Self.SiniestroClave" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SiniestroDaminificadoEstado" EntityType="Self.SiniestroDaminificadoEstado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroDamnificado" EntityType="Self.SiniestroDamnificado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SiniestroDamnificadoEstado" EntityType="Self.SiniestroDamnificadoEstado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroRubro" EntityType="Self.SiniestroRubro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroSolicitudForma" EntityType="Self.SiniestroSolicitudForma" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SiniestroTipo" EntityType="Self.SiniestroTipo" Schema="dbo" store:Type="Tables" />
@@ -7017,14 +7017,6 @@
             <End Role="SiniestroUbicacionTipo" EntitySet="SiniestroUbicacionTipo" />
             <End Role="Siniestro" EntitySet="Siniestro" />
           </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDaminificadoEstado_UsuarioCreacion" Association="Self.FK_SiniestroDaminificadoEstado_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDaminificadoEstado_UsuarioModificacion" Association="Self.FK_SiniestroDaminificadoEstado_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
-          </AssociationSet>
           <AssociationSet Name="FK_SiniestroDamnificado_DocumentoTipo" Association="Self.FK_SiniestroDamnificado_DocumentoTipo">
             <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
             <End Role="SiniestroDamnificado" EntitySet="SiniestroDamnificado" />
@@ -7033,9 +7025,17 @@
             <End Role="Siniestro" EntitySet="Siniestro" />
             <End Role="SiniestroDamnificado" EntitySet="SiniestroDamnificado" />
           </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDamnificado_SiniestroDaminificadoEstado" Association="Self.FK_SiniestroDamnificado_SiniestroDaminificadoEstado">
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
+          <AssociationSet Name="FK_SiniestroDamnificado_SiniestroDamnificadoEstado" Association="Self.FK_SiniestroDamnificado_SiniestroDamnificadoEstado">
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
             <End Role="SiniestroDamnificado" EntitySet="SiniestroDamnificado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiniestroDamnificadoEstado_UsuarioCreacion" Association="Self.FK_SiniestroDamnificadoEstado_UsuarioCreacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiniestroDamnificadoEstado_UsuarioModificacion" Association="Self.FK_SiniestroDamnificadoEstado_UsuarioModificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
           </AssociationSet>
           <AssociationSet Name="FK_SiniestroSolicitudForma_UsuarioCreacion" Association="Self.FK_SiniestroSolicitudForma_UsuarioCreacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -8381,7 +8381,6 @@
             <End Role="OrdenGeneral" EntitySet="OrdenGeneral" />
             <End Role="OrdenGeneralRelacion" EntitySet="OrdenGeneralRelacion" />
           </AssociationSet>
-          <EntitySet Name="SiniestroDaminificadoEstado" EntityType="CSBomberosModel.SiniestroDaminificadoEstado" />
           <EntitySet Name="SiniestroDamnificado" EntityType="CSBomberosModel.SiniestroDamnificado" />
           <EntitySet Name="SiniestroSolicitudForma" EntityType="CSBomberosModel.SiniestroSolicitudForma" />
           <EntitySet Name="SiniestroUbicacionTipo" EntityType="CSBomberosModel.SiniestroUbicacionTipo" />
@@ -8400,10 +8399,6 @@
             <End Role="Persona" EntitySet="Persona" />
             <End Role="Siniestro" EntitySet="Siniestro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Siniestro__SiniestroVehiculo" Association="CSBomberosModel.FK__Siniestro__SiniestroVehiculo">
-            <End Role="Siniestro" EntitySet="Siniestro" />
-            <End Role="SiniestroVehiculo" EntitySet="SiniestroVehiculo" />
-          </AssociationSet>
           <AssociationSet Name="FK_Siniestro_SiniestroSolicitudForma" Association="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma">
             <End Role="SiniestroSolicitudForma" EntitySet="SiniestroSolicitudForma" />
             <End Role="Siniestro" EntitySet="Siniestro" />
@@ -8411,14 +8406,6 @@
           <AssociationSet Name="FK_Siniestro_SiniestroUbicacionTipo" Association="CSBomberosModel.FK_Siniestro_SiniestroUbicacionTipo">
             <End Role="SiniestroUbicacionTipo" EntitySet="SiniestroUbicacionTipo" />
             <End Role="Siniestro" EntitySet="Siniestro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDaminificadoEstado_UsuarioCreacion" Association="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioCreacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDaminificadoEstado_UsuarioModificacion" Association="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioModificacion">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
           </AssociationSet>
           <AssociationSet Name="FK_SiniestroSolicitudForma_UsuarioCreacion" Association="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioCreacion">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -8468,9 +8455,22 @@
             <End Role="Siniestro" EntitySet="Siniestro" />
             <End Role="SiniestroDamnificado" EntitySet="SiniestroDamnificado" />
           </AssociationSet>
-          <AssociationSet Name="FK_SiniestroDamnificado_SiniestroDaminificadoEstado" Association="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDaminificadoEstado">
-            <End Role="SiniestroDaminificadoEstado" EntitySet="SiniestroDaminificadoEstado" />
+          <AssociationSet Name="FK_SiniestroVehiculo_Siniestro" Association="CSBomberosModel.FK_SiniestroVehiculo_Siniestro">
+            <End Role="Siniestro" EntitySet="Siniestro" />
+            <End Role="SiniestroVehiculo" EntitySet="SiniestroVehiculo" />
+          </AssociationSet>
+          <EntitySet Name="SiniestroDamnificadoEstado" EntityType="CSBomberosModel.SiniestroDamnificadoEstado" />
+          <AssociationSet Name="FK_SiniestroDamnificado_SiniestroDamnificadoEstado" Association="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDamnificadoEstado">
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
             <End Role="SiniestroDamnificado" EntitySet="SiniestroDamnificado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiniestroDamnificadoEstado_UsuarioCreacion" Association="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioCreacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiniestroDamnificadoEstado_UsuarioModificacion" Association="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioModificacion">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
@@ -8769,16 +8769,16 @@
           <NavigationProperty Name="OrdenesGeneralesCategoriasModificadas" Relationship="CSBomberosModel.FK__Usuario__OrdenGeneralCategoria__Modificacion" FromRole="Usuario" ToRole="OrdenGeneralCategoria" />
           <NavigationProperty Name="ResolucionesCreadas" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Creacion" FromRole="Usuario" ToRole="Resolucion" />
           <NavigationProperty Name="ResolucionesModificadas" Relationship="CSBomberosModel.FK__Usuario__Resolucion__Modificacion" FromRole="Usuario" ToRole="Resolucion" />
-          <NavigationProperty Name="SiniestroDaminificadoEstadosCreados" Relationship="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroDaminificadoEstado" />
-          <NavigationProperty Name="SiniestroDaminificadoEstadosModificados" Relationship="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroDaminificadoEstado" />
           <NavigationProperty Name="SiniestroSolicitudForma" Relationship="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroSolicitudForma" />
           <NavigationProperty Name="SiniestroSolicitudForma1" Relationship="CSBomberosModel.FK_SiniestroSolicitudForma_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroSolicitudForma" />
           <NavigationProperty Name="SiniestroUbicacionTiposCreados" Relationship="CSBomberosModel.FK_SiniestroUbicacionTipo_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroUbicacionTipo" />
           <NavigationProperty Name="SiniestroUbicacionTiposModificados" Relationship="CSBomberosModel.FK_SiniestroUbicacionTipo_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroUbicacionTipo" />
-          <NavigationProperty Name="SiniestroVehiculoMarca" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroVehiculoMarca" />
-          <NavigationProperty Name="SiniestroVehiculoMarca1" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroVehiculoMarca" />
+          <NavigationProperty Name="SiniestroVehiculoMarcasCreadas" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroVehiculoMarca" />
+          <NavigationProperty Name="SiniestroVehiculoMarcasModificadas" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroVehiculoMarca" />
           <NavigationProperty Name="SiniestroVehiculoTiposCreados" Relationship="CSBomberosModel.FK_SiniestroVehiculoTipo_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroVehiculoTipo" />
           <NavigationProperty Name="SiniestroVehiculoTiposModificados" Relationship="CSBomberosModel.FK_SiniestroVehiculoTipo_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroVehiculoTipo" />
+          <NavigationProperty Name="SiniestroDamnificadoEstadosCreados" Relationship="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioCreacion" FromRole="Usuario" ToRole="SiniestroDamnificadoEstado" />
+          <NavigationProperty Name="SiniestroDamnificadoEstadosModificados" Relationship="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioModificacion" FromRole="Usuario" ToRole="SiniestroDamnificadoEstado" />
           </EntityType>
         <EntityType Name="UsuarioGrupo">
           <Key>
@@ -12459,10 +12459,10 @@
           <NavigationProperty Name="PersonaEncargadoCuartel" Relationship="CSBomberosModel.FK__Persona__Siniestro__EncargadoCuartel" FromRole="Siniestro" ToRole="Persona" />
           <NavigationProperty Name="PersonaJefeGuardia" Relationship="CSBomberosModel.FK__Persona__Siniestro__JefeGuardia" FromRole="Siniestro" ToRole="Persona" />
           <NavigationProperty Name="PersonaRadioTelefonista" Relationship="CSBomberosModel.FK__Persona__Siniestro__RadioTelefonista" FromRole="Siniestro" ToRole="Persona" />
-          <NavigationProperty Name="SiniestroVehiculo" Relationship="CSBomberosModel.FK__Siniestro__SiniestroVehiculo" FromRole="Siniestro" ToRole="SiniestroVehiculo" />
           <NavigationProperty Name="SiniestroSolicitudForma" Relationship="CSBomberosModel.FK_Siniestro_SiniestroSolicitudForma" FromRole="Siniestro" ToRole="SiniestroSolicitudForma" />
           <NavigationProperty Name="SiniestroUbicacionTipo" Relationship="CSBomberosModel.FK_Siniestro_SiniestroUbicacionTipo" FromRole="Siniestro" ToRole="SiniestroUbicacionTipo" />
           <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="Siniestro" ToRole="SiniestroDamnificado" />
+          <NavigationProperty Name="SiniestroVehiculos" Relationship="CSBomberosModel.FK_SiniestroVehiculo_Siniestro" FromRole="Siniestro" ToRole="SiniestroVehiculo" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -14390,21 +14390,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SiniestroDaminificadoEstado">
-          <Key>
-            <PropertyRef Name="IdSiniestroDaminificadoEstado" />
-          </Key>
-          <Property Name="IdSiniestroDaminificadoEstado" Type="Byte" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <Property Name="IdUsuarioCreacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdUsuarioModificacion" Type="Int16" Nullable="false" />
-          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioCreacion" FromRole="SiniestroDaminificadoEstado" ToRole="Usuario" />
-          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK_SiniestroDaminificadoEstado_UsuarioModificacion" FromRole="SiniestroDaminificadoEstado" ToRole="Usuario" />
-          <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDaminificadoEstado" FromRole="SiniestroDaminificadoEstado" ToRole="SiniestroDamnificado" />
-        </EntityType>
         <EntityType Name="SiniestroDamnificado">
           <Key>
             <PropertyRef Name="IdSiniestro" />
@@ -14418,12 +14403,12 @@
           <Property Name="IdDocumentoTipo" Type="Byte" />
           <Property Name="DocumentoNumero" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Edad" Type="Byte" />
-          <Property Name="EsMenor" Type="Boolean" />
-          <Property Name="Trasladado" Type="Boolean" />
+          <Property Name="EsMenor" Type="Boolean" Nullable="false" />
+          <Property Name="Trasladado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DocumentoTipo1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="SiniestroDamnificado" ToRole="DocumentoTipo" />
           <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="SiniestroDamnificado" ToRole="Siniestro" />
           <Property Name="IdSiniestroDaminificadoEstado" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="SiniestroDaminificadoEstado" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDaminificadoEstado" FromRole="SiniestroDamnificado" ToRole="SiniestroDaminificadoEstado" />
+          <NavigationProperty Name="SiniestroDamnificadoEstado" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDamnificadoEstado" FromRole="SiniestroDamnificado" ToRole="SiniestroDamnificadoEstado" />
         </EntityType>
         <EntityType Name="SiniestroSolicitudForma">
           <Key>
@@ -14459,18 +14444,18 @@
         </EntityType>
         <EntityType Name="SiniestroVehiculo">
           <Key>
-            <PropertyRef Name="IDSiniestro" />
-            <PropertyRef Name="IDVehiculo" />
+            <PropertyRef Name="IdSiniestro" />
+            <PropertyRef Name="IdVehiculo" />
           </Key>
-          <Property Name="IDSiniestro" Type="Int32" Nullable="false" />
-          <Property Name="IDVehiculo" Type="Byte" Nullable="false" />
+          <Property Name="IdSiniestro" Type="Int32" Nullable="false" />
+          <Property Name="IdVehiculo" Type="Byte" Nullable="false" />
           <Property Name="IdSiniestroVehiculoTipo" Type="Byte" Nullable="false" />
           <Property Name="IdSiniestroVehiculoMarca" Type="Int16" Nullable="false" />
           <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK__Siniestro__SiniestroVehiculo" FromRole="SiniestroVehiculo" ToRole="Siniestro" />
           <NavigationProperty Name="SiniestroVehiculoMarca" Relationship="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoMarca" FromRole="SiniestroVehiculo" ToRole="SiniestroVehiculoMarca" />
           <NavigationProperty Name="SiniestroVehiculoTipo" Relationship="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoTipo" FromRole="SiniestroVehiculo" ToRole="SiniestroVehiculoTipo" />
+          <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK_SiniestroVehiculo_Siniestro" FromRole="SiniestroVehiculo" ToRole="Siniestro" />
         </EntityType>
         <EntityType Name="SiniestroVehiculoMarca">
           <Key>
@@ -14483,9 +14468,9 @@
           <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdUsuarioModificacion" Type="Int16" Nullable="false" />
           <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="SiniestroVehiculo" Relationship="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoMarca" FromRole="SiniestroVehiculoMarca" ToRole="SiniestroVehiculo" />
-          <NavigationProperty Name="Usuario" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioCreacion" FromRole="SiniestroVehiculoMarca" ToRole="Usuario" />
-          <NavigationProperty Name="Usuario1" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioModificacion" FromRole="SiniestroVehiculoMarca" ToRole="Usuario" />
+          <NavigationProperty Name="SiniestroVehiculos" Relationship="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoMarca" FromRole="SiniestroVehiculoMarca" ToRole="SiniestroVehiculo" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioCreacion" FromRole="SiniestroVehiculoMarca" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK_SiniestroVehiculoMarca_UsuarioModificacion" FromRole="SiniestroVehiculoMarca" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="SiniestroVehiculoTipo">
           <Key>
@@ -14538,18 +14523,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Siniestro__SiniestroVehiculo">
-          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="1" />
-          <End Type="CSBomberosModel.SiniestroVehiculo" Role="SiniestroVehiculo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Siniestro">
-              <PropertyRef Name="IDSiniestro" />
-            </Principal>
-            <Dependent Role="SiniestroVehiculo">
-              <PropertyRef Name="IDSiniestro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Siniestro_SiniestroSolicitudForma">
           <End Type="CSBomberosModel.SiniestroSolicitudForma" Role="SiniestroSolicitudForma" Multiplicity="0..1" />
           <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="*" />
@@ -14571,30 +14544,6 @@
             </Principal>
             <Dependent Role="Siniestro">
               <PropertyRef Name="IdSiniestroUbicacionTipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SiniestroDaminificadoEstado_UsuarioCreacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.SiniestroDaminificadoEstado" Role="SiniestroDaminificadoEstado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdUsuarioCreacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SiniestroDaminificadoEstado_UsuarioModificacion">
-          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="CSBomberosModel.SiniestroDaminificadoEstado" Role="SiniestroDaminificadoEstado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuario">
-              <PropertyRef Name="IDUsuario" />
-            </Principal>
-            <Dependent Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -14742,15 +14691,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SiniestroDamnificado_SiniestroDaminificadoEstado">
-          <End Type="CSBomberosModel.SiniestroDaminificadoEstado" Role="SiniestroDaminificadoEstado" Multiplicity="1" />
+        <Association Name="FK_SiniestroVehiculo_Siniestro">
+          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroVehiculo" Role="SiniestroVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Siniestro">
+              <PropertyRef Name="IDSiniestro" />
+            </Principal>
+            <Dependent Role="SiniestroVehiculo">
+              <PropertyRef Name="IdSiniestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SiniestroDamnificadoEstado">
+          <Key>
+            <PropertyRef Name="IdSiniestroDamnificadoEstado" />
+          </Key>
+          <Property Name="IdSiniestroDamnificadoEstado" Type="Byte" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EsActivo" Type="Boolean" Nullable="false" />
+          <Property Name="IdUsuarioCreacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdUsuarioModificacion" Type="Int16" Nullable="false" />
+          <Property Name="FechaHoraModificacion" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDamnificadoEstado" FromRole="SiniestroDamnificadoEstado" ToRole="SiniestroDamnificado" />
+          <NavigationProperty Name="UsuarioCreacion" Relationship="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioCreacion" FromRole="SiniestroDamnificadoEstado" ToRole="Usuario" />
+          <NavigationProperty Name="UsuarioModificacion" Relationship="CSBomberosModel.FK_SiniestroDamnificadoEstado_UsuarioModificacion" FromRole="SiniestroDamnificadoEstado" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_SiniestroDamnificado_SiniestroDamnificadoEstado">
+          <End Type="CSBomberosModel.SiniestroDamnificadoEstado" Role="SiniestroDamnificadoEstado" Multiplicity="1" />
           <End Type="CSBomberosModel.SiniestroDamnificado" Role="SiniestroDamnificado" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="SiniestroDaminificadoEstado">
-              <PropertyRef Name="IdSiniestroDaminificadoEstado" />
+            <Principal Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdSiniestroDamnificadoEstado" />
             </Principal>
             <Dependent Role="SiniestroDamnificado">
               <PropertyRef Name="IdSiniestroDaminificadoEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiniestroDamnificadoEstado_UsuarioCreacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroDamnificadoEstado" Role="SiniestroDamnificadoEstado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdUsuarioCreacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SiniestroDamnificadoEstado_UsuarioModificacion">
+          <End Type="CSBomberosModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroDamnificadoEstado" Role="SiniestroDamnificadoEstado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IDUsuario" />
+            </Principal>
+            <Dependent Role="SiniestroDamnificadoEstado">
+              <PropertyRef Name="IdUsuarioModificacion" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -16664,19 +16664,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SiniestroDaminificadoEstado">
-            <EntityTypeMapping TypeName="CSBomberosModel.SiniestroDaminificadoEstado">
-              <MappingFragment StoreEntitySet="SiniestroDaminificadoEstado">
-                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
-                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
-                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
-                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
-                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdSiniestroDaminificadoEstado" ColumnName="IdSiniestroDaminificadoEstado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SiniestroDamnificado">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroDamnificado">
               <MappingFragment StoreEntitySet="SiniestroDamnificado">
@@ -16725,13 +16712,13 @@
           <EntitySetMapping Name="SiniestroVehiculo">
             <EntityTypeMapping TypeName="CSBomberosModel.SiniestroVehiculo">
               <MappingFragment StoreEntitySet="SiniestroVehiculo">
+                <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+                <ScalarProperty Name="IdSiniestro" ColumnName="IdSiniestro" />
                 <ScalarProperty Name="Dominio" ColumnName="Dominio" />
                 <ScalarProperty Name="Modelo" ColumnName="Modelo" />
                 <ScalarProperty Name="IdSiniestroVehiculoMarca" ColumnName="IdSiniestroVehiculoMarca" />
                 <ScalarProperty Name="IdSiniestroVehiculoTipo" ColumnName="IdSiniestroVehiculoTipo" />
-                <ScalarProperty Name="IDVehiculo" ColumnName="IDVehiculo" />
-                <ScalarProperty Name="IDSiniestro" ColumnName="IDSiniestro" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SiniestroVehiculoMarca">
@@ -16757,6 +16744,19 @@
                 <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdSiniestroVehiculoTipo" ColumnName="IdSiniestroVehiculoTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiniestroDamnificadoEstado">
+            <EntityTypeMapping TypeName="CSBomberosModel.SiniestroDamnificadoEstado">
+              <MappingFragment StoreEntitySet="SiniestroDamnificadoEstado">
+                <ScalarProperty Name="FechaHoraModificacion" ColumnName="FechaHoraModificacion" />
+                <ScalarProperty Name="IdUsuarioModificacion" ColumnName="IdUsuarioModificacion" />
+                <ScalarProperty Name="FechaHoraCreacion" ColumnName="FechaHoraCreacion" />
+                <ScalarProperty Name="IdUsuarioCreacion" ColumnName="IdUsuarioCreacion" />
+                <ScalarProperty Name="EsActivo" ColumnName="EsActivo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdSiniestroDamnificadoEstado" ColumnName="IdSiniestroDamnificadoEstado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

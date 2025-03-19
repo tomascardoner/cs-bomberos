@@ -123,8 +123,9 @@
 
         DataGridViewResumenAsistencias.Visible = Not mEditMode
 
-        ' Asistencias
         toolstripAsistencias.Enabled = (mEditMode AndAlso mPermisoEditarBasico)
+        ToolStripDaminificados.Enabled = (mEditMode AndAlso mPermisoEditarBasico)
+        ToolStripVehiculos.Enabled = (mEditMode AndAlso mPermisoEditarBasico)
 
         ' Notas y Auditoría
         textboxNotas.Enabled = mEditMode
@@ -179,7 +180,7 @@
 
 #End Region
 
-#Region "Load and Set Data"
+#Region "Interface data"
 
     Friend Sub SetDataFromObjectToControls()
         With mSiniestroActual
@@ -254,6 +255,8 @@
             End If
 
             AsistenciasRefreshData()
+            DamnificadosRefreshData()
+            VehiculosRefreshData()
         End With
     End Sub
 
@@ -329,14 +332,7 @@
     End Sub
 
     Private Sub Controls_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.GotFocus, maskedtextboxNumero.GotFocus, textboxSiniestroTipoOtro.GotFocus, NumericUpDownTrasladoPorOtroCantidad.GotFocus, NumericUpDownIncendioForestalCantidadHa.GotFocus, NumericUpDownIncendioForestalCantidadPlanta.GotFocus, NumericUpDownIncendioForestalLargoMetro.GotFocus, NumericUpDownIncendioForestalAnchoMetro.GotFocus, NumericUpDownIncendioForestalSuperficieMetro.GotFocus, TextBoxSolicitanteNombre.GotFocus, TextBoxSolicitanteDireccion.GotFocus, TextBoxSolicitanteDocumentoNumero.GotFocus, TextBoxSolicitanteTelefono.GotFocus, TextBoxUbicacionDescripcion.GotFocus, textboxNotas.GotFocus
-        Select Case sender.GetType()
-            Case GetType(TextBox)
-                CType(sender, TextBox).SelectAll()
-            Case GetType(MaskedTextBox)
-                CType(sender, MaskedTextBox).SelectAll()
-            Case GetType(NumericUpDown)
-                CType(sender, NumericUpDown).Select(0, CType(sender, NumericUpDown).Text.Length)
-        End Select
+        Common.SelectAllText(sender)
     End Sub
 
     Private Sub MaskedtextboxNumeroPrefijo_LostFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.LostFocus
@@ -475,7 +471,7 @@
 
 #End Region
 
-#Region "Main Toolbar"
+#Region "Main toolbar events"
 
     Private Sub Editar() Handles buttonEditar.Click
         If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
@@ -563,6 +559,224 @@
 
 #End Region
 
+#Region "Damnificados"
+
+    Friend Class DamnificadosGridRowData
+        Public Property IdDamnificado As Byte
+        Public Property ApellidoNombre As String
+        Public Property Edad As Byte?
+        Public Property EstadoNombre As String
+    End Class
+
+    Friend Sub DamnificadosRefreshData(Optional idDamnificado As Byte = 0, Optional restoreCurrentPosition As Boolean = False)
+        Dim damnificados As List(Of DamnificadosGridRowData)
+
+        If restoreCurrentPosition Then
+            If DataGridViewDamnificados.CurrentRow Is Nothing Then
+                idDamnificado = 0
+            Else
+                idDamnificado = CType(DataGridViewDamnificados.CurrentRow.DataBoundItem, DamnificadosGridRowData).IdDamnificado
+            End If
+        End If
+
+        Cursor = Cursors.WaitCursor
+
+        Try
+            damnificados = (From sd In mSiniestroActual.SiniestroDamnificados
+                            Join sde In mdbContext.SiniestroDamnificadoEstado On sd.IdSiniestroDaminificadoEstado Equals sde.IdSiniestroDamnificadoEstado
+                            Order By sd.Apellido, sd.Nombre
+                            Select New DamnificadosGridRowData With {.IdDamnificado = sd.IdDamnificado, .ApellidoNombre = sd.Apellido & ", " & sd.Nombre, .Edad = sd.Edad, .EstadoNombre = sde.Nombre}).ToList()
+
+            DataGridViewDamnificados.AutoGenerateColumns = False
+            DataGridViewDamnificados.DataSource = damnificados
+
+            Select Case damnificados.Count
+                Case 0
+                    ToolStripStatusLabelDamnificados.Text = String.Format("No hay Damnificados para mostrar.")
+                Case 1
+                    ToolStripStatusLabelDamnificados.Text = String.Format("Se muestra 1 Damnificado.")
+                Case Else
+                    ToolStripStatusLabelDamnificados.Text = String.Format("Se muestran {0} Damnificados.", damnificados.Count)
+            End Select
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Damnificados del Siniestro.")
+            Cursor = Cursors.Default
+            Return
+        End Try
+
+        Cursor = Cursors.Default
+
+        If idDamnificado <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In DataGridViewDamnificados.Rows
+                If CType(CurrentRowChecked.DataBoundItem, DamnificadosGridRowData).IdDamnificado = idDamnificado Then
+                    DataGridViewDamnificados.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub DamnificadosAgregar(sender As Object, e As EventArgs) Handles ToolStripButtonDamnificadosAgregar.Click
+        Cursor = Cursors.WaitCursor
+        FormSiniestroDamnificado.LoadAndShow(True, True, Me, mSiniestroActual, 0)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DamnificadosEditar(sender As Object, e As EventArgs) Handles ToolStripButtonDamnificadosEditar.Click
+        If DataGridViewDamnificados.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Damnificado para editar.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Cursor = Cursors.WaitCursor
+        FormSiniestroDamnificado.LoadAndShow(True, True, Me, mSiniestroActual, CType(DataGridViewDamnificados.SelectedRows(0).DataBoundItem, DamnificadosGridRowData).IdDamnificado)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DamnificadosEliminar(sender As Object, e As EventArgs) Handles ToolStripButtonDamnificadosBorrar.Click
+        If DataGridViewDamnificados.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Damnificado para eliminar.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Dim row As DamnificadosGridRowData
+        Dim Mensaje As String
+        Dim siniestroDamnificado As SiniestroDamnificado
+
+        row = CType(DataGridViewDamnificados.SelectedRows(0).DataBoundItem, DamnificadosGridRowData)
+        Mensaje = String.Format("Se eliminará el Damnificado.{0}{0}Apellido y nombre: {1}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, row.ApellidoNombre)
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            siniestroDamnificado = mSiniestroActual.SiniestroDamnificados.FirstOrDefault(Function(sd) sd.IdDamnificado = row.IdDamnificado)
+            If siniestroDamnificado IsNot Nothing Then
+                mSiniestroActual.SiniestroDamnificados.Remove(siniestroDamnificado)
+            End If
+            DamnificadosRefreshData()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DamnificadosVer(sender As Object, e As EventArgs) Handles DataGridViewDamnificados.CellDoubleClick
+        If DataGridViewDamnificados.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Damnificado para ver.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Cursor = Cursors.WaitCursor
+        FormSiniestroDamnificado.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(DataGridViewDamnificados.SelectedRows(0).DataBoundItem, DamnificadosGridRowData).IdDamnificado)
+        Cursor = Cursors.Default
+    End Sub
+
+#End Region
+
+#Region "Vehículos"
+
+    Friend Class VehiculosGridRowData
+        Public Property IdVehiculo As Byte
+        Public Property TipoNombre As String
+        Public Property MarcaNombre As String
+        Public Property Modelo As String
+        Public Property Dominio As String
+    End Class
+
+    Friend Sub VehiculosRefreshData(Optional idVehiculo As Byte = 0, Optional restoreCurrentPosition As Boolean = False)
+        Dim vehiculos As List(Of VehiculosGridRowData)
+
+        If restoreCurrentPosition Then
+            If DataGridViewVehiculos.CurrentRow Is Nothing Then
+                idVehiculo = 0
+            Else
+                idVehiculo = CType(DataGridViewVehiculos.CurrentRow.DataBoundItem, VehiculosGridRowData).IdVehiculo
+            End If
+        End If
+
+        Me.Cursor = Cursors.WaitCursor
+
+        Try
+            vehiculos = (From sv In mSiniestroActual.SiniestroVehiculos
+                         Join svt In mdbContext.SiniestroVehiculoTipo On sv.IdSiniestroVehiculoTipo Equals svt.IdSiniestroVehiculoTipo
+                         Join svm In mdbContext.SiniestroVehiculoMarca On sv.IdSiniestroVehiculoMarca Equals svm.IdSiniestroVehiculoMarca
+                         Order By svt.Nombre, svm.Nombre
+                         Select New VehiculosGridRowData With {.IdVehiculo = sv.IdVehiculo, .TipoNombre = svt.Nombre, .MarcaNombre = svm.Nombre, .Modelo = sv.Modelo, .Dominio = sv.Dominio}).ToList()
+
+            DataGridViewVehiculos.AutoGenerateColumns = False
+            DataGridViewVehiculos.DataSource = vehiculos
+
+            Select Case vehiculos.Count
+                Case 0
+                    ToolStripStatusLabelVehiculos.Text = String.Format("No hay Vehículos para mostrar.")
+                Case 1
+                    ToolStripStatusLabelVehiculos.Text = String.Format("Se muestra 1 Vehículo.")
+                Case Else
+                    ToolStripStatusLabelVehiculos.Text = String.Format("Se muestran {0} Vehículos.", vehiculos.Count)
+            End Select
+
+        Catch ex As Exception
+            CardonerSistemas.ErrorHandler.ProcessError(ex, "Error al leer los Vehículos del Siniestro.")
+            Me.Cursor = Cursors.Default
+            Return
+        End Try
+
+        Me.Cursor = Cursors.Default
+
+        If idVehiculo <> 0 Then
+            For Each CurrentRowChecked As DataGridViewRow In DataGridViewVehiculos.Rows
+                If CType(CurrentRowChecked.DataBoundItem, VehiculosGridRowData).IdVehiculo = idVehiculo Then
+                    DataGridViewVehiculos.CurrentCell = CurrentRowChecked.Cells(0)
+                    Exit For
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub VehiculosAgregar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosAgregar.Click
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub VehiculosEditar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosEditar.Click
+        If datagridviewAsistencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para editar.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
+    End Sub
+
+    Private Sub VehiculosEliminar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosBorrar.Click
+        If datagridviewAsistencias.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para eliminar.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Dim row As VehiculosGridRowData
+        Dim Mensaje As String
+        Dim siniestroVehiculo As SiniestroVehiculo
+
+        row = CType(DataGridViewVehiculos.SelectedRows(0).DataBoundItem, VehiculosGridRowData)
+        Mensaje = String.Format("Se eliminará el Vehículo.{0}{0}Tipo: {1}{0}Marca: {2}{0}Modelo: {3}{0}Dominio: {4}{0}{0}¿Confirma la eliminación definitiva?", vbCrLf, row.TipoNombre, row.MarcaNombre, row.Modelo, row.Dominio)
+        If MsgBox(Mensaje, CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
+            Me.Cursor = Cursors.WaitCursor
+            siniestroVehiculo = mSiniestroActual.SiniestroVehiculos.FirstOrDefault(Function(sd) sd.IdVehiculo = row.IdVehiculo)
+            If siniestroVehiculo IsNot Nothing Then
+                mSiniestroActual.SiniestroVehiculos.Remove(siniestroVehiculo)
+            End If
+            VehiculosRefreshData()
+            Me.Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub VehiculosVer(sender As Object, e As EventArgs) Handles DataGridViewVehiculos.CellDoubleClick
+        If DataGridViewVehiculos.CurrentRow Is Nothing Then
+            MsgBox("No hay ningún Vehículo para ver.", vbInformation, My.Application.Info.Title)
+            Return
+        End If
+        Me.Cursor = Cursors.WaitCursor
+        formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        Me.Cursor = Cursors.Default
+    End Sub
+
+#End Region
+
 #Region "Asistencias"
 
     Friend Class AsistenciasGridRowData
@@ -597,11 +811,11 @@
 
             Select Case listAsistencias.Count
                 Case 0
-                    statuslabelMain.Text = String.Format("No hay Asistencias para mostrar.")
+                    ToolStripStatusLabelAsistencias.Text = String.Format("No hay Asistencias para mostrar.")
                 Case 1
-                    statuslabelMain.Text = String.Format("Se muestra 1 Asistencia.")
+                    ToolStripStatusLabelAsistencias.Text = String.Format("Se muestra 1 Asistencia.")
                 Case Else
-                    statuslabelMain.Text = String.Format("Se muestran {0} Asistencias.", listAsistencias.Count)
+                    ToolStripStatusLabelAsistencias.Text = String.Format("Se muestran {0} Asistencias.", listAsistencias.Count)
             End Select
 
         Catch ex As Exception
@@ -622,13 +836,13 @@
         End If
     End Sub
 
-    Private Sub DetallesAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
+    Private Sub AsistenciasAgregar(sender As Object, e As EventArgs) Handles buttonAsistenciasAgregar.Click
         Me.Cursor = Cursors.WaitCursor
         formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub DetallesEditar(sender As Object, e As EventArgs) Handles buttonAsistenciasEditar.Click
+    Private Sub AsistenciasEditar(sender As Object, e As EventArgs) Handles buttonAsistenciasEditar.Click
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para editar.", vbInformation, My.Application.Info.Title)
             Return
@@ -638,7 +852,7 @@
         Me.Cursor = Cursors.Default
     End Sub
 
-    Private Sub DetallesEliminar(sender As Object, e As EventArgs) Handles buttonAsistenciasEliminar.Click
+    Private Sub AsistenciasEliminar(sender As Object, e As EventArgs) Handles buttonAsistenciasEliminar.Click
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para eliminar.", vbInformation, My.Application.Info.Title)
             Return
@@ -656,7 +870,7 @@
         End If
     End Sub
 
-    Private Sub Detalles_Ver(sender As Object, e As EventArgs) Handles datagridviewAsistencias.DoubleClick
+    Private Sub AsistenciasVer(sender As Object, e As EventArgs) Handles datagridviewAsistencias.DoubleClick
         If datagridviewAsistencias.CurrentRow Is Nothing Then
             MsgBox("No hay ninguna Asistencia para ver.", vbInformation, My.Application.Info.Title)
             Return

@@ -11,15 +11,15 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class SiniestroVehiculo
-    Public Property IDSiniestro As Integer
-    Public Property IDVehiculo As Byte
+    Public Property IdSiniestro As Integer
+    Public Property IdVehiculo As Byte
     Public Property IdSiniestroVehiculoTipo As Byte
     Public Property IdSiniestroVehiculoMarca As Short
     Public Property Modelo As String
     Public Property Dominio As String
 
-    Public Overridable Property Siniestro As Siniestro
     Public Overridable Property SiniestroVehiculoMarca As SiniestroVehiculoMarca
     Public Overridable Property SiniestroVehiculoTipo As SiniestroVehiculoTipo
+    Public Overridable Property Siniestro As Siniestro
 
 End Class

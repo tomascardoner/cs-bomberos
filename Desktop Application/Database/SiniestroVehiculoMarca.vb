@@ -19,8 +19,8 @@ Partial Public Class SiniestroVehiculoMarca
     Public Property IdUsuarioModificacion As Short
     Public Property FechaHoraModificacion As Date
 
-    Public Overridable Property SiniestroVehiculo As ICollection(Of SiniestroVehiculo) = New HashSet(Of SiniestroVehiculo)
-    Public Overridable Property Usuario As Usuario
-    Public Overridable Property Usuario1 As Usuario
+    Public Overridable Property SiniestroVehiculos As ICollection(Of SiniestroVehiculo) = New HashSet(Of SiniestroVehiculo)
+    Public Overridable Property UsuarioCreacion As Usuario
+    Public Overridable Property UsuarioModificacion As Usuario
 
 End Class
