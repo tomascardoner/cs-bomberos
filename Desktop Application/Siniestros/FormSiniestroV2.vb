@@ -729,22 +729,22 @@
 
     Private Sub VehiculosAgregar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosAgregar.Click
         Me.Cursor = Cursors.WaitCursor
-        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, 0, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        FormSiniestroVehiculo.LoadAndShow(True, True, Me, mSiniestroActual, 0)
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub VehiculosEditar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosEditar.Click
-        If datagridviewAsistencias.CurrentRow Is Nothing Then
+        If DataGridViewVehiculos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Vehículo para editar.", vbInformation, My.Application.Info.Title)
             Return
         End If
         Me.Cursor = Cursors.WaitCursor
-        formSiniestroAsistencia.LoadAndShow(True, True, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        FormSiniestroVehiculo.LoadAndShow(True, True, Me, mSiniestroActual, CType(DataGridViewVehiculos.SelectedRows(0).DataBoundItem, VehiculosGridRowData).IdVehiculo)
         Me.Cursor = Cursors.Default
     End Sub
 
     Private Sub VehiculosEliminar(sender As Object, e As EventArgs) Handles ToolStripButtonVehiculosBorrar.Click
-        If datagridviewAsistencias.CurrentRow Is Nothing Then
+        If DataGridViewVehiculos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Vehículo para eliminar.", vbInformation, My.Application.Info.Title)
             Return
         End If
@@ -771,7 +771,7 @@
             Return
         End If
         Me.Cursor = Cursors.WaitCursor
-        formSiniestroAsistencia.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(datagridviewAsistencias.SelectedRows(0).DataBoundItem, AsistenciasGridRowData).IDPersona, CByte(ComboBoxCuartel.SelectedValue), ComboBoxCuartel.Text, maskedtextboxNumeroPrefijo.Text & "-" & maskedtextboxNumero.Text, datetimepickerFecha.Value.ToShortDateString())
+        FormSiniestroVehiculo.LoadAndShow(mEditMode, False, Me, mSiniestroActual, CType(DataGridViewVehiculos.SelectedRows(0).DataBoundItem, VehiculosGridRowData).IdVehiculo)
         Me.Cursor = Cursors.Default
     End Sub
 

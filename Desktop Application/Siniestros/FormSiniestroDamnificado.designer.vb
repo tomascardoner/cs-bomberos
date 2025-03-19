@@ -36,11 +36,11 @@ Partial Class FormSiniestroDamnificado
         Me.TextBoxNombre = New System.Windows.Forms.TextBox()
         Me.LabelDocumento = New System.Windows.Forms.Label()
         Me.TableLayoutPanelDocumento = New System.Windows.Forms.TableLayoutPanel()
-        Me.ComboBoxDocumentoTipo = New System.Windows.Forms.ComboBox()
         Me.TextBoxDocumentoNumero = New System.Windows.Forms.TextBox()
+        Me.ComboBoxDocumentoTipo = New System.Windows.Forms.ComboBox()
         Me.LabelEdad = New System.Windows.Forms.Label()
-        Me.NumericUpDownEdad = New System.Windows.Forms.NumericUpDown()
         Me.TableLayoutPanelEdad = New System.Windows.Forms.TableLayoutPanel()
+        Me.NumericUpDownEdad = New System.Windows.Forms.NumericUpDown()
         Me.CheckBoxEsMenor = New System.Windows.Forms.CheckBox()
         Me.LabelTrasladado = New System.Windows.Forms.Label()
         Me.CheckBoxTrasladado = New System.Windows.Forms.CheckBox()
@@ -49,8 +49,8 @@ Partial Class FormSiniestroDamnificado
         Me.ToolStripMain.SuspendLayout()
         Me.TableLayoutPanelMain.SuspendLayout()
         Me.TableLayoutPanelDocumento.SuspendLayout()
-        CType(Me.NumericUpDownEdad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanelEdad.SuspendLayout()
+        CType(Me.NumericUpDownEdad, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStripButtonGuardar
@@ -101,7 +101,7 @@ Partial Class FormSiniestroDamnificado
         Me.ToolStripMain.Location = New System.Drawing.Point(0, 0)
         Me.ToolStripMain.Name = "ToolStripMain"
         Me.ToolStripMain.Size = New System.Drawing.Size(616, 39)
-        Me.ToolStripMain.TabIndex = 5
+        Me.ToolStripMain.TabIndex = 1
         '
         'TableLayoutPanelMain
         '
@@ -141,7 +141,7 @@ Partial Class FormSiniestroDamnificado
         Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelMain.Size = New System.Drawing.Size(616, 247)
-        Me.TableLayoutPanelMain.TabIndex = 6
+        Me.TableLayoutPanelMain.TabIndex = 0
         '
         'LabelGenero
         '
@@ -162,7 +162,7 @@ Partial Class FormSiniestroDamnificado
         Me.ComboBoxGenero.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxGenero.Name = "ComboBoxGenero"
         Me.ComboBoxGenero.Size = New System.Drawing.Size(135, 24)
-        Me.ComboBoxGenero.TabIndex = 10
+        Me.ComboBoxGenero.TabIndex = 1
         '
         'LabelApellido
         '
@@ -171,7 +171,7 @@ Partial Class FormSiniestroDamnificado
         Me.LabelApellido.Location = New System.Drawing.Point(23, 52)
         Me.LabelApellido.Name = "LabelApellido"
         Me.LabelApellido.Size = New System.Drawing.Size(81, 28)
-        Me.LabelApellido.TabIndex = 11
+        Me.LabelApellido.TabIndex = 2
         Me.LabelApellido.Text = "Apellido:"
         Me.LabelApellido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -182,7 +182,7 @@ Partial Class FormSiniestroDamnificado
         Me.TextBoxApellido.MaxLength = 50
         Me.TextBoxApellido.Name = "TextBoxApellido"
         Me.TextBoxApellido.Size = New System.Drawing.Size(483, 22)
-        Me.TextBoxApellido.TabIndex = 12
+        Me.TextBoxApellido.TabIndex = 3
         '
         'LabelNombre
         '
@@ -191,7 +191,7 @@ Partial Class FormSiniestroDamnificado
         Me.LabelNombre.Location = New System.Drawing.Point(23, 80)
         Me.LabelNombre.Name = "LabelNombre"
         Me.LabelNombre.Size = New System.Drawing.Size(81, 28)
-        Me.LabelNombre.TabIndex = 13
+        Me.LabelNombre.TabIndex = 4
         Me.LabelNombre.Text = "Nombre:"
         Me.LabelNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -202,7 +202,7 @@ Partial Class FormSiniestroDamnificado
         Me.TextBoxNombre.MaxLength = 50
         Me.TextBoxNombre.Name = "TextBoxNombre"
         Me.TextBoxNombre.Size = New System.Drawing.Size(483, 22)
-        Me.TextBoxNombre.TabIndex = 14
+        Me.TextBoxNombre.TabIndex = 5
         '
         'LabelDocumento
         '
@@ -211,7 +211,7 @@ Partial Class FormSiniestroDamnificado
         Me.LabelDocumento.Location = New System.Drawing.Point(23, 108)
         Me.LabelDocumento.Name = "LabelDocumento"
         Me.LabelDocumento.Size = New System.Drawing.Size(81, 38)
-        Me.LabelDocumento.TabIndex = 15
+        Me.LabelDocumento.TabIndex = 6
         Me.LabelDocumento.Text = "Documento:"
         Me.LabelDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -230,16 +230,7 @@ Partial Class FormSiniestroDamnificado
         Me.TableLayoutPanelDocumento.RowCount = 1
         Me.TableLayoutPanelDocumento.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelDocumento.Size = New System.Drawing.Size(303, 32)
-        Me.TableLayoutPanelDocumento.TabIndex = 16
-        '
-        'ComboBoxDocumentoTipo
-        '
-        Me.ComboBoxDocumentoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBoxDocumentoTipo.Location = New System.Drawing.Point(4, 4)
-        Me.ComboBoxDocumentoTipo.Margin = New System.Windows.Forms.Padding(4)
-        Me.ComboBoxDocumentoTipo.Name = "ComboBoxDocumentoTipo"
-        Me.ComboBoxDocumentoTipo.Size = New System.Drawing.Size(135, 24)
-        Me.ComboBoxDocumentoTipo.TabIndex = 5
+        Me.TableLayoutPanelDocumento.TabIndex = 7
         '
         'TextBoxDocumentoNumero
         '
@@ -248,7 +239,16 @@ Partial Class FormSiniestroDamnificado
         Me.TextBoxDocumentoNumero.MaxLength = 11
         Me.TextBoxDocumentoNumero.Name = "TextBoxDocumentoNumero"
         Me.TextBoxDocumentoNumero.Size = New System.Drawing.Size(152, 22)
-        Me.TextBoxDocumentoNumero.TabIndex = 6
+        Me.TextBoxDocumentoNumero.TabIndex = 1
+        '
+        'ComboBoxDocumentoTipo
+        '
+        Me.ComboBoxDocumentoTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBoxDocumentoTipo.Location = New System.Drawing.Point(4, 4)
+        Me.ComboBoxDocumentoTipo.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBoxDocumentoTipo.Name = "ComboBoxDocumentoTipo"
+        Me.ComboBoxDocumentoTipo.Size = New System.Drawing.Size(135, 24)
+        Me.ComboBoxDocumentoTipo.TabIndex = 0
         '
         'LabelEdad
         '
@@ -257,18 +257,9 @@ Partial Class FormSiniestroDamnificado
         Me.LabelEdad.Location = New System.Drawing.Point(23, 146)
         Me.LabelEdad.Name = "LabelEdad"
         Me.LabelEdad.Size = New System.Drawing.Size(81, 28)
-        Me.LabelEdad.TabIndex = 17
+        Me.LabelEdad.TabIndex = 8
         Me.LabelEdad.Text = "Edad:"
         Me.LabelEdad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'NumericUpDownEdad
-        '
-        Me.NumericUpDownEdad.Location = New System.Drawing.Point(3, 3)
-        Me.NumericUpDownEdad.Maximum = New Decimal(New Integer() {110, 0, 0, 0})
-        Me.NumericUpDownEdad.Name = "NumericUpDownEdad"
-        Me.NumericUpDownEdad.Size = New System.Drawing.Size(60, 22)
-        Me.NumericUpDownEdad.TabIndex = 18
-        Me.NumericUpDownEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TableLayoutPanelEdad
         '
@@ -287,7 +278,16 @@ Partial Class FormSiniestroDamnificado
         Me.TableLayoutPanelEdad.RowCount = 1
         Me.TableLayoutPanelEdad.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelEdad.Size = New System.Drawing.Size(181, 28)
-        Me.TableLayoutPanelEdad.TabIndex = 19
+        Me.TableLayoutPanelEdad.TabIndex = 9
+        '
+        'NumericUpDownEdad
+        '
+        Me.NumericUpDownEdad.Location = New System.Drawing.Point(3, 3)
+        Me.NumericUpDownEdad.Maximum = New Decimal(New Integer() {110, 0, 0, 0})
+        Me.NumericUpDownEdad.Name = "NumericUpDownEdad"
+        Me.NumericUpDownEdad.Size = New System.Drawing.Size(60, 22)
+        Me.NumericUpDownEdad.TabIndex = 0
+        Me.NumericUpDownEdad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'CheckBoxEsMenor
         '
@@ -296,7 +296,7 @@ Partial Class FormSiniestroDamnificado
         Me.CheckBoxEsMenor.Location = New System.Drawing.Point(89, 3)
         Me.CheckBoxEsMenor.Name = "CheckBoxEsMenor"
         Me.CheckBoxEsMenor.Size = New System.Drawing.Size(89, 20)
-        Me.CheckBoxEsMenor.TabIndex = 19
+        Me.CheckBoxEsMenor.TabIndex = 1
         Me.CheckBoxEsMenor.Text = "Es menor:"
         Me.CheckBoxEsMenor.UseVisualStyleBackColor = True
         '
@@ -307,7 +307,7 @@ Partial Class FormSiniestroDamnificado
         Me.LabelTrasladado.Location = New System.Drawing.Point(23, 174)
         Me.LabelTrasladado.Name = "LabelTrasladado"
         Me.LabelTrasladado.Size = New System.Drawing.Size(81, 23)
-        Me.LabelTrasladado.TabIndex = 20
+        Me.LabelTrasladado.TabIndex = 10
         Me.LabelTrasladado.Text = "Trasladado:"
         Me.LabelTrasladado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -317,7 +317,7 @@ Partial Class FormSiniestroDamnificado
         Me.CheckBoxTrasladado.Location = New System.Drawing.Point(110, 177)
         Me.CheckBoxTrasladado.Name = "CheckBoxTrasladado"
         Me.CheckBoxTrasladado.Size = New System.Drawing.Size(18, 17)
-        Me.CheckBoxTrasladado.TabIndex = 21
+        Me.CheckBoxTrasladado.TabIndex = 11
         Me.CheckBoxTrasladado.UseVisualStyleBackColor = True
         '
         'LabelEstado
@@ -327,7 +327,7 @@ Partial Class FormSiniestroDamnificado
         Me.LabelEstado.Location = New System.Drawing.Point(23, 197)
         Me.LabelEstado.Name = "LabelEstado"
         Me.LabelEstado.Size = New System.Drawing.Size(81, 32)
-        Me.LabelEstado.TabIndex = 22
+        Me.LabelEstado.TabIndex = 12
         Me.LabelEstado.Text = "Estado:"
         Me.LabelEstado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -340,7 +340,7 @@ Partial Class FormSiniestroDamnificado
         Me.ComboBoxEstado.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxEstado.Name = "ComboBoxEstado"
         Me.ComboBoxEstado.Size = New System.Drawing.Size(481, 24)
-        Me.ComboBoxEstado.TabIndex = 23
+        Me.ComboBoxEstado.TabIndex = 13
         '
         'FormSiniestroDamnificado
         '
@@ -364,9 +364,9 @@ Partial Class FormSiniestroDamnificado
         Me.TableLayoutPanelMain.PerformLayout()
         Me.TableLayoutPanelDocumento.ResumeLayout(False)
         Me.TableLayoutPanelDocumento.PerformLayout()
-        CType(Me.NumericUpDownEdad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanelEdad.ResumeLayout(False)
         Me.TableLayoutPanelEdad.PerformLayout()
+        CType(Me.NumericUpDownEdad, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

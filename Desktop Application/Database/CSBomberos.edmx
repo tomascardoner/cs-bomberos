@@ -1615,7 +1615,7 @@
           <Property Name="IdSiniestro" Type="int" Nullable="false" />
           <Property Name="IdVehiculo" Type="tinyint" Nullable="false" />
           <Property Name="IdSiniestroVehiculoTipo" Type="tinyint" Nullable="false" />
-          <Property Name="IdSiniestroVehiculoMarca" Type="smallint" Nullable="false" />
+          <Property Name="IdSiniestroVehiculoMarca" Type="smallint" />
           <Property Name="Modelo" Type="varchar" MaxLength="50" />
           <Property Name="Dominio" Type="varchar" MaxLength="7" />
         </EntityType>
@@ -5614,7 +5614,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SiniestroVehiculo_SiniestroVehiculoMarca">
-          <End Role="SiniestroVehiculoMarca" Type="Self.SiniestroVehiculoMarca" Multiplicity="1" />
+          <End Role="SiniestroVehiculoMarca" Type="Self.SiniestroVehiculoMarca" Multiplicity="0..1" />
           <End Role="SiniestroVehiculo" Type="Self.SiniestroVehiculo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SiniestroVehiculoMarca">
@@ -14450,7 +14450,7 @@
           <Property Name="IdSiniestro" Type="Int32" Nullable="false" />
           <Property Name="IdVehiculo" Type="Byte" Nullable="false" />
           <Property Name="IdSiniestroVehiculoTipo" Type="Byte" Nullable="false" />
-          <Property Name="IdSiniestroVehiculoMarca" Type="Int16" Nullable="false" />
+          <Property Name="IdSiniestroVehiculoMarca" Type="Int16" />
           <Property Name="Modelo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Dominio" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SiniestroVehiculoMarca" Relationship="CSBomberosModel.FK_SiniestroVehiculo_SiniestroVehiculoMarca" FromRole="SiniestroVehiculo" ToRole="SiniestroVehiculoMarca" />
@@ -14596,7 +14596,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SiniestroVehiculo_SiniestroVehiculoMarca">
-          <End Type="CSBomberosModel.SiniestroVehiculoMarca" Role="SiniestroVehiculoMarca" Multiplicity="1" />
+          <End Type="CSBomberosModel.SiniestroVehiculoMarca" Role="SiniestroVehiculoMarca" Multiplicity="0..1" />
           <End Type="CSBomberosModel.SiniestroVehiculo" Role="SiniestroVehiculo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SiniestroVehiculoMarca">

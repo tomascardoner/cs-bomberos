@@ -14,7 +14,7 @@ Partial Public Class SiniestroVehiculo
     Public Property IdSiniestro As Integer
     Public Property IdVehiculo As Byte
     Public Property IdSiniestroVehiculoTipo As Byte
-    Public Property IdSiniestroVehiculoMarca As Short
+    Public Property IdSiniestroVehiculoMarca As Nullable(Of Short)
     Public Property Modelo As String
     Public Property Dominio As String
 
