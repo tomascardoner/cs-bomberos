@@ -50,6 +50,19 @@
 
         mSkipFilterData = True
 
+        InitializeForm()
+
+        mSkipFilterData = False
+
+        mOrdenColumna = columnNumero
+        mOrdenTipo = SortOrder.Ascending
+
+        RefreshData()
+    End Sub
+
+    Private Sub InitializeForm()
+        ToolStripButtonNuevaVersion.Visible = (pUsuario.IDUsuario = 4 OrElse pUsuario.IDUsuario = Constantes.USUARIO_ADMINISTRADOR_ID)
+
         ListasComunes.LlenarComboBoxCuarteles(mdbContext, comboboxCuartel.ComboBox, True, False)
         ListasSiniestros.LlenarComboBoxRubros(mdbContext, comboboxSiniestroRubro.ComboBox, True, False)
         ListasSiniestros.LlenarComboBoxClaves(mdbContext, comboboxClave.ComboBox, True, False)
@@ -71,13 +84,6 @@
 
         IdSiniestroAsistenciaTipoSalidaAnticipada = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_SALIDAANTICIPADA_ID, 0)
         IdSiniestroAsistenciaTipoPresente = CS_Parameter_System.GetIntegerAsByte(Parametros.SINIESTRO_ASISTENCIATIPO_PRESENTE_ID, 0)
-
-        mSkipFilterData = False
-
-        mOrdenColumna = columnNumero
-        mOrdenTipo = SortOrder.Ascending
-
-        RefreshData()
     End Sub
 
     Private Sub InicializarFiltroDeFechas()
@@ -311,7 +317,7 @@
     End Sub
 #End Region
 
-#Region "Controls behavior"
+#Region "Controls events"
 
     Private Sub PeriodoTipoSeleccionar() Handles comboboxPeriodoTipo.SelectedIndexChanged
         CardonerSistemas.DateTime.FillPeriodValuesComboBox(comboboxPeriodoValor.ComboBox, CType(comboboxPeriodoTipo.SelectedIndex, CardonerSistemas.DateTime.PeriodTypes))
@@ -364,7 +370,7 @@
 
 #End Region
 
-#Region "Main Toolbar"
+#Region "Main toolbar events"
 
     Private Sub Agregar_Click() Handles buttonAgregar.Click
         If Not Permisos.VerificarPermiso(Permisos.SINIESTRO_AGREGAR) Then
@@ -373,7 +379,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        If pUsuario.IDUsuario = 4 Then
+        If ToolStripButtonNuevaVersion.Checked Then
             FormSiniestroV2.LoadAndShow(True, Me, 0)
         Else
             formSiniestro.LoadAndShow(True, Me, 0)
@@ -394,7 +400,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        If pUsuario.IDUsuario = 4 Then
+        If ToolStripButtonNuevaVersion.Checked Then
             FormSiniestroV2.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
         Else
             formSiniestro.LoadAndShow(True, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
@@ -452,7 +458,7 @@
 
         Me.Cursor = Cursors.WaitCursor
         datagridviewMain.Enabled = False
-        If pUsuario.IDUsuario = 4 Then
+        If ToolStripButtonNuevaVersion.Checked Then
             FormSiniestroV2.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
         Else
             formSiniestro.LoadAndShow(False, Me, CType(datagridviewMain.SelectedRows(0).DataBoundItem, GridRowData).IDSiniestro)
