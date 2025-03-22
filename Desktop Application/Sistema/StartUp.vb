@@ -44,7 +44,7 @@
         ' Muestro el SplashScreen y cambio el puntero del mouse para indicar que la aplicación está iniciando.
         formSplashScreen.Show()
         formSplashScreen.Cursor = Cursors.AppStarting
-        formSplashScreen.labelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
+        formSplashScreen.LabelStatus.Text = "Obteniendo los parámetros de conexión a la Base de datos..."
         Application.DoEvents()
 
         ' Obtengo el Connection String para las conexiones de ADO .NET
@@ -73,7 +73,7 @@
         CSBomberosContext.ConnectionString = CardonerSistemas.Database.EntityFramework.CreateConnectionString(pDatabaseConfig.Provider, pDatabase.ConnectionString, "Database.CSBomberos")
 
         ' Cargos los Parámetros desde la Base de datos
-        formSplashScreen.labelStatus.Text = "Cargando los parámetros desde la Base de datos..."
+        formSplashScreen.LabelStatus.Text = "Cargando los parámetros desde la Base de datos..."
         Application.DoEvents()
         If Not Parametros.LoadParameters() Then
             formSplashScreen.Close()
@@ -115,7 +115,7 @@
             TerminateApplication()
             Return
         End If
-        formSplashScreen.labelLicensedTo.Text = pLicensedTo
+        formSplashScreen.LabelLicensedTo.Text = pLicensedTo
         Application.DoEvents()
 
         ' Preparo instancia de clase para llenar los ComboBox
@@ -129,7 +129,7 @@
         pFormMDIMain.Show()
 
         formSplashScreen.Focus()
-        formSplashScreen.labelStatus.Text = "Todo completado."
+        formSplashScreen.LabelStatus.Text = "Todo completado."
         Application.DoEvents()
 
         ' Espero el tiempo mínimo para mostrar el Splash Screen y después lo cierro

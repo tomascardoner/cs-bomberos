@@ -1595,11 +1595,11 @@
     <Compile Include="Reportes\formReportesVisor.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sistema\formSplashScreen.vb">
+    <Compile Include="Sistema\FormSplashScreen.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Sistema\formSplashScreen.Designer.vb">
-      <DependentUpon>formSplashScreen.vb</DependentUpon>
+    <Compile Include="Sistema\FormSplashScreen.Designer.vb">
+      <DependentUpon>FormSplashScreen.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM Tablas\Usuarios\formUsuarioGrupoPermisos.Designer.vb">
@@ -2096,8 +2096,8 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Sistema\formSplashScreen.resx">
-      <DependentUpon>formSplashScreen.vb</DependentUpon>
+    <EmbeddedResource Include="Sistema\FormSplashScreen.resx">
+      <DependentUpon>FormSplashScreen.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
