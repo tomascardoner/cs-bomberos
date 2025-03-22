@@ -16,8 +16,9 @@ Partial Public Class DocumentoTipo
     Public Property VerificaModulo11 As Boolean
     Public Property EsActivo As Boolean
 
-    Public Overridable Property Persona As ICollection(Of Persona) = New HashSet(Of Persona)
+    Public Overridable Property Personas As ICollection(Of Persona) = New HashSet(Of Persona)
     Public Overridable Property PersonaFamiliar As ICollection(Of PersonaFamiliar) = New HashSet(Of PersonaFamiliar)
-    Public Overridable Property SiniestroDamnificado1 As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
+    Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
+    Public Overridable Property Siniestros As ICollection(Of Siniestro) = New HashSet(Of Siniestro)
 
 End Class

@@ -67,5 +67,7 @@ Partial Public Class Siniestro
     Public Overridable Property SiniestroUbicacionTipo As SiniestroUbicacionTipo
     Public Overridable Property SiniestroDamnificados As ICollection(Of SiniestroDamnificado) = New HashSet(Of SiniestroDamnificado)
     Public Overridable Property SiniestroVehiculos As ICollection(Of SiniestroVehiculo) = New HashSet(Of SiniestroVehiculo)
+    Public Overridable Property DocumentoTipo As DocumentoTipo
+    Public Overridable Property Localidad As Localidad
 
 End Class

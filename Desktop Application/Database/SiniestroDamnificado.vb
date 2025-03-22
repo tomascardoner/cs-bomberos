@@ -23,7 +23,7 @@ Partial Public Class SiniestroDamnificado
     Public Property Trasladado As Boolean
     Public Property IdSiniestroDaminificadoEstado As Byte
 
-    Public Overridable Property DocumentoTipo1 As DocumentoTipo
+    Public Overridable Property DocumentoTipo As DocumentoTipo
     Public Overridable Property Siniestro As Siniestro
     Public Overridable Property SiniestroDamnificadoEstado As SiniestroDamnificadoEstado
 

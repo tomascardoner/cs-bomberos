@@ -5469,6 +5469,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Siniestro_DocumentoTipo">
+          <End Role="DocumentoTipo" Type="Self.DocumentoTipo" Multiplicity="0..1" />
+          <End Role="Siniestro" Type="Self.Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="SolicitanteIDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siniestro_Localidad">
+          <End Role="Localidad" Type="Self.Localidad" Multiplicity="0..1" />
+          <End Role="Siniestro" Type="Self.Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="UbicacionIDProvincia" />
+              <PropertyRef Name="UbicacionIDLocalidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Siniestro_SiniestroSolicitudForma">
           <End Role="SiniestroSolicitudForma" Type="Self.SiniestroSolicitudForma" Multiplicity="0..1" />
           <End Role="Siniestro" Type="Self.Siniestro" Multiplicity="*" />
@@ -7009,6 +7035,14 @@
             <End Role="VehiculoTipo" EntitySet="VehiculoTipo" />
             <End Role="PersonaVehiculo" EntitySet="PersonaVehiculo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Siniestro_DocumentoTipo" Association="Self.FK_Siniestro_DocumentoTipo">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siniestro_Localidad" Association="Self.FK_Siniestro_Localidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
           <AssociationSet Name="FK_Siniestro_SiniestroSolicitudForma" Association="Self.FK_Siniestro_SiniestroSolicitudForma">
             <End Role="SiniestroSolicitudForma" EntitySet="SiniestroSolicitudForma" />
             <End Role="Siniestro" EntitySet="Siniestro" />
@@ -8472,6 +8506,14 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="SiniestroDamnificadoEstado" EntitySet="SiniestroDamnificadoEstado" />
           </AssociationSet>
+          <AssociationSet Name="FK_Siniestro_DocumentoTipo" Association="CSBomberosModel.FK_Siniestro_DocumentoTipo">
+            <End Role="DocumentoTipo" EntitySet="DocumentoTipo" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siniestro_Localidad" Association="CSBomberosModel.FK_Siniestro_Localidad">
+            <End Role="Localidad" EntitySet="Localidad" />
+            <End Role="Siniestro" EntitySet="Siniestro" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DocumentoTipo">
           <Key>
@@ -8481,9 +8523,10 @@
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="VerificaModulo11" Type="Boolean" Nullable="false" />
           <Property Name="EsActivo" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Persona" Relationship="CSBomberosModel.FK__DocumentoTipo__Persona" FromRole="DocumentoTipo" ToRole="Persona" />
+          <NavigationProperty Name="Personas" Relationship="CSBomberosModel.FK__DocumentoTipo__Persona" FromRole="DocumentoTipo" ToRole="Persona" />
           <NavigationProperty Name="PersonaFamiliar" Relationship="CSBomberosModel.FK__DocumentoTipo__PersonaFamiliar" FromRole="DocumentoTipo" ToRole="PersonaFamiliar" />
-          <NavigationProperty Name="SiniestroDamnificado1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="DocumentoTipo" ToRole="SiniestroDamnificado" />
+          <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="DocumentoTipo" ToRole="SiniestroDamnificado" />
+          <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK_Siniestro_DocumentoTipo" FromRole="DocumentoTipo" ToRole="Siniestro" />
         </EntityType>
         <EntityType Name="Localidad">
           <Key>
@@ -8503,6 +8546,7 @@
           <Property Name="IDPartido" Type="Int16" />
           <NavigationProperty Name="Partido" Relationship="CSBomberosModel.FK__Partido__Localidad" FromRole="Localidad" ToRole="Partido" />
           <NavigationProperty Name="Entidades" Relationship="CSBomberosModel.FK__Localidad__Entidad" FromRole="Localidad" ToRole="Entidad" />
+          <NavigationProperty Name="Siniestros" Relationship="CSBomberosModel.FK_Siniestro_Localidad" FromRole="Localidad" ToRole="Siniestro" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -12463,6 +12507,8 @@
           <NavigationProperty Name="SiniestroUbicacionTipo" Relationship="CSBomberosModel.FK_Siniestro_SiniestroUbicacionTipo" FromRole="Siniestro" ToRole="SiniestroUbicacionTipo" />
           <NavigationProperty Name="SiniestroDamnificados" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="Siniestro" ToRole="SiniestroDamnificado" />
           <NavigationProperty Name="SiniestroVehiculos" Relationship="CSBomberosModel.FK_SiniestroVehiculo_Siniestro" FromRole="Siniestro" ToRole="SiniestroVehiculo" />
+          <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK_Siniestro_DocumentoTipo" FromRole="Siniestro" ToRole="DocumentoTipo" />
+          <NavigationProperty Name="Localidad" Relationship="CSBomberosModel.FK_Siniestro_Localidad" FromRole="Siniestro" ToRole="Localidad" />
         </EntityType>
         <EntityType Name="SiniestroAsistencia">
           <Key>
@@ -14405,7 +14451,7 @@
           <Property Name="Edad" Type="Byte" />
           <Property Name="EsMenor" Type="Boolean" Nullable="false" />
           <Property Name="Trasladado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="DocumentoTipo1" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="SiniestroDamnificado" ToRole="DocumentoTipo" />
+          <NavigationProperty Name="DocumentoTipo" Relationship="CSBomberosModel.FK_SiniestroDamnificado_DocumentoTipo" FromRole="SiniestroDamnificado" ToRole="DocumentoTipo" />
           <NavigationProperty Name="Siniestro" Relationship="CSBomberosModel.FK_SiniestroDamnificado_Siniestro" FromRole="SiniestroDamnificado" ToRole="Siniestro" />
           <Property Name="IdSiniestroDaminificadoEstado" Type="Byte" Nullable="false" />
           <NavigationProperty Name="SiniestroDamnificadoEstado" Relationship="CSBomberosModel.FK_SiniestroDamnificado_SiniestroDamnificadoEstado" FromRole="SiniestroDamnificado" ToRole="SiniestroDamnificadoEstado" />
@@ -14751,6 +14797,32 @@
             </Principal>
             <Dependent Role="SiniestroDamnificadoEstado">
               <PropertyRef Name="IdUsuarioModificacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siniestro_DocumentoTipo">
+          <End Type="CSBomberosModel.DocumentoTipo" Role="DocumentoTipo" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DocumentoTipo">
+              <PropertyRef Name="IDDocumentoTipo" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="SolicitanteIDDocumentoTipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siniestro_Localidad">
+          <End Type="CSBomberosModel.Localidad" Role="Localidad" Multiplicity="0..1" />
+          <End Type="CSBomberosModel.Siniestro" Role="Siniestro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localidad">
+              <PropertyRef Name="IDProvincia" />
+              <PropertyRef Name="IDLocalidad" />
+            </Principal>
+            <Dependent Role="Siniestro">
+              <PropertyRef Name="UbicacionIDProvincia" />
+              <PropertyRef Name="UbicacionIDLocalidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
