@@ -22,13 +22,13 @@ Partial Class FormSiniestroV2
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim labelModificacion As System.Windows.Forms.Label
-        Dim labelCreacion As System.Windows.Forms.Label
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim labelCreacion As System.Windows.Forms.Label
+        Dim labelModificacion As System.Windows.Forms.Label
         Me.labelHoraSalida = New System.Windows.Forms.Label()
         Me.labelHoraFin = New System.Windows.Forms.Label()
         Me.labelHoraLlegadaUltimoCamion = New System.Windows.Forms.Label()
@@ -153,21 +153,24 @@ Partial Class FormSiniestroV2
         Me.buttonAsistenciasEditar = New System.Windows.Forms.ToolStripButton()
         Me.buttonAsistenciasEliminar = New System.Windows.Forms.ToolStripButton()
         Me.tabpageNotasAuditoria = New System.Windows.Forms.TabPage()
-        Me.checkboxAnulado = New System.Windows.Forms.CheckBox()
+        Me.TableLayoutPanelNotasAuditoria = New System.Windows.Forms.TableLayoutPanel()
+        Me.labelNotas = New System.Windows.Forms.Label()
+        Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelAnulado = New System.Windows.Forms.Label()
+        Me.checkboxAnulado = New System.Windows.Forms.CheckBox()
         Me.labelIDSiniestro = New System.Windows.Forms.Label()
         Me.textboxIDSiniestro = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
-        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
+        Me.TableLayoutPanelCreacion = New System.Windows.Forms.TableLayoutPanel()
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
-        Me.textboxNotas = New System.Windows.Forms.TextBox()
-        Me.labelNotas = New System.Windows.Forms.Label()
+        Me.textboxUsuarioCreacion = New System.Windows.Forms.TextBox()
+        Me.TableLayoutPanelUltimaModificacion = New System.Windows.Forms.TableLayoutPanel()
+        Me.textboxFechaHoraModificacion = New System.Windows.Forms.TextBox()
+        Me.textboxUsuarioModificacion = New System.Windows.Forms.TextBox()
         Me.ControlPersonaRadioTelefonista = New CSBomberos.ControlPersona()
         Me.ControlPersonaJefeGuardia = New CSBomberos.ControlPersona()
         Me.ControlPersonaEncargadoCuartel = New CSBomberos.ControlPersona()
-        labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
+        labelModificacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
         Me.TabControlMain.SuspendLayout()
         Me.TabPageEncabezado.SuspendLayout()
@@ -204,29 +207,10 @@ Partial Class FormSiniestroV2
         Me.StatusStripAsistencias.SuspendLayout()
         Me.toolstripAsistencias.SuspendLayout()
         Me.tabpageNotasAuditoria.SuspendLayout()
+        Me.TableLayoutPanelNotasAuditoria.SuspendLayout()
+        Me.TableLayoutPanelCreacion.SuspendLayout()
+        Me.TableLayoutPanelUltimaModificacion.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'labelModificacion
-        '
-        labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(8, 398)
-        labelModificacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        labelModificacion.Name = "labelModificacion"
-        labelModificacion.Size = New System.Drawing.Size(127, 16)
-        labelModificacion.TabIndex = 9
-        labelModificacion.Text = "Ultima Modificación:"
-        '
-        'labelCreacion
-        '
-        labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(8, 366)
-        labelCreacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        labelCreacion.Name = "labelCreacion"
-        labelCreacion.Size = New System.Drawing.Size(64, 16)
-        labelCreacion.TabIndex = 6
-        labelCreacion.Text = "Creación:"
         '
         'labelHoraSalida
         '
@@ -236,7 +220,7 @@ Partial Class FormSiniestroV2
         Me.labelHoraSalida.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelHoraSalida.Name = "labelHoraSalida"
         Me.labelHoraSalida.Size = New System.Drawing.Size(145, 30)
-        Me.labelHoraSalida.TabIndex = 17
+        Me.labelHoraSalida.TabIndex = 14
         Me.labelHoraSalida.Text = "Hora de salida:"
         Me.labelHoraSalida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -248,7 +232,7 @@ Partial Class FormSiniestroV2
         Me.labelHoraFin.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelHoraFin.Name = "labelHoraFin"
         Me.labelHoraFin.Size = New System.Drawing.Size(145, 34)
-        Me.labelHoraFin.TabIndex = 21
+        Me.labelHoraFin.TabIndex = 18
         Me.labelHoraFin.Text = "Hora de fin:"
         Me.labelHoraFin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -260,7 +244,7 @@ Partial Class FormSiniestroV2
         Me.labelHoraLlegadaUltimoCamion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelHoraLlegadaUltimoCamion.Name = "labelHoraLlegadaUltimoCamion"
         Me.labelHoraLlegadaUltimoCamion.Size = New System.Drawing.Size(145, 30)
-        Me.labelHoraLlegadaUltimoCamion.TabIndex = 19
+        Me.labelHoraLlegadaUltimoCamion.TabIndex = 16
         Me.labelHoraLlegadaUltimoCamion.Text = "Llegada último camión:"
         Me.labelHoraLlegadaUltimoCamion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -272,7 +256,7 @@ Partial Class FormSiniestroV2
         Me.LabelCuartel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelCuartel.Name = "LabelCuartel"
         Me.LabelCuartel.Size = New System.Drawing.Size(145, 32)
-        Me.LabelCuartel.TabIndex = 1
+        Me.LabelCuartel.TabIndex = 0
         Me.LabelCuartel.Text = "Cuartel:"
         Me.LabelCuartel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -284,7 +268,7 @@ Partial Class FormSiniestroV2
         Me.LabelSolicitudForma.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitudForma.Name = "LabelSolicitudForma"
         Me.LabelSolicitudForma.Size = New System.Drawing.Size(120, 32)
-        Me.LabelSolicitudForma.TabIndex = 2
+        Me.LabelSolicitudForma.TabIndex = 0
         Me.LabelSolicitudForma.Text = "Forma de llamado:"
         Me.LabelSolicitudForma.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -296,7 +280,7 @@ Partial Class FormSiniestroV2
         Me.LabelSolicitanteNombre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteNombre.Name = "LabelSolicitanteNombre"
         Me.LabelSolicitanteNombre.Size = New System.Drawing.Size(120, 30)
-        Me.LabelSolicitanteNombre.TabIndex = 4
+        Me.LabelSolicitanteNombre.TabIndex = 2
         Me.LabelSolicitanteNombre.Text = "Solicitante:"
         Me.LabelSolicitanteNombre.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -308,7 +292,7 @@ Partial Class FormSiniestroV2
         Me.LabelSolicitanteDireccion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteDireccion.Name = "LabelSolicitanteDireccion"
         Me.LabelSolicitanteDireccion.Size = New System.Drawing.Size(120, 30)
-        Me.LabelSolicitanteDireccion.TabIndex = 16
+        Me.LabelSolicitanteDireccion.TabIndex = 4
         Me.LabelSolicitanteDireccion.Text = "Dirección:"
         Me.LabelSolicitanteDireccion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -320,7 +304,7 @@ Partial Class FormSiniestroV2
         Me.LabelSolicitanteDocumento.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteDocumento.Name = "LabelSolicitanteDocumento"
         Me.LabelSolicitanteDocumento.Size = New System.Drawing.Size(120, 32)
-        Me.LabelSolicitanteDocumento.TabIndex = 18
+        Me.LabelSolicitanteDocumento.TabIndex = 6
         Me.LabelSolicitanteDocumento.Text = "Documento:"
         Me.LabelSolicitanteDocumento.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -332,7 +316,7 @@ Partial Class FormSiniestroV2
         Me.LabelSolicitanteTelefono.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteTelefono.Name = "LabelSolicitanteTelefono"
         Me.LabelSolicitanteTelefono.Size = New System.Drawing.Size(120, 30)
-        Me.LabelSolicitanteTelefono.TabIndex = 20
+        Me.LabelSolicitanteTelefono.TabIndex = 8
         Me.LabelSolicitanteTelefono.Text = "Teléfono:"
         Me.LabelSolicitanteTelefono.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -344,7 +328,7 @@ Partial Class FormSiniestroV2
         Me.LabelUbicacionTipo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionTipo.Name = "LabelUbicacionTipo"
         Me.LabelUbicacionTipo.Size = New System.Drawing.Size(120, 32)
-        Me.LabelUbicacionTipo.TabIndex = 22
+        Me.LabelUbicacionTipo.TabIndex = 10
         Me.LabelUbicacionTipo.Text = "Tipo de ubicación:"
         Me.LabelUbicacionTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -355,8 +339,8 @@ Partial Class FormSiniestroV2
         Me.LabelUbicacionDescripcion.Location = New System.Drawing.Point(4, 206)
         Me.LabelUbicacionDescripcion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionDescripcion.Name = "LabelUbicacionDescripcion"
-        Me.LabelUbicacionDescripcion.Size = New System.Drawing.Size(120, 30)
-        Me.LabelUbicacionDescripcion.TabIndex = 24
+        Me.LabelUbicacionDescripcion.Size = New System.Drawing.Size(120, 74)
+        Me.LabelUbicacionDescripcion.TabIndex = 12
         Me.LabelUbicacionDescripcion.Text = "Ubicación:"
         Me.LabelUbicacionDescripcion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -364,11 +348,11 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionProvincia.AutoSize = True
         Me.LabelUbicacionProvincia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionProvincia.Location = New System.Drawing.Point(4, 236)
+        Me.LabelUbicacionProvincia.Location = New System.Drawing.Point(4, 280)
         Me.LabelUbicacionProvincia.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionProvincia.Name = "LabelUbicacionProvincia"
         Me.LabelUbicacionProvincia.Size = New System.Drawing.Size(120, 32)
-        Me.LabelUbicacionProvincia.TabIndex = 26
+        Me.LabelUbicacionProvincia.TabIndex = 14
         Me.LabelUbicacionProvincia.Text = "Provincia:"
         Me.LabelUbicacionProvincia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -376,11 +360,11 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionLocalidad.AutoSize = True
         Me.LabelUbicacionLocalidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionLocalidad.Location = New System.Drawing.Point(4, 268)
+        Me.LabelUbicacionLocalidad.Location = New System.Drawing.Point(4, 312)
         Me.LabelUbicacionLocalidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionLocalidad.Name = "LabelUbicacionLocalidad"
         Me.LabelUbicacionLocalidad.Size = New System.Drawing.Size(120, 32)
-        Me.LabelUbicacionLocalidad.TabIndex = 28
+        Me.LabelUbicacionLocalidad.TabIndex = 16
         Me.LabelUbicacionLocalidad.Text = "Localidad:"
         Me.LabelUbicacionLocalidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -416,7 +400,7 @@ Partial Class FormSiniestroV2
         Me.labelFecha.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelFecha.Name = "labelFecha"
         Me.labelFecha.Size = New System.Drawing.Size(145, 30)
-        Me.labelFecha.TabIndex = 7
+        Me.labelFecha.TabIndex = 4
         Me.labelFecha.Text = "Fecha:"
         Me.labelFecha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -490,8 +474,8 @@ Partial Class FormSiniestroV2
         Me.comboboxSiniestroRubro.Location = New System.Drawing.Point(157, 100)
         Me.comboboxSiniestroRubro.Margin = New System.Windows.Forms.Padding(4)
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
-        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(323, 24)
-        Me.comboboxSiniestroRubro.TabIndex = 10
+        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(328, 24)
+        Me.comboboxSiniestroRubro.TabIndex = 7
         '
         'TabControlMain
         '
@@ -507,7 +491,7 @@ Partial Class FormSiniestroV2
         Me.TabControlMain.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControlMain.Name = "TabControlMain"
         Me.TabControlMain.SelectedIndex = 0
-        Me.TabControlMain.Size = New System.Drawing.Size(1019, 410)
+        Me.TabControlMain.Size = New System.Drawing.Size(1019, 488)
         Me.TabControlMain.TabIndex = 0
         '
         'TabPageEncabezado
@@ -515,7 +499,7 @@ Partial Class FormSiniestroV2
         Me.TabPageEncabezado.Controls.Add(Me.TableLayoutPanelEncabezadoMain)
         Me.TabPageEncabezado.Location = New System.Drawing.Point(4, 28)
         Me.TabPageEncabezado.Name = "TabPageEncabezado"
-        Me.TabPageEncabezado.Size = New System.Drawing.Size(1011, 378)
+        Me.TabPageEncabezado.Size = New System.Drawing.Size(1011, 456)
         Me.TabPageEncabezado.TabIndex = 3
         Me.TabPageEncabezado.Text = "Encabezado"
         Me.TabPageEncabezado.UseVisualStyleBackColor = True
@@ -524,7 +508,7 @@ Partial Class FormSiniestroV2
         '
         Me.TableLayoutPanelEncabezadoMain.ColumnCount = 3
         Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanelEncabezadoMain.Controls.Add(Me.TableLayoutPanelEncabezado, 0, 0)
         Me.TableLayoutPanelEncabezadoMain.Controls.Add(Me.TableLayoutPanelLlamadoUbicacion, 2, 0)
@@ -534,8 +518,8 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelEncabezadoMain.Name = "TableLayoutPanelEncabezadoMain"
         Me.TableLayoutPanelEncabezadoMain.RowCount = 1
         Me.TableLayoutPanelEncabezadoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelEncabezadoMain.Size = New System.Drawing.Size(1011, 378)
-        Me.TableLayoutPanelEncabezadoMain.TabIndex = 30
+        Me.TableLayoutPanelEncabezadoMain.Size = New System.Drawing.Size(1011, 456)
+        Me.TableLayoutPanelEncabezadoMain.TabIndex = 0
         '
         'TableLayoutPanelEncabezado
         '
@@ -582,7 +566,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelEncabezado.Size = New System.Drawing.Size(484, 372)
+        Me.TableLayoutPanelEncabezado.Size = New System.Drawing.Size(489, 450)
         Me.TableLayoutPanelEncabezado.TabIndex = 0
         '
         'LabelNumero
@@ -593,7 +577,7 @@ Partial Class FormSiniestroV2
         Me.LabelNumero.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelNumero.Name = "LabelNumero"
         Me.LabelNumero.Size = New System.Drawing.Size(145, 34)
-        Me.LabelNumero.TabIndex = 3
+        Me.LabelNumero.TabIndex = 2
         Me.LabelNumero.Text = "Número:"
         Me.LabelNumero.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -605,8 +589,8 @@ Partial Class FormSiniestroV2
         Me.ComboBoxCuartel.Location = New System.Drawing.Point(157, 4)
         Me.ComboBoxCuartel.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxCuartel.Name = "ComboBoxCuartel"
-        Me.ComboBoxCuartel.Size = New System.Drawing.Size(323, 24)
-        Me.ComboBoxCuartel.TabIndex = 2
+        Me.ComboBoxCuartel.Size = New System.Drawing.Size(328, 24)
+        Me.ComboBoxCuartel.TabIndex = 1
         '
         'TableLayoutPanelNumero
         '
@@ -628,7 +612,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelNumero.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelNumero.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
         Me.TableLayoutPanelNumero.Size = New System.Drawing.Size(311, 34)
-        Me.TableLayoutPanelNumero.TabIndex = 4
+        Me.TableLayoutPanelNumero.TabIndex = 3
         '
         'maskedtextboxNumeroPrefijo
         '
@@ -638,7 +622,7 @@ Partial Class FormSiniestroV2
         Me.maskedtextboxNumeroPrefijo.Mask = "0000"
         Me.maskedtextboxNumeroPrefijo.Name = "maskedtextboxNumeroPrefijo"
         Me.maskedtextboxNumeroPrefijo.Size = New System.Drawing.Size(53, 22)
-        Me.maskedtextboxNumeroPrefijo.TabIndex = 3
+        Me.maskedtextboxNumeroPrefijo.TabIndex = 0
         Me.maskedtextboxNumeroPrefijo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'labelNumeroSeparador
@@ -649,7 +633,7 @@ Partial Class FormSiniestroV2
         Me.labelNumeroSeparador.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelNumeroSeparador.Name = "labelNumeroSeparador"
         Me.labelNumeroSeparador.Size = New System.Drawing.Size(11, 34)
-        Me.labelNumeroSeparador.TabIndex = 4
+        Me.labelNumeroSeparador.TabIndex = 1
         Me.labelNumeroSeparador.Text = "-"
         Me.labelNumeroSeparador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -661,7 +645,7 @@ Partial Class FormSiniestroV2
         Me.maskedtextboxNumero.Mask = "00000000"
         Me.maskedtextboxNumero.Name = "maskedtextboxNumero"
         Me.maskedtextboxNumero.Size = New System.Drawing.Size(93, 22)
-        Me.maskedtextboxNumero.TabIndex = 5
+        Me.maskedtextboxNumero.TabIndex = 2
         Me.maskedtextboxNumero.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'buttonCodigoSiguiente
@@ -672,7 +656,7 @@ Partial Class FormSiniestroV2
         Me.buttonCodigoSiguiente.Margin = New System.Windows.Forms.Padding(4)
         Me.buttonCodigoSiguiente.Name = "buttonCodigoSiguiente"
         Me.buttonCodigoSiguiente.Size = New System.Drawing.Size(122, 26)
-        Me.buttonCodigoSiguiente.TabIndex = 6
+        Me.buttonCodigoSiguiente.TabIndex = 3
         Me.buttonCodigoSiguiente.Text = "Obtener siguiente"
         Me.buttonCodigoSiguiente.UseVisualStyleBackColor = True
         '
@@ -685,7 +669,7 @@ Partial Class FormSiniestroV2
         Me.datetimepickerFecha.MinDate = New Date(1950, 1, 1, 0, 0, 0, 0)
         Me.datetimepickerFecha.Name = "datetimepickerFecha"
         Me.datetimepickerFecha.Size = New System.Drawing.Size(150, 22)
-        Me.datetimepickerFecha.TabIndex = 8
+        Me.datetimepickerFecha.TabIndex = 5
         '
         'labelSiniestroRubro
         '
@@ -695,7 +679,7 @@ Partial Class FormSiniestroV2
         Me.labelSiniestroRubro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelSiniestroRubro.Name = "labelSiniestroRubro"
         Me.labelSiniestroRubro.Size = New System.Drawing.Size(145, 32)
-        Me.labelSiniestroRubro.TabIndex = 9
+        Me.labelSiniestroRubro.TabIndex = 6
         Me.labelSiniestroRubro.Text = "Rubro:"
         Me.labelSiniestroRubro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -707,7 +691,7 @@ Partial Class FormSiniestroV2
         Me.labelSiniestroTipo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelSiniestroTipo.Name = "labelSiniestroTipo"
         Me.labelSiniestroTipo.Size = New System.Drawing.Size(145, 32)
-        Me.labelSiniestroTipo.TabIndex = 11
+        Me.labelSiniestroTipo.TabIndex = 8
         Me.labelSiniestroTipo.Text = "Tipo:"
         Me.labelSiniestroTipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -721,8 +705,8 @@ Partial Class FormSiniestroV2
         Me.comboboxSiniestroTipo.Location = New System.Drawing.Point(157, 132)
         Me.comboboxSiniestroTipo.Margin = New System.Windows.Forms.Padding(4)
         Me.comboboxSiniestroTipo.Name = "comboboxSiniestroTipo"
-        Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(323, 24)
-        Me.comboboxSiniestroTipo.TabIndex = 12
+        Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(328, 24)
+        Me.comboboxSiniestroTipo.TabIndex = 9
         '
         'labelSiniestroTipoOtro
         '
@@ -732,7 +716,7 @@ Partial Class FormSiniestroV2
         Me.labelSiniestroTipoOtro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelSiniestroTipoOtro.Name = "labelSiniestroTipoOtro"
         Me.labelSiniestroTipoOtro.Size = New System.Drawing.Size(145, 30)
-        Me.labelSiniestroTipoOtro.TabIndex = 13
+        Me.labelSiniestroTipoOtro.TabIndex = 10
         Me.labelSiniestroTipoOtro.Text = "Otro:"
         Me.labelSiniestroTipoOtro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.labelSiniestroTipoOtro.Visible = False
@@ -744,8 +728,8 @@ Partial Class FormSiniestroV2
         Me.textboxSiniestroTipoOtro.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxSiniestroTipoOtro.MaxLength = 50
         Me.textboxSiniestroTipoOtro.Name = "textboxSiniestroTipoOtro"
-        Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(323, 22)
-        Me.textboxSiniestroTipoOtro.TabIndex = 14
+        Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(328, 22)
+        Me.textboxSiniestroTipoOtro.TabIndex = 11
         Me.textboxSiniestroTipoOtro.Visible = False
         '
         'labelClave
@@ -756,7 +740,7 @@ Partial Class FormSiniestroV2
         Me.labelClave.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelClave.Name = "labelClave"
         Me.labelClave.Size = New System.Drawing.Size(145, 32)
-        Me.labelClave.TabIndex = 15
+        Me.labelClave.TabIndex = 12
         Me.labelClave.Text = "Clave:"
         Me.labelClave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -770,7 +754,7 @@ Partial Class FormSiniestroV2
         Me.comboboxClave.Margin = New System.Windows.Forms.Padding(4)
         Me.comboboxClave.Name = "comboboxClave"
         Me.comboboxClave.Size = New System.Drawing.Size(180, 24)
-        Me.comboboxClave.TabIndex = 16
+        Me.comboboxClave.TabIndex = 13
         '
         'datetimepickerHoraSalida
         '
@@ -783,7 +767,7 @@ Partial Class FormSiniestroV2
         Me.datetimepickerHoraSalida.Name = "datetimepickerHoraSalida"
         Me.datetimepickerHoraSalida.ShowCheckBox = True
         Me.datetimepickerHoraSalida.Size = New System.Drawing.Size(113, 22)
-        Me.datetimepickerHoraSalida.TabIndex = 18
+        Me.datetimepickerHoraSalida.TabIndex = 15
         '
         'datetimepickerHoraLlegadaUltimoCamion
         '
@@ -796,7 +780,7 @@ Partial Class FormSiniestroV2
         Me.datetimepickerHoraLlegadaUltimoCamion.Name = "datetimepickerHoraLlegadaUltimoCamion"
         Me.datetimepickerHoraLlegadaUltimoCamion.ShowCheckBox = True
         Me.datetimepickerHoraLlegadaUltimoCamion.Size = New System.Drawing.Size(113, 22)
-        Me.datetimepickerHoraLlegadaUltimoCamion.TabIndex = 20
+        Me.datetimepickerHoraLlegadaUltimoCamion.TabIndex = 17
         '
         'TableLayoutPanelHoraFin
         '
@@ -815,8 +799,8 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelHoraFin.Name = "TableLayoutPanelHoraFin"
         Me.TableLayoutPanelHoraFin.RowCount = 1
         Me.TableLayoutPanelHoraFin.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelHoraFin.Size = New System.Drawing.Size(331, 34)
-        Me.TableLayoutPanelHoraFin.TabIndex = 22
+        Me.TableLayoutPanelHoraFin.Size = New System.Drawing.Size(336, 34)
+        Me.TableLayoutPanelHoraFin.TabIndex = 19
         '
         'buttonHoraFinFinalizar
         '
@@ -826,7 +810,7 @@ Partial Class FormSiniestroV2
         Me.buttonHoraFinFinalizar.Margin = New System.Windows.Forms.Padding(4)
         Me.buttonHoraFinFinalizar.Name = "buttonHoraFinFinalizar"
         Me.buttonHoraFinFinalizar.Size = New System.Drawing.Size(67, 26)
-        Me.buttonHoraFinFinalizar.TabIndex = 22
+        Me.buttonHoraFinFinalizar.TabIndex = 0
         Me.buttonHoraFinFinalizar.Text = "Finalizar"
         Me.buttonHoraFinFinalizar.UseVisualStyleBackColor = True
         '
@@ -841,7 +825,7 @@ Partial Class FormSiniestroV2
         Me.datetimepickerHoraFin.Name = "datetimepickerHoraFin"
         Me.datetimepickerHoraFin.ShowCheckBox = True
         Me.datetimepickerHoraFin.Size = New System.Drawing.Size(113, 22)
-        Me.datetimepickerHoraFin.TabIndex = 23
+        Me.datetimepickerHoraFin.TabIndex = 1
         '
         'textboxPersonaFin
         '
@@ -850,8 +834,8 @@ Partial Class FormSiniestroV2
         Me.textboxPersonaFin.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxPersonaFin.Name = "textboxPersonaFin"
         Me.textboxPersonaFin.ReadOnly = True
-        Me.textboxPersonaFin.Size = New System.Drawing.Size(189, 22)
-        Me.textboxPersonaFin.TabIndex = 24
+        Me.textboxPersonaFin.Size = New System.Drawing.Size(132, 22)
+        Me.textboxPersonaFin.TabIndex = 2
         Me.textboxPersonaFin.TabStop = False
         '
         'TableLayoutPanelLlamadoUbicacion
@@ -879,7 +863,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TableLayoutPanelGeneralSolicitanteDocumento, 1, 3)
         Me.TableLayoutPanelLlamadoUbicacion.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanelLlamadoUbicacion.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelLlamadoUbicacion.Location = New System.Drawing.Point(523, 3)
+        Me.TableLayoutPanelLlamadoUbicacion.Location = New System.Drawing.Point(518, 3)
         Me.TableLayoutPanelLlamadoUbicacion.Name = "TableLayoutPanelLlamadoUbicacion"
         Me.TableLayoutPanelLlamadoUbicacion.RowCount = 11
         Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
@@ -895,30 +879,30 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelLlamadoUbicacion.Size = New System.Drawing.Size(485, 372)
-        Me.TableLayoutPanelLlamadoUbicacion.TabIndex = 2
+        Me.TableLayoutPanelLlamadoUbicacion.Size = New System.Drawing.Size(490, 450)
+        Me.TableLayoutPanelLlamadoUbicacion.TabIndex = 1
         '
         'ComboBoxUbicacionLocalidad
         '
         Me.ComboBoxUbicacionLocalidad.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxUbicacionLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionLocalidad.FormattingEnabled = True
-        Me.ComboBoxUbicacionLocalidad.Location = New System.Drawing.Point(132, 272)
+        Me.ComboBoxUbicacionLocalidad.Location = New System.Drawing.Point(132, 316)
         Me.ComboBoxUbicacionLocalidad.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionLocalidad.Name = "ComboBoxUbicacionLocalidad"
-        Me.ComboBoxUbicacionLocalidad.Size = New System.Drawing.Size(349, 24)
-        Me.ComboBoxUbicacionLocalidad.TabIndex = 29
+        Me.ComboBoxUbicacionLocalidad.Size = New System.Drawing.Size(354, 24)
+        Me.ComboBoxUbicacionLocalidad.TabIndex = 17
         '
         'ComboBoxUbicacionProvincia
         '
         Me.ComboBoxUbicacionProvincia.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxUbicacionProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionProvincia.FormattingEnabled = True
-        Me.ComboBoxUbicacionProvincia.Location = New System.Drawing.Point(132, 240)
+        Me.ComboBoxUbicacionProvincia.Location = New System.Drawing.Point(132, 284)
         Me.ComboBoxUbicacionProvincia.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionProvincia.Name = "ComboBoxUbicacionProvincia"
-        Me.ComboBoxUbicacionProvincia.Size = New System.Drawing.Size(349, 24)
-        Me.ComboBoxUbicacionProvincia.TabIndex = 27
+        Me.ComboBoxUbicacionProvincia.Size = New System.Drawing.Size(354, 24)
+        Me.ComboBoxUbicacionProvincia.TabIndex = 15
         '
         'TextBoxUbicacionDescripcion
         '
@@ -926,21 +910,24 @@ Partial Class FormSiniestroV2
         Me.TextBoxUbicacionDescripcion.Location = New System.Drawing.Point(132, 210)
         Me.TextBoxUbicacionDescripcion.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxUbicacionDescripcion.MaxLength = 200
+        Me.TextBoxUbicacionDescripcion.Multiline = True
         Me.TextBoxUbicacionDescripcion.Name = "TextBoxUbicacionDescripcion"
-        Me.TextBoxUbicacionDescripcion.Size = New System.Drawing.Size(349, 22)
-        Me.TextBoxUbicacionDescripcion.TabIndex = 25
+        Me.TextBoxUbicacionDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBoxUbicacionDescripcion.Size = New System.Drawing.Size(354, 66)
+        Me.TextBoxUbicacionDescripcion.TabIndex = 13
         '
         'ComboBoxUbicacionTipo
         '
         Me.ComboBoxUbicacionTipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.ComboBoxUbicacionTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBoxUbicacionTipo.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxUbicacionTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionTipo.FormattingEnabled = True
         Me.ComboBoxUbicacionTipo.Location = New System.Drawing.Point(132, 178)
         Me.ComboBoxUbicacionTipo.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionTipo.Name = "ComboBoxUbicacionTipo"
-        Me.ComboBoxUbicacionTipo.Size = New System.Drawing.Size(1, 24)
-        Me.ComboBoxUbicacionTipo.TabIndex = 23
+        Me.ComboBoxUbicacionTipo.Size = New System.Drawing.Size(354, 24)
+        Me.ComboBoxUbicacionTipo.TabIndex = 11
         '
         'TextBoxSolicitanteTelefono
         '
@@ -949,8 +936,8 @@ Partial Class FormSiniestroV2
         Me.TextBoxSolicitanteTelefono.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteTelefono.MaxLength = 50
         Me.TextBoxSolicitanteTelefono.Name = "TextBoxSolicitanteTelefono"
-        Me.TextBoxSolicitanteTelefono.Size = New System.Drawing.Size(349, 22)
-        Me.TextBoxSolicitanteTelefono.TabIndex = 21
+        Me.TextBoxSolicitanteTelefono.Size = New System.Drawing.Size(354, 22)
+        Me.TextBoxSolicitanteTelefono.TabIndex = 9
         '
         'TextBoxSolicitanteDireccion
         '
@@ -959,8 +946,8 @@ Partial Class FormSiniestroV2
         Me.TextBoxSolicitanteDireccion.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteDireccion.MaxLength = 200
         Me.TextBoxSolicitanteDireccion.Name = "TextBoxSolicitanteDireccion"
-        Me.TextBoxSolicitanteDireccion.Size = New System.Drawing.Size(349, 22)
-        Me.TextBoxSolicitanteDireccion.TabIndex = 17
+        Me.TextBoxSolicitanteDireccion.Size = New System.Drawing.Size(354, 22)
+        Me.TextBoxSolicitanteDireccion.TabIndex = 5
         '
         'TextBoxSolicitanteNombre
         '
@@ -969,8 +956,8 @@ Partial Class FormSiniestroV2
         Me.TextBoxSolicitanteNombre.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteNombre.MaxLength = 100
         Me.TextBoxSolicitanteNombre.Name = "TextBoxSolicitanteNombre"
-        Me.TextBoxSolicitanteNombre.Size = New System.Drawing.Size(349, 22)
-        Me.TextBoxSolicitanteNombre.TabIndex = 15
+        Me.TextBoxSolicitanteNombre.Size = New System.Drawing.Size(354, 22)
+        Me.TextBoxSolicitanteNombre.TabIndex = 3
         '
         'ComboBoxSolicitudForma
         '
@@ -980,8 +967,8 @@ Partial Class FormSiniestroV2
         Me.ComboBoxSolicitudForma.Location = New System.Drawing.Point(132, 4)
         Me.ComboBoxSolicitudForma.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxSolicitudForma.Name = "ComboBoxSolicitudForma"
-        Me.ComboBoxSolicitudForma.Size = New System.Drawing.Size(349, 24)
-        Me.ComboBoxSolicitudForma.TabIndex = 3
+        Me.ComboBoxSolicitudForma.Size = New System.Drawing.Size(354, 24)
+        Me.ComboBoxSolicitudForma.TabIndex = 1
         '
         'TableLayoutPanelGeneralSolicitanteDocumento
         '
@@ -1000,7 +987,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralSolicitanteDocumento.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelGeneralSolicitanteDocumento.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32.0!))
         Me.TableLayoutPanelGeneralSolicitanteDocumento.Size = New System.Drawing.Size(303, 32)
-        Me.TableLayoutPanelGeneralSolicitanteDocumento.TabIndex = 19
+        Me.TableLayoutPanelGeneralSolicitanteDocumento.TabIndex = 7
         '
         'TextBoxSolicitanteDocumentoNumero
         '
@@ -1009,7 +996,7 @@ Partial Class FormSiniestroV2
         Me.TextBoxSolicitanteDocumentoNumero.MaxLength = 11
         Me.TextBoxSolicitanteDocumentoNumero.Name = "TextBoxSolicitanteDocumentoNumero"
         Me.TextBoxSolicitanteDocumentoNumero.Size = New System.Drawing.Size(152, 22)
-        Me.TextBoxSolicitanteDocumentoNumero.TabIndex = 6
+        Me.TextBoxSolicitanteDocumentoNumero.TabIndex = 1
         '
         'ComboBoxSolicitanteDocumentoTipo
         '
@@ -1019,14 +1006,14 @@ Partial Class FormSiniestroV2
         Me.ComboBoxSolicitanteDocumentoTipo.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxSolicitanteDocumentoTipo.Name = "ComboBoxSolicitanteDocumentoTipo"
         Me.ComboBoxSolicitanteDocumentoTipo.Size = New System.Drawing.Size(135, 24)
-        Me.ComboBoxSolicitanteDocumentoTipo.TabIndex = 5
+        Me.ComboBoxSolicitanteDocumentoTipo.TabIndex = 0
         '
         'TabPageGeneral
         '
         Me.TabPageGeneral.Controls.Add(Me.TableLayoutPanelPieMain)
         Me.TabPageGeneral.Location = New System.Drawing.Point(4, 28)
         Me.TabPageGeneral.Name = "TabPageGeneral"
-        Me.TabPageGeneral.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageGeneral.Size = New System.Drawing.Size(1011, 456)
         Me.TabPageGeneral.TabIndex = 5
         Me.TabPageGeneral.Text = "General"
         Me.TabPageGeneral.UseVisualStyleBackColor = True
@@ -1046,7 +1033,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelPieMain.Name = "TableLayoutPanelPieMain"
         Me.TableLayoutPanelPieMain.RowCount = 1
         Me.TableLayoutPanelPieMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelPieMain.Size = New System.Drawing.Size(1032, 364)
+        Me.TableLayoutPanelPieMain.Size = New System.Drawing.Size(1011, 456)
         Me.TableLayoutPanelPieMain.TabIndex = 0
         '
         'TableLayoutPanelPie
@@ -1091,7 +1078,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelPie.Size = New System.Drawing.Size(495, 358)
+        Me.TableLayoutPanelPie.Size = New System.Drawing.Size(484, 450)
         Me.TableLayoutPanelPie.TabIndex = 0
         '
         'CheckBoxControlado
@@ -1379,12 +1366,12 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelResumenAsistencias.Controls.Add(Me.DataGridViewResumenAsistencias, 0, 1)
         Me.TableLayoutPanelResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TableLayoutPanelResumenAsistencias.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelResumenAsistencias.Location = New System.Drawing.Point(534, 3)
+        Me.TableLayoutPanelResumenAsistencias.Location = New System.Drawing.Point(523, 3)
         Me.TableLayoutPanelResumenAsistencias.Name = "TableLayoutPanelResumenAsistencias"
         Me.TableLayoutPanelResumenAsistencias.RowCount = 2
         Me.TableLayoutPanelResumenAsistencias.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TableLayoutPanelResumenAsistencias.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelResumenAsistencias.Size = New System.Drawing.Size(495, 358)
+        Me.TableLayoutPanelResumenAsistencias.Size = New System.Drawing.Size(485, 450)
         Me.TableLayoutPanelResumenAsistencias.TabIndex = 1
         '
         'labelResumenAsistencias
@@ -1394,7 +1381,7 @@ Partial Class FormSiniestroV2
         Me.labelResumenAsistencias.Location = New System.Drawing.Point(4, 0)
         Me.labelResumenAsistencias.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
-        Me.labelResumenAsistencias.Size = New System.Drawing.Size(487, 16)
+        Me.labelResumenAsistencias.Size = New System.Drawing.Size(477, 16)
         Me.labelResumenAsistencias.TabIndex = 31
         Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
         Me.labelResumenAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1419,7 +1406,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewResumenAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridViewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DataGridViewResumenAsistencias.ShowEditingIcon = False
-        Me.DataGridViewResumenAsistencias.Size = New System.Drawing.Size(487, 334)
+        Me.DataGridViewResumenAsistencias.Size = New System.Drawing.Size(477, 426)
         Me.DataGridViewResumenAsistencias.TabIndex = 28
         '
         'columnResumenAsistenciaTipo
@@ -1454,7 +1441,7 @@ Partial Class FormSiniestroV2
         Me.TabPageDamnificado.Location = New System.Drawing.Point(4, 28)
         Me.TabPageDamnificado.Name = "TabPageDamnificado"
         Me.TabPageDamnificado.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageDamnificado.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageDamnificado.Size = New System.Drawing.Size(1011, 456)
         Me.TabPageDamnificado.TabIndex = 4
         Me.TabPageDamnificado.Text = "Damnificados"
         Me.TabPageDamnificado.UseVisualStyleBackColor = True
@@ -1471,8 +1458,7 @@ Partial Class FormSiniestroV2
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.DataGridViewDamnificados.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridViewDamnificados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridViewDamnificados.ColumnHeadersHeight = 29
-        Me.DataGridViewDamnificados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DataGridViewDamnificados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewDamnificados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre, Me.DataGridViewTextBoxColumnDamnificadosEdad, Me.DataGridViewTextBoxColumnDamnificadosEstado})
         Me.DataGridViewDamnificados.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewDamnificados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
@@ -1485,7 +1471,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewDamnificados.RowHeadersWidth = 51
         Me.DataGridViewDamnificados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridViewDamnificados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(926, 336)
+        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(905, 428)
         Me.DataGridViewDamnificados.TabIndex = 14
         '
         'DataGridViewTextBoxColumnDamnificadosApellidoNombre
@@ -1495,7 +1481,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.MinimumWidth = 6
         Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Name = "DataGridViewTextBoxColumnDamnificadosApellidoNombre"
         Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.ReadOnly = True
-        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Width = 145
+        Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre.Width = 92
         '
         'DataGridViewTextBoxColumnDamnificadosEdad
         '
@@ -1521,17 +1507,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripDamnificados.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripDamnificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelDamnificados})
-        Me.StatusStripDamnificados.Location = New System.Drawing.Point(103, 339)
+        Me.StatusStripDamnificados.Location = New System.Drawing.Point(103, 431)
         Me.StatusStripDamnificados.Name = "StatusStripDamnificados"
         Me.StatusStripDamnificados.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripDamnificados.Size = New System.Drawing.Size(926, 22)
+        Me.StatusStripDamnificados.Size = New System.Drawing.Size(905, 22)
         Me.StatusStripDamnificados.SizingGrip = False
         Me.StatusStripDamnificados.TabIndex = 15
         '
         'ToolStripStatusLabelDamnificados
         '
         Me.ToolStripStatusLabelDamnificados.Name = "ToolStripStatusLabelDamnificados"
-        Me.ToolStripStatusLabelDamnificados.Size = New System.Drawing.Size(906, 16)
+        Me.ToolStripStatusLabelDamnificados.Size = New System.Drawing.Size(885, 16)
         Me.ToolStripStatusLabelDamnificados.Spring = True
         Me.ToolStripStatusLabelDamnificados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1544,7 +1530,7 @@ Partial Class FormSiniestroV2
         Me.ToolStripDaminificados.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ToolStripDaminificados.Location = New System.Drawing.Point(3, 3)
         Me.ToolStripDaminificados.Name = "ToolStripDaminificados"
-        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 358)
+        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 450)
         Me.ToolStripDaminificados.TabIndex = 13
         '
         'ToolStripButtonDamnificadosAgregar
@@ -1585,7 +1571,7 @@ Partial Class FormSiniestroV2
         Me.TabPageVehiculo.Location = New System.Drawing.Point(4, 28)
         Me.TabPageVehiculo.Name = "TabPageVehiculo"
         Me.TabPageVehiculo.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageVehiculo.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageVehiculo.Size = New System.Drawing.Size(1011, 456)
         Me.TabPageVehiculo.TabIndex = 6
         Me.TabPageVehiculo.Text = "Vehículos"
         Me.TabPageVehiculo.UseVisualStyleBackColor = True
@@ -1601,8 +1587,7 @@ Partial Class FormSiniestroV2
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.DataGridViewVehiculos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewVehiculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridViewVehiculos.ColumnHeadersHeight = 29
-        Me.DataGridViewVehiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.DataGridViewVehiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewVehiculos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnVehiculosTipo, Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca, Me.DataGridViewTextBoxColumnVehiculosModelo, Me.DataGridViewTextBoxColumnVehiculosDominio})
         Me.DataGridViewVehiculos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewVehiculos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
@@ -1615,7 +1600,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewVehiculos.RowHeadersWidth = 51
         Me.DataGridViewVehiculos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridViewVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(926, 336)
+        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(905, 428)
         Me.DataGridViewVehiculos.TabIndex = 15
         '
         'DataGridViewTextBoxColumnVehiculosTipo
@@ -1658,17 +1643,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelVehiculos})
-        Me.StatusStripVehiculos.Location = New System.Drawing.Point(103, 339)
+        Me.StatusStripVehiculos.Location = New System.Drawing.Point(103, 431)
         Me.StatusStripVehiculos.Name = "StatusStripVehiculos"
         Me.StatusStripVehiculos.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripVehiculos.Size = New System.Drawing.Size(926, 22)
+        Me.StatusStripVehiculos.Size = New System.Drawing.Size(905, 22)
         Me.StatusStripVehiculos.SizingGrip = False
         Me.StatusStripVehiculos.TabIndex = 16
         '
         'ToolStripStatusLabelVehiculos
         '
         Me.ToolStripStatusLabelVehiculos.Name = "ToolStripStatusLabelVehiculos"
-        Me.ToolStripStatusLabelVehiculos.Size = New System.Drawing.Size(906, 16)
+        Me.ToolStripStatusLabelVehiculos.Size = New System.Drawing.Size(885, 16)
         Me.ToolStripStatusLabelVehiculos.Spring = True
         Me.ToolStripStatusLabelVehiculos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1681,7 +1666,7 @@ Partial Class FormSiniestroV2
         Me.ToolStripVehiculos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ToolStripVehiculos.Location = New System.Drawing.Point(3, 3)
         Me.ToolStripVehiculos.Name = "ToolStripVehiculos"
-        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 358)
+        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 450)
         Me.ToolStripVehiculos.TabIndex = 14
         '
         'ToolStripButtonVehiculosAgregar
@@ -1722,7 +1707,7 @@ Partial Class FormSiniestroV2
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 28)
         Me.tabpageAsistencias.Name = "tabpageAsistencias"
         Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabpageAsistencias.Size = New System.Drawing.Size(1032, 364)
+        Me.tabpageAsistencias.Size = New System.Drawing.Size(1011, 456)
         Me.tabpageAsistencias.TabIndex = 2
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
@@ -1737,8 +1722,7 @@ Partial Class FormSiniestroV2
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.datagridviewAsistencias.ColumnHeadersHeight = 29
-        Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAsistencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
@@ -1751,7 +1735,7 @@ Partial Class FormSiniestroV2
         Me.datagridviewAsistencias.RowHeadersWidth = 51
         Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAsistencias.Size = New System.Drawing.Size(926, 336)
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(905, 428)
         Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
@@ -1778,17 +1762,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripAsistencias.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripAsistencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelAsistencias})
-        Me.StatusStripAsistencias.Location = New System.Drawing.Point(103, 339)
+        Me.StatusStripAsistencias.Location = New System.Drawing.Point(103, 431)
         Me.StatusStripAsistencias.Name = "StatusStripAsistencias"
         Me.StatusStripAsistencias.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripAsistencias.Size = New System.Drawing.Size(926, 22)
+        Me.StatusStripAsistencias.Size = New System.Drawing.Size(905, 22)
         Me.StatusStripAsistencias.SizingGrip = False
         Me.StatusStripAsistencias.TabIndex = 10
         '
         'ToolStripStatusLabelAsistencias
         '
         Me.ToolStripStatusLabelAsistencias.Name = "ToolStripStatusLabelAsistencias"
-        Me.ToolStripStatusLabelAsistencias.Size = New System.Drawing.Size(906, 16)
+        Me.ToolStripStatusLabelAsistencias.Size = New System.Drawing.Size(885, 16)
         Me.ToolStripStatusLabelAsistencias.Spring = True
         Me.ToolStripStatusLabelAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1801,7 +1785,7 @@ Partial Class FormSiniestroV2
         Me.toolstripAsistencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.toolstripAsistencias.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAsistencias.Name = "toolstripAsistencias"
-        Me.toolstripAsistencias.Size = New System.Drawing.Size(100, 358)
+        Me.toolstripAsistencias.Size = New System.Drawing.Size(100, 450)
         Me.toolstripAsistencias.TabIndex = 9
         '
         'buttonAsistenciasAgregar
@@ -1836,140 +1820,226 @@ Partial Class FormSiniestroV2
         '
         'tabpageNotasAuditoria
         '
-        Me.tabpageNotasAuditoria.Controls.Add(Me.checkboxAnulado)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelAnulado)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelIDSiniestro)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxIDSiniestro)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxUsuarioCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxFechaHoraCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelModificacion)
-        Me.tabpageNotasAuditoria.Controls.Add(labelCreacion)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.textboxNotas)
-        Me.tabpageNotasAuditoria.Controls.Add(Me.labelNotas)
+        Me.tabpageNotasAuditoria.Controls.Add(Me.TableLayoutPanelNotasAuditoria)
         Me.tabpageNotasAuditoria.Location = New System.Drawing.Point(4, 28)
         Me.tabpageNotasAuditoria.Margin = New System.Windows.Forms.Padding(4)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(4)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(1032, 364)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(1011, 456)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
         '
-        'checkboxAnulado
+        'TableLayoutPanelNotasAuditoria
         '
-        Me.checkboxAnulado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.checkboxAnulado.AutoSize = True
-        Me.checkboxAnulado.Location = New System.Drawing.Point(152, 306)
-        Me.checkboxAnulado.Margin = New System.Windows.Forms.Padding(4)
-        Me.checkboxAnulado.Name = "checkboxAnulado"
-        Me.checkboxAnulado.Size = New System.Drawing.Size(18, 17)
-        Me.checkboxAnulado.TabIndex = 3
-        Me.checkboxAnulado.UseVisualStyleBackColor = True
+        Me.TableLayoutPanelNotasAuditoria.AutoSize = True
+        Me.TableLayoutPanelNotasAuditoria.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelNotasAuditoria.ColumnCount = 2
+        Me.TableLayoutPanelNotasAuditoria.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelNotasAuditoria.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.TableLayoutPanelUltimaModificacion, 1, 4)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(labelModificacion, 0, 4)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(labelCreacion, 0, 3)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.textboxIDSiniestro, 1, 2)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.labelIDSiniestro, 0, 2)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.checkboxAnulado, 1, 1)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.labelAnulado, 0, 1)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.textboxNotas, 1, 0)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.labelNotas, 0, 0)
+        Me.TableLayoutPanelNotasAuditoria.Controls.Add(Me.TableLayoutPanelCreacion, 1, 3)
+        Me.TableLayoutPanelNotasAuditoria.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelNotasAuditoria.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelNotasAuditoria.Location = New System.Drawing.Point(4, 4)
+        Me.TableLayoutPanelNotasAuditoria.Name = "TableLayoutPanelNotasAuditoria"
+        Me.TableLayoutPanelNotasAuditoria.RowCount = 5
+        Me.TableLayoutPanelNotasAuditoria.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelNotasAuditoria.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelNotasAuditoria.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelNotasAuditoria.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelNotasAuditoria.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelNotasAuditoria.Size = New System.Drawing.Size(1003, 448)
+        Me.TableLayoutPanelNotasAuditoria.TabIndex = 12
         '
-        'labelAnulado
+        'labelNotas
         '
-        Me.labelAnulado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.labelAnulado.AutoSize = True
-        Me.labelAnulado.Location = New System.Drawing.Point(8, 304)
-        Me.labelAnulado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.labelAnulado.Name = "labelAnulado"
-        Me.labelAnulado.Size = New System.Drawing.Size(60, 16)
-        Me.labelAnulado.TabIndex = 2
-        Me.labelAnulado.Text = "Anulado:"
-        '
-        'labelIDSiniestro
-        '
-        Me.labelIDSiniestro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.labelIDSiniestro.AutoSize = True
-        Me.labelIDSiniestro.Location = New System.Drawing.Point(8, 334)
-        Me.labelIDSiniestro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.labelIDSiniestro.Name = "labelIDSiniestro"
-        Me.labelIDSiniestro.Size = New System.Drawing.Size(23, 16)
-        Me.labelIDSiniestro.TabIndex = 4
-        Me.labelIDSiniestro.Text = "ID:"
-        '
-        'textboxIDSiniestro
-        '
-        Me.textboxIDSiniestro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxIDSiniestro.Location = New System.Drawing.Point(152, 330)
-        Me.textboxIDSiniestro.Margin = New System.Windows.Forms.Padding(4)
-        Me.textboxIDSiniestro.MaxLength = 10
-        Me.textboxIDSiniestro.Name = "textboxIDSiniestro"
-        Me.textboxIDSiniestro.ReadOnly = True
-        Me.textboxIDSiniestro.Size = New System.Drawing.Size(95, 22)
-        Me.textboxIDSiniestro.TabIndex = 5
-        Me.textboxIDSiniestro.TabStop = False
-        Me.textboxIDSiniestro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'textboxUsuarioModificacion
-        '
-        Me.textboxUsuarioModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(321, 394)
-        Me.textboxUsuarioModificacion.Margin = New System.Windows.Forms.Padding(4)
-        Me.textboxUsuarioModificacion.MaxLength = 50
-        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
-        Me.textboxUsuarioModificacion.ReadOnly = True
-        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(344, 22)
-        Me.textboxUsuarioModificacion.TabIndex = 11
-        '
-        'textboxUsuarioCreacion
-        '
-        Me.textboxUsuarioCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(321, 362)
-        Me.textboxUsuarioCreacion.Margin = New System.Windows.Forms.Padding(4)
-        Me.textboxUsuarioCreacion.MaxLength = 50
-        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
-        Me.textboxUsuarioCreacion.ReadOnly = True
-        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(344, 22)
-        Me.textboxUsuarioCreacion.TabIndex = 8
-        '
-        'textboxFechaHoraModificacion
-        '
-        Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(152, 394)
-        Me.textboxFechaHoraModificacion.Margin = New System.Windows.Forms.Padding(4)
-        Me.textboxFechaHoraModificacion.MaxLength = 0
-        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
-        Me.textboxFechaHoraModificacion.ReadOnly = True
-        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(160, 22)
-        Me.textboxFechaHoraModificacion.TabIndex = 10
-        '
-        'textboxFechaHoraCreacion
-        '
-        Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(152, 362)
-        Me.textboxFechaHoraCreacion.Margin = New System.Windows.Forms.Padding(4)
-        Me.textboxFechaHoraCreacion.MaxLength = 0
-        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
-        Me.textboxFechaHoraCreacion.ReadOnly = True
-        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(160, 22)
-        Me.textboxFechaHoraCreacion.TabIndex = 7
+        Me.labelNotas.AutoSize = True
+        Me.labelNotas.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.labelNotas.Location = New System.Drawing.Point(4, 0)
+        Me.labelNotas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelNotas.Name = "labelNotas"
+        Me.labelNotas.Size = New System.Drawing.Size(127, 333)
+        Me.labelNotas.TabIndex = 1
+        Me.labelNotas.Text = "Notas:"
         '
         'textboxNotas
         '
         Me.textboxNotas.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.textboxNotas.Location = New System.Drawing.Point(152, 7)
+        Me.textboxNotas.Location = New System.Drawing.Point(139, 4)
         Me.textboxNotas.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxNotas.MaxLength = 0
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(938, 290)
-        Me.textboxNotas.TabIndex = 1
+        Me.textboxNotas.Size = New System.Drawing.Size(860, 325)
+        Me.textboxNotas.TabIndex = 2
         '
-        'labelNotas
+        'labelAnulado
         '
-        Me.labelNotas.AutoSize = True
-        Me.labelNotas.Location = New System.Drawing.Point(5, 11)
-        Me.labelNotas.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.labelNotas.Name = "labelNotas"
-        Me.labelNotas.Size = New System.Drawing.Size(46, 16)
-        Me.labelNotas.TabIndex = 0
-        Me.labelNotas.Text = "Notas:"
+        Me.labelAnulado.AutoSize = True
+        Me.labelAnulado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.labelAnulado.Location = New System.Drawing.Point(4, 333)
+        Me.labelAnulado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelAnulado.Name = "labelAnulado"
+        Me.labelAnulado.Size = New System.Drawing.Size(127, 25)
+        Me.labelAnulado.TabIndex = 3
+        Me.labelAnulado.Text = "Anulado:"
+        Me.labelAnulado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'checkboxAnulado
+        '
+        Me.checkboxAnulado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.checkboxAnulado.AutoSize = True
+        Me.checkboxAnulado.Location = New System.Drawing.Point(139, 337)
+        Me.checkboxAnulado.Margin = New System.Windows.Forms.Padding(4)
+        Me.checkboxAnulado.Name = "checkboxAnulado"
+        Me.checkboxAnulado.Size = New System.Drawing.Size(18, 17)
+        Me.checkboxAnulado.TabIndex = 4
+        Me.checkboxAnulado.UseVisualStyleBackColor = True
+        '
+        'labelIDSiniestro
+        '
+        Me.labelIDSiniestro.AutoSize = True
+        Me.labelIDSiniestro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.labelIDSiniestro.Location = New System.Drawing.Point(4, 358)
+        Me.labelIDSiniestro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelIDSiniestro.Name = "labelIDSiniestro"
+        Me.labelIDSiniestro.Size = New System.Drawing.Size(127, 30)
+        Me.labelIDSiniestro.TabIndex = 5
+        Me.labelIDSiniestro.Text = "ID:"
+        Me.labelIDSiniestro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'textboxIDSiniestro
+        '
+        Me.textboxIDSiniestro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxIDSiniestro.Location = New System.Drawing.Point(139, 362)
+        Me.textboxIDSiniestro.Margin = New System.Windows.Forms.Padding(4)
+        Me.textboxIDSiniestro.MaxLength = 10
+        Me.textboxIDSiniestro.Name = "textboxIDSiniestro"
+        Me.textboxIDSiniestro.ReadOnly = True
+        Me.textboxIDSiniestro.Size = New System.Drawing.Size(95, 22)
+        Me.textboxIDSiniestro.TabIndex = 6
+        Me.textboxIDSiniestro.TabStop = False
+        Me.textboxIDSiniestro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'labelCreacion
+        '
+        labelCreacion.AutoSize = True
+        labelCreacion.Dock = System.Windows.Forms.DockStyle.Fill
+        labelCreacion.Location = New System.Drawing.Point(4, 388)
+        labelCreacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        labelCreacion.Name = "labelCreacion"
+        labelCreacion.Size = New System.Drawing.Size(127, 30)
+        labelCreacion.TabIndex = 7
+        labelCreacion.Text = "Creación:"
+        labelCreacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelCreacion
+        '
+        Me.TableLayoutPanelCreacion.AutoSize = True
+        Me.TableLayoutPanelCreacion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelCreacion.ColumnCount = 2
+        Me.TableLayoutPanelCreacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelCreacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelCreacion.Controls.Add(Me.textboxUsuarioCreacion, 1, 0)
+        Me.TableLayoutPanelCreacion.Controls.Add(Me.textboxFechaHoraCreacion, 0, 0)
+        Me.TableLayoutPanelCreacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelCreacion.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelCreacion.Location = New System.Drawing.Point(135, 388)
+        Me.TableLayoutPanelCreacion.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelCreacion.Name = "TableLayoutPanelCreacion"
+        Me.TableLayoutPanelCreacion.RowCount = 1
+        Me.TableLayoutPanelCreacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelCreacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanelCreacion.Size = New System.Drawing.Size(868, 30)
+        Me.TableLayoutPanelCreacion.TabIndex = 8
+        '
+        'textboxFechaHoraCreacion
+        '
+        Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(4, 4)
+        Me.textboxFechaHoraCreacion.Margin = New System.Windows.Forms.Padding(4)
+        Me.textboxFechaHoraCreacion.MaxLength = 0
+        Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
+        Me.textboxFechaHoraCreacion.ReadOnly = True
+        Me.textboxFechaHoraCreacion.Size = New System.Drawing.Size(160, 22)
+        Me.textboxFechaHoraCreacion.TabIndex = 8
+        '
+        'textboxUsuarioCreacion
+        '
+        Me.textboxUsuarioCreacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(172, 4)
+        Me.textboxUsuarioCreacion.Margin = New System.Windows.Forms.Padding(4)
+        Me.textboxUsuarioCreacion.MaxLength = 50
+        Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
+        Me.textboxUsuarioCreacion.ReadOnly = True
+        Me.textboxUsuarioCreacion.Size = New System.Drawing.Size(692, 22)
+        Me.textboxUsuarioCreacion.TabIndex = 9
+        '
+        'labelModificacion
+        '
+        labelModificacion.AutoSize = True
+        labelModificacion.Dock = System.Windows.Forms.DockStyle.Fill
+        labelModificacion.Location = New System.Drawing.Point(4, 418)
+        labelModificacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        labelModificacion.Name = "labelModificacion"
+        labelModificacion.Size = New System.Drawing.Size(127, 30)
+        labelModificacion.TabIndex = 10
+        labelModificacion.Text = "Ultima Modificación:"
+        labelModificacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelUltimaModificacion
+        '
+        Me.TableLayoutPanelUltimaModificacion.AutoSize = True
+        Me.TableLayoutPanelUltimaModificacion.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelUltimaModificacion.ColumnCount = 2
+        Me.TableLayoutPanelUltimaModificacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelUltimaModificacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelUltimaModificacion.Controls.Add(Me.textboxUsuarioModificacion, 1, 0)
+        Me.TableLayoutPanelUltimaModificacion.Controls.Add(Me.textboxFechaHoraModificacion, 0, 0)
+        Me.TableLayoutPanelUltimaModificacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelUltimaModificacion.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelUltimaModificacion.Location = New System.Drawing.Point(135, 418)
+        Me.TableLayoutPanelUltimaModificacion.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelUltimaModificacion.Name = "TableLayoutPanelUltimaModificacion"
+        Me.TableLayoutPanelUltimaModificacion.RowCount = 1
+        Me.TableLayoutPanelUltimaModificacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelUltimaModificacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanelUltimaModificacion.Size = New System.Drawing.Size(868, 30)
+        Me.TableLayoutPanelUltimaModificacion.TabIndex = 11
+        '
+        'textboxFechaHoraModificacion
+        '
+        Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(4, 4)
+        Me.textboxFechaHoraModificacion.Margin = New System.Windows.Forms.Padding(4)
+        Me.textboxFechaHoraModificacion.MaxLength = 0
+        Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
+        Me.textboxFechaHoraModificacion.ReadOnly = True
+        Me.textboxFechaHoraModificacion.Size = New System.Drawing.Size(160, 22)
+        Me.textboxFechaHoraModificacion.TabIndex = 11
+        '
+        'textboxUsuarioModificacion
+        '
+        Me.textboxUsuarioModificacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(172, 4)
+        Me.textboxUsuarioModificacion.Margin = New System.Windows.Forms.Padding(4)
+        Me.textboxUsuarioModificacion.MaxLength = 50
+        Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
+        Me.textboxUsuarioModificacion.ReadOnly = True
+        Me.textboxUsuarioModificacion.Size = New System.Drawing.Size(692, 22)
+        Me.textboxUsuarioModificacion.TabIndex = 12
         '
         'ControlPersonaRadioTelefonista
         '
@@ -1986,7 +2056,7 @@ Partial Class FormSiniestroV2
         Me.ControlPersonaRadioTelefonista.MinimumSize = New System.Drawing.Size(200, 26)
         Me.ControlPersonaRadioTelefonista.Name = "ControlPersonaRadioTelefonista"
         Me.ControlPersonaRadioTelefonista.ReadOnlyText = False
-        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(324, 26)
         Me.ControlPersonaRadioTelefonista.SoloMostrarEnAsistencia = True
         Me.ControlPersonaRadioTelefonista.SoloMostrarEstadoActivo = True
         Me.ControlPersonaRadioTelefonista.TabIndex = 39
@@ -2006,7 +2076,7 @@ Partial Class FormSiniestroV2
         Me.ControlPersonaJefeGuardia.MinimumSize = New System.Drawing.Size(200, 26)
         Me.ControlPersonaJefeGuardia.Name = "ControlPersonaJefeGuardia"
         Me.ControlPersonaJefeGuardia.ReadOnlyText = False
-        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(324, 26)
         Me.ControlPersonaJefeGuardia.SoloMostrarEnAsistencia = True
         Me.ControlPersonaJefeGuardia.SoloMostrarEstadoActivo = True
         Me.ControlPersonaJefeGuardia.TabIndex = 37
@@ -2026,7 +2096,7 @@ Partial Class FormSiniestroV2
         Me.ControlPersonaEncargadoCuartel.MinimumSize = New System.Drawing.Size(200, 26)
         Me.ControlPersonaEncargadoCuartel.Name = "ControlPersonaEncargadoCuartel"
         Me.ControlPersonaEncargadoCuartel.ReadOnlyText = False
-        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(324, 26)
         Me.ControlPersonaEncargadoCuartel.SoloMostrarEnAsistencia = True
         Me.ControlPersonaEncargadoCuartel.SoloMostrarEstadoActivo = True
         Me.ControlPersonaEncargadoCuartel.TabIndex = 35
@@ -2036,7 +2106,7 @@ Partial Class FormSiniestroV2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(120.0!, 120.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1019, 449)
+        Me.ClientSize = New System.Drawing.Size(1019, 527)
         Me.Controls.Add(Me.TabControlMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -2106,6 +2176,12 @@ Partial Class FormSiniestroV2
         Me.toolstripAsistencias.PerformLayout()
         Me.tabpageNotasAuditoria.ResumeLayout(False)
         Me.tabpageNotasAuditoria.PerformLayout()
+        Me.TableLayoutPanelNotasAuditoria.ResumeLayout(False)
+        Me.TableLayoutPanelNotasAuditoria.PerformLayout()
+        Me.TableLayoutPanelCreacion.ResumeLayout(False)
+        Me.TableLayoutPanelCreacion.PerformLayout()
+        Me.TableLayoutPanelUltimaModificacion.ResumeLayout(False)
+        Me.TableLayoutPanelUltimaModificacion.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2118,12 +2194,6 @@ Partial Class FormSiniestroV2
     Friend WithEvents comboboxSiniestroRubro As System.Windows.Forms.ComboBox
     Friend WithEvents TabControlMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
-    Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxFechaHoraModificacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxFechaHoraCreacion As System.Windows.Forms.TextBox
-    Friend WithEvents textboxNotas As System.Windows.Forms.TextBox
-    Friend WithEvents labelNotas As System.Windows.Forms.Label
     Friend WithEvents datetimepickerFecha As DateTimePicker
     Friend WithEvents tabpageAsistencias As TabPage
     Friend WithEvents datagridviewAsistencias As DataGridView
@@ -2133,13 +2203,9 @@ Partial Class FormSiniestroV2
     Friend WithEvents buttonAsistenciasEliminar As ToolStripButton
     Friend WithEvents datetimepickerHoraSalida As DateTimePicker
     Friend WithEvents buttonImprimir As ToolStripButton
-    Friend WithEvents labelIDSiniestro As Label
-    Friend WithEvents textboxIDSiniestro As TextBox
     Friend WithEvents comboboxSiniestroTipo As ComboBox
     Friend WithEvents comboboxClave As ComboBox
     Friend WithEvents textboxSiniestroTipoOtro As TextBox
-    Friend WithEvents checkboxAnulado As CheckBox
-    Friend WithEvents labelAnulado As Label
     Friend WithEvents datetimepickerHoraFin As DateTimePicker
     Friend WithEvents columnPersona As DataGridViewTextBoxColumn
     Friend WithEvents columnSiniestroAsistenciaTipo As DataGridViewTextBoxColumn
@@ -2247,4 +2313,17 @@ Partial Class FormSiniestroV2
     Friend WithEvents ToolStripButtonDamnificadosAgregar As ToolStripButton
     Friend WithEvents ToolStripButtonDamnificadosEditar As ToolStripButton
     Friend WithEvents ToolStripButtonDamnificadosBorrar As ToolStripButton
+    Friend WithEvents TableLayoutPanelNotasAuditoria As TableLayoutPanel
+    Friend WithEvents textboxIDSiniestro As TextBox
+    Friend WithEvents labelIDSiniestro As Label
+    Friend WithEvents checkboxAnulado As CheckBox
+    Friend WithEvents labelAnulado As Label
+    Friend WithEvents textboxNotas As TextBox
+    Friend WithEvents labelNotas As Label
+    Friend WithEvents TableLayoutPanelCreacion As TableLayoutPanel
+    Friend WithEvents textboxUsuarioCreacion As TextBox
+    Friend WithEvents textboxFechaHoraCreacion As TextBox
+    Friend WithEvents TableLayoutPanelUltimaModificacion As TableLayoutPanel
+    Friend WithEvents textboxUsuarioModificacion As TextBox
+    Friend WithEvents textboxFechaHoraModificacion As TextBox
 End Class
