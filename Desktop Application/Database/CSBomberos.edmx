@@ -1437,7 +1437,7 @@
           <Property Name="IDSiniestroTipo" Type="tinyint" Nullable="false" />
           <Property Name="SiniestroTipoOtro" Type="varchar" MaxLength="50" />
           <Property Name="IDSiniestroClave" Type="tinyint" Nullable="false" />
-          <Property Name="TrasladoPorOtro" Type="bit" />
+          <Property Name="TrasladoPorOtro" Type="bit" Nullable="false" />
           <Property Name="TrasladoPorOtroCantidad" Type="tinyint" />
           <Property Name="IncendioForestalCantidadHa" Type="smallint" />
           <Property Name="IncendioForestalCantidadPlanta" Type="smallint" />
@@ -12446,7 +12446,7 @@
           <Property Name="UbicacionDescripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="UbicacionIDProvincia" Type="Byte" />
           <Property Name="UbicacionIDLocalidad" Type="Int16" />
-          <Property Name="TrasladoPorOtro" Type="Boolean" />
+          <Property Name="TrasladoPorOtro" Type="Boolean" Nullable="false" />
           <Property Name="TrasladoPorOtroCantidad" Type="Byte" />
           <Property Name="IncendioForestalCantidadHa" Type="Int16" />
           <Property Name="IncendioForestalCantidadPlanta" Type="Int16" />

@@ -147,8 +147,6 @@
         mPermisoEditarCompleto = Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)
 
         LabelIncendioForestal.Font = New Font(LabelIncendioForestal.Font, FontStyle.Bold)
-        LabelDamnificados.Font = LabelIncendioForestal.Font
-        LabelVehiculos.Font = LabelIncendioForestal.Font
 
         LabelControlado.Visible = mPermisoEditarCompleto
         CheckBoxControlado.Visible = mPermisoEditarCompleto
@@ -166,6 +164,8 @@
         Me.Icon = CardonerSistemas.Graphics.GetIconFromBitmap(My.Resources.ImageSiniestro32)
 
         DataGridSetAppearance(DataGridViewResumenAsistencias)
+        DataGridSetAppearance(DataGridViewDamnificados)
+        DataGridSetAppearance(DataGridViewVehiculos)
         DataGridSetAppearance(datagridviewAsistencias)
     End Sub
 
@@ -203,7 +203,7 @@
             datetimepickerHoraLlegadaUltimoCamion.Value = CS_ValueTranslation.FromObjectTimeSpanToControlDateTimePicker(.HoraLlegadaUltimoCamion, datetimepickerHoraLlegadaUltimoCamion)
 
             CheckBoxTrasladoPorOtro.CheckState = CS_ValueTranslation.FromObjectBooleanToControlCheckBox(.TrasladoPorOtro)
-            If .TrasladoPorOtro.HasValue AndAlso .TrasladoPorOtro.Value AndAlso .TrasladoPorOtroCantidad.HasValue Then
+            If .TrasladoPorOtro AndAlso .TrasladoPorOtroCantidad.HasValue Then
                 NumericUpDownTrasladoPorOtroCantidad.Value = .TrasladoPorOtroCantidad.Value
             Else
                 NumericUpDownTrasladoPorOtroCantidad.Value = 0
@@ -331,7 +331,7 @@
         End Select
     End Sub
 
-    Private Sub Controls_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.GotFocus, maskedtextboxNumero.GotFocus, textboxSiniestroTipoOtro.GotFocus, NumericUpDownTrasladoPorOtroCantidad.GotFocus, NumericUpDownIncendioForestalCantidadHa.GotFocus, NumericUpDownIncendioForestalCantidadPlanta.GotFocus, NumericUpDownIncendioForestalLargoMetro.GotFocus, NumericUpDownIncendioForestalAnchoMetro.GotFocus, NumericUpDownIncendioForestalSuperficieMetro.GotFocus, TextBoxSolicitanteNombre.GotFocus, TextBoxSolicitanteDireccion.GotFocus, TextBoxSolicitanteDocumentoNumero.GotFocus, TextBoxSolicitanteTelefono.GotFocus, TextBoxUbicacionDescripcion.GotFocus, textboxNotas.GotFocus
+    Private Sub Controls_GotFocus(sender As Object, e As EventArgs) Handles maskedtextboxNumeroPrefijo.GotFocus, maskedtextboxNumero.GotFocus, textboxSiniestroTipoOtro.GotFocus, NumericUpDownIncendioForestalCantidadHa.GotFocus, NumericUpDownIncendioForestalCantidadPlanta.GotFocus, TextBoxSolicitanteNombre.GotFocus, TextBoxSolicitanteDireccion.GotFocus, TextBoxSolicitanteDocumentoNumero.GotFocus, TextBoxSolicitanteTelefono.GotFocus, TextBoxUbicacionDescripcion.GotFocus, textboxNotas.GotFocus, NumericUpDownTrasladoPorOtroCantidad.Enter, NumericUpDownIncendioForestalSuperficieMetro.Enter, NumericUpDownIncendioForestalLargoMetro.Enter, NumericUpDownIncendioForestalCantidadPlanta.Enter, NumericUpDownIncendioForestalCantidadHa.Enter, NumericUpDownIncendioForestalAnchoMetro.Enter
         Common.SelectAllText(sender)
     End Sub
 
@@ -457,7 +457,7 @@
         NumericUpDownTrasladoPorOtroCantidad.Visible = CheckBoxTrasladoPorOtro.CheckState = CheckState.Checked
     End Sub
 
-    Private Sub DomicilioParticularProvincia_Cambiar(sender As Object, e As EventArgs) Handles ComboBoxUbicacionProvincia.SelectedValueChanged
+    Private Sub UbicacionProvincia_Cambiar(sender As Object, e As EventArgs) Handles ComboBoxUbicacionProvincia.SelectedValueChanged
         If ComboBoxUbicacionProvincia.SelectedValue Is Nothing Then
             pFillAndRefreshLists.Localidad(ComboBoxUbicacionLocalidad, 0, True)
             ComboBoxUbicacionLocalidad.SelectedIndex = 0
@@ -473,7 +473,7 @@
 
 #Region "Main toolbar events"
 
-    Private Sub Editar() Handles buttonEditar.Click
+    Private Sub Editar(sender As Object, e As EventArgs) Handles buttonEditar.Click
         If Not (Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_BASICO, False) OrElse Permisos.VerificarPermiso(Permisos.SINIESTRO_EDITAR_COMPLETO, False)) Then
             Permisos.MostrarMensajeDeAviso()
             Return
@@ -483,7 +483,7 @@
         ChangeMode()
     End Sub
 
-    Private Sub CerrarOCancelar() Handles buttonCerrar.Click, buttonCancelar.Click
+    Private Sub CerrarOCancelar(sender As Object, e As EventArgs) Handles buttonCerrar.Click, buttonCancelar.Click
         If mdbContext.ChangeTracker.HasChanges Then
             If MsgBox(String.Format("Ha realizado cambios en los datos y seleccionó cancelar, los cambios se perderán.{0}{0}¿Confirma la pérdida de los cambios?", vbCrLf), CType(MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, MsgBoxStyle), My.Application.Info.Title) = MsgBoxResult.Yes Then
                 Me.Close()
@@ -493,7 +493,7 @@
         End If
     End Sub
 
-    Private Sub Guardar() Handles buttonGuardar.Click
+    Private Sub Guardar(sender As Object, e As EventArgs) Handles buttonGuardar.Click
         If Not VerificarDatos() Then
             Return
         End If
@@ -528,10 +528,10 @@
                 Me.Cursor = Cursors.Default
                 Select Case CardonerSistemas.Database.EntityFramework.TryDecodeDbUpdateException(dbuex)
                     Case CardonerSistemas.Database.EntityFramework.Errors.DuplicatedEntity
-                        tabcontrolMain.SelectedTab = TabPageGeneral
+                        TabControlMain.SelectedTab = TabPageEncabezado
                         MsgBox("No se pueden guardar los cambios porque ya existe un Siniestro con el mismo Cuartel y Número.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case CardonerSistemas.Database.EntityFramework.Errors.PrimaryKeyViolation
-                        tabcontrolMain.SelectedTab = tabpageAsistencias
+                        TabControlMain.SelectedTab = tabpageAsistencias
                         MsgBox("No se pueden guardar los cambios porque existe una Asistencia al Siniestro duplicada para una Persona.", MsgBoxStyle.Exclamation, My.Application.Info.Title)
                     Case Else
                         CardonerSistemas.ErrorHandler.ProcessError(CType(dbuex, Exception), My.Resources.STRING_ERROR_SAVING_CHANGES)
@@ -655,7 +655,7 @@
         End If
     End Sub
 
-    Private Sub DamnificadosVer(sender As Object, e As EventArgs) Handles DataGridViewDamnificados.CellDoubleClick
+    Private Sub DamnificadosVer(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewDamnificados.CellDoubleClick
         If DataGridViewDamnificados.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Damnificado para ver.", vbInformation, My.Application.Info.Title)
             Return
@@ -765,7 +765,7 @@
         End If
     End Sub
 
-    Private Sub VehiculosVer(sender As Object, e As EventArgs) Handles DataGridViewVehiculos.CellDoubleClick
+    Private Sub VehiculosVer(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewVehiculos.CellDoubleClick
         If DataGridViewVehiculos.CurrentRow Is Nothing Then
             MsgBox("No hay ningún Vehículo para ver.", vbInformation, My.Application.Info.Title)
             Return
@@ -919,37 +919,37 @@
 
     Private Function VerificarDatos() As Boolean
         If ComboBoxCuartel.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe especificar el Cuartel.", MsgBoxStyle.Information, My.Application.Info.Title)
             ComboBoxCuartel.Focus()
             Return False
         End If
         If maskedtextboxNumeroPrefijo.Text.Length = 0 Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe ingresar el Prefijo del Número.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxNumeroPrefijo.Focus()
             Return False
         End If
         If maskedtextboxNumero.Text.Length = 0 Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe ingresar el Número.", MsgBoxStyle.Information, My.Application.Info.Title)
             maskedtextboxNumero.Focus()
             Return False
         End If
         If comboboxSiniestroRubro.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe especificar el Rubro y Tipo de Siniestro.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxSiniestroRubro.Focus()
             Return False
         End If
         If comboboxSiniestroTipo.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe especificar el Tipo de Siniestro.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxSiniestroTipo.Focus()
             Return False
         End If
         If comboboxClave.SelectedValue Is Nothing Then
-            tabcontrolMain.SelectedTab = TabPageGeneral
+            TabControlMain.SelectedTab = TabPageEncabezado
             MsgBox("Debe especificar la Clave del Siniestro.", MsgBoxStyle.Information, My.Application.Info.Title)
             comboboxClave.Focus()
             Return False

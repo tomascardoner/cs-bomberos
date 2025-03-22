@@ -42,19 +42,8 @@ Partial Class FormSiniestroV2
         Me.LabelUbicacionDescripcion = New System.Windows.Forms.Label()
         Me.LabelUbicacionProvincia = New System.Windows.Forms.Label()
         Me.LabelUbicacionLocalidad = New System.Windows.Forms.Label()
-        Me.LabelTrasladoPorOtro = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestal = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestalCantidad = New System.Windows.Forms.Label()
         Me.LabelIncendioForestalCantidadHa = New System.Windows.Forms.Label()
         Me.LabelIncendioForestalCantidadPlanta = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestalMedida = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestalAnchoMetro = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestalLargoMetro = New System.Windows.Forms.Label()
-        Me.LabelIncendioForestalSuperficieMetro = New System.Windows.Forms.Label()
-        Me.LabelEncargadoCuartel = New System.Windows.Forms.Label()
-        Me.LabelJefeGuardia = New System.Windows.Forms.Label()
-        Me.LabelRadioTelefonista = New System.Windows.Forms.Label()
-        Me.LabelControlado = New System.Windows.Forms.Label()
         Me.labelFecha = New System.Windows.Forms.Label()
         Me.buttonGuardar = New System.Windows.Forms.ToolStripButton()
         Me.buttonCancelar = New System.Windows.Forms.ToolStripButton()
@@ -63,27 +52,13 @@ Partial Class FormSiniestroV2
         Me.toolstripMain = New System.Windows.Forms.ToolStrip()
         Me.buttonImprimir = New System.Windows.Forms.ToolStripButton()
         Me.comboboxSiniestroRubro = New System.Windows.Forms.ComboBox()
-        Me.tabcontrolMain = New System.Windows.Forms.TabControl()
-        Me.TabPageGeneral = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanelGeneralMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.TableLayoutPanelGeneralIzquierda = New System.Windows.Forms.TableLayoutPanel()
-        Me.CheckBoxControlado = New System.Windows.Forms.CheckBox()
-        Me.ControlPersonaRadioTelefonista = New CSBomberos.ControlPersona()
-        Me.ControlPersonaJefeGuardia = New CSBomberos.ControlPersona()
-        Me.ControlPersonaEncargadoCuartel = New CSBomberos.ControlPersona()
-        Me.NumericUpDownIncendioForestalSuperficieMetro = New System.Windows.Forms.NumericUpDown()
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie = New System.Windows.Forms.TableLayoutPanel()
-        Me.NumericUpDownIncendioForestalAnchoMetro = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDownIncendioForestalLargoMetro = New System.Windows.Forms.NumericUpDown()
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad = New System.Windows.Forms.TableLayoutPanel()
-        Me.NumericUpDownIncendioForestalCantidadPlanta = New System.Windows.Forms.NumericUpDown()
-        Me.NumericUpDownIncendioForestalCantidadHa = New System.Windows.Forms.NumericUpDown()
-        Me.TableLayoutPanelGeneralTrasladoPorOtro = New System.Windows.Forms.TableLayoutPanel()
-        Me.CheckBoxTrasladoPorOtro = New System.Windows.Forms.CheckBox()
-        Me.NumericUpDownTrasladoPorOtroCantidad = New System.Windows.Forms.NumericUpDown()
+        Me.TabControlMain = New System.Windows.Forms.TabControl()
+        Me.TabPageEncabezado = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanelEncabezadoMain = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelEncabezado = New System.Windows.Forms.TableLayoutPanel()
         Me.LabelNumero = New System.Windows.Forms.Label()
         Me.ComboBoxCuartel = New System.Windows.Forms.ComboBox()
-        Me.TableLayoutPanelGeneralNumero = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelNumero = New System.Windows.Forms.TableLayoutPanel()
         Me.maskedtextboxNumeroPrefijo = New System.Windows.Forms.MaskedTextBox()
         Me.labelNumeroSeparador = New System.Windows.Forms.Label()
         Me.maskedtextboxNumero = New System.Windows.Forms.MaskedTextBox()
@@ -98,15 +73,11 @@ Partial Class FormSiniestroV2
         Me.comboboxClave = New System.Windows.Forms.ComboBox()
         Me.datetimepickerHoraSalida = New System.Windows.Forms.DateTimePicker()
         Me.datetimepickerHoraLlegadaUltimoCamion = New System.Windows.Forms.DateTimePicker()
-        Me.TableLayoutPanelGeneralHoraFin = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelHoraFin = New System.Windows.Forms.TableLayoutPanel()
         Me.buttonHoraFinFinalizar = New System.Windows.Forms.Button()
         Me.datetimepickerHoraFin = New System.Windows.Forms.DateTimePicker()
         Me.textboxPersonaFin = New System.Windows.Forms.TextBox()
-        Me.TableLayoutPanelGeneralDerecha = New System.Windows.Forms.TableLayoutPanel()
-        Me.labelResumenAsistencias = New System.Windows.Forms.Label()
-        Me.DataGridViewResumenAsistencias = New System.Windows.Forms.DataGridView()
-        Me.columnResumenAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.columnResumenCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TableLayoutPanelLlamadoUbicacion = New System.Windows.Forms.TableLayoutPanel()
         Me.ComboBoxUbicacionLocalidad = New System.Windows.Forms.ComboBox()
         Me.ComboBoxUbicacionProvincia = New System.Windows.Forms.ComboBox()
         Me.TextBoxUbicacionDescripcion = New System.Windows.Forms.TextBox()
@@ -118,10 +89,37 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralSolicitanteDocumento = New System.Windows.Forms.TableLayoutPanel()
         Me.TextBoxSolicitanteDocumentoNumero = New System.Windows.Forms.TextBox()
         Me.ComboBoxSolicitanteDocumentoTipo = New System.Windows.Forms.ComboBox()
-        Me.TabPageDamnificadoVehiculo = New System.Windows.Forms.TabPage()
-        Me.TableLayoutPanelDamnificadoVehiculoMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.LabelVehiculos = New System.Windows.Forms.Label()
-        Me.PanelDaminificado = New System.Windows.Forms.Panel()
+        Me.TabPageGeneral = New System.Windows.Forms.TabPage()
+        Me.TableLayoutPanelPieMain = New System.Windows.Forms.TableLayoutPanel()
+        Me.TableLayoutPanelPie = New System.Windows.Forms.TableLayoutPanel()
+        Me.CheckBoxControlado = New System.Windows.Forms.CheckBox()
+        Me.LabelControlado = New System.Windows.Forms.Label()
+        Me.LabelRadioTelefonista = New System.Windows.Forms.Label()
+        Me.LabelJefeGuardia = New System.Windows.Forms.Label()
+        Me.LabelEncargadoCuartel = New System.Windows.Forms.Label()
+        Me.NumericUpDownIncendioForestalSuperficieMetro = New System.Windows.Forms.NumericUpDown()
+        Me.LabelIncendioForestalSuperficieMetro = New System.Windows.Forms.Label()
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie = New System.Windows.Forms.TableLayoutPanel()
+        Me.NumericUpDownIncendioForestalAnchoMetro = New System.Windows.Forms.NumericUpDown()
+        Me.LabelIncendioForestalAnchoMetro = New System.Windows.Forms.Label()
+        Me.LabelIncendioForestalLargoMetro = New System.Windows.Forms.Label()
+        Me.NumericUpDownIncendioForestalLargoMetro = New System.Windows.Forms.NumericUpDown()
+        Me.LabelIncendioForestalMedida = New System.Windows.Forms.Label()
+        Me.LabelTrasladoPorOtro = New System.Windows.Forms.Label()
+        Me.TableLayoutPanelTrasladoPorOtro = New System.Windows.Forms.TableLayoutPanel()
+        Me.CheckBoxTrasladoPorOtro = New System.Windows.Forms.CheckBox()
+        Me.NumericUpDownTrasladoPorOtroCantidad = New System.Windows.Forms.NumericUpDown()
+        Me.LabelIncendioForestal = New System.Windows.Forms.Label()
+        Me.LabelIncendioForestalCantidad = New System.Windows.Forms.Label()
+        Me.TableLayoutPanelIncendioForestalCantidad = New System.Windows.Forms.TableLayoutPanel()
+        Me.NumericUpDownIncendioForestalCantidadPlanta = New System.Windows.Forms.NumericUpDown()
+        Me.NumericUpDownIncendioForestalCantidadHa = New System.Windows.Forms.NumericUpDown()
+        Me.TableLayoutPanelResumenAsistencias = New System.Windows.Forms.TableLayoutPanel()
+        Me.labelResumenAsistencias = New System.Windows.Forms.Label()
+        Me.DataGridViewResumenAsistencias = New System.Windows.Forms.DataGridView()
+        Me.columnResumenAsistenciaTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.columnResumenCantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabPageDamnificado = New System.Windows.Forms.TabPage()
         Me.DataGridViewDamnificados = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnDamnificadosEdad = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -132,7 +130,7 @@ Partial Class FormSiniestroV2
         Me.ToolStripButtonDamnificadosAgregar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonDamnificadosEditar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonDamnificadosBorrar = New System.Windows.Forms.ToolStripButton()
-        Me.PanelVehiculo = New System.Windows.Forms.Panel()
+        Me.TabPageVehiculo = New System.Windows.Forms.TabPage()
         Me.DataGridViewVehiculos = New System.Windows.Forms.DataGridView()
         Me.DataGridViewTextBoxColumnVehiculosTipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -144,7 +142,6 @@ Partial Class FormSiniestroV2
         Me.ToolStripButtonVehiculosAgregar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonVehiculosEditar = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonVehiculosBorrar = New System.Windows.Forms.ToolStripButton()
-        Me.LabelDamnificados = New System.Windows.Forms.Label()
         Me.tabpageAsistencias = New System.Windows.Forms.TabPage()
         Me.datagridviewAsistencias = New System.Windows.Forms.DataGridView()
         Me.columnPersona = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -166,34 +163,39 @@ Partial Class FormSiniestroV2
         Me.textboxFechaHoraCreacion = New System.Windows.Forms.TextBox()
         Me.textboxNotas = New System.Windows.Forms.TextBox()
         Me.labelNotas = New System.Windows.Forms.Label()
+        Me.ControlPersonaRadioTelefonista = New CSBomberos.ControlPersona()
+        Me.ControlPersonaJefeGuardia = New CSBomberos.ControlPersona()
+        Me.ControlPersonaEncargadoCuartel = New CSBomberos.ControlPersona()
         labelModificacion = New System.Windows.Forms.Label()
         labelCreacion = New System.Windows.Forms.Label()
         Me.toolstripMain.SuspendLayout()
-        Me.tabcontrolMain.SuspendLayout()
+        Me.TabControlMain.SuspendLayout()
+        Me.TabPageEncabezado.SuspendLayout()
+        Me.TableLayoutPanelEncabezadoMain.SuspendLayout()
+        Me.TableLayoutPanelEncabezado.SuspendLayout()
+        Me.TableLayoutPanelNumero.SuspendLayout()
+        Me.TableLayoutPanelHoraFin.SuspendLayout()
+        Me.TableLayoutPanelLlamadoUbicacion.SuspendLayout()
+        Me.TableLayoutPanelGeneralSolicitanteDocumento.SuspendLayout()
         Me.TabPageGeneral.SuspendLayout()
-        Me.TableLayoutPanelGeneralMain.SuspendLayout()
-        Me.TableLayoutPanelGeneralIzquierda.SuspendLayout()
+        Me.TableLayoutPanelPieMain.SuspendLayout()
+        Me.TableLayoutPanelPie.SuspendLayout()
         CType(Me.NumericUpDownIncendioForestalSuperficieMetro, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanelGeneralIncendioForestalSuperficie.SuspendLayout()
         CType(Me.NumericUpDownIncendioForestalAnchoMetro, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownIncendioForestalLargoMetro, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.SuspendLayout()
+        Me.TableLayoutPanelTrasladoPorOtro.SuspendLayout()
+        CType(Me.NumericUpDownTrasladoPorOtroCantidad, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TableLayoutPanelIncendioForestalCantidad.SuspendLayout()
         CType(Me.NumericUpDownIncendioForestalCantidadPlanta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownIncendioForestalCantidadHa, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.SuspendLayout()
-        CType(Me.NumericUpDownTrasladoPorOtroCantidad, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanelGeneralNumero.SuspendLayout()
-        Me.TableLayoutPanelGeneralHoraFin.SuspendLayout()
-        Me.TableLayoutPanelGeneralDerecha.SuspendLayout()
+        Me.TableLayoutPanelResumenAsistencias.SuspendLayout()
         CType(Me.DataGridViewResumenAsistencias, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TableLayoutPanelGeneralSolicitanteDocumento.SuspendLayout()
-        Me.TabPageDamnificadoVehiculo.SuspendLayout()
-        Me.TableLayoutPanelDamnificadoVehiculoMain.SuspendLayout()
-        Me.PanelDaminificado.SuspendLayout()
+        Me.TabPageDamnificado.SuspendLayout()
         CType(Me.DataGridViewDamnificados, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStripDamnificados.SuspendLayout()
         Me.ToolStripDaminificados.SuspendLayout()
-        Me.PanelVehiculo.SuspendLayout()
+        Me.TabPageVehiculo.SuspendLayout()
         CType(Me.DataGridViewVehiculos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStripVehiculos.SuspendLayout()
         Me.ToolStripVehiculos.SuspendLayout()
@@ -208,7 +210,7 @@ Partial Class FormSiniestroV2
         '
         labelModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelModificacion.AutoSize = True
-        labelModificacion.Location = New System.Drawing.Point(8, 669)
+        labelModificacion.Location = New System.Drawing.Point(8, 398)
         labelModificacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         labelModificacion.Name = "labelModificacion"
         labelModificacion.Size = New System.Drawing.Size(127, 16)
@@ -219,7 +221,7 @@ Partial Class FormSiniestroV2
         '
         labelCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         labelCreacion.AutoSize = True
-        labelCreacion.Location = New System.Drawing.Point(8, 637)
+        labelCreacion.Location = New System.Drawing.Point(8, 366)
         labelCreacion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         labelCreacion.Name = "labelCreacion"
         labelCreacion.Size = New System.Drawing.Size(64, 16)
@@ -278,7 +280,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelSolicitudForma.AutoSize = True
         Me.LabelSolicitudForma.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelSolicitudForma.Location = New System.Drawing.Point(24, 0)
+        Me.LabelSolicitudForma.Location = New System.Drawing.Point(4, 0)
         Me.LabelSolicitudForma.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitudForma.Name = "LabelSolicitudForma"
         Me.LabelSolicitudForma.Size = New System.Drawing.Size(120, 32)
@@ -290,7 +292,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelSolicitanteNombre.AutoSize = True
         Me.LabelSolicitanteNombre.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelSolicitanteNombre.Location = New System.Drawing.Point(24, 32)
+        Me.LabelSolicitanteNombre.Location = New System.Drawing.Point(4, 32)
         Me.LabelSolicitanteNombre.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteNombre.Name = "LabelSolicitanteNombre"
         Me.LabelSolicitanteNombre.Size = New System.Drawing.Size(120, 30)
@@ -302,7 +304,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelSolicitanteDireccion.AutoSize = True
         Me.LabelSolicitanteDireccion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelSolicitanteDireccion.Location = New System.Drawing.Point(24, 62)
+        Me.LabelSolicitanteDireccion.Location = New System.Drawing.Point(4, 62)
         Me.LabelSolicitanteDireccion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteDireccion.Name = "LabelSolicitanteDireccion"
         Me.LabelSolicitanteDireccion.Size = New System.Drawing.Size(120, 30)
@@ -314,7 +316,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelSolicitanteDocumento.AutoSize = True
         Me.LabelSolicitanteDocumento.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelSolicitanteDocumento.Location = New System.Drawing.Point(24, 92)
+        Me.LabelSolicitanteDocumento.Location = New System.Drawing.Point(4, 92)
         Me.LabelSolicitanteDocumento.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteDocumento.Name = "LabelSolicitanteDocumento"
         Me.LabelSolicitanteDocumento.Size = New System.Drawing.Size(120, 32)
@@ -326,7 +328,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelSolicitanteTelefono.AutoSize = True
         Me.LabelSolicitanteTelefono.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelSolicitanteTelefono.Location = New System.Drawing.Point(24, 124)
+        Me.LabelSolicitanteTelefono.Location = New System.Drawing.Point(4, 124)
         Me.LabelSolicitanteTelefono.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelSolicitanteTelefono.Name = "LabelSolicitanteTelefono"
         Me.LabelSolicitanteTelefono.Size = New System.Drawing.Size(120, 30)
@@ -338,7 +340,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionTipo.AutoSize = True
         Me.LabelUbicacionTipo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionTipo.Location = New System.Drawing.Point(24, 174)
+        Me.LabelUbicacionTipo.Location = New System.Drawing.Point(4, 174)
         Me.LabelUbicacionTipo.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionTipo.Name = "LabelUbicacionTipo"
         Me.LabelUbicacionTipo.Size = New System.Drawing.Size(120, 32)
@@ -350,7 +352,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionDescripcion.AutoSize = True
         Me.LabelUbicacionDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionDescripcion.Location = New System.Drawing.Point(24, 206)
+        Me.LabelUbicacionDescripcion.Location = New System.Drawing.Point(4, 206)
         Me.LabelUbicacionDescripcion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionDescripcion.Name = "LabelUbicacionDescripcion"
         Me.LabelUbicacionDescripcion.Size = New System.Drawing.Size(120, 30)
@@ -362,7 +364,7 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionProvincia.AutoSize = True
         Me.LabelUbicacionProvincia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionProvincia.Location = New System.Drawing.Point(24, 236)
+        Me.LabelUbicacionProvincia.Location = New System.Drawing.Point(4, 236)
         Me.LabelUbicacionProvincia.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionProvincia.Name = "LabelUbicacionProvincia"
         Me.LabelUbicacionProvincia.Size = New System.Drawing.Size(120, 32)
@@ -374,49 +376,13 @@ Partial Class FormSiniestroV2
         '
         Me.LabelUbicacionLocalidad.AutoSize = True
         Me.LabelUbicacionLocalidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelUbicacionLocalidad.Location = New System.Drawing.Point(24, 268)
+        Me.LabelUbicacionLocalidad.Location = New System.Drawing.Point(4, 268)
         Me.LabelUbicacionLocalidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelUbicacionLocalidad.Name = "LabelUbicacionLocalidad"
         Me.LabelUbicacionLocalidad.Size = New System.Drawing.Size(120, 32)
         Me.LabelUbicacionLocalidad.TabIndex = 28
         Me.LabelUbicacionLocalidad.Text = "Localidad:"
         Me.LabelUbicacionLocalidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelTrasladoPorOtro
-        '
-        Me.LabelTrasladoPorOtro.AutoSize = True
-        Me.LabelTrasladoPorOtro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelTrasladoPorOtro.Location = New System.Drawing.Point(4, 336)
-        Me.LabelTrasladoPorOtro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelTrasladoPorOtro.Name = "LabelTrasladoPorOtro"
-        Me.LabelTrasladoPorOtro.Size = New System.Drawing.Size(145, 28)
-        Me.LabelTrasladoPorOtro.TabIndex = 23
-        Me.LabelTrasladoPorOtro.Text = "Traslado por otro:"
-        Me.LabelTrasladoPorOtro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestal
-        '
-        Me.LabelIncendioForestal.AutoSize = True
-        Me.LabelIncendioForestal.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestal.Location = New System.Drawing.Point(4, 384)
-        Me.LabelIncendioForestal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 6)
-        Me.LabelIncendioForestal.Name = "LabelIncendioForestal"
-        Me.LabelIncendioForestal.Size = New System.Drawing.Size(145, 16)
-        Me.LabelIncendioForestal.TabIndex = 25
-        Me.LabelIncendioForestal.Text = "Incendio forestal"
-        Me.LabelIncendioForestal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestalCantidad
-        '
-        Me.LabelIncendioForestalCantidad.AutoSize = True
-        Me.LabelIncendioForestalCantidad.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalCantidad.Location = New System.Drawing.Point(4, 406)
-        Me.LabelIncendioForestalCantidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelIncendioForestalCantidad.Name = "LabelIncendioForestalCantidad"
-        Me.LabelIncendioForestalCantidad.Size = New System.Drawing.Size(145, 28)
-        Me.LabelIncendioForestalCantidad.TabIndex = 26
-        Me.LabelIncendioForestalCantidad.Text = "Cantidad:"
-        Me.LabelIncendioForestalCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelIncendioForestalCantidadHa
         '
@@ -425,7 +391,7 @@ Partial Class FormSiniestroV2
         Me.LabelIncendioForestalCantidadHa.Location = New System.Drawing.Point(4, 0)
         Me.LabelIncendioForestalCantidadHa.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelIncendioForestalCantidadHa.Name = "LabelIncendioForestalCantidadHa"
-        Me.LabelIncendioForestalCantidadHa.Size = New System.Drawing.Size(35, 28)
+        Me.LabelIncendioForestalCantidadHa.Size = New System.Drawing.Size(62, 28)
         Me.LabelIncendioForestalCantidadHa.TabIndex = 22
         Me.LabelIncendioForestalCantidadHa.Text = "Has:"
         Me.LabelIncendioForestalCantidadHa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -434,109 +400,13 @@ Partial Class FormSiniestroV2
         '
         Me.LabelIncendioForestalCantidadPlanta.AutoSize = True
         Me.LabelIncendioForestalCantidadPlanta.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalCantidadPlanta.Location = New System.Drawing.Point(153, 0)
+        Me.LabelIncendioForestalCantidadPlanta.Location = New System.Drawing.Point(180, 0)
         Me.LabelIncendioForestalCantidadPlanta.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelIncendioForestalCantidadPlanta.Name = "LabelIncendioForestalCantidadPlanta"
-        Me.LabelIncendioForestalCantidadPlanta.Size = New System.Drawing.Size(55, 28)
+        Me.LabelIncendioForestalCantidadPlanta.Size = New System.Drawing.Size(62, 28)
         Me.LabelIncendioForestalCantidadPlanta.TabIndex = 23
         Me.LabelIncendioForestalCantidadPlanta.Text = "Plantas:"
         Me.LabelIncendioForestalCantidadPlanta.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestalMedida
-        '
-        Me.LabelIncendioForestalMedida.AutoSize = True
-        Me.LabelIncendioForestalMedida.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalMedida.Location = New System.Drawing.Point(4, 434)
-        Me.LabelIncendioForestalMedida.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelIncendioForestalMedida.Name = "LabelIncendioForestalMedida"
-        Me.LabelIncendioForestalMedida.Size = New System.Drawing.Size(145, 28)
-        Me.LabelIncendioForestalMedida.TabIndex = 28
-        Me.LabelIncendioForestalMedida.Text = "Medidas (m):"
-        Me.LabelIncendioForestalMedida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestalAnchoMetro
-        '
-        Me.LabelIncendioForestalAnchoMetro.AutoSize = True
-        Me.LabelIncendioForestalAnchoMetro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalAnchoMetro.Location = New System.Drawing.Point(163, 0)
-        Me.LabelIncendioForestalAnchoMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelIncendioForestalAnchoMetro.Name = "LabelIncendioForestalAnchoMetro"
-        Me.LabelIncendioForestalAnchoMetro.Size = New System.Drawing.Size(48, 28)
-        Me.LabelIncendioForestalAnchoMetro.TabIndex = 23
-        Me.LabelIncendioForestalAnchoMetro.Text = "Ancho:"
-        Me.LabelIncendioForestalAnchoMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestalLargoMetro
-        '
-        Me.LabelIncendioForestalLargoMetro.AutoSize = True
-        Me.LabelIncendioForestalLargoMetro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalLargoMetro.Location = New System.Drawing.Point(4, 0)
-        Me.LabelIncendioForestalLargoMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelIncendioForestalLargoMetro.Name = "LabelIncendioForestalLargoMetro"
-        Me.LabelIncendioForestalLargoMetro.Size = New System.Drawing.Size(45, 28)
-        Me.LabelIncendioForestalLargoMetro.TabIndex = 22
-        Me.LabelIncendioForestalLargoMetro.Text = "Largo:"
-        Me.LabelIncendioForestalLargoMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelIncendioForestalSuperficieMetro
-        '
-        Me.LabelIncendioForestalSuperficieMetro.AutoSize = True
-        Me.LabelIncendioForestalSuperficieMetro.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelIncendioForestalSuperficieMetro.Location = New System.Drawing.Point(4, 462)
-        Me.LabelIncendioForestalSuperficieMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelIncendioForestalSuperficieMetro.Name = "LabelIncendioForestalSuperficieMetro"
-        Me.LabelIncendioForestalSuperficieMetro.Size = New System.Drawing.Size(145, 28)
-        Me.LabelIncendioForestalSuperficieMetro.TabIndex = 30
-        Me.LabelIncendioForestalSuperficieMetro.Text = "Superficie (m²):"
-        Me.LabelIncendioForestalSuperficieMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelEncargadoCuartel
-        '
-        Me.LabelEncargadoCuartel.AutoSize = True
-        Me.LabelEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelEncargadoCuartel.Location = New System.Drawing.Point(4, 510)
-        Me.LabelEncargadoCuartel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelEncargadoCuartel.Name = "LabelEncargadoCuartel"
-        Me.LabelEncargadoCuartel.Size = New System.Drawing.Size(145, 36)
-        Me.LabelEncargadoCuartel.TabIndex = 32
-        Me.LabelEncargadoCuartel.Text = "Encargado del cuartel:"
-        Me.LabelEncargadoCuartel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelJefeGuardia
-        '
-        Me.LabelJefeGuardia.AutoSize = True
-        Me.LabelJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelJefeGuardia.Location = New System.Drawing.Point(4, 546)
-        Me.LabelJefeGuardia.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelJefeGuardia.Name = "LabelJefeGuardia"
-        Me.LabelJefeGuardia.Size = New System.Drawing.Size(145, 36)
-        Me.LabelJefeGuardia.TabIndex = 34
-        Me.LabelJefeGuardia.Text = "Jefe de guardia:"
-        Me.LabelJefeGuardia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelRadioTelefonista
-        '
-        Me.LabelRadioTelefonista.AutoSize = True
-        Me.LabelRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelRadioTelefonista.Location = New System.Drawing.Point(4, 582)
-        Me.LabelRadioTelefonista.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelRadioTelefonista.Name = "LabelRadioTelefonista"
-        Me.LabelRadioTelefonista.Size = New System.Drawing.Size(145, 36)
-        Me.LabelRadioTelefonista.TabIndex = 36
-        Me.LabelRadioTelefonista.Text = "Radio telefonista:"
-        Me.LabelRadioTelefonista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'LabelControlado
-        '
-        Me.LabelControlado.AutoSize = True
-        Me.LabelControlado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LabelControlado.Location = New System.Drawing.Point(4, 638)
-        Me.LabelControlado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LabelControlado.Name = "LabelControlado"
-        Me.LabelControlado.Size = New System.Drawing.Size(145, 25)
-        Me.LabelControlado.TabIndex = 38
-        Me.LabelControlado.Text = "Controlado:"
-        Me.LabelControlado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'labelFecha
         '
@@ -597,7 +467,7 @@ Partial Class FormSiniestroV2
         Me.toolstripMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonCerrar, Me.buttonEditar, Me.buttonCancelar, Me.buttonGuardar, Me.buttonImprimir})
         Me.toolstripMain.Location = New System.Drawing.Point(0, 0)
         Me.toolstripMain.Name = "toolstripMain"
-        Me.toolstripMain.Size = New System.Drawing.Size(1182, 39)
+        Me.toolstripMain.Size = New System.Drawing.Size(1019, 39)
         Me.toolstripMain.TabIndex = 1
         '
         'buttonImprimir
@@ -620,334 +490,100 @@ Partial Class FormSiniestroV2
         Me.comboboxSiniestroRubro.Location = New System.Drawing.Point(157, 100)
         Me.comboboxSiniestroRubro.Margin = New System.Windows.Forms.Padding(4)
         Me.comboboxSiniestroRubro.Name = "comboboxSiniestroRubro"
-        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(385, 24)
+        Me.comboboxSiniestroRubro.Size = New System.Drawing.Size(323, 24)
         Me.comboboxSiniestroRubro.TabIndex = 10
         '
-        'tabcontrolMain
+        'TabControlMain
         '
-        Me.tabcontrolMain.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tabcontrolMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
-        Me.tabcontrolMain.Controls.Add(Me.TabPageGeneral)
-        Me.tabcontrolMain.Controls.Add(Me.TabPageDamnificadoVehiculo)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageAsistencias)
-        Me.tabcontrolMain.Controls.Add(Me.tabpageNotasAuditoria)
-        Me.tabcontrolMain.Location = New System.Drawing.Point(13, 52)
-        Me.tabcontrolMain.Margin = New System.Windows.Forms.Padding(4)
-        Me.tabcontrolMain.Name = "tabcontrolMain"
-        Me.tabcontrolMain.SelectedIndex = 0
-        Me.tabcontrolMain.Size = New System.Drawing.Size(1158, 729)
-        Me.tabcontrolMain.TabIndex = 0
+        Me.TabControlMain.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+        Me.TabControlMain.Controls.Add(Me.TabPageEncabezado)
+        Me.TabControlMain.Controls.Add(Me.TabPageGeneral)
+        Me.TabControlMain.Controls.Add(Me.TabPageDamnificado)
+        Me.TabControlMain.Controls.Add(Me.TabPageVehiculo)
+        Me.TabControlMain.Controls.Add(Me.tabpageAsistencias)
+        Me.TabControlMain.Controls.Add(Me.tabpageNotasAuditoria)
+        Me.TabControlMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TabControlMain.Location = New System.Drawing.Point(0, 39)
+        Me.TabControlMain.Margin = New System.Windows.Forms.Padding(4)
+        Me.TabControlMain.Name = "TabControlMain"
+        Me.TabControlMain.SelectedIndex = 0
+        Me.TabControlMain.Size = New System.Drawing.Size(1019, 410)
+        Me.TabControlMain.TabIndex = 0
         '
-        'TabPageGeneral
+        'TabPageEncabezado
         '
-        Me.TabPageGeneral.Controls.Add(Me.TableLayoutPanelGeneralMain)
-        Me.TabPageGeneral.Location = New System.Drawing.Point(4, 28)
-        Me.TabPageGeneral.Name = "TabPageGeneral"
-        Me.TabPageGeneral.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageGeneral.Size = New System.Drawing.Size(1150, 697)
-        Me.TabPageGeneral.TabIndex = 3
-        Me.TabPageGeneral.Text = "General"
-        Me.TabPageGeneral.UseVisualStyleBackColor = True
+        Me.TabPageEncabezado.Controls.Add(Me.TableLayoutPanelEncabezadoMain)
+        Me.TabPageEncabezado.Location = New System.Drawing.Point(4, 28)
+        Me.TabPageEncabezado.Name = "TabPageEncabezado"
+        Me.TabPageEncabezado.Size = New System.Drawing.Size(1011, 378)
+        Me.TabPageEncabezado.TabIndex = 3
+        Me.TabPageEncabezado.Text = "Encabezado"
+        Me.TabPageEncabezado.UseVisualStyleBackColor = True
         '
-        'TableLayoutPanelGeneralMain
+        'TableLayoutPanelEncabezadoMain
         '
-        Me.TableLayoutPanelGeneralMain.ColumnCount = 2
-        Me.TableLayoutPanelGeneralMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelGeneralMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelGeneralMain.Controls.Add(Me.TableLayoutPanelGeneralIzquierda, 0, 0)
-        Me.TableLayoutPanelGeneralMain.Controls.Add(Me.TableLayoutPanelGeneralDerecha, 1, 0)
-        Me.TableLayoutPanelGeneralMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelGeneralMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralMain.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanelGeneralMain.Name = "TableLayoutPanelGeneralMain"
-        Me.TableLayoutPanelGeneralMain.RowCount = 1
-        Me.TableLayoutPanelGeneralMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralMain.Size = New System.Drawing.Size(1144, 691)
-        Me.TableLayoutPanelGeneralMain.TabIndex = 30
+        Me.TableLayoutPanelEncabezadoMain.ColumnCount = 3
+        Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanelEncabezadoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelEncabezadoMain.Controls.Add(Me.TableLayoutPanelEncabezado, 0, 0)
+        Me.TableLayoutPanelEncabezadoMain.Controls.Add(Me.TableLayoutPanelLlamadoUbicacion, 2, 0)
+        Me.TableLayoutPanelEncabezadoMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelEncabezadoMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelEncabezadoMain.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanelEncabezadoMain.Name = "TableLayoutPanelEncabezadoMain"
+        Me.TableLayoutPanelEncabezadoMain.RowCount = 1
+        Me.TableLayoutPanelEncabezadoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelEncabezadoMain.Size = New System.Drawing.Size(1011, 378)
+        Me.TableLayoutPanelEncabezadoMain.TabIndex = 30
         '
-        'TableLayoutPanelGeneralIzquierda
+        'TableLayoutPanelEncabezado
         '
-        Me.TableLayoutPanelGeneralIzquierda.AutoSize = True
-        Me.TableLayoutPanelGeneralIzquierda.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralIzquierda.ColumnCount = 3
-        Me.TableLayoutPanelGeneralIzquierda.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIzquierda.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelGeneralIzquierda.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.CheckBoxControlado, 1, 22)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelControlado, 0, 22)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.ControlPersonaRadioTelefonista, 1, 20)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelRadioTelefonista, 0, 20)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.ControlPersonaJefeGuardia, 1, 19)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelJefeGuardia, 0, 19)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.ControlPersonaEncargadoCuartel, 1, 18)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelEncargadoCuartel, 0, 18)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.NumericUpDownIncendioForestalSuperficieMetro, 1, 16)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelIncendioForestalSuperficieMetro, 0, 16)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.TableLayoutPanelGeneralIncendioForestalSuperficie, 1, 15)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelIncendioForestalMedida, 0, 15)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.TableLayoutPanelGeneralIncendioForestalCantidad, 1, 14)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelIncendioForestalCantidad, 0, 14)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelIncendioForestal, 0, 13)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.TableLayoutPanelGeneralTrasladoPorOtro, 1, 11)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelTrasladoPorOtro, 0, 11)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelNumero, 0, 1)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.ComboBoxCuartel, 1, 0)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.LabelCuartel, 0, 0)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.TableLayoutPanelGeneralNumero, 1, 1)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelFecha, 0, 2)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.datetimepickerFecha, 1, 2)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelSiniestroRubro, 0, 3)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.comboboxSiniestroRubro, 1, 3)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelSiniestroTipo, 0, 4)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.comboboxSiniestroTipo, 1, 4)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelSiniestroTipoOtro, 0, 5)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.textboxSiniestroTipoOtro, 1, 5)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelClave, 0, 6)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.comboboxClave, 1, 6)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelHoraSalida, 0, 7)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.datetimepickerHoraSalida, 1, 7)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelHoraLlegadaUltimoCamion, 0, 8)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.datetimepickerHoraLlegadaUltimoCamion, 1, 8)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.labelHoraFin, 0, 9)
-        Me.TableLayoutPanelGeneralIzquierda.Controls.Add(Me.TableLayoutPanelGeneralHoraFin, 1, 9)
-        Me.TableLayoutPanelGeneralIzquierda.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelGeneralIzquierda.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralIzquierda.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanelGeneralIzquierda.Name = "TableLayoutPanelGeneralIzquierda"
-        Me.TableLayoutPanelGeneralIzquierda.RowCount = 24
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIzquierda.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelGeneralIzquierda.Size = New System.Drawing.Size(566, 685)
-        Me.TableLayoutPanelGeneralIzquierda.TabIndex = 0
-        '
-        'CheckBoxControlado
-        '
-        Me.CheckBoxControlado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CheckBoxControlado.AutoSize = True
-        Me.CheckBoxControlado.Location = New System.Drawing.Point(157, 642)
-        Me.CheckBoxControlado.Margin = New System.Windows.Forms.Padding(4)
-        Me.CheckBoxControlado.Name = "CheckBoxControlado"
-        Me.CheckBoxControlado.Size = New System.Drawing.Size(18, 17)
-        Me.CheckBoxControlado.TabIndex = 39
-        Me.CheckBoxControlado.UseVisualStyleBackColor = True
-        '
-        'ControlPersonaRadioTelefonista
-        '
-        Me.ControlPersonaRadioTelefonista.ApellidoNombre = Nothing
-        Me.ControlPersonaRadioTelefonista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaRadioTelefonista.dbContext = Nothing
-        Me.ControlPersonaRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaRadioTelefonista.IDCuartel = Nothing
-        Me.ControlPersonaRadioTelefonista.IDPersona = Nothing
-        Me.ControlPersonaRadioTelefonista.Location = New System.Drawing.Point(158, 587)
-        Me.ControlPersonaRadioTelefonista.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaRadioTelefonista.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaRadioTelefonista.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaRadioTelefonista.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaRadioTelefonista.Name = "ControlPersonaRadioTelefonista"
-        Me.ControlPersonaRadioTelefonista.ReadOnlyText = False
-        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaRadioTelefonista.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaRadioTelefonista.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaRadioTelefonista.TabIndex = 37
-        '
-        'ControlPersonaJefeGuardia
-        '
-        Me.ControlPersonaJefeGuardia.ApellidoNombre = Nothing
-        Me.ControlPersonaJefeGuardia.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaJefeGuardia.dbContext = Nothing
-        Me.ControlPersonaJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaJefeGuardia.IDCuartel = Nothing
-        Me.ControlPersonaJefeGuardia.IDPersona = Nothing
-        Me.ControlPersonaJefeGuardia.Location = New System.Drawing.Point(158, 551)
-        Me.ControlPersonaJefeGuardia.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaJefeGuardia.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaJefeGuardia.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaJefeGuardia.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaJefeGuardia.Name = "ControlPersonaJefeGuardia"
-        Me.ControlPersonaJefeGuardia.ReadOnlyText = False
-        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaJefeGuardia.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaJefeGuardia.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaJefeGuardia.TabIndex = 35
-        '
-        'ControlPersonaEncargadoCuartel
-        '
-        Me.ControlPersonaEncargadoCuartel.ApellidoNombre = Nothing
-        Me.ControlPersonaEncargadoCuartel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ControlPersonaEncargadoCuartel.dbContext = Nothing
-        Me.ControlPersonaEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ControlPersonaEncargadoCuartel.IDCuartel = Nothing
-        Me.ControlPersonaEncargadoCuartel.IDPersona = Nothing
-        Me.ControlPersonaEncargadoCuartel.Location = New System.Drawing.Point(158, 515)
-        Me.ControlPersonaEncargadoCuartel.Margin = New System.Windows.Forms.Padding(5)
-        Me.ControlPersonaEncargadoCuartel.MatriculaNumeroDigitos = Nothing
-        Me.ControlPersonaEncargadoCuartel.MaximumSize = New System.Drawing.Size(1333, 26)
-        Me.ControlPersonaEncargadoCuartel.MinimumSize = New System.Drawing.Size(200, 26)
-        Me.ControlPersonaEncargadoCuartel.Name = "ControlPersonaEncargadoCuartel"
-        Me.ControlPersonaEncargadoCuartel.ReadOnlyText = False
-        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(383, 26)
-        Me.ControlPersonaEncargadoCuartel.SoloMostrarEnAsistencia = True
-        Me.ControlPersonaEncargadoCuartel.SoloMostrarEstadoActivo = True
-        Me.ControlPersonaEncargadoCuartel.TabIndex = 33
-        '
-        'NumericUpDownIncendioForestalSuperficieMetro
-        '
-        Me.NumericUpDownIncendioForestalSuperficieMetro.Location = New System.Drawing.Point(156, 465)
-        Me.NumericUpDownIncendioForestalSuperficieMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
-        Me.NumericUpDownIncendioForestalSuperficieMetro.Name = "NumericUpDownIncendioForestalSuperficieMetro"
-        Me.NumericUpDownIncendioForestalSuperficieMetro.Size = New System.Drawing.Size(80, 22)
-        Me.NumericUpDownIncendioForestalSuperficieMetro.TabIndex = 31
-        Me.NumericUpDownIncendioForestalSuperficieMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownIncendioForestalSuperficieMetro.ThousandsSeparator = True
-        '
-        'TableLayoutPanelGeneralIncendioForestalSuperficie
-        '
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.AutoSize = True
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnCount = 5
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.NumericUpDownIncendioForestalAnchoMetro, 4, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.LabelIncendioForestalAnchoMetro, 3, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.LabelIncendioForestalLargoMetro, 0, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.NumericUpDownIncendioForestalLargoMetro, 1, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Location = New System.Drawing.Point(153, 434)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Name = "TableLayoutPanelGeneralIncendioForestalSuperficie"
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.RowCount = 1
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Size = New System.Drawing.Size(301, 28)
-        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.TabIndex = 29
-        '
-        'NumericUpDownIncendioForestalAnchoMetro
-        '
-        Me.NumericUpDownIncendioForestalAnchoMetro.Location = New System.Drawing.Point(218, 3)
-        Me.NumericUpDownIncendioForestalAnchoMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
-        Me.NumericUpDownIncendioForestalAnchoMetro.Name = "NumericUpDownIncendioForestalAnchoMetro"
-        Me.NumericUpDownIncendioForestalAnchoMetro.Size = New System.Drawing.Size(80, 22)
-        Me.NumericUpDownIncendioForestalAnchoMetro.TabIndex = 24
-        Me.NumericUpDownIncendioForestalAnchoMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownIncendioForestalAnchoMetro.ThousandsSeparator = True
-        '
-        'NumericUpDownIncendioForestalLargoMetro
-        '
-        Me.NumericUpDownIncendioForestalLargoMetro.Location = New System.Drawing.Point(56, 3)
-        Me.NumericUpDownIncendioForestalLargoMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
-        Me.NumericUpDownIncendioForestalLargoMetro.Name = "NumericUpDownIncendioForestalLargoMetro"
-        Me.NumericUpDownIncendioForestalLargoMetro.Size = New System.Drawing.Size(80, 22)
-        Me.NumericUpDownIncendioForestalLargoMetro.TabIndex = 8
-        Me.NumericUpDownIncendioForestalLargoMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownIncendioForestalLargoMetro.ThousandsSeparator = True
-        '
-        'TableLayoutPanelGeneralIncendioForestalCantidad
-        '
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.AutoSize = True
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnCount = 5
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Controls.Add(Me.NumericUpDownIncendioForestalCantidadPlanta, 4, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Controls.Add(Me.LabelIncendioForestalCantidadPlanta, 3, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Controls.Add(Me.LabelIncendioForestalCantidadHa, 0, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Controls.Add(Me.NumericUpDownIncendioForestalCantidadHa, 1, 0)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Location = New System.Drawing.Point(153, 406)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Name = "TableLayoutPanelGeneralIncendioForestalCantidad"
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.RowCount = 1
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.Size = New System.Drawing.Size(298, 28)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.TabIndex = 27
-        '
-        'NumericUpDownIncendioForestalCantidadPlanta
-        '
-        Me.NumericUpDownIncendioForestalCantidadPlanta.Location = New System.Drawing.Point(215, 3)
-        Me.NumericUpDownIncendioForestalCantidadPlanta.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
-        Me.NumericUpDownIncendioForestalCantidadPlanta.Name = "NumericUpDownIncendioForestalCantidadPlanta"
-        Me.NumericUpDownIncendioForestalCantidadPlanta.Size = New System.Drawing.Size(80, 22)
-        Me.NumericUpDownIncendioForestalCantidadPlanta.TabIndex = 24
-        Me.NumericUpDownIncendioForestalCantidadPlanta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownIncendioForestalCantidadPlanta.ThousandsSeparator = True
-        '
-        'NumericUpDownIncendioForestalCantidadHa
-        '
-        Me.NumericUpDownIncendioForestalCantidadHa.Location = New System.Drawing.Point(46, 3)
-        Me.NumericUpDownIncendioForestalCantidadHa.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
-        Me.NumericUpDownIncendioForestalCantidadHa.Name = "NumericUpDownIncendioForestalCantidadHa"
-        Me.NumericUpDownIncendioForestalCantidadHa.Size = New System.Drawing.Size(80, 22)
-        Me.NumericUpDownIncendioForestalCantidadHa.TabIndex = 8
-        Me.NumericUpDownIncendioForestalCantidadHa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownIncendioForestalCantidadHa.ThousandsSeparator = True
-        '
-        'TableLayoutPanelGeneralTrasladoPorOtro
-        '
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.AutoSize = True
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.ColumnCount = 2
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Controls.Add(Me.CheckBoxTrasladoPorOtro, 0, 0)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Controls.Add(Me.NumericUpDownTrasladoPorOtroCantidad, 1, 0)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Location = New System.Drawing.Point(153, 336)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Name = "TableLayoutPanelGeneralTrasladoPorOtro"
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.RowCount = 1
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.Size = New System.Drawing.Size(90, 28)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.TabIndex = 24
-        '
-        'CheckBoxTrasladoPorOtro
-        '
-        Me.CheckBoxTrasladoPorOtro.AutoSize = True
-        Me.CheckBoxTrasladoPorOtro.Location = New System.Drawing.Point(3, 3)
-        Me.CheckBoxTrasladoPorOtro.Name = "CheckBoxTrasladoPorOtro"
-        Me.CheckBoxTrasladoPorOtro.Size = New System.Drawing.Size(18, 17)
-        Me.CheckBoxTrasladoPorOtro.TabIndex = 7
-        Me.CheckBoxTrasladoPorOtro.UseVisualStyleBackColor = True
-        '
-        'NumericUpDownTrasladoPorOtroCantidad
-        '
-        Me.NumericUpDownTrasladoPorOtroCantidad.Location = New System.Drawing.Point(27, 3)
-        Me.NumericUpDownTrasladoPorOtroCantidad.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
-        Me.NumericUpDownTrasladoPorOtroCantidad.Name = "NumericUpDownTrasladoPorOtroCantidad"
-        Me.NumericUpDownTrasladoPorOtroCantidad.Size = New System.Drawing.Size(60, 22)
-        Me.NumericUpDownTrasladoPorOtroCantidad.TabIndex = 8
-        Me.NumericUpDownTrasladoPorOtroCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.NumericUpDownTrasladoPorOtroCantidad.Visible = False
+        Me.TableLayoutPanelEncabezado.AutoSize = True
+        Me.TableLayoutPanelEncabezado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelEncabezado.ColumnCount = 2
+        Me.TableLayoutPanelEncabezado.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelEncabezado.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.LabelNumero, 0, 1)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.ComboBoxCuartel, 1, 0)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.LabelCuartel, 0, 0)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.TableLayoutPanelNumero, 1, 1)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelFecha, 0, 2)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.datetimepickerFecha, 1, 2)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelSiniestroRubro, 0, 3)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.comboboxSiniestroRubro, 1, 3)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelSiniestroTipo, 0, 4)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.comboboxSiniestroTipo, 1, 4)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelSiniestroTipoOtro, 0, 5)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.textboxSiniestroTipoOtro, 1, 5)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelClave, 0, 6)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.comboboxClave, 1, 6)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelHoraSalida, 0, 7)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.datetimepickerHoraSalida, 1, 7)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelHoraLlegadaUltimoCamion, 0, 8)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.datetimepickerHoraLlegadaUltimoCamion, 1, 8)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.labelHoraFin, 0, 9)
+        Me.TableLayoutPanelEncabezado.Controls.Add(Me.TableLayoutPanelHoraFin, 1, 9)
+        Me.TableLayoutPanelEncabezado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelEncabezado.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelEncabezado.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanelEncabezado.Name = "TableLayoutPanelEncabezado"
+        Me.TableLayoutPanelEncabezado.RowCount = 11
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelEncabezado.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelEncabezado.Size = New System.Drawing.Size(484, 372)
+        Me.TableLayoutPanelEncabezado.TabIndex = 0
         '
         'LabelNumero
         '
@@ -969,30 +605,30 @@ Partial Class FormSiniestroV2
         Me.ComboBoxCuartel.Location = New System.Drawing.Point(157, 4)
         Me.ComboBoxCuartel.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxCuartel.Name = "ComboBoxCuartel"
-        Me.ComboBoxCuartel.Size = New System.Drawing.Size(385, 24)
+        Me.ComboBoxCuartel.Size = New System.Drawing.Size(323, 24)
         Me.ComboBoxCuartel.TabIndex = 2
         '
-        'TableLayoutPanelGeneralNumero
+        'TableLayoutPanelNumero
         '
-        Me.TableLayoutPanelGeneralNumero.AutoSize = True
-        Me.TableLayoutPanelGeneralNumero.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralNumero.ColumnCount = 4
-        Me.TableLayoutPanelGeneralNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralNumero.Controls.Add(Me.maskedtextboxNumeroPrefijo, 0, 0)
-        Me.TableLayoutPanelGeneralNumero.Controls.Add(Me.labelNumeroSeparador, 1, 0)
-        Me.TableLayoutPanelGeneralNumero.Controls.Add(Me.maskedtextboxNumero, 2, 0)
-        Me.TableLayoutPanelGeneralNumero.Controls.Add(Me.buttonCodigoSiguiente, 3, 0)
-        Me.TableLayoutPanelGeneralNumero.Location = New System.Drawing.Point(153, 32)
-        Me.TableLayoutPanelGeneralNumero.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanelGeneralNumero.Name = "TableLayoutPanelGeneralNumero"
-        Me.TableLayoutPanelGeneralNumero.RowCount = 1
-        Me.TableLayoutPanelGeneralNumero.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralNumero.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
-        Me.TableLayoutPanelGeneralNumero.Size = New System.Drawing.Size(311, 34)
-        Me.TableLayoutPanelGeneralNumero.TabIndex = 4
+        Me.TableLayoutPanelNumero.AutoSize = True
+        Me.TableLayoutPanelNumero.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelNumero.ColumnCount = 4
+        Me.TableLayoutPanelNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelNumero.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelNumero.Controls.Add(Me.maskedtextboxNumeroPrefijo, 0, 0)
+        Me.TableLayoutPanelNumero.Controls.Add(Me.labelNumeroSeparador, 1, 0)
+        Me.TableLayoutPanelNumero.Controls.Add(Me.maskedtextboxNumero, 2, 0)
+        Me.TableLayoutPanelNumero.Controls.Add(Me.buttonCodigoSiguiente, 3, 0)
+        Me.TableLayoutPanelNumero.Location = New System.Drawing.Point(153, 32)
+        Me.TableLayoutPanelNumero.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelNumero.Name = "TableLayoutPanelNumero"
+        Me.TableLayoutPanelNumero.RowCount = 1
+        Me.TableLayoutPanelNumero.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelNumero.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34.0!))
+        Me.TableLayoutPanelNumero.Size = New System.Drawing.Size(311, 34)
+        Me.TableLayoutPanelNumero.TabIndex = 4
         '
         'maskedtextboxNumeroPrefijo
         '
@@ -1085,7 +721,7 @@ Partial Class FormSiniestroV2
         Me.comboboxSiniestroTipo.Location = New System.Drawing.Point(157, 132)
         Me.comboboxSiniestroTipo.Margin = New System.Windows.Forms.Padding(4)
         Me.comboboxSiniestroTipo.Name = "comboboxSiniestroTipo"
-        Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(385, 24)
+        Me.comboboxSiniestroTipo.Size = New System.Drawing.Size(323, 24)
         Me.comboboxSiniestroTipo.TabIndex = 12
         '
         'labelSiniestroTipoOtro
@@ -1108,7 +744,7 @@ Partial Class FormSiniestroV2
         Me.textboxSiniestroTipoOtro.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxSiniestroTipoOtro.MaxLength = 50
         Me.textboxSiniestroTipoOtro.Name = "textboxSiniestroTipoOtro"
-        Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(385, 22)
+        Me.textboxSiniestroTipoOtro.Size = New System.Drawing.Size(323, 22)
         Me.textboxSiniestroTipoOtro.TabIndex = 14
         Me.textboxSiniestroTipoOtro.Visible = False
         '
@@ -1162,25 +798,25 @@ Partial Class FormSiniestroV2
         Me.datetimepickerHoraLlegadaUltimoCamion.Size = New System.Drawing.Size(113, 22)
         Me.datetimepickerHoraLlegadaUltimoCamion.TabIndex = 20
         '
-        'TableLayoutPanelGeneralHoraFin
+        'TableLayoutPanelHoraFin
         '
-        Me.TableLayoutPanelGeneralHoraFin.AutoSize = True
-        Me.TableLayoutPanelGeneralHoraFin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelGeneralHoraFin.ColumnCount = 3
-        Me.TableLayoutPanelGeneralHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralHoraFin.Controls.Add(Me.buttonHoraFinFinalizar, 0, 0)
-        Me.TableLayoutPanelGeneralHoraFin.Controls.Add(Me.datetimepickerHoraFin, 1, 0)
-        Me.TableLayoutPanelGeneralHoraFin.Controls.Add(Me.textboxPersonaFin, 2, 0)
-        Me.TableLayoutPanelGeneralHoraFin.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelGeneralHoraFin.Location = New System.Drawing.Point(153, 282)
-        Me.TableLayoutPanelGeneralHoraFin.Margin = New System.Windows.Forms.Padding(0)
-        Me.TableLayoutPanelGeneralHoraFin.Name = "TableLayoutPanelGeneralHoraFin"
-        Me.TableLayoutPanelGeneralHoraFin.RowCount = 1
-        Me.TableLayoutPanelGeneralHoraFin.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralHoraFin.Size = New System.Drawing.Size(393, 34)
-        Me.TableLayoutPanelGeneralHoraFin.TabIndex = 22
+        Me.TableLayoutPanelHoraFin.AutoSize = True
+        Me.TableLayoutPanelHoraFin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelHoraFin.ColumnCount = 3
+        Me.TableLayoutPanelHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelHoraFin.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelHoraFin.Controls.Add(Me.buttonHoraFinFinalizar, 0, 0)
+        Me.TableLayoutPanelHoraFin.Controls.Add(Me.datetimepickerHoraFin, 1, 0)
+        Me.TableLayoutPanelHoraFin.Controls.Add(Me.textboxPersonaFin, 2, 0)
+        Me.TableLayoutPanelHoraFin.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelHoraFin.Location = New System.Drawing.Point(153, 282)
+        Me.TableLayoutPanelHoraFin.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelHoraFin.Name = "TableLayoutPanelHoraFin"
+        Me.TableLayoutPanelHoraFin.RowCount = 1
+        Me.TableLayoutPanelHoraFin.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelHoraFin.Size = New System.Drawing.Size(331, 34)
+        Me.TableLayoutPanelHoraFin.TabIndex = 22
         '
         'buttonHoraFinFinalizar
         '
@@ -1218,123 +854,59 @@ Partial Class FormSiniestroV2
         Me.textboxPersonaFin.TabIndex = 24
         Me.textboxPersonaFin.TabStop = False
         '
-        'TableLayoutPanelGeneralDerecha
+        'TableLayoutPanelLlamadoUbicacion
         '
-        Me.TableLayoutPanelGeneralDerecha.ColumnCount = 3
-        Me.TableLayoutPanelGeneralDerecha.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralDerecha.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TableLayoutPanelGeneralDerecha.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.labelResumenAsistencias, 1, 11)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.DataGridViewResumenAsistencias, 1, 12)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.ComboBoxUbicacionLocalidad, 2, 9)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelUbicacionLocalidad, 1, 9)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.ComboBoxUbicacionProvincia, 2, 8)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelUbicacionProvincia, 1, 8)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.TextBoxUbicacionDescripcion, 2, 7)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelUbicacionDescripcion, 1, 7)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.ComboBoxUbicacionTipo, 2, 6)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelUbicacionTipo, 1, 6)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.TextBoxSolicitanteTelefono, 2, 4)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelSolicitanteTelefono, 1, 4)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelSolicitanteDocumento, 1, 3)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.TextBoxSolicitanteDireccion, 2, 2)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelSolicitanteDireccion, 1, 2)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.TextBoxSolicitanteNombre, 2, 1)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelSolicitanteNombre, 1, 1)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.ComboBoxSolicitudForma, 2, 0)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.LabelSolicitudForma, 1, 0)
-        Me.TableLayoutPanelGeneralDerecha.Controls.Add(Me.TableLayoutPanelGeneralSolicitanteDocumento, 2, 3)
-        Me.TableLayoutPanelGeneralDerecha.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelGeneralDerecha.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralDerecha.Location = New System.Drawing.Point(575, 3)
-        Me.TableLayoutPanelGeneralDerecha.Name = "TableLayoutPanelGeneralDerecha"
-        Me.TableLayoutPanelGeneralDerecha.RowCount = 13
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelGeneralDerecha.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelGeneralDerecha.Size = New System.Drawing.Size(566, 685)
-        Me.TableLayoutPanelGeneralDerecha.TabIndex = 2
-        '
-        'labelResumenAsistencias
-        '
-        Me.labelResumenAsistencias.AutoSize = True
-        Me.TableLayoutPanelGeneralDerecha.SetColumnSpan(Me.labelResumenAsistencias, 2)
-        Me.labelResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.labelResumenAsistencias.Location = New System.Drawing.Point(24, 320)
-        Me.labelResumenAsistencias.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
-        Me.labelResumenAsistencias.Size = New System.Drawing.Size(538, 16)
-        Me.labelResumenAsistencias.TabIndex = 30
-        Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
-        Me.labelResumenAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'DataGridViewResumenAsistencias
-        '
-        Me.DataGridViewResumenAsistencias.AllowUserToAddRows = False
-        Me.DataGridViewResumenAsistencias.AllowUserToDeleteRows = False
-        Me.DataGridViewResumenAsistencias.AllowUserToResizeColumns = False
-        Me.DataGridViewResumenAsistencias.AllowUserToResizeRows = False
-        Me.DataGridViewResumenAsistencias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
-        Me.DataGridViewResumenAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewResumenAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnResumenAsistenciaTipo, Me.columnResumenCantidad})
-        Me.TableLayoutPanelGeneralDerecha.SetColumnSpan(Me.DataGridViewResumenAsistencias, 2)
-        Me.DataGridViewResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridViewResumenAsistencias.Location = New System.Drawing.Point(24, 340)
-        Me.DataGridViewResumenAsistencias.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewResumenAsistencias.MultiSelect = False
-        Me.DataGridViewResumenAsistencias.Name = "DataGridViewResumenAsistencias"
-        Me.DataGridViewResumenAsistencias.ReadOnly = True
-        Me.DataGridViewResumenAsistencias.RowHeadersVisible = False
-        Me.DataGridViewResumenAsistencias.RowHeadersWidth = 51
-        Me.DataGridViewResumenAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
-        Me.DataGridViewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewResumenAsistencias.ShowEditingIcon = False
-        Me.DataGridViewResumenAsistencias.Size = New System.Drawing.Size(538, 341)
-        Me.DataGridViewResumenAsistencias.TabIndex = 28
-        '
-        'columnResumenAsistenciaTipo
-        '
-        Me.columnResumenAsistenciaTipo.DataPropertyName = "AsistenciaTipoNombre"
-        Me.columnResumenAsistenciaTipo.HeaderText = "Tipo de asistencia"
-        Me.columnResumenAsistenciaTipo.MinimumWidth = 6
-        Me.columnResumenAsistenciaTipo.Name = "columnResumenAsistenciaTipo"
-        Me.columnResumenAsistenciaTipo.ReadOnly = True
-        Me.columnResumenAsistenciaTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.columnResumenAsistenciaTipo.Width = 112
-        '
-        'columnResumenCantidad
-        '
-        Me.columnResumenCantidad.DataPropertyName = "Cantidad"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle1.Format = "N0"
-        DataGridViewCellStyle1.NullValue = Nothing
-        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle1
-        Me.columnResumenCantidad.HeaderText = "Cantidad"
-        Me.columnResumenCantidad.MinimumWidth = 6
-        Me.columnResumenCantidad.Name = "columnResumenCantidad"
-        Me.columnResumenCantidad.ReadOnly = True
-        Me.columnResumenCantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.columnResumenCantidad.Width = 67
+        Me.TableLayoutPanelLlamadoUbicacion.ColumnCount = 2
+        Me.TableLayoutPanelLlamadoUbicacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.ComboBoxUbicacionLocalidad, 1, 9)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelUbicacionLocalidad, 0, 9)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.ComboBoxUbicacionProvincia, 1, 8)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelUbicacionProvincia, 0, 8)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TextBoxUbicacionDescripcion, 1, 7)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelUbicacionDescripcion, 0, 7)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.ComboBoxUbicacionTipo, 1, 6)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelUbicacionTipo, 0, 6)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TextBoxSolicitanteTelefono, 1, 4)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelSolicitanteTelefono, 0, 4)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelSolicitanteDocumento, 0, 3)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TextBoxSolicitanteDireccion, 1, 2)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelSolicitanteDireccion, 0, 2)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TextBoxSolicitanteNombre, 1, 1)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelSolicitanteNombre, 0, 1)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.ComboBoxSolicitudForma, 1, 0)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.LabelSolicitudForma, 0, 0)
+        Me.TableLayoutPanelLlamadoUbicacion.Controls.Add(Me.TableLayoutPanelGeneralSolicitanteDocumento, 1, 3)
+        Me.TableLayoutPanelLlamadoUbicacion.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelLlamadoUbicacion.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelLlamadoUbicacion.Location = New System.Drawing.Point(523, 3)
+        Me.TableLayoutPanelLlamadoUbicacion.Name = "TableLayoutPanelLlamadoUbicacion"
+        Me.TableLayoutPanelLlamadoUbicacion.RowCount = 11
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelLlamadoUbicacion.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelLlamadoUbicacion.Size = New System.Drawing.Size(485, 372)
+        Me.TableLayoutPanelLlamadoUbicacion.TabIndex = 2
         '
         'ComboBoxUbicacionLocalidad
         '
         Me.ComboBoxUbicacionLocalidad.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxUbicacionLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionLocalidad.FormattingEnabled = True
-        Me.ComboBoxUbicacionLocalidad.Location = New System.Drawing.Point(152, 272)
+        Me.ComboBoxUbicacionLocalidad.Location = New System.Drawing.Point(132, 272)
         Me.ComboBoxUbicacionLocalidad.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionLocalidad.Name = "ComboBoxUbicacionLocalidad"
-        Me.ComboBoxUbicacionLocalidad.Size = New System.Drawing.Size(410, 24)
+        Me.ComboBoxUbicacionLocalidad.Size = New System.Drawing.Size(349, 24)
         Me.ComboBoxUbicacionLocalidad.TabIndex = 29
         '
         'ComboBoxUbicacionProvincia
@@ -1342,20 +914,20 @@ Partial Class FormSiniestroV2
         Me.ComboBoxUbicacionProvincia.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxUbicacionProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionProvincia.FormattingEnabled = True
-        Me.ComboBoxUbicacionProvincia.Location = New System.Drawing.Point(152, 240)
+        Me.ComboBoxUbicacionProvincia.Location = New System.Drawing.Point(132, 240)
         Me.ComboBoxUbicacionProvincia.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionProvincia.Name = "ComboBoxUbicacionProvincia"
-        Me.ComboBoxUbicacionProvincia.Size = New System.Drawing.Size(410, 24)
+        Me.ComboBoxUbicacionProvincia.Size = New System.Drawing.Size(349, 24)
         Me.ComboBoxUbicacionProvincia.TabIndex = 27
         '
         'TextBoxUbicacionDescripcion
         '
         Me.TextBoxUbicacionDescripcion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxUbicacionDescripcion.Location = New System.Drawing.Point(152, 210)
+        Me.TextBoxUbicacionDescripcion.Location = New System.Drawing.Point(132, 210)
         Me.TextBoxUbicacionDescripcion.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxUbicacionDescripcion.MaxLength = 200
         Me.TextBoxUbicacionDescripcion.Name = "TextBoxUbicacionDescripcion"
-        Me.TextBoxUbicacionDescripcion.Size = New System.Drawing.Size(410, 22)
+        Me.TextBoxUbicacionDescripcion.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxUbicacionDescripcion.TabIndex = 25
         '
         'ComboBoxUbicacionTipo
@@ -1364,40 +936,40 @@ Partial Class FormSiniestroV2
         Me.ComboBoxUbicacionTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.ComboBoxUbicacionTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxUbicacionTipo.FormattingEnabled = True
-        Me.ComboBoxUbicacionTipo.Location = New System.Drawing.Point(152, 178)
+        Me.ComboBoxUbicacionTipo.Location = New System.Drawing.Point(132, 178)
         Me.ComboBoxUbicacionTipo.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxUbicacionTipo.Name = "ComboBoxUbicacionTipo"
-        Me.ComboBoxUbicacionTipo.Size = New System.Drawing.Size(180, 24)
+        Me.ComboBoxUbicacionTipo.Size = New System.Drawing.Size(1, 24)
         Me.ComboBoxUbicacionTipo.TabIndex = 23
         '
         'TextBoxSolicitanteTelefono
         '
         Me.TextBoxSolicitanteTelefono.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxSolicitanteTelefono.Location = New System.Drawing.Point(152, 128)
+        Me.TextBoxSolicitanteTelefono.Location = New System.Drawing.Point(132, 128)
         Me.TextBoxSolicitanteTelefono.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteTelefono.MaxLength = 50
         Me.TextBoxSolicitanteTelefono.Name = "TextBoxSolicitanteTelefono"
-        Me.TextBoxSolicitanteTelefono.Size = New System.Drawing.Size(410, 22)
+        Me.TextBoxSolicitanteTelefono.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxSolicitanteTelefono.TabIndex = 21
         '
         'TextBoxSolicitanteDireccion
         '
         Me.TextBoxSolicitanteDireccion.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxSolicitanteDireccion.Location = New System.Drawing.Point(152, 66)
+        Me.TextBoxSolicitanteDireccion.Location = New System.Drawing.Point(132, 66)
         Me.TextBoxSolicitanteDireccion.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteDireccion.MaxLength = 200
         Me.TextBoxSolicitanteDireccion.Name = "TextBoxSolicitanteDireccion"
-        Me.TextBoxSolicitanteDireccion.Size = New System.Drawing.Size(410, 22)
+        Me.TextBoxSolicitanteDireccion.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxSolicitanteDireccion.TabIndex = 17
         '
         'TextBoxSolicitanteNombre
         '
         Me.TextBoxSolicitanteNombre.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TextBoxSolicitanteNombre.Location = New System.Drawing.Point(152, 36)
+        Me.TextBoxSolicitanteNombre.Location = New System.Drawing.Point(132, 36)
         Me.TextBoxSolicitanteNombre.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxSolicitanteNombre.MaxLength = 100
         Me.TextBoxSolicitanteNombre.Name = "TextBoxSolicitanteNombre"
-        Me.TextBoxSolicitanteNombre.Size = New System.Drawing.Size(410, 22)
+        Me.TextBoxSolicitanteNombre.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxSolicitanteNombre.TabIndex = 15
         '
         'ComboBoxSolicitudForma
@@ -1405,10 +977,10 @@ Partial Class FormSiniestroV2
         Me.ComboBoxSolicitudForma.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ComboBoxSolicitudForma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxSolicitudForma.FormattingEnabled = True
-        Me.ComboBoxSolicitudForma.Location = New System.Drawing.Point(152, 4)
+        Me.ComboBoxSolicitudForma.Location = New System.Drawing.Point(132, 4)
         Me.ComboBoxSolicitudForma.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBoxSolicitudForma.Name = "ComboBoxSolicitudForma"
-        Me.ComboBoxSolicitudForma.Size = New System.Drawing.Size(410, 24)
+        Me.ComboBoxSolicitudForma.Size = New System.Drawing.Size(349, 24)
         Me.ComboBoxSolicitudForma.TabIndex = 3
         '
         'TableLayoutPanelGeneralSolicitanteDocumento
@@ -1421,7 +993,7 @@ Partial Class FormSiniestroV2
         Me.TableLayoutPanelGeneralSolicitanteDocumento.Controls.Add(Me.TextBoxSolicitanteDocumentoNumero, 1, 0)
         Me.TableLayoutPanelGeneralSolicitanteDocumento.Controls.Add(Me.ComboBoxSolicitanteDocumentoTipo, 0, 0)
         Me.TableLayoutPanelGeneralSolicitanteDocumento.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelGeneralSolicitanteDocumento.Location = New System.Drawing.Point(148, 92)
+        Me.TableLayoutPanelGeneralSolicitanteDocumento.Location = New System.Drawing.Point(128, 92)
         Me.TableLayoutPanelGeneralSolicitanteDocumento.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanelGeneralSolicitanteDocumento.Name = "TableLayoutPanelGeneralSolicitanteDocumento"
         Me.TableLayoutPanelGeneralSolicitanteDocumento.RowCount = 1
@@ -1449,59 +1021,443 @@ Partial Class FormSiniestroV2
         Me.ComboBoxSolicitanteDocumentoTipo.Size = New System.Drawing.Size(135, 24)
         Me.ComboBoxSolicitanteDocumentoTipo.TabIndex = 5
         '
-        'TabPageDamnificadoVehiculo
+        'TabPageGeneral
         '
-        Me.TabPageDamnificadoVehiculo.Controls.Add(Me.TableLayoutPanelDamnificadoVehiculoMain)
-        Me.TabPageDamnificadoVehiculo.Location = New System.Drawing.Point(4, 28)
-        Me.TabPageDamnificadoVehiculo.Name = "TabPageDamnificadoVehiculo"
-        Me.TabPageDamnificadoVehiculo.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPageDamnificadoVehiculo.Size = New System.Drawing.Size(1150, 697)
-        Me.TabPageDamnificadoVehiculo.TabIndex = 4
-        Me.TabPageDamnificadoVehiculo.Text = "Daminificados y vehículos"
-        Me.TabPageDamnificadoVehiculo.UseVisualStyleBackColor = True
+        Me.TabPageGeneral.Controls.Add(Me.TableLayoutPanelPieMain)
+        Me.TabPageGeneral.Location = New System.Drawing.Point(4, 28)
+        Me.TabPageGeneral.Name = "TabPageGeneral"
+        Me.TabPageGeneral.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageGeneral.TabIndex = 5
+        Me.TabPageGeneral.Text = "General"
+        Me.TabPageGeneral.UseVisualStyleBackColor = True
         '
-        'TableLayoutPanelDamnificadoVehiculoMain
+        'TableLayoutPanelPieMain
         '
-        Me.TableLayoutPanelDamnificadoVehiculoMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnCount = 1
-        Me.TableLayoutPanelDamnificadoVehiculoMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelVehiculos, 0, 3)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelDaminificado, 0, 1)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.PanelVehiculo, 0, 4)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Controls.Add(Me.LabelDamnificados, 0, 0)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanelDamnificadoVehiculoMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Location = New System.Drawing.Point(3, 3)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Name = "TableLayoutPanelDamnificadoVehiculoMain"
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowCount = 5
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TableLayoutPanelDamnificadoVehiculoMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanelDamnificadoVehiculoMain.Size = New System.Drawing.Size(1144, 691)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.TabIndex = 0
+        Me.TableLayoutPanelPieMain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelPieMain.ColumnCount = 3
+        Me.TableLayoutPanelPieMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelPieMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30.0!))
+        Me.TableLayoutPanelPieMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanelPieMain.Controls.Add(Me.TableLayoutPanelPie, 0, 0)
+        Me.TableLayoutPanelPieMain.Controls.Add(Me.TableLayoutPanelResumenAsistencias, 2, 0)
+        Me.TableLayoutPanelPieMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelPieMain.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelPieMain.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanelPieMain.Name = "TableLayoutPanelPieMain"
+        Me.TableLayoutPanelPieMain.RowCount = 1
+        Me.TableLayoutPanelPieMain.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelPieMain.Size = New System.Drawing.Size(1032, 364)
+        Me.TableLayoutPanelPieMain.TabIndex = 0
         '
-        'LabelVehiculos
+        'TableLayoutPanelPie
         '
-        Me.LabelVehiculos.AutoSize = True
-        Me.LabelVehiculos.Location = New System.Drawing.Point(3, 355)
-        Me.LabelVehiculos.Name = "LabelVehiculos"
-        Me.LabelVehiculos.Size = New System.Drawing.Size(69, 16)
-        Me.LabelVehiculos.TabIndex = 3
-        Me.LabelVehiculos.Text = "Vehículos:"
+        Me.TableLayoutPanelPie.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelPie.ColumnCount = 2
+        Me.TableLayoutPanelPie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelPie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelPie.Controls.Add(Me.CheckBoxControlado, 1, 11)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelControlado, 0, 11)
+        Me.TableLayoutPanelPie.Controls.Add(Me.ControlPersonaRadioTelefonista, 1, 9)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelRadioTelefonista, 0, 9)
+        Me.TableLayoutPanelPie.Controls.Add(Me.ControlPersonaJefeGuardia, 1, 8)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelJefeGuardia, 0, 8)
+        Me.TableLayoutPanelPie.Controls.Add(Me.ControlPersonaEncargadoCuartel, 1, 7)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelEncargadoCuartel, 0, 7)
+        Me.TableLayoutPanelPie.Controls.Add(Me.NumericUpDownIncendioForestalSuperficieMetro, 1, 5)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelIncendioForestalSuperficieMetro, 0, 5)
+        Me.TableLayoutPanelPie.Controls.Add(Me.TableLayoutPanelGeneralIncendioForestalSuperficie, 1, 4)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelIncendioForestalMedida, 0, 4)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelTrasladoPorOtro, 0, 0)
+        Me.TableLayoutPanelPie.Controls.Add(Me.TableLayoutPanelTrasladoPorOtro, 1, 0)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelIncendioForestal, 0, 2)
+        Me.TableLayoutPanelPie.Controls.Add(Me.LabelIncendioForestalCantidad, 0, 3)
+        Me.TableLayoutPanelPie.Controls.Add(Me.TableLayoutPanelIncendioForestalCantidad, 1, 3)
+        Me.TableLayoutPanelPie.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelPie.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelPie.Location = New System.Drawing.Point(3, 3)
+        Me.TableLayoutPanelPie.Name = "TableLayoutPanelPie"
+        Me.TableLayoutPanelPie.RowCount = 13
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelPie.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelPie.Size = New System.Drawing.Size(495, 358)
+        Me.TableLayoutPanelPie.TabIndex = 0
         '
-        'PanelDaminificado
+        'CheckBoxControlado
         '
-        Me.PanelDaminificado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanelDaminificado.Controls.Add(Me.DataGridViewDamnificados)
-        Me.PanelDaminificado.Controls.Add(Me.StatusStripDamnificados)
-        Me.PanelDaminificado.Controls.Add(Me.ToolStripDaminificados)
-        Me.PanelDaminificado.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelDaminificado.Location = New System.Drawing.Point(3, 19)
-        Me.PanelDaminificado.Name = "PanelDaminificado"
-        Me.PanelDaminificado.Size = New System.Drawing.Size(1138, 313)
-        Me.PanelDaminificado.TabIndex = 0
+        Me.CheckBoxControlado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CheckBoxControlado.AutoSize = True
+        Me.CheckBoxControlado.Location = New System.Drawing.Point(154, 306)
+        Me.CheckBoxControlado.Margin = New System.Windows.Forms.Padding(4)
+        Me.CheckBoxControlado.Name = "CheckBoxControlado"
+        Me.CheckBoxControlado.Size = New System.Drawing.Size(18, 17)
+        Me.CheckBoxControlado.TabIndex = 41
+        Me.CheckBoxControlado.UseVisualStyleBackColor = True
+        '
+        'LabelControlado
+        '
+        Me.LabelControlado.AutoSize = True
+        Me.LabelControlado.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelControlado.Location = New System.Drawing.Point(4, 302)
+        Me.LabelControlado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelControlado.Name = "LabelControlado"
+        Me.LabelControlado.Size = New System.Drawing.Size(142, 25)
+        Me.LabelControlado.TabIndex = 40
+        Me.LabelControlado.Text = "Controlado:"
+        Me.LabelControlado.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelRadioTelefonista
+        '
+        Me.LabelRadioTelefonista.AutoSize = True
+        Me.LabelRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelRadioTelefonista.Location = New System.Drawing.Point(4, 246)
+        Me.LabelRadioTelefonista.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelRadioTelefonista.Name = "LabelRadioTelefonista"
+        Me.LabelRadioTelefonista.Size = New System.Drawing.Size(142, 36)
+        Me.LabelRadioTelefonista.TabIndex = 38
+        Me.LabelRadioTelefonista.Text = "Radio telefonista:"
+        Me.LabelRadioTelefonista.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelJefeGuardia
+        '
+        Me.LabelJefeGuardia.AutoSize = True
+        Me.LabelJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelJefeGuardia.Location = New System.Drawing.Point(4, 210)
+        Me.LabelJefeGuardia.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelJefeGuardia.Name = "LabelJefeGuardia"
+        Me.LabelJefeGuardia.Size = New System.Drawing.Size(142, 36)
+        Me.LabelJefeGuardia.TabIndex = 36
+        Me.LabelJefeGuardia.Text = "Jefe de guardia:"
+        Me.LabelJefeGuardia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelEncargadoCuartel
+        '
+        Me.LabelEncargadoCuartel.AutoSize = True
+        Me.LabelEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelEncargadoCuartel.Location = New System.Drawing.Point(4, 174)
+        Me.LabelEncargadoCuartel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelEncargadoCuartel.Name = "LabelEncargadoCuartel"
+        Me.LabelEncargadoCuartel.Size = New System.Drawing.Size(142, 36)
+        Me.LabelEncargadoCuartel.TabIndex = 34
+        Me.LabelEncargadoCuartel.Text = "Encargado del cuartel:"
+        Me.LabelEncargadoCuartel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'NumericUpDownIncendioForestalSuperficieMetro
+        '
+        Me.NumericUpDownIncendioForestalSuperficieMetro.Location = New System.Drawing.Point(153, 129)
+        Me.NumericUpDownIncendioForestalSuperficieMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
+        Me.NumericUpDownIncendioForestalSuperficieMetro.Name = "NumericUpDownIncendioForestalSuperficieMetro"
+        Me.NumericUpDownIncendioForestalSuperficieMetro.Size = New System.Drawing.Size(80, 22)
+        Me.NumericUpDownIncendioForestalSuperficieMetro.TabIndex = 33
+        Me.NumericUpDownIncendioForestalSuperficieMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownIncendioForestalSuperficieMetro.ThousandsSeparator = True
+        '
+        'LabelIncendioForestalSuperficieMetro
+        '
+        Me.LabelIncendioForestalSuperficieMetro.AutoSize = True
+        Me.LabelIncendioForestalSuperficieMetro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestalSuperficieMetro.Location = New System.Drawing.Point(4, 126)
+        Me.LabelIncendioForestalSuperficieMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelIncendioForestalSuperficieMetro.Name = "LabelIncendioForestalSuperficieMetro"
+        Me.LabelIncendioForestalSuperficieMetro.Size = New System.Drawing.Size(142, 28)
+        Me.LabelIncendioForestalSuperficieMetro.TabIndex = 32
+        Me.LabelIncendioForestalSuperficieMetro.Text = "Superficie (m²):"
+        Me.LabelIncendioForestalSuperficieMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelGeneralIncendioForestalSuperficie
+        '
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.AutoSize = True
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnCount = 5
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.NumericUpDownIncendioForestalAnchoMetro, 4, 0)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.LabelIncendioForestalAnchoMetro, 3, 0)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.LabelIncendioForestalLargoMetro, 0, 0)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Controls.Add(Me.NumericUpDownIncendioForestalLargoMetro, 1, 0)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Location = New System.Drawing.Point(150, 98)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Name = "TableLayoutPanelGeneralIncendioForestalSuperficie"
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.RowCount = 1
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.Size = New System.Drawing.Size(332, 28)
+        Me.TableLayoutPanelGeneralIncendioForestalSuperficie.TabIndex = 30
+        '
+        'NumericUpDownIncendioForestalAnchoMetro
+        '
+        Me.NumericUpDownIncendioForestalAnchoMetro.Location = New System.Drawing.Point(249, 3)
+        Me.NumericUpDownIncendioForestalAnchoMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
+        Me.NumericUpDownIncendioForestalAnchoMetro.Name = "NumericUpDownIncendioForestalAnchoMetro"
+        Me.NumericUpDownIncendioForestalAnchoMetro.Size = New System.Drawing.Size(80, 22)
+        Me.NumericUpDownIncendioForestalAnchoMetro.TabIndex = 24
+        Me.NumericUpDownIncendioForestalAnchoMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownIncendioForestalAnchoMetro.ThousandsSeparator = True
+        '
+        'LabelIncendioForestalAnchoMetro
+        '
+        Me.LabelIncendioForestalAnchoMetro.AutoSize = True
+        Me.LabelIncendioForestalAnchoMetro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestalAnchoMetro.Location = New System.Drawing.Point(180, 0)
+        Me.LabelIncendioForestalAnchoMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelIncendioForestalAnchoMetro.Name = "LabelIncendioForestalAnchoMetro"
+        Me.LabelIncendioForestalAnchoMetro.Size = New System.Drawing.Size(62, 28)
+        Me.LabelIncendioForestalAnchoMetro.TabIndex = 23
+        Me.LabelIncendioForestalAnchoMetro.Text = "Ancho:"
+        Me.LabelIncendioForestalAnchoMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelIncendioForestalLargoMetro
+        '
+        Me.LabelIncendioForestalLargoMetro.AutoSize = True
+        Me.LabelIncendioForestalLargoMetro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestalLargoMetro.Location = New System.Drawing.Point(4, 0)
+        Me.LabelIncendioForestalLargoMetro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelIncendioForestalLargoMetro.Name = "LabelIncendioForestalLargoMetro"
+        Me.LabelIncendioForestalLargoMetro.Size = New System.Drawing.Size(62, 28)
+        Me.LabelIncendioForestalLargoMetro.TabIndex = 22
+        Me.LabelIncendioForestalLargoMetro.Text = "Largo:"
+        Me.LabelIncendioForestalLargoMetro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'NumericUpDownIncendioForestalLargoMetro
+        '
+        Me.NumericUpDownIncendioForestalLargoMetro.Location = New System.Drawing.Point(73, 3)
+        Me.NumericUpDownIncendioForestalLargoMetro.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
+        Me.NumericUpDownIncendioForestalLargoMetro.Name = "NumericUpDownIncendioForestalLargoMetro"
+        Me.NumericUpDownIncendioForestalLargoMetro.Size = New System.Drawing.Size(80, 22)
+        Me.NumericUpDownIncendioForestalLargoMetro.TabIndex = 8
+        Me.NumericUpDownIncendioForestalLargoMetro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownIncendioForestalLargoMetro.ThousandsSeparator = True
+        '
+        'LabelIncendioForestalMedida
+        '
+        Me.LabelIncendioForestalMedida.AutoSize = True
+        Me.LabelIncendioForestalMedida.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestalMedida.Location = New System.Drawing.Point(4, 98)
+        Me.LabelIncendioForestalMedida.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelIncendioForestalMedida.Name = "LabelIncendioForestalMedida"
+        Me.LabelIncendioForestalMedida.Size = New System.Drawing.Size(142, 28)
+        Me.LabelIncendioForestalMedida.TabIndex = 29
+        Me.LabelIncendioForestalMedida.Text = "Medidas (m):"
+        Me.LabelIncendioForestalMedida.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelTrasladoPorOtro
+        '
+        Me.LabelTrasladoPorOtro.AutoSize = True
+        Me.LabelTrasladoPorOtro.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelTrasladoPorOtro.Location = New System.Drawing.Point(4, 0)
+        Me.LabelTrasladoPorOtro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelTrasladoPorOtro.Name = "LabelTrasladoPorOtro"
+        Me.LabelTrasladoPorOtro.Size = New System.Drawing.Size(142, 28)
+        Me.LabelTrasladoPorOtro.TabIndex = 24
+        Me.LabelTrasladoPorOtro.Text = "Traslado por otro:"
+        Me.LabelTrasladoPorOtro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelTrasladoPorOtro
+        '
+        Me.TableLayoutPanelTrasladoPorOtro.AutoSize = True
+        Me.TableLayoutPanelTrasladoPorOtro.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelTrasladoPorOtro.ColumnCount = 2
+        Me.TableLayoutPanelTrasladoPorOtro.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelTrasladoPorOtro.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelTrasladoPorOtro.Controls.Add(Me.CheckBoxTrasladoPorOtro, 0, 0)
+        Me.TableLayoutPanelTrasladoPorOtro.Controls.Add(Me.NumericUpDownTrasladoPorOtroCantidad, 1, 0)
+        Me.TableLayoutPanelTrasladoPorOtro.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelTrasladoPorOtro.Location = New System.Drawing.Point(150, 0)
+        Me.TableLayoutPanelTrasladoPorOtro.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelTrasladoPorOtro.Name = "TableLayoutPanelTrasladoPorOtro"
+        Me.TableLayoutPanelTrasladoPorOtro.RowCount = 1
+        Me.TableLayoutPanelTrasladoPorOtro.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelTrasladoPorOtro.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28.0!))
+        Me.TableLayoutPanelTrasladoPorOtro.Size = New System.Drawing.Size(90, 28)
+        Me.TableLayoutPanelTrasladoPorOtro.TabIndex = 25
+        '
+        'CheckBoxTrasladoPorOtro
+        '
+        Me.CheckBoxTrasladoPorOtro.AutoSize = True
+        Me.CheckBoxTrasladoPorOtro.Location = New System.Drawing.Point(3, 3)
+        Me.CheckBoxTrasladoPorOtro.Name = "CheckBoxTrasladoPorOtro"
+        Me.CheckBoxTrasladoPorOtro.Size = New System.Drawing.Size(18, 17)
+        Me.CheckBoxTrasladoPorOtro.TabIndex = 7
+        Me.CheckBoxTrasladoPorOtro.UseVisualStyleBackColor = True
+        '
+        'NumericUpDownTrasladoPorOtroCantidad
+        '
+        Me.NumericUpDownTrasladoPorOtroCantidad.Location = New System.Drawing.Point(27, 3)
+        Me.NumericUpDownTrasladoPorOtroCantidad.Maximum = New Decimal(New Integer() {255, 0, 0, 0})
+        Me.NumericUpDownTrasladoPorOtroCantidad.Name = "NumericUpDownTrasladoPorOtroCantidad"
+        Me.NumericUpDownTrasladoPorOtroCantidad.Size = New System.Drawing.Size(60, 22)
+        Me.NumericUpDownTrasladoPorOtroCantidad.TabIndex = 8
+        Me.NumericUpDownTrasladoPorOtroCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownTrasladoPorOtroCantidad.Visible = False
+        '
+        'LabelIncendioForestal
+        '
+        Me.LabelIncendioForestal.AutoSize = True
+        Me.LabelIncendioForestal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestal.Location = New System.Drawing.Point(4, 48)
+        Me.LabelIncendioForestal.Margin = New System.Windows.Forms.Padding(4, 0, 4, 6)
+        Me.LabelIncendioForestal.Name = "LabelIncendioForestal"
+        Me.LabelIncendioForestal.Size = New System.Drawing.Size(142, 16)
+        Me.LabelIncendioForestal.TabIndex = 26
+        Me.LabelIncendioForestal.Text = "Incendio forestal"
+        Me.LabelIncendioForestal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'LabelIncendioForestalCantidad
+        '
+        Me.LabelIncendioForestalCantidad.AutoSize = True
+        Me.LabelIncendioForestalCantidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LabelIncendioForestalCantidad.Location = New System.Drawing.Point(4, 70)
+        Me.LabelIncendioForestalCantidad.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LabelIncendioForestalCantidad.Name = "LabelIncendioForestalCantidad"
+        Me.LabelIncendioForestalCantidad.Size = New System.Drawing.Size(142, 28)
+        Me.LabelIncendioForestalCantidad.TabIndex = 27
+        Me.LabelIncendioForestalCantidad.Text = "Cantidad:"
+        Me.LabelIncendioForestalCantidad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TableLayoutPanelIncendioForestalCantidad
+        '
+        Me.TableLayoutPanelIncendioForestalCantidad.AutoSize = True
+        Me.TableLayoutPanelIncendioForestalCantidad.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnCount = 5
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70.0!))
+        Me.TableLayoutPanelIncendioForestalCantidad.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TableLayoutPanelIncendioForestalCantidad.Controls.Add(Me.NumericUpDownIncendioForestalCantidadPlanta, 4, 0)
+        Me.TableLayoutPanelIncendioForestalCantidad.Controls.Add(Me.LabelIncendioForestalCantidadPlanta, 3, 0)
+        Me.TableLayoutPanelIncendioForestalCantidad.Controls.Add(Me.LabelIncendioForestalCantidadHa, 0, 0)
+        Me.TableLayoutPanelIncendioForestalCantidad.Controls.Add(Me.NumericUpDownIncendioForestalCantidadHa, 1, 0)
+        Me.TableLayoutPanelIncendioForestalCantidad.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelIncendioForestalCantidad.Location = New System.Drawing.Point(150, 70)
+        Me.TableLayoutPanelIncendioForestalCantidad.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanelIncendioForestalCantidad.Name = "TableLayoutPanelIncendioForestalCantidad"
+        Me.TableLayoutPanelIncendioForestalCantidad.RowCount = 1
+        Me.TableLayoutPanelIncendioForestalCantidad.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelIncendioForestalCantidad.Size = New System.Drawing.Size(332, 28)
+        Me.TableLayoutPanelIncendioForestalCantidad.TabIndex = 27
+        '
+        'NumericUpDownIncendioForestalCantidadPlanta
+        '
+        Me.NumericUpDownIncendioForestalCantidadPlanta.Location = New System.Drawing.Point(249, 3)
+        Me.NumericUpDownIncendioForestalCantidadPlanta.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
+        Me.NumericUpDownIncendioForestalCantidadPlanta.Name = "NumericUpDownIncendioForestalCantidadPlanta"
+        Me.NumericUpDownIncendioForestalCantidadPlanta.Size = New System.Drawing.Size(80, 22)
+        Me.NumericUpDownIncendioForestalCantidadPlanta.TabIndex = 24
+        Me.NumericUpDownIncendioForestalCantidadPlanta.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownIncendioForestalCantidadPlanta.ThousandsSeparator = True
+        '
+        'NumericUpDownIncendioForestalCantidadHa
+        '
+        Me.NumericUpDownIncendioForestalCantidadHa.Location = New System.Drawing.Point(73, 3)
+        Me.NumericUpDownIncendioForestalCantidadHa.Maximum = New Decimal(New Integer() {32767, 0, 0, 0})
+        Me.NumericUpDownIncendioForestalCantidadHa.Name = "NumericUpDownIncendioForestalCantidadHa"
+        Me.NumericUpDownIncendioForestalCantidadHa.Size = New System.Drawing.Size(80, 22)
+        Me.NumericUpDownIncendioForestalCantidadHa.TabIndex = 8
+        Me.NumericUpDownIncendioForestalCantidadHa.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.NumericUpDownIncendioForestalCantidadHa.ThousandsSeparator = True
+        '
+        'TableLayoutPanelResumenAsistencias
+        '
+        Me.TableLayoutPanelResumenAsistencias.ColumnCount = 1
+        Me.TableLayoutPanelResumenAsistencias.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelResumenAsistencias.Controls.Add(Me.labelResumenAsistencias, 0, 0)
+        Me.TableLayoutPanelResumenAsistencias.Controls.Add(Me.DataGridViewResumenAsistencias, 0, 1)
+        Me.TableLayoutPanelResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanelResumenAsistencias.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
+        Me.TableLayoutPanelResumenAsistencias.Location = New System.Drawing.Point(534, 3)
+        Me.TableLayoutPanelResumenAsistencias.Name = "TableLayoutPanelResumenAsistencias"
+        Me.TableLayoutPanelResumenAsistencias.RowCount = 2
+        Me.TableLayoutPanelResumenAsistencias.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanelResumenAsistencias.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanelResumenAsistencias.Size = New System.Drawing.Size(495, 358)
+        Me.TableLayoutPanelResumenAsistencias.TabIndex = 1
+        '
+        'labelResumenAsistencias
+        '
+        Me.labelResumenAsistencias.AutoSize = True
+        Me.labelResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.labelResumenAsistencias.Location = New System.Drawing.Point(4, 0)
+        Me.labelResumenAsistencias.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.labelResumenAsistencias.Name = "labelResumenAsistencias"
+        Me.labelResumenAsistencias.Size = New System.Drawing.Size(487, 16)
+        Me.labelResumenAsistencias.TabIndex = 31
+        Me.labelResumenAsistencias.Text = "Resumen de asistencias:"
+        Me.labelResumenAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'DataGridViewResumenAsistencias
+        '
+        Me.DataGridViewResumenAsistencias.AllowUserToAddRows = False
+        Me.DataGridViewResumenAsistencias.AllowUserToDeleteRows = False
+        Me.DataGridViewResumenAsistencias.AllowUserToResizeColumns = False
+        Me.DataGridViewResumenAsistencias.AllowUserToResizeRows = False
+        Me.DataGridViewResumenAsistencias.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.DataGridViewResumenAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewResumenAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnResumenAsistenciaTipo, Me.columnResumenCantidad})
+        Me.DataGridViewResumenAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.DataGridViewResumenAsistencias.Location = New System.Drawing.Point(4, 20)
+        Me.DataGridViewResumenAsistencias.Margin = New System.Windows.Forms.Padding(4)
+        Me.DataGridViewResumenAsistencias.MultiSelect = False
+        Me.DataGridViewResumenAsistencias.Name = "DataGridViewResumenAsistencias"
+        Me.DataGridViewResumenAsistencias.ReadOnly = True
+        Me.DataGridViewResumenAsistencias.RowHeadersVisible = False
+        Me.DataGridViewResumenAsistencias.RowHeadersWidth = 51
+        Me.DataGridViewResumenAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        Me.DataGridViewResumenAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridViewResumenAsistencias.ShowEditingIcon = False
+        Me.DataGridViewResumenAsistencias.Size = New System.Drawing.Size(487, 334)
+        Me.DataGridViewResumenAsistencias.TabIndex = 28
+        '
+        'columnResumenAsistenciaTipo
+        '
+        Me.columnResumenAsistenciaTipo.DataPropertyName = "AsistenciaTipoNombre"
+        Me.columnResumenAsistenciaTipo.HeaderText = "Tipo de asistencia"
+        Me.columnResumenAsistenciaTipo.MinimumWidth = 6
+        Me.columnResumenAsistenciaTipo.Name = "columnResumenAsistenciaTipo"
+        Me.columnResumenAsistenciaTipo.ReadOnly = True
+        Me.columnResumenAsistenciaTipo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.columnResumenAsistenciaTipo.Width = 112
+        '
+        'columnResumenCantidad
+        '
+        Me.columnResumenCantidad.DataPropertyName = "Cantidad"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Format = "N0"
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.columnResumenCantidad.DefaultCellStyle = DataGridViewCellStyle1
+        Me.columnResumenCantidad.HeaderText = "Cantidad"
+        Me.columnResumenCantidad.MinimumWidth = 6
+        Me.columnResumenCantidad.Name = "columnResumenCantidad"
+        Me.columnResumenCantidad.ReadOnly = True
+        Me.columnResumenCantidad.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.columnResumenCantidad.Width = 67
+        '
+        'TabPageDamnificado
+        '
+        Me.TabPageDamnificado.Controls.Add(Me.DataGridViewDamnificados)
+        Me.TabPageDamnificado.Controls.Add(Me.StatusStripDamnificados)
+        Me.TabPageDamnificado.Controls.Add(Me.ToolStripDaminificados)
+        Me.TabPageDamnificado.Location = New System.Drawing.Point(4, 28)
+        Me.TabPageDamnificado.Name = "TabPageDamnificado"
+        Me.TabPageDamnificado.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageDamnificado.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageDamnificado.TabIndex = 4
+        Me.TabPageDamnificado.Text = "Damnificados"
+        Me.TabPageDamnificado.UseVisualStyleBackColor = True
         '
         'DataGridViewDamnificados
         '
@@ -1520,7 +1476,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewDamnificados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnDamnificadosApellidoNombre, Me.DataGridViewTextBoxColumnDamnificadosEdad, Me.DataGridViewTextBoxColumnDamnificadosEstado})
         Me.DataGridViewDamnificados.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewDamnificados.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewDamnificados.Location = New System.Drawing.Point(100, 0)
+        Me.DataGridViewDamnificados.Location = New System.Drawing.Point(103, 3)
         Me.DataGridViewDamnificados.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridViewDamnificados.MultiSelect = False
         Me.DataGridViewDamnificados.Name = "DataGridViewDamnificados"
@@ -1529,8 +1485,8 @@ Partial Class FormSiniestroV2
         Me.DataGridViewDamnificados.RowHeadersWidth = 51
         Me.DataGridViewDamnificados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridViewDamnificados.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(1038, 291)
-        Me.DataGridViewDamnificados.TabIndex = 11
+        Me.DataGridViewDamnificados.Size = New System.Drawing.Size(926, 336)
+        Me.DataGridViewDamnificados.TabIndex = 14
         '
         'DataGridViewTextBoxColumnDamnificadosApellidoNombre
         '
@@ -1565,17 +1521,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripDamnificados.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripDamnificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelDamnificados})
-        Me.StatusStripDamnificados.Location = New System.Drawing.Point(100, 291)
+        Me.StatusStripDamnificados.Location = New System.Drawing.Point(103, 339)
         Me.StatusStripDamnificados.Name = "StatusStripDamnificados"
         Me.StatusStripDamnificados.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripDamnificados.Size = New System.Drawing.Size(1038, 22)
+        Me.StatusStripDamnificados.Size = New System.Drawing.Size(926, 22)
         Me.StatusStripDamnificados.SizingGrip = False
-        Me.StatusStripDamnificados.TabIndex = 12
+        Me.StatusStripDamnificados.TabIndex = 15
         '
         'ToolStripStatusLabelDamnificados
         '
         Me.ToolStripStatusLabelDamnificados.Name = "ToolStripStatusLabelDamnificados"
-        Me.ToolStripStatusLabelDamnificados.Size = New System.Drawing.Size(1018, 16)
+        Me.ToolStripStatusLabelDamnificados.Size = New System.Drawing.Size(906, 16)
         Me.ToolStripStatusLabelDamnificados.Spring = True
         Me.ToolStripStatusLabelDamnificados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1586,10 +1542,10 @@ Partial Class FormSiniestroV2
         Me.ToolStripDaminificados.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStripDaminificados.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonDamnificadosAgregar, Me.ToolStripButtonDamnificadosEditar, Me.ToolStripButtonDamnificadosBorrar})
         Me.ToolStripDaminificados.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ToolStripDaminificados.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripDaminificados.Location = New System.Drawing.Point(3, 3)
         Me.ToolStripDaminificados.Name = "ToolStripDaminificados"
-        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 313)
-        Me.ToolStripDaminificados.TabIndex = 10
+        Me.ToolStripDaminificados.Size = New System.Drawing.Size(100, 358)
+        Me.ToolStripDaminificados.TabIndex = 13
         '
         'ToolStripButtonDamnificadosAgregar
         '
@@ -1621,17 +1577,18 @@ Partial Class FormSiniestroV2
         Me.ToolStripButtonDamnificadosBorrar.Size = New System.Drawing.Size(97, 36)
         Me.ToolStripButtonDamnificadosBorrar.Text = "Eliminar"
         '
-        'PanelVehiculo
+        'TabPageVehiculo
         '
-        Me.PanelVehiculo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PanelVehiculo.Controls.Add(Me.DataGridViewVehiculos)
-        Me.PanelVehiculo.Controls.Add(Me.StatusStripVehiculos)
-        Me.PanelVehiculo.Controls.Add(Me.ToolStripVehiculos)
-        Me.PanelVehiculo.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelVehiculo.Location = New System.Drawing.Point(3, 374)
-        Me.PanelVehiculo.Name = "PanelVehiculo"
-        Me.PanelVehiculo.Size = New System.Drawing.Size(1138, 314)
-        Me.PanelVehiculo.TabIndex = 1
+        Me.TabPageVehiculo.Controls.Add(Me.DataGridViewVehiculos)
+        Me.TabPageVehiculo.Controls.Add(Me.StatusStripVehiculos)
+        Me.TabPageVehiculo.Controls.Add(Me.ToolStripVehiculos)
+        Me.TabPageVehiculo.Location = New System.Drawing.Point(4, 28)
+        Me.TabPageVehiculo.Name = "TabPageVehiculo"
+        Me.TabPageVehiculo.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPageVehiculo.Size = New System.Drawing.Size(1032, 364)
+        Me.TabPageVehiculo.TabIndex = 6
+        Me.TabPageVehiculo.Text = "Vehículos"
+        Me.TabPageVehiculo.UseVisualStyleBackColor = True
         '
         'DataGridViewVehiculos
         '
@@ -1649,7 +1606,7 @@ Partial Class FormSiniestroV2
         Me.DataGridViewVehiculos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumnVehiculosTipo, Me.DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca, Me.DataGridViewTextBoxColumnVehiculosModelo, Me.DataGridViewTextBoxColumnVehiculosDominio})
         Me.DataGridViewVehiculos.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridViewVehiculos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridViewVehiculos.Location = New System.Drawing.Point(100, 0)
+        Me.DataGridViewVehiculos.Location = New System.Drawing.Point(103, 3)
         Me.DataGridViewVehiculos.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridViewVehiculos.MultiSelect = False
         Me.DataGridViewVehiculos.Name = "DataGridViewVehiculos"
@@ -1658,8 +1615,8 @@ Partial Class FormSiniestroV2
         Me.DataGridViewVehiculos.RowHeadersWidth = 51
         Me.DataGridViewVehiculos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.DataGridViewVehiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(1038, 292)
-        Me.DataGridViewVehiculos.TabIndex = 12
+        Me.DataGridViewVehiculos.Size = New System.Drawing.Size(926, 336)
+        Me.DataGridViewVehiculos.TabIndex = 15
         '
         'DataGridViewTextBoxColumnVehiculosTipo
         '
@@ -1701,17 +1658,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelVehiculos})
-        Me.StatusStripVehiculos.Location = New System.Drawing.Point(100, 292)
+        Me.StatusStripVehiculos.Location = New System.Drawing.Point(103, 339)
         Me.StatusStripVehiculos.Name = "StatusStripVehiculos"
         Me.StatusStripVehiculos.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripVehiculos.Size = New System.Drawing.Size(1038, 22)
+        Me.StatusStripVehiculos.Size = New System.Drawing.Size(926, 22)
         Me.StatusStripVehiculos.SizingGrip = False
-        Me.StatusStripVehiculos.TabIndex = 13
+        Me.StatusStripVehiculos.TabIndex = 16
         '
         'ToolStripStatusLabelVehiculos
         '
         Me.ToolStripStatusLabelVehiculos.Name = "ToolStripStatusLabelVehiculos"
-        Me.ToolStripStatusLabelVehiculos.Size = New System.Drawing.Size(1018, 16)
+        Me.ToolStripStatusLabelVehiculos.Size = New System.Drawing.Size(906, 16)
         Me.ToolStripStatusLabelVehiculos.Spring = True
         Me.ToolStripStatusLabelVehiculos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1722,10 +1679,10 @@ Partial Class FormSiniestroV2
         Me.ToolStripVehiculos.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStripVehiculos.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonVehiculosAgregar, Me.ToolStripButtonVehiculosEditar, Me.ToolStripButtonVehiculosBorrar})
         Me.ToolStripVehiculos.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ToolStripVehiculos.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStripVehiculos.Location = New System.Drawing.Point(3, 3)
         Me.ToolStripVehiculos.Name = "ToolStripVehiculos"
-        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 314)
-        Me.ToolStripVehiculos.TabIndex = 11
+        Me.ToolStripVehiculos.Size = New System.Drawing.Size(100, 358)
+        Me.ToolStripVehiculos.TabIndex = 14
         '
         'ToolStripButtonVehiculosAgregar
         '
@@ -1757,25 +1714,15 @@ Partial Class FormSiniestroV2
         Me.ToolStripButtonVehiculosBorrar.Size = New System.Drawing.Size(97, 36)
         Me.ToolStripButtonVehiculosBorrar.Text = "Eliminar"
         '
-        'LabelDamnificados
-        '
-        Me.LabelDamnificados.AutoSize = True
-        Me.LabelDamnificados.Location = New System.Drawing.Point(3, 0)
-        Me.LabelDamnificados.Name = "LabelDamnificados"
-        Me.LabelDamnificados.Size = New System.Drawing.Size(93, 16)
-        Me.LabelDamnificados.TabIndex = 2
-        Me.LabelDamnificados.Text = "Damnificados:"
-        '
         'tabpageAsistencias
         '
         Me.tabpageAsistencias.Controls.Add(Me.datagridviewAsistencias)
         Me.tabpageAsistencias.Controls.Add(Me.StatusStripAsistencias)
         Me.tabpageAsistencias.Controls.Add(Me.toolstripAsistencias)
         Me.tabpageAsistencias.Location = New System.Drawing.Point(4, 28)
-        Me.tabpageAsistencias.Margin = New System.Windows.Forms.Padding(4)
         Me.tabpageAsistencias.Name = "tabpageAsistencias"
-        Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(4)
-        Me.tabpageAsistencias.Size = New System.Drawing.Size(1150, 697)
+        Me.tabpageAsistencias.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabpageAsistencias.Size = New System.Drawing.Size(1032, 364)
         Me.tabpageAsistencias.TabIndex = 2
         Me.tabpageAsistencias.Text = "Asistencias"
         Me.tabpageAsistencias.UseVisualStyleBackColor = True
@@ -1790,11 +1737,12 @@ Partial Class FormSiniestroV2
         DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight
         DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText
         Me.datagridviewAsistencias.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle5
-        Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datagridviewAsistencias.ColumnHeadersHeight = 29
+        Me.datagridviewAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.datagridviewAsistencias.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.columnPersona, Me.columnSiniestroAsistenciaTipo})
         Me.datagridviewAsistencias.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagridviewAsistencias.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.datagridviewAsistencias.Location = New System.Drawing.Point(104, 4)
+        Me.datagridviewAsistencias.Location = New System.Drawing.Point(103, 3)
         Me.datagridviewAsistencias.Margin = New System.Windows.Forms.Padding(4)
         Me.datagridviewAsistencias.MultiSelect = False
         Me.datagridviewAsistencias.Name = "datagridviewAsistencias"
@@ -1803,7 +1751,7 @@ Partial Class FormSiniestroV2
         Me.datagridviewAsistencias.RowHeadersWidth = 51
         Me.datagridviewAsistencias.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing
         Me.datagridviewAsistencias.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagridviewAsistencias.Size = New System.Drawing.Size(1042, 667)
+        Me.datagridviewAsistencias.Size = New System.Drawing.Size(926, 336)
         Me.datagridviewAsistencias.TabIndex = 8
         '
         'columnPersona
@@ -1830,17 +1778,17 @@ Partial Class FormSiniestroV2
         '
         Me.StatusStripAsistencias.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStripAsistencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelAsistencias})
-        Me.StatusStripAsistencias.Location = New System.Drawing.Point(104, 671)
+        Me.StatusStripAsistencias.Location = New System.Drawing.Point(103, 339)
         Me.StatusStripAsistencias.Name = "StatusStripAsistencias"
         Me.StatusStripAsistencias.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStripAsistencias.Size = New System.Drawing.Size(1042, 22)
+        Me.StatusStripAsistencias.Size = New System.Drawing.Size(926, 22)
         Me.StatusStripAsistencias.SizingGrip = False
         Me.StatusStripAsistencias.TabIndex = 10
         '
         'ToolStripStatusLabelAsistencias
         '
         Me.ToolStripStatusLabelAsistencias.Name = "ToolStripStatusLabelAsistencias"
-        Me.ToolStripStatusLabelAsistencias.Size = New System.Drawing.Size(1022, 16)
+        Me.ToolStripStatusLabelAsistencias.Size = New System.Drawing.Size(906, 16)
         Me.ToolStripStatusLabelAsistencias.Spring = True
         Me.ToolStripStatusLabelAsistencias.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -1851,9 +1799,9 @@ Partial Class FormSiniestroV2
         Me.toolstripAsistencias.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.toolstripAsistencias.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.buttonAsistenciasAgregar, Me.buttonAsistenciasEditar, Me.buttonAsistenciasEliminar})
         Me.toolstripAsistencias.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.toolstripAsistencias.Location = New System.Drawing.Point(4, 4)
+        Me.toolstripAsistencias.Location = New System.Drawing.Point(3, 3)
         Me.toolstripAsistencias.Name = "toolstripAsistencias"
-        Me.toolstripAsistencias.Size = New System.Drawing.Size(100, 689)
+        Me.toolstripAsistencias.Size = New System.Drawing.Size(100, 358)
         Me.toolstripAsistencias.TabIndex = 9
         '
         'buttonAsistenciasAgregar
@@ -1904,7 +1852,7 @@ Partial Class FormSiniestroV2
         Me.tabpageNotasAuditoria.Margin = New System.Windows.Forms.Padding(4)
         Me.tabpageNotasAuditoria.Name = "tabpageNotasAuditoria"
         Me.tabpageNotasAuditoria.Padding = New System.Windows.Forms.Padding(4)
-        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(1150, 697)
+        Me.tabpageNotasAuditoria.Size = New System.Drawing.Size(1032, 364)
         Me.tabpageNotasAuditoria.TabIndex = 1
         Me.tabpageNotasAuditoria.Text = "Notas y Auditoría"
         Me.tabpageNotasAuditoria.UseVisualStyleBackColor = True
@@ -1913,7 +1861,7 @@ Partial Class FormSiniestroV2
         '
         Me.checkboxAnulado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.checkboxAnulado.AutoSize = True
-        Me.checkboxAnulado.Location = New System.Drawing.Point(152, 577)
+        Me.checkboxAnulado.Location = New System.Drawing.Point(152, 306)
         Me.checkboxAnulado.Margin = New System.Windows.Forms.Padding(4)
         Me.checkboxAnulado.Name = "checkboxAnulado"
         Me.checkboxAnulado.Size = New System.Drawing.Size(18, 17)
@@ -1924,7 +1872,7 @@ Partial Class FormSiniestroV2
         '
         Me.labelAnulado.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelAnulado.AutoSize = True
-        Me.labelAnulado.Location = New System.Drawing.Point(8, 575)
+        Me.labelAnulado.Location = New System.Drawing.Point(8, 304)
         Me.labelAnulado.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelAnulado.Name = "labelAnulado"
         Me.labelAnulado.Size = New System.Drawing.Size(60, 16)
@@ -1935,7 +1883,7 @@ Partial Class FormSiniestroV2
         '
         Me.labelIDSiniestro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.labelIDSiniestro.AutoSize = True
-        Me.labelIDSiniestro.Location = New System.Drawing.Point(8, 605)
+        Me.labelIDSiniestro.Location = New System.Drawing.Point(8, 334)
         Me.labelIDSiniestro.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelIDSiniestro.Name = "labelIDSiniestro"
         Me.labelIDSiniestro.Size = New System.Drawing.Size(23, 16)
@@ -1945,7 +1893,7 @@ Partial Class FormSiniestroV2
         'textboxIDSiniestro
         '
         Me.textboxIDSiniestro.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxIDSiniestro.Location = New System.Drawing.Point(152, 601)
+        Me.textboxIDSiniestro.Location = New System.Drawing.Point(152, 330)
         Me.textboxIDSiniestro.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxIDSiniestro.MaxLength = 10
         Me.textboxIDSiniestro.Name = "textboxIDSiniestro"
@@ -1958,7 +1906,7 @@ Partial Class FormSiniestroV2
         'textboxUsuarioModificacion
         '
         Me.textboxUsuarioModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(321, 665)
+        Me.textboxUsuarioModificacion.Location = New System.Drawing.Point(321, 394)
         Me.textboxUsuarioModificacion.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxUsuarioModificacion.MaxLength = 50
         Me.textboxUsuarioModificacion.Name = "textboxUsuarioModificacion"
@@ -1969,7 +1917,7 @@ Partial Class FormSiniestroV2
         'textboxUsuarioCreacion
         '
         Me.textboxUsuarioCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(321, 633)
+        Me.textboxUsuarioCreacion.Location = New System.Drawing.Point(321, 362)
         Me.textboxUsuarioCreacion.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxUsuarioCreacion.MaxLength = 50
         Me.textboxUsuarioCreacion.Name = "textboxUsuarioCreacion"
@@ -1980,7 +1928,7 @@ Partial Class FormSiniestroV2
         'textboxFechaHoraModificacion
         '
         Me.textboxFechaHoraModificacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(152, 665)
+        Me.textboxFechaHoraModificacion.Location = New System.Drawing.Point(152, 394)
         Me.textboxFechaHoraModificacion.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxFechaHoraModificacion.MaxLength = 0
         Me.textboxFechaHoraModificacion.Name = "textboxFechaHoraModificacion"
@@ -1991,7 +1939,7 @@ Partial Class FormSiniestroV2
         'textboxFechaHoraCreacion
         '
         Me.textboxFechaHoraCreacion.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(152, 633)
+        Me.textboxFechaHoraCreacion.Location = New System.Drawing.Point(152, 362)
         Me.textboxFechaHoraCreacion.Margin = New System.Windows.Forms.Padding(4)
         Me.textboxFechaHoraCreacion.MaxLength = 0
         Me.textboxFechaHoraCreacion.Name = "textboxFechaHoraCreacion"
@@ -2010,7 +1958,7 @@ Partial Class FormSiniestroV2
         Me.textboxNotas.Multiline = True
         Me.textboxNotas.Name = "textboxNotas"
         Me.textboxNotas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.textboxNotas.Size = New System.Drawing.Size(994, 561)
+        Me.textboxNotas.Size = New System.Drawing.Size(938, 290)
         Me.textboxNotas.TabIndex = 1
         '
         'labelNotas
@@ -2023,12 +1971,73 @@ Partial Class FormSiniestroV2
         Me.labelNotas.TabIndex = 0
         Me.labelNotas.Text = "Notas:"
         '
+        'ControlPersonaRadioTelefonista
+        '
+        Me.ControlPersonaRadioTelefonista.ApellidoNombre = Nothing
+        Me.ControlPersonaRadioTelefonista.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaRadioTelefonista.dbContext = Nothing
+        Me.ControlPersonaRadioTelefonista.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaRadioTelefonista.IDCuartel = Nothing
+        Me.ControlPersonaRadioTelefonista.IDPersona = Nothing
+        Me.ControlPersonaRadioTelefonista.Location = New System.Drawing.Point(155, 251)
+        Me.ControlPersonaRadioTelefonista.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaRadioTelefonista.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaRadioTelefonista.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaRadioTelefonista.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaRadioTelefonista.Name = "ControlPersonaRadioTelefonista"
+        Me.ControlPersonaRadioTelefonista.ReadOnlyText = False
+        Me.ControlPersonaRadioTelefonista.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaRadioTelefonista.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaRadioTelefonista.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaRadioTelefonista.TabIndex = 39
+        '
+        'ControlPersonaJefeGuardia
+        '
+        Me.ControlPersonaJefeGuardia.ApellidoNombre = Nothing
+        Me.ControlPersonaJefeGuardia.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaJefeGuardia.dbContext = Nothing
+        Me.ControlPersonaJefeGuardia.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaJefeGuardia.IDCuartel = Nothing
+        Me.ControlPersonaJefeGuardia.IDPersona = Nothing
+        Me.ControlPersonaJefeGuardia.Location = New System.Drawing.Point(155, 215)
+        Me.ControlPersonaJefeGuardia.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaJefeGuardia.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaJefeGuardia.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaJefeGuardia.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaJefeGuardia.Name = "ControlPersonaJefeGuardia"
+        Me.ControlPersonaJefeGuardia.ReadOnlyText = False
+        Me.ControlPersonaJefeGuardia.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaJefeGuardia.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaJefeGuardia.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaJefeGuardia.TabIndex = 37
+        '
+        'ControlPersonaEncargadoCuartel
+        '
+        Me.ControlPersonaEncargadoCuartel.ApellidoNombre = Nothing
+        Me.ControlPersonaEncargadoCuartel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ControlPersonaEncargadoCuartel.dbContext = Nothing
+        Me.ControlPersonaEncargadoCuartel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ControlPersonaEncargadoCuartel.IDCuartel = Nothing
+        Me.ControlPersonaEncargadoCuartel.IDPersona = Nothing
+        Me.ControlPersonaEncargadoCuartel.Location = New System.Drawing.Point(155, 179)
+        Me.ControlPersonaEncargadoCuartel.Margin = New System.Windows.Forms.Padding(5)
+        Me.ControlPersonaEncargadoCuartel.MatriculaNumeroDigitos = Nothing
+        Me.ControlPersonaEncargadoCuartel.MaximumSize = New System.Drawing.Size(1333, 26)
+        Me.ControlPersonaEncargadoCuartel.MinimumSize = New System.Drawing.Size(200, 26)
+        Me.ControlPersonaEncargadoCuartel.Name = "ControlPersonaEncargadoCuartel"
+        Me.ControlPersonaEncargadoCuartel.ReadOnlyText = False
+        Me.ControlPersonaEncargadoCuartel.Size = New System.Drawing.Size(335, 26)
+        Me.ControlPersonaEncargadoCuartel.SoloMostrarEnAsistencia = True
+        Me.ControlPersonaEncargadoCuartel.SoloMostrarEstadoActivo = True
+        Me.ControlPersonaEncargadoCuartel.TabIndex = 35
+        '
         'FormSiniestroV2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1182, 797)
-        Me.Controls.Add(Me.tabcontrolMain)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(120.0!, 120.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1019, 449)
+        Me.Controls.Add(Me.TabControlMain)
         Me.Controls.Add(Me.toolstripMain)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.KeyPreview = True
@@ -2041,45 +2050,48 @@ Partial Class FormSiniestroV2
         Me.Text = "Siniestro"
         Me.toolstripMain.ResumeLayout(False)
         Me.toolstripMain.PerformLayout()
-        Me.tabcontrolMain.ResumeLayout(False)
+        Me.TabControlMain.ResumeLayout(False)
+        Me.TabPageEncabezado.ResumeLayout(False)
+        Me.TableLayoutPanelEncabezadoMain.ResumeLayout(False)
+        Me.TableLayoutPanelEncabezadoMain.PerformLayout()
+        Me.TableLayoutPanelEncabezado.ResumeLayout(False)
+        Me.TableLayoutPanelEncabezado.PerformLayout()
+        Me.TableLayoutPanelNumero.ResumeLayout(False)
+        Me.TableLayoutPanelNumero.PerformLayout()
+        Me.TableLayoutPanelHoraFin.ResumeLayout(False)
+        Me.TableLayoutPanelHoraFin.PerformLayout()
+        Me.TableLayoutPanelLlamadoUbicacion.ResumeLayout(False)
+        Me.TableLayoutPanelLlamadoUbicacion.PerformLayout()
+        Me.TableLayoutPanelGeneralSolicitanteDocumento.ResumeLayout(False)
+        Me.TableLayoutPanelGeneralSolicitanteDocumento.PerformLayout()
         Me.TabPageGeneral.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralMain.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralMain.PerformLayout()
-        Me.TableLayoutPanelGeneralIzquierda.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralIzquierda.PerformLayout()
+        Me.TableLayoutPanelPieMain.ResumeLayout(False)
+        Me.TableLayoutPanelPie.ResumeLayout(False)
+        Me.TableLayoutPanelPie.PerformLayout()
         CType(Me.NumericUpDownIncendioForestalSuperficieMetro, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanelGeneralIncendioForestalSuperficie.ResumeLayout(False)
         Me.TableLayoutPanelGeneralIncendioForestalSuperficie.PerformLayout()
         CType(Me.NumericUpDownIncendioForestalAnchoMetro, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownIncendioForestalLargoMetro, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralIncendioForestalCantidad.PerformLayout()
+        Me.TableLayoutPanelTrasladoPorOtro.ResumeLayout(False)
+        Me.TableLayoutPanelTrasladoPorOtro.PerformLayout()
+        CType(Me.NumericUpDownTrasladoPorOtroCantidad, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TableLayoutPanelIncendioForestalCantidad.ResumeLayout(False)
+        Me.TableLayoutPanelIncendioForestalCantidad.PerformLayout()
         CType(Me.NumericUpDownIncendioForestalCantidadPlanta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDownIncendioForestalCantidadHa, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralTrasladoPorOtro.PerformLayout()
-        CType(Me.NumericUpDownTrasladoPorOtroCantidad, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanelGeneralNumero.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralNumero.PerformLayout()
-        Me.TableLayoutPanelGeneralHoraFin.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralHoraFin.PerformLayout()
-        Me.TableLayoutPanelGeneralDerecha.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralDerecha.PerformLayout()
+        Me.TableLayoutPanelResumenAsistencias.ResumeLayout(False)
+        Me.TableLayoutPanelResumenAsistencias.PerformLayout()
         CType(Me.DataGridViewResumenAsistencias, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TableLayoutPanelGeneralSolicitanteDocumento.ResumeLayout(False)
-        Me.TableLayoutPanelGeneralSolicitanteDocumento.PerformLayout()
-        Me.TabPageDamnificadoVehiculo.ResumeLayout(False)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.ResumeLayout(False)
-        Me.TableLayoutPanelDamnificadoVehiculoMain.PerformLayout()
-        Me.PanelDaminificado.ResumeLayout(False)
-        Me.PanelDaminificado.PerformLayout()
+        Me.TabPageDamnificado.ResumeLayout(False)
+        Me.TabPageDamnificado.PerformLayout()
         CType(Me.DataGridViewDamnificados, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStripDamnificados.ResumeLayout(False)
         Me.StatusStripDamnificados.PerformLayout()
         Me.ToolStripDaminificados.ResumeLayout(False)
         Me.ToolStripDaminificados.PerformLayout()
-        Me.PanelVehiculo.ResumeLayout(False)
-        Me.PanelVehiculo.PerformLayout()
+        Me.TabPageVehiculo.ResumeLayout(False)
+        Me.TabPageVehiculo.PerformLayout()
         CType(Me.DataGridViewVehiculos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStripVehiculos.ResumeLayout(False)
         Me.StatusStripVehiculos.PerformLayout()
@@ -2104,7 +2116,7 @@ Partial Class FormSiniestroV2
     Friend WithEvents buttonCerrar As System.Windows.Forms.ToolStripButton
     Friend WithEvents toolstripMain As System.Windows.Forms.ToolStrip
     Friend WithEvents comboboxSiniestroRubro As System.Windows.Forms.ComboBox
-    Friend WithEvents tabcontrolMain As System.Windows.Forms.TabControl
+    Friend WithEvents TabControlMain As System.Windows.Forms.TabControl
     Friend WithEvents tabpageNotasAuditoria As System.Windows.Forms.TabPage
     Friend WithEvents textboxUsuarioModificacion As System.Windows.Forms.TextBox
     Friend WithEvents textboxUsuarioCreacion As System.Windows.Forms.TextBox
@@ -2136,17 +2148,14 @@ Partial Class FormSiniestroV2
     Friend WithEvents StatusStripAsistencias As StatusStrip
     Friend WithEvents ToolStripStatusLabelAsistencias As ToolStripStatusLabel
     Friend WithEvents datetimepickerHoraLlegadaUltimoCamion As DateTimePicker
-    Friend WithEvents DataGridViewResumenAsistencias As DataGridView
-    Friend WithEvents columnResumenAsistenciaTipo As DataGridViewTextBoxColumn
-    Friend WithEvents columnResumenCantidad As DataGridViewTextBoxColumn
     Friend WithEvents buttonHoraFinFinalizar As Button
     Friend WithEvents textboxPersonaFin As TextBox
-    Friend WithEvents TabPageGeneral As TabPage
-    Friend WithEvents TableLayoutPanelGeneralMain As TableLayoutPanel
-    Friend WithEvents TableLayoutPanelGeneralIzquierda As TableLayoutPanel
-    Friend WithEvents TableLayoutPanelGeneralNumero As TableLayoutPanel
-    Friend WithEvents TableLayoutPanelGeneralHoraFin As TableLayoutPanel
-    Friend WithEvents TableLayoutPanelGeneralDerecha As TableLayoutPanel
+    Friend WithEvents TabPageEncabezado As TabPage
+    Friend WithEvents TableLayoutPanelEncabezadoMain As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelEncabezado As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelNumero As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelHoraFin As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelLlamadoUbicacion As TableLayoutPanel
     Friend WithEvents TextBoxSolicitanteDireccion As TextBox
     Friend WithEvents TextBoxSolicitanteNombre As TextBox
     Friend WithEvents ComboBoxSolicitudForma As ComboBox
@@ -2158,21 +2167,9 @@ Partial Class FormSiniestroV2
     Friend WithEvents TextBoxUbicacionDescripcion As TextBox
     Friend WithEvents ComboBoxUbicacionProvincia As ComboBox
     Friend WithEvents ComboBoxUbicacionLocalidad As ComboBox
-    Friend WithEvents TableLayoutPanelGeneralTrasladoPorOtro As TableLayoutPanel
-    Friend WithEvents CheckBoxTrasladoPorOtro As CheckBox
-    Friend WithEvents NumericUpDownTrasladoPorOtroCantidad As NumericUpDown
-    Friend WithEvents TableLayoutPanelGeneralIncendioForestalCantidad As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelIncendioForestalCantidad As TableLayoutPanel
     Friend WithEvents NumericUpDownIncendioForestalCantidadHa As NumericUpDown
     Friend WithEvents NumericUpDownIncendioForestalCantidadPlanta As NumericUpDown
-    Friend WithEvents TableLayoutPanelGeneralIncendioForestalSuperficie As TableLayoutPanel
-    Friend WithEvents NumericUpDownIncendioForestalAnchoMetro As NumericUpDown
-    Friend WithEvents NumericUpDownIncendioForestalLargoMetro As NumericUpDown
-    Friend WithEvents NumericUpDownIncendioForestalSuperficieMetro As NumericUpDown
-    Friend WithEvents ControlPersonaEncargadoCuartel As ControlPersona
-    Friend WithEvents ControlPersonaJefeGuardia As ControlPersona
-    Friend WithEvents ControlPersonaRadioTelefonista As ControlPersona
-    Friend WithEvents CheckBoxControlado As CheckBox
-    Private WithEvents LabelTrasladoPorOtro As Label
     Private WithEvents labelHoraSalida As Label
     Private WithEvents labelHoraFin As Label
     Private WithEvents labelHoraLlegadaUltimoCamion As Label
@@ -2186,18 +2183,8 @@ Partial Class FormSiniestroV2
     Private WithEvents LabelUbicacionDescripcion As Label
     Private WithEvents LabelUbicacionProvincia As Label
     Private WithEvents LabelUbicacionLocalidad As Label
-    Private WithEvents LabelIncendioForestal As Label
-    Private WithEvents LabelIncendioForestalCantidad As Label
     Private WithEvents LabelIncendioForestalCantidadHa As Label
     Private WithEvents LabelIncendioForestalCantidadPlanta As Label
-    Private WithEvents LabelIncendioForestalMedida As Label
-    Private WithEvents LabelIncendioForestalAnchoMetro As Label
-    Private WithEvents LabelIncendioForestalLargoMetro As Label
-    Private WithEvents LabelIncendioForestalSuperficieMetro As Label
-    Private WithEvents LabelEncargadoCuartel As Label
-    Private WithEvents LabelJefeGuardia As Label
-    Private WithEvents LabelRadioTelefonista As Label
-    Private WithEvents LabelControlado As Label
     Private WithEvents labelFecha As Label
     Private WithEvents labelSiniestroRubro As Label
     Private WithEvents labelSiniestroTipo As Label
@@ -2205,34 +2192,59 @@ Partial Class FormSiniestroV2
     Private WithEvents labelSiniestroTipoOtro As Label
     Private WithEvents labelNumeroSeparador As Label
     Private WithEvents LabelNumero As Label
-    Private WithEvents labelResumenAsistencias As Label
     Private WithEvents ComboBoxCuartel As ComboBox
     Private WithEvents buttonCodigoSiguiente As Button
-    Friend WithEvents TabPageDamnificadoVehiculo As TabPage
-    Friend WithEvents TableLayoutPanelDamnificadoVehiculoMain As TableLayoutPanel
-    Friend WithEvents PanelDaminificado As Panel
-    Friend WithEvents DataGridViewDamnificados As DataGridView
-    Friend WithEvents ToolStripDaminificados As ToolStrip
-    Friend WithEvents ToolStripButtonDamnificadosAgregar As ToolStripButton
-    Friend WithEvents ToolStripButtonDamnificadosEditar As ToolStripButton
-    Friend WithEvents ToolStripButtonDamnificadosBorrar As ToolStripButton
-    Friend WithEvents PanelVehiculo As Panel
+    Friend WithEvents TabPageDamnificado As TabPage
+    Friend WithEvents TabPageGeneral As TabPage
+    Friend WithEvents TableLayoutPanelPieMain As TableLayoutPanel
+    Friend WithEvents TableLayoutPanelPie As TableLayoutPanel
+    Private WithEvents LabelTrasladoPorOtro As Label
+    Friend WithEvents TableLayoutPanelTrasladoPorOtro As TableLayoutPanel
+    Friend WithEvents CheckBoxTrasladoPorOtro As CheckBox
+    Friend WithEvents NumericUpDownTrasladoPorOtroCantidad As NumericUpDown
+    Private WithEvents LabelIncendioForestal As Label
+    Private WithEvents LabelIncendioForestalCantidad As Label
+    Friend WithEvents TableLayoutPanelGeneralIncendioForestalSuperficie As TableLayoutPanel
+    Friend WithEvents NumericUpDownIncendioForestalAnchoMetro As NumericUpDown
+    Private WithEvents LabelIncendioForestalAnchoMetro As Label
+    Private WithEvents LabelIncendioForestalLargoMetro As Label
+    Friend WithEvents NumericUpDownIncendioForestalLargoMetro As NumericUpDown
+    Private WithEvents LabelIncendioForestalMedida As Label
+    Private WithEvents LabelEncargadoCuartel As Label
+    Friend WithEvents NumericUpDownIncendioForestalSuperficieMetro As NumericUpDown
+    Private WithEvents LabelIncendioForestalSuperficieMetro As Label
+    Friend WithEvents ControlPersonaJefeGuardia As ControlPersona
+    Private WithEvents LabelJefeGuardia As Label
+    Friend WithEvents ControlPersonaEncargadoCuartel As ControlPersona
+    Private WithEvents LabelControlado As Label
+    Friend WithEvents ControlPersonaRadioTelefonista As ControlPersona
+    Private WithEvents LabelRadioTelefonista As Label
+    Friend WithEvents CheckBoxControlado As CheckBox
+    Friend WithEvents TableLayoutPanelResumenAsistencias As TableLayoutPanel
+    Private WithEvents labelResumenAsistencias As Label
+    Friend WithEvents DataGridViewResumenAsistencias As DataGridView
+    Friend WithEvents columnResumenAsistenciaTipo As DataGridViewTextBoxColumn
+    Friend WithEvents columnResumenCantidad As DataGridViewTextBoxColumn
+    Friend WithEvents TabPageVehiculo As TabPage
     Friend WithEvents DataGridViewVehiculos As DataGridView
-    Friend WithEvents ToolStripVehiculos As ToolStrip
-    Friend WithEvents ToolStripButtonVehiculosAgregar As ToolStripButton
-    Friend WithEvents ToolStripButtonVehiculosEditar As ToolStripButton
-    Friend WithEvents ToolStripButtonVehiculosBorrar As ToolStripButton
-    Friend WithEvents DataGridViewTextBoxColumnDamnificadosApellidoNombre As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumnDamnificadosEdad As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumnDamnificadosEstado As DataGridViewTextBoxColumn
-    Friend WithEvents LabelVehiculos As Label
-    Friend WithEvents LabelDamnificados As Label
     Friend WithEvents DataGridViewTextBoxColumnVehiculosTipo As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnDataGridViewTextBoxColumnVehiculosMarca As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnVehiculosModelo As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumnVehiculosDominio As DataGridViewTextBoxColumn
-    Friend WithEvents StatusStripDamnificados As StatusStrip
-    Friend WithEvents ToolStripStatusLabelDamnificados As ToolStripStatusLabel
     Friend WithEvents StatusStripVehiculos As StatusStrip
     Friend WithEvents ToolStripStatusLabelVehiculos As ToolStripStatusLabel
+    Friend WithEvents ToolStripVehiculos As ToolStrip
+    Friend WithEvents ToolStripButtonVehiculosAgregar As ToolStripButton
+    Friend WithEvents ToolStripButtonVehiculosEditar As ToolStripButton
+    Friend WithEvents ToolStripButtonVehiculosBorrar As ToolStripButton
+    Friend WithEvents DataGridViewDamnificados As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumnDamnificadosApellidoNombre As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumnDamnificadosEdad As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumnDamnificadosEstado As DataGridViewTextBoxColumn
+    Friend WithEvents StatusStripDamnificados As StatusStrip
+    Friend WithEvents ToolStripStatusLabelDamnificados As ToolStripStatusLabel
+    Friend WithEvents ToolStripDaminificados As ToolStrip
+    Friend WithEvents ToolStripButtonDamnificadosAgregar As ToolStripButton
+    Friend WithEvents ToolStripButtonDamnificadosEditar As ToolStripButton
+    Friend WithEvents ToolStripButtonDamnificadosBorrar As ToolStripButton
 End Class

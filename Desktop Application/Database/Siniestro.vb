@@ -42,7 +42,7 @@ Partial Public Class Siniestro
     Public Property UbicacionDescripcion As String
     Public Property UbicacionIDProvincia As Nullable(Of Byte)
     Public Property UbicacionIDLocalidad As Nullable(Of Short)
-    Public Property TrasladoPorOtro As Nullable(Of Boolean)
+    Public Property TrasladoPorOtro As Boolean
     Public Property TrasladoPorOtroCantidad As Nullable(Of Byte)
     Public Property IncendioForestalCantidadHa As Nullable(Of Short)
     Public Property IncendioForestalCantidadPlanta As Nullable(Of Short)
